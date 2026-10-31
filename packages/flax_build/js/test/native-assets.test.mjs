@@ -11,6 +11,79 @@ import { load } from 'js-yaml';
 import { prepareNativeAssets } from '../src/native-assets.mjs';
 import { flaxVitePlugin } from '../src/vite.mjs';
 
+test('host and application native contributions survive either build order and withdraw independently', async (t) => {
+  for (const order of [
+    ['host-modules', 'application'],
+    ['application', 'host-modules'],
+  ]) {
+    const root = await mkdtemp(join(tmpdir(), 'flax-native-contributions-'));
+    t.after(() => rm(root, { recursive: true, force: true }));
+    const project = join(root, 'js');
+    await mkdir(project);
+    await writeFile(join(root, 'pubspec.yaml'), 'name: fixture\ndependencies: {}\n');
+    for (const name of ['host-modules', 'application']) {
+      const directory = join(project, 'node_modules', name);
+      await mkdir(directory, { recursive: true });
+      await writeFile(
+        join(directory, 'package.json'),
+        JSON.stringify({ name, flax: { native: 'native.json' } }),
+      );
+      await writeFile(join(directory, 'index.js'), 'export const value = 42;');
+      await writeFile(join(directory, 'library.c'), 'int value(void) { return 42; }');
+      await writeFile(
+        join(directory, 'native.json'),
+        JSON.stringify({
+          formatVersion: 1,
+          libraries: [
+            { id: name, kind: 'sources', targets: ['macos'], sources: ['library.c'] },
+          ],
+        }),
+      );
+    }
+    const prepare = (contribution, selected = true) =>
+      prepareNativeAssets({
+        projectDirectory: project,
+        hostDirectory: root,
+        contribution,
+        metafile: {
+          outputs: {
+            'output.js': {
+              inputs: selected
+                ? { [`node_modules/${contribution}/index.js`]: { bytesInOutput: 1 } }
+                : {},
+            },
+          },
+        },
+      });
+    await prepare(order[0]);
+    assert.deepEqual(
+      (await prepare(order[1])).plan.libraries.map((entry) => entry.id),
+      ['application', 'host-modules'],
+    );
+    assert.deepEqual(
+      (await prepare(order[0], false)).plan.libraries.map((entry) => entry.id),
+      [order[1]],
+    );
+    assert.deepEqual((await prepare(order[1], false)).plan.libraries, []);
+    const descriptor = join(project, 'node_modules/host-modules/native.json');
+    await writeFile(
+      descriptor,
+      JSON.stringify({
+        formatVersion: 1,
+        libraries: [
+          {
+            id: 'host-modules',
+            kind: 'sources',
+            targets: ['macos'],
+            sources: ['../outside.c'],
+          },
+        ],
+      }),
+    );
+    await assert.rejects(prepare('host-modules'), /Invalid native package path/);
+  }
+});
+
 test('Vite preserves standalone Buffer views without installing FFI', async (t) => {
   const root = await mkdtemp(join(tmpdir(), 'flax-vite-buffer-'));
   t.after(() => rm(root, { recursive: true, force: true }));

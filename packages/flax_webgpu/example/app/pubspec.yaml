@@ -1,0 +1,22 @@
+name: flax_webgpu_example
+description: Interactive standard WebGPU studio and macOS validation.
+publish_to: none
+environment:
+  sdk: ^3.13.7
+  flutter: '>=3.47.9'
+dependencies:
+  flax_example_support:
+    path: ../../../flax_example_support
+  flax:
+    path: ../../../flax
+  flax_webgpu:
+    path: ../../../flax_webgpu
+  flax_canvas:
+    path: ../../../flax_canvas
+  flutter:
+    sdk: flutter
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+    - assets/flax_modules/

@@ -1,0 +1,1441 @@
+{
+  "analysisDateUtc": "2026-10-29T12:43:12.042917+00:00",
+  "baseCommit": "3af52eea34b9ebbdf152e78edba38b8f609de770",
+  "branch": "exp/webgpu-dawn-macos",
+  "hardware": {
+    "chip": "Apple M2 Max",
+    "gpuCores": 30,
+    "os": "macOS 27.0.1 (26A434)",
+    "display": "3440x1440 @ 120 Hz",
+    "power": "AC"
+  },
+  "protocol": {
+    "windowSeconds": [0, 60],
+    "startupBinSeconds": [0, 5],
+    "runningBinSeconds": [5, 60],
+    "freshProcess": true,
+    "osDriverCachesCleared": false,
+    "order": [
+      "canvas-1",
+      "webgpu-1",
+      "webgpu-2",
+      "canvas-2",
+      "canvas-control",
+      "webgpu-control"
+    ],
+    "scenes": {
+      "canvas": "Afterglow Bloom/Aurora 880x480",
+      "webgpu": "Spectrum default particles 960x540"
+    },
+    "cpuSamplePeriodMs": 1,
+    "rafLongIntervalThresholdMs": 20,
+    "substantialGcUnionOverlapMs": 5,
+    "samplerControl": "No Time Profiler; all native/JIT/GC/rAF/FrameTiming probes remain",
+    "loader": "Timed only; CPU sampler attaches at the pre-VM engine gate",
+    "epoch": "Only recorder attachment pause removed; real loader/initialization retained"
+  },
+  "diagnosticEngine": {
+    "uuid": "E2EFD85A-58A5-35F7-828D-AC415FF750A8",
+    "unsignedCodeSha256": "1171b7889bd8c19aa53fa0204b7fd6b2b84f833373b723c93ebb2314d55e3686",
+    "commonUnsignedAotSha256": "e35e5c52a375e5bc93c637af40b70698e67c4576b9d08548a4713090371deede",
+    "archive": ".local/startup-joint/archive-manifest.json",
+    "deployment": "Both hosts use the corrected common AOT compiled in Canvas; WebGPU JS assets are restored after copying."
+  },
+  "captures": [
+    {
+      "name": "canvas-1",
+      "mode": "time-profiler",
+      "signedEngineSha256": "f30e12a1813bcecfd9560f4ef7f37817e196cb8c5392bd934ae08b5ab2f26c0e",
+      "loaderTimedMs": 1670.97,
+      "runtimeCreateMs": 5.779,
+      "sessionReadyMs": 2240.93,
+      "sceneReadyMs": 2279.681,
+      "firstRafMs": 2308.049,
+      "clocks": {
+        "nativeEpochOffset": 1790692690793041.0,
+        "dartEpochOffset": 1790692690793044,
+        "frameEpochOffset": 1790692690793001,
+        "frameEpochOffsetSpreadUs": 143,
+        "dartAnchorMaxUncertaintyUs": 18
+      },
+      "setupPauseRemovedUs": 3308160,
+      "phases": {
+        "cold": {
+          "rafCount": 283,
+          "flutterFrameCount": 285,
+          "rafDurationMs": {
+            "count": 283,
+            "p50": 0.695,
+            "p95": 0.999,
+            "p99": 1.778,
+            "max": 2.6,
+            "sum": 210.944
+          },
+          "buildMs": {
+            "count": 285,
+            "p50": 1.358,
+            "p95": 1.974,
+            "p99": 3.603,
+            "max": 33.251,
+            "sum": 425.618
+          },
+          "rasterMs": {
+            "count": 285,
+            "p50": 3.666,
+            "p95": 4.075,
+            "p99": 5.282,
+            "max": 13.588,
+            "sum": 1039.6
+          },
+          "vsyncDelayMs": {
+            "count": 285,
+            "p50": 0.048,
+            "p95": 4.759,
+            "p99": 43.704,
+            "max": 83.293,
+            "sum": 421.331
+          },
+          "gapsOver12_5Ms": 14,
+          "gapsOver20Ms": 10,
+          "gapsOver20With5MsGc": 2,
+          "jitCodeAdded": 721,
+          "bytecodeAdded": 2837,
+          "gc": {
+            "dart-new": {
+              "count": 9,
+              "p50": 0.727,
+              "p95": 2.363,
+              "p99": 2.363,
+              "max": 2.363,
+              "sum": 7.29
+            },
+            "dart-old": {
+              "count": 7,
+              "p50": 5.625,
+              "p95": 25.483,
+              "p99": 25.483,
+              "max": 25.483,
+              "sum": 75.606
+            },
+            "requested-dart": {
+              "count": 3,
+              "p50": 21.848,
+              "p95": 25.489,
+              "p99": 25.489,
+              "max": 25.489,
+              "sum": 67.374
+            },
+            "joint-gc": {
+              "count": 7,
+              "p50": 5.145,
+              "p95": 12.959,
+              "p99": 12.959,
+              "max": 12.959,
+              "sum": 30.121
+            },
+            "joint-v8": {
+              "count": 5,
+              "p50": 5.358,
+              "p95": 12.935,
+              "p99": 12.935,
+              "max": 12.935,
+              "sum": 29.585
+            },
+            "v8-gc": {
+              "count": 217,
+              "p50": 0.08,
+              "p95": 0.944,
+              "p99": 5.264,
+              "max": 12.914,
+              "sum": 57.55
+            }
+          }
+        },
+        "steady": {
+          "rafCount": 6509,
+          "flutterFrameCount": 6509,
+          "rafDurationMs": {
+            "count": 6509,
+            "p50": 0.662,
+            "p95": 0.801,
+            "p99": 1.028,
+            "max": 4.37,
+            "sum": 4408.25
+          },
+          "buildMs": {
+            "count": 6509,
+            "p50": 1.263,
+            "p95": 1.508,
+            "p99": 1.745,
+            "max": 5.702,
+            "sum": 8319.92
+          },
+          "rasterMs": {
+            "count": 6509,
+            "p50": 3.819,
+            "p95": 4.723,
+            "p99": 5.032,
+            "max": 7.051,
+            "sum": 24684.927
+          },
+          "vsyncDelayMs": {
+            "count": 6509,
+            "p50": 0.129,
+            "p95": 0.165,
+            "p99": 0.326,
+            "max": 58.425,
+            "sum": 1451.164
+          },
+          "gapsOver12_5Ms": 34,
+          "gapsOver20Ms": 21,
+          "gapsOver20With5MsGc": 1,
+          "jitCodeAdded": 127,
+          "bytecodeAdded": 0,
+          "gc": {
+            "dart-new": {
+              "count": 93,
+              "p50": 0.236,
+              "p95": 0.332,
+              "p99": 0.671,
+              "max": 0.671,
+              "sum": 22.767
+            },
+            "dart-old": {
+              "count": 1,
+              "p50": 7.162,
+              "p95": 7.162,
+              "p99": 7.162,
+              "max": 7.162,
+              "sum": 7.162
+            },
+            "requested-dart": {
+              "count": 0
+            },
+            "joint-gc": {
+              "count": 1,
+              "p50": 6.195,
+              "p95": 6.195,
+              "p99": 6.195,
+              "max": 6.195,
+              "sum": 6.195
+            },
+            "joint-v8": {
+              "count": 1,
+              "p50": 6.127,
+              "p95": 6.127,
+              "p99": 6.127,
+              "max": 6.127,
+              "sum": 6.127
+            },
+            "v8-gc": {
+              "count": 1450,
+              "p50": 0.087,
+              "p95": 0.116,
+              "p99": 0.15,
+              "max": 6.051,
+              "sum": 137.183
+            }
+          }
+        }
+      },
+      "cpu": {
+        "cold": {
+          "gc": 104.0,
+          "compile": 117.0,
+          "other": 819.0,
+          "backgroundCompileSampleMs": 138.0
+        },
+        "steady": {
+          "gc": 288.0,
+          "compile": 397.0,
+          "other": 10667.0,
+          "backgroundCompileSampleMs": 158.0
+        }
+      },
+      "sampledGapClassification": {
+        "cold": {
+          "gc-overlap": 2,
+          "callback-scheduling-gap": 8
+        },
+        "steady": {
+          "callback-scheduling-gap": 20,
+          "gc-overlap": 1
+        }
+      },
+      "nativeCountersAtClose": null,
+      "evidenceDirectory": ".local/startup-joint/canvas-1",
+      "evidenceSha256": {
+        "capture.json": "9a9193a073b211d1a382c23583f7b249fded18a355a30588c8e3a5dc120a3b97",
+        "frames.json": "394892542e5f91eec5778020e11ae02b6f989a8ec77aadbb3994e2faf0ea1895",
+        "native-events.json": "26419be8931498f23dfbcf6e437f0ce0569741ba7b3a3e778201dacc2af3d217",
+        "joint-trace.json": "2bb1560f8f92d2244a199351a93751807991192bd68f96058c8884e22b2ed874",
+        "summary.json": "5638c6d2602f9fb690b9bb40481c112b8fa30c891f33b9036855e13f0db0922c",
+        "cpu-summary.json": "f0903619333ba1866ffafa85f8726c5ff5144a6bbb83e7fbbeae1f71cfa81698"
+      }
+    },
+    {
+      "name": "webgpu-1",
+      "mode": "time-profiler",
+      "signedEngineSha256": "475e1d2dae0560fbba5affe7b4c680af043ace5fdd31dd61910f8cc2223194d4",
+      "loaderTimedMs": 1452.105,
+      "runtimeCreateMs": 6.095,
+      "sessionReadyMs": 2171.104,
+      "sceneReadyMs": 2902.245,
+      "firstRafMs": 2926.953,
+      "clocks": {
+        "nativeEpochOffset": 1790692690792828.0,
+        "dartEpochOffset": 1790692690792829,
+        "frameEpochOffset": 1790692690792781,
+        "frameEpochOffsetSpreadUs": 91,
+        "dartAnchorMaxUncertaintyUs": 14
+      },
+      "setupPauseRemovedUs": 4280157,
+      "phases": {
+        "cold": {
+          "rafCount": 214,
+          "flutterFrameCount": 217,
+          "rafDurationMs": {
+            "count": 214,
+            "p50": 0.4775,
+            "p95": 0.67,
+            "p99": 0.787,
+            "max": 1.013,
+            "sum": 103.16
+          },
+          "buildMs": {
+            "count": 217,
+            "p50": 0.601,
+            "p95": 0.986,
+            "p99": 1.227,
+            "max": 32.772,
+            "sum": 191.436
+          },
+          "rasterMs": {
+            "count": 217,
+            "p50": 0.856,
+            "p95": 1.254,
+            "p99": 8.302,
+            "max": 91.079,
+            "sum": 304.985
+          },
+          "vsyncDelayMs": {
+            "count": 217,
+            "p50": 0.119,
+            "p95": 0.167,
+            "p99": 18.808,
+            "max": 182.855,
+            "sum": 277.908
+          },
+          "gapsOver12_5Ms": 4,
+          "gapsOver20Ms": 2,
+          "gapsOver20With5MsGc": 2,
+          "jitCodeAdded": 554,
+          "bytecodeAdded": 2889,
+          "gc": {
+            "dart-new": {
+              "count": 7,
+              "p50": 0.755,
+              "p95": 3.03,
+              "p99": 3.03,
+              "max": 3.03,
+              "sum": 9.379
+            },
+            "dart-old": {
+              "count": 6,
+              "p50": 7.611000000000001,
+              "p95": 32.035,
+              "p99": 32.035,
+              "max": 32.035,
+              "sum": 78.977
+            },
+            "requested-dart": {
+              "count": 2,
+              "p50": 27.7805,
+              "p95": 32.042,
+              "p99": 32.042,
+              "max": 32.042,
+              "sum": 55.561
+            },
+            "joint-gc": {
+              "count": 6,
+              "p50": 6.7330000000000005,
+              "p95": 16.764,
+              "p99": 16.764,
+              "max": 16.764,
+              "sum": 44.512
+            },
+            "joint-v8": {
+              "count": 6,
+              "p50": 6.6274999999999995,
+              "p95": 16.741,
+              "p99": 16.741,
+              "max": 16.741,
+              "sum": 44.069
+            },
+            "v8-gc": {
+              "count": 50,
+              "p50": 0.2745,
+              "p95": 6.709,
+              "p99": 16.65,
+              "max": 16.65,
+              "sum": 72.719
+            }
+          }
+        },
+        "steady": {
+          "rafCount": 6556,
+          "flutterFrameCount": 6556,
+          "rafDurationMs": {
+            "count": 6556,
+            "p50": 0.434,
+            "p95": 1.042,
+            "p99": 1.215,
+            "max": 1.55,
+            "sum": 3149.77
+          },
+          "buildMs": {
+            "count": 6556,
+            "p50": 0.55,
+            "p95": 1.305,
+            "p99": 1.531,
+            "max": 9.285,
+            "sum": 4084.906
+          },
+          "rasterMs": {
+            "count": 6556,
+            "p50": 0.717,
+            "p95": 1.036,
+            "p99": 1.234,
+            "max": 4.78,
+            "sum": 4863.515
+          },
+          "vsyncDelayMs": {
+            "count": 6556,
+            "p50": 0.126,
+            "p95": 0.157,
+            "p99": 0.214,
+            "max": 137.95,
+            "sum": 1353.99
+          },
+          "gapsOver12_5Ms": 19,
+          "gapsOver20Ms": 16,
+          "gapsOver20With5MsGc": 9,
+          "jitCodeAdded": 352,
+          "bytecodeAdded": 0,
+          "gc": {
+            "dart-new": {
+              "count": 25,
+              "p50": 0.242,
+              "p95": 0.408,
+              "p99": 0.548,
+              "max": 0.548,
+              "sum": 6.991
+            },
+            "dart-old": {
+              "count": 9,
+              "p50": 20.135,
+              "p95": 23.398,
+              "p99": 23.398,
+              "max": 23.398,
+              "sum": 186.481
+            },
+            "requested-dart": {
+              "count": 9,
+              "p50": 20.149,
+              "p95": 23.411,
+              "p99": 23.411,
+              "max": 23.411,
+              "sum": 186.586
+            },
+            "joint-gc": {
+              "count": 9,
+              "p50": 6.49,
+              "p95": 7.253,
+              "p99": 7.253,
+              "max": 7.253,
+              "sum": 57.561
+            },
+            "joint-v8": {
+              "count": 9,
+              "p50": 6.373,
+              "p95": 7.151,
+              "p99": 7.151,
+              "max": 7.151,
+              "sum": 56.441
+            },
+            "v8-gc": {
+              "count": 294,
+              "p50": 0.28,
+              "p95": 2.433,
+              "p99": 6.638,
+              "max": 7.051,
+              "sum": 156.781
+            }
+          }
+        }
+      },
+      "cpu": {
+        "cold": {
+          "gc": 111.0,
+          "compile": 113.0,
+          "other": 703.0,
+          "backgroundCompileSampleMs": 51.0
+        },
+        "steady": {
+          "gc": 331.0,
+          "compile": 37.0,
+          "other": 7376.0,
+          "backgroundCompileSampleMs": 344.0
+        }
+      },
+      "sampledGapClassification": {
+        "cold": {
+          "gc-overlap": 2
+        },
+        "steady": {
+          "gc-overlap": 9,
+          "callback-scheduling-gap": 7
+        }
+      },
+      "nativeCountersAtClose": [0, 0, 0, 0, 0, 0],
+      "evidenceDirectory": ".local/startup-joint/webgpu-1",
+      "evidenceSha256": {
+        "capture.json": "83bfded91325a586d43fb3c86ea5f35fc76003e10c766c1c96bd124c30dab23f",
+        "frames.json": "a2082521ae81f2aa5259d4e48dfe966845d077435cb9aac5589d5619845920d1",
+        "native-events.json": "da9a81270a2ecca6b7d4d1aa373c2162f73227db4a16df55cd39c52f789414de",
+        "joint-trace.json": "7e4f15564129982ee947295d5a96d65baa4fdf6d7b5f1911a0cc71a624c49a4a",
+        "summary.json": "11c320b2282f836c65732bcfc52b187f886534718f1317ba16a6a937fa177648",
+        "cpu-summary.json": "3d8db684079050fa7ef6378de9b098cdea2f22645910b10d1853aff592902650"
+      }
+    },
+    {
+      "name": "webgpu-2",
+      "mode": "time-profiler",
+      "signedEngineSha256": "475e1d2dae0560fbba5affe7b4c680af043ace5fdd31dd61910f8cc2223194d4",
+      "loaderTimedMs": 20.095,
+      "runtimeCreateMs": 2.066,
+      "sessionReadyMs": 545.516,
+      "sceneReadyMs": 626.779,
+      "firstRafMs": 627.143,
+      "clocks": {
+        "nativeEpochOffset": 1790692690792703.0,
+        "dartEpochOffset": 1790692690792704,
+        "frameEpochOffset": 1790692690792660,
+        "frameEpochOffsetSpreadUs": 86,
+        "dartAnchorMaxUncertaintyUs": 8
+      },
+      "setupPauseRemovedUs": 2772879,
+      "phases": {
+        "cold": {
+          "rafCount": 506,
+          "flutterFrameCount": 508,
+          "rafDurationMs": {
+            "count": 506,
+            "p50": 0.4655,
+            "p95": 1.127,
+            "p99": 1.359,
+            "max": 1.996,
+            "sum": 271.026
+          },
+          "buildMs": {
+            "count": 508,
+            "p50": 0.584,
+            "p95": 1.426,
+            "p99": 2.148,
+            "max": 28.662,
+            "sum": 392.847
+          },
+          "rasterMs": {
+            "count": 508,
+            "p50": 1.124,
+            "p95": 1.818,
+            "p99": 2.233,
+            "max": 8.239,
+            "sum": 556.517
+          },
+          "vsyncDelayMs": {
+            "count": 508,
+            "p50": 0.061,
+            "p95": 0.165,
+            "p99": 17.939,
+            "max": 36.605,
+            "sum": 270.462
+          },
+          "gapsOver12_5Ms": 13,
+          "gapsOver20Ms": 9,
+          "gapsOver20With5MsGc": 0,
+          "jitCodeAdded": 590,
+          "bytecodeAdded": 2885,
+          "gc": {
+            "dart-new": {
+              "count": 8,
+              "p50": 0.6890000000000001,
+              "p95": 1.636,
+              "p99": 1.636,
+              "max": 1.636,
+              "sum": 6.596
+            },
+            "dart-old": {
+              "count": 4,
+              "p50": 6.2635000000000005,
+              "p95": 29.353,
+              "p99": 29.353,
+              "max": 29.353,
+              "sum": 42.961
+            },
+            "requested-dart": {
+              "count": 1,
+              "p50": 29.361,
+              "p95": 29.361,
+              "p99": 29.361,
+              "max": 29.361,
+              "sum": 29.361
+            },
+            "joint-gc": {
+              "count": 4,
+              "p50": 5.391500000000001,
+              "p95": 16.208,
+              "p99": 16.208,
+              "max": 16.208,
+              "sum": 27.642999999999997
+            },
+            "joint-v8": {
+              "count": 4,
+              "p50": 5.275,
+              "p95": 16.187,
+              "p99": 16.187,
+              "max": 16.187,
+              "sum": 27.363000000000003
+            },
+            "v8-gc": {
+              "count": 58,
+              "p50": 0.2985,
+              "p95": 4.552,
+              "p99": 16.169,
+              "max": 16.169,
+              "sum": 50.879
+            }
+          }
+        },
+        "steady": {
+          "rafCount": 6563,
+          "flutterFrameCount": 6563,
+          "rafDurationMs": {
+            "count": 6563,
+            "p50": 0.444,
+            "p95": 1.092,
+            "p99": 1.28,
+            "max": 2.69,
+            "sum": 3526.545
+          },
+          "buildMs": {
+            "count": 6563,
+            "p50": 0.562,
+            "p95": 1.38,
+            "p99": 1.791,
+            "max": 10.684,
+            "sum": 4541.905
+          },
+          "rasterMs": {
+            "count": 6563,
+            "p50": 1.018,
+            "p95": 1.387,
+            "p99": 1.93,
+            "max": 3.088,
+            "sum": 6469.434
+          },
+          "vsyncDelayMs": {
+            "count": 6563,
+            "p50": 0.131,
+            "p95": 0.166,
+            "p99": 0.221,
+            "max": 31.313,
+            "sum": 1259.813
+          },
+          "gapsOver12_5Ms": 27,
+          "gapsOver20Ms": 14,
+          "gapsOver20With5MsGc": 6,
+          "jitCodeAdded": 327,
+          "bytecodeAdded": 0,
+          "gc": {
+            "dart-new": {
+              "count": 19,
+              "p50": 0.24,
+              "p95": 0.795,
+              "p99": 0.795,
+              "max": 0.795,
+              "sum": 6.031
+            },
+            "dart-old": {
+              "count": 10,
+              "p50": 18.2135,
+              "p95": 24.37,
+              "p99": 24.37,
+              "max": 24.37,
+              "sum": 149.96099999999998
+            },
+            "requested-dart": {
+              "count": 6,
+              "p50": 19.336,
+              "p95": 24.379,
+              "p99": 24.379,
+              "max": 24.379,
+              "sum": 120.727
+            },
+            "joint-gc": {
+              "count": 10,
+              "p50": 6.0225,
+              "p95": 7.586,
+              "p99": 7.586,
+              "max": 7.586,
+              "sum": 62.182
+            },
+            "joint-v8": {
+              "count": 10,
+              "p50": 5.9094999999999995,
+              "p95": 7.457,
+              "p99": 7.457,
+              "max": 7.457,
+              "sum": 61.156
+            },
+            "v8-gc": {
+              "count": 322,
+              "p50": 0.291,
+              "p95": 0.917,
+              "p99": 6.11,
+              "max": 7.312,
+              "sum": 173.779
+            }
+          }
+        }
+      },
+      "cpu": {
+        "cold": {
+          "gc": 80.0,
+          "compile": 113.0,
+          "other": 881.0,
+          "backgroundCompileSampleMs": 66.0
+        },
+        "steady": {
+          "gc": 311.0,
+          "compile": 45.0,
+          "other": 7727.0,
+          "backgroundCompileSampleMs": 380.0
+        }
+      },
+      "sampledGapClassification": {
+        "cold": {
+          "slow-ui": 1,
+          "callback-scheduling-gap": 8
+        },
+        "steady": {
+          "gc-overlap": 6,
+          "callback-scheduling-gap": 8
+        }
+      },
+      "nativeCountersAtClose": [0, 0, 0, 0, 0, 0],
+      "evidenceDirectory": ".local/startup-joint/webgpu-2",
+      "evidenceSha256": {
+        "capture.json": "b5f68825ccc1b5973b12775e34f646fc542a2f89418f4a4b47489f06e306b4a1",
+        "frames.json": "6c6e76100ad5270e9afd1b68496b1b7274fad8b9c2b60b04c85555fc55324c8a",
+        "native-events.json": "72451273da4c312ac116775c88830b817ac85bb380802111d929c0d6e60eac1e",
+        "joint-trace.json": "bc1c78519c7b69f7c0c6fbbb3b9f8879bb0e209d83229cca0adbeba4b24402d2",
+        "summary.json": "519bd5feaf8482d653fcc13b924e80774482221268a868fcff83c3172eff8834",
+        "cpu-summary.json": "a4b1cc5f4089732411005cfb504ecbf0f3ef549cb13e76dfe721bf04bf9c566b"
+      }
+    },
+    {
+      "name": "canvas-2",
+      "mode": "time-profiler",
+      "signedEngineSha256": "f30e12a1813bcecfd9560f4ef7f37817e196cb8c5392bd934ae08b5ab2f26c0e",
+      "loaderTimedMs": 55.375,
+      "runtimeCreateMs": 43.251,
+      "sessionReadyMs": 857.785,
+      "sceneReadyMs": 896.249,
+      "firstRafMs": 929.557,
+      "clocks": {
+        "nativeEpochOffset": 1790692690792586.0,
+        "dartEpochOffset": 1790692690792588,
+        "frameEpochOffset": 1790692690792545.0,
+        "frameEpochOffsetSpreadUs": 86,
+        "dartAnchorMaxUncertaintyUs": 246
+      },
+      "setupPauseRemovedUs": 2530827,
+      "phases": {
+        "cold": {
+          "rafCount": 487,
+          "flutterFrameCount": 489,
+          "rafDurationMs": {
+            "count": 487,
+            "p50": 0.639,
+            "p95": 0.847,
+            "p99": 1.581,
+            "max": 6.814,
+            "sum": 331.559
+          },
+          "buildMs": {
+            "count": 489,
+            "p50": 1.233,
+            "p95": 1.561,
+            "p99": 2.425,
+            "max": 39.096,
+            "sum": 664.29
+          },
+          "rasterMs": {
+            "count": 489,
+            "p50": 4.266,
+            "p95": 4.839,
+            "p99": 5.212,
+            "max": 10.227,
+            "sum": 1999.191
+          },
+          "vsyncDelayMs": {
+            "count": 489,
+            "p50": 0.133,
+            "p95": 0.156,
+            "p99": 0.785,
+            "max": 355.228,
+            "sum": 444.665
+          },
+          "gapsOver12_5Ms": 2,
+          "gapsOver20Ms": 1,
+          "gapsOver20With5MsGc": 0,
+          "jitCodeAdded": 730,
+          "bytecodeAdded": 2837,
+          "gc": {
+            "dart-new": {
+              "count": 12,
+              "p50": 0.692,
+              "p95": 2.639,
+              "p99": 2.639,
+              "max": 2.639,
+              "sum": 10.892999999999999
+            },
+            "dart-old": {
+              "count": 4,
+              "p50": 6.127,
+              "p95": 25.04,
+              "p99": 25.04,
+              "max": 25.04,
+              "sum": 39.219
+            },
+            "requested-dart": {
+              "count": 1,
+              "p50": 25.046,
+              "p95": 25.046,
+              "p99": 25.046,
+              "max": 25.046,
+              "sum": 25.046
+            },
+            "joint-gc": {
+              "count": 4,
+              "p50": 5.2765,
+              "p95": 11.485,
+              "p99": 11.485,
+              "max": 11.485,
+              "sum": 23.508
+            },
+            "joint-v8": {
+              "count": 4,
+              "p50": 5.208,
+              "p95": 11.459,
+              "p99": 11.459,
+              "max": 11.459,
+              "sum": 23.331
+            },
+            "v8-gc": {
+              "count": 270,
+              "p50": 0.082,
+              "p95": 0.437,
+              "p99": 4.963,
+              "max": 11.426,
+              "sum": 56.386
+            }
+          }
+        },
+        "steady": {
+          "rafCount": 6593,
+          "flutterFrameCount": 6593,
+          "rafDurationMs": {
+            "count": 6593,
+            "p50": 0.63,
+            "p95": 0.734,
+            "p99": 0.787,
+            "max": 1.317,
+            "sum": 4188.259
+          },
+          "buildMs": {
+            "count": 6593,
+            "p50": 1.206,
+            "p95": 1.405,
+            "p99": 1.501,
+            "max": 1.962,
+            "sum": 7993.913
+          },
+          "rasterMs": {
+            "count": 6593,
+            "p50": 4.085,
+            "p95": 4.866,
+            "p99": 5.08,
+            "max": 6.363,
+            "sum": 25815.148
+          },
+          "vsyncDelayMs": {
+            "count": 6593,
+            "p50": 0.125,
+            "p95": 0.152,
+            "p99": 0.165,
+            "max": 24.42,
+            "sum": 801.94
+          },
+          "gapsOver12_5Ms": 5,
+          "gapsOver20Ms": 3,
+          "gapsOver20With5MsGc": 0,
+          "jitCodeAdded": 93,
+          "bytecodeAdded": 0,
+          "gc": {
+            "dart-new": {
+              "count": 94,
+              "p50": 0.2065,
+              "p95": 0.255,
+              "p99": 0.334,
+              "max": 0.334,
+              "sum": 19.601
+            },
+            "dart-old": {
+              "count": 0
+            },
+            "requested-dart": {
+              "count": 0
+            },
+            "joint-gc": {
+              "count": 0
+            },
+            "joint-v8": {
+              "count": 0
+            },
+            "v8-gc": {
+              "count": 1464,
+              "p50": 0.087,
+              "p95": 0.111,
+              "p99": 0.129,
+              "max": 0.156,
+              "sum": 130.826
+            }
+          }
+        }
+      },
+      "cpu": {
+        "cold": {
+          "gc": 66.0,
+          "compile": 118.0,
+          "other": 1075.0,
+          "backgroundCompileSampleMs": 165.0
+        },
+        "steady": {
+          "gc": 105.0,
+          "compile": 371.0,
+          "other": 9650.0,
+          "backgroundCompileSampleMs": 133.0
+        }
+      },
+      "sampledGapClassification": {
+        "cold": {
+          "callback-scheduling-gap": 1
+        },
+        "steady": {
+          "callback-scheduling-gap": 3
+        }
+      },
+      "nativeCountersAtClose": null,
+      "evidenceDirectory": ".local/startup-joint/canvas-2",
+      "evidenceSha256": {
+        "capture.json": "bcc0a16d34e9a1ddf9d6246566827dbe4a5accbd74610ee7e4062207c3e794f5",
+        "frames.json": "39a3bd2db3c696f38a1476711c2ed09406db370cf6a5892e38b77199ee580739",
+        "native-events.json": "5159c2e9f6fe02ebd4b545e0b77d0876b938a0da2a8f101d1b7d0410bfd89a2f",
+        "joint-trace.json": "8148096a9a158c83a0e73d3b32cc5f3398b0b7412cbfd99f2d6fb3a7c3f2d0a5",
+        "summary.json": "0a4e8c492765a4ffb76c52e7f107e19c241e1b8da5267fc3f6eaf9498d285d54",
+        "cpu-summary.json": "fa19ef1d4d7a81af65a135464a2bf5e616929aa21eb96729c36442f60015eff2"
+      }
+    },
+    {
+      "name": "canvas-control",
+      "mode": "native-markers-only",
+      "signedEngineSha256": "f30e12a1813bcecfd9560f4ef7f37817e196cb8c5392bd934ae08b5ab2f26c0e",
+      "loaderTimedMs": 51.709,
+      "runtimeCreateMs": 49.547,
+      "sessionReadyMs": 872.127,
+      "sceneReadyMs": 914.741,
+      "firstRafMs": 946.854,
+      "clocks": {
+        "nativeEpochOffset": 1790692690791811,
+        "dartEpochOffset": 1790692690791813,
+        "frameEpochOffset": 1790692690791770.0,
+        "frameEpochOffsetSpreadUs": 86,
+        "dartAnchorMaxUncertaintyUs": 303
+      },
+      "setupPauseRemovedUs": 175,
+      "phases": {
+        "cold": {
+          "rafCount": 484,
+          "flutterFrameCount": 486,
+          "rafDurationMs": {
+            "count": 484,
+            "p50": 0.643,
+            "p95": 0.869,
+            "p99": 1.422,
+            "max": 8.022,
+            "sum": 334.928
+          },
+          "buildMs": {
+            "count": 486,
+            "p50": 1.242,
+            "p95": 1.522,
+            "p99": 2.336,
+            "max": 40.17,
+            "sum": 665.406
+          },
+          "rasterMs": {
+            "count": 486,
+            "p50": 4.4405,
+            "p95": 5.006,
+            "p99": 5.358,
+            "max": 9.833,
+            "sum": 2154.075
+          },
+          "vsyncDelayMs": {
+            "count": 486,
+            "p50": 0.1395,
+            "p95": 0.16,
+            "p99": 0.516,
+            "max": 388.782,
+            "sum": 483.68199999999996
+          },
+          "gapsOver12_5Ms": 2,
+          "gapsOver20Ms": 1,
+          "gapsOver20With5MsGc": 0,
+          "jitCodeAdded": 726,
+          "bytecodeAdded": 2837,
+          "gc": {
+            "dart-new": {
+              "count": 12,
+              "p50": 0.7015,
+              "p95": 2.285,
+              "p99": 2.285,
+              "max": 2.285,
+              "sum": 10.773
+            },
+            "dart-old": {
+              "count": 4,
+              "p50": 6.5745000000000005,
+              "p95": 24.208,
+              "p99": 24.208,
+              "max": 24.208,
+              "sum": 40.833
+            },
+            "requested-dart": {
+              "count": 1,
+              "p50": 24.216,
+              "p95": 24.216,
+              "p99": 24.216,
+              "max": 24.216,
+              "sum": 24.216
+            },
+            "joint-gc": {
+              "count": 4,
+              "p50": 4.9125,
+              "p95": 11.212,
+              "p99": 11.212,
+              "max": 11.212,
+              "sum": 23.634
+            },
+            "joint-v8": {
+              "count": 4,
+              "p50": 4.856999999999999,
+              "p95": 11.189,
+              "p99": 11.189,
+              "max": 11.189,
+              "sum": 23.483999999999998
+            },
+            "v8-gc": {
+              "count": 268,
+              "p50": 0.082,
+              "p95": 0.611,
+              "p99": 4.774,
+              "max": 11.158,
+              "sum": 59.103
+            }
+          }
+        },
+        "steady": {
+          "rafCount": 6598,
+          "flutterFrameCount": 6598,
+          "rafDurationMs": {
+            "count": 6598,
+            "p50": 0.631,
+            "p95": 0.72,
+            "p99": 0.77,
+            "max": 1.362,
+            "sum": 4192.979
+          },
+          "buildMs": {
+            "count": 6598,
+            "p50": 1.198,
+            "p95": 1.383,
+            "p99": 1.472,
+            "max": 2.03,
+            "sum": 7950.782
+          },
+          "rasterMs": {
+            "count": 6598,
+            "p50": 4.458,
+            "p95": 4.979,
+            "p99": 5.159,
+            "max": 5.937,
+            "sum": 28803.594
+          },
+          "vsyncDelayMs": {
+            "count": 6598,
+            "p50": 0.136,
+            "p95": 0.154,
+            "p99": 0.164,
+            "max": 16.94,
+            "sum": 912.778
+          },
+          "gapsOver12_5Ms": 2,
+          "gapsOver20Ms": 1,
+          "gapsOver20With5MsGc": 0,
+          "jitCodeAdded": 98,
+          "bytecodeAdded": 0,
+          "gc": {
+            "dart-new": {
+              "count": 94,
+              "p50": 0.2155,
+              "p95": 0.265,
+              "p99": 0.357,
+              "max": 0.357,
+              "sum": 20.324
+            },
+            "dart-old": {
+              "count": 0
+            },
+            "requested-dart": {
+              "count": 0
+            },
+            "joint-gc": {
+              "count": 0
+            },
+            "joint-v8": {
+              "count": 0
+            },
+            "v8-gc": {
+              "count": 1466,
+              "p50": 0.0875,
+              "p95": 0.107,
+              "p99": 0.118,
+              "max": 0.375,
+              "sum": 129.899
+            }
+          }
+        }
+      },
+      "cpu": null,
+      "sampledGapClassification": null,
+      "nativeCountersAtClose": null,
+      "evidenceDirectory": ".local/startup-joint/canvas-control",
+      "evidenceSha256": {
+        "capture.json": "f75236b20cbfae9872b83eccbfd7a9b7251c0c9f98c30bfb7283939f043cb18a",
+        "frames.json": "23e7c3147da0f58d140e3b9affbcad5c97ec03acb9e789866467e2219edf8223",
+        "native-events.json": "458ab5328b4b0b8eee433b408bd5bd52ffcd782e33e493b9402b52cf676a9739",
+        "joint-trace.json": "671fc3af43bdc0f289ee52c14a981573b44f9f5be06437241ccaf2f7726e05a2",
+        "summary.json": "d0041f8905358286f1725bfecdc337651f7d6e654b1eede5380db84be1a8aa15"
+      }
+    },
+    {
+      "name": "webgpu-control",
+      "mode": "native-markers-only",
+      "signedEngineSha256": "475e1d2dae0560fbba5affe7b4c680af043ace5fdd31dd61910f8cc2223194d4",
+      "loaderTimedMs": 52.906,
+      "runtimeCreateMs": 40.541,
+      "sessionReadyMs": 870.821,
+      "sceneReadyMs": 974.681,
+      "firstRafMs": 980.124,
+      "clocks": {
+        "nativeEpochOffset": 1790692690791726,
+        "dartEpochOffset": 1790692690791727,
+        "frameEpochOffset": 1790692690791683.0,
+        "frameEpochOffsetSpreadUs": 85,
+        "dartAnchorMaxUncertaintyUs": 349
+      },
+      "setupPauseRemovedUs": 200,
+      "phases": {
+        "cold": {
+          "rafCount": 481,
+          "flutterFrameCount": 485,
+          "rafDurationMs": {
+            "count": 481,
+            "p50": 0.442,
+            "p95": 1.146,
+            "p99": 1.39,
+            "max": 1.482,
+            "sum": 263.737
+          },
+          "buildMs": {
+            "count": 485,
+            "p50": 0.552,
+            "p95": 1.463,
+            "p99": 1.855,
+            "max": 35.569,
+            "sum": 392.324
+          },
+          "rasterMs": {
+            "count": 485,
+            "p50": 0.935,
+            "p95": 1.258,
+            "p99": 2.045,
+            "max": 10.114,
+            "sum": 465.168
+          },
+          "vsyncDelayMs": {
+            "count": 485,
+            "p50": 0.129,
+            "p95": 0.163,
+            "p99": 2.125,
+            "max": 50.256,
+            "sum": 143.415
+          },
+          "gapsOver12_5Ms": 3,
+          "gapsOver20Ms": 1,
+          "gapsOver20With5MsGc": 0,
+          "jitCodeAdded": 581,
+          "bytecodeAdded": 2885,
+          "gc": {
+            "dart-new": {
+              "count": 8,
+              "p50": 1.58,
+              "p95": 2.363,
+              "p99": 2.363,
+              "max": 2.363,
+              "sum": 11.721
+            },
+            "dart-old": {
+              "count": 4,
+              "p50": 6.151,
+              "p95": 23.552,
+              "p99": 23.552,
+              "max": 23.552,
+              "sum": 39.031
+            },
+            "requested-dart": {
+              "count": 1,
+              "p50": 23.563,
+              "p95": 23.563,
+              "p99": 23.563,
+              "max": 23.563,
+              "sum": 23.563
+            },
+            "joint-gc": {
+              "count": 4,
+              "p50": 5.335,
+              "p95": 10.439,
+              "p99": 10.439,
+              "max": 10.439,
+              "sum": 22.448
+            },
+            "joint-v8": {
+              "count": 4,
+              "p50": 5.2379999999999995,
+              "p95": 10.41,
+              "p99": 10.41,
+              "max": 10.41,
+              "sum": 22.214
+            },
+            "v8-gc": {
+              "count": 56,
+              "p50": 0.3005,
+              "p95": 4.788,
+              "p99": 10.385,
+              "max": 10.385,
+              "sum": 47.291000000000004
+            }
+          }
+        },
+        "steady": {
+          "rafCount": 6583,
+          "flutterFrameCount": 6583,
+          "rafDurationMs": {
+            "count": 6583,
+            "p50": 0.43,
+            "p95": 1.13,
+            "p99": 1.249,
+            "max": 2.465,
+            "sum": 3589.898
+          },
+          "buildMs": {
+            "count": 6583,
+            "p50": 0.54,
+            "p95": 1.425,
+            "p99": 1.774,
+            "max": 9.904,
+            "sum": 4634.077
+          },
+          "rasterMs": {
+            "count": 6583,
+            "p50": 0.869,
+            "p95": 1.217,
+            "p99": 1.385,
+            "max": 2.388,
+            "sum": 6072.685
+          },
+          "vsyncDelayMs": {
+            "count": 6583,
+            "p50": 0.128,
+            "p95": 0.154,
+            "p99": 0.191,
+            "max": 23.016,
+            "sum": 1013.39
+          },
+          "gapsOver12_5Ms": 10,
+          "gapsOver20Ms": 9,
+          "gapsOver20With5MsGc": 8,
+          "jitCodeAdded": 320,
+          "bytecodeAdded": 0,
+          "gc": {
+            "dart-new": {
+              "count": 19,
+              "p50": 0.249,
+              "p95": 0.52,
+              "p99": 0.52,
+              "max": 0.52,
+              "sum": 5.551
+            },
+            "dart-old": {
+              "count": 9,
+              "p50": 18.579,
+              "p95": 20.436,
+              "p99": 20.436,
+              "max": 20.436,
+              "sum": 156.994
+            },
+            "requested-dart": {
+              "count": 8,
+              "p50": 18.7225,
+              "p95": 20.448,
+              "p99": 20.448,
+              "max": 20.448,
+              "sum": 150.823
+            },
+            "joint-gc": {
+              "count": 9,
+              "p50": 5.474,
+              "p95": 6.248,
+              "p99": 6.248,
+              "max": 6.248,
+              "sum": 50.273
+            },
+            "joint-v8": {
+              "count": 9,
+              "p50": 5.35,
+              "p95": 6.115,
+              "p99": 6.115,
+              "max": 6.115,
+              "sum": 49.222
+            },
+            "v8-gc": {
+              "count": 296,
+              "p50": 0.2725,
+              "p95": 2.338,
+              "p99": 5.402,
+              "max": 5.937,
+              "sum": 159.548
+            }
+          }
+        }
+      },
+      "cpu": null,
+      "sampledGapClassification": null,
+      "nativeCountersAtClose": [0, 0, 0, 0, 0, 0],
+      "evidenceDirectory": ".local/startup-joint/webgpu-control",
+      "evidenceSha256": {
+        "capture.json": "fe0654d7f56fa08ce041e884a62d7838266fbf35c9719b4bf1b53fc5c03c9008",
+        "frames.json": "3d9f1a5bf3e7c50d3c9b54db1d97f6ca6d9f0e40747157e94537af4bdbf2f5e7",
+        "native-events.json": "c02d59c633a50046e1b6ad4a099ccef46faa7797c088157e139cecc3f7e0fe35",
+        "joint-trace.json": "7efafca82870312ad0c7db063247327633ef9e28e2ee449f2b7dda5145a6be9a",
+        "summary.json": "c1c6389709670b566f1e3efa50865d1f1e0ea51c7488b94bb096f627a2610838"
+      }
+    }
+  ],
+  "verification": {
+    "passed": true,
+    "captures": 6,
+    "profiled": 4,
+    "markerControls": 2,
+    "clockAndGcSampleChecks": [
+      {
+        "capture": "canvas-1",
+        "longStwIntervals": 3,
+        "minimumGcSampleMsInsideStw": 19.0
+      },
+      {
+        "capture": "webgpu-1",
+        "longStwIntervals": 11,
+        "minimumGcSampleMsInsideStw": 18.0
+      },
+      {
+        "capture": "webgpu-2",
+        "longStwIntervals": 7,
+        "minimumGcSampleMsInsideStw": 18.0
+      },
+      {
+        "capture": "canvas-2",
+        "longStwIntervals": 1,
+        "minimumGcSampleMsInsideStw": 24.0
+      }
+    ],
+    "boundaryGapIncluded": {
+      "startUs": 59783421,
+      "endUs": 60000000,
+      "ms": 216.579,
+      "resumeUs": 60034082,
+      "windowClipped": true,
+      "gcOverlapMs": 7.143,
+      "previousCallbackMs": 0.655,
+      "maxBuildMs": 1.263,
+      "maxRasterMs": 2.544,
+      "maxVsyncDelayMs": 0.118,
+      "jitInstants": 0
+    }
+  },
+  "preservation": {
+    "initialSourceFileHashesChecked": 222,
+    "initialSourceFilesUnchanged": true,
+    "retainedEngineReceiptUnchanged": true,
+    "retainedEngineBinaryUnchanged": true,
+    "sharedFlutterWorkingTreeClean": true,
+    "baseCommitUnchanged": true,
+    "retainedEngineSha256": "a8a571762ae477d9df4786bf4e253a7ec2a13e23e12559528924fbc8787a8cd6",
+    "committed": false,
+    "pushed": false,
+    "diagnosticScratchCleaned": true,
+    "successfulRawTracesPreserved": true
+  },
+  "limits": [
+    "Logical trace tracks do not imply separate executing threads.",
+    "Code-added events are instants, not measured compilation spans; CPU samples have 1 ms resolution.",
+    "GC overlap is a contributor and need not explain an entire long rAF interval.",
+    "No OS wait-state, heap-allocation, physical presentation, or GPU execution trace.",
+    "One animated default scene per module; controls retain observer overhead and run sequentially.",
+    "Earlier unprofiled benchmark frame drops cannot be retroactively assigned a cause."
+  ],
+  "validation": {
+    "captureAndAlignment": "6/6 passed",
+    "longStwToCpuAlignment": "22/22 passed",
+    "webgpuNativeCleanup": "3/3 hosts, six counters zero each",
+    "originalSourceHashPreservation": "222/222 passed",
+    "compressedExportRoundTrip": "8/8 SHA-256 passed",
+    "mergedTraceRegeneration": "6/6 SHA-256 unchanged after archive compression",
+    "documentationLint": "passed, zero issues",
+    "diffWhitespace": "passed",
+    "fullRuntimeAcceptance": "not rerun; no maintained runtime or application source changes"
+  }
+}

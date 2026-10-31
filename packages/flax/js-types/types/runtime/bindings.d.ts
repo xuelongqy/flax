@@ -1,3 +1,4 @@
+import { type OffscreenCanvas } from '../host/canvas.js';
 import { type Binding, type ReadonlySignal } from './index.js';
 import { type FlaxDartType, type FlaxDartTypeInput, type FlaxDartTypeSelection, type FlaxDartMethodSelection } from './dart_types.js';
 export { dartTypes, flaxDartTypeCases, flaxDartMethodCases, flaxDartExtensionTypes, flaxDartTypeKey, flaxDartTypeValue, } from './dart_types.js';
@@ -337,3 +338,5 @@ export declare function invokeObjectStatic(type: string, member: string): unknow
 /** A plain-data snapshot, without invoking getters or serializing through JSON. */
 export declare function copyNavigationData(value: unknown, path?: Set<object>): NavigationData;
 export declare function mountRoot(widget: Widget): void;
+/** Places the shared canvas; the selected backend supplies its pixels. */
+export declare function CanvasView(canvas: OffscreenCanvas, options?: Readonly<Record<string, unknown>>): WidgetDescription;

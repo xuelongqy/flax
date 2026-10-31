@@ -12,8 +12,9 @@ generated host bootstrap is also embedded in Dart. Business code keeps its publi
 
 Dart plugin registration installs the prebuilt script once per session. Application code
 uses `OffscreenCanvas` and related globals after `FlaxCanvasPlugin` is installed.
-`CanvasView` wraps the generated binding so application code can pass an
-`OffscreenCanvas` instead of the Dart surface object.
+`CanvasView` re-exports Core's placement wrapper so application code can pass the shared
+`OffscreenCanvas`. This package registers the independent 2D backend on that canvas
+host.
 
 TypeScript projects must not enable `lib.dom`. See the
 [Canvas contract](../../../docs/architecture/canvas.md).

@@ -1,0 +1,54 @@
+<!doctype html>
+<meta charset="utf-8" />
+<title>Flax Dawn comparison · Chrome WebGPU</title>
+<style>
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    background: #080d19;
+    overflow: hidden;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    color: white;
+  }
+  canvas {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 960px;
+    height: 540px;
+    border-radius: 36px;
+  }
+  header {
+    position: absolute;
+    top: 24px;
+    left: 30px;
+    font-size: 28px;
+    line-height: 1.2;
+  }
+  aside {
+    position: absolute;
+    left: 52px;
+    bottom: 110px;
+    padding: 16px 22px;
+    border-radius: 18px;
+    background: #0009;
+    font-size: 20px;
+  }
+  footer {
+    position: absolute;
+    left: 30px;
+    bottom: 24px;
+    color: #fffb;
+    font-size: 16px;
+  }
+</style>
+<canvas></canvas>
+<header>Flax × Dawn<br />Metal · WGSL · IOSurface</header>
+<aside>Flutter text above a Dawn GPU texture</aside>
+<footer>Chrome WebGPU comparison · ready</footer>
+<script type="module" src="chrome.js"></script>

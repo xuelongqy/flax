@@ -66,6 +66,7 @@ export declare class Event {
     /** @internal */ dispatching: boolean;
     /** @internal */ immediate: boolean;
     /** @internal */ passive: boolean;
+    /** @internal */ path: EventTarget[];
     cancelBubble: boolean;
     constructor(type: string, options?: EventInit);
     preventDefault(): void;
@@ -80,6 +81,17 @@ export declare class CustomEvent<T = unknown> extends Event {
     constructor(type: string, options?: EventInit & {
         detail?: T;
     });
+}
+export interface ProgressEventInit extends EventInit {
+    lengthComputable?: boolean;
+    loaded?: number;
+    total?: number;
+}
+export declare class ProgressEvent extends Event {
+    readonly lengthComputable: boolean;
+    readonly loaded: number;
+    readonly total: number;
+    constructor(type: string, options?: ProgressEventInit);
 }
 export interface MessageEventInit<T = unknown> extends EventInit {
     data?: T;
@@ -97,14 +109,18 @@ export declare class MessageEvent<T = unknown> extends Event {
     constructor(type: string, options?: MessageEventInit<T>);
 }
 export declare class EventTarget {
+    private static readonly globals;
     private readonly listeners;
     private receiver;
     /** @internal */ static installGlobal(global: typeof globalThis): () => void;
     protected hasListeners(type: string): boolean;
     protected listenersChanged(_type: string): void;
+    /** @internal */ static clear(target: EventTarget): void;
     addEventListener(type: string, callback: EventListener | null, options?: boolean | AddEventListenerOptions): void;
     removeEventListener(type: string, callback: EventListener | null, options?: boolean | EventListenerOptions): void;
     dispatchEvent(event: Event): boolean;
+    /** @internal Canvas input has a canvas/document/window path, not a Widget DOM tree. */
+    static dispatchPath(event: Event, path: EventTarget[]): boolean;
 }
 export declare class AbortSignal extends EventTarget {
     private _aborted;

@@ -324,7 +324,8 @@ void main() {
       let caught;try{await failed.read();}catch(e){caught=e;}check(caught===streamError,'base stream error');failed.releaseLock();
 
 
-      check(typeof window === 'undefined' && typeof process === 'undefined', 'No fake platform');
+      check(window === globalThis && window === self && window.document === document && document.defaultView === window, 'Shared window alias');
+      check(typeof process === 'undefined', 'No Node globals');
       check(new URL('../b?x=1&x=2', 'https://example.com/a/c').searchParams.getAll('x').join() === '1,2', 'URL');
       check(new TextDecoder('gbk').decode(new Uint8Array([0xc4, 0xe3, 0xba, 0xc3])) === '你好', 'full encoding');
       check(new TextDecoder().decode(new TextEncoder().encode('中文🌱')) === '中文🌱', 'UTF-8');
@@ -370,6 +371,38 @@ void main() {
       expect(h.runtimes.single.isDisposed, isTrue);
     },
   );
+
+  testWidgets('Core random bytes and User Timing use the real host lifecycle', (
+    tester,
+  ) async {
+    final h = _TrackedHarness();
+    await flaxTestPumpView(tester, h.app());
+    await runScript(tester, h, r'''
+      const check=(value,message)=>{if(!value)throw Error(message);};
+      const storage=new Uint8Array(32).fill(255),view=new Uint32Array(storage.buffer,8,4);
+      check(crypto.getRandomValues(view)===view,'Random view identity');
+      check(storage.subarray(0,8).every(x=>x===255)&&storage.subarray(24).every(x=>x===255),'Random bounds');
+      crypto.getRandomValues(new BigUint64Array(2));
+      const id=window.crypto.randomUUID();
+      check(/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(id),'UUID v4');
+      const detail={value:[1]},mark=performance.mark(id,{detail});detail.value[0]=2;
+      check(mark.detail.value[0]===1 && mark instanceof PerformanceMark,'Mark clones detail');
+      const delivered=new Promise(resolve=>{
+        const observer=new PerformanceObserver((list,self)=>{self.disconnect();resolve(list.getEntriesByName('host work','measure'));});
+        observer.observe({type:'measure'});
+      });
+      await new Promise(resolve=>setTimeout(resolve,2));
+      const measure=performance.measure('host work',{start:id,end:performance.now()});
+      const records=await delivered;
+      check(measure.duration>=0 && records[0]===measure,'Real clock and observer delivery');
+      performance.clearMarks();performance.clearMeasures();
+      check(performance.getEntries().length===0,'Clear timeline');
+    ''');
+    await flaxTestUnmount(tester);
+    await tester.pumpAndSettle();
+    expect(h.errors, isEmpty);
+    expect(h.tracker.handlesAtDispose, 0);
+  });
 
   testWidgets('plugin snapshots, replacement, isolation and reverse cleanup', (
     tester,
@@ -545,6 +578,19 @@ void main() {
     for (final name in [
       'console',
       'Blob',
+      'FileReader',
+      'ProgressEvent',
+      'ImageBitmapRenderingContext',
+      'window',
+      'location',
+      'crypto',
+      'Crypto',
+      'Performance',
+      'PerformanceMark',
+      'PerformanceMeasure',
+      'PerformanceEntry',
+      'PerformanceObserver',
+      'PerformanceObserverEntryList',
       'ReadableStream',
       '__flaxBindings',
       '__flaxMount',

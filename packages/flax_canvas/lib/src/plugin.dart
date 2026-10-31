@@ -44,14 +44,10 @@ final class FlaxCanvasPlugin extends FlaxPlugin {
   Set<String> get jsModules => const {'@flax/canvas'};
   @override
   Set<String> get globals => const {
-    'OffscreenCanvas',
     'OffscreenCanvasRenderingContext2D',
     'Path2D',
-    'ImageData',
-    'ImageBitmap',
     'CanvasGradient',
     'CanvasPattern',
-    'createImageBitmap',
   };
   @override
   List<FlaxBindingModule> get bindingModules => const [canvasBindings];
@@ -96,6 +92,11 @@ class _CanvasHost implements FlaxPluginInstance {
             (args[1] as FlaxJsNumber).value.toInt(),
             (args[2] as FlaxJsNumber).value.toInt(),
           );
+          final target = context.requireObject<FlaxCanvasTarget>(
+            args[3],
+            flaxCanvasTargetType,
+          );
+          target.attach(surface);
           surface.onError = context.report;
           surfaces[surface] = decoder.createSurface();
           return context.exposeObject(surface, flaxCanvasSurfaceType);
@@ -138,6 +139,18 @@ class _CanvasHost implements FlaxPluginInstance {
               (args[5] as FlaxJsNumber).value.toInt(),
             ),
           );
+        case 'imagePixels':
+          final held = images[(args[1] as FlaxJsNumber).value.toInt()];
+          if (held == null) throw StateError('ImageBitmap is closed');
+          return context.runtime.createArrayBuffer(
+            held.straightPixels ?? decoder.readImagePixels(held.image),
+          );
+        case 'importSharedImage':
+          final resource = context.requireObject<FlaxImageBitmapResource>(
+            args[1],
+            flaxImageBitmapType,
+          );
+          return FlaxJsNumber(_retain(resource.image.clone()).toDouble());
         case 'isPointInPath':
           return FlaxJsBoolean(
             decoder.contains(

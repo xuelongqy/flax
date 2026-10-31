@@ -1,0 +1,51 @@
+{
+  "formatVersion": 1,
+  "modules": [
+    {
+      "specifier": "@flax/core",
+      "package": "@flax/core-runtime"
+    },
+    {
+      "specifier": "@flax/core/bindings",
+      "package": "@flax/core-runtime"
+    },
+    {
+      "specifier": "@flax/core/host",
+      "package": "@flax/core-runtime"
+    },
+    {
+      "specifier": "@flax/core/navigation",
+      "package": "@flax/core-runtime"
+    },
+    {
+      "specifier": "@flax/flutter/widgets",
+      "package": "@flax/core-runtime"
+    },
+    {
+      "specifier": "@flax/flutter/painting",
+      "package": "@flax/core-runtime"
+    },
+    {
+      "specifier": "@flax/flutter/rendering",
+      "package": "@flax/core-runtime"
+    },
+    {
+      "specifier": "@flax/flutter/services",
+      "package": "@flax/core-runtime"
+    },
+    {
+      "specifier": "@flax/dart/ui",
+      "package": "@flax/core-runtime"
+    },
+    {
+      "specifier": "@flax/webgpu",
+      "package": "@flax/webgpu-runtime"
+    },
+    {
+      "specifier": "@flax/webgpu/host",
+      "package": "@flax/webgpu-runtime"
+    }
+  ],
+  "flutterProject": "../app",
+  "output": "assets/flax_modules"
+}

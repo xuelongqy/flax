@@ -58,7 +58,11 @@ export async function prepareNativeAssets({
   projectDirectory,
   hostDirectory,
   metafile,
+  contribution = 'application',
+  check = false,
 }) {
+  if (!['application', 'host-modules'].includes(contribution))
+    throw new Error('Invalid native asset contribution');
   const project = await realpath(projectDirectory);
   const host = await realpath(hostDirectory);
   const pubspecPath = resolve(host, 'pubspec.yaml');
@@ -70,6 +74,30 @@ export async function prepareNativeAssets({
       if (error.code === 'ENOENT') return null;
       throw error;
     });
+  const contributions = await readFile(
+    resolve(destination, 'native-contributions.json'),
+    'utf8',
+  )
+    .then(JSON.parse)
+    .catch((error) => {
+      if (error.code === 'ENOENT') return {};
+      throw error;
+    });
+  if (
+    !contributions ||
+    typeof contributions !== 'object' ||
+    Array.isArray(contributions) ||
+    Object.entries(contributions).some(
+      ([key, paths]) =>
+        !['application', 'host-modules'].includes(key) ||
+        !Array.isArray(paths) ||
+        paths.some(
+          (path) =>
+            typeof path !== 'string' || !isAbsolute(path) || path.includes('\0'),
+        ),
+    )
+  )
+    throw new Error('Invalid native asset contributions');
   const stage = `${destination}.${randomUUID()}.staging`;
   await mkdir(resolve(stage, 'hook'), { recursive: true });
   const plan = { formatVersion: 1, libraries: [], files: {} };
@@ -88,6 +116,15 @@ export async function prepareNativeAssets({
         const item = await owner(resolve(project, path));
         if (item?.metadata.flax?.native) packages.set(item.directory, item);
       }
+    contributions[contribution] = [...packages.keys()].sort();
+    for (const directory of new Set(Object.values(contributions).flat())) {
+      if ((await realpath(directory)) !== directory)
+        throw new Error('Native package location changed; rebuild its contribution');
+      const metadata = JSON.parse(
+        await readFile(resolve(directory, 'package.json'), 'utf8'),
+      );
+      if (metadata.flax?.native) packages.set(directory, { directory, metadata });
+    }
     const identities = new Set();
     for (const { directory, metadata } of [...packages.values()].sort((a, b) =>
       a.metadata.name.localeCompare(b.metadata.name),
@@ -294,9 +331,20 @@ export async function prepareNativeAssets({
     }
     plan.libraries = orderNativeLibraries(plan.libraries);
     if (!plan.libraries.length && !previous) return { assets, plan };
+    if (check) {
+      if (JSON.stringify(plan) !== JSON.stringify(previous))
+        throw new Error(
+          'Stale native asset plan; rebuild host modules and application',
+        );
+      return { assets, plan };
+    }
     await writeFile(
       resolve(stage, 'native-plan.json'),
       JSON.stringify(plan, null, 2) + '\n',
+    );
+    await writeFile(
+      resolve(stage, 'native-contributions.json'),
+      JSON.stringify(contributions, null, 2) + '\n',
     );
     await writeFile(
       resolve(stage, 'pubspec.yaml'),

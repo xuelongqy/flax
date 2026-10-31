@@ -5,7 +5,8 @@ import { buildHost, hostBundles } from '../../../../../tool/src/host_bundle.mjs'
 
 test('base environment provides Fetch, data and streams by default', async () => {
   const context = createContext({
-    __flaxBaseCall(op) {
+    __flaxBaseCall(op, ...args) {
+      if (op === 'fetch' && args[0] === 'baseUrl') return undefined;
       if (op === 'fetch') return;
       if (op === 'timeOrigin') return 0;
       throw Error(`Unexpected host operation: ${op}`);
@@ -50,4 +51,49 @@ test('base environment provides Fetch, data and streams by default', async () =>
   } finally {
     base.close();
   }
+});
+
+test('progress events and Blob URL factories belong to the base session', async () => {
+  const context = createContext({
+    __flaxBaseCall(op, ...args) {
+      if (op === 'fetch' && args[0] === 'baseUrl') return undefined;
+      if (op === 'timeOrigin' || op === 'now') return 0;
+      throw Error(op);
+    },
+  });
+  const base = runInContext(
+    await buildHost(hostBundles.find((bundle) => bundle.base)),
+    context,
+  );
+  const factory = runInContext(
+    `() => URL.createObjectURL(new Blob(['bytes']))`,
+    context,
+  );
+  try {
+    assert.equal(
+      runInContext(
+        `(() => {
+      const event = new ProgressEvent('progress', {loaded: 12.9, total: 24, lengthComputable: true});
+      const target = new EventTarget(); let delivered;
+      target.addEventListener('progress', value => delivered = value); target.dispatchEvent(event);
+      if (!(event instanceof Event) || delivered !== event || event.loaded !== 12 || event.total !== 24 || !event.lengthComputable) throw Error('Progress event');
+      if (new ProgressEvent('progress', {loaded: Infinity}).loaded !== 0) throw Error('Progress conversion');
+      const blob = new Blob(['bytes']); const first = URL.createObjectURL(blob), second = URL.createObjectURL(blob);
+      if (first === second || !first.startsWith('blob:')) throw Error('Unique Blob URLs');
+      URL.revokeObjectURL(first); URL.revokeObjectURL(first);
+      for (const action of [() => URL.revokeObjectURL(), () => URL.revokeObjectURL(Symbol())]) {
+        let rejected = false; try { action(); } catch(e) { rejected = e instanceof TypeError; }
+        if (!rejected) throw Error('Object URL conversion');
+      }
+      let rejected = false; try { URL.createObjectURL({size: 1}); } catch(e) { rejected = e instanceof TypeError; }
+      return rejected;
+    })()`,
+        context,
+      ),
+      true,
+    );
+  } finally {
+    base.close();
+  }
+  assert.throws(factory, (error) => error.name === 'InvalidStateError');
 });

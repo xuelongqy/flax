@@ -10,10 +10,55 @@ export interface FilePropertyBag extends BlobPropertyBag {
   lastModified?: number;
 }
 
+// These bundle-private hooks preserve Blob ownership without exposing its bytes.
+export let blobParts: (value: object) => readonly Uint8Array[] | undefined;
+export let blobType: (value: object) => string | undefined;
+export let fileMetadata: (value: object) => readonly [string, number] | undefined;
+export let restoreBlob: (
+  parts: Uint8Array[],
+  type: string,
+  name?: string,
+  lastModified?: number,
+) => Blob;
+export function blobBuffer(value: object): ArrayBuffer {
+  const parts = blobParts(value);
+  if (!parts) throw new TypeError('Expected a Blob');
+  const result = new Uint8Array(
+    parts.reduce((size, part) => size + part.byteLength, 0),
+  );
+  let offset = 0;
+  for (const part of parts) {
+    result.set(part, offset);
+    offset += part.byteLength;
+  }
+  return result.buffer;
+}
+
 export class Blob {
   #parts: Uint8Array[];
+  #type: string;
+  static {
+    blobParts = (value) => (#parts in value ? value.#parts : undefined);
+    blobType = (value) => (#type in value ? value.#type : undefined);
+    restoreBlob = (parts, type, name, lastModified) => {
+      const blob =
+        name === undefined
+          ? new Blob([], { type })
+          : new File([], name, {
+              type,
+              ...(lastModified === undefined ? {} : { lastModified }),
+            });
+      blob.#parts = parts;
+      Object.defineProperty(blob, 'size', {
+        value: parts.reduce((size, part) => size + part.byteLength, 0),
+      });
+      return blob;
+    };
+  }
   readonly size: number;
-  readonly type: string;
+  get type(): string {
+    return this.#type;
+  }
   constructor(parts: Iterable<BlobPart> = [], options: BlobPropertyBag = {}) {
     if (
       options.endings !== undefined &&
@@ -37,7 +82,7 @@ export class Blob {
     }
     this.size = this.#parts.reduce((size, part) => size + part.byteLength, 0);
     const type = String(options.type ?? '');
-    this.type = /[^\x20-\x7e]/.test(type) ? '' : type.toLowerCase();
+    this.#type = /[^\x20-\x7e]/.test(type) ? '' : type.toLowerCase();
   }
   get [Symbol.toStringTag](): string {
     return 'Blob';
@@ -64,13 +109,7 @@ export class Blob {
     return new Blob(parts, { type });
   }
   async arrayBuffer(): Promise<ArrayBuffer> {
-    const result = new Uint8Array(this.size);
-    let offset = 0;
-    for (const part of this.#parts) {
-      result.set(part, offset);
-      offset += part.byteLength;
-    }
-    return result.buffer;
+    return blobBuffer(this);
   }
   async bytes(): Promise<Uint8Array> {
     return new Uint8Array(await this.arrayBuffer());
@@ -105,13 +144,23 @@ export class Blob {
   }
 }
 export class File extends Blob {
-  readonly name: string;
-  readonly lastModified: number;
+  #name: string;
+  #lastModified: number;
+  static {
+    fileMetadata = (value) =>
+      #name in value ? [value.#name, value.#lastModified] : undefined;
+  }
+  get name(): string {
+    return this.#name;
+  }
+  get lastModified(): number {
+    return this.#lastModified;
+  }
   readonly webkitRelativePath = '';
   constructor(parts: Iterable<BlobPart>, name: string, options: FilePropertyBag = {}) {
     super(parts, options);
-    this.name = String(name);
-    this.lastModified =
+    this.#name = String(name);
+    this.#lastModified =
       options.lastModified === undefined
         ? Date.now()
         : Math.trunc(Number(options.lastModified));

@@ -1,0 +1,19 @@
+name: flax_webgpu
+description: Optional Dawn WebGPU host plugin for Flax on macOS arm64.
+version: 0.0.0
+publish_to: none
+resolution: workspace
+environment:
+  sdk: ^3.13.7
+  flutter: '>=3.47.9'
+dependencies:
+  flax: 0.0.0
+  flutter:
+    sdk: flutter
+flutter:
+  licenses:
+    - THIRD_PARTY_NOTICES.txt
+  plugin:
+    platforms:
+      macos:
+        pluginClass: FlaxWebGpuPlugin

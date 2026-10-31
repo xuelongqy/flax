@@ -16,6 +16,15 @@ import 'package:flutter_test/flutter_test.dart';
 
 import '../../packages/flax_canvas/test/support/dart_decoder.dart';
 
+class _BenchmarkCanvasPlugin extends FlaxTestBindingPlugin {
+  _BenchmarkCanvasPlugin() : super(const FlaxCanvasPlugin(), const {});
+  late FlaxPluginInstance instance;
+
+  @override
+  FlaxPluginInstance install(FlaxHostContext context) =>
+      instance = super.install(context);
+}
+
 void main() {
   setUpAll(() async {
     const fixturePath = String.fromEnvironment('CANVAS_NATIVE_FIXTURES');
@@ -40,6 +49,7 @@ void main() {
       source: source,
       bindings: registry,
     );
+    final plugin = _BenchmarkCanvasPlugin();
     await flaxTestPumpView(
       tester,
       Directionality(
@@ -48,15 +58,18 @@ void main() {
           createRuntime: h.create,
           source: source,
           bindings: registry,
-          plugins: const [FlaxCanvasPlugin()],
+          plugins: [plugin],
           onError: (error, _) => h.errors.add(error),
         ),
       ),
     );
     expect(h.errors, isEmpty);
-    final surface = tester
-        .widget<FlaxCanvasView>(find.byType(FlaxCanvasView))
-        .canvas;
+    // The view owns a shared target; this historical probe measures the 2D
+    // provider's retained pictures and intentionally inspects its private host.
+    final surface =
+        ((plugin.instance as dynamic).surfaces as Map<FlaxCanvasSurface, int>)
+            .keys
+            .single;
     final reference = FlaxCanvasSurface(64, 64);
     final referenceState = CanvasDrawState();
     h.runtime.registerHostFunction('__flaxCanvasDartBatch', (_, args) {

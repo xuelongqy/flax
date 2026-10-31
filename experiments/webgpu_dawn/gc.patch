@@ -1,0 +1,32 @@
+--- a/flutter/flax/native/src/joint_gc.cc
++++ b/flutter/flax/native/src/joint_gc.cc
+@@ -148,6 +148,7 @@
+   while (!cells_.empty())
+     Remove(cells_.begin()->first);
+   peers_key_.Reset();
++  peer_template_.Reset();
+ }
+ 
+ JointHeap::~JointHeap() {
+@@ -202,7 +203,10 @@
+   } else {
+     peer = cppgc::MakeGarbageCollected<JointPeer>(
+         isolate_->GetCppHeap()->GetAllocationHandle());
+-    auto carrier = v8::FunctionTemplate::New(isolate_)
++    // Reuse the type template; each Context still gets its own constructor.
++    if (peer_template_.IsEmpty())
++      peer_template_.Reset(isolate_, v8::FunctionTemplate::New(isolate_));
++    auto carrier = peer_template_.Get(isolate_)
+                        ->GetFunction(ctx)
+                        .ToLocalChecked()
+                        ->NewInstance(ctx)
+--- a/flutter/flax/native/src/joint_gc.h
++++ b/flutter/flax/native/src/joint_gc.h
+@@ -82,6 +82,7 @@
+   std::weak_ptr<tonic::DartState> dart_state_;
+   fml::RefPtr<fml::TaskRunner> runner_;
+   v8::Global<v8::Private> peers_key_;
++  v8::Global<v8::FunctionTemplate> peer_template_;
+   std::unordered_map<JointCell*, std::unique_ptr<JointCell>> cells_;
+   std::unordered_map<Dart_WeakPersistentHandle, JointCell*> origins_;
+   const Dart_FlaxGC* joint_ = nullptr;

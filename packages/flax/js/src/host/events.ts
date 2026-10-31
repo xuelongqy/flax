@@ -75,6 +75,7 @@ export class Event {
   /** @internal */ dispatching = false;
   /** @internal */ immediate = false;
   /** @internal */ passive = false;
+  /** @internal */ path: EventTarget[] = [];
   cancelBubble = false;
   constructor(type: string, options: EventInit = {}) {
     this.type = String(type);
@@ -93,7 +94,7 @@ export class Event {
     this.stopPropagation();
   }
   composedPath(): EventTarget[] {
-    return this.currentTarget ? [this.currentTarget] : [];
+    return this.dispatching ? [...this.path] : [];
   }
   get returnValue(): boolean {
     return !this.defaultPrevented;
@@ -108,6 +109,30 @@ export class CustomEvent<T = unknown> extends Event {
   constructor(type: string, options: EventInit & { detail?: T } = {}) {
     super(type, options);
     this.detail = (options.detail ?? null) as T;
+  }
+}
+export interface ProgressEventInit extends EventInit {
+  lengthComputable?: boolean;
+  loaded?: number;
+  total?: number;
+}
+export class ProgressEvent extends Event {
+  readonly lengthComputable: boolean;
+  readonly loaded: number;
+  readonly total: number;
+  constructor(type: string, options: ProgressEventInit = {}) {
+    super(type, options);
+    const count = (value: number = 0) => {
+      const number = Math.trunc(+value) % 2 ** 64;
+      return !Number.isFinite(number) || number === 0
+        ? 0
+        : number < 0
+          ? number + 2 ** 64
+          : number;
+    };
+    this.lengthComputable = Boolean(options.lengthComputable);
+    this.loaded = count(options.loaded);
+    this.total = count(options.total);
   }
 }
 export interface MessageEventInit<T = unknown> extends EventInit {
@@ -141,11 +166,13 @@ interface Listener {
   detach?: () => void;
 }
 export class EventTarget {
+  private static readonly globals = new WeakMap<object, EventTarget>();
   private readonly listeners: Listener[] = [];
   private receiver: EventTarget = this;
   /** @internal */ static installGlobal(global: typeof globalThis): () => void {
     const target = new EventTarget();
     target.receiver = global as unknown as EventTarget;
+    EventTarget.globals.set(global, target);
     global.addEventListener = target.addEventListener.bind(target);
     global.removeEventListener = target.removeEventListener.bind(target);
     global.dispatchEvent = target.dispatchEvent.bind(target);
@@ -159,11 +186,17 @@ export class EventTarget {
     return this.listeners.some((listener) => listener.type === type);
   }
   protected listenersChanged(_type: string): void {}
+  /** @internal */ static clear(target: EventTarget): void {
+    for (const listener of [...target.listeners])
+      target.removeEventListener(listener.type, listener.callback, listener.capture);
+  }
   addEventListener(
     type: string,
     callback: EventListener | null,
     options: boolean | AddEventListenerOptions = {},
   ): void {
+    const global = EventTarget.globals.get(this);
+    if (global) return global.addEventListener(type, callback, options);
     if (callback == null) return;
     if (typeof callback !== 'function' && typeof callback !== 'object')
       throw new TypeError('Invalid event listener');
@@ -200,6 +233,8 @@ export class EventTarget {
     callback: EventListener | null,
     options: boolean | EventListenerOptions = {},
   ): void {
+    const global = EventTarget.globals.get(this);
+    if (global) return global.removeEventListener(type, callback, options);
     const capture = typeof options === 'boolean' ? options : Boolean(options?.capture);
     const index = this.listeners.findIndex(
       (l) =>
@@ -211,29 +246,55 @@ export class EventTarget {
     this.listenersChanged(listener!.type);
   }
   dispatchEvent(event: Event): boolean {
+    return EventTarget.dispatchPath(event, [this]);
+  }
+  /** @internal Canvas input has a canvas/document/window path, not a Widget DOM tree. */
+  static dispatchPath(event: Event, path: EventTarget[]): boolean {
     if (!(event instanceof Event)) throw new TypeError('Expected Event');
     if (event.dispatching)
       throw new DOMException('Event is already being dispatched', 'InvalidStateError');
     event.dispatching = true;
-    event.target = this.receiver;
-    event.currentTarget = this.receiver;
-    event.eventPhase = Event.AT_TARGET;
-    try {
-      for (const listener of [...this.listeners]) {
-        if (listener.type !== event.type || !this.listeners.includes(listener))
+    const targets = path.map((target) => EventTarget.globals.get(target) ?? target);
+    event.path = targets.map((target) => target.receiver);
+    event.target = event.path[0] ?? null;
+    const invoke = (target: EventTarget, capture: boolean, phase: number) => {
+      event.currentTarget = target.receiver;
+      event.eventPhase = phase;
+      for (const listener of [...target.listeners]) {
+        if (
+          listener.type !== event.type ||
+          listener.capture !== capture ||
+          !target.listeners.includes(listener)
+        )
           continue;
         if (listener.once)
-          this.removeEventListener(listener.type, listener.callback, listener.capture);
+          target.removeEventListener(
+            listener.type,
+            listener.callback,
+            listener.capture,
+          );
         event.passive = listener.passive;
         try {
           if (typeof listener.callback === 'function')
-            listener.callback.call(this.receiver, event);
+            listener.callback.call(target.receiver, event);
           else listener.callback.handleEvent(event);
         } catch (error) {
           report(error);
         }
         if (event.immediate) break;
       }
+    };
+    try {
+      for (let i = targets.length - 1; i > 0 && !event.cancelBubble; i--) {
+        invoke(targets[i]!, true, Event.CAPTURING_PHASE);
+      }
+      if (!event.cancelBubble && targets[0]) {
+        invoke(targets[0], true, Event.AT_TARGET);
+        if (!event.immediate) invoke(targets[0], false, Event.AT_TARGET);
+      }
+      if (event.bubbles)
+        for (let i = 1; i < targets.length && !event.cancelBubble; i++)
+          invoke(targets[i]!, false, Event.BUBBLING_PHASE);
     } finally {
       event.dispatching = false;
       event.currentTarget = null;
@@ -241,6 +302,7 @@ export class EventTarget {
       event.passive = false;
       event.immediate = false;
       event.cancelBubble = false;
+      event.path = [];
     }
     return !event.defaultPrevented;
   }

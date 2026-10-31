@@ -1,4 +1,4 @@
-import { dartTypes } from '@flax/core/bindings';
+import { dartTypes, type Bindable } from '@flax/core/bindings';
 import { Brightness, Color, FontWeight } from '@flax/dart/ui';
 import {
   Border,
@@ -81,7 +81,7 @@ export function runExample(widget: Widget): void {
 }
 
 export function text(
-  value: string,
+  value: Bindable<string>,
   size = 15,
   color: Color | keyof typeof exampleColors = 'ink',
   bold = false,

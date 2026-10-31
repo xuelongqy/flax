@@ -15,10 +15,7 @@
             "native-navigation-objects",
             "native-widget-proxies"
           ],
-          "types": [
-            "flax.canvas/canvas#type:FlaxCanvasSurface",
-            "flax.canvas/canvas#type:FlaxCanvasView"
-          ],
+          "types": ["flax.canvas/canvas#type:FlaxCanvasSurface"],
           "functions": [
             "flax.canvas/canvas#read:FlaxCanvasSurface.commandBytesLimit",
             "flax.canvas/canvas#read:FlaxCanvasSurface.pictureLimit"

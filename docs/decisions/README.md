@@ -128,6 +128,13 @@ current language support is in the
   integration. Native module linking, asynchronous loading and iOS interpreted Wasm
   preserve script compatibility; platform acceptance is recorded separately.
 
+- [0052: Shared canvas and optional WebGPU](0052-shared-canvas-and-webgpu.md) is an
+  experimental integration. Core owns canvas identity and placement; independent
+  providers supply Canvas 2D and the first Dawn-backed standard JS WebGPU profile.
+
 [Open Questions](open-questions.md) records decisions that have not been made. Use the
 [decision template](TEMPLATE.md) for a new significant decision. Record the decision,
 its reason and practical consequences, and update this index.
+
+- [0053: Detached Dedicated Workers](0053-dedicated-workers.md) is an experimental
+  integration; macOS acceptance is recorded with the implementation.

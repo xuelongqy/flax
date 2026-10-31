@@ -1,4 +1,4 @@
-import type { AbortSignal as AbortSignalType, URL as URLType } from '../index.js';
+import type { AbortSignal as AbortSignalType, URL as URLType } from '../common.js';
 import { Blob, FormData } from '../data.js';
 import { ReadableStream, TransformStream } from 'web-streams-polyfill';
 import { isDisturbed, assertUnused } from './streams.js';
@@ -115,8 +115,8 @@ export class Request extends Body {
     super();
     const source = input instanceof Request ? input : null;
     const url = new URL(source?.url ?? String(input), baseUrl);
-    if (!['http:', 'https:'].includes(url.protocol))
-      throw new TypeError('Fetch supports HTTP and HTTPS URLs');
+    if (!['http:', 'https:', 'blob:', 'data:', 'flax:', 'file:'].includes(url.protocol))
+      throw new TypeError('Unsupported request URL protocol');
     if (url.username || url.password)
       throw new TypeError('Credentials in request URLs are not supported');
     this.url = url.href;

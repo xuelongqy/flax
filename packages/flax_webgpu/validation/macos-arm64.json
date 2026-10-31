@@ -1,0 +1,237 @@
+{
+  "profile": "experimental macOS arm64 Dawn standard JS API",
+  "verifiedAt": "2026-10-28T19:55:47+08:00",
+  "machine": {
+    "gpu": "Apple M2 Max",
+    "os": "macOS 27.0.1 (26A434)"
+  },
+  "inputs": {
+    "dawnRevision": "5fbd545292cb7a4a9a275e322abec6007ffe2ae8",
+    "gpuwebRevision": "22507c95ccb9e705eddc7cab8f28aa46b134f5fe",
+    "ctsRevision": "cc11994e92512d0a3715e9d28876ec48accb971a",
+    "headerSha256": "44126360bbd35339b3b1ccb8ab5bdf21a4a1109bc05f086b179df5ea5a2734d0",
+    "idlSha256": "5293ea7f38416cb37b0ddfc636286514ff622901caa19504a4bdede2ec5a80b2"
+  },
+  "sdk": {
+    "tag": "v20261026.205545",
+    "archiveSha256": "8eed5796e1c3403515c331a098fc9e8b5b738f832d9736be6843db891235c92b",
+    "minimumMacOS": "26.0"
+  },
+  "engine": {
+    "engine": "flax_mac_webgpu_fenced_release_arm64",
+    "patchSha256": "acbea7e5083008d44ebbe9d818922702b3704193e8f551db3554138cd27f2cd2",
+    "bufferPatchSha256": "1e3976562cc8a492fffe6c8746a58f7c6bcbabd957eeca0408d739230dfe1844",
+    "engineBinarySha256": "8fbbe2ede37ff0624f9802bac028baed8ee1b8dc54907882bc6cdc9139d46c91",
+    "originalSourcesSha256": {
+      "flutter/shell/platform/darwin/macos/framework/Source/FlutterExternalTexture.mm": "5c2be38b4b7a1ff84630df971928f83d8d99398e2c767e38e4f435a075fb98a1",
+      "flutter/impeller/renderer/backend/metal/render_pass_mtl.mm": "c790a1a3dbbec3beed94fb3fea18de370ec950960e7c36c43687de877799ab93",
+      "flutter/flax/native/src/runtime.cpp": "8c1a392bb7e43153be31ed5c65e28f8a1b08959c51b133615b348887a57f1c64",
+      "flutter/flax/native/src/ffi/memory.inc": "0f835cb508889ffe3e9b5c64c54cc88dc885410b2d0333babcd11270e3d003ee",
+      "flutter/flax/native/v8-jsi/src/jsi_abi/jsi_abi_v8.cpp": "8d69220727678b2871e1cd0e26aef3cfc9c070399dc7ad00908db5b7447ec2b2"
+    }
+  },
+  "nativeDylibSha256": "0be4c649cc95c205c08dbf2d84cbb82c42fa914568c884b548e87e641ef24c7a",
+  "wgslSha256": "68661f2c01fe1e7ca883af8f1d3a88bd55415b278bc5389b0e5380433e52da24",
+  "application": {
+    "passed": true,
+    "resolution": [960, 540],
+    "sessions": 3,
+    "submittedFrames": 360,
+    "coloredScreenshotPixels": 167269,
+    "checks": [
+      {
+        "kind": "compute",
+        "adapter": {
+          "vendor": "apple",
+          "device": "Apple M2 Max",
+          "isFallbackAdapter": false,
+          "subgroupMaxSize": 32,
+          "architecture": "metal-3",
+          "description": "Metal driver on macOS Version 27.0.1 (Build 26A434)",
+          "subgroupMinSize": 32
+        },
+        "values": [3, 5, 7, 9, 21, 41, 61, 81],
+        "assertions": 18,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "rendered",
+        "frames": 120,
+        "format": "bgra8unorm",
+        "cpuEncodeMs": {
+          "p50": 0.3650000000000091,
+          "p95": 0.4570000000001073
+        },
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "retired",
+        "cycle": 0,
+        "before": [1, 1, 2, 2, 1, 0],
+        "after": [0, 0, 0, 0, 0, 0]
+      },
+      {
+        "kind": "compute",
+        "adapter": {
+          "vendor": "apple",
+          "device": "Apple M2 Max",
+          "isFallbackAdapter": false,
+          "subgroupMaxSize": 32,
+          "architecture": "metal-3",
+          "description": "Metal driver on macOS Version 27.0.1 (Build 26A434)",
+          "subgroupMinSize": 32
+        },
+        "values": [3, 5, 7, 9, 21, 41, 61, 81],
+        "assertions": 17,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "rendered",
+        "frames": 120,
+        "format": "bgra8unorm",
+        "cpuEncodeMs": {
+          "p50": 0.3300000000001546,
+          "p95": 1.0149999999999864
+        },
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "retired",
+        "cycle": 1,
+        "before": [1, 1, 2, 2, 1, 0],
+        "after": [0, 0, 0, 0, 0, 0]
+      },
+      {
+        "kind": "compute",
+        "adapter": {
+          "vendor": "apple",
+          "device": "Apple M2 Max",
+          "isFallbackAdapter": false,
+          "subgroupMaxSize": 32,
+          "architecture": "metal-3",
+          "description": "Metal driver on macOS Version 27.0.1 (Build 26A434)",
+          "subgroupMinSize": 32
+        },
+        "values": [3, 5, 7, 9, 21, 41, 61, 81],
+        "assertions": 18,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "rendered",
+        "frames": 120,
+        "format": "bgra8unorm",
+        "cpuEncodeMs": {
+          "p50": 0.36899999999997135,
+          "p95": 0.5480000000000018
+        },
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "retired",
+        "cycle": 2,
+        "before": [1, 1, 2, 2, 1, 0],
+        "after": [0, 0, 0, 0, 0, 0]
+      }
+    ],
+    "counterOrder": [
+      "sessionContexts",
+      "mappedRanges",
+      "canvasSurfaces",
+      "iosurfaceStorage",
+      "publications",
+      "unsafeRetirements"
+    ]
+  },
+  "timingScope": "CPU JS/FFI encoding after 30 warmup frames in the final Release functional acceptance; not a calibrated benchmark, GPU timing, display latency or a matched Chrome comparison.",
+  "gates": [
+    {
+      "command": "pnpm --filter @flax/core-runtime test",
+      "passed": 98
+    },
+    {
+      "command": "pnpm --filter @flax/canvas-runtime test",
+      "passed": 35
+    },
+    {
+      "command": "pnpm --filter @flax/webgpu-runtime test",
+      "passed": 4
+    },
+    {
+      "command": "pnpm --filter @flax/webgpu-runtime run typecheck",
+      "passed": true,
+      "scope": "implementation and declaration-only Core+Canvas+GPU consumer without DOM"
+    },
+    {
+      "command": "node --test packages/flax_build/js/test/modules.test.mjs",
+      "passed": 27
+    },
+    {
+      "command": "pnpm --filter @flax/ffi test",
+      "passed": 6
+    },
+    {
+      "command": "dart run tool/ui_test.dart --package=flax_canvas --engine=v8",
+      "passed": 393
+    },
+    {
+      "command": "Core-only test/ui/canvas_host_test.dart on maintained V8",
+      "passed": 1
+    },
+    {
+      "command": "dart run melos run check:runtime",
+      "passed": 58
+    },
+    {
+      "command": "dart run melos run check:runtime:v8",
+      "passed": 58
+    },
+    {
+      "command": "dart run tool/package.dart check flax_canvas",
+      "passed": true,
+      "decoderTests": 21,
+      "exampleTests": 1,
+      "includes": [
+        "binding reproducibility",
+        "TypeScript",
+        "Dart analysis",
+        "host reproducibility"
+      ]
+    },
+    {
+      "command": "dart run tool/package.dart check flax_webgpu",
+      "passed": true,
+      "includes": [
+        "TypeScript",
+        "Dart analysis",
+        "conversion tests",
+        "example analysis"
+      ]
+    },
+    {
+      "command": "node tool/public_types.mjs --check; node tool/module_delivery.mjs --check; node tool/host_bundle.mjs --check",
+      "passed": true
+    },
+    {
+      "command": "WebGPU generator repeat with locked local SDK",
+      "passed": true,
+      "identicalFiles": 13
+    },
+    {
+      "command": "pnpm run docs:lint; pnpm run docs:links",
+      "passed": true
+    }
+  ],
+  "notVerified": [
+    "full pinned WebGPU CTS and WebIDL conformance",
+    "new frontend matched Chrome GPU/composition/display latency",
+    "ordinary capability native-asset delivery",
+    "other platforms",
+    "DOM, external images, workers, canvas image export, additional canvas formats"
+  ]
+}

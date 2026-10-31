@@ -373,6 +373,18 @@ class _BaseHostPlugin extends FlaxPlugin {
     '__flaxFfiPlatform',
     'console',
     'performance',
+    'Performance',
+    'PerformanceEntry',
+    'PerformanceMark',
+    'PerformanceMeasure',
+    'PerformanceObserver',
+    'PerformanceObserverEntryList',
+    'window',
+    'location',
+    'Crypto',
+    'crypto',
+    'navigator',
+    'structuredClone',
     'setTimeout',
     'setInterval',
     'clearTimeout',
@@ -384,7 +396,10 @@ class _BaseHostPlugin extends FlaxPlugin {
     'removeEventListener',
     'dispatchEvent',
     'CustomEvent',
+    'ProgressEvent',
     'MessageEvent',
+    'ErrorEvent',
+    'Worker',
     'DOMException',
     'AbortController',
     'AbortSignal',
@@ -396,6 +411,7 @@ class _BaseHostPlugin extends FlaxPlugin {
     'btoa',
     'Blob',
     'File',
+    'FileReader',
     'FormData',
     'ReadableStream',
     'ReadableStreamDefaultReader',
@@ -412,6 +428,25 @@ class _BaseHostPlugin extends FlaxPlugin {
     'CountQueuingStrategy',
     'TextEncoderStream',
     'TextDecoderStream',
+    'OffscreenCanvas',
+    'HTMLCanvasElement',
+    'document',
+    'self',
+    'devicePixelRatio',
+    'innerWidth',
+    'innerHeight',
+    'MouseEvent',
+    'PointerEvent',
+    'WheelEvent',
+    'KeyboardEvent',
+    'ResizeObserver',
+    'ImageData',
+    'ImageBitmap',
+    'ImageBitmapRenderingContext',
+    'Image',
+    'HTMLImageElement',
+    'createImageBitmap',
+    '__flaxCanvasHost',
     'requestAnimationFrame',
     'cancelAnimationFrame',
     'permissions',
@@ -435,28 +470,284 @@ List<FlaxPlugin> _pluginsWithBase(
 }) => [_BaseHostPlugin(fetchBaseUrl: fetchBaseUrl), ...plugins];
 
 class _BaseHost implements FlaxPluginInstance {
-  _BaseHost(this.context, String? fetchBaseUrl)
-    : _fetch = _FetchHost(context, fetchBaseUrl);
+  _BaseHost(
+    this.context,
+    String? fetchBaseUrl, {
+    this.workerId,
+    this.workerName = '',
+    this.workerType = 'classic',
+  }) : _fetch = _FetchHost(context, fetchBaseUrl);
   final FlaxHostContext context;
+  final int? workerId;
+  final String workerName, workerType;
+  _DedicatedWorkers? _workers;
   final _FetchHost _fetch;
   final _clock = Stopwatch()..start();
+  math.Random? _secureRandom;
   final _origin = DateTime.now().microsecondsSinceEpoch / 1000;
   final _timers = <int, Timer>{};
   final _queued = <int>{};
+  final _canvasTargets = <_CanvasTarget>{};
   FlaxJsObject? _state;
+  final _methods = <String, FlaxJsFunction>{};
   bool _closed = false;
   bool _rafScheduled = false;
   bool _ffiInstalled = false;
   bool _ffiRetiring = false;
   bool _ffiQueued = false;
   int? _rafHandle;
+  late final _images = _SharedImages(
+    context,
+    (id, ok, value) => _call('imageSettled', [
+      FlaxJsNumber(id.toDouble()),
+      FlaxJsBoolean(ok),
+      value,
+    ]),
+  );
+
+  FlaxJsValue _returnBytes(Uint8List bytes) {
+    final result = context.runtime.createArrayBuffer(bytes);
+    final host = context;
+    if (host is _HostContext) return host.session.holdHostResult(result);
+    (host as _WorkerHostContext).results.add(result);
+    return result;
+  }
+
+  Uint8List _randomBytes(int length) {
+    final bytes = Uint8List(length);
+    if (length == 0) return bytes;
+    final random = _secureRandom ??= math.Random.secure();
+    final words = ByteData.sublistView(bytes);
+    var offset = 0;
+    // Fill words and return one bulk buffer instead of making a host call per byte.
+    for (; offset + 4 <= length; offset += 4) {
+      words.setUint32(offset, random.nextInt(0x100000000), Endian.little);
+    }
+    if (offset < length) {
+      var value = random.nextInt(0x100000000);
+      while (offset < length) {
+        bytes[offset++] = value & 255;
+        value >>= 8;
+      }
+    }
+    return bytes;
+  }
 
   void install() {
+    final runtime = context.runtime;
+    if (runtime is FlaxNativeJsRuntime && runtime.supportsWorkers) {
+      _workers = _DedicatedWorkers(context, (id, event, message) {
+        _call(
+          switch (event) {
+            'message' => 'workerMessage',
+            'finish' => 'workerFinished',
+            _ => 'workerError',
+          },
+          [
+            FlaxJsNumber(id.toDouble()),
+            if (event != 'message') ...message.map(FlaxJsString.new),
+          ],
+        );
+      }, _blobSource);
+    }
     context.registerFunction('__flaxBaseCall', (_, args) {
       final operation = (args[0] as FlaxJsString).value;
+      if (workerId != null &&
+          (operation.startsWith('ffi') ||
+              operation.startsWith('canvas') ||
+              operation.startsWith('image') ||
+              operation == 'raf')) {
+        throw UnsupportedError(
+          'Workers support pure JS and Wasm host operations',
+        );
+      }
       switch (operation) {
+        case 'hardwareConcurrency':
+          return FlaxJsNumber(Platform.numberOfProcessors.toDouble());
+        case 'workerBaseUrl':
+          final host = context;
+          if (host is _WorkerHostContext) return FlaxJsString(host.scriptUrl);
+          return host is _HostContext && host.session.entryUri != null
+              ? FlaxJsString(host.session.entryUri.toString())
+              : const FlaxJsUndefined();
+        case 'workerCreate':
+          return FlaxJsNumber(_workers!.create().toDouble());
+        case 'workerStart':
+          final uri = Uri.parse((args[2] as FlaxJsString).value);
+          if (uri.userInfo.isNotEmpty ||
+              !(uri.scheme == 'blob' ||
+                  uri.scheme == 'data' && uri.data != null)) {
+            throw UnsupportedError(
+              'Inline Worker sources require data or Blob URLs',
+            );
+          }
+          _workers!._start(
+            (args[1] as FlaxJsNumber).value.toInt(),
+            (args[2] as FlaxJsString).value,
+            (args[3] as FlaxJsString).value,
+            (args[4] as FlaxJsString).value,
+            (args[5] as FlaxJsString).value,
+          );
+        case 'workerTerminate':
+          _workers?.terminate((args[1] as FlaxJsNumber).value.toInt());
+        case 'workerLoad':
+          unawaited(
+            _workers!.load(
+              (args[1] as FlaxJsNumber).value.toInt(),
+              (args[2] as FlaxJsString).value,
+              (args[3] as FlaxJsString).value,
+              (args[4] as FlaxJsString).value,
+            ),
+          );
+        case 'workerResource':
+          unawaited(
+            (context as _WorkerHostContext).loadResource(
+              (args[1] as FlaxJsNumber).value.toInt(),
+              (args[2] as FlaxJsString).value,
+            ),
+          );
+        case 'workerResourceCancel':
+          (context as _WorkerHostContext).cancelResource(
+            (args[1] as FlaxJsNumber).value.toInt(),
+          );
+        case 'workerCheckpoint':
+          context.enqueue(() {});
+        case 'workerReport':
+          (context as _WorkerHostContext).parent.send([
+            workerId,
+            'error',
+            for (final arg in args.skip(1)) (arg as FlaxJsString).value,
+          ]);
+        case 'workerClose':
+          (context as _WorkerHostContext).close();
+        case 'workerImport':
+          final url = (args[1] as FlaxJsString).value;
+          final data = Uri.parse(url).data;
+          if (data == null) {
+            throw UnsupportedError(
+              'importScripts currently supports data URLs',
+            );
+          }
+          _releaseJs(context.evaluate(data.contentAsString(), sourceUrl: url));
+        case 'workerImportSource':
+          final uri = Uri.parse((args[2] as FlaxJsString).value);
+          if (uri.scheme != 'blob' || uri.userInfo.isNotEmpty) {
+            throw UnsupportedError('Inline Worker imports require Blob URLs');
+          }
+          _releaseJs(
+            context.evaluate(
+              (args[1] as FlaxJsString).value,
+              sourceUrl: (args[2] as FlaxJsString).value,
+            ),
+          );
+        case 'random':
+          if (_closed || context.isClosing) {
+            throw StateError('FlaxSessionClosed');
+          }
+          final length = (args[1] as FlaxJsNumber).value;
+          if (!length.isFinite ||
+              length != length.truncateToDouble() ||
+              length < 0 ||
+              length > 65536) {
+            throw RangeError('Invalid random byte count');
+          }
+          return _returnBytes(_randomBytes(length.toInt()));
         case 'fetch':
           return _fetch.call(args);
+        case 'image':
+          if (context.isClosing) throw StateError('FlaxSessionClosed');
+          _images.start(args);
+        case 'imageEncode':
+          return _returnBytes(
+            FlaxImageCodec.encode(
+              context.runtime.readBytes(args[1] as FlaxJsObject),
+              (args[2] as FlaxJsNumber).value.toInt(),
+              (args[3] as FlaxJsNumber).value.toInt(),
+              (args[4] as FlaxJsString).value,
+              ((args[5] as FlaxJsNumber).value * 100).round(),
+            ),
+          );
+        case 'imageClose':
+          _images.release((args[1] as FlaxJsNumber).value.toInt());
+        case 'imageNative':
+          final image = _images.image((args[1] as FlaxJsNumber).value.toInt());
+          return context.exposeObject(image, flaxImageBitmapType);
+        case 'imagePixels':
+          final pixels = context.runtime.readBytes(args[1] as FlaxJsObject);
+          return FlaxJsNumber(
+            _images
+                .retain(
+                  pixels,
+                  (args[2] as FlaxJsNumber).value.toInt(),
+                  (args[3] as FlaxJsNumber).value.toInt(),
+                )
+                .toDouble(),
+          );
+        case 'canvasCreate':
+          if (context.isClosing) throw StateError('FlaxSessionClosed');
+          final target = _CanvasTarget(
+            (args[1] as FlaxJsNumber).value.toInt(),
+            (args[2] as FlaxJsNumber).value.toInt(),
+            _canvasEvent,
+          );
+          _canvasTargets.add(target);
+          return context.exposeObject(target, flaxCanvasTargetType);
+        case 'canvasObserve':
+        case 'canvasInput':
+          final target = context.requireObject<FlaxCanvasTarget>(
+            args[1],
+            flaxCanvasTargetType,
+          ) as _CanvasTarget;
+          if (!_canvasTargets.contains(target) || target.closed) {
+            throw StateError('Foreign or closed canvas');
+          }
+          if (operation == 'canvasObserve') {
+            target.observe();
+          } else {
+            final argument = args.length < 4
+                ? null
+                : args[3] is FlaxJsString
+                ? (args[3] as FlaxJsString).value
+                : args[3] is FlaxJsNumber
+                ? (args[3] as FlaxJsNumber).value
+                : null;
+            target.control((args[2] as FlaxJsString).value, argument);
+          }
+        case 'canvasBitmap':
+          final target = context.requireObject<FlaxCanvasTarget>(
+            args[1],
+            flaxCanvasTargetType,
+          ) as _CanvasTarget;
+          if (!_canvasTargets.contains(target)) {
+            throw StateError('Foreign canvas');
+          }
+          final image = args[2] is FlaxJsNull
+              ? null
+              : context
+                    .requireObject<FlaxImageBitmapResource>(
+                      args[2],
+                      flaxImageBitmapType,
+                    )
+                    .image;
+          target.setBitmap(image);
+        case 'canvasResize':
+          final target = context.requireObject<FlaxCanvasTarget>(
+            args[1],
+            flaxCanvasTargetType,
+          ) as _CanvasTarget;
+          if (!_canvasTargets.contains(target)) {
+            throw StateError('Foreign canvas');
+          }
+          target.resize(
+            (args[2] as FlaxJsNumber).value.toInt(),
+            (args[3] as FlaxJsNumber).value.toInt(),
+          );
+        case 'canvasRelease':
+          final target = context.requireObject<FlaxCanvasTarget>(
+            args[1],
+            flaxCanvasTargetType,
+          ) as _CanvasTarget;
+          if (_canvasTargets.remove(target)) target.dispose();
         case 'ffiInstall':
           if (context.sandbox != null) {
             throw const FlaxSandboxException(
@@ -568,7 +859,13 @@ class _BaseHost implements FlaxPluginInstance {
                     'return install(globalThis, $flaxBaseBootstrapBridge);})()',
                     sourceUrl: 'flax:base',
                   )
-                : context.evaluateSource(_baseHostSource))
+                : workerId == null
+                ? context.evaluateSource(_baseHostSource)
+                : context.evaluate(
+                    '($flaxBaseBootstrap)(globalThis, $flaxBaseBootstrapBridge, '
+                    '${jsonEncode({'id': workerId, 'name': workerName, 'type': workerType})})',
+                    sourceUrl: 'flax:worker-base',
+                  ))
             as FlaxJsObject;
     _fetch._state = _state!.getProperty('fetch') as FlaxJsObject;
   }
@@ -582,11 +879,34 @@ class _BaseHost implements FlaxPluginInstance {
       if (_closed) return;
       _call('fireRaf', [FlaxJsNumber(_clock.elapsedMicroseconds / 1000)]);
       try {
-        context.runtime.drainMicrotasks(maxJobsHint: 1024);
+        if (context.runtime.drainMicrotasks(maxJobsHint: 1024)) {
+          presentCanvases();
+        }
       } catch (error, stack) {
         context.report(error, stack);
       }
     });
+  }
+
+  bool _canvasEvent(_CanvasTarget target, Map<String, Object?> event) {
+    if (_closed || !context.isActive || _state == null) return false;
+    final function = _methods['canvasEvent'] ??=
+        _state!.getProperty('canvasEvent') as FlaxJsFunction;
+    FlaxJsValue? object;
+    try {
+      object = context.exposeObject(target, flaxCanvasTargetType);
+      final result = function.call([
+        object,
+        FlaxJsString(jsonEncode(event)),
+      ], thisValue: _state!);
+      context.requestCheckpoint();
+      return result is FlaxJsBoolean && result.value;
+    } catch (error, stack) {
+      context.report(error, stack);
+      return false;
+    } finally {
+      if (object is FlaxJsObject) object.release();
+    }
   }
 
   void _queueFfi() {
@@ -607,14 +927,48 @@ class _BaseHost implements FlaxPluginInstance {
     });
   }
 
+  void presentCanvases() {
+    if (!_closed && _canvasTargets.isNotEmpty) _call('present', const []);
+  }
+
   void _call(String name, List<FlaxJsValue> args) {
     final state = _state;
     if (state == null) return;
-    final function = state.getProperty(name) as FlaxJsFunction;
+    // These private host methods are stable; retain their handles until disposal.
+    final function = _methods[name] ??=
+        state.getProperty(name) as FlaxJsFunction;
+    _releaseJs(function.call(args, thisValue: state));
+  }
+
+  FlaxModuleSource? _blobSource(Uri uri) {
+    final state = _state;
+    if (state == null || _closed) return null;
+    final function = _methods['blobSource'] ??=
+        state.getProperty('blobSource') as FlaxJsFunction;
+    final result = function.call([
+      FlaxJsString(uri.toString()),
+    ], thisValue: state);
     try {
-      _releaseJs(function.call(args, thisValue: state));
+      if (result is! FlaxJsObject) return null;
+      final bytes = result.getProperty('0') as FlaxJsObject;
+      try {
+        final type = (result.getProperty('1') as FlaxJsString).value;
+        final source = FlaxModuleSource(
+          uri: uri,
+          kind: type == 'application/wasm'
+              ? FlaxModuleKind.wasm
+              : type == 'application/json'
+              ? FlaxModuleKind.json
+              : FlaxModuleKind.javascript,
+          bytes: context.runtime.readBytes(bytes),
+        );
+        _workerSourceTypes[source] = type;
+        return source;
+      } finally {
+        bytes.release();
+      }
     } finally {
-      function.release();
+      _releaseJs(result);
     }
   }
 
@@ -622,7 +976,10 @@ class _BaseHost implements FlaxPluginInstance {
   void close() {
     if (_closed) return;
     _closed = true;
+    _secureRandom = null;
+    _workers?.close();
     _fetch.close();
+    if (workerId == null) _images.close();
     for (final timer in _timers.values) {
       timer.cancel();
     }
@@ -634,7 +991,8 @@ class _BaseHost implements FlaxPluginInstance {
       _rafHandle = null;
       _rafScheduled = false;
     }
-    context.enqueue(() => _call('close', const []));
+    // Detached Workers dispose their isolate without application teardown callbacks.
+    if (workerId == null) context.enqueue(() => _call('close', const []));
     if (_ffiInstalled) {
       // Prior host settlements and their JS finally jobs run before retirement.
       (context as _HostContext).session._nativeRetirements++;
@@ -649,8 +1007,16 @@ class _BaseHost implements FlaxPluginInstance {
   void dispose() {
     close();
     _fetch.dispose();
+    for (final function in _methods.values) {
+      function.release();
+    }
+    _methods.clear();
     _state?.release();
     _state = null;
+    for (final target in _canvasTargets) {
+      target.dispose();
+    }
+    _canvasTargets.clear();
     _clock.stop();
   }
 }

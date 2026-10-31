@@ -1039,9 +1039,9 @@ void _tests(bool native) {
         child: Center(child: FlaxCanvasView(surface)),
       ),
     );
-    final render = tester.renderObject<RenderFlaxCanvasView>(
-      find.byType(FlaxCanvasView),
-    );
+    final render = tester.allRenderObjects
+        .whereType<RenderFlaxCanvasView>()
+        .single;
     expect(render.size, const Size(8, 8));
     if (kDebugMode) expect(render.debugNeedsLayout, isFalse);
     surface.resize(16, 16);

@@ -1,0 +1,3 @@
+tool/__pycache__/
+js/src/generated/.flax-ffi-codegen.json
+js/native/

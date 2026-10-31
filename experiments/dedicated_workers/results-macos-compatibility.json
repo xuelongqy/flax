@@ -1,0 +1,1188 @@
+{
+  "formatVersion": 1,
+  "recordedAt": "2026-10-30T17:29:19.801076+00:00",
+  "mode": "macOS arm64 Release/AOT application; Debug native suites",
+  "sourceLock": {
+    "flutter": "3.47.6",
+    "flutterRevision": "5fc346839b5d0eef006ed8404392afb4dfae428d",
+    "dartRevision": "04bcd1036cdc799ac6564988f159ee454d42c822",
+    "flaxBridgeRevision": "10d4d8c07cefceaaceb1eef56d319f303133a038",
+    "sdkVersion": "0.3.0",
+    "v8Version": "15.4.80.15",
+    "v8Revision": "e959d47215186f24e182a0503a52374c96569722",
+    "targets": {
+      "macos-arm64": {
+        "sdkManifestSha256": "ec103ede166ad7b30ce8d1cab251b4ce4612bc1551ef4d22e221e86eba0199ac",
+        "libraries": {
+          "lib/libchrome_zlib.dylib": "343eb7d5685133758ee4a09ded7c4c0680fd4980a7e7abea58a33e5e4088c5e2",
+          "lib/libthird_party_abseil-cpp_absl.dylib": "2482b22c108c2d0e6cb88dfb6d2eb73efca4c04be12e074ea4afe15ebcfcb455",
+          "lib/libv8.dylib": "fb2aff71509c6785a5655a008596781b0f80416dbdee762bcd265afb1dcd62d2",
+          "lib/libv8_libbase.dylib": "b3e08e51b58190a856e2a16ecff016caeb044b0ea32e81d33a65ea620aba9e18",
+          "lib/libv8_libplatform.dylib": "7d5fd5d8273ac8652ab879fe69bc8a4abeaac3a974ea9e7d828e4a8553244343"
+        }
+      },
+      "android-arm64": {
+        "sdkManifestSha256": "121e20d7ce78f0277ef7469c161ad3223dbe96cf1ffdd4c2fd117c66e045c0fb",
+        "libraries": {
+          "lib/libv8.so": "70f21916992fbb05f2ebc8160b530d876f6eef82d136ede117449505699f9990",
+          "lib/libc++_shared.so": "179286feca53f3c2a6b10239594f640820c5704cc3d6b23d8622f835ed233e4f"
+        }
+      },
+      "ios-device-arm64": {
+        "sdkVersion": "0.3.2",
+        "sdkManifestSha256": "d1f6aaaa4416dfa303fe6616546e7a9333eacb58cf18bb6908afe2d9669e2a4b",
+        "libraries": {
+          "lib/libv8_monolith.a": "06f95b926e1004c372fcd9bdb9a44e597014044ffcd56a92b1a8bfac55f5eda3"
+        },
+        "sdkProducerRevision": "3fa63023dd6e2c18bf41790dd8cd26428064ad25"
+      },
+      "ios-simulator-arm64": {
+        "sdkVersion": "0.3.2",
+        "sdkManifestSha256": "3bc85f0d6cb2d4da19db5849c19ba87158313bd37f4e1f77666be154b86c693a",
+        "libraries": {
+          "lib/libv8_monolith.a": "21336d45a54acefe7ff2d8061fd9ca82dd457d9fc44e522e123c9e42a3262793"
+        },
+        "sdkProducerRevision": "3fa63023dd6e2c18bf41790dd8cd26428064ad25"
+      }
+    }
+  },
+  "flaxHead": "a4cfeaee1fa4a264ddba0686f7cd79ccc819e61e",
+  "flutterForkHead": "9c9edcf93eacac13787df72d090031e6830da7fa",
+  "sourceSha256": {
+    "packages/flax/js/src/host/workers.ts": "b462f500a8b6af8042faf6e2147586a32bc2869684a99723ae1e4296b80a6bd7",
+    "packages/flax/js/src/host/worker.ts": "ec006fe2e5649d7c47be68b85b5c08e3d33e029340c54cee16564feec57d4d4a",
+    "packages/flax/js/src/host/bootstrap.ts": "611687588261ee274eb7716d4d4c4b1b6156b59bd1311f9d9177ecee91bc5ec1",
+    "packages/flax/js/src/host/fetch/http.ts": "f59701db5f1b96f36ea541edf5efd99e59351e91fcb18ff9ecc1c49bb44f8343",
+    "packages/flax/lib/src/ui/workers.dart": "be1a74003010ad36dfd80ddb97c26d7b6fee45a3f708d821a5b234635bac61c8",
+    "packages/flax/lib/src/ui/host.dart": "8fd13682c69d98f3fc95d7a959f6f1b957bb78da641c0a71c83985469c1025b5",
+    "packages/flax/lib/src/ui/session.dart": "430b4a9709c44b99d328c14e54d6f21690e64edf6a0a95cf447073c76b53116d",
+    "packages/flax/lib/src/ui/view.dart": "520b3141240f3ad820dc43cdc67f1defb8f436c395a64090a78ff27fba0627ae",
+    "packages/flax/test/ui/workers_test.dart": "1b909bc5e2ba072f871321538b762a61bb31b6f46b456cebc91e10ab58362f67",
+    "packages/flax_webgpu/example/js/three-ktx-workers.js": "0f3274d7a6b2d5700a4076e13a4222bc6b1bcce3b93c28abffc7b557782a728a",
+    "packages/flax_webgpu/example/js/build-ktx-fixtures.py": "4cfaae38e63df075a135711c00d26b2ead2a6e169c2868b0bbd8d1521a11f359",
+    "packages/flax_webgpu/example/lib/acceptance.dart": "c9114514836e1fff66b26573a1dfbd0d6c02a77cd7fe88e92f5309f45ab1e7e7",
+    "packages/flax_webgpu/tool/run_macos.py": "c4a91047e852786d0a403f1930e39c0125f0fae761d895b0e3c7a79db2d6a251",
+    "experiments/dedicated_workers/benchmark.js": "696346c58dcdd17fe6973e23bbf7bf2c788b5a43085a263f10003d5020e6cce2"
+  },
+  "engineSourceSha256": {
+    "engine/src/flutter/flax/native/v8-jsi/src/jsi_abi/jsi_abi_v8.cpp": "9afb72f7f917cda01b35748df770c93f1041f3c79dcfecf7085422ad577f78d8",
+    "engine/src/flutter/flax/native/v8-jsi/src/jsi_abi/workers.inc": "1e5716c1bb68ddf4158c32e6961fad24797d4a1843a5479fb9c4a00cccce7573",
+    "engine/src/flutter/flax/native/src/joint_gc.cc": "3b4ce82ae66b68ea5ec90b1f213ac8a2a6dd7375db896141dff5e32bab44f0a5",
+    "engine/src/flutter/flax/native/src/joint_gc.h": "08baba9f8a8a0e67e9f872cb968262725f94a15f9fb2d89f0a106d887a3279f1"
+  },
+  "engineUuids": {
+    "flax_mac_debug_arm64": "1E3E9BFD-1075-3787-960A-6ACFC073CC6E",
+    "flax_mac_release_arm64": "FB023678-BB38-3E1F-B9BB-026440A64C74",
+    "flax_mac_webgpu_fenced_debug_arm64": "4F570D9B-72E8-3A2B-897E-62E7FEBFFB5C",
+    "flax_mac_webgpu_fenced_release_arm64": "5FA51462-DFBB-3BC7-8057-0B1E2575FFE8"
+  },
+  "engineOverlayRelease": {
+    "engine": "flax_mac_webgpu_fenced_release_arm64",
+    "workerSourcesSha256": {
+      "flutter/flax/native/v8-jsi/src/jsi_abi/workers.inc": "1e5716c1bb68ddf4158c32e6961fad24797d4a1843a5479fb9c4a00cccce7573",
+      "flutter/flax/native/include/flax/engine_workers.h": "be3902e420a5915edd9a013ee46aa1f359db6d9feaf1abfe17fbe532a3753ad4",
+      "flutter/flax/native/src/engine.h": "cce626279a2daf1e815744da91fbb68d5ad9070ad109c7f5ceb4f23e3a81fb02",
+      "flutter/flax/native/v8_engine.cpp": "5b17f4276fa9c1e251b040c5d38ea395c09509e31a35a29a37a5eb69f59dc4a9"
+    },
+    "originalSourcesSha256": {
+      "flutter/shell/platform/darwin/macos/framework/Source/FlutterExternalTexture.mm": "5c2be38b4b7a1ff84630df971928f83d8d99398e2c767e38e4f435a075fb98a1",
+      "flutter/impeller/renderer/backend/metal/render_pass_mtl.mm": "c790a1a3dbbec3beed94fb3fea18de370ec950960e7c36c43687de877799ab93",
+      "flutter/flax/native/src/runtime.cpp": "b8a0e4d60849279d4fb7ba54e61758098d542b4b6469f6c13e817de70056840b",
+      "flutter/flax/native/src/ffi/memory.inc": "0f835cb508889ffe3e9b5c64c54cc88dc885410b2d0333babcd11270e3d003ee",
+      "flutter/flax/native/v8-jsi/src/jsi_abi/jsi_abi_v8.cpp": "9afb72f7f917cda01b35748df770c93f1041f3c79dcfecf7085422ad577f78d8",
+      "flutter/flax/native/src/canvas_decoder.inc": "77285dae4559aa6ae6d06474cef0c5eedee1b3ea808b2b8b6490da88cf4ca1eb",
+      "flutter/flax/native/src/ffi/runtime.inc": "ed77f695432a8ace185913e811b836a0f47c59635b847a372d4ca1b411f54dcd",
+      "flutter/flax/native/src/joint_gc.cc": "3b4ce82ae66b68ea5ec90b1f213ac8a2a6dd7375db896141dff5e32bab44f0a5",
+      "flutter/flax/native/src/joint_gc.h": "08baba9f8a8a0e67e9f872cb968262725f94a15f9fb2d89f0a106d887a3279f1",
+      "flutter/flax/native/v8-jsi/src/jsi_abi/JsiAbiRuntime.cpp": "edfd8bfbe41ac351b47cb255de777af1d5bab9b9b8c797a4d360042a4c5f309f"
+    },
+    "overlaySourcesSha256": {
+      "flutter/shell/platform/darwin/macos/framework/Source/FlutterExternalTexture.mm": "b2d91946196a15ca856ac74f30860d71319dedf900a1fb0983d324125f02fb0c",
+      "flutter/impeller/renderer/backend/metal/render_pass_mtl.mm": "da15c6979dee5b90ee04a30eaaf5a8c37cf5d857ce29061caf25132a9a012c98",
+      "flutter/flax/native/src/runtime.cpp": "37cd1c7044c0c71a9fff3400547a3517c57f7cb72561922e13da974929cfe414",
+      "flutter/flax/native/src/ffi/memory.inc": "7b2cb72c613cc1b0c509e00c7a06064713df0c16bff1a8b7d422fdcd099ce562",
+      "flutter/flax/native/v8-jsi/src/jsi_abi/jsi_abi_v8.cpp": "7ff1df38303a25a4f779fbd47d3301e210239f7f85644831bfb0c522ebb25ddc",
+      "flutter/flax/native/src/canvas_decoder.inc": "df41a15ea6abb987bbb062d8d8a52fa83fbfe057a4086b8d4e2325d94da25107",
+      "flutter/flax/native/src/ffi/runtime.inc": "f56ebdad364b710076b6d1067c035cf9215de3fac7da7e6f454d952f0fab9ed0",
+      "flutter/flax/native/src/joint_gc.cc": "f4fc732940b50aa6d47f4df4be1886d5ed7380531d5b2cf4e608e81e00c285a1",
+      "flutter/flax/native/src/joint_gc.h": "7e21f4d3f6fc8cdb0831b5b17e96dead4b0e3bc07882b8c98841f201bc4afb43",
+      "flutter/flax/native/v8-jsi/src/jsi_abi/JsiAbiRuntime.cpp": "e25fc29c258e38e43ebf13298dbcc0c6c43bc6514dab8f8032f41511c43cc24b"
+    },
+    "patchSha256": "acbea7e5083008d44ebbe9d818922702b3704193e8f551db3554138cd27f2cd2",
+    "bufferPatchSha256": "1e3976562cc8a492fffe6c8746a58f7c6bcbabd957eeca0408d739230dfe1844",
+    "imagesPatchSha256": "e17c93260578aaa2086193b7801f1dbd61002eda6b7a19c3767197e9b48f8e29",
+    "ffiPatchSha256": "4fe8905a0b3a2e4679d0eb72ac791cad3834b6577d357929163e7ecee01a8cf8",
+    "gcPatchSha256": "dd256485b27e4dfe0ef24ce686da94cbed46a85ebe99ea037b646aaab59d9251",
+    "callPatchSha256": "a0677e150ff9540b105c7c611115e91414e6ae3ef3d30514916689bbff0d7838",
+    "numericPatchSha256": "b94b743c0366b47037363d723b3189726600d34e3d0868b4fd0c5812e24ca547",
+    "ffiScriptSha256": "5ac15c39af942f4a53bcc6328fa0b51907c75f211319a91d79c895b291b45da3",
+    "ffiJavascriptSources": {
+      "api.js": "e00ccffa0dfed383a90b5fee6c8be2b8a3651c22082ebda5c873f1d055632974",
+      "buffer-compat.js": "8d7e264442360e42816cbdb8ec3f22f8b09af10c1e65ab3a3635c14aec64f65e",
+      "buffer.js": "e5250cf3d93b4e7458be9afc4f6fa0d54126bee55da147a34a5614aab62ea162",
+      "index.js": "ac4536aac0e08ea59b8e6b8e6942eb94204b77ce13f128f95068719d2d46f0f6",
+      "layout.js": "bdd4a3327672c173b3594821b6a49c05c09b386ab4e2ebc4f60d66cf709d9163"
+    },
+    "interopHeaderSha256": "d0be547bc59bbc9ea5f15cea05c5698c487c0a3951e9c0a23315a8987e087e3e",
+    "engineBinarySha256": "f5b0ac4713c24dd8d599a67a8f87ca0e389cdc0eddc3131b5dbd23225082ddbb"
+  },
+  "suites": {
+    "workerDebug": 12,
+    "runtimeGcDebug": 59,
+    "hostDebug": 22,
+    "coreCanvasDebug": 3,
+    "canvasDebug": 395,
+    "coreJs": 134,
+    "canvasJs": 35,
+    "webgpuJs": 6
+  },
+  "testsCountedOnce": 666,
+  "finalLifecycleRepeat": "passed",
+  "releaseApplication": {
+    "passed": true,
+    "checks": [
+      {
+        "kind": "rendered",
+        "frames": 0,
+        "coreOnly": true,
+        "cycle": -1,
+        "canvas2D": false
+      },
+      {
+        "kind": "retired",
+        "cycle": -1,
+        "before": [0, 0, 0, 0, 0, 0],
+        "after": [0, 0, 0, 0, 0, 0]
+      },
+      {
+        "kind": "host-tools",
+        "window": true,
+        "randomViews": true,
+        "uuid": true,
+        "userTiming": true,
+        "observer": true,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "compute",
+        "adapter": {},
+        "values": [3, 5, 7, 9, 21, 41, 61, 81],
+        "assertions": 26,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "browser-base",
+        "exports": ["gltf-data-url", "glb"],
+        "blobRange": true,
+        "bitmaprenderer": true,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "images",
+        "assertions": 63,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "three",
+        "assertions": 65,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "three-image",
+        "name": "DirectionalLight-lit",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "DirectionalLight-shadow",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "PointLight-lit",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "PointLight-shadow",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "SpotLight-lit",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "SpotLight-shadow",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "post-plain",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "post-inverted",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "post-bloom",
+        "cycle": 0
+      },
+      {
+        "kind": "three-features",
+        "models": [
+          {
+            "name": "textured-cube.gltf",
+            "progressEvents": 1,
+            "brightness": 22.438603153935187
+          },
+          {
+            "name": "textured-cube.glb",
+            "progressEvents": 1,
+            "brightness": 22.438603153935187
+          }
+        ],
+        "lighting": [
+          {
+            "type": "DirectionalLight",
+            "dark": 18.622413917824073,
+            "lit": 118.676025390625
+          },
+          {
+            "type": "PointLight",
+            "dark": 18.622413917824073,
+            "lit": 147.6240234375
+          },
+          {
+            "type": "SpotLight",
+            "dark": 18.622413917824073,
+            "lit": 133.5584671585648
+          }
+        ],
+        "shadows": [
+          {
+            "type": "DirectionalLight",
+            "darkerPixels": 2303,
+            "litFrame": 6,
+            "shadowFrame": 7
+          },
+          {
+            "type": "PointLight",
+            "darkerPixels": 4305,
+            "litFrame": 8,
+            "shadowFrame": 10
+          },
+          {
+            "type": "SpotLight",
+            "darkerPixels": 4238,
+            "litFrame": 11,
+            "shadowFrame": 12
+          }
+        ],
+        "postprocessing": [
+          {
+            "effect": "TSL inversion",
+            "maxError": 1
+          },
+          {
+            "effect": "Bloom",
+            "plain": 74.17095269097223,
+            "bloom": 180.87966579861111
+          }
+        ],
+        "assertions": 84,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "api-extensions",
+        "swizzle": true,
+        "immediates": true,
+        "maxImmediateSize": 64,
+        "assertions": 107,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-skinned-rest",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-skinned-pose",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-skinned-restored",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-morph-rest",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-morph-pose",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-morph-restored",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-meshopt",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-export-gltf",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-export-glb",
+        "cycle": 0
+      },
+      {
+        "kind": "three-advanced",
+        "animations": [
+          {
+            "kind": "skinned",
+            "changedPixels": 4014,
+            "restoredMaxError": 0
+          },
+          {
+            "kind": "morph",
+            "changedPixels": 4194,
+            "restoredMaxError": 0
+          }
+        ],
+        "meshopt": {
+          "mode": "single-thread Wasm",
+          "bufferModes": ["ATTRIBUTES", "TRIANGLES"],
+          "vertices": 4,
+          "maxPixelError": 0
+        },
+        "texturedExports": [
+          {
+            "format": "gltf",
+            "maxPixelError": 0
+          },
+          {
+            "format": "glb",
+            "maxPixelError": 0
+          }
+        ],
+        "userTiming": true,
+        "assertions": 141,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "three-workers",
+        "decoder": "DRACOLoader",
+        "version": "0.186.1",
+        "workerCount": 1,
+        "inputBytes": 75,
+        "coldMs": 43.756000000000085,
+        "reusedMs": 0.22700000000008913,
+        "assertions": 146,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "three-ktx-workers",
+        "decoder": "KTX2Loader",
+        "version": "0.186.1",
+        "compressedBC": true,
+        "results": [
+          {
+            "mode": "etc1s",
+            "inputBytes": 314,
+            "outputBytes": 64,
+            "format": 36492,
+            "workerCount": 1,
+            "coldMs": 79.32999999999993,
+            "reusedMs": 0.45100000000002183,
+            "centerPixel": [253, 0, 0, 255]
+          },
+          {
+            "mode": "uastc",
+            "inputBytes": 256,
+            "outputBytes": 64,
+            "format": 36492,
+            "workerCount": 1,
+            "coldMs": 76.64499999999998,
+            "reusedMs": 0.34600000000000364,
+            "centerPixel": [255, 0, 0, 255]
+          }
+        ],
+        "assertions": 156,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "rendered",
+        "frames": 120,
+        "format": "bgra8unorm",
+        "cpuEncodeMs": {
+          "p50": 0.5700000000001637,
+          "p95": 1.47400000000016
+        },
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "retired",
+        "cycle": 0,
+        "before": [1, 1, 6, 8, 4, 0],
+        "after": [0, 0, 0, 0, 0, 0]
+      },
+      {
+        "kind": "host-tools",
+        "window": true,
+        "randomViews": true,
+        "uuid": true,
+        "userTiming": true,
+        "observer": true,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "compute",
+        "adapter": {},
+        "values": [3, 5, 7, 9, 21, 41, 61, 81],
+        "assertions": 25,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "browser-base",
+        "exports": ["gltf-data-url", "glb"],
+        "blobRange": true,
+        "bitmaprenderer": true,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "images",
+        "assertions": 60,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "three",
+        "assertions": 62,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "three-image",
+        "name": "DirectionalLight-lit",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "DirectionalLight-shadow",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "PointLight-lit",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "PointLight-shadow",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "SpotLight-lit",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "SpotLight-shadow",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "post-plain",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "post-inverted",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "post-bloom",
+        "cycle": 1
+      },
+      {
+        "kind": "three-features",
+        "models": [
+          {
+            "name": "textured-cube.gltf",
+            "progressEvents": 1,
+            "brightness": 22.438603153935187
+          },
+          {
+            "name": "textured-cube.glb",
+            "progressEvents": 1,
+            "brightness": 22.438603153935187
+          }
+        ],
+        "lighting": [
+          {
+            "type": "DirectionalLight",
+            "dark": 18.622413917824073,
+            "lit": 118.676025390625
+          },
+          {
+            "type": "PointLight",
+            "dark": 18.622413917824073,
+            "lit": 147.6240234375
+          },
+          {
+            "type": "SpotLight",
+            "dark": 18.622413917824073,
+            "lit": 133.5584671585648
+          }
+        ],
+        "shadows": [
+          {
+            "type": "DirectionalLight",
+            "darkerPixels": 2303,
+            "litFrame": 7,
+            "shadowFrame": 8
+          },
+          {
+            "type": "PointLight",
+            "darkerPixels": 4305,
+            "litFrame": 9,
+            "shadowFrame": 10
+          },
+          {
+            "type": "SpotLight",
+            "darkerPixels": 4238,
+            "litFrame": 11,
+            "shadowFrame": 12
+          }
+        ],
+        "postprocessing": [
+          {
+            "effect": "TSL inversion",
+            "maxError": 1
+          },
+          {
+            "effect": "Bloom",
+            "plain": 74.17095269097223,
+            "bloom": 180.87966579861111
+          }
+        ],
+        "assertions": 81,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "api-extensions",
+        "swizzle": true,
+        "immediates": true,
+        "maxImmediateSize": 64,
+        "assertions": 104,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-skinned-rest",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-skinned-pose",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-skinned-restored",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-morph-rest",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-morph-pose",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-morph-restored",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-meshopt",
+        "cycle": 1
+      },
+      {
+        "kind": "three-advanced",
+        "animations": [
+          {
+            "kind": "skinned",
+            "changedPixels": 4014,
+            "restoredMaxError": 0
+          },
+          {
+            "kind": "morph",
+            "changedPixels": 4194,
+            "restoredMaxError": 0
+          }
+        ],
+        "meshopt": {
+          "mode": "single-thread Wasm",
+          "bufferModes": ["ATTRIBUTES", "TRIANGLES"],
+          "vertices": 4,
+          "maxPixelError": 0
+        },
+        "texturedExports": [],
+        "texturedExportSkip": "Canvas 2D is required for GLTFExporter image encoding",
+        "userTiming": true,
+        "assertions": 132,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "three-workers",
+        "decoder": "DRACOLoader",
+        "version": "0.186.1",
+        "workerCount": 1,
+        "inputBytes": 75,
+        "coldMs": 61.87000000000012,
+        "reusedMs": 0.25099999999997635,
+        "assertions": 137,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "three-ktx-workers",
+        "decoder": "KTX2Loader",
+        "version": "0.186.1",
+        "compressedBC": true,
+        "results": [
+          {
+            "mode": "etc1s",
+            "inputBytes": 314,
+            "outputBytes": 64,
+            "format": 36492,
+            "workerCount": 1,
+            "coldMs": 77.077,
+            "reusedMs": 0.3969999999999345,
+            "centerPixel": [253, 0, 0, 255]
+          },
+          {
+            "mode": "uastc",
+            "inputBytes": 256,
+            "outputBytes": 64,
+            "format": 36492,
+            "workerCount": 1,
+            "coldMs": 75.74499999999989,
+            "reusedMs": 0.36199999999985266,
+            "centerPixel": [255, 0, 0, 255]
+          }
+        ],
+        "assertions": 147,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "rendered",
+        "frames": 120,
+        "format": "rgba8unorm",
+        "cpuEncodeMs": {
+          "p50": 0.8810000000003129,
+          "p95": 1.7420000000001892
+        },
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "retired",
+        "cycle": 1,
+        "before": [1, 1, 6, 8, 4, 0],
+        "after": [0, 0, 0, 0, 0, 0]
+      },
+      {
+        "kind": "host-tools",
+        "window": true,
+        "randomViews": true,
+        "uuid": true,
+        "userTiming": true,
+        "observer": true,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "compute",
+        "adapter": {},
+        "values": [3, 5, 7, 9, 21, 41, 61, 81],
+        "assertions": 26,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "browser-base",
+        "exports": ["gltf-data-url", "glb"],
+        "blobRange": true,
+        "bitmaprenderer": true,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "images",
+        "assertions": 63,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "three",
+        "assertions": 65,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "three-image",
+        "name": "DirectionalLight-lit",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "DirectionalLight-shadow",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "PointLight-lit",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "PointLight-shadow",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "SpotLight-lit",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "SpotLight-shadow",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "post-plain",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "post-inverted",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "post-bloom",
+        "cycle": 2
+      },
+      {
+        "kind": "three-features",
+        "models": [
+          {
+            "name": "textured-cube.gltf",
+            "progressEvents": 1,
+            "brightness": 22.438603153935187
+          },
+          {
+            "name": "textured-cube.glb",
+            "progressEvents": 1,
+            "brightness": 22.438603153935187
+          }
+        ],
+        "lighting": [
+          {
+            "type": "DirectionalLight",
+            "dark": 18.622413917824073,
+            "lit": 118.676025390625
+          },
+          {
+            "type": "PointLight",
+            "dark": 18.622413917824073,
+            "lit": 147.6240234375
+          },
+          {
+            "type": "SpotLight",
+            "dark": 18.622413917824073,
+            "lit": 133.5584671585648
+          }
+        ],
+        "shadows": [
+          {
+            "type": "DirectionalLight",
+            "darkerPixels": 2303,
+            "litFrame": 6,
+            "shadowFrame": 7
+          },
+          {
+            "type": "PointLight",
+            "darkerPixels": 4305,
+            "litFrame": 8,
+            "shadowFrame": 9
+          },
+          {
+            "type": "SpotLight",
+            "darkerPixels": 4238,
+            "litFrame": 10,
+            "shadowFrame": 11
+          }
+        ],
+        "postprocessing": [
+          {
+            "effect": "TSL inversion",
+            "maxError": 1
+          },
+          {
+            "effect": "Bloom",
+            "plain": 74.17095269097223,
+            "bloom": 180.87966579861111
+          }
+        ],
+        "assertions": 84,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "api-extensions",
+        "swizzle": true,
+        "immediates": true,
+        "maxImmediateSize": 64,
+        "assertions": 107,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-skinned-rest",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-skinned-pose",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-skinned-restored",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-morph-rest",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-morph-pose",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-morph-restored",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-meshopt",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-export-gltf",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-export-glb",
+        "cycle": 2
+      },
+      {
+        "kind": "three-advanced",
+        "animations": [
+          {
+            "kind": "skinned",
+            "changedPixels": 4014,
+            "restoredMaxError": 0
+          },
+          {
+            "kind": "morph",
+            "changedPixels": 4194,
+            "restoredMaxError": 0
+          }
+        ],
+        "meshopt": {
+          "mode": "single-thread Wasm",
+          "bufferModes": ["ATTRIBUTES", "TRIANGLES"],
+          "vertices": 4,
+          "maxPixelError": 0
+        },
+        "texturedExports": [
+          {
+            "format": "gltf",
+            "maxPixelError": 0
+          },
+          {
+            "format": "glb",
+            "maxPixelError": 0
+          }
+        ],
+        "userTiming": true,
+        "assertions": 141,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "three-workers",
+        "decoder": "DRACOLoader",
+        "version": "0.186.1",
+        "workerCount": 1,
+        "inputBytes": 75,
+        "coldMs": 37.65300000000002,
+        "reusedMs": 0.2400000000000091,
+        "assertions": 146,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "three-ktx-workers",
+        "decoder": "KTX2Loader",
+        "version": "0.186.1",
+        "compressedBC": true,
+        "results": [
+          {
+            "mode": "etc1s",
+            "inputBytes": 314,
+            "outputBytes": 64,
+            "format": 36492,
+            "workerCount": 1,
+            "coldMs": 78.202,
+            "reusedMs": 0.3949999999999818,
+            "centerPixel": [253, 0, 0, 255]
+          },
+          {
+            "mode": "uastc",
+            "inputBytes": 256,
+            "outputBytes": 64,
+            "format": 36492,
+            "workerCount": 1,
+            "coldMs": 74.63999999999987,
+            "reusedMs": 0.33399999999983265,
+            "centerPixel": [255, 0, 0, 255]
+          }
+        ],
+        "assertions": 156,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "rendered",
+        "frames": 120,
+        "format": "bgra8unorm",
+        "cpuEncodeMs": {
+          "p50": 0.6859999999996944,
+          "p95": 1.5779999999999745
+        },
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "retired",
+        "cycle": 2,
+        "before": [1, 1, 6, 8, 4, 0],
+        "after": [0, 0, 0, 0, 0, 0]
+      }
+    ],
+    "coloredPixels": 170439
+  },
+  "benchmark": {
+    "firstStartupMs": 115.01700000000002,
+    "repeatedStartup": {
+      "n": 10,
+      "medianMs": 27.944999999999993,
+      "p95Ms": 76.83799999999997,
+      "p99Ms": 76.83799999999997,
+      "maxMs": 76.83799999999997
+    },
+    "smallRoundtrip": {
+      "n": 100,
+      "medianMs": 0.06500000000005457,
+      "p95Ms": 0.09699999999997999,
+      "p99Ms": 0.38599999999996726,
+      "maxMs": 0.38599999999996726
+    },
+    "bufferBytes": 16777216,
+    "copyRoundtrip": {
+      "n": 20,
+      "medianMs": 5.252000000000066,
+      "p95Ms": 30.404999999999973,
+      "p99Ms": 30.404999999999973,
+      "maxMs": 30.404999999999973
+    },
+    "copyPost": {
+      "n": 20,
+      "medianMs": 0.3669999999999618,
+      "p95Ms": 1.4119999999999209,
+      "p99Ms": 1.4119999999999209,
+      "maxMs": 1.4119999999999209
+    },
+    "transferBeforeCopy": {
+      "n": 20,
+      "medianMs": 0.06899999999995998,
+      "p95Ms": 3.6820000000000164,
+      "p99Ms": 3.6820000000000164,
+      "maxMs": 3.6820000000000164
+    },
+    "transferRoundtrip": {
+      "n": 20,
+      "medianMs": 0.08500000000003638,
+      "p95Ms": 28.51400000000001,
+      "p99Ms": 28.51400000000001,
+      "maxMs": 28.51400000000001
+    },
+    "transferPost": {
+      "n": 20,
+      "medianMs": 0.009999999999990905,
+      "p95Ms": 0.016000000000076398,
+      "p99Ms": 0.016000000000076398,
+      "maxMs": 0.016000000000076398
+    },
+    "sustainedTransfer": {
+      "n": 200,
+      "medianMs": 0.06899999999995998,
+      "p95Ms": 0.11199999999996635,
+      "p99Ms": 29.605000000000018,
+      "maxMs": 44.10299999999995,
+      "elapsedMs": 141.32699999999988,
+      "settledElapsedMs": 172.0039999999999,
+      "timerGaps": {
+        "n": 74,
+        "medianMs": 5.050999999999931,
+        "p95Ms": 23.486999999999966,
+        "p99Ms": 47.68700000000001,
+        "maxMs": 47.68700000000001
+      },
+      "timerTailMs": 30,
+      "timerWindowMs": 500,
+      "timerObservationMs": 502.6100000000001
+    },
+    "responsiveness": {
+      "background": {
+        "elapsedMs": 200.817,
+        "ticks": 52,
+        "maxGapMs": 7.2309999999999945,
+        "p95GapMs": 6.313999999999851
+      },
+      "main": {
+        "elapsedMs": 200.00700000000006,
+        "ticks": 12,
+        "maxGapMs": 205.34799999999996,
+        "p95GapMs": 205.34799999999996
+      }
+    },
+    "carrier": "Isolate.spawn (same isolate group)",
+    "transport": "native V8 serializer + BackingStore",
+    "system": {
+      "os": "Version 27.0.1 (Build 26A434)",
+      "dart": "3.13.5 (stable) (Tue Sep 29 01:00:52 2026 -0700) on \"macos_arm64\"",
+      "mode": "Release",
+      "aot": true,
+      "date": "2026-10-30T17:23:00.675725Z"
+    },
+    "retired": {
+      "channels": 0,
+      "runtimes": 0
+    }
+  },
+  "benchmarkConditions": "Single fresh process with the unchanged benchmark input, no simultaneous builds, tests or profiling during measurement; no new matched A/B or peak-memory measurement.",
+  "ktxFixtures": {
+    "encoder": "Basis Universal v1.60.0",
+    "revision": "323239a6a5ffa57d6570cfc403be99156e33a8b0",
+    "textures": [
+      {
+        "file": "worker-red-etc1s.ktx2",
+        "bytes": 314,
+        "sha256": "21d63326fd3e1efccde7af9e157808cf87276154f8bf3d76d94b634d098d1438",
+        "arguments": [
+          "-ktx2",
+          "-no_multithreading",
+          "-file",
+          "worker-red.png",
+          "-output_file",
+          "worker-red-etc1s.ktx2"
+        ]
+      },
+      {
+        "file": "worker-red-uastc.ktx2",
+        "bytes": 256,
+        "sha256": "ba7f4817923fb140cef27a5c3b5cffb5c5e629b87559a6af617104bb6a653646",
+        "arguments": [
+          "-ktx2",
+          "-no_multithreading",
+          "-uastc",
+          "-ktx2_no_zstandard",
+          "-file",
+          "worker-red.png",
+          "-output_file",
+          "worker-red-uastc.ktx2"
+        ]
+      }
+    ]
+  },
+  "limits": [
+    "Mobile and full AOT exception coverage are unverified",
+    "KTX2 coverage is original opaque 8x8 ETC1S/UASTC, BC7 upload; no Zstandard, arrays, cubemaps, HDR or production throughput claim",
+    "Wasm streaming compilation, Blob/File cloning, MessagePort and nested Workers are not added",
+    "Joint-GC tails and the prior temporary-retention tradeoff remain; current native syntax errors may only have a URL and unknown positions"
+  ],
+  "gitActions": {
+    "commit": false,
+    "push": false,
+    "publish": false
+  },
+  "checks": {
+    "dartAnalysis": "passed",
+    "coreCanvasWebgpuTypeScript": "passed",
+    "generatedHostPublicTypesModuleDelivery": "passed",
+    "ffiReproducibility": "passed",
+    "documentationLintAndLinks": "passed"
+  }
+}

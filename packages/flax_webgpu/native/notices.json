@@ -1,0 +1,44 @@
+{
+  "formatVersion": 1,
+  "dawnRevision": "5fbd545292cb7a4a9a275e322abec6007ffe2ae8",
+  "scope": "locked macos-arm64 Metal/Null static archive only",
+  "dawnArchiveSha256": "8eed5796e1c3403515c331a098fc9e8b5b738f832d9736be6843db891235c92b",
+  "dawnStaticLibrarySha256": "9b6e001cb54fb03ebe61056c0cb3d3117b7b75ff2d1a222b531b7987cc78b4e8",
+  "staticArchiveObjects": 659,
+  "noticesSha256": "5909078950885c2e647994637c4eb087c5833ae2ebc1e05cc96a684a28b3dfe2",
+  "apiHeaderLicenseSha256": "5bc2e68091dc38b0005796276f7f733fc24c97b1fc530462e7e836218532ddd2",
+  "apiHeaderLicenseBytes": 1615,
+  "inputs": [
+    {
+      "name": "dawn-LICENSE",
+      "url": "https://github.com/google/dawn/blob/5fbd545292cb7a4a9a275e322abec6007ffe2ae8/LICENSE",
+      "sha256": "0493f897193af1796d5054659f45ec7d4c5af648fa67a99f01d30e55cc805abc",
+      "bytes": 11829
+    },
+    {
+      "name": "abseil-LICENSE",
+      "url": "https://chromium.googlesource.com/chromium/src/third_party/abseil-cpp/+/af5aede14a0b4013be6890148d34e0fd7b1fac69/LICENSE",
+      "sha256": "c79a7fea0e3cac04cd43f20e7b648e5a0ff8fa5344e644b0ee09ca1162b62747",
+      "bytes": 11361
+    },
+    {
+      "name": "abseil-AUTHORS",
+      "url": "https://chromium.googlesource.com/chromium/src/third_party/abseil-cpp/+/af5aede14a0b4013be6890148d34e0fd7b1fac69/AUTHORS",
+      "sha256": "1fd39030c119b4c97014f59e0ad0ed65f23475bbdf55a52740f31eb82b34b4ee",
+      "bytes": 295
+    },
+    {
+      "name": "chromium-LICENSE",
+      "url": "https://chromium.googlesource.com/chromium/src/+/27c47ddd2ba59835f6306e577274ceeb37aba1ca/LICENSE",
+      "sha256": "368cca1106be99d39ecd32a38d8305585d802a475effb66380b91ffc9bcf709b",
+      "bytes": 1536
+    },
+    {
+      "name": "dawn-LinkedList.h",
+      "url": "https://github.com/google/dawn/blob/5fbd545292cb7a4a9a275e322abec6007ffe2ae8/src/dawn/common/LinkedList.h",
+      "sha256": "0f7adbd97ade052e0230d5e02d368636d922b05e79e8f1ecd1d0ad08c53884bb",
+      "bytes": 9276,
+      "retained": "first three copyright/license attribution lines"
+    }
+  ]
+}

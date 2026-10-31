@@ -114,6 +114,90 @@ export function runCompleteProbe() {
     const lib = new DynamicLibrary(path);
     const f = (name, args, returns) =>
       lib.getFunction(prefix + name, { arguments: args, return: returns });
+    const drawArgs = ['pointer', 'uint32', 'uint32', 'uint32', 'uint32'];
+    const numericDraw = f('numeric_draw', drawArgs, 'void');
+    const numericIndexed = f(
+      'numeric_indexed',
+      ['pointer', 'uint32', 'uint32', 'uint32', 'int32', 'uint32'],
+      'void',
+    );
+    const numericOut = Buffer.alloc(20),
+      numericAddress = getRawPointer(numericOut);
+    check(
+      numericDraw(numericAddress, 0, 1, 2, 0xffffffff) === undefined,
+      'numeric void call returns undefined',
+    );
+    check(
+      numericOut.readUInt32LE(12) === 0xffffffff,
+      'numeric pointer and uint32 limits survive direct calls',
+    );
+    numericIndexed(numericAddress, 3, 4, 5, -0x80000000, 0xffffffff);
+    check(
+      numericOut.readInt32LE(12) === -0x80000000 &&
+        numericOut.readUInt32LE(16) === 0xffffffff,
+      'numeric signed argument is preserved',
+    );
+    numericDraw(numericOut, 6, 7, 8, 9);
+    check(
+      numericOut.readUInt32LE(0) === 6,
+      'numeric signatures retain Buffer pointer conversion',
+    );
+    const numericString = '0123456789abcdef';
+    const numericCaptured = ffi.callWithErrno(numericDraw, numericString, 1, 2, 3, 4);
+    check(
+      numericCaptured.value === undefined && numericCaptured.errno === 0,
+      'numeric signatures retain owned string pointers with errno capture',
+    );
+    check(
+      numericDraw(numericString, 1, 2, 3, 4) === numericCaptured.value,
+      'direct and errno numeric calls preserve string-pointer conversion parity',
+    );
+    numericDraw(null, 0, 0, 0, 0);
+    numericDraw(undefined, 0, 0, 0, 0);
+    for (const bad of [-1, 0x100000000, 0.5, NaN, Infinity, 1n, '1'])
+      rejects(() => numericDraw(numericAddress, bad, 0, 0, 0), 'integer');
+    for (const bad of [-1n, 1n << 64n, 42])
+      rejects(() => numericDraw(bad, 0, 0, 0, 0), 'pointer');
+    for (const bad of [-0x80000001, 0x80000000, 0.5, Infinity])
+      rejects(() => numericIndexed(numericAddress, 0, 0, 0, bad, 0), 'integer');
+    rejects(() => numericDraw(numericAddress, 0), 'argument count');
+    for (const thrown of ['numeric primitive', Symbol('numeric'), 17n, null]) {
+      const original = globalThis.TypeError;
+      let caught;
+      try {
+        globalThis.TypeError = function () {
+          throw thrown;
+        };
+        numericDraw(numericAddress, -1, 0, 0, 0);
+      } catch (error) {
+        caught = error;
+      } finally {
+        globalThis.TypeError = original;
+      }
+      check(caught === thrown, 'numeric exceptions preserve primitive values');
+    }
+    const numericCall = f('numeric_callback', drawArgs, 'void');
+    const numericCallback = lib.registerCallback(
+      { arguments: ['uint32', 'uint32', 'uint32', 'uint32'], return: 'void' },
+      (a, b, c, d) => {
+        rejects(() => lib.close(), 'active');
+        numericDraw(numericAddress, a, b, c, d);
+      },
+    );
+    numericCall(numericCallback, 10, 11, 12, 13);
+    check(
+      numericOut.readUInt32LE(12) === 13,
+      'numeric native callback permits same-stack reentry',
+    );
+    lib.unregisterCallback(numericCallback);
+    const numericFailure = lib.registerCallback(
+      { arguments: ['uint32', 'uint32', 'uint32', 'uint32'], return: 'void' },
+      () => {
+        throw new Error('numeric callback failure');
+      },
+    );
+    rejects(() => numericCall(numericFailure, 0, 0, 0, 0), 'numeric callback failure');
+    lib.unregisterCallback(numericFailure);
     let jsonCalls = 0;
     const disguised = (value) => ({
       toJSON() {
@@ -238,6 +322,16 @@ export function runCompleteProbe() {
       moved.x === 14.5 && moved.y === 18.5 && point.x === 12.5,
       'HFA struct arguments/results are independent copies',
     );
+    const sibling = view(Point, Buffer.alloc(sizeOf(Point)));
+    sibling.x = 7;
+    const field = Object.getOwnPropertyDescriptor(point, 'x');
+    field.set.call(sibling, 9);
+    check(
+      field.get.call(sibling) === 9 &&
+        point.x === 12.5 &&
+        Object.keys(sibling).join(',') === 'x,y',
+      'shared field accessors use their receiver and preserve own enumerable fields',
+    );
     const grid = view(Grid, Buffer.alloc(sizeOf(Grid)));
     grid.points[1].y = 5;
     grid.tag = 7;
@@ -358,6 +452,7 @@ export function runCompleteProbe() {
       'native global read/write',
     );
     lib.close();
+    rejects(() => numericDraw(numericAddress, 0, 0, 0, 0), 'closed');
   }
   const executable = DynamicLibrary.executable();
   check(

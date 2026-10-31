@@ -5,6 +5,7 @@ node_modules/
 .pnpm-store/
 .cache/
 .local/
+**/.flax/
 .hermes/
 build/
 dist/
@@ -33,6 +34,21 @@ packages/flax_canvas/test/wpt/LICENSE.md
 
 # Prettier treats C++ include fragments as HTML.
 experiments/**/native/*.inc
+experiments/dedicated_workers/carrier/worker_probe.inc
+
+# Preserve historical measurement receipts verbatim.
+experiments/dedicated_workers/results-macos-release.json
+experiments/webgpu_dawn/chrome-results.json
+experiments/webgpu_dawn/results.json
+packages/flax_webgpu/example/validation/canvas-compatibility-macos-arm64.json
+packages/flax_webgpu/example/validation/dedicated-workers-macos.json
+packages/flax_webgpu/example/validation/macos-arm64.json
+packages/flax_webgpu/validation/canvas-compatibility-macos.json
+
+# Pinned/generated Three.js inputs retain their original bytes.
+packages/flax_webgpu/example/fixtures/three/basis/
+packages/flax_webgpu/example/fixtures/three/draco/
+packages/flax_webgpu/example/fixtures/three/*.gltf
 
 # Intentionally malformed input for strict metadata parser regression tests.
 tests/compatibility/package_metadata/yaml-syntax.yaml
@@ -68,3 +84,13 @@ packages/flax_ffi/example/app/.flax/
 packages/flax_ffi_codegen/example/app/assets/
 packages/flax_ffi_codegen/example/app/.flax/
 packages/flax_ffi_codegen/example/js/src/generated/
+packages/flax_webgpu/js/src/generated/
+packages/flax_webgpu/js/src/metadata.g.ts
+packages/flax_webgpu/js/src/types.g.ts
+packages/flax_webgpu/js/src/arity.g.ts
+packages/flax_webgpu/js/src/globals.ts
+packages/flax_webgpu/native/generated/
+packages/flax_webgpu/native/src/*.inc
+packages/flax_webgpu/js/native/
+packages/flax_webgpu/example/app/assets/
+packages/flax_webgpu/example/app/.flax/

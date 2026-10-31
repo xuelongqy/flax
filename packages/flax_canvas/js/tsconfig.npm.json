@@ -1,4 +1,4 @@
 {
   "extends": "./tsconfig.json",
-  "files": ["src/index.ts", "src/globals.ts"]
+  "files": ["src/index.ts", "src/globals.ts", "src/canvas.ts"]
 }

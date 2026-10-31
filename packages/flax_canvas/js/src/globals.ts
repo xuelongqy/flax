@@ -1,4 +1,5 @@
-// Types only: FlaxCanvasPlugin installs the Canvas globals.
+// Types only: Core owns OffscreenCanvas; FlaxCanvasPlugin installs 2D globals.
+import type {} from '@flax/core/host';
 import type {
   ImageBitmapOptions,
   ImageDataSettings,
@@ -12,26 +13,11 @@ import type {
 } from './types.js';
 
 declare global {
-  var OffscreenCanvas: {
-    new (width: number, height: number): OffscreenCanvas;
-  };
   var OffscreenCanvasRenderingContext2D: {
     prototype: OffscreenCanvasRenderingContext2D;
   };
   var Path2D: {
     new (path?: Path2D | string): Path2D;
-  };
-  var ImageData: {
-    new (width: number, height: number, settings?: ImageDataSettings): ImageData;
-    new (
-      data: Uint8ClampedArray,
-      width: number,
-      height?: number,
-      settings?: ImageDataSettings,
-    ): ImageData;
-  };
-  var ImageBitmap: {
-    prototype: ImageBitmap;
   };
   var CanvasGradient: {
     prototype: CanvasGradient;
@@ -39,21 +25,9 @@ declare global {
   var CanvasPattern: {
     prototype: CanvasPattern;
   };
-  function createImageBitmap(
-    source:
-      | ImageBitmap
-      | ImageData
-      | OffscreenCanvas
-      | { arrayBuffer(): Promise<ArrayBuffer> },
-    ...args:
-      [ImageBitmapOptions?] | [number, number, number, number, ImageBitmapOptions?]
-  ): Promise<ImageBitmap>;
-  type OffscreenCanvas = import('./types.js').OffscreenCanvas;
   type OffscreenCanvasRenderingContext2D =
     import('./types.js').OffscreenCanvasRenderingContext2D;
   type Path2D = import('./types.js').Path2D;
-  type ImageData = import('./types.js').ImageData;
-  type ImageBitmap = import('./types.js').ImageBitmap;
   type CanvasGradient = import('./types.js').CanvasGradient;
   type CanvasPattern = import('./types.js').CanvasPattern;
 }

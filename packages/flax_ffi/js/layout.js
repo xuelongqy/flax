@@ -155,6 +155,17 @@ function bytes(source) {
     return new Uint8Array(source.buffer, source.byteOffset, source.byteLength);
   return new Uint8Array(source);
 }
+const scalarMethods = {
+  int8: 'Int8',
+  uint8: 'Uint8',
+  int16: 'Int16',
+  uint16: 'Uint16',
+  int32: 'Int32',
+  uint32: 'Uint32',
+  float: 'Float32',
+  double: 'Float64',
+};
+
 function scalarAccess(type, data, offset, value, write) {
   const { scalar, size } = layout(type);
   const little = globalThis.__flaxFfiPlatform.littleEndian;
@@ -181,6 +192,10 @@ function scalarAccess(type, data, offset, value, write) {
       const maximum = signed ? (1n << (bits - 1n)) - 1n : (1n << bits) - 1n;
       if (value < minimum || value > maximum)
         throw new RangeError('Native integer out of range');
+      if (size === 8) {
+        data[signed ? 'setBigInt64' : 'setBigUint64'](offset, value, little);
+        return;
+      }
       for (let i = 0; i < size; i++)
         data.setUint8(
           offset + (little ? i : size - i - 1),
@@ -188,23 +203,15 @@ function scalarAccess(type, data, offset, value, write) {
         );
       return;
     }
+    if (size === 8)
+      return data[scalar === 'int64' ? 'getBigInt64' : 'getBigUint64'](offset, little);
     let result = 0n;
     for (let i = 0; i < size; i++)
       result |=
         BigInt(data.getUint8(offset + (little ? i : size - i - 1))) << BigInt(i * 8);
     return scalar === 'int64' ? BigInt.asIntN(size * 8, result) : result;
   }
-  const methods = {
-    int8: 'Int8',
-    uint8: 'Uint8',
-    int16: 'Int16',
-    uint16: 'Uint16',
-    int32: 'Int32',
-    uint32: 'Uint32',
-    float: 'Float32',
-    double: 'Float64',
-  };
-  const method = methods[scalar];
+  const method = scalarMethods[scalar];
   if (!method) throw new TypeError('Expected a scalar type');
   if (write) {
     if (typeof value !== 'number') throw new TypeError('Expected a native number');
@@ -218,6 +225,29 @@ function scalarAccess(type, data, offset, value, write) {
     data[`set${method}`](offset, value, little);
   } else return data[`get${method}`](offset, little);
 }
+const viewStorage = new WeakMap();
+const structAccessors = new WeakMap();
+function access(child, position) {
+  return {
+    enumerable: true,
+    get() {
+      const { data, nativeBytes } = viewStorage.get(this);
+      return typeof child === 'string'
+        ? scalarAccess(child, data, position, undefined, false)
+        : view(child, nativeBytes, position);
+    },
+    set(value) {
+      const { data, nativeBytes } = viewStorage.get(this);
+      if (typeof child === 'string')
+        return scalarAccess(child, data, position, value, true);
+      const input = bytes(value),
+        length = sizeOf(child);
+      if (input.byteLength !== length) throw new RangeError('Aggregate size mismatch');
+      nativeBytes.set(input, position);
+    },
+  };
+}
+
 /** A field view owns its JS bytes, or borrows a native view supplied by the caller. */
 export function view(type, source, offset = 0) {
   const descriptor = nativeType(type),
@@ -238,23 +268,9 @@ export function view(type, source, offset = 0) {
   if (typeof descriptor === 'string')
     return scalarAccess(descriptor, data, 0, undefined, false);
   const result = Object.create(null);
+  viewStorage.set(result, { data, nativeBytes });
   Object.defineProperty(result, '$bytes', {
     value: nativeBytes.subarray(0, info.flexible ? undefined : info.size),
-  });
-  const access = (child, position) => ({
-    enumerable: true,
-    get: () =>
-      typeof child === 'string'
-        ? scalarAccess(child, data, position, undefined, false)
-        : view(child, nativeBytes, position),
-    set(value) {
-      if (typeof child === 'string')
-        return scalarAccess(child, data, position, value, true);
-      const input = bytes(value),
-        length = sizeOf(child);
-      if (input.byteLength !== length) throw new RangeError('Aggregate size mismatch');
-      nativeBytes.set(input, position);
-    },
   });
   if (descriptor.kind === 'array') {
     const count =
@@ -267,16 +283,24 @@ export function view(type, source, offset = 0) {
         i,
         access(descriptor.element, i * sizeOf(descriptor.element)),
       );
-  } else
-    for (const field of info.fields) {
-      if (field.name === '$bytes')
-        throw new TypeError(
-          '$bytes is reserved by native field views; use offsetOf for this field',
-        );
-      const child = descriptor.fields.find(
-        (candidate) => candidate.name === field.name,
-      ).type;
-      Object.defineProperty(result, field.name, access(child, field.offset));
+  } else {
+    // Normalized types are immutable; share field closures across their views.
+    let properties = structAccessors.get(descriptor);
+    if (!properties) {
+      properties = Object.create(null);
+      for (const field of info.fields) {
+        if (field.name === '$bytes')
+          throw new TypeError(
+            '$bytes is reserved by native field views; use offsetOf for this field',
+          );
+        const child = descriptor.fields.find(
+          (candidate) => candidate.name === field.name,
+        ).type;
+        properties[field.name] = access(child, field.offset);
+      }
+      structAccessors.set(descriptor, properties);
     }
+    Object.defineProperties(result, properties);
+  }
   return result;
 }

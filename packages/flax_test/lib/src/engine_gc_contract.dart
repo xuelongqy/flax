@@ -224,6 +224,35 @@ void flaxEngineGcContract({
         first.drainMicrotasks();
         expect((first.evaluate('value') as FlaxJsNumber).value, 2);
         expect((second.evaluate('value') as FlaxJsNumber).value, 10);
+        second.registerHostFunction(
+          'readFirst',
+          (_, _) => first.evaluate('value'),
+        );
+        first.registerHostFunction(
+          'readSecond',
+          (_, _) => second.evaluate('readFirst() + value'),
+        );
+        expect(
+          (first.evaluate('readSecond() + value') as FlaxJsNumber).value,
+          14,
+        );
+        first.registerHostFunction('nestedFailure', (_, _) {
+          expect(
+            () => second.evaluate('throw new Error("nested")'),
+            throwsA(
+              isA<FlaxJsException>().having(
+                (error) => error.message,
+                'message',
+                contains('nested'),
+              ),
+            ),
+          );
+          return first.evaluate('value');
+        });
+        expect(
+          (first.evaluate('nestedFailure() + value') as FlaxJsNumber).value,
+          4,
+        );
         final foreign = first.evaluate('({})') as FlaxJsObject;
         final local = second.evaluate('({})') as FlaxJsObject;
         try {
@@ -465,6 +494,38 @@ void flaxEngineGcContract({
         );
         _owners[roots.single] = null;
         roots.clear();
+        await _reclaimed(runtime, weak);
+      } finally {
+        runtime.dispose();
+      }
+    },
+  );
+
+  test(
+    'external buffer pressure preserves and retires conditional callback roots',
+    () async {
+      final runtime = FlaxEngine.createRuntime() as FlaxNativeJsRuntime;
+      try {
+        final (anchor, weak) = _expandoCycle(runtime);
+        final roots = <Object>[anchor];
+        void externalPressure() => runtime.evaluate('''
+        globalThis.buffers = [];
+        for (let i = 0; i < 8; i++) {
+          buffers.push(new ArrayBuffer(16 * 1024 * 1024));
+          if (buffers.length > 2) buffers.shift();
+        }
+        globalThis.buffers = null;
+      ''');
+        externalPressure();
+        await Future<void>.delayed(const Duration(milliseconds: 50));
+        expect(_dartAlive(weak), isTrue);
+        expect(
+          (_owners[roots.single]!.callback!.call([]) as FlaxJsNumber).value,
+          18,
+        );
+        _owners[roots.single] = null;
+        roots.clear();
+        externalPressure();
         await _reclaimed(runtime, weak);
       } finally {
         runtime.dispose();

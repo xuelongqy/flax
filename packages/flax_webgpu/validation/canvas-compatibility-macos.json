@@ -1,0 +1,383 @@
+{
+  "verifiedAt": "2026-10-28T19:07:48.061Z",
+  "profile": "Experimental macOS arm64 Dawn with canvas-scoped compatibility",
+  "baseCommit": "3af52eea3",
+  "uncommitted": true,
+  "machine": {
+    "gpu": "Apple M2 Max",
+    "gpuCores": 30,
+    "macOS": "27.0.1 (26A434)",
+    "power": "AC",
+    "display": {
+      "width": 1920,
+      "height": 1080,
+      "refreshHz": 60
+    },
+    "devicePixelRatio": 1
+  },
+  "inputs": {
+    "dawnRevision": "5fbd545292cb7a4a9a275e322abec6007ffe2ae8",
+    "gpuwebRevision": "22507c95ccb9e705eddc7cab8f28aa46b134f5fe",
+    "ctsRevision": "cc11994e92512d0a3715e9d28876ec48accb971a",
+    "headerSha256": "44126360bbd35339b3b1ccb8ab5bdf21a4a1109bc05f086b179df5ea5a2734d0",
+    "idlSha256": "5293ea7f38416cb37b0ddfc636286514ff622901caa19504a4bdede2ec5a80b2"
+  },
+  "engine": {
+    "engine": "flax_mac_webgpu_fenced_release_arm64",
+    "originalSourcesSha256": {
+      "flutter/shell/platform/darwin/macos/framework/Source/FlutterExternalTexture.mm": "5c2be38b4b7a1ff84630df971928f83d8d99398e2c767e38e4f435a075fb98a1",
+      "flutter/impeller/renderer/backend/metal/render_pass_mtl.mm": "c790a1a3dbbec3beed94fb3fea18de370ec950960e7c36c43687de877799ab93",
+      "flutter/flax/native/src/runtime.cpp": "8c1a392bb7e43153be31ed5c65e28f8a1b08959c51b133615b348887a57f1c64",
+      "flutter/flax/native/src/ffi/memory.inc": "0f835cb508889ffe3e9b5c64c54cc88dc885410b2d0333babcd11270e3d003ee",
+      "flutter/flax/native/v8-jsi/src/jsi_abi/jsi_abi_v8.cpp": "8d69220727678b2871e1cd0e26aef3cfc9c070399dc7ad00908db5b7447ec2b2",
+      "flutter/flax/native/src/canvas_decoder.inc": "77285dae4559aa6ae6d06474cef0c5eedee1b3ea808b2b8b6490da88cf4ca1eb"
+    },
+    "overlaySourcesSha256": {
+      "flutter/shell/platform/darwin/macos/framework/Source/FlutterExternalTexture.mm": "b2d91946196a15ca856ac74f30860d71319dedf900a1fb0983d324125f02fb0c",
+      "flutter/impeller/renderer/backend/metal/render_pass_mtl.mm": "da15c6979dee5b90ee04a30eaaf5a8c37cf5d857ce29061caf25132a9a012c98",
+      "flutter/flax/native/src/runtime.cpp": "00e585472ce870e1f8e10bbeb025acc93b696e478279d050146c312dc8b00917",
+      "flutter/flax/native/src/ffi/memory.inc": "7b2cb72c613cc1b0c509e00c7a06064713df0c16bff1a8b7d422fdcd099ce562",
+      "flutter/flax/native/v8-jsi/src/jsi_abi/jsi_abi_v8.cpp": "da298c0ec1b27bcf78ce0151fb7498d95f1b781ad477a675f250ca8d17756b37",
+      "flutter/flax/native/src/canvas_decoder.inc": "df41a15ea6abb987bbb062d8d8a52fa83fbfe057a4086b8d4e2325d94da25107"
+    },
+    "patchSha256": "acbea7e5083008d44ebbe9d818922702b3704193e8f551db3554138cd27f2cd2",
+    "bufferPatchSha256": "1e3976562cc8a492fffe6c8746a58f7c6bcbabd957eeca0408d739230dfe1844",
+    "imagesPatchSha256": "e17c93260578aaa2086193b7801f1dbd61002eda6b7a19c3767197e9b48f8e29",
+    "interopHeaderSha256": "d0be547bc59bbc9ea5f15cea05c5698c487c0a3951e9c0a23315a8987e087e3e",
+    "engineBinarySha256": "ca19dd48cfbeb6235443e5edf9f29343337771647f7e956db9c26e6679793597"
+  },
+  "nativeLibrarySha256": "93501370b53ac93deedc1508983cafcb5fc9dc06aff2235c5ad6181ccb005128",
+  "coreEmbeddedHostSha256": "2252405a2a8c9b68727c6e544ce8f67d34cf1bec2474ed786c8e44e69cf15161",
+  "applicationBundleSha256": "e254b116472d299b133cef39b37664060ecf2bfa241af444619fd2b55aa8e543",
+  "threeVersion": "0.186.1",
+  "application": {
+    "passed": true,
+    "coloredScreenshotPixels": 170784,
+    "checks": [
+      {
+        "kind": "compute",
+        "adapter": {},
+        "values": [
+          3,
+          5,
+          7,
+          9,
+          21,
+          41,
+          61,
+          81
+        ],
+        "assertions": 18,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "images",
+        "assertions": 38,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "three",
+        "assertions": 40,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "rendered",
+        "frames": 120,
+        "format": "bgra8unorm",
+        "cpuEncodeMs": {
+          "p50": 1.306999999999789,
+          "p95": 1.8699999999998909
+        },
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "retired",
+        "cycle": 0,
+        "before": [
+          1,
+          1,
+          3,
+          4,
+          2,
+          0
+        ],
+        "after": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "kind": "compute",
+        "adapter": {},
+        "values": [
+          3,
+          5,
+          7,
+          9,
+          21,
+          41,
+          61,
+          81
+        ],
+        "assertions": 17,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "images",
+        "assertions": 35,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "three",
+        "assertions": 37,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "rendered",
+        "frames": 120,
+        "format": "rgba8unorm",
+        "cpuEncodeMs": {
+          "p50": 1.3110000000001492,
+          "p95": 1.9729999999999563
+        },
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "retired",
+        "cycle": 1,
+        "before": [
+          1,
+          1,
+          3,
+          4,
+          2,
+          0
+        ],
+        "after": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "kind": "compute",
+        "adapter": {},
+        "values": [
+          3,
+          5,
+          7,
+          9,
+          21,
+          41,
+          61,
+          81
+        ],
+        "assertions": 18,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "images",
+        "assertions": 38,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "three",
+        "assertions": 40,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "rendered",
+        "frames": 120,
+        "format": "bgra8unorm",
+        "cpuEncodeMs": {
+          "p50": 1.262000000000171,
+          "p95": 1.8899999999998727
+        },
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "retired",
+        "cycle": 2,
+        "before": [
+          1,
+          1,
+          3,
+          4,
+          2,
+          0
+        ],
+        "after": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ]
+  },
+  "cts": {
+    "revision": "cc11994e92512d0a3715e9d28876ec48accb971a",
+    "groups": [
+      "api/operation/adapter/info",
+      "api/operation/command_buffer/basic",
+      "api/operation/onSubmittedWorkDone",
+      "api/validation/buffer/destroy",
+      "api/validation/error_scope"
+    ],
+    "cycles": [
+      {
+        "cycle": 0,
+        "cases": 65,
+        "pass": 65,
+        "fail": 0,
+        "skip": 0
+      },
+      {
+        "cycle": 1,
+        "cases": 65,
+        "pass": 65,
+        "fail": 0,
+        "skip": 0
+      },
+      {
+        "cycle": 2,
+        "cases": 65,
+        "pass": 65,
+        "fail": 0,
+        "skip": 0
+      }
+    ],
+    "queries": [
+      "webgpu:api,operation,adapter,info:adapter_info:",
+      "webgpu:api,operation,adapter,info:same_object:",
+      "webgpu:api,operation,adapter,info:device_matches_adapter:",
+      "webgpu:api,operation,adapter,info:subgroup_sizes:",
+      "webgpu:api,operation,command_buffer,basic:empty:",
+      "webgpu:api,operation,command_buffer,basic:b2t2b:",
+      "webgpu:api,operation,command_buffer,basic:b2t2t2b:",
+      "webgpu:api,operation,onSubmittedWorkDone:without_work:",
+      "webgpu:api,operation,onSubmittedWorkDone:with_work:",
+      "webgpu:api,operation,onSubmittedWorkDone:many,serial:",
+      "webgpu:api,operation,onSubmittedWorkDone:many,parallel:",
+      "webgpu:api,operation,onSubmittedWorkDone:many,parallel_order:",
+      "webgpu:api,validation,buffer,destroy:all_usages:",
+      "webgpu:api,validation,buffer,destroy:error_buffer:",
+      "webgpu:api,validation,buffer,destroy:twice:",
+      "webgpu:api,validation,buffer,destroy:while_mapped:",
+      "webgpu:api,validation,error_scope:simple:errorType=\"out-of-memory\";errorFilter=\"internal\"",
+      "webgpu:api,validation,error_scope:simple:errorType=\"out-of-memory\";errorFilter=\"out-of-memory\"",
+      "webgpu:api,validation,error_scope:simple:errorType=\"out-of-memory\";errorFilter=\"validation\"",
+      "webgpu:api,validation,error_scope:simple:errorType=\"validation\";errorFilter=\"internal\"",
+      "webgpu:api,validation,error_scope:simple:errorType=\"validation\";errorFilter=\"out-of-memory\"",
+      "webgpu:api,validation,error_scope:simple:errorType=\"validation\";errorFilter=\"validation\"",
+      "webgpu:api,validation,error_scope:empty:",
+      "webgpu:api,validation,error_scope:parent_scope:errorFilter=\"out-of-memory\";stackDepth=1",
+      "webgpu:api,validation,error_scope:parent_scope:errorFilter=\"out-of-memory\";stackDepth=10",
+      "webgpu:api,validation,error_scope:parent_scope:errorFilter=\"out-of-memory\";stackDepth=100",
+      "webgpu:api,validation,error_scope:parent_scope:errorFilter=\"out-of-memory\";stackDepth=1000",
+      "webgpu:api,validation,error_scope:parent_scope:errorFilter=\"validation\";stackDepth=1",
+      "webgpu:api,validation,error_scope:parent_scope:errorFilter=\"validation\";stackDepth=10",
+      "webgpu:api,validation,error_scope:parent_scope:errorFilter=\"validation\";stackDepth=100",
+      "webgpu:api,validation,error_scope:parent_scope:errorFilter=\"validation\";stackDepth=1000",
+      "webgpu:api,validation,error_scope:current_scope:errorFilter=\"out-of-memory\";stackDepth=1",
+      "webgpu:api,validation,error_scope:current_scope:errorFilter=\"out-of-memory\";stackDepth=10",
+      "webgpu:api,validation,error_scope:current_scope:errorFilter=\"out-of-memory\";stackDepth=100",
+      "webgpu:api,validation,error_scope:current_scope:errorFilter=\"out-of-memory\";stackDepth=1000",
+      "webgpu:api,validation,error_scope:current_scope:errorFilter=\"out-of-memory\";stackDepth=100000",
+      "webgpu:api,validation,error_scope:current_scope:errorFilter=\"validation\";stackDepth=1",
+      "webgpu:api,validation,error_scope:current_scope:errorFilter=\"validation\";stackDepth=10",
+      "webgpu:api,validation,error_scope:current_scope:errorFilter=\"validation\";stackDepth=100",
+      "webgpu:api,validation,error_scope:current_scope:errorFilter=\"validation\";stackDepth=1000",
+      "webgpu:api,validation,error_scope:current_scope:errorFilter=\"validation\";stackDepth=100000",
+      "webgpu:api,validation,error_scope:balanced_siblings:errorFilter=\"internal\";numErrors=1",
+      "webgpu:api,validation,error_scope:balanced_siblings:errorFilter=\"internal\";numErrors=10",
+      "webgpu:api,validation,error_scope:balanced_siblings:errorFilter=\"internal\";numErrors=100",
+      "webgpu:api,validation,error_scope:balanced_siblings:errorFilter=\"internal\";numErrors=1000",
+      "webgpu:api,validation,error_scope:balanced_siblings:errorFilter=\"out-of-memory\";numErrors=1",
+      "webgpu:api,validation,error_scope:balanced_siblings:errorFilter=\"out-of-memory\";numErrors=10",
+      "webgpu:api,validation,error_scope:balanced_siblings:errorFilter=\"out-of-memory\";numErrors=100",
+      "webgpu:api,validation,error_scope:balanced_siblings:errorFilter=\"out-of-memory\";numErrors=1000",
+      "webgpu:api,validation,error_scope:balanced_siblings:errorFilter=\"validation\";numErrors=1",
+      "webgpu:api,validation,error_scope:balanced_siblings:errorFilter=\"validation\";numErrors=10",
+      "webgpu:api,validation,error_scope:balanced_siblings:errorFilter=\"validation\";numErrors=100",
+      "webgpu:api,validation,error_scope:balanced_siblings:errorFilter=\"validation\";numErrors=1000",
+      "webgpu:api,validation,error_scope:balanced_nesting:errorFilter=\"internal\";numErrors=1",
+      "webgpu:api,validation,error_scope:balanced_nesting:errorFilter=\"internal\";numErrors=10",
+      "webgpu:api,validation,error_scope:balanced_nesting:errorFilter=\"internal\";numErrors=100",
+      "webgpu:api,validation,error_scope:balanced_nesting:errorFilter=\"internal\";numErrors=1000",
+      "webgpu:api,validation,error_scope:balanced_nesting:errorFilter=\"out-of-memory\";numErrors=1",
+      "webgpu:api,validation,error_scope:balanced_nesting:errorFilter=\"out-of-memory\";numErrors=10",
+      "webgpu:api,validation,error_scope:balanced_nesting:errorFilter=\"out-of-memory\";numErrors=100",
+      "webgpu:api,validation,error_scope:balanced_nesting:errorFilter=\"out-of-memory\";numErrors=1000",
+      "webgpu:api,validation,error_scope:balanced_nesting:errorFilter=\"validation\";numErrors=1",
+      "webgpu:api,validation,error_scope:balanced_nesting:errorFilter=\"validation\";numErrors=10",
+      "webgpu:api,validation,error_scope:balanced_nesting:errorFilter=\"validation\";numErrors=100",
+      "webgpu:api,validation,error_scope:balanced_nesting:errorFilter=\"validation\";numErrors=1000"
+    ],
+    "rawSha256": [
+      "a44a0c7af11f841454af9f5138811c1293e348b8b3e57c78440d02d60527c50e",
+      "98adf79aa8ae8a1e3cf543ea105dbbba03b7aa0c244f85fb250c3f8e54ead797",
+      "e3b8ac2339a7dd1e76734f8692f3ca18754e0c977cae6998513c63d039f14fa2"
+    ]
+  },
+  "gates": {
+    "coreJavaScript": 107,
+    "canvasJavaScript": 35,
+    "webgpuConversion": 5,
+    "coreCanvasV8UI": 2,
+    "canvasV8UI": 393,
+    "canvasExampleWidget": 1,
+    "canvasExampleMacOSIntegration": 1,
+    "runtimeDefault": 58,
+    "runtimeV8": 58,
+    "coreCanvasWebgpuTypechecks": "pass",
+    "scopedDartAnalysis": "pass",
+    "ffiReproducibility": "pass",
+    "coreBindingReproducibility": "pass",
+    "canvasBindingReproducibility": "pass",
+    "publicTypeReproducibility": "pass",
+    "moduleDeliveryReproducibility": "pass",
+    "formatting": "pass"
+  },
+  "notCertified": [
+    "Full WebGPU CTS / WebIDL / DOM conformance",
+    "General HTML/CSS or Flutter Widget DOM mapping",
+    "Worker execution or canvas transfer to workers",
+    "VideoFrame / GPUExternalTexture decoder interop",
+    "HDR / display-P3 presentation / rgba16float canvas",
+    "Other platforms and normal native-capability packaging",
+    "Display-presentation latency"
+  ],
+  "featuresVerified": [
+    "Canvas-only document / HTMLCanvasElement / geometry and native pointer-focus-key routing",
+    "Canvas-only ResizeObserver receives positive committed Flutter dimensions",
+    "Shared ImageData / ImageBitmap / Image decoding and explicit close ownership",
+    "External image upload, crop, flipY, alpha and sRGB-to-P3 pixel conversion",
+    "PNG decode/export, HTML toBlob/toDataURL, snapshots preserve current texture identity",
+    "Bitmap transfer keeps pixels and clears canvas; Canvas 2D interop",
+    "RGBA8 and BGRA8 composition, compatible sRGB views",
+    "Three.js 0.186.1 TextureLoader + WebGPURenderer actual GPU pixels and OrbitControls wheel input",
+    "Burst completion notifications, idle Promise event pumping, and zero native retirement counters"
+  ]
+}

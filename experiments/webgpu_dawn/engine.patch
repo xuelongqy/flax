@@ -1,0 +1,115 @@
+--- a/flutter/shell/platform/darwin/macos/framework/Source/FlutterExternalTexture.mm
++++ b/flutter/shell/platform/darwin/macos/framework/Source/FlutterExternalTexture.mm
+@@ -5,6 +5,7 @@
+ #import "flutter/shell/platform/darwin/macos/framework/Source/FlutterExternalTexture.h"
+ 
+ #include "flutter/fml/platform/darwin/cf_utils.h"
++#include "flax_dawn_interop.h"
+ 
+ @implementation FlutterExternalTexture {
+   FlutterDarwinContextMetalSkia* _darwinMetalContext;
+@@ -14,6 +15,7 @@
+   id<FlutterTexture> _texture;
+ 
+   std::vector<FlutterMetalTextureHandle> _textures;
++  id<MTLTexture> _flaxDawnTexture;
+ }
+ 
+ - (instancetype)initWithFlutterTexture:(id<FlutterTexture>)texture
+@@ -32,6 +34,19 @@
+ }
+ 
+ - (BOOL)populateTexture:(FlutterMetalExternalTexture*)textureOut {
++  if ([_texture respondsToSelector:@selector(copyFlaxDawnMetalTexture)]) {
++    _flaxDawnTexture = [(id<FlaxDawnTextureProvider>)_texture copyFlaxDawnMetalTexture];
++    if (!_flaxDawnTexture) {
++      return NO;
++    }
++    _textures = {(__bridge FlutterMetalTextureHandle)_flaxDawnTexture};
++    textureOut->num_textures = 1;
++    textureOut->width = _flaxDawnTexture.width;
++    textureOut->height = _flaxDawnTexture.height;
++    textureOut->pixel_format = FlutterMetalExternalTexturePixelFormat::kRGBA;
++    textureOut->textures = _textures.data();
++    return YES;
++  }
+   // Copy the pixel buffer from the FlutterTexture instance implemented on the user side.
+   fml::CFRef<CVPixelBufferRef> pixelBuffer([_texture copyPixelBuffer]);
+ 
+--- a/flutter/impeller/renderer/backend/metal/render_pass_mtl.mm
++++ b/flutter/impeller/renderer/backend/metal/render_pass_mtl.mm
+@@ -3,6 +3,7 @@
+ // found in the LICENSE file.
+ 
+ #include "impeller/renderer/backend/metal/render_pass_mtl.h"
++#include "flax_dawn_interop.h"
+ 
+ #include "flutter/fml/closure.h"
+ #include "flutter/fml/logging.h"
+@@ -188,6 +189,12 @@
+ bool RenderPassMTL::OnEncodeCommands(const Context& context) const {
+   did_finish_encoding_ = true;
+   [encoder_ endEncoding];
++  for (id<FlaxDawnFrame> frame in objc_getAssociatedObject(
++           encoder_, @selector(copyFlaxDawnMetalTexture))) {
++    [frame encodeReadComplete:buffer_];
++  }
++  objc_setAssociatedObject(encoder_, @selector(copyFlaxDawnMetalTexture), nil,
++                           OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+   return true;
+ }
+ 
+@@ -217,13 +224,32 @@
+                  ShaderStage stage,
+                  size_t bind_index,
+                  raw_ptr<const Sampler> sampler,
+-                 const Texture& texture) {
++                 const Texture& texture,
++                 id<MTLCommandBuffer> commands,
++                 id<MTLRenderCommandEncoder> encoder) {
+   if (!sampler || !texture.IsValid()) {
+     return false;
+   }
+ 
+-  return pass.SetTexture(stage, bind_index,
+-                         TextureMTL::Cast(texture).GetMTLTexture()) &&
++  auto metal_texture = TextureMTL::Cast(texture).GetMTLTexture();
++  if (id<FlaxDawnFrame> frame = FlaxDawnFrameForTexture(metal_texture)) {
++    // The gate waits on Dawn's shared event; this fence orders the actual read.
++    auto fence = [frame prepareOnQueue:commands.commandQueue];
++    if (!fence) {
++      return false;
++    }
++    [encoder waitForFence:fence
++            beforeStages:stage == ShaderStage::kVertex ? MTLRenderStageVertex
++                                                       : MTLRenderStageFragment];
++    NSMutableSet* frames = objc_getAssociatedObject(encoder, @selector(copyFlaxDawnMetalTexture));
++    if (!frames) {
++      frames = [NSMutableSet new];
++      objc_setAssociatedObject(encoder, @selector(copyFlaxDawnMetalTexture), frames,
++                               OBJC_ASSOCIATION_RETAIN_NONATOMIC);
++    }
++    [frames addObject:frame];
++  }
++  return pass.SetTexture(stage, bind_index, metal_texture) &&
+          pass.SetSampler(stage, bind_index,
+                          SamplerMTL::Cast(*sampler).GetMTLSamplerState());
+ }
+@@ -406,7 +432,7 @@
+   if (!texture) {
+     return false;
+   }
+-  return Bind(pass_bindings_, stage, slot.texture_index, sampler, *texture);
++  return Bind(pass_bindings_, stage, slot.texture_index, sampler, *texture, buffer_, encoder_);
+ }
+ 
+ bool RenderPassMTL::BindDynamicResource(
+@@ -419,7 +442,7 @@
+   if (!texture) {
+     return false;
+   }
+-  return Bind(pass_bindings_, stage, slot.texture_index, sampler, *texture);
++  return Bind(pass_bindings_, stage, slot.texture_index, sampler, *texture, buffer_, encoder_);
+ }
+ 
+ }  // namespace impeller

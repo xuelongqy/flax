@@ -1,0 +1,2254 @@
+{
+  "formatVersion": 1,
+  "recordedAt": "2026-10-30T16:01:39.876888+00:00",
+  "mode": "Release",
+  "aot": true,
+  "platform": "macos-arm64",
+  "hardware": "Apple M2 Max",
+  "power": "AC",
+  "comparisonOrder": [
+    "baseline",
+    "external-coalescing",
+    "external-coalescing",
+    "baseline"
+  ],
+  "measurementConditions": {
+    "noConcurrentBuildsTestsOrProfiler": true,
+    "sameDartAppAndJsAcrossVariants": true,
+    "bufferBytes": 16777216,
+    "smallRoundtrips": 100,
+    "copyRoundtrips": 20,
+    "transferRoundtripsBeforeAndAfterCopy": 20,
+    "sustainedTransferRoundtrips": 200,
+    "timerIntervalMs": 5,
+    "timerWindowMs": 500,
+    "postTransferSettleMs": 30
+  },
+  "releaseRuns": [
+    {
+      "firstStartupMs": 114.13399999999999,
+      "repeatedStartup": {
+        "n": 10,
+        "medianMs": 28.33699999999999,
+        "p95Ms": 42.021000000000015,
+        "p99Ms": 42.021000000000015,
+        "maxMs": 42.021000000000015
+      },
+      "smallRoundtrip": {
+        "n": 100,
+        "medianMs": 0.06299999999998818,
+        "p95Ms": 0.09100000000000819,
+        "p99Ms": 0.4479999999999791,
+        "maxMs": 0.4479999999999791
+      },
+      "bufferBytes": 16777216,
+      "copyRoundtrip": {
+        "n": 20,
+        "medianMs": 28.406000000000176,
+        "p95Ms": 32.31600000000003,
+        "p99Ms": 32.31600000000003,
+        "maxMs": 32.31600000000003
+      },
+      "copyPost": {
+        "n": 20,
+        "medianMs": 0.38799999999991996,
+        "p95Ms": 1.3960000000000719,
+        "p99Ms": 1.3960000000000719,
+        "maxMs": 1.3960000000000719
+      },
+      "transferBeforeCopy": {
+        "n": 20,
+        "medianMs": 18.982000000000085,
+        "p95Ms": 26.93100000000004,
+        "p99Ms": 26.93100000000004,
+        "maxMs": 26.93100000000004
+      },
+      "transferRoundtrip": {
+        "n": 20,
+        "medianMs": 26.15599999999995,
+        "p95Ms": 74.61400000000003,
+        "p99Ms": 74.61400000000003,
+        "maxMs": 74.61400000000003
+      },
+      "transferPost": {
+        "n": 20,
+        "medianMs": 0.02500000000009095,
+        "p95Ms": 0.03700000000003456,
+        "p99Ms": 0.03700000000003456,
+        "maxMs": 0.03700000000003456
+      },
+      "sustainedTransfer": {
+        "n": 200,
+        "medianMs": 25.509000000000015,
+        "p95Ms": 31.462999999999738,
+        "p99Ms": 49.095000000000255,
+        "maxMs": 65.32700000000023,
+        "elapsedMs": 5332.076999999999,
+        "settledElapsedMs": 5364.061,
+        "timerGaps": {
+          "n": 20,
+          "medianMs": 26.88700000000017,
+          "p95Ms": 49.215000000000146,
+          "p99Ms": 49.215000000000146,
+          "maxMs": 49.215000000000146
+        },
+        "timerTailMs": 30,
+        "timerWindowMs": 500,
+        "timerObservationMs": 501.9390000000003
+      },
+      "responsiveness": {
+        "background": {
+          "elapsedMs": 200.3789999999999,
+          "ticks": 51,
+          "maxGapMs": 11.998000000000502,
+          "p95GapMs": 5.867000000000189
+        },
+        "main": {
+          "elapsedMs": 200.0079999999998,
+          "ticks": 12,
+          "maxGapMs": 206.10899999999947,
+          "p95GapMs": 206.10899999999947
+        }
+      },
+      "carrier": "Isolate.spawn (same isolate group)",
+      "transport": "native V8 serializer + BackingStore",
+      "system": {
+        "os": "Version 27.0.1 (Build 26A434)",
+        "dart": "3.13.5 (stable) (Tue Sep 29 01:00:52 2026 -0700) on \"macos_arm64\"",
+        "mode": "Release",
+        "aot": true,
+        "date": "2026-10-30T15:39:52.043862Z"
+      },
+      "retired": {
+        "channels": 0,
+        "runtimes": 0
+      },
+      "variant": "baseline",
+      "engineUuid": "56F02E63-7FE9-322F-9E50-35D461FA56CB",
+      "appDartSha256": "4f4cea0dbbc7c6e4897bbb30916c143acffc7a99c0633b2f81293775610e2022",
+      "benchmarkSha256": "696346c58dcdd17fe6973e23bbf7bf2c788b5a43085a263f10003d5020e6cce2",
+      "maxResidentBytes": 458866688,
+      "peakFootprintBytes": 349477352
+    },
+    {
+      "firstStartupMs": 119.13399999999999,
+      "repeatedStartup": {
+        "n": 10,
+        "medianMs": 28.028999999999996,
+        "p95Ms": 55.74799999999999,
+        "p99Ms": 55.74799999999999,
+        "maxMs": 55.74799999999999
+      },
+      "smallRoundtrip": {
+        "n": 100,
+        "medianMs": 0.06299999999998818,
+        "p95Ms": 0.11099999999999,
+        "p99Ms": 0.42999999999995,
+        "maxMs": 0.42999999999995
+      },
+      "bufferBytes": 16777216,
+      "copyRoundtrip": {
+        "n": 20,
+        "medianMs": 5.4640000000000555,
+        "p95Ms": 31.035999999999945,
+        "p99Ms": 31.035999999999945,
+        "maxMs": 31.035999999999945
+      },
+      "copyPost": {
+        "n": 20,
+        "medianMs": 0.3569999999999709,
+        "p95Ms": 1.5450000000000728,
+        "p99Ms": 1.5450000000000728,
+        "maxMs": 1.5450000000000728
+      },
+      "transferBeforeCopy": {
+        "n": 20,
+        "medianMs": 0.06999999999993634,
+        "p95Ms": 3.9840000000000373,
+        "p99Ms": 3.9840000000000373,
+        "maxMs": 3.9840000000000373
+      },
+      "transferRoundtrip": {
+        "n": 20,
+        "medianMs": 0.09200000000009823,
+        "p95Ms": 27.321000000000026,
+        "p99Ms": 27.321000000000026,
+        "maxMs": 27.321000000000026
+      },
+      "transferPost": {
+        "n": 20,
+        "medianMs": 0.010999999999967258,
+        "p95Ms": 0.022000000000048203,
+        "p99Ms": 0.022000000000048203,
+        "maxMs": 0.022000000000048203
+      },
+      "sustainedTransfer": {
+        "n": 200,
+        "medianMs": 0.07600000000002183,
+        "p95Ms": 0.20499999999992724,
+        "p99Ms": 29.118999999999915,
+        "maxMs": 76.13,
+        "elapsedMs": 156.20399999999995,
+        "settledElapsedMs": 187.72500000000002,
+        "timerGaps": {
+          "n": 73,
+          "medianMs": 4.6310000000000855,
+          "p95Ms": 25.645000000000095,
+          "p99Ms": 46.081999999999994,
+          "maxMs": 46.081999999999994
+        },
+        "timerTailMs": 30,
+        "timerWindowMs": 500,
+        "timerObservationMs": 501.442
+      },
+      "responsiveness": {
+        "background": {
+          "elapsedMs": 214.97799999999984,
+          "ticks": 27,
+          "maxGapMs": 114.8710000000001,
+          "p95GapMs": 26.991999999999962
+        },
+        "main": {
+          "elapsedMs": 200.00599999999986,
+          "ticks": 12,
+          "maxGapMs": 206.16000000000008,
+          "p95GapMs": 206.16000000000008
+        }
+      },
+      "carrier": "Isolate.spawn (same isolate group)",
+      "transport": "native V8 serializer + BackingStore",
+      "system": {
+        "os": "Version 27.0.1 (Build 26A434)",
+        "dart": "3.13.5 (stable) (Tue Sep 29 01:00:52 2026 -0700) on \"macos_arm64\"",
+        "mode": "Release",
+        "aot": true,
+        "date": "2026-10-30T15:39:54.935228Z"
+      },
+      "retired": {
+        "channels": 0,
+        "runtimes": 0
+      },
+      "variant": "external-coalescing",
+      "engineUuid": "A352002F-B344-307D-BE21-60CA0199C178",
+      "appDartSha256": "4f4cea0dbbc7c6e4897bbb30916c143acffc7a99c0633b2f81293775610e2022",
+      "benchmarkSha256": "696346c58dcdd17fe6973e23bbf7bf2c788b5a43085a263f10003d5020e6cce2",
+      "maxResidentBytes": 492994560,
+      "peakFootprintBytes": 386709520
+    },
+    {
+      "firstStartupMs": 111.459,
+      "repeatedStartup": {
+        "n": 10,
+        "medianMs": 29.246000000000038,
+        "p95Ms": 46.710000000000036,
+        "p99Ms": 46.710000000000036,
+        "maxMs": 46.710000000000036
+      },
+      "smallRoundtrip": {
+        "n": 100,
+        "medianMs": 0.04399999999998272,
+        "p95Ms": 0.07600000000002183,
+        "p99Ms": 0.41700000000003,
+        "maxMs": 0.41700000000003
+      },
+      "bufferBytes": 16777216,
+      "copyRoundtrip": {
+        "n": 20,
+        "medianMs": 4.38799999999992,
+        "p95Ms": 32.438999999999965,
+        "p99Ms": 32.438999999999965,
+        "maxMs": 32.438999999999965
+      },
+      "copyPost": {
+        "n": 20,
+        "medianMs": 0.36799999999993815,
+        "p95Ms": 1.3770000000000664,
+        "p99Ms": 1.3770000000000664,
+        "maxMs": 1.3770000000000664
+      },
+      "transferBeforeCopy": {
+        "n": 20,
+        "medianMs": 0.05400000000008731,
+        "p95Ms": 3.798999999999978,
+        "p99Ms": 3.798999999999978,
+        "maxMs": 3.798999999999978
+      },
+      "transferRoundtrip": {
+        "n": 20,
+        "medianMs": 0.08400000000006003,
+        "p95Ms": 25.326000000000022,
+        "p99Ms": 25.326000000000022,
+        "maxMs": 25.326000000000022
+      },
+      "transferPost": {
+        "n": 20,
+        "medianMs": 0.008000000000038199,
+        "p95Ms": 0.018000000000029104,
+        "p99Ms": 0.018000000000029104,
+        "maxMs": 0.018000000000029104
+      },
+      "sustainedTransfer": {
+        "n": 200,
+        "medianMs": 0.06499999999994088,
+        "p95Ms": 0.09100000000000819,
+        "p99Ms": 24.670000000000073,
+        "maxMs": 40.11500000000001,
+        "elapsedMs": 80.428,
+        "settledElapsedMs": 110.83200000000011,
+        "timerGaps": {
+          "n": 55,
+          "medianMs": 5.352999999999838,
+          "p95Ms": 39.20799999999997,
+          "p99Ms": 73.04499999999985,
+          "maxMs": 73.04499999999985
+        },
+        "timerTailMs": 30,
+        "timerWindowMs": 500,
+        "timerObservationMs": 502.46000000000004
+      },
+      "responsiveness": {
+        "background": {
+          "elapsedMs": 200.43499999999995,
+          "ticks": 50,
+          "maxGapMs": 15.707000000000107,
+          "p95GapMs": 5.921000000000049
+        },
+        "main": {
+          "elapsedMs": 200.00600000000009,
+          "ticks": 12,
+          "maxGapMs": 205.91200000000003,
+          "p95GapMs": 205.91200000000003
+        }
+      },
+      "carrier": "Isolate.spawn (same isolate group)",
+      "transport": "native V8 serializer + BackingStore",
+      "system": {
+        "os": "Version 27.0.1 (Build 26A434)",
+        "dart": "3.13.5 (stable) (Tue Sep 29 01:00:52 2026 -0700) on \"macos_arm64\"",
+        "mode": "Release",
+        "aot": true,
+        "date": "2026-10-30T15:39:57.769100Z"
+      },
+      "retired": {
+        "channels": 0,
+        "runtimes": 0
+      },
+      "variant": "external-coalescing",
+      "engineUuid": "A352002F-B344-307D-BE21-60CA0199C178",
+      "appDartSha256": "4f4cea0dbbc7c6e4897bbb30916c143acffc7a99c0633b2f81293775610e2022",
+      "benchmarkSha256": "696346c58dcdd17fe6973e23bbf7bf2c788b5a43085a263f10003d5020e6cce2",
+      "maxResidentBytes": 507379712,
+      "peakFootprintBytes": 400291208
+    },
+    {
+      "firstStartupMs": 97.017,
+      "repeatedStartup": {
+        "n": 10,
+        "medianMs": 28.177999999999997,
+        "p95Ms": 90.23999999999995,
+        "p99Ms": 90.23999999999995,
+        "maxMs": 90.23999999999995
+      },
+      "smallRoundtrip": {
+        "n": 100,
+        "medianMs": 0.06200000000001182,
+        "p95Ms": 0.0989999999999327,
+        "p99Ms": 0.4209999999999354,
+        "maxMs": 0.4209999999999354
+      },
+      "bufferBytes": 16777216,
+      "copyRoundtrip": {
+        "n": 20,
+        "medianMs": 27.8900000000001,
+        "p95Ms": 82.606,
+        "p99Ms": 82.606,
+        "maxMs": 82.606
+      },
+      "copyPost": {
+        "n": 20,
+        "medianMs": 0.3889999999998963,
+        "p95Ms": 3.443000000000211,
+        "p99Ms": 3.443000000000211,
+        "maxMs": 3.443000000000211
+      },
+      "transferBeforeCopy": {
+        "n": 20,
+        "medianMs": 20.845000000000027,
+        "p95Ms": 22.451000000000022,
+        "p99Ms": 22.451000000000022,
+        "maxMs": 22.451000000000022
+      },
+      "transferRoundtrip": {
+        "n": 20,
+        "medianMs": 26.08699999999999,
+        "p95Ms": 48.06700000000001,
+        "p99Ms": 48.06700000000001,
+        "maxMs": 48.06700000000001
+      },
+      "transferPost": {
+        "n": 20,
+        "medianMs": 0.02999999999974534,
+        "p95Ms": 0.041999999999916326,
+        "p99Ms": 0.041999999999916326,
+        "maxMs": 0.041999999999916326
+      },
+      "sustainedTransfer": {
+        "n": 200,
+        "medianMs": 25.585000000000036,
+        "p95Ms": 32.636999999999716,
+        "p99Ms": 52.80400000000009,
+        "maxMs": 61.15800000000036,
+        "elapsedMs": 5343.142,
+        "settledElapsedMs": 5375.364,
+        "timerGaps": {
+          "n": 19,
+          "medianMs": 25.8420000000001,
+          "p95Ms": 32.14599999999973,
+          "p99Ms": 32.14599999999973,
+          "maxMs": 32.14599999999973
+        },
+        "timerTailMs": 30,
+        "timerWindowMs": 500,
+        "timerObservationMs": 524.6660000000002
+      },
+      "responsiveness": {
+        "background": {
+          "elapsedMs": 200.33199999999943,
+          "ticks": 50,
+          "maxGapMs": 16.14800000000014,
+          "p95GapMs": 5.738999999999578
+        },
+        "main": {
+          "elapsedMs": 200.0069999999996,
+          "ticks": 8,
+          "maxGapMs": 204.80000000000018,
+          "p95GapMs": 204.80000000000018
+        }
+      },
+      "carrier": "Isolate.spawn (same isolate group)",
+      "transport": "native V8 serializer + BackingStore",
+      "system": {
+        "os": "Version 27.0.1 (Build 26A434)",
+        "dart": "3.13.5 (stable) (Tue Sep 29 01:00:52 2026 -0700) on \"macos_arm64\"",
+        "mode": "Release",
+        "aot": true,
+        "date": "2026-10-30T15:40:06.909127Z"
+      },
+      "retired": {
+        "channels": 0,
+        "runtimes": 0
+      },
+      "variant": "baseline",
+      "engineUuid": "56F02E63-7FE9-322F-9E50-35D461FA56CB",
+      "appDartSha256": "4f4cea0dbbc7c6e4897bbb30916c143acffc7a99c0633b2f81293775610e2022",
+      "benchmarkSha256": "696346c58dcdd17fe6973e23bbf7bf2c788b5a43085a263f10003d5020e6cce2",
+      "maxResidentBytes": 457506816,
+      "peakFootprintBytes": 349313368
+    }
+  ],
+  "windowCalibration": {
+    "order": [
+      "eight-ms",
+      "four-ms",
+      "four-ms",
+      "eight-ms"
+    ],
+    "runs": [
+      {
+        "firstStartupMs": 74.882,
+        "repeatedStartup": {
+          "n": 10,
+          "medianMs": 27.837999999999965,
+          "p95Ms": 43.728999999999985,
+          "p99Ms": 43.728999999999985,
+          "maxMs": 43.728999999999985
+        },
+        "smallRoundtrip": {
+          "n": 100,
+          "medianMs": 0.04200000000003001,
+          "p95Ms": 0.07900000000006457,
+          "p99Ms": 0.4230000000000018,
+          "maxMs": 0.4230000000000018
+        },
+        "bufferBytes": 16777216,
+        "copyRoundtrip": {
+          "n": 20,
+          "medianMs": 5.076999999999998,
+          "p95Ms": 31.83699999999999,
+          "p99Ms": 31.83699999999999,
+          "maxMs": 31.83699999999999
+        },
+        "copyPost": {
+          "n": 20,
+          "medianMs": 0.35000000000002274,
+          "p95Ms": 1.4969999999999573,
+          "p99Ms": 1.4969999999999573,
+          "maxMs": 1.4969999999999573
+        },
+        "transferBeforeCopy": {
+          "n": 20,
+          "medianMs": 0.05199999999990723,
+          "p95Ms": 3.969000000000051,
+          "p99Ms": 3.969000000000051,
+          "maxMs": 3.969000000000051
+        },
+        "transferRoundtrip": {
+          "n": 20,
+          "medianMs": 0.08899999999994179,
+          "p95Ms": 0.20299999999997453,
+          "p99Ms": 0.20299999999997453,
+          "maxMs": 0.20299999999997453
+        },
+        "transferPost": {
+          "n": 20,
+          "medianMs": 0.010999999999967258,
+          "p95Ms": 0.018000000000029104,
+          "p99Ms": 0.018000000000029104,
+          "maxMs": 0.018000000000029104
+        },
+        "sustainedTransfer": {
+          "n": 200,
+          "medianMs": 0.08299999999996999,
+          "p95Ms": 0.10400000000004184,
+          "p99Ms": 28.851999999999975,
+          "maxMs": 49.331999999999994,
+          "elapsedMs": 97.23199999999997,
+          "settledElapsedMs": 127.904,
+          "timerGaps": {
+            "n": 81,
+            "medianMs": 4.61200000000008,
+            "p95Ms": 6.050000000000068,
+            "p99Ms": 46.202999999999975,
+            "maxMs": 46.202999999999975
+          },
+          "timerTailMs": 30,
+          "timerWindowMs": 500,
+          "timerObservationMs": 501.94500000000005
+        },
+        "responsiveness": {
+          "background": {
+            "elapsedMs": 200.56799999999998,
+            "ticks": 50,
+            "maxGapMs": 19.285000000000082,
+            "p95GapMs": 5.752999999999929
+          },
+          "main": {
+            "elapsedMs": 200.00599999999986,
+            "ticks": 12,
+            "maxGapMs": 205.92000000000007,
+            "p95GapMs": 205.92000000000007
+          }
+        },
+        "carrier": "Isolate.spawn (same isolate group)",
+        "transport": "native V8 serializer + BackingStore",
+        "system": {
+          "os": "Version 27.0.1 (Build 26A434)",
+          "dart": "3.13.5 (stable) (Tue Sep 29 01:00:52 2026 -0700) on \"macos_arm64\"",
+          "mode": "Release",
+          "aot": true,
+          "date": "2026-10-30T15:47:09.344639Z"
+        },
+        "retired": {
+          "channels": 0,
+          "runtimes": 0
+        },
+        "variant": "eight-ms",
+        "engineUuid": "A352002F-B344-307D-BE21-60CA0199C178",
+        "benchmarkSha256": "696346c58dcdd17fe6973e23bbf7bf2c788b5a43085a263f10003d5020e6cce2",
+        "appDartSha256": "4f4cea0dbbc7c6e4897bbb30916c143acffc7a99c0633b2f81293775610e2022",
+        "peakFootprintBytes": 371193752
+      },
+      {
+        "firstStartupMs": 180.95800000000003,
+        "repeatedStartup": {
+          "n": 10,
+          "medianMs": 27.826000000000022,
+          "p95Ms": 36.27099999999996,
+          "p99Ms": 36.27099999999996,
+          "maxMs": 36.27099999999996
+        },
+        "smallRoundtrip": {
+          "n": 100,
+          "medianMs": 0.06100000000003547,
+          "p95Ms": 0.08600000000001273,
+          "p99Ms": 0.3809999999999718,
+          "maxMs": 0.3809999999999718
+        },
+        "bufferBytes": 16777216,
+        "copyRoundtrip": {
+          "n": 20,
+          "medianMs": 3.1749999999999545,
+          "p95Ms": 39.502000000000066,
+          "p99Ms": 39.502000000000066,
+          "maxMs": 39.502000000000066
+        },
+        "copyPost": {
+          "n": 20,
+          "medianMs": 0.3729999999999336,
+          "p95Ms": 1.413000000000011,
+          "p99Ms": 1.413000000000011,
+          "maxMs": 1.413000000000011
+        },
+        "transferBeforeCopy": {
+          "n": 20,
+          "medianMs": 0.06899999999995998,
+          "p95Ms": 3.9080000000000155,
+          "p99Ms": 3.9080000000000155,
+          "maxMs": 3.9080000000000155
+        },
+        "transferRoundtrip": {
+          "n": 20,
+          "medianMs": 0.09699999999997999,
+          "p95Ms": 33.235000000000014,
+          "p99Ms": 33.235000000000014,
+          "maxMs": 33.235000000000014
+        },
+        "transferPost": {
+          "n": 20,
+          "medianMs": 0.009000000000014552,
+          "p95Ms": 0.02100000000007185,
+          "p99Ms": 0.02100000000007185,
+          "maxMs": 0.02100000000007185
+        },
+        "sustainedTransfer": {
+          "n": 200,
+          "medianMs": 0.08200000000010732,
+          "p95Ms": 0.1330000000000382,
+          "p99Ms": 29.674999999999955,
+          "maxMs": 45.37900000000013,
+          "elapsedMs": 152.17899999999997,
+          "settledElapsedMs": 183.375,
+          "timerGaps": {
+            "n": 75,
+            "medianMs": 4.604000000000042,
+            "p95Ms": 25.839999999999918,
+            "p99Ms": 44.83699999999999,
+            "maxMs": 44.83699999999999
+          },
+          "timerTailMs": 30,
+          "timerWindowMs": 500,
+          "timerObservationMs": 502.6550000000001
+        },
+        "responsiveness": {
+          "background": {
+            "elapsedMs": 200.53600000000006,
+            "ticks": 50,
+            "maxGapMs": 15.363999999999805,
+            "p95GapMs": 5.740000000000009
+          },
+          "main": {
+            "elapsedMs": 200.0050000000001,
+            "ticks": 9,
+            "maxGapMs": 205.99299999999994,
+            "p95GapMs": 205.99299999999994
+          }
+        },
+        "carrier": "Isolate.spawn (same isolate group)",
+        "transport": "native V8 serializer + BackingStore",
+        "system": {
+          "os": "Version 27.0.1 (Build 26A434)",
+          "dart": "3.13.5 (stable) (Tue Sep 29 01:00:52 2026 -0700) on \"macos_arm64\"",
+          "mode": "Release",
+          "aot": true,
+          "date": "2026-10-30T15:47:12.523216Z"
+        },
+        "retired": {
+          "channels": 0,
+          "runtimes": 0
+        },
+        "variant": "four-ms",
+        "engineUuid": "D8357A62-09E8-3444-95BE-A3B3580F22E3",
+        "benchmarkSha256": "696346c58dcdd17fe6973e23bbf7bf2c788b5a43085a263f10003d5020e6cce2",
+        "appDartSha256": "4f4cea0dbbc7c6e4897bbb30916c143acffc7a99c0633b2f81293775610e2022",
+        "peakFootprintBytes": 351729296
+      },
+      {
+        "firstStartupMs": 77.84800000000001,
+        "repeatedStartup": {
+          "n": 10,
+          "medianMs": 28.293999999999983,
+          "p95Ms": 41.135999999999996,
+          "p99Ms": 41.135999999999996,
+          "maxMs": 41.135999999999996
+        },
+        "smallRoundtrip": {
+          "n": 100,
+          "medianMs": 0.06500000000005457,
+          "p95Ms": 0.11099999999999,
+          "p99Ms": 0.41800000000000637,
+          "maxMs": 0.41800000000000637
+        },
+        "bufferBytes": 16777216,
+        "copyRoundtrip": {
+          "n": 20,
+          "medianMs": 4.091000000000008,
+          "p95Ms": 32.44399999999996,
+          "p99Ms": 32.44399999999996,
+          "maxMs": 32.44399999999996
+        },
+        "copyPost": {
+          "n": 20,
+          "medianMs": 0.3629999999999427,
+          "p95Ms": 1.2930000000000064,
+          "p99Ms": 1.2930000000000064,
+          "maxMs": 1.2930000000000064
+        },
+        "transferBeforeCopy": {
+          "n": 20,
+          "medianMs": 0.07299999999997908,
+          "p95Ms": 4.68100000000004,
+          "p99Ms": 4.68100000000004,
+          "maxMs": 4.68100000000004
+        },
+        "transferRoundtrip": {
+          "n": 20,
+          "medianMs": 0.07200000000000273,
+          "p95Ms": 0.1169999999999618,
+          "p99Ms": 0.1169999999999618,
+          "maxMs": 0.1169999999999618
+        },
+        "transferPost": {
+          "n": 20,
+          "medianMs": 0.0060000000000854925,
+          "p95Ms": 0.01599999999996271,
+          "p99Ms": 0.01599999999996271,
+          "maxMs": 0.01599999999996271
+        },
+        "sustainedTransfer": {
+          "n": 200,
+          "medianMs": 0.06500000000005457,
+          "p95Ms": 0.14299999999991542,
+          "p99Ms": 46.27500000000009,
+          "maxMs": 49.04200000000003,
+          "elapsedMs": 159.20600000000002,
+          "settledElapsedMs": 191.11399999999992,
+          "timerGaps": {
+            "n": 69,
+            "medianMs": 4.636999999999944,
+            "p95Ms": 24.922000000000025,
+            "p99Ms": 50.20700000000011,
+            "maxMs": 50.20700000000011
+          },
+          "timerTailMs": 30,
+          "timerWindowMs": 500,
+          "timerObservationMs": 501.5090000000001
+        },
+        "responsiveness": {
+          "background": {
+            "elapsedMs": 200.64499999999998,
+            "ticks": 52,
+            "maxGapMs": 6.9939999999999145,
+            "p95GapMs": 5.697000000000116
+          },
+          "main": {
+            "elapsedMs": 200.00600000000009,
+            "ticks": 12,
+            "maxGapMs": 204.7550000000001,
+            "p95GapMs": 204.7550000000001
+          }
+        },
+        "carrier": "Isolate.spawn (same isolate group)",
+        "transport": "native V8 serializer + BackingStore",
+        "system": {
+          "os": "Version 27.0.1 (Build 26A434)",
+          "dart": "3.13.5 (stable) (Tue Sep 29 01:00:52 2026 -0700) on \"macos_arm64\"",
+          "mode": "Release",
+          "aot": true,
+          "date": "2026-10-30T15:47:15.432284Z"
+        },
+        "retired": {
+          "channels": 0,
+          "runtimes": 0
+        },
+        "variant": "four-ms",
+        "engineUuid": "D8357A62-09E8-3444-95BE-A3B3580F22E3",
+        "benchmarkSha256": "696346c58dcdd17fe6973e23bbf7bf2c788b5a43085a263f10003d5020e6cce2",
+        "appDartSha256": "4f4cea0dbbc7c6e4897bbb30916c143acffc7a99c0633b2f81293775610e2022",
+        "peakFootprintBytes": 368719360
+      },
+      {
+        "firstStartupMs": 75.74199999999999,
+        "repeatedStartup": {
+          "n": 10,
+          "medianMs": 27.192999999999984,
+          "p95Ms": 118.79999999999998,
+          "p99Ms": 118.79999999999998,
+          "maxMs": 118.79999999999998
+        },
+        "smallRoundtrip": {
+          "n": 100,
+          "medianMs": 0.05999999999994543,
+          "p95Ms": 0.08999999999991815,
+          "p99Ms": 0.3990000000000009,
+          "maxMs": 0.3990000000000009
+        },
+        "bufferBytes": 16777216,
+        "copyRoundtrip": {
+          "n": 20,
+          "medianMs": 5.495999999999981,
+          "p95Ms": 31.28800000000001,
+          "p99Ms": 31.28800000000001,
+          "maxMs": 31.28800000000001
+        },
+        "copyPost": {
+          "n": 20,
+          "medianMs": 0.37999999999999545,
+          "p95Ms": 1.4470000000000027,
+          "p99Ms": 1.4470000000000027,
+          "maxMs": 1.4470000000000027
+        },
+        "transferBeforeCopy": {
+          "n": 20,
+          "medianMs": 0.06900000000007367,
+          "p95Ms": 3.5710000000000264,
+          "p99Ms": 3.5710000000000264,
+          "maxMs": 3.5710000000000264
+        },
+        "transferRoundtrip": {
+          "n": 20,
+          "medianMs": 0.08000000000004093,
+          "p95Ms": 28.700000000000045,
+          "p99Ms": 28.700000000000045,
+          "maxMs": 28.700000000000045
+        },
+        "transferPost": {
+          "n": 20,
+          "medianMs": 0.009000000000014552,
+          "p95Ms": 0.020999999999958163,
+          "p99Ms": 0.020999999999958163,
+          "maxMs": 0.020999999999958163
+        },
+        "sustainedTransfer": {
+          "n": 200,
+          "medianMs": 0.07200000000000273,
+          "p95Ms": 0.10799999999994725,
+          "p99Ms": 28.302999999999997,
+          "maxMs": 52.50599999999997,
+          "elapsedMs": 123.03300000000002,
+          "settledElapsedMs": 154.68200000000002,
+          "timerGaps": {
+            "n": 78,
+            "medianMs": 4.626999999999953,
+            "p95Ms": 21.48300000000006,
+            "p99Ms": 55.05899999999997,
+            "maxMs": 55.05899999999997
+          },
+          "timerTailMs": 30,
+          "timerWindowMs": 500,
+          "timerObservationMs": 502.15600000000006
+        },
+        "responsiveness": {
+          "background": {
+            "elapsedMs": 200.33899999999994,
+            "ticks": 52,
+            "maxGapMs": 18.59699999999998,
+            "p95GapMs": 5.739000000000033
+          },
+          "main": {
+            "elapsedMs": 200.00499999999988,
+            "ticks": 12,
+            "maxGapMs": 204.78399999999988,
+            "p95GapMs": 204.78399999999988
+          }
+        },
+        "carrier": "Isolate.spawn (same isolate group)",
+        "transport": "native V8 serializer + BackingStore",
+        "system": {
+          "os": "Version 27.0.1 (Build 26A434)",
+          "dart": "3.13.5 (stable) (Tue Sep 29 01:00:52 2026 -0700) on \"macos_arm64\"",
+          "mode": "Release",
+          "aot": true,
+          "date": "2026-10-30T15:47:18.421601Z"
+        },
+        "retired": {
+          "channels": 0,
+          "runtimes": 0
+        },
+        "variant": "eight-ms",
+        "engineUuid": "A352002F-B344-307D-BE21-60CA0199C178",
+        "benchmarkSha256": "696346c58dcdd17fe6973e23bbf7bf2c788b5a43085a263f10003d5020e6cce2",
+        "appDartSha256": "4f4cea0dbbc7c6e4897bbb30916c143acffc7a99c0633b2f81293775610e2022",
+        "peakFootprintBytes": 369898696
+      }
+    ],
+    "retainedMs": 8,
+    "reason": "4 ms did not establish a tail-latency improvement; sustained loop and settled duration increased."
+  },
+  "existingOptimizationControl": {
+    "runs": [
+      {
+        "firstStartupMs": 68.93,
+        "repeatedStartup": {
+          "n": 10,
+          "medianMs": 28.128999999999962,
+          "p95Ms": 43.593999999999994
+        },
+        "smallRoundtrip": {
+          "n": 100,
+          "medianMs": 0.05599999999992633,
+          "p95Ms": 0.125
+        },
+        "bufferBytes": 16777216,
+        "copyRoundtrip": {
+          "n": 20,
+          "medianMs": 25.766000000000076,
+          "p95Ms": 51.78399999999999
+        },
+        "copyPost": {
+          "n": 20,
+          "medianMs": 0.38000000000010914,
+          "p95Ms": 1.4289999999999736
+        },
+        "transferBeforeCopy": {
+          "n": 20,
+          "medianMs": 19.548999999999978,
+          "p95Ms": 24.179000000000087
+        },
+        "transferRoundtrip": {
+          "n": 20,
+          "medianMs": 25.214999999999918,
+          "p95Ms": 27.819999999999936
+        },
+        "transferPost": {
+          "n": 20,
+          "medianMs": 0.023999999999887223,
+          "p95Ms": 0.028999999999996362
+        },
+        "responsiveness": {
+          "background": {
+            "elapsedMs": 200.39199999999983,
+            "ticks": 48,
+            "maxGapMs": 21.910000000000082,
+            "p95GapMs": 5.768999999999778
+          },
+          "main": {
+            "elapsedMs": 200.00900000000001,
+            "ticks": 12,
+            "maxGapMs": 205.913,
+            "p95GapMs": 205.913
+          }
+        },
+        "carrier": "Isolate.spawn (same isolate group)",
+        "transport": "native V8 serializer + BackingStore",
+        "system": {
+          "os": "Version 27.0.1 (Build 26A434)",
+          "dart": "3.13.5 (stable) (Tue Sep 29 01:00:52 2026 -0700) on \"macos_arm64\"",
+          "mode": "Release",
+          "aot": true,
+          "date": "2026-10-30T14:52:22.612368Z"
+        },
+        "variant": "baseline",
+        "engineUuid": "56F02E63-7FE9-322F-9E50-35D461FA56CB",
+        "appDartSha256": "cb78c421ef813e732d2d72da23ed332e65cb868a8e3e67fa6951a1f3be06e2e0",
+        "benchmarkSha256": "6a75a6f1c67748c2225e24108044acd837dd56a65d2f8d957b525208899092a2",
+        "maxResidentBytes": 448479232,
+        "peakFootprintBytes": 337820744
+      },
+      {
+        "firstStartupMs": 76.243,
+        "repeatedStartup": {
+          "n": 10,
+          "medianMs": 29.107000000000028,
+          "p95Ms": 112.525
+        },
+        "smallRoundtrip": {
+          "n": 100,
+          "medianMs": 0.043000000000006366,
+          "p95Ms": 0.10599999999999454
+        },
+        "bufferBytes": 16777216,
+        "copyRoundtrip": {
+          "n": 20,
+          "medianMs": 26.936999999999898,
+          "p95Ms": 45.69800000000009
+        },
+        "copyPost": {
+          "n": 20,
+          "medianMs": 0.3830000000000382,
+          "p95Ms": 1.3629999999999427
+        },
+        "transferBeforeCopy": {
+          "n": 20,
+          "medianMs": 18.82000000000005,
+          "p95Ms": 20.424999999999955
+        },
+        "transferRoundtrip": {
+          "n": 20,
+          "medianMs": 24.391000000000076,
+          "p95Ms": 28.00999999999999
+        },
+        "transferPost": {
+          "n": 20,
+          "medianMs": 0.026000000000067303,
+          "p95Ms": 0.029999999999972715
+        },
+        "responsiveness": {
+          "background": {
+            "elapsedMs": 200.29899999999998,
+            "ticks": 50,
+            "maxGapMs": 18.534999999999854,
+            "p95GapMs": 5.780999999999949
+          },
+          "main": {
+            "elapsedMs": 200.0039999999999,
+            "ticks": 12,
+            "maxGapMs": 205.95499999999993,
+            "p95GapMs": 205.95499999999993
+          }
+        },
+        "carrier": "Isolate.spawn (same isolate group)",
+        "transport": "native V8 serializer + BackingStore",
+        "system": {
+          "os": "Version 27.0.1 (Build 26A434)",
+          "dart": "3.13.5 (stable) (Tue Sep 29 01:00:52 2026 -0700) on \"macos_arm64\"",
+          "mode": "Release",
+          "aot": true,
+          "date": "2026-10-30T14:52:26.330393Z"
+        },
+        "variant": "reused",
+        "engineUuid": "3497A0F4-72CE-308F-B9B4-471DC35EE551",
+        "appDartSha256": "cb78c421ef813e732d2d72da23ed332e65cb868a8e3e67fa6951a1f3be06e2e0",
+        "benchmarkSha256": "6a75a6f1c67748c2225e24108044acd837dd56a65d2f8d957b525208899092a2",
+        "maxResidentBytes": 448806912,
+        "peakFootprintBytes": 338444176
+      },
+      {
+        "firstStartupMs": 86.91300000000001,
+        "repeatedStartup": {
+          "n": 10,
+          "medianMs": 27.51600000000002,
+          "p95Ms": 93.70999999999998
+        },
+        "smallRoundtrip": {
+          "n": 100,
+          "medianMs": 0.04399999999998272,
+          "p95Ms": 0.09600000000000364
+        },
+        "bufferBytes": 16777216,
+        "copyRoundtrip": {
+          "n": 20,
+          "medianMs": 29.18100000000004,
+          "p95Ms": 30.75299999999993
+        },
+        "copyPost": {
+          "n": 20,
+          "medianMs": 0.3999999999998636,
+          "p95Ms": 1.5480000000000018
+        },
+        "transferBeforeCopy": {
+          "n": 20,
+          "medianMs": 19.389999999999986,
+          "p95Ms": 22.960000000000036
+        },
+        "transferRoundtrip": {
+          "n": 20,
+          "medianMs": 26.30800000000022,
+          "p95Ms": 30.467999999999847
+        },
+        "transferPost": {
+          "n": 20,
+          "medianMs": 0.024999999999863576,
+          "p95Ms": 0.029999999999972715
+        },
+        "responsiveness": {
+          "background": {
+            "elapsedMs": 200.3499999999999,
+            "ticks": 45,
+            "maxGapMs": 25.0300000000002,
+            "p95GapMs": 13.385999999999967
+          },
+          "main": {
+            "elapsedMs": 200.00800000000027,
+            "ticks": 12,
+            "maxGapMs": 205.89699999999993,
+            "p95GapMs": 205.89699999999993
+          }
+        },
+        "carrier": "Isolate.spawn (same isolate group)",
+        "transport": "native V8 serializer + BackingStore",
+        "system": {
+          "os": "Version 27.0.1 (Build 26A434)",
+          "dart": "3.13.5 (stable) (Tue Sep 29 01:00:52 2026 -0700) on \"macos_arm64\"",
+          "mode": "Release",
+          "aot": true,
+          "date": "2026-10-30T14:52:29.968427Z"
+        },
+        "variant": "reused",
+        "engineUuid": "3497A0F4-72CE-308F-B9B4-471DC35EE551",
+        "appDartSha256": "cb78c421ef813e732d2d72da23ed332e65cb868a8e3e67fa6951a1f3be06e2e0",
+        "benchmarkSha256": "6a75a6f1c67748c2225e24108044acd837dd56a65d2f8d957b525208899092a2",
+        "maxResidentBytes": 448036864,
+        "peakFootprintBytes": 338018240
+      },
+      {
+        "firstStartupMs": 82.29599999999999,
+        "repeatedStartup": {
+          "n": 10,
+          "medianMs": 28.708999999999946,
+          "p95Ms": 126.86200000000002
+        },
+        "smallRoundtrip": {
+          "n": 100,
+          "medianMs": 0.06299999999998818,
+          "p95Ms": 0.09200000000009823
+        },
+        "bufferBytes": 16777216,
+        "copyRoundtrip": {
+          "n": 20,
+          "medianMs": 26.472999999999956,
+          "p95Ms": 29.06600000000003
+        },
+        "copyPost": {
+          "n": 20,
+          "medianMs": 0.38800000000014734,
+          "p95Ms": 1.4120000000000346
+        },
+        "transferBeforeCopy": {
+          "n": 20,
+          "medianMs": 18.786000000000058,
+          "p95Ms": 20.476
+        },
+        "transferRoundtrip": {
+          "n": 20,
+          "medianMs": 24.70399999999995,
+          "p95Ms": 26.02800000000002
+        },
+        "transferPost": {
+          "n": 20,
+          "medianMs": 0.023000000000138243,
+          "p95Ms": 0.03899999999998727
+        },
+        "responsiveness": {
+          "background": {
+            "elapsedMs": 200.29100000000017,
+            "ticks": 50,
+            "maxGapMs": 20.36500000000001,
+            "p95GapMs": 5.684999999999945
+          },
+          "main": {
+            "elapsedMs": 200.00700000000006,
+            "ticks": 12,
+            "maxGapMs": 204.77700000000004,
+            "p95GapMs": 204.77700000000004
+          }
+        },
+        "carrier": "Isolate.spawn (same isolate group)",
+        "transport": "native V8 serializer + BackingStore",
+        "system": {
+          "os": "Version 27.0.1 (Build 26A434)",
+          "dart": "3.13.5 (stable) (Tue Sep 29 01:00:52 2026 -0700) on \"macos_arm64\"",
+          "mode": "Release",
+          "aot": true,
+          "date": "2026-10-30T14:52:33.562819Z"
+        },
+        "variant": "baseline",
+        "engineUuid": "56F02E63-7FE9-322F-9E50-35D461FA56CB",
+        "appDartSha256": "cb78c421ef813e732d2d72da23ed332e65cb868a8e3e67fa6951a1f3be06e2e0",
+        "benchmarkSha256": "6a75a6f1c67748c2225e24108044acd837dd56a65d2f8d957b525208899092a2",
+        "maxResidentBytes": 448315392,
+        "peakFootprintBytes": 338280624
+      }
+    ],
+    "normalEnginePortRetained": false,
+    "privateWebgpuOptimizationPreserved": true,
+    "reason": "Template reuse alone did not establish a large-message latency improvement."
+  },
+  "diagnostics": {
+    "release": {
+      "source": "Release instrumented diagnostic, excluded from uninstrumented timings",
+      "gc": {
+        "count": 60,
+        "medianMs": 21.7975,
+        "maxMs": 26.003,
+        "totalMs": 1262.392
+      },
+      "transfers": {
+        "post-toParent-0": {
+          "messages": 40,
+          "wire": 29.0,
+          "serialize": 0.003,
+          "detach": 0.004,
+          "total": 0.01
+        },
+        "post-toParent-1": {
+          "messages": 40,
+          "wire": 29.0,
+          "serialize": 0.004,
+          "detach": 0.001,
+          "total": 0.0075
+        },
+        "take-toParent-0": {
+          "messages": 40,
+          "wire": 29.0,
+          "queue": 0.0495,
+          "deserialize": 0.009,
+          "total": 0.01
+        },
+        "take-toParent-1": {
+          "messages": 40,
+          "wire": 29.0,
+          "queue": 0.10300000000000001,
+          "deserialize": 0.35,
+          "total": 0.351
+        }
+      }
+    },
+    "majorFlags": {
+      "externalMemoryAndSynchronousCallbacks": 40,
+      "count": 260,
+      "largeRoundtrips": 260,
+      "idleFlags64Count": 1
+    },
+    "diagnosticRunsExcludedFromTiming": true
+  },
+  "acceptedChange": {
+    "externalDartFollowupWindowMs": 8,
+    "ordinaryJsHeapGcChanged": false,
+    "forcedAndLastResortGcChanged": false,
+    "directDartPressureChanged": false,
+    "v8AccountingChanged": false,
+    "crossHeapTracingChanged": false,
+    "explicitDisposalChanged": false
+  },
+  "suites": {
+    "workerIntegrationDebug": 9,
+    "runtimeAndGcDebug": 59,
+    "hostUiDebug": 22,
+    "coreCanvasUiDebug": 3,
+    "canvasUiDebug": 395
+  },
+  "nativeTests": 488,
+  "releaseApplication": {
+    "passed": true,
+    "checks": [
+      {
+        "kind": "rendered",
+        "frames": 0,
+        "coreOnly": true,
+        "cycle": -1,
+        "canvas2D": false
+      },
+      {
+        "kind": "retired",
+        "cycle": -1,
+        "before": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "after": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "kind": "host-tools",
+        "window": true,
+        "randomViews": true,
+        "uuid": true,
+        "userTiming": true,
+        "observer": true,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "compute",
+        "adapter": {},
+        "values": [
+          3,
+          5,
+          7,
+          9,
+          21,
+          41,
+          61,
+          81
+        ],
+        "assertions": 26,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "browser-base",
+        "exports": [
+          "gltf-data-url",
+          "glb"
+        ],
+        "blobRange": true,
+        "bitmaprenderer": true,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "images",
+        "assertions": 63,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "three",
+        "assertions": 65,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "three-image",
+        "name": "DirectionalLight-lit",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "DirectionalLight-shadow",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "PointLight-lit",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "PointLight-shadow",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "SpotLight-lit",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "SpotLight-shadow",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "post-plain",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "post-inverted",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "post-bloom",
+        "cycle": 0
+      },
+      {
+        "kind": "three-features",
+        "models": [
+          {
+            "name": "textured-cube.gltf",
+            "progressEvents": 1,
+            "brightness": 22.438603153935187
+          },
+          {
+            "name": "textured-cube.glb",
+            "progressEvents": 1,
+            "brightness": 22.438603153935187
+          }
+        ],
+        "lighting": [
+          {
+            "type": "DirectionalLight",
+            "dark": 18.622413917824073,
+            "lit": 118.676025390625
+          },
+          {
+            "type": "PointLight",
+            "dark": 18.622413917824073,
+            "lit": 147.6240234375
+          },
+          {
+            "type": "SpotLight",
+            "dark": 18.622413917824073,
+            "lit": 133.5584671585648
+          }
+        ],
+        "shadows": [
+          {
+            "type": "DirectionalLight",
+            "darkerPixels": 2303,
+            "litFrame": 7,
+            "shadowFrame": 8
+          },
+          {
+            "type": "PointLight",
+            "darkerPixels": 4305,
+            "litFrame": 9,
+            "shadowFrame": 10
+          },
+          {
+            "type": "SpotLight",
+            "darkerPixels": 4238,
+            "litFrame": 12,
+            "shadowFrame": 13
+          }
+        ],
+        "postprocessing": [
+          {
+            "effect": "TSL inversion",
+            "maxError": 1
+          },
+          {
+            "effect": "Bloom",
+            "plain": 74.17095269097223,
+            "bloom": 180.87966579861111
+          }
+        ],
+        "assertions": 84,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "api-extensions",
+        "swizzle": true,
+        "immediates": true,
+        "maxImmediateSize": 64,
+        "assertions": 107,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-skinned-rest",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-skinned-pose",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-skinned-restored",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-morph-rest",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-morph-pose",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-morph-restored",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-meshopt",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-export-gltf",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-export-glb",
+        "cycle": 0
+      },
+      {
+        "kind": "three-advanced",
+        "animations": [
+          {
+            "kind": "skinned",
+            "changedPixels": 4014,
+            "restoredMaxError": 0
+          },
+          {
+            "kind": "morph",
+            "changedPixels": 4194,
+            "restoredMaxError": 0
+          }
+        ],
+        "meshopt": {
+          "mode": "single-thread Wasm",
+          "bufferModes": [
+            "ATTRIBUTES",
+            "TRIANGLES"
+          ],
+          "vertices": 4,
+          "maxPixelError": 0
+        },
+        "texturedExports": [
+          {
+            "format": "gltf",
+            "maxPixelError": 0
+          },
+          {
+            "format": "glb",
+            "maxPixelError": 0
+          }
+        ],
+        "userTiming": true,
+        "assertions": 141,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "three-workers",
+        "decoder": "DRACOLoader",
+        "version": "0.186.1",
+        "workerCount": 1,
+        "inputBytes": 75,
+        "coldMs": 40.87200000000007,
+        "reusedMs": 0.24099999999998545,
+        "assertions": 146,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "rendered",
+        "frames": 120,
+        "format": "bgra8unorm",
+        "cpuEncodeMs": {
+          "p50": 0.6410000000000764,
+          "p95": 1.0050000000001091
+        },
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "retired",
+        "cycle": 0,
+        "before": [
+          1,
+          1,
+          5,
+          8,
+          4,
+          0
+        ],
+        "after": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "kind": "host-tools",
+        "window": true,
+        "randomViews": true,
+        "uuid": true,
+        "userTiming": true,
+        "observer": true,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "compute",
+        "adapter": {},
+        "values": [
+          3,
+          5,
+          7,
+          9,
+          21,
+          41,
+          61,
+          81
+        ],
+        "assertions": 25,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "browser-base",
+        "exports": [
+          "gltf-data-url",
+          "glb"
+        ],
+        "blobRange": true,
+        "bitmaprenderer": true,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "images",
+        "assertions": 60,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "three",
+        "assertions": 62,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "three-image",
+        "name": "DirectionalLight-lit",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "DirectionalLight-shadow",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "PointLight-lit",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "PointLight-shadow",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "SpotLight-lit",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "SpotLight-shadow",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "post-plain",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "post-inverted",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "post-bloom",
+        "cycle": 1
+      },
+      {
+        "kind": "three-features",
+        "models": [
+          {
+            "name": "textured-cube.gltf",
+            "progressEvents": 1,
+            "brightness": 22.438603153935187
+          },
+          {
+            "name": "textured-cube.glb",
+            "progressEvents": 1,
+            "brightness": 22.438603153935187
+          }
+        ],
+        "lighting": [
+          {
+            "type": "DirectionalLight",
+            "dark": 18.622413917824073,
+            "lit": 118.676025390625
+          },
+          {
+            "type": "PointLight",
+            "dark": 18.622413917824073,
+            "lit": 147.6240234375
+          },
+          {
+            "type": "SpotLight",
+            "dark": 18.622413917824073,
+            "lit": 133.5584671585648
+          }
+        ],
+        "shadows": [
+          {
+            "type": "DirectionalLight",
+            "darkerPixels": 2303,
+            "litFrame": 7,
+            "shadowFrame": 8
+          },
+          {
+            "type": "PointLight",
+            "darkerPixels": 4305,
+            "litFrame": 9,
+            "shadowFrame": 10
+          },
+          {
+            "type": "SpotLight",
+            "darkerPixels": 4238,
+            "litFrame": 12,
+            "shadowFrame": 13
+          }
+        ],
+        "postprocessing": [
+          {
+            "effect": "TSL inversion",
+            "maxError": 1
+          },
+          {
+            "effect": "Bloom",
+            "plain": 74.17095269097223,
+            "bloom": 180.87966579861111
+          }
+        ],
+        "assertions": 81,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "api-extensions",
+        "swizzle": true,
+        "immediates": true,
+        "maxImmediateSize": 64,
+        "assertions": 104,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-skinned-rest",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-skinned-pose",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-skinned-restored",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-morph-rest",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-morph-pose",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-morph-restored",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-meshopt",
+        "cycle": 1
+      },
+      {
+        "kind": "three-advanced",
+        "animations": [
+          {
+            "kind": "skinned",
+            "changedPixels": 4014,
+            "restoredMaxError": 0
+          },
+          {
+            "kind": "morph",
+            "changedPixels": 4194,
+            "restoredMaxError": 0
+          }
+        ],
+        "meshopt": {
+          "mode": "single-thread Wasm",
+          "bufferModes": [
+            "ATTRIBUTES",
+            "TRIANGLES"
+          ],
+          "vertices": 4,
+          "maxPixelError": 0
+        },
+        "texturedExports": [],
+        "texturedExportSkip": "Canvas 2D is required for GLTFExporter image encoding",
+        "userTiming": true,
+        "assertions": 132,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "three-workers",
+        "decoder": "DRACOLoader",
+        "version": "0.186.1",
+        "workerCount": 1,
+        "inputBytes": 75,
+        "coldMs": 37.52399999999989,
+        "reusedMs": 0.2640000000001237,
+        "assertions": 137,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "rendered",
+        "frames": 120,
+        "format": "rgba8unorm",
+        "cpuEncodeMs": {
+          "p50": 0.6030000000000655,
+          "p95": 1.5850000000000364
+        },
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "retired",
+        "cycle": 1,
+        "before": [
+          1,
+          1,
+          5,
+          8,
+          4,
+          0
+        ],
+        "after": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "kind": "host-tools",
+        "window": true,
+        "randomViews": true,
+        "uuid": true,
+        "userTiming": true,
+        "observer": true,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "compute",
+        "adapter": {},
+        "values": [
+          3,
+          5,
+          7,
+          9,
+          21,
+          41,
+          61,
+          81
+        ],
+        "assertions": 26,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "browser-base",
+        "exports": [
+          "gltf-data-url",
+          "glb"
+        ],
+        "blobRange": true,
+        "bitmaprenderer": true,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "images",
+        "assertions": 63,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "three",
+        "assertions": 65,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "three-image",
+        "name": "DirectionalLight-lit",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "DirectionalLight-shadow",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "PointLight-lit",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "PointLight-shadow",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "SpotLight-lit",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "SpotLight-shadow",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "post-plain",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "post-inverted",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "post-bloom",
+        "cycle": 2
+      },
+      {
+        "kind": "three-features",
+        "models": [
+          {
+            "name": "textured-cube.gltf",
+            "progressEvents": 1,
+            "brightness": 22.438603153935187
+          },
+          {
+            "name": "textured-cube.glb",
+            "progressEvents": 1,
+            "brightness": 22.438603153935187
+          }
+        ],
+        "lighting": [
+          {
+            "type": "DirectionalLight",
+            "dark": 18.622413917824073,
+            "lit": 118.676025390625
+          },
+          {
+            "type": "PointLight",
+            "dark": 18.622413917824073,
+            "lit": 147.6240234375
+          },
+          {
+            "type": "SpotLight",
+            "dark": 18.622413917824073,
+            "lit": 133.5584671585648
+          }
+        ],
+        "shadows": [
+          {
+            "type": "DirectionalLight",
+            "darkerPixels": 2303,
+            "litFrame": 10,
+            "shadowFrame": 11
+          },
+          {
+            "type": "PointLight",
+            "darkerPixels": 4305,
+            "litFrame": 12,
+            "shadowFrame": 13
+          },
+          {
+            "type": "SpotLight",
+            "darkerPixels": 4238,
+            "litFrame": 14,
+            "shadowFrame": 15
+          }
+        ],
+        "postprocessing": [
+          {
+            "effect": "TSL inversion",
+            "maxError": 1
+          },
+          {
+            "effect": "Bloom",
+            "plain": 74.17095269097223,
+            "bloom": 180.87966579861111
+          }
+        ],
+        "assertions": 84,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "api-extensions",
+        "swizzle": true,
+        "immediates": true,
+        "maxImmediateSize": 64,
+        "assertions": 107,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-skinned-rest",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-skinned-pose",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-skinned-restored",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-morph-rest",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-morph-pose",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-morph-restored",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-meshopt",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-export-gltf",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-export-glb",
+        "cycle": 2
+      },
+      {
+        "kind": "three-advanced",
+        "animations": [
+          {
+            "kind": "skinned",
+            "changedPixels": 4014,
+            "restoredMaxError": 0
+          },
+          {
+            "kind": "morph",
+            "changedPixels": 4194,
+            "restoredMaxError": 0
+          }
+        ],
+        "meshopt": {
+          "mode": "single-thread Wasm",
+          "bufferModes": [
+            "ATTRIBUTES",
+            "TRIANGLES"
+          ],
+          "vertices": 4,
+          "maxPixelError": 0
+        },
+        "texturedExports": [
+          {
+            "format": "gltf",
+            "maxPixelError": 0
+          },
+          {
+            "format": "glb",
+            "maxPixelError": 0
+          }
+        ],
+        "userTiming": true,
+        "assertions": 141,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "three-workers",
+        "decoder": "DRACOLoader",
+        "version": "0.186.1",
+        "workerCount": 1,
+        "inputBytes": 75,
+        "coldMs": 40.24199999999996,
+        "reusedMs": 0.2839999999998781,
+        "assertions": 146,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "rendered",
+        "frames": 120,
+        "format": "bgra8unorm",
+        "cpuEncodeMs": {
+          "p50": 0.44499999999970896,
+          "p95": 1.106999999999971
+        },
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "retired",
+        "cycle": 2,
+        "before": [
+          1,
+          1,
+          5,
+          8,
+          4,
+          0
+        ],
+        "after": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    ],
+    "coloredPixels": 166269
+  },
+  "engineOverlay": {
+    "engine": "flax_mac_webgpu_fenced_release_arm64",
+    "workerSourcesSha256": {
+      "flutter/flax/native/v8-jsi/src/jsi_abi/workers.inc": "98b6b1e638cd7fae5a1c5f5ea812015b587b1ada4a71d1e8188c35abb72c416b",
+      "flutter/flax/native/include/flax/engine_workers.h": "be3902e420a5915edd9a013ee46aa1f359db6d9feaf1abfe17fbe532a3753ad4",
+      "flutter/flax/native/src/engine.h": "cce626279a2daf1e815744da91fbb68d5ad9070ad109c7f5ceb4f23e3a81fb02",
+      "flutter/flax/native/v8_engine.cpp": "5b17f4276fa9c1e251b040c5d38ea395c09509e31a35a29a37a5eb69f59dc4a9"
+    },
+    "originalSourcesSha256": {
+      "flutter/shell/platform/darwin/macos/framework/Source/FlutterExternalTexture.mm": "5c2be38b4b7a1ff84630df971928f83d8d99398e2c767e38e4f435a075fb98a1",
+      "flutter/impeller/renderer/backend/metal/render_pass_mtl.mm": "c790a1a3dbbec3beed94fb3fea18de370ec950960e7c36c43687de877799ab93",
+      "flutter/flax/native/src/runtime.cpp": "b8a0e4d60849279d4fb7ba54e61758098d542b4b6469f6c13e817de70056840b",
+      "flutter/flax/native/src/ffi/memory.inc": "0f835cb508889ffe3e9b5c64c54cc88dc885410b2d0333babcd11270e3d003ee",
+      "flutter/flax/native/v8-jsi/src/jsi_abi/jsi_abi_v8.cpp": "3af0c63f490848e75af25911add4740b32e4945a600462812ec8afa74b479077",
+      "flutter/flax/native/src/canvas_decoder.inc": "77285dae4559aa6ae6d06474cef0c5eedee1b3ea808b2b8b6490da88cf4ca1eb",
+      "flutter/flax/native/src/ffi/runtime.inc": "ed77f695432a8ace185913e811b836a0f47c59635b847a372d4ca1b411f54dcd",
+      "flutter/flax/native/src/joint_gc.cc": "3b4ce82ae66b68ea5ec90b1f213ac8a2a6dd7375db896141dff5e32bab44f0a5",
+      "flutter/flax/native/src/joint_gc.h": "08baba9f8a8a0e67e9f872cb968262725f94a15f9fb2d89f0a106d887a3279f1",
+      "flutter/flax/native/v8-jsi/src/jsi_abi/JsiAbiRuntime.cpp": "edfd8bfbe41ac351b47cb255de777af1d5bab9b9b8c797a4d360042a4c5f309f"
+    },
+    "overlaySourcesSha256": {
+      "flutter/shell/platform/darwin/macos/framework/Source/FlutterExternalTexture.mm": "b2d91946196a15ca856ac74f30860d71319dedf900a1fb0983d324125f02fb0c",
+      "flutter/impeller/renderer/backend/metal/render_pass_mtl.mm": "da15c6979dee5b90ee04a30eaaf5a8c37cf5d857ce29061caf25132a9a012c98",
+      "flutter/flax/native/src/runtime.cpp": "37cd1c7044c0c71a9fff3400547a3517c57f7cb72561922e13da974929cfe414",
+      "flutter/flax/native/src/ffi/memory.inc": "7b2cb72c613cc1b0c509e00c7a06064713df0c16bff1a8b7d422fdcd099ce562",
+      "flutter/flax/native/v8-jsi/src/jsi_abi/jsi_abi_v8.cpp": "71be59bef7a8878a8667bce2d1051ba619f421079b07d14bc414568e94bc8157",
+      "flutter/flax/native/src/canvas_decoder.inc": "df41a15ea6abb987bbb062d8d8a52fa83fbfe057a4086b8d4e2325d94da25107",
+      "flutter/flax/native/src/ffi/runtime.inc": "f56ebdad364b710076b6d1067c035cf9215de3fac7da7e6f454d952f0fab9ed0",
+      "flutter/flax/native/src/joint_gc.cc": "f4fc732940b50aa6d47f4df4be1886d5ed7380531d5b2cf4e608e81e00c285a1",
+      "flutter/flax/native/src/joint_gc.h": "7e21f4d3f6fc8cdb0831b5b17e96dead4b0e3bc07882b8c98841f201bc4afb43",
+      "flutter/flax/native/v8-jsi/src/jsi_abi/JsiAbiRuntime.cpp": "e25fc29c258e38e43ebf13298dbcc0c6c43bc6514dab8f8032f41511c43cc24b"
+    },
+    "patchSha256": "acbea7e5083008d44ebbe9d818922702b3704193e8f551db3554138cd27f2cd2",
+    "bufferPatchSha256": "1e3976562cc8a492fffe6c8746a58f7c6bcbabd957eeca0408d739230dfe1844",
+    "imagesPatchSha256": "e17c93260578aaa2086193b7801f1dbd61002eda6b7a19c3767197e9b48f8e29",
+    "ffiPatchSha256": "4fe8905a0b3a2e4679d0eb72ac791cad3834b6577d357929163e7ecee01a8cf8",
+    "gcPatchSha256": "dd256485b27e4dfe0ef24ce686da94cbed46a85ebe99ea037b646aaab59d9251",
+    "callPatchSha256": "a0677e150ff9540b105c7c611115e91414e6ae3ef3d30514916689bbff0d7838",
+    "numericPatchSha256": "b94b743c0366b47037363d723b3189726600d34e3d0868b4fd0c5812e24ca547",
+    "ffiScriptSha256": "5ac15c39af942f4a53bcc6328fa0b51907c75f211319a91d79c895b291b45da3",
+    "ffiJavascriptSources": {
+      "api.js": "e00ccffa0dfed383a90b5fee6c8be2b8a3651c22082ebda5c873f1d055632974",
+      "buffer-compat.js": "8d7e264442360e42816cbdb8ec3f22f8b09af10c1e65ab3a3635c14aec64f65e",
+      "buffer.js": "e5250cf3d93b4e7458be9afc4f6fa0d54126bee55da147a34a5614aab62ea162",
+      "index.js": "ac4536aac0e08ea59b8e6b8e6942eb94204b77ce13f128f95068719d2d46f0f6",
+      "layout.js": "bdd4a3327672c173b3594821b6a49c05c09b386ab4e2ebc4f60d66cf709d9163"
+    },
+    "interopHeaderSha256": "d0be547bc59bbc9ea5f15cea05c5698c487c0a3951e9c0a23315a8987e087e3e",
+    "engineBinarySha256": "3cc4022301a21352f223c321f8c6f68b0b76fc67890342652238c30ac9128990"
+  },
+  "sourceLock": {
+    "flutter": "3.47.6",
+    "flutterRevision": "5fc346839b5d0eef006ed8404392afb4dfae428d",
+    "dartRevision": "04bcd1036cdc799ac6564988f159ee454d42c822",
+    "flaxBridgeRevision": "10d4d8c07cefceaaceb1eef56d319f303133a038",
+    "sdkVersion": "0.3.0",
+    "v8Version": "15.4.80.15",
+    "v8Revision": "e959d47215186f24e182a0503a52374c96569722",
+    "targets": {
+      "macos-arm64": {
+        "sdkManifestSha256": "ec103ede166ad7b30ce8d1cab251b4ce4612bc1551ef4d22e221e86eba0199ac",
+        "libraries": {
+          "lib/libchrome_zlib.dylib": "343eb7d5685133758ee4a09ded7c4c0680fd4980a7e7abea58a33e5e4088c5e2",
+          "lib/libthird_party_abseil-cpp_absl.dylib": "2482b22c108c2d0e6cb88dfb6d2eb73efca4c04be12e074ea4afe15ebcfcb455",
+          "lib/libv8.dylib": "fb2aff71509c6785a5655a008596781b0f80416dbdee762bcd265afb1dcd62d2",
+          "lib/libv8_libbase.dylib": "b3e08e51b58190a856e2a16ecff016caeb044b0ea32e81d33a65ea620aba9e18",
+          "lib/libv8_libplatform.dylib": "7d5fd5d8273ac8652ab879fe69bc8a4abeaac3a974ea9e7d828e4a8553244343"
+        }
+      },
+      "android-arm64": {
+        "sdkManifestSha256": "121e20d7ce78f0277ef7469c161ad3223dbe96cf1ffdd4c2fd117c66e045c0fb",
+        "libraries": {
+          "lib/libv8.so": "70f21916992fbb05f2ebc8160b530d876f6eef82d136ede117449505699f9990",
+          "lib/libc++_shared.so": "179286feca53f3c2a6b10239594f640820c5704cc3d6b23d8622f835ed233e4f"
+        }
+      },
+      "ios-device-arm64": {
+        "sdkVersion": "0.3.2",
+        "sdkManifestSha256": "d1f6aaaa4416dfa303fe6616546e7a9333eacb58cf18bb6908afe2d9669e2a4b",
+        "libraries": {
+          "lib/libv8_monolith.a": "06f95b926e1004c372fcd9bdb9a44e597014044ffcd56a92b1a8bfac55f5eda3"
+        },
+        "sdkProducerRevision": "3fa63023dd6e2c18bf41790dd8cd26428064ad25"
+      },
+      "ios-simulator-arm64": {
+        "sdkVersion": "0.3.2",
+        "sdkManifestSha256": "3bc85f0d6cb2d4da19db5849c19ba87158313bd37f4e1f77666be154b86c693a",
+        "libraries": {
+          "lib/libv8_monolith.a": "21336d45a54acefe7ff2d8061fd9ca82dd457d9fc44e522e123c9e42a3262793"
+        },
+        "sdkProducerRevision": "3fa63023dd6e2c18bf41790dd8cd26428064ad25"
+      }
+    }
+  },
+  "flaxHead": "a4cfeaee1fa4a264ddba0686f7cd79ccc819e61e",
+  "flutterForkHead": "9c9edcf93eacac13787df72d090031e6830da7fa",
+  "rebuiltEngine": {
+    "uuid": "C51CD0C5-17D3-3322-BBE3-ABA3D4E34BC1",
+    "measuredUuid": "A352002F-B344-307D-BE21-60CA0199C178",
+    "textSha256": "4d7c78bdd18699c4338e9daf8a39896586cdcebbea122109f0b4d15af19c4824",
+    "allStoredCodeAndDataSectionsEqualExcept": [
+      "__TEXT/__objc_stubs",
+      "__TEXT/__stubs"
+    ],
+    "note": "Relinking after the 4 ms calibration changes UUID and import stubs; compiled code/data and accepted source are unchanged."
+  },
+  "sourceSha256": {
+    "experiments/dedicated_workers/benchmark.js": "696346c58dcdd17fe6973e23bbf7bf2c788b5a43085a263f10003d5020e6cce2",
+    "experiments/dedicated_workers/app.dart": "6ea647cd4e330fb2f27a2064aacf0396f8d4926ac5e09a8806dc6cbae7c2c07d",
+    "experiments/dedicated_workers/run_macos.py": "bb2f186dce07764f78f01c978aec2b7163c146a3fe6c8580e2642cef8be846c2",
+    "experiments/webgpu_dawn/build_engine.py": "2e30bf35f366dbb427a774942b255eecac20734c0b5749275d4b473956c93bfd",
+    "packages/flax_test/lib/src/engine_gc_contract.dart": "e9f529c7dd17f3eb9600912b439d40883bf02b9dfb098c656f904fe176ce4ccf"
+  },
+  "engineSourceSha256": {
+    "flax/native/src/joint_gc.cc": "3b4ce82ae66b68ea5ec90b1f213ac8a2a6dd7375db896141dff5e32bab44f0a5",
+    "flax/native/src/joint_gc.h": "08baba9f8a8a0e67e9f872cb968262725f94a15f9fb2d89f0a106d887a3279f1",
+    "flax/native/src/runtime.cpp": "b8a0e4d60849279d4fb7ba54e61758098d542b4b6469f6c13e817de70056840b",
+    "flax/native/v8-jsi/src/jsi_abi/workers.inc": "98b6b1e638cd7fae5a1c5f5ea812015b587b1ada4a71d1e8188c35abb72c416b",
+    "flax/native/v8-jsi/src/jsi_abi/jsi_abi_v8.cpp": "3af0c63f490848e75af25911add4740b32e4945a600462812ec8afa74b479077"
+  },
+  "limits": [
+    "Two fresh processes per variant, no significance or universal performance claim",
+    "Peak footprint increased; individual GC and timer outliers remain",
+    "macOS arm64 only; mobile, KTX2Loader and full Worker exception suite in AOT not covered"
+  ],
+  "gitActions": {
+    "committed": false,
+    "pushed": false,
+    "published": false
+  }
+}

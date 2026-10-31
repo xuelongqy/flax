@@ -6,10 +6,14 @@ import 'dart:collection';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:math' as math;
+import 'dart:isolate';
+import 'dart:ffi' show NativePort;
 import 'dart:ui' as ui;
 
 import 'package:crypto/crypto.dart' as crypto;
 import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart' as gestures;
+import 'package:flutter/services.dart' as input;
 import 'package:flutter/rendering.dart' show RenderParagraph, RenderEditable;
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart'
@@ -35,8 +39,10 @@ import 'sandbox_ui.dart';
 export 'sandbox.dart';
 export 'sandbox_ui.dart' show FlaxAssetBundlePolicy;
 import 'src/native/native_runtime.dart';
+import 'src/native/engine.dart' show createDetachedWorkerRuntime;
 import 'src/application.dart';
 import 'src/network.dart';
+import 'src/image_codec.dart';
 import 'src/prefixed_asset_bundle.dart';
 import 'src/generated/state_callbacks.dart';
 import 'src/generated/flutter_bindings.g.dart';
@@ -83,6 +89,10 @@ part 'src/ui/async.dart';
 part 'src/ui/data.dart';
 part 'src/ui/pages.dart';
 
+part 'src/ui/canvas.dart';
+part 'src/ui/images.dart';
 part 'src/ui/host.dart';
 part 'src/ui/fetch.dart';
 part 'src/ui/modules.dart';
+
+part 'src/ui/workers.dart';

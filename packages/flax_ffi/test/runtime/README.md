@@ -17,7 +17,7 @@ Session integration. No `experiments/` source is required.
 
 The real-Session tests include automatic cleanup without an explicit pump, cleanup
 notifications produced during bounded sweeping, queued/live finalizers at close, shared
-images across Sessions, and the existing 14 engine GC contracts. Native counters must
+images across Sessions, and the existing 15 engine GC contracts. Native counters must
 return to zero. `counter.js` is a regression fixture; the user-facing example is under
 [`example/`](../../example/README.md).
 

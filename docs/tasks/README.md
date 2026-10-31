@@ -8,7 +8,16 @@ follow-up has not been implemented.
 The [optional JSX/TSX task](optional-jsx-support.md) implements default-off syntax,
 generated constructor contracts, and direct-call lowering. Build and native parity
 checks pass. Basic VS Code and WebStorm attribute completion is verified; the task
-records the tested TypeScript versions and remaining editor coverage.
+records the tested TypeScript versions and remaining editor coverage. The completed
+[macOS Dawn experiment](../../experiments/webgpu_dawn/README.md) records native WGSL
+execution, fenced texture reuse, macOS composition latency and a matched Chrome WebGPU
+comparison.
+
+The [standard WebGPU JS integration](webgpu-js-api.md) implements shared Core canvas
+orchestration and independent Canvas 2D/WebGPU providers, with a working macOS Dawn JS
+profile. Normal native-asset packaging and full CTS remain open. The standard frontend
+has a fresh
+[matched Edge comparison](../../experiments/webgpu_dawn/standard_api/results.md).
 
 The [native ESM, JSON and Wasm module task](native-esm-and-wasm.md) covers runtime
 module graphs, remote imports and Wasm under iOS V8 jitless. The module implementation
@@ -49,3 +58,6 @@ complete, move lasting contracts and reproduction instructions to the owning
 documentation and delete the task body. Disposable notes and local receipts belong in
 `.local/`; never copy private prompts, credentials or conversation transcripts into the
 repository.
+
+- [Dedicated Workers](dedicated-workers.md): detached JS/Wasm carrier, structured
+  cloning, native buffer transfer and macOS decoder acceptance.

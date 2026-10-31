@@ -1,3 +1,4 @@
+import { canvasHost, type OffscreenCanvas } from '../host/canvas.js';
 import {
   computed,
   signal,
@@ -3840,8 +3841,10 @@ Object.assign(globalThis, {
         throw new TypeError('Invalid, foreign, or disposed Dart object');
       return ref.id;
     },
-    sweepObjects(): number[] {
-      return references.sweep();
+    sweepObjects(): number[] | null {
+      const expired = references.sweep();
+      // Empty checkpoints need no Dart/JS facade or conditional GC peer.
+      return expired.length === 0 ? null : expired;
     },
     releaseObject(id: number): void {
       references.release(id);
@@ -4040,4 +4043,23 @@ export function mountRoot(widget: Widget): void {
   if (!host.__flaxMount) throw new Error('runApp requires a FlaxView host');
   host.__flaxMount(widget, bindingVersion);
   mounted = true;
+}
+
+/** Places the shared canvas; the selected backend supplies its pixels. */
+export function CanvasView(
+  canvas: OffscreenCanvas,
+  options: Readonly<Record<string, unknown>> = {},
+): WidgetDescription {
+  const host = canvasHost(canvas);
+  const modules = (
+    globalThis as typeof globalThis & {
+      __flaxModules?: { require(id: string): Record<string, Function> };
+    }
+  ).__flaxModules;
+  if (!modules) throw new Error('CanvasView requires a Flax session');
+  const create = modules.require('@flax/core/navigation').FlaxCanvasView;
+  if (!create) throw new Error('The host lacks the shared canvas binding');
+  const view = create(host.target(canvas), options) as WidgetDescription;
+  host.hold(view, canvas);
+  return view;
 }

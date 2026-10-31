@@ -69,18 +69,8 @@ export interface CanvasTransform extends Required<Pick<CanvasMatrix2DInit, 'a' |
     toFloat64Array(): Float64Array;
     toJSON(): object;
 }
-export interface ImageData {
-    readonly width: number;
-    readonly height: number;
-    readonly data: Uint8ClampedArray;
-    readonly colorSpace: 'srgb';
-    readonly pixelFormat: 'rgba-unorm8';
-}
-export interface ImageBitmap {
-    readonly width: number;
-    readonly height: number;
-    close(): void;
-}
+export type { ImageData, ImageBitmap } from '@flax/core/host';
+import type { ImageData } from '@flax/core/host';
 export interface CanvasGradient {
     addColorStop(offset: number, color: string): void;
 }
@@ -185,22 +175,18 @@ export interface OffscreenCanvasRenderingContext2D {
     isPointInStroke(path: Path2D, x: number, y: number): boolean;
     isPointInPath(pathOrX: Path2D | number, xOrY: number, yOrRule?: number | string, rule?: string): boolean;
 }
-export interface OffscreenCanvas {
-    width: number;
-    height: number;
-    getContext(type: string, options?: {
-        alpha?: boolean;
-        desynchronized?: boolean;
-        willReadFrequently?: boolean;
-        colorSpace?: string;
-        colorType?: 'unorm8' | 'float16';
-    }): OffscreenCanvasRenderingContext2D | null;
-    convertToBlob(options?: {
-        type?: string;
-        quality?: number;
-    }): Promise<{
-        arrayBuffer(): Promise<ArrayBuffer>;
-        type: string;
-    }>;
-    transferToImageBitmap(): ImageBitmap;
+export type OffscreenCanvas = import('@flax/core/host').OffscreenCanvas;
+declare module '@flax/core/host' {
+    interface CanvasContextMap {
+        '2d': OffscreenCanvasRenderingContext2D;
+    }
+    interface CanvasContextOptionsMap {
+        '2d': {
+            alpha?: boolean;
+            desynchronized?: boolean;
+            willReadFrequently?: boolean;
+            colorSpace?: string;
+            colorType?: 'unorm8' | 'float16';
+        };
+    }
 }

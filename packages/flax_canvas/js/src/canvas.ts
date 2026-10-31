@@ -1,3 +1,14 @@
+import {
+  ImageData,
+  ImageBitmap,
+  imageHost,
+  imageIdKey,
+  type ImageHost,
+} from '@flax/core-runtime/host/images';
+export { ImageData, ImageBitmap, imageIdKey };
+import type { OffscreenCanvas, CanvasBackend, CanvasHost } from '@flax/core/host';
+import { canvasHost as nativeCanvasHost } from '@flax/core-runtime/host/canvas';
+const canvasHost: (canvas: object) => CanvasHost = nativeCanvasHost;
 import { CommandBuffer, OP, type PathCommand } from './commands.js';
 import { parseColor, serializeColor, type Rgba } from './color.js';
 import {
@@ -19,8 +30,41 @@ import type {
 
 export type Call = (operation: string, ...args: unknown[]) => unknown;
 const surfaceKey = Symbol.for('flaxCanvasSurface');
-export const imageIdKey = Symbol.for('flaxCanvasImageId');
+function isOffscreenCanvas(value: unknown): value is OffscreenCanvas {
+  if (value === null || typeof value !== 'object') return false;
+  try {
+    return canvasHost(value).isCanvas(value);
+  } catch {
+    return false;
+  }
+}
 const internalKey = Symbol('flaxCanvasInternal');
+const imageHosts = new WeakMap<Call, ImageHost>();
+const importedImages = new WeakMap<Call, WeakMap<object, number>>();
+function makeBitmap(
+  call: Call,
+  id: number,
+  width: number,
+  height: number,
+): ImageBitmap {
+  const shared = imageHosts.get(call);
+  if (!shared) throw new Error('Canvas requires the shared image host');
+  const release: ImageRelease = { id, released: false, call };
+  return shared.bitmap({
+    width,
+    height,
+    canvasId: id,
+    canvasOwner: call,
+    close: () => releaseImage(release),
+    pixels: () => ({
+      width,
+      height,
+      data: new Uint8Array(call('imagePixels', id) as ArrayBuffer),
+      colorSpace: 'srgb',
+      premultiplied: false,
+    }),
+  });
+}
 
 export type CanvasSurface = {
   width: number;
@@ -28,7 +72,9 @@ export type CanvasSurface = {
 };
 
 export function surfaceOf(canvas: object): CanvasSurface {
-  return (canvas as { [surfaceKey]: CanvasSurface })[surfaceKey];
+  const backend = canvasHost(canvas).backend(canvas, '2d') as Canvas2DBackend;
+  if (!backend) throw new TypeError('Canvas 2D is unavailable');
+  return backend[surfaceKey];
 }
 
 const viewCanvases = new WeakMap<object, object>();
@@ -379,65 +425,6 @@ function checkedImageSize(
   return { width: w, height: h, length: pixels * 4 };
 }
 
-export class ImageData {
-  private readonly imageWidth: number;
-  private readonly imageHeight: number;
-  private readonly pixels: Uint8ClampedArray;
-  get width(): number {
-    return this.imageWidth;
-  }
-  get height(): number {
-    return this.imageHeight;
-  }
-  get data(): Uint8ClampedArray {
-    return this.pixels;
-  }
-  get colorSpace(): 'srgb' {
-    return 'srgb';
-  }
-  get pixelFormat(): 'rgba-unorm8' {
-    return 'rgba-unorm8';
-  }
-  constructor(
-    dataOrWidth: Uint8ClampedArray | number,
-    widthOrHeight: number,
-    heightOrSettings?: number | ImageDataSettings,
-    settings?: ImageDataSettings,
-  ) {
-    if (arguments.length < 2) throw new TypeError('ImageData requires dimensions.');
-    if (
-      !ArrayBuffer.isView(dataOrWidth) &&
-      !(dataOrWidth && typeof dataOrWidth === 'object' && 'length' in dataOrWidth)
-    ) {
-      pixelSettings(heightOrSettings as ImageDataSettings | undefined);
-      const size = checkedImageSize(dataOrWidth as number, widthOrHeight);
-      this.imageWidth = size.width;
-      this.imageHeight = size.height;
-      this.pixels = new Uint8ClampedArray(size.length);
-      return;
-    }
-    if (!(dataOrWidth instanceof Uint8ClampedArray))
-      throw new TypeError('ImageData requires a Uint8ClampedArray.');
-    pixelSettings(settings);
-    const width = integer(widthOrHeight, 0, 0xffffffff);
-    if (
-      width === 0 ||
-      dataOrWidth.length === 0 ||
-      dataOrWidth.length % (4 * width) !== 0
-    )
-      throw imageDataIndexError('The source data does not match the width.');
-    const height =
-      heightOrSettings === undefined
-        ? dataOrWidth.length / (4 * width)
-        : integer(heightOrSettings as number, 0, 0xffffffff);
-    if (height === 0 || dataOrWidth.length !== 4 * width * height)
-      throw imageDataIndexError('The source data does not match the dimensions.');
-    this.imageWidth = width;
-    this.imageHeight = height;
-    this.pixels = dataOrWidth;
-  }
-}
-
 type DrawState = {
   transform: Affine;
   fill: Style;
@@ -513,7 +500,7 @@ function defaults(): DrawState {
 }
 
 export class OffscreenCanvasRenderingContext2D {
-  private readonly targetCanvas: OffscreenCanvas;
+  private readonly targetCanvas: Canvas2DBackend;
   private readonly call: Call;
   private readonly buffer: CommandBuffer;
   private readonly dirty: () => void;
@@ -523,7 +510,7 @@ export class OffscreenCanvasRenderingContext2D {
   private fillVersion = -1;
   private strokeVersion = -1;
   constructor(
-    canvas?: OffscreenCanvas,
+    canvas?: Canvas2DBackend,
     call?: Call,
     buffer?: CommandBuffer,
     dirty?: () => void,
@@ -544,7 +531,7 @@ export class OffscreenCanvasRenderingContext2D {
     this.dirty = dirty;
   }
   get canvas(): OffscreenCanvas {
-    return this.targetCanvas;
+    return this.targetCanvas.canvas;
   }
   get fillStyle(): Style {
     return this.state.fill;
@@ -882,7 +869,7 @@ export class OffscreenCanvasRenderingContext2D {
     colorSpace: string;
     colorType: string;
   } {
-    return { ...this.canvas.attributes };
+    return { ...this.targetCanvas.attributes };
   }
   beginPath(): void {
     this.path = new Path2D();
@@ -1212,7 +1199,7 @@ export class OffscreenCanvasRenderingContext2D {
     });
   }
   measureText(text: string): Record<string, number> {
-    this.canvas.flush();
+    this.targetCanvas.flush();
     return this.call('measureText', surfaceOf(this.canvas), String(text)) as Record<
       string,
       number
@@ -1230,14 +1217,15 @@ export class OffscreenCanvasRenderingContext2D {
     if (
       image == null ||
       typeof image !== 'object' ||
-      (!(image instanceof OffscreenCanvas) &&
+      (!isOffscreenCanvas(image) &&
         !(image instanceof ImageData) &&
+        !imageHosts.get(this.call)!.isSource(image) &&
         readImageId(image) == null)
     )
       throw new TypeError('Unsupported drawImage source');
-    if (image instanceof ImageBitmap && closedId(image[imageIdKey]))
+    if (image instanceof ImageBitmap && image.width === 0)
       throw invalidState('The ImageBitmap is closed.');
-    if (image instanceof OffscreenCanvas && (image.width === 0 || image.height === 0))
+    if (isOffscreenCanvas(image) && (image.width === 0 || image.height === 0))
       throw invalidState('The source canvas is empty.');
     if (image instanceof ImageData) validImageData(image);
     if (![3, 5, 9].includes(arguments.length))
@@ -1250,14 +1238,16 @@ export class OffscreenCanvasRenderingContext2D {
     }
     rest = rest.map((n) => +n);
 
+    const dimensions =
+      'naturalWidth' in image ? imageHosts.get(this.call)!.source(image) : image;
     let sx = 0,
       sy = 0,
-      sw = image.width,
-      sh = image.height,
+      sw = dimensions.width,
+      sh = dimensions.height,
       x = dx,
       y = dy,
-      w = dw ?? image.width,
-      h = dh ?? image.height;
+      w = dw ?? dimensions.width,
+      h = dh ?? dimensions.height;
     if (rest.length >= 2) {
       sx = dx;
       sy = dy;
@@ -1291,7 +1281,7 @@ export class OffscreenCanvasRenderingContext2D {
       });
       return;
     }
-    const id = imageId(image, this.call, this.canvas);
+    const id = imageId(image, this.call, this.targetCanvas);
     if (id == null) return;
     this.record(OP.drawImage, () => {
       this.buffer.u32(id);
@@ -1352,7 +1342,7 @@ export class OffscreenCanvasRenderingContext2D {
     }
     const id = patternImageId(image, this.call);
     if (id == null) {
-      if (image instanceof OffscreenCanvas) return null;
+      if (isOffscreenCanvas(image)) return null;
       throw new TypeError('Unsupported pattern source.');
     }
     const pattern = new CanvasPattern(id, value, internalKey);
@@ -1430,7 +1420,7 @@ export class OffscreenCanvasRenderingContext2D {
   ): ImageData {
     pixelSettings(settings);
     const rect = pixelRect(sx, sy, sw, sh);
-    this.canvas.flush();
+    this.targetCanvas.flush();
     const bytes = this.call('getImageDataSync', surfaceOf(this.canvas), ...rect);
     return new ImageData(new Uint8ClampedArray(bytes as ArrayBuffer), rect[2], rect[3]);
   }
@@ -1440,7 +1430,7 @@ export class OffscreenCanvasRenderingContext2D {
     sw: number,
     sh: number,
   ): Promise<ImageData> {
-    return this.canvas.readPixels(sx, sy, sw, sh);
+    return this.targetCanvas.readPixels(sx, sy, sw, sh);
   }
   isPointInPath(
     pathOrX: Path2D | number,
@@ -1483,7 +1473,7 @@ export class OffscreenCanvasRenderingContext2D {
     const x = +(explicit ? xOrY : (pathOrX as number));
     const py = +(explicit ? y! : xOrY);
     if (!finite(x, py)) return false;
-    this.canvas.flush();
+    this.targetCanvas.flush();
     const encoded = new CommandBuffer();
     encoded.used = 0;
     encoded.path(explicit ? pathOrX.commands : this.path.commands);
@@ -1677,7 +1667,7 @@ export class OffscreenCanvasRenderingContext2D {
   }
 }
 
-export class OffscreenCanvas {
+export class Canvas2DBackend implements CanvasBackend {
   readonly [surfaceKey]: CanvasSurface;
   private readonly call: Call;
   private readonly buffer = new CommandBuffer();
@@ -1694,14 +1684,19 @@ export class OffscreenCanvas {
     colorSpace: 'srgb',
     colorType: 'unorm8',
   };
-  constructor(width: number, height: number, call: Call) {
+  constructor(
+    readonly canvas: OffscreenCanvas,
+    call: Call,
+    target: object,
+  ) {
     this.call = call;
     this[surfaceKey] = call(
       'create',
-      integer(width, 0, Number.MAX_SAFE_INTEGER),
-      integer(height, 0, Number.MAX_SAFE_INTEGER),
+      canvas.width,
+      canvas.height,
+      target,
     ) as CanvasSurface;
-    trackSurface(call, this, this[surfaceKey]);
+    trackSurface(call, canvas, this[surfaceKey]);
   }
   get width(): number {
     return this[surfaceKey].width;
@@ -1715,34 +1710,33 @@ export class OffscreenCanvas {
   set height(value: number) {
     this.resize(this.width, integer(value, 0, Number.MAX_SAFE_INTEGER));
   }
-  getContext(
-    type: string,
-    options?: {
-      alpha?: boolean;
-      desynchronized?: boolean;
-      willReadFrequently?: boolean;
-      colorSpace?: string;
-      colorType?: 'unorm8' | 'float16';
-    },
-  ): OffscreenCanvasRenderingContext2D | null {
-    if (String(type) !== '2d') return null;
+  getContext(options?: unknown): OffscreenCanvasRenderingContext2D | null {
+    const settings = options as
+      | {
+          alpha?: boolean;
+          desynchronized?: boolean;
+          willReadFrequently?: boolean;
+          colorSpace?: string;
+          colorType?: 'unorm8' | 'float16';
+        }
+      | undefined;
     if (this.context) return this.context;
     if (
-      options?.colorSpace !== undefined &&
-      !['srgb', 'display-p3'].includes(options.colorSpace)
+      settings?.colorSpace !== undefined &&
+      !['srgb', 'display-p3'].includes(settings.colorSpace)
     )
       throw new TypeError('Invalid Canvas color space.');
     if (
-      options?.colorType !== undefined &&
-      !['unorm8', 'float16'].includes(options.colorType)
+      settings?.colorType !== undefined &&
+      !['unorm8', 'float16'].includes(settings.colorType)
     )
       throw new TypeError('Invalid Canvas color type.');
-    if (options?.colorSpace === 'display-p3' || options?.colorType === 'float16')
+    if (settings?.colorSpace === 'display-p3' || settings?.colorType === 'float16')
       return null;
     this.attributes = {
-      alpha: options?.alpha === undefined ? true : Boolean(options.alpha),
+      alpha: settings?.alpha === undefined ? true : Boolean(settings.alpha),
       desynchronized: false,
-      willReadFrequently: Boolean(options?.willReadFrequently),
+      willReadFrequently: Boolean(settings?.willReadFrequently),
       colorSpace: 'srgb',
       colorType: 'unorm8',
     };
@@ -1849,7 +1843,12 @@ export class OffscreenCanvas {
     const id = this.call('transferToImageBitmap', this[surfaceKey]) as number;
     const width = this.width;
     const height = this.height;
-    return new ImageBitmap(id, width, height, this.call, internalKey);
+    return makeBitmap(this.call, id, width, height);
+  }
+  snapshot(): ImageBitmap {
+    this.flush();
+    const id = this.call('snapshotImageSync', this[surfaceKey]) as number;
+    return makeBitmap(this.call, id, this.width, this.height);
   }
   readPixels(sx: number, sy: number, sw: number, sh: number): Promise<ImageData> {
     this.flush();
@@ -1932,68 +1931,26 @@ function pathAndRule(
 
 type ImageRelease = { id: number; released: boolean; call: Call };
 
-export class ImageBitmap {
-  [imageIdKey]: number;
-  private readonly bitmapWidth: number;
-  private readonly bitmapHeight: number;
-  get width(): number {
-    return this[imageIdKey] < 0 ? 0 : this.bitmapWidth;
-  }
-  get height(): number {
-    return this[imageIdKey] < 0 ? 0 : this.bitmapHeight;
-  }
-  private readonly call: Call;
-  private readonly release: ImageRelease;
-  constructor(
-    id?: number,
-    width?: number,
-    height?: number,
-    call?: Call,
-    token?: symbol,
-  ) {
-    if (
-      token !== internalKey ||
-      id == null ||
-      width == null ||
-      height == null ||
-      call == null
-    ) {
-      illegalConstructor();
-    }
-    this[imageIdKey] = id;
-    this.bitmapWidth = width;
-    this.bitmapHeight = height;
-    this.call = call;
-    this.release = trackImageRelease(call, this, id);
-  }
-  close(): void {
-    if (this[imageIdKey] < 0) return;
-    this[imageIdKey] = -1;
-    releaseImage(this.release);
-  }
-}
-
-function closedId(id: number): boolean {
-  return id < 0;
+function closedId(id: number | undefined): boolean {
+  return id !== undefined && id < 0;
 }
 
 function readImageId(image: object): number | null {
-  if (image instanceof ImageBitmap) return image[imageIdKey];
   if (image == null || typeof image !== 'object') return null;
   const id = (image as { [imageIdKey]?: unknown })[imageIdKey];
   return typeof id === 'number' ? id : null;
 }
 
-function imageId(image: object, call: Call, borrow?: OffscreenCanvas): number | null {
-  if (image instanceof OffscreenCanvas) {
+function imageId(image: object, call: Call, borrow?: Canvas2DBackend): number | null {
+  if (isOffscreenCanvas(image)) {
     if (image.width === 0 || image.height === 0)
       throw invalidState('The source canvas is empty.');
-    image.flush();
+    (canvasHost(image).backend(image, '2d') as Canvas2DBackend).flush();
     const id = call('snapshotImageSync', surfaceOf(image)) as number;
     borrow?.borrowImage(id);
     return id;
   }
-  const id = readImageId(image);
+  const id = sharedImageId(image, call) ?? readImageId(image);
   if (id == null) return null;
   if (closedId(id)) throw invalidState('The ImageBitmap is closed.');
   call('retainImage', id);
@@ -2002,15 +1959,38 @@ function imageId(image: object, call: Call, borrow?: OffscreenCanvas): number | 
 }
 
 function patternImageId(image: object, call: Call): number | null {
-  if (image instanceof OffscreenCanvas) {
+  if (isOffscreenCanvas(image)) {
     if (image.width === 0 || image.height === 0) return null;
-    image.flush();
+    (canvasHost(image).backend(image, '2d') as Canvas2DBackend).flush();
     return call('snapshotImageSync', surfaceOf(image)) as number;
   }
-  const id = readImageId(image);
+  const id = sharedImageId(image, call) ?? readImageId(image);
   if (id == null) return null;
   if (closedId(id)) throw invalidState('The ImageBitmap is closed.');
   call('retainImage', id);
+  return id;
+}
+function sharedImageId(image: object, call: Call): number | null {
+  const shared = imageHosts.get(call)!;
+  if (image instanceof ImageBitmap) shared.source(image);
+  if (!shared.isSource(image) || image instanceof ImageData || isOffscreenCanvas(image))
+    return null;
+  const source = shared.source(image);
+  if (source.canvasOwner === call) return source.canvasId ?? null;
+  let cache = importedImages.get(call);
+  if (!cache) {
+    cache = new WeakMap();
+    importedImages.set(call, cache);
+  }
+  let id = cache.get(source);
+  if (id === undefined) {
+    if (!source.native)
+      throw invalidState('The bitmap cannot be shared with Canvas 2D');
+    id = call('importSharedImage', source.native()) as number;
+    cache.set(source, id);
+    const release: ImageRelease = { id, released: false, call };
+    shared.onClose(image, () => releaseImage(release));
+  }
   return id;
 }
 
@@ -2061,6 +2041,7 @@ function sweepHidden(call: Call): void {
 
 function trackCalls(call: Call): Call {
   const wrapped: Call = (operation, ...args) => {
+    imageHosts.get(wrapped)?.sweep();
     sweepHidden(wrapped);
     return call(operation, ...args);
   };
@@ -2110,28 +2091,25 @@ function sourceBitmap(
       source.height,
       source.data,
       transformed || options?.premultiplyAlpha === 'none',
-    ).then(
-      (id) =>
-        new ImageBitmap(id as number, source.width, source.height, call, internalKey),
-    );
+    ).then((id) => makeBitmap(call, id as number, source.width, source.height));
   }
-  if (source instanceof OffscreenCanvas) {
+  if (isOffscreenCanvas(source)) {
     if (source.width === 0 || source.height === 0)
       return Promise.reject(invalidState('The canvas is empty.'));
-    source.flush();
+    (canvasHost(source).backend(source, '2d') as Canvas2DBackend).flush();
     const width = source.width;
     const height = source.height;
-    return rpc(call, 'snapshotImage', surfaceOf(source)).then(
-      (id) => new ImageBitmap(id as number, width, height, call, internalKey),
+    return rpc(call, 'snapshotImage', surfaceOf(source)).then((id) =>
+      makeBitmap(call, id as number, width, height),
     );
   }
   if (source instanceof ImageBitmap) {
-    if (source[imageIdKey] < 0)
+    if (source.width === 0)
       return Promise.reject(invalidState('The ImageBitmap is closed.'));
     const width = source.width,
       height = source.height;
-    return rpc(call, 'cloneImage', source[imageIdKey]).then(
-      (id) => new ImageBitmap(id as number, width, height, call, internalKey),
+    return rpc(call, 'cloneImage', readImageId(source)).then((id) =>
+      makeBitmap(call, id as number, width, height),
     );
   }
   if (source && typeof source === 'object' && 'arrayBuffer' in source) {
@@ -2148,7 +2126,7 @@ function sourceBitmap(
         ).then(
           (value) => {
             const [id, width, height] = value as [number, number, number];
-            return new ImageBitmap(id, width, height, call, internalKey);
+            return makeBitmap(call, id, width, height);
           },
           (cause) => {
             const error = invalidState('The source image could not be decoded.');
@@ -2247,7 +2225,7 @@ export async function createImageBitmap(
     const id = await rpc(
       call,
       'transformImageBitmap',
-      bitmap[imageIdKey],
+      readImageId(bitmap),
       sx,
       sy,
       sw,
@@ -2258,7 +2236,7 @@ export async function createImageBitmap(
       options?.resizeQuality ?? 'low',
       options?.premultiplyAlpha === 'none',
     );
-    return new ImageBitmap(id as number, width, height, call, internalKey);
+    return makeBitmap(call, id as number, width, height);
   } finally {
     bitmap.close();
   }
@@ -2269,31 +2247,49 @@ export function installCanvas(
   call: Call,
 ): { settle(id: number, ok: boolean, value: unknown): void; close(): void } {
   const hostCall = trackCalls(call);
-  const HostOffscreenCanvas = class extends OffscreenCanvas {
-    constructor(width: number, height: number) {
-      super(width, height, hostCall);
-    }
-  };
+  const images = imageHost(global);
+  imageHosts.set(hostCall, images);
+  const host = (global as unknown as { __flaxCanvasHost: CanvasHost }).__flaxCanvasHost;
+  if (!host) throw new Error('Canvas requires the Core canvas host');
+  const unregister = host.register(
+    '2d',
+    (canvas, target) => new Canvas2DBackend(canvas, hostCall, target),
+  );
+  const unregisterImages = images.register((source, ...args) => {
+    if (
+      isOffscreenCanvas(source) &&
+      !(canvasHost(source).backend(source) instanceof Canvas2DBackend)
+    )
+      return undefined;
+    if (source instanceof ImageBitmap && images.source(source).canvasOwner !== hostCall)
+      return undefined;
+    return createImageBitmap(hostCall, source, ...args);
+  });
   const globals: Record<string, unknown> = {
-    OffscreenCanvas: HostOffscreenCanvas,
     OffscreenCanvasRenderingContext2D,
     Path2D,
-    ImageData,
-    ImageBitmap,
     CanvasGradient,
     CanvasPattern,
-    createImageBitmap: (
-      source: unknown,
-      ...args:
-        [ImageBitmapOptions?] | [number, number, number, number, ImageBitmapOptions?]
-    ) => createImageBitmap(hostCall, source, ...args),
   };
   for (const [name, value] of Object.entries(globals))
     Object.defineProperty(global, name, { value, writable: true, configurable: true });
   return {
     settle,
     close() {
+      unregister();
+      unregisterImages();
       closePending();
     },
   };
 }
+
+// Canvas handles and paths are outside the pure JS/Wasm Worker clone profile.
+for (const type of [
+  Path2D,
+  CanvasGradient,
+  CanvasPattern,
+  OffscreenCanvasRenderingContext2D,
+])
+  Object.defineProperty(type.prototype, Symbol.for('flax.uncloneable'), {
+    value: true,
+  });

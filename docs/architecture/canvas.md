@@ -1,7 +1,9 @@
-# Canvas 2D
+# Shared canvas and Canvas 2D
 
-Optional `flax_canvas` / `@flax/canvas` adds OffscreenCanvas 2D without DOM, CSS, or
-`HTMLCanvasElement`. V8 uses one JS encoder, engine C++ decoder and command protocol.
+Core owns `OffscreenCanvas`, `HTMLCanvasElement`, shared image resources, dimensions,
+context selection, and `CanvasView`. Optional `flax_canvas` / `@flax/canvas` adds its
+independent `2d` context. Canvas compatibility does not map Flutter Widgets to HTML or
+implement CSS layout. V8 uses one JS encoder, engine C++ decoder and command protocol.
 The UI protocol is unchanged; native ABI stays 2. Canvas `commandVersion` remains a
 private command-buffer version, not a host or UI protocol.
 
@@ -14,8 +16,24 @@ JavaScript Canvas 2D
 → RenderObject paint
 ```
 
-`OffscreenCanvas` owns pixels and drawing state. `CanvasView` only places that surface
-in the Flutter tree. Paint never calls JS, reads JS objects, or decodes commands.
+`OffscreenCanvas` owns one selected backend. The first successful `getContext` locks the
+mode; another mode returns null, repeated calls return the same context, and resize
+keeps that identity. A known mode without its plugin returns null. Unknown mode names
+throw TypeError. Core-only sessions can construct and mount a canvas and use
+`bitmaprenderer`; `2d` and `webgpu` still require their providers.
+
+Core installs `ImageBitmapRenderingContext` on the root, obtained through
+`getContext('bitmaprenderer')`. `transferFromImageBitmap` consumes the source bitmap;
+its width and height become zero. The canvas bitmap takes the image dimensions without
+changing the canvas width/height attributes. A null transfer resets transparent pixels
+to the attribute dimensions. `transferToImageBitmap` moves the backing image and clears
+the display. The native view retains an image reference, releases it on replacement or
+session close, and requires no Canvas 2D provider. Explicit snapshots/encoding may copy
+pixels; ordinary transfer reuses a shared native image where available.
+
+`CanvasView` only places the stable Core target in the Flutter tree. The selected
+backend owns pixels and drawing state. Paint never calls JS, reads JS objects, or
+decodes commands.
 
 `FlaxCanvasView` caches the last laid-out surface pixel size. A surface size change
 calls `markNeedsLayout()`; same-size picture updates only `markNeedsPaint()`. Explicit
@@ -23,19 +41,30 @@ widget `width` / `height` still relayout. Paint is a no-op when the surface is c
 
 ## Packages and installation
 
-Dart `FlaxCanvasPlugin` contributes `canvasBindings` and installs constructors. JS
-`CanvasView` wraps the generated binding with `surfaceOf(canvas)` and keeps a `WeakMap`
-from the returned view description to the `OffscreenCanvas`, so a mounted view cannot
-lose its surface to the hidden-resource sweep. `@flax/canvas` type-exports web-like
-interfaces only (`OffscreenCanvas`, context, `Path2D`, `ImageData`, `ImageBitmap`,
-`CanvasGradient`, `CanvasPattern`, `TextMetrics` and option dictionaries).
-Implementation fields such as command buffers, image ids, `flush`, and style versions
-are not part of the public types. Type-only `@flax/canvas/globals` declares those
-interfaces as globals; it does not install them. Omit the plugin and those constructors
-and surfaces do not exist. Do not also put `canvasBindings` in the application registry.
+Dart `FlaxCanvasPlugin` contributes `canvasBindings`, installs 2D-specific constructors
+and registers a provider on the Core canvas host. JS `CanvasView` is available from
+`@flax/core/bindings`; `@flax/canvas` preserves its existing import as a re-export. Core
+keeps a `WeakMap` from the returned view description to the `OffscreenCanvas`, so a
+mounted view cannot lose its target to the hidden-resource sweep. `@flax/canvas`
+type-exports web-like interfaces only (`OffscreenCanvas`, context, `Path2D`,
+`ImageData`, `ImageBitmap`, `CanvasGradient`, `CanvasPattern`, `TextMetrics` and option
+dictionaries). Implementation fields such as command buffers, image ids, `flush`, and
+style versions are not part of the public types. Type-only `@flax/canvas/globals`
+declares those interfaces as globals; it does not install them. It augments Core's
+context and options maps instead of declaring a second canvas constructor. Omit the
+plugin and its 2D context and constructors do not exist. Do not also put
+`canvasBindings` in the application registry.
 
 `requestAnimationFrame` / `cancelAnimationFrame` belong to the base host, not this
 plugin.
+
+`FlaxCanvasContent` is the shared Dart paint/snapshot contract. The Core target forwards
+notifications to `FlaxCanvasView`; the 2D implementation retains its pictures and image
+codec. The former Canvas Dart view entry re-exports the Core view. Core presents
+selected backends after a complete JS microtask checkpoint and rAF delivery, including
+the texture publication used by the optional [WebGPU profile](webgpu.md). A WebGPU-only
+session does not install Canvas 2D. Snapshot operations delegate to the selected
+backend, including explicit bitmap and WebGPU image export.
 
 ## Command buffer
 
@@ -430,3 +459,38 @@ browser font-matching/synthesis algorithm; the [coverage audit](canvas-api-cover
 lists the remaining forms and platform gaps. The
 [WPT adapter](../../packages/flax_canvas/test/wpt/README.md) records exact provenance,
 assertions, reference pixels and validation boundaries.
+
+## Canvas compatibility
+
+The session installs a canvas-scoped `document`. Its factories create `canvas` and `img`
+resources; queries return mounted canvases by ID or the `canvas` selector.
+`ownerDocument.defaultView`, `window`, `self` and `globalThis` share the session global.
+Core owns the `window` alias and read-only session address; it does not imply a general
+browser document. `document.cookie` reads as empty; writes throw `NotSupportedError`.
+
+Canvas geometry reads use the last committed Flutter placement, including scrolling and
+transforms. They stay in JS. Canvas-only `ResizeObserver` batches committed size changes
+and supports logical or device-pixel boxes; it does not observe Flutter Widgets. Keep
+logical layout constrained independently of backing pixel dimensions when resizing for
+devicePixelRatio. Layout changes update the snapshot; observing geometry does not
+schedule continuous frames. A canvas using DOM geometry or input has one placement.
+`style.width` and `height` accept pixels; cursor, `touchAction`, focus, pointer capture,
+wheel and keyboard events use the real CanvasView. Event propagation covers canvas, its
+document and the session global. There is no HTML element tree.
+
+`ImageData`, `ImageBitmap`, `createImageBitmap`, `Image` and image factories belong to
+Core. Image resources load data URLs or use Core Fetch for URLs; they have
+decode/load/error and explicit bitmap ownership. Canvas 2D and WebGPU consume the same
+bitmap. Closing releases its backing resource; foreign sessions and closed bitmaps
+reject. Renderers import a Flutter image lazily when they need it.
+
+Shared codecs use the independent version-1 `flax_image_*` engine extension. Native ABI
+2 is unchanged. The private engine supplies CPU decode, crop/resize/flip and
+PNG/JPEG/WebP encode. Missing extensions reject; installing Core does not allocate a
+Canvas 2D decoder. Existing Canvas codecs remain available on the maintained engine.
+`convertToBlob`, HTML-style `toBlob` and `toDataURL` are explicit export paths;
+synchronous `toDataURL` can block the UI isolate and should not run each frame.
+
+General HTML nodes, CSS layout/selectors, video decoders and Worker canvas transfer are
+outside this adapter. Unsupported factories/styles reject instead of creating
+nonfunctional nodes.

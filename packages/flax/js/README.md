@@ -27,6 +27,11 @@ Sessions always provide fetch, Headers, Request and Response through this host e
 including with an empty plugin list. The first HTTP request creates a client owned by
 that Session. Configure `fetchBaseUrl` on the Dart Session or View for relative URLs.
 
+Core also declares the shared `window` global alias, User Timing marks/measures and
+`PerformanceObserver` (mark/measure only), plus secure `crypto.getRandomValues` and
+`crypto.randomUUID`. They are installed by every Session without renderer plugins. See
+the [host contract](../../../docs/architecture/host.md#basic-environment).
+
 This package is private while Flax is under development.
 
 Signals support Widget-independent business subscriptions through `effect` and
@@ -48,3 +53,7 @@ latter returns diagnostic Dart `runtimeType` text on demand. They do not constru
 copy objects. Generated target tokens, session identity and Context/State lifetimes are
 validated by the existing bridge. See
 [checked views](../../../docs/architecture/objects.md#checked-views-and-dart-type-diagnostics).
+
+Pure JS/Wasm Dedicated Workers use `Worker` in main sessions. Worker script types are
+available through `@flax/core/host/worker`; see the
+[worker contract](../../../docs/architecture/dedicated-workers.md).

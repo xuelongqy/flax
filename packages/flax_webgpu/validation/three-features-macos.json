@@ -1,0 +1,592 @@
+{
+  "verifiedAt": "2026-10-30T10:40:45.223578+08:00",
+  "baseCommit": "3af52eea34b9ebbdf152e78edba38b8f609de770",
+  "uncommitted": true,
+  "profile": "macOS arm64 pinned Dawn/Metal core WebGPU, Three.js library acceptance",
+  "machine": {
+    "architecture": "arm64",
+    "macOS": "27.0.1"
+  },
+  "threeVersion": "0.186.1",
+  "inputs": {
+    "dawnRevision": "5fbd545292cb7a4a9a275e322abec6007ffe2ae8",
+    "gpuwebRevision": "22507c95ccb9e705eddc7cab8f28aa46b134f5fe",
+    "ctsRevision": "cc11994e92512d0a3715e9d28876ec48accb971a",
+    "headerSha256": "44126360bbd35339b3b1ccb8ab5bdf21a4a1109bc05f086b179df5ea5a2734d0",
+    "idlSha256": "5293ea7f38416cb37b0ddfc636286514ff622901caa19504a4bdede2ec5a80b2"
+  },
+  "engineBinarySha256": "a8a571762ae477d9df4786bf4e253a7ec2a13e23e12559528924fbc8787a8cd6",
+  "sourceSha256": {
+    "packages/flax/js/src/host/events.ts": "332e0f39941e2e59f9879e64570b19800a7cd0936ffb6feac094f21284c72100",
+    "packages/flax/js/src/host/url.ts": "0e5cfe3364175e1c95622a69635acd9e6e90246197f82b4066be35f55330c51d",
+    "packages/flax/js/src/host/bootstrap.ts": "6e6e57494244fbb33f133146afa487df5495bd89069402eb161ef8e78cda13da",
+    "packages/flax/js/src/host/index.ts": "7f833a1d69adfe11f0b1efe6aa85b0ecfb9eabb5a44c18949529aff94fe83d20",
+    "packages/flax/lib/src/generated/host_bootstrap.g.dart": "83eb11408e1c16b8aa0255be9a87715029ae8f619e4e65ccacc5574d507e63c8",
+    "packages/flax_fetch/js/src/http.ts": "a5ac7f66873ea4828bc5ff5c478a2a1bf8e77309386686806614d25b121b6bd1",
+    "packages/flax_fetch/js/src/host/bootstrap.ts": "20320e6a3c729280f2c24f860961616ee70742259aac08e96423f03e8cd5ea33",
+    "packages/flax_fetch/lib/src/generated/host_bootstrap.g.dart": "f6e519a35cefe04525283869227e7ee41c8c3653527d6422b523c30391537159",
+    "packages/flax_webgpu/example/js/three-features.js": "6ea294e2261acc6d1f535751219917ca84311f540cf5a7ed6e5514a59eeab909",
+    "packages/flax_webgpu/example/js/main.js": "698d482627c9f7b25ba2272f4c9af8258bbb6c076b8025e8944d76f064fc404d",
+    "packages/flax_webgpu/example/lib/acceptance.dart": "2a0256de85715f2312c59626fd8034786a33c53c9c35db4b2953f91047329ade",
+    "packages/flax_webgpu/tool/run_macos.py": "70bf812f3a200c905f067c814c9c824d4c0dbdbe105541f3baa30ddbdb639f05"
+  },
+  "fixtureSha256": {
+    "packages/flax_webgpu/example/fixtures/three/checker.png": "c5a21b378141cf9258640554866ece12767c06242bf29d4571bbf7312c251ffd",
+    "packages/flax_webgpu/example/fixtures/three/geometry.bin": "d307fc6e06a3151345ca7b8336626377224db27e36b18211ad109cab12ce88d1",
+    "packages/flax_webgpu/example/fixtures/three/textured-cube.gltf": "9b9b4e88fa410bb9a633126c65057b9e9136664963b368cbdc256ac9b3ad4b92",
+    "packages/flax_webgpu/example/fixtures/three/textured-cube.glb": "83ecbcaa82fd0d1f5b85d641c91fe744110971ecde08679a3cdfd80ec33a5058"
+  },
+  "compatibilityFixes": [
+    "Core ProgressEvent constructor, exports and globals",
+    "Core session-owned Blob URL creation/revocation/close",
+    "Fetch Blob URL byte streams, metadata, abort, close and session isolation",
+    "HTTP redirects remain restricted to HTTP/HTTPS"
+  ],
+  "acceptance": {
+    "passed": true,
+    "cycles": 3,
+    "normalRenderFrames": 360,
+    "featureAssertionsPerCycle": 19,
+    "features": [
+      {
+        "kind": "three-features",
+        "models": [
+          {
+            "name": "textured-cube.gltf",
+            "progressEvents": 1,
+            "brightness": 22.438603153935187
+          },
+          {
+            "name": "textured-cube.glb",
+            "progressEvents": 1,
+            "brightness": 22.438603153935187
+          }
+        ],
+        "lighting": [
+          {
+            "type": "DirectionalLight",
+            "dark": 18.622413917824073,
+            "lit": 118.676025390625
+          },
+          {
+            "type": "PointLight",
+            "dark": 18.622413917824073,
+            "lit": 147.6240234375
+          },
+          {
+            "type": "SpotLight",
+            "dark": 18.622413917824073,
+            "lit": 133.5584671585648
+          }
+        ],
+        "shadows": [
+          {
+            "type": "DirectionalLight",
+            "darkerPixels": 2303,
+            "litFrame": 8,
+            "shadowFrame": 9
+          },
+          {
+            "type": "PointLight",
+            "darkerPixels": 4305,
+            "litFrame": 11,
+            "shadowFrame": 12
+          },
+          {
+            "type": "SpotLight",
+            "darkerPixels": 4238,
+            "litFrame": 13,
+            "shadowFrame": 14
+          }
+        ],
+        "postprocessing": [
+          {
+            "effect": "TSL inversion",
+            "maxError": 1
+          },
+          {
+            "effect": "Bloom",
+            "plain": 74.17095269097223,
+            "bloom": 180.87966579861111
+          }
+        ],
+        "assertions": 59,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "three-features",
+        "models": [
+          {
+            "name": "textured-cube.gltf",
+            "progressEvents": 1,
+            "brightness": 22.438603153935187
+          },
+          {
+            "name": "textured-cube.glb",
+            "progressEvents": 1,
+            "brightness": 22.438603153935187
+          }
+        ],
+        "lighting": [
+          {
+            "type": "DirectionalLight",
+            "dark": 18.622413917824073,
+            "lit": 118.676025390625
+          },
+          {
+            "type": "PointLight",
+            "dark": 18.622413917824073,
+            "lit": 147.6240234375
+          },
+          {
+            "type": "SpotLight",
+            "dark": 18.622413917824073,
+            "lit": 133.5584671585648
+          }
+        ],
+        "shadows": [
+          {
+            "type": "DirectionalLight",
+            "darkerPixels": 2303,
+            "litFrame": 8,
+            "shadowFrame": 9
+          },
+          {
+            "type": "PointLight",
+            "darkerPixels": 4305,
+            "litFrame": 10,
+            "shadowFrame": 11
+          },
+          {
+            "type": "SpotLight",
+            "darkerPixels": 4238,
+            "litFrame": 13,
+            "shadowFrame": 14
+          }
+        ],
+        "postprocessing": [
+          {
+            "effect": "TSL inversion",
+            "maxError": 1
+          },
+          {
+            "effect": "Bloom",
+            "plain": 74.17095269097223,
+            "bloom": 180.87966579861111
+          }
+        ],
+        "assertions": 56,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "three-features",
+        "models": [
+          {
+            "name": "textured-cube.gltf",
+            "progressEvents": 1,
+            "brightness": 22.438603153935187
+          },
+          {
+            "name": "textured-cube.glb",
+            "progressEvents": 1,
+            "brightness": 22.438603153935187
+          }
+        ],
+        "lighting": [
+          {
+            "type": "DirectionalLight",
+            "dark": 18.622413917824073,
+            "lit": 118.676025390625
+          },
+          {
+            "type": "PointLight",
+            "dark": 18.622413917824073,
+            "lit": 147.6240234375
+          },
+          {
+            "type": "SpotLight",
+            "dark": 18.622413917824073,
+            "lit": 133.5584671585648
+          }
+        ],
+        "shadows": [
+          {
+            "type": "DirectionalLight",
+            "darkerPixels": 2303,
+            "litFrame": 9,
+            "shadowFrame": 10
+          },
+          {
+            "type": "PointLight",
+            "darkerPixels": 4305,
+            "litFrame": 11,
+            "shadowFrame": 13
+          },
+          {
+            "type": "SpotLight",
+            "darkerPixels": 4238,
+            "litFrame": 14,
+            "shadowFrame": 15
+          }
+        ],
+        "postprocessing": [
+          {
+            "effect": "TSL inversion",
+            "maxError": 1
+          },
+          {
+            "effect": "Bloom",
+            "plain": 74.17095269097223,
+            "bloom": 180.87966579861111
+          }
+        ],
+        "assertions": 59,
+        "cycle": 2,
+        "canvas2D": true
+      }
+    ],
+    "nativeCountsAfterClose": [
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0]
+    ],
+    "canvas2DCoexistenceAndGpuOnlySession": true
+  },
+  "reference": {
+    "browser": "Microsoft Edge isolated headless CDP profile",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0",
+    "passed": true,
+    "report": {
+      "models": [
+        {
+          "name": "textured-cube.gltf",
+          "progressEvents": 1,
+          "brightness": 22.438603153935187
+        },
+        {
+          "name": "textured-cube.glb",
+          "progressEvents": 1,
+          "brightness": 22.438603153935187
+        }
+      ],
+      "lighting": [
+        {
+          "type": "DirectionalLight",
+          "dark": 18.622413917824073,
+          "lit": 118.676025390625
+        },
+        {
+          "type": "PointLight",
+          "dark": 18.622413917824073,
+          "lit": 147.6240234375
+        },
+        {
+          "type": "SpotLight",
+          "dark": 18.622413917824073,
+          "lit": 133.5584671585648
+        }
+      ],
+      "shadows": [
+        {
+          "type": "DirectionalLight",
+          "darkerPixels": 2303,
+          "litFrame": 7,
+          "shadowFrame": 8
+        },
+        {
+          "type": "PointLight",
+          "darkerPixels": 4305,
+          "litFrame": 9,
+          "shadowFrame": 10
+        },
+        {
+          "type": "SpotLight",
+          "darkerPixels": 4238,
+          "litFrame": 11,
+          "shadowFrame": 12
+        }
+      ],
+      "postprocessing": [
+        {
+          "effect": "TSL inversion",
+          "maxError": 1
+        },
+        {
+          "effect": "Bloom",
+          "plain": 74.17095269097223,
+          "bloom": 180.87966579861111
+        }
+      ]
+    },
+    "resolution": [192, 192],
+    "captureCount": 27,
+    "comparedRgbaPixels": 995328,
+    "maxChannelError": 0,
+    "captures": [
+      {
+        "cycle": 0,
+        "capture": "DirectionalLight-lit",
+        "width": 192,
+        "height": 192,
+        "differentChannels": 0,
+        "maxChannelError": 0
+      },
+      {
+        "cycle": 0,
+        "capture": "DirectionalLight-shadow",
+        "width": 192,
+        "height": 192,
+        "differentChannels": 0,
+        "maxChannelError": 0
+      },
+      {
+        "cycle": 0,
+        "capture": "PointLight-lit",
+        "width": 192,
+        "height": 192,
+        "differentChannels": 0,
+        "maxChannelError": 0
+      },
+      {
+        "cycle": 0,
+        "capture": "PointLight-shadow",
+        "width": 192,
+        "height": 192,
+        "differentChannels": 0,
+        "maxChannelError": 0
+      },
+      {
+        "cycle": 0,
+        "capture": "SpotLight-lit",
+        "width": 192,
+        "height": 192,
+        "differentChannels": 0,
+        "maxChannelError": 0
+      },
+      {
+        "cycle": 0,
+        "capture": "SpotLight-shadow",
+        "width": 192,
+        "height": 192,
+        "differentChannels": 0,
+        "maxChannelError": 0
+      },
+      {
+        "cycle": 0,
+        "capture": "post-bloom",
+        "width": 192,
+        "height": 192,
+        "differentChannels": 0,
+        "maxChannelError": 0
+      },
+      {
+        "cycle": 0,
+        "capture": "post-inverted",
+        "width": 192,
+        "height": 192,
+        "differentChannels": 0,
+        "maxChannelError": 0
+      },
+      {
+        "cycle": 0,
+        "capture": "post-plain",
+        "width": 192,
+        "height": 192,
+        "differentChannels": 0,
+        "maxChannelError": 0
+      },
+      {
+        "cycle": 1,
+        "capture": "DirectionalLight-lit",
+        "width": 192,
+        "height": 192,
+        "differentChannels": 0,
+        "maxChannelError": 0
+      },
+      {
+        "cycle": 1,
+        "capture": "DirectionalLight-shadow",
+        "width": 192,
+        "height": 192,
+        "differentChannels": 0,
+        "maxChannelError": 0
+      },
+      {
+        "cycle": 1,
+        "capture": "PointLight-lit",
+        "width": 192,
+        "height": 192,
+        "differentChannels": 0,
+        "maxChannelError": 0
+      },
+      {
+        "cycle": 1,
+        "capture": "PointLight-shadow",
+        "width": 192,
+        "height": 192,
+        "differentChannels": 0,
+        "maxChannelError": 0
+      },
+      {
+        "cycle": 1,
+        "capture": "SpotLight-lit",
+        "width": 192,
+        "height": 192,
+        "differentChannels": 0,
+        "maxChannelError": 0
+      },
+      {
+        "cycle": 1,
+        "capture": "SpotLight-shadow",
+        "width": 192,
+        "height": 192,
+        "differentChannels": 0,
+        "maxChannelError": 0
+      },
+      {
+        "cycle": 1,
+        "capture": "post-bloom",
+        "width": 192,
+        "height": 192,
+        "differentChannels": 0,
+        "maxChannelError": 0
+      },
+      {
+        "cycle": 1,
+        "capture": "post-inverted",
+        "width": 192,
+        "height": 192,
+        "differentChannels": 0,
+        "maxChannelError": 0
+      },
+      {
+        "cycle": 1,
+        "capture": "post-plain",
+        "width": 192,
+        "height": 192,
+        "differentChannels": 0,
+        "maxChannelError": 0
+      },
+      {
+        "cycle": 2,
+        "capture": "DirectionalLight-lit",
+        "width": 192,
+        "height": 192,
+        "differentChannels": 0,
+        "maxChannelError": 0
+      },
+      {
+        "cycle": 2,
+        "capture": "DirectionalLight-shadow",
+        "width": 192,
+        "height": 192,
+        "differentChannels": 0,
+        "maxChannelError": 0
+      },
+      {
+        "cycle": 2,
+        "capture": "PointLight-lit",
+        "width": 192,
+        "height": 192,
+        "differentChannels": 0,
+        "maxChannelError": 0
+      },
+      {
+        "cycle": 2,
+        "capture": "PointLight-shadow",
+        "width": 192,
+        "height": 192,
+        "differentChannels": 0,
+        "maxChannelError": 0
+      },
+      {
+        "cycle": 2,
+        "capture": "SpotLight-lit",
+        "width": 192,
+        "height": 192,
+        "differentChannels": 0,
+        "maxChannelError": 0
+      },
+      {
+        "cycle": 2,
+        "capture": "SpotLight-shadow",
+        "width": 192,
+        "height": 192,
+        "differentChannels": 0,
+        "maxChannelError": 0
+      },
+      {
+        "cycle": 2,
+        "capture": "post-bloom",
+        "width": 192,
+        "height": 192,
+        "differentChannels": 0,
+        "maxChannelError": 0
+      },
+      {
+        "cycle": 2,
+        "capture": "post-inverted",
+        "width": 192,
+        "height": 192,
+        "differentChannels": 0,
+        "maxChannelError": 0
+      },
+      {
+        "cycle": 2,
+        "capture": "post-plain",
+        "width": 192,
+        "height": 192,
+        "differentChannels": 0,
+        "maxChannelError": 0
+      }
+    ],
+    "exportAdapter": "Fixture convertToBlob delegates to native HTMLCanvasElement.toBlob in Edge; rendering is unchanged."
+  },
+  "shadowTiming": "Three.js ShadowNode caches by camera/frame. The fixture awaits rAF and asserts an incremented renderer frame for changed casters. No renderer or engine workaround is installed.",
+  "gates": {
+    "coreJs": 109,
+    "fetchJs": 15,
+    "canvasJs": 35,
+    "webGpuConversion": 6,
+    "exampleMetrics": 2,
+    "runtimeDefault": 58,
+    "runtimeV8": 58,
+    "typechecks": [
+      "Core",
+      "Fetch",
+      "WebGPU runtime",
+      "WebGPU example",
+      "public SDK generation"
+    ],
+    "stagedDartAcceptanceAnalysis": true,
+    "hostBundleReproducibility": ["Core", "Fetch"],
+    "format": true,
+    "dartFormat": true,
+    "pythonRunnerSyntax": true,
+    "markdownLint": {
+      "files": 277,
+      "issues": 0
+    },
+    "localLinks": {
+      "checked": 1211,
+      "files": 278
+    },
+    "diffCheck": true
+  },
+  "limits": [
+    "Bounded uncompressed glTF/GLB, standard PBR and PCF shadows; not all glTF extensions or Three.js plugins",
+    "Draco, Meshopt, KTX2 and animation not validated",
+    "Fetch data URLs and Blob Range/non-GET requests unsupported",
+    "CTS not rerun for this host/library acceptance extension",
+    "No new performance or display-latency measurement"
+  ],
+  "cleanup": {
+    "isolatedEdgeClosed": true,
+    "loopbackReferenceServerStopped": true,
+    "temporaryBrowserProfileAndBundleRemoved": true,
+    "maintainedSdkEngineAndAcceptanceAppRetained": true,
+    "diagnosticGpuInstrumentationRemovedFromSource": true
+  }
+}

@@ -1,0 +1,1388 @@
+{
+  "measuredOn": "2026-10-29",
+  "baseCommit": "3af52eea34b9ebbdf152e78edba38b8f609de770",
+  "branch": "exp/webgpu-dawn-macos",
+  "retainedImplementationChanges": [],
+  "decision": "All three candidates reverted. Per the supplied AGENTS instructions, stop after three unsuccessful attempts. Reduced cumulative JS allocation did not establish reduced old-space pressure or joint-GC stalls. Promotion/survival allocation stacks remain unidentified.",
+  "profiles": [
+    {
+      "name": "before",
+      "sampledAllocationEstimateBytes": 737378960,
+      "submitted": 5722,
+      "requestedCount": 4,
+      "nativeCountersAtClose": [0, 0, 0, 0, 0, 0],
+      "evidence": ".local/webgpu-alloc/before-allocation.json"
+    },
+    {
+      "name": "candidate",
+      "sampledAllocationEstimateBytes": 656492504,
+      "submitted": 5756,
+      "requestedCount": 6,
+      "nativeCountersAtClose": [0, 0, 0, 0, 0, 0],
+      "evidence": ".local/webgpu-alloc/candidate-allocation.json"
+    },
+    {
+      "name": "combined",
+      "sampledAllocationEstimateBytes": 643828744,
+      "submitted": 5756,
+      "requestedCount": 5,
+      "nativeCountersAtClose": [0, 0, 0, 0, 0, 0],
+      "evidence": ".local/webgpu-alloc/combined-allocation.json"
+    },
+    {
+      "name": "shape",
+      "sampledAllocationEstimateBytes": 841619200,
+      "submitted": 5734,
+      "requestedCount": 4,
+      "nativeCountersAtClose": [0, 0, 0, 0, 0, 0],
+      "evidence": ".local/webgpu-alloc/shape-allocation.json"
+    }
+  ],
+  "sustainedControls": [
+    {
+      "candidate": "metadata-and-reference-notifications",
+      "retained": false,
+      "summary": {
+        "baseline": {
+          "requestedCount": 15,
+          "blockingMs": 336.767,
+          "completedFps": 119.39166666666667,
+          "perRun": [
+            {
+              "name": "baseline-1",
+              "requestedCount": 7,
+              "requestedTotalMs": 148.708,
+              "requestedDurationsMs": [
+                21.07, 19.958, 21.007, 23.484, 19.847, 22.008, 21.334
+              ],
+              "gcMatchedLongGaps": 7,
+              "longGaps": [
+                {
+                  "startUs": 9581227.0,
+                  "endUs": 9613062.0,
+                  "ms": 31.835,
+                  "gcOverlapMs": 24.147
+                },
+                {
+                  "startUs": 20539515.0,
+                  "endUs": 20568116.0,
+                  "ms": 28.601,
+                  "gcOverlapMs": 22.763
+                },
+                {
+                  "startUs": 27439570.0,
+                  "endUs": 27469738.0,
+                  "ms": 30.168,
+                  "gcOverlapMs": 24.145
+                },
+                {
+                  "startUs": 31631275.0,
+                  "endUs": 31659029.0,
+                  "ms": 27.754,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 34197985.0,
+                  "endUs": 34230747.0,
+                  "ms": 32.762,
+                  "gcOverlapMs": 26.263
+                },
+                {
+                  "startUs": 41039700.0,
+                  "endUs": 41068322.0,
+                  "ms": 28.622,
+                  "gcOverlapMs": 22.697
+                },
+                {
+                  "startUs": 47889769.0,
+                  "endUs": 47920915.0,
+                  "ms": 31.146,
+                  "gcOverlapMs": 24.922
+                },
+                {
+                  "startUs": 58939805.0,
+                  "endUs": 58970758.0,
+                  "ms": 30.953,
+                  "gcOverlapMs": 24.077
+                }
+              ],
+              "case": {
+                "measuredMs": 60000,
+                "submitted": 7182,
+                "completedWithinWindow": 7182,
+                "callbacks": 7182,
+                "skipped": 0,
+                "submittedFps": 119.7,
+                "completedFps": 119.7,
+                "callbackFps": 119.7,
+                "encodeMs": {
+                  "count": 7182,
+                  "p50": 0.43400000000110595,
+                  "p95": 0.5980000000054133,
+                  "p99": 0.8399999999965075
+                },
+                "frameGapMs": {
+                  "count": 7181,
+                  "p50": 8.332999999999629,
+                  "p95": 8.389999999999418,
+                  "p99": 8.450000000000728
+                },
+                "completionMs": {
+                  "count": 7182,
+                  "p50": 1.4859999999998763,
+                  "p95": 1.787000000000262,
+                  "p99": 2.172000000002299
+                },
+                "name": "Particles / balanced / 540p",
+                "settings": {
+                  "scene": 0,
+                  "quality": 1,
+                  "resolution": 0,
+                  "palette": 0,
+                  "individual": false,
+                  "name": "Particles / balanced / 540p"
+                },
+                "width": 960,
+                "height": 540,
+                "drawCalls": 1,
+                "drainMs": 5.6450000000040745,
+                "coloredPixels": 64593,
+                "logicalCanvas": [880.0, 495.0],
+                "viewport": {
+                  "width": 1180.0,
+                  "height": 908.0,
+                  "devicePixelRatio": 1.0
+                }
+              }
+            },
+            {
+              "name": "baseline-2",
+              "requestedCount": 8,
+              "requestedTotalMs": 188.059,
+              "requestedDurationsMs": [
+                20.208, 26.037, 22.661, 23.328, 20.898, 27.225, 24.187, 23.515
+              ],
+              "gcMatchedLongGaps": 8,
+              "longGaps": [
+                {
+                  "startUs": 8478428.5,
+                  "endUs": 8507509.5,
+                  "ms": 29.081,
+                  "gcOverlapMs": 22.934
+                },
+                {
+                  "startUs": 11628380.5,
+                  "endUs": 11662846.5,
+                  "ms": 34.466,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 11811746.5,
+                  "endUs": 11972869.5,
+                  "ms": 161.123,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 11972869.5,
+                  "endUs": 12008041.5,
+                  "ms": 35.172,
+                  "gcOverlapMs": 25.987
+                },
+                {
+                  "startUs": 17436836.5,
+                  "endUs": 17458577.5,
+                  "ms": 21.741,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 17458577.5,
+                  "endUs": 17483668.5,
+                  "ms": 25.091,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 19695193.5,
+                  "endUs": 19728636.5,
+                  "ms": 33.443,
+                  "gcOverlapMs": 25.594
+                },
+                {
+                  "startUs": 26436807.5,
+                  "endUs": 26470419.5,
+                  "ms": 33.612,
+                  "gcOverlapMs": 26.362
+                },
+                {
+                  "startUs": 33128562.5,
+                  "endUs": 33159063.5,
+                  "ms": 30.501,
+                  "gcOverlapMs": 23.788
+                },
+                {
+                  "startUs": 35895274.5,
+                  "endUs": 35918479.5,
+                  "ms": 23.205,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 37878589.5,
+                  "endUs": 37917295.5,
+                  "ms": 38.706,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 40011975.5,
+                  "endUs": 40050407.5,
+                  "ms": 38.432,
+                  "gcOverlapMs": 30.487
+                },
+                {
+                  "startUs": 52120380.5,
+                  "endUs": 52154906.5,
+                  "ms": 34.526,
+                  "gcOverlapMs": 27.44
+                },
+                {
+                  "startUs": 58978812.5,
+                  "endUs": 59015103.5,
+                  "ms": 36.291,
+                  "gcOverlapMs": 27.394
+                },
+                {
+                  "startUs": 60653763.5,
+                  "endUs": 60677480.5,
+                  "ms": 23.717,
+                  "gcOverlapMs": 0.0
+                }
+              ],
+              "case": {
+                "measuredMs": 60000,
+                "submitted": 7145,
+                "completedWithinWindow": 7145,
+                "callbacks": 7145,
+                "skipped": 0,
+                "submittedFps": 119.08333333333333,
+                "completedFps": 119.08333333333333,
+                "callbackFps": 119.08333333333333,
+                "encodeMs": {
+                  "count": 7145,
+                  "p50": 0.4680000000007567,
+                  "p95": 0.6620000000038999,
+                  "p99": 0.9510000000009313
+                },
+                "frameGapMs": {
+                  "count": 7144,
+                  "p50": 8.33299999999872,
+                  "p95": 8.409999999999854,
+                  "p99": 8.505999999999403
+                },
+                "completionMs": {
+                  "count": 7145,
+                  "p50": 1.5389999999970314,
+                  "p95": 2.0239999999976135,
+                  "p99": 2.7660000000032596
+                },
+                "name": "Particles / balanced / 540p",
+                "settings": {
+                  "scene": 0,
+                  "quality": 1,
+                  "resolution": 0,
+                  "palette": 0,
+                  "individual": false,
+                  "name": "Particles / balanced / 540p"
+                },
+                "width": 960,
+                "height": 540,
+                "drawCalls": 1,
+                "drainMs": 6.886000000005879,
+                "coloredPixels": 64593,
+                "logicalCanvas": [880.0, 495.0],
+                "viewport": {
+                  "width": 1180.0,
+                  "height": 908.0,
+                  "devicePixelRatio": 1.0
+                }
+              }
+            }
+          ]
+        },
+        "optimized": {
+          "requestedCount": 16,
+          "blockingMs": 329.327,
+          "completedFps": 119.34166666666667,
+          "perRun": [
+            {
+              "name": "optimized-1",
+              "requestedCount": 8,
+              "requestedTotalMs": 159.625,
+              "requestedDurationsMs": [
+                22.185, 19.937, 18.508, 19.842, 19.498, 20.008, 20.719, 18.928
+              ],
+              "gcMatchedLongGaps": 8,
+              "longGaps": [
+                {
+                  "startUs": 10617397.0,
+                  "endUs": 10649549.0,
+                  "ms": 32.152,
+                  "gcOverlapMs": 29.45
+                },
+                {
+                  "startUs": 17867436.0,
+                  "endUs": 17896483.0,
+                  "ms": 29.047,
+                  "gcOverlapMs": 22.977
+                },
+                {
+                  "startUs": 25084179.0,
+                  "endUs": 25111727.0,
+                  "ms": 27.548,
+                  "gcOverlapMs": 21.525
+                },
+                {
+                  "startUs": 31400875.0,
+                  "endUs": 31430126.0,
+                  "ms": 29.251,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 32409215.0,
+                  "endUs": 32437651.0,
+                  "ms": 28.436,
+                  "gcOverlapMs": 22.725
+                },
+                {
+                  "startUs": 39634265.0,
+                  "endUs": 39662418.0,
+                  "ms": 28.153,
+                  "gcOverlapMs": 22.541
+                },
+                {
+                  "startUs": 46734301.0,
+                  "endUs": 46763664.0,
+                  "ms": 29.363,
+                  "gcOverlapMs": 22.944
+                },
+                {
+                  "startUs": 53942580.0,
+                  "endUs": 53972505.0,
+                  "ms": 29.925,
+                  "gcOverlapMs": 23.916
+                },
+                {
+                  "startUs": 61184332.0,
+                  "endUs": 61212323.0,
+                  "ms": 27.991,
+                  "gcOverlapMs": 22.229
+                }
+              ],
+              "case": {
+                "measuredMs": 60000,
+                "submitted": 7181,
+                "completedWithinWindow": 7181,
+                "callbacks": 7181,
+                "skipped": 0,
+                "submittedFps": 119.68333333333334,
+                "completedFps": 119.68333333333334,
+                "callbackFps": 119.68333333333334,
+                "encodeMs": {
+                  "count": 7181,
+                  "p50": 0.419000000001688,
+                  "p95": 0.5850000000000364,
+                  "p99": 0.875
+                },
+                "frameGapMs": {
+                  "count": 7180,
+                  "p50": 8.33299999999872,
+                  "p95": 8.381000000001222,
+                  "p99": 8.43699999999808
+                },
+                "completionMs": {
+                  "count": 7181,
+                  "p50": 1.4589999999952852,
+                  "p95": 1.7169999999996435,
+                  "p99": 2.091999999996915
+                },
+                "name": "Particles / balanced / 540p",
+                "settings": {
+                  "scene": 0,
+                  "quality": 1,
+                  "resolution": 0,
+                  "palette": 0,
+                  "individual": false,
+                  "name": "Particles / balanced / 540p"
+                },
+                "width": 960,
+                "height": 540,
+                "drawCalls": 1,
+                "drainMs": 6.398000000001048,
+                "coloredPixels": 64593,
+                "logicalCanvas": [880.0, 495.0],
+                "viewport": {
+                  "width": 1180.0,
+                  "height": 908.0,
+                  "devicePixelRatio": 1.0
+                }
+              }
+            },
+            {
+              "name": "optimized-2",
+              "requestedCount": 8,
+              "requestedTotalMs": 169.702,
+              "requestedDurationsMs": [
+                18.93, 23.085, 21.782, 22.301, 19.934, 19.986, 20.735, 22.949
+              ],
+              "gcMatchedLongGaps": 9,
+              "longGaps": [
+                {
+                  "startUs": 7333452.5,
+                  "endUs": 7360702.5,
+                  "ms": 27.25,
+                  "gcOverlapMs": 21.734
+                },
+                {
+                  "startUs": 14575249.5,
+                  "endUs": 14608677.5,
+                  "ms": 33.428,
+                  "gcOverlapMs": 26.504
+                },
+                {
+                  "startUs": 19583614.5,
+                  "endUs": 19609448.5,
+                  "ms": 25.834,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 21883655.5,
+                  "endUs": 21915162.5,
+                  "ms": 31.507,
+                  "gcOverlapMs": 24.733
+                },
+                {
+                  "startUs": 27566998.5,
+                  "endUs": 27599234.5,
+                  "ms": 32.236,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 27600389.5,
+                  "endUs": 27625571.5,
+                  "ms": 25.182,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 29275322.5,
+                  "endUs": 29307836.5,
+                  "ms": 32.514,
+                  "gcOverlapMs": 25.608
+                },
+                {
+                  "startUs": 29566995.5,
+                  "endUs": 29590037.5,
+                  "ms": 23.042,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 29590037.5,
+                  "endUs": 29611259.5,
+                  "ms": 21.222,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 30258668.5,
+                  "endUs": 30287880.5,
+                  "ms": 29.212,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 36692006.5,
+                  "endUs": 36720599.5,
+                  "ms": 28.593,
+                  "gcOverlapMs": 22.998
+                },
+                {
+                  "startUs": 42542073.5,
+                  "endUs": 42572498.5,
+                  "ms": 30.425,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 43542062.5,
+                  "endUs": 43576236.5,
+                  "ms": 34.174,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 44083760.5,
+                  "endUs": 44113370.5,
+                  "ms": 29.61,
+                  "gcOverlapMs": 23.142
+                },
+                {
+                  "startUs": 45858769.5,
+                  "endUs": 45882578.5,
+                  "ms": 23.809,
+                  "gcOverlapMs": 21.49
+                },
+                {
+                  "startUs": 46533768.5,
+                  "endUs": 46559902.5,
+                  "ms": 26.134,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 47542111.5,
+                  "endUs": 47571612.5,
+                  "ms": 29.501,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 48350439.5,
+                  "endUs": 48381547.5,
+                  "ms": 31.108,
+                  "gcOverlapMs": 8.09
+                },
+                {
+                  "startUs": 48533679.5,
+                  "endUs": 48571326.5,
+                  "ms": 37.647,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 51250361.5,
+                  "endUs": 51279806.5,
+                  "ms": 29.445,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 53542131.5,
+                  "endUs": 53567675.5,
+                  "ms": 25.544,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 53567675.5,
+                  "endUs": 53605899.5,
+                  "ms": 38.224,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 53692048.5,
+                  "endUs": 53717999.5,
+                  "ms": 25.951,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 53717999.5,
+                  "endUs": 53738565.5,
+                  "ms": 20.566,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 54800480.5,
+                  "endUs": 54834073.5,
+                  "ms": 33.593,
+                  "gcOverlapMs": 26.224
+                }
+              ],
+              "case": {
+                "measuredMs": 60000,
+                "submitted": 7140,
+                "completedWithinWindow": 7140,
+                "callbacks": 7140,
+                "skipped": 0,
+                "submittedFps": 119,
+                "completedFps": 119,
+                "callbackFps": 119,
+                "encodeMs": {
+                  "count": 7140,
+                  "p50": 0.4459999999962747,
+                  "p95": 0.6189999999987776,
+                  "p99": 0.7269999999989523
+                },
+                "frameGapMs": {
+                  "count": 7139,
+                  "p50": 8.33299999999872,
+                  "p95": 8.40899999999965,
+                  "p99": 8.54200000000128
+                },
+                "completionMs": {
+                  "count": 7140,
+                  "p50": 1.4790000000066357,
+                  "p95": 1.7920000000012806,
+                  "p99": 2.30899999999383
+                },
+                "name": "Particles / balanced / 540p",
+                "settings": {
+                  "scene": 0,
+                  "quality": 1,
+                  "resolution": 0,
+                  "palette": 0,
+                  "individual": false,
+                  "name": "Particles / balanced / 540p"
+                },
+                "width": 960,
+                "height": 540,
+                "drawCalls": 1,
+                "drainMs": 5.506000000001222,
+                "coloredPixels": 64593,
+                "logicalCanvas": [880.0, 495.0],
+                "viewport": {
+                  "width": 1180.0,
+                  "height": 908.0,
+                  "devicePixelRatio": 1.0
+                }
+              }
+            }
+          ]
+        }
+      },
+      "evidence": ".local/webgpu-alloc/sustained-results.json"
+    },
+    {
+      "candidate": "fast-property-views",
+      "retained": false,
+      "summary": {
+        "baseline": {
+          "requestedCount": 17,
+          "blockingMs": 317.368,
+          "completedFps": 119.21666666666667,
+          "perRun": [
+            {
+              "name": "baseline-1",
+              "requestedCount": 8,
+              "requestedTotalMs": 137.762,
+              "requestedDurationsMs": [
+                17.524, 17.151, 16.916, 17.893, 16.059, 16.714, 19.109, 16.396
+              ],
+              "gcMatchedLongGaps": 8,
+              "longGaps": [
+                {
+                  "startUs": 9111894.5,
+                  "endUs": 9142959.5,
+                  "ms": 31.065,
+                  "gcOverlapMs": 21.636
+                },
+                {
+                  "startUs": 15995305.5,
+                  "endUs": 16027946.5,
+                  "ms": 32.641,
+                  "gcOverlapMs": 21.005
+                },
+                {
+                  "startUs": 22920312.5,
+                  "endUs": 22951374.5,
+                  "ms": 31.062,
+                  "gcOverlapMs": 20.256
+                },
+                {
+                  "startUs": 29861985.5,
+                  "endUs": 29896113.5,
+                  "ms": 34.128,
+                  "gcOverlapMs": 22.933
+                },
+                {
+                  "startUs": 31528651.5,
+                  "endUs": 31554364.5,
+                  "ms": 25.713,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 36795382.5,
+                  "endUs": 36827663.5,
+                  "ms": 32.281,
+                  "gcOverlapMs": 19.301
+                },
+                {
+                  "startUs": 43753725.5,
+                  "endUs": 43785065.5,
+                  "ms": 31.34,
+                  "gcOverlapMs": 21.499
+                },
+                {
+                  "startUs": 50620441.5,
+                  "endUs": 50656145.5,
+                  "ms": 35.704,
+                  "gcOverlapMs": 24.577
+                },
+                {
+                  "startUs": 57495477.5,
+                  "endUs": 57526887.5,
+                  "ms": 31.41,
+                  "gcOverlapMs": 21.907
+                }
+              ],
+              "case": {
+                "measuredMs": 60000,
+                "submitted": 7178,
+                "completedWithinWindow": 7178,
+                "callbacks": 7178,
+                "skipped": 0,
+                "submittedFps": 119.63333333333334,
+                "completedFps": 119.63333333333334,
+                "callbackFps": 119.63333333333334,
+                "encodeMs": {
+                  "count": 7178,
+                  "p50": 0.8870000000024447,
+                  "p95": 1.1880000000001019,
+                  "p99": 1.5870000000068103
+                },
+                "frameGapMs": {
+                  "count": 7177,
+                  "p50": 8.33299999999872,
+                  "p95": 8.427999999999884,
+                  "p99": 8.509999999994761
+                },
+                "completionMs": {
+                  "count": 7178,
+                  "p50": 2.5339999999996508,
+                  "p95": 2.9569999999948777,
+                  "p99": 3.4219999999986612
+                },
+                "name": "Particles / balanced / 540p",
+                "settings": {
+                  "scene": 0,
+                  "quality": 1,
+                  "resolution": 0,
+                  "palette": 0,
+                  "individual": false,
+                  "name": "Particles / balanced / 540p"
+                },
+                "width": 960,
+                "height": 540,
+                "drawCalls": 1,
+                "drainMs": 10.863000000004831,
+                "coloredPixels": 64593,
+                "logicalCanvas": [880.0, 495.0],
+                "viewport": {
+                  "width": 1180.0,
+                  "height": 908.0,
+                  "devicePixelRatio": 1.0
+                }
+              }
+            },
+            {
+              "name": "baseline-2",
+              "requestedCount": 9,
+              "requestedTotalMs": 179.606,
+              "requestedDurationsMs": [
+                16.994, 17.331, 18.495, 20.612, 22.51, 26.438, 19.131, 19.069, 19.026
+              ],
+              "gcMatchedLongGaps": 9,
+              "longGaps": [
+                {
+                  "startUs": 8125003.0,
+                  "endUs": 8156074.0,
+                  "ms": 31.071,
+                  "gcOverlapMs": 21.435
+                },
+                {
+                  "startUs": 11399970.0,
+                  "endUs": 11426781.0,
+                  "ms": 26.811,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 11500325.0,
+                  "endUs": 11564727.0,
+                  "ms": 64.402,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 15083323.0,
+                  "endUs": 15115005.0,
+                  "ms": 31.682,
+                  "gcOverlapMs": 20.645
+                },
+                {
+                  "startUs": 23233388.0,
+                  "endUs": 23267311.0,
+                  "ms": 33.923,
+                  "gcOverlapMs": 22.401
+                },
+                {
+                  "startUs": 23924988.0,
+                  "endUs": 23968671.0,
+                  "ms": 43.683,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 25433505.0,
+                  "endUs": 25552631.0,
+                  "ms": 119.126,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 29125150.0,
+                  "endUs": 29154305.0,
+                  "ms": 29.155,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 30208386.0,
+                  "endUs": 30231220.0,
+                  "ms": 22.834,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 30408511.0,
+                  "endUs": 30444138.0,
+                  "ms": 35.627,
+                  "gcOverlapMs": 25.005
+                },
+                {
+                  "startUs": 32291707.0,
+                  "endUs": 32313912.0,
+                  "ms": 22.205,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 37324992.0,
+                  "endUs": 37358223.0,
+                  "ms": 33.231,
+                  "gcOverlapMs": 25.636
+                },
+                {
+                  "startUs": 37558423.0,
+                  "endUs": 37697140.0,
+                  "ms": 138.717,
+                  "gcOverlapMs": 26.389
+                },
+                {
+                  "startUs": 44400047.0,
+                  "endUs": 44427846.0,
+                  "ms": 27.799,
+                  "gcOverlapMs": 22.027
+                },
+                {
+                  "startUs": 51383544.0,
+                  "endUs": 51419248.0,
+                  "ms": 35.704,
+                  "gcOverlapMs": 23.159
+                },
+                {
+                  "startUs": 58383641.0,
+                  "endUs": 58414747.0,
+                  "ms": 31.106,
+                  "gcOverlapMs": 22.667
+                }
+              ],
+              "case": {
+                "measuredMs": 60000,
+                "submitted": 7128,
+                "completedWithinWindow": 7128,
+                "callbacks": 7128,
+                "skipped": 0,
+                "submittedFps": 118.8,
+                "completedFps": 118.8,
+                "callbackFps": 118.8,
+                "encodeMs": {
+                  "count": 7128,
+                  "p50": 0.7289999999993597,
+                  "p95": 1.1240000000034343,
+                  "p99": 1.559000000001106
+                },
+                "frameGapMs": {
+                  "count": 7127,
+                  "p50": 8.33299999999872,
+                  "p95": 8.435000000000173,
+                  "p99": 8.641999999999825
+                },
+                "completionMs": {
+                  "count": 7128,
+                  "p50": 2.3110000000015134,
+                  "p95": 2.9830000000001746,
+                  "p99": 3.4219999999986612
+                },
+                "name": "Particles / balanced / 540p",
+                "settings": {
+                  "scene": 0,
+                  "quality": 1,
+                  "resolution": 0,
+                  "palette": 0,
+                  "individual": false,
+                  "name": "Particles / balanced / 540p"
+                },
+                "width": 960,
+                "height": 540,
+                "drawCalls": 1,
+                "drainMs": 6.1379999999990105,
+                "coloredPixels": 64593,
+                "logicalCanvas": [880.0, 495.0],
+                "viewport": {
+                  "width": 1180.0,
+                  "height": 908.0,
+                  "devicePixelRatio": 1.0
+                }
+              }
+            }
+          ]
+        },
+        "optimized": {
+          "requestedCount": 16,
+          "blockingMs": 314.147,
+          "completedFps": 119.58333333333333,
+          "perRun": [
+            {
+              "name": "optimized-1",
+              "requestedCount": 8,
+              "requestedTotalMs": 150.283,
+              "requestedDurationsMs": [
+                22.769, 17.051, 20.752, 16.19, 18.564, 21.701, 16.127, 17.129
+              ],
+              "gcMatchedLongGaps": 8,
+              "longGaps": [
+                {
+                  "startUs": 9716996.5,
+                  "endUs": 9748730.5,
+                  "ms": 31.734,
+                  "gcOverlapMs": 25.532
+                },
+                {
+                  "startUs": 16533759.5,
+                  "endUs": 16567285.5,
+                  "ms": 33.526,
+                  "gcOverlapMs": 21.808
+                },
+                {
+                  "startUs": 23417139.5,
+                  "endUs": 23454273.5,
+                  "ms": 37.134,
+                  "gcOverlapMs": 24.911
+                },
+                {
+                  "startUs": 32367187.5,
+                  "endUs": 32397685.5,
+                  "ms": 30.498,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 33417325.5,
+                  "endUs": 33448513.5,
+                  "ms": 31.188,
+                  "gcOverlapMs": 20.104
+                },
+                {
+                  "startUs": 40300573.5,
+                  "endUs": 40334150.5,
+                  "ms": 33.577,
+                  "gcOverlapMs": 22.679
+                },
+                {
+                  "startUs": 47192238.5,
+                  "endUs": 47228220.5,
+                  "ms": 35.982,
+                  "gcOverlapMs": 25.411
+                },
+                {
+                  "startUs": 54300617.5,
+                  "endUs": 54330855.5,
+                  "ms": 30.238,
+                  "gcOverlapMs": 19.936
+                },
+                {
+                  "startUs": 61275631.5,
+                  "endUs": 61308181.5,
+                  "ms": 32.55,
+                  "gcOverlapMs": 20.831
+                }
+              ],
+              "case": {
+                "measuredMs": 60000,
+                "submitted": 7177,
+                "completedWithinWindow": 7177,
+                "callbacks": 7177,
+                "skipped": 0,
+                "submittedFps": 119.61666666666666,
+                "completedFps": 119.61666666666666,
+                "callbackFps": 119.61666666666666,
+                "encodeMs": {
+                  "count": 7177,
+                  "p50": 0.8879999999990105,
+                  "p95": 1.1589999999996508,
+                  "p99": 1.5749999999970896
+                },
+                "frameGapMs": {
+                  "count": 7176,
+                  "p50": 8.33299999999872,
+                  "p95": 8.398999999997613,
+                  "p99": 8.498999999999796
+                },
+                "completionMs": {
+                  "count": 7177,
+                  "p50": 2.529999999998836,
+                  "p95": 2.963000000003376,
+                  "p99": 3.485000000000582
+                },
+                "name": "Particles / balanced / 540p",
+                "settings": {
+                  "scene": 0,
+                  "quality": 1,
+                  "resolution": 0,
+                  "palette": 0,
+                  "individual": false,
+                  "name": "Particles / balanced / 540p"
+                },
+                "width": 960,
+                "height": 540,
+                "drawCalls": 1,
+                "drainMs": 10.50800000000163,
+                "coloredPixels": 64593,
+                "logicalCanvas": [880.0, 495.0],
+                "viewport": {
+                  "width": 1180.0,
+                  "height": 908.0,
+                  "devicePixelRatio": 1.0
+                }
+              }
+            },
+            {
+              "name": "optimized-2",
+              "requestedCount": 8,
+              "requestedTotalMs": 163.864,
+              "requestedDurationsMs": [
+                17.741, 17.411, 16.482, 16.899, 17.065, 43.693, 17.55, 17.023
+              ],
+              "gcMatchedLongGaps": 8,
+              "longGaps": [
+                {
+                  "startUs": 7524348.0,
+                  "endUs": 7556790.0,
+                  "ms": 32.442,
+                  "gcOverlapMs": 21.87
+                },
+                {
+                  "startUs": 18732680.0,
+                  "endUs": 18763978.0,
+                  "ms": 31.298,
+                  "gcOverlapMs": 20.599
+                },
+                {
+                  "startUs": 25774503.0,
+                  "endUs": 25804620.0,
+                  "ms": 30.117,
+                  "gcOverlapMs": 19.885
+                },
+                {
+                  "startUs": 30149488.0,
+                  "endUs": 30177622.0,
+                  "ms": 28.134,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 32649622.0,
+                  "endUs": 32683293.0,
+                  "ms": 33.671,
+                  "gcOverlapMs": 21.587
+                },
+                {
+                  "startUs": 39641147.0,
+                  "endUs": 39672907.0,
+                  "ms": 31.76,
+                  "gcOverlapMs": 21.737
+                },
+                {
+                  "startUs": 43237133.0,
+                  "endUs": 43261705.0,
+                  "ms": 24.572,
+                  "gcOverlapMs": 0.0
+                },
+                {
+                  "startUs": 46582913.0,
+                  "endUs": 46648500.0,
+                  "ms": 65.587,
+                  "gcOverlapMs": 48.641
+                },
+                {
+                  "startUs": 53483007.0,
+                  "endUs": 53513964.0,
+                  "ms": 30.957,
+                  "gcOverlapMs": 20.857
+                },
+                {
+                  "startUs": 60333159.0,
+                  "endUs": 60362059.0,
+                  "ms": 28.9,
+                  "gcOverlapMs": 21.17
+                }
+              ],
+              "case": {
+                "measuredMs": 60000,
+                "submitted": 7173,
+                "completedWithinWindow": 7173,
+                "callbacks": 7173,
+                "skipped": 0,
+                "submittedFps": 119.55,
+                "completedFps": 119.55,
+                "callbackFps": 119.55,
+                "encodeMs": {
+                  "count": 7173,
+                  "p50": 0.897000000000844,
+                  "p95": 1.1920000000027358,
+                  "p99": 1.5830000000005384
+                },
+                "frameGapMs": {
+                  "count": 7172,
+                  "p50": 8.333000000000084,
+                  "p95": 8.432000000000698,
+                  "p99": 8.521999999997206
+                },
+                "completionMs": {
+                  "count": 7173,
+                  "p50": 2.526000000001659,
+                  "p95": 3.036000000000058,
+                  "p99": 3.5729999999994106
+                },
+                "name": "Particles / balanced / 540p",
+                "settings": {
+                  "scene": 0,
+                  "quality": 1,
+                  "resolution": 0,
+                  "palette": 0,
+                  "individual": false,
+                  "name": "Particles / balanced / 540p"
+                },
+                "width": 960,
+                "height": 540,
+                "drawCalls": 1,
+                "drainMs": 9.754000000000815,
+                "coloredPixels": 64593,
+                "logicalCanvas": [880.0, 495.0],
+                "viewport": {
+                  "width": 1180.0,
+                  "height": 908.0,
+                  "devicePixelRatio": 1.0
+                }
+              }
+            }
+          ]
+        }
+      },
+      "evidence": ".local/webgpu-alloc/shape-sustained-results.json"
+    }
+  ],
+  "matchedComparison": {
+    "protocol": {
+      "order": ["baseline", "optimized", "edge", "edge", "optimized", "baseline"],
+      "warmupAcceptedFrames": 60,
+      "measuredMs": 8000,
+      "maxInFlight": 3,
+      "sceneReadbacksDuringMeasurement": 0,
+      "metric": "Accepted scene submissions and GPU completion notification timings; not physical presentations."
+    },
+    "sourceSha256": "e4ccf6e2c85b22d527ba63f40095d26ddd4b7a878a95c95eec064098f9e4d69c",
+    "viewport": {
+      "width": 1180,
+      "height": 908,
+      "devicePixelRatio": 1
+    },
+    "edgeVersions": [
+      {
+        "protocolVersion": "1.3",
+        "product": "Edg/156.0.4314.50",
+        "revision": "@af2ba23ae0ecf7084d900446fc59d5119dd5fd5e",
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0",
+        "jsVersion": "15.6.12.7"
+      },
+      {
+        "protocolVersion": "1.3",
+        "product": "Edg/156.0.4314.50",
+        "revision": "@af2ba23ae0ecf7084d900446fc59d5119dd5fd5e",
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0",
+        "jsVersion": "15.6.12.7"
+      }
+    ],
+    "candidate": "The optimized entries are the discarded metadata+Core-notification candidate, not a retained implementation. Baseline entries match the restored final source/app.",
+    "rows": [
+      {
+        "name": "Particles / balanced / 540p",
+        "baseline": {
+          "fps": 118.8125,
+          "encode95": 0.7484999999996944,
+          "completion95": 2.151499999999942,
+          "completion99": 2.8379999999999654,
+          "gap99": 10.000500000000102,
+          "skips": 0
+        },
+        "optimized": {
+          "fps": 119.12500000000001,
+          "encode95": 0.7524999999998272,
+          "completion95": 2.1674999999995634,
+          "completion99": 2.6885000000006585,
+          "gap99": 8.541999999999916,
+          "skips": 0
+        },
+        "edge": {
+          "fps": 119.4375,
+          "encode95": 0.12750029563903809,
+          "completion95": 4.135000228881836,
+          "completion99": 8.852500200271606,
+          "gap99": 9.499999761581421,
+          "skips": 1
+        }
+      },
+      {
+        "name": "Particles / high / 1080p",
+        "baseline": {
+          "fps": 118.31249999999999,
+          "encode95": 0.7414999999991778,
+          "completion95": 3.558000000000902,
+          "completion99": 4.677500000000691,
+          "gap99": 8.717000000000553,
+          "skips": 0
+        },
+        "optimized": {
+          "fps": 118.37500000000001,
+          "encode95": 0.7689999999993233,
+          "completion95": 3.543499999999767,
+          "completion99": 4.134000000000924,
+          "gap99": 9.05199999999877,
+          "skips": 0
+        },
+        "edge": {
+          "fps": 120,
+          "encode95": 0.11750006675720215,
+          "completion95": 5.349999904632568,
+          "completion99": 6.762500286102295,
+          "gap99": 9.425000190734863,
+          "skips": 0
+        }
+      },
+      {
+        "name": "Cubes / instanced / 540p",
+        "baseline": {
+          "fps": 118.8125,
+          "encode95": 0.8165000000008149,
+          "completion95": 1.617500000000291,
+          "completion99": 2.370999999999185,
+          "gap99": 10.392500000001746,
+          "skips": 0
+        },
+        "optimized": {
+          "fps": 119.125,
+          "encode95": 0.7295000000012806,
+          "completion95": 1.6599999999998545,
+          "completion99": 2.231499999999869,
+          "gap99": 8.862000000002809,
+          "skips": 0
+        },
+        "edge": {
+          "fps": 120,
+          "encode95": 0.10500025749206543,
+          "completion95": 3.31499981880188,
+          "completion99": 3.767500162124634,
+          "gap99": 9.415000200271606,
+          "skips": 0
+        }
+      },
+      {
+        "name": "Cubes / per-object / 540p",
+        "baseline": {
+          "fps": 119.3125,
+          "encode95": 1.2725000000009459,
+          "completion95": 2.153999999998632,
+          "completion99": 2.635499999998501,
+          "gap99": 8.524500000001353,
+          "skips": 0
+        },
+        "optimized": {
+          "fps": 119.81250000000003,
+          "encode95": 1.2935000000015862,
+          "completion95": 2.1644999999989523,
+          "completion99": 2.8700000000008004,
+          "gap99": 8.558499999999185,
+          "skips": 0
+        },
+        "edge": {
+          "fps": 120,
+          "encode95": 0.19999980926513672,
+          "completion95": 3.7775001525878906,
+          "completion99": 6.190000057220459,
+          "gap99": 9.482500076293945,
+          "skips": 0
+        }
+      },
+      {
+        "name": "Prism / balanced / 540p",
+        "baseline": {
+          "fps": 119.5,
+          "encode95": 0.592000000000553,
+          "completion95": 1.8485000000036962,
+          "completion99": 2.0084999999999127,
+          "gap99": 8.511000000002241,
+          "skips": 0
+        },
+        "optimized": {
+          "fps": 119.875,
+          "encode95": 0.6334999999999127,
+          "completion95": 1.9219999999986612,
+          "completion99": 2.581500000003871,
+          "gap99": 8.507499999999709,
+          "skips": 0
+        },
+        "edge": {
+          "fps": 119.8125,
+          "encode95": 0.12750005722045898,
+          "completion95": 3.6524999141693115,
+          "completion99": 9.619999885559082,
+          "gap99": 9.497499704360962,
+          "skips": 1
+        }
+      },
+      {
+        "name": "Prism / high / 1080p",
+        "baseline": {
+          "fps": 119.875,
+          "encode95": 0.5835000000042783,
+          "completion95": 4.513999999999214,
+          "completion99": 4.9210000000020955,
+          "gap99": 8.425499999997555,
+          "skips": 0
+        },
+        "optimized": {
+          "fps": 118.1875,
+          "encode95": 0.6154999999998836,
+          "completion95": 3.8024999999943248,
+          "completion99": 4.315999999998894,
+          "gap99": 8.627999999996973,
+          "skips": 0
+        },
+        "edge": {
+          "fps": 119.5,
+          "encode95": 0.10000014305114746,
+          "completion95": 6.2225000858306885,
+          "completion99": 7.3450000286102295,
+          "gap99": 9.452499866485596,
+          "skips": 6
+        }
+      }
+    ]
+  },
+  "validation": {
+    "allMeasurementProcessesPassed": 18,
+    "flaxHostsWithSixNativeCountersZero": 16,
+    "candidateCoreJsTestsPassed": 108,
+    "candidateWebGpuTestsPassed": 5,
+    "testsScope": "Candidate tests, not a new full runtime acceptance certification. No implementation changes remain.",
+    "initialSourceHashesRestored": 224,
+    "cleanReferenceCacheRestored": true,
+    "normalEngineReceiptUnchanged": true,
+    "normalEngineBinaryUnchanged": true,
+    "committed": false,
+    "pushed": false,
+    "sharedFlutterSourceClean": true,
+    "headUnchanged": true,
+    "retainedStudioAssetsRestored": true,
+    "diagnosticScratchCleaned": true,
+    "documentationLinks": "passed",
+    "diffWhitespace": "passed"
+  },
+  "evidenceDirectory": ".local/webgpu-alloc",
+  "limits": [
+    "Allocation profiles are sampled cumulative estimates including startup, not resident heap or promotion profiles.",
+    "The four sampled profiles are diagnostics, not clean timing controls.",
+    "Sustained controls retain native GC/JIT markers and use 60 accepted warmups followed by 60 seconds at 960x540.",
+    "The unprofiled six-scene matrix uses 60 accepted warmups, 8 seconds per case, identical shaders/renderer/resolutions and at most three submissions in flight.",
+    "onSubmittedWorkDone measures notification completion, not physical presentation, isolated GPU execution or input-to-display latency.",
+    "No successful GC optimization or statistical significance is claimed."
+  ]
+}

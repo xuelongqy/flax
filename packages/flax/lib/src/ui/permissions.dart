@@ -68,6 +68,42 @@ final class _PermissionLifecycle with WidgetsBindingObserver {
 }
 
 extension _PermissionCalls on _Session {
+  // Worker source brokers use the same authority as ordinary module loading.
+  void authorizeModule(
+    Uri uri,
+    FlaxModuleKind? kind, {
+    void Function(String, FlaxPermissionLease Function())? retain,
+  }) {
+    requireOpen();
+    if (uri.scheme == 'http' || uri.scheme == 'https') {
+      final key = FlaxOriginPermissionScope.origin(uri);
+      if (retain != null) {
+        retain('module:$key', () => permissions.network(uri, module: true));
+      } else {
+        final lease = _remoteModulePermissions.putIfAbsent(key, () {
+          final lease = permissions.network(uri, module: true);
+          final weak = WeakReference(this);
+          lease.onRevoke(() {
+            final session = weak.target;
+            if (session != null) unawaited(session.requestClose());
+          });
+          return lease;
+        });
+        lease.requireActive();
+      }
+    }
+    if (kind == FlaxModuleKind.wasm) {
+      if (retain != null) {
+        retain(
+          'wasm',
+          () => permissions.lease('flax.wasm', operation: 'WebAssembly'),
+        );
+      } else {
+        _requireWasm();
+      }
+    }
+  }
+
   void installPermissions() {
     runtime.registerHostFunction('__flaxPermissionCall', (_, args) {
       requireOpen();
@@ -89,26 +125,10 @@ extension _PermissionCalls on _Session {
         ),
       );
     });
-    runtime.registerHostFunction('__flaxPermissionWasm', (_, args) {
-      try {
-        _requireWasm();
-        return const FlaxJsNull();
-      } on FlaxPermissionException catch (error) {
-        return FlaxJsString(
-          jsonEncode({
-            'code': error.code,
-            'permission': error.permission,
-            'operation': error.operation,
-            'reason': error.reason,
-          }),
-        );
-      }
-    });
     _releaseJs(
       runtime.evaluate(r'''
 (() => {
   const call = globalThis.__flaxPermissionCall;
-  const wasmCheck = globalThis.__flaxPermissionWasm;
   const parse = JSON.parse, stringify = JSON.stringify;
   const ErrorType = Error;
   Object.defineProperty(globalThis, 'permissions', {
@@ -121,6 +141,53 @@ extension _PermissionCalls on _Session {
       },
     }),
   });
+  delete globalThis.__flaxPermissionCall;
+})()
+''', sourceUrl: 'flax:permissions'),
+    );
+    _installWasmPermissionGuard(runtime, _requireWasm);
+  }
+
+  void _requireWasm() {
+    requireOpen();
+    permissions.require('flax.wasm', operation: 'WebAssembly');
+    if (_wasmPermission == null) {
+      final weak = WeakReference(this);
+      _wasmPermission = permissions.lease('flax.wasm', operation: 'WebAssembly')
+        ..onRevoke(() {
+          final session = weak.target;
+          if (session != null) unawaited(session.requestClose());
+        });
+    }
+  }
+}
+
+// Detached Workers use this same constructor/alias guard with startup authority.
+void _installWasmPermissionGuard(
+  FlaxJsRuntime runtime,
+  void Function() requireWasm,
+) {
+  runtime.registerHostFunction('__flaxPermissionWasm', (_, args) {
+    try {
+      requireWasm();
+      return const FlaxJsNull();
+    } on FlaxPermissionException catch (error) {
+      return FlaxJsString(
+        jsonEncode({
+          'code': error.code,
+          'permission': error.permission,
+          'operation': error.operation,
+          'reason': error.reason,
+        }),
+      );
+    }
+  });
+  _releaseJs(
+    runtime.evaluate(r'''
+(() => {
+  const wasmCheck = globalThis.__flaxPermissionWasm;
+  const parse = JSON.parse;
+  const ErrorType = Error;
   const wasm = globalThis.WebAssembly;
   if (wasm) {
     const asyncOperations = new Set(['compile', 'compileStreaming', 'instantiate', 'instantiateStreaming']);
@@ -153,23 +220,8 @@ extension _PermissionCalls on _Session {
       Object.defineProperty(wasm, name, {value: guarded});
     }
   }
-  delete globalThis.__flaxPermissionCall;
   delete globalThis.__flaxPermissionWasm;
 })()
-''', sourceUrl: 'flax:permissions'),
-    );
-  }
-
-  void _requireWasm() {
-    requireOpen();
-    permissions.require('flax.wasm', operation: 'WebAssembly');
-    if (_wasmPermission == null) {
-      final weak = WeakReference(this);
-      _wasmPermission = permissions.lease('flax.wasm', operation: 'WebAssembly')
-        ..onRevoke(() {
-          final session = weak.target;
-          if (session != null) unawaited(session.requestClose());
-        });
-    }
-  }
+''', sourceUrl: 'flax:wasm-permission'),
+  );
 }

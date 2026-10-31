@@ -1,0 +1,3469 @@
+{
+  "formatVersion": 1,
+  "recordedAt": "2026-10-31T04:48:27.697773+00:00",
+  "base": "a4cfeaee1fa4a264ddba0686f7cd79ccc819e61e",
+  "platform": {
+    "os": "macOS27.0.1 (26A434)",
+    "cpu": "Apple M2 Max",
+    "architecture": "arm64",
+    "configuration": "Release/AOT",
+    "three": "0.186.1",
+    "flutter": "3.47.6",
+    "engineUuid": "60D3782D-B472-3403-8658-DE43FAB6B40A"
+  },
+  "runtimeSnapshot": {
+    "digest": "1624b8cfdbe71427e9645c77a7cef284c0394ebca9c3b220245f2d4b95173a47",
+    "sourceFingerprint": "02f6da05ff60144fdb9c733f8bd7fd8c46e3c04003dec275b4ba4e715052578b",
+    "beforeAndAfter": "PASS"
+  },
+  "inputsSha256": {
+    "packages/flax_webgpu/example/fixtures/three/advanced.bin": "1ce6783cdd9149d6a3bf2e23f709d637de6e9982ab71e41aa1b5e4569b8f0969",
+    "packages/flax_webgpu/example/fixtures/three/basis/LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "packages/flax_webgpu/example/fixtures/three/basis/basis_transcoder.js": "8478b5b6d6b74e7d3082b89f6417321d8d1dc0307f2b30d4484bb11b441696a1",
+    "packages/flax_webgpu/example/fixtures/three/basis/basis_transcoder.wasm": "6cf17dc889352c42e9acf8897107978d127005fe3386c36a0e3845e27967630a",
+    "packages/flax_webgpu/example/fixtures/three/checker.png": "c5a21b378141cf9258640554866ece12767c06242bf29d4571bbf7312c251ffd",
+    "packages/flax_webgpu/example/fixtures/three/draco/draco_decoder.wasm": "a680d927bed9cb864ddbd63521868891af2bfbe755092761b4837487618df8ac",
+    "packages/flax_webgpu/example/fixtures/three/draco/draco_wasm_wrapper.js": "8bb2952d2ba7d67e1414f8df819410cb0434a666be53f671fff75f68843d76f6",
+    "packages/flax_webgpu/example/fixtures/three/geometry.bin": "d307fc6e06a3151345ca7b8336626377224db27e36b18211ad109cab12ce88d1",
+    "packages/flax_webgpu/example/fixtures/three/ktx2-fixtures.json": "3e9aa82bd930bc7c3539791aac5f4266f627f58e53e4a8f602243e186b239d27",
+    "packages/flax_webgpu/example/fixtures/three/meshopt.bin": "79d5246a8f7df7d9f31618eafe4b2836245671edf1adea01b0df9e6ee82f4365",
+    "packages/flax_webgpu/example/fixtures/three/meshopt.gltf": "0dad761bd049bbcb917b7940c3c6ba89a7855e3afeff10b45ce095b034f6d40e",
+    "packages/flax_webgpu/example/fixtures/three/morph.gltf": "60282fd630f2a8d2a1ab9355a6434449b54b4f47b5f15d845d1ae74204064247",
+    "packages/flax_webgpu/example/fixtures/three/skinned.gltf": "64d24c14d18021298f15ad99be760e7dd57f2a5b3d492d8a934c16c52d52af07",
+    "packages/flax_webgpu/example/fixtures/three/textured-cube.glb": "83ecbcaa82fd0d1f5b85d641c91fe744110971ecde08679a3cdfd80ec33a5058",
+    "packages/flax_webgpu/example/fixtures/three/textured-cube.gltf": "9b9b4e88fa410bb9a633126c65057b9e9136664963b368cbdc256ac9b3ad4b92",
+    "packages/flax_webgpu/example/fixtures/three/worker-combined.bin": "197e08f32135129f5d26d1c456ae589d430742b293379d0897d633065a855009",
+    "packages/flax_webgpu/example/fixtures/three/worker-combined.glb": "8cc30ad3fa4fd8e2d85def837c584b47e533b7aad3260d83356ece6f4762792d",
+    "packages/flax_webgpu/example/fixtures/three/worker-combined.gltf": "c0cbdf14cc8b337b6aa61f7e06c4a42a181f748c96f2b48187f3945bb59d4939",
+    "packages/flax_webgpu/example/fixtures/three/worker-grid.json": "02c3f638e87ae53b9b34e6072ba4cb6381faa753df6a0ce8366a47036305d30e",
+    "packages/flax_webgpu/example/fixtures/three/worker-grid.meshopt.bin": "8dfdd2dfc3913353ee85d3f5321f10cf548f1ea3e9dd43cb25e277490ca51af2",
+    "packages/flax_webgpu/example/fixtures/three/worker-pattern-etc1s.ktx2": "072f1f987a444e9acf10f4ca71140554416eeef4c7473a0a04fd91bdecdd7b8e",
+    "packages/flax_webgpu/example/fixtures/three/worker-pattern-uastc-zstd.ktx2": "81a90b8a706ebe3de60653ff93146c00527b37b9e06b3b9223bc2ec809263a5a",
+    "packages/flax_webgpu/example/fixtures/three/worker-pattern-uastc.ktx2": "a4acd4ad265dbf9eba848d0dce45fa1debed04083e419b6d6331d81558d51155",
+    "packages/flax_webgpu/example/fixtures/three/worker-pattern.png": "90547c4e6bfd8cf73185cc4d784bf0de9214eb491b75ae63665c866b309bbcd8",
+    "packages/flax_webgpu/example/fixtures/three/worker-quad.drc": "a3030b4980302e85f38e91df7525c9f0571fed2ef1bd8513c0348d2f99e7801f",
+    "packages/flax_webgpu/example/fixtures/three/worker-red-etc1s.ktx2": "21d63326fd3e1efccde7af9e157808cf87276154f8bf3d76d94b634d098d1438",
+    "packages/flax_webgpu/example/fixtures/three/worker-red-uastc.ktx2": "ba7f4817923fb140cef27a5c3b5cffb5c5e629b87559a6af617104bb6a653646",
+    "packages/flax_webgpu/example/fixtures/three/worker-red.png": "b201e2de7fd1a6eee7faf6b18a27ff99e0816f951b5d826f2c0b8436e0b60320",
+    "packages/flax_webgpu/example/fixtures/three/worker-reference.gltf": "8b7565ce7d803a7c4a34de81c6ff356265c8b3ed0e989bf4fe1fa5c8f02e8304",
+    "packages/flax_webgpu/example/js/three-worker-scenarios.js": "de593d4051d88cb6b6dbb283cff583767881e484173104ee73158ee729f2ab31",
+    "packages/flax_webgpu/example/js/build-fixtures.mjs": "66cf74c30347a25621784a063e589901e813fc9c51bb0660bcb8ded01e443024",
+    "packages/flax_webgpu/example/js/build-ktx-fixtures.py": "6ad00431dc69c96bc0de51528c751263fc13ce5b10cc73278c11e7e97b057eec",
+    "packages/flax_webgpu/example/js/main.js": "7ed50961868260ac90543801f91866efa93e2f4054290d9955ef63586dabc7d8",
+    "packages/flax_webgpu/example/lib/acceptance.dart": "23f4b423c26102368baab96b7452282a49e7c7249d809c889e3d1dd4803bea52"
+  },
+  "applicationReceiptSha256": "6f6d631684ffc422d454579cd6afe84197d244b5c287611788f76eaca70d2494",
+  "baseline": {
+    "inputManifest": {
+      "timestamp": "2026-10-31T04:28:28.852852+00:00",
+      "base": "a4cfeaee1fa4a264ddba0686f7cd79ccc819e61e",
+      "files": {
+        "packages/flax_webgpu/example/js/three-acceptance.js": "117f50d0b1fd7c227b70e5ad14458a3b98166cf77f86744e02eef4eabca57c7f",
+        "packages/flax_webgpu/example/js/three-workers.js": "39840aa4045490c016422cd4ffd62323c4104c74ca8545dc1daa4decbbd40115",
+        "packages/flax_webgpu/example/js/three-advanced.js": "0ccb9a5846d1c0a6803817cbb326779573a18695172000d823db728934d4c5ea",
+        "packages/flax_webgpu/example/js/three-features.js": "6ea294e2261acc6d1f535751219917ca84311f540cf5a7ed6e5514a59eeab909",
+        "packages/flax_webgpu/example/js/three-ktx-workers.js": "0f3274d7a6b2d5700a4076e13a4222bc6b1bcce3b93c28abffc7b557782a728a",
+        "packages/flax_webgpu/example/js/main.js": "8d87c20bb561ac2b5b378937f30b9dfebb62e8c52af348cbcedbc5aa3ae291e0",
+        "packages/flax_webgpu/tool/run_macos.py": "c4a91047e852786d0a403f1930e39c0125f0fae761d895b0e3c7a79db2d6a251",
+        "packages/flax_webgpu/example/lib/acceptance.dart": "c9114514836e1fff66b26573a1dfbd0d6c02a77cd7fe88e92f5309f45ab1e7e7",
+        "packages/flax_webgpu/example/fixtures/three/README.md": "abfb501f33bdeef8b62670431c4607deaf6bfe52096e052ef57d82247bf923ee",
+        "packages/flax_webgpu/example/fixtures/three/advanced.bin": "1ce6783cdd9149d6a3bf2e23f709d637de6e9982ab71e41aa1b5e4569b8f0969",
+        "packages/flax_webgpu/example/fixtures/three/basis/LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+        "packages/flax_webgpu/example/fixtures/three/basis/basis_transcoder.js": "8478b5b6d6b74e7d3082b89f6417321d8d1dc0307f2b30d4484bb11b441696a1",
+        "packages/flax_webgpu/example/fixtures/three/basis/basis_transcoder.wasm": "6cf17dc889352c42e9acf8897107978d127005fe3386c36a0e3845e27967630a",
+        "packages/flax_webgpu/example/fixtures/three/checker.png": "c5a21b378141cf9258640554866ece12767c06242bf29d4571bbf7312c251ffd",
+        "packages/flax_webgpu/example/fixtures/three/draco/draco_decoder.wasm": "a680d927bed9cb864ddbd63521868891af2bfbe755092761b4837487618df8ac",
+        "packages/flax_webgpu/example/fixtures/three/draco/draco_wasm_wrapper.js": "8bb2952d2ba7d67e1414f8df819410cb0434a666be53f671fff75f68843d76f6",
+        "packages/flax_webgpu/example/fixtures/three/geometry.bin": "d307fc6e06a3151345ca7b8336626377224db27e36b18211ad109cab12ce88d1",
+        "packages/flax_webgpu/example/fixtures/three/ktx2-fixtures.json": "5a50fa4e9b61f21d342cc17a84bd95aa23737c2ca5cb41f849ea8d6a855b4b79",
+        "packages/flax_webgpu/example/fixtures/three/meshopt.bin": "79d5246a8f7df7d9f31618eafe4b2836245671edf1adea01b0df9e6ee82f4365",
+        "packages/flax_webgpu/example/fixtures/three/meshopt.gltf": "0dad761bd049bbcb917b7940c3c6ba89a7855e3afeff10b45ce095b034f6d40e",
+        "packages/flax_webgpu/example/fixtures/three/morph.gltf": "60282fd630f2a8d2a1ab9355a6434449b54b4f47b5f15d845d1ae74204064247",
+        "packages/flax_webgpu/example/fixtures/three/skinned.gltf": "64d24c14d18021298f15ad99be760e7dd57f2a5b3d492d8a934c16c52d52af07",
+        "packages/flax_webgpu/example/fixtures/three/textured-cube.glb": "83ecbcaa82fd0d1f5b85d641c91fe744110971ecde08679a3cdfd80ec33a5058",
+        "packages/flax_webgpu/example/fixtures/three/textured-cube.gltf": "9b9b4e88fa410bb9a633126c65057b9e9136664963b368cbdc256ac9b3ad4b92",
+        "packages/flax_webgpu/example/fixtures/three/worker-quad.drc": "a3030b4980302e85f38e91df7525c9f0571fed2ef1bd8513c0348d2f99e7801f",
+        "packages/flax_webgpu/example/fixtures/three/worker-red-etc1s.ktx2": "21d63326fd3e1efccde7af9e157808cf87276154f8bf3d76d94b634d098d1438",
+        "packages/flax_webgpu/example/fixtures/three/worker-red-uastc.ktx2": "ba7f4817923fb140cef27a5c3b5cffb5c5e629b87559a6af617104bb6a653646",
+        "packages/flax_webgpu/example/fixtures/three/worker-red.png": "b201e2de7fd1a6eee7faf6b18a27ff99e0816f951b5d826f2c0b8436e0b60320"
+      },
+      "engineUuid": "UUID: 60D3782D-B472-3403-8658-DE43FAB6B40A (arm64) /Volumes/MAC_HOME/CodexHome/worktrees/webgpu-dawn-macos/flax/.local/flutter-sdk/engine/src/out/flax_mac_webgpu_fenced_release_arm64/FlutterMacOS.framework/Versions/A/FlutterMacOS"
+    },
+    "application": {
+      "passed": true,
+      "checks": [
+        {
+          "kind": "rendered",
+          "frames": 0,
+          "coreOnly": true,
+          "cycle": -1,
+          "canvas2D": false
+        },
+        {
+          "kind": "retired",
+          "cycle": -1,
+          "before": [0, 0, 0, 0, 0, 0],
+          "after": [0, 0, 0, 0, 0, 0]
+        },
+        {
+          "kind": "host-tools",
+          "window": true,
+          "randomViews": true,
+          "uuid": true,
+          "userTiming": true,
+          "observer": true,
+          "cycle": 0,
+          "canvas2D": true
+        },
+        {
+          "kind": "compute",
+          "adapter": {},
+          "values": [3, 5, 7, 9, 21, 41, 61, 81],
+          "assertions": 26,
+          "cycle": 0,
+          "canvas2D": true
+        },
+        {
+          "kind": "browser-base",
+          "exports": ["gltf-data-url", "glb"],
+          "blobRange": true,
+          "bitmaprenderer": true,
+          "cycle": 0,
+          "canvas2D": true
+        },
+        {
+          "kind": "images",
+          "assertions": 63,
+          "cycle": 0,
+          "canvas2D": true
+        },
+        {
+          "kind": "three",
+          "assertions": 65,
+          "cycle": 0,
+          "canvas2D": true
+        },
+        {
+          "kind": "three-image",
+          "name": "DirectionalLight-lit",
+          "cycle": 0
+        },
+        {
+          "kind": "three-image",
+          "name": "DirectionalLight-shadow",
+          "cycle": 0
+        },
+        {
+          "kind": "three-image",
+          "name": "PointLight-lit",
+          "cycle": 0
+        },
+        {
+          "kind": "three-image",
+          "name": "PointLight-shadow",
+          "cycle": 0
+        },
+        {
+          "kind": "three-image",
+          "name": "SpotLight-lit",
+          "cycle": 0
+        },
+        {
+          "kind": "three-image",
+          "name": "SpotLight-shadow",
+          "cycle": 0
+        },
+        {
+          "kind": "three-image",
+          "name": "post-plain",
+          "cycle": 0
+        },
+        {
+          "kind": "three-image",
+          "name": "post-inverted",
+          "cycle": 0
+        },
+        {
+          "kind": "three-image",
+          "name": "post-bloom",
+          "cycle": 0
+        },
+        {
+          "kind": "three-features",
+          "models": [
+            {
+              "name": "textured-cube.gltf",
+              "progressEvents": 1,
+              "brightness": 22.438603153935187
+            },
+            {
+              "name": "textured-cube.glb",
+              "progressEvents": 1,
+              "brightness": 22.438603153935187
+            }
+          ],
+          "lighting": [
+            {
+              "type": "DirectionalLight",
+              "dark": 18.622413917824073,
+              "lit": 118.676025390625
+            },
+            {
+              "type": "PointLight",
+              "dark": 18.622413917824073,
+              "lit": 147.6240234375
+            },
+            {
+              "type": "SpotLight",
+              "dark": 18.622413917824073,
+              "lit": 133.5584671585648
+            }
+          ],
+          "shadows": [
+            {
+              "type": "DirectionalLight",
+              "darkerPixels": 2303,
+              "litFrame": 7,
+              "shadowFrame": 8
+            },
+            {
+              "type": "PointLight",
+              "darkerPixels": 4305,
+              "litFrame": 9,
+              "shadowFrame": 11
+            },
+            {
+              "type": "SpotLight",
+              "darkerPixels": 4238,
+              "litFrame": 13,
+              "shadowFrame": 14
+            }
+          ],
+          "postprocessing": [
+            {
+              "effect": "TSL inversion",
+              "maxError": 1
+            },
+            {
+              "effect": "Bloom",
+              "plain": 74.17095269097223,
+              "bloom": 180.87966579861111
+            }
+          ],
+          "assertions": 84,
+          "cycle": 0,
+          "canvas2D": true
+        },
+        {
+          "kind": "api-extensions",
+          "swizzle": true,
+          "immediates": true,
+          "maxImmediateSize": 64,
+          "assertions": 107,
+          "cycle": 0,
+          "canvas2D": true
+        },
+        {
+          "kind": "three-image",
+          "name": "advanced-skinned-rest",
+          "cycle": 0
+        },
+        {
+          "kind": "three-image",
+          "name": "advanced-skinned-pose",
+          "cycle": 0
+        },
+        {
+          "kind": "three-image",
+          "name": "advanced-skinned-restored",
+          "cycle": 0
+        },
+        {
+          "kind": "three-image",
+          "name": "advanced-morph-rest",
+          "cycle": 0
+        },
+        {
+          "kind": "three-image",
+          "name": "advanced-morph-pose",
+          "cycle": 0
+        },
+        {
+          "kind": "three-image",
+          "name": "advanced-morph-restored",
+          "cycle": 0
+        },
+        {
+          "kind": "three-image",
+          "name": "advanced-meshopt",
+          "cycle": 0
+        },
+        {
+          "kind": "three-image",
+          "name": "advanced-export-gltf",
+          "cycle": 0
+        },
+        {
+          "kind": "three-image",
+          "name": "advanced-export-glb",
+          "cycle": 0
+        },
+        {
+          "kind": "three-advanced",
+          "animations": [
+            {
+              "kind": "skinned",
+              "changedPixels": 4014,
+              "restoredMaxError": 0
+            },
+            {
+              "kind": "morph",
+              "changedPixels": 4194,
+              "restoredMaxError": 0
+            }
+          ],
+          "meshopt": {
+            "mode": "single-thread Wasm",
+            "bufferModes": ["ATTRIBUTES", "TRIANGLES"],
+            "vertices": 4,
+            "maxPixelError": 0
+          },
+          "texturedExports": [
+            {
+              "format": "gltf",
+              "maxPixelError": 0
+            },
+            {
+              "format": "glb",
+              "maxPixelError": 0
+            }
+          ],
+          "userTiming": true,
+          "assertions": 141,
+          "cycle": 0,
+          "canvas2D": true
+        },
+        {
+          "kind": "three-workers",
+          "decoder": "DRACOLoader",
+          "version": "0.186.1",
+          "workerCount": 1,
+          "inputBytes": 75,
+          "coldMs": 40.40599999999995,
+          "reusedMs": 0.21299999999996544,
+          "assertions": 146,
+          "cycle": 0,
+          "canvas2D": true
+        },
+        {
+          "kind": "three-ktx-workers",
+          "decoder": "KTX2Loader",
+          "version": "0.186.1",
+          "compressedBC": true,
+          "results": [
+            {
+              "mode": "etc1s",
+              "inputBytes": 314,
+              "outputBytes": 64,
+              "format": 36492,
+              "workerCount": 1,
+              "coldMs": 78.47699999999986,
+              "reusedMs": 0.37400000000002365,
+              "centerPixel": [253, 0, 0, 255]
+            },
+            {
+              "mode": "uastc",
+              "inputBytes": 256,
+              "outputBytes": 64,
+              "format": 36492,
+              "workerCount": 1,
+              "coldMs": 75.38499999999999,
+              "reusedMs": 0.34799999999995634,
+              "centerPixel": [255, 0, 0, 255]
+            }
+          ],
+          "assertions": 156,
+          "cycle": 0,
+          "canvas2D": true
+        },
+        {
+          "kind": "rendered",
+          "frames": 120,
+          "format": "bgra8unorm",
+          "cpuEncodeMs": {
+            "p50": 0.2980000000000018,
+            "p95": 0.9139999999999873
+          },
+          "cycle": 0,
+          "canvas2D": true
+        },
+        {
+          "kind": "retired",
+          "cycle": 0,
+          "before": [1, 1, 6, 8, 4, 0],
+          "after": [0, 0, 0, 0, 0, 0]
+        },
+        {
+          "kind": "host-tools",
+          "window": true,
+          "randomViews": true,
+          "uuid": true,
+          "userTiming": true,
+          "observer": true,
+          "cycle": 1,
+          "canvas2D": false
+        },
+        {
+          "kind": "compute",
+          "adapter": {},
+          "values": [3, 5, 7, 9, 21, 41, 61, 81],
+          "assertions": 25,
+          "cycle": 1,
+          "canvas2D": false
+        },
+        {
+          "kind": "browser-base",
+          "exports": ["gltf-data-url", "glb"],
+          "blobRange": true,
+          "bitmaprenderer": true,
+          "cycle": 1,
+          "canvas2D": false
+        },
+        {
+          "kind": "images",
+          "assertions": 60,
+          "cycle": 1,
+          "canvas2D": false
+        },
+        {
+          "kind": "three",
+          "assertions": 62,
+          "cycle": 1,
+          "canvas2D": false
+        },
+        {
+          "kind": "three-image",
+          "name": "DirectionalLight-lit",
+          "cycle": 1
+        },
+        {
+          "kind": "three-image",
+          "name": "DirectionalLight-shadow",
+          "cycle": 1
+        },
+        {
+          "kind": "three-image",
+          "name": "PointLight-lit",
+          "cycle": 1
+        },
+        {
+          "kind": "three-image",
+          "name": "PointLight-shadow",
+          "cycle": 1
+        },
+        {
+          "kind": "three-image",
+          "name": "SpotLight-lit",
+          "cycle": 1
+        },
+        {
+          "kind": "three-image",
+          "name": "SpotLight-shadow",
+          "cycle": 1
+        },
+        {
+          "kind": "three-image",
+          "name": "post-plain",
+          "cycle": 1
+        },
+        {
+          "kind": "three-image",
+          "name": "post-inverted",
+          "cycle": 1
+        },
+        {
+          "kind": "three-image",
+          "name": "post-bloom",
+          "cycle": 1
+        },
+        {
+          "kind": "three-features",
+          "models": [
+            {
+              "name": "textured-cube.gltf",
+              "progressEvents": 1,
+              "brightness": 22.438603153935187
+            },
+            {
+              "name": "textured-cube.glb",
+              "progressEvents": 1,
+              "brightness": 22.438603153935187
+            }
+          ],
+          "lighting": [
+            {
+              "type": "DirectionalLight",
+              "dark": 18.622413917824073,
+              "lit": 118.676025390625
+            },
+            {
+              "type": "PointLight",
+              "dark": 18.622413917824073,
+              "lit": 147.6240234375
+            },
+            {
+              "type": "SpotLight",
+              "dark": 18.622413917824073,
+              "lit": 133.5584671585648
+            }
+          ],
+          "shadows": [
+            {
+              "type": "DirectionalLight",
+              "darkerPixels": 2303,
+              "litFrame": 8,
+              "shadowFrame": 10
+            },
+            {
+              "type": "PointLight",
+              "darkerPixels": 4305,
+              "litFrame": 11,
+              "shadowFrame": 12
+            },
+            {
+              "type": "SpotLight",
+              "darkerPixels": 4238,
+              "litFrame": 13,
+              "shadowFrame": 15
+            }
+          ],
+          "postprocessing": [
+            {
+              "effect": "TSL inversion",
+              "maxError": 1
+            },
+            {
+              "effect": "Bloom",
+              "plain": 74.17095269097223,
+              "bloom": 180.87966579861111
+            }
+          ],
+          "assertions": 81,
+          "cycle": 1,
+          "canvas2D": false
+        },
+        {
+          "kind": "api-extensions",
+          "swizzle": true,
+          "immediates": true,
+          "maxImmediateSize": 64,
+          "assertions": 104,
+          "cycle": 1,
+          "canvas2D": false
+        },
+        {
+          "kind": "three-image",
+          "name": "advanced-skinned-rest",
+          "cycle": 1
+        },
+        {
+          "kind": "three-image",
+          "name": "advanced-skinned-pose",
+          "cycle": 1
+        },
+        {
+          "kind": "three-image",
+          "name": "advanced-skinned-restored",
+          "cycle": 1
+        },
+        {
+          "kind": "three-image",
+          "name": "advanced-morph-rest",
+          "cycle": 1
+        },
+        {
+          "kind": "three-image",
+          "name": "advanced-morph-pose",
+          "cycle": 1
+        },
+        {
+          "kind": "three-image",
+          "name": "advanced-morph-restored",
+          "cycle": 1
+        },
+        {
+          "kind": "three-image",
+          "name": "advanced-meshopt",
+          "cycle": 1
+        },
+        {
+          "kind": "three-advanced",
+          "animations": [
+            {
+              "kind": "skinned",
+              "changedPixels": 4014,
+              "restoredMaxError": 0
+            },
+            {
+              "kind": "morph",
+              "changedPixels": 4194,
+              "restoredMaxError": 0
+            }
+          ],
+          "meshopt": {
+            "mode": "single-thread Wasm",
+            "bufferModes": ["ATTRIBUTES", "TRIANGLES"],
+            "vertices": 4,
+            "maxPixelError": 0
+          },
+          "texturedExports": [],
+          "texturedExportSkip": "Canvas 2D is required for GLTFExporter image encoding",
+          "userTiming": true,
+          "assertions": 132,
+          "cycle": 1,
+          "canvas2D": false
+        },
+        {
+          "kind": "three-workers",
+          "decoder": "DRACOLoader",
+          "version": "0.186.1",
+          "workerCount": 1,
+          "inputBytes": 75,
+          "coldMs": 38.708000000000084,
+          "reusedMs": 0.25099999999997635,
+          "assertions": 137,
+          "cycle": 1,
+          "canvas2D": false
+        },
+        {
+          "kind": "three-ktx-workers",
+          "decoder": "KTX2Loader",
+          "version": "0.186.1",
+          "compressedBC": true,
+          "results": [
+            {
+              "mode": "etc1s",
+              "inputBytes": 314,
+              "outputBytes": 64,
+              "format": 36492,
+              "workerCount": 1,
+              "coldMs": 79.55899999999997,
+              "reusedMs": 0.42600000000015825,
+              "centerPixel": [253, 0, 0, 255]
+            },
+            {
+              "mode": "uastc",
+              "inputBytes": 256,
+              "outputBytes": 64,
+              "format": 36492,
+              "workerCount": 1,
+              "coldMs": 75.67900000000009,
+              "reusedMs": 0.37599999999997635,
+              "centerPixel": [255, 0, 0, 255]
+            }
+          ],
+          "assertions": 147,
+          "cycle": 1,
+          "canvas2D": false
+        },
+        {
+          "kind": "rendered",
+          "frames": 120,
+          "format": "rgba8unorm",
+          "cpuEncodeMs": {
+            "p50": 0.42399999999997817,
+            "p95": 0.9760000000001128
+          },
+          "cycle": 1,
+          "canvas2D": false
+        },
+        {
+          "kind": "retired",
+          "cycle": 1,
+          "before": [1, 1, 6, 8, 4, 0],
+          "after": [0, 0, 0, 0, 0, 0]
+        },
+        {
+          "kind": "host-tools",
+          "window": true,
+          "randomViews": true,
+          "uuid": true,
+          "userTiming": true,
+          "observer": true,
+          "cycle": 2,
+          "canvas2D": true
+        },
+        {
+          "kind": "compute",
+          "adapter": {},
+          "values": [3, 5, 7, 9, 21, 41, 61, 81],
+          "assertions": 26,
+          "cycle": 2,
+          "canvas2D": true
+        },
+        {
+          "kind": "browser-base",
+          "exports": ["gltf-data-url", "glb"],
+          "blobRange": true,
+          "bitmaprenderer": true,
+          "cycle": 2,
+          "canvas2D": true
+        },
+        {
+          "kind": "images",
+          "assertions": 63,
+          "cycle": 2,
+          "canvas2D": true
+        },
+        {
+          "kind": "three",
+          "assertions": 65,
+          "cycle": 2,
+          "canvas2D": true
+        },
+        {
+          "kind": "three-image",
+          "name": "DirectionalLight-lit",
+          "cycle": 2
+        },
+        {
+          "kind": "three-image",
+          "name": "DirectionalLight-shadow",
+          "cycle": 2
+        },
+        {
+          "kind": "three-image",
+          "name": "PointLight-lit",
+          "cycle": 2
+        },
+        {
+          "kind": "three-image",
+          "name": "PointLight-shadow",
+          "cycle": 2
+        },
+        {
+          "kind": "three-image",
+          "name": "SpotLight-lit",
+          "cycle": 2
+        },
+        {
+          "kind": "three-image",
+          "name": "SpotLight-shadow",
+          "cycle": 2
+        },
+        {
+          "kind": "three-image",
+          "name": "post-plain",
+          "cycle": 2
+        },
+        {
+          "kind": "three-image",
+          "name": "post-inverted",
+          "cycle": 2
+        },
+        {
+          "kind": "three-image",
+          "name": "post-bloom",
+          "cycle": 2
+        },
+        {
+          "kind": "three-features",
+          "models": [
+            {
+              "name": "textured-cube.gltf",
+              "progressEvents": 1,
+              "brightness": 22.438603153935187
+            },
+            {
+              "name": "textured-cube.glb",
+              "progressEvents": 1,
+              "brightness": 22.438603153935187
+            }
+          ],
+          "lighting": [
+            {
+              "type": "DirectionalLight",
+              "dark": 18.622413917824073,
+              "lit": 118.676025390625
+            },
+            {
+              "type": "PointLight",
+              "dark": 18.622413917824073,
+              "lit": 147.6240234375
+            },
+            {
+              "type": "SpotLight",
+              "dark": 18.622413917824073,
+              "lit": 133.5584671585648
+            }
+          ],
+          "shadows": [
+            {
+              "type": "DirectionalLight",
+              "darkerPixels": 2303,
+              "litFrame": 8,
+              "shadowFrame": 9
+            },
+            {
+              "type": "PointLight",
+              "darkerPixels": 4305,
+              "litFrame": 10,
+              "shadowFrame": 12
+            },
+            {
+              "type": "SpotLight",
+              "darkerPixels": 4238,
+              "litFrame": 13,
+              "shadowFrame": 14
+            }
+          ],
+          "postprocessing": [
+            {
+              "effect": "TSL inversion",
+              "maxError": 1
+            },
+            {
+              "effect": "Bloom",
+              "plain": 74.17095269097223,
+              "bloom": 180.87966579861111
+            }
+          ],
+          "assertions": 84,
+          "cycle": 2,
+          "canvas2D": true
+        },
+        {
+          "kind": "api-extensions",
+          "swizzle": true,
+          "immediates": true,
+          "maxImmediateSize": 64,
+          "assertions": 107,
+          "cycle": 2,
+          "canvas2D": true
+        },
+        {
+          "kind": "three-image",
+          "name": "advanced-skinned-rest",
+          "cycle": 2
+        },
+        {
+          "kind": "three-image",
+          "name": "advanced-skinned-pose",
+          "cycle": 2
+        },
+        {
+          "kind": "three-image",
+          "name": "advanced-skinned-restored",
+          "cycle": 2
+        },
+        {
+          "kind": "three-image",
+          "name": "advanced-morph-rest",
+          "cycle": 2
+        },
+        {
+          "kind": "three-image",
+          "name": "advanced-morph-pose",
+          "cycle": 2
+        },
+        {
+          "kind": "three-image",
+          "name": "advanced-morph-restored",
+          "cycle": 2
+        },
+        {
+          "kind": "three-image",
+          "name": "advanced-meshopt",
+          "cycle": 2
+        },
+        {
+          "kind": "three-image",
+          "name": "advanced-export-gltf",
+          "cycle": 2
+        },
+        {
+          "kind": "three-image",
+          "name": "advanced-export-glb",
+          "cycle": 2
+        },
+        {
+          "kind": "three-advanced",
+          "animations": [
+            {
+              "kind": "skinned",
+              "changedPixels": 4014,
+              "restoredMaxError": 0
+            },
+            {
+              "kind": "morph",
+              "changedPixels": 4194,
+              "restoredMaxError": 0
+            }
+          ],
+          "meshopt": {
+            "mode": "single-thread Wasm",
+            "bufferModes": ["ATTRIBUTES", "TRIANGLES"],
+            "vertices": 4,
+            "maxPixelError": 0
+          },
+          "texturedExports": [
+            {
+              "format": "gltf",
+              "maxPixelError": 0
+            },
+            {
+              "format": "glb",
+              "maxPixelError": 0
+            }
+          ],
+          "userTiming": true,
+          "assertions": 141,
+          "cycle": 2,
+          "canvas2D": true
+        },
+        {
+          "kind": "three-workers",
+          "decoder": "DRACOLoader",
+          "version": "0.186.1",
+          "workerCount": 1,
+          "inputBytes": 75,
+          "coldMs": 40.246000000000095,
+          "reusedMs": 0.20299999999997453,
+          "assertions": 146,
+          "cycle": 2,
+          "canvas2D": true
+        },
+        {
+          "kind": "three-ktx-workers",
+          "decoder": "KTX2Loader",
+          "version": "0.186.1",
+          "compressedBC": true,
+          "results": [
+            {
+              "mode": "etc1s",
+              "inputBytes": 314,
+              "outputBytes": 64,
+              "format": 36492,
+              "workerCount": 1,
+              "coldMs": 79.11400000000003,
+              "reusedMs": 0.5140000000001237,
+              "centerPixel": [253, 0, 0, 255]
+            },
+            {
+              "mode": "uastc",
+              "inputBytes": 256,
+              "outputBytes": 64,
+              "format": 36492,
+              "workerCount": 1,
+              "coldMs": 77.30199999999991,
+              "reusedMs": 0.45600000000013097,
+              "centerPixel": [255, 0, 0, 255]
+            }
+          ],
+          "assertions": 156,
+          "cycle": 2,
+          "canvas2D": true
+        },
+        {
+          "kind": "rendered",
+          "frames": 120,
+          "format": "bgra8unorm",
+          "cpuEncodeMs": {
+            "p50": 0.5189999999997781,
+            "p95": 1.731999999999971
+          },
+          "cycle": 2,
+          "canvas2D": true
+        },
+        {
+          "kind": "retired",
+          "cycle": 2,
+          "before": [1, 1, 6, 8, 4, 0],
+          "after": [0, 0, 0, 0, 0, 0]
+        }
+      ],
+      "coloredPixels": 165758
+    },
+    "buildAndRunSeconds": 144.98
+  },
+  "verification": {
+    "coreJs": 135,
+    "canvasJs": 35,
+    "webgpuJs": 6,
+    "exampleJs": 2,
+    "scopedTypeScriptPackages": 4,
+    "stagedDartAnalysis": "PASS",
+    "newScenarioAssertions": 405,
+    "newScenarioSuccessfulDecodes": 303,
+    "newScenarioBackgroundSuccessfulDecodes": 243,
+    "newScenarioMainControlDecodes": 60,
+    "newScenarioRejectedDecodes": 18,
+    "gpuValidationErrors": 0,
+    "commit": false,
+    "push": false,
+    "publication": false
+  },
+  "method": {
+    "meshopt": "Forward/reverse worker counts0,1,2,2,1,0 per Session; six samples/count across3 Sessions; cold pool2 tasks, reused pool8 tasks; fresh identical251983-byte sources,2097152-byte outputs each; output equality outside timings. The decoder module is already warm on main.",
+    "timers": "Requested1ms timestamp-only main interval records actual callbacks and completion gap. Every mode also has a separate requested30ms post-completion observation; observedMs is actual elapsed time. Output validation follows both windows. Work-only and full-window gaps/ticks are separate. There is no fixed-duration decoder workload or manual GC.",
+    "memory": "RSS only at measurement boundaries; processPeakRss is cumulative OS process high-water. No every-tick bridge or RSS probe. Neither boundary RSS nor3 closes proves absence of a leak.",
+    "ktx": "Each branch uses one2-worker loader; four cold tasks then four reused tasks with fresh buffers, one corrupt task and one successful recovery. Both workers return original messages.",
+    "combined": "PNG reference then compressed glTF then embeddedGLB share decoder pools; load times are descriptive and are not format A/B results."
+  },
+  "meshoptSummary": [
+    {
+      "workers": 0,
+      "samples": 6,
+      "cold2MedianMs": 2.5405000000000655,
+      "reused8MedianMs": 6.21550000000002,
+      "reused8MinMs": 5.987999999999829,
+      "reused8MaxMs": 6.616999999999962,
+      "reusedWorkTimerGapMedianMs": 6.235000000000014,
+      "reusedFullTimerGapMedianMs": 26.920000000000073,
+      "reusedObservedMedianMs": 44.969499999999925
+    },
+    {
+      "workers": 1,
+      "samples": 6,
+      "cold2MedianMs": 35.04249999999979,
+      "reused8MedianMs": 33.31000000000017,
+      "reused8MinMs": 31.388000000000375,
+      "reused8MaxMs": 40.205000000000155,
+      "reusedWorkTimerGapMedianMs": 25.927499999999895,
+      "reusedFullTimerGapMedianMs": 25.958999999999833,
+      "reusedObservedMedianMs": 64.37300000000016
+    },
+    {
+      "workers": 2,
+      "samples": 6,
+      "cold2MedianMs": 35.54399999999987,
+      "reused8MedianMs": 6.783500000000004,
+      "reused8MinMs": 6.563999999999851,
+      "reused8MaxMs": 8.269000000000233,
+      "reusedWorkTimerGapMedianMs": 6.667999999999893,
+      "reusedFullTimerGapMedianMs": 26.962999999999965,
+      "reusedObservedMedianMs": 38.41549999999984
+    }
+  ],
+  "application": {
+    "passed": true,
+    "checks": [
+      {
+        "kind": "rendered",
+        "frames": 0,
+        "coreOnly": true,
+        "cycle": -1,
+        "canvas2D": false
+      },
+      {
+        "kind": "retired",
+        "cycle": -1,
+        "before": [0, 0, 0, 0, 0, 0],
+        "after": [0, 0, 0, 0, 0, 0],
+        "workersBefore": [0, 0],
+        "workersAfter": [0, 0],
+        "rssAfter": 270155776
+      },
+      {
+        "kind": "host-tools",
+        "window": true,
+        "randomViews": true,
+        "uuid": true,
+        "userTiming": true,
+        "observer": true,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "compute",
+        "adapter": {},
+        "values": [3, 5, 7, 9, 21, 41, 61, 81],
+        "assertions": 26,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "browser-base",
+        "exports": ["gltf-data-url", "glb"],
+        "blobRange": true,
+        "bitmaprenderer": true,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "images",
+        "assertions": 63,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "three",
+        "assertions": 65,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "three-image",
+        "name": "DirectionalLight-lit",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "DirectionalLight-shadow",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "PointLight-lit",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "PointLight-shadow",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "SpotLight-lit",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "SpotLight-shadow",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "post-plain",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "post-inverted",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "post-bloom",
+        "cycle": 0
+      },
+      {
+        "kind": "three-features",
+        "models": [
+          {
+            "name": "textured-cube.gltf",
+            "progressEvents": 1,
+            "brightness": 22.438603153935187
+          },
+          {
+            "name": "textured-cube.glb",
+            "progressEvents": 1,
+            "brightness": 22.438603153935187
+          }
+        ],
+        "lighting": [
+          {
+            "type": "DirectionalLight",
+            "dark": 18.622413917824073,
+            "lit": 118.676025390625
+          },
+          {
+            "type": "PointLight",
+            "dark": 18.622413917824073,
+            "lit": 147.6240234375
+          },
+          {
+            "type": "SpotLight",
+            "dark": 18.622413917824073,
+            "lit": 133.5584671585648
+          }
+        ],
+        "shadows": [
+          {
+            "type": "DirectionalLight",
+            "darkerPixels": 2303,
+            "litFrame": 8,
+            "shadowFrame": 9
+          },
+          {
+            "type": "PointLight",
+            "darkerPixels": 4305,
+            "litFrame": 10,
+            "shadowFrame": 12
+          },
+          {
+            "type": "SpotLight",
+            "darkerPixels": 4238,
+            "litFrame": 14,
+            "shadowFrame": 15
+          }
+        ],
+        "postprocessing": [
+          {
+            "effect": "TSL inversion",
+            "maxError": 1
+          },
+          {
+            "effect": "Bloom",
+            "plain": 74.17095269097223,
+            "bloom": 180.87966579861111
+          }
+        ],
+        "assertions": 84,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "api-extensions",
+        "swizzle": true,
+        "immediates": true,
+        "maxImmediateSize": 64,
+        "assertions": 107,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-skinned-rest",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-skinned-pose",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-skinned-restored",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-morph-rest",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-morph-pose",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-morph-restored",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-meshopt",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-export-gltf",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-export-glb",
+        "cycle": 0
+      },
+      {
+        "kind": "three-advanced",
+        "animations": [
+          {
+            "kind": "skinned",
+            "changedPixels": 4014,
+            "restoredMaxError": 0
+          },
+          {
+            "kind": "morph",
+            "changedPixels": 4194,
+            "restoredMaxError": 0
+          }
+        ],
+        "meshopt": {
+          "mode": "single-thread Wasm",
+          "bufferModes": ["ATTRIBUTES", "TRIANGLES"],
+          "vertices": 4,
+          "maxPixelError": 0
+        },
+        "texturedExports": [
+          {
+            "format": "gltf",
+            "maxPixelError": 0
+          },
+          {
+            "format": "glb",
+            "maxPixelError": 0
+          }
+        ],
+        "userTiming": true,
+        "assertions": 141,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "three-workers",
+        "decoder": "DRACOLoader",
+        "version": "0.186.1",
+        "workerCount": 1,
+        "inputBytes": 75,
+        "coldMs": 39.86999999999989,
+        "reusedMs": 0.20699999999987995,
+        "assertions": 146,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "three-ktx-workers",
+        "decoder": "KTX2Loader",
+        "version": "0.186.1",
+        "compressedBC": true,
+        "results": [
+          {
+            "mode": "etc1s",
+            "inputBytes": 314,
+            "outputBytes": 64,
+            "format": 36492,
+            "workerCount": 1,
+            "coldMs": 75.52999999999997,
+            "reusedMs": 0.39200000000005275,
+            "centerPixel": [253, 0, 0, 255]
+          },
+          {
+            "mode": "uastc",
+            "inputBytes": 256,
+            "outputBytes": 64,
+            "format": 36492,
+            "workerCount": 1,
+            "coldMs": 74.61799999999994,
+            "reusedMs": 0.3650000000000091,
+            "centerPixel": [255, 0, 0, 255]
+          }
+        ],
+        "assertions": 156,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "three-image",
+        "name": "workers-texture-etc1s",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "workers-texture-uastc",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "workers-texture-uastc-zstd",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "workers-worker-reference-gltf-rest",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "workers-worker-reference-gltf-pose",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "workers-worker-combined-gltf-rest",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "workers-worker-combined-gltf-pose",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "workers-worker-combined-glb-rest",
+        "cycle": 0
+      },
+      {
+        "kind": "three-image",
+        "name": "workers-worker-combined-glb-pose",
+        "cycle": 0
+      },
+      {
+        "kind": "three-worker-scenarios",
+        "version": "0.186.1",
+        "meshopt": [
+          {
+            "workers": 0,
+            "coldTasks": 2,
+            "reusedTasks": 8,
+            "cold": {
+              "completedMs": 3.213999999999942,
+              "observationMs": 30,
+              "observedMs": 41.067999999999984,
+              "ticks": 10,
+              "ticksDuringWork": 0,
+              "maxGapDuringWorkMs": 3.2409999999999854,
+              "maxGapMs": 25.46199999999999,
+              "rssBefore": 358612992,
+              "rssAfter": 354795520,
+              "processPeakRss": 384204800
+            },
+            "reused": {
+              "completedMs": 6.616999999999962,
+              "observationMs": 30,
+              "observedMs": 41.32199999999989,
+              "ticks": 10,
+              "ticksDuringWork": 0,
+              "maxGapDuringWorkMs": 6.6340000000000146,
+              "maxGapMs": 22.13700000000017,
+              "rssBefore": 354795520,
+              "rssAfter": 363003904,
+              "processPeakRss": 384204800
+            },
+            "dispatch": [],
+            "live": [0, 0],
+            "retired": [0, 0]
+          },
+          {
+            "workers": 1,
+            "coldTasks": 2,
+            "reusedTasks": 8,
+            "cold": {
+              "completedMs": 38.09500000000003,
+              "observationMs": 30,
+              "observedMs": 70.22000000000003,
+              "ticks": 47,
+              "ticksDuringWork": 16,
+              "maxGapDuringWorkMs": 21.13799999999992,
+              "maxGapMs": 21.13799999999992,
+              "rssBefore": 363216896,
+              "rssAfter": 371916800,
+              "processPeakRss": 384204800
+            },
+            "reused": {
+              "completedMs": 40.205000000000155,
+              "observationMs": 30,
+              "observedMs": 71.10900000000015,
+              "ticks": 33,
+              "ticksDuringWork": 2,
+              "maxGapDuringWorkMs": 32.019000000000005,
+              "maxGapMs": 32.019000000000005,
+              "rssBefore": 371916800,
+              "rssAfter": 386170880,
+              "processPeakRss": 387366912
+            },
+            "dispatch": [
+              {
+                "tasks": 10,
+                "replies": 10,
+                "errors": 0
+              }
+            ],
+            "live": [1, 1],
+            "retired": [0, 0]
+          },
+          {
+            "workers": 2,
+            "coldTasks": 2,
+            "reusedTasks": 8,
+            "cold": {
+              "completedMs": 36.12300000000005,
+              "observationMs": 30,
+              "observedMs": 66.94000000000005,
+              "ticks": 49,
+              "ticksDuringWork": 19,
+              "maxGapDuringWorkMs": 17.009000000000015,
+              "maxGapMs": 17.009000000000015,
+              "rssBefore": 381140992,
+              "rssAfter": 397934592,
+              "processPeakRss": 397934592
+            },
+            "reused": {
+              "completedMs": 6.721000000000004,
+              "observationMs": 30,
+              "observedMs": 38.416999999999916,
+              "ticks": 7,
+              "ticksDuringWork": 1,
+              "maxGapDuringWorkMs": 6.616999999999734,
+              "maxGapMs": 25.340000000000146,
+              "rssBefore": 397934592,
+              "rssAfter": 397590528,
+              "processPeakRss": 400326656
+            },
+            "dispatch": [
+              {
+                "tasks": 5,
+                "replies": 5,
+                "errors": 0
+              },
+              {
+                "tasks": 5,
+                "replies": 5,
+                "errors": 0
+              }
+            ],
+            "live": [2, 2],
+            "retired": [0, 0]
+          },
+          {
+            "workers": 2,
+            "coldTasks": 2,
+            "reusedTasks": 8,
+            "cold": {
+              "completedMs": 34.96499999999969,
+              "observationMs": 30,
+              "observedMs": 65.95899999999983,
+              "ticks": 50,
+              "ticksDuringWork": 20,
+              "maxGapDuringWorkMs": 15.18899999999985,
+              "maxGapMs": 15.18899999999985,
+              "rssBefore": 391528448,
+              "rssAfter": 401293312,
+              "processPeakRss": 401293312
+            },
+            "reused": {
+              "completedMs": 6.621000000000095,
+              "observationMs": 30,
+              "observedMs": 38.41399999999976,
+              "ticks": 3,
+              "ticksDuringWork": 1,
+              "maxGapDuringWorkMs": 6.48700000000008,
+              "maxGapMs": 29.30199999999968,
+              "rssBefore": 401309696,
+              "rssAfter": 405143552,
+              "processPeakRss": 407928832
+            },
+            "dispatch": [
+              {
+                "tasks": 5,
+                "replies": 5,
+                "errors": 0
+              },
+              {
+                "tasks": 5,
+                "replies": 5,
+                "errors": 0
+              }
+            ],
+            "live": [2, 2],
+            "retired": [0, 0]
+          },
+          {
+            "workers": 1,
+            "coldTasks": 2,
+            "reusedTasks": 8,
+            "cold": {
+              "completedMs": 33.47699999999986,
+              "observationMs": 30,
+              "observedMs": 64.26000000000022,
+              "ticks": 46,
+              "ticksDuringWork": 15,
+              "maxGapDuringWorkMs": 16.932999999999993,
+              "maxGapMs": 16.932999999999993,
+              "rssBefore": 399065088,
+              "rssAfter": 402440192,
+              "processPeakRss": 407928832
+            },
+            "reused": {
+              "completedMs": 31.388000000000375,
+              "observationMs": 30,
+              "observedMs": 62.38100000000031,
+              "ticks": 32,
+              "ticksDuringWork": 1,
+              "maxGapDuringWorkMs": 24.819000000000415,
+              "maxGapMs": 24.851000000000113,
+              "rssBefore": 402440192,
+              "rssAfter": 405061632,
+              "processPeakRss": 407928832
+            },
+            "dispatch": [
+              {
+                "tasks": 10,
+                "replies": 10,
+                "errors": 0
+              }
+            ],
+            "live": [1, 1],
+            "retired": [0, 0]
+          },
+          {
+            "workers": 0,
+            "coldTasks": 2,
+            "reusedTasks": 8,
+            "cold": {
+              "completedMs": 1.9220000000000255,
+              "observationMs": 30,
+              "observedMs": 42.95699999999988,
+              "ticks": 2,
+              "ticksDuringWork": 0,
+              "maxGapDuringWorkMs": 1.9340000000001965,
+              "maxGapMs": 35.55400000000009,
+              "rssBefore": 402112512,
+              "rssAfter": 400064512,
+              "processPeakRss": 407928832
+            },
+            "reused": {
+              "completedMs": 6.1469999999999345,
+              "observationMs": 30,
+              "observedMs": 46.447999999999865,
+              "ticks": 10,
+              "ticksDuringWork": 0,
+              "maxGapDuringWorkMs": 6.163000000000011,
+              "maxGapMs": 27.83100000000013,
+              "rssBefore": 400080896,
+              "rssAfter": 400179200,
+              "processPeakRss": 407928832
+            },
+            "dispatch": [],
+            "live": [0, 0],
+            "retired": [0, 0]
+          }
+        ],
+        "textures": [
+          {
+            "mode": "etc1s",
+            "inputBytes": 2612,
+            "outputBytes": 87408,
+            "levels": 9,
+            "coldTasks": 4,
+            "reusedTasks": 4,
+            "cold": {
+              "completedMs": 89.05600000000004,
+              "observationMs": 30,
+              "observedMs": 120.71500000000015,
+              "ticks": 101,
+              "ticksDuringWork": 71,
+              "maxGapDuringWorkMs": 15.652999999999793,
+              "maxGapMs": 15.652999999999793,
+              "rssBefore": 405602304,
+              "rssAfter": 414449664,
+              "processPeakRss": 414449664
+            },
+            "reused": {
+              "completedMs": 1.2919999999999163,
+              "observationMs": 30,
+              "observedMs": 32.37300000000005,
+              "ticks": 30,
+              "ticksDuringWork": 0,
+              "maxGapDuringWorkMs": 1.3029999999998836,
+              "maxGapMs": 2.5729999999998654,
+              "rssBefore": 414466048,
+              "rssAfter": 415203328,
+              "processPeakRss": 415203328
+            },
+            "dispatch": [
+              {
+                "tasks": 6,
+                "replies": 6,
+                "errors": 1
+              },
+              {
+                "tasks": 4,
+                "replies": 4,
+                "errors": 0
+              }
+            ],
+            "sampleMaxError": 2,
+            "terminalMip": 8,
+            "mipPixel": [158, 158, 116, 255],
+            "referenceMip": [159, 159, 116, 255],
+            "mipError": 1,
+            "corruptRejected": true,
+            "retired": [0, 0]
+          },
+          {
+            "mode": "uastc",
+            "inputBytes": 87792,
+            "outputBytes": 87408,
+            "levels": 9,
+            "coldTasks": 4,
+            "reusedTasks": 4,
+            "cold": {
+              "completedMs": 93.70599999999968,
+              "observationMs": 30,
+              "observedMs": 124.97899999999981,
+              "ticks": 104,
+              "ticksDuringWork": 74,
+              "maxGapDuringWorkMs": 18.751999999999953,
+              "maxGapMs": 18.751999999999953,
+              "rssBefore": 417628160,
+              "rssAfter": 418856960,
+              "processPeakRss": 424247296
+            },
+            "reused": {
+              "completedMs": 2.2229999999999563,
+              "observationMs": 30,
+              "observedMs": 33.10100000000011,
+              "ticks": 31,
+              "ticksDuringWork": 1,
+              "maxGapDuringWorkMs": 2.1200000000003456,
+              "maxGapMs": 2.1200000000003456,
+              "rssBefore": 418856960,
+              "rssAfter": 419545088,
+              "processPeakRss": 424247296
+            },
+            "dispatch": [
+              {
+                "tasks": 6,
+                "replies": 6,
+                "errors": 1
+              },
+              {
+                "tasks": 4,
+                "replies": 4,
+                "errors": 0
+              }
+            ],
+            "sampleMaxError": 0,
+            "terminalMip": 8,
+            "mipPixel": [159, 159, 116, 255],
+            "referenceMip": [159, 159, 116, 255],
+            "mipError": 0,
+            "corruptRejected": true,
+            "retired": [0, 0]
+          },
+          {
+            "mode": "uastc-zstd",
+            "inputBytes": 2682,
+            "outputBytes": 87408,
+            "levels": 9,
+            "coldTasks": 4,
+            "reusedTasks": 4,
+            "cold": {
+              "completedMs": 92.75099999999975,
+              "observationMs": 30,
+              "observedMs": 123.76199999999972,
+              "ticks": 105,
+              "ticksDuringWork": 75,
+              "maxGapDuringWorkMs": 16.722000000000207,
+              "maxGapMs": 16.722000000000207,
+              "rssBefore": 421822464,
+              "rssAfter": 419692544,
+              "processPeakRss": 426016768
+            },
+            "reused": {
+              "completedMs": 2.2260000000001128,
+              "observationMs": 30,
+              "observedMs": 33.1869999999999,
+              "ticks": 31,
+              "ticksDuringWork": 1,
+              "maxGapDuringWorkMs": 2.19399999999996,
+              "maxGapMs": 2.19399999999996,
+              "rssBefore": 419692544,
+              "rssAfter": 420315136,
+              "processPeakRss": 426016768
+            },
+            "dispatch": [
+              {
+                "tasks": 6,
+                "replies": 6,
+                "errors": 1
+              },
+              {
+                "tasks": 4,
+                "replies": 4,
+                "errors": 0
+              }
+            ],
+            "sampleMaxError": 0,
+            "terminalMip": 8,
+            "mipPixel": [159, 159, 116, 255],
+            "referenceMip": [159, 159, 116, 255],
+            "mipError": 0,
+            "corruptRejected": true,
+            "retired": [0, 0]
+          }
+        ],
+        "combined": [
+          {
+            "asset": "worker-reference.gltf",
+            "loadMs": 33.63100000000031,
+            "changedPixels": 3552,
+            "restSampleMaxError": 0,
+            "poseSampleMaxError": 0
+          },
+          {
+            "asset": "worker-combined.gltf",
+            "loadMs": 122.51199999999972,
+            "changedPixels": 3552,
+            "restSampleMaxError": 0,
+            "poseSampleMaxError": 0
+          },
+          {
+            "asset": "worker-combined.glb",
+            "loadMs": 2.8279999999999745,
+            "changedPixels": 3552,
+            "restSampleMaxError": 0,
+            "poseSampleMaxError": 0
+          }
+        ],
+        "meshoptInput": {
+          "count": 65536,
+          "stride": 32,
+          "mode": "ATTRIBUTES",
+          "inputBytes": 251983,
+          "outputBytes": 2097152,
+          "inputSha256": "8dfdd2dfc3913353ee85d3f5321f10cf548f1ea3e9dd43cb25e277490ca51af2",
+          "outputSha256": "bf89ca18be816e832371a62551d50631248a1f1841282c4492cc3a16f48df907"
+        },
+        "meshoptErrors": [
+          {
+            "tasks": 1,
+            "replies": 1,
+            "errors": 1
+          },
+          {
+            "tasks": 1,
+            "replies": 1,
+            "errors": 1
+          }
+        ],
+        "compressedBC": true,
+        "combinedRetired": [0, 0],
+        "draco": {
+          "tasks": 4,
+          "corruptRejected": true,
+          "dispatch": [
+            {
+              "tasks": 3,
+              "replies": 3,
+              "errors": 1
+            },
+            {
+              "tasks": 2,
+              "replies": 2,
+              "errors": 0
+            }
+          ],
+          "retired": [0, 0]
+        },
+        "sessionOwned": {
+          "workers": [2, 2],
+          "rss": 422395904,
+          "peakRss": 433422336
+        },
+        "scenarioAssertions": 135,
+        "assertions": 291,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "rendered",
+        "frames": 120,
+        "format": "bgra8unorm",
+        "cpuEncodeMs": {
+          "p50": 0.3029999999998836,
+          "p95": 0.5540000000000873
+        },
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "retired",
+        "cycle": 0,
+        "before": [1, 1, 6, 8, 4, 0],
+        "after": [0, 0, 0, 0, 0, 0],
+        "workersBefore": [2, 2],
+        "workersAfter": [0, 0],
+        "rssAfter": 388759552
+      },
+      {
+        "kind": "host-tools",
+        "window": true,
+        "randomViews": true,
+        "uuid": true,
+        "userTiming": true,
+        "observer": true,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "compute",
+        "adapter": {},
+        "values": [3, 5, 7, 9, 21, 41, 61, 81],
+        "assertions": 25,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "browser-base",
+        "exports": ["gltf-data-url", "glb"],
+        "blobRange": true,
+        "bitmaprenderer": true,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "images",
+        "assertions": 60,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "three",
+        "assertions": 62,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "three-image",
+        "name": "DirectionalLight-lit",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "DirectionalLight-shadow",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "PointLight-lit",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "PointLight-shadow",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "SpotLight-lit",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "SpotLight-shadow",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "post-plain",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "post-inverted",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "post-bloom",
+        "cycle": 1
+      },
+      {
+        "kind": "three-features",
+        "models": [
+          {
+            "name": "textured-cube.gltf",
+            "progressEvents": 1,
+            "brightness": 22.438603153935187
+          },
+          {
+            "name": "textured-cube.glb",
+            "progressEvents": 1,
+            "brightness": 22.438603153935187
+          }
+        ],
+        "lighting": [
+          {
+            "type": "DirectionalLight",
+            "dark": 18.622413917824073,
+            "lit": 118.676025390625
+          },
+          {
+            "type": "PointLight",
+            "dark": 18.622413917824073,
+            "lit": 147.6240234375
+          },
+          {
+            "type": "SpotLight",
+            "dark": 18.622413917824073,
+            "lit": 133.5584671585648
+          }
+        ],
+        "shadows": [
+          {
+            "type": "DirectionalLight",
+            "darkerPixels": 2303,
+            "litFrame": 7,
+            "shadowFrame": 8
+          },
+          {
+            "type": "PointLight",
+            "darkerPixels": 4305,
+            "litFrame": 9,
+            "shadowFrame": 10
+          },
+          {
+            "type": "SpotLight",
+            "darkerPixels": 4238,
+            "litFrame": 11,
+            "shadowFrame": 12
+          }
+        ],
+        "postprocessing": [
+          {
+            "effect": "TSL inversion",
+            "maxError": 1
+          },
+          {
+            "effect": "Bloom",
+            "plain": 74.17095269097223,
+            "bloom": 180.87966579861111
+          }
+        ],
+        "assertions": 81,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "api-extensions",
+        "swizzle": true,
+        "immediates": true,
+        "maxImmediateSize": 64,
+        "assertions": 104,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-skinned-rest",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-skinned-pose",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-skinned-restored",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-morph-rest",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-morph-pose",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-morph-restored",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-meshopt",
+        "cycle": 1
+      },
+      {
+        "kind": "three-advanced",
+        "animations": [
+          {
+            "kind": "skinned",
+            "changedPixels": 4014,
+            "restoredMaxError": 0
+          },
+          {
+            "kind": "morph",
+            "changedPixels": 4194,
+            "restoredMaxError": 0
+          }
+        ],
+        "meshopt": {
+          "mode": "single-thread Wasm",
+          "bufferModes": ["ATTRIBUTES", "TRIANGLES"],
+          "vertices": 4,
+          "maxPixelError": 0
+        },
+        "texturedExports": [],
+        "texturedExportSkip": "Canvas 2D is required for GLTFExporter image encoding",
+        "userTiming": true,
+        "assertions": 132,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "three-workers",
+        "decoder": "DRACOLoader",
+        "version": "0.186.1",
+        "workerCount": 1,
+        "inputBytes": 75,
+        "coldMs": 37.52800000000002,
+        "reusedMs": 0.21100000000001273,
+        "assertions": 137,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "three-ktx-workers",
+        "decoder": "KTX2Loader",
+        "version": "0.186.1",
+        "compressedBC": true,
+        "results": [
+          {
+            "mode": "etc1s",
+            "inputBytes": 314,
+            "outputBytes": 64,
+            "format": 36492,
+            "workerCount": 1,
+            "coldMs": 75.88999999999987,
+            "reusedMs": 0.3829999999998108,
+            "centerPixel": [253, 0, 0, 255]
+          },
+          {
+            "mode": "uastc",
+            "inputBytes": 256,
+            "outputBytes": 64,
+            "format": 36492,
+            "workerCount": 1,
+            "coldMs": 75.10500000000002,
+            "reusedMs": 0.35399999999981446,
+            "centerPixel": [255, 0, 0, 255]
+          }
+        ],
+        "assertions": 147,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "three-image",
+        "name": "workers-texture-etc1s",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "workers-texture-uastc",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "workers-texture-uastc-zstd",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "workers-worker-reference-gltf-rest",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "workers-worker-reference-gltf-pose",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "workers-worker-combined-gltf-rest",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "workers-worker-combined-gltf-pose",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "workers-worker-combined-glb-rest",
+        "cycle": 1
+      },
+      {
+        "kind": "three-image",
+        "name": "workers-worker-combined-glb-pose",
+        "cycle": 1
+      },
+      {
+        "kind": "three-worker-scenarios",
+        "version": "0.186.1",
+        "meshopt": [
+          {
+            "workers": 0,
+            "coldTasks": 2,
+            "reusedTasks": 8,
+            "cold": {
+              "completedMs": 3.119000000000142,
+              "observationMs": 30,
+              "observedMs": 52.67399999999998,
+              "ticks": 10,
+              "ticksDuringWork": 0,
+              "maxGapDuringWorkMs": 3.1440000000000055,
+              "maxGapMs": 37.430000000000064,
+              "rssBefore": 417120256,
+              "rssAfter": 412385280,
+              "processPeakRss": 494010368
+            },
+            "reused": {
+              "completedMs": 6.608999999999924,
+              "observationMs": 30,
+              "observedMs": 53.952999999999975,
+              "ticks": 10,
+              "ticksDuringWork": 0,
+              "maxGapDuringWorkMs": 6.626999999999953,
+              "maxGapMs": 34.608999999999924,
+              "rssBefore": 412385280,
+              "rssAfter": 414924800,
+              "processPeakRss": 494010368
+            },
+            "dispatch": [],
+            "live": [0, 0],
+            "retired": [0, 0]
+          },
+          {
+            "workers": 1,
+            "coldTasks": 2,
+            "reusedTasks": 8,
+            "cold": {
+              "completedMs": 33.02600000000007,
+              "observationMs": 30,
+              "observedMs": 64.10800000000017,
+              "ticks": 62,
+              "ticksDuringWork": 31,
+              "maxGapDuringWorkMs": 2.7730000000001382,
+              "maxGapMs": 2.7730000000001382,
+              "rssBefore": 415137792,
+              "rssAfter": 429195264,
+              "processPeakRss": 494010368
+            },
+            "reused": {
+              "completedMs": 32.88200000000006,
+              "observationMs": 30,
+              "observedMs": 63.919000000000096,
+              "ticks": 33,
+              "ticksDuringWork": 2,
+              "maxGapDuringWorkMs": 25.560999999999922,
+              "maxGapMs": 25.560999999999922,
+              "rssBefore": 429752320,
+              "rssAfter": 434618368,
+              "processPeakRss": 494010368
+            },
+            "dispatch": [
+              {
+                "tasks": 10,
+                "replies": 10,
+                "errors": 0
+              }
+            ],
+            "live": [1, 1],
+            "retired": [0, 0]
+          },
+          {
+            "workers": 2,
+            "coldTasks": 2,
+            "reusedTasks": 8,
+            "cold": {
+              "completedMs": 37.71699999999987,
+              "observationMs": 30,
+              "observedMs": 85.17399999999998,
+              "ticks": 35,
+              "ticksDuringWork": 32,
+              "maxGapDuringWorkMs": 5.407999999999902,
+              "maxGapMs": 24.65300000000002,
+              "rssBefore": 431636480,
+              "rssAfter": 442400768,
+              "processPeakRss": 494010368
+            },
+            "reused": {
+              "completedMs": 7.634999999999991,
+              "observationMs": 30,
+              "observedMs": 38.37099999999987,
+              "ticks": 6,
+              "ticksDuringWork": 1,
+              "maxGapDuringWorkMs": 7.548999999999978,
+              "maxGapMs": 25.630999999999858,
+              "rssBefore": 442400768,
+              "rssAfter": 444841984,
+              "processPeakRss": 494010368
+            },
+            "dispatch": [
+              {
+                "tasks": 5,
+                "replies": 5,
+                "errors": 0
+              },
+              {
+                "tasks": 5,
+                "replies": 5,
+                "errors": 0
+              }
+            ],
+            "live": [2, 2],
+            "retired": [0, 0]
+          },
+          {
+            "workers": 2,
+            "coldTasks": 2,
+            "reusedTasks": 8,
+            "cold": {
+              "completedMs": 34.628999999999905,
+              "observationMs": 30,
+              "observedMs": 65.58799999999974,
+              "ticks": 50,
+              "ticksDuringWork": 20,
+              "maxGapDuringWorkMs": 14.190999999999804,
+              "maxGapMs": 14.190999999999804,
+              "rssBefore": 438747136,
+              "rssAfter": 448299008,
+              "processPeakRss": 494010368
+            },
+            "reused": {
+              "completedMs": 6.563999999999851,
+              "observationMs": 30,
+              "observedMs": 38.065000000000055,
+              "ticks": 8,
+              "ticksDuringWork": 1,
+              "maxGapDuringWorkMs": 6.469000000000051,
+              "maxGapMs": 23.855000000000018,
+              "rssBefore": 448299008,
+              "rssAfter": 447479808,
+              "processPeakRss": 494010368
+            },
+            "dispatch": [
+              {
+                "tasks": 5,
+                "replies": 5,
+                "errors": 0
+              },
+              {
+                "tasks": 5,
+                "replies": 5,
+                "errors": 0
+              }
+            ],
+            "live": [2, 2],
+            "retired": [0, 0]
+          },
+          {
+            "workers": 1,
+            "coldTasks": 2,
+            "reusedTasks": 8,
+            "cold": {
+              "completedMs": 35.23499999999967,
+              "observationMs": 30,
+              "observedMs": 66.19699999999966,
+              "ticks": 44,
+              "ticksDuringWork": 13,
+              "maxGapDuringWorkMs": 20.79300000000012,
+              "maxGapMs": 20.79300000000012,
+              "rssBefore": 441384960,
+              "rssAfter": 444596224,
+              "processPeakRss": 494010368
+            },
+            "reused": {
+              "completedMs": 36.23100000000022,
+              "observationMs": 30,
+              "observedMs": 67.43200000000024,
+              "ticks": 32,
+              "ticksDuringWork": 1,
+              "maxGapDuringWorkMs": 29.10400000000027,
+              "maxGapMs": 29.146000000000186,
+              "rssBefore": 444612608,
+              "rssAfter": 443809792,
+              "processPeakRss": 494010368
+            },
+            "dispatch": [
+              {
+                "tasks": 10,
+                "replies": 10,
+                "errors": 0
+              }
+            ],
+            "live": [1, 1],
+            "retired": [0, 0]
+          },
+          {
+            "workers": 0,
+            "coldTasks": 2,
+            "reusedTasks": 8,
+            "cold": {
+              "completedMs": 1.961999999999989,
+              "observationMs": 30,
+              "observedMs": 33.63200000000006,
+              "ticks": 2,
+              "ticksDuringWork": 0,
+              "maxGapDuringWorkMs": 1.9769999999998618,
+              "maxGapMs": 26.16800000000012,
+              "rssBefore": 440844288,
+              "rssAfter": 438861824,
+              "processPeakRss": 494010368
+            },
+            "reused": {
+              "completedMs": 5.987999999999829,
+              "observationMs": 30,
+              "observedMs": 45.417999999999665,
+              "ticks": 9,
+              "ticksDuringWork": 0,
+              "maxGapDuringWorkMs": 6.005000000000109,
+              "maxGapMs": 27.52300000000014,
+              "rssBefore": 438861824,
+              "rssAfter": 438960128,
+              "processPeakRss": 494010368
+            },
+            "dispatch": [],
+            "live": [0, 0],
+            "retired": [0, 0]
+          }
+        ],
+        "textures": [
+          {
+            "mode": "etc1s",
+            "inputBytes": 2612,
+            "outputBytes": 87408,
+            "levels": 9,
+            "coldTasks": 4,
+            "reusedTasks": 4,
+            "cold": {
+              "completedMs": 89.57600000000002,
+              "observationMs": 30,
+              "observedMs": 120.80099999999993,
+              "ticks": 102,
+              "ticksDuringWork": 72,
+              "maxGapDuringWorkMs": 16.070999999999913,
+              "maxGapMs": 16.070999999999913,
+              "rssBefore": 451805184,
+              "rssAfter": 455737344,
+              "processPeakRss": 494010368
+            },
+            "reused": {
+              "completedMs": 1.3890000000001237,
+              "observationMs": 30,
+              "observedMs": 32.38299999999981,
+              "ticks": 31,
+              "ticksDuringWork": 1,
+              "maxGapDuringWorkMs": 1.3609999999998763,
+              "maxGapMs": 1.4559999999996762,
+              "rssBefore": 455753728,
+              "rssAfter": 456359936,
+              "processPeakRss": 494010368
+            },
+            "dispatch": [
+              {
+                "tasks": 6,
+                "replies": 6,
+                "errors": 1
+              },
+              {
+                "tasks": 4,
+                "replies": 4,
+                "errors": 0
+              }
+            ],
+            "sampleMaxError": 2,
+            "terminalMip": 8,
+            "mipPixel": [158, 158, 116, 255],
+            "referenceMip": [159, 159, 116, 255],
+            "mipError": 1,
+            "corruptRejected": true,
+            "retired": [0, 0]
+          },
+          {
+            "mode": "uastc",
+            "inputBytes": 87792,
+            "outputBytes": 87408,
+            "levels": 9,
+            "coldTasks": 4,
+            "reusedTasks": 4,
+            "cold": {
+              "completedMs": 92.05500000000029,
+              "observationMs": 30,
+              "observedMs": 123.30400000000009,
+              "ticks": 104,
+              "ticksDuringWork": 74,
+              "maxGapDuringWorkMs": 15.739000000000033,
+              "maxGapMs": 15.739000000000033,
+              "rssBefore": 458506240,
+              "rssAfter": 459554816,
+              "processPeakRss": 494010368
+            },
+            "reused": {
+              "completedMs": 2.243999999999687,
+              "observationMs": 30,
+              "observedMs": 33.13799999999992,
+              "ticks": 31,
+              "ticksDuringWork": 1,
+              "maxGapDuringWorkMs": 2.20699999999988,
+              "maxGapMs": 2.20699999999988,
+              "rssBefore": 459554816,
+              "rssAfter": 460210176,
+              "processPeakRss": 494010368
+            },
+            "dispatch": [
+              {
+                "tasks": 6,
+                "replies": 6,
+                "errors": 1
+              },
+              {
+                "tasks": 4,
+                "replies": 4,
+                "errors": 0
+              }
+            ],
+            "sampleMaxError": 0,
+            "terminalMip": 8,
+            "mipPixel": [159, 159, 116, 255],
+            "referenceMip": [159, 159, 116, 255],
+            "mipError": 0,
+            "corruptRejected": true,
+            "retired": [0, 0]
+          },
+          {
+            "mode": "uastc-zstd",
+            "inputBytes": 2682,
+            "outputBytes": 87408,
+            "levels": 9,
+            "coldTasks": 4,
+            "reusedTasks": 4,
+            "cold": {
+              "completedMs": 99.9670000000001,
+              "observationMs": 30,
+              "observedMs": 131.23199999999997,
+              "ticks": 110,
+              "ticksDuringWork": 80,
+              "maxGapDuringWorkMs": 18.02099999999973,
+              "maxGapMs": 18.02099999999973,
+              "rssBefore": 462389248,
+              "rssAfter": 455213056,
+              "processPeakRss": 494010368
+            },
+            "reused": {
+              "completedMs": 2.3899999999998727,
+              "observationMs": 30,
+              "observedMs": 33.460999999999785,
+              "ticks": 31,
+              "ticksDuringWork": 1,
+              "maxGapDuringWorkMs": 2.293999999999869,
+              "maxGapMs": 2.293999999999869,
+              "rssBefore": 455213056,
+              "rssAfter": 455868416,
+              "processPeakRss": 494010368
+            },
+            "dispatch": [
+              {
+                "tasks": 6,
+                "replies": 6,
+                "errors": 1
+              },
+              {
+                "tasks": 4,
+                "replies": 4,
+                "errors": 0
+              }
+            ],
+            "sampleMaxError": 0,
+            "terminalMip": 8,
+            "mipPixel": [159, 159, 116, 255],
+            "referenceMip": [159, 159, 116, 255],
+            "mipError": 0,
+            "corruptRejected": true,
+            "retired": [0, 0]
+          }
+        ],
+        "combined": [
+          {
+            "asset": "worker-reference.gltf",
+            "loadMs": 34.914999999999964,
+            "changedPixels": 3552,
+            "restSampleMaxError": 0,
+            "poseSampleMaxError": 0
+          },
+          {
+            "asset": "worker-combined.gltf",
+            "loadMs": 85.91199999999981,
+            "changedPixels": 3552,
+            "restSampleMaxError": 0,
+            "poseSampleMaxError": 0
+          },
+          {
+            "asset": "worker-combined.glb",
+            "loadMs": 2.994999999999891,
+            "changedPixels": 3552,
+            "restSampleMaxError": 0,
+            "poseSampleMaxError": 0
+          }
+        ],
+        "meshoptInput": {
+          "count": 65536,
+          "stride": 32,
+          "mode": "ATTRIBUTES",
+          "inputBytes": 251983,
+          "outputBytes": 2097152,
+          "inputSha256": "8dfdd2dfc3913353ee85d3f5321f10cf548f1ea3e9dd43cb25e277490ca51af2",
+          "outputSha256": "bf89ca18be816e832371a62551d50631248a1f1841282c4492cc3a16f48df907"
+        },
+        "meshoptErrors": [
+          {
+            "tasks": 1,
+            "replies": 1,
+            "errors": 1
+          },
+          {
+            "tasks": 1,
+            "replies": 1,
+            "errors": 1
+          }
+        ],
+        "compressedBC": true,
+        "combinedRetired": [0, 0],
+        "draco": {
+          "tasks": 4,
+          "corruptRejected": true,
+          "dispatch": [
+            {
+              "tasks": 3,
+              "replies": 3,
+              "errors": 1
+            },
+            {
+              "tasks": 2,
+              "replies": 2,
+              "errors": 0
+            }
+          ],
+          "retired": [0, 0]
+        },
+        "sessionOwned": {
+          "workers": [2, 2],
+          "rss": 458244096,
+          "peakRss": 494010368
+        },
+        "scenarioAssertions": 135,
+        "assertions": 282,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "rendered",
+        "frames": 120,
+        "format": "rgba8unorm",
+        "cpuEncodeMs": {
+          "p50": 0.8249999999998181,
+          "p95": 1.6340000000000146
+        },
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "retired",
+        "cycle": 1,
+        "before": [1, 1, 6, 8, 4, 0],
+        "after": [0, 0, 0, 0, 0, 0],
+        "workersBefore": [2, 2],
+        "workersAfter": [0, 0],
+        "rssAfter": 423788544
+      },
+      {
+        "kind": "host-tools",
+        "window": true,
+        "randomViews": true,
+        "uuid": true,
+        "userTiming": true,
+        "observer": true,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "compute",
+        "adapter": {},
+        "values": [3, 5, 7, 9, 21, 41, 61, 81],
+        "assertions": 26,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "browser-base",
+        "exports": ["gltf-data-url", "glb"],
+        "blobRange": true,
+        "bitmaprenderer": true,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "images",
+        "assertions": 63,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "three",
+        "assertions": 65,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "three-image",
+        "name": "DirectionalLight-lit",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "DirectionalLight-shadow",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "PointLight-lit",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "PointLight-shadow",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "SpotLight-lit",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "SpotLight-shadow",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "post-plain",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "post-inverted",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "post-bloom",
+        "cycle": 2
+      },
+      {
+        "kind": "three-features",
+        "models": [
+          {
+            "name": "textured-cube.gltf",
+            "progressEvents": 1,
+            "brightness": 22.438603153935187
+          },
+          {
+            "name": "textured-cube.glb",
+            "progressEvents": 1,
+            "brightness": 22.438603153935187
+          }
+        ],
+        "lighting": [
+          {
+            "type": "DirectionalLight",
+            "dark": 18.622413917824073,
+            "lit": 118.676025390625
+          },
+          {
+            "type": "PointLight",
+            "dark": 18.622413917824073,
+            "lit": 147.6240234375
+          },
+          {
+            "type": "SpotLight",
+            "dark": 18.622413917824073,
+            "lit": 133.5584671585648
+          }
+        ],
+        "shadows": [
+          {
+            "type": "DirectionalLight",
+            "darkerPixels": 2303,
+            "litFrame": 7,
+            "shadowFrame": 8
+          },
+          {
+            "type": "PointLight",
+            "darkerPixels": 4305,
+            "litFrame": 10,
+            "shadowFrame": 12
+          },
+          {
+            "type": "SpotLight",
+            "darkerPixels": 4238,
+            "litFrame": 14,
+            "shadowFrame": 15
+          }
+        ],
+        "postprocessing": [
+          {
+            "effect": "TSL inversion",
+            "maxError": 1
+          },
+          {
+            "effect": "Bloom",
+            "plain": 74.17095269097223,
+            "bloom": 180.87966579861111
+          }
+        ],
+        "assertions": 84,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "api-extensions",
+        "swizzle": true,
+        "immediates": true,
+        "maxImmediateSize": 64,
+        "assertions": 107,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-skinned-rest",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-skinned-pose",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-skinned-restored",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-morph-rest",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-morph-pose",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-morph-restored",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-meshopt",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-export-gltf",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "advanced-export-glb",
+        "cycle": 2
+      },
+      {
+        "kind": "three-advanced",
+        "animations": [
+          {
+            "kind": "skinned",
+            "changedPixels": 4014,
+            "restoredMaxError": 0
+          },
+          {
+            "kind": "morph",
+            "changedPixels": 4194,
+            "restoredMaxError": 0
+          }
+        ],
+        "meshopt": {
+          "mode": "single-thread Wasm",
+          "bufferModes": ["ATTRIBUTES", "TRIANGLES"],
+          "vertices": 4,
+          "maxPixelError": 0
+        },
+        "texturedExports": [
+          {
+            "format": "gltf",
+            "maxPixelError": 0
+          },
+          {
+            "format": "glb",
+            "maxPixelError": 0
+          }
+        ],
+        "userTiming": true,
+        "assertions": 141,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "three-workers",
+        "decoder": "DRACOLoader",
+        "version": "0.186.1",
+        "workerCount": 1,
+        "inputBytes": 75,
+        "coldMs": 39.59899999999993,
+        "reusedMs": 0.24400000000014188,
+        "assertions": 146,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "three-ktx-workers",
+        "decoder": "KTX2Loader",
+        "version": "0.186.1",
+        "compressedBC": true,
+        "results": [
+          {
+            "mode": "etc1s",
+            "inputBytes": 314,
+            "outputBytes": 64,
+            "format": 36492,
+            "workerCount": 1,
+            "coldMs": 80.62200000000007,
+            "reusedMs": 0.6310000000000855,
+            "centerPixel": [253, 0, 0, 255]
+          },
+          {
+            "mode": "uastc",
+            "inputBytes": 256,
+            "outputBytes": 64,
+            "format": 36492,
+            "workerCount": 1,
+            "coldMs": 78.19100000000003,
+            "reusedMs": 0.5070000000000618,
+            "centerPixel": [255, 0, 0, 255]
+          }
+        ],
+        "assertions": 156,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "three-image",
+        "name": "workers-texture-etc1s",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "workers-texture-uastc",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "workers-texture-uastc-zstd",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "workers-worker-reference-gltf-rest",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "workers-worker-reference-gltf-pose",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "workers-worker-combined-gltf-rest",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "workers-worker-combined-gltf-pose",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "workers-worker-combined-glb-rest",
+        "cycle": 2
+      },
+      {
+        "kind": "three-image",
+        "name": "workers-worker-combined-glb-pose",
+        "cycle": 2
+      },
+      {
+        "kind": "three-worker-scenarios",
+        "version": "0.186.1",
+        "meshopt": [
+          {
+            "workers": 0,
+            "coldTasks": 2,
+            "reusedTasks": 8,
+            "cold": {
+              "completedMs": 3.173000000000002,
+              "observationMs": 30,
+              "observedMs": 42.86799999999994,
+              "ticks": 8,
+              "ticksDuringWork": 0,
+              "maxGapDuringWorkMs": 3.201000000000022,
+              "maxGapMs": 27.76800000000003,
+              "rssBefore": 441991168,
+              "rssAfter": 436928512,
+              "processPeakRss": 503152640
+            },
+            "reused": {
+              "completedMs": 6.2840000000001055,
+              "observationMs": 30,
+              "observedMs": 44.452999999999975,
+              "ticks": 9,
+              "ticksDuringWork": 0,
+              "maxGapDuringWorkMs": 6.307000000000016,
+              "maxGapMs": 25.68100000000004,
+              "rssBefore": 436928512,
+              "rssAfter": 437026816,
+              "processPeakRss": 503152640
+            },
+            "dispatch": [],
+            "live": [0, 0],
+            "retired": [0, 0]
+          },
+          {
+            "workers": 1,
+            "coldTasks": 2,
+            "reusedTasks": 8,
+            "cold": {
+              "completedMs": 34.84999999999991,
+              "observationMs": 30,
+              "observedMs": 65.89799999999991,
+              "ticks": 48,
+              "ticksDuringWork": 17,
+              "maxGapDuringWorkMs": 16.728999999999814,
+              "maxGapMs": 16.728999999999814,
+              "rssBefore": 437223424,
+              "rssAfter": 444039168,
+              "processPeakRss": 503152640
+            },
+            "reused": {
+              "completedMs": 32.38300000000004,
+              "observationMs": 30,
+              "observedMs": 63.58399999999983,
+              "ticks": 32,
+              "ticksDuringWork": 1,
+              "maxGapDuringWorkMs": 25.56600000000003,
+              "maxGapMs": 25.628999999999905,
+              "rssBefore": 444055552,
+              "rssAfter": 443252736,
+              "processPeakRss": 503152640
+            },
+            "dispatch": [
+              {
+                "tasks": 10,
+                "replies": 10,
+                "errors": 0
+              }
+            ],
+            "live": [1, 1],
+            "retired": [0, 0]
+          },
+          {
+            "workers": 2,
+            "coldTasks": 2,
+            "reusedTasks": 8,
+            "cold": {
+              "completedMs": 34.702999999999975,
+              "observationMs": 30,
+              "observedMs": 65.80400000000009,
+              "ticks": 52,
+              "ticksDuringWork": 21,
+              "maxGapDuringWorkMs": 13.009000000000015,
+              "maxGapMs": 13.009000000000015,
+              "rssBefore": 438222848,
+              "rssAfter": 451706880,
+              "processPeakRss": 503152640
+            },
+            "reused": {
+              "completedMs": 8.269000000000233,
+              "observationMs": 30,
+              "observedMs": 40.322000000000116,
+              "ticks": 4,
+              "ticksDuringWork": 1,
+              "maxGapDuringWorkMs": 8.106000000000222,
+              "maxGapMs": 28.295000000000073,
+              "rssBefore": 451706880,
+              "rssAfter": 449232896,
+              "processPeakRss": 503152640
+            },
+            "dispatch": [
+              {
+                "tasks": 5,
+                "replies": 5,
+                "errors": 0
+              },
+              {
+                "tasks": 5,
+                "replies": 5,
+                "errors": 0
+              }
+            ],
+            "live": [2, 2],
+            "retired": [0, 0]
+          },
+          {
+            "workers": 2,
+            "coldTasks": 2,
+            "reusedTasks": 8,
+            "cold": {
+              "completedMs": 38.37699999999995,
+              "observationMs": 30,
+              "observedMs": 69.21000000000004,
+              "ticks": 45,
+              "ticksDuringWork": 14,
+              "maxGapDuringWorkMs": 22.883000000000266,
+              "maxGapMs": 22.883000000000266,
+              "rssBefore": 443138048,
+              "rssAfter": 452820992,
+              "processPeakRss": 503152640
+            },
+            "reused": {
+              "completedMs": 6.846000000000004,
+              "observationMs": 30,
+              "observedMs": 39.721000000000004,
+              "ticks": 2,
+              "ticksDuringWork": 1,
+              "maxGapDuringWorkMs": 6.719000000000051,
+              "maxGapMs": 32.922999999999774,
+              "rssBefore": 452837376,
+              "rssAfter": 452460544,
+              "processPeakRss": 503152640
+            },
+            "dispatch": [
+              {
+                "tasks": 5,
+                "replies": 5,
+                "errors": 0
+              },
+              {
+                "tasks": 5,
+                "replies": 5,
+                "errors": 0
+              }
+            ],
+            "live": [2, 2],
+            "retired": [0, 0]
+          },
+          {
+            "workers": 1,
+            "coldTasks": 2,
+            "reusedTasks": 8,
+            "cold": {
+              "completedMs": 36.13599999999997,
+              "observationMs": 30,
+              "observedMs": 67.04799999999977,
+              "ticks": 45,
+              "ticksDuringWork": 14,
+              "maxGapDuringWorkMs": 20.898999999999887,
+              "maxGapMs": 20.898999999999887,
+              "rssBefore": 446382080,
+              "rssAfter": 449757184,
+              "processPeakRss": 503152640
+            },
+            "reused": {
+              "completedMs": 33.738000000000284,
+              "observationMs": 30,
+              "observedMs": 64.82700000000023,
+              "ticks": 33,
+              "ticksDuringWork": 2,
+              "maxGapDuringWorkMs": 26.28899999999976,
+              "maxGapMs": 26.28899999999976,
+              "rssBefore": 449757184,
+              "rssAfter": 448987136,
+              "processPeakRss": 503152640
+            },
+            "dispatch": [
+              {
+                "tasks": 10,
+                "replies": 10,
+                "errors": 0
+              }
+            ],
+            "live": [1, 1],
+            "retired": [0, 0]
+          },
+          {
+            "workers": 0,
+            "coldTasks": 2,
+            "reusedTasks": 8,
+            "cold": {
+              "completedMs": 1.8339999999998327,
+              "observationMs": 30,
+              "observedMs": 32.88299999999981,
+              "ticks": 2,
+              "ticksDuringWork": 0,
+              "maxGapDuringWorkMs": 1.8460000000000036,
+              "maxGapMs": 25.514000000000124,
+              "rssBefore": 446038016,
+              "rssAfter": 443990016,
+              "processPeakRss": 503152640
+            },
+            "reused": {
+              "completedMs": 6.06899999999996,
+              "observationMs": 30,
+              "observedMs": 44.521000000000186,
+              "ticks": 10,
+              "ticksDuringWork": 0,
+              "maxGapDuringWorkMs": 6.083999999999833,
+              "maxGapMs": 26.317000000000007,
+              "rssBefore": 444006400,
+              "rssAfter": 444104704,
+              "processPeakRss": 503152640
+            },
+            "dispatch": [],
+            "live": [0, 0],
+            "retired": [0, 0]
+          }
+        ],
+        "textures": [
+          {
+            "mode": "etc1s",
+            "inputBytes": 2612,
+            "outputBytes": 87408,
+            "levels": 9,
+            "coldTasks": 4,
+            "reusedTasks": 4,
+            "cold": {
+              "completedMs": 90.48800000000028,
+              "observationMs": 30,
+              "observedMs": 120.79600000000028,
+              "ticks": 87,
+              "ticksDuringWork": 57,
+              "maxGapDuringWorkMs": 25.376999999999953,
+              "maxGapMs": 25.376999999999953,
+              "rssBefore": 450035712,
+              "rssAfter": 457818112,
+              "processPeakRss": 503152640
+            },
+            "reused": {
+              "completedMs": 1.4349999999999454,
+              "observationMs": 30,
+              "observedMs": 32.43299999999999,
+              "ticks": 30,
+              "ticksDuringWork": 0,
+              "maxGapDuringWorkMs": 1.4450000000001637,
+              "maxGapMs": 2.5979999999999563,
+              "rssBefore": 457818112,
+              "rssAfter": 458457088,
+              "processPeakRss": 503152640
+            },
+            "dispatch": [
+              {
+                "tasks": 6,
+                "replies": 6,
+                "errors": 1
+              },
+              {
+                "tasks": 4,
+                "replies": 4,
+                "errors": 0
+              }
+            ],
+            "sampleMaxError": 2,
+            "terminalMip": 8,
+            "mipPixel": [158, 158, 116, 255],
+            "referenceMip": [159, 159, 116, 255],
+            "mipError": 1,
+            "corruptRejected": true,
+            "retired": [0, 0]
+          },
+          {
+            "mode": "uastc",
+            "inputBytes": 87792,
+            "outputBytes": 87408,
+            "levels": 9,
+            "coldTasks": 4,
+            "reusedTasks": 4,
+            "cold": {
+              "completedMs": 96.0609999999997,
+              "observationMs": 30,
+              "observedMs": 126.96199999999999,
+              "ticks": 105,
+              "ticksDuringWork": 75,
+              "maxGapDuringWorkMs": 18.902000000000044,
+              "maxGapMs": 18.902000000000044,
+              "rssBefore": 461176832,
+              "rssAfter": 462323712,
+              "processPeakRss": 503152640
+            },
+            "reused": {
+              "completedMs": 2.4529999999999745,
+              "observationMs": 30,
+              "observedMs": 33.84299999999985,
+              "ticks": 32,
+              "ticksDuringWork": 1,
+              "maxGapDuringWorkMs": 2.411999999999807,
+              "maxGapMs": 2.411999999999807,
+              "rssBefore": 462340096,
+              "rssAfter": 462962688,
+              "processPeakRss": 503152640
+            },
+            "dispatch": [
+              {
+                "tasks": 6,
+                "replies": 6,
+                "errors": 1
+              },
+              {
+                "tasks": 4,
+                "replies": 4,
+                "errors": 0
+              }
+            ],
+            "sampleMaxError": 0,
+            "terminalMip": 8,
+            "mipPixel": [159, 159, 116, 255],
+            "referenceMip": [159, 159, 116, 255],
+            "mipError": 0,
+            "corruptRejected": true,
+            "retired": [0, 0]
+          },
+          {
+            "mode": "uastc-zstd",
+            "inputBytes": 2682,
+            "outputBytes": 87408,
+            "levels": 9,
+            "coldTasks": 4,
+            "reusedTasks": 4,
+            "cold": {
+              "completedMs": 97.83699999999999,
+              "observationMs": 30,
+              "observedMs": 129.1579999999999,
+              "ticks": 101,
+              "ticksDuringWork": 75,
+              "maxGapDuringWorkMs": 18.317999999999756,
+              "maxGapMs": 18.317999999999756,
+              "rssBefore": 457981952,
+              "rssAfter": 458588160,
+              "processPeakRss": 503152640
+            },
+            "reused": {
+              "completedMs": 2.548999999999978,
+              "observationMs": 30,
+              "observedMs": 33.8090000000002,
+              "ticks": 32,
+              "ticksDuringWork": 2,
+              "maxGapDuringWorkMs": 1.5300000000002,
+              "maxGapMs": 1.5480000000002292,
+              "rssBefore": 458588160,
+              "rssAfter": 459227136,
+              "processPeakRss": 503152640
+            },
+            "dispatch": [
+              {
+                "tasks": 6,
+                "replies": 6,
+                "errors": 1
+              },
+              {
+                "tasks": 4,
+                "replies": 4,
+                "errors": 0
+              }
+            ],
+            "sampleMaxError": 0,
+            "terminalMip": 8,
+            "mipPixel": [159, 159, 116, 255],
+            "referenceMip": [159, 159, 116, 255],
+            "mipError": 0,
+            "corruptRejected": true,
+            "retired": [0, 0]
+          }
+        ],
+        "combined": [
+          {
+            "asset": "worker-reference.gltf",
+            "loadMs": 47.442999999999756,
+            "changedPixels": 3552,
+            "restSampleMaxError": 0,
+            "poseSampleMaxError": 0
+          },
+          {
+            "asset": "worker-combined.gltf",
+            "loadMs": 91.03099999999995,
+            "changedPixels": 3552,
+            "restSampleMaxError": 0,
+            "poseSampleMaxError": 0
+          },
+          {
+            "asset": "worker-combined.glb",
+            "loadMs": 2.9270000000001346,
+            "changedPixels": 3552,
+            "restSampleMaxError": 0,
+            "poseSampleMaxError": 0
+          }
+        ],
+        "meshoptInput": {
+          "count": 65536,
+          "stride": 32,
+          "mode": "ATTRIBUTES",
+          "inputBytes": 251983,
+          "outputBytes": 2097152,
+          "inputSha256": "8dfdd2dfc3913353ee85d3f5321f10cf548f1ea3e9dd43cb25e277490ca51af2",
+          "outputSha256": "bf89ca18be816e832371a62551d50631248a1f1841282c4492cc3a16f48df907"
+        },
+        "meshoptErrors": [
+          {
+            "tasks": 1,
+            "replies": 1,
+            "errors": 1
+          },
+          {
+            "tasks": 1,
+            "replies": 1,
+            "errors": 1
+          }
+        ],
+        "compressedBC": true,
+        "combinedRetired": [0, 0],
+        "draco": {
+          "tasks": 4,
+          "corruptRejected": true,
+          "dispatch": [
+            {
+              "tasks": 3,
+              "replies": 3,
+              "errors": 1
+            },
+            {
+              "tasks": 2,
+              "replies": 2,
+              "errors": 0
+            }
+          ],
+          "retired": [0, 0]
+        },
+        "sessionOwned": {
+          "workers": [2, 2],
+          "rss": 460963840,
+          "peakRss": 503152640
+        },
+        "scenarioAssertions": 135,
+        "assertions": 291,
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "rendered",
+        "frames": 120,
+        "format": "bgra8unorm",
+        "cpuEncodeMs": {
+          "p50": 0.24099999999998545,
+          "p95": 0.31599999999980355
+        },
+        "cycle": 2,
+        "canvas2D": true
+      },
+      {
+        "kind": "retired",
+        "cycle": 2,
+        "before": [1, 1, 6, 8, 4, 0],
+        "after": [0, 0, 0, 0, 0, 0],
+        "workersBefore": [2, 2],
+        "workersAfter": [0, 0],
+        "rssAfter": 427065344
+      }
+    ],
+    "coloredPixels": 168351
+  },
+  "buildAndRunSeconds": 46.7,
+  "supersededProtocol": "The preceding fix-2 observation stopped at decode completion and sampled RSS every tick; its performance figures are superseded, not pooled with this result."
+}

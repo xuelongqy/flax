@@ -1,0 +1,522 @@
+{
+  "verifiedAt": "2026-10-30T18:28:20.620218+08:00",
+  "baseCommit": "a4cfeaee1fa4a264ddba0686f7cd79ccc819e61e",
+  "branch": "exp/webgpu-dawn-macos",
+  "uncommitted": true,
+  "profile": "Core browser tools and Three.js, macOS arm64 Dawn/Metal",
+  "machine": {
+    "architecture": "arm64",
+    "macOS": "27.0.1"
+  },
+  "engineBinarySha256": "a8a571762ae477d9df4786bf4e253a7ec2a13e23e12559528924fbc8787a8cd6",
+  "engineUnchanged": true,
+  "threeVersion": "0.186.1",
+  "newDependencies": false,
+  "sourceSha256": {
+    "packages/flax/js/src/host/bootstrap.ts": "e0f598576f8c90fa72a3b75ed5f69d0f09869d9b3d2e3a36c342e556bfca3f5f",
+    "packages/flax/js/src/host/index.ts": "c9c5ae72ff742ace36d4d106d16df8980f2c4d992fab5588f9813394ce8d0d40",
+    "packages/flax/js/src/host/performance.ts": "0a61582ceb810fb798585edc2faa2bce6196b4e1c2a5f98e6be8082bda3e0819",
+    "packages/flax/js/src/host/crypto.ts": "21c42ea878144aafd2e05adfd8130aad17fde60b6e05f86b1e18f16b6b05b291",
+    "packages/flax/js/src/host/canvas-dom.ts": "713828369080fe4e7aabc24ff6fdcb253a56e82cb32d6aeec4c914055e079e66",
+    "packages/flax/js/src/host/fetch/bootstrap.ts": "751b791050eb802685bce0da786289cc81f17a310e0ee53c445a2c46770fd1e1",
+    "packages/flax/js/src/host/vendor.d.ts": "98159c3eef34965b10dfde8d9ba949839e577194751ff61d2b7d731b6a7abef8",
+    "packages/flax/lib/src/ui/host.dart": "2496f47820115b1e6c43db28243496a7386b6af847ebb53684b7320487d7ed04",
+    "packages/flax/lib/src/generated/host_bootstrap.g.dart": "adc0d54f0f94b8f2e1e3f3f80a1ab45c733af5711ceb3eae9f6cd168ee846b03",
+    "packages/flax/js/test/runtime/browser-tools.test.mjs": "9511617be58226f41d5708a46e75e9cfde3837b0494d2a68701c172168b4d685",
+    "packages/flax/js/test/fetch/host.test.mjs": "3288edcd4c378a428cd8c0042ef7a616577890f010859a06a7c23ad2345a7006",
+    "packages/flax/js/test/runtime/types.ts": "a9d84e8bef5210596a5f262e179a97c99b5d47cae084b0ef5188de1dfa92aedd",
+    "packages/flax/test/ui/host_test.dart": "2b1ae331adc260d99b321be7f35f1f97f3a5c291a71257d15212a09133874dcf",
+    "packages/flax_webgpu/example/lib/acceptance.dart": "e3dfb2a70ff31a7ca109b4e9d73d87e1058f0c4d38193d65657fda5d7eb565e0",
+    "packages/flax_webgpu/example/js/main.js": "9b860e2c615fa0199726903495d92d797ff95e6776c96b89215f832939ab06ad",
+    "packages/flax_webgpu/example/js/host-tools.js": "d6f78eb9e3ab89f87979e7e7d230970d83a3f66a844c4fb5f4dc6a270ec565a3",
+    "packages/flax_webgpu/example/js/three-advanced.js": "0ccb9a5846d1c0a6803817cbb326779573a18695172000d823db728934d4c5ea"
+  },
+  "implementation": {
+    "window": "globalThis === self === window === document.defaultView",
+    "location": "Frozen session Fetch base address; about:blank when unconfigured; no navigation",
+    "cookies": "Empty reads, NotSupportedError on writes; no document cookie store",
+    "userTiming": [
+      "mark",
+      "measure",
+      "getEntries",
+      "getEntriesByName",
+      "getEntriesByType",
+      "clearMarks",
+      "clearMeasures"
+    ],
+    "performanceObserver": ["mark", "measure"],
+    "randomSource": "Lazy dart:math Random.secure(), bulk Uint8List returned to JS through the existing host-result checkpoint",
+    "randomQuotaBytes": 65536,
+    "randomUUID": "Version 4 and RFC variant bits",
+    "resultLifetime": "Random and synchronous image-encoding buffers use existing holdHostResult ownership; native host handles are zero at disposal"
+  },
+  "nativeAcceptance": {
+    "passed": true,
+    "coreOnlySessions": 1,
+    "gpuSessions": 3,
+    "ordinaryFrames": 360,
+    "hostTools": [
+      {
+        "kind": "host-tools",
+        "window": true,
+        "randomViews": true,
+        "uuid": true,
+        "userTiming": true,
+        "observer": true,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "host-tools",
+        "window": true,
+        "randomViews": true,
+        "uuid": true,
+        "userTiming": true,
+        "observer": true,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "host-tools",
+        "window": true,
+        "randomViews": true,
+        "uuid": true,
+        "userTiming": true,
+        "observer": true,
+        "cycle": 2,
+        "canvas2D": true
+      }
+    ],
+    "threeFeatures": {
+      "cycles": [0, 1, 2],
+      "texturedModels": 2,
+      "lightTypes": ["DirectionalLight", "PointLight", "SpotLight"],
+      "shadows": "PCF, three light types",
+      "postprocessing": ["TSL inversion", "Bloom"]
+    },
+    "advanced": [
+      {
+        "kind": "three-advanced",
+        "animations": [
+          {
+            "kind": "skinned",
+            "changedPixels": 4014,
+            "restoredMaxError": 0
+          },
+          {
+            "kind": "morph",
+            "changedPixels": 4194,
+            "restoredMaxError": 0
+          }
+        ],
+        "meshopt": {
+          "mode": "single-thread Wasm",
+          "bufferModes": ["ATTRIBUTES", "TRIANGLES"],
+          "vertices": 4,
+          "maxPixelError": 0
+        },
+        "texturedExports": [
+          {
+            "format": "gltf",
+            "maxPixelError": 0
+          },
+          {
+            "format": "glb",
+            "maxPixelError": 0
+          }
+        ],
+        "userTiming": true,
+        "assertions": 141,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "three-advanced",
+        "animations": [
+          {
+            "kind": "skinned",
+            "changedPixels": 4014,
+            "restoredMaxError": 0
+          },
+          {
+            "kind": "morph",
+            "changedPixels": 4194,
+            "restoredMaxError": 0
+          }
+        ],
+        "meshopt": {
+          "mode": "single-thread Wasm",
+          "bufferModes": ["ATTRIBUTES", "TRIANGLES"],
+          "vertices": 4,
+          "maxPixelError": 0
+        },
+        "texturedExports": [],
+        "texturedExportSkip": "Canvas 2D is required for GLTFExporter image encoding",
+        "userTiming": true,
+        "assertions": 132,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "three-advanced",
+        "animations": [
+          {
+            "kind": "skinned",
+            "changedPixels": 4014,
+            "restoredMaxError": 0
+          },
+          {
+            "kind": "morph",
+            "changedPixels": 4194,
+            "restoredMaxError": 0
+          }
+        ],
+        "meshopt": {
+          "mode": "single-thread Wasm",
+          "bufferModes": ["ATTRIBUTES", "TRIANGLES"],
+          "vertices": 4,
+          "maxPixelError": 0
+        },
+        "texturedExports": [
+          {
+            "format": "gltf",
+            "maxPixelError": 0
+          },
+          {
+            "format": "glb",
+            "maxPixelError": 0
+          }
+        ],
+        "userTiming": true,
+        "assertions": 141,
+        "cycle": 2,
+        "canvas2D": true
+      }
+    ],
+    "retirement": [
+      {
+        "kind": "retired",
+        "cycle": -1,
+        "before": [0, 0, 0, 0, 0, 0],
+        "after": [0, 0, 0, 0, 0, 0]
+      },
+      {
+        "kind": "retired",
+        "cycle": 0,
+        "before": [1, 1, 5, 8, 4, 0],
+        "after": [0, 0, 0, 0, 0, 0]
+      },
+      {
+        "kind": "retired",
+        "cycle": 1,
+        "before": [1, 1, 5, 8, 4, 0],
+        "after": [0, 0, 0, 0, 0, 0]
+      },
+      {
+        "kind": "retired",
+        "cycle": 2,
+        "before": [1, 1, 5, 8, 4, 0],
+        "after": [0, 0, 0, 0, 0, 0]
+      }
+    ]
+  },
+  "browserReference": {
+    "browser": "Edg/156.0.4314.50",
+    "v8Version": "15.6.12.7",
+    "headless": true,
+    "isolatedProfile": true,
+    "passed": true,
+    "assertions": 42,
+    "hostTools": {
+      "window": true,
+      "randomViews": true,
+      "uuid": true,
+      "userTiming": true,
+      "observer": true
+    },
+    "report": {
+      "animations": [
+        {
+          "kind": "skinned",
+          "changedPixels": 4014,
+          "restoredMaxError": 0
+        },
+        {
+          "kind": "morph",
+          "changedPixels": 4194,
+          "restoredMaxError": 0
+        }
+      ],
+      "meshopt": {
+        "mode": "single-thread Wasm",
+        "bufferModes": ["ATTRIBUTES", "TRIANGLES"],
+        "vertices": 4,
+        "maxPixelError": 0
+      },
+      "texturedExports": [
+        {
+          "format": "gltf",
+          "maxPixelError": 0
+        },
+        {
+          "format": "glb",
+          "maxPixelError": 0
+        }
+      ],
+      "userTiming": true
+    },
+    "sharedFixtures": ["example/js/host-tools.js", "example/js/three-advanced.js"],
+    "canvasSize": [192, 192],
+    "adapter": "HTMLCanvasElement.convertToBlob delegates to native toBlob for the shared capture fixture"
+  },
+  "pixelComparison": {
+    "captures": 25,
+    "rgbaPixels": 921600,
+    "maxChannelError": 0,
+    "results": [
+      {
+        "capture": "advanced-export-glb",
+        "cycle": 0,
+        "width": 192,
+        "height": 192,
+        "maxChannelError": 0
+      },
+      {
+        "capture": "advanced-export-gltf",
+        "cycle": 0,
+        "width": 192,
+        "height": 192,
+        "maxChannelError": 0
+      },
+      {
+        "capture": "advanced-meshopt",
+        "cycle": 0,
+        "width": 192,
+        "height": 192,
+        "maxChannelError": 0
+      },
+      {
+        "capture": "advanced-morph-pose",
+        "cycle": 0,
+        "width": 192,
+        "height": 192,
+        "maxChannelError": 0
+      },
+      {
+        "capture": "advanced-morph-rest",
+        "cycle": 0,
+        "width": 192,
+        "height": 192,
+        "maxChannelError": 0
+      },
+      {
+        "capture": "advanced-morph-restored",
+        "cycle": 0,
+        "width": 192,
+        "height": 192,
+        "maxChannelError": 0
+      },
+      {
+        "capture": "advanced-skinned-pose",
+        "cycle": 0,
+        "width": 192,
+        "height": 192,
+        "maxChannelError": 0
+      },
+      {
+        "capture": "advanced-skinned-rest",
+        "cycle": 0,
+        "width": 192,
+        "height": 192,
+        "maxChannelError": 0
+      },
+      {
+        "capture": "advanced-skinned-restored",
+        "cycle": 0,
+        "width": 192,
+        "height": 192,
+        "maxChannelError": 0
+      },
+      {
+        "capture": "advanced-meshopt",
+        "cycle": 1,
+        "width": 192,
+        "height": 192,
+        "maxChannelError": 0
+      },
+      {
+        "capture": "advanced-morph-pose",
+        "cycle": 1,
+        "width": 192,
+        "height": 192,
+        "maxChannelError": 0
+      },
+      {
+        "capture": "advanced-morph-rest",
+        "cycle": 1,
+        "width": 192,
+        "height": 192,
+        "maxChannelError": 0
+      },
+      {
+        "capture": "advanced-morph-restored",
+        "cycle": 1,
+        "width": 192,
+        "height": 192,
+        "maxChannelError": 0
+      },
+      {
+        "capture": "advanced-skinned-pose",
+        "cycle": 1,
+        "width": 192,
+        "height": 192,
+        "maxChannelError": 0
+      },
+      {
+        "capture": "advanced-skinned-rest",
+        "cycle": 1,
+        "width": 192,
+        "height": 192,
+        "maxChannelError": 0
+      },
+      {
+        "capture": "advanced-skinned-restored",
+        "cycle": 1,
+        "width": 192,
+        "height": 192,
+        "maxChannelError": 0
+      },
+      {
+        "capture": "advanced-export-glb",
+        "cycle": 2,
+        "width": 192,
+        "height": 192,
+        "maxChannelError": 0
+      },
+      {
+        "capture": "advanced-export-gltf",
+        "cycle": 2,
+        "width": 192,
+        "height": 192,
+        "maxChannelError": 0
+      },
+      {
+        "capture": "advanced-meshopt",
+        "cycle": 2,
+        "width": 192,
+        "height": 192,
+        "maxChannelError": 0
+      },
+      {
+        "capture": "advanced-morph-pose",
+        "cycle": 2,
+        "width": 192,
+        "height": 192,
+        "maxChannelError": 0
+      },
+      {
+        "capture": "advanced-morph-rest",
+        "cycle": 2,
+        "width": 192,
+        "height": 192,
+        "maxChannelError": 0
+      },
+      {
+        "capture": "advanced-morph-restored",
+        "cycle": 2,
+        "width": 192,
+        "height": 192,
+        "maxChannelError": 0
+      },
+      {
+        "capture": "advanced-skinned-pose",
+        "cycle": 2,
+        "width": 192,
+        "height": 192,
+        "maxChannelError": 0
+      },
+      {
+        "capture": "advanced-skinned-rest",
+        "cycle": 2,
+        "width": 192,
+        "height": 192,
+        "maxChannelError": 0
+      },
+      {
+        "capture": "advanced-skinned-restored",
+        "cycle": 2,
+        "width": 192,
+        "height": 192,
+        "maxChannelError": 0
+      }
+    ]
+  },
+  "checks": {
+    "coreJsPassed": 134,
+    "canvasJsPassed": 35,
+    "webgpuConversionJsPassed": 6,
+    "exampleMetricsJsPassed": 2,
+    "coreHostUiPassed": 22,
+    "coreCanvasUiPassed": 3,
+    "canvasUiPassed": 395,
+    "v8RuntimePassed": 58,
+    "scopedTypeScript": "passed",
+    "scopedDartAnalysis": {
+      "errors": 0,
+      "warnings": 0,
+      "existingStyleInfos": 3
+    },
+    "generatedHost": "reproducible",
+    "publicDeclarations": "reproducible",
+    "gitDiffCheck": "passed"
+  },
+  "preservation": {
+    "beforeFiles": 267,
+    "unchanged": 242,
+    "missing": [
+      "packages/flax_canvas/js-types/types/canvas.d.ts",
+      "packages/flax_canvas/js-types/types/color.d.ts",
+      "packages/flax_canvas/js-types/types/commands.d.ts",
+      "packages/flax_canvas/js-types/types/filter.d.ts",
+      "packages/flax_canvas/js-types/types/font.d.ts",
+      "packages/flax_canvas/js-types/types/path.d.ts"
+    ],
+    "updated": [
+      "docs/architecture/canvas.md",
+      "docs/architecture/host.md",
+      "packages/flax/README.md",
+      "packages/flax/js-types/types/host/canvas-dom.d.ts",
+      "packages/flax/js-types/types/host/index.d.ts",
+      "packages/flax/js/src/host/bootstrap.ts",
+      "packages/flax/js/src/host/canvas-dom.ts",
+      "packages/flax/js/src/host/fetch/bootstrap.ts",
+      "packages/flax/js/src/host/index.ts",
+      "packages/flax/js/test/fetch/host.test.mjs",
+      "packages/flax/js/test/runtime/types.ts",
+      "packages/flax/lib/src/generated/host_bootstrap.g.dart",
+      "packages/flax/lib/src/ui/host.dart",
+      "packages/flax/test/ui/host_test.dart",
+      "packages/flax_canvas/lib/src/generated/host_bootstrap.g.dart",
+      "packages/flax_webgpu/README.md",
+      "packages/flax_webgpu/example/js/main.js",
+      "packages/flax_webgpu/example/js/three-advanced.js",
+      "packages/flax_webgpu/example/lib/acceptance.dart"
+    ],
+    "snapshot": ".local/core-browser-tools/before.tar.gz",
+    "missingReason": "Maintained public type generation pruned six unreachable, stale Canvas declarations. Their source files are unchanged and their previous bytes remain in the snapshot."
+  },
+  "limits": [
+    "macOS arm64 development profile only",
+    "No general DOM tree, CSS layout, navigation or cookie storage",
+    "User Timing only; no resource/navigation/paint/long-task telemetry",
+    "No SubtleCrypto",
+    "No new FPS or display-latency benchmark",
+    "GPU-only textured export still requires Canvas 2D and is skipped",
+    "No full Three.js/glTF or WebGPU CTS conformance claim"
+  ],
+  "gitActions": {
+    "committed": false,
+    "pushed": false,
+    "published": false
+  }
+}

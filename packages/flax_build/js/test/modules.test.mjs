@@ -24,6 +24,7 @@ import {
   prepareModules,
   validateModuleManifest,
 } from '../src/modules.mjs';
+import { prepareNativeAssets } from '../src/native-assets.mjs';
 import {
   createBundledProviderFixture,
   createGraphFixture,
@@ -88,6 +89,83 @@ function runtime() {
   context.__flaxModules.seal(fixture.manifest.modules);
   return context;
 }
+
+test('prepared host factories retain native owners absent from the business bundle', async () => {
+  const sample = await createMixedFixture(join(root, 'native-host-factory'));
+  const require = createRequire(join(sample.hostJs, 'package.json'));
+  const directory = dirname(require.resolve('@fixture/a-impl/flax_modules.json'));
+  const metadataPath = join(directory, 'package.json');
+  const metadata = JSON.parse(await readFile(metadataPath, 'utf8'));
+  metadata.flax = { native: 'native.json' };
+  await writeFile(metadataPath, JSON.stringify(metadata));
+  await writeFile(
+    join(directory, 'native.json'),
+    JSON.stringify({
+      formatVersion: 1,
+      libraries: [
+        {
+          id: '@fixture/host-native',
+          kind: 'sources',
+          targets: ['macos'],
+          sources: ['native.c'],
+        },
+      ],
+    }),
+  );
+  await writeFile(join(directory, 'native.c'), 'int value(void) { return 42; }');
+  await prepareModules({ configPath: sample.configPath });
+  const result = await prepareNativeAssets({
+    projectDirectory: sample.hostJs,
+    hostDirectory: sample.host,
+    metafile: { outputs: {} },
+  });
+  assert.deepEqual(
+    result.plan.libraries.map((entry) => entry.id),
+    ['@fixture/host-native'],
+  );
+  await prepareModules({ configPath: sample.configPath, check: true });
+  const config = JSON.parse(await readFile(sample.configPath, 'utf8'));
+  config.modules = [{ specifier: '@fixture/base/bindings', package: '@fixture/base' }];
+  await writeFile(sample.configPath, JSON.stringify(config));
+  await prepareModules({ configPath: sample.configPath });
+  const plan = JSON.parse(
+    await readFile(join(sample.host, '.flax/ffi_assets/native-plan.json'), 'utf8'),
+  );
+  assert.deepEqual(plan.libraries, []);
+});
+
+test('host preparation accepts an ordinary npm directory alias', async () => {
+  const sample = await createMixedFixture(join(root, 'npm-directory-alias'));
+  const ordinary = join(sample.hostJs, 'node_modules', 'ordinary');
+  await mkdir(ordinary, { recursive: true });
+  await writeFile(
+    join(ordinary, 'package.json'),
+    JSON.stringify({
+      name: 'ordinary',
+      version: '1.0.0',
+      type: 'module',
+      main: 'index.js',
+    }),
+  );
+  await writeFile(
+    join(ordinary, 'index.js'),
+    'globalThis.directoryAlias = "DIRECTORY_ALIAS_VALUE";',
+  );
+  const require = createRequire(join(sample.hostJs, 'package.json'));
+  const index = join(
+    dirname(require.resolve('@fixture/a-impl/flax_modules.json')),
+    'index.js',
+  );
+  await writeFile(index, "import 'ordinary/';\n" + (await readFile(index, 'utf8')));
+  const prepared = await prepareModules({ configPath: sample.configPath });
+  const entry = prepared.manifest.modules.find(
+    (value) => value.specifier === '@fixture/a',
+  );
+  assert.match(
+    await readFile(join(sample.host, entry.asset), 'utf8'),
+    /DIRECTORY_ALIAS_VALUE/,
+  );
+});
 
 test('types-only SDKs build without host inventory and retain runtime admission checks', async () => {
   const compile = (contents) =>

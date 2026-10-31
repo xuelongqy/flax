@@ -54,6 +54,7 @@ void main() {
       'flax_websocket',
       'flax_local_storage',
       'flax_canvas',
+      'flax_webgpu',
     ]) {
       _writeJson(p.join(temporary.path, 'packages', owner, 'js/package.json'), {
         'name': '@fixture/$owner-runtime',

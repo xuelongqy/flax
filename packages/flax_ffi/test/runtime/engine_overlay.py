@@ -30,8 +30,9 @@ def build(checkout, output_root, name, native_source, sanitize=False, extension_
           includes=(), libraries=(), cpp_transforms=None, platform_builder=None):
     source = checkout / "engine/src"
     base = source / "out" / name
-    if not base.exists() and name in ('flax_mac_debug', 'flax_mac_release'):
-        base = source / "out" / (name + '_arm64')
+    if name in ('flax_mac_debug', 'flax_mac_release'):
+        maintained = source / "out" / (name + '_arm64')
+        if maintained.exists(): base = maintained
     original = base.resolve()
     output = output_root / name
     output.mkdir(parents=True, exist_ok=True)

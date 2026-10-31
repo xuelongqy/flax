@@ -6,7 +6,7 @@ to identify the owning layer.
 
 ## Setup
 
-Use Flutter 3.47.6 from the maintained `flax/main` fork and the remaining tool versions
+Use Flutter 3.47.9 from the maintained `flax/main` fork and the remaining tool versions
 in the [toolchain table](README.md#toolchain). Build the matching local engine before
 engine-backed checks; see [setup](README.md). A C/C++ compiler and CMake 3.24 or newer
 are required for configuration checks.
@@ -84,7 +84,7 @@ keep the maintained engine/SDK outputs for subsequent checks.
 | Standalone source and release with the matching engine | `dart run melos run check:standalone`                                  |
 | Launch standalone macOS app                            | `dart run melos run standalone:run`                                    |
 | Workspace-wide or cross-layer changes                  | `dart run melos run check`                                             |
-| One package's static checks                            | `dart run tool/package.dart check NAME`                                |
+| One package's checks                                   | `dart run tool/package.dart check NAME`                                |
 | One package's real UI checks                           | `dart run tool/package.dart integration NAME`                          |
 | Temporary Dart/npm archive contents                    | `dart run melos run packages:check`                                    |
 | Stage packable archives with receipt (no publish)      | `dart run melos run packages:pack`                                     |
@@ -154,8 +154,9 @@ The old multi-platform SDK matrix is historical; it does not certify this engine
 Flutter engine before runtime acceptance can resume.
 
 The full workspace check stops on failure. Ordinary `check` and `native:configure` never
-fetch or build an engine. Checks that execute Flutter use the matching official
-`--local-engine` and `--local-engine-host` flags through the workspace tools.
+fetch or build an engine. Native package and generator tests inside `check` require an
+existing matching maintained engine. Checks that execute Flutter use the matching
+official `--local-engine` and `--local-engine-host` flags through the workspace tools.
 
 Formatting fixes are explicit:
 
@@ -206,15 +207,25 @@ decisions.
 
 ## CI
 
-Every PR/main push runs the complete engine-free `melos check`, `ffi:check` and package
-archive checks. The `result` job requires both the static workspace and archive jobs to
-succeed. CI explicitly reports that runtime, UI and platform acceptance were not run.
-Ordinary package unit tests use the standard Flutter test engine; tests that start a
-Flax runtime run through the maintained-engine runtime and UI gates. The former SDK
-platform workflows and their manual entry are removed; maintained-engine runtime CI is
-pending. `check_platform.dart` retains historical `--list` plans but rejects execution
-before fetching or building SDKs. Other platforms require their maintained engine and
-new acceptance evidence; the old matrix does not certify this integration.
+PR/main checks and manual archive checks share one macOS arm64 job in
+[packages.yml](.github/workflows/packages.yml). It checks out the fixed maintained fork,
+runs ordinary gclient hooks, obtains the locked V8 SDK through `prepare_ci_sdk.dart`,
+builds the matching Debug engine with two jobs and explicitly produces the pinned Dawn
+asset. Bootstrap precedes the engine build; directory comparisons verify that later Pub
+and workspace checks keep the generated maintained `dart:ui` declarations selected. The
+job then runs complete `melos check`, `check:runtime`, `ffi:check` and `release:check`;
+`result` requires the reused job to succeed. No tests are skipped to accommodate stock
+Flutter. Hosted cleanup requires GitHub-hosted macOS arm64 and at least 50 GiB free; it
+is not a local development command.
+
+The fork source is based on Flutter 3.47.9/Dart 3.13.7; its full Git history may report
+a derived prerelease framework version. The CI source pin and engine source lock are the
+authority, not an edited version-cache file. No hosted run is claimed before the local
+fork and Flax commits are pushed. See the
+[integration task](docs/tasks/webgpu-js-api.md#latest-main-integration). The former SDK
+platform workflows remain removed; `check_platform.dart` retains historical `--list`
+plans but rejects execution before fetching or building SDKs. Other platforms and full
+application/UI acceptance require their own maintained engine and evidence.
 
 Framework tests use generated interop fixture outputs from `ui:bundle`. The `ui:test`
 entry enables the Flutter test VM service for actual Dart GC/Finalizer observation;

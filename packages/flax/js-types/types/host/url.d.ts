@@ -1,3 +1,4 @@
+import type { Blob } from './data.js';
 export interface URLSearchParams {
     readonly size: number;
     append(name: string, value: string): void;
@@ -37,4 +38,7 @@ export interface URLConstructor {
     new (url: string | URL, base?: string | URL): URL;
     canParse(url: string | URL, base?: string | URL): boolean;
     parse(url: string | URL, base?: string | URL): URL | null;
+    createObjectURL(blob: Blob): string;
+    revokeObjectURL(url: string): void;
 }
+export declare function installObjectURLs(global: typeof globalThis): () => void;

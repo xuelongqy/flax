@@ -169,7 +169,11 @@ native ValueListenable consumers.
 - [Persistent localStorage and namespaces](local-storage.md).
 - [Application data sandbox and binding guards](sandbox.md).
 
-- [Canvas 2D](canvas.md): command buffer, rAF, and native input references.
+- [Shared canvas and Canvas 2D](canvas.md): Core placement, optional contexts and 2D
+  command buffers.
+
+- [WebGPU on macOS](webgpu.md): standard JS objects, Dawn/Metal and shared texture
+  presentation.
 
 ## Direct JavaScript FFI
 
@@ -180,3 +184,6 @@ installation, checkpoints and retirement. Retained npm native inputs select
 source/static/prebuilt code assets. See the
 [package guide](../../packages/flax_ffi/js/README.md) and
 [validation receipt](../../packages/flax_ffi/test/runtime/results.json).
+
+[Dedicated Workers](dedicated-workers.md) own detached background JS/Wasm, native
+structured clone, ArrayBuffer transfer and explicit shutdown.

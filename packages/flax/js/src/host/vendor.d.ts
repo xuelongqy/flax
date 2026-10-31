@@ -19,3 +19,7 @@ declare module 'core-js-pure/actual/dom-exception/index.js' {
   const value: import('./events.js').DOMExceptionConstructor;
   export default value;
 }
+declare module 'core-js-pure/actual/structured-clone.js' {
+  const clone: <T>(value: T) => T;
+  export default clone;
+}

@@ -51,6 +51,7 @@
     "../packages/flax/js/src/runtime/bindings.ts",
     "../packages/flax/js/src/host/index.ts",
     "../packages/flax/js/src/host/documents.ts",
+    "../packages/flax/js/src/host/worker.ts",
     "../packages/flax/js/src/host/vendor.d.ts",
     "../packages/flax/js/src/flutter/generated/libraries/navigation/index.ts",
     "../packages/flax_websocket/js/src/index.ts",
@@ -58,7 +59,9 @@
     "../packages/flax_local_storage/js/src/index.ts",
     "../packages/flax_local_storage/js/src/globals.ts",
     "../packages/flax_canvas/js/src/index.ts",
-    "../packages/flax_canvas/js/src/globals.ts"
+    "../packages/flax_canvas/js/src/globals.ts",
+    "../packages/flax_webgpu/js/src/index.ts",
+    "../packages/flax_webgpu/js/src/globals.ts"
   ],
   "include": [
     "../packages/flax/js/src/flutter/generated/libraries/*/index.ts",

@@ -110,6 +110,7 @@ for (const [owner, label] of [
   ['flax_websocket', '@flax/websocket'],
   ['flax_local_storage', '@flax/local-storage'],
   ['flax_canvas', '@flax/canvas'],
+  ['flax_webgpu', '@flax/webgpu'],
   ['flax_material_ui', '@flax/material-ui'],
   ['flax_cupertino_ui', '@flax/cupertino-ui'],
 ]) {

@@ -8,7 +8,9 @@
     "src/flutter/generated/libraries/services/index.ts",
     "src/dart/generated/libraries/async/index.ts",
     "src/dart/generated/libraries/core/index.ts",
-    "src/dart/generated/libraries/ui/index.ts"
+    "src/dart/generated/libraries/ui/index.ts",
+    "src/host/index.ts",
+    "src/host/vendor.d.ts"
   ],
   "include": [
     "src/flutter/generated/libraries/*/index.ts",

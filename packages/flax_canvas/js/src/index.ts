@@ -1,9 +1,4 @@
-import {
-  CanvasView as BoundCanvasView,
-  type FlaxCanvasSurface,
-} from './generated/bindings.js';
-import { holdCanvas, surfaceOf } from './canvas.js';
-import type { OffscreenCanvas } from './types.js';
+import './generated/bindings.js';
 
 export type {
   CanvasMatrix2DInit,
@@ -21,11 +16,4 @@ export type {
   Path2D,
 } from './types.js';
 
-export function CanvasView(
-  canvas: OffscreenCanvas,
-  options?: Parameters<typeof BoundCanvasView>[1],
-): ReturnType<typeof BoundCanvasView> {
-  const view = BoundCanvasView(surfaceOf(canvas) as FlaxCanvasSurface, options);
-  holdCanvas(view, canvas);
-  return view;
-}
+export { CanvasView } from '@flax/core/bindings';

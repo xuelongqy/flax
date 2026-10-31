@@ -93,6 +93,19 @@ class FlaxBindings {
   late final _flax_engine_get_modules_api = _flax_engine_get_modules_apiPtr
       .asFunction<ffi.Pointer<FlaxEngineModulesApi> Function(int)>();
 
+  ffi.Pointer<FlaxEngineWorkersApi> flax_engine_get_workers_api(int version) {
+    return _flax_engine_get_workers_api(version);
+  }
+
+  late final _flax_engine_get_workers_apiPtr =
+      _lookup<
+        ffi.NativeFunction<
+          ffi.Pointer<FlaxEngineWorkersApi> Function(ffi.Uint32)
+        >
+      >('flax_engine_get_workers_api');
+  late final _flax_engine_get_workers_api = _flax_engine_get_workers_apiPtr
+      .asFunction<ffi.Pointer<FlaxEngineWorkersApi> Function(int)>();
+
   void flax_engine_notify_idle_current_isolate() {
     return _flax_engine_notify_idle_current_isolate();
   }
@@ -127,6 +140,28 @@ class FlaxBindings {
       >('flax_get_engine_execution_api');
   late final _flax_get_engine_execution_api = _flax_get_engine_execution_apiPtr
       .asFunction<ffi.Pointer<FlaxEngineExecutionApi> Function(int)>();
+
+  Object flax_image_dispatch(int operation, Object a, Object b, Object c) {
+    return _flax_image_dispatch(operation, a, b, c);
+  }
+
+  late final _flax_image_dispatchPtr =
+      _lookup<
+        ffi.NativeFunction<
+          ffi.Handle Function(ffi.Uint32, ffi.Handle, ffi.Handle, ffi.Handle)
+        >
+      >('flax_image_dispatch');
+  late final _flax_image_dispatch = _flax_image_dispatchPtr
+      .asFunction<Object Function(int, Object, Object, Object)>();
+
+  int flax_image_version() {
+    return _flax_image_version();
+  }
+
+  late final _flax_image_versionPtr =
+      _lookup<ffi.NativeFunction<ffi.Uint32 Function()>>('flax_image_version');
+  late final _flax_image_version = _flax_image_versionPtr
+      .asFunction<int Function()>();
 }
 
 const int FLAX_ABI_VERSION = 2;
@@ -141,7 +176,11 @@ const int FLAX_ENGINE_FFI_VERSION = 1;
 
 const int FLAX_ENGINE_GC_VERSION = 1;
 
+const int FLAX_ENGINE_IMAGES_VERSION = 1;
+
 const int FLAX_ENGINE_MODULES_VERSION = 1;
+
+const int FLAX_ENGINE_WORKERS_VERSION = 2;
 
 const int FLAX_MODULE_JAVASCRIPT = 1;
 
@@ -1426,6 +1465,132 @@ final class FlaxEngineModulesApi extends ffi.Struct {
     ..ref.capabilities = capabilities
     ..ref.install = install
     ..ref.set_wakeup_port = set_wakeup_port;
+}
+
+final class FlaxEngineWorkersApi extends ffi.Struct {
+  @ffi.Uint32()
+  external int version;
+
+  @ffi.Size()
+  external int struct_size;
+
+  external ffi.Pointer<
+    ffi.NativeFunction<
+      ffi.Int32 Function(
+        ffi.Pointer<ffi.Pointer<FlaxRuntime>>,
+        ffi.Pointer<FlaxError>,
+      )
+    >
+  >
+  create;
+
+  external ffi.Pointer<
+    ffi.NativeFunction<
+      ffi.Int32 Function(
+        ffi.Pointer<FlaxRuntime>,
+        ffi.Int64,
+        ffi.Pointer<FlaxError>,
+      )
+    >
+  >
+  install;
+
+  external ffi.Pointer<
+    ffi.NativeFunction<
+      ffi.Int32 Function(
+        ffi.Pointer<FlaxRuntime>,
+        ffi.Uint64,
+        ffi.Int64,
+        ffi.Pointer<FlaxError>,
+      )
+    >
+  >
+  attach;
+
+  external ffi.Pointer<
+    ffi.NativeFunction<ffi.Void Function(ffi.Uint64 channel)>
+  >
+  interrupt;
+
+  external ffi.Pointer<
+    ffi.NativeFunction<
+      ffi.Int32 Function(ffi.Pointer<FlaxRuntime>, ffi.Pointer<FlaxError>)
+    >
+  >
+  retire;
+
+  external ffi.Pointer<
+    ffi.NativeFunction<
+      ffi.Void Function(
+        ffi.Pointer<ffi.Uint64> channels,
+        ffi.Pointer<ffi.Uint64> runtimes,
+      )
+    >
+  >
+  counts;
+
+  static ffi.Pointer<FlaxEngineWorkersApi> $allocate(
+    ffi.Allocator $allocator, {
+    required int version,
+    required int struct_size,
+    required ffi.Pointer<
+      ffi.NativeFunction<
+        ffi.Int32 Function(
+          ffi.Pointer<ffi.Pointer<FlaxRuntime>>,
+          ffi.Pointer<FlaxError>,
+        )
+      >
+    >
+    create,
+    required ffi.Pointer<
+      ffi.NativeFunction<
+        ffi.Int32 Function(
+          ffi.Pointer<FlaxRuntime>,
+          ffi.Int64,
+          ffi.Pointer<FlaxError>,
+        )
+      >
+    >
+    install,
+    required ffi.Pointer<
+      ffi.NativeFunction<
+        ffi.Int32 Function(
+          ffi.Pointer<FlaxRuntime>,
+          ffi.Uint64,
+          ffi.Int64,
+          ffi.Pointer<FlaxError>,
+        )
+      >
+    >
+    attach,
+    required ffi.Pointer<
+      ffi.NativeFunction<ffi.Void Function(ffi.Uint64 channel)>
+    >
+    interrupt,
+    required ffi.Pointer<
+      ffi.NativeFunction<
+        ffi.Int32 Function(ffi.Pointer<FlaxRuntime>, ffi.Pointer<FlaxError>)
+      >
+    >
+    retire,
+    required ffi.Pointer<
+      ffi.NativeFunction<
+        ffi.Void Function(
+          ffi.Pointer<ffi.Uint64> channels,
+          ffi.Pointer<ffi.Uint64> runtimes,
+        )
+      >
+    >
+    counts,
+  }) => $allocator<FlaxEngineWorkersApi>()
+    ..ref.version = version
+    ..ref.struct_size = struct_size
+    ..ref.create = create
+    ..ref.install = install
+    ..ref.attach = attach
+    ..ref.interrupt = interrupt
+    ..ref.retire = retire
+    ..ref.counts = counts;
 }
 
 final class FlaxError extends ffi.Struct {

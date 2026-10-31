@@ -9,32 +9,16 @@ import 'package:flax/bindings.dart';
 import 'dart:ui' as api1;
 
 import 'package:flutter/foundation.dart' as api2;
+import 'package:flax/bindings.dart' as api3;
+import 'package:flutter/rendering.dart' as api4;
 
-import 'dart:core' as api3;
-
-import 'package:flutter/widgets.dart' as api4;
+import 'dart:core' as api5;
 
 // ignore: unused_element
 const _flaxOmitted = Object();
 const canvasBindings = FlaxBindingModule(
   'canvas',
-  [
-    _flaxBinding64,
-    FlaxWidgetBinding(
-      "flax.canvas/canvas#type:FlaxCanvasView",
-      {
-        "": [
-          FlaxParameter.required("canvas", _flaxBinding65),
-          FlaxParameter("key", _flaxBinding66, required: false),
-          FlaxParameter("width", flaxNullableDoubleType, required: false),
-          FlaxParameter("height", flaxNullableDoubleType, required: false),
-        ],
-      },
-      _FlaxCanvasViewHost.new,
-      matches: _isFlaxCanvasView,
-      methods: {},
-    ),
-  ],
+  [_flaxBinding67],
   functions: [],
   constants: [
     FlaxConstantGroup(flaxIntType, {
@@ -49,6 +33,7 @@ const canvasBindings = FlaxBindingModule(
     "flax.core/flutter",
     "flax.core/sdk_dart_ui",
     "flax.core/sdk_foundation",
+    "flax.core/sdk_rendering",
   ],
   uiProtocol: 24,
   requiredCapabilities: const <String>[
@@ -66,11 +51,6 @@ const canvasBindings = FlaxBindingModule(
       "flax.canvas/canvas#type:FlaxCanvasSurface",
       api.FlaxCanvasSurface,
       "object",
-    ),
-    FlaxDartClassTemplate(
-      "flax.canvas/canvas#type:FlaxCanvasView",
-      api.FlaxCanvasView,
-      "widget",
     ),
   ],
   dartShapes: _flaxDartShapes,
@@ -175,7 +155,7 @@ void _FlaxCanvasSurface_set_transferred(Object receiver, Object? value) {
 
 void _FlaxCanvasSurface_set_onError(Object receiver, Object? value) {
   (receiver as api.FlaxCanvasSurface).onError =
-      value as void Function(Object error, api3.StackTrace stack)?;
+      value as void Function(Object error, api5.StackTrace stack)?;
 }
 
 void _FlaxCanvasSurface_set_debugRasterize(Object receiver, Object? value) {
@@ -214,6 +194,18 @@ Object? _FlaxCanvasSurface_dispose(
   Map<String, Object?> values,
 ) {
   (receiver as api.FlaxCanvasSurface).dispose();
+  return null;
+}
+
+Object? _FlaxCanvasSurface_paintTo(
+  Object receiver,
+  Map<String, Object?> values,
+) {
+  (receiver as api.FlaxCanvasSurface).paintTo(
+    values["context"] as api4.PaintingContext,
+    values["offset"] as api1.Offset,
+    values["size"] as api1.Size,
+  );
   return null;
 }
 
@@ -301,29 +293,6 @@ Object _createFlaxCanvasSurface(String ctor, Map<String, Object?> values) {
         values["width"] as int,
         values["height"] as int,
         alpha: values["alpha"] as bool,
-      );
-    default:
-      throw ArgumentError('Unknown generated constructor');
-  }
-}
-
-bool _isFlaxCanvasView(Object value) => value is api.FlaxCanvasView;
-
-class _FlaxCanvasViewHost extends FlaxWidgetHost {
-  _FlaxCanvasViewHost(super.node);
-  @override
-  api4.Widget buildNative(Map<String, Object?> values) =>
-      _createFlaxCanvasView(node.ctor, values);
-}
-
-api4.Widget _createFlaxCanvasView(String ctor, Map<String, Object?> values) {
-  switch (ctor) {
-    case "":
-      return api.FlaxCanvasView(
-        values["canvas"] as api.FlaxCanvasSurface,
-        key: values["key"] as api2.Key?,
-        width: values["width"] as double?,
-        height: values["height"] as double?,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -638,10 +607,10 @@ const _flaxBinding22 = FlaxCallbackBinding(
     FlaxCallbackParameter.plain("stack", _flaxBinding21),
   ],
   flaxVoidType,
-  FlaxCallbackAdapters.wrapVoid2<Object, api3.StackTrace>,
+  FlaxCallbackAdapters.wrapVoid2<Object, api5.StackTrace>,
   id: "callback:<>(p:r:error:any:,p:r:stack:object:flax.core/flutter#type:StackTrace)->void:",
-  invoke: FlaxCallbackAdapters.invokeVoid2<Object, api3.StackTrace>,
-  matches: FlaxCallbackAdapters.matchesVoid2<Object, api3.StackTrace>,
+  invoke: FlaxCallbackAdapters.invokeVoid2<Object, api5.StackTrace>,
+  matches: FlaxCallbackAdapters.matchesVoid2<Object, api5.StackTrace>,
 );
 const _flaxBinding23 = FlaxTypeRef(
   "callback",
@@ -783,74 +752,88 @@ const _flaxBinding49 = FlaxInstanceMethod.plain(
   flaxVoidType,
   _FlaxCanvasSurface_dispose,
 );
-const _flaxBinding50 = <FlaxParameter>[
+const _flaxBinding50 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_rendering#type:PaintingContext",
+);
+const _flaxBinding51 = <FlaxParameter>[
+  FlaxParameter.required("context", _flaxBinding50),
+  FlaxParameter.required("offset", flaxOffsetType),
+  FlaxParameter.required("size", flaxSizeType),
+];
+const _flaxBinding52 = FlaxInstanceMethod.plain(
+  _flaxBinding51,
+  flaxVoidType,
+  _FlaxCanvasSurface_paintTo,
+);
+const _flaxBinding53 = <FlaxParameter>[
   FlaxParameter.required("nextWidth", flaxIntType),
   FlaxParameter.required("nextHeight", flaxIntType),
   FlaxParameter("reset", flaxBoolType, required: false, defaultValue: false),
 ];
-const _flaxBinding51 = FlaxInstanceMethod.plain(
-  _flaxBinding50,
-  flaxVoidType,
-  _FlaxCanvasSurface_resize,
-);
-const _flaxBinding52 = FlaxInstanceMethod.plain(
-  _flaxBinding48,
-  flaxVoidType,
-  _FlaxCanvasSurface_clearHistory,
-);
-const _flaxBinding53 = <FlaxParameter>[
-  FlaxParameter.required("picture", _flaxBinding9),
-  FlaxParameter.required("bytes", flaxIntType),
-];
 const _flaxBinding54 = FlaxInstanceMethod.plain(
   _flaxBinding53,
   flaxVoidType,
-  _FlaxCanvasSurface_addPicture,
+  _FlaxCanvasSurface_resize,
 );
 const _flaxBinding55 = FlaxInstanceMethod.plain(
   _flaxBinding48,
   flaxVoidType,
-  _FlaxCanvasSurface_replaceWithClear,
+  _FlaxCanvasSurface_clearHistory,
 );
-const _flaxBinding56 = FlaxInstanceMethod.plain(
-  _flaxBinding48,
-  flaxVoidType,
-  _FlaxCanvasSurface_maybeCompress,
-);
+const _flaxBinding56 = <FlaxParameter>[
+  FlaxParameter.required("picture", _flaxBinding9),
+  FlaxParameter.required("bytes", flaxIntType),
+];
 const _flaxBinding57 = FlaxInstanceMethod.plain(
-  _flaxBinding48,
-  _flaxBinding25,
-  _FlaxCanvasSurface_rasterize,
+  _flaxBinding56,
+  flaxVoidType,
+  _FlaxCanvasSurface_addPicture,
 );
 const _flaxBinding58 = FlaxInstanceMethod.plain(
   _flaxBinding48,
-  _flaxBinding7,
-  _FlaxCanvasSurface_rasterizeSync,
+  flaxVoidType,
+  _FlaxCanvasSurface_replaceWithClear,
 );
 const _flaxBinding59 = FlaxInstanceMethod.plain(
   _flaxBinding48,
   flaxVoidType,
+  _FlaxCanvasSurface_maybeCompress,
+);
+const _flaxBinding60 = FlaxInstanceMethod.plain(
+  _flaxBinding48,
+  _flaxBinding25,
+  _FlaxCanvasSurface_rasterize,
+);
+const _flaxBinding61 = FlaxInstanceMethod.plain(
+  _flaxBinding48,
+  _flaxBinding7,
+  _FlaxCanvasSurface_rasterizeSync,
+);
+const _flaxBinding62 = FlaxInstanceMethod.plain(
+  _flaxBinding48,
+  flaxVoidType,
   _FlaxCanvasSurface_abandon,
 );
-const _flaxBinding60 = FlaxTypeRef(
+const _flaxBinding63 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dart_ui#type:Canvas",
 );
-const _flaxBinding61 = <FlaxParameter>[
-  FlaxParameter.required("canvas", _flaxBinding60),
+const _flaxBinding64 = <FlaxParameter>[
+  FlaxParameter.required("canvas", _flaxBinding63),
   FlaxParameter.required("size", flaxSizeType),
 ];
-const _flaxBinding62 = FlaxInstanceMethod.plain(
-  _flaxBinding61,
+const _flaxBinding65 = FlaxInstanceMethod.plain(
+  _flaxBinding64,
   flaxVoidType,
   _FlaxCanvasSurface_paint,
 );
-const _flaxBinding63 = <FlaxParameter>[
+const _flaxBinding66 = <FlaxParameter>[
   FlaxParameter.required("width", flaxIntType),
   FlaxParameter.required("height", flaxIntType),
   FlaxParameter("alpha", flaxBoolType, required: false, defaultValue: true),
 ];
-const _flaxBinding64 = FlaxObjectBinding(
+const _flaxBinding67 = FlaxObjectBinding(
   "flax.canvas/canvas#type:FlaxCanvasSurface",
   [
     _flaxBinding0,
@@ -876,17 +859,18 @@ const _flaxBinding64 = FlaxObjectBinding(
     "addListener": _flaxBinding46,
     "removeListener": _flaxBinding47,
     "dispose": _flaxBinding49,
-    "resize": _flaxBinding51,
-    "clearHistory": _flaxBinding52,
-    "addPicture": _flaxBinding54,
-    "replaceWithClear": _flaxBinding55,
-    "maybeCompress": _flaxBinding56,
-    "rasterize": _flaxBinding57,
-    "rasterizeSync": _flaxBinding58,
-    "abandon": _flaxBinding59,
-    "paint": _flaxBinding62,
+    "paintTo": _flaxBinding52,
+    "resize": _flaxBinding54,
+    "clearHistory": _flaxBinding55,
+    "addPicture": _flaxBinding57,
+    "replaceWithClear": _flaxBinding58,
+    "maybeCompress": _flaxBinding59,
+    "rasterize": _flaxBinding60,
+    "rasterizeSync": _flaxBinding61,
+    "abandon": _flaxBinding62,
+    "paint": _flaxBinding65,
   },
-  constructors: {"": _flaxBinding63},
+  constructors: {"": _flaxBinding66},
   create: _createFlaxCanvasSurface,
   matches: _isFlaxCanvasSurface,
   setters: [
@@ -911,16 +895,8 @@ const _flaxBinding64 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:ChangeNotifier",
     "dart:core::Object",
     "flax.core/flutter#type:Listenable",
+    "flax.core/flutter#type:FlaxCanvasContent",
   ],
   disposeMethod: "dispose",
   listenerPairs: {"addListener": "removeListener"},
-);
-const _flaxBinding65 = FlaxTypeRef(
-  "object",
-  id: "flax.canvas/canvas#type:FlaxCanvasSurface",
-);
-const _flaxBinding66 = FlaxTypeRef(
-  "object",
-  id: "flax.core/flutter#type:Key",
-  nullable: true,
 );

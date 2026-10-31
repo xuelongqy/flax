@@ -1,6 +1,54 @@
 import type {} from '../../src/host/index.js';
 import { action, computed, effect, signal, untracked } from '@flax/core';
 import type { DartIterableInput } from '../../src/runtime/bindings.js';
+const reader: FileReader = new FileReader();
+reader.readAsArrayBuffer(new Blob(['data']));
+reader.onloadend = (event) => {
+  const loaded: number = event.loaded;
+  void loaded;
+};
+const bitmapContext: ImageBitmapRenderingContext | null = new OffscreenCanvas(
+  2,
+  2,
+).getContext('bitmaprenderer');
+bitmapContext?.transferFromImageBitmap(null);
+
+const progress: ProgressEvent = new ProgressEvent('progress', {
+  loaded: 8,
+  total: 16,
+  lengthComputable: true,
+});
+const objectUrl: string = URL.createObjectURL(new Blob(['model']));
+URL.revokeObjectURL(objectUrl);
+void progress;
+
+const sharedWindow: typeof globalThis = window;
+const randomWords: Uint32Array = crypto.getRandomValues(new Uint32Array(4));
+const uuid: `${string}-${string}-${string}-${string}-${string}` =
+  window.crypto.randomUUID();
+const startMark: PerformanceMark = performance.mark(uuid, {
+  detail: { source: 'types' },
+});
+const span: PerformanceMeasure = performance.measure('duration', {
+  start: startMark.name,
+  end: performance.now(),
+});
+const performanceObserver: PerformanceObserver = new PerformanceObserver(function (
+  list,
+  observer,
+  options,
+) {
+  const records: PerformanceEntryList = list.getEntries();
+  const self: PerformanceObserver = this;
+  const dropped: number | undefined = options.droppedEntriesCount;
+  observer.disconnect();
+  void [records, self, dropped];
+});
+performanceObserver.observe({ type: 'measure', buffered: true });
+performanceObserver.takeRecords();
+performance.clearMarks(uuid);
+performance.clearMeasures('duration');
+void [sharedWindow, randomWords, span, new PerformanceMark('standalone')];
 
 const bytesAsList: DartListInput<number> = new Uint8Array([1, 2]);
 const nativeInts: DartIterableInput<number> = new BigInt64Array([BigInt(1)]);

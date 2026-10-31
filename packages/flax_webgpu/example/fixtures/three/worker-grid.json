@@ -1,0 +1,9 @@
+{
+  "count": 65536,
+  "stride": 32,
+  "mode": "ATTRIBUTES",
+  "inputBytes": 251983,
+  "outputBytes": 2097152,
+  "inputSha256": "8dfdd2dfc3913353ee85d3f5321f10cf548f1ea3e9dd43cb25e277490ca51af2",
+  "outputSha256": "bf89ca18be816e832371a62551d50631248a1f1841282c4492cc3a16f48df907"
+}

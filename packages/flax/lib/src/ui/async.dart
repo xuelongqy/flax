@@ -353,6 +353,12 @@ extension _AsyncCalls on _Session {
       }
       // End the JS job after weak reads so deref does not keep wrappers alive.
       complete = runtime.drainMicrotasks(maxJobsHint: 1024);
+      if (complete) {
+        for (final installation in _hostInstallations) {
+          final instance = installation.instance;
+          if (instance is _BaseHost) instance.presentCanvases();
+        }
+      }
     } catch (error, stack) {
       report(error, stack);
     } finally {

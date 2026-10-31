@@ -58,7 +58,10 @@ class _FetchRequest {
 }
 
 class _FetchHost {
-  _FetchHost(this.context, this.baseUrl);
+  _FetchHost(this.context, this.baseUrl, {this.onSettled, this.observeNetwork});
+  // Worker brokers retain transport and permission objects in the root isolate.
+  final void Function(int, bool, Object?)? onSettled;
+  final void Function(Uri)? observeNetwork;
   final FlaxHostContext context;
   final String? baseUrl;
   HttpClient? _client;
@@ -74,38 +77,60 @@ class _FetchHost {
       return baseUrl == null ? const FlaxJsUndefined() : FlaxJsString(baseUrl!);
     }
     if (operation == 'abort') {
-      _requests.remove((args[2] as FlaxJsNumber).value.toInt())?.abort();
+      dispatch(operation, 0, (args[2] as FlaxJsNumber).value.toInt(), null);
       return const FlaxJsUndefined();
     }
+    final input = switch (operation) {
+      'open' => jsonDecode((args[4] as FlaxJsString).value),
+      'write' => context.runtime.readBytes(args[4] as FlaxJsObject),
+      _ => null,
+    };
+    dispatch(
+      operation,
+      (args[2] as FlaxJsNumber).value.toInt(),
+      (args[3] as FlaxJsNumber).value.toInt(),
+      input,
+    );
+    return const FlaxJsUndefined();
+  }
+
+  // Both JS admission and Worker messages enter the same transport implementation.
+  void dispatch(String operation, int id, int requestId, Object? input) {
+    if (operation == 'abort') {
+      if (context case final _WorkerHostContext host) {
+        host.fetch(host.id, operation, requestId, null).ignore();
+      } else {
+        _requests.remove(requestId)?.abort();
+      }
+      return;
+    }
     if (_closed || context.isClosing) throw StateError('FlaxSessionClosed');
-    final id = (args[2] as FlaxJsNumber).value.toInt();
-    final requestId = (args[3] as FlaxJsNumber).value.toInt();
     if (!_pending.add(id)) throw ArgumentError('Duplicate Fetch operation');
     try {
       Future<Object?> result;
-      switch (operation) {
-        case 'open':
-          final settings = jsonDecode(
-            (args[4] as FlaxJsString).value,
-          ) as Map<String, Object?>;
-          if (_requests.containsKey(requestId)) {
-            throw ArgumentError('Duplicate request');
-          }
-          final record = _FetchRequest();
-          _requests[requestId] = record;
-          result = _open(record, settings);
-        case 'write':
-          final record = _record(requestId);
-          final bytes = context.runtime.readBytes(args[4] as FlaxJsObject);
-          result = record.wait(_write(record, bytes));
-        case 'headers':
-          final record = _record(requestId);
-          result = record.wait(_headers(record));
-        case 'read':
-          final record = _record(requestId);
-          result = record.wait(_read(requestId, record));
-        default:
-          throw ArgumentError('Unknown Fetch operation: $operation');
+      if (context case final _WorkerHostContext host) {
+        result = host.fetch(host.id, operation, requestId, input);
+      } else {
+        switch (operation) {
+          case 'open':
+            if (_requests.containsKey(requestId)) {
+              throw ArgumentError('Duplicate request');
+            }
+            final record = _FetchRequest();
+            _requests[requestId] = record;
+            result = _open(record, (input as Map).cast<String, Object?>());
+          case 'write':
+            final record = _record(requestId);
+            result = record.wait(_write(record, input as Uint8List));
+          case 'headers':
+            final record = _record(requestId);
+            result = record.wait(_headers(record));
+          case 'read':
+            final record = _record(requestId);
+            result = record.wait(_read(requestId, record));
+          default:
+            throw ArgumentError('Unknown Fetch operation: $operation');
+        }
       }
       final record = _requests[requestId];
       if (record != null) _pendingRecords[id] = record;
@@ -124,7 +149,6 @@ class _FetchHost {
         error is FlaxPermissionException ? error.toJson() : error.toString(),
       );
     }
-    return const FlaxJsUndefined();
   }
 
   _FetchRequest _record(int id) {
@@ -153,6 +177,7 @@ class _FetchHost {
       );
     }
     final lease = record.permission = permissions.network(url);
+    observeNetwork?.call(url);
     lease.onRevoke(
       () => record.abort(
         const FlaxPermissionException(
@@ -245,6 +270,14 @@ class _FetchHost {
       } on FlaxPermissionException catch (error) {
         deliveryOk = false;
         delivery = error.toJson();
+      }
+      if (onSettled case final settle?) {
+        try {
+          settle(id, deliveryOk, delivery);
+        } finally {
+          if (record?.finished == true) record?.permission?.close();
+        }
+        return;
       }
       final result = switch (delivery) {
         Uint8List() => context.runtime.createArrayBuffer(delivery),

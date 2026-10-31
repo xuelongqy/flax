@@ -3,6 +3,7 @@ library;
 
 export 'bindings.dart';
 export 'runtime.dart';
+export 'src/image_codec.dart';
 export 'src/application.dart' show FlaxApplication;
 export 'src/package.dart';
 export 'src/network.dart'

@@ -35,6 +35,9 @@ importers:
       '@flax/material-ui-runtime':
         specifier: workspace:*
         version: link:packages/flax_material_ui/js
+      '@flax/webgpu-runtime':
+        specifier: workspace:*
+        version: link:packages/flax_webgpu/js
       '@flax/websocket-runtime':
         specifier: workspace:*
         version: link:packages/flax_websocket/js
@@ -622,6 +625,65 @@ importers:
         specifier: workspace:*
         version: link:../../../flax_local_storage/js
 
+  packages/flax_webgpu/example/js:
+    dependencies:
+      '@flax/core':
+        specifier: workspace:*
+        version: link:../../../flax/js-types
+      '@flax/core-runtime':
+        specifier: workspace:*
+        version: link:../../../flax/js
+      '@flax/example-core':
+        specifier: workspace:*
+        version: link:../../../flax/example/js
+      '@flax/flutter':
+        specifier: workspace:*
+        version: link:../../../flax_flutter/js
+      '@flax/webgpu':
+        specifier: workspace:*
+        version: link:../../js-types
+      '@flax/webgpu-runtime':
+        specifier: workspace:*
+        version: link:../../js
+    devDependencies:
+      draco3d:
+        specifier: 1.5.7
+        version: 1.5.7
+      meshoptimizer:
+        specifier: 0.25.0
+        version: 0.25.0
+      three:
+        specifier: 0.186.1
+        version: 0.186.1
+
+  packages/flax_webgpu/js:
+    dependencies:
+      '@flax/core':
+        specifier: workspace:*
+        version: link:../../flax/js-types
+      '@flax/core-runtime':
+        specifier: workspace:*
+        version: link:../../flax/js
+      '@flax/ffi':
+        specifier: workspace:*
+        version: link:../../flax_ffi/js
+    devDependencies:
+      '@flax/build':
+        specifier: workspace:*
+        version: link:../../flax_build/js
+      '@flax/canvas':
+        specifier: workspace:*
+        version: link:../../flax_canvas/js-types
+      '@flax/webgpu':
+        specifier: workspace:*
+        version: link:../js-types
+
+  packages/flax_webgpu/js-types:
+    dependencies:
+      '@flax/core':
+        specifier: workspace:*
+        version: link:../../flax/js-types
+
   packages/flax_websocket/example/js:
     dependencies:
       '@flax/core':
@@ -1188,6 +1250,9 @@ packages:
   devlop@1.1.0:
     resolution: {integrity: sha512-RWmIqhcFf1lRYBvNmr7qTNuyCt/7/ns2jbpp1+PalgE/rDQcBT0fioSMUpJ93irlUhC5hrg4cYqe6U+0ImW0rA==}
 
+  draco3d@1.5.7:
+    resolution: {integrity: sha512-m6WCKt/erDXcw+70IJXnG7M3awwQPAsZvJGX5zY7beBqpELw6RDGkYVU0W43AFxye4pDZ5i2Lbyc/NNGqwjUVQ==}
+
   dunder-proto@1.0.1:
     resolution: {integrity: sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==}
     engines: {node: '>= 0.4'}
@@ -1477,6 +1542,9 @@ packages:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
     engines: {node: '>= 8'}
 
+  meshoptimizer@0.25.0:
+    resolution: {integrity: sha512-ewwuAo3ujPZ7T3Y2oTkEoLlXvNOqnr0cjyAxfv5djXJqwD9QlxDDO0qGtsqB4Z9QUVvhruKXg9q/xfK9I5S1xQ==}
+
   micromark-core-commonmark@2.0.4:
     resolution: {integrity: sha512-wxEeE8v8XVvOrxn1TZj74qYhAtTQsSqufHVS3uNVyT1MupXxhyaHk8/9xDNPh9BmL77QNDgWTkZ3RsYHB2ry7w==}
 
@@ -1651,6 +1719,9 @@ packages:
 
   strnum@2.5.1:
     resolution: {integrity: sha512-UM4nTLWzQiDBseVxUGxN0wJzIk0UU89Qi7pKXz9qISo+lhviJikTuikBsK/oFRlpvYHvSdz0TVoLyQ+sEpYwxA==}
+
+  three@0.186.1:
+    resolution: {integrity: sha512-blFeqb49wRCSGUGj7gtpfnSGHy2lwDk94RhUmS1c/hTby70kvChbWpkJ4Pm1390LqzzvTmzgXKHPEafJwCb8jA==}
 
   tinyglobby@0.2.17:
     resolution: {integrity: sha512-wXR/dYpcqKmfWpEdZjiKJOwCNFndD0DMnrW/cYjVGttEkBfVgcLFHoNrlj47mjOVic9yyNu65alsgF4NQyTa2g==}
@@ -2035,6 +2106,8 @@ snapshots:
     dependencies:
       dequal: 2.0.3
 
+  draco3d@1.5.7: {}
+
   dunder-proto@1.0.1:
     dependencies:
       call-bind-apply-helpers: 1.0.2
@@ -2343,6 +2416,8 @@ snapshots:
 
   merge2@1.4.1: {}
 
+  meshoptimizer@0.25.0: {}
+
   micromark-core-commonmark@2.0.4:
     dependencies:
       decode-named-character-reference: 1.3.0
@@ -2615,6 +2690,8 @@ snapshots:
   strnum@2.5.1:
     dependencies:
       anynum: 1.0.1
+
+  three@0.186.1: {}
 
   tinyglobby@0.2.17:
     dependencies:

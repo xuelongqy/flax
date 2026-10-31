@@ -2078,7 +2078,10 @@ AlignmentGeometry();
               'moduleResolution': 'NodeNext',
               'paths': {
                 '@flax/core/bindings': [
-                  p.join(root, 'packages/flax/js/src/runtime/bindings.ts'),
+                  p.join(
+                    root,
+                    'packages/flax/js-types/types/runtime/bindings.d.ts',
+                  ),
                 ],
               },
             },
@@ -3652,25 +3655,42 @@ BoundedProperty.resolveWith<InvalidBound>(() => InvalidBound());
   });
 
   test(
-    'jsName CanvasView and callback snapshot inheritance fail loudly',
+    'jsName aliases and callback snapshot inheritance fail loudly',
     () async {
-      final canvasConfig = FlaxCodegenBindingConfig.read(
-        p.join(root, 'packages/flax_canvas/bindings/flax_bindings.yaml'),
-      );
       final coreConfig = FlaxCodegenBindingConfig.read(
         p.join(root, 'packages/flax/bindings/flax_bindings.yaml'),
       );
-      await parser.prepare([coreConfig, canvasConfig]);
-      final core = await parser.parse(coreConfig);
-      final canvas = await parser.parse(canvasConfig);
+      final overrides = coreConfig.overrides;
+      final view = overrides.classes['FlaxCanvasView']!;
+      final renamedCoreConfig = coreConfig.withOverrides(
+        FlaxCodegenAutoOverrides(
+          classes: {
+            ...overrides.classes,
+            'FlaxCanvasView': FlaxCodegenClassOverride(
+              FlaxCodegenClassSelection(
+                view.selection.constructors,
+                getters: view.selection.getters,
+                setters: view.selection.setters,
+                instanceMethods: view.selection.instanceMethods,
+                jsName: 'CanvasView',
+              ),
+              {...view.fields, 'jsName'},
+            ),
+          },
+          functions: overrides.functions,
+          exclude: overrides.exclude,
+        ),
+      );
+      await parser.prepare([renamedCoreConfig]);
+      final core = await parser.parse(renamedCoreConfig);
       expect(
-        canvas.classes
+        core.classes
             .singleWhere((type) => type.name == 'FlaxCanvasView')
             .jsName,
         'CanvasView',
       );
       expect(
-        FlaxCodegenBindingEmitter([canvas, core]).typescript(canvas),
+        FlaxCodegenBindingEmitter([core]).typescript(core),
         contains('export const CanvasView: typeof _FlaxCanvasViewConstruct'),
       );
       final snapshot = await parser.parse(
@@ -3903,7 +3923,10 @@ FlaxObjectMemberView typedFixtureMembers(Function factory) {
             'paths': {
               ...dependencyPaths,
               '@flax/core/bindings': [
-                p.join(root, 'packages/flax/js/src/runtime/bindings.ts'),
+                p.join(
+                  root,
+                  'packages/flax/js-types/types/runtime/bindings.d.ts',
+                ),
               ],
             },
           },

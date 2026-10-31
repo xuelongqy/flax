@@ -10,6 +10,8 @@ headers:
     - ./include/flax/engine_ffi.h
     - ./include/flax/engine_execution.h
     - ./include/flax/engine_modules.h
+    - ./include/flax/engine_workers.h
+    - ./include/flax/engine_images.h
   include-directives:
     - '**/flax/runtime.h'
     - '**/flax/engine_gc.h'
@@ -17,6 +19,8 @@ headers:
     - '**/flax/engine_ffi.h'
     - '**/flax/engine_execution.h'
     - '**/flax/engine_modules.h'
+    - '**/flax/engine_workers.h'
+    - '**/flax/engine_images.h'
 preamble: |
   // Generated from the canonical Flax C headers. Do not edit by hand.
   // ignore_for_file: type=lint

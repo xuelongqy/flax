@@ -210,7 +210,14 @@ final class FlaxModuleLoader {
     return _loads
         .putIfAbsent(key, () async {
           _check();
-          if (!{'http', 'https', 'file', 'flax'}.contains(uri.scheme) ||
+          if (!{
+                'http',
+                'https',
+                'file',
+                'flax',
+                'data',
+                'blob',
+              }.contains(uri.scheme) ||
               uri.userInfo.isNotEmpty) {
             throw ArgumentError('Unsupported module URL: ${uri.scheme}');
           }
@@ -287,7 +294,14 @@ final class FlaxModuleLoader {
     }
     _capability(source.kind, false);
     final uri = source.uri.normalizePath();
-    if (!{'http', 'https', 'file', 'flax'}.contains(uri.scheme) ||
+    if (!{
+          'http',
+          'https',
+          'file',
+          'flax',
+          'data',
+          'blob',
+        }.contains(uri.scheme) ||
         uri.userInfo.isNotEmpty) {
       throw ArgumentError(
         'Expected an absolute module URL without credentials',

@@ -1,0 +1,217 @@
+{
+  "asset": {
+    "version": "2.0",
+    "generator": "Flax original Three.js acceptance fixtures"
+  },
+  "scene": 0,
+  "scenes": [
+    {
+      "nodes": [
+        0
+      ]
+    }
+  ],
+  "buffers": [
+    {
+      "uri": "worker-combined.bin",
+      "byteLength": 184
+    },
+    {
+      "byteLength": 140,
+      "extensions": {
+        "EXT_meshopt_compression": {
+          "fallback": true
+        }
+      }
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 1,
+      "byteLength": 128,
+      "byteStride": 32,
+      "extensions": {
+        "EXT_meshopt_compression": {
+          "buffer": 0,
+          "byteOffset": 0,
+          "byteLength": 116,
+          "byteStride": 32,
+          "count": 4,
+          "mode": "ATTRIBUTES",
+          "filter": "NONE"
+        }
+      }
+    },
+    {
+      "buffer": 1,
+      "byteOffset": 128,
+      "byteLength": 12,
+      "extensions": {
+        "EXT_meshopt_compression": {
+          "buffer": 0,
+          "byteOffset": 116,
+          "byteLength": 19,
+          "byteStride": 2,
+          "count": 6,
+          "mode": "TRIANGLES",
+          "filter": "NONE"
+        }
+      }
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 136,
+      "byteLength": 12
+    },
+    {
+      "buffer": 0,
+      "byteOffset": 148,
+      "byteLength": 36
+    }
+  ],
+  "accessors": [
+    {
+      "bufferView": 0,
+      "byteOffset": 0,
+      "componentType": 5126,
+      "count": 4,
+      "type": "VEC3",
+      "min": [
+        -0.6,
+        0,
+        0
+      ],
+      "max": [
+        0.6,
+        1.2,
+        0
+      ]
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 12,
+      "componentType": 5126,
+      "count": 4,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 0,
+      "byteOffset": 24,
+      "componentType": 5126,
+      "count": 4,
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5123,
+      "count": 6,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 3,
+      "type": "SCALAR",
+      "min": [
+        0
+      ],
+      "max": [
+        1
+      ]
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5126,
+      "count": 3,
+      "type": "VEC3"
+    }
+  ],
+  "extensionsUsed": [
+    "KHR_materials_unlit",
+    "EXT_meshopt_compression",
+    "KHR_texture_basisu"
+  ],
+  "images": [
+    {
+      "uri": "worker-pattern-uastc-zstd.ktx2"
+    }
+  ],
+  "samplers": [
+    {
+      "magFilter": 9729,
+      "minFilter": 9987
+    }
+  ],
+  "textures": [
+    {
+      "sampler": 0,
+      "extensions": {
+        "KHR_texture_basisu": {
+          "source": 0
+        }
+      }
+    }
+  ],
+  "materials": [
+    {
+      "pbrMetallicRoughness": {
+        "baseColorTexture": {
+          "index": 0
+        },
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      },
+      "doubleSided": true,
+      "extensions": {
+        "KHR_materials_unlit": {}
+      },
+      "alphaMode": "BLEND"
+    }
+  ],
+  "meshes": [
+    {
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 0,
+            "NORMAL": 1,
+            "TEXCOORD_0": 2
+          },
+          "indices": 3,
+          "material": 0
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "name": "CombinedPanel",
+      "mesh": 0
+    }
+  ],
+  "extensionsRequired": [
+    "EXT_meshopt_compression",
+    "KHR_texture_basisu"
+  ],
+  "animations": [
+    {
+      "name": "Slide",
+      "samplers": [
+        {
+          "input": 4,
+          "output": 5,
+          "interpolation": "LINEAR"
+        }
+      ],
+      "channels": [
+        {
+          "sampler": 0,
+          "target": {
+            "node": 0,
+            "path": "translation"
+          }
+        }
+      ]
+    }
+  ]
+}

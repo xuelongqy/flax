@@ -68,6 +68,13 @@ or `--dry-run` for a disposable receipt). `check_release.dart` asserts
 `publish_to: none` / `private: true`, then runs both checks. Melos entries:
 `packages:check`, `packages:pack`, and `release:check`. None of these publish.
 
+Core and plugins with `js/host.json` require the complete embedded-host layout: the host
+TypeScript config/source and generated Dart bootstrap. A plugin without that file
+instead declares exactly one `<public-package>/host` factory in its format-2 delivery
+manifest. Both layouts check their real outputs. npm validation reads the packed
+delivery manifest and checks every declared JavaScript source against the actual
+tarball. Generated `.flax/` plans are excluded from package source copies.
+
 `packages:check` also runs package-owned `check:archive` npm scripts. Node development
 tools use these portable pack/install/API/CLI checks without entering the device runtime
 inventory. The optional FFI codegen package uses this gate and its ordinary JS tests.
@@ -76,8 +83,8 @@ example on macOS arm64. Global JS build/typecheck excludes that Apple-dependent 
 so Linux static CI never downloads CastXML or needs Xcode.
 
 `check_platform.dart` rejects the retired SDK matrix. Use the maintained-engine gates
-above for current runtime acceptance and `dart run melos run check` for engine-free
-static workspace validation.
+above for current runtime acceptance. `dart run melos run check` uses an existing
+matching maintained engine for native package/generator tests; it never builds one.
 
 `package.dart` discovers Pub packages under `packages/`. `check <name>` runs that
 package's analysis, Dart/Flutter unit tests, binding check, JS build/type/tests, host
@@ -184,10 +191,19 @@ inputs and outputs before restoring anything, and rewrites generated Dart import
 for the consuming checkout. Missing or mismatched artifacts fail. Machine-local package
 configuration and compiler caches are excluded.
 
-Automatic CI calls the package archive workflow once after preparation. Linux's common
-gate consumes its same-checkout archive proof, while standalone `check` and
-`release:check` retain independent archive validation. The package workflow also has a
-manual entry. No archive proof certifies runtime or application delivery.
+The reusable macOS CI job prepares the fixed maintained fork and its normal Debug engine
+before workspace, runtime, FFI and release checks. `prepare_ci_sdk.dart` is an explicit
+producer entry that reuses `prepareFlaxEngineSdk` and the existing V8 lock; it prints
+the verified SDK directory and exports `FLAX_CI_V8_SDK` through `GITHUB_ENV` when
+present. Ordinary checks do not invoke this downloader. Dawn preparation remains owned
+by the WebGPU package. The workflow compares generated and cached `sky_engine`
+directories after the build, Pub resolution and checks. Hosted-only disk cleanup is kept
+inside the guarded workflow, outside all local helper commands.
+
+Hosted execution remains pending a push of the pinned maintained-fork and Flax commits;
+see the [integration task](../docs/tasks/webgpu-js-api.md#latest-main-integration).
+Standalone `check` and `release:check` retain independent archive validation. No archive
+proof certifies runtime or application delivery.
 
 `FLAX_CONSUMER_CACHE` enables stable disposable-consumer paths. CI cache keys include
 target, engine, scope, checkout, source/fixture digests and pinned tools/locks. Cached

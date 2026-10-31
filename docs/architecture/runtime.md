@@ -24,6 +24,17 @@ than 100 ms old. A timer firing between animation frames does not establish an i
 window. Deferral preserves pending JS changes; Dart/V8 pressure bypasses it. This is a
 frame-inactivity heuristic: gaps of 100 ms or more may admit proactive collection.
 
+Ordinary V8 collections reporting external-memory pressure merge their subsequent Dart
+collection requests over an 8 ms window on the existing owner task runner. ArrayBuffer
+transfers repeatedly account the same BackingStore in a receiving heap; requesting a
+full Dart pass after every such collection dominates message latency. V8 collection and
+memory accounting remain unchanged. Dart pressure, ordinary JS-heap collections, forced
+collections and last-resort collections retain their immediate request path. An
+intervening Dart trace cancels the delayed request; shutdown and an empty bridge discard
+it. Conditional tracing and explicit disposal are unchanged. The short delay can raise
+peak memory and does not remove individual full-GC pauses. See the
+[Release Worker measurements](../../experiments/dedicated_workers/release-results.md).
+
 On Android, a live Flax joint heap applies the same recent-frame guard to Dart's
 proactive idle-GC hint. Allocation-pressure collection and embedder idle callbacks
 remain enabled. Flutter isolates without Flax bridge cells and other platforms retain

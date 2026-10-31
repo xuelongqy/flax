@@ -5,7 +5,7 @@ node_modules/
 .pnpm-store/
 .cache/
 .local/
-**/.flax/ffi-codegen/
+**/.flax/
 .hermes/
 
 # Build outputs
@@ -47,3 +47,6 @@ packages/flax_engine_v8/native/generated/
 # Built business applications in the configured binding example.
 examples/configured_bindings/host/applications/
 flax-jsx.generated.d.ts
+
+# Decoder test inputs are reproduced from the pinned Three.js package.
+packages/flax_webgpu/example/fixtures/three/draco/

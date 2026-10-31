@@ -1,0 +1,172 @@
+{
+  "verifiedAt": "2026-10-28T18:52:21.151Z",
+  "profile": "Canvas compatibility and shared images, macOS arm64",
+  "machine": {
+    "gpu": "Apple M2 Max",
+    "gpuCores": 30,
+    "macOS": "27.0.1 (26A434)",
+    "power": "AC",
+    "display": {
+      "width": 1920,
+      "height": 1080,
+      "refreshHz": 60
+    },
+    "devicePixelRatio": 1
+  },
+  "browser": {
+    "protocolVersion": "1.3",
+    "product": "Edg/156.0.4314.50",
+    "revision": "@af2ba23ae0ecf7084d900446fc59d5119dd5fd5e",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0",
+    "jsVersion": "15.6.12.7"
+  },
+  "protocol": {
+    "order": [
+      "flax",
+      "html",
+      "html",
+      "flax"
+    ],
+    "warmupAcceptedFrames": 60,
+    "measuredMs": 8000,
+    "maxInFlight": 3,
+    "sceneReadbacksDuringMeasurement": 0,
+    "metric": "Accepted scene submissions and GPU completion notifications per second; not screen presentations."
+  },
+  "rendererSha256": "e4ccf6e2c85b22d527ba63f40095d26ddd4b7a878a95c95eec064098f9e4d69c",
+  "inputs": {
+    "coreEmbeddedHostSha256": "2252405a2a8c9b68727c6e544ce8f67d34cf1bec2474ed786c8e44e69cf15161",
+    "webgpuHostBundleSha256": "4594d7304a6ff4bf0e70d5353c6b3b692d195c086bbf72ce3c4da3be7cd82b78",
+    "nativeLibrarySha256": "93501370b53ac93deedc1508983cafcb5fc9dc06aff2235c5ad6181ccb005128",
+    "engineBinarySha256": "ca19dd48cfbeb6235443e5edf9f29343337771647f7e956db9c26e6679793597"
+  },
+  "rawComparisonSha256": "5149a694859814b00d28853d8d36b95920416ecbb5c3a6af3c8abb86b8fadd84",
+  "cases": [
+    {
+      "name": "Particles / balanced / 540p",
+      "width": 960,
+      "height": 540,
+      "drawCalls": 1,
+      "flax": {
+        "submittedFps": 59.3125,
+        "completedFps": 59.3125,
+        "encodeP95Ms": 1.3220000000001164,
+        "completionP95Ms": 3.426499999999578,
+        "skipped": 0
+      },
+      "edge": {
+        "submittedFps": 60.125,
+        "completedFps": 60,
+        "encodeP95Ms": 0.17750024795532227,
+        "completionP95Ms": 3.044999837875366,
+        "skipped": 0
+      }
+    },
+    {
+      "name": "Particles / high / 1080p",
+      "width": 1920,
+      "height": 1080,
+      "drawCalls": 1,
+      "flax": {
+        "submittedFps": 58.875,
+        "completedFps": 58.75,
+        "encodeP95Ms": 1.4200000000000728,
+        "completionP95Ms": 5.269999999999527,
+        "skipped": 0
+      },
+      "edge": {
+        "submittedFps": 60.125,
+        "completedFps": 60,
+        "encodeP95Ms": 0.23000001907348633,
+        "completionP95Ms": 5.005000114440918,
+        "skipped": 0
+      }
+    },
+    {
+      "name": "Cubes / instanced / 540p",
+      "width": 960,
+      "height": 540,
+      "drawCalls": 1,
+      "flax": {
+        "submittedFps": 59.625,
+        "completedFps": 59.5,
+        "encodeP95Ms": 1.381999999999607,
+        "completionP95Ms": 2.9470000000001164,
+        "skipped": 0
+      },
+      "edge": {
+        "submittedFps": 60.0625,
+        "completedFps": 60,
+        "encodeP95Ms": 0.21250009536743164,
+        "completionP95Ms": 3.2749998569488525,
+        "skipped": 0
+      }
+    },
+    {
+      "name": "Cubes / per-object / 540p",
+      "width": 960,
+      "height": 540,
+      "drawCalls": 2304,
+      "flax": {
+        "submittedFps": 58.24999999999997,
+        "completedFps": 58.18749999999997,
+        "encodeP95Ms": 4.866500000000087,
+        "completionP95Ms": 6.761999999998807,
+        "skipped": 0
+      },
+      "edge": {
+        "submittedFps": 60.0625,
+        "completedFps": 60,
+        "encodeP95Ms": 0.6050002574920654,
+        "completionP95Ms": 4.237499952316284,
+        "skipped": 0
+      }
+    },
+    {
+      "name": "Prism / balanced / 540p",
+      "width": 960,
+      "height": 540,
+      "drawCalls": 1,
+      "flax": {
+        "submittedFps": 58.875,
+        "completedFps": 58.8125,
+        "encodeP95Ms": 1.3919999999961874,
+        "completionP95Ms": 3.9609999999993306,
+        "skipped": 0
+      },
+      "edge": {
+        "submittedFps": 60,
+        "completedFps": 60,
+        "encodeP95Ms": 0.20749998092651367,
+        "completionP95Ms": 3.629999876022339,
+        "skipped": 0
+      }
+    },
+    {
+      "name": "Prism / high / 1080p",
+      "width": 1920,
+      "height": 1080,
+      "drawCalls": 1,
+      "flax": {
+        "submittedFps": 58.8125,
+        "completedFps": 58.6875,
+        "encodeP95Ms": 1.595499999999447,
+        "completionP95Ms": 6.311999999998079,
+        "skipped": 0
+      },
+      "edge": {
+        "submittedFps": 60.125,
+        "completedFps": 60,
+        "encodeP95Ms": 0.20749974250793457,
+        "completionP95Ms": 5.849999904632568,
+        "skipped": 0
+      }
+    }
+  ],
+  "limits": [
+    "Submission and GPU completion callback endpoints; no common display-presentation endpoint.",
+    "60 Hz display cap; cannot establish uncapped GPU throughput or compare FPS directly with the earlier 120 Hz run.",
+    "P95 values are averages of the two run percentiles, not pooled percentiles.",
+    "Matched renderer and resolution; this does not isolate the canvas adapter from all runtime and browser costs."
+  ]
+}

@@ -1,0 +1,463 @@
+{
+  "verifiedAt": "2026-10-30T11:58:40.302548+08:00",
+  "baseCommit": "3af52eea34b9ebbdf152e78edba38b8f609de770",
+  "uncommitted": true,
+  "profile": "macOS arm64 pinned Dawn/Metal, shared browser data and canvas APIs",
+  "machine": {
+    "architecture": "arm64",
+    "macOS": "27.0.1"
+  },
+  "inputs": {
+    "dawnRevision": "5fbd545292cb7a4a9a275e322abec6007ffe2ae8",
+    "gpuwebRevision": "22507c95ccb9e705eddc7cab8f28aa46b134f5fe",
+    "ctsRevision": "cc11994e92512d0a3715e9d28876ec48accb971a",
+    "headerSha256": "44126360bbd35339b3b1ccb8ab5bdf21a4a1109bc05f086b179df5ea5a2734d0",
+    "idlSha256": "5293ea7f38416cb37b0ddfc636286514ff622901caa19504a4bdede2ec5a80b2"
+  },
+  "engineBinarySha256": "a8a571762ae477d9df4786bf4e253a7ec2a13e23e12559528924fbc8787a8cd6",
+  "engineUnchanged": true,
+  "sourceSha256": {
+    "packages/flax/js/src/host/file-reader.ts": "79036060b910716746d4dcdeeb10fdb2bd991dd4f9551c1745384775e5dced5e",
+    "packages/flax/js/src/host/canvas.ts": "f0bdc5fb29bd16a62bf9ee583c733e7f77495320b6ac27e831e21e72028ef935",
+    "packages/flax/js/src/host/images.ts": "4d12ce8bf9b31d59de95decd66c87783874d23b2c4458822989f5b4f89596e36",
+    "packages/flax/js/src/host/index.ts": "e3a410ba3af42f6469d24825ead202d4780e0ded6304243cc87e3c22a902f693",
+    "packages/flax/js/src/host/bootstrap.ts": "6b93b514cb454b00797576088782d99108669035088e040e14aaa40dd4ea402d",
+    "packages/flax/lib/src/ui/canvas.dart": "e7cb43a11d9c1c1f30b0ecb7d190e9ad3f54dccdaa02562a41a9ae9112397f5f",
+    "packages/flax/lib/src/ui/host.dart": "592fc76322b90ef61ae75d435427df288403bd4a63ab228f653858819444c61e",
+    "packages/flax/lib/src/generated/host_bootstrap.g.dart": "658f619a858067e6a8728b433c9dfec54e55f5fffc0ca4307be27cddeec7c4e5",
+    "packages/flax_fetch/js/src/local-resources.ts": "2514e1581d86caff5369f12472c6e6b7751e374e582b63ca82e24c28007ceaed",
+    "packages/flax_fetch/js/src/http.ts": "87e1186908166f6f2909869baa0c3b2c0bc9f2ecb4090b77bf00e687c133c924",
+    "packages/flax_fetch/js/src/host/bootstrap.ts": "e728059026f951254790b1ac313548f6b4eb7a0ff8ba39db17894ea323633094",
+    "packages/flax_fetch/lib/src/generated/host_bootstrap.g.dart": "53a9e6ade6e6ce50f7d1728657b9cd5e9cd9de91b804793ddf94041d5286ca41",
+    "packages/flax_webgpu/js/src/webgpu.ts": "ba9a096dbedd7fa0762d7c91f949e90eb297aedc4df43de1223b397d51bf8e49",
+    "packages/flax_webgpu/example/js/browser-base.js": "bc2de28b670ed57ab5d1343b6743db6b34288cb9e8acfdc69d64bfe681c38d6c",
+    "packages/flax_webgpu/example/js/api-extensions.js": "2da84dbddb023ed3d03d934090bc1d17664ab95ca375e02eeff1960ffb28a75c",
+    "packages/flax_webgpu/example/js/main.js": "c1e94d62cf261f54a1e806393915037339d5564ee36ea2cadc75d095109d8ad2",
+    "packages/flax_webgpu/example/lib/acceptance.dart": "b9c892603c8aa16272d697329fb829bd6c64646f5086535d314f559d30287180"
+  },
+  "ownership": {
+    "coreGlobals": ["FileReader", "ImageBitmapRenderingContext"],
+    "canvasContext": "bitmaprenderer",
+    "fetchPackage": ["data URLs", "single Blob URL byte ranges"],
+    "webgpu": "setBindGroup Uint32Array range checks for compute/render/bundle"
+  },
+  "acceptance": {
+    "passed": true,
+    "coreOnlySessions": 1,
+    "gpuSessions": 3,
+    "normalRenderFrames": 360,
+    "coreOnlyNativePaintMinimumColoredPixels": 10000,
+    "baseApis": [
+      {
+        "kind": "browser-base",
+        "exports": ["gltf-data-url", "glb"],
+        "blobRange": true,
+        "bitmaprenderer": true,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "browser-base",
+        "exports": ["gltf-data-url", "glb"],
+        "blobRange": true,
+        "bitmaprenderer": true,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "browser-base",
+        "exports": ["gltf-data-url", "glb"],
+        "blobRange": true,
+        "bitmaprenderer": true,
+        "cycle": 2,
+        "canvas2D": true
+      }
+    ],
+    "resourceRetirement": [
+      {
+        "kind": "retired",
+        "cycle": -1,
+        "before": [0, 0, 0, 0, 0, 0],
+        "after": [0, 0, 0, 0, 0, 0]
+      },
+      {
+        "kind": "retired",
+        "cycle": 0,
+        "before": [1, 1, 3, 6, 3, 0],
+        "after": [0, 0, 0, 0, 0, 0]
+      },
+      {
+        "kind": "retired",
+        "cycle": 1,
+        "before": [1, 1, 4, 6, 3, 0],
+        "after": [0, 0, 0, 0, 0, 0]
+      },
+      {
+        "kind": "retired",
+        "cycle": 2,
+        "before": [1, 1, 3, 6, 3, 0],
+        "after": [0, 0, 0, 0, 0, 0]
+      }
+    ],
+    "threeFeatureRegression": [
+      {
+        "kind": "three-features",
+        "models": [
+          {
+            "name": "textured-cube.gltf",
+            "progressEvents": 1,
+            "brightness": 22.438603153935187
+          },
+          {
+            "name": "textured-cube.glb",
+            "progressEvents": 1,
+            "brightness": 22.438603153935187
+          }
+        ],
+        "lighting": [
+          {
+            "type": "DirectionalLight",
+            "dark": 18.622413917824073,
+            "lit": 118.676025390625
+          },
+          {
+            "type": "PointLight",
+            "dark": 18.622413917824073,
+            "lit": 147.6240234375
+          },
+          {
+            "type": "SpotLight",
+            "dark": 18.622413917824073,
+            "lit": 133.5584671585648
+          }
+        ],
+        "shadows": [
+          {
+            "type": "DirectionalLight",
+            "darkerPixels": 2303,
+            "litFrame": 8,
+            "shadowFrame": 9
+          },
+          {
+            "type": "PointLight",
+            "darkerPixels": 4305,
+            "litFrame": 10,
+            "shadowFrame": 11
+          },
+          {
+            "type": "SpotLight",
+            "darkerPixels": 4238,
+            "litFrame": 13,
+            "shadowFrame": 14
+          }
+        ],
+        "postprocessing": [
+          {
+            "effect": "TSL inversion",
+            "maxError": 1
+          },
+          {
+            "effect": "Bloom",
+            "plain": 74.17095269097223,
+            "bloom": 180.87966579861111
+          }
+        ],
+        "assertions": 76,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "three-features",
+        "models": [
+          {
+            "name": "textured-cube.gltf",
+            "progressEvents": 1,
+            "brightness": 22.438603153935187
+          },
+          {
+            "name": "textured-cube.glb",
+            "progressEvents": 1,
+            "brightness": 22.438603153935187
+          }
+        ],
+        "lighting": [
+          {
+            "type": "DirectionalLight",
+            "dark": 18.622413917824073,
+            "lit": 118.676025390625
+          },
+          {
+            "type": "PointLight",
+            "dark": 18.622413917824073,
+            "lit": 147.6240234375
+          },
+          {
+            "type": "SpotLight",
+            "dark": 18.622413917824073,
+            "lit": 133.5584671585648
+          }
+        ],
+        "shadows": [
+          {
+            "type": "DirectionalLight",
+            "darkerPixels": 2303,
+            "litFrame": 8,
+            "shadowFrame": 9
+          },
+          {
+            "type": "PointLight",
+            "darkerPixels": 4305,
+            "litFrame": 10,
+            "shadowFrame": 11
+          },
+          {
+            "type": "SpotLight",
+            "darkerPixels": 4238,
+            "litFrame": 12,
+            "shadowFrame": 13
+          }
+        ],
+        "postprocessing": [
+          {
+            "effect": "TSL inversion",
+            "maxError": 1
+          },
+          {
+            "effect": "Bloom",
+            "plain": 74.17095269097223,
+            "bloom": 180.87966579861111
+          }
+        ],
+        "assertions": 73,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "three-features",
+        "models": [
+          {
+            "name": "textured-cube.gltf",
+            "progressEvents": 1,
+            "brightness": 22.438603153935187
+          },
+          {
+            "name": "textured-cube.glb",
+            "progressEvents": 1,
+            "brightness": 22.438603153935187
+          }
+        ],
+        "lighting": [
+          {
+            "type": "DirectionalLight",
+            "dark": 18.622413917824073,
+            "lit": 118.676025390625
+          },
+          {
+            "type": "PointLight",
+            "dark": 18.622413917824073,
+            "lit": 147.6240234375
+          },
+          {
+            "type": "SpotLight",
+            "dark": 18.622413917824073,
+            "lit": 133.5584671585648
+          }
+        ],
+        "shadows": [
+          {
+            "type": "DirectionalLight",
+            "darkerPixels": 2303,
+            "litFrame": 7,
+            "shadowFrame": 8
+          },
+          {
+            "type": "PointLight",
+            "darkerPixels": 4305,
+            "litFrame": 9,
+            "shadowFrame": 11
+          },
+          {
+            "type": "SpotLight",
+            "darkerPixels": 4238,
+            "litFrame": 12,
+            "shadowFrame": 13
+          }
+        ],
+        "postprocessing": [
+          {
+            "effect": "TSL inversion",
+            "maxError": 1
+          },
+          {
+            "effect": "Bloom",
+            "plain": 74.17095269097223,
+            "bloom": 180.87966579861111
+          }
+        ],
+        "assertions": 76,
+        "cycle": 2,
+        "canvas2D": true
+      }
+    ]
+  },
+  "edgeReference": {
+    "version": "Edg/156.0.4314.50",
+    "mode": "isolated headless Edge through CDP",
+    "baseApiAcceptance": {
+      "passed": true,
+      "result": {
+        "exports": ["gltf-data-url", "glb"],
+        "blobRange": true,
+        "bitmaprenderer": true
+      },
+      "assertions": 17
+    },
+    "dynamicOffsetResults": [
+      {
+        "kind": "compute",
+        "args": [2, 0],
+        "result": "accepted"
+      },
+      {
+        "kind": "compute",
+        "args": [3, 0],
+        "result": "RangeError"
+      },
+      {
+        "kind": "compute",
+        "args": [1, 2],
+        "result": "RangeError"
+      },
+      {
+        "kind": "compute",
+        "args": [0, 3],
+        "result": "RangeError"
+      },
+      {
+        "kind": "compute",
+        "args": [2, 1],
+        "result": "RangeError"
+      },
+      {
+        "kind": "compute",
+        "args": [0, 0],
+        "result": "accepted"
+      },
+      {
+        "kind": "render",
+        "args": [2, 0],
+        "result": "accepted"
+      },
+      {
+        "kind": "render",
+        "args": [3, 0],
+        "result": "RangeError"
+      },
+      {
+        "kind": "render",
+        "args": [1, 2],
+        "result": "RangeError"
+      },
+      {
+        "kind": "render",
+        "args": [0, 3],
+        "result": "RangeError"
+      },
+      {
+        "kind": "render",
+        "args": [2, 1],
+        "result": "RangeError"
+      },
+      {
+        "kind": "render",
+        "args": [0, 0],
+        "result": "accepted"
+      },
+      {
+        "kind": "bundle",
+        "args": [2, 0],
+        "result": "accepted"
+      },
+      {
+        "kind": "bundle",
+        "args": [3, 0],
+        "result": "RangeError"
+      },
+      {
+        "kind": "bundle",
+        "args": [1, 2],
+        "result": "RangeError"
+      },
+      {
+        "kind": "bundle",
+        "args": [0, 3],
+        "result": "RangeError"
+      },
+      {
+        "kind": "bundle",
+        "args": [2, 1],
+        "result": "RangeError"
+      },
+      {
+        "kind": "bundle",
+        "args": [0, 0],
+        "result": "accepted"
+      }
+    ],
+    "profiledSemantics": [
+      "FileReader events, state, encodings and abort",
+      "bitmap ownership, dimensions, alpha pixels and null reset",
+      "data URL MIME, bytes, Base64 and HEAD",
+      "Blob URL ranges including whitespace, suffix, invalid and unsatisfied requests"
+    ]
+  },
+  "gates": {
+    "coreJs": {
+      "passed": 112,
+      "failed": 0
+    },
+    "fetchJs": {
+      "passed": 17,
+      "failed": 0
+    },
+    "canvasJs": {
+      "passed": 35,
+      "failed": 0
+    },
+    "webgpuConversion": {
+      "passed": 6,
+      "failed": 0
+    },
+    "exampleMetrics": {
+      "passed": 2,
+      "failed": 0
+    },
+    "coreNativeCanvas": {
+      "passed": 3,
+      "failed": 0
+    },
+    "runtimeDefault": {
+      "passed": 58,
+      "failed": 0
+    },
+    "runtimeExplicitV8": {
+      "passed": 58,
+      "failed": 0
+    },
+    "typecheck": "Core, Fetch, Canvas, WebGPU and example passed",
+    "dartAnalysis": {
+      "errors": 0,
+      "warnings": 0,
+      "styleInfo": 14
+    },
+    "generatedHosts": "reproducible"
+  },
+  "limits": [
+    "Not complete WebGPU/WebIDL or File API conformance",
+    "No Worker/FileReaderSync, video external textures or filesystem access",
+    "Shared image operations require the existing image engine extension; the regular debug engine does not provide it",
+    "No fresh performance or display-latency comparison in this change",
+    "The GLTF export round-trip uses an untextured mesh; existing textured model import, lighting, shadows and postprocessing acceptance reran successfully"
+  ],
+  "initialCheckResolution": "The first native bitmap pixel test could not run on the regular debug engine because its image extension is absent. Core-only native painting was verified on the maintained WebGPU engine profile; the debug gate separately checks construction and mounting."
+}

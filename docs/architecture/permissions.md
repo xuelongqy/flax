@@ -259,6 +259,12 @@ and Wasm revoke by closing affected sessions because already evaluated code cann
 safely unloaded. Custom downloaders must check `request.authorize` before each redirect;
 final-response checks alone cannot undo an unauthorized network access.
 
+[Dedicated Workers](dedicated-workers.md) inherit this Session authority through the
+root isolate. Module loading and business Fetch retain their separate origin grants;
+observed leases remain active until Worker exit. Revocation interrupts affected Workers
+and descendants, including after a body has completed. Wasm uses a validated startup
+lease and the same constructor/alias guards; a later grant requires a new Worker.
+
 Sandboxed raw HttpClient/Socket/SecureSocket and DNS entry points are denied; their
 ordinary trusted-host bindings remain available outside sandbox mode. SecurityContext
 path readers continue using the rooted file replacements.

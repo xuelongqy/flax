@@ -486,3 +486,13 @@ API void FN(callback_outcome_observed)(uint32_t aborted) {
 API uint32_t FN(callback_retirement_stat)(uint32_t kind) {
   return atomic_load(kind == 0 ? &callback_consumed : kind == 1 ? &callback_errors : &callback_aborts);
 }
+
+API void FN(numeric_draw)(uint32_t *out, uint32_t a, uint32_t b, uint32_t c, uint32_t d) {
+  if (out) { out[0] = a; out[1] = b; out[2] = c; out[3] = d; }
+}
+API void FN(numeric_indexed)(uint32_t *out, uint32_t a, uint32_t b, uint32_t c, int32_t base, uint32_t d) {
+  if (out) { out[0] = a; out[1] = b; out[2] = c; out[3] = (uint32_t)base; out[4] = d; }
+}
+API void FN(numeric_callback)(void *callback, uint32_t a, uint32_t b, uint32_t c, uint32_t d) {
+  ((void (*)(uint32_t, uint32_t, uint32_t, uint32_t))callback)(a, b, c, d);
+}

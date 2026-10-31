@@ -11,6 +11,7 @@ import 'native_calls.dart';
 import 'runtime_bindings.g.dart';
 
 part 'native_ffi.dart';
+part 'native_workers.dart';
 
 final _hostCallbackFinalizer = Finalizer<_HostCallback>(
   (record) => record.close(),
@@ -48,7 +49,24 @@ final class FlaxNativeJsRuntime
     Pointer<FlaxEngineFfiApi>? ffi,
     Pointer<FlaxEngineExecutionApi>? execution,
     Pointer<FlaxEngineModulesApi>? modules,
+    Pointer<FlaxEngineWorkersApi>? workers,
+    bool detached = false,
   ]) {
+    workers ??= nullptr;
+    if (detached && workers == nullptr) {
+      throw UnsupportedError('The engine has no Dedicated Worker extension');
+    }
+    if (workers != nullptr &&
+        (workers.ref.version != FLAX_ENGINE_WORKERS_VERSION ||
+            workers.ref.struct_size != sizeOf<FlaxEngineWorkersApi>() ||
+            workers.ref.create == nullptr ||
+            workers.ref.install == nullptr ||
+            workers.ref.attach == nullptr ||
+            workers.ref.interrupt == nullptr ||
+            workers.ref.retire == nullptr ||
+            workers.ref.counts == nullptr)) {
+      throw UnsupportedError('Incompatible Dedicated Worker engine extension');
+    }
     ffi ??= nullptr;
     execution ??= nullptr;
     modules ??= nullptr;
@@ -124,6 +142,8 @@ final class FlaxNativeJsRuntime
       ffi == nullptr ? null : ffi.ref,
       execution == nullptr ? null : execution.ref,
       modules == nullptr ? null : modules.ref,
+      workers == nullptr ? null : workers.ref,
+      detached,
     );
   }
 
@@ -134,12 +154,25 @@ final class FlaxNativeJsRuntime
     this._ffi,
     this._execution,
     this._modules,
+    this._workers,
+    this._detached,
   ) {
     _results = _execution;
     _batchArguments = _execution != null;
     using((arena) {
       final result = arena<Pointer<FlaxRuntime>>();
-      _checked(arena, (error) => _calls.create(result, error));
+      _checked(
+        arena,
+        (error) => _detached
+            ? _workers!.create
+                  .asFunction<
+                    int Function(
+                      Pointer<Pointer<FlaxRuntime>>,
+                      Pointer<FlaxError>,
+                    )
+                  >()(result, error)
+            : _calls.create(result, error),
+      );
       _handle = result.value;
     });
     if (_modules != null) {
@@ -168,6 +201,9 @@ final class FlaxNativeJsRuntime
     }
   }
 
+  final FlaxEngineWorkersApi? _workers;
+  final bool _detached;
+  final _detachedCallbacks = <FlaxJsHostFunction>[];
   final NativeCalls _calls;
   final FlaxEngineGcApi _gc;
   final FlaxEngineBindingApi _binding;
@@ -589,7 +625,17 @@ final class FlaxNativeJsRuntime
           if (!borrowed) {
             tracing?.call('native:bind-result', true);
             try {
-              _checked(arena, (error) => _bindValue(_handle, id, value, error));
+              if (_detached) {
+                _detachedReferenceFinalizer.attach(value, (
+                  WeakReference(this),
+                  id,
+                ), detach: value);
+              } else {
+                _checked(
+                  arena,
+                  (error) => _bindValue(_handle, id, value, error),
+                );
+              }
             } finally {
               tracing?.call('native:bind-result', false);
             }
@@ -827,6 +873,9 @@ final class FlaxNativeJsRuntime
 
   @override
   FlaxJsObject createSharedBuffer(Object data) => _entry((arena) {
+    if (_detached) {
+      throw UnsupportedError('Workers cannot share Dart-owned buffers');
+    }
     final type = FlaxBufferType.of(data);
     if (type == null) {
       throw ArgumentError('Expected primitive TypedData or ByteBuffer');
@@ -856,6 +905,9 @@ final class FlaxNativeJsRuntime
   Object readSharedBuffer(FlaxJsObject value, FlaxBufferType type) => _entry((
     arena,
   ) {
+    if (_detached) {
+      throw UnsupportedError('Workers cannot share buffers with Dart');
+    }
     if (value is! _NativeObject) {
       throw ArgumentError('Unsupported object implementation');
     }
@@ -1000,25 +1052,41 @@ final class FlaxNativeJsRuntime
     // even if registration fails, as well as after a later global replacement.
     final record = _HostCallback(this, callable);
     _callbacks.add(record);
-    _hostCallbackFinalizer.attach(callback, record, detach: record);
+    if (_detached) {
+      _detachedCallbacks.add(callback);
+    } else {
+      _hostCallbackFinalizer.attach(callback, record, detach: record);
+    }
     final (text, length) = _codeUnits(arena, name);
     _checked(
       arena,
-      (error) => _registerHost(
-        _handle,
-        text,
-        length,
-        callable.nativeFunction,
-        nullptr,
-        callback,
-        error,
-      ),
+      (error) => _detached
+          ? _calls.registerHost(
+              _handle,
+              text,
+              length,
+              callable.nativeFunction,
+              nullptr,
+              error,
+            )
+          : _registerHost(
+              _handle,
+              text,
+              length,
+              callable.nativeFunction,
+              nullptr,
+              callback,
+              error,
+            ),
     );
   });
 
   /// Internal bridge edge; applications do not manage GC ownership.
   @override
   void bindDartPeer(FlaxJsObject object, Object target, {Object? origin}) {
+    if (_detached) {
+      throw UnsupportedError('Workers cannot retain Dart object peers');
+    }
     if (object is! _NativeObject) {
       throw ArgumentError('Expected a native JS object');
     }
@@ -1163,6 +1231,7 @@ final class FlaxNativeJsRuntime
       callback.close();
     }
     _callbacks.clear();
+    _detachedCallbacks.clear();
   }
 }
 
@@ -1190,6 +1259,7 @@ class _NativeObject extends FlaxJsObject {
   void release() {
     if (isReleased) return;
     _check(_runtime);
+    _detachedReferenceFinalizer.detach(this);
     if (!_borrowed) _runtime._entry((arena) => _runtime._release(arena, _id));
     _released = true;
   }

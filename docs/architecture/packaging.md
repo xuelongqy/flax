@@ -32,8 +32,11 @@ The [direct JS FFI capability](ffi.md) is an npm-first exception. `@flax/ffi` is
 standalone JS/TS; Core owns internal Dart bootstrap and retirement. Build tooling
 selects retained npm native inputs and generates the private `flax_ffi_assets` build
 package. It does not add a developer-authored Dart facade or per-library Pub package.
-This private generated package is separate from the existing `flax_native_assets` shared
-C++/CRT owner. See the [package guide](../../packages/flax_ffi/js/README.md).
+Host-module factories and the final application bundle retain separate input
+contributions to one native plan, so rebuilding either side preserves the other side's
+selected libraries. This private generated package is separate from the existing
+`flax_native_assets` shared C++/CRT owner. See the
+[package guide](../../packages/flax_ffi/js/README.md).
 
 | Package                                              | Owned capability                                                                                                                      |
 | ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
@@ -48,7 +51,8 @@ C++/CRT owner. See the [package guide](../../packages/flax_ffi/js/README.md).
 | `flax_local_storage` / `@flax/local-storage-runtime` | Persistent localStorage session plugin                                                                                                |
 | `flax_permissions`                                   | Optional query-only permission_handler adapter for host OS state                                                                      |
 | `flax_secure_storage`                                | Optional host-only Keychain and Keystore byte storage                                                                                 |
-| `flax_canvas` / `@flax/canvas-runtime`               | Canvas host plugin and CanvasView binding                                                                                             |
+| `flax_canvas` / `@flax/canvas-runtime`               | Canvas 2D provider and compatibility CanvasView re-export                                                                             |
+| `flax_webgpu` / `@flax/webgpu-runtime`               | Experimental Dawn/Metal WebGPU objects and canvas context with producer-staged dynamic native assets                                  |
 | `flax_engine_v8`                                     | Experimental V8 adapter, locked shared SDK, and engine tests                                                                          |
 | `flax_native_assets`                                 | Build-only owner of shared Android C++ and Windows CRT native assets                                                                  |
 | `flax_build` / `@flax/build`                         | Node build tooling: shared TS generic compilation, host assets, esbuild/Vite and HMR                                                  |
@@ -168,16 +172,17 @@ they need. The removed `@flax/core/flutter` public entry has no compatibility re
 
 The pnpm workspace discovers `packages/*/js`, `packages/*/js-types`,
 `packages/*/example/js`, and `examples/*/js`. Each JavaScript package has separate npm
-and embedded-host checks. `tsconfig.npm.json` includes only public module entries. The
-workspace JS build projects all public declarations once, then builds source packages
-and examples. A declaration package's standalone build still runs the shared projection
-tool. `tsconfig.host.json` checks `src/host/bootstrap.ts` and its private implementation
-without emitting it into the npm archive.
+checks. `tsconfig.npm.json` includes public module entries and declared host factories.
+The workspace JS build projects all public declarations once, then builds source
+packages and examples. A declaration package's standalone build still runs the shared
+projection tool. Embedded hosts also use `tsconfig.host.json` to check
+`src/host/bootstrap.ts` and its private implementation.
 
 Source packages ship executable delivery entries and their dependency graph. Public
 declaration packages ship only `.d.ts` files, with types-only exports. Host bootstrap
-implementations are built from the same capability source into the Pub plugin and the
-source npm archive. A public npm import never installs a session plugin.
+implementations use the same capability source, either embedded in the Pub plugin or
+delivered through its prepared npm host factory. A public npm import never installs a
+session plugin.
 
 Host global declarations target the Flax runtime and should be compiled with an ES
 library rather than `lib.dom`, which declares competing browser globals. Projects that
@@ -464,7 +469,7 @@ its package directory.
 
 ## Host bundles
 
-A package with a host implementation uses these conventional paths:
+Core and packages with an embedded host use these conventional paths:
 
 ```text
 js/host.json
@@ -476,6 +481,13 @@ THIRD_PARTY_NOTICES.txt
 The root host tool discovers these files. It provides bundling and reproducibility
 checks but has no list of Fetch, WebSocket, Canvas, or storage packages. A package can
 be checked alone with `node tool/host_bundle.mjs --check --package <dart-package>`.
+
+A host plugin without `host.json` instead declares exactly one
+`<javascript.types ?? javascript.package>/host` entry in its existing format-2
+`flax_modules.json`, pointing to `dist/host/bootstrap.js`. Its npm build owns that
+factory and normal module preparation selects it. Archive checks verify package/version,
+unique entries, contained source paths and actual tarball contents. An incomplete
+embedded host never falls back to this layout. Core always requires embedding.
 
 ## Native code and engines
 

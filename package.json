@@ -33,6 +33,7 @@
     "@flax/websocket-runtime": "workspace:*",
     "@flax/local-storage-runtime": "workspace:*",
     "@flax/canvas-runtime": "workspace:*",
+    "@flax/webgpu-runtime": "workspace:*",
     "@flax/material-ui-runtime": "workspace:*",
     "@flax/cupertino-ui-runtime": "workspace:*"
   }

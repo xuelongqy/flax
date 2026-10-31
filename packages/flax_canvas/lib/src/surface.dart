@@ -3,11 +3,24 @@ import 'dart:ffi';
 import 'dart:ui' as ui;
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flax/flax.dart' show FlaxCanvasContent;
 
 import 'canvas_bindings.g.dart';
 
 /// Canvas pixels, recorded pictures, and repaint notifications. Views borrow it.
-final class FlaxCanvasSurface extends ChangeNotifier {
+final class FlaxCanvasSurface extends ChangeNotifier
+    implements FlaxCanvasContent {
+  @override
+  void paintTo(PaintingContext context, Offset offset, ui.Size size) {
+    if (closed) return;
+    final canvas = context.canvas;
+    canvas.save();
+    canvas.translate(offset.dx, offset.dy);
+    paint(canvas, size);
+    canvas.restore();
+  }
+
   FlaxCanvasSurface(int width, int height, {this.alpha = true}) {
     resize(width, height, reset: true);
   }
@@ -30,8 +43,10 @@ final class FlaxCanvasSurface extends ChangeNotifier {
   bool alpha;
   int _width = 0;
   int _height = 0;
+  @override
   int get width => _width;
   set width(int value) => resize(value, height, reset: true);
+  @override
   int get height => _height;
   set height(int value) => resize(width, value, reset: true);
   int generation = 0;
@@ -44,6 +59,7 @@ final class FlaxCanvasSurface extends ChangeNotifier {
   int compressGeneration = 0;
   int compressCount = 0;
   int compressBytes = 0;
+  @override
   bool closed = false;
   bool transferred = false;
   void Function(Object error, StackTrace stack)? onError;
@@ -179,6 +195,7 @@ final class FlaxCanvasSurface extends ChangeNotifier {
     }
   }
 
+  @override
   Future<ui.Image?> rasterize() async {
     if (width <= 0 || height <= 0) return null;
     return _rasterize(base, pictures, width, height, alpha: alpha);

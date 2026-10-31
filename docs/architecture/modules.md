@@ -55,6 +55,12 @@ A Session entry still calls `runApp` or `registerPage`. For a library module gra
 no UI entry, use `FlaxModuleLoader` directly, release returned namespaces and close the
 loader before disposing its runtime.
 
+The Dedicated Worker loader also accepts data and Blob entry URLs. Application flax/file
+entries, module dependencies and local Wasm Fetch reuse the Session source loader and
+its root/manifest checks. HTTP module dependencies use the Worker transport and final
+redirected URL as their base; data/Blob entries use Core Fetch. See the
+[Worker environment](dedicated-workers.md).
+
 ## JavaScript, JSON and Wasm
 
 ```js

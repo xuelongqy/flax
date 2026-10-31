@@ -1625,6 +1625,12 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     final value = override.selection;
     final fields = override.fields;
     bool has(String name) => fields.contains(name);
+    if (has('instanceMethods')) {
+      source = _copyClassSelection(
+        source,
+        instanceMethods: value.instanceMethods,
+      );
+    }
     return FlaxCodegenClassSelection(
       has('constructors') ? value.constructors : source.constructors,
       widgetInterfaces: has('widgetInterfaces')

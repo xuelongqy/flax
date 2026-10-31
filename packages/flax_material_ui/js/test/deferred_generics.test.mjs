@@ -77,7 +77,7 @@ test('deferred aliases keep a shared Dart object alive independently', () => {
 
     assert.equal(api.object(pending.type, 904), first);
     refs.at(-1).value = undefined;
-    assert.equal(api.sweepObjects().includes(904), false);
+    assert.equal(api.sweepObjects(), null);
     assert.equal(first.resolve(new Set()), 7);
 
     refs[0].value = undefined;

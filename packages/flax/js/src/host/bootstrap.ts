@@ -1,6 +1,13 @@
+import { installWorkers, type WorkerScopeOptions } from './workers.js';
+import { installCanvasHost } from './canvas.js';
+import { installImageHost } from './images.js';
 import * as streams from 'web-streams-polyfill';
 import { install as installFetch } from './fetch/bootstrap.js';
-import { Blob, File, FormData } from './data.js';
+import { Blob, File, FormData, blobBuffer } from './data.js';
+import { installObjectURLs, type URLConstructor } from './url.js';
+import { installFileReader, installFileReaderSync } from './file-reader.js';
+import { installPerformance } from './performance.js';
+import { installCrypto } from './crypto.js';
 import { encodingStreams } from './encoding-streams.js';
 import URL from 'core-js-pure/actual/url/index.js';
 import URLSearchParams from 'core-js-pure/actual/url-search-params/index.js';
@@ -13,6 +20,7 @@ import {
   Event,
   EventTarget,
   CustomEvent,
+  ProgressEvent,
   MessageEvent,
   DOMException,
   setEventErrorReporter,
@@ -40,7 +48,11 @@ function btoa(input: string): string {
 }
 
 type Call = (operation: string, ...args: unknown[]) => unknown;
-export function install(global: typeof globalThis, call: Call) {
+export function install(
+  global: typeof globalThis,
+  call: Call,
+  worker?: WorkerScopeOptions,
+) {
   let open = true;
   let next = 1;
   let nesting = 0;
@@ -53,13 +65,32 @@ export function install(global: typeof globalThis, call: Call) {
       nesting: number;
     }
   >();
-  const report = (error: unknown) =>
+  let workerError: ((error: unknown) => boolean | undefined) | undefined;
+  let workerReport: ((error: unknown) => void) | undefined;
+  let reportingError = false;
+  const report = (error: unknown) => {
+    if (workerError && !reportingError) {
+      reportingError = true;
+      try {
+        if (workerError(error) === false) return;
+      } finally {
+        reportingError = false;
+      }
+    }
+    if (workerReport) {
+      workerReport(error);
+      return;
+    }
     call(
       'error',
       error instanceof Error ? (error.stack ?? String(error)) : String(error),
     );
+  };
   setEventErrorReporter(report);
   const clearGlobalEvents = EventTarget.installGlobal(global);
+  const canvases = worker
+    ? undefined
+    : installCanvasHost(global, call, EventTarget, DOMException, Event);
   const enqueueMicrotask = (callback: () => void) => {
     if (typeof callback !== 'function') throw new TypeError('Expected a function');
     Promise.resolve().then(() => {
@@ -223,15 +254,21 @@ export function install(global: typeof globalThis, call: Call) {
     Event,
     EventTarget,
     CustomEvent,
+    ProgressEvent,
     MessageEvent,
     DOMException,
     AbortController,
     AbortSignal,
     console,
-    performance: Object.freeze({ now, timeOrigin: call('timeOrigin') as number }),
+    navigator: {
+      userAgent: 'Flax',
+      platform: 'Flax',
+      get hardwareConcurrency() {
+        return Number(call('hardwareConcurrency')) || 1;
+      },
+    },
     queueMicrotask: enqueueMicrotask,
-    requestAnimationFrame,
-    cancelAnimationFrame,
+    ...(worker ? {} : { requestAnimationFrame, cancelAnimationFrame }),
     setTimeout: (
       callback: (...args: any[]) => unknown,
       delay = 0,
@@ -247,11 +284,174 @@ export function install(global: typeof globalThis, call: Call) {
   };
   for (const [name, value] of Object.entries(globals))
     Object.defineProperty(global, name, { value, writable: true, configurable: true });
-  const fetch = installFetch(global, (operation, ...args) =>
-    call('fetch', operation, ...args),
+  Object.defineProperty(global, 'self', {
+    get: () => global,
+    configurable: true,
+    enumerable: true,
+  });
+  if (!worker)
+    Object.defineProperty(global, 'window', {
+      get: () => global,
+      enumerable: true,
+      configurable: true,
+    });
+  const baseUrl = call('fetch', 'baseUrl') as string | undefined;
+  const address = new (URL as URLConstructor)(baseUrl ?? 'about:blank');
+  const location: Record<string, unknown> = { toString: () => address.href };
+  for (const key of [
+    'href',
+    'origin',
+    'protocol',
+    'host',
+    'hostname',
+    'port',
+    'pathname',
+    'search',
+    'hash',
+  ] as const)
+    location[key] = address[key];
+  if (worker) {
+    const g = global as any;
+    const navigator = g.navigator;
+    class WorkerLocation {
+      constructor() {
+        throw new TypeError('Illegal constructor');
+      }
+      toString() {
+        if (this !== location) throw new TypeError('Illegal invocation');
+        return address.href;
+      }
+      get [Symbol.toStringTag]() {
+        return 'WorkerLocation';
+      }
+    }
+    class WorkerNavigator {
+      constructor() {
+        throw new TypeError('Illegal constructor');
+      }
+      get userAgent() {
+        if (this !== navigator) throw new TypeError('Illegal invocation');
+        return 'Flax';
+      }
+      get platform() {
+        if (this !== navigator) throw new TypeError('Illegal invocation');
+        return 'Flax';
+      }
+      get hardwareConcurrency() {
+        if (this !== navigator) throw new TypeError('Illegal invocation');
+        return Number(call('hardwareConcurrency')) || 1;
+      }
+      get [Symbol.toStringTag]() {
+        return 'WorkerNavigator';
+      }
+    }
+    for (const key of Object.keys(location)) {
+      delete location[key];
+      if (key === 'toString') continue;
+      Object.defineProperty(WorkerLocation.prototype, key, {
+        configurable: true,
+        enumerable: true,
+        get() {
+          if (this !== location) throw new TypeError('Illegal invocation');
+          return address[key as keyof typeof address];
+        },
+      });
+    }
+    for (const key of Object.keys(navigator)) delete navigator[key];
+    Object.setPrototypeOf(location, WorkerLocation.prototype);
+    Object.setPrototypeOf(g.navigator, WorkerNavigator.prototype);
+    g.WorkerLocation = WorkerLocation;
+    g.WorkerNavigator = WorkerNavigator;
+  }
+  Object.defineProperty(global, 'location', {
+    value: Object.freeze(location),
+    configurable: true,
+    enumerable: true,
+  });
+  if (worker) Object.freeze(global.navigator);
+  const randomness = installCrypto(
+    global,
+    (length) => call('random', length) as ArrayBuffer,
   );
+  const clearObjectURLs = installObjectURLs(global);
+  const readers = installFileReader(global);
+  if (worker) installFileReaderSync(global);
+  const images = canvases
+    ? installImageHost(global, call, canvases, DOMException)
+    : undefined;
+  const fetch = installFetch(
+    global,
+    (operation, ...args) => call('fetch', operation, ...args),
+    baseUrl,
+  );
+  const nativeClone = typeof (global as any).__flaxNativeWorker?.clone === 'function';
+  const workers = installWorkers(global, call, worker);
+  const measurements = installPerformance(
+    global,
+    now,
+    call('timeOrigin') as number,
+    report,
+    nativeClone ? (global as any).structuredClone : undefined,
+  );
+  // Polyfilled platform objects cannot silently become empty ordinary records.
+  const g = global as any;
+  for (const name of [
+    'Blob',
+    'File',
+    'FileReaderSync',
+    'WorkerNavigator',
+    'WorkerLocation',
+    'Crypto',
+    'Performance',
+    'PerformanceEntry',
+    'PerformanceObserver',
+    'PerformanceObserverEntryList',
+    'FormData',
+    'Request',
+    'Response',
+    'Headers',
+    'ReadableStream',
+    'WritableStream',
+    'TransformStream',
+    'URL',
+    'URLSearchParams',
+    'AbortSignal',
+    'AbortController',
+    'Event',
+    'EventTarget',
+    'DOMException',
+    'ImageBitmap',
+    'ImageData',
+    'OffscreenCanvas',
+  ]) {
+    const prototype = g[name]?.prototype;
+    if (
+      prototype &&
+      !Object.prototype.hasOwnProperty.call(prototype, Symbol.for('flax.uncloneable'))
+    )
+      Object.defineProperty(prototype, Symbol.for('flax.uncloneable'), { value: true });
+  }
+
+  if (worker) {
+    workerError = (error) =>
+      workers.error(
+        worker.id,
+        ...(workers.details(error) as [string, string, string, string, string]),
+        error,
+      );
+    workerReport = workers.report;
+  }
   return {
+    blobSource(url: string) {
+      const blob = (global as any)[Symbol.for('flax.blob.url')]?.(url);
+      return blob ? [blobBuffer(blob), blob.type] : undefined;
+    },
     fetch,
+    workerMessage: workers.receive,
+    workerFinished: workers.finished,
+    workerError: workers.error,
+    workerRejections: workers.rejections,
+    workerResourceSettled: workers.resourceSettled,
     fire(id: number) {
       const task = timers.get(id);
       if (!task || !open) return;
@@ -288,13 +488,30 @@ export function install(global: typeof globalThis, call: Call) {
         call('raf');
       }
     },
+    present() {
+      images?.sweep();
+      canvases?.present();
+    },
+    canvasEvent(target: object, event: string) {
+      return canvases?.receive(target, JSON.parse(event));
+    },
+    imageSettled(id: number, ok: boolean, value: unknown) {
+      images?.settle(id, ok, value);
+    },
     close() {
+      workers.close();
       fetch.close();
       open = false;
       timers.clear();
+      measurements.close();
+      randomness.close();
+      readers.close();
       animationFrames.clear();
       rafScheduled = false;
       clearGlobalEvents();
+      clearObjectURLs();
+      images?.close();
+      canvases?.close();
     },
   };
 }

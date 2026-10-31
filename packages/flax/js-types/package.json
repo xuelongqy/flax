@@ -25,6 +25,9 @@
     },
     "./assets": {
       "types": "./types/runtime/assets.d.ts"
+    },
+    "./host/worker": {
+      "types": "./types/host/worker.d.ts"
     }
   },
   "files": [

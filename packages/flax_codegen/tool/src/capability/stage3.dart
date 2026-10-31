@@ -957,7 +957,10 @@ Future<Map<String, Object?>> compileEmitted({
           'paths': {
             ...dependencyPaths,
             '@flax/core/bindings': [
-              p.join(workspaceRoot, 'packages/flax/js/src/runtime/bindings.ts'),
+              p.join(
+                workspaceRoot,
+                'packages/flax/js-types/types/runtime/bindings.d.ts',
+              ),
             ],
           },
         },

@@ -1,0 +1,151 @@
+{
+  "verifiedAt": "2026-10-29T17:55:30.335996+00:00",
+  "profile": "macOS arm64 Dawn/Metal core WebGPU API extensions",
+  "baseCommit": "3af52eea34b9ebbdf152e78edba38b8f609de770",
+  "uncommitted": true,
+  "inputs": {
+    "dawnRevision": "5fbd545292cb7a4a9a275e322abec6007ffe2ae8",
+    "gpuwebRevision": "22507c95ccb9e705eddc7cab8f28aa46b134f5fe",
+    "ctsRevision": "cc11994e92512d0a3715e9d28876ec48accb971a",
+    "headerSha256": "44126360bbd35339b3b1ccb8ab5bdf21a4a1109bc05f086b179df5ea5a2734d0",
+    "idlSha256": "5293ea7f38416cb37b0ddfc636286514ff622901caa19504a4bdede2ec5a80b2"
+  },
+  "engineBinarySha256": "a8a571762ae477d9df4786bf4e253a7ec2a13e23e12559528924fbc8787a8cd6",
+  "sourceSha256": {
+    "js/src/webgpu.ts": "fdeac34e2d2bd9fce9dc20b438d488ecf4f4de025c88c0e499944d780a60cf62",
+    "js/src/convert.ts": "9a0ad2d7720d9f7bf8de6c82e42654ed48a96859ccb99df4c2063ee124d545c9",
+    "js/src/types.g.ts": "8588abbed198804128888e126b6f55f5e0a436c077097a2edf2f88a80a222ce3",
+    "js/src/arity.g.ts": "31c65a5f6fe29a3f4de987c2f5af08b971c89c7da0adeca8f90be9b9b1194802",
+    "tool/public_types.py": "cbeb0449a653062d54118bf93aad800216fdbc599f738201383ddfed33aa1f82",
+    "tool/cts_entry.mjs": "18f3970492176ea456cefd071033d6778fd3b5a0b3794621698aa46f8eac9fb5",
+    "example/js/api-extensions.js": "9218226d3514efed8103c88c7cbf9b50b066e97de8f408c98e983f3c9812e302",
+    "example/js/main.js": "f91e86ca8ddc19ffd20c43bbf21f707eb4c81febb5b37d6b6fa0328e4a7aab80"
+  },
+  "apiAcceptance": {
+    "passed": true,
+    "cycles": 3,
+    "frames": 360,
+    "extensionAssertionsPerCycle": 11,
+    "extensions": [
+      {
+        "kind": "api-extensions",
+        "swizzle": true,
+        "immediates": true,
+        "maxImmediateSize": 64,
+        "assertions": 51,
+        "cycle": 0,
+        "canvas2D": true
+      },
+      {
+        "kind": "api-extensions",
+        "swizzle": true,
+        "immediates": true,
+        "maxImmediateSize": 64,
+        "assertions": 48,
+        "cycle": 1,
+        "canvas2D": false
+      },
+      {
+        "kind": "api-extensions",
+        "swizzle": true,
+        "immediates": true,
+        "maxImmediateSize": 64,
+        "assertions": 51,
+        "cycle": 2,
+        "canvas2D": true
+      }
+    ],
+    "checks": [
+      "Compute/render/render-bundle immediate data GPU results",
+      "Typed-array element offsets and ArrayBuffer/DataView byte ranges",
+      "Encoded immediate bytes survive source mutation and mapped-source detachment",
+      "Texture swizzle RGBA channel/zero/one GPU pixels",
+      "Swizzle device-feature validation",
+      "Core-mode native texture binding dimension getter returns undefined",
+      "Render-pass maxDrawCount validation",
+      "Three.js textured pixels and OrbitControls",
+      "Canvas 2D coexistence and GPU-only session"
+    ],
+    "nativeCountsAfterClose": [
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0]
+    ]
+  },
+  "cts": {
+    "cycles": [
+      {
+        "cycle": 0,
+        "pass": 468,
+        "skip": 36,
+        "failed": 0
+      },
+      {
+        "cycle": 1,
+        "pass": 468,
+        "skip": 36,
+        "failed": 0
+      },
+      {
+        "cycle": 2,
+        "pass": 468,
+        "skip": 36,
+        "failed": 0
+      }
+    ],
+    "passes": 1404,
+    "skips": 108,
+    "failures": 0,
+    "skipReason": "Pinned CTS Proxy-based _Float16Array is not a native BufferSource; its test excludes Float16Array by a different constructor name.",
+    "sourcesUnmodified": true,
+    "sourceFileCount": 1328,
+    "archiveSha256": "a47a5fb4c2c42a41bc7b39274d84b0b0402db6f3d5d91b75321580701fd99a54"
+  },
+  "gates": {
+    "webGpuConversion": {
+      "passed": 6,
+      "total": 6
+    },
+    "runtimeDefault": {
+      "passed": 58,
+      "total": 58
+    },
+    "coreJavaScript": {
+      "passed": 108,
+      "total": 108
+    },
+    "canvasJavaScript": {
+      "passed": 35,
+      "total": 35
+    },
+    "exampleMetrics": {
+      "passed": 2,
+      "total": 2
+    },
+    "typechecks": [
+      "WebGPU runtime and public API fixture",
+      "WebGPU declaration SDK",
+      "WebGPU example"
+    ],
+    "format": true,
+    "markdownLint": {
+      "files": 275,
+      "issues": 0
+    },
+    "localLinks": {
+      "checked": 1207,
+      "files": 276
+    },
+    "diffCheck": true
+  },
+  "limits": [
+    "Bounded acceptance, not full CTS/WebIDL conformance",
+    "Compatibility-mode adapters, video external textures, Workers and HDR/P3 presentation remain deferred",
+    "No new performance or display-latency comparison"
+  ],
+  "cleanup": {
+    "extractedCtsSourcesRemoved": true,
+    "pinnedCtsArchiveRetained": true,
+    "maintainedSdkEngineAndAcceptanceAppRetained": true
+  }
+}

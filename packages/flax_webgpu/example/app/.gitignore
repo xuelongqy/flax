@@ -1,0 +1,4 @@
+.flax/
+pubspec.lock
+assets/*
+!assets/README.md

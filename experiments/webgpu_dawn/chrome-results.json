@@ -1,0 +1,2164 @@
+{
+  "shaderSha256": "68661f2c01fe1e7ca883af8f1d3a88bd55415b278bc5389b0e5380433e52da24",
+  "browserSourcesSha256": {
+    "chrome.js": "7568d5f9a8faa3bc53d586c65a8fe1a76b799b3f8f96b8c9e716596078604ff2",
+    "chrome.html": "f59be7b707c699eaf50702f7b1ffccabb86aa594b1c75e3cf008b5f2e6c53db7",
+    "compare_chrome.mjs": "2f2445760ecfe8b7ba471e41acc146b30923db263af6eaee6a1972b35d852921",
+    "scene.wgsl": "68661f2c01fe1e7ca883af8f1d3a88bd55415b278bc5389b0e5380433e52da24"
+  },
+  "runs": [
+    {
+      "kind": "flax",
+      "result": {
+        "passed": true,
+        "platform": "Version 27.0.1 (Build 26A434)",
+        "compute": {
+          "kind": "compute",
+          "adapter": "Apple M2 Max",
+          "backend": "Metal",
+          "compute": {
+            "dispatchesPerSample": 32,
+            "gpuBatch": {
+              "count": 40,
+              "p50Ms": 0.196608,
+              "p95Ms": 0.262144,
+              "p99Ms": 0.262144
+            },
+            "hostBatchIncludingReadbackAndValidation": {
+              "count": 40,
+              "p50Ms": 0.680584,
+              "p95Ms": 0.845792,
+              "p99Ms": 0.924667
+            },
+            "samples": 40,
+            "timestampQuery": true,
+            "timestampsUseDefaultDawnQuantization": true,
+            "verifiedElementsPerSample": 262144
+          },
+          "fenceCheck": {
+            "consumerBlockedBeforeRelease": true,
+            "passed": true,
+            "producerHeldMs": 50.959291,
+            "retiredTextureLeases": 1,
+            "verificationReadbacks": 1,
+            "verifiedPixels": 256
+          },
+          "validationEnabled": true
+        },
+        "phases": [
+          {
+            "kind": "frames",
+            "adapter": "Apple M2 Max",
+            "backend": "Metal",
+            "completed": 955,
+            "consumerGpuSignals": 955,
+            "error": "",
+            "flutterConsumerGpuDuration": {
+              "count": 924,
+              "p50Ms": 0.02750009298324585,
+              "p95Ms": 0.028875190764665604,
+              "p99Ms": 0.03224983811378479
+            },
+            "flutterTextureReads": 955,
+            "frameCpuReadbacks": 0,
+            "gpuCompletionToFlutterTextureRead": {
+              "count": 924,
+              "p50Ms": -0.878541,
+              "p95Ms": -0.464875,
+              "p99Ms": 0.331541
+            },
+            "gpuTimestampReadbacks": 0,
+            "height": 540,
+            "nativeEncodeIncludingPoolAcquire": {
+              "count": 924,
+              "p50Ms": 0.241959,
+              "p95Ms": 0.430542,
+              "p99Ms": 0.693208
+            },
+            "notifiedFlutter": 955,
+            "poolMisses": 0,
+            "producerGpuGates": 955,
+            "renderGpuPass": {
+              "count": 0,
+              "p50Ms": 0,
+              "p95Ms": 0,
+              "p99Ms": 0
+            },
+            "renderGpuTimingEnabled": false,
+            "retiredLeases": 954,
+            "retirementErrors": 0,
+            "skippedBusy": 0,
+            "submitted": 955,
+            "submitToCompletionIncludingEncode": {
+              "count": 924,
+              "p50Ms": 1.267541,
+              "p95Ms": 1.69075,
+              "p99Ms": 1.865334
+            },
+            "submitToFlutterGpuCompletionCallback": {
+              "count": 924,
+              "p50Ms": 1.487,
+              "p95Ms": 2.264709,
+              "p99Ms": 2.952083
+            },
+            "submitToFlutterTextureRead": {
+              "count": 924,
+              "p50Ms": 0.400542,
+              "p95Ms": 0.752708,
+              "p99Ms": 1.951792
+            },
+            "surfaceAllocations": 3,
+            "surfacePoolCapacity": 3,
+            "surfaceReuses": 953,
+            "textureReadsBeforeProducerFence": 940,
+            "warmupSubmittedFrames": 31,
+            "width": 960,
+            "jsFrames": 955,
+            "jsSubmitted": 955,
+            "sceneElapsedMs": 7966.752,
+            "jsFfiCall": {
+              "count": 924,
+              "p50Ms": 0.2719999999999345,
+              "p95Ms": 0.4899999999997817,
+              "p99Ms": 0.7619999999997162
+            },
+            "rafInterval": {
+              "count": 924,
+              "p50Ms": 8.332999999999629,
+              "p95Ms": 8.398999999999432,
+              "p99Ms": 8.63000000000011
+            },
+            "rafCallbackInterval": {
+              "count": 924,
+              "p50Ms": 8.330999999999221,
+              "p95Ms": 8.467999999999847,
+              "p99Ms": 8.704999999999927
+            },
+            "rafCallbackFps": 119.86875150079182,
+            "viewport": {
+              "devicePixelRatio": 1,
+              "physicalWidth": 1100,
+              "physicalHeight": 728,
+              "displayPhysicalWidth": 3440,
+              "displayPhysicalHeight": 1440,
+              "displayRefreshRate": 120,
+              "logicalWidth": 1100,
+              "logicalHeight": 728
+            },
+            "rssBytes": 305381376,
+            "flutterBuild": {
+              "count": 918,
+              "p50Ms": 0.469,
+              "p95Ms": 0.857,
+              "p99Ms": 1.53
+            },
+            "flutterRaster": {
+              "count": 918,
+              "p50Ms": 0.962,
+              "p95Ms": 1.196,
+              "p99Ms": 1.469
+            }
+          },
+          {
+            "kind": "frames",
+            "adapter": "Apple M2 Max",
+            "backend": "Metal",
+            "completed": 958,
+            "consumerGpuSignals": 958,
+            "error": "",
+            "flutterConsumerGpuDuration": {
+              "count": 927,
+              "p50Ms": 0.02733338624238968,
+              "p95Ms": 0.02824980765581131,
+              "p99Ms": 0.029542017728090286
+            },
+            "flutterTextureReads": 958,
+            "frameCpuReadbacks": 0,
+            "gpuCompletionToFlutterTextureRead": {
+              "count": 927,
+              "p50Ms": -0.764708,
+              "p95Ms": -0.3495,
+              "p99Ms": -0.279375
+            },
+            "gpuTimestampReadbacks": 0,
+            "height": 360,
+            "nativeEncodeIncludingPoolAcquire": {
+              "count": 927,
+              "p50Ms": 0.088667,
+              "p95Ms": 0.233166,
+              "p99Ms": 0.335167
+            },
+            "notifiedFlutter": 958,
+            "poolMisses": 0,
+            "producerGpuGates": 958,
+            "renderGpuPass": {
+              "count": 0,
+              "p50Ms": 0,
+              "p95Ms": 0,
+              "p99Ms": 0
+            },
+            "renderGpuTimingEnabled": false,
+            "retiredLeases": 957,
+            "retirementErrors": 0,
+            "skippedBusy": 0,
+            "submitted": 958,
+            "submitToCompletionIncludingEncode": {
+              "count": 927,
+              "p50Ms": 0.937458,
+              "p95Ms": 1.100958,
+              "p99Ms": 1.2565
+            },
+            "submitToFlutterGpuCompletionCallback": {
+              "count": 927,
+              "p50Ms": 1.131833,
+              "p95Ms": 1.327833,
+              "p99Ms": 1.638875
+            },
+            "submitToFlutterTextureRead": {
+              "count": 927,
+              "p50Ms": 0.169792,
+              "p95Ms": 0.407083,
+              "p99Ms": 0.847041
+            },
+            "surfaceAllocations": 3,
+            "surfacePoolCapacity": 3,
+            "surfaceReuses": 956,
+            "textureReadsBeforeProducerFence": 950,
+            "warmupSubmittedFrames": 31,
+            "width": 640,
+            "jsFrames": 958,
+            "jsSubmitted": 958,
+            "sceneElapsedMs": 7978.8769999999995,
+            "jsFfiCall": {
+              "count": 927,
+              "p50Ms": 0.10100000000056752,
+              "p95Ms": 0.2640000000001237,
+              "p99Ms": 0.3720000000002983
+            },
+            "rafInterval": {
+              "count": 927,
+              "p50Ms": 8.333000000000538,
+              "p95Ms": 8.36200000000008,
+              "p99Ms": 8.572000000000003
+            },
+            "rafCallbackInterval": {
+              "count": 927,
+              "p50Ms": 8.332999999999629,
+              "p95Ms": 8.373999999999796,
+              "p99Ms": 8.618000000000393
+            },
+            "rafCallbackFps": 119.8706483204661,
+            "viewport": {
+              "devicePixelRatio": 1,
+              "physicalWidth": 1100,
+              "physicalHeight": 728,
+              "displayPhysicalWidth": 3440,
+              "displayPhysicalHeight": 1440,
+              "displayRefreshRate": 120,
+              "logicalWidth": 1100,
+              "logicalHeight": 728
+            },
+            "rssBytes": 317521920,
+            "flutterBuild": {
+              "count": 932,
+              "p50Ms": 0.188,
+              "p95Ms": 0.507,
+              "p99Ms": 1.071
+            },
+            "flutterRaster": {
+              "count": 932,
+              "p50Ms": 0.727,
+              "p95Ms": 0.898,
+              "p99Ms": 1.025
+            }
+          },
+          {
+            "kind": "frames",
+            "adapter": "Apple M2 Max",
+            "backend": "Metal",
+            "completed": 958,
+            "consumerGpuSignals": 958,
+            "error": "",
+            "flutterConsumerGpuDuration": {
+              "count": 927,
+              "p50Ms": 0.02770824357867241,
+              "p95Ms": 0.029041897505521774,
+              "p99Ms": 0.031250063329935074
+            },
+            "flutterTextureReads": 958,
+            "frameCpuReadbacks": 0,
+            "gpuCompletionToFlutterTextureRead": {
+              "count": 927,
+              "p50Ms": -0.93175,
+              "p95Ms": -0.494333,
+              "p99Ms": -0.417834
+            },
+            "gpuTimestampReadbacks": 0,
+            "height": 540,
+            "nativeEncodeIncludingPoolAcquire": {
+              "count": 927,
+              "p50Ms": 0.081709,
+              "p95Ms": 0.128375,
+              "p99Ms": 0.146084
+            },
+            "notifiedFlutter": 958,
+            "poolMisses": 0,
+            "producerGpuGates": 958,
+            "renderGpuPass": {
+              "count": 0,
+              "p50Ms": 0,
+              "p95Ms": 0,
+              "p99Ms": 0
+            },
+            "renderGpuTimingEnabled": false,
+            "retiredLeases": 957,
+            "retirementErrors": 0,
+            "skippedBusy": 0,
+            "submitted": 958,
+            "submitToCompletionIncludingEncode": {
+              "count": 927,
+              "p50Ms": 1.091125,
+              "p95Ms": 1.155583,
+              "p99Ms": 1.17975
+            },
+            "submitToFlutterGpuCompletionCallback": {
+              "count": 927,
+              "p50Ms": 1.28275,
+              "p95Ms": 1.355333,
+              "p99Ms": 1.532583
+            },
+            "submitToFlutterTextureRead": {
+              "count": 927,
+              "p50Ms": 0.160916,
+              "p95Ms": 0.243833,
+              "p99Ms": 0.326417
+            },
+            "surfaceAllocations": 3,
+            "surfacePoolCapacity": 3,
+            "surfaceReuses": 956,
+            "textureReadsBeforeProducerFence": 951,
+            "warmupSubmittedFrames": 31,
+            "width": 960,
+            "jsFrames": 958,
+            "jsSubmitted": 958,
+            "sceneElapsedMs": 7974.186000000001,
+            "jsFfiCall": {
+              "count": 927,
+              "p50Ms": 0.09200000000055297,
+              "p95Ms": 0.14500000000043656,
+              "p99Ms": 0.16800000000000637
+            },
+            "rafInterval": {
+              "count": 927,
+              "p50Ms": 8.333000000000538,
+              "p95Ms": 8.35299999999961,
+              "p99Ms": 8.425000000000182
+            },
+            "rafCallbackInterval": {
+              "count": 927,
+              "p50Ms": 8.333000000000538,
+              "p95Ms": 8.365999999999985,
+              "p99Ms": 8.444999999999709
+            },
+            "rafCallbackFps": 119.99922330599802,
+            "viewport": {
+              "devicePixelRatio": 1,
+              "physicalWidth": 1100,
+              "physicalHeight": 728,
+              "displayPhysicalWidth": 3440,
+              "displayPhysicalHeight": 1440,
+              "displayRefreshRate": 120,
+              "logicalWidth": 1100,
+              "logicalHeight": 728
+            },
+            "rssBytes": 292716544,
+            "flutterBuild": {
+              "count": 1042,
+              "p50Ms": 0.171,
+              "p95Ms": 0.277,
+              "p99Ms": 0.634
+            },
+            "flutterRaster": {
+              "count": 1042,
+              "p50Ms": 0.88,
+              "p95Ms": 0.942,
+              "p99Ms": 1.105
+            }
+          }
+        ],
+        "closedNativeSessions": 3,
+        "activeNativeSessionsAfterClose": 0,
+        "liveDawnDevicesAfterClose": 0,
+        "liveGpuTextureLeasesAfterClose": 0,
+        "snapshotReadbacks": 3,
+        "steadyStateFrameReadbacks": 0
+      }
+    },
+    {
+      "kind": "chrome",
+      "result": {
+        "passed": true,
+        "shaderSha256": "68661f2c01fe1e7ca883af8f1d3a88bd55415b278bc5389b0e5380433e52da24",
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "crossOriginIsolated": true,
+        "phases": [
+          {
+            "width": 960,
+            "height": 540,
+            "submitted": 961,
+            "completed": 961,
+            "skippedBusy": 0,
+            "jsFrames": 961,
+            "warmupSubmittedFrames": 31,
+            "renderGpuTimingEnabled": false,
+            "jsSubmitCall": {
+              "count": 929,
+              "p50Ms": 0.04500007629394531,
+              "p95Ms": 0.06500005722045898,
+              "p99Ms": 0.08000040054321289
+            },
+            "submitToProducerGpuCompletionPromise": {
+              "count": 929,
+              "p50Ms": 1.3550000190734863,
+              "p95Ms": 1.684999942779541,
+              "p99Ms": 1.8400001525878906
+            },
+            "rafInterval": {
+              "count": 930,
+              "p50Ms": 8.334999999999582,
+              "p95Ms": 9.324999999999818,
+              "p99Ms": 9.329999999999927
+            },
+            "renderGpuPass": {
+              "count": 0,
+              "p50Ms": 0,
+              "p95Ms": 0,
+              "p99Ms": 0
+            },
+            "rafCallbackInterval": {
+              "count": 930,
+              "p50Ms": 8.324999809265137,
+              "p95Ms": 9.365000247955322,
+              "p99Ms": 9.429999828338623
+            },
+            "rafCallbackFps": 120.00015484245345,
+            "gpuTimestampReadbacks": 0,
+            "frameCpuReadbacks": 0,
+            "adapter": {
+              "vendor": "apple",
+              "architecture": "metal-3",
+              "device": "",
+              "description": "",
+              "isFallbackAdapter": false
+            },
+            "viewport": {
+              "devicePixelRatio": 1,
+              "logicalWidth": 1100,
+              "logicalHeight": 728,
+              "physicalWidth": 1100,
+              "physicalHeight": 728,
+              "displayPhysicalWidth": 3440,
+              "displayPhysicalHeight": 1440,
+              "screenX": 100,
+              "screenY": 100
+            },
+            "error": "",
+            "verificationColors": 2039,
+            "verificationDraws": 1
+          },
+          {
+            "width": 640,
+            "height": 360,
+            "submitted": 961,
+            "completed": 961,
+            "skippedBusy": 0,
+            "jsFrames": 961,
+            "warmupSubmittedFrames": 31,
+            "renderGpuTimingEnabled": false,
+            "jsSubmitCall": {
+              "count": 929,
+              "p50Ms": 0.04500007629394531,
+              "p95Ms": 0.06500005722045898,
+              "p99Ms": 0.07499980926513672
+            },
+            "submitToProducerGpuCompletionPromise": {
+              "count": 929,
+              "p50Ms": 1.2100000381469727,
+              "p95Ms": 1.5299997329711914,
+              "p99Ms": 1.7200002670288086
+            },
+            "rafInterval": {
+              "count": 930,
+              "p50Ms": 8.330000000001746,
+              "p95Ms": 9.325000000000728,
+              "p99Ms": 9.335000000000946
+            },
+            "renderGpuPass": {
+              "count": 0,
+              "p50Ms": 0,
+              "p95Ms": 0,
+              "p99Ms": 0
+            },
+            "rafCallbackInterval": {
+              "count": 930,
+              "p50Ms": 8.324999809265137,
+              "p95Ms": 9.360000133514404,
+              "p99Ms": 9.434999942779541
+            },
+            "rafCallbackFps": 119.98536952325209,
+            "gpuTimestampReadbacks": 0,
+            "frameCpuReadbacks": 0,
+            "adapter": {
+              "vendor": "apple",
+              "architecture": "metal-3",
+              "device": "",
+              "description": "",
+              "isFallbackAdapter": false
+            },
+            "viewport": {
+              "devicePixelRatio": 1,
+              "logicalWidth": 1100,
+              "logicalHeight": 728,
+              "physicalWidth": 1100,
+              "physicalHeight": 728,
+              "displayPhysicalWidth": 3440,
+              "displayPhysicalHeight": 1440,
+              "screenX": 100,
+              "screenY": 100
+            },
+            "error": "",
+            "verificationColors": 992,
+            "verificationDraws": 1
+          },
+          {
+            "width": 960,
+            "height": 540,
+            "submitted": 961,
+            "completed": 961,
+            "skippedBusy": 0,
+            "jsFrames": 961,
+            "warmupSubmittedFrames": 31,
+            "renderGpuTimingEnabled": false,
+            "jsSubmitCall": {
+              "count": 929,
+              "p50Ms": 0.03500032424926758,
+              "p95Ms": 0.05500030517578125,
+              "p99Ms": 0.06500005722045898
+            },
+            "submitToProducerGpuCompletionPromise": {
+              "count": 929,
+              "p50Ms": 1.2750000953674316,
+              "p95Ms": 1.6200003623962402,
+              "p99Ms": 1.809999942779541
+            },
+            "rafInterval": {
+              "count": 930,
+              "p50Ms": 8.334999999999127,
+              "p95Ms": 9.264999999999418,
+              "p99Ms": 9.334999999999127
+            },
+            "renderGpuPass": {
+              "count": 0,
+              "p50Ms": 0,
+              "p95Ms": 0,
+              "p99Ms": 0
+            },
+            "rafCallbackInterval": {
+              "count": 930,
+              "p50Ms": 8.329999923706055,
+              "p95Ms": 9.329999923706055,
+              "p99Ms": 9.420000076293945
+            },
+            "rafCallbackFps": 119.99798712876652,
+            "gpuTimestampReadbacks": 0,
+            "frameCpuReadbacks": 0,
+            "adapter": {
+              "vendor": "apple",
+              "architecture": "metal-3",
+              "device": "",
+              "description": "",
+              "isFallbackAdapter": false
+            },
+            "viewport": {
+              "devicePixelRatio": 1,
+              "logicalWidth": 1100,
+              "logicalHeight": 728,
+              "physicalWidth": 1100,
+              "physicalHeight": 728,
+              "displayPhysicalWidth": 3440,
+              "displayPhysicalHeight": 1440,
+              "screenX": 100,
+              "screenY": 100
+            },
+            "error": "",
+            "verificationColors": 2039,
+            "verificationDraws": 1
+          }
+        ],
+        "closedDevices": 3,
+        "snapshotReadbacks": 3,
+        "steadyStateFrameReadbacks": 0,
+        "gpuTiming": false
+      }
+    },
+    {
+      "kind": "chrome",
+      "result": {
+        "passed": true,
+        "shaderSha256": "68661f2c01fe1e7ca883af8f1d3a88bd55415b278bc5389b0e5380433e52da24",
+        "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "crossOriginIsolated": true,
+        "phases": [
+          {
+            "width": 960,
+            "height": 540,
+            "submitted": 961,
+            "completed": 961,
+            "skippedBusy": 0,
+            "jsFrames": 961,
+            "warmupSubmittedFrames": 31,
+            "renderGpuTimingEnabled": false,
+            "jsSubmitCall": {
+              "count": 929,
+              "p50Ms": 0.04500007629394531,
+              "p95Ms": 0.07000017166137695,
+              "p99Ms": 0.08500003814697266
+            },
+            "submitToProducerGpuCompletionPromise": {
+              "count": 929,
+              "p50Ms": 1.4000000953674316,
+              "p95Ms": 1.6750001907348633,
+              "p99Ms": 2.015000343322754
+            },
+            "rafInterval": {
+              "count": 930,
+              "p50Ms": 8.334999999999923,
+              "p95Ms": 9.319999999999936,
+              "p99Ms": 9.335000000000036
+            },
+            "renderGpuPass": {
+              "count": 0,
+              "p50Ms": 0,
+              "p95Ms": 0,
+              "p99Ms": 0
+            },
+            "rafCallbackInterval": {
+              "count": 930,
+              "p50Ms": 8.325000286102295,
+              "p95Ms": 9.324999809265137,
+              "p99Ms": 9.440000057220459
+            },
+            "rafCallbackFps": 119.98103525719384,
+            "gpuTimestampReadbacks": 0,
+            "frameCpuReadbacks": 0,
+            "adapter": {
+              "vendor": "apple",
+              "architecture": "metal-3",
+              "device": "",
+              "description": "",
+              "isFallbackAdapter": false
+            },
+            "viewport": {
+              "devicePixelRatio": 1,
+              "logicalWidth": 1100,
+              "logicalHeight": 728,
+              "physicalWidth": 1100,
+              "physicalHeight": 728,
+              "displayPhysicalWidth": 3440,
+              "displayPhysicalHeight": 1440,
+              "screenX": 100,
+              "screenY": 100
+            },
+            "error": "",
+            "verificationColors": 2029,
+            "verificationDraws": 1
+          },
+          {
+            "width": 640,
+            "height": 360,
+            "submitted": 961,
+            "completed": 961,
+            "skippedBusy": 0,
+            "jsFrames": 961,
+            "warmupSubmittedFrames": 31,
+            "renderGpuTimingEnabled": false,
+            "jsSubmitCall": {
+              "count": 929,
+              "p50Ms": 0.034999847412109375,
+              "p95Ms": 0.05499982833862305,
+              "p99Ms": 0.06500005722045898
+            },
+            "submitToProducerGpuCompletionPromise": {
+              "count": 929,
+              "p50Ms": 1.0349998474121094,
+              "p95Ms": 1.4100003242492676,
+              "p99Ms": 1.5850000381469727
+            },
+            "rafInterval": {
+              "count": 930,
+              "p50Ms": 8.334999999999127,
+              "p95Ms": 9.255000000001019,
+              "p99Ms": 9.329999999999927
+            },
+            "renderGpuPass": {
+              "count": 0,
+              "p50Ms": 0,
+              "p95Ms": 0,
+              "p99Ms": 0
+            },
+            "rafCallbackInterval": {
+              "count": 930,
+              "p50Ms": 8.329999923706055,
+              "p95Ms": 9.28000020980835,
+              "p99Ms": 9.375
+            },
+            "rafCallbackFps": 120.00309685854256,
+            "gpuTimestampReadbacks": 0,
+            "frameCpuReadbacks": 0,
+            "adapter": {
+              "vendor": "apple",
+              "architecture": "metal-3",
+              "device": "",
+              "description": "",
+              "isFallbackAdapter": false
+            },
+            "viewport": {
+              "devicePixelRatio": 1,
+              "logicalWidth": 1100,
+              "logicalHeight": 728,
+              "physicalWidth": 1100,
+              "physicalHeight": 728,
+              "displayPhysicalWidth": 3440,
+              "displayPhysicalHeight": 1440,
+              "screenX": 100,
+              "screenY": 100
+            },
+            "error": "",
+            "verificationColors": 996,
+            "verificationDraws": 1
+          },
+          {
+            "width": 960,
+            "height": 540,
+            "submitted": 961,
+            "completed": 961,
+            "skippedBusy": 0,
+            "jsFrames": 961,
+            "warmupSubmittedFrames": 31,
+            "renderGpuTimingEnabled": false,
+            "jsSubmitCall": {
+              "count": 929,
+              "p50Ms": 0.03000020980834961,
+              "p95Ms": 0.05000019073486328,
+              "p99Ms": 0.059999942779541016
+            },
+            "submitToProducerGpuCompletionPromise": {
+              "count": 929,
+              "p50Ms": 1.1050000190734863,
+              "p95Ms": 1.5299997329711914,
+              "p99Ms": 1.609999656677246
+            },
+            "rafInterval": {
+              "count": 930,
+              "p50Ms": 8.334999999999127,
+              "p95Ms": 9.2599999999984,
+              "p99Ms": 9.334999999999127
+            },
+            "renderGpuPass": {
+              "count": 0,
+              "p50Ms": 0,
+              "p95Ms": 0,
+              "p99Ms": 0
+            },
+            "rafCallbackInterval": {
+              "count": 930,
+              "p50Ms": 8.335000038146973,
+              "p95Ms": 9.275000095367432,
+              "p99Ms": 9.375
+            },
+            "rafCallbackFps": 119.99976773706906,
+            "gpuTimestampReadbacks": 0,
+            "frameCpuReadbacks": 0,
+            "adapter": {
+              "vendor": "apple",
+              "architecture": "metal-3",
+              "device": "",
+              "description": "",
+              "isFallbackAdapter": false
+            },
+            "viewport": {
+              "devicePixelRatio": 1,
+              "logicalWidth": 1100,
+              "logicalHeight": 728,
+              "physicalWidth": 1100,
+              "physicalHeight": 728,
+              "displayPhysicalWidth": 3440,
+              "displayPhysicalHeight": 1440,
+              "screenX": 100,
+              "screenY": 100
+            },
+            "error": "",
+            "verificationColors": 2039,
+            "verificationDraws": 1
+          }
+        ],
+        "closedDevices": 3,
+        "snapshotReadbacks": 3,
+        "steadyStateFrameReadbacks": 0,
+        "gpuTiming": false
+      }
+    },
+    {
+      "kind": "flax",
+      "result": {
+        "passed": true,
+        "platform": "Version 27.0.1 (Build 26A434)",
+        "compute": {
+          "kind": "compute",
+          "adapter": "Apple M2 Max",
+          "backend": "Metal",
+          "compute": {
+            "dispatchesPerSample": 32,
+            "gpuBatch": {
+              "count": 40,
+              "p50Ms": 0.262144,
+              "p95Ms": 0.262144,
+              "p99Ms": 0.262144
+            },
+            "hostBatchIncludingReadbackAndValidation": {
+              "count": 40,
+              "p50Ms": 0.663166,
+              "p95Ms": 1.717208,
+              "p99Ms": 1.865375
+            },
+            "samples": 40,
+            "timestampQuery": true,
+            "timestampsUseDefaultDawnQuantization": true,
+            "verifiedElementsPerSample": 262144
+          },
+          "fenceCheck": {
+            "consumerBlockedBeforeRelease": true,
+            "passed": true,
+            "producerHeldMs": 51.280042,
+            "retiredTextureLeases": 1,
+            "verificationReadbacks": 1,
+            "verifiedPixels": 256
+          },
+          "validationEnabled": true
+        },
+        "phases": [
+          {
+            "kind": "frames",
+            "adapter": "Apple M2 Max",
+            "backend": "Metal",
+            "completed": 957,
+            "consumerGpuSignals": 957,
+            "error": "",
+            "flutterConsumerGpuDuration": {
+              "count": 926,
+              "p50Ms": 0.027124769985675812,
+              "p95Ms": 0.02804165706038475,
+              "p99Ms": 0.030666589736938477
+            },
+            "flutterTextureReads": 957,
+            "frameCpuReadbacks": 0,
+            "gpuCompletionToFlutterTextureRead": {
+              "count": 926,
+              "p50Ms": -0.910708,
+              "p95Ms": -0.463958,
+              "p99Ms": -0.388125
+            },
+            "gpuTimestampReadbacks": 0,
+            "height": 540,
+            "nativeEncodeIncludingPoolAcquire": {
+              "count": 926,
+              "p50Ms": 0.070875,
+              "p95Ms": 0.106208,
+              "p99Ms": 0.147209
+            },
+            "notifiedFlutter": 957,
+            "poolMisses": 0,
+            "producerGpuGates": 957,
+            "renderGpuPass": {
+              "count": 0,
+              "p50Ms": 0,
+              "p95Ms": 0,
+              "p99Ms": 0
+            },
+            "renderGpuTimingEnabled": false,
+            "retiredLeases": 956,
+            "retirementErrors": 0,
+            "skippedBusy": 0,
+            "submitted": 957,
+            "submitToCompletionIncludingEncode": {
+              "count": 926,
+              "p50Ms": 1.054666,
+              "p95Ms": 1.105584,
+              "p99Ms": 1.150375
+            },
+            "submitToFlutterGpuCompletionCallback": {
+              "count": 926,
+              "p50Ms": 1.259583,
+              "p95Ms": 1.342792,
+              "p99Ms": 1.622
+            },
+            "submitToFlutterTextureRead": {
+              "count": 926,
+              "p50Ms": 0.138208,
+              "p95Ms": 0.219208,
+              "p99Ms": 0.450209
+            },
+            "surfaceAllocations": 3,
+            "surfacePoolCapacity": 3,
+            "surfaceReuses": 955,
+            "textureReadsBeforeProducerFence": 948,
+            "warmupSubmittedFrames": 31,
+            "width": 960,
+            "jsFrames": 957,
+            "jsSubmitted": 957,
+            "sceneElapsedMs": 7966.768999999999,
+            "jsFfiCall": {
+              "count": 926,
+              "p50Ms": 0.0820000000003347,
+              "p95Ms": 0.125,
+              "p99Ms": 0.1750000000001819
+            },
+            "rafInterval": {
+              "count": 926,
+              "p50Ms": 8.333000000000084,
+              "p95Ms": 8.359000000000378,
+              "p99Ms": 8.404999999999973
+            },
+            "rafCallbackInterval": {
+              "count": 926,
+              "p50Ms": 8.332999999999629,
+              "p95Ms": 8.365999999999985,
+              "p99Ms": 8.411000000000058
+            },
+            "rafCallbackFps": 119.9994971943314,
+            "viewport": {
+              "devicePixelRatio": 1,
+              "physicalWidth": 1100,
+              "physicalHeight": 728,
+              "displayPhysicalWidth": 3440,
+              "displayPhysicalHeight": 1440,
+              "displayRefreshRate": 120,
+              "logicalWidth": 1100,
+              "logicalHeight": 728
+            },
+            "rssBytes": 307134464,
+            "flutterBuild": {
+              "count": 919,
+              "p50Ms": 0.154,
+              "p95Ms": 0.25,
+              "p99Ms": 0.355
+            },
+            "flutterRaster": {
+              "count": 919,
+              "p50Ms": 0.878,
+              "p95Ms": 0.932,
+              "p99Ms": 1.064
+            }
+          },
+          {
+            "kind": "frames",
+            "adapter": "Apple M2 Max",
+            "backend": "Metal",
+            "completed": 957,
+            "consumerGpuSignals": 958,
+            "error": "",
+            "flutterConsumerGpuDuration": {
+              "count": 926,
+              "p50Ms": 0.027041882276535034,
+              "p95Ms": 0.027999747544527054,
+              "p99Ms": 0.030166935175657272
+            },
+            "flutterTextureReads": 958,
+            "frameCpuReadbacks": 0,
+            "gpuCompletionToFlutterTextureRead": {
+              "count": 926,
+              "p50Ms": -0.736333,
+              "p95Ms": -0.318542,
+              "p99Ms": -0.262458
+            },
+            "gpuTimestampReadbacks": 0,
+            "height": 360,
+            "nativeEncodeIncludingPoolAcquire": {
+              "count": 927,
+              "p50Ms": 0.081333,
+              "p95Ms": 0.138291,
+              "p99Ms": 0.165584
+            },
+            "notifiedFlutter": 958,
+            "poolMisses": 0,
+            "producerGpuGates": 958,
+            "renderGpuPass": {
+              "count": 0,
+              "p50Ms": 0,
+              "p95Ms": 0,
+              "p99Ms": 0
+            },
+            "renderGpuTimingEnabled": false,
+            "retiredLeases": 957,
+            "retirementErrors": 0,
+            "skippedBusy": 0,
+            "submitted": 958,
+            "submitToCompletionIncludingEncode": {
+              "count": 926,
+              "p50Ms": 0.903875,
+              "p95Ms": 0.961833,
+              "p99Ms": 0.985042
+            },
+            "submitToFlutterGpuCompletionCallback": {
+              "count": 926,
+              "p50Ms": 1.1095,
+              "p95Ms": 1.180708,
+              "p99Ms": 1.316542
+            },
+            "submitToFlutterTextureRead": {
+              "count": 927,
+              "p50Ms": 0.168083,
+              "p95Ms": 0.260417,
+              "p99Ms": 0.326291
+            },
+            "surfaceAllocations": 3,
+            "surfacePoolCapacity": 3,
+            "surfaceReuses": 956,
+            "textureReadsBeforeProducerFence": 950,
+            "warmupSubmittedFrames": 31,
+            "width": 640,
+            "jsFrames": 958,
+            "jsSubmitted": 958,
+            "sceneElapsedMs": 7981.649,
+            "jsFfiCall": {
+              "count": 927,
+              "p50Ms": 0.09400000000005093,
+              "p95Ms": 0.1679999999996653,
+              "p99Ms": 0.19799999999941065
+            },
+            "rafInterval": {
+              "count": 927,
+              "p50Ms": 8.333000000000084,
+              "p95Ms": 8.365999999999985,
+              "p99Ms": 8.4050000000002
+            },
+            "rafCallbackInterval": {
+              "count": 927,
+              "p50Ms": 8.333000000000084,
+              "p95Ms": 8.371999999999389,
+              "p99Ms": 8.40899999999965
+            },
+            "rafCallbackFps": 119.86987330000079,
+            "viewport": {
+              "devicePixelRatio": 1,
+              "physicalWidth": 1100,
+              "physicalHeight": 728,
+              "displayPhysicalWidth": 3440,
+              "displayPhysicalHeight": 1440,
+              "displayRefreshRate": 120,
+              "logicalWidth": 1100,
+              "logicalHeight": 728
+            },
+            "rssBytes": 314900480,
+            "flutterBuild": {
+              "count": 931,
+              "p50Ms": 0.183,
+              "p95Ms": 0.295,
+              "p99Ms": 0.636
+            },
+            "flutterRaster": {
+              "count": 931,
+              "p50Ms": 0.707,
+              "p95Ms": 0.861,
+              "p99Ms": 0.924
+            }
+          },
+          {
+            "kind": "frames",
+            "adapter": "Apple M2 Max",
+            "backend": "Metal",
+            "completed": 958,
+            "consumerGpuSignals": 958,
+            "error": "",
+            "flutterConsumerGpuDuration": {
+              "count": 927,
+              "p50Ms": 0.027416739612817764,
+              "p95Ms": 0.028333161026239395,
+              "p99Ms": 0.029041431844234467
+            },
+            "flutterTextureReads": 958,
+            "frameCpuReadbacks": 0,
+            "gpuCompletionToFlutterTextureRead": {
+              "count": 927,
+              "p50Ms": -0.889333,
+              "p95Ms": -0.456084,
+              "p99Ms": -0.087542
+            },
+            "gpuTimestampReadbacks": 0,
+            "height": 540,
+            "nativeEncodeIncludingPoolAcquire": {
+              "count": 927,
+              "p50Ms": 0.084,
+              "p95Ms": 0.152458,
+              "p99Ms": 0.189125
+            },
+            "notifiedFlutter": 958,
+            "poolMisses": 0,
+            "producerGpuGates": 958,
+            "renderGpuPass": {
+              "count": 0,
+              "p50Ms": 0,
+              "p95Ms": 0,
+              "p99Ms": 0
+            },
+            "renderGpuTimingEnabled": false,
+            "retiredLeases": 957,
+            "retirementErrors": 0,
+            "skippedBusy": 0,
+            "submitted": 958,
+            "submitToCompletionIncludingEncode": {
+              "count": 927,
+              "p50Ms": 1.062083,
+              "p95Ms": 1.128375,
+              "p99Ms": 1.170167
+            },
+            "submitToFlutterGpuCompletionCallback": {
+              "count": 927,
+              "p50Ms": 1.2665,
+              "p95Ms": 1.371375,
+              "p99Ms": 1.603708
+            },
+            "submitToFlutterTextureRead": {
+              "count": 927,
+              "p50Ms": 0.175958,
+              "p95Ms": 0.278667,
+              "p99Ms": 0.946667
+            },
+            "surfaceAllocations": 3,
+            "surfacePoolCapacity": 3,
+            "surfaceReuses": 956,
+            "textureReadsBeforeProducerFence": 948,
+            "warmupSubmittedFrames": 31,
+            "width": 960,
+            "jsFrames": 958,
+            "jsSubmitted": 958,
+            "sceneElapsedMs": 7974.361,
+            "jsFfiCall": {
+              "count": 927,
+              "p50Ms": 0.09799999999995634,
+              "p95Ms": 0.1790000000000873,
+              "p99Ms": 0.22299999999995634
+            },
+            "rafInterval": {
+              "count": 927,
+              "p50Ms": 8.333000000000084,
+              "p95Ms": 8.365999999999985,
+              "p99Ms": 8.438000000000102
+            },
+            "rafCallbackInterval": {
+              "count": 927,
+              "p50Ms": 8.333000000000084,
+              "p95Ms": 8.371000000000095,
+              "p99Ms": 8.44799999999941
+            },
+            "rafCallbackFps": 119.99953398239232,
+            "viewport": {
+              "devicePixelRatio": 1,
+              "physicalWidth": 1100,
+              "physicalHeight": 728,
+              "displayPhysicalWidth": 3440,
+              "displayPhysicalHeight": 1440,
+              "displayRefreshRate": 120,
+              "logicalWidth": 1100,
+              "logicalHeight": 728
+            },
+            "rssBytes": 311803904,
+            "flutterBuild": {
+              "count": 1043,
+              "p50Ms": 0.186,
+              "p95Ms": 0.312,
+              "p99Ms": 0.976
+            },
+            "flutterRaster": {
+              "count": 1043,
+              "p50Ms": 0.862,
+              "p95Ms": 0.934,
+              "p99Ms": 1.072
+            }
+          }
+        ],
+        "closedNativeSessions": 3,
+        "activeNativeSessionsAfterClose": 0,
+        "liveDawnDevicesAfterClose": 0,
+        "liveGpuTextureLeasesAfterClose": 0,
+        "snapshotReadbacks": 3,
+        "steadyStateFrameReadbacks": 0
+      }
+    }
+  ],
+  "gpuTiming": {
+    "flax": {
+      "passed": true,
+      "platform": "Version 27.0.1 (Build 26A434)",
+      "compute": {
+        "kind": "compute",
+        "adapter": "Apple M2 Max",
+        "backend": "Metal",
+        "compute": {
+          "dispatchesPerSample": 32,
+          "gpuBatch": {
+            "count": 40,
+            "p50Ms": 0.196608,
+            "p95Ms": 0.262144,
+            "p99Ms": 0.32768
+          },
+          "hostBatchIncludingReadbackAndValidation": {
+            "count": 40,
+            "p50Ms": 0.637959,
+            "p95Ms": 1.158209,
+            "p99Ms": 2.161417
+          },
+          "samples": 40,
+          "timestampQuery": true,
+          "timestampsUseDefaultDawnQuantization": true,
+          "verifiedElementsPerSample": 262144
+        },
+        "fenceCheck": {
+          "consumerBlockedBeforeRelease": true,
+          "passed": true,
+          "producerHeldMs": 50.407875,
+          "retiredTextureLeases": 1,
+          "verificationReadbacks": 1,
+          "verifiedPixels": 256
+        },
+        "validationEnabled": true
+      },
+      "phases": [
+        {
+          "kind": "frames",
+          "adapter": "Apple M2 Max",
+          "backend": "Metal",
+          "completed": 954,
+          "consumerGpuSignals": 954,
+          "error": "",
+          "flutterConsumerGpuDuration": {
+            "count": 923,
+            "p50Ms": 0.027624890208244324,
+            "p95Ms": 0.029083341360092163,
+            "p99Ms": 0.032499898225069046
+          },
+          "flutterTextureReads": 954,
+          "frameCpuReadbacks": 0,
+          "gpuCompletionToFlutterTextureRead": {
+            "count": 923,
+            "p50Ms": 0.096042,
+            "p95Ms": 0.17275,
+            "p99Ms": 1.152084
+          },
+          "gpuTimestampReadbacks": 954,
+          "height": 540,
+          "nativeEncodeIncludingPoolAcquire": {
+            "count": 923,
+            "p50Ms": 0.161667,
+            "p95Ms": 0.418958,
+            "p99Ms": 2.231209
+          },
+          "notifiedFlutter": 954,
+          "poolMisses": 0,
+          "producerGpuGates": 954,
+          "renderGpuPass": {
+            "count": 923,
+            "p50Ms": 0.32768,
+            "p95Ms": 0.32768,
+            "p99Ms": 0.32768
+          },
+          "renderGpuTimingEnabled": true,
+          "retiredLeases": 953,
+          "retirementErrors": 0,
+          "skippedBusy": 0,
+          "submitted": 954,
+          "submitToCompletionIncludingEncode": {
+            "count": 923,
+            "p50Ms": 1.219875,
+            "p95Ms": 1.407166,
+            "p99Ms": 3.383084
+          },
+          "submitToFlutterGpuCompletionCallback": {
+            "count": 923,
+            "p50Ms": 1.71725,
+            "p95Ms": 3.065334,
+            "p99Ms": 4.85825
+          },
+          "submitToFlutterTextureRead": {
+            "count": 923,
+            "p50Ms": 1.315333,
+            "p95Ms": 1.931,
+            "p99Ms": 3.516375
+          },
+          "surfaceAllocations": 3,
+          "surfacePoolCapacity": 3,
+          "surfaceReuses": 952,
+          "textureReadsBeforeProducerFence": 0,
+          "warmupSubmittedFrames": 31,
+          "width": 960,
+          "jsFrames": 954,
+          "jsSubmitted": 954,
+          "sceneElapsedMs": 7993.700000000001,
+          "jsFfiCall": {
+            "count": 923,
+            "p50Ms": 1.243000000000393,
+            "p95Ms": 1.485000000000582,
+            "p99Ms": 3.425000000000182
+          },
+          "rafInterval": {
+            "count": 923,
+            "p50Ms": 8.332999999999856,
+            "p95Ms": 8.365000000000236,
+            "p99Ms": 8.405999999999949
+          },
+          "rafCallbackInterval": {
+            "count": 923,
+            "p50Ms": 8.333000000000084,
+            "p95Ms": 8.371000000000095,
+            "p99Ms": 8.455999999999904
+          },
+          "rafCallbackFps": 119.4818294415655,
+          "viewport": {
+            "devicePixelRatio": 1,
+            "physicalWidth": 1100,
+            "physicalHeight": 728,
+            "displayPhysicalWidth": 3440,
+            "displayPhysicalHeight": 1440,
+            "displayRefreshRate": 120,
+            "logicalWidth": 1100,
+            "logicalHeight": 728
+          },
+          "rssBytes": 308445184,
+          "flutterBuild": {
+            "count": 941,
+            "p50Ms": 1.325,
+            "p95Ms": 1.87,
+            "p99Ms": 3.543
+          },
+          "flutterRaster": {
+            "count": 941,
+            "p50Ms": 0.225,
+            "p95Ms": 0.369,
+            "p99Ms": 0.888
+          }
+        },
+        {
+          "kind": "frames",
+          "adapter": "Apple M2 Max",
+          "backend": "Metal",
+          "completed": 954,
+          "consumerGpuSignals": 954,
+          "error": "",
+          "flutterConsumerGpuDuration": {
+            "count": 923,
+            "p50Ms": 0.027124769985675812,
+            "p95Ms": 0.028125010430812836,
+            "p99Ms": 0.029749702662229538
+          },
+          "flutterTextureReads": 954,
+          "frameCpuReadbacks": 0,
+          "gpuCompletionToFlutterTextureRead": {
+            "count": 923,
+            "p50Ms": 0.084208,
+            "p95Ms": 0.160583,
+            "p99Ms": 0.566
+          },
+          "gpuTimestampReadbacks": 954,
+          "height": 360,
+          "nativeEncodeIncludingPoolAcquire": {
+            "count": 923,
+            "p50Ms": 0.129833,
+            "p95Ms": 0.240666,
+            "p99Ms": 0.334166
+          },
+          "notifiedFlutter": 954,
+          "poolMisses": 0,
+          "producerGpuGates": 954,
+          "renderGpuPass": {
+            "count": 923,
+            "p50Ms": 0.131072,
+            "p95Ms": 0.196608,
+            "p99Ms": 0.196608
+          },
+          "renderGpuTimingEnabled": true,
+          "retiredLeases": 953,
+          "retirementErrors": 0,
+          "skippedBusy": 0,
+          "submitted": 954,
+          "submitToCompletionIncludingEncode": {
+            "count": 923,
+            "p50Ms": 1.03975,
+            "p95Ms": 1.199792,
+            "p99Ms": 1.451167
+          },
+          "submitToFlutterGpuCompletionCallback": {
+            "count": 923,
+            "p50Ms": 1.501084,
+            "p95Ms": 1.934084,
+            "p99Ms": 3.056542
+          },
+          "submitToFlutterTextureRead": {
+            "count": 923,
+            "p50Ms": 1.119041,
+            "p95Ms": 1.365542,
+            "p99Ms": 2.109333
+          },
+          "surfaceAllocations": 3,
+          "surfacePoolCapacity": 3,
+          "surfaceReuses": 952,
+          "textureReadsBeforeProducerFence": 0,
+          "warmupSubmittedFrames": 31,
+          "width": 640,
+          "jsFrames": 954,
+          "jsSubmitted": 954,
+          "sceneElapsedMs": 7976.927000000001,
+          "jsFfiCall": {
+            "count": 923,
+            "p50Ms": 1.0609999999996944,
+            "p95Ms": 1.2510000000002037,
+            "p99Ms": 1.5299999999997453
+          },
+          "rafInterval": {
+            "count": 923,
+            "p50Ms": 8.333000000000538,
+            "p95Ms": 8.365999999999985,
+            "p99Ms": 8.541000000000167
+          },
+          "rafCallbackInterval": {
+            "count": 923,
+            "p50Ms": 8.333000000000084,
+            "p95Ms": 8.38000000000011,
+            "p99Ms": 8.564000000000306
+          },
+          "rafCallbackFps": 119.4819531765371,
+          "viewport": {
+            "devicePixelRatio": 1,
+            "physicalWidth": 1100,
+            "physicalHeight": 728,
+            "displayPhysicalWidth": 3440,
+            "displayPhysicalHeight": 1440,
+            "displayRefreshRate": 120,
+            "logicalWidth": 1100,
+            "logicalHeight": 728
+          },
+          "rssBytes": 251854848,
+          "flutterBuild": {
+            "count": 925,
+            "p50Ms": 1.129,
+            "p95Ms": 1.385,
+            "p99Ms": 2.143
+          },
+          "flutterRaster": {
+            "count": 925,
+            "p50Ms": 0.204,
+            "p95Ms": 0.325,
+            "p99Ms": 0.609
+          }
+        },
+        {
+          "kind": "frames",
+          "adapter": "Apple M2 Max",
+          "backend": "Metal",
+          "completed": 957,
+          "consumerGpuSignals": 957,
+          "error": "",
+          "flutterConsumerGpuDuration": {
+            "count": 926,
+            "p50Ms": 0.02733338624238968,
+            "p95Ms": 0.028291717171669006,
+            "p99Ms": 0.032499898225069046
+          },
+          "flutterTextureReads": 957,
+          "frameCpuReadbacks": 0,
+          "gpuCompletionToFlutterTextureRead": {
+            "count": 926,
+            "p50Ms": 0.089125,
+            "p95Ms": 0.193625,
+            "p99Ms": 0.643417
+          },
+          "gpuTimestampReadbacks": 957,
+          "height": 540,
+          "nativeEncodeIncludingPoolAcquire": {
+            "count": 926,
+            "p50Ms": 0.155416,
+            "p95Ms": 0.360084,
+            "p99Ms": 0.51625
+          },
+          "notifiedFlutter": 957,
+          "poolMisses": 0,
+          "producerGpuGates": 957,
+          "renderGpuPass": {
+            "count": 926,
+            "p50Ms": 0.32768,
+            "p95Ms": 0.32768,
+            "p99Ms": 0.32768
+          },
+          "renderGpuTimingEnabled": true,
+          "retiredLeases": 956,
+          "retirementErrors": 0,
+          "skippedBusy": 0,
+          "submitted": 957,
+          "submitToCompletionIncludingEncode": {
+            "count": 926,
+            "p50Ms": 1.228417,
+            "p95Ms": 1.49175,
+            "p99Ms": 2.376667
+          },
+          "submitToFlutterGpuCompletionCallback": {
+            "count": 926,
+            "p50Ms": 1.725792,
+            "p95Ms": 2.98675,
+            "p99Ms": 3.88825
+          },
+          "submitToFlutterTextureRead": {
+            "count": 926,
+            "p50Ms": 1.316542,
+            "p95Ms": 1.754833,
+            "p99Ms": 2.596833
+          },
+          "surfaceAllocations": 3,
+          "surfacePoolCapacity": 3,
+          "surfaceReuses": 955,
+          "textureReadsBeforeProducerFence": 0,
+          "warmupSubmittedFrames": 31,
+          "width": 960,
+          "jsFrames": 957,
+          "jsSubmitted": 957,
+          "sceneElapsedMs": 7969.604000000001,
+          "jsFfiCall": {
+            "count": 926,
+            "p50Ms": 1.250999999999749,
+            "p95Ms": 1.5390000000006694,
+            "p99Ms": 2.4270000000005894
+          },
+          "rafInterval": {
+            "count": 926,
+            "p50Ms": 8.333000000000084,
+            "p95Ms": 8.36200000000008,
+            "p99Ms": 8.402000000000044
+          },
+          "rafCallbackInterval": {
+            "count": 926,
+            "p50Ms": 8.332999999999629,
+            "p95Ms": 8.371000000000095,
+            "p99Ms": 8.481999999999971
+          },
+          "rafCallbackFps": 119.99786440085819,
+          "viewport": {
+            "devicePixelRatio": 1,
+            "physicalWidth": 1100,
+            "physicalHeight": 728,
+            "displayPhysicalWidth": 3440,
+            "displayPhysicalHeight": 1440,
+            "displayRefreshRate": 120,
+            "logicalWidth": 1100,
+            "logicalHeight": 728
+          },
+          "rssBytes": 285573120,
+          "flutterBuild": {
+            "count": 929,
+            "p50Ms": 1.327,
+            "p95Ms": 1.633,
+            "p99Ms": 2.483
+          },
+          "flutterRaster": {
+            "count": 929,
+            "p50Ms": 0.219,
+            "p95Ms": 0.508,
+            "p99Ms": 0.665
+          }
+        }
+      ],
+      "closedNativeSessions": 3,
+      "activeNativeSessionsAfterClose": 0,
+      "liveDawnDevicesAfterClose": 0,
+      "liveGpuTextureLeasesAfterClose": 0,
+      "snapshotReadbacks": 3,
+      "steadyStateFrameReadbacks": 0
+    },
+    "chrome": {
+      "passed": true,
+      "shaderSha256": "68661f2c01fe1e7ca883af8f1d3a88bd55415b278bc5389b0e5380433e52da24",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+      "crossOriginIsolated": true,
+      "phases": [
+        {
+          "width": 960,
+          "height": 540,
+          "submitted": 957,
+          "completed": 957,
+          "skippedBusy": 5,
+          "jsFrames": 962,
+          "warmupSubmittedFrames": 31,
+          "renderGpuTimingEnabled": true,
+          "jsSubmitCall": {
+            "count": 925,
+            "p50Ms": 0.05000019073486328,
+            "p95Ms": 0.10000038146972656,
+            "p99Ms": 0.14499998092651367
+          },
+          "submitToProducerGpuCompletionPromise": {
+            "count": 925,
+            "p50Ms": 1.445000171661377,
+            "p95Ms": 2.4049997329711914,
+            "p99Ms": 3.9050002098083496
+          },
+          "rafInterval": {
+            "count": 931,
+            "p50Ms": 8.334999999999127,
+            "p95Ms": 9.264999999999873,
+            "p99Ms": 9.335000000000036
+          },
+          "renderGpuPass": {
+            "count": 925,
+            "p50Ms": 0.32768,
+            "p95Ms": 0.32768,
+            "p99Ms": 0.458752
+          },
+          "rafCallbackInterval": {
+            "count": 931,
+            "p50Ms": 8.329999923706055,
+            "p95Ms": 9.319999694824219,
+            "p99Ms": 9.40500020980835
+          },
+          "rafCallbackFps": 119.99842751880584,
+          "gpuTimestampReadbacks": 957,
+          "frameCpuReadbacks": 0,
+          "adapter": {
+            "vendor": "apple",
+            "architecture": "metal-3",
+            "device": "",
+            "description": "",
+            "isFallbackAdapter": false
+          },
+          "viewport": {
+            "devicePixelRatio": 1,
+            "logicalWidth": 1100,
+            "logicalHeight": 728,
+            "physicalWidth": 1100,
+            "physicalHeight": 728,
+            "displayPhysicalWidth": 3440,
+            "displayPhysicalHeight": 1440,
+            "screenX": 100,
+            "screenY": 100
+          },
+          "error": "",
+          "verificationColors": 2056,
+          "verificationDraws": 1
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "submitted": 961,
+          "completed": 961,
+          "skippedBusy": 0,
+          "jsFrames": 961,
+          "warmupSubmittedFrames": 31,
+          "renderGpuTimingEnabled": true,
+          "jsSubmitCall": {
+            "count": 929,
+            "p50Ms": 0.05000019073486328,
+            "p95Ms": 0.10000038146972656,
+            "p99Ms": 0.1399998664855957
+          },
+          "submitToProducerGpuCompletionPromise": {
+            "count": 929,
+            "p50Ms": 1.244999885559082,
+            "p95Ms": 2.1999998092651367,
+            "p99Ms": 2.7350001335144043
+          },
+          "rafInterval": {
+            "count": 930,
+            "p50Ms": 8.334999999999127,
+            "p95Ms": 9.270000000000437,
+            "p99Ms": 9.329999999999927
+          },
+          "renderGpuPass": {
+            "count": 929,
+            "p50Ms": 0.196608,
+            "p95Ms": 0.196608,
+            "p99Ms": 0.262144
+          },
+          "rafCallbackInterval": {
+            "count": 930,
+            "p50Ms": 8.325000286102295,
+            "p95Ms": 9.329999923706055,
+            "p99Ms": 9.445000171661377
+          },
+          "rafCallbackFps": 119.99992257892312,
+          "gpuTimestampReadbacks": 961,
+          "frameCpuReadbacks": 0,
+          "adapter": {
+            "vendor": "apple",
+            "architecture": "metal-3",
+            "device": "",
+            "description": "",
+            "isFallbackAdapter": false
+          },
+          "viewport": {
+            "devicePixelRatio": 1,
+            "logicalWidth": 1100,
+            "logicalHeight": 728,
+            "physicalWidth": 1100,
+            "physicalHeight": 728,
+            "displayPhysicalWidth": 3440,
+            "displayPhysicalHeight": 1440,
+            "screenX": 100,
+            "screenY": 100
+          },
+          "error": "",
+          "verificationColors": 992,
+          "verificationDraws": 1
+        },
+        {
+          "width": 960,
+          "height": 540,
+          "submitted": 958,
+          "completed": 958,
+          "skippedBusy": 3,
+          "jsFrames": 961,
+          "warmupSubmittedFrames": 31,
+          "renderGpuTimingEnabled": true,
+          "jsSubmitCall": {
+            "count": 926,
+            "p50Ms": 0.04500007629394531,
+            "p95Ms": 0.07500028610229492,
+            "p99Ms": 0.11999988555908203
+          },
+          "submitToProducerGpuCompletionPromise": {
+            "count": 926,
+            "p50Ms": 1.3449997901916504,
+            "p95Ms": 1.984999656677246,
+            "p99Ms": 2.869999885559082
+          },
+          "rafInterval": {
+            "count": 930,
+            "p50Ms": 8.330000000001746,
+            "p95Ms": 9.299999999999272,
+            "p99Ms": 9.334999999999127
+          },
+          "renderGpuPass": {
+            "count": 926,
+            "p50Ms": 0.32768,
+            "p95Ms": 0.32768,
+            "p99Ms": 0.393216
+          },
+          "rafCallbackInterval": {
+            "count": 930,
+            "p50Ms": 8.325000286102295,
+            "p95Ms": 9.34499979019165,
+            "p99Ms": 9.470000267028809
+          },
+          "rafCallbackFps": 119.99891613616404,
+          "gpuTimestampReadbacks": 958,
+          "frameCpuReadbacks": 0,
+          "adapter": {
+            "vendor": "apple",
+            "architecture": "metal-3",
+            "device": "",
+            "description": "",
+            "isFallbackAdapter": false
+          },
+          "viewport": {
+            "devicePixelRatio": 1,
+            "logicalWidth": 1100,
+            "logicalHeight": 728,
+            "physicalWidth": 1100,
+            "physicalHeight": 728,
+            "displayPhysicalWidth": 3440,
+            "displayPhysicalHeight": 1440,
+            "screenX": 100,
+            "screenY": 100
+          },
+          "error": "",
+          "verificationColors": 2039,
+          "verificationDraws": 1
+        }
+      ],
+      "closedDevices": 3,
+      "snapshotReadbacks": 3,
+      "steadyStateFrameReadbacks": 0,
+      "gpuTiming": true
+    }
+  },
+  "chromeTrace": {
+    "passed": true,
+    "shaderSha256": "68661f2c01fe1e7ca883af8f1d3a88bd55415b278bc5389b0e5380433e52da24",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+    "crossOriginIsolated": true,
+    "phases": [
+      {
+        "width": 960,
+        "height": 540,
+        "submitted": 361,
+        "completed": 361,
+        "skippedBusy": 0,
+        "jsFrames": 361,
+        "warmupSubmittedFrames": 31,
+        "renderGpuTimingEnabled": false,
+        "jsSubmitCall": {
+          "count": 329,
+          "p50Ms": 0.06500005722045898,
+          "p95Ms": 0.09999990463256836,
+          "p99Ms": 0.13500022888183594
+        },
+        "submitToProducerGpuCompletionPromise": {
+          "count": 329,
+          "p50Ms": 1.239999771118164,
+          "p95Ms": 1.8399996757507324,
+          "p99Ms": 2.5299997329711914
+        },
+        "rafInterval": {
+          "count": 330,
+          "p50Ms": 8.334999999999809,
+          "p95Ms": 9.315000000000055,
+          "p99Ms": 9.324999999999818
+        },
+        "renderGpuPass": {
+          "count": 0,
+          "p50Ms": 0,
+          "p95Ms": 0,
+          "p99Ms": 0
+        },
+        "rafCallbackInterval": {
+          "count": 330,
+          "p50Ms": 8.325000286102295,
+          "p95Ms": 9.414999961853027,
+          "p99Ms": 9.494999885559082
+        },
+        "rafCallbackFps": 119.99607286994558,
+        "gpuTimestampReadbacks": 0,
+        "frameCpuReadbacks": 0,
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "viewport": {
+          "devicePixelRatio": 1,
+          "logicalWidth": 1100,
+          "logicalHeight": 728,
+          "physicalWidth": 1100,
+          "physicalHeight": 728,
+          "displayPhysicalWidth": 3440,
+          "displayPhysicalHeight": 1440,
+          "screenX": 100,
+          "screenY": 100
+        },
+        "error": "",
+        "verificationColors": 1930,
+        "verificationDraws": 1
+      },
+      {
+        "width": 640,
+        "height": 360,
+        "submitted": 361,
+        "completed": 361,
+        "skippedBusy": 0,
+        "jsFrames": 361,
+        "warmupSubmittedFrames": 31,
+        "renderGpuTimingEnabled": false,
+        "jsSubmitCall": {
+          "count": 329,
+          "p50Ms": 0.06500005722045898,
+          "p95Ms": 0.09999990463256836,
+          "p99Ms": 0.11500024795532227
+        },
+        "submitToProducerGpuCompletionPromise": {
+          "count": 329,
+          "p50Ms": 1.075000286102295,
+          "p95Ms": 1.4300003051757812,
+          "p99Ms": 2.2150001525878906
+        },
+        "rafInterval": {
+          "count": 330,
+          "p50Ms": 8.329999999999927,
+          "p95Ms": 9.300000000000182,
+          "p99Ms": 9.3100000000004
+        },
+        "renderGpuPass": {
+          "count": 0,
+          "p50Ms": 0,
+          "p95Ms": 0,
+          "p99Ms": 0
+        },
+        "rafCallbackInterval": {
+          "count": 330,
+          "p50Ms": 8.315000057220459,
+          "p95Ms": 9.349999904632568,
+          "p99Ms": 9.454999923706055
+        },
+        "rafCallbackFps": 119.99890911747201,
+        "gpuTimestampReadbacks": 0,
+        "frameCpuReadbacks": 0,
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "viewport": {
+          "devicePixelRatio": 1,
+          "logicalWidth": 1100,
+          "logicalHeight": 728,
+          "physicalWidth": 1100,
+          "physicalHeight": 728,
+          "displayPhysicalWidth": 3440,
+          "displayPhysicalHeight": 1440,
+          "screenX": 100,
+          "screenY": 100
+        },
+        "error": "",
+        "verificationColors": 951,
+        "verificationDraws": 1
+      },
+      {
+        "width": 960,
+        "height": 540,
+        "submitted": 362,
+        "completed": 362,
+        "skippedBusy": 0,
+        "jsFrames": 362,
+        "warmupSubmittedFrames": 31,
+        "renderGpuTimingEnabled": false,
+        "jsSubmitCall": {
+          "count": 330,
+          "p50Ms": 0.059999942779541016,
+          "p95Ms": 0.12999963760375977,
+          "p99Ms": 0.16499996185302734
+        },
+        "submitToProducerGpuCompletionPromise": {
+          "count": 330,
+          "p50Ms": 1.179999828338623,
+          "p95Ms": 1.9600000381469727,
+          "p99Ms": 2.184999942779541
+        },
+        "rafInterval": {
+          "count": 331,
+          "p50Ms": 8.330000000000837,
+          "p95Ms": 9.295000000000073,
+          "p99Ms": 9.300000000000182
+        },
+        "renderGpuPass": {
+          "count": 0,
+          "p50Ms": 0,
+          "p95Ms": 0,
+          "p99Ms": 0
+        },
+        "rafCallbackInterval": {
+          "count": 331,
+          "p50Ms": 8.319999694824219,
+          "p95Ms": 9.359999656677246,
+          "p99Ms": 9.5
+        },
+        "rafCallbackFps": 119.96404703544016,
+        "gpuTimestampReadbacks": 0,
+        "frameCpuReadbacks": 0,
+        "adapter": {
+          "vendor": "apple",
+          "architecture": "metal-3",
+          "device": "",
+          "description": "",
+          "isFallbackAdapter": false
+        },
+        "viewport": {
+          "devicePixelRatio": 1,
+          "logicalWidth": 1100,
+          "logicalHeight": 728,
+          "physicalWidth": 1100,
+          "physicalHeight": 728,
+          "displayPhysicalWidth": 3440,
+          "displayPhysicalHeight": 1440,
+          "screenX": 100,
+          "screenY": 100
+        },
+        "error": "",
+        "verificationColors": 1920,
+        "verificationDraws": 1
+      }
+    ],
+    "closedDevices": 3,
+    "snapshotReadbacks": 3,
+    "steadyStateFrameReadbacks": 0,
+    "gpuTiming": false,
+    "tracePath": "/Volumes/MAC_HOME/CodexHome/worktrees/webgpu-dawn-macos/flax/.local/webgpu-dawn/chrome/chrome-trace-trace.json"
+  },
+  "flaxProvenance": {
+    "dawnTag": "v20261026.205545",
+    "dawnRevision": "5fbd545292cb7a4a9a275e322abec6007ffe2ae8",
+    "dawnArchiveSha256": "8eed5796e1c3403515c331a098fc9e8b5b738f832d9736be6843db891235c92b",
+    "flaxRevision": "3af52eea34b9ebbdf152e78edba38b8f609de770",
+    "flutterRevision": "fd76bdbbc0810dbb003c88620a0cdc10627d61a9",
+    "minimumMacOS": "26.0",
+    "engine": "flax_mac_webgpu_fenced_release_arm64",
+    "nativeLibraryBytes": 8939224,
+    "packagedEngineSha256": "c7672ebdd1c39cbd2ad9978344d3650e24ec2ba121bb0b5aef97ecc2c61c8751",
+    "engineOverlay": {
+      "engine": "flax_mac_webgpu_fenced_release_arm64",
+      "originalSourcesSha256": {
+        "flutter/shell/platform/darwin/macos/framework/Source/FlutterExternalTexture.mm": "5c2be38b4b7a1ff84630df971928f83d8d99398e2c767e38e4f435a075fb98a1",
+        "flutter/impeller/renderer/backend/metal/render_pass_mtl.mm": "c790a1a3dbbec3beed94fb3fea18de370ec950960e7c36c43687de877799ab93"
+      },
+      "overlaySourcesSha256": {
+        "flutter/shell/platform/darwin/macos/framework/Source/FlutterExternalTexture.mm": "b2d91946196a15ca856ac74f30860d71319dedf900a1fb0983d324125f02fb0c",
+        "flutter/impeller/renderer/backend/metal/render_pass_mtl.mm": "da15c6979dee5b90ee04a30eaaf5a8c37cf5d857ce29061caf25132a9a012c98"
+      },
+      "patchSha256": "acbea7e5083008d44ebbe9d818922702b3704193e8f551db3554138cd27f2cd2",
+      "interopHeaderSha256": "d0be547bc59bbc9ea5f15cea05c5698c487c0a3951e9c0a23315a8987e087e3e",
+      "engineBinarySha256": "87bb9ff609bff38d5cab9e2170a7e05e3d563ad52406a28713f79fe17d4a34d0"
+    },
+    "probeSourcesSha256": {
+      "MainFlutterWindow.swift": "2f23c4f1bcd96ca378c421a8cd7690216c5e51ef2e7fee6c060592c9d409f4b6",
+      "app.dart": "9aa34ed882e561c62c726c3ae50406906b8505255a46f4404fb485d9a8e92131",
+      "build_engine.py": "d27b9f1106e418307525bc5485dd5aaaefaa4afea234ea4d5327819e6e0d13ce",
+      "chrome.html": "f59be7b707c699eaf50702f7b1ffccabb86aa594b1c75e3cf008b5f2e6c53db7",
+      "chrome.js": "50c7723afc9876f1e0cbb2d8102c893fafd888dcfb2efb24ffcd4ea5c97c5e0a",
+      "compare_chrome.mjs": "9f9fb9cb4329bd90c83b53a7ffa09f8b884a423f5d431a9ed979a2e306b2d26f",
+      "engine.patch": "acbea7e5083008d44ebbe9d818922702b3704193e8f551db3554138cd27f2cd2",
+      "native/CMakeLists.txt": "45dabd06c81a1b3d100a1cf638aedf68ce777cbd17aba4fdca021f7f3bc262b0",
+      "native/exports.txt": "5fdeb66876c3d8a6ff1e880dbeebd8b07f311140803ea04da4c97bc1804a154b",
+      "native/flax_dawn_interop.h": "d0be547bc59bbc9ea5f15cea05c5698c487c0a3951e9c0a23315a8987e087e3e",
+      "native/probe.mm": "4edf3206be3b1038359f0b0fd6eb8239686c47f4dc43e3dfbd3ec13ea5e36728",
+      "native/self_check.cc": "c6c6b88b2c6ad4631b9ed14c2e2b41f3e223b5abaf17322a343a935ddb10547d",
+      "run.py": "0b1dad14c75746fe681491c45ff772a21ab31adbcb58cdaa15f73f5214a38cfa",
+      "scene.js": "df82d8b3ee41541081143cc8f14916721c2aa5715981669e7a3b4881d23dc71a",
+      "scene.wgsl": "68661f2c01fe1e7ca883af8f1d3a88bd55415b278bc5389b0e5380433e52da24"
+    },
+    "executable": "/Volumes/MAC_HOME/CodexHome/worktrees/webgpu-dawn-macos/flax/.local/webgpu-dawn/FlaxDawnProbe.app/Contents/MacOS/flax_dawn_probe"
+  },
+  "protocol": {
+    "order": [
+      "flax",
+      "chrome",
+      "chrome",
+      "flax"
+    ],
+    "warmupSubmittedFrames": 31,
+    "performanceUsesReadbacks": false,
+    "gpuTimestampsSeparate": true,
+    "chromeCompletionPromisesGateSubmissions": false,
+    "nativeProducerCompletionBackpressure": true,
+    "physicalScreenLatencyMeasured": false,
+    "cpuCompletionEndpoints": "Flax native producer callback; Chrome GPUQueue Promise. Neither includes screen presentation."
+  },
+  "chromeEnvironment": {
+    "version": {
+      "protocolVersion": "1.3",
+      "product": "Chrome/156.0.8078.49",
+      "revision": "@29eb03535d5f2f4f899b95f22a92413ffde5284e",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+      "jsVersion": "15.6.75.19"
+    },
+    "devices": [
+      {
+        "vendorId": 4203,
+        "deviceId": 0,
+        "vendorString": "Google Inc. (Apple)",
+        "deviceString": "ANGLE (Apple, ANGLE Metal Renderer: Apple M2 Max, Version 27.0.1 (Build 26A434))",
+        "driverVendor": "Apple",
+        "driverVersion": "27.0.1"
+      }
+    ],
+    "featureStatus": {
+      "2d_canvas": "enabled",
+      "direct_rendering_display_compositor": "disabled_off_ok",
+      "gpu_compositing": "enabled",
+      "multiple_raster_threads": "enabled_on",
+      "opengl": "enabled_on",
+      "rasterization": "enabled",
+      "raw_draw": "disabled_off_ok",
+      "skia_graphite": "enabled_on",
+      "trees_in_viz": "disabled_off",
+      "video_decode": "enabled",
+      "video_encode": "enabled",
+      "webgl": "enabled",
+      "webgpu": "enabled",
+      "webnn": "disabled_off"
+    },
+    "compositor": "GraphiteDawnMetal",
+    "inProcessGpu": false,
+    "sandboxed": true,
+    "crossOriginIsolated": true,
+    "modelName": "Mac",
+    "modelVersion": "14.13"
+  },
+  "presentationTrace": {
+    "source": ".local/webgpu-dawn/chrome/chrome-trace-trace.json",
+    "rendererPid": 37293,
+    "method": "Match a webgpu-start mark inside its AnimationFrame interval; join args.id to AnimationFrame::Presentation.",
+    "endpoint": "Chrome renderer presentation feedback; not physical pixel illumination and not comparable to Flax GPU completion.",
+    "warmupSubmittedFrames": 31,
+    "excludedVerificationDraws": 3,
+    "unmatchedMeasuredMarks": 0,
+    "pipelineReporterStates": {
+      "STATE_NO_UPDATE_DESIRED": 3,
+      "STATE_PRESENTED_ALL": 1090,
+      "STATE_DROPPED": 2
+    },
+    "phases": [
+      {
+        "width": 960,
+        "height": 540,
+        "jsRenderStartToPresentationFeedback": {
+          "count": 329,
+          "p50Ms": 19.604,
+          "p95Ms": 20.601,
+          "p99Ms": 21.791
+        }
+      },
+      {
+        "width": 640,
+        "height": 360,
+        "jsRenderStartToPresentationFeedback": {
+          "count": 329,
+          "p50Ms": 11.382,
+          "p95Ms": 12.32,
+          "p99Ms": 19.561
+        }
+      },
+      {
+        "width": 960,
+        "height": 540,
+        "jsRenderStartToPresentationFeedback": {
+          "count": 330,
+          "p50Ms": 11.395,
+          "p95Ms": 18.945,
+          "p99Ms": 19.647
+        }
+      }
+    ]
+  },
+  "metalValidation": {
+    "passed": true,
+    "cycles": 3,
+    "renderGpuTimingEnabled": true,
+    "sampledCompletedFrames": 2857,
+    "liveDawnDeviceOwnersAfterClose": 0,
+    "liveGpuTextureLeasesAfterClose": 0
+  },
+  "checks": {
+    "sameSharedWGSL": true,
+    "generatedNativeShaderMatchesSource": true,
+    "sameBackingSizesAndViewport": true,
+    "sameHardwareDisplayAndDpr": true,
+    "ordinaryRunsNoTimestampReadbacks": true,
+    "pixelSnapshotsPassed": true,
+    "nativeCloseChecksPassed": true,
+    "chromeDevicesClosed": true,
+    "traceMeasuredMarksMatched": 988,
+    "traceUnmatchedMeasuredMarks": 0,
+    "fullFlaxWebGPUAPI": false,
+    "physicalPresentationLatencyGapMeasured": false
+  },
+  "traceParserSha256": "d27148828c0f194d561d1c3577d2cbd9e84f653249b5a1128138256926beb2c1",
+  "provenanceScope": "Flax provenance is the application build snapshot. Browser/driver hashes identify the later browser run; those browser files are not consumed by the native application.",
+  "excludedPilot": "The Promise-gated Chrome pilot is retained locally as comparison-promise-gated.json and excluded from these results."
+}

@@ -51,6 +51,7 @@ class _Session {
     this.onError, {
     this.namespace,
     this.fetchBaseUrl,
+    this.entryUri,
     required this.assetBundle,
     this.modulesPrepared = false,
     FlaxSandbox? sandbox,
@@ -106,6 +107,7 @@ class _Session {
   FlaxPermissionLease? _wasmPermission;
   final _remoteModulePermissions = <String, FlaxPermissionLease>{};
   final String? fetchBaseUrl;
+  final Uri? entryUri;
   bool _closingSandbox = false;
   bool _closingPermissions = false;
   _PermissionLifecycle? _permissionLifecycle;
@@ -516,23 +518,7 @@ class _Session {
         imports: imports,
         onError: report,
         encodeError: exceptionResult,
-        authorize: (uri, kind) {
-          requireOpen();
-          if (uri.scheme == 'http' || uri.scheme == 'https') {
-            final key = FlaxOriginPermissionScope.origin(uri);
-            final lease = _remoteModulePermissions.putIfAbsent(key, () {
-              final lease = permissions.network(uri, module: true);
-              final weak = WeakReference(this);
-              lease.onRevoke(() {
-                final session = weak.target;
-                if (session != null) unawaited(session.requestClose());
-              });
-              return lease;
-            });
-            lease.requireActive();
-          }
-          if (kind == FlaxModuleKind.wasm) _requireWasm();
-        },
+        authorize: authorizeModule,
         hostModule: (specifier) => _moduleInstallation?.namespace(specifier),
       );
       final pending = loader.start(entry);

@@ -1,0 +1,73 @@
+--- a/flutter/flax/native/src/ffi/runtime.inc
++++ b/flutter/flax/native/src/ffi/runtime.inc
+@@ -1,6 +1,7 @@
+ // Shared JS -> C ABI implementation. Included after the engine-owned runtime.
+ #include "flax/engine_ffi.h"
+ #include <algorithm>
++#include <array>
+ #include <atomic>
+ #include <cctype>
+ #include <cerrno>
+@@ -165,13 +166,19 @@
+   return static_cast<T>(number);
+ }
+ struct Slot {
++  // Most C ABI values fit here; aggregates retain aligned heap storage.
++  alignas(std::max_align_t) uint8_t local[
++      std::max(sizeof(ffi_arg), sizeof(std::max_align_t))]{};
+   std::vector<std::max_align_t> words;
+   std::vector<uint8_t> string;
+   flax::Uint8View source{};
+-  explicit Slot(size_t size = sizeof(ffi_arg))
+-      : words((std::max(size, sizeof(ffi_arg)) + sizeof(std::max_align_t) - 1) /
+-              sizeof(std::max_align_t)) {}
+-  void *data() { return words.data(); }
++  explicit Slot(size_t size = sizeof(ffi_arg)) { resize(size); }
++  void resize(size_t size) {
++    if (size > sizeof(local))
++      words.resize((size + sizeof(std::max_align_t) - 1) /
++                   sizeof(std::max_align_t));
++  }
++  void *data() { return words.empty() ? static_cast<void *>(local) : words.data(); }
+ };
+ template <class T> T load(const void *source) {
+   T value;
+@@ -357,13 +364,23 @@
+   if (count != binding.arguments.size())
+     fail(js, "Invalid FFI argument count for " + binding.name);
+   if (!runtime) state.sweep();
+-  std::vector<Slot> slots;
+-  std::vector<void *> addresses;
+-  slots.reserve(count);
++  // Store ordinary call arguments on the stack; large signatures still grow.
++  std::array<Slot, 8> localSlots;
++  std::array<void *, 8> localAddresses;
++  std::vector<Slot> heapSlots;
++  std::vector<void *> heapAddresses;
++  Slot *slots = localSlots.data();
++  void **addresses = localAddresses.data();
++  if (count > localSlots.size()) {
++    heapSlots.resize(count);
++    heapAddresses.resize(count);
++    slots = heapSlots.data();
++    addresses = heapAddresses.data();
++  }
+   for (size_t i = 0; i < count; ++i) {
+-    slots.emplace_back(binding.arguments[i]->size());
+-    input(js, state, *binding.arguments[i], args[i], slots.back());
+-    addresses.push_back(slots.back().data());
++    slots[i].resize(binding.arguments[i]->size());
++    input(js, state, *binding.arguments[i], args[i], slots[i]);
++    addresses[i] = slots[i].data();
+   }
+   Slot result(binding.result->size());
+   checkOpen(js, state, *binding.library);
+@@ -375,7 +392,7 @@
+   state.cancelDeliveries();
+   if (captureErrno) errno = 0;
+   ffi_call(&binding.cif, FFI_FN(binding.address), result.data(),
+-           addresses.data());
++           addresses);
+   const int nativeError = errno;
+   {
+     std::lock_guard<std::mutex> lock(state.queueMutex);

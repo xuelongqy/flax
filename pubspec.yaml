@@ -167,7 +167,8 @@ melos:
         Verify all owner UI modules and aggregate behavior with the local V8 engine.
       run: dart run tool/check_ui.dart
     check:
-      description: Run static workspace checks without fetching or building an engine.
+      description:
+        Check the workspace using an existing matching engine; never fetch or build one.
       steps:
         - dart run melos run host:check
         - dart run melos run example:bundle

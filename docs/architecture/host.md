@@ -84,27 +84,53 @@ Dart host types use the Flax prefix.
 - Console logging, assertions, stack traces, inspection, grouping, counts and timing.
 - Function timers with extra arguments, numeric IDs, cancellation, and intervals.
 - queueMicrotask and monotonic performance.now with an epoch timeOrigin.
+- User Timing marks/measures, timeline queries and clearing; PerformanceObserver for
+  mark/measure entries.
+- window as the same global object as globalThis/self; crypto.getRandomValues and
+  crypto.randomUUID using the operating system secure random source.
 - Global addEventListener/removeEventListener/dispatchEvent, sharing EventTarget.
-- EventTarget, Event, CustomEvent, MessageEvent, DOMException, AbortController and
-  AbortSignal.
+- EventTarget, Event, CustomEvent, MessageEvent, ProgressEvent, DOMException,
+  AbortController and AbortSignal.
 - URL and URLSearchParams; TextEncoder, full TextDecoder encodings, atob and btoa.
-- Blob, File and FormData data containers.
+- Blob, File and FormData data containers; asynchronous FileReader.
 - Web Streams, including byte streams, BYOB, readers, writers, controllers and queuing
   strategies; TextEncoderStream and TextDecoderStream.
 
 These constructors and fetch, Headers, Request and Response are installed once by the
 base environment, including when `plugins: []`. Fetch reuses the base data and stream
 constructors. Creating a Session or using Headers, Request and Response creates no HTTP
-client; the first actual Fetch request creates one client owned by that Session. File
-represents file data, not filesystem access. FormData is a container; multipart
-encoding/decoding remains in Fetch. The base environment does not provide FileReader,
-object URLs or structuredClone.
+client; the first HTTP/HTTPS Fetch request creates one client owned by that Session.
+File represents file data, not filesystem access. FormData is a container; multipart
+encoding/decoding remains in Fetch. Core also owns FileReader and the session Blob URL
+registry (`URL.createObjectURL` / `URL.revokeObjectURL`). FileReader reads Blob/File
+bytes as text, ArrayBuffer, data URL or binary string, with events and abort; it grants
+no filesystem access. Session close cancels pending reads and clears object URLs. User
+Timing clones `detail` with the existing structured-clone implementation. Marks and
+measures stay in a session-local JS timeline; callers clear entries when no longer
+needed. Observers use the ordinary host task checkpoint, coalesce delivery, and cancel
+pending records at Session close. Only `mark` and `measure` are advertised through
+`PerformanceObserver.supportedEntryTypes`; resource, navigation, paint and long-task
+telemetry are unavailable. Entry `navigationId` is null because Sessions do not navigate
+an HTML document. General structuredClone remains outside this profile.
+
+`crypto.getRandomValues` accepts integer TypedArray views, preserves the view and its
+surrounding bytes, and enforces the 65,536-byte request limit. A lazy Dart
+`Random.secure()` produces each bulk byte buffer; no insecure fallback is used.
+`randomUUID` returns version-4 UUIDs. Neither operation passes the caller's storage to
+Dart, including mapped GPU buffers. SubtleCrypto is outside this profile.
 
 `@flax/core/host` owns all data, stream and Fetch type exports and global declarations.
 Type imports install nothing.
 
 Date, Promise, TypedArray and language collections remain engine implementations. There
-is no window, document, Node process, string timer, or Node timer handle. Console
+is no general HTML document, Node process, string timer, or Node timer handle. The base
+host owns the `window` alias. Its read-only `location` fields describe `fetchBaseUrl`,
+or `about:blank` when no base is configured; assigning fields does not navigate. The
+canvas document reports an empty cookie string and rejects cookie writes with
+`NotSupportedError`: there is no document cookie store. This preserves consumers such as
+Axios Fetch that select their browser code path when window/document exist. The
+[canvas adapter](canvas.md#canvas-compatibility) provides the limited document/canvas
+surface; the alias does not add a DOM tree, CSS layout or general HTML elements. Console
 inspection is bounded and does not evaluate object getters. It is a logging facility,
 not an interactive browser developer console.
 
@@ -123,23 +149,30 @@ removes its listener when its request/body completes or is cancelled.
 
 ## Fetch support matrix
 
-| Capability      | Contract                                                                        |
-| --------------- | ------------------------------------------------------------------------------- |
-| URLs            | Absolute HTTP/HTTPS; relative URLs require Session/View fetchBaseUrl            |
-| Errors          | HTTP error statuses return Response; transport failures reject TypeError        |
-| Cancellation    | AbortSignal reason is preserved; actual request and body are cancelled          |
-| Request body    | Text, URLSearchParams, Blob, File, FormData, binary views and streams           |
-| Response body   | Headers arrive first; bytes are read on demand                                  |
-| Consumption     | text/json/bytes/arrayBuffer/blob/formData; locking and single use               |
-| Cloning         | Stream tee; an unread clone may buffer while the other branch advances          |
-| Redirects       | follow/error/manual; method rewriting and cross-origin sensitive header removal |
-| Replay          | Replayable bodies can follow redirects; retained streamed bodies cannot         |
-| Streams         | Readable/Writable/Transform streams, byte streams and real BYOB transfer        |
-| Cookies         | No jar or automatic persistence; explicitly supplied headers remain explicit    |
-| CORS            | No document origin or browser CORS enforcement                                  |
-| Cache           | No cache; cache-only/force-cache and revalidation semantics are unsupported     |
-| Browser options | Unsupported non-default modes, referrers, integrity and keepalive reject        |
-| Authentication  | No session authentication manager; application supplies headers                 |
+Core Fetch reads session-owned Blob URLs and data URLs without creating an HTTP client.
+Blob GET supports single byte ranges, including suffix/open ranges, with 206,
+Content-Range and Content-Length. Invalid, unsatisfied or multiple ranges reject with
+TypeError. Unknown, revoked or foreign-session URLs and non-GET Blob requests reject.
+Data URLs support percent-encoded binary bytes, Base64, MIME fallback and HEAD; they
+omit Content-Length and ignore Range. HTTP redirects remain restricted to HTTP/HTTPS.
+
+| Capability      | Contract                                                                            |
+| --------------- | ----------------------------------------------------------------------------------- |
+| URLs            | HTTP/HTTPS, data and session Blob URLs; relative URLs use Session/View fetchBaseUrl |
+| Errors          | HTTP error statuses return Response; transport failures reject TypeError            |
+| Cancellation    | AbortSignal reason is preserved; actual request and body are cancelled              |
+| Request body    | Text, URLSearchParams, Blob, File, FormData, binary views and streams               |
+| Response body   | Headers arrive first; bytes are read on demand                                      |
+| Consumption     | text/json/bytes/arrayBuffer/blob/formData; locking and single use                   |
+| Cloning         | Stream tee; an unread clone may buffer while the other branch advances              |
+| Redirects       | follow/error/manual; method rewriting and cross-origin sensitive header removal     |
+| Replay          | Replayable bodies can follow redirects; retained streamed bodies cannot             |
+| Streams         | Readable/Writable/Transform streams, byte streams and real BYOB transfer            |
+| Cookies         | No jar or automatic persistence; explicitly supplied headers remain explicit        |
+| CORS            | No document origin or browser CORS enforcement                                      |
+| Cache           | No cache; cache-only/force-cache and revalidation semantics are unsupported         |
+| Browser options | Unsupported non-default modes, referrers, integrity and keepalive reject            |
+| Authentication  | No session authentication manager; application supplies headers                     |
 
 Manual redirects expose the HTTP response without browser opaque filtering. No Referer
 is synthesized; explicit headers are preserved. Credentials options do not enable a
@@ -233,15 +266,24 @@ stream and lifecycle cases are targeted tests, not claims of passing the entire 
 suite.
 
 This is a selected host API implementation, not a complete browser or Node environment.
-XHR, SSE, IndexedDB, sessionStorage, Crypto, Worker, FileReader and general
-structuredClone are outside this delivery. Optional [localStorage](local-storage.md) has
-its own plugin and namespace contract. App-specific Dart APIs can still use generated
-bindings.
+XHR, SSE, IndexedDB, sessionStorage, general structuredClone and cryptographic
+operations beyond the secure random APIs are outside this delivery. Optional
+[localStorage](local-storage.md) has its own plugin and namespace contract. App-specific
+Dart APIs can still use generated bindings.
 
 Optional [WebSocket](websocket.md) installs independently of Fetch, with client headers,
 TLS/proxy configuration and real close-handshake observation. bufferedAmount is
 deferred.
 
-Optional [Canvas 2D](canvas.md) installs OffscreenCanvas constructors and generated
-`CanvasView`. Drawing uses a private command buffer. ABI 2 copies those bytes twice. rAF
-is base-host, not part of the Canvas plugin.
+Core supplies `OffscreenCanvas`, `CanvasView`, `ImageBitmapRenderingContext`
+(`getContext('bitmaprenderer')`) and the minimal `navigator` holder. Optional
+[Canvas 2D](canvas.md) registers its context and image/path constructors; drawing uses
+the existing shared-byte command buffer. The optional [WebGPU macOS profile](webgpu.md)
+independently registers `webgpu` and `navigator.gpu`. rAF and the complete-checkpoint
+presentation hook belong to the base host.
+
+## Dedicated Workers
+
+Core provides pure JS/Wasm [Dedicated Workers](dedicated-workers.md). A background Dart
+isolate owns each independent V8 heap; Worker host services exclude Flutter UI, window
+and document. Native clone queues carry messages and buffer ownership.

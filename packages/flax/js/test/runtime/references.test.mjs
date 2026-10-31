@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { setImmediate } from 'node:timers/promises';
 import { ReferenceCache } from '../../dist/runtime/references.js';
+import { defineObject } from '../../dist/runtime/bindings.js';
 
 test('aliases preserve identity and release together across typed views', () => {
   const cache = new ReferenceCache();
@@ -38,6 +39,20 @@ async function collect(reference) {
   }
   assert.fail('JS wrapper remained reachable');
 }
+
+test('checkpoint sweeps avoid empty bridge results and still deliver expired identities', async () => {
+  const type = 'fixture/checkpoint-sweep';
+  defineObject(type, [], [], {}, []);
+  const api = globalThis.__flaxBindings;
+  assert.equal(api.sweepObjects(), null);
+  let value = api.object(type, 9001);
+  const reference = new WeakRef(value);
+  assert.equal(api.sweepObjects(), null);
+  value = null;
+  await collect(reference);
+  assert.deepEqual(api.sweepObjects(), [9001]);
+  assert.equal(api.sweepObjects(), null);
+});
 
 test('pruning a collected wrapper still delivers its Dart release', async () => {
   const cache = new ReferenceCache();

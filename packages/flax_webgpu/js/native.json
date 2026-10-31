@@ -1,0 +1,14 @@
+{
+  "formatVersion": 1,
+  "libraries": [
+    {
+      "id": "@flax/webgpu/dawn",
+      "kind": "dynamic",
+      "targets": ["macos"],
+      "binaries": {
+        "macos-arm64": "native/libflax_webgpu.dylib"
+      },
+      "headers": ["native/THIRD_PARTY_NOTICES.txt", "native/provenance.json"]
+    }
+  ]
+}

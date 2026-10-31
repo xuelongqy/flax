@@ -1,0 +1,93 @@
+--- a/flutter/flax/native/src/runtime.cpp
++++ b/flutter/flax/native/src/runtime.cpp
+@@ -1355,6 +1355,11 @@
+   flax::notifyIdleJointHeap();
+ }
+ 
++namespace flax {
++void protectMappedArrayBuffer(facebook::jsi::Runtime&, const facebook::jsi::Object&);
++void detachMappedArrayBuffer(facebook::jsi::Runtime&, const facebook::jsi::Object&);
++}
++
+ #if defined(FLAX_ENABLE_FFI)
+ #include "ffi/runtime.inc"
+ #endif
+--- a/flutter/flax/native/src/ffi/memory.inc
++++ b/flutter/flax/native/src/ffi/memory.inc
+@@ -312,6 +312,14 @@
+     auto source = sourceBytes(runtime, js, state, args[0], 0);
+     auto base = source.storage->data();
+     return wrapPointer(js, source.offset ? base + source.offset : base);
++  }
++  if (name == "protectMappedArrayBuffer" || name == "detachMappedArrayBuffer") {
++    arity(1, 1);
++    if (!args[0].isObject()) fail(js, "Expected a mapped ArrayBuffer");
++    auto object = args[0].getObject(js);
++    if (name == "protectMappedArrayBuffer") flax::protectMappedArrayBuffer(js, object);
++    else flax::detachMappedArrayBuffer(js, object);
++    return {};
+   }
+   if (name == "toArrayBuffer" || name == "toUint8Array") {
+     arity(2, 3);
+@@ -477,7 +485,8 @@
+        {"getRawPointer", "toString", "toUtf16String", "toArrayBuffer",
+         "toUint8Array", "exportString", "exportArrayBuffer",
+         "exportArrayBufferView", "layout", "read", "write", "allocate", "free",
+-        "bindFunction", "finalizer"}) {
++        "bindFunction", "finalizer", "protectMappedArrayBuffer",
++        "detachMappedArrayBuffer"}) {
+     module.setProperty(
+         js, name,
+         fbjsi::Function::createFromHostFunction(
+--- a/flutter/flax/native/v8-jsi/src/jsi_abi/jsi_abi_v8.cpp
++++ b/flutter/flax/native/v8-jsi/src/jsi_abi/jsi_abi_v8.cpp
+@@ -3516,6 +3516,38 @@
+ #endif
+ 
+ namespace flax {
++void mappedArrayBuffer(facebook::jsi::Runtime& runtime,
++                       const facebook::jsi::Object& object, bool detach) {
++  auto* state = getState(jsi::abi::getAbiRuntime(runtime));
++  V8Scope scope(state);
++  auto local = toObjectHandle(jsi::abi::getAbiObject(runtime, object))->get(state->isolate);
++  if (!local->IsArrayBuffer()) throw std::invalid_argument("Expected an ArrayBuffer");
++  auto buffer = local.As<v8::ArrayBuffer>();
++  auto context = state->isolate->GetCurrentContext();
++  auto slot = v8::Private::ForApi(state->isolate,
++      v8::String::NewFromUtf8Literal(state->isolate, "flax.webgpu.mapping"));
++  v8::Local<v8::Value> key;
++  if (!buffer->GetPrivate(context, slot).ToLocal(&key))
++    throw std::invalid_argument("Cannot read mapped ArrayBuffer key");
++  if (detach) {
++    if (!key->IsSymbol()) throw std::invalid_argument("Expected a protected mapped ArrayBuffer");
++    if (!buffer->WasDetached() && !buffer->Detach(key).FromMaybe(false))
++      throw std::invalid_argument("Cannot detach mapped ArrayBuffer");
++  } else {
++    if (buffer->WasDetached() || !buffer->IsDetachable() || !key->IsUndefined())
++      throw std::invalid_argument("ArrayBuffer is already detached or protected");
++    key = v8::Symbol::New(state->isolate);
++    if (!buffer->SetPrivate(context, slot, key).FromMaybe(false))
++      throw std::invalid_argument("Cannot protect mapped ArrayBuffer");
++    buffer->SetDetachKey(key);
++  }
++}
++void protectMappedArrayBuffer(facebook::jsi::Runtime& runtime, const facebook::jsi::Object& object) {
++  mappedArrayBuffer(runtime, object, false);
++}
++void detachMappedArrayBuffer(facebook::jsi::Runtime& runtime, const facebook::jsi::Object& object) {
++  mappedArrayBuffer(runtime, object, true);
++}
+ class V8Buffer final : public facebook::jsi::MutableBuffer {
+  public:
+   explicit V8Buffer(std::shared_ptr<v8::BackingStore> storage)
+@@ -3539,6 +3571,10 @@
+   auto buffer = array->Buffer();
+   if (!buffer->IsArrayBuffer() || buffer->WasDetached())
+     throw std::invalid_argument("Expected an attached, unshared ArrayBuffer");
++  auto mapping = v8::Private::ForApi(state->isolate,
++      v8::String::NewFromUtf8Literal(state->isolate, "flax.webgpu.mapping"));
++  if (buffer->HasPrivate(state->isolate->GetCurrentContext(), mapping).FromMaybe(false))
++    throw std::invalid_argument("Mapped GPU buffers require copied byte access");
+   if (!buffer->IsDetachable())
+     throw std::invalid_argument(
+         "Non-detachable buffers require copied byte access");

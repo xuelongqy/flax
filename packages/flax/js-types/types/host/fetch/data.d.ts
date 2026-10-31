@@ -1,4 +1,4 @@
-import type { URLSearchParams as URLSearchParamsType } from '../index.js';
+import type { URLSearchParams as URLSearchParamsType } from '../common.js';
 import { Blob, FormData } from '../data.js';
 import { ReadableStream } from 'web-streams-polyfill';
 export type HeadersInit = Headers | Iterable<readonly [string, string]> | Record<string, string>;

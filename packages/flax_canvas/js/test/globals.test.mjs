@@ -1,3 +1,5 @@
+import { installImageHost } from '../../../flax/js/dist/host/images.js';
+import { installCanvasHost } from '../../../flax/js/dist/host/canvas.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { MAGIC, CommandBuffer, OP, PATH } from '../dist/commands.js';
@@ -5,7 +7,29 @@ import { parseColor, serializeColor } from '../dist/color.js';
 import { parseFilter } from '../dist/filter.js';
 import { canvasFont, cssLength } from '../dist/font.js';
 import { Path2D } from '../dist/path.js';
-import { installCanvas, imageIdKey, holdCanvas, heldCanvas } from '../dist/canvas.js';
+import {
+  installCanvas as install2D,
+  imageIdKey,
+  holdCanvas,
+  heldCanvas,
+} from '../dist/canvas.js';
+
+function installCanvas(global, handler) {
+  const canvasHost = installCanvasHost(
+    global,
+    (operation, ...args) => {
+      if (operation === 'canvasCreate') return { width: args[0], height: args[1] };
+      if (operation === 'canvasResize') {
+        args[0].width = args[1];
+        args[0].height = args[2];
+      }
+    },
+    globalThis.EventTarget,
+    globalThis.DOMException,
+  );
+  installImageHost(global, () => {}, canvasHost, globalThis.DOMException);
+  return install2D(global, handler);
+}
 
 test('font shorthand tokenization and typed CSS math', () => {
   const valid = new Map([

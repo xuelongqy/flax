@@ -27,7 +27,7 @@ Future<void> main(List<String> arguments) => command(() async {
   final packages = discoverPackages(root);
   final npmDeliverables = discoverNpmPackages(root);
   for (final package in packages) {
-    _validatePackageLayout(package);
+    await validatePackageLayout(package, workspaceRoot: root);
   }
   final corePackage = packages.singleWhere(
     (package) => package.metadata.capabilities.contains('core'),
@@ -77,7 +77,10 @@ Future<void> main(List<String> arguments) => command(() async {
   }
 });
 
-void _validatePackageLayout(FlaxWorkspacePackage package) {
+Future<void> validatePackageLayout(
+  FlaxWorkspacePackage package, {
+  required String workspaceRoot,
+}) async {
   final metadata = package.metadata;
   final library = metadata.dartEntrypoint.substring(
     'package:${package.name}/'.length,
@@ -101,18 +104,71 @@ void _validatePackageLayout(FlaxWorkspacePackage package) {
   }
   if (capabilities.contains('host-plugin') || capabilities.contains('core')) {
     require(
-      p.join('js', 'tsconfig.host.json'),
-      'is missing its host TypeScript config',
-    );
-    require(
       p.join('js', 'src', 'host', 'bootstrap.ts'),
       'is missing its host bootstrap source',
     );
-    require(
-      p.join('lib', 'src', 'generated', 'host_bootstrap.g.dart'),
-      'is missing its embedded host bootstrap',
+    if (_embedsHost(package)) {
+      require(p.join('js', 'host.json'), 'is missing its embedded host config');
+      require(
+        p.join('js', 'tsconfig.host.json'),
+        'is missing its host TypeScript config',
+      );
+      require(
+        p.join('lib', 'src', 'generated', 'host_bootstrap.g.dart'),
+        'is missing its embedded host bootstrap',
+      );
+    } else {
+      final javascript = metadata.javascript;
+      if (javascript == null || javascript.mode != 'runtime') {
+        throw StateError('${package.name} requires a runtime host factory');
+      }
+      final delivery = await _readModuleDelivery(package.js, workspaceRoot);
+      final host = '${javascript.types ?? javascript.name}/host';
+      final entries = (delivery['modules'] as List)
+          .cast<Map<String, dynamic>>()
+          .where((entry) => entry['specifier'] == host);
+      if (entries.length != 1 ||
+          entries.single['source'] != 'dist/host/bootstrap.js') {
+        throw StateError(
+          '${package.name} is missing its declared host factory: $host',
+        );
+      }
+    }
+  }
+}
+
+bool _embedsHost(FlaxWorkspacePackage package) =>
+    package.metadata.capabilities.contains('core') ||
+    File(p.join(package.js.path, 'host.json')).existsSync();
+
+Future<Map<String, dynamic>> _readModuleDelivery(
+  Directory directory,
+  String workspaceRoot,
+) async {
+  // Reuse delivery's path, source, identity and duplicate-entry validation.
+  final result = await Process.run('node', [
+    '--input-type=module',
+    '-e',
+    '''
+import {readFile} from 'node:fs/promises';
+import {join} from 'node:path';
+import {createModuleDeliveryResolver} from './packages/flax_build/js/src/modules.mjs';
+const directory = process.argv[1];
+const delivery = JSON.parse(await readFile(join(directory, 'flax_modules.json'), 'utf8'));
+if (!Array.isArray(delivery.modules) || delivery.modules.length === 0) throw Error('Empty module delivery');
+const resolve = createModuleDeliveryResolver();
+if (!await resolve(delivery.modules[0].specifier, join(directory, 'package.json'))) throw Error('Undeclared delivery source');
+''',
+    directory.path,
+  ], workingDirectory: workspaceRoot);
+  if (result.exitCode != 0) {
+    throw StateError(
+      'Invalid module delivery in ${directory.path}: ${result.stderr}',
     );
   }
+  return jsonDecode(
+    File(p.join(directory.path, 'flax_modules.json')).readAsStringSync(),
+  ) as Map<String, dynamic>;
 }
 
 void _copySource(Directory source, Directory target) {
@@ -122,6 +178,7 @@ void _copySource(Directory source, Directory target) {
     if ({
       '.cache',
       '.dart_tool',
+      '.flax',
       '.local',
       '.pnpm-store',
       'build',
@@ -255,7 +312,7 @@ void _checkDartArchive(FlaxWorkspacePackage package, Set<String> paths) {
   if (capabilities.contains('bindings')) {
     require('bindings/manifest.json');
   }
-  if (capabilities.contains('host-plugin') || capabilities.contains('core')) {
+  if (_embedsHost(package)) {
     require('lib/src/generated/host_bootstrap.g.dart');
   }
   if (capabilities.contains('engine')) {
@@ -320,6 +377,7 @@ Future<_NpmArchive> _checkNpmPackage(
   Map<String, String> versions,
   String workspaceRoot,
 ) async {
+  await runNpmArchivePrepack(package);
   final copy = Directory(
     p.join(
       temporary.path,
@@ -342,6 +400,7 @@ Future<_NpmArchive> _checkNpmPackage(
     ..createSync(recursive: true);
   final result = await Process.run('pnpm', [
     'pack',
+    '--ignore-scripts',
     '--json',
     '--pack-destination',
     artifacts.path,
@@ -387,12 +446,73 @@ Future<_NpmArchive> _checkNpmPackage(
   if (!archive.existsSync()) {
     throw StateError('Missing npm archive for $name: ${archive.path}');
   }
+  await validateNpmDeliveryArchive(copy, archive, workspaceRoot: workspaceRoot);
   stdout.writeln('Verified npm archive for $name: ${files.length} files');
   return _NpmArchive(
     name,
     archive,
     package.dartOwner?.metadata.javascript?.types ?? name,
   );
+}
+
+Future<void> validateNpmDeliveryArchive(
+  Directory directory,
+  File archive, {
+  required String workspaceRoot,
+}) async {
+  final manifest = File(p.join(directory.path, 'flax_modules.json'));
+  if (!manifest.existsSync()) return;
+  final delivery = await _readModuleDelivery(directory, workspaceRoot);
+  Future<List<int>> read(String path) async {
+    final result = await Process.run('tar', [
+      '-xOzf',
+      archive.path,
+      'package/$path',
+    ], stdoutEncoding: null);
+    if (result.exitCode != 0) {
+      throw StateError('Missing npm delivery file in ${archive.path}: $path');
+    }
+    return result.stdout as List<int>;
+  }
+
+  if (utf8.decode(await read('flax_modules.json')) !=
+      manifest.readAsStringSync()) {
+    throw StateError('Module delivery changed during packing: ${archive.path}');
+  }
+  final npm = jsonDecode(utf8.decode(await read('package.json'))) as Map;
+  if (delivery['package'] != npm['name'] ||
+      delivery['version'] != npm['version']) {
+    throw StateError('Packed module delivery package/version mismatch');
+  }
+  final listing = await Process.run('tar', ['-tzf', archive.path]);
+  if (listing.exitCode != 0) {
+    throw StateError('Cannot read npm archive: ${archive.path}');
+  }
+  final packedFiles = const LineSplitter()
+      .convert(listing.stdout as String)
+      .where((path) => !path.endsWith('/'))
+      .toSet();
+  final sources = <String>{};
+  for (final entry
+      in (delivery['modules'] as List).cast<Map<String, dynamic>>()) {
+    sources.add(entry['source'] as String);
+    for (final helper
+        in (entry['helperSubpaths'] as List? ?? const []).cast<String>()) {
+      sources.add(
+        p.posix.join(
+          entry['subpathRoot'] as String,
+          RegExp(r'\.[cm]?js$').hasMatch(helper) ? helper : '$helper.js',
+        ),
+      );
+    }
+  }
+  for (final source in sources) {
+    if (!packedFiles.contains('package/$source')) {
+      throw StateError(
+        'Missing npm delivery source in ${archive.path}: $source',
+      );
+    }
+  }
 }
 
 void _checkNpmArchive(

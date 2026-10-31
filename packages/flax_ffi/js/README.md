@@ -126,11 +126,12 @@ lib.close();
 ```
 
 `struct`, `union`, fixed and trailing variable `array`, `layout`, `sizeOf`, `alignOf`,
-`offsetOf` and `view` share native size/alignment rules. Packed structs accept
-`{ pack: 1 | 2 | 4 | 8 | 16 }`. Aggregates cross the C ABI as byte storage. Bulk data
-should use typed arrays; creating a field view for a very large array creates an indexed
-property for each element. Arrays are pointer parameters in C; inline arrays are
-supported inside aggregates.
+`offsetOf` and `view` share native size/alignment rules. Struct views share field
+accessors while keeping byte storage separate; accessors operate on their receiving
+view. Packed structs accept `{ pack: 1 | 2 | 4 | 8 | 16 }`. Aggregates cross the C ABI
+as byte storage. Bulk data should use typed arrays; creating a field view for a very
+large array creates an indexed property for each element. Arrays are pointer parameters
+in C; inline arrays are supported inside aggregates.
 
 ABI integer names include `char`, `short`, `int`, `long`, `intptr`, `size_t`, `ssize_t`
 and `wchar_t`, with unsigned variants. `bool` follows Node's numeric uint8 convention;

@@ -1,4 +1,4 @@
-name: Package archive checks
+name: Maintained workspace and archive checks
 
 on:
   workflow_call:
@@ -14,16 +14,94 @@ concurrency:
 env:
   FLAX_PR_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
   FLAX_PR_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+  FLUTTER_ROOT: ${{ github.workspace }}/.local/flutter-ci
+  FLUTTER_GIT_URL: https://github.com/xuelongqy/flutter.git
+  FLAX_FLUTTER_REVISION: c4a1dad0094e82f4a0f0fb94ee224a1ee351cf77
+  FLAX_DEPOT_TOOLS_REVISION: ce92a2e156beaaf1f2ed3a651a5c96f55bb78b80
+  DEPOT_TOOLS_UPDATE: '0'
+  VPYTHON_BYPASS: manually managed python not supported by chrome operations
 
 jobs:
   packages:
-    runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    runs-on: macos-26
+    timeout-minutes: 240
     steps:
       - name: Check out source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+
+      - name: Prepare workspace temporary directories
+        run: |
+          mkdir -p "$PWD/.local/tmp"
+          for name in TMPDIR TMP TEMP; do
+            echo "$name=$PWD/.local/tmp" >> "$GITHUB_ENV"
+          done
+
+      - name: Ensure hosted runner build space
+        shell: bash
+        run: |
+          if [[ "$GITHUB_ACTIONS" != true || "$RUNNER_ENVIRONMENT" != github-hosted || "$RUNNER_OS" != macOS || "$RUNNER_ARCH" != ARM64 ]]; then
+            echo 'Build-space cleanup is restricted to GitHub-hosted macOS arm64 runners.' >&2
+            exit 1
+          fi
+          available_kib() { df -Pk "$PWD" | awk 'NR == 2 { print $4 }'; }
+          required_kib=$((50 * 1024 * 1024))
+          if (( $(available_kib) < required_kib )); then
+            selected_xcode=$(python3 -c 'import pathlib,sys; print(pathlib.Path(sys.argv[1]).resolve().parents[1])' "$(xcode-select -p)")
+            for candidate in /Applications/Xcode*.app; do
+              [[ -e "$candidate" ]] || continue
+              resolved=$(python3 -c 'import pathlib,sys; print(pathlib.Path(sys.argv[1]).resolve())' "$candidate")
+              if [[ "$resolved" != "$selected_xcode" ]]; then
+                sudo rm -rf -- "$candidate"
+              fi
+            done
+            xcrun simctl delete unavailable
+            for candidate in "${ANDROID_HOME:-}" "${ANDROID_SDK_ROOT:-}"; do
+              if [[ -n "$candidate" && "$candidate" == "$HOME/"* && -d "$candidate" ]]; then
+                sudo rm -rf -- "$candidate"
+              fi
+            done
+          fi
+          df -h "$PWD"
+          if (( $(available_kib) < required_kib )); then
+            echo 'The maintained engine build requires at least 50 GiB free.' >&2
+            exit 1
+          fi
+
+      - name: Check out the maintained Flutter source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: xuelongqy/flutter
+          ref: ${{ env.FLAX_FLUTTER_REVISION }}
+          path: .local/flutter-ci
+          fetch-depth: 0
+          filter: blob:none
+          persist-credentials: false
+
+      - name: Install pinned depot_tools
+        run: |
+          git clone --filter=blob:none --no-checkout https://chromium.googlesource.com/chromium/tools/depot_tools.git .local/depot_tools
+          git -C .local/depot_tools checkout --detach "$FLAX_DEPOT_TOOLS_REVISION"
+          echo "$PWD/.local/depot_tools" >> "$GITHUB_PATH"
+
+      - name: Sync the maintained engine dependencies
+        working-directory: .local/flutter-ci
+        run: |
+          test "$(git rev-parse HEAD)" = "$FLAX_FLUTTER_REVISION"
+          python3 - <<'CONFIG'
+          import os
+          from pathlib import Path
+          config = {}
+          exec(Path('engine/scripts/standard.gclient').read_text(), {}, config)
+          solution = config['solutions'][0]
+          solution['url'] = os.environ['FLUTTER_GIT_URL']
+          solution['custom_vars'] = {'download_android_deps': False, 'download_jdk': False}
+          solution['custom_deps'] = {'engine/src/flutter/third_party/java/openjdk': None}
+          Path('.gclient').write_text('solutions = ' + repr(config['solutions']) + '\ntarget_os = ["mac"]\n')
+          CONFIG
+          gclient sync --no-history --jobs 2 --revision ".@$FLAX_FLUTTER_REVISION"
+          echo "$FLUTTER_ROOT/bin" >> "$GITHUB_PATH"
 
       - name: Set up Node.js
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
@@ -35,30 +113,59 @@ jobs:
         run:
           npm install --global "$(node -p 'require("./package.json").packageManager')"
 
-      - name: Set up Flutter and Dart
-        uses: subosito/flutter-action@1a449444c387b1966244ae4d4f8c696479add0b2 # v2.23.0
-        with:
-          channel: stable
-          flutter-version-file: .fvmrc
-
-      - name: Install locked dependencies
+      - name: Bootstrap Flutter and locked workspace dependencies
         run: |
+          flutter precache --macos
           flutter pub get --enforce-lockfile
           pnpm install --frozen-lockfile
 
-      - name: Build JavaScript package outputs
-        run: dart run melos run js:build
+      - name: Prepare the locked V8 SDK
+        run: dart run tool/prepare_ci_sdk.dart
+
+      - name: Build the matching maintained Debug engine
+        run: |
+          python3 "$FLUTTER_ROOT/engine/src/flutter/flax/tools/sdk_info.py" "$FLAX_CI_V8_SDK" macos-arm64
+          python3 "$FLUTTER_ROOT/engine/src/flutter/flax/tools/build_engine.py" --sdk "$FLAX_CI_V8_SDK" --mode debug --jobs 2
+          diff -qr "$FLUTTER_ROOT/engine/src/out/flax_mac_debug_arm64/gen/dart-pkg/sky_engine" "$FLUTTER_ROOT/bin/cache/pkg/sky_engine"
+          flutter pub get --enforce-lockfile
+          diff -qr "$FLUTTER_ROOT/engine/src/out/flax_mac_debug_arm64/gen/dart-pkg/sky_engine" "$FLUTTER_ROOT/bin/cache/pkg/sky_engine"
+
+      - name: Prepare the pinned WebGPU native asset
+        run: |
+          mkdir -p .local/ci-dawn-sdk
+          curl --fail --location --retry 2 --output .local/ci-dawn-sdk/dawn.tar.gz \
+            https://github.com/google/dawn/releases/download/v20261026.205545/Dawn-5fbd545292cb7a4a9a275e322abec6007ffe2ae8-macos-latest-Release.tar.gz
+          echo '8eed5796e1c3403515c331a098fc9e8b5b738f832d9736be6843db891235c92b  .local/ci-dawn-sdk/dawn.tar.gz' | shasum -a 256 --check
+          tar -xzf .local/ci-dawn-sdk/dawn.tar.gz --strip-components=1 -C .local/ci-dawn-sdk
+          python3 packages/flax_webgpu/tool/prepare_native.py --sdk "$PWD/.local/ci-dawn-sdk"
+          node packages/flax_webgpu/tool/check_native.mjs
+
+      - name: Check the full workspace
+        run: dart run melos run check
+
+      - name: Verify the maintained native runtime
+        run: dart run melos run check:runtime
+
+      - name: Verify reproducible FFI declarations
+        run: dart run melos run ffi:check
 
       - name: Validate archives and pack receipt (no publish)
         env:
           FLAX_ARCHIVE_PROOF_OUTPUT: build/archive-proof.json
         run: dart run melos run release:check
 
+      - name: Verify maintained SDK declarations remain selected
+        run:
+          diff -qr
+          "$FLUTTER_ROOT/engine/src/out/flax_mac_debug_arm64/gen/dart-pkg/sky_engine"
+          "$FLUTTER_ROOT/bin/cache/pkg/sky_engine"
+
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
         with:
           name: archive-proof
           path: build/archive-proof.json
           if-no-files-found: error
+
       - name: Verify source files are unchanged
         run: |
           git diff --exit-code
@@ -66,3 +173,13 @@ jobs:
             git status --short
             exit 1
           fi
+          git -C "$FLUTTER_ROOT" diff --exit-code
+
+      - name: Record validation scope
+        if: always()
+        run: |
+          printf '%s\n' \
+            'Pinned maintained macOS arm64 engine and explicit verified V8/Dawn producers.' \
+            'Full workspace, native runtime, FFI and archive checks; no registry publication.' \
+            'Full UI/application, GPU performance and other-platform acceptance remain separate.' \
+            >> "$GITHUB_STEP_SUMMARY"

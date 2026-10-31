@@ -158,6 +158,24 @@ class CanvasDecoder {
     }
   }
 
+  Uint8List readImagePixels(ui.Image image) {
+    final recorder = ui.PictureRecorder();
+    ui.Canvas(recorder).drawImage(image, ui.Offset.zero, ui.Paint());
+    final picture = recorder.endRecording();
+    try {
+      return _call(12, picture, [
+        image.width,
+        image.height,
+        0,
+        0,
+        image.width,
+        image.height,
+      ]) as Uint8List;
+    } finally {
+      picture.dispose();
+    }
+  }
+
   void disposeSurface(int id) => _call(8, id);
 
   void dispose() {

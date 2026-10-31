@@ -1,0 +1,89 @@
+--- a/flutter/flax/native/v8-jsi/src/jsi_abi/jsi_abi_v8.cpp
++++ b/flutter/flax/native/v8-jsi/src/jsi_abi/jsi_abi_v8.cpp
+@@ -28,6 +28,7 @@
+ /// This file is designed to work without C++ exceptions.
+ 
+ #include <dart_native_api.h>
++#include <array>
+ #include <atomic>
+ #include "../MurmurHash.h"
+ #include "../v8_core.h"
+@@ -1362,18 +1363,21 @@
+   auto* ctx = static_cast<HostFunctionContext*>(
+       data->Value(v8::kExternalPointerTypeTagDefault));
+ 
+-  std::vector<jsi_value> args;
+-  args.reserve(info.Length());
+-  for (int i = 0; i < info.Length(); ++i)
+-    args.push_back(createJsiValue(isolate, info[i]));
++  std::array<jsi_value, 8> localArgs;
++  std::vector<jsi_value> heapArgs;
++  const size_t count = static_cast<size_t>(info.Length());
++  if (count > localArgs.size()) heapArgs.resize(count);
++  auto* args = count > localArgs.size() ? heapArgs.data() : localArgs.data();
++  for (size_t i = 0; i < count; ++i)
++    args[i] = createJsiValue(isolate, info[static_cast<int>(i)]);
+ 
+   jsi_value thisVal = createJsiValue(isolate, info.This());
+ 
+   jsi_value_or_error result = ctx->hostFunction->vtable->call(
+-      ctx->hostFunction, ctx->runtime, &thisVal, args.data(), args.size());
+-
+-  for (auto& arg : args)
+-    abi::release_value(arg);
++      ctx->hostFunction, ctx->runtime, &thisVal, args, count);
++
++  for (size_t i = 0; i < count; ++i)
++    abi::release_value(args[i]);
+   abi::release_value(thisVal);
+ 
+   if (abi::is_error(result)) {
+--- a/flutter/flax/native/v8-jsi/src/jsi_abi/JsiAbiRuntime.cpp
++++ b/flutter/flax/native/v8-jsi/src/jsi_abi/JsiAbiRuntime.cpp
+@@ -17,6 +17,7 @@
+ #include "jsi_abi/jsi_abi.h"
+ #include "jsi_abi/jsi_abi_helpers.h"
+ 
++#include <array>
+ #include <atomic>
+ #include <cassert>
+ #include <cstring>
+@@ -458,13 +459,16 @@
+     return rtw.abiRethrow(
+         abi::create_value_or_error, [&]() -> jsi_value_or_error {
+           facebook::jsi::Value jsThis = rtw.cloneToJSIValue(*thisArg);
+-          std::vector<facebook::jsi::Value> jsArgs;
+-          jsArgs.reserve(argCount);
++          std::array<facebook::jsi::Value, 8> localArgs;
++          std::vector<facebook::jsi::Value> heapArgs;
++          if (argCount > localArgs.size()) heapArgs.resize(argCount);
++          auto* jsArgs =
++              argCount > localArgs.size() ? heapArgs.data() : localArgs.data();
+           for (size_t i = 0; i < argCount; ++i)
+-            jsArgs.push_back(rtw.cloneToJSIValue(args[i]));
++            jsArgs[i] = rtw.cloneToJSIValue(args[i]);
+ 
+           facebook::jsi::Value result =
+-              wrapper->hf_(rtw, jsThis, jsArgs.data(), argCount);
++              wrapper->hf_(rtw, jsThis, jsArgs, argCount);
+ 
+           return abi::create_value_or_error(rtw.cloneToABIValue(result));
+         });
+--- a/flutter/flax/native/src/ffi/runtime.inc
++++ b/flutter/flax/native/src/ffi/runtime.inc
+@@ -140,10 +140,12 @@
+     fail(js, "Expected a bigint pointer or null",
+          raw ? "ERR_INVALID_ARG_TYPE" : "ERR_INVALID_ARG_VALUE");
+   auto address = value.getBigInt(js);
+-  if (!address.isUint64(js) || address.getUint64(js) > UINTPTR_MAX)
++  if (!address.isUint64(js))
+     fail(js, "FFI pointer address out of range");
+-  return reinterpret_cast<void *>(
+-      static_cast<uintptr_t>(address.getUint64(js)));
++  const auto rawAddress = address.getUint64(js);
++  if (rawAddress > UINTPTR_MAX)
++    fail(js, "FFI pointer address out of range");
++  return reinterpret_cast<void *>(static_cast<uintptr_t>(rawAddress));
+ }
+ fbjsi::Value wrapPointer(fbjsi::Runtime &js, const void *address) {
+   return fbjsi::BigInt::fromUint64(js, reinterpret_cast<uintptr_t>(address));

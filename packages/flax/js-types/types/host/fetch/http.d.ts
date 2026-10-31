@@ -1,4 +1,4 @@
-import type { AbortSignal as AbortSignalType, URL as URLType } from '../index.js';
+import type { AbortSignal as AbortSignalType, URL as URLType } from '../common.js';
 import { Blob, FormData } from '../data.js';
 import { ReadableStream } from 'web-streams-polyfill';
 import { Headers, type BodyInit, type BodyRecord, type HeadersInit } from './data.js';

@@ -609,7 +609,9 @@ extension _ObjectCalls on _Session {
   }
 
   void sweepObjects() {
-    final expired = helper('sweepObjects').call(const []) as FlaxJsObject;
+    final result = helper('sweepObjects').call(const []);
+    if (result is FlaxJsNull) return;
+    final expired = result as FlaxJsObject;
     try {
       final length = _property(
         expired,

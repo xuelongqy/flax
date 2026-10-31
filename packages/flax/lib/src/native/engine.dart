@@ -7,7 +7,9 @@ import 'runtime_bindings.g.dart';
 
 /// Creates the runtime supplied by the matching Flax Flutter engine.
 abstract final class FlaxEngine {
-  static FlaxJsRuntime createRuntime() {
+  static FlaxJsRuntime createRuntime() => _createRuntime(false);
+
+  static FlaxNativeJsRuntime _createRuntime(bool detached) {
     if (!(Platform.isMacOS && Abi.current() == Abi.macosArm64 ||
         Platform.isAndroid && Abi.current() == Abi.androidArm64 ||
         Platform.isIOS && Abi.current() == Abi.iosArm64)) {
@@ -35,6 +37,10 @@ abstract final class FlaxEngine {
         library.providesSymbol('flax_engine_get_modules_api')
             ? bindings.flax_engine_get_modules_api(FLAX_ENGINE_MODULES_VERSION)
             : nullptr,
+        library.providesSymbol('flax_engine_get_workers_api')
+            ? bindings.flax_engine_get_workers_api(FLAX_ENGINE_WORKERS_VERSION)
+            : nullptr,
+        detached,
       );
     } on ArgumentError catch (error) {
       throw UnsupportedError(
@@ -44,3 +50,7 @@ abstract final class FlaxEngine {
     }
   }
 }
+
+// Internal carrier entry; deliberately excluded from runtime.dart exports.
+FlaxNativeJsRuntime createDetachedWorkerRuntime() =>
+    FlaxEngine._createRuntime(true);

@@ -201,6 +201,17 @@ included in the base environment and creates an HTTP client only when needed. Ad
 host capabilities use separate packages. The runtime host type entry has no installation
 side effects. Bare FlaxJsRuntime instances retain explicit microtask scheduling.
 
+`FileReader` is available directly on the session global, alongside Blob, File and Web
+Streams. Core also provides `canvas.getContext('bitmaprenderer')` and the root
+`ImageBitmapRenderingContext` constructor identity. Drawing with `2d` or `webgpu`
+requires its renderer plugin. Core Fetch handles HTTP(S), data and session Blob URLs.
+
+`window`, `self` and `globalThis` refer to the same session global. User Timing includes
+`performance.mark/measure`, entry queries/clearing and `PerformanceObserver` for mark
+and measure entries. Root `crypto.getRandomValues` and `crypto.randomUUID` use secure
+system randomness; no additional plugin is required. These APIs do not add browser
+navigation/resource metrics or SubtleCrypto.
+
 Public `FlaxFunctionBinding` supports generated top-level calls and native Route
 functions. FlaxNavigatorObserver is optional and does not retain Sessions. Core selects
 applyBoxFit, BoxFit and FittedSizes. See

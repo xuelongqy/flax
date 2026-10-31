@@ -159,6 +159,17 @@ const targets = [
     manifestPath: 'packages/flax_cupertino_ui/bindings/manifest.json',
     sourceFor: (specifier) => uiSource(specifier, 'cupertino'),
   },
+  {
+    packageDirectory: 'packages/flax_webgpu/js',
+    sourceFor: () => {
+      throw new Error('Unexpected WebGPU binding module');
+    },
+    extraModules: [
+      { specifier: '@flax/webgpu', source: 'dist/index.js' },
+      { specifier: '@flax/webgpu/globals', source: 'dist/globals.js' },
+      { specifier: '@flax/webgpu/host', source: 'dist/host/bootstrap.js' },
+    ],
+  },
 ];
 
 for (const [owner, publicName] of [

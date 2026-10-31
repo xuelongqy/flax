@@ -1,0 +1,46 @@
+{
+  "firstStartupMs": 266.91299999999995,
+  "repeatedStartup": {
+    "n": 10,
+    "medianMs": 62.90999999999997,
+    "p95Ms": 172.24400000000003
+  },
+  "smallRoundtrip": {
+    "n": 100,
+    "medianMs": 1.1800000000000637,
+    "p95Ms": 4.185999999999922
+  },
+  "bufferBytes": 16777216,
+  "copyRoundtrip": {
+    "n": 20,
+    "medianMs": 104.58199999999988,
+    "p95Ms": 253.6869999999999
+  },
+  "transferRoundtrip": {
+    "n": 20,
+    "medianMs": 103.03899999999976,
+    "p95Ms": 204.8730000000005
+  },
+  "responsiveness": {
+    "background": {
+      "elapsedMs": 201.19500000000062,
+      "ticks": 45,
+      "maxGapMs": 89.64400000000023,
+      "p95GapMs": 14.680000000000291
+    },
+    "main": {
+      "elapsedMs": 200.1180000000004,
+      "ticks": 12,
+      "maxGapMs": 206.89599999999973,
+      "p95GapMs": 206.89599999999973
+    }
+  },
+  "carrier": "Isolate.spawn (same isolate group)",
+  "transport": "native V8 serializer + BackingStore",
+  "system": {
+    "os": "Version 27.0.1 (Build 26A434)",
+    "dart": "3.13.5 (stable) (Tue Sep 29 01:00:52 2026 -0700) on \"macos_arm64\"",
+    "mode": "Debug",
+    "date": "2026-10-30T14:08:18.443224Z"
+  }
+}

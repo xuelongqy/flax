@@ -1,0 +1,32 @@
+{
+  "name": "@flax/example-webgpu",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "build:html": "node ../browser/build.mjs",
+    "fixtures": "node build-fixtures.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --experimental-strip-types --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@flax/core": "workspace:*",
+    "@flax/core-runtime": "workspace:*",
+    "@flax/example-core": "workspace:*",
+    "@flax/flutter": "workspace:*",
+    "@flax/webgpu": "workspace:*",
+    "@flax/webgpu-runtime": "workspace:*"
+  },
+  "exports": {
+    "./showcase": {
+      "types": "./dist/showcase.d.ts",
+      "import": "./src/showcase.ts"
+    }
+  },
+  "devDependencies": {
+    "draco3d": "1.5.7",
+    "meshoptimizer": "0.25.0",
+    "three": "0.186.1"
+  }
+}

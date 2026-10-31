@@ -1,0 +1,714 @@
+{
+  "provenance": {
+    "dawnTag": "v20261026.205545",
+    "dawnRevision": "5fbd545292cb7a4a9a275e322abec6007ffe2ae8",
+    "dawnArchiveSha256": "8eed5796e1c3403515c331a098fc9e8b5b738f832d9736be6843db891235c92b",
+    "flaxRevision": "3af52eea34b9ebbdf152e78edba38b8f609de770",
+    "flutterRevision": "fd76bdbbc0810dbb003c88620a0cdc10627d61a9",
+    "minimumMacOS": "26.0",
+    "engine": "flax_mac_webgpu_fenced_release_arm64",
+    "nativeLibraryBytes": 8938904,
+    "packagedEngineSha256": "c7672ebdd1c39cbd2ad9978344d3650e24ec2ba121bb0b5aef97ecc2c61c8751",
+    "engineOverlay": {
+      "engine": "flax_mac_webgpu_fenced_release_arm64",
+      "originalSourcesSha256": {
+        "flutter/shell/platform/darwin/macos/framework/Source/FlutterExternalTexture.mm": "5c2be38b4b7a1ff84630df971928f83d8d99398e2c767e38e4f435a075fb98a1",
+        "flutter/impeller/renderer/backend/metal/render_pass_mtl.mm": "c790a1a3dbbec3beed94fb3fea18de370ec950960e7c36c43687de877799ab93"
+      },
+      "overlaySourcesSha256": {
+        "flutter/shell/platform/darwin/macos/framework/Source/FlutterExternalTexture.mm": "b2d91946196a15ca856ac74f30860d71319dedf900a1fb0983d324125f02fb0c",
+        "flutter/impeller/renderer/backend/metal/render_pass_mtl.mm": "da15c6979dee5b90ee04a30eaaf5a8c37cf5d857ce29061caf25132a9a012c98"
+      },
+      "patchSha256": "acbea7e5083008d44ebbe9d818922702b3704193e8f551db3554138cd27f2cd2",
+      "interopHeaderSha256": "d0be547bc59bbc9ea5f15cea05c5698c487c0a3951e9c0a23315a8987e087e3e",
+      "engineBinarySha256": "87bb9ff609bff38d5cab9e2170a7e05e3d563ad52406a28713f79fe17d4a34d0"
+    },
+    "probeSourcesSha256": {
+      "MainFlutterWindow.swift": "2f23c4f1bcd96ca378c421a8cd7690216c5e51ef2e7fee6c060592c9d409f4b6",
+      "app.dart": "46dd6be0dbd1882cbeae52da80d8d60d158d91110941cc3b20e31b83e6b8ec18",
+      "build_engine.py": "d27b9f1106e418307525bc5485dd5aaaefaa4afea234ea4d5327819e6e0d13ce",
+      "engine.patch": "acbea7e5083008d44ebbe9d818922702b3704193e8f551db3554138cd27f2cd2",
+      "native/CMakeLists.txt": "78c8a3e60003f9fa99e90faaee03d17549e10d2bee18703686f7e92790c3a9e7",
+      "native/exports.txt": "5fdeb66876c3d8a6ff1e880dbeebd8b07f311140803ea04da4c97bc1804a154b",
+      "native/flax_dawn_interop.h": "d0be547bc59bbc9ea5f15cea05c5698c487c0a3951e9c0a23315a8987e087e3e",
+      "native/probe.mm": "df1b8cc4392665cc672766c79524b21b1b75daa110d4ca81bd63345513f2388b",
+      "native/self_check.cc": "c6c6b88b2c6ad4631b9ed14c2e2b41f3e223b5abaf17322a343a935ddb10547d",
+      "run.py": "4b1a5c9686890790f6d50ca411a4df28ee908ed407fa9715b249aef6b42a2f68",
+      "scene.js": "f5d6289b108e57da02d604d519eef7a127f53a1e04cfffb1e5ef630d1725a27e"
+    },
+    "executable": "/Volumes/MAC_HOME/CodexHome/worktrees/webgpu-dawn-macos/flax/.local/webgpu-dawn/FlaxDawnProbe.app/Contents/MacOS/flax_dawn_probe"
+  },
+  "nativeCompute": {
+    "adapter": "Apple M2 Max",
+    "backend": "Metal",
+    "compute": {
+      "dispatchesPerSample": 32,
+      "gpuBatch": {
+        "count": 40,
+        "p50Ms": 0.262144,
+        "p95Ms": 0.262144,
+        "p99Ms": 0.32768
+      },
+      "hostBatchIncludingReadbackAndValidation": {
+        "count": 40,
+        "p50Ms": 0.670041,
+        "p95Ms": 1.203459,
+        "p99Ms": 1.657583
+      },
+      "samples": 40,
+      "timestampQuery": true,
+      "timestampsUseDefaultDawnQuantization": true,
+      "verifiedElementsPerSample": 262144
+    },
+    "fenceCheck": {
+      "consumerBlockedBeforeRelease": true,
+      "passed": true,
+      "producerHeldMs": 56.107333,
+      "retiredTextureLeases": 1,
+      "verificationReadbacks": 1,
+      "verifiedPixels": 256
+    },
+    "validationEnabled": true
+  },
+  "application": {
+    "passed": true,
+    "platform": "Version 27.0.1 (Build 26A434)",
+    "compute": {
+      "kind": "compute",
+      "adapter": "Apple M2 Max",
+      "backend": "Metal",
+      "compute": {
+        "dispatchesPerSample": 32,
+        "gpuBatch": {
+          "count": 40,
+          "p50Ms": 0.262144,
+          "p95Ms": 0.32768,
+          "p99Ms": 0.32768
+        },
+        "hostBatchIncludingReadbackAndValidation": {
+          "count": 40,
+          "p50Ms": 0.724625,
+          "p95Ms": 1.208625,
+          "p99Ms": 1.3385
+        },
+        "samples": 40,
+        "timestampQuery": true,
+        "timestampsUseDefaultDawnQuantization": true,
+        "verifiedElementsPerSample": 262144
+      },
+      "fenceCheck": {
+        "consumerBlockedBeforeRelease": true,
+        "passed": true,
+        "producerHeldMs": 52.279333,
+        "retiredTextureLeases": 1,
+        "verificationReadbacks": 1,
+        "verifiedPixels": 256
+      },
+      "validationEnabled": true
+    },
+    "phases": [
+      {
+        "kind": "frames",
+        "adapter": "Apple M2 Max",
+        "backend": "Metal",
+        "completed": 930,
+        "consumerGpuSignals": 930,
+        "error": "",
+        "flutterConsumerGpuDuration": {
+          "count": 930,
+          "p50Ms": 0.026999972760677338,
+          "p95Ms": 0.027958303689956665,
+          "p99Ms": 0.029624905437231064
+        },
+        "flutterTextureReads": 930,
+        "frameCpuReadbacks": 0,
+        "gpuCompletionToFlutterTextureRead": {
+          "count": 930,
+          "p50Ms": -0.866917,
+          "p95Ms": -0.491792,
+          "p99Ms": -0.284375
+        },
+        "height": 540,
+        "nativeEncodeIncludingPoolAcquire": {
+          "count": 931,
+          "p50Ms": 0.220834,
+          "p95Ms": 0.437291,
+          "p99Ms": 0.662125
+        },
+        "notifiedFlutter": 931,
+        "poolMisses": 0,
+        "producerGpuGates": 930,
+        "retiredLeases": 929,
+        "retirementErrors": 0,
+        "skippedBusy": 0,
+        "submitted": 931,
+        "submitToCompletionIncludingEncode": {
+          "count": 930,
+          "p50Ms": 1.242541,
+          "p95Ms": 1.612875,
+          "p99Ms": 1.897917
+        },
+        "submitToFlutterGpuCompletionCallback": {
+          "count": 930,
+          "p50Ms": 1.5225,
+          "p95Ms": 1.978334,
+          "p99Ms": 3.133916
+        },
+        "submitToFlutterTextureRead": {
+          "count": 930,
+          "p50Ms": 0.380041,
+          "p95Ms": 0.768792,
+          "p99Ms": 1.548416
+        },
+        "surfaceAllocations": 3,
+        "surfacePoolCapacity": 3,
+        "surfaceReuses": 929,
+        "textureReadsBeforeProducerFence": 921,
+        "width": 960,
+        "jsFrames": 931,
+        "jsFfiCall": {
+          "count": 900,
+          "p50Ms": 0.25999999999976353,
+          "p95Ms": 0.5389999999997599,
+          "p99Ms": 0.7250000000003638
+        },
+        "rafInterval": {
+          "count": 900,
+          "p50Ms": 8.332999999999856,
+          "p95Ms": 8.434000000000196,
+          "p99Ms": 8.513999999999896
+        },
+        "rssBytes": 297926656,
+        "flutterBuild": {
+          "count": 922,
+          "p50Ms": 0.445,
+          "p95Ms": 0.86,
+          "p99Ms": 1.949
+        },
+        "flutterRaster": {
+          "count": 922,
+          "p50Ms": 0.976,
+          "p95Ms": 1.221,
+          "p99Ms": 1.483
+        }
+      },
+      {
+        "kind": "frames",
+        "adapter": "Apple M2 Max",
+        "backend": "Metal",
+        "completed": 928,
+        "consumerGpuSignals": 928,
+        "error": "",
+        "flutterConsumerGpuDuration": {
+          "count": 928,
+          "p50Ms": 0.02674991264939308,
+          "p95Ms": 0.028166919946670532,
+          "p99Ms": 0.02966681495308876
+        },
+        "flutterTextureReads": 928,
+        "frameCpuReadbacks": 0,
+        "gpuCompletionToFlutterTextureRead": {
+          "count": 928,
+          "p50Ms": -0.698458,
+          "p95Ms": -0.355166,
+          "p99Ms": 0.079208
+        },
+        "height": 360,
+        "nativeEncodeIncludingPoolAcquire": {
+          "count": 929,
+          "p50Ms": 0.238708,
+          "p95Ms": 0.510792,
+          "p99Ms": 1.084333
+        },
+        "notifiedFlutter": 929,
+        "poolMisses": 0,
+        "producerGpuGates": 928,
+        "retiredLeases": 927,
+        "retirementErrors": 0,
+        "skippedBusy": 0,
+        "submitted": 929,
+        "submitToCompletionIncludingEncode": {
+          "count": 928,
+          "p50Ms": 1.08625,
+          "p95Ms": 1.5975,
+          "p99Ms": 2.264708
+        },
+        "submitToFlutterGpuCompletionCallback": {
+          "count": 928,
+          "p50Ms": 1.33375,
+          "p95Ms": 2.145333,
+          "p99Ms": 3.198625
+        },
+        "submitToFlutterTextureRead": {
+          "count": 928,
+          "p50Ms": 0.404,
+          "p95Ms": 0.875459,
+          "p99Ms": 2.016
+        },
+        "surfaceAllocations": 3,
+        "surfacePoolCapacity": 3,
+        "surfaceReuses": 927,
+        "textureReadsBeforeProducerFence": 904,
+        "width": 640,
+        "jsFrames": 929,
+        "jsFfiCall": {
+          "count": 898,
+          "p50Ms": 0.2789999999995416,
+          "p95Ms": 0.6159999999999854,
+          "p99Ms": 1.2069999999994252
+        },
+        "rafInterval": {
+          "count": 898,
+          "p50Ms": 8.330999999999221,
+          "p95Ms": 8.435000000000173,
+          "p99Ms": 8.502000000000407
+        },
+        "rssBytes": 308314112,
+        "flutterBuild": {
+          "count": 931,
+          "p50Ms": 0.478,
+          "p95Ms": 0.984,
+          "p99Ms": 2.046
+        },
+        "flutterRaster": {
+          "count": 931,
+          "p50Ms": 0.798,
+          "p95Ms": 1.171,
+          "p99Ms": 1.556
+        }
+      },
+      {
+        "kind": "frames",
+        "adapter": "Apple M2 Max",
+        "backend": "Metal",
+        "completed": 931,
+        "consumerGpuSignals": 931,
+        "error": "",
+        "flutterConsumerGpuDuration": {
+          "count": 931,
+          "p50Ms": 0.02716667950153351,
+          "p95Ms": 0.028708484023809433,
+          "p99Ms": 0.03262469545006752
+        },
+        "flutterTextureReads": 931,
+        "frameCpuReadbacks": 0,
+        "gpuCompletionToFlutterTextureRead": {
+          "count": 931,
+          "p50Ms": -0.94975,
+          "p95Ms": -0.508542,
+          "p99Ms": -0.161167
+        },
+        "height": 540,
+        "nativeEncodeIncludingPoolAcquire": {
+          "count": 932,
+          "p50Ms": 0.252042,
+          "p95Ms": 0.576041,
+          "p99Ms": 1.09675
+        },
+        "notifiedFlutter": 932,
+        "poolMisses": 0,
+        "producerGpuGates": 931,
+        "retiredLeases": 930,
+        "retirementErrors": 0,
+        "skippedBusy": 0,
+        "submitted": 932,
+        "submitToCompletionIncludingEncode": {
+          "count": 931,
+          "p50Ms": 1.34925,
+          "p95Ms": 1.946625,
+          "p99Ms": 2.272667
+        },
+        "submitToFlutterGpuCompletionCallback": {
+          "count": 931,
+          "p50Ms": 1.623875,
+          "p95Ms": 2.407167,
+          "p99Ms": 3.135583
+        },
+        "submitToFlutterTextureRead": {
+          "count": 931,
+          "p50Ms": 0.424916,
+          "p95Ms": 0.937041,
+          "p99Ms": 2.345416
+        },
+        "surfaceAllocations": 3,
+        "surfacePoolCapacity": 3,
+        "surfaceReuses": 930,
+        "textureReadsBeforeProducerFence": 921,
+        "width": 960,
+        "jsFrames": 932,
+        "jsFfiCall": {
+          "count": 901,
+          "p50Ms": 0.3000000000001819,
+          "p95Ms": 0.6690000000007785,
+          "p99Ms": 1.1970000000001164
+        },
+        "rafInterval": {
+          "count": 901,
+          "p50Ms": 8.33199999999988,
+          "p95Ms": 8.436999999999898,
+          "p99Ms": 8.5649999999996
+        },
+        "rssBytes": 313327616,
+        "flutterBuild": {
+          "count": 1042,
+          "p50Ms": 0.496,
+          "p95Ms": 1.167,
+          "p99Ms": 2.457
+        },
+        "flutterRaster": {
+          "count": 1042,
+          "p50Ms": 1.027,
+          "p95Ms": 1.354,
+          "p99Ms": 1.638
+        }
+      }
+    ],
+    "closedNativeSessions": 3,
+    "activeNativeSessionsAfterClose": 0,
+    "liveDawnDevicesAfterClose": 0,
+    "liveGpuTextureLeasesAfterClose": 0,
+    "snapshotReadbacks": 3,
+    "steadyStateFrameReadbacks": 0
+  },
+  "metalValidation": {
+    "environment": {
+      "MTL_DEBUG_LAYER": "1",
+      "MTL_SHADER_VALIDATION": "1"
+    },
+    "apiValidationConfirmedInLog": true,
+    "gpuValidationConfirmedInLog": true,
+    "application": {
+      "passed": true,
+      "platform": "Version 27.0.1 (Build 26A434)",
+      "compute": {
+        "kind": "compute",
+        "adapter": "Apple M2 Max",
+        "backend": "Metal",
+        "compute": {
+          "dispatchesPerSample": 32,
+          "gpuBatch": {
+            "count": 40,
+            "p50Ms": 0.589824,
+            "p95Ms": 0.589824,
+            "p99Ms": 0.589824
+          },
+          "hostBatchIncludingReadbackAndValidation": {
+            "count": 40,
+            "p50Ms": 1.2375,
+            "p95Ms": 1.472292,
+            "p99Ms": 1.672208
+          },
+          "samples": 40,
+          "timestampQuery": true,
+          "timestampsUseDefaultDawnQuantization": true,
+          "verifiedElementsPerSample": 262144
+        },
+        "fenceCheck": {
+          "consumerBlockedBeforeRelease": true,
+          "passed": true,
+          "producerHeldMs": 51.32275,
+          "retiredTextureLeases": 1,
+          "verificationReadbacks": 1,
+          "verifiedPixels": 256
+        },
+        "validationEnabled": true
+      },
+      "phases": [
+        {
+          "kind": "frames",
+          "adapter": "Apple M2 Max",
+          "backend": "Metal",
+          "completed": 864,
+          "consumerGpuSignals": 864,
+          "error": "",
+          "flutterConsumerGpuDuration": {
+            "count": 864,
+            "p50Ms": 0.19862502813339233,
+            "p95Ms": 0.23962510749697685,
+            "p99Ms": 0.2560000866651535
+          },
+          "flutterTextureReads": 864,
+          "frameCpuReadbacks": 0,
+          "gpuCompletionToFlutterTextureRead": {
+            "count": 864,
+            "p50Ms": -0.561625,
+            "p95Ms": -0.244458,
+            "p99Ms": 0.149417
+          },
+          "height": 540,
+          "nativeEncodeIncludingPoolAcquire": {
+            "count": 865,
+            "p50Ms": 0.655417,
+            "p95Ms": 0.876625,
+            "p99Ms": 1.655166
+          },
+          "notifiedFlutter": 865,
+          "poolMisses": 0,
+          "producerGpuGates": 864,
+          "retiredLeases": 863,
+          "retirementErrors": 0,
+          "skippedBusy": 0,
+          "submitted": 865,
+          "submitToCompletionIncludingEncode": {
+            "count": 864,
+            "p50Ms": 1.313584,
+            "p95Ms": 1.529875,
+            "p99Ms": 2.1915
+          },
+          "submitToFlutterGpuCompletionCallback": {
+            "count": 864,
+            "p50Ms": 2.468791,
+            "p95Ms": 2.984125,
+            "p99Ms": 4.394875
+          },
+          "submitToFlutterTextureRead": {
+            "count": 864,
+            "p50Ms": 0.749792,
+            "p95Ms": 1.014209,
+            "p99Ms": 1.968291
+          },
+          "surfaceAllocations": 3,
+          "surfacePoolCapacity": 3,
+          "surfaceReuses": 863,
+          "textureReadsBeforeProducerFence": 843,
+          "width": 960,
+          "jsFrames": 865,
+          "jsFfiCall": {
+            "count": 834,
+            "p50Ms": 0.6770000000001346,
+            "p95Ms": 0.9100000000003092,
+            "p99Ms": 1.6849999999999454
+          },
+          "rafInterval": {
+            "count": 834,
+            "p50Ms": 8.333000000000084,
+            "p95Ms": 8.45299999999952,
+            "p99Ms": 8.519000000000233
+          },
+          "rssBytes": 335970304,
+          "flutterBuild": {
+            "count": 845,
+            "p50Ms": 0.777,
+            "p95Ms": 1.056,
+            "p99Ms": 1.997
+          },
+          "flutterRaster": {
+            "count": 845,
+            "p50Ms": 1.419,
+            "p95Ms": 1.66,
+            "p99Ms": 1.881
+          }
+        },
+        {
+          "kind": "frames",
+          "adapter": "Apple M2 Max",
+          "backend": "Metal",
+          "completed": 925,
+          "consumerGpuSignals": 925,
+          "error": "",
+          "flutterConsumerGpuDuration": {
+            "count": 925,
+            "p50Ms": 0.19749999046325684,
+            "p95Ms": 0.2422085963189602,
+            "p99Ms": 0.25687459856271744
+          },
+          "flutterTextureReads": 925,
+          "frameCpuReadbacks": 0,
+          "gpuCompletionToFlutterTextureRead": {
+            "count": 925,
+            "p50Ms": -0.34175,
+            "p95Ms": 0.096,
+            "p99Ms": 0.212625
+          },
+          "height": 360,
+          "nativeEncodeIncludingPoolAcquire": {
+            "count": 926,
+            "p50Ms": 0.775708,
+            "p95Ms": 1.597459,
+            "p99Ms": 2.244167
+          },
+          "notifiedFlutter": 926,
+          "poolMisses": 0,
+          "producerGpuGates": 925,
+          "retiredLeases": 924,
+          "retirementErrors": 0,
+          "skippedBusy": 0,
+          "submitted": 926,
+          "submitToCompletionIncludingEncode": {
+            "count": 925,
+            "p50Ms": 1.227375,
+            "p95Ms": 2.004375,
+            "p99Ms": 2.771334
+          },
+          "submitToFlutterGpuCompletionCallback": {
+            "count": 925,
+            "p50Ms": 2.771209,
+            "p95Ms": 4.042709,
+            "p99Ms": 5.478875
+          },
+          "submitToFlutterTextureRead": {
+            "count": 925,
+            "p50Ms": 0.89625,
+            "p95Ms": 1.803583,
+            "p99Ms": 2.381125
+          },
+          "surfaceAllocations": 3,
+          "surfacePoolCapacity": 3,
+          "surfaceReuses": 924,
+          "textureReadsBeforeProducerFence": 754,
+          "width": 640,
+          "jsFrames": 926,
+          "jsFfiCall": {
+            "count": 895,
+            "p50Ms": 0.8140000000000782,
+            "p95Ms": 1.6679999999996653,
+            "p99Ms": 2.2899999999999636
+          },
+          "rafInterval": {
+            "count": 895,
+            "p50Ms": 8.333000000000538,
+            "p95Ms": 8.48700000000008,
+            "p99Ms": 8.544000000000779
+          },
+          "rssBytes": 325484544,
+          "flutterBuild": {
+            "count": 1036,
+            "p50Ms": 0.911,
+            "p95Ms": 1.82,
+            "p99Ms": 2.424
+          },
+          "flutterRaster": {
+            "count": 1036,
+            "p50Ms": 1.52,
+            "p95Ms": 1.972,
+            "p99Ms": 3.807
+          }
+        },
+        {
+          "kind": "frames",
+          "adapter": "Apple M2 Max",
+          "backend": "Metal",
+          "completed": 927,
+          "consumerGpuSignals": 927,
+          "error": "",
+          "flutterConsumerGpuDuration": {
+            "count": 927,
+            "p50Ms": 0.1987498253583908,
+            "p95Ms": 0.24287495762109756,
+            "p99Ms": 0.2575414255261421
+          },
+          "flutterTextureReads": 927,
+          "frameCpuReadbacks": 0,
+          "gpuCompletionToFlutterTextureRead": {
+            "count": 927,
+            "p50Ms": -0.518792,
+            "p95Ms": -0.237875,
+            "p99Ms": 0.143916
+          },
+          "height": 540,
+          "nativeEncodeIncludingPoolAcquire": {
+            "count": 928,
+            "p50Ms": 0.737583,
+            "p95Ms": 0.936541,
+            "p99Ms": 1.359167
+          },
+          "notifiedFlutter": 928,
+          "poolMisses": 0,
+          "producerGpuGates": 927,
+          "retiredLeases": 926,
+          "retirementErrors": 0,
+          "skippedBusy": 0,
+          "submitted": 928,
+          "submitToCompletionIncludingEncode": {
+            "count": 927,
+            "p50Ms": 1.369334,
+            "p95Ms": 1.53775,
+            "p99Ms": 1.908625
+          },
+          "submitToFlutterGpuCompletionCallback": {
+            "count": 927,
+            "p50Ms": 2.701333,
+            "p95Ms": 3.085791,
+            "p99Ms": 3.637833
+          },
+          "submitToFlutterTextureRead": {
+            "count": 927,
+            "p50Ms": 0.846833,
+            "p95Ms": 1.088583,
+            "p99Ms": 1.787375
+          },
+          "surfaceAllocations": 3,
+          "surfacePoolCapacity": 3,
+          "surfaceReuses": 926,
+          "textureReadsBeforeProducerFence": 902,
+          "width": 960,
+          "jsFrames": 928,
+          "jsFfiCall": {
+            "count": 897,
+            "p50Ms": 0.7630000000003747,
+            "p95Ms": 0.9819999999999709,
+            "p99Ms": 1.3940000000002328
+          },
+          "rafInterval": {
+            "count": 897,
+            "p50Ms": 8.332000000000335,
+            "p95Ms": 8.44800000000032,
+            "p99Ms": 8.50799999999981
+          },
+          "rssBytes": 333840384,
+          "flutterBuild": {
+            "count": 927,
+            "p50Ms": 0.876,
+            "p95Ms": 1.129,
+            "p99Ms": 1.831
+          },
+          "flutterRaster": {
+            "count": 927,
+            "p50Ms": 1.547,
+            "p95Ms": 1.749,
+            "p99Ms": 1.855
+          }
+        }
+      ],
+      "closedNativeSessions": 3,
+      "activeNativeSessionsAfterClose": 0,
+      "liveDawnDevicesAfterClose": 0,
+      "liveGpuTextureLeasesAfterClose": 0,
+      "snapshotReadbacks": 3,
+      "steadyStateFrameReadbacks": 0
+    }
+  },
+  "checks": {
+    "nativeReleaseBuild": true,
+    "dylibExportsRestrictedToProbe": true,
+    "dartAnalysis": true,
+    "cppFormatting": true,
+    "pythonSyntax": true,
+    "forcedProducerFenceAndPixelReadback": true,
+    "maintainedDebugRuntimeV8": {
+      "passed": 58,
+      "failed": 0
+    },
+    "maintainedDebugDecorationUI": {
+      "passed": 5,
+      "failed": 0
+    },
+    "visualInspection": true,
+    "sharedFlutterSourcesUnchanged": true,
+    "fullWebGPUAPI": false,
+    "impellerComparison": false,
+    "physicalPresentationLatency": false,
+    "longRunStress": false,
+    "runtimeInvocation": "Direct tool/check_runtime.dart --engine=v8 with the maintained Dart SDK and explicit FLUTTER_ENGINE; the default Melos invocation selected the stock SDK."
+  },
+  "measurementProtocol": {
+    "order": [
+      "immutableBaseline",
+      "pooledFence"
+    ],
+    "repositoryChecksFinishedBeforeMeasurements": true,
+    "metalValidationEnabledDuringPerformanceRuns": false,
+    "excludedEarlierLaunch": "An earlier optimized launch overlapped runtime checks; it is not used in this comparison.",
+    "timingScope": "Texture acquisition is a CPU timestamp; consumer completion includes Metal callback scheduling. Neither is screen scanout."
+  }
+}

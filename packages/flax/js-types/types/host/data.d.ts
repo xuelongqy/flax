@@ -7,10 +7,15 @@ export interface BlobPropertyBag {
 export interface FilePropertyBag extends BlobPropertyBag {
     lastModified?: number;
 }
+export declare let blobParts: (value: object) => readonly Uint8Array[] | undefined;
+export declare let blobType: (value: object) => string | undefined;
+export declare let fileMetadata: (value: object) => readonly [string, number] | undefined;
+export declare let restoreBlob: (parts: Uint8Array[], type: string, name?: string, lastModified?: number) => Blob;
+export declare function blobBuffer(value: object): ArrayBuffer;
 export declare class Blob {
     #private;
     readonly size: number;
-    readonly type: string;
+    get type(): string;
     constructor(parts?: Iterable<BlobPart>, options?: BlobPropertyBag);
     get [Symbol.toStringTag](): string;
     slice(start?: number, end?: number, type?: string): Blob;
@@ -20,8 +25,9 @@ export declare class Blob {
     stream(): ReadableStream<Uint8Array>;
 }
 export declare class File extends Blob {
-    readonly name: string;
-    readonly lastModified: number;
+    #private;
+    get name(): string;
+    get lastModified(): number;
     readonly webkitRelativePath = "";
     constructor(parts: Iterable<BlobPart>, name: string, options?: FilePropertyBag);
     get [Symbol.toStringTag](): string;

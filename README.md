@@ -48,6 +48,13 @@ timers, URL, encoding, cancellation, data containers, Web Streams and HTTP Fetch
 creates its session HTTP client only on the first request. Bare runtimes remain explicit
 and engine-only.
 
+Core owns shared canvases, canvas-scoped geometry/input/ResizeObserver and image
+resources, plus `CanvasView`. Optional Canvas 2D and
+[Dawn WebGPU](packages/flax_webgpu/README.md) supply independent contexts. The first
+standard WebGPU JS development profile uses maintained macOS engine interop and
+producer-staged native assets. Complete conformance remains open; its package guide
+separates historical receipts from current validation.
+
 Generated dart:async bindings provide lazy, bidirectional Stream references,
 controllers, subscriptions, transforms, AsyncIterable conversion and native Flutter
 StreamBuilder. They remain separate from Fetch Web Streams. See
@@ -204,9 +211,16 @@ no independent SDK runtime fallback. See
 
 FVM is optional; the Flutter executable on PATH must use the configured version. Melos
 runs through `dart run`, so a global Melos installation is unnecessary. Commit both
-workspace lockfiles. Default CI runs the complete static workspace and package archive
-checks. The former SDK platform workflows are retired; maintained-engine runtime CI is
-pending.
+workspace lockfiles. `melos check` never fetches or builds an engine, but its native
+package and generator tests require an existing matching maintained engine. The
+[reusable macOS CI job](.github/workflows/packages.yml) explicitly prepares the pinned
+maintained fork, verified V8 SDK and Dawn native payload before workspace, runtime, FFI
+and archive checks. Its hosted build-space cleanup is restricted to GitHub-hosted
+runners; local setup never runs that cleanup. The pinned fork commit and this Flax
+change must be pushed before a hosted run is possible; local validation is not a remote
+CI result. See the
+[integration task](docs/tasks/webgpu-js-api.md#latest-main-integration). The former SDK
+platform workflows remain retired.
 
 ## Repository map
 

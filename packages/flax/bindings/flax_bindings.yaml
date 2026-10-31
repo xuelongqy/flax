@@ -81,6 +81,10 @@ functions:
   - identical
   - applyBoxFit
 classes:
+  - FlaxCanvasContent
+  - FlaxCanvasTarget
+  - FlaxCanvasView
+  - FlaxImageBitmapResource
   - FlaxFont
   - FlaxFontScope
   - Offset
@@ -238,6 +242,22 @@ extensions:
   - EnumByName
 overrides:
   classes:
+    FlaxCanvasContent:
+      getters: []
+      setters: []
+      instanceMethods: {}
+    FlaxImageBitmapResource:
+      getters: []
+      setters: []
+      instanceMethods: {}
+    FlaxCanvasTarget:
+      getters: []
+      setters: []
+      instanceMethods: {}
+    FlaxCanvasView:
+      getters: []
+      setters: []
+      instanceMethods: {}
     Error:
       instanceMethods:
         toString: []

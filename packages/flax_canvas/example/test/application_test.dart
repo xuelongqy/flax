@@ -1,4 +1,5 @@
 import 'package:flax_test/flax_test.dart';
+import 'package:flax/flax.dart' show FlaxCanvasContent;
 
 import 'dart:typed_data';
 import 'dart:ui' as ui;
@@ -126,7 +127,7 @@ Future<void> waitFor(WidgetTester tester, bool Function() ready) async {
   expect(ready(), isTrue, reason: 'PNG encode/decode did not finish');
 }
 
-Future<Uint8List> pixels(WidgetTester tester, FlaxCanvasSurface surface) async {
+Future<Uint8List> pixels(WidgetTester tester, FlaxCanvasContent surface) async {
   final result = await tester.runAsync(() async {
     final image = (await surface.rasterize())!;
     try {

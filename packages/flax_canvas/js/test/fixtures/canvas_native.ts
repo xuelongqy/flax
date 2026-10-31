@@ -6,24 +6,37 @@ const canvas = new OffscreenCanvas(64, 64);
 const context = canvas.getContext('2d')!;
 type EncoderCanvas = OffscreenCanvas & { flush(): void };
 type Call = (operation: string, ...args: unknown[]) => unknown;
-// The benchmark reuses the installed encoder instead of bundling a second copy.
-const CanvasEncoder = Object.getPrototypeOf(OffscreenCanvas) as new (
-  width: number,
-  height: number,
-  call: Call,
-) => EncoderCanvas;
-const dartCanvas = new CanvasEncoder(64, 64, (operation, ...args) => {
-  if (operation === 'create') return { width: args[0], height: args[1] };
-  if (operation === 'commit') {
-    const call = (
-      globalThis as unknown as { __flaxCanvasDartBatch(bytes: Uint8Array): void }
-    ).__flaxCanvasDartBatch;
-    return call(args[1] as Uint8Array);
+// Reuse the installed 2D backend with a reference host, without bundling another encoder.
+const host = (
+  globalThis as unknown as {
+    __flaxCanvasHost: {
+      backend(canvas: OffscreenCanvas): object;
+      target(canvas: OffscreenCanvas): object;
+    };
   }
-  if (operation === 'disposeSurface') return;
-  throw new Error('Unsupported reference operation: ' + operation);
-});
-const dartContext = dartCanvas.getContext('2d')!;
+).__flaxCanvasHost;
+const CanvasEncoder = host.backend(canvas).constructor as new (
+  canvas: OffscreenCanvas,
+  call: Call,
+  target: object,
+) => { getContext(): OffscreenCanvasRenderingContext2D; flush(): void };
+const reference = new OffscreenCanvas(64, 64);
+const dartCanvas = new CanvasEncoder(
+  reference,
+  (operation, ...args) => {
+    if (operation === 'create') return { width: args[0], height: args[1] };
+    if (operation === 'commit') {
+      const call = (
+        globalThis as unknown as { __flaxCanvasDartBatch(bytes: Uint8Array): void }
+      ).__flaxCanvasDartBatch;
+      return call(args[1] as Uint8Array);
+    }
+    if (operation === 'disposeSurface') return;
+    throw new Error('Unsupported reference operation: ' + operation);
+  },
+  host.target(reference),
+);
+const dartContext = dartCanvas.getContext()!;
 
 Object.assign(globalThis, {
   canvasNativeBenchmark: {

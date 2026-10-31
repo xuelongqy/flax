@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:path/path.dart' as p;
 
 import 'package_discovery.dart';
+import 'process.dart';
 
 /// Directory names skipped when staging package trees for outside archives.
 ///
@@ -12,6 +13,7 @@ import 'package_discovery.dart';
 const archiveSkipNames = {
   '.cache',
   '.dart_tool',
+  '.flax',
   '.local',
   '.pnpm-store',
   'build',
@@ -92,6 +94,14 @@ void prepareDartArchivePubspec(
   pubspec.writeAsStringSync(
     '${const JsonEncoder.withIndent('  ').convert(data)}\n',
   );
+}
+
+/// Validate producer-owned outputs before copying away their source context.
+Future<void> runNpmArchivePrepack(FlaxNpmPackage package) async {
+  final scripts = package.manifest['scripts'] as Map<String, dynamic>?;
+  if (scripts?.containsKey('prepack') ?? false) {
+    await run('pnpm', ['run', 'prepack'], directory: package.directory.path);
+  }
 }
 
 void prepareNpmArchiveManifest(

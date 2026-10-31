@@ -1,0 +1,13 @@
+format: 2
+dart:
+  entrypoint: package:flax_webgpu/flax_webgpu.dart
+javascript:
+  package: '@flax/webgpu-runtime'
+  types: '@flax/webgpu'
+  version: same
+  mode: runtime
+capabilities:
+  - host-plugin
+registration:
+  plugins:
+    - FlaxWebGpuPlugin

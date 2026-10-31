@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  />
+  <title>Spectrum — WebGPU studio</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --background: #f5f5f0;
+      --surface: #fff;
+      --ink: #202d29;
+      --muted: #66736b;
+      --green: #245c48;
+      --on-green: #fff;
+      --border: #e1e6dd;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --background: #151c19;
+        --surface: #202b25;
+        --ink: #e4eee7;
+        --muted: #b1c1b6;
+        --green: #a2d6b5;
+        --on-green: #133525;
+        --border: #405249;
+      }
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--ink);
+      font:
+        15px/1.45 system-ui,
+        sans-serif;
+    }
+    header {
+      height: 52px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 0 20px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+    header b {
+      font-size: 13px;
+      letter-spacing: 3px;
+    }
+    main {
+      max-width: 1000px;
+      margin: auto;
+      padding: 32px 24px;
+    }
+    .eyebrow {
+      font-size: 12px;
+      color: var(--green);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+    h1 {
+      font-size: 36px;
+      line-height: 1.45;
+      margin: 12px 0 8px;
+      font-weight: 600;
+    }
+    p {
+      margin: 0 0 12px;
+      color: var(--muted);
+    }
+    .intro {
+      font-size: 16px;
+      margin-bottom: 28px;
+    }
+    .viewport {
+      width: min(880px, 100%);
+      margin: auto;
+    }
+    canvas {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #020307;
+      touch-action: none;
+    }
+    #status {
+      margin-top: 14px;
+      font-size: 13px;
+    }
+    #detail {
+      font-size: 13px;
+    }
+    #fps {
+      color: var(--green);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .choices {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    button {
+      background: var(--green);
+      color: var(--on-green);
+      border: 1px solid var(--green);
+      border-radius: 12px;
+      padding: 12px 18px;
+      font: inherit;
+      cursor: pointer;
+    }
+    button[aria-pressed='true'] {
+      outline: 2px solid #e7b86b;
+      outline-offset: 2px;
+    }
+    button:focus-visible {
+      outline: 3px solid #e7b86b;
+      outline-offset: 3px;
+    }
+    button:disabled {
+      opacity: 0.6;
+      cursor: wait;
+    }
+    section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      margin: 18px 0;
+      padding: 24px;
+    }
+    h2 {
+      font-size: 20px;
+      margin: 0 0 6px;
+    }
+    section > p {
+      font-size: 14px;
+      margin-bottom: 22px;
+    }
+    #resolution,
+    #submission {
+      margin-top: 12px;
+    }
+    small {
+      display: block;
+      margin-top: 10px;
+      color: var(--muted);
+    }
+  </style>
+  <header><b>HTML</b><span>WebGPU / Spectrum studio</span></header>
+  <main>
+    <div class="eyebrow">WEBGPU / SPECTRUM STUDIO</div>
+    <h1>A little world, on the GPU.</h1>
+    <p class="intro">
+      Drag to shape a particle field, orbit a cube city, or wander through a prism. The
+      same renderer runs here and in Flax.
+    </p>
+    <div class="viewport">
+      <canvas
+        width="960"
+        height="540"
+        aria-label="Interactive GPU scene. Drag to reshape or orbit."
+      ></canvas>
+    </div>
+    <div id="status" role="status">Starting the GPU…</div>
+    <div id="detail"></div>
+    <div id="fps"></div>
+    <div class="choices">
+      <button id="motion">Play motion</button><button id="center">Center view</button
+      ><button id="reset">Reset studio</button><button id="restart">Restart GPU</button>
+    </div>
+    <section>
+      <h2>01 / Choose a world</h2>
+      <p>Three real GPU workloads, with no CPU drawing fallback.</p>
+      <div class="choices" id="scene"></div>
+    </section>
+    <section>
+      <h2>02 / Set the pace</h2>
+      <p>Use the same quality and pixel resolution when comparing Flax.</p>
+      <div class="choices" id="quality"></div>
+      <div class="choices" id="resolution"></div>
+      <button id="submission">Cube submission: instanced</button
+      ><small
+        >Instancing draws the same cube field with one call. Per-object mode shows the
+        cost of many API calls.</small
+      >
+    </section>
+    <section>
+      <h2>03 / Color the atmosphere</h2>
+      <p>A sampled GPU palette texture shared by all three worlds.</p>
+      <div class="choices" id="palette"></div>
+    </section>
+    <section>
+      <h2>04 / Measure this scene</h2>
+      <p>
+        The sample counts submissions and GPU completion notifications separately. It
+        does not measure screen presentations.
+      </p>
+      <button id="sample">Run 8-second sample</button>
+      <p id="result" style="margin-top: 12px">
+        Choose a world and load, then run the same sample in Flax.
+      </p>
+    </section>
+    <small>Standard WebGPU. Shared renderer. No per-frame pixel readback.</small>
+  </main>
+  <script type="module" src="app.mjs"></script>
+</html>

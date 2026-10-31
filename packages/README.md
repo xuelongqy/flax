@@ -17,7 +17,8 @@ and native code together when those parts exist. An extension depends on `flax` 
 | [flax_engine_v8](flax_engine_v8/README.md)             | Experimental V8 adapter, pinned inputs, assets, and runtime tests                                  |
 | [flax_websocket](flax_websocket/README.md)             | Optional WebSocket session plugin                                                                  |
 | [flax_local_storage](flax_local_storage/README.md)     | Optional persistent localStorage session plugin                                                    |
-| [flax_canvas](flax_canvas/README.md)                   | Optional Canvas host plugin and generated CanvasView binding                                       |
+| [flax_canvas](flax_canvas/README.md)                   | Optional Canvas 2D context and image/path APIs on the Core canvas host                             |
+| [flax_webgpu](flax_webgpu/README.md)                   | Experimental standard JS WebGPU host backed by Dawn/Metal on macOS arm64                           |
 | [flax_ffi](flax_ffi/README.md)                         | Optional JS-only FFI package, native calls, memory and callbacks                                   |
 | [flax_ffi_codegen](flax_ffi_codegen/README.md)         | Optional Node development tool for C header definitions and resource bindings                      |
 

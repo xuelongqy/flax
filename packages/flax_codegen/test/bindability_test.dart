@@ -47,6 +47,63 @@ void main() {
   }
 
   test(
+    'instance method overrides trim inferred lifecycle capabilities only',
+    () async {
+      final parser = FlaxCodegenBindingParser(repoRoot);
+      addTearDown(parser.dispose);
+      FlaxCodegenBindingConfig config(
+        Map<String, List<String>> methods, [
+        Map<String, Object> explicit = const {},
+      ]) => FlaxCodegenBindingConfig.fromMap({
+        'format': 2,
+        'name': 'lifecycle_override',
+        'library': Uri.file(
+          p.join(packageRoot, 'test/fixtures/plugin/objects.dart'),
+        ).toString(),
+        'jsPackage': '@example/lifecycle-override',
+        'dartOutput': 'unused.dart',
+        'tsOutput': 'unused.ts',
+        'classes': ['Gauge'],
+        'overrides': {
+          'classes': {
+            'Gauge': {'instanceMethods': methods, ...explicit},
+          },
+        },
+      });
+
+      final narrowed = (await parser.parse(
+        config({
+          'move': ['amount'],
+        }),
+      )).classes.single;
+      expect(narrowed.disposeMethod, isNull);
+      expect(narrowed.listenerPairs, isEmpty);
+      final retained = (await parser.parse(
+        config(
+          {
+            'dispose': [],
+            'addListener': ['listener'],
+            'removeListener': ['listener'],
+          },
+          {
+            'listenerPairs': {'addListener': 'removeListener'},
+          },
+        ),
+      )).classes.single;
+      expect(retained.disposeMethod, 'dispose');
+      expect(retained.listenerPairs, {'addListener': 'removeListener'});
+      for (final explicit in [
+        {'disposeMethod': 'dispose'},
+        {
+          'listenerPairs': {'addListener': 'removeListener'},
+        },
+      ]) {
+        await expectLater(parser.parse(config({}, explicit)), throwsStateError);
+      }
+    },
+  );
+
+  test(
     'proxy proposal ignores inaccessible inherited private methods',
     () async {
       final parser = FlaxCodegenBindingParser(repoRoot);

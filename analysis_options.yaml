@@ -15,6 +15,10 @@ analyzer:
     - experiments/ffi_*/**
     # This template is compiled with its private checkpoint patch in an isolated copy.
     - experiments/js_async_jobs/generated_app.dart
+    # Copied hosts/tests are analyzed with their runner's declared dependencies.
+    - experiments/webgpu_dawn/app.dart
+    - experiments/webgpu_dawn/standard_api/app.dart
+    - experiments/dedicated_workers/carrier/worker_carrier_test.dart
     # Copied into its own generated package and compiled by native-asset acceptance.
     - packages/flax_build/js/src/native/build.dart
     # A copied package with placeholder dependencies, analyzed independently.

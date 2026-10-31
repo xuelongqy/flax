@@ -1,0 +1,767 @@
+{
+  "collectedAt": "2026-10-28T12:55:28.024Z",
+  "platform": "Apple M2 Max, macOS 27.0.1 (26A434), AC power",
+  "browser": "Microsoft Edge (Chromium)",
+  "browserVersion": {
+    "protocolVersion": "1.3",
+    "product": "Edg/156.0.4314.50",
+    "revision": "@af2ba23ae0ecf7084d900446fc59d5119dd5fd5e",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0",
+    "jsVersion": "15.6.12.7"
+  },
+  "viewport": {
+    "logicalWidth": 1100,
+    "logicalHeight": 668,
+    "devicePixelRatio": 1,
+    "displayPhysicalWidth": 3440,
+    "displayPhysicalHeight": 1440
+  },
+  "shaderSha256": "68661f2c01fe1e7ca883af8f1d3a88bd55415b278bc5389b0e5380433e52da24",
+  "sharedSceneSha256": "82495052bfd21c63861c80e2ed8116d3692fd4f7e6c2070c1e8192e6fa42892b",
+  "sourceSha256": {
+    "experiments/webgpu_dawn/standard_api/scene.mjs": "82495052bfd21c63861c80e2ed8116d3692fd4f7e6c2070c1e8192e6fa42892b",
+    "experiments/webgpu_dawn/standard_api/browser.mjs": "7d657f4635b5522a801d587d6bd94d0b862c851867c30adce936f7a23e469749",
+    "experiments/webgpu_dawn/standard_api/browser.html": "73710eebf268b96cc34f7ae5b7146f98da347ebebe94bceb7aad0764982eaecc",
+    "experiments/webgpu_dawn/standard_api/flax.mjs": "db407c10cd99d8ff2fb0127ae67c7b231efb87c1e61f6946f796f1b61deabe27",
+    "experiments/webgpu_dawn/standard_api/app.dart": "200f6583ce2a3a141efd5c5ef956d9bd23854d6e2f86720a282ee9a6aa3cfeda",
+    "packages/flax_webgpu/js/src/webgpu.ts": "fff5789e876aba857fa80e425cbe9ed15e9beb5a10efb3f31385f63efe43933e",
+    "packages/flax_webgpu/js/src/convert.ts": "d9588b18c49ce111a2e29eac712632ed857eb4cdd2d5bde46de92aa9f7ee0930",
+    "packages/flax_webgpu/native/src/async.mm": "60c5c2e5f40d02cdbec7630d259e0d6f7f84af7689684802e774e0a19d7d33f1",
+    "packages/flax_webgpu/native/src/canvas.inc": "ba2fc100c7a7ada27476bafd282cd3cc0690e86ba6604a78c4605b5688799d4e",
+    "packages/flax_webgpu/native/src/benchmark.inc": "bef8096534eaf3d7c8988f4990f64df49a0caefccaa3d3d3e97cb892c4887c49"
+  },
+  "nativeDylibSha256": "1a71cad986e6ccf2f0c71e48e73c69681ca135134cbbcaccc217970627539214",
+  "engineUuid": "37522D02-CD1C-3244-AC42-49BA21B54373",
+  "inputs": {
+    "dawnRevision": "5fbd545292cb7a4a9a275e322abec6007ffe2ae8",
+    "gpuwebRevision": "22507c95ccb9e705eddc7cab8f28aa46b134f5fe",
+    "ctsRevision": "cc11994e92512d0a3715e9d28876ec48accb971a",
+    "headerSha256": "44126360bbd35339b3b1ccb8ab5bdf21a4a1109bc05f086b179df5ea5a2734d0",
+    "idlSha256": "5293ea7f38416cb37b0ddfc636286514ff622901caa19504a4bdede2ec5a80b2"
+  },
+  "protocol": {
+    "performanceOrder": ["flax", "edge", "edge", "flax"],
+    "warmupSubmittedFrames": 31,
+    "gpuTimestampsSeparate": true,
+    "nativeLatencyInstrumentationSeparate": true,
+    "detailedCpuProfilingSeparate": true,
+    "performancePixelReadbacks": 0,
+    "physicalScreenLatencyMeasured": false
+  },
+  "statistics": "Ranges of independent phase quantiles, not pooled or averaged quantiles.",
+  "performanceMeasuredFrames": {
+    "flax": 5513,
+    "edge": 5576
+  },
+  "flaxSessionsRetired": 15,
+  "allMonitoredCountersZero": true,
+  "presentation": {
+    "source": ".local/webgpu-api-comparison/edge-trace-trace.json",
+    "rendererPid": 68959,
+    "method": "Match a webgpu-start mark inside its AnimationFrame interval; join args.id to AnimationFrame::Presentation.",
+    "endpoint": "Microsoft Edge Chromium presentation feedback; not the same endpoint as Flutter GPU completion.",
+    "warmupSubmittedFrames": 31,
+    "excludedVerificationDraws": 3,
+    "unmatchedMeasuredMarks": 0,
+    "pipelineReporterStates": {
+      "STATE_NO_UPDATE_DESIRED": 6,
+      "STATE_PRESENTED_ALL": 1089,
+      "STATE_DROPPED": 2
+    },
+    "phases": [
+      {
+        "width": 960,
+        "height": 540,
+        "jsRenderStartToPresentationFeedback": {
+          "count": 330,
+          "p50Ms": 11.414,
+          "p95Ms": 12.371,
+          "p99Ms": 19.586
+        }
+      },
+      {
+        "width": 640,
+        "height": 360,
+        "jsRenderStartToPresentationFeedback": {
+          "count": 329,
+          "p50Ms": 11.386,
+          "p95Ms": 12.335,
+          "p99Ms": 19.474
+        }
+      },
+      {
+        "width": 960,
+        "height": 540,
+        "jsRenderStartToPresentationFeedback": {
+          "count": 329,
+          "p50Ms": 11.767,
+          "p95Ms": 19.549,
+          "p99Ms": 19.871
+        }
+      }
+    ]
+  },
+  "rows": [
+    {
+      "width": 960,
+      "height": 540,
+      "phasePairs": 4,
+      "flax": {
+        "apiTotal": {
+          "count": 3685,
+          "p50Ms": {
+            "min": 0.42200000000002547,
+            "max": 0.8820000000000618
+          },
+          "p95Ms": {
+            "min": 1.0839999999998327,
+            "max": 1.4370000000003529
+          },
+          "p99Ms": {
+            "min": 1.400000000000091,
+            "max": 1.9490000000005239
+          }
+        },
+        "completionPromise": {
+          "count": 3685,
+          "p50Ms": {
+            "min": 1.5399999999999636,
+            "max": 2.1960000000003674
+          },
+          "p95Ms": {
+            "min": 2.731999999999971,
+            "max": 2.9909999999999854
+          },
+          "p99Ms": {
+            "min": 3.1949999999999363,
+            "max": 4.014000000000124
+          }
+        },
+        "callbackFps": {
+          "min": 118.5796200213495,
+          "max": 119.48378365314902
+        },
+        "clockCallMs": {
+          "min": 0.0019313999999998486,
+          "max": 0.004054799999999886
+        },
+        "gpuPass": {
+          "count": 1815,
+          "p50Ms": {
+            "min": 0.32768,
+            "max": 0.32768
+          },
+          "p95Ms": {
+            "min": 0.393216,
+            "max": 0.393216
+          },
+          "p99Ms": {
+            "min": 0.393216,
+            "max": 0.393216
+          }
+        },
+        "detailedCpu": {
+          "writeBuffer": {
+            "count": 1834,
+            "p50Ms": {
+              "min": 0.04899999999997817,
+              "max": 0.06899999999995998
+            },
+            "p95Ms": {
+              "min": 0.13300000000026557,
+              "max": 0.14000000000032742
+            },
+            "p99Ms": {
+              "min": 0.19499999999970896,
+              "max": 0.21499999999969077
+            }
+          },
+          "currentTexture": {
+            "count": 1834,
+            "p50Ms": {
+              "min": 0.03900000000021464,
+              "max": 0.05399999999985994
+            },
+            "p95Ms": {
+              "min": 0.09500000000025466,
+              "max": 0.10500000000001819
+            },
+            "p99Ms": {
+              "min": 0.12799999999970169,
+              "max": 0.14499999999952706
+            }
+          },
+          "encodeCommands": {
+            "count": 1834,
+            "p50Ms": {
+              "min": 0.48700000000008004,
+              "max": 0.593000000000302
+            },
+            "p95Ms": {
+              "min": 0.9160000000001673,
+              "max": 0.9459999999999127
+            },
+            "p99Ms": {
+              "min": 1.1159999999999854,
+              "max": 1.2229999999999563
+            }
+          },
+          "submit": {
+            "count": 1834,
+            "p50Ms": {
+              "min": 0.09100000000012187,
+              "max": 0.12799999999970169
+            },
+            "p95Ms": {
+              "min": 0.2070000000003347,
+              "max": 0.2139999999999418
+            },
+            "p99Ms": {
+              "min": 0.2780000000002474,
+              "max": 0.2920000000003711
+            }
+          },
+          "completionRegistration": {
+            "count": 1834,
+            "p50Ms": {
+              "min": 0.015000000000327418,
+              "max": 0.016000000000531145
+            },
+            "p95Ms": {
+              "min": 0.03200000000003911,
+              "max": 0.03699999999980719
+            },
+            "p99Ms": {
+              "min": 0.0500000000001819,
+              "max": 0.057999999999992724
+            }
+          }
+        }
+      },
+      "edge": {
+        "apiTotal": {
+          "count": 3717,
+          "p50Ms": {
+            "min": 0.034999847412109375,
+            "max": 0.06500005722045898
+          },
+          "p95Ms": {
+            "min": 0.10000038146972656,
+            "max": 0.125
+          },
+          "p99Ms": {
+            "min": 0.125,
+            "max": 0.16499996185302734
+          }
+        },
+        "completionPromise": {
+          "count": 3717,
+          "p50Ms": {
+            "min": 1.4200000762939453,
+            "max": 1.864999771118164
+          },
+          "p95Ms": {
+            "min": 2.3550000190734863,
+            "max": 2.5799999237060547
+          },
+          "p99Ms": {
+            "min": 2.8199996948242188,
+            "max": 3.125
+          }
+        },
+        "callbackFps": {
+          "min": 119.98180921400008,
+          "max": 120.00198499642062
+        },
+        "clockCallMs": {
+          "min": 0.0001310000419616699,
+          "max": 0.00017899999618530273
+        },
+        "gpuPass": {
+          "count": 1845,
+          "p50Ms": {
+            "min": 0.32768,
+            "max": 0.32768
+          },
+          "p95Ms": {
+            "min": 0.32768,
+            "max": 0.32768
+          },
+          "p99Ms": {
+            "min": 0.32768,
+            "max": 0.32768
+          }
+        },
+        "detailedCpu": {
+          "writeBuffer": {
+            "count": 1859,
+            "p50Ms": {
+              "min": 0.005000114440917969,
+              "max": 0.009999752044677734
+            },
+            "p95Ms": {
+              "min": 0.015000343322753906,
+              "max": 0.019999980926513672
+            },
+            "p99Ms": {
+              "min": 0.024999618530273438,
+              "max": 0.024999618530273438
+            }
+          },
+          "currentTexture": {
+            "count": 1859,
+            "p50Ms": {
+              "min": 0.005000114440917969,
+              "max": 0.019999980926513672
+            },
+            "p95Ms": {
+              "min": 0.02500009536743164,
+              "max": 0.034999847412109375
+            },
+            "p99Ms": {
+              "min": 0.039999961853027344,
+              "max": 0.04500007629394531
+            }
+          },
+          "encodeCommands": {
+            "count": 1859,
+            "p50Ms": {
+              "min": 0.010000228881835938,
+              "max": 0.02500009536743164
+            },
+            "p95Ms": {
+              "min": 0.039999961853027344,
+              "max": 0.04500007629394531
+            },
+            "p99Ms": {
+              "min": 0.05500030517578125,
+              "max": 0.059999942779541016
+            }
+          },
+          "submit": {
+            "count": 1859,
+            "p50Ms": {
+              "min": 0.009999752044677734,
+              "max": 0.015000343322753906
+            },
+            "p95Ms": {
+              "min": 0.02500009536743164,
+              "max": 0.03000020980834961
+            },
+            "p99Ms": {
+              "min": 0.03500032424926758,
+              "max": 0.039999961853027344
+            }
+          },
+          "completionRegistration": {
+            "count": 1859,
+            "p50Ms": {
+              "min": 0.005000114440917969,
+              "max": 0.014999866485595703
+            },
+            "p95Ms": {
+              "min": 0.024999618530273438,
+              "max": 0.029999732971191406
+            },
+            "p99Ms": {
+              "min": 0.03000020980834961,
+              "max": 0.039999961853027344
+            }
+          }
+        }
+      },
+      "pairedApiQuantileDifferenceMs": {
+        "p50Ms": {
+          "min": 0.3719998092651622,
+          "max": 0.8470001525879525
+        },
+        "p95Ms": {
+          "min": 0.9789999809263463,
+          "max": 1.3170001144412709
+        }
+      },
+      "nativeHandoff": {
+        "publishToFlutterTextureRead": {
+          "count": 1835,
+          "p50Ms": {
+            "min": 0.092959,
+            "max": 0.10025
+          },
+          "p95Ms": {
+            "min": 0.199292,
+            "max": 0.233792
+          },
+          "p99Ms": {
+            "min": 0.287333,
+            "max": 0.327708
+          }
+        },
+        "publishToFlutterGpuCompletion": {
+          "count": 1835,
+          "p50Ms": {
+            "min": 1.21775,
+            "max": 1.271916
+          },
+          "p95Ms": {
+            "min": 1.496708,
+            "max": 1.634708
+          },
+          "p99Ms": {
+            "min": 1.63225,
+            "max": 1.810083
+          }
+        },
+        "textureAcquireToFlutterGpuCompletion": {
+          "count": 1835,
+          "p50Ms": {
+            "min": 1.847667,
+            "max": 2.032
+          },
+          "p95Ms": {
+            "min": 2.648959,
+            "max": 2.8355
+          },
+          "p99Ms": {
+            "min": 3.389,
+            "max": 3.501333
+          }
+        },
+        "readsPendingProducer": 1800
+      }
+    },
+    {
+      "width": 640,
+      "height": 360,
+      "phasePairs": 2,
+      "flax": {
+        "apiTotal": {
+          "count": 1828,
+          "p50Ms": {
+            "min": 0.420999999999367,
+            "max": 0.795999999999367
+          },
+          "p95Ms": {
+            "min": 1.0579999999999927,
+            "max": 1.522000000000162
+          },
+          "p99Ms": {
+            "min": 1.443000000000211,
+            "max": 2.1340000000000146
+          }
+        },
+        "completionPromise": {
+          "count": 1828,
+          "p50Ms": {
+            "min": 1.3959999999999582,
+            "max": 1.96100000000024
+          },
+          "p95Ms": {
+            "min": 2.380000000000109,
+            "max": 2.9659999999994398
+          },
+          "p99Ms": {
+            "min": 3.1450000000004366,
+            "max": 3.9659999999994398
+          }
+        },
+        "callbackFps": {
+          "min": 118.06238338920329,
+          "max": 118.19317130233631
+        },
+        "clockCallMs": {
+          "min": 0.0023984000000002196,
+          "max": 0.003081999999999971
+        },
+        "gpuPass": {
+          "count": 914,
+          "p50Ms": {
+            "min": 0.131072,
+            "max": 0.131072
+          },
+          "p95Ms": {
+            "min": 0.196608,
+            "max": 0.196608
+          },
+          "p99Ms": {
+            "min": 0.196608,
+            "max": 0.196608
+          }
+        },
+        "detailedCpu": {
+          "writeBuffer": {
+            "count": 921,
+            "p50Ms": {
+              "min": 0.05700000000069849,
+              "max": 0.05700000000069849
+            },
+            "p95Ms": {
+              "min": 0.11799999999993815,
+              "max": 0.11799999999993815
+            },
+            "p99Ms": {
+              "min": 0.1500000000005457,
+              "max": 0.1500000000005457
+            }
+          },
+          "currentTexture": {
+            "count": 921,
+            "p50Ms": {
+              "min": 0.046000000000276486,
+              "max": 0.046000000000276486
+            },
+            "p95Ms": {
+              "min": 0.08299999999962893,
+              "max": 0.08299999999962893
+            },
+            "p99Ms": {
+              "min": 0.10799999999994725,
+              "max": 0.10799999999994725
+            }
+          },
+          "encodeCommands": {
+            "count": 921,
+            "p50Ms": {
+              "min": 0.45100000000002183,
+              "max": 0.45100000000002183
+            },
+            "p95Ms": {
+              "min": 0.8159999999998035,
+              "max": 0.8159999999998035
+            },
+            "p99Ms": {
+              "min": 0.9109999999991487,
+              "max": 0.9109999999991487
+            }
+          },
+          "submit": {
+            "count": 921,
+            "p50Ms": {
+              "min": 0.11599999999998545,
+              "max": 0.11599999999998545
+            },
+            "p95Ms": {
+              "min": 0.17899999999997362,
+              "max": 0.17899999999997362
+            },
+            "p99Ms": {
+              "min": 0.19900000000052387,
+              "max": 0.19900000000052387
+            }
+          },
+          "completionRegistration": {
+            "count": 921,
+            "p50Ms": {
+              "min": 0.01599999999962165,
+              "max": 0.01599999999962165
+            },
+            "p95Ms": {
+              "min": 0.032999999999901775,
+              "max": 0.032999999999901775
+            },
+            "p99Ms": {
+              "min": 0.04399999999986903,
+              "max": 0.04399999999986903
+            }
+          }
+        }
+      },
+      "edge": {
+        "apiTotal": {
+          "count": 1859,
+          "p50Ms": {
+            "min": 0.07999992370605469,
+            "max": 0.07999992370605469
+          },
+          "p95Ms": {
+            "min": 0.14499998092651367,
+            "max": 0.14499998092651367
+          },
+          "p99Ms": {
+            "min": 0.18000030517578125,
+            "max": 0.19000005722045898
+          }
+        },
+        "completionPromise": {
+          "count": 1859,
+          "p50Ms": {
+            "min": 1.8050003051757812,
+            "max": 1.875
+          },
+          "p95Ms": {
+            "min": 2.554999828338623,
+            "max": 2.6649999618530273
+          },
+          "p99Ms": {
+            "min": 3.0300002098083496,
+            "max": 3.0999999046325684
+          }
+        },
+        "callbackFps": {
+          "min": 120.00152096243258,
+          "max": 120.00789729004663
+        },
+        "clockCallMs": {
+          "min": 0.00012899999618530274,
+          "max": 0.00024499998092651366
+        },
+        "gpuPass": {
+          "count": 929,
+          "p50Ms": {
+            "min": 0.131072,
+            "max": 0.131072
+          },
+          "p95Ms": {
+            "min": 0.196608,
+            "max": 0.196608
+          },
+          "p99Ms": {
+            "min": 0.196608,
+            "max": 0.196608
+          }
+        },
+        "detailedCpu": {
+          "writeBuffer": {
+            "count": 929,
+            "p50Ms": {
+              "min": 0.010000228881835938,
+              "max": 0.010000228881835938
+            },
+            "p95Ms": {
+              "min": 0.019999980926513672,
+              "max": 0.019999980926513672
+            },
+            "p99Ms": {
+              "min": 0.02500009536743164,
+              "max": 0.02500009536743164
+            }
+          },
+          "currentTexture": {
+            "count": 929,
+            "p50Ms": {
+              "min": 0.019999980926513672,
+              "max": 0.019999980926513672
+            },
+            "p95Ms": {
+              "min": 0.03000020980834961,
+              "max": 0.03000020980834961
+            },
+            "p99Ms": {
+              "min": 0.039999961853027344,
+              "max": 0.039999961853027344
+            }
+          },
+          "encodeCommands": {
+            "count": 929,
+            "p50Ms": {
+              "min": 0.03000020980834961,
+              "max": 0.03000020980834961
+            },
+            "p95Ms": {
+              "min": 0.05000019073486328,
+              "max": 0.05000019073486328
+            },
+            "p99Ms": {
+              "min": 0.07000017166137695,
+              "max": 0.07000017166137695
+            }
+          },
+          "submit": {
+            "count": 929,
+            "p50Ms": {
+              "min": 0.015000343322753906,
+              "max": 0.015000343322753906
+            },
+            "p95Ms": {
+              "min": 0.02500009536743164,
+              "max": 0.02500009536743164
+            },
+            "p99Ms": {
+              "min": 0.034999847412109375,
+              "max": 0.034999847412109375
+            }
+          },
+          "completionRegistration": {
+            "count": 929,
+            "p50Ms": {
+              "min": 0.015000343322753906,
+              "max": 0.015000343322753906
+            },
+            "p95Ms": {
+              "min": 0.029999732971191406,
+              "max": 0.029999732971191406
+            },
+            "p99Ms": {
+              "min": 0.039999961853027344,
+              "max": 0.039999961853027344
+            }
+          }
+        }
+      },
+      "pairedApiQuantileDifferenceMs": {
+        "p50Ms": {
+          "min": 0.3410000762933123,
+          "max": 0.7160000762933123
+        },
+        "p95Ms": {
+          "min": 0.913000019073479,
+          "max": 1.3770000190736482
+        }
+      },
+      "nativeHandoff": {
+        "publishToFlutterTextureRead": {
+          "count": 917,
+          "p50Ms": {
+            "min": 0.096208,
+            "max": 0.096208
+          },
+          "p95Ms": {
+            "min": 0.22075,
+            "max": 0.22075
+          },
+          "p99Ms": {
+            "min": 0.287792,
+            "max": 0.287792
+          }
+        },
+        "publishToFlutterGpuCompletion": {
+          "count": 917,
+          "p50Ms": {
+            "min": 1.125791,
+            "max": 1.125791
+          },
+          "p95Ms": {
+            "min": 1.468375,
+            "max": 1.468375
+          },
+          "p99Ms": {
+            "min": 1.613917,
+            "max": 1.613917
+          }
+        },
+        "textureAcquireToFlutterGpuCompletion": {
+          "count": 917,
+          "p50Ms": {
+            "min": 1.826125,
+            "max": 1.826125
+          },
+          "p95Ms": {
+            "min": 2.631667,
+            "max": 2.631667
+          },
+          "p99Ms": {
+            "min": 3.352708,
+            "max": 3.352708
+          }
+        },
+        "readsPendingProducer": 892
+      }
+    }
+  ],
+  "limits": [
+    "The browser is Microsoft Edge, not a fresh Google Chrome run.",
+    "JS-thread API duration includes different synchronous/native submission paths; the difference does not isolate JS wrappers alone.",
+    "GPU timestamps, detailed CPU profiling and latency instrumentation ran separately.",
+    "GPU timestamp observations are quantized in approximately 0.065536 ms steps.",
+    "No same-endpoint screen-presentation or input-to-photon comparison; GPU completion and browser presentation feedback must not be subtracted."
+  ]
+}

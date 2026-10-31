@@ -1,0 +1,3334 @@
+{
+  "formatVersion": 1,
+  "measuredOn": "2026-10-29",
+  "workspace": {
+    "branch": "exp/webgpu-dawn-macos",
+    "baseCommit": "3af52eea34b9ebbdf152e78edba38b8f609de770",
+    "implementationIsUncommitted": true
+  },
+  "machine": {
+    "os": "macOS 27.0.1 (26A434)",
+    "gpu": "Apple M2 Max, 30 GPU cores",
+    "power": "AC",
+    "display": [3440, 1440, 120],
+    "devicePixelRatio": 1,
+    "viewport": [1180, 908],
+    "logicalCanvas": [880, 495]
+  },
+  "browser": {
+    "protocolVersion": "1.3",
+    "product": "Edg/156.0.4314.50",
+    "revision": "@af2ba23ae0ecf7084d900446fc59d5119dd5fd5e",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0",
+    "jsVersion": "15.6.12.7"
+  },
+  "protocol": {
+    "order": ["flax", "html", "html", "flax"],
+    "warmupAcceptedFrames": 60,
+    "measuredMs": 8000,
+    "maxInFlight": 3,
+    "sceneReadbacksDuringMeasurement": 0,
+    "metric": "Accepted scene submissions and GPU completion notifications per second; not screen presentations."
+  },
+  "aggregate": {
+    "sourceSha256": "e4ccf6e2c85b22d527ba63f40095d26ddd4b7a878a95c95eec064098f9e4d69c",
+    "rows": [
+      {
+        "name": "Particles / balanced / 540p",
+        "width": 960,
+        "height": 540,
+        "drawCalls": 1,
+        "flax": {
+          "fps": 119.8125,
+          "encode50": 1.0464999999999236,
+          "encode95": 1.7480000000000473,
+          "completion95": 3.9639999999999986,
+          "gap99": 8.698000000000093
+        },
+        "html": {
+          "fps": 120,
+          "encode50": 0.047499895095825195,
+          "encode95": 0.1400001049041748,
+          "completion95": 2.7925000190734863,
+          "gap99": 10.184999942779541
+        },
+        "fpsGapPercent": -0.15625000000000222
+      },
+      {
+        "name": "Particles / high / 1080p",
+        "width": 1920,
+        "height": 1080,
+        "drawCalls": 1,
+        "flax": {
+          "fps": 119.4375,
+          "encode50": 1.0354999999990468,
+          "encode95": 1.8520000000007713,
+          "completion95": 5.304500000000189,
+          "gap99": 8.715000000000146
+        },
+        "html": {
+          "fps": 120,
+          "encode50": 0.10749983787536621,
+          "encode95": 0.1875,
+          "completion95": 4.93500018119812,
+          "gap99": 10.152499675750732
+        },
+        "fpsGapPercent": -0.46874999999999556
+      },
+      {
+        "name": "Cubes / instanced / 540p",
+        "width": 960,
+        "height": 540,
+        "drawCalls": 1,
+        "flax": {
+          "fps": 119.75,
+          "encode50": 1.0090000000000146,
+          "encode95": 1.764499999999316,
+          "completion95": 3.331500000000233,
+          "gap99": 8.59900000000016
+        },
+        "html": {
+          "fps": 120,
+          "encode50": 0.08749985694885254,
+          "encode95": 0.13499999046325684,
+          "completion95": 2.2199997901916504,
+          "gap99": 10.02750015258789
+        },
+        "fpsGapPercent": -0.2083333333333326
+      },
+      {
+        "name": "Cubes / per-object / 540p",
+        "width": 960,
+        "height": 540,
+        "drawCalls": 2304,
+        "flax": {
+          "fps": 119.62499999999994,
+          "encode50": 2.5724999999983993,
+          "encode95": 3.0650000000005093,
+          "completion95": 4.285500000001775,
+          "gap99": 8.52349999999933
+        },
+        "html": {
+          "fps": 120,
+          "encode50": 0.20749998092651367,
+          "encode95": 0.3399999141693115,
+          "completion95": 3.495000123977661,
+          "gap99": 10.107500076293945
+        },
+        "fpsGapPercent": -0.31250000000004885
+      },
+      {
+        "name": "Prism / balanced / 540p",
+        "width": 960,
+        "height": 540,
+        "drawCalls": 1,
+        "flax": {
+          "fps": 119.875,
+          "encode50": 0.9134999999987485,
+          "encode95": 1.6455000000023574,
+          "completion95": 3.7330000000001746,
+          "gap99": 8.669000000001688
+        },
+        "html": {
+          "fps": 120.125,
+          "encode50": 0.08750009536743164,
+          "encode95": 0.14749979972839355,
+          "completion95": 2.7674999237060547,
+          "gap99": 10.09749984741211
+        },
+        "fpsGapPercent": -0.20811654526534662
+      },
+      {
+        "name": "Prism / high / 1080p",
+        "width": 1920,
+        "height": 1080,
+        "drawCalls": 1,
+        "flax": {
+          "fps": 120.0,
+          "encode50": 0.9029999999984284,
+          "encode95": 1.5970000000015716,
+          "completion95": 6.133499999999913,
+          "gap99": 8.556499999998778
+        },
+        "html": {
+          "fps": 120,
+          "encode50": 0.07999992370605469,
+          "encode95": 0.11500000953674316,
+          "completion95": 5.127500057220459,
+          "gap99": 10.075000047683716
+        },
+        "fpsGapPercent": 0.0
+      }
+    ]
+  },
+  "diagnostics": {
+    "allocation": {
+      "requested-dart": {
+        "count": 34,
+        "sumMs": 703.881,
+        "p50Ms": 19.351,
+        "p95Ms": 33.266,
+        "maxMs": 33.548
+      },
+      "forced-v8": {
+        "count": 60,
+        "sumMs": 366.157,
+        "p50Ms": 5.801,
+        "p95Ms": 9.738,
+        "maxMs": 11.965
+      },
+      "root-preparation": {
+        "count": 60,
+        "sumMs": 5.307,
+        "p50Ms": 0.082,
+        "p95Ms": 0.137,
+        "maxMs": 0.167
+      },
+      "v8MajorRequests": 33,
+      "sampledAllocationEstimateBytes": 1320403544,
+      "durationSeconds": 52.612724
+    },
+    "accessors": {
+      "requested-dart": {
+        "count": 7,
+        "sumMs": 137.336,
+        "p50Ms": 19.516,
+        "p95Ms": 23.871,
+        "maxMs": 23.871
+      },
+      "forced-v8": {
+        "count": 22,
+        "sumMs": 133.852,
+        "p50Ms": 5.896,
+        "p95Ms": 9.121,
+        "maxMs": 9.885
+      },
+      "root-preparation": {
+        "count": 22,
+        "sumMs": 2.304,
+        "p50Ms": 0.116,
+        "p95Ms": 0.16,
+        "maxMs": 0.187
+      },
+      "v8MajorRequests": 7,
+      "sampledAllocationEstimateBytes": 1157706816,
+      "durationSeconds": 52.812644
+    }
+  },
+  "diagnosticScope": "Whole six-case instrumented runs, including warmup. Allocation is a sampling estimate, not resident memory. allocation already includes carrier/template and empty-result candidates.",
+  "initialBaseline": {
+    "passed": true,
+    "sourceSha256": "e4ccf6e2c85b22d527ba63f40095d26ddd4b7a878a95c95eec064098f9e4d69c",
+    "viewport": {
+      "width": 1180,
+      "height": 908,
+      "devicePixelRatio": 1
+    },
+    "browser": "Microsoft Edge (Chromium)",
+    "protocol": {
+      "order": ["flax", "html", "html", "flax"],
+      "warmupAcceptedFrames": 60,
+      "measuredMs": 8000,
+      "maxInFlight": 3,
+      "sceneReadbacksDuringMeasurement": 0,
+      "metric": "Accepted scene submissions and GPU completion notifications per second; not screen presentations."
+    },
+    "runs": [
+      {
+        "kind": "flax",
+        "result": {
+          "passed": true,
+          "cases": [
+            {
+              "measuredMs": 8000.000000000001,
+              "submitted": 952,
+              "completedWithinWindow": 951,
+              "callbacks": 952,
+              "skipped": 0,
+              "submittedFps": 118.99999999999997,
+              "completedFps": 118.87499999999997,
+              "callbackFps": 118.99999999999997,
+              "encodeMs": {
+                "count": 952,
+                "p50": 0.47999999999956344,
+                "p95": 1.2229999999999563,
+                "p99": 1.4600000000000364
+              },
+              "frameGapMs": {
+                "count": 951,
+                "p50": 8.332000000000335,
+                "p95": 8.402000000000044,
+                "p99": 8.505999999999858
+              },
+              "completionMs": {
+                "count": 952,
+                "p50": 1.9809999999999945,
+                "p95": 2.94800000000032,
+                "p99": 3.324000000000524
+              },
+              "name": "Particles / balanced / 540p",
+              "settings": {
+                "scene": 0,
+                "quality": 1,
+                "resolution": 0,
+                "palette": 0,
+                "individual": false,
+                "name": "Particles / balanced / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 1,
+              "drainMs": 0.728000000000975,
+              "coloredPixels": 66421,
+              "logicalCanvas": [880, 495],
+              "viewport": {
+                "width": 1180,
+                "height": 908,
+                "devicePixelRatio": 1
+              }
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 948,
+              "completedWithinWindow": 947,
+              "callbacks": 948,
+              "skipped": 0,
+              "submittedFps": 118.5,
+              "completedFps": 118.375,
+              "callbackFps": 118.5,
+              "encodeMs": {
+                "count": 948,
+                "p50": 0.4609999999993306,
+                "p95": 0.7680000000000291,
+                "p99": 1.1080000000001746
+              },
+              "frameGapMs": {
+                "count": 947,
+                "p50": 8.333000000000538,
+                "p95": 8.36700000000019,
+                "p99": 8.7549999999992
+              },
+              "completionMs": {
+                "count": 948,
+                "p50": 3.389999999999418,
+                "p95": 4.105999999999767,
+                "p99": 4.834000000000742
+              },
+              "name": "Particles / high / 1080p",
+              "settings": {
+                "scene": 0,
+                "quality": 2,
+                "resolution": 1,
+                "palette": 0,
+                "individual": false,
+                "name": "Particles / high / 1080p"
+              },
+              "width": 1920,
+              "height": 1080,
+              "drawCalls": 1,
+              "drainMs": 13.00499999999738,
+              "coloredPixels": 34343,
+              "logicalCanvas": [880, 495],
+              "viewport": {
+                "width": 1180,
+                "height": 908,
+                "devicePixelRatio": 1
+              }
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 942,
+              "completedWithinWindow": 941,
+              "callbacks": 942,
+              "skipped": 0,
+              "submittedFps": 117.75,
+              "completedFps": 117.625,
+              "callbackFps": 117.75,
+              "encodeMs": {
+                "count": 942,
+                "p50": 0.7959999999984575,
+                "p95": 1.4149999999972351,
+                "p99": 2.1520000000018626
+              },
+              "frameGapMs": {
+                "count": 941,
+                "p50": 8.33299999999872,
+                "p95": 8.468999999997322,
+                "p99": 9.540999999997439
+              },
+              "completionMs": {
+                "count": 942,
+                "p50": 2.0210000000006403,
+                "p95": 2.813000000001921,
+                "p99": 3.6449999999967986
+              },
+              "name": "Cubes / instanced / 540p",
+              "settings": {
+                "scene": 1,
+                "quality": 2,
+                "resolution": 0,
+                "palette": 0,
+                "individual": false,
+                "name": "Cubes / instanced / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 1,
+              "drainMs": 1.2439999999987776,
+              "coloredPixels": 122405,
+              "logicalCanvas": [880, 495],
+              "viewport": {
+                "width": 1180,
+                "height": 908,
+                "devicePixelRatio": 1
+              }
+            },
+            {
+              "measuredMs": 7999.999999999996,
+              "submitted": 947,
+              "completedWithinWindow": 947,
+              "callbacks": 947,
+              "skipped": 0,
+              "submittedFps": 118.37500000000006,
+              "completedFps": 118.37500000000006,
+              "callbackFps": 118.37500000000006,
+              "encodeMs": {
+                "count": 947,
+                "p50": 2.6149999999979627,
+                "p95": 2.911000000000058,
+                "p99": 3.282999999999447
+              },
+              "frameGapMs": {
+                "count": 946,
+                "p50": 8.33299999999872,
+                "p95": 8.360000000000582,
+                "p99": 8.461999999999534
+              },
+              "completionMs": {
+                "count": 947,
+                "p50": 3.2949999999982538,
+                "p95": 3.8699999999989814,
+                "p99": 4.669000000001688
+              },
+              "name": "Cubes / per-object / 540p",
+              "settings": {
+                "scene": 1,
+                "quality": 2,
+                "resolution": 0,
+                "palette": 0,
+                "individual": true,
+                "name": "Cubes / per-object / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 2304,
+              "drainMs": 0.7410000000018044,
+              "coloredPixels": 122405,
+              "logicalCanvas": [880, 495],
+              "viewport": {
+                "width": 1180,
+                "height": 908,
+                "devicePixelRatio": 1
+              }
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 952,
+              "completedWithinWindow": 951,
+              "callbacks": 952,
+              "skipped": 0,
+              "submittedFps": 119,
+              "completedFps": 118.875,
+              "callbackFps": 119,
+              "encodeMs": {
+                "count": 952,
+                "p50": 0.43000000000029104,
+                "p95": 1.1489999999976135,
+                "p99": 1.4380000000019209
+              },
+              "frameGapMs": {
+                "count": 951,
+                "p50": 8.33299999999872,
+                "p95": 8.37800000000425,
+                "p99": 8.483000000000175
+              },
+              "completionMs": {
+                "count": 952,
+                "p50": 1.9150000000008731,
+                "p95": 3.0380000000004657,
+                "p99": 3.563000000001921
+              },
+              "name": "Prism / balanced / 540p",
+              "settings": {
+                "scene": 2,
+                "quality": 1,
+                "resolution": 0,
+                "palette": 0,
+                "individual": false,
+                "name": "Prism / balanced / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 1,
+              "drainMs": 1.047999999995227,
+              "coloredPixels": 354234,
+              "logicalCanvas": [880, 495],
+              "viewport": {
+                "width": 1180,
+                "height": 908,
+                "devicePixelRatio": 1
+              }
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 952,
+              "completedWithinWindow": 951,
+              "callbacks": 952,
+              "skipped": 0,
+              "submittedFps": 119,
+              "completedFps": 118.875,
+              "callbackFps": 119,
+              "encodeMs": {
+                "count": 952,
+                "p50": 0.39400000000023283,
+                "p95": 0.5869999999995343,
+                "p99": 0.9979999999995925
+              },
+              "frameGapMs": {
+                "count": 951,
+                "p50": 8.33299999999872,
+                "p95": 8.364999999997963,
+                "p99": 8.429000000003725
+              },
+              "completionMs": {
+                "count": 952,
+                "p50": 4.466999999996915,
+                "p95": 5.076000000000931,
+                "p99": 5.698000000003958
+              },
+              "name": "Prism / high / 1080p",
+              "settings": {
+                "scene": 2,
+                "quality": 2,
+                "resolution": 1,
+                "palette": 0,
+                "individual": false,
+                "name": "Prism / high / 1080p"
+              },
+              "width": 1920,
+              "height": 1080,
+              "drawCalls": 1,
+              "drainMs": 0.8179999999993015,
+              "coloredPixels": 348039,
+              "logicalCanvas": [880, 495],
+              "viewport": {
+                "width": 1180,
+                "height": 908,
+                "devicePixelRatio": 1
+              }
+            }
+          ],
+          "retired": [0, 0, 0, 0, 0, 0],
+          "sourceSha256": "e4ccf6e2c85b22d527ba63f40095d26ddd4b7a878a95c95eec064098f9e4d69c",
+          "adapter": {
+            "vendor": "apple",
+            "description": "Metal driver on macOS Version 27.0.1 (Build 26A434)",
+            "device": "apple-m2-max"
+          },
+          "collectedAt": "2026-10-29T04:37:43.476Z"
+        }
+      },
+      {
+        "kind": "html",
+        "result": {
+          "passed": true,
+          "cases": [
+            {
+              "measuredMs": 8000,
+              "submitted": 961,
+              "completedWithinWindow": 960,
+              "callbacks": 961,
+              "skipped": 0,
+              "submittedFps": 120.125,
+              "completedFps": 120,
+              "callbackFps": 120.125,
+              "encodeMs": {
+                "count": 961,
+                "p50": 0.039999961853027344,
+                "p95": 0.10500001907348633,
+                "p99": 0.15000009536743164
+              },
+              "frameGapMs": {
+                "count": 960,
+                "p50": 8.324999809265137,
+                "p95": 9.295000076293945,
+                "p99": 9.404999732971191
+              },
+              "completionMs": {
+                "count": 961,
+                "p50": 1.5349998474121094,
+                "p95": 2.4499998092651367,
+                "p99": 2.9649996757507324
+              },
+              "name": "Particles / balanced / 540p",
+              "settings": {
+                "scene": 0,
+                "quality": 1,
+                "resolution": 0,
+                "palette": 0,
+                "individual": false,
+                "name": "Particles / balanced / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 1,
+              "drainMs": 1.6050000190734863,
+              "colored": 72915
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 960,
+              "completedWithinWindow": 960,
+              "callbacks": 960,
+              "skipped": 0,
+              "submittedFps": 120,
+              "completedFps": 120,
+              "callbackFps": 120,
+              "encodeMs": {
+                "count": 960,
+                "p50": 0.07499980926513672,
+                "p95": 0.1550002098083496,
+                "p99": 0.2350001335144043
+              },
+              "frameGapMs": {
+                "count": 959,
+                "p50": 8.324999809265137,
+                "p95": 9.349999904632568,
+                "p99": 9.579999923706055
+              },
+              "completionMs": {
+                "count": 960,
+                "p50": 3.4549999237060547,
+                "p95": 4.375,
+                "p99": 4.940000057220459
+              },
+              "name": "Particles / high / 1080p",
+              "settings": {
+                "scene": 0,
+                "quality": 2,
+                "resolution": 1,
+                "palette": 0,
+                "individual": false,
+                "name": "Particles / high / 1080p"
+              },
+              "width": 1920,
+              "height": 1080,
+              "drawCalls": 1,
+              "drainMs": 1.820000171661377,
+              "colored": 149048
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 961,
+              "completedWithinWindow": 960,
+              "callbacks": 961,
+              "skipped": 0,
+              "submittedFps": 120.125,
+              "completedFps": 120,
+              "callbackFps": 120.125,
+              "encodeMs": {
+                "count": 961,
+                "p50": 0.07999992370605469,
+                "p95": 0.13499975204467773,
+                "p99": 0.17500019073486328
+              },
+              "frameGapMs": {
+                "count": 960,
+                "p50": 8.320000171661377,
+                "p95": 9.300000190734863,
+                "p99": 9.46500015258789
+              },
+              "completionMs": {
+                "count": 961,
+                "p50": 1.4749999046325684,
+                "p95": 2.1999998092651367,
+                "p99": 2.6100001335144043
+              },
+              "name": "Cubes / instanced / 540p",
+              "settings": {
+                "scene": 1,
+                "quality": 2,
+                "resolution": 0,
+                "palette": 0,
+                "individual": false,
+                "name": "Cubes / instanced / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 1,
+              "drainMs": 1.5,
+              "colored": 141818
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 961,
+              "completedWithinWindow": 960,
+              "callbacks": 961,
+              "skipped": 0,
+              "submittedFps": 120.125,
+              "completedFps": 120,
+              "callbackFps": 120.125,
+              "encodeMs": {
+                "count": 961,
+                "p50": 0.17999982833862305,
+                "p95": 0.35500001907348633,
+                "p99": 0.39499998092651367
+              },
+              "frameGapMs": {
+                "count": 960,
+                "p50": 8.319999694824219,
+                "p95": 9.329999923706055,
+                "p99": 9.46500015258789
+              },
+              "completionMs": {
+                "count": 961,
+                "p50": 2.1449999809265137,
+                "p95": 2.8349995613098145,
+                "p99": 3.3399996757507324
+              },
+              "name": "Cubes / per-object / 540p",
+              "settings": {
+                "scene": 1,
+                "quality": 2,
+                "resolution": 0,
+                "palette": 0,
+                "individual": true,
+                "name": "Cubes / per-object / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 2304,
+              "drainMs": 0.940000057220459,
+              "colored": 141818
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 959,
+              "completedWithinWindow": 959,
+              "callbacks": 960,
+              "skipped": 1,
+              "submittedFps": 119.875,
+              "completedFps": 119.875,
+              "callbackFps": 120,
+              "encodeMs": {
+                "count": 959,
+                "p50": 0.04999971389770508,
+                "p95": 0.10500001907348633,
+                "p99": 0.13000011444091797
+              },
+              "frameGapMs": {
+                "count": 958,
+                "p50": 8.329999923706055,
+                "p95": 9.309999942779541,
+                "p99": 9.400000095367432
+              },
+              "completionMs": {
+                "count": 959,
+                "p50": 1.6449999809265137,
+                "p95": 2.4200000762939453,
+                "p99": 5.949999809265137
+              },
+              "name": "Prism / balanced / 540p",
+              "settings": {
+                "scene": 2,
+                "quality": 1,
+                "resolution": 0,
+                "palette": 0,
+                "individual": false,
+                "name": "Prism / balanced / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 1,
+              "drainMs": 0.7549996376037598,
+              "colored": 426514
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 955,
+              "completedWithinWindow": 955,
+              "callbacks": 956,
+              "skipped": 1,
+              "submittedFps": 119.375,
+              "completedFps": 119.375,
+              "callbackFps": 119.5,
+              "encodeMs": {
+                "count": 955,
+                "p50": 0.07499980926513672,
+                "p95": 0.10500001907348633,
+                "p99": 0.13000011444091797
+              },
+              "frameGapMs": {
+                "count": 954,
+                "p50": 8.324999809265137,
+                "p95": 9.349999904632568,
+                "p99": 9.474999904632568
+              },
+              "completionMs": {
+                "count": 955,
+                "p50": 4.414999961853027,
+                "p95": 5.284999847412109,
+                "p99": 7.144999980926514
+              },
+              "name": "Prism / high / 1080p",
+              "settings": {
+                "scene": 2,
+                "quality": 2,
+                "resolution": 1,
+                "palette": 0,
+                "individual": false,
+                "name": "Prism / high / 1080p"
+              },
+              "width": 1920,
+              "height": 1080,
+              "drawCalls": 1,
+              "drainMs": 2.049999713897705,
+              "colored": 1672956
+            }
+          ],
+          "sourceSha256": "e4ccf6e2c85b22d527ba63f40095d26ddd4b7a878a95c95eec064098f9e4d69c",
+          "adapter": {
+            "vendor": "apple",
+            "description": "",
+            "device": ""
+          },
+          "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0",
+          "viewport": {
+            "width": 1180,
+            "height": 908,
+            "devicePixelRatio": 1
+          },
+          "interaction": true,
+          "pointerPixelsChanged": true,
+          "version": {
+            "protocolVersion": "1.3",
+            "product": "Edg/156.0.4314.50",
+            "revision": "@af2ba23ae0ecf7084d900446fc59d5119dd5fd5e",
+            "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0",
+            "jsVersion": "15.6.12.7"
+          },
+          "collectedAt": "2026-10-29T04:38:39.570Z"
+        }
+      },
+      {
+        "kind": "html",
+        "result": {
+          "passed": true,
+          "cases": [
+            {
+              "measuredMs": 8000,
+              "submitted": 961,
+              "completedWithinWindow": 960,
+              "callbacks": 961,
+              "skipped": 0,
+              "submittedFps": 120.125,
+              "completedFps": 120,
+              "callbackFps": 120.125,
+              "encodeMs": {
+                "count": 961,
+                "p50": 0.03500032424926758,
+                "p95": 0.11499977111816406,
+                "p99": 0.16499996185302734
+              },
+              "frameGapMs": {
+                "count": 960,
+                "p50": 8.324999809265137,
+                "p95": 9.324999809265137,
+                "p99": 9.389999866485596
+              },
+              "completionMs": {
+                "count": 961,
+                "p50": 1.4600000381469727,
+                "p95": 2.5,
+                "p99": 3.1599998474121094
+              },
+              "name": "Particles / balanced / 540p",
+              "settings": {
+                "scene": 0,
+                "quality": 1,
+                "resolution": 0,
+                "palette": 0,
+                "individual": false,
+                "name": "Particles / balanced / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 1,
+              "drainMs": 2.0900001525878906,
+              "colored": 72915
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 961,
+              "completedWithinWindow": 960,
+              "callbacks": 961,
+              "skipped": 0,
+              "submittedFps": 120.125,
+              "completedFps": 120,
+              "callbackFps": 120.125,
+              "encodeMs": {
+                "count": 961,
+                "p50": 0.09999990463256836,
+                "p95": 0.18499994277954102,
+                "p99": 0.2650003433227539
+              },
+              "frameGapMs": {
+                "count": 960,
+                "p50": 8.320000171661377,
+                "p95": 9.365000247955322,
+                "p99": 9.634999752044678
+              },
+              "completionMs": {
+                "count": 961,
+                "p50": 3.6050000190734863,
+                "p95": 5.080000400543213,
+                "p99": 6.714999675750732
+              },
+              "name": "Particles / high / 1080p",
+              "settings": {
+                "scene": 0,
+                "quality": 2,
+                "resolution": 1,
+                "palette": 0,
+                "individual": false,
+                "name": "Particles / high / 1080p"
+              },
+              "width": 1920,
+              "height": 1080,
+              "drawCalls": 1,
+              "drainMs": 2.1949996948242188,
+              "colored": 149048
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 960,
+              "completedWithinWindow": 960,
+              "callbacks": 960,
+              "skipped": 0,
+              "submittedFps": 120,
+              "completedFps": 120,
+              "callbackFps": 120,
+              "encodeMs": {
+                "count": 960,
+                "p50": 0.07000017166137695,
+                "p95": 0.12000036239624023,
+                "p99": 0.1700000762939453
+              },
+              "frameGapMs": {
+                "count": 959,
+                "p50": 8.325000286102295,
+                "p95": 9.329999923706055,
+                "p99": 9.434999942779541
+              },
+              "completionMs": {
+                "count": 960,
+                "p50": 1.3249998092651367,
+                "p95": 2.135000228881836,
+                "p99": 2.7249999046325684
+              },
+              "name": "Cubes / instanced / 540p",
+              "settings": {
+                "scene": 1,
+                "quality": 2,
+                "resolution": 0,
+                "palette": 0,
+                "individual": false,
+                "name": "Cubes / instanced / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 1,
+              "drainMs": 1.4600000381469727,
+              "colored": 141818
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 961,
+              "completedWithinWindow": 960,
+              "callbacks": 961,
+              "skipped": 0,
+              "submittedFps": 120.125,
+              "completedFps": 120,
+              "callbackFps": 120.125,
+              "encodeMs": {
+                "count": 961,
+                "p50": 0.11499977111816406,
+                "p95": 0.2849998474121094,
+                "p99": 0.34999990463256836
+              },
+              "frameGapMs": {
+                "count": 960,
+                "p50": 8.320000171661377,
+                "p95": 9.330000400543213,
+                "p99": 9.489999771118164
+              },
+              "completionMs": {
+                "count": 961,
+                "p50": 1.955000400543213,
+                "p95": 2.8799996376037598,
+                "p99": 3.369999885559082
+              },
+              "name": "Cubes / per-object / 540p",
+              "settings": {
+                "scene": 1,
+                "quality": 2,
+                "resolution": 0,
+                "palette": 0,
+                "individual": true,
+                "name": "Cubes / per-object / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 2304,
+              "drainMs": 1.075000286102295,
+              "colored": 141818
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 961,
+              "completedWithinWindow": 960,
+              "callbacks": 961,
+              "skipped": 0,
+              "submittedFps": 120.125,
+              "completedFps": 120,
+              "callbackFps": 120.125,
+              "encodeMs": {
+                "count": 961,
+                "p50": 0.04500007629394531,
+                "p95": 0.125,
+                "p99": 0.16499996185302734
+              },
+              "frameGapMs": {
+                "count": 960,
+                "p50": 8.325000286102295,
+                "p95": 9.315000057220459,
+                "p99": 9.490000247955322
+              },
+              "completionMs": {
+                "count": 961,
+                "p50": 1.5949997901916504,
+                "p95": 2.8050003051757812,
+                "p99": 3.5249996185302734
+              },
+              "name": "Prism / balanced / 540p",
+              "settings": {
+                "scene": 2,
+                "quality": 1,
+                "resolution": 0,
+                "palette": 0,
+                "individual": false,
+                "name": "Prism / balanced / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 1,
+              "drainMs": 2.070000171661377,
+              "colored": 426514
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 961,
+              "completedWithinWindow": 960,
+              "callbacks": 961,
+              "skipped": 0,
+              "submittedFps": 120.125,
+              "completedFps": 120,
+              "callbackFps": 120.125,
+              "encodeMs": {
+                "count": 961,
+                "p50": 0.07000017166137695,
+                "p95": 0.10500001907348633,
+                "p99": 0.1549997329711914
+              },
+              "frameGapMs": {
+                "count": 960,
+                "p50": 8.324999809265137,
+                "p95": 9.34000015258789,
+                "p99": 9.525000095367432
+              },
+              "completionMs": {
+                "count": 961,
+                "p50": 4.390000343322754,
+                "p95": 5.055000305175781,
+                "p99": 5.454999923706055
+              },
+              "name": "Prism / high / 1080p",
+              "settings": {
+                "scene": 2,
+                "quality": 2,
+                "resolution": 1,
+                "palette": 0,
+                "individual": false,
+                "name": "Prism / high / 1080p"
+              },
+              "width": 1920,
+              "height": 1080,
+              "drawCalls": 1,
+              "drainMs": 0.6750001907348633,
+              "colored": 1672956
+            }
+          ],
+          "sourceSha256": "e4ccf6e2c85b22d527ba63f40095d26ddd4b7a878a95c95eec064098f9e4d69c",
+          "adapter": {
+            "vendor": "apple",
+            "description": "",
+            "device": ""
+          },
+          "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0",
+          "viewport": {
+            "width": 1180,
+            "height": 908,
+            "devicePixelRatio": 1
+          },
+          "interaction": true,
+          "pointerPixelsChanged": true,
+          "version": {
+            "protocolVersion": "1.3",
+            "product": "Edg/156.0.4314.50",
+            "revision": "@af2ba23ae0ecf7084d900446fc59d5119dd5fd5e",
+            "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0",
+            "jsVersion": "15.6.12.7"
+          },
+          "collectedAt": "2026-10-29T04:39:33.260Z"
+        }
+      },
+      {
+        "kind": "flax",
+        "result": {
+          "passed": true,
+          "cases": [
+            {
+              "measuredMs": 7999.999999999999,
+              "submitted": 937,
+              "completedWithinWindow": 937,
+              "callbacks": 937,
+              "skipped": 0,
+              "submittedFps": 117.12500000000001,
+              "completedFps": 117.12500000000001,
+              "callbackFps": 117.12500000000001,
+              "encodeMs": {
+                "count": 937,
+                "p50": 0.5159999999996217,
+                "p95": 1.3059999999995853,
+                "p99": 2.0830000000005384
+              },
+              "frameGapMs": {
+                "count": 936,
+                "p50": 8.333000000000084,
+                "p95": 8.43499999999949,
+                "p99": 9.309000000000196
+              },
+              "completionMs": {
+                "count": 937,
+                "p50": 2.1539999999999964,
+                "p95": 3.2830000000003565,
+                "p99": 4.5330000000003565
+              },
+              "name": "Particles / balanced / 540p",
+              "settings": {
+                "scene": 0,
+                "quality": 1,
+                "resolution": 0,
+                "palette": 0,
+                "individual": false,
+                "name": "Particles / balanced / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 1,
+              "drainMs": 0.7880000000004657,
+              "coloredPixels": 66421,
+              "logicalCanvas": [880, 495],
+              "viewport": {
+                "width": 1180,
+                "height": 908,
+                "devicePixelRatio": 1
+              }
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 949,
+              "completedWithinWindow": 949,
+              "callbacks": 949,
+              "skipped": 0,
+              "submittedFps": 118.625,
+              "completedFps": 118.625,
+              "callbackFps": 118.625,
+              "encodeMs": {
+                "count": 949,
+                "p50": 0.5259999999998399,
+                "p95": 1.34599999999773,
+                "p99": 2.0529999999998836
+              },
+              "frameGapMs": {
+                "count": 948,
+                "p50": 8.33299999999872,
+                "p95": 8.497000000001208,
+                "p99": 8.83600000000115
+              },
+              "completionMs": {
+                "count": 949,
+                "p50": 3.5,
+                "p95": 4.688000000000102,
+                "p99": 5.379000000000815
+              },
+              "name": "Particles / high / 1080p",
+              "settings": {
+                "scene": 0,
+                "quality": 2,
+                "resolution": 1,
+                "palette": 0,
+                "individual": false,
+                "name": "Particles / high / 1080p"
+              },
+              "width": 1920,
+              "height": 1080,
+              "drawCalls": 1,
+              "drainMs": 1.739000000001397,
+              "coloredPixels": 34343,
+              "logicalCanvas": [880, 495],
+              "viewport": {
+                "width": 1180,
+                "height": 908,
+                "devicePixelRatio": 1
+              }
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 944,
+              "completedWithinWindow": 944,
+              "callbacks": 944,
+              "skipped": 0,
+              "submittedFps": 118,
+              "completedFps": 118,
+              "callbackFps": 118,
+              "encodeMs": {
+                "count": 944,
+                "p50": 0.49499999999898137,
+                "p95": 1.202000000001135,
+                "p99": 1.3559999999997672
+              },
+              "frameGapMs": {
+                "count": 943,
+                "p50": 8.33299999999872,
+                "p95": 8.48700000000099,
+                "p99": 9.916000000001077
+              },
+              "completionMs": {
+                "count": 944,
+                "p50": 1.3699999999989814,
+                "p95": 2.486000000000786,
+                "p99": 3.4459999999999127
+              },
+              "name": "Cubes / instanced / 540p",
+              "settings": {
+                "scene": 1,
+                "quality": 2,
+                "resolution": 0,
+                "palette": 0,
+                "individual": false,
+                "name": "Cubes / instanced / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 1,
+              "drainMs": 0.8179999999993015,
+              "coloredPixels": 122405,
+              "logicalCanvas": [880, 495],
+              "viewport": {
+                "width": 1180,
+                "height": 908,
+                "devicePixelRatio": 1
+              }
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 947,
+              "completedWithinWindow": 947,
+              "callbacks": 947,
+              "skipped": 0,
+              "submittedFps": 118.375,
+              "completedFps": 118.375,
+              "callbackFps": 118.375,
+              "encodeMs": {
+                "count": 947,
+                "p50": 2.7810000000026776,
+                "p95": 3.121000000002823,
+                "p99": 3.243000000002212
+              },
+              "frameGapMs": {
+                "count": 946,
+                "p50": 8.33299999999872,
+                "p95": 8.423999999999069,
+                "p99": 8.583999999998923
+              },
+              "completionMs": {
+                "count": 947,
+                "p50": 3.367999999998574,
+                "p95": 3.849000000001979,
+                "p99": 4.630000000004657
+              },
+              "name": "Cubes / per-object / 540p",
+              "settings": {
+                "scene": 1,
+                "quality": 2,
+                "resolution": 0,
+                "palette": 0,
+                "individual": true,
+                "name": "Cubes / per-object / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 2304,
+              "drainMs": 0.7479999999995925,
+              "coloredPixels": 122405,
+              "logicalCanvas": [880, 495],
+              "viewport": {
+                "width": 1180,
+                "height": 908,
+                "devicePixelRatio": 1
+              }
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 949,
+              "completedWithinWindow": 949,
+              "callbacks": 949,
+              "skipped": 0,
+              "submittedFps": 118.625,
+              "completedFps": 118.625,
+              "callbackFps": 118.625,
+              "encodeMs": {
+                "count": 949,
+                "p50": 0.477999999995518,
+                "p95": 1.0820000000021537,
+                "p99": 1.3110000000015134
+              },
+              "frameGapMs": {
+                "count": 948,
+                "p50": 8.332000000002154,
+                "p95": 8.440999999998894,
+                "p99": 8.598999999994703
+              },
+              "completionMs": {
+                "count": 949,
+                "p50": 2.014999999999418,
+                "p95": 2.985000000000582,
+                "p99": 3.448000000003958
+              },
+              "name": "Prism / balanced / 540p",
+              "settings": {
+                "scene": 2,
+                "quality": 1,
+                "resolution": 0,
+                "palette": 0,
+                "individual": false,
+                "name": "Prism / balanced / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 1,
+              "drainMs": 1.1750000000029104,
+              "coloredPixels": 354234,
+              "logicalCanvas": [880, 495],
+              "viewport": {
+                "width": 1180,
+                "height": 908,
+                "devicePixelRatio": 1
+              }
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 946,
+              "completedWithinWindow": 946,
+              "callbacks": 946,
+              "skipped": 0,
+              "submittedFps": 118.25,
+              "completedFps": 118.25,
+              "callbackFps": 118.25,
+              "encodeMs": {
+                "count": 946,
+                "p50": 0.46600000000034925,
+                "p95": 1.150999999998021,
+                "p99": 1.5289999999949941
+              },
+              "frameGapMs": {
+                "count": 945,
+                "p50": 8.33299999999872,
+                "p95": 8.403000000005704,
+                "p99": 8.527999999998428
+              },
+              "completionMs": {
+                "count": 946,
+                "p50": 4.578000000001339,
+                "p95": 5.742999999994936,
+                "p99": 6.488000000004831
+              },
+              "name": "Prism / high / 1080p",
+              "settings": {
+                "scene": 2,
+                "quality": 2,
+                "resolution": 1,
+                "palette": 0,
+                "individual": false,
+                "name": "Prism / high / 1080p"
+              },
+              "width": 1920,
+              "height": 1080,
+              "drawCalls": 1,
+              "drainMs": 1.2070000000021537,
+              "coloredPixels": 348039,
+              "logicalCanvas": [880, 495],
+              "viewport": {
+                "width": 1180,
+                "height": 908,
+                "devicePixelRatio": 1
+              }
+            }
+          ],
+          "retired": [0, 0, 0, 0, 0, 0],
+          "sourceSha256": "e4ccf6e2c85b22d527ba63f40095d26ddd4b7a878a95c95eec064098f9e4d69c",
+          "adapter": {
+            "vendor": "apple",
+            "description": "Metal driver on macOS Version 27.0.1 (Build 26A434)",
+            "device": "apple-m2-max"
+          },
+          "collectedAt": "2026-10-29T04:40:26.935Z"
+        }
+      }
+    ]
+  },
+  "optimized": {
+    "passed": true,
+    "sourceSha256": "e4ccf6e2c85b22d527ba63f40095d26ddd4b7a878a95c95eec064098f9e4d69c",
+    "viewport": {
+      "width": 1180,
+      "height": 908,
+      "devicePixelRatio": 1
+    },
+    "browser": "Microsoft Edge (Chromium)",
+    "protocol": {
+      "order": ["flax", "html", "html", "flax"],
+      "warmupAcceptedFrames": 60,
+      "measuredMs": 8000,
+      "maxInFlight": 3,
+      "sceneReadbacksDuringMeasurement": 0,
+      "metric": "Accepted scene submissions and GPU completion notifications per second; not screen presentations."
+    },
+    "runs": [
+      {
+        "kind": "flax",
+        "result": {
+          "passed": true,
+          "cases": [
+            {
+              "measuredMs": 8000.000000000001,
+              "submitted": 958,
+              "completedWithinWindow": 958,
+              "callbacks": 958,
+              "skipped": 0,
+              "submittedFps": 119.74999999999997,
+              "completedFps": 119.74999999999997,
+              "callbackFps": 119.74999999999997,
+              "encodeMs": {
+                "count": 958,
+                "p50": 1.0579999999999927,
+                "p95": 1.6260000000002037,
+                "p99": 2.0150000000003274
+              },
+              "frameGapMs": {
+                "count": 957,
+                "p50": 8.329000000000178,
+                "p95": 8.527999999998428,
+                "p99": 8.679000000000087
+              },
+              "completionMs": {
+                "count": 958,
+                "p50": 2.8870000000006257,
+                "p95": 3.8859999999999673,
+                "p99": 4.438999999999851
+              },
+              "name": "Particles / balanced / 540p",
+              "settings": {
+                "scene": 0,
+                "quality": 1,
+                "resolution": 0,
+                "palette": 0,
+                "individual": false,
+                "name": "Particles / balanced / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 1,
+              "drainMs": 2.018000000000029,
+              "coloredPixels": 66421,
+              "logicalCanvas": [880, 495],
+              "viewport": {
+                "width": 1180,
+                "height": 908,
+                "devicePixelRatio": 1
+              }
+            },
+            {
+              "measuredMs": 8000.000000000002,
+              "submitted": 955,
+              "completedWithinWindow": 955,
+              "callbacks": 955,
+              "skipped": 0,
+              "submittedFps": 119.37499999999997,
+              "completedFps": 119.37499999999997,
+              "callbackFps": 119.37499999999997,
+              "encodeMs": {
+                "count": 955,
+                "p50": 1.0319999999992433,
+                "p95": 1.8780000000006112,
+                "p99": 2.100000000000364
+              },
+              "frameGapMs": {
+                "count": 954,
+                "p50": 8.330999999998312,
+                "p95": 8.541000000001077,
+                "p99": 8.75
+              },
+              "completionMs": {
+                "count": 955,
+                "p50": 4.193999999999505,
+                "p95": 5.367000000000189,
+                "p99": 6.242999999998574
+              },
+              "name": "Particles / high / 1080p",
+              "settings": {
+                "scene": 0,
+                "quality": 2,
+                "resolution": 1,
+                "palette": 0,
+                "individual": false,
+                "name": "Particles / high / 1080p"
+              },
+              "width": 1920,
+              "height": 1080,
+              "drawCalls": 1,
+              "drainMs": 2.3370000000031723,
+              "coloredPixels": 34343,
+              "logicalCanvas": [880, 495],
+              "viewport": {
+                "width": 1180,
+                "height": 908,
+                "devicePixelRatio": 1
+              }
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 958,
+              "completedWithinWindow": 957,
+              "callbacks": 958,
+              "skipped": 0,
+              "submittedFps": 119.75,
+              "completedFps": 119.625,
+              "callbackFps": 119.75,
+              "encodeMs": {
+                "count": 958,
+                "p50": 0.9919999999983702,
+                "p95": 1.7839999999996508,
+                "p99": 1.9310000000004948
+              },
+              "frameGapMs": {
+                "count": 957,
+                "p50": 8.33100000000195,
+                "p95": 8.499000000003434,
+                "p99": 8.631000000001222
+              },
+              "completionMs": {
+                "count": 958,
+                "p50": 2.0270000000018626,
+                "p95": 3.286000000000058,
+                "p99": 3.5930000000007567
+              },
+              "name": "Cubes / instanced / 540p",
+              "settings": {
+                "scene": 1,
+                "quality": 2,
+                "resolution": 0,
+                "palette": 0,
+                "individual": false,
+                "name": "Cubes / instanced / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 1,
+              "drainMs": 1.805000000000291,
+              "coloredPixels": 122405,
+              "logicalCanvas": [880, 495],
+              "viewport": {
+                "width": 1180,
+                "height": 908,
+                "devicePixelRatio": 1
+              }
+            },
+            {
+              "measuredMs": 8000.000000000004,
+              "submitted": 957,
+              "completedWithinWindow": 956,
+              "callbacks": 957,
+              "skipped": 0,
+              "submittedFps": 119.62499999999994,
+              "completedFps": 119.49999999999994,
+              "callbackFps": 119.62499999999994,
+              "encodeMs": {
+                "count": 957,
+                "p50": 2.6229999999995925,
+                "p95": 3.3430000000007567,
+                "p99": 3.7740000000012515
+              },
+              "frameGapMs": {
+                "count": 956,
+                "p50": 8.33100000000195,
+                "p95": 8.444999999999709,
+                "p99": 8.505000000001019
+              },
+              "completionMs": {
+                "count": 957,
+                "p50": 3.574000000000524,
+                "p95": 4.0680000000029395,
+                "p99": 4.628000000000611
+              },
+              "name": "Cubes / per-object / 540p",
+              "settings": {
+                "scene": 1,
+                "quality": 2,
+                "resolution": 0,
+                "palette": 0,
+                "individual": true,
+                "name": "Cubes / per-object / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 2304,
+              "drainMs": 0.657999999995809,
+              "coloredPixels": 122405,
+              "logicalCanvas": [880, 495],
+              "viewport": {
+                "width": 1180,
+                "height": 908,
+                "devicePixelRatio": 1
+              }
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 959,
+              "completedWithinWindow": 958,
+              "callbacks": 959,
+              "skipped": 0,
+              "submittedFps": 119.875,
+              "completedFps": 119.75,
+              "callbackFps": 119.875,
+              "encodeMs": {
+                "count": 959,
+                "p50": 0.9040000000022701,
+                "p95": 1.6710000000020955,
+                "p99": 1.8800000000046566
+              },
+              "frameGapMs": {
+                "count": 958,
+                "p50": 8.33299999999872,
+                "p95": 8.54500000000553,
+                "p99": 8.762000000002445
+              },
+              "completionMs": {
+                "count": 959,
+                "p50": 2.7119999999995343,
+                "p95": 3.6560000000026776,
+                "p99": 4.233000000000175
+              },
+              "name": "Prism / balanced / 540p",
+              "settings": {
+                "scene": 2,
+                "quality": 1,
+                "resolution": 0,
+                "palette": 0,
+                "individual": false,
+                "name": "Prism / balanced / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 1,
+              "drainMs": 2.772000000004482,
+              "coloredPixels": 354234,
+              "logicalCanvas": [880, 495],
+              "viewport": {
+                "width": 1180,
+                "height": 908,
+                "devicePixelRatio": 1
+              }
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 961,
+              "completedWithinWindow": 960,
+              "callbacks": 961,
+              "skipped": 0,
+              "submittedFps": 120.125,
+              "completedFps": 120,
+              "callbackFps": 120.125,
+              "encodeMs": {
+                "count": 961,
+                "p50": 0.8819999999977881,
+                "p95": 1.555000000000291,
+                "p99": 1.8169999999954598
+              },
+              "frameGapMs": {
+                "count": 960,
+                "p50": 8.33299999999872,
+                "p95": 8.459000000002561,
+                "p99": 8.561000000001513
+              },
+              "completionMs": {
+                "count": 961,
+                "p50": 5.216999999996915,
+                "p95": 6.070999999996275,
+                "p99": 6.474000000001979
+              },
+              "name": "Prism / high / 1080p",
+              "settings": {
+                "scene": 2,
+                "quality": 2,
+                "resolution": 1,
+                "palette": 0,
+                "individual": false,
+                "name": "Prism / high / 1080p"
+              },
+              "width": 1920,
+              "height": 1080,
+              "drawCalls": 1,
+              "drainMs": 0.6999999999970896,
+              "coloredPixels": 348039,
+              "logicalCanvas": [880, 495],
+              "viewport": {
+                "width": 1180,
+                "height": 908,
+                "devicePixelRatio": 1
+              }
+            }
+          ],
+          "retired": [0, 0, 0, 0, 0, 0],
+          "sourceSha256": "e4ccf6e2c85b22d527ba63f40095d26ddd4b7a878a95c95eec064098f9e4d69c",
+          "adapter": {
+            "vendor": "apple",
+            "description": "Metal driver on macOS Version 27.0.1 (Build 26A434)",
+            "device": "apple-m2-max"
+          },
+          "collectedAt": "2026-10-29T05:22:41.506Z"
+        }
+      },
+      {
+        "kind": "html",
+        "result": {
+          "passed": true,
+          "cases": [
+            {
+              "measuredMs": 8000,
+              "submitted": 960,
+              "completedWithinWindow": 960,
+              "callbacks": 960,
+              "skipped": 0,
+              "submittedFps": 120,
+              "completedFps": 120,
+              "callbackFps": 120,
+              "encodeMs": {
+                "count": 960,
+                "p50": 0.04500007629394531,
+                "p95": 0.13000011444091797,
+                "p99": 0.18499994277954102
+              },
+              "frameGapMs": {
+                "count": 959,
+                "p50": 8.335000038146973,
+                "p95": 9.454999923706055,
+                "p99": 10.15999984741211
+              },
+              "completionMs": {
+                "count": 960,
+                "p50": 1.6150002479553223,
+                "p95": 2.7350001335144043,
+                "p99": 3.0899996757507324
+              },
+              "name": "Particles / balanced / 540p",
+              "settings": {
+                "scene": 0,
+                "quality": 1,
+                "resolution": 0,
+                "palette": 0,
+                "individual": false,
+                "name": "Particles / balanced / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 1,
+              "drainMs": 6.610000133514404,
+              "colored": 72915
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 960,
+              "completedWithinWindow": 960,
+              "callbacks": 960,
+              "skipped": 0,
+              "submittedFps": 120,
+              "completedFps": 120,
+              "callbackFps": 120,
+              "encodeMs": {
+                "count": 960,
+                "p50": 0.09499979019165039,
+                "p95": 0.18499994277954102,
+                "p99": 0.28999996185302734
+              },
+              "frameGapMs": {
+                "count": 959,
+                "p50": 8.334999561309814,
+                "p95": 9.550000190734863,
+                "p99": 10.069999694824219
+              },
+              "completionMs": {
+                "count": 960,
+                "p50": 3.5399999618530273,
+                "p95": 4.65500020980835,
+                "p99": 5.144999980926514
+              },
+              "name": "Particles / high / 1080p",
+              "settings": {
+                "scene": 0,
+                "quality": 2,
+                "resolution": 1,
+                "palette": 0,
+                "individual": false,
+                "name": "Particles / high / 1080p"
+              },
+              "width": 1920,
+              "height": 1080,
+              "drawCalls": 1,
+              "drainMs": 2.244999885559082,
+              "colored": 149048
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 960,
+              "completedWithinWindow": 960,
+              "callbacks": 960,
+              "skipped": 0,
+              "submittedFps": 120,
+              "completedFps": 120,
+              "callbackFps": 120,
+              "encodeMs": {
+                "count": 960,
+                "p50": 0.09000015258789062,
+                "p95": 0.14499998092651367,
+                "p99": 0.1700000762939453
+              },
+              "frameGapMs": {
+                "count": 959,
+                "p50": 8.324999809265137,
+                "p95": 9.700000286102295,
+                "p99": 10.085000038146973
+              },
+              "completionMs": {
+                "count": 960,
+                "p50": 1.5300002098083496,
+                "p95": 2.2599997520446777,
+                "p99": 2.760000228881836
+              },
+              "name": "Cubes / instanced / 540p",
+              "settings": {
+                "scene": 1,
+                "quality": 2,
+                "resolution": 0,
+                "palette": 0,
+                "individual": false,
+                "name": "Cubes / instanced / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 1,
+              "drainMs": 1.4850001335144043,
+              "colored": 141818
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 960,
+              "completedWithinWindow": 960,
+              "callbacks": 960,
+              "skipped": 0,
+              "submittedFps": 120,
+              "completedFps": 120,
+              "callbackFps": 120,
+              "encodeMs": {
+                "count": 960,
+                "p50": 0.21000003814697266,
+                "p95": 0.36499977111816406,
+                "p99": 0.4650001525878906
+              },
+              "frameGapMs": {
+                "count": 959,
+                "p50": 8.324999809265137,
+                "p95": 9.485000133514404,
+                "p99": 10.065000057220459
+              },
+              "completionMs": {
+                "count": 960,
+                "p50": 2.5450000762939453,
+                "p95": 3.25,
+                "p99": 3.6649999618530273
+              },
+              "name": "Cubes / per-object / 540p",
+              "settings": {
+                "scene": 1,
+                "quality": 2,
+                "resolution": 0,
+                "palette": 0,
+                "individual": true,
+                "name": "Cubes / per-object / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 2304,
+              "drainMs": 1.4100003242492676,
+              "colored": 141818
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 961,
+              "completedWithinWindow": 960,
+              "callbacks": 961,
+              "skipped": 0,
+              "submittedFps": 120.125,
+              "completedFps": 120,
+              "callbackFps": 120.125,
+              "encodeMs": {
+                "count": 961,
+                "p50": 0.09000015258789062,
+                "p95": 0.1549997329711914,
+                "p99": 0.18500041961669922
+              },
+              "frameGapMs": {
+                "count": 960,
+                "p50": 8.329999923706055,
+                "p95": 9.639999866485596,
+                "p99": 10.154999732971191
+              },
+              "completionMs": {
+                "count": 961,
+                "p50": 2.1100001335144043,
+                "p95": 2.8449997901916504,
+                "p99": 3.3949999809265137
+              },
+              "name": "Prism / balanced / 540p",
+              "settings": {
+                "scene": 2,
+                "quality": 1,
+                "resolution": 0,
+                "palette": 0,
+                "individual": false,
+                "name": "Prism / balanced / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 1,
+              "drainMs": 1.4650001525878906,
+              "colored": 426514
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 960,
+              "completedWithinWindow": 960,
+              "callbacks": 960,
+              "skipped": 0,
+              "submittedFps": 120,
+              "completedFps": 120,
+              "callbackFps": 120,
+              "encodeMs": {
+                "count": 960,
+                "p50": 0.07999992370605469,
+                "p95": 0.11500024795532227,
+                "p99": 0.14499998092651367
+              },
+              "frameGapMs": {
+                "count": 959,
+                "p50": 8.329999923706055,
+                "p95": 9.599999904632568,
+                "p99": 10
+              },
+              "completionMs": {
+                "count": 960,
+                "p50": 4.474999904632568,
+                "p95": 5.085000038146973,
+                "p99": 5.455000400543213
+              },
+              "name": "Prism / high / 1080p",
+              "settings": {
+                "scene": 2,
+                "quality": 2,
+                "resolution": 1,
+                "palette": 0,
+                "individual": false,
+                "name": "Prism / high / 1080p"
+              },
+              "width": 1920,
+              "height": 1080,
+              "drawCalls": 1,
+              "drainMs": 1.2850003242492676,
+              "colored": 1672956
+            }
+          ],
+          "sourceSha256": "e4ccf6e2c85b22d527ba63f40095d26ddd4b7a878a95c95eec064098f9e4d69c",
+          "adapter": {
+            "vendor": "apple",
+            "description": "",
+            "device": ""
+          },
+          "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0",
+          "viewport": {
+            "width": 1180,
+            "height": 908,
+            "devicePixelRatio": 1
+          },
+          "interaction": true,
+          "pointerPixelsChanged": true,
+          "version": {
+            "protocolVersion": "1.3",
+            "product": "Edg/156.0.4314.50",
+            "revision": "@af2ba23ae0ecf7084d900446fc59d5119dd5fd5e",
+            "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0",
+            "jsVersion": "15.6.12.7"
+          },
+          "collectedAt": "2026-10-29T05:23:35.450Z"
+        }
+      },
+      {
+        "kind": "html",
+        "result": {
+          "passed": true,
+          "cases": [
+            {
+              "measuredMs": 8000,
+              "submitted": 960,
+              "completedWithinWindow": 960,
+              "callbacks": 960,
+              "skipped": 0,
+              "submittedFps": 120,
+              "completedFps": 120,
+              "callbackFps": 120,
+              "encodeMs": {
+                "count": 960,
+                "p50": 0.04999971389770508,
+                "p95": 0.15000009536743164,
+                "p99": 0.19500017166137695
+              },
+              "frameGapMs": {
+                "count": 959,
+                "p50": 8.325000286102295,
+                "p95": 9.809999942779541,
+                "p99": 10.210000038146973
+              },
+              "completionMs": {
+                "count": 960,
+                "p50": 1.7199997901916504,
+                "p95": 2.8499999046325684,
+                "p99": 3.4049997329711914
+              },
+              "name": "Particles / balanced / 540p",
+              "settings": {
+                "scene": 0,
+                "quality": 1,
+                "resolution": 0,
+                "palette": 0,
+                "individual": false,
+                "name": "Particles / balanced / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 1,
+              "drainMs": 1.929999828338623,
+              "colored": 72915
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 960,
+              "completedWithinWindow": 960,
+              "callbacks": 960,
+              "skipped": 0,
+              "submittedFps": 120,
+              "completedFps": 120,
+              "callbackFps": 120,
+              "encodeMs": {
+                "count": 960,
+                "p50": 0.11999988555908203,
+                "p95": 0.19000005722045898,
+                "p99": 0.24499988555908203
+              },
+              "frameGapMs": {
+                "count": 959,
+                "p50": 8.335000038146973,
+                "p95": 9.71500015258789,
+                "p99": 10.234999656677246
+              },
+              "completionMs": {
+                "count": 960,
+                "p50": 3.7649998664855957,
+                "p95": 5.215000152587891,
+                "p99": 6.269999980926514
+              },
+              "name": "Particles / high / 1080p",
+              "settings": {
+                "scene": 0,
+                "quality": 2,
+                "resolution": 1,
+                "palette": 0,
+                "individual": false,
+                "name": "Particles / high / 1080p"
+              },
+              "width": 1920,
+              "height": 1080,
+              "drawCalls": 1,
+              "drainMs": 1.3700003623962402,
+              "colored": 149048
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 960,
+              "completedWithinWindow": 960,
+              "callbacks": 960,
+              "skipped": 0,
+              "submittedFps": 120,
+              "completedFps": 120,
+              "callbackFps": 120,
+              "encodeMs": {
+                "count": 960,
+                "p50": 0.08499956130981445,
+                "p95": 0.125,
+                "p99": 0.16499996185302734
+              },
+              "frameGapMs": {
+                "count": 959,
+                "p50": 8.325000286102295,
+                "p95": 9.599999904632568,
+                "p99": 9.970000267028809
+              },
+              "completionMs": {
+                "count": 960,
+                "p50": 1.505000114440918,
+                "p95": 2.179999828338623,
+                "p99": 2.4700002670288086
+              },
+              "name": "Cubes / instanced / 540p",
+              "settings": {
+                "scene": 1,
+                "quality": 2,
+                "resolution": 0,
+                "palette": 0,
+                "individual": false,
+                "name": "Cubes / instanced / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 1,
+              "drainMs": 1.570000171661377,
+              "colored": 141818
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 960,
+              "completedWithinWindow": 960,
+              "callbacks": 960,
+              "skipped": 0,
+              "submittedFps": 120,
+              "completedFps": 120,
+              "callbackFps": 120,
+              "encodeMs": {
+                "count": 960,
+                "p50": 0.2049999237060547,
+                "p95": 0.315000057220459,
+                "p99": 0.39499998092651367
+              },
+              "frameGapMs": {
+                "count": 959,
+                "p50": 8.329999923706055,
+                "p95": 9.65999984741211,
+                "p99": 10.150000095367432
+              },
+              "completionMs": {
+                "count": 960,
+                "p50": 2.820000171661377,
+                "p95": 3.7400002479553223,
+                "p99": 4.615000247955322
+              },
+              "name": "Cubes / per-object / 540p",
+              "settings": {
+                "scene": 1,
+                "quality": 2,
+                "resolution": 0,
+                "palette": 0,
+                "individual": true,
+                "name": "Cubes / per-object / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 2304,
+              "drainMs": 1.489999771118164,
+              "colored": 141818
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 961,
+              "completedWithinWindow": 960,
+              "callbacks": 961,
+              "skipped": 0,
+              "submittedFps": 120.125,
+              "completedFps": 120,
+              "callbackFps": 120.125,
+              "encodeMs": {
+                "count": 961,
+                "p50": 0.08500003814697266,
+                "p95": 0.1399998664855957,
+                "p99": 0.16499996185302734
+              },
+              "frameGapMs": {
+                "count": 960,
+                "p50": 8.324999809265137,
+                "p95": 9.654999732971191,
+                "p99": 10.039999961853027
+              },
+              "completionMs": {
+                "count": 961,
+                "p50": 2.070000171661377,
+                "p95": 2.690000057220459,
+                "p99": 2.989999771118164
+              },
+              "name": "Prism / balanced / 540p",
+              "settings": {
+                "scene": 2,
+                "quality": 1,
+                "resolution": 0,
+                "palette": 0,
+                "individual": false,
+                "name": "Prism / balanced / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 1,
+              "drainMs": 1.2699999809265137,
+              "colored": 426514
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 960,
+              "completedWithinWindow": 960,
+              "callbacks": 960,
+              "skipped": 0,
+              "submittedFps": 120,
+              "completedFps": 120,
+              "callbackFps": 120,
+              "encodeMs": {
+                "count": 960,
+                "p50": 0.07999992370605469,
+                "p95": 0.11499977111816406,
+                "p99": 0.1400003433227539
+              },
+              "frameGapMs": {
+                "count": 959,
+                "p50": 8.325000286102295,
+                "p95": 9.720000267028809,
+                "p99": 10.150000095367432
+              },
+              "completionMs": {
+                "count": 960,
+                "p50": 4.5,
+                "p95": 5.170000076293945,
+                "p99": 5.675000190734863
+              },
+              "name": "Prism / high / 1080p",
+              "settings": {
+                "scene": 2,
+                "quality": 2,
+                "resolution": 1,
+                "palette": 0,
+                "individual": false,
+                "name": "Prism / high / 1080p"
+              },
+              "width": 1920,
+              "height": 1080,
+              "drawCalls": 1,
+              "drainMs": 2.7100000381469727,
+              "colored": 1672956
+            }
+          ],
+          "sourceSha256": "e4ccf6e2c85b22d527ba63f40095d26ddd4b7a878a95c95eec064098f9e4d69c",
+          "adapter": {
+            "vendor": "apple",
+            "description": "",
+            "device": ""
+          },
+          "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0",
+          "viewport": {
+            "width": 1180,
+            "height": 908,
+            "devicePixelRatio": 1
+          },
+          "interaction": true,
+          "pointerPixelsChanged": true,
+          "version": {
+            "protocolVersion": "1.3",
+            "product": "Edg/156.0.4314.50",
+            "revision": "@af2ba23ae0ecf7084d900446fc59d5119dd5fd5e",
+            "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36 Edg/156.0.0.0",
+            "jsVersion": "15.6.12.7"
+          },
+          "collectedAt": "2026-10-29T05:24:29.098Z"
+        }
+      },
+      {
+        "kind": "flax",
+        "result": {
+          "passed": true,
+          "cases": [
+            {
+              "measuredMs": 7999.999999999999,
+              "submitted": 959,
+              "completedWithinWindow": 958,
+              "callbacks": 959,
+              "skipped": 0,
+              "submittedFps": 119.87500000000001,
+              "completedFps": 119.75000000000001,
+              "callbackFps": 119.87500000000001,
+              "encodeMs": {
+                "count": 959,
+                "p50": 1.0349999999998545,
+                "p95": 1.8699999999998909,
+                "p99": 2.0900000000001455
+              },
+              "frameGapMs": {
+                "count": 958,
+                "p50": 8.330000000000837,
+                "p95": 8.536000000000058,
+                "p99": 8.717000000000098
+              },
+              "completionMs": {
+                "count": 959,
+                "p50": 2.880000000000109,
+                "p95": 4.04200000000003,
+                "p99": 4.524000000000342
+              },
+              "name": "Particles / balanced / 540p",
+              "settings": {
+                "scene": 0,
+                "quality": 1,
+                "resolution": 0,
+                "palette": 0,
+                "individual": false,
+                "name": "Particles / balanced / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 1,
+              "drainMs": 2.0130000000008295,
+              "coloredPixels": 66421,
+              "logicalCanvas": [880, 495],
+              "viewport": {
+                "width": 1180,
+                "height": 908,
+                "devicePixelRatio": 1
+              }
+            },
+            {
+              "measuredMs": 7999.999999999998,
+              "submitted": 956,
+              "completedWithinWindow": 955,
+              "callbacks": 956,
+              "skipped": 0,
+              "submittedFps": 119.50000000000003,
+              "completedFps": 119.37500000000003,
+              "callbackFps": 119.50000000000003,
+              "encodeMs": {
+                "count": 956,
+                "p50": 1.0389999999988504,
+                "p95": 1.8260000000009313,
+                "p99": 2.157999999999447
+              },
+              "frameGapMs": {
+                "count": 955,
+                "p50": 8.329999999999927,
+                "p95": 8.496999999999389,
+                "p99": 8.680000000000291
+              },
+              "completionMs": {
+                "count": 956,
+                "p50": 4.121999999999389,
+                "p95": 5.242000000000189,
+                "p99": 5.851999999998952
+              },
+              "name": "Particles / high / 1080p",
+              "settings": {
+                "scene": 0,
+                "quality": 2,
+                "resolution": 1,
+                "palette": 0,
+                "individual": false,
+                "name": "Particles / high / 1080p"
+              },
+              "width": 1920,
+              "height": 1080,
+              "drawCalls": 1,
+              "drainMs": 1.995999999999185,
+              "coloredPixels": 34343,
+              "logicalCanvas": [880, 495],
+              "viewport": {
+                "width": 1180,
+                "height": 908,
+                "devicePixelRatio": 1
+              }
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 958,
+              "completedWithinWindow": 957,
+              "callbacks": 958,
+              "skipped": 0,
+              "submittedFps": 119.75,
+              "completedFps": 119.625,
+              "callbackFps": 119.75,
+              "encodeMs": {
+                "count": 958,
+                "p50": 1.026000000001659,
+                "p95": 1.7449999999989814,
+                "p99": 1.9979999999995925
+              },
+              "frameGapMs": {
+                "count": 957,
+                "p50": 8.330999999998312,
+                "p95": 8.496999999999389,
+                "p99": 8.566999999999098
+              },
+              "completionMs": {
+                "count": 958,
+                "p50": 2.070000000003347,
+                "p95": 3.3770000000004075,
+                "p99": 3.6889999999984866
+              },
+              "name": "Cubes / instanced / 540p",
+              "settings": {
+                "scene": 1,
+                "quality": 2,
+                "resolution": 0,
+                "palette": 0,
+                "individual": false,
+                "name": "Cubes / instanced / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 1,
+              "drainMs": 1.6820000000006985,
+              "coloredPixels": 122405,
+              "logicalCanvas": [880, 495],
+              "viewport": {
+                "width": 1180,
+                "height": 908,
+                "devicePixelRatio": 1
+              }
+            },
+            {
+              "measuredMs": 8000.000000000004,
+              "submitted": 957,
+              "completedWithinWindow": 957,
+              "callbacks": 957,
+              "skipped": 0,
+              "submittedFps": 119.62499999999994,
+              "completedFps": 119.62499999999994,
+              "callbackFps": 119.62499999999994,
+              "encodeMs": {
+                "count": 957,
+                "p50": 2.521999999997206,
+                "p95": 2.787000000000262,
+                "p99": 3.5339999999996508
+              },
+              "frameGapMs": {
+                "count": 956,
+                "p50": 8.330000000001746,
+                "p95": 8.507999999997992,
+                "p99": 8.541999999997643
+              },
+              "completionMs": {
+                "count": 957,
+                "p50": 3.4470000000001164,
+                "p95": 4.503000000000611,
+                "p99": 4.756000000001222
+              },
+              "name": "Cubes / per-object / 540p",
+              "settings": {
+                "scene": 1,
+                "quality": 2,
+                "resolution": 0,
+                "palette": 0,
+                "individual": true,
+                "name": "Cubes / per-object / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 2304,
+              "drainMs": 1.0380000000004657,
+              "coloredPixels": 122405,
+              "logicalCanvas": [880, 495],
+              "viewport": {
+                "width": 1180,
+                "height": 908,
+                "devicePixelRatio": 1
+              }
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 959,
+              "completedWithinWindow": 958,
+              "callbacks": 959,
+              "skipped": 0,
+              "submittedFps": 119.875,
+              "completedFps": 119.75,
+              "callbackFps": 119.875,
+              "encodeMs": {
+                "count": 959,
+                "p50": 0.922999999995227,
+                "p95": 1.6200000000026193,
+                "p99": 1.7450000000026193
+              },
+              "frameGapMs": {
+                "count": 958,
+                "p50": 8.336999999999534,
+                "p95": 8.508999999998196,
+                "p99": 8.576000000000931
+              },
+              "completionMs": {
+                "count": 959,
+                "p50": 2.8139999999984866,
+                "p95": 3.8099999999976717,
+                "p99": 4.078000000001339
+              },
+              "name": "Prism / balanced / 540p",
+              "settings": {
+                "scene": 2,
+                "quality": 1,
+                "resolution": 0,
+                "palette": 0,
+                "individual": false,
+                "name": "Prism / balanced / 540p"
+              },
+              "width": 960,
+              "height": 540,
+              "drawCalls": 1,
+              "drainMs": 1.860000000000582,
+              "coloredPixels": 354234,
+              "logicalCanvas": [880, 495],
+              "viewport": {
+                "width": 1180,
+                "height": 908,
+                "devicePixelRatio": 1
+              }
+            },
+            {
+              "measuredMs": 8000,
+              "submitted": 959,
+              "completedWithinWindow": 958,
+              "callbacks": 959,
+              "skipped": 0,
+              "submittedFps": 119.875,
+              "completedFps": 119.75,
+              "callbackFps": 119.875,
+              "encodeMs": {
+                "count": 959,
+                "p50": 0.9239999999990687,
+                "p95": 1.6390000000028522,
+                "p99": 1.815999999998894
+              },
+              "frameGapMs": {
+                "count": 958,
+                "p50": 8.33299999999872,
+                "p95": 8.458999999995285,
+                "p99": 8.551999999996042
+              },
+              "completionMs": {
+                "count": 959,
+                "p50": 5.197000000000116,
+                "p95": 6.196000000003551,
+                "p99": 6.447000000000116
+              },
+              "name": "Prism / high / 1080p",
+              "settings": {
+                "scene": 2,
+                "quality": 2,
+                "resolution": 1,
+                "palette": 0,
+                "individual": false,
+                "name": "Prism / high / 1080p"
+              },
+              "width": 1920,
+              "height": 1080,
+              "drawCalls": 1,
+              "drainMs": 1.440999999998894,
+              "coloredPixels": 348039,
+              "logicalCanvas": [880, 495],
+              "viewport": {
+                "width": 1180,
+                "height": 908,
+                "devicePixelRatio": 1
+              }
+            }
+          ],
+          "retired": [0, 0, 0, 0, 0, 0],
+          "sourceSha256": "e4ccf6e2c85b22d527ba63f40095d26ddd4b7a878a95c95eec064098f9e4d69c",
+          "adapter": {
+            "vendor": "apple",
+            "description": "Metal driver on macOS Version 27.0.1 (Build 26A434)",
+            "device": "apple-m2-max"
+          },
+          "collectedAt": "2026-10-29T05:25:22.134Z"
+        }
+      }
+    ]
+  },
+  "lateFullControls": {
+    "old": {
+      "passed": true,
+      "cases": [
+        {
+          "measuredMs": 7999.999999999999,
+          "submitted": 948,
+          "completedWithinWindow": 947,
+          "callbacks": 948,
+          "skipped": 0,
+          "submittedFps": 118.50000000000001,
+          "completedFps": 118.37500000000001,
+          "callbackFps": 118.50000000000001,
+          "encodeMs": {
+            "count": 948,
+            "p50": 1.1099999999996726,
+            "p95": 1.456000000000131,
+            "p99": 2.1080000000001746
+          },
+          "frameGapMs": {
+            "count": 947,
+            "p50": 8.332999999999629,
+            "p95": 8.471999999999753,
+            "p99": 8.628000000000611
+          },
+          "completionMs": {
+            "count": 948,
+            "p50": 2.936999999999898,
+            "p95": 3.8629999999993743,
+            "p99": 4.305999999999585
+          },
+          "name": "Particles / balanced / 540p",
+          "settings": {
+            "scene": 0,
+            "quality": 1,
+            "resolution": 0,
+            "palette": 0,
+            "individual": false,
+            "name": "Particles / balanced / 540p"
+          },
+          "width": 960,
+          "height": 540,
+          "drawCalls": 1,
+          "drainMs": 1.529000000000451,
+          "coloredPixels": 66421,
+          "logicalCanvas": [880, 495],
+          "viewport": {
+            "width": 1180,
+            "height": 908,
+            "devicePixelRatio": 1
+          }
+        },
+        {
+          "measuredMs": 7999.999999999998,
+          "submitted": 943,
+          "completedWithinWindow": 943,
+          "callbacks": 943,
+          "skipped": 0,
+          "submittedFps": 117.87500000000003,
+          "completedFps": 117.87500000000003,
+          "callbackFps": 117.87500000000003,
+          "encodeMs": {
+            "count": 943,
+            "p50": 1.0510000000012951,
+            "p95": 1.5709999999999127,
+            "p99": 2.1090000000003783
+          },
+          "frameGapMs": {
+            "count": 942,
+            "p50": 8.332000000000335,
+            "p95": 8.493999999998778,
+            "p99": 8.864999999999782
+          },
+          "completionMs": {
+            "count": 943,
+            "p50": 4.318999999999505,
+            "p95": 5.21900000000096,
+            "p99": 6.261999999998807
+          },
+          "name": "Particles / high / 1080p",
+          "settings": {
+            "scene": 0,
+            "quality": 2,
+            "resolution": 1,
+            "palette": 0,
+            "individual": false,
+            "name": "Particles / high / 1080p"
+          },
+          "width": 1920,
+          "height": 1080,
+          "drawCalls": 1,
+          "drainMs": 1.6389999999992142,
+          "coloredPixels": 34343,
+          "logicalCanvas": [880, 495],
+          "viewport": {
+            "width": 1180,
+            "height": 908,
+            "devicePixelRatio": 1
+          }
+        },
+        {
+          "measuredMs": 8000,
+          "submitted": 943,
+          "completedWithinWindow": 943,
+          "callbacks": 943,
+          "skipped": 0,
+          "submittedFps": 117.875,
+          "completedFps": 117.875,
+          "callbackFps": 117.875,
+          "encodeMs": {
+            "count": 943,
+            "p50": 0.9950000000026193,
+            "p95": 1.430000000000291,
+            "p99": 1.9619999999995343
+          },
+          "frameGapMs": {
+            "count": 942,
+            "p50": 8.333999999998923,
+            "p95": 8.505999999997584,
+            "p99": 9.350999999998749
+          },
+          "completionMs": {
+            "count": 943,
+            "p50": 2.04399999999805,
+            "p95": 3.1930000000029395,
+            "p99": 4.35399999999936
+          },
+          "name": "Cubes / instanced / 540p",
+          "settings": {
+            "scene": 1,
+            "quality": 2,
+            "resolution": 0,
+            "palette": 0,
+            "individual": false,
+            "name": "Cubes / instanced / 540p"
+          },
+          "width": 960,
+          "height": 540,
+          "drawCalls": 1,
+          "drainMs": 0.7180000000007567,
+          "coloredPixels": 122405,
+          "logicalCanvas": [880, 495],
+          "viewport": {
+            "width": 1180,
+            "height": 908,
+            "devicePixelRatio": 1
+          }
+        },
+        {
+          "measuredMs": 8000,
+          "submitted": 946,
+          "completedWithinWindow": 946,
+          "callbacks": 946,
+          "skipped": 0,
+          "submittedFps": 118.25,
+          "completedFps": 118.25,
+          "callbackFps": 118.25,
+          "encodeMs": {
+            "count": 946,
+            "p50": 2.651000000001659,
+            "p95": 3.2890000000043074,
+            "p99": 3.5569999999934225
+          },
+          "frameGapMs": {
+            "count": 945,
+            "p50": 8.331999999994878,
+            "p95": 8.456000000005588,
+            "p99": 8.550999999999476
+          },
+          "completionMs": {
+            "count": 946,
+            "p50": 3.5689999999995052,
+            "p95": 4.033999999999651,
+            "p99": 4.64600000000064
+          },
+          "name": "Cubes / per-object / 540p",
+          "settings": {
+            "scene": 1,
+            "quality": 2,
+            "resolution": 0,
+            "palette": 0,
+            "individual": true,
+            "name": "Cubes / per-object / 540p"
+          },
+          "width": 960,
+          "height": 540,
+          "drawCalls": 2304,
+          "drainMs": 0.7439999999987776,
+          "coloredPixels": 122405,
+          "logicalCanvas": [880, 495],
+          "viewport": {
+            "width": 1180,
+            "height": 908,
+            "devicePixelRatio": 1
+          }
+        },
+        {
+          "measuredMs": 8000,
+          "submitted": 950,
+          "completedWithinWindow": 949,
+          "callbacks": 950,
+          "skipped": 0,
+          "submittedFps": 118.75,
+          "completedFps": 118.625,
+          "callbackFps": 118.75,
+          "encodeMs": {
+            "count": 950,
+            "p50": 0.944999999999709,
+            "p95": 1.657999999995809,
+            "p99": 1.9399999999950523
+          },
+          "frameGapMs": {
+            "count": 949,
+            "p50": 8.331000000005588,
+            "p95": 8.513000000006286,
+            "p99": 8.906000000002678
+          },
+          "completionMs": {
+            "count": 950,
+            "p50": 2.7050000000017462,
+            "p95": 3.801999999996042,
+            "p99": 4.385000000002037
+          },
+          "name": "Prism / balanced / 540p",
+          "settings": {
+            "scene": 2,
+            "quality": 1,
+            "resolution": 0,
+            "palette": 0,
+            "individual": false,
+            "name": "Prism / balanced / 540p"
+          },
+          "width": 960,
+          "height": 540,
+          "drawCalls": 1,
+          "drainMs": 2.144000000000233,
+          "coloredPixels": 354234,
+          "logicalCanvas": [880, 495],
+          "viewport": {
+            "width": 1180,
+            "height": 908,
+            "devicePixelRatio": 1
+          }
+        },
+        {
+          "measuredMs": 8000,
+          "submitted": 950,
+          "completedWithinWindow": 949,
+          "callbacks": 950,
+          "skipped": 0,
+          "submittedFps": 118.75,
+          "completedFps": 118.625,
+          "callbackFps": 118.75,
+          "encodeMs": {
+            "count": 950,
+            "p50": 0.9550000000017462,
+            "p95": 1.5200000000040745,
+            "p99": 1.8539999999993597
+          },
+          "frameGapMs": {
+            "count": 949,
+            "p50": 8.331999999994878,
+            "p95": 8.468000000000757,
+            "p99": 8.65400000000227
+          },
+          "completionMs": {
+            "count": 950,
+            "p50": 5.269000000000233,
+            "p95": 6.2150000000037835,
+            "p99": 6.904999999998836
+          },
+          "name": "Prism / high / 1080p",
+          "settings": {
+            "scene": 2,
+            "quality": 2,
+            "resolution": 1,
+            "palette": 0,
+            "individual": false,
+            "name": "Prism / high / 1080p"
+          },
+          "width": 1920,
+          "height": 1080,
+          "drawCalls": 1,
+          "drainMs": 1.4689999999973224,
+          "coloredPixels": 348039,
+          "logicalCanvas": [880, 495],
+          "viewport": {
+            "width": 1180,
+            "height": 908,
+            "devicePixelRatio": 1
+          }
+        }
+      ],
+      "retired": [0, 0, 0, 0, 0, 0],
+      "sourceSha256": "e4ccf6e2c85b22d527ba63f40095d26ddd4b7a878a95c95eec064098f9e4d69c",
+      "adapter": {
+        "vendor": "apple",
+        "description": "Metal driver on macOS Version 27.0.1 (Build 26A434)",
+        "device": "apple-m2-max"
+      },
+      "collectedAt": "2026-10-29T05:40:58.774Z"
+    },
+    "new": {
+      "passed": true,
+      "cases": [
+        {
+          "measuredMs": 8000.000000000001,
+          "submitted": 956,
+          "completedWithinWindow": 955,
+          "callbacks": 956,
+          "skipped": 0,
+          "submittedFps": 119.49999999999997,
+          "completedFps": 119.37499999999997,
+          "callbackFps": 119.49999999999997,
+          "encodeMs": {
+            "count": 956,
+            "p50": 1.0340000000005602,
+            "p95": 1.5320000000001528,
+            "p99": 2.0310000000008586
+          },
+          "frameGapMs": {
+            "count": 955,
+            "p50": 8.332999999999629,
+            "p95": 8.514000000000124,
+            "p99": 8.690999999999804
+          },
+          "completionMs": {
+            "count": 956,
+            "p50": 2.7800000000002,
+            "p95": 3.712999999999738,
+            "p99": 4.6929999999993015
+          },
+          "name": "Particles / balanced / 540p",
+          "settings": {
+            "scene": 0,
+            "quality": 1,
+            "resolution": 0,
+            "palette": 0,
+            "individual": false,
+            "name": "Particles / balanced / 540p"
+          },
+          "width": 960,
+          "height": 540,
+          "drawCalls": 1,
+          "drainMs": 1.0270000000000437,
+          "coloredPixels": 66421,
+          "logicalCanvas": [880, 495],
+          "viewport": {
+            "width": 1180,
+            "height": 908,
+            "devicePixelRatio": 1
+          }
+        },
+        {
+          "measuredMs": 8000,
+          "submitted": 957,
+          "completedWithinWindow": 956,
+          "callbacks": 957,
+          "skipped": 0,
+          "submittedFps": 119.625,
+          "completedFps": 119.5,
+          "callbackFps": 119.625,
+          "encodeMs": {
+            "count": 957,
+            "p50": 1.004000000000815,
+            "p95": 1.643000000000029,
+            "p99": 2.0789999999997235
+          },
+          "frameGapMs": {
+            "count": 956,
+            "p50": 8.32799999999952,
+            "p95": 8.52599999999984,
+            "p99": 8.685999999997875
+          },
+          "completionMs": {
+            "count": 957,
+            "p50": 4.319999999999709,
+            "p95": 5.265999999999622,
+            "p99": 5.852000000000771
+          },
+          "name": "Particles / high / 1080p",
+          "settings": {
+            "scene": 0,
+            "quality": 2,
+            "resolution": 1,
+            "palette": 0,
+            "individual": false,
+            "name": "Particles / high / 1080p"
+          },
+          "width": 1920,
+          "height": 1080,
+          "drawCalls": 1,
+          "drainMs": 1.4840000000003783,
+          "coloredPixels": 34343,
+          "logicalCanvas": [880, 495],
+          "viewport": {
+            "width": 1180,
+            "height": 908,
+            "devicePixelRatio": 1
+          }
+        },
+        {
+          "measuredMs": 8000,
+          "submitted": 959,
+          "completedWithinWindow": 958,
+          "callbacks": 959,
+          "skipped": 0,
+          "submittedFps": 119.875,
+          "completedFps": 119.75,
+          "callbackFps": 119.875,
+          "encodeMs": {
+            "count": 959,
+            "p50": 0.9899999999979627,
+            "p95": 1.7599999999983993,
+            "p99": 1.9840000000003783
+          },
+          "frameGapMs": {
+            "count": 958,
+            "p50": 8.329000000001543,
+            "p95": 8.527000000001863,
+            "p99": 8.711999999999534
+          },
+          "completionMs": {
+            "count": 959,
+            "p50": 2.003000000000611,
+            "p95": 3.2549999999973807,
+            "p99": 3.769000000000233
+          },
+          "name": "Cubes / instanced / 540p",
+          "settings": {
+            "scene": 1,
+            "quality": 2,
+            "resolution": 0,
+            "palette": 0,
+            "individual": false,
+            "name": "Cubes / instanced / 540p"
+          },
+          "width": 960,
+          "height": 540,
+          "drawCalls": 1,
+          "drainMs": 1.5139999999992142,
+          "coloredPixels": 122405,
+          "logicalCanvas": [880, 495],
+          "viewport": {
+            "width": 1180,
+            "height": 908,
+            "devicePixelRatio": 1
+          }
+        },
+        {
+          "measuredMs": 8000.000000000004,
+          "submitted": 956,
+          "completedWithinWindow": 956,
+          "callbacks": 956,
+          "skipped": 0,
+          "submittedFps": 119.49999999999994,
+          "completedFps": 119.49999999999994,
+          "callbackFps": 119.49999999999994,
+          "encodeMs": {
+            "count": 956,
+            "p50": 2.63300000000163,
+            "p95": 3.1589999999996508,
+            "p99": 3.574000000000524
+          },
+          "frameGapMs": {
+            "count": 955,
+            "p50": 8.33100000000195,
+            "p95": 8.461999999999534,
+            "p99": 8.528999999998632
+          },
+          "completionMs": {
+            "count": 956,
+            "p50": 3.5309999999954016,
+            "p95": 3.9569999999948777,
+            "p99": 4.519000000000233
+          },
+          "name": "Cubes / per-object / 540p",
+          "settings": {
+            "scene": 1,
+            "quality": 2,
+            "resolution": 0,
+            "palette": 0,
+            "individual": true,
+            "name": "Cubes / per-object / 540p"
+          },
+          "width": 960,
+          "height": 540,
+          "drawCalls": 2304,
+          "drainMs": 0.7410000000018044,
+          "coloredPixels": 122405,
+          "logicalCanvas": [880, 495],
+          "viewport": {
+            "width": 1180,
+            "height": 908,
+            "devicePixelRatio": 1
+          }
+        },
+        {
+          "measuredMs": 8000,
+          "submitted": 957,
+          "completedWithinWindow": 957,
+          "callbacks": 958,
+          "skipped": 0,
+          "submittedFps": 119.625,
+          "completedFps": 119.625,
+          "callbackFps": 119.75,
+          "encodeMs": {
+            "count": 957,
+            "p50": 0.8949999999967986,
+            "p95": 1.603000000002794,
+            "p99": 1.7969999999986612
+          },
+          "frameGapMs": {
+            "count": 956,
+            "p50": 8.331999999994878,
+            "p95": 8.5,
+            "p99": 8.703999999997905
+          },
+          "completionMs": {
+            "count": 957,
+            "p50": 2.675999999999476,
+            "p95": 3.6639999999970314,
+            "p99": 4.27900000000227
+          },
+          "name": "Prism / balanced / 540p",
+          "settings": {
+            "scene": 2,
+            "quality": 1,
+            "resolution": 0,
+            "palette": 0,
+            "individual": false,
+            "name": "Prism / balanced / 540p"
+          },
+          "width": 960,
+          "height": 540,
+          "drawCalls": 1,
+          "drainMs": 2.1849999999976717,
+          "coloredPixels": 354234,
+          "logicalCanvas": [880, 495],
+          "viewport": {
+            "width": 1180,
+            "height": 908,
+            "devicePixelRatio": 1
+          }
+        },
+        {
+          "measuredMs": 8000,
+          "submitted": 957,
+          "completedWithinWindow": 956,
+          "callbacks": 957,
+          "skipped": 0,
+          "submittedFps": 119.625,
+          "completedFps": 119.5,
+          "callbackFps": 119.625,
+          "encodeMs": {
+            "count": 957,
+            "p50": 0.8869999999951688,
+            "p95": 1.5309999999954016,
+            "p99": 1.7620000000024447
+          },
+          "frameGapMs": {
+            "count": 956,
+            "p50": 8.33299999999872,
+            "p95": 8.459000000002561,
+            "p99": 8.623999999996158
+          },
+          "completionMs": {
+            "count": 957,
+            "p50": 5.205000000001746,
+            "p95": 6.093000000000757,
+            "p99": 6.358000000000175
+          },
+          "name": "Prism / high / 1080p",
+          "settings": {
+            "scene": 2,
+            "quality": 2,
+            "resolution": 1,
+            "palette": 0,
+            "individual": false,
+            "name": "Prism / high / 1080p"
+          },
+          "width": 1920,
+          "height": 1080,
+          "drawCalls": 1,
+          "drainMs": 1.6779999999998836,
+          "coloredPixels": 348039,
+          "logicalCanvas": [880, 495],
+          "viewport": {
+            "width": 1180,
+            "height": 908,
+            "devicePixelRatio": 1
+          }
+        }
+      ],
+      "retired": [0, 0, 0, 0, 0, 0],
+      "sourceSha256": "e4ccf6e2c85b22d527ba63f40095d26ddd4b7a878a95c95eec064098f9e4d69c",
+      "adapter": {
+        "vendor": "apple",
+        "description": "Metal driver on macOS Version 27.0.1 (Build 26A434)",
+        "device": "apple-m2-max"
+      },
+      "collectedAt": "2026-10-29T05:41:51.877Z"
+    }
+  },
+  "sourceSha256": {
+    "experiments/webgpu_dawn/gc.patch": "dd256485b27e4dfe0ef24ce686da94cbed46a85ebe99ea037b646aaab59d9251",
+    "experiments/webgpu_dawn/build_engine.py": "dfe996e6a1b2c739b79c60822129389e57b2f20c067b287b846756f0cbd165c1",
+    "packages/flax_ffi/js/layout.js": "bdd4a3327672c173b3594821b6a49c05c09b386ab4e2ebc4f60d66cf709d9163",
+    "packages/flax_ffi/test/runtime/complete-probe.js": "a307b4a07d337367dcccbca7f156decba7c4589266ba4fe8b31691fa318de531",
+    "packages/flax/js/src/runtime/bindings.ts": "53be34ef0addd37f63dfc543007e76ef187d25c95da46068d5c47d7c2998761f",
+    "packages/flax/lib/src/ui/objects.dart": "107df6c61c8f4a0193e805fea03001da16f7ecc3e31a0dd591fd87eeca629b73",
+    "packages/flax_webgpu/js/src/webgpu.ts": "dde427e7968d13c3b5f439a2b53e75306b2190e9f492ceac3fefdf15c99dbad1",
+    "packages/flax_webgpu/tool/public_types.py": "a8699ad832b82223a4a9d922091de89f7e535320a220e189b9166f526eaed3cb",
+    "packages/flax_webgpu/example/js/main.js": "0892a3e2a89f5ab3cdff9f00ed72f4717c3b625d7ffb10edb0b0dadcd051c289"
+  },
+  "engineOverlay": {
+    "engine": "flax_mac_webgpu_fenced_release_arm64",
+    "originalSourcesSha256": {
+      "flutter/shell/platform/darwin/macos/framework/Source/FlutterExternalTexture.mm": "5c2be38b4b7a1ff84630df971928f83d8d99398e2c767e38e4f435a075fb98a1",
+      "flutter/impeller/renderer/backend/metal/render_pass_mtl.mm": "c790a1a3dbbec3beed94fb3fea18de370ec950960e7c36c43687de877799ab93",
+      "flutter/flax/native/src/runtime.cpp": "8c1a392bb7e43153be31ed5c65e28f8a1b08959c51b133615b348887a57f1c64",
+      "flutter/flax/native/src/ffi/memory.inc": "0f835cb508889ffe3e9b5c64c54cc88dc885410b2d0333babcd11270e3d003ee",
+      "flutter/flax/native/v8-jsi/src/jsi_abi/jsi_abi_v8.cpp": "8d69220727678b2871e1cd0e26aef3cfc9c070399dc7ad00908db5b7447ec2b2",
+      "flutter/flax/native/src/canvas_decoder.inc": "77285dae4559aa6ae6d06474cef0c5eedee1b3ea808b2b8b6490da88cf4ca1eb",
+      "flutter/flax/native/src/ffi/runtime.inc": "ed77f695432a8ace185913e811b836a0f47c59635b847a372d4ca1b411f54dcd",
+      "flutter/flax/native/src/joint_gc.cc": "74f774d36d6d8f921173a546960d1d84bc2ad20893713b68a2deac865e65d449",
+      "flutter/flax/native/src/joint_gc.h": "6b7c5a76e57123c25e24bc03ec6a5976d4d8b4d3e95a0475057bcc59e4793a17"
+    },
+    "overlaySourcesSha256": {
+      "flutter/shell/platform/darwin/macos/framework/Source/FlutterExternalTexture.mm": "b2d91946196a15ca856ac74f30860d71319dedf900a1fb0983d324125f02fb0c",
+      "flutter/impeller/renderer/backend/metal/render_pass_mtl.mm": "da15c6979dee5b90ee04a30eaaf5a8c37cf5d857ce29061caf25132a9a012c98",
+      "flutter/flax/native/src/runtime.cpp": "00e585472ce870e1f8e10bbeb025acc93b696e478279d050146c312dc8b00917",
+      "flutter/flax/native/src/ffi/memory.inc": "7b2cb72c613cc1b0c509e00c7a06064713df0c16bff1a8b7d422fdcd099ce562",
+      "flutter/flax/native/v8-jsi/src/jsi_abi/jsi_abi_v8.cpp": "da298c0ec1b27bcf78ce0151fb7498d95f1b781ad477a675f250ca8d17756b37",
+      "flutter/flax/native/src/canvas_decoder.inc": "df41a15ea6abb987bbb062d8d8a52fa83fbfe057a4086b8d4e2325d94da25107",
+      "flutter/flax/native/src/ffi/runtime.inc": "d0b22ae81566724974922929df6646007b912d62c673a3cc3c601114c25f123d",
+      "flutter/flax/native/src/joint_gc.cc": "9b7499afc3c694d8d9ea9b1e9b3cfa6e344a0fb2587c4ec51a46fe22fa4c062d",
+      "flutter/flax/native/src/joint_gc.h": "06e5039cad34ea322b275a08322355a397783d75c25901a2e1f8a2950efd4698"
+    },
+    "patchSha256": "acbea7e5083008d44ebbe9d818922702b3704193e8f551db3554138cd27f2cd2",
+    "bufferPatchSha256": "1e3976562cc8a492fffe6c8746a58f7c6bcbabd957eeca0408d739230dfe1844",
+    "imagesPatchSha256": "e17c93260578aaa2086193b7801f1dbd61002eda6b7a19c3767197e9b48f8e29",
+    "ffiPatchSha256": "4fe8905a0b3a2e4679d0eb72ac791cad3834b6577d357929163e7ecee01a8cf8",
+    "gcPatchSha256": "dd256485b27e4dfe0ef24ce686da94cbed46a85ebe99ea037b646aaab59d9251",
+    "ffiScriptSha256": "d998ebe8941b67a185184005cb0788e627139bca8190a7dd1a688084ee618a70",
+    "ffiJavascriptSources": {
+      "api.js": "e00ccffa0dfed383a90b5fee6c8be2b8a3651c22082ebda5c873f1d055632974",
+      "buffer-compat.js": "9eab2a3aad2a171f48bba333c8037d7aa1759f65ad7eef35ebc8ba6089e5216c",
+      "buffer.js": "e5250cf3d93b4e7458be9afc4f6fa0d54126bee55da147a34a5614aab62ea162",
+      "index.js": "ac4536aac0e08ea59b8e6b8e6942eb94204b77ce13f128f95068719d2d46f0f6",
+      "layout.js": "bdd4a3327672c173b3594821b6a49c05c09b386ab4e2ebc4f60d66cf709d9163"
+    },
+    "interopHeaderSha256": "d0be547bc59bbc9ea5f15cea05c5698c487c0a3951e9c0a23315a8987e087e3e",
+    "engineBinarySha256": "9824414324d6ca6bda590e88c891757e08627a5914de6d7d85ec3c0b574f8aee"
+  },
+  "validation": {
+    "coreJs": 108,
+    "canvasJs": 35,
+    "ffiArchive": 6,
+    "webgpuJs": 5,
+    "metrics": 2,
+    "runtimeDefault": 58,
+    "runtimeV8": 58,
+    "coreCanvasUi": 2,
+    "sessionUi": 5,
+    "canvasUi": 393,
+    "canvasExampleWidget": 1,
+    "canvasMacosIntegration": 1,
+    "typechecks": [
+      "Core runtime",
+      "Canvas runtime",
+      "WebGPU runtime",
+      "FFI",
+      "Core example",
+      "WebGPU example"
+    ],
+    "coreDartAnalysis": "no issues",
+    "privateApiSessions": 3,
+    "privateApiFrames": 360,
+    "ctsPerSession": 65,
+    "ctsExecutions": 195,
+    "ctsFailures": 0,
+    "ctsSkips": 0,
+    "nativeCountersAfterClose": [
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0]
+    ],
+    "ffiRelease": {
+      "checks": 117,
+      "memoryChecks": 121,
+      "bufferChecks": 23,
+      "bufferMemoryChecks": 16,
+      "completeChecks": 175,
+      "nodeContractChecks": 57,
+      "resourceContractChecks": 11,
+      "classBindingChecks": 10,
+      "classBindingConstructionChecks": 28,
+      "retirementChecks": 4,
+      "asyncFfiChecks": 403,
+      "asyncFfiStress": {
+        "calls": 6032,
+        "milliseconds": 5003
+      },
+      "engineGcContractPassed": [
+        "background Dart isolates reject runtime creation before allocation",
+        "background GC preserves JS-rooted Dart callback targets",
+        "engine contexts isolate globals, microtasks and reference ownership",
+        "either business owner retains real private fields and callback identity",
+        "sessions share a Dart owner without sharing JS references or shutdown",
+        "joint marking follows callback cycles through three sessions",
+        "Dart callback facades retain direct targets through allocation GC",
+        "Dart roots propagate through direct JS and Dart callback chains",
+        "JS-only roots retain unmarked Dart targets through allocation GC",
+        "idle JS collection releases wrappers of live Dart targets",
+        "active JS collection tolerates expired Dart origins",
+        "idle GC reclaims rootless callbacks and 1000 repeated bridge cycles",
+        "Dart Expando ownership and JS pressure preserve the conditional edge",
+        "Dart allocation during a JS job preserves WeakRef kept objects and reentry"
+      ],
+      "nativeCountsZero": true,
+      "namedAssertionsTotal": 965
+    }
+  },
+  "limitations": [
+    "Private macOS arm64 profile; fullCTS and other platforms not certified.",
+    "The120Hz display cap prevents maximum-throughput conclusions.",
+    "Completion spans encoding start to JS GPU-completion notification; no physical presentation/input latency or isolated GPU duration.",
+    "Single complete joint collections remain around20ms.",
+    "Encoding does not improve uniformly; no statistically established latency reduction across all scenes."
+  ]
+}

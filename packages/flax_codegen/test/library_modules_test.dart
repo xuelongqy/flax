@@ -472,7 +472,10 @@ export { Alpha, Again, Beta, Child, answer, getChanging, getBuildFlag, getFailin
               ),
             ],
           '@flax/core/bindings': [
-            p.join(root.path, 'packages/flax/js/src/runtime/bindings.ts'),
+            p.join(
+              root.path,
+              'packages/flax/js-types/types/runtime/bindings.d.ts',
+            ),
           ],
         };
         final tsconfig = File(p.join(temporary.path, 'tsconfig.json'))
@@ -512,7 +515,7 @@ import { readFileSync } from 'node:fs';
 import { build } from ${jsonEncode(Uri.file(p.join(root.path, 'node_modules/esbuild/lib/main.js')).toString())};
 const output = ${jsonEncode(p.join(temporary.path, 'bundle.mjs'))};
 const built = await build({entryPoints: [${jsonEncode(consumer.path)}], outfile: output,
-  tsconfig: ${jsonEncode(tsconfig.path)}, bundle: true, format: 'esm', platform: 'neutral', metafile: true});
+  tsconfig: ${jsonEncode(tsconfig.path)}, alias: {'@flax/core/bindings': ${jsonEncode(p.join(root.path, 'packages/flax/js/src/runtime/bindings.ts'))}}, bundle: true, format: 'esm', platform: 'neutral', metafile: true});
 assert.ok(!Object.keys(built.metafile.inputs).some(path => path.includes('libraries_Unused')));
 assert.ok(!readFileSync(output, 'utf8').includes('unusedLayoutOnly'));
 assert.ok(Object.keys(built.metafile.inputs).some(path => path.includes('libraries_ConcreteResult')));

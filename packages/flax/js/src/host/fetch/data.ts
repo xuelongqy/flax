@@ -1,5 +1,5 @@
 import { assertUnused } from './streams.js';
-import type { URLSearchParams as URLSearchParamsType, BlobPart } from '../index.js';
+import type { URLSearchParams as URLSearchParamsType, BlobPart } from '../common.js';
 import { Blob, File, FormData } from '../data.js';
 import { ReadableStream } from 'web-streams-polyfill';
 const encoder = () => new TextEncoder();

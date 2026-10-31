@@ -1147,7 +1147,7 @@ a.echo({ amount: 3 });
         root = root.parent;
       }
       paths['@flax/core/bindings'] = [
-        p.join(root.path, 'packages/flax/js/src/runtime/bindings.ts'),
+        p.join(root.path, 'packages/flax/js-types/types/runtime/bindings.d.ts'),
       ];
       final tsconfig = File(p.join(workspace.path, 'tsconfig.json'));
       tsconfig.writeAsStringSync(

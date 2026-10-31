@@ -116,6 +116,7 @@ Future<Map<String, dynamic>> _pack({
       ..createSync();
 
     for (final package in npmPackages) {
+      await runNpmArchivePrepack(package);
       final dist = Directory(p.join(package.directory.path, 'dist'));
       if (forceBuild || !dist.existsSync()) {
         await run('pnpm', const [
@@ -133,6 +134,7 @@ Future<Map<String, dynamic>> _pack({
       );
       await run('pnpm', [
         'pack',
+        '--ignore-scripts',
         '--pack-destination',
         artifacts.path,
       ], directory: copy.path);

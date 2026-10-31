@@ -7,14 +7,16 @@ import {
   type RequestInit,
   type ResponseMetadata,
 } from './http.js';
-import type { URL as URLType } from '../index.js';
+import type { URL as URLType } from '../common.js';
+import { blobRange, dataResource } from './local-resources.js';
 
 type Call = (operation: string, ...args: unknown[]) => unknown;
 export function install(
   global: typeof globalThis,
   call: Call,
+  baseUrl: string | undefined,
 ): { settle(id: number, ok: boolean, value: unknown): void; close(): void } {
-  setBaseUrl(call('baseUrl') as string | undefined);
+  setBaseUrl(baseUrl);
   let nextOperation = 1,
     nextRequest = 1;
   let closed = false;
@@ -53,6 +55,80 @@ export function install(
     let redirects = 0;
     while (true) {
       request.signal.throwIfAborted();
+      const url = new URL(request.url);
+      url.hash = '';
+      if (url.protocol === 'blob:' || url.protocol === 'data:') {
+        if (request.body) void request.body.cancel().catch(() => {});
+        const data = url.protocol === 'data:' ? dataResource(url.href) : undefined;
+        let blob =
+          data?.blob ?? (global as any)[Symbol.for('flax.blob.url')]?.(url.href);
+        if (!blob || (!data && request.method !== 'GET'))
+          throw new TypeError('Blob URL is unavailable or the request is unsupported');
+        const headers: [string, string][] = [['content-type', data?.type ?? blob.type]];
+        let status = 200,
+          statusText = 'OK';
+        const range = request.headers.get('range');
+        if (!data && range !== null) {
+          const selected = blobRange(blob, range);
+          blob = selected.blob;
+          status = 206;
+          statusText = 'Partial Content';
+          headers.push(['content-range', selected.range]);
+        }
+        if (!data) headers.push(['content-length', String(blob.size)]);
+        if (request.method === 'HEAD')
+          return Response.fromNetwork(
+            { status, statusText, url: url.href, redirected: false, headers },
+            null,
+          );
+        const id = nextRequest++;
+        const reader = blob.stream().getReader();
+        let controller: ReadableByteStreamController;
+        const cleanup = () => {
+          requests.delete(id);
+          request.signal.removeEventListener('abort', onAbort);
+        };
+        const abort = (reason = request.signal.reason) => {
+          controller.error(reason);
+          void reader.cancel(reason).catch(() => {});
+          cleanup();
+        };
+        const onAbort = () => abort();
+        const body = new ReadableStream<Uint8Array>({
+          type: 'bytes',
+          start(value) {
+            controller = value;
+          },
+          async pull(value) {
+            try {
+              const chunk = await reader.read();
+              if (chunk.done) {
+                cleanup();
+                value.close();
+              } else value.enqueue(chunk.value);
+            } catch (error) {
+              cleanup();
+              value.error(error);
+            }
+          },
+          cancel(reason) {
+            cleanup();
+            return reader.cancel(reason);
+          },
+        });
+        requests.set(id, abort);
+        request.signal.addEventListener('abort', onAbort, { once: true });
+        return Response.fromNetwork(
+          {
+            status,
+            statusText,
+            url: url.href,
+            redirected: false,
+            headers,
+          },
+          body,
+        );
+      }
       const id = nextRequest++;
       let controller: ReadableByteStreamController | undefined;
       let uploadReader: ReadableStreamDefaultReader<Uint8Array> | undefined;
@@ -74,8 +150,6 @@ export function install(
       requests.set(id, abort);
       current.signal.addEventListener('abort', onAbort, { once: true });
       try {
-        const url = new URL(current.url);
-        url.hash = '';
         await rpc(
           'open',
           id,
@@ -117,6 +191,8 @@ export function install(
           if (location !== null) {
             if (redirects++ === 20) throw new TypeError('Too many redirects');
             const destination = new URL(location, current.url);
+            if (!['http:', 'https:'].includes(destination.protocol))
+              throw new TypeError('Redirect targets must use HTTP or HTTPS');
             let method = current.method;
             let body = current.replaySource;
             const headers = new Headers(current.headers);

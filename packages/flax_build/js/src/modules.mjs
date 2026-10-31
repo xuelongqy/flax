@@ -17,6 +17,7 @@ import { build } from 'esbuild';
 import { load as loadYaml } from 'js-yaml';
 import { moduleRegistrySource } from './registry.mjs';
 import { publicRequirements } from './binding_delivery.mjs';
+import { prepareNativeAssets } from './native-assets.mjs';
 
 export { publicRequirements as bindingModuleRequirements } from './binding_delivery.mjs';
 
@@ -83,6 +84,8 @@ function specifier(value) {
 }
 
 function packageName(value) {
+  // npm's directory aliases (for example buffer/) still identify the same package.
+  if (typeof value === 'string' && value.endsWith('/')) value = value.slice(0, -1);
   specifier(value);
   return value.startsWith('@')
     ? value.split('/').slice(0, 2).join('/')
@@ -974,6 +977,7 @@ export async function prepareModules({ configPath, check = false } = {}) {
       ),
     );
   }
+  const nativeOutputs = {};
   while (completed.size < pending.size) {
     const entry = [...pending.values()]
       .filter((item) => !completed.has(item.specifier))
@@ -1028,6 +1032,8 @@ export async function prepareModules({ configPath, check = false } = {}) {
         },
       ],
     });
+    for (const [name, output] of Object.entries(result.metafile.outputs))
+      nativeOutputs[`${entry.specifier}/${name}`] = output;
     const body = result.outputFiles[0].text;
     const filename = `${entry.specifier.replace(/[^\w.-]/g, '_')}-${digest(entry.specifier).slice(0, 12)}.js`;
     const metadata = {
@@ -1073,6 +1079,13 @@ export async function prepareModules({ configPath, check = false } = {}) {
     flutterRoot,
     [...files.keys()].map((name) => `${output}/${name}`),
   );
+  await prepareNativeAssets({
+    projectDirectory: project,
+    hostDirectory: flutterRoot,
+    metafile: { outputs: nativeOutputs },
+    contribution: 'host-modules',
+    check,
+  });
   await installAssets(resolve(flutterRoot, output), files, check);
   return { manifest, manifestPath: resolve(flutterRoot, output, 'modules.json') };
 }
