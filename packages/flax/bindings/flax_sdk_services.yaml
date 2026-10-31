@@ -10,6 +10,20 @@ publicLibraries:
     jsPackage: '@flax/flutter/services'
     tsOutput: js/src/flutter/generated/libraries/services/index.ts
 
+permissions:
+  version: 1
+  classes:
+    Clipboard:
+      methods:
+        getData: package:flax/permissions.dart#FlaxPermissionDefinitions.clipboardRead
+        hasStrings: package:flax/permissions.dart#FlaxPermissionDefinitions.clipboardRead
+        setData: package:flax/permissions.dart#FlaxPermissionDefinitions.clipboardWrite
+    TextSelectionDelegate:
+      instanceMethods:
+        pasteText: package:flax/permissions.dart#FlaxPermissionDefinitions.clipboardRead
+        copySelection: package:flax/permissions.dart#FlaxPermissionDefinitions.clipboardWrite
+        cutSelection: package:flax/permissions.dart#FlaxPermissionDefinitions.clipboardWrite
+
 # Session resource isolation. Unmarked APIs keep ordinary binding behavior.
 sandbox:
   'version': 1

@@ -60,6 +60,15 @@ overrides:
         builders:
           - builder
 
+permissions:
+  version: 1
+  classes:
+    TextSelectionControls:
+      instanceMethods:
+        handlePaste: package:flax/permissions.dart#FlaxPermissionDefinitions.clipboardRead
+        handleCopy: package:flax/permissions.dart#FlaxPermissionDefinitions.clipboardWrite
+        handleCut: package:flax/permissions.dart#FlaxPermissionDefinitions.clipboardWrite
+
 # Native navigation helpers stay inside the application boundary.
 sandbox:
   'version': 1

@@ -1109,52 +1109,72 @@ const sdk_dependenciesBindings = FlaxBindingModule(
         FlaxSandboxBinding(_flaxSandbox70, replace: false),
     ("flax.core/sdk_dependencies#type:File", "get", "parent"):
         FlaxSandboxBinding(_flaxSandbox71, replace: false),
-    ("dart:io::FileStat.statSync", "call", ""): FlaxSandboxBinding(
-      _flaxSandbox72,
-      replace: true,
-    ),
-    ("dart:io::FileStat.stat", "call", ""): FlaxSandboxBinding(
-      _flaxSandbox73,
-      replace: true,
-    ),
-    ("dart:io::FileSystemEntity.identical", "call", ""): FlaxSandboxBinding(
+    ("flax.core/sdk_dependencies#function:FileStat.statSync", "call", ""):
+        FlaxSandboxBinding(_flaxSandbox72, replace: true),
+    ("flax.core/sdk_dependencies#function:FileStat.stat", "call", ""):
+        FlaxSandboxBinding(_flaxSandbox73, replace: true),
+    (
+      "flax.core/sdk_dependencies#function:FileSystemEntity.identical",
+      "call",
+      "",
+    ): FlaxSandboxBinding(
       _flaxSandbox74,
       replace: true,
     ),
-    ("dart:io::FileSystemEntity.identicalSync", "call", ""): FlaxSandboxBinding(
+    (
+      "flax.core/sdk_dependencies#function:FileSystemEntity.identicalSync",
+      "call",
+      "",
+    ): FlaxSandboxBinding(
       _flaxSandbox75,
       replace: true,
     ),
-    ("dart:io::FileSystemEntity.type", "call", ""): FlaxSandboxBinding(
-      _flaxSandbox76,
-      replace: true,
-    ),
-    ("dart:io::FileSystemEntity.typeSync", "call", ""): FlaxSandboxBinding(
+    ("flax.core/sdk_dependencies#function:FileSystemEntity.type", "call", ""):
+        FlaxSandboxBinding(_flaxSandbox76, replace: true),
+    (
+      "flax.core/sdk_dependencies#function:FileSystemEntity.typeSync",
+      "call",
+      "",
+    ): FlaxSandboxBinding(
       _flaxSandbox77,
       replace: true,
     ),
-    ("dart:io::FileSystemEntity.isLink", "call", ""): FlaxSandboxBinding(
-      _flaxSandbox78,
-      replace: true,
-    ),
-    ("dart:io::FileSystemEntity.isFile", "call", ""): FlaxSandboxBinding(
-      _flaxSandbox79,
-      replace: true,
-    ),
-    ("dart:io::FileSystemEntity.isDirectory", "call", ""): FlaxSandboxBinding(
+    ("flax.core/sdk_dependencies#function:FileSystemEntity.isLink", "call", ""):
+        FlaxSandboxBinding(_flaxSandbox78, replace: true),
+    ("flax.core/sdk_dependencies#function:FileSystemEntity.isFile", "call", ""):
+        FlaxSandboxBinding(_flaxSandbox79, replace: true),
+    (
+      "flax.core/sdk_dependencies#function:FileSystemEntity.isDirectory",
+      "call",
+      "",
+    ): FlaxSandboxBinding(
       _flaxSandbox80,
       replace: true,
     ),
-    ("dart:io::FileSystemEntity.isLinkSync", "call", ""): FlaxSandboxBinding(
+    (
+      "flax.core/sdk_dependencies#function:FileSystemEntity.isLinkSync",
+      "call",
+      "",
+    ): FlaxSandboxBinding(
       _flaxSandbox81,
       replace: true,
     ),
-    ("dart:io::FileSystemEntity.isFileSync", "call", ""): FlaxSandboxBinding(
+    (
+      "flax.core/sdk_dependencies#function:FileSystemEntity.isFileSync",
+      "call",
+      "",
+    ): FlaxSandboxBinding(
       _flaxSandbox82,
       replace: true,
     ),
-    ("dart:io::FileSystemEntity.isDirectorySync", "call", ""):
-        FlaxSandboxBinding(_flaxSandbox83, replace: true),
+    (
+      "flax.core/sdk_dependencies#function:FileSystemEntity.isDirectorySync",
+      "call",
+      "",
+    ): FlaxSandboxBinding(
+      _flaxSandbox83,
+      replace: true,
+    ),
     ("flax.core/sdk_dependencies#type:FileSystemEntity", "call", "exists"):
         FlaxSandboxBinding(_flaxSandbox84, replace: false),
     ("flax.core/sdk_dependencies#type:FileSystemEntity", "call", "existsSync"):
@@ -1197,6 +1217,12 @@ const sdk_dependenciesBindings = FlaxBindingModule(
         FlaxSandboxBinding(_flaxSandbox97, replace: false),
     ("flax.core/sdk_dependencies#type:FileSystemEntity", "get", "parent"):
         FlaxSandboxBinding(_flaxSandbox98, replace: false),
+    ("flax.core/sdk_dependencies#type:HttpClient", "construct", ""):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#function:InternetAddress.lookup", "call", ""):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#type:InternetAddress", "call", "reverse"):
+        FlaxSandboxBinding.deny(),
     ("flax.core/sdk_dependencies#type:Link", "construct", ""):
         FlaxSandboxBinding.deny(),
     ("flax.core/sdk_dependencies#type:Link", "construct", "fromRawPath"):
@@ -1204,31 +1230,31 @@ const sdk_dependenciesBindings = FlaxBindingModule(
     ("flax.core/sdk_dependencies#type:Link", "construct", "fromUri"):
         FlaxSandboxBinding.deny(),
     ("flax.core/sdk_dependencies#type:Link", "call", "exists"):
-        FlaxSandboxBinding(_flaxSandbox102, replace: false),
-    ("flax.core/sdk_dependencies#type:Link", "call", "existsSync"):
-        FlaxSandboxBinding(_flaxSandbox103, replace: false),
-    ("flax.core/sdk_dependencies#type:Link", "call", "rename"):
-        FlaxSandboxBinding(_flaxSandbox104, replace: false),
-    ("flax.core/sdk_dependencies#type:Link", "call", "renameSync"):
         FlaxSandboxBinding(_flaxSandbox105, replace: false),
-    ("flax.core/sdk_dependencies#type:Link", "call", "resolveSymbolicLinks"):
+    ("flax.core/sdk_dependencies#type:Link", "call", "existsSync"):
         FlaxSandboxBinding(_flaxSandbox106, replace: false),
+    ("flax.core/sdk_dependencies#type:Link", "call", "rename"):
+        FlaxSandboxBinding(_flaxSandbox107, replace: false),
+    ("flax.core/sdk_dependencies#type:Link", "call", "renameSync"):
+        FlaxSandboxBinding(_flaxSandbox108, replace: false),
+    ("flax.core/sdk_dependencies#type:Link", "call", "resolveSymbolicLinks"):
+        FlaxSandboxBinding(_flaxSandbox109, replace: false),
     (
       "flax.core/sdk_dependencies#type:Link",
       "call",
       "resolveSymbolicLinksSync",
     ): FlaxSandboxBinding(
-      _flaxSandbox107,
+      _flaxSandbox110,
       replace: false,
     ),
     ("flax.core/sdk_dependencies#type:Link", "call", "stat"):
-        FlaxSandboxBinding(_flaxSandbox108, replace: false),
-    ("flax.core/sdk_dependencies#type:Link", "call", "statSync"):
-        FlaxSandboxBinding(_flaxSandbox109, replace: false),
-    ("flax.core/sdk_dependencies#type:Link", "call", "delete"):
-        FlaxSandboxBinding(_flaxSandbox110, replace: false),
-    ("flax.core/sdk_dependencies#type:Link", "call", "deleteSync"):
         FlaxSandboxBinding(_flaxSandbox111, replace: false),
+    ("flax.core/sdk_dependencies#type:Link", "call", "statSync"):
+        FlaxSandboxBinding(_flaxSandbox112, replace: false),
+    ("flax.core/sdk_dependencies#type:Link", "call", "delete"):
+        FlaxSandboxBinding(_flaxSandbox113, replace: false),
+    ("flax.core/sdk_dependencies#type:Link", "call", "deleteSync"):
+        FlaxSandboxBinding(_flaxSandbox114, replace: false),
     ("flax.core/sdk_dependencies#type:Link", "call", "create"):
         FlaxSandboxBinding.deny(),
     ("flax.core/sdk_dependencies#type:Link", "call", "createSync"):
@@ -1242,19 +1268,19 @@ const sdk_dependenciesBindings = FlaxBindingModule(
     ("flax.core/sdk_dependencies#type:Link", "call", "targetSync"):
         FlaxSandboxBinding.deny(),
     ("flax.core/sdk_dependencies#type:Link", "get", "path"): FlaxSandboxBinding(
-      _flaxSandbox118,
+      _flaxSandbox121,
       replace: false,
     ),
     ("flax.core/sdk_dependencies#type:Link", "get", "uri"): FlaxSandboxBinding(
-      _flaxSandbox119,
+      _flaxSandbox122,
       replace: false,
     ),
     ("flax.core/sdk_dependencies#type:Link", "get", "isAbsolute"):
-        FlaxSandboxBinding(_flaxSandbox120, replace: false),
+        FlaxSandboxBinding(_flaxSandbox123, replace: false),
     ("flax.core/sdk_dependencies#type:Link", "get", "absolute"):
-        FlaxSandboxBinding(_flaxSandbox121, replace: false),
+        FlaxSandboxBinding(_flaxSandbox124, replace: false),
     ("flax.core/sdk_dependencies#type:Link", "get", "parent"):
-        FlaxSandboxBinding(_flaxSandbox122, replace: false),
+        FlaxSandboxBinding(_flaxSandbox125, replace: false),
     ("flax.core/sdk_dependencies#type:RandomAccessFile", "call", "close"):
         FlaxSandboxBinding.deny(),
     ("flax.core/sdk_dependencies#type:RandomAccessFile", "call", "closeSync"):
@@ -1337,12 +1363,21 @@ const sdk_dependenciesBindings = FlaxBindingModule(
         FlaxSandboxBinding.deny(),
     ("flax.core/sdk_dependencies#type:RandomAccessFile", "get", "path"):
         FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#function:SecureSocket.connect", "call", ""):
+        FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#function:SecureSocket.secure", "call", ""):
+        FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_dependencies#function:SecureSocket.secureServer",
+      "call",
+      "",
+    ): FlaxSandboxBinding.deny(),
     (
       "flax.core/sdk_dependencies#type:SecurityContext",
       "call",
       "usePrivateKey",
     ): FlaxSandboxBinding(
-      _flaxSandbox152,
+      _flaxSandbox158,
       replace: true,
     ),
     (
@@ -1350,7 +1385,7 @@ const sdk_dependenciesBindings = FlaxBindingModule(
       "call",
       "setTrustedCertificates",
     ): FlaxSandboxBinding(
-      _flaxSandbox153,
+      _flaxSandbox159,
       replace: true,
     ),
     (
@@ -1358,7 +1393,7 @@ const sdk_dependenciesBindings = FlaxBindingModule(
       "call",
       "useCertificateChain",
     ): FlaxSandboxBinding(
-      _flaxSandbox154,
+      _flaxSandbox160,
       replace: true,
     ),
     (
@@ -1366,7 +1401,7 @@ const sdk_dependenciesBindings = FlaxBindingModule(
       "call",
       "setClientAuthorities",
     ): FlaxSandboxBinding(
-      _flaxSandbox155,
+      _flaxSandbox161,
       replace: true,
     ),
     (
@@ -1374,6 +1409,8 @@ const sdk_dependenciesBindings = FlaxBindingModule(
       "call",
       "",
     ): FlaxSandboxBinding.deny(),
+    ("flax.core/sdk_dependencies#function:Socket.connect", "call", ""):
+        FlaxSandboxBinding.deny(),
   },
 );
 final sdk_dependenciesPlugin = FlaxBindingPlugin(
@@ -26083,48 +26120,6 @@ Object? _flaxSandbox98(
   return null;
 }
 
-Object? _flaxSandbox102(
-  FlaxSandboxContext context,
-  Object? receiver,
-  Map<String, Object?> values,
-) {
-  flaxInvokeWithDefaults(
-    api8.checkSandboxEntity,
-    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
-    <int>[1 | 2 | 4],
-    const <String>["", "", ""],
-  );
-  return null;
-}
-
-Object? _flaxSandbox103(
-  FlaxSandboxContext context,
-  Object? receiver,
-  Map<String, Object?> values,
-) {
-  flaxInvokeWithDefaults(
-    api8.checkSandboxEntity,
-    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
-    <int>[1 | 2 | 4],
-    const <String>["", "", ""],
-  );
-  return null;
-}
-
-Object? _flaxSandbox104(
-  FlaxSandboxContext context,
-  Object? receiver,
-  Map<String, Object?> values,
-) {
-  flaxInvokeWithDefaults(
-    api8.checkSandboxEntity,
-    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
-    <int>[1 | 2 | 4],
-    const <String>["", "", ""],
-  );
-  return null;
-}
-
 Object? _flaxSandbox105(
   FlaxSandboxContext context,
   Object? receiver,
@@ -26223,7 +26218,7 @@ Object? _flaxSandbox111(
   return null;
 }
 
-Object? _flaxSandbox118(
+Object? _flaxSandbox112(
   FlaxSandboxContext context,
   Object? receiver,
   Map<String, Object?> values,
@@ -26237,7 +26232,7 @@ Object? _flaxSandbox118(
   return null;
 }
 
-Object? _flaxSandbox119(
+Object? _flaxSandbox113(
   FlaxSandboxContext context,
   Object? receiver,
   Map<String, Object?> values,
@@ -26251,7 +26246,7 @@ Object? _flaxSandbox119(
   return null;
 }
 
-Object? _flaxSandbox120(
+Object? _flaxSandbox114(
   FlaxSandboxContext context,
   Object? receiver,
   Map<String, Object?> values,
@@ -26293,7 +26288,49 @@ Object? _flaxSandbox122(
   return null;
 }
 
-Object? _flaxSandbox152(
+Object? _flaxSandbox123(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox124(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox125(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
+    api8.checkSandboxEntity,
+    <Object?>[context, context.requirePolicy<api8.FlaxFilePolicy>(), receiver],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox158(
   FlaxSandboxContext context,
   Object? receiver,
   Map<String, Object?> values,
@@ -26313,7 +26350,7 @@ Object? _flaxSandbox152(
   return null;
 }
 
-Object? _flaxSandbox153(
+Object? _flaxSandbox159(
   FlaxSandboxContext context,
   Object? receiver,
   Map<String, Object?> values,
@@ -26333,7 +26370,7 @@ Object? _flaxSandbox153(
   return null;
 }
 
-Object? _flaxSandbox154(
+Object? _flaxSandbox160(
   FlaxSandboxContext context,
   Object? receiver,
   Map<String, Object?> values,
@@ -26353,7 +26390,7 @@ Object? _flaxSandbox154(
   return null;
 }
 
-Object? _flaxSandbox155(
+Object? _flaxSandbox161(
   FlaxSandboxContext context,
   Object? receiver,
   Map<String, Object?> values,

@@ -25,6 +25,7 @@ const _moduleEntryKeys = {
 
 const _modelProjectionKeys = {
   'sandboxRules',
+  'permissionRules',
   'extensions',
   'publicLibraries',
   'topLevel',
@@ -42,6 +43,7 @@ const _modelProjectionKeys = {
 
 const _semanticModuleKeys = {
   'sandboxRules',
+  'permissionRules',
   'extensions',
   'publicLibraries',
   'topLevel',

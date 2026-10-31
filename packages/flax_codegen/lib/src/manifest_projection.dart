@@ -163,6 +163,7 @@ final class _FrozenModule {
       requiredCapabilities: requiredCapabilities,
       stateVariants: decoded.stateVariants,
       sandboxRules: decoded.sandboxRules,
+      permissionRules: decoded.permissionRules,
     );
   }
 }

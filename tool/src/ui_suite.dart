@@ -17,7 +17,7 @@ void validateUiSuiteResults(String jsonLines) {
   for (final line in const LineSplitter().convert(jsonLines)) {
     final event = jsonDecode(line) as Map;
     if (event['type'] == 'group' && event['group']['parentID'] == null) {
-      expected = event['group']['testCount'] as int;
+      expected = (expected ?? 0) + (event['group']['testCount'] as int);
     } else if (event['type'] == 'testDone' && event['hidden'] == false) {
       completed++;
     } else if (event['type'] == 'done') {
@@ -193,9 +193,13 @@ Future<Map<String, Map<String, String>>> prepareUiFixtures(
     return {
       for (final name in tests.map((t) => t.packageName).toSet())
         name: {
-          for (final source in Directory(
-            '$root/packages/$name/.dart_tool/flax/ui',
-          ).listSync(recursive: true, followLinks: false).whereType<File>())
+          for (final source
+              in Directory('$root/packages/$name/.dart_tool/flax/ui')
+                      .existsSync()
+                  ? Directory('$root/packages/$name/.dart_tool/flax/ui')
+                        .listSync(recursive: true, followLinks: false)
+                        .whereType<File>()
+                  : const <File>[])
             p
                 .relative(
                   source.path,

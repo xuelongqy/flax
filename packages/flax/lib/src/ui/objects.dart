@@ -139,7 +139,7 @@ class _ObjectBorrow extends _Resource {
   final FlaxJsObject wrapper;
   @override
   void validate() {
-    object.value;
+    object.session._restoreClipboardValue(object.value);
   }
 
   @override
@@ -347,6 +347,7 @@ extension _ObjectCalls on _Session {
     List<_ScopedObjectLease> leases,
     List<FlaxJsObject> temporary,
   ) {
+    value = _clipboardValue(value);
     if (value is Record) {
       final result = recordResult(value, const FlaxTypeRef('record'));
       temporary.add(result);
@@ -541,6 +542,7 @@ extension _ObjectCalls on _Session {
   }
 
   FlaxJsValue objectResult(Object value, FlaxTypeRef type) {
+    value = _clipboardValue(value);
     if (value is Record) {
       return recordResult(value, const FlaxTypeRef('record'));
     }

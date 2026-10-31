@@ -71,6 +71,15 @@ void main() {
     String? directory,
   }) async {
     commands.add((executable, arguments, directory));
+    for (final argument in arguments) {
+      const prefix = '--file-reporter=json:';
+      if (!argument.startsWith(prefix)) continue;
+      File(argument.substring(prefix.length)).writeAsStringSync('''
+{"type":"group","group":{"parentID":null,"testCount":1}}
+{"type":"testDone","hidden":false}
+{"type":"done","success":true}
+''');
+    }
   }
 
   FlaxWorkspacePackage package(
@@ -457,10 +466,17 @@ dev_dependencies:
       );
       expect(commands.map((call) => call.$1), ['flutter', 'flutter']);
       expect(commands.map((call) => call.$2), [
-        ['test', '--no-pub', 'test/a_test.dart', 'test/z_test.dart'],
         [
           'test',
           '--no-pub',
+          '--file-reporter=json:${runnable.example.path}/build/ui-example-test.json',
+          'test/a_test.dart',
+          'test/z_test.dart',
+        ],
+        [
+          'test',
+          '--no-pub',
+          '--file-reporter=json:${runnable.example.path}/build/ui-example-integration_test.json',
           '-d',
           currentCheckDevice(),
           'integration_test/app_test.dart',
@@ -515,6 +531,27 @@ dev_dependencies:
       );
       expect(commands, hasLength(1));
     });
+
+    test(
+      'successful exit cannot hide cancelled native example tests',
+      () async {
+        final runnable = package('cancelled');
+        _write(runnable.example, 'pubspec.yaml', _flutterPubspec(engine));
+        _write(runnable.example, 'integration_test/app_test.dart', '');
+        await expectLater(
+          runPackageExampleTests(
+            temporary.path,
+            runnable,
+            runCommand: (executable, arguments, {directory}) async {
+              await record(executable, arguments, directory: directory);
+              File('$directory/build/ui-example-integration_test.json')
+                  .writeAsStringSync('{"type":"done","success":true}\n');
+            },
+          ),
+          throwsStateError,
+        );
+      },
+    );
   });
 }
 

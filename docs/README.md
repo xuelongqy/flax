@@ -30,3 +30,12 @@ supersession notices. [Open Questions](decisions/open-questions.md) lists unsett
 choices. [Active tasks](tasks/README.md) contain unfinished work and handoff guidance;
 completed implementation histories are replaced by current contracts and reproducible
 tests. Licenses, third-party notices and formal changelogs retain their own purpose.
+
+The [module permission contract](architecture/permissions.md) describes implemented
+declarations, approval, binding guards, consent, revocation and selected Files. The
+[capability catalog](proposals/permissions.md) retains the iOS/Android design inventory;
+its definitions do not imply every corresponding device service is implemented.
+
+The [secure storage contract](architecture/secure-storage.md) is implemented in Core
+with a separate optional Keychain/Keystore adapter. The
+[design reference](proposals/secure-storage.md) records its rationale and future uses.

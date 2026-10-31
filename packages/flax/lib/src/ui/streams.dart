@@ -14,6 +14,7 @@ class _StreamReference {
     Object source,
     Stream<Object?> value,
   ) : _source = WeakReference(source),
+      checks = FlaxPermissionDelivery.of(value)?.checks ?? const {},
       _value = WeakReference(value) {
     _streamFinalizer.attach(value, WeakReference(this), detach: this);
   }
@@ -23,10 +24,17 @@ class _StreamReference {
   final int id;
   final FlaxStreamTypeBinding binding;
   final FlaxTypeRef type;
+  final Set<FlaxPermissionDelivery> checks;
   final WeakReference<Object> _source;
   Object? get source => _source.target;
   WeakReference<Stream<Object?>>? _value;
   Stream<Object?>? get value => _value?.target;
+
+  void requireActive() {
+    for (final check in checks) {
+      check.requireActive();
+    }
+  }
 
   void release() {
     if (_value == null) return;
@@ -62,7 +70,7 @@ class _DartErrorReference {
   _DartErrorReference(
     this.session,
     this.id,
-    this.error,
+    this._payload,
     this.stack,
     this.indexed,
   );
@@ -71,7 +79,8 @@ class _DartErrorReference {
   final int id;
   // Errors include Records, non-finite numbers and FFI values which cannot
   // themselves be weak Dart targets. The engine traces this metadata instead.
-  final Object error;
+  final Object _payload;
+  Object get error => session._restoreClipboardValue(_payload);
   final StackTrace stack;
   final bool indexed;
   bool released = false;
@@ -80,8 +89,8 @@ class _DartErrorReference {
     if (released) return;
     released = true;
     session._dartErrors.remove(id);
-    if (indexed && identical(session._dartErrorIds[error], this)) {
-      session._dartErrorIds.remove(error);
+    if (indexed && identical(session._dartErrorIds[_payload], this)) {
+      session._dartErrorIds.remove(_payload);
     }
   }
 }
@@ -95,6 +104,7 @@ class _DartErrorBorrow extends _Resource {
   @override
   void validate() {
     if (reference.released) throw StateError('Released Dart error');
+    reference.error;
   }
 
   @override
@@ -113,10 +123,11 @@ class _TrackedStreamIterator {
   bool retired = false;
 
   Future<bool> moveNext() {
+    reference.requireActive();
     if (retired) throw StateError('Released Dart Stream iterator');
     if (moving) throw StateError('Concurrent Stream iterator next');
     moving = true;
-    return iterator.moveNext().then(
+    final future = iterator.moveNext().then(
       (hasValue) {
         moving = false;
         if (!hasValue) retire();
@@ -128,9 +139,12 @@ class _TrackedStreamIterator {
         Error.throwWithStackTrace(error, stack);
       },
     );
+    FlaxPermissionDelivery.attach(future, reference.checks);
+    return future;
   }
 
   Object? get current {
+    reference.requireActive();
     if (retired) throw StateError('Released Dart Stream iterator');
     return iterator.current;
   }
@@ -138,7 +152,9 @@ class _TrackedStreamIterator {
   Future<void> cancel() {
     if (retired) return Future<void>.value();
     retire();
-    return iterator.cancel();
+    final future = Future<void>.sync(iterator.cancel);
+    FlaxPermissionDelivery.attach(future, reference.checks, errorsOnly: true);
+    return future;
   }
 
   void retire() {
@@ -303,7 +319,9 @@ class _TrackedStreamSubscription<T> implements StreamSubscription<T> {
     void Function(Object, StackTrace)? onError,
     void Function()? onDone,
     required this.cancelOnError,
+    required this.checks,
   }) {
+    FlaxPermissionDelivery.attach(this, checks);
     _setData(onData);
     _setError(onError);
     _setDone(onDone);
@@ -312,6 +330,7 @@ class _TrackedStreamSubscription<T> implements StreamSubscription<T> {
   final _Session session;
   final StreamSubscription<T> inner;
   final bool cancelOnError;
+  final Set<FlaxPermissionDelivery> checks;
   final Zone _zone = Zone.current;
   final _callbacks = <_Callback>{};
   bool _retired = false;
@@ -387,7 +406,9 @@ class _TrackedStreamSubscription<T> implements StreamSubscription<T> {
   @override
   Future<void> cancel() {
     retire();
-    return inner.cancel();
+    final future = Future<void>.sync(inner.cancel);
+    FlaxPermissionDelivery.attach(future, checks, errorsOnly: true);
+    return future;
   }
 
   @override
@@ -417,12 +438,41 @@ class _TrackedStreamSubscription<T> implements StreamSubscription<T> {
     }
     _callbacks.clear();
     final future = inner.asFuture<E>(futureValue);
+    FlaxPermissionDelivery.attach(future, checks);
     future.whenComplete(retire).ignore();
     return future;
   }
 }
 
 extension _StreamCalls on _Session {
+  Stream<Object?> _permissionStream(
+    Stream<Object?> source,
+    Set<FlaxPermissionDelivery> checks,
+  ) {
+    if (checks.isEmpty) return source;
+    final template = dartTypes._template(
+      dartTypes.parts(Stream<Object?>),
+      Stream<Object?>,
+    )!;
+    final eventType = dartTypes
+        .arguments(
+          dartTypes._projection(template.id, dartTypes.instanceType(source))!,
+        )
+        .single;
+    return dartTypes.instantiate(
+      <E>() {
+        var stream = source as Stream<E>;
+        for (final check in checks) {
+          stream = check.guardStream<E>(stream);
+        }
+        FlaxPermissionDelivery.attach(stream, checks);
+        return stream;
+      },
+      [eventType],
+      const [],
+    ) as Stream<Object?>;
+  }
+
   void _observeStreamCleanup(Future<void> future) {
     unawaited(
       future.then<void>(
@@ -433,16 +483,25 @@ extension _StreamCalls on _Session {
   }
 
   FlaxJsValue errorResult(Object error, StackTrace stack) {
+    (error, stack) = _admitClipboardError(error, stack);
     try {
-      return anyResult(error);
+      return error is ClipboardStatusNotifier
+          ? permissions.run(() => anyResult(error))
+          : anyResult(error);
     } on ArgumentError {
       // Any Dart object can be an asynchronous error. Only explicitly marked
       // error positions widen the ordinary Object conversion in this way.
+    } on FlaxPermissionException catch (failure, failureStack) {
+      return exceptionResult(failure, failureStack);
+    } on StateError catch (failure, failureStack) {
+      if (error is! ClipboardStatusNotifier) rethrow;
+      return exceptionResult(failure, failureStack);
     }
     return exceptionResult(error, stack);
   }
 
   FlaxJsValue exceptionResult(Object error, StackTrace stack) {
+    (error, stack) = _admitClipboardError(error, stack);
     _DartErrorReference? reference;
     var indexed = true;
     try {
@@ -466,7 +525,11 @@ extension _StreamCalls on _Session {
     String message;
     String text;
     try {
-      message = error is FlaxJsException ? error.message : error.toString();
+      message = error is ClipboardStatusNotifier
+          ? 'ClipboardStatusNotifier'
+          : error is FlaxJsException
+          ? error.message
+          : error.toString();
     } catch (_) {
       message = 'Dart error';
     }
@@ -482,11 +545,21 @@ extension _StreamCalls on _Session {
         FlaxJsNumber(reference.id.toDouble()),
         FlaxJsString(message),
         text.isEmpty ? const FlaxJsNull() : FlaxJsString(text),
-        error is FlaxSandboxException
-            ? const FlaxJsString(FlaxSandboxException.deniedCode)
+        switch (error) {
+          FlaxSandboxException() => FlaxJsString(error.code),
+          FlaxPermissionException() => FlaxJsString(error.code),
+          _ => const FlaxJsNull(),
+        },
+        switch (error) {
+          FlaxSandboxException() => FlaxJsString(error.operation),
+          FlaxPermissionException() => FlaxJsString(error.operation),
+          _ => const FlaxJsNull(),
+        },
+        error is FlaxPermissionException
+            ? FlaxJsString(error.permission)
             : const FlaxJsNull(),
-        error is FlaxSandboxException
-            ? FlaxJsString(error.operation)
+        error is FlaxPermissionException
+            ? FlaxJsString(error.reason)
             : const FlaxJsNull(),
       ]),
       reference,
@@ -501,7 +574,8 @@ extension _StreamCalls on _Session {
     if (adapter == null || binding is! FlaxStreamTypeBinding) {
       throw ArgumentError('Unknown Dart Stream type');
     }
-    final adapted = adapter.adapt(source);
+    var adapted = adapter.adapt(source);
+    FlaxPermissionDelivery.inherit(source, adapted);
     binding =
         dartTypes.bindingFor(
           _specializedOwners[binding.id] ?? binding.id,
@@ -522,6 +596,10 @@ extension _StreamCalls on _Session {
         origin: source,
       );
     }
+    adapted = _permissionStream(
+      adapted,
+      FlaxPermissionDelivery.of(adapted)?.checks ?? const {},
+    );
     final reference = _StreamReference(
       this,
       _nextObject++,
@@ -557,7 +635,8 @@ extension _StreamCalls on _Session {
     }
     late final Stream<Object?> adapted;
     try {
-      adapted = adapter.adapt(source);
+      adapted = adapter.adapt(reference.value!);
+      FlaxPermissionDelivery.attach(adapted, reference.checks);
     } on TypeError {
       throw ArgumentError('Incompatible Dart Stream view');
     }
@@ -662,6 +741,7 @@ extension _StreamCalls on _Session {
                 ) as void Function(Object, StackTrace)?,
                 onDone: input.original('onDone') as void Function()?,
                 cancelOnError: input.original('cancelOnError') == true,
+                checks: reference.checks,
               ),
               [eventType],
               const [],
@@ -746,51 +826,54 @@ extension _StreamCalls on _Session {
     });
 
     _registerBindingHostFunction('__flaxCreateStreamIterator', (_, args) {
-      _checkCall(args, 2, numericReceiver: true);
-      if (args.length != 3 ||
-          args[1] is! FlaxJsNumber ||
-          args[2] is! FlaxJsObject) {
-        throw ArgumentError('Invalid Stream iterator');
-      }
-      final reference =
-          _streamReferences[(args[1] as FlaxJsNumber).value.toInt()];
-      if (reference == null || reference.value == null) {
-        throw ArgumentError('Foreign or released Dart Stream');
-      }
-      final id = _nextStreamIterator++;
-      final iterator = _TrackedStreamIterator(this, id, reference);
-      _streamIterators[id] = iterator;
-      (_bridgeOwners[iterator.iterator] ??= []).add(iterator);
-      runtime.bindDartPeer(args[2] as FlaxJsObject, iterator, origin: iterator);
-      return FlaxJsNumber(id.toDouble());
+      return bindingCall(() {
+        _checkCall(args, 2, numericReceiver: true);
+        if (args.length != 3 ||
+            args[1] is! FlaxJsNumber ||
+            args[2] is! FlaxJsObject) {
+          throw ArgumentError('Invalid Stream iterator');
+        }
+        final reference =
+            _streamReferences[(args[1] as FlaxJsNumber).value.toInt()];
+        if (reference == null || reference.value == null) {
+          throw ArgumentError('Foreign or released Dart Stream');
+        }
+        final id = _nextStreamIterator++;
+        reference.requireActive();
+        final iterator = _TrackedStreamIterator(this, id, reference);
+        _streamIterators[id] = iterator;
+        (_bridgeOwners[iterator.iterator] ??= []).add(iterator);
+        runtime.bindDartPeer(
+          args[2] as FlaxJsObject,
+          iterator,
+          origin: iterator,
+        );
+        return FlaxJsNumber(id.toDouble());
+      });
     });
 
     _registerBindingHostFunction('__flaxStreamIterator', (_, args) {
-      _checkCall(args, 3, numericReceiver: true);
-      if (args[1] is! FlaxJsNumber || args[2] is! FlaxJsString) {
-        throw ArgumentError('Invalid Stream iterator call');
-      }
-      final iterator =
-          _streamIterators[(args[1] as FlaxJsNumber).value.toInt()];
-      if (iterator == null) throw StateError('Released Dart Stream iterator');
-      return switch ((args[2] as FlaxJsString).value) {
-        'next' => holdHostResult(
-          futureResult(
-            iterator.moveNext().then<Object?>((value) => value),
-            const FlaxTypeRef('bool'),
+      return bindingCall(() {
+        _checkCall(args, 3, numericReceiver: true);
+        if (args[1] is! FlaxJsNumber || args[2] is! FlaxJsString) {
+          throw ArgumentError('Invalid Stream iterator call');
+        }
+        final iterator =
+            _streamIterators[(args[1] as FlaxJsNumber).value.toInt()];
+        if (iterator == null) throw StateError('Released Dart Stream iterator');
+        return switch ((args[2] as FlaxJsString).value) {
+          'next' => holdHostResult(
+            futureResult(iterator.moveNext(), const FlaxTypeRef('bool')),
           ),
-        ),
-        'current' => holdHostResult(
-          memberResult(iterator.current, iterator.reference.type.item!),
-        ),
-        'cancel' => holdHostResult(
-          futureResult(
-            iterator.cancel().then<Object?>((_) => null),
-            const FlaxTypeRef('void'),
+          'current' => holdHostResult(
+            memberResult(iterator.current, iterator.reference.type.item!),
           ),
-        ),
-        _ => throw ArgumentError('Unknown Stream iterator operation'),
-      };
+          'cancel' => holdHostResult(
+            futureResult(iterator.cancel(), const FlaxTypeRef('void')),
+          ),
+          _ => throw ArgumentError('Unknown Stream iterator operation'),
+        };
+      });
     });
   }
 

@@ -25,7 +25,7 @@ extension _DartReferences on _Session {
       if (context != null) return (context.requireActive(), null);
       final object = _objects[id];
       if (object != null) {
-        final value = object.value;
+        final value = _restoreClipboardValue(object.value);
         if (value is Function && _callbackSources[value]?.active == false) {
           throw StateError('Retired JS callback');
         }

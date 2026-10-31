@@ -57,6 +57,7 @@ export const bindingVersion = 24;
 
 const supportedBindingCapabilities = new Set([
   'sandbox-guards',
+  'permission-guards',
   'call-layouts',
   'native-functions',
   'native-async-objects',
@@ -2008,13 +2009,13 @@ function streamAsyncIterator(stream: object, _type: string): AsyncIterator<unkno
       if (finished) return Promise.resolve({ value: undefined, done: true });
       pending = true;
       try {
-        const hasValue = await call(bindingVersion, iteratorId, 'next');
+        const hasValue = await unwrapCall(call(bindingVersion, iteratorId, 'next'));
         if (hasValue !== true) {
           finished = true;
           return { value: undefined, done: true };
         }
         return {
-          value: call(bindingVersion, iteratorId, 'current'),
+          value: unwrapCall(call(bindingVersion, iteratorId, 'current')),
           done: false,
         };
       } finally {
@@ -2023,16 +2024,16 @@ function streamAsyncIterator(stream: object, _type: string): AsyncIterator<unkno
     },
     async return(): Promise<IteratorResult<unknown>> {
       finished = true;
-      await call(bindingVersion, iteratorId, 'cancel');
+      await unwrapCall(call(bindingVersion, iteratorId, 'cancel'));
       return { value: undefined, done: true };
     },
     async throw(reason?: unknown): Promise<IteratorResult<unknown>> {
       finished = true;
-      await call(bindingVersion, iteratorId, 'cancel');
+      await unwrapCall(call(bindingVersion, iteratorId, 'cancel'));
       throw reason;
     },
   };
-  iteratorId = create(bindingVersion, ref.id, iterator);
+  iteratorId = unwrapCall(create(bindingVersion, ref.id, iterator));
   return iterator;
 }
 
@@ -3764,15 +3765,27 @@ Object.assign(globalThis, {
       stack: string | null,
       code: string | null,
       operation: string | null,
+      permission: string | null = null,
+      reason: string | null = null,
     ): Error {
       const cached = cachedObject('flax:dart-error', id);
       if (cached) return cached as Error;
       const value = new NativeError(message);
       if (code !== null) {
         Object.defineProperties(value, {
-          name: { value: 'FlaxSandboxError', configurable: true },
+          name: {
+            value:
+              code === 'FLAX_PERMISSION_DENIED'
+                ? 'FlaxPermissionError'
+                : 'FlaxSandboxError',
+            configurable: true,
+          },
           code: { value: code, enumerable: true },
           operation: { value: operation, enumerable: true },
+          ...(permission === null
+            ? {}
+            : { permission: { value: permission, enumerable: true } }),
+          ...(reason === null ? {} : { reason: { value: reason, enumerable: true } }),
         });
       }
       if (stack !== null) {

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 
 import 'asset_key.dart';
+import '../permissions.dart';
 import 'runtime/modules.dart';
 
 /// Business package metadata, independent of its built-in or directory location.
@@ -14,6 +15,7 @@ class FlaxManifest {
     this.description,
     this.modules = const {},
     this.requiredCapabilities = const [],
+    this.permissions,
   });
 
   final String id;
@@ -23,6 +25,7 @@ class FlaxManifest {
 
   final Map<String, FlaxModuleKind> modules;
   final List<String> requiredCapabilities;
+  final FlaxPermissionManifest? permissions;
 
   static Future<FlaxManifest> load(AssetBundle bundle) async =>
       FlaxManifest.fromJson(jsonDecode(await bundle.loadString('flax.json')));
@@ -94,6 +97,7 @@ class FlaxManifest {
       description: description as String?,
       modules: Map.unmodifiable(modules),
       requiredCapabilities: List.unmodifiable(capabilities),
+      permissions: FlaxPermissionManifest.fromJson(json),
     );
   }
 }

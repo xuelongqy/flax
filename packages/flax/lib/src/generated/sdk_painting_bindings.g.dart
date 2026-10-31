@@ -1902,22 +1902,24 @@ const sdk_paintingBindings = FlaxBindingModule(
         FlaxSandboxBinding.deny(),
     ("flax.core/sdk_painting#type:ResizeImage", "construct", ""):
         FlaxSandboxBinding(_flaxSandbox68, replace: true),
+    ("flax.core/sdk_painting#function:ResizeImage.resizeIfNeeded", "call", ""):
+        FlaxSandboxBinding(_flaxSandbox69, replace: true),
     ("flax.core/sdk_painting#type:ResizeImage", "call", "resolve"):
-        FlaxSandboxBinding(_flaxSandbox69, replace: false),
-    ("flax.core/sdk_painting#type:ResizeImage", "call", "createStream"):
         FlaxSandboxBinding(_flaxSandbox70, replace: false),
-    ("flax.core/sdk_painting#type:ResizeImage", "call", "obtainCacheStatus"):
+    ("flax.core/sdk_painting#type:ResizeImage", "call", "createStream"):
         FlaxSandboxBinding(_flaxSandbox71, replace: false),
-    ("flax.core/sdk_painting#type:ResizeImage", "call", "resolveStreamForKey"):
+    ("flax.core/sdk_painting#type:ResizeImage", "call", "obtainCacheStatus"):
         FlaxSandboxBinding(_flaxSandbox72, replace: false),
-    ("flax.core/sdk_painting#type:ResizeImage", "call", "evict"):
+    ("flax.core/sdk_painting#type:ResizeImage", "call", "resolveStreamForKey"):
         FlaxSandboxBinding(_flaxSandbox73, replace: false),
+    ("flax.core/sdk_painting#type:ResizeImage", "call", "evict"):
+        FlaxSandboxBinding(_flaxSandbox74, replace: false),
     ("flax.core/sdk_painting#type:ResizeImage", "call", "obtainKey"):
-        FlaxSandboxBinding(_flaxSandbox74, replace: true),
+        FlaxSandboxBinding(_flaxSandbox75, replace: true),
     ("flax.core/sdk_painting#type:ResizeImage", "call", "loadBuffer"):
-        FlaxSandboxBinding(_flaxSandbox75, replace: false),
-    ("flax.core/sdk_painting#type:ResizeImage", "call", "loadImage"):
         FlaxSandboxBinding(_flaxSandbox76, replace: false),
+    ("flax.core/sdk_painting#type:ResizeImage", "call", "loadImage"):
+        FlaxSandboxBinding(_flaxSandbox77, replace: false),
   },
 );
 final sdk_paintingPlugin = FlaxBindingPlugin(
@@ -42683,17 +42685,18 @@ Object? _flaxSandbox69(
   Object? receiver,
   Map<String, Object?> values,
 ) {
-  flaxInvokeWithDefaults(
-    api14.checkSandboxImageProvider,
+  return flaxInvokeWithDefaults(
+    api14.sandboxResizeIfNeeded,
     <Object?>[
       context,
       context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
-      receiver,
+      values["cacheWidth"],
+      values["cacheHeight"],
+      values["provider"],
     ],
-    <int>[1 | 2 | 4],
-    const <String>["", "", ""],
+    <int>[1 | 2 | 4 | 8 | 16],
+    const <String>["", "", "", "", ""],
   );
-  return null;
 }
 
 Object? _flaxSandbox70(
@@ -42738,6 +42741,24 @@ Object? _flaxSandbox72(
   Map<String, Object?> values,
 ) {
   flaxInvokeWithDefaults(
+    api14.checkSandboxImageProvider,
+    <Object?>[
+      context,
+      context.requirePolicy<api14.FlaxAssetBundlePolicy>(),
+      receiver,
+    ],
+    <int>[1 | 2 | 4],
+    const <String>["", "", ""],
+  );
+  return null;
+}
+
+Object? _flaxSandbox73(
+  FlaxSandboxContext context,
+  Object? receiver,
+  Map<String, Object?> values,
+) {
+  flaxInvokeWithDefaults(
     api14.checkSandboxImageKey,
     <Object?>[
       context,
@@ -42751,7 +42772,7 @@ Object? _flaxSandbox72(
   return null;
 }
 
-Object? _flaxSandbox73(
+Object? _flaxSandbox74(
   FlaxSandboxContext context,
   Object? receiver,
   Map<String, Object?> values,
@@ -42769,7 +42790,7 @@ Object? _flaxSandbox73(
   return null;
 }
 
-Object? _flaxSandbox74(
+Object? _flaxSandbox75(
   FlaxSandboxContext context,
   Object? receiver,
   Map<String, Object?> values,
@@ -42787,7 +42808,7 @@ Object? _flaxSandbox74(
   );
 }
 
-Object? _flaxSandbox75(
+Object? _flaxSandbox76(
   FlaxSandboxContext context,
   Object? receiver,
   Map<String, Object?> values,
@@ -42806,7 +42827,7 @@ Object? _flaxSandbox75(
   return null;
 }
 
-Object? _flaxSandbox76(
+Object? _flaxSandbox77(
   FlaxSandboxContext context,
   Object? receiver,
   Map<String, Object?> values,

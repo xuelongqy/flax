@@ -8,6 +8,11 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  late FlaxTestPermissions permissionFixture;
+  setUp(() async {
+    permissionFixture = await FlaxTestPermissions.create();
+  });
+  tearDown(() => permissionFixture.close());
   testWidgets(
     'Fetch playground receives JSON and cancels an unfinished request',
     (tester) async {
@@ -31,6 +36,7 @@ void main() {
           await request.response.close();
         });
         await app.startApplication(
+          permissions: permissionFixture.policy,
           apiBaseUrl: 'http://127.0.0.1:${server.port}/',
         );
       });

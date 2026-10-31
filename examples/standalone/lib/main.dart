@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flax/flax.dart';
+import 'package:flax_example_support/flax_example_support.dart';
 import 'package:flax_local_storage/flax_local_storage.dart';
 import 'package:flax_websocket/flax_websocket.dart';
 import 'package:flax_canvas/flax_canvas.dart';
@@ -36,8 +37,28 @@ Future<void> startApplication({
   String? expectedSha256,
   Directory? cacheDirectory,
   FlaxDownloader? download,
+  FlaxPermissionPolicy? permissions,
 }) async {
   WidgetsFlutterBinding.ensureInitialized();
+  if (permissions == null &&
+      source == null &&
+      applicationDirectory == null &&
+      packageFile == null &&
+      scriptFile == null &&
+      networkUri == null &&
+      assetBundle == null) {
+    const prefix = String.fromEnvironment(
+      'FLAX_ASSET_PREFIX',
+      defaultValue: 'assets/flax',
+    );
+    final manifest = await FlaxManifest.load(
+      FlaxPrefixedAssetBundle(prefix: prefix),
+    );
+    permissions = await approveTrustedExamplePermissions(
+      manifest.id,
+      manifest: manifest.permissions,
+    );
+  }
   try {
     const prefix = String.fromEnvironment(
       'FLAX_ASSET_PREFIX',
@@ -130,6 +151,8 @@ Future<void> startApplication({
     final Widget view;
     if (source != null) {
       view = FlaxView(
+        permissions: permissions,
+        permissionManifest: permissions?.application.manifest,
         source: source,
         assetBundle: assetBundle,
         createRuntime: createRuntime,
@@ -139,6 +162,7 @@ Future<void> startApplication({
       );
     } else if (networkUri != null) {
       view = FlaxView.network(
+        permissions: permissions,
         uri: networkUri,
         format: networkFormat!,
         headers: headers,
@@ -154,6 +178,7 @@ Future<void> startApplication({
       );
     } else if (packageFile != null) {
       view = FlaxView.package(
+        permissions: permissions,
         file: packageFile,
         installationDirectory: installationDirectory,
         createRuntime: createRuntime,
@@ -163,6 +188,7 @@ Future<void> startApplication({
       );
     } else if (applicationDirectory != null) {
       view = FlaxView.directory(
+        permissions: permissions,
         directory: applicationDirectory,
         createRuntime: createRuntime,
         bindings: bindings,
@@ -171,6 +197,7 @@ Future<void> startApplication({
       );
     } else if (scriptFile != null) {
       view = FlaxView.file(
+        permissions: permissions,
         file: scriptFile,
         assetBundle: assetBundle,
         createRuntime: createRuntime,
@@ -180,6 +207,7 @@ Future<void> startApplication({
       );
     } else {
       view = FlaxView.bundle(
+        permissions: permissions,
         assetBundle: assetBundle,
         prefix: assetBundle == null ? prefix : 'assets/flax',
         createRuntime: createRuntime,

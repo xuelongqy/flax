@@ -2,13 +2,18 @@ part of '../../bindings.dart';
 
 class _FetchRequest {
   bool isCancelled = false;
+  bool finished = false;
   final _cancelPending = <void Function()>{};
   HttpClientRequest? request;
   HttpClientResponse? response;
   StreamIterator<List<int>>? responseIterator;
-  void abort() {
+  FlaxPermissionLease? permission;
+  Object? cancellationError;
+  void abort([Object? error]) {
     if (isCancelled) return;
     isCancelled = true;
+    cancellationError = error ?? StateError('Fetch request cancelled');
+    permission?.close();
     request?.abort(StateError('Fetch request cancelled'));
     final iterator = responseIterator;
     if (iterator != null) {
@@ -27,7 +32,9 @@ class _FetchRequest {
     final result = Completer<T>();
     void cancel() {
       if (!result.isCompleted) {
-        result.completeError(StateError('Fetch request cancelled'));
+        result.completeError(
+          cancellationError ?? StateError('Fetch request cancelled'),
+        );
       }
     }
 
@@ -57,6 +64,7 @@ class _FetchHost {
   HttpClient? _client;
   final _requests = <int, _FetchRequest>{};
   final _pending = <int>{};
+  final _pendingRecords = <int, _FetchRequest>{};
   FlaxJsObject? _state;
   bool _closed = false;
 
@@ -99,13 +107,22 @@ class _FetchHost {
         default:
           throw ArgumentError('Unknown Fetch operation: $operation');
       }
+      final record = _requests[requestId];
+      if (record != null) _pendingRecords[id] = record;
       result.then(
         (value) => _settle(id, true, value),
-        onError: (Object error, StackTrace stack) =>
-            _settle(id, false, error.toString()),
+        onError: (Object error, StackTrace stack) => _settle(
+          id,
+          false,
+          error is FlaxPermissionException ? error.toJson() : error.toString(),
+        ),
       );
     } catch (error) {
-      _settle(id, false, error.toString());
+      _settle(
+        id,
+        false,
+        error is FlaxPermissionException ? error.toJson() : error.toString(),
+      );
     }
     return const FlaxJsUndefined();
   }
@@ -113,8 +130,9 @@ class _FetchHost {
   _FetchRequest _record(int id) {
     final record = _requests[id];
     if (record == null || record.isCancelled) {
-      throw StateError('Fetch request cancelled');
+      throw record?.cancellationError ?? StateError('Fetch request cancelled');
     }
+    record.permission?.requireActive();
     return record;
   }
 
@@ -126,6 +144,29 @@ class _FetchHost {
     if (!['http', 'https'].contains(url.scheme)) {
       throw ArgumentError('Unsupported URL scheme');
     }
+    final permissions = context.permissions;
+    if (permissions == null) {
+      throw const FlaxPermissionException(
+        permission: 'flax.network',
+        operation: 'fetch',
+        reason: 'notDeclared',
+      );
+    }
+    final lease = record.permission = permissions.network(url);
+    lease.onRevoke(
+      () => record.abort(
+        const FlaxPermissionException(
+          permission: 'flax.network',
+          operation: 'fetch',
+          reason: 'revoked',
+        ),
+      ),
+    );
+    for (final pair in (settings['headers'] as List).cast<List<Object?>>()) {
+      if ((pair[0] as String).toLowerCase() == 'host') {
+        FlaxPermissionContext.checkHostHeader(url, pair[1] as String);
+      }
+    }
     final opening = (_client ??= HttpClient()).openUrl(
       settings['method'] as String,
       url,
@@ -136,6 +177,7 @@ class _FetchHost {
       if (record.isCancelled) request.abort();
     }, onError: (Object error) {});
     final request = await record.wait(opening);
+    lease.requireActive();
     request.followRedirects = false;
     request.contentLength = (settings['length'] as num).toInt();
     for (final pair
@@ -146,17 +188,20 @@ class _FetchHost {
   }
 
   Future<Object?> _write(_FetchRequest record, Uint8List bytes) async {
+    record.permission?.requireActive();
     record.request!.add(bytes);
     await record.request!.flush();
     return null;
   }
 
   Future<Object?> _headers(_FetchRequest record) async {
+    record.permission?.requireActive();
     final response = await record.request!.close();
     if (record.isCancelled) {
       await response.listen((_) {}).cancel();
-      throw StateError('Fetch request cancelled');
+      throw record.cancellationError ?? StateError('Fetch request cancelled');
     }
+    record.permission?.requireActive();
     record.response = response;
     final headers = <List<String>>[];
     response.headers.forEach((name, values) {
@@ -176,34 +221,49 @@ class _FetchHost {
     if (response == null) throw StateError('Response headers have not arrived');
     final iterator = record.responseIterator ??= StreamIterator(response);
     while (await iterator.moveNext()) {
+      record.permission?.requireActive();
       if (iterator.current.isNotEmpty) {
         return Uint8List.fromList(iterator.current);
       }
     }
     _requests.remove(id);
+    record.finished = true;
     await iterator.cancel();
     return null;
   }
 
   void _settle(int id, bool ok, Object? value) {
+    final record = _pendingRecords.remove(id);
     if (!_pending.remove(id) || !context.isActive) return;
     context.enqueue(() {
       // Close must win over a completed transport result still waiting for JS.
       if (_closed) return;
-      final result = switch (value) {
-        Uint8List() => context.runtime.createArrayBuffer(value),
-        String() => FlaxJsString(value),
+      var deliveryOk = ok;
+      var delivery = value;
+      try {
+        record?.permission?.requireActive();
+      } on FlaxPermissionException catch (error) {
+        deliveryOk = false;
+        delivery = error.toJson();
+      }
+      final result = switch (delivery) {
+        Uint8List() => context.runtime.createArrayBuffer(delivery),
+        String() => FlaxJsString(delivery),
+        Map<String, Object?>() => context.runtime.evaluate(
+          '(${jsonEncode(delivery)})',
+        ),
         null => const FlaxJsNull(),
         _ => throw StateError('Invalid Fetch result'),
       };
       try {
         _call('settle', [
           FlaxJsNumber(id.toDouble()),
-          FlaxJsBoolean(ok),
+          FlaxJsBoolean(deliveryOk),
           result,
         ]);
       } finally {
         if (result is FlaxJsObject) result.release();
+        if (record?.finished == true) record?.permission?.close();
       }
     });
   }
@@ -228,6 +288,7 @@ class _FetchHost {
     }
     _requests.clear();
     _pending.clear();
+    _pendingRecords.clear();
     _client?.close(force: true);
     _client = null;
   }

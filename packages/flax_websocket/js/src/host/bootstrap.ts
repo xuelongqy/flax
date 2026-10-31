@@ -381,10 +381,28 @@ export class WebSocket extends EventTarget {
       this.acknowledged?.();
       this.acknowledged = undefined;
     } else if (kind === 'close') {
-      const result = JSON.parse(value as string) as CloseEventInit & { error: boolean };
+      const result = JSON.parse(value as string) as CloseEventInit & {
+        error: boolean;
+        permissionError?: {
+          message: string;
+          code: string;
+          permission: string;
+          reason: string;
+        };
+      };
       this.state = 3;
       this.release();
-      if (result.error) this.dispatchEvent(new Event('error'));
+      if (result.error) {
+        const event = new Event('error');
+        if (result.permissionError)
+          Object.defineProperty(event, 'error', {
+            value: Object.assign(
+              new Error(result.permissionError.message),
+              result.permissionError,
+            ),
+          });
+        this.dispatchEvent(event);
+      }
       this.dispatchEvent(new CloseEvent('close', result));
     }
   }

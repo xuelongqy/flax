@@ -22,6 +22,52 @@ import { startFlaxDev } from '../src/dev.mjs';
 import { unzipSync } from 'fflate';
 import { createHash } from 'node:crypto';
 
+test('application permissions preserve localized purposes and reject invalid declarations before replacing output', async () => {
+  const root = await realpath(await mkdtemp(join(tmpdir(), 'flax-permissions-')));
+  try {
+    await mkdir(join(root, 'src'));
+    await writeFile(join(root, 'src/main.js'), 'export const value = 1;');
+    const permissions = {
+      'flax.network': {
+        purpose: { en: 'Load account data', zh: '加载账户数据' },
+        origins: ['https://api.example.com'],
+      },
+    };
+    const metadata = {
+      name: 'permissions',
+      version: '1.0.0',
+      flax: { defaultLocale: 'en', permissions },
+    };
+    const save = () => writeFile(join(root, 'package.json'), JSON.stringify(metadata));
+    await save();
+    const app = await prepareModuleApplication({ projectDirectory: root });
+    assert.deepEqual(app.manifest.permissions, permissions);
+    const packed = unzipSync(
+      await readFile(await packApplication({ directory: app.directory })),
+    );
+    assert.deepEqual(
+      JSON.parse(new TextDecoder().decode(packed['flax.json'])).permissions,
+      permissions,
+    );
+    const previous = await readFile(join(app.directory, 'flax.json'), 'utf8');
+    for (const invalid of [
+      { 'flax.network': { purpose: { zh: '缺少默认语言' } } },
+      { 'flax.network': { purpose: { en: ' ' } } },
+      { invalid: { purpose: { en: 'Invalid ID' } } },
+    ]) {
+      metadata.flax.permissions = invalid;
+      await save();
+      await assert.rejects(
+        prepareModuleApplication({ projectDirectory: root }),
+        /permission/i,
+      );
+      assert.equal(await readFile(join(app.directory, 'flax.json'), 'utf8'), previous);
+    }
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
 test('native ESM staging preserves JS and binary bytes, lowers TS and packages every module', async () => {
   const root = await realpath(await mkdtemp(join(tmpdir(), 'flax-esm-')));
   const project = join(root, 'js');

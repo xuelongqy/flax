@@ -2776,7 +2776,26 @@ FlaxCodegenModuleModel _rewriteModuleIds(
     FlaxCodegenManifestCodec.encodeModule(module),
     idMap,
   );
-  return _moduleFromEncoded(rewritten, module);
+  final resolved = _moduleFromEncoded(rewritten, module);
+  // Static/enum operation IDs are derived from their class ID, not stored on
+  // each method. Guard owners must follow that change as well.
+  final derived = <String, String>{};
+  final before = module.callableFunctions.toList();
+  final after = resolved.callableFunctions.toList();
+  for (var index = 0; index < before.length; index++) {
+    if (before[index].id != after[index].id) {
+      derived[before[index].id] = after[index].id;
+    }
+  }
+  return derived.isEmpty
+      ? resolved
+      : _moduleFromEncoded(
+          _rewriteIdEntries(
+            FlaxCodegenManifestCodec.encodeModule(resolved),
+            derived,
+          ),
+          resolved,
+        );
 }
 
 Object? _rewriteIdEntries(Object? value, Map<String, String> idMap) {
@@ -2851,6 +2870,7 @@ FlaxCodegenModuleModel _moduleFromEncoded(
     jsxContentSlots: Map.unmodifiable(template.jsxContentSlots),
     stateVariants: module.stateVariants,
     sandboxRules: module.sandboxRules,
+    permissionRules: module.permissionRules,
   );
 }
 
@@ -3041,6 +3061,7 @@ FlaxCodegenModuleModel _freezeModule(
     classes: [...parsed.classes, ...automaticClasses],
     jsxContentSlots: parsed.jsxContentSlots,
     sandboxRules: parsed.sandboxRules,
+    permissionRules: parsed.permissionRules,
     types: [
       for (final type in parsed.types)
         if (claimedNames.contains(type.name) ||
@@ -3095,11 +3116,7 @@ FlaxCodegenModuleModel _freezeModule(
     ],
   );
 
-  final rewritten = _rewriteIdEntries(
-    FlaxCodegenManifestCodec.encodeModule(filtered),
-    rawToWire,
-  );
-  return _moduleFromEncoded(rewritten, filtered);
+  return _rewriteModuleIds(filtered, rawToWire);
 }
 
 List<String> _planValidationInventory({

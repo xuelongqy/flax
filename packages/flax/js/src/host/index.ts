@@ -226,7 +226,21 @@ export type {
   RequestCredentials,
   ResponseInit,
 } from './fetch/http.js';
+export interface FlaxPermissionResult {
+  readonly permission: string;
+  readonly state:
+    'prompt' | 'granted' | 'limited' | 'denied' | 'unavailable' | 'unknown';
+  readonly requested: boolean;
+  readonly reason?: string;
+  readonly scope?: unknown;
+  readonly serviceStatus: 'enabled' | 'disabled' | 'notApplicable' | 'unknown';
+}
+export interface FlaxPermissions {
+  query(id: string, options?: { scope?: unknown }): Promise<FlaxPermissionResult>;
+  request(id: string, options?: { scope?: unknown }): Promise<FlaxPermissionResult>;
+}
 declare global {
+  var permissions: FlaxPermissions;
   var Headers: typeof FetchData.Headers;
   var Request: typeof FetchHttp.Request;
   var Response: typeof FetchHttp.Response;

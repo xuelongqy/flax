@@ -7,14 +7,33 @@ import 'dart:typed_data';
 
 import 'package:ffi/ffi.dart';
 import 'package:path/path.dart' as p;
+import 'package:path_provider/path_provider.dart';
 
 import 'sandbox.dart';
+import '../../permissions.dart';
+
+part 'selected_file.dart';
 
 /// Session-owned rooted filesystem. No untrusted absolute path reaches Dart IO.
 final class FlaxFilePolicy {
-  FlaxFilePolicy(FlaxSandbox sandbox, FlaxSandboxScope scope)
-    : this._(sandbox.homePath, scope);
-  FlaxFilePolicy._(this.homePath, this.scope) {
+  FlaxFilePolicy(
+    FlaxSandbox sandbox,
+    FlaxSandboxScope scope, {
+    FlaxPermissionContext? permissions,
+  }) : this._(
+         sandbox.homePath,
+         scope,
+         appId: sandbox.appId,
+         permissions: permissions,
+       );
+  FlaxFilePolicy._(
+    this.homePath,
+    this.scope, {
+    this.appId = '',
+    FlaxPermissionContext? permissions,
+  }) : _permissionOwner = permissions == null
+           ? null
+           : WeakReference(permissions) {
     _root = _posix.open(homePath, _posix.directoryFlags);
     try {
       final actual = _posix.pathOf(_root);
@@ -34,10 +53,14 @@ final class FlaxFilePolicy {
   }
 
   final String homePath;
+  final String appId;
+  final WeakReference<FlaxPermissionContext>? _permissionOwner;
+  FlaxPermissionContext? get permissions => _permissionOwner?.target;
   final FlaxSandboxScope scope;
   late final int _root;
   final _pending = <Future<void>>{};
   final _streams = <Future<void> Function()>{};
+  final _selectedFiles = <FlaxSelectedFile>{};
   Future<void>? _closing;
 
   String checkPath(String input) {
@@ -57,8 +80,16 @@ final class FlaxFilePolicy {
   FlaxSandboxDirectory directory(String path) =>
       FlaxSandboxDirectory._(this, checkPath(path));
 
-  FlaxSandboxFile requireFile(FlaxSandboxScope caller, File value) {
+  File requireFile(FlaxSandboxScope caller, File value) {
     scope.requireActive();
+    if (value is FlaxSelectedFile &&
+        identical(caller, scope) &&
+        identical(value._policy, this) &&
+        permissions != null &&
+        value._permission.belongsTo(permissions!)) {
+      value.requireActive();
+      return value;
+    }
     if (value is! FlaxSandboxFile ||
         !identical(caller, scope) ||
         !identical(value._policy, this)) {
@@ -81,6 +112,7 @@ final class FlaxFilePolicy {
   }
 
   Future<void> close() => _closing ??= () async {
+    await Future.wait(_selectedFiles.toList().map((file) => file._close()));
     await Future.wait(List.of(_streams).map((cancel) => cancel()));
     await Future.wait(List.of(_pending));
     _posix.close(_root);
@@ -297,17 +329,20 @@ final class FlaxFilePolicy {
   Future<FileSystemEntityType> type(String path, {bool followLinks = true}) =>
       Future.sync(() => typeSync(path, followLinks: followLinks));
 
-  bool areIdenticalSync(String a, String b) => _fileSync(
-    a,
-    0,
-    (first) => _fileSync(
-      b,
-      0,
-      (second) => FileSystemEntity.identicalSync(first.path, second.path),
-      directory: true,
-    ),
-    directory: true,
-  );
+  bool areIdenticalSync(String a, String b) {
+    final first = _open(a, 0);
+    try {
+      final second = _open(b, 0);
+      try {
+        return _posix.identity(first) == _posix.identity(second);
+      } finally {
+        _posix.close(second);
+      }
+    } finally {
+      _posix.close(first);
+    }
+  }
+
   Future<bool> areIdentical(String a, String b) =>
       Future.sync(() => areIdenticalSync(a, b));
 
@@ -512,7 +547,14 @@ Never _deny(String operation, String message) =>
 final class _SandboxPosix {
   final _lib = DynamicLibrary.process();
   bool get _darwin => Platform.isMacOS || Platform.isIOS;
-  int get directoryFlags => _darwin ? 0x100000 : 0x10000;
+  bool get _arm64Linux =>
+      Abi.current() == Abi.androidArm64 || Abi.current() == Abi.linuxArm64;
+  // AArch64 uses different directory/no-follow bits from Linux x86_64.
+  int get directoryFlags => _darwin
+      ? 0x100000
+      : _arm64Linux
+      ? 0x4000
+      : 0x10000;
   int get createFlag => _darwin ? 0x200 : 0x40;
   int get exclusiveFlag => _darwin ? 0x800 : 0x80;
   late final _open = _lib
@@ -527,6 +569,11 @@ final class _SandboxPosix {
       >('openat');
   late final _dup = _lib
       .lookupFunction<Int32 Function(Int32), int Function(int)>('dup');
+  late final _fstat = _lib
+      .lookupFunction<
+        Int32 Function(Int32, Pointer<Uint8>),
+        int Function(int, Pointer<Uint8>)
+      >('fstat');
   late final _close = _lib
       .lookupFunction<Int32 Function(Int32), int Function(int)>('close');
   late final _mkdir = _lib
@@ -585,6 +632,26 @@ final class _SandboxPosix {
       _check(_fcntlPath(fd, 50, buffer), 'fcntl(F_GETPATH)');
       return buffer.toDartString();
     });
+  }
+
+  (int, int) identity(int fd) => using((arena) {
+    // Maintained 64-bit POSIX ABIs put inode at 8; Darwin has a 32-bit device.
+    final buffer = arena<Uint8>(256);
+    _check(_fstat(fd, buffer), 'fstat');
+    final data = ByteData.sublistView(buffer.asTypedList(16));
+    return (
+      _darwin ? data.getUint32(0, Endian.host) : data.getUint64(0, Endian.host),
+      data.getUint64(8, Endian.host),
+    );
+  });
+
+  bool isSameFile(int fd, String path) {
+    final other = open(path, 0);
+    try {
+      return identity(fd) == identity(other);
+    } finally {
+      close(other);
+    }
   }
 
   bool isLink(int fd, String name) => using((arena) {
@@ -663,7 +730,11 @@ final class _SandboxPosix {
 
   int _flags(int flags) =>
       flags |
-      (_darwin ? 0x100 : 0x20000) |
+      (_darwin
+          ? 0x100
+          : _arm64Linux
+          ? 0x8000
+          : 0x20000) |
       (_darwin ? 0x1000000 : 0x80000) |
       (_darwin ? 4 : 0x800);
   int _check(int result, String operation, [String? path]) {

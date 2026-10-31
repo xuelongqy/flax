@@ -20,6 +20,11 @@ final class FlaxSandbox {
 
   static final _applications = <String, String>{};
 
+  /// Host-owned module roots must not become external-document grants.
+  static bool isManagedPath(String path) => _applications.keys.any(
+    (root) => p.equals(root, path) || p.isWithin(root, path),
+  );
+
   /// Prepares apps/sha256(appId)/data without copying an externally loaded bundle.
   static Future<FlaxSandbox> create({
     required String appId,

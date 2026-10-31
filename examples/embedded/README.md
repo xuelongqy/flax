@@ -21,12 +21,24 @@ each capability in its package-owned example; see the
 | WebSocket      | `packages/flax_websocket/example`       | Connection state, messages and disconnecting                               |
 | Local storage  | `packages/flax_local_storage/example`   | Saved counter, notes and persistence across visits                         |
 | Sandbox        | `packages/flax_sandbox_example/example` | File and Image.file access, isolated storage and live configuration reload |
+| Permissions    | `packages/flax_sandbox_example/example` | Installation approval, shared module consent, revocation and selected File |
 
 From the repository root, with the maintained Flutter SDK and local engine selected:
 
+The gallery initializes real secure storage for its permission examples. On macOS,
+configure a valid development signing profile and the private Keychain group in the
+shared [Apple host setup](../../packages/flax_secure_storage/README.md#apple-host-setup)
+first. Replace `<team-id>` with that configured team:
+
 ```sh
+export FLAX_MACOS_TEAM='<team-id>'
+export LUCI_CI=True
 dart run melos run example:run
 ```
+
+`LUCI_CI=True` selects the tested macOS file/UI host configuration: Flutter disables the
+OS App Sandbox so the current rooted file backend can use `/dev/fd`. Flax's application
+sandbox remains enabled. This does not establish macOS App Sandbox support.
 
 The launch command starts a Dart server on a random loopback port for Fetch and
 WebSocket. It supplies JSON at `/status`, a five-second response at `/slow`, and an echo
@@ -66,7 +78,7 @@ appearance and FPS disabled when the Dart shell is recreated.
 ## Verification
 
 `test/aggregate_test.dart` checks missing-plugin rejection, shared module identity, all
-eight entrances, state reset after remount, narrow layout and zero runtime handles at
+nine entrances, state reset after remount, narrow layout and zero runtime handles at
 Session disposal, including an open dialog during unmount.
 `test/network_lifecycle_test.dart` repeats Fetch and WebSocket page exits and reentry,
 checks transport closure and callback removal, and verifies zero handles at Session

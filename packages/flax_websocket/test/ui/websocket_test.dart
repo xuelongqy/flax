@@ -52,7 +52,9 @@ Future<HttpServer> echoServer() async {
 }
 
 void main() {
-  setUp(() {
+  setUp(() async {
+    testPermissions = await FlaxTestPermissions.create();
+    addTearDown(testPermissions.close);
     final old = HttpOverrides.current;
     HttpOverrides.global = null;
     addTearDown(() {
@@ -269,7 +271,7 @@ void main() {
         "globalThis.live=new WebSocket('/echo');await new Promise(r=>live.onopen=r);",
       );
       await flaxTestPumpView(tester, views(false));
-      await tester.pumpAndSettle();
+      await flaxTestWaitForRuntimeDisposal(tester, a.runtime);
       expect(a.tracker.isDisposed, isTrue);
       expect(a.tracker.handlesAtDispose, 0);
       await flaxTestRunHostScript(
@@ -294,6 +296,8 @@ void main() {
         ),
       ]);
       final session = FlaxSession(
+        permissions: testPermissions.policy,
+        permissionManifest: testPermissions.manifest,
         createRuntime: a.create,
         source: source,
         bindings: registry,
@@ -311,9 +315,7 @@ void main() {
       );
       await flaxTestUnmount(tester);
       await tester.pumpAndSettle();
-      final closing = session.close();
-      await tester.pumpAndSettle();
-      await closing;
+      await flaxTestCloseSession(tester, session);
       expect(a.tracker.handlesAtDispose, 0);
     },
   );

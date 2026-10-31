@@ -7,6 +7,11 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  late FlaxTestPermissions permissionFixture;
+  setUp(() async {
+    permissionFixture = await FlaxTestPermissions.create();
+  });
+  tearDown(() => permissionFixture.close());
   testWidgets('WebSocket playground exchanges messages and closes on unmount', (
     tester,
   ) async {
@@ -24,6 +29,7 @@ void main() {
         socket.listen(socket.add, onDone: () => connections--);
       });
       await app.startApplication(
+        permissions: permissionFixture.policy,
         apiBaseUrl: 'http://127.0.0.1:${server.port}/',
       );
     });

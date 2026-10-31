@@ -9,6 +9,9 @@ import 'package:material_ui/material_ui.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
+import 'permissions_example.dart';
+export 'permissions_example.dart' show FlaxPermissionsExample;
+
 /// Only the trusted gallery registers this entrance; child sessions use core bindings.
 FlaxBindingModule createSandboxExampleBindings({String? demoDirectory}) =>
     FlaxBindingModule(
@@ -17,11 +20,21 @@ FlaxBindingModule createSandboxExampleBindings({String? demoDirectory}) =>
         FlaxWidgetBinding('flax.example/sandbox#Playground', const {
           '': [],
         }, (node) => _PlaygroundHost(node, demoDirectory)),
+        FlaxWidgetBinding('flax.example/sandbox#Permissions', const {
+          '': [],
+        }, _PermissionsHost.new),
       ],
       moduleId: 'flax.example/sandbox',
       uiProtocol: flaxBindingVersion,
       requiredCapabilities: const [],
     );
+
+class _PermissionsHost extends FlaxWidgetHost {
+  _PermissionsHost(super.node);
+  @override
+  Widget buildNative(Map<String, Object?> values) =>
+      const FlaxPermissionsExample();
+}
 
 class _PlaygroundHost extends FlaxWidgetHost {
   _PlaygroundHost(super.node, this.demoDirectory);

@@ -541,6 +541,9 @@ Future<void> _checkNpmConsumers(
 ) async {
   final core = archives[coreName];
   if (core == null) throw StateError('Missing $coreName archive');
+  final corePeers =
+      (manifests[coreName]!['peerDependencies'] as Map<String, dynamic>?) ??
+      const <String, dynamic>{};
   final root = Directory(p.join(temporary.path, 'npm-consumers'))
     ..createSync(recursive: true);
   final consumers = <Directory>[];
@@ -563,6 +566,15 @@ Future<void> _checkNpmConsumers(
       if (types.name != core.name && types.name != archive.name)
         types.name: 'file:${p.relative(types.file.path, from: directory.path)}',
     };
+    // Every fixture imports all Core entries, including optional-peer types.
+    for (final name in corePeers.keys) {
+      final peer = archives[name];
+      if (peer == null) {
+        throw StateError('Missing $name archive for $coreName peer');
+      }
+      dependencies[name] =
+          'file:${p.relative(peer.file.path, from: directory.path)}';
+    }
     File(p.join(directory.path, 'package.json')).writeAsStringSync(
       '${const JsonEncoder.withIndent('  ').convert({'name': 'consumer-${p.basename(directory.path)}', 'private': true, 'type': 'module', 'dependencies': dependencies})}\n',
     );

@@ -224,6 +224,9 @@ importers:
       '@flax/core':
         specifier: workspace:*
         version: link:../js-types
+      '@flax/dart':
+        specifier: workspace:*
+        version: link:../../flax_dart/js
       axios:
         specifier: 1.21.0
         version: 1.21.0(debug@4.4.3)
@@ -233,6 +236,9 @@ importers:
 
   packages/flax/js-types:
     dependencies:
+      '@flax/dart':
+        specifier: workspace:*
+        version: link:../../flax_dart/js
       '@flax/flutter':
         specifier: workspace:*
         version: link:../../flax_flutter/js

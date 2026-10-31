@@ -17,6 +17,10 @@ void configurePlatformProject(String app, FlaxNativeTarget target) {
             'ndkVersion = flutter.ndkVersion',
             'ndkVersion = "30.0.16248370"',
           )
+          .replaceAll(
+            'compileSdk = flutter.compileSdkVersion',
+            'compileSdk = 37',
+          )
           .replaceAll('minSdk = flutter.minSdkVersion', 'minSdk = 24'),
     );
     if (!gradle.readAsStringSync().contains(
@@ -152,6 +156,21 @@ String platformProduct(
   required bool release,
 }) {
   final mode = release ? 'release' : 'debug';
+  var macosName = 'flax_standalone';
+  if (target.os == 'macos') {
+    final configuration = File('$app/macos/Runner/Configs/AppInfo.xcconfig');
+    if (configuration.existsSync()) {
+      macosName =
+          RegExp(
+            r'^PRODUCT_NAME\s*=\s*(.+?)\s*$',
+            multiLine: true,
+          ).firstMatch(configuration.readAsStringSync())?.group(1) ??
+          macosName;
+      if (macosName.contains('/') || macosName.contains(r'$')) {
+        throw StateError('Expected a concrete macOS PRODUCT_NAME');
+      }
+    }
+  }
   return switch (target.os) {
     'android' => '$app/build/app/outputs/flutter-apk/app-$mode.apk',
     'ios' =>
@@ -160,7 +179,7 @@ String platformProduct(
       '$app/build/windows/${target.architecture}/runner/${release ? 'Release' : 'Debug'}',
     'linux' => '$app/build/linux/${target.architecture}/$mode/bundle',
     'macos' =>
-      '$app/build/macos/Build/Products/${release ? 'Release' : 'Debug'}/flax_standalone.app',
+      '$app/build/macos/Build/Products/${release ? 'Release' : 'Debug'}/$macosName.app',
     _ => throw UnsupportedError(target.name),
   };
 }
@@ -172,8 +191,11 @@ Future<String> runDesktopApplication(
   Duration timeout = const Duration(minutes: 10),
   Map<String, String>? environment,
 }) async {
+  final macosName = product.endsWith('.app')
+      ? product.split('/').last.replaceFirst(RegExp(r'\.app$'), '')
+      : 'flax_standalone';
   final binary = switch (target.os) {
-    'macos' => '$product/Contents/MacOS/flax_standalone',
+    'macos' => '$product/Contents/MacOS/$macosName',
     'windows' => '$product/flax_standalone.exe',
     'linux' => '$product/flax_standalone',
     _ => throw UnsupportedError('Desktop application required'),

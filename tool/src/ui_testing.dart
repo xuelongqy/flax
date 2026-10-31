@@ -76,12 +76,19 @@ Future<int> runPackageExampleTests(
               .toList()
             ..sort();
       if (tests.isEmpty) continue;
+      final result = File(
+        p.join(example, 'build', 'ui-example-${entry.$1}.json'),
+      );
+      result.parent.createSync(recursive: true);
+      if (result.existsSync()) result.deleteSync();
       await runCommand('flutter', [
         'test',
         '--no-pub',
+        '--file-reporter=json:${result.path}',
         if (entry.$2) ...['-d', currentCheckDevice()],
         ...tests,
       ], directory: example);
+      validateUiSuiteResults(result.readAsStringSync());
       count += tests.length;
     }
   }, runCommand: runCommand);

@@ -17,6 +17,17 @@ Extensions depend on Dart `flax` and JS `@flax/core`. They do not depend on anot
 extension unless that dependency becomes an explicit public product decision. The core
 package has no concrete engine dependency.
 
+The [secure storage contract](secure-storage.md) keeps a dependency-free Dart contract
+in Core and native storage in an optional package that depends on it. Hosts can supply
+their own implementation without that package. `flax_secure_storage` provides the
+optional native adapter; Core never depends on it.
+
+The [permission contract](permissions.md) places immutable permission definitions and
+guard annotations in pure Dart `flax_annotations`, with runtime policies, consent and
+storage consumers in Core. Core and codegen consume that metadata; annotations never
+depend on Core, Flutter or platform permission plugins. The optional `flax_permissions`
+adapter only queries host OS state through permission_handler.
+
 The [direct JS FFI capability](ffi.md) is an npm-first exception. `@flax/ffi` is
 standalone JS/TS; Core owns internal Dart bootstrap and retirement. Build tooling
 selects retained npm native inputs and generates the private `flax_ffi_assets` build
@@ -35,11 +46,13 @@ C++/CRT owner. See the [package guide](../../packages/flax_ffi/js/README.md).
 | `@flax/ffi-codegen`                                  | Optional Node development tool for C header definitions and ownership-driven FFI classes; no device runtime                           |
 | `flax_websocket` / `@flax/websocket-runtime`         | WebSocket session plugin                                                                                                              |
 | `flax_local_storage` / `@flax/local-storage-runtime` | Persistent localStorage session plugin                                                                                                |
+| `flax_permissions`                                   | Optional query-only permission_handler adapter for host OS state                                                                      |
+| `flax_secure_storage`                                | Optional host-only Keychain and Keystore byte storage                                                                                 |
 | `flax_canvas` / `@flax/canvas-runtime`               | Canvas host plugin and CanvasView binding                                                                                             |
 | `flax_engine_v8`                                     | Experimental V8 adapter, locked shared SDK, and engine tests                                                                          |
 | `flax_native_assets`                                 | Build-only owner of shared Android C++ and Windows CRT native assets                                                                  |
 | `flax_build` / `@flax/build`                         | Node build tooling: shared TS generic compilation, host assets, esbuild/Vite and HMR                                                  |
-| `flax_annotations`                                   | Pure Dart FlaxExport scope and FlaxIgnore markers; no Flutter or analyzer dependency                                                  |
+| `flax_annotations`                                   | Pure Dart export/ignore markers and permission definitions/guards; no Flutter or analyzer dependency                                  |
 | `flax_codegen`                                       | Analyzer model, manifest format, and Dart/TypeScript emitters                                                                         |
 | `flax_cli`                                           | Optional host project initialization and legacy Builder configuration helper                                                          |
 | `flax_test`                                          | Development-only engine-neutral runtime contracts and shared test harnesses                                                           |

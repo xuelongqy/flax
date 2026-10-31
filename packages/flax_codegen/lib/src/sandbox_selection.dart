@@ -2,7 +2,13 @@ part of 'parser.dart';
 
 /// Resolve guards against declarations, before package ownership rewrites IDs.
 extension FlaxCodegenSandboxSelection on FlaxCodegenBindingParser {
-  Future<List<FlaxCodegenSandboxRule>> _sandboxRules(
+  Future<
+    ({
+      List<FlaxCodegenSandboxRule> sandbox,
+      List<FlaxCodegenPermissionRule> permissions,
+    })
+  >
+  _bindingGuards(
     FlaxCodegenBindingConfig config,
     _FlaxCodegenTypeScope scope,
     FlaxCodegenModuleModel module,
@@ -24,6 +30,11 @@ extension FlaxCodegenSandboxSelection on FlaxCodegenBindingParser {
       );
     }
     final rules = <FlaxCodegenSandboxRule>[];
+    final permissionRules = <FlaxCodegenPermissionRule>[];
+    final permissionSelections = _permissionSelectors(config.permissions);
+    final permissionUsed = <String>{};
+    final permissionDefinitions =
+        <String, FlaxCodegenPermissionDefinitionModel>{};
     final used = <String>{};
     final configured = <String, Object?>{};
     void entries(String prefix, Object? input) {
@@ -99,7 +110,7 @@ extension FlaxCodegenSandboxSelection on FlaxCodegenBindingParser {
       final path = value.substring(separator + 1).split('.');
       Element? element = result.element.exportNamespace.get2(path.first);
       if (path.length == 2 && element is InterfaceElement) {
-        element = element.getMethod(path.last);
+        element = element.getMethod(path.last) ?? element.getGetter(path.last);
       } else if (path.length != 1) {
         element = null;
       }
@@ -123,6 +134,84 @@ extension FlaxCodegenSandboxSelection on FlaxCodegenBindingParser {
       bool receiverParameter = false,
     }) async {
       if (element == null) return;
+      final annotations = _permissionAnnotations(element);
+      var permissionSelection = permissionSelections[selector];
+      if (permissionSelection != null) permissionUsed.add(selector);
+      if (element.enclosingElement case final InterfaceElement declaration) {
+        final section = element is ConstructorElement
+            ? 'constructors'
+            : element is GetterElement
+            ? element.isStatic
+                  ? 'staticGetters'
+                  : 'getters'
+            : element is SetterElement
+            ? element.isStatic
+                  ? 'staticSetters'
+                  : 'setters'
+            : element is MethodElement && element.isOperator
+            ? 'operators'
+            : element.isStatic
+            ? 'methods'
+            : 'instanceMethods';
+        final original =
+            'classes/${declaration.name}/$section/${element is ConstructorElement && element.name == 'new' ? '' : element.name}';
+        final inherited = permissionSelections[original];
+        if (inherited != null) {
+          permissionUsed.add(original);
+          if (permissionSelection != null &&
+              jsonEncode(permissionSelection) != jsonEncode(inherited)) {
+            throw StateError('Conflicting permission selectors: $selector');
+          }
+          permissionSelection ??= inherited;
+        }
+      }
+      final definitions = <String, FlaxCodegenPermissionDefinitionModel>{};
+      void permission(DartObject? value) {
+        final definition = _permissionDefinition(value, selector);
+        final previous = permissionDefinitions[definition.id];
+        if (previous != null &&
+            (previous.title != definition.title ||
+                previous.authorization != definition.authorization ||
+                previous.version != definition.version)) {
+          throw StateError(
+            'Conflicting permission definition: ${definition.id}',
+          );
+        }
+        permissionDefinitions[definition.id] = definition;
+        definitions[definition.id] = definition;
+      }
+
+      for (final annotation in annotations) {
+        permission(annotation.getField('permission'));
+      }
+      for (final selected
+          in permissionSelection == null
+              ? const <Object?>[]
+              : permissionSelection is List
+              ? permissionSelection
+              : [permissionSelection]) {
+        if (selected is! String) {
+          throw StateError('Expected permission definition symbol: $selector');
+        }
+        final target = await symbol(selected);
+        permission(switch (target) {
+          TopLevelVariableElement() => target.computeConstantValue(),
+          PropertyAccessorElement() => target.variable.computeConstantValue(),
+          _ => null,
+        });
+      }
+      if (definitions.isNotEmpty) {
+        permissionRules.add(
+          FlaxCodegenPermissionRule(
+            owner: owner,
+            kind: kind,
+            name: name,
+            operation: selector,
+            permissions: List.unmodifiable(definitions.values),
+            receiver: receiverType != null && !receiverParameter,
+          ),
+        );
+      }
       var marker = _flaxAnnotation(element, 'FlaxSandboxGuard');
       if (marker == null && element is PropertyAccessorElement) {
         marker = _flaxAnnotation(element.variable, 'FlaxSandboxGuard');
@@ -364,7 +453,8 @@ extension FlaxCodegenSandboxSelection on FlaxCodegenBindingParser {
     for (final type in module.classes) {
       final element = _elementsByIdentity[type.id] ?? scope.exports[type.name];
       if (element is! InterfaceElement) continue;
-      if (_flaxAnnotation(element, 'FlaxSandboxGuard') != null) {
+      if (_flaxAnnotation(element, 'FlaxSandboxGuard') != null ||
+          _permissionAnnotations(element).isNotEmpty) {
         throw StateError(
           'Annotate individual binding operations, not ${type.name}',
         );
@@ -509,7 +599,8 @@ extension FlaxCodegenSandboxSelection on FlaxCodegenBindingParser {
       if (element is! ExtensionElement && element is! ExtensionTypeElement) {
         continue;
       }
-      if (_flaxAnnotation(element!, 'FlaxSandboxGuard') != null) {
+      if (_flaxAnnotation(element!, 'FlaxSandboxGuard') != null ||
+          _permissionAnnotations(element).isNotEmpty) {
         throw StateError(
           'Annotate individual extension operations, not ${extension.name}',
         );
@@ -542,6 +633,9 @@ extension FlaxCodegenSandboxSelection on FlaxCodegenBindingParser {
       }
     }
     final unused = configured.keys.toSet().difference(used);
+    final unusedPermissions = permissionSelections.keys.toSet().difference(
+      permissionUsed,
+    );
     // Automatic selection may omit APIs whose types have no selected binding.
     // Its existing skip diagnostic remains authoritative; no callable is emitted.
     unused.removeWhere((selector) {
@@ -551,6 +645,18 @@ extension FlaxCodegenSandboxSelection on FlaxCodegenBindingParser {
       return skippedTargets.contains(owner) ||
           skippedTargets.contains('$owner.$member');
     });
+    unusedPermissions.removeWhere((selector) {
+      final parts = selector.split('/');
+      final owner = parts.length == 4 ? parts[1] : parts.last;
+      final member = parts.length == 4 ? parts.last : '';
+      return skippedTargets.contains(owner) ||
+          skippedTargets.contains('$owner.$member');
+    });
+    if (unusedPermissions.isNotEmpty) {
+      throw StateError(
+        'Permission selectors do not select binding APIs: ${unusedPermissions.join(', ')}',
+      );
+    }
     if (unused.isNotEmpty) {
       throw StateError(
         'Sandbox selectors do not select binding APIs: ${unused.join(', ')}',
@@ -564,7 +670,8 @@ extension FlaxCodegenSandboxSelection on FlaxCodegenBindingParser {
           element.fields.any(
             (field) =>
                 field.isEnumConstant &&
-                _flaxAnnotation(field, 'FlaxSandboxGuard') != null,
+                (_flaxAnnotation(field, 'FlaxSandboxGuard') != null ||
+                    _permissionAnnotations(field).isNotEmpty),
           )) {
         throw StateError(
           'Inline enum constants cannot carry sandbox guards: ${type.name}',
@@ -630,6 +737,149 @@ extension FlaxCodegenSandboxSelection on FlaxCodegenBindingParser {
         );
       }
     }
-    return normalized;
+    final normalizedPermissions = <FlaxCodegenPermissionRule>[];
+    for (final rule in permissionRules) {
+      final type = module.classes
+          .where(
+            (type) =>
+                type.kind == 'enum' &&
+                (rule.owner == type.id ||
+                    type.methods.any(
+                      (method) =>
+                          !method.instance &&
+                          rule.owner == type.staticMethodId(method),
+                    )),
+          )
+          .firstOrNull;
+      if (type == null) {
+        normalizedPermissions.add(rule);
+        continue;
+      }
+      final action = rule.kind == 'construct' ? 'factory' : rule.kind;
+      final member = rule.owner == type.id
+          ? rule.name
+          : type.methods
+                .singleWhere(
+                  (method) =>
+                      !method.instance &&
+                      type.staticMethodId(method) == rule.owner,
+                )
+                .name;
+      final constants = module.types.singleWhere(
+        (value) => value.id == type.id,
+      );
+      final variants = rule.receiver && type.typeParameters.isNotEmpty
+          ? constants.enumNames.cast<String?>()
+          : <String?>[null];
+      for (final constant in variants) {
+        normalizedPermissions.add(
+          FlaxCodegenPermissionRule(
+            owner: type.enumOperationId(member, action, constant),
+            kind: 'call',
+            name: '',
+            operation: rule.operation,
+            permissions: rule.permissions,
+          ),
+        );
+      }
+    }
+    return (sandbox: normalized, permissions: normalizedPermissions);
   }
+}
+
+List<DartObject> _permissionAnnotations(Element element) {
+  final values = <DartObject>[];
+  for (final source in [
+    element,
+    if (element is PropertyAccessorElement) element.variable,
+  ]) {
+    for (final annotation in source.metadata.annotations) {
+      final value = annotation.computeConstantValue();
+      if (value?.type case final InterfaceType type
+          when type.element.name == 'FlaxPermissionGuard' &&
+              type.element.library.uri.toString() ==
+                  'package:flax_annotations/flax_annotations.dart') {
+        values.add(value!);
+      }
+    }
+  }
+  return values;
+}
+
+FlaxCodegenPermissionDefinitionModel _permissionDefinition(
+  DartObject? value,
+  String selector,
+) {
+  final type = value?.type;
+  final id = value?.getField('id')?.toStringValue();
+  final title = value?.getField('title')?.toStringValue();
+  final mode = value
+      ?.getField('authorization')
+      ?.getField('index')
+      ?.toIntValue();
+  final version = value?.getField('version')?.toIntValue();
+  if (type is! InterfaceType ||
+      type.element.name != 'FlaxPermissionDefinition' ||
+      type.element.library.uri.toString() !=
+          'package:flax_annotations/flax_annotations.dart' ||
+      id == null ||
+      !RegExp(r'^[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*)+$').hasMatch(id) ||
+      title == null ||
+      title.trim().isEmpty ||
+      ![0, 1].contains(mode) ||
+      version == null ||
+      version < 1) {
+    throw StateError('Expected a constant FlaxPermissionDefinition: $selector');
+  }
+  return FlaxCodegenPermissionDefinitionModel(
+    id: id,
+    title: title,
+    authorization: mode == 0 ? 'install' : 'runtime',
+    version: version,
+  );
+}
+
+Map<String, Object?> _permissionSelectors(Map<String, dynamic> config) {
+  if (config.isEmpty) return {};
+  if (config['version'] != 1 ||
+      config.keys.any(
+        (key) => !{
+          'version',
+          'classes',
+          'extensions',
+          'functions',
+          'topLevel',
+        }.contains(key),
+      )) {
+    throw StateError('Expected permissions version 1 with known fields');
+  }
+  final selections = <String, Object?>{};
+  void entries(String prefix, Object? value) {
+    if (value is! Map) throw StateError('Expected permission mapping: $prefix');
+    for (final entry in value.entries) {
+      selections['$prefix/${entry.key}'] = entry.value;
+    }
+  }
+
+  for (final group in ['classes', 'extensions']) {
+    final owners = config[group];
+    if (owners == null) continue;
+    if (owners is! Map) throw StateError('Expected permission owner mapping');
+    for (final owner in owners.entries) {
+      if (owner.value is! Map) {
+        throw StateError('Expected permission operation groups');
+      }
+      for (final section in (owner.value as Map).entries) {
+        entries('$group/${owner.key}/${section.key}', section.value);
+      }
+    }
+  }
+  if (config['functions'] case final value?) entries('functions', value);
+  if (config['topLevel'] case final value?) {
+    if (value is! Map) throw StateError('Expected permission topLevel groups');
+    for (final entry in value.entries) {
+      entries('topLevel/${entry.key}', entry.value);
+    }
+  }
+  return selections;
 }

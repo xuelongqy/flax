@@ -30,6 +30,34 @@
   },
   "description": "Standalone Flax application with images and JSON resources.",
   "flax": {
-    "id": "main"
+    "id": "main",
+    "defaultLocale": "en",
+    "permissions": {
+      "flax.network": {
+        "purpose": {
+          "en": "Run the standalone Flax demonstration"
+        }
+      },
+      "flax.module.remote": {
+        "purpose": {
+          "en": "Run the standalone Flax demonstration"
+        }
+      },
+      "flax.wasm": {
+        "purpose": {
+          "en": "Run the standalone Flax demonstration"
+        }
+      },
+      "flax.clipboard.read": {
+        "purpose": {
+          "en": "Run the standalone Flax demonstration"
+        }
+      },
+      "flax.clipboard.write": {
+        "purpose": {
+          "en": "Run the standalone Flax demonstration"
+        }
+      }
+    }
   }
 }

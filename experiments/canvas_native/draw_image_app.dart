@@ -258,6 +258,8 @@ class _ProfiledCanvas extends FlaxPlugin {
 class _ProfileContext implements FlaxHostContext {
   _ProfileContext(this.context, this.probe);
   final FlaxHostContext context;
+  @override
+  FlaxPermissionContext? get permissions => context.permissions;
   final _FrameProbe probe;
   @override
   void registerFunction(

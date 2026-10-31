@@ -314,27 +314,30 @@ extension _FontBindingCalls on _Session {
     final label = tracing == null ? '' : 'create:${binding.id}';
     tracing?.call(label, true);
     try {
-      if (binding.id == 'flax.core/sdk_dart_ui#type:ParagraphBuilder' &&
-          name.isEmpty) {
-        return ui.ParagraphBuilder(
-          values['style'] as ui.ParagraphStyle,
-          fontCollection: _fontResources.collection,
-        );
-      }
-      if (binding.id == 'flax.core/sdk_widgets#type:BannerPainter' &&
-          name.isEmpty) {
-        return Function.apply(BannerPainter.new, const [], {
-          for (final entry in values.entries) Symbol(entry.key): entry.value,
-          #fontCollection: _fontResources.collection,
-        }) as BannerPainter;
-      }
       final value = _sandboxCall(
         binding.id,
         'construct',
         name,
         null,
         values,
-        () => binding.create(name, values),
+        () {
+          if (binding.id == 'flax.core/sdk_dart_ui#type:ParagraphBuilder' &&
+              name.isEmpty) {
+            return ui.ParagraphBuilder(
+              values['style'] as ui.ParagraphStyle,
+              fontCollection: _fontResources.collection,
+            );
+          }
+          if (binding.id == 'flax.core/sdk_widgets#type:BannerPainter' &&
+              name.isEmpty) {
+            return Function.apply(BannerPainter.new, const [], {
+              for (final entry in values.entries)
+                Symbol(entry.key): entry.value,
+              #fontCollection: _fontResources.collection,
+            }) as BannerPainter;
+          }
+          return binding.create(name, values);
+        },
       )!;
       if (value is Widget) {
         // Host-only SDK entry; applications cannot select another font domain.

@@ -3,6 +3,12 @@ export interface FlaxApplicationManifest {
   version: string;
   entry: string;
   description?: string;
+  name?: string;
+  defaultLocale?: string;
+  permissions?: Record<
+    string,
+    { purpose: Record<string, string>; [scope: string]: unknown }
+  >;
   requiredCapabilities?: string[];
   modules?: Record<string, 'javascript' | 'json' | 'wasm'>;
 }

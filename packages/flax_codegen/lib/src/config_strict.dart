@@ -22,6 +22,7 @@ const _configFields = {
   'publicLibraries',
   'overrides',
   'sandbox',
+  'permissions',
 };
 
 const _autoOverrideRootFields = {'format', 'overrides'};
@@ -243,17 +244,20 @@ FlaxCodegenBindingConfig _parseBindingConfigStrict(
     overrides: overrides,
     sandbox: root.node('sandbox') == null
         ? const {}
-        : _sandboxConfig(root.node('sandbox')!.value),
+        : _guardConfig(root.node('sandbox')!.value, 'sandbox'),
+    permissions: root.node('permissions') == null
+        ? const {}
+        : _guardConfig(root.node('permissions')!.value, 'permissions'),
   );
 }
 
-Map<String, dynamic> _sandboxConfig(Object? value) {
+Map<String, dynamic> _guardConfig(Object? value, String name) {
   if (value is! Map || value['version'] != 1) {
-    throw StateError('sandbox must be a mapping with version: 1');
+    throw StateError('$name must be a mapping with version: 1');
   }
   const groups = {'version', 'classes', 'functions', 'topLevel', 'extensions'};
   if (value.keys.any((key) => !groups.contains(key))) {
-    throw StateError('Unknown sandbox configuration field');
+    throw StateError('Unknown $name configuration field');
   }
   Object? plain(Object? value) => value is Map
       ? value.map((key, value) => MapEntry(key.toString(), plain(value)))

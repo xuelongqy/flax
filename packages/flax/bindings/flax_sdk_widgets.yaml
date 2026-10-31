@@ -30,6 +30,30 @@ overrides:
           [message, textDirection, location, layoutDirection, color, textStyle, shadow]
   exclude: [runApp, DefaultFontCollection, FlaxFontResources, FlaxFontResourceBoundary]
 
+permissions:
+  version: 1
+  classes:
+    EditableTextState:
+      instanceMethods:
+        pasteText: package:flax/permissions.dart#FlaxPermissionDefinitions.clipboardRead
+        copySelection: package:flax/permissions.dart#FlaxPermissionDefinitions.clipboardWrite
+        cutSelection: package:flax/permissions.dart#FlaxPermissionDefinitions.clipboardWrite
+    SelectableRegionState:
+      instanceMethods:
+        copySelection: package:flax/permissions.dart#FlaxPermissionDefinitions.clipboardWrite
+    TextSelectionControls:
+      instanceMethods:
+        handlePaste: package:flax/permissions.dart#FlaxPermissionDefinitions.clipboardRead
+        handleCopy: package:flax/permissions.dart#FlaxPermissionDefinitions.clipboardWrite
+        handleCut: package:flax/permissions.dart#FlaxPermissionDefinitions.clipboardWrite
+    ClipboardStatusNotifier:
+      constructors:
+        '': package:flax/permissions.dart#FlaxPermissionDefinitions.clipboardRead
+      instanceMethods:
+        update: package:flax/permissions.dart#FlaxPermissionDefinitions.clipboardRead
+        addListener: package:flax/permissions.dart#FlaxPermissionDefinitions.clipboardRead
+        didChangeAppLifecycleState: package:flax/permissions.dart#FlaxPermissionDefinitions.clipboardRead
+
 # Session resource isolation. Unmarked APIs keep ordinary binding behavior.
 sandbox:
   'version': 1
@@ -53,7 +77,8 @@ sandbox:
       'constructors':
         'file':
           'policyType': 'package:flax/sandbox_io.dart#FlaxFilePolicy'
-          'handler': 'package:flax/sandbox_ui.dart#checkSandboxFileImage'
+          'handler': 'package:flax/sandbox_ui.dart#sandboxImageFile'
+          'replace': true
         'asset':
           'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
           'handler': 'package:flax/sandbox_ui.dart#sandboxImageAsset'

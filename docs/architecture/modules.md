@@ -153,8 +153,11 @@ memory; borrowed zero-copy reads reject it because memory growth can detach its 
 store. The host may supply an immutable [FlaxSandbox](sandbox.md); descriptors cannot
 enable or replace it. Every module in one Session shares its resource policies and
 lifetime. Local module bytes use rooted, no-follow resource reads; application data must
-not overlap file or directory resource roots. Network/module-origin permissions and a
-Wasm permission switch remain deferred.
+not overlap file or directory resource roots. [Module permissions](permissions.md)
+require independent `flax.module.remote` origin approval for remote imports and
+`flax.wasm` approval for Wasm. Business Fetch/WebSocket destinations use `flax.network`
+separately. Packaged JS/JSON ESM needs no additional permission; permission checks do
+not replace sandbox resource boundaries.
 
 Physical iOS hosts must enable Xcode's **Extended Virtual Addressing** capability and
 use a provisioning profile containing

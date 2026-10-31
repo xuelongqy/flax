@@ -13,11 +13,23 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart' show RenderParagraph, RenderEditable;
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart'
-    show AssetBundle, FontLoader, LogicalKeyboardKey, rootBundle;
+    show
+        AssetBundle,
+        Clipboard,
+        FontLoader,
+        LogicalKeyboardKey,
+        SelectionChangedCause,
+        rootBundle;
 import 'package:flutter/widgets.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'runtime.dart';
+import 'permissions.dart';
+import 'secure_storage.dart';
+import 'src/secure_storage_registry.dart';
+import 'src/permissions/delivery.dart';
+export 'permissions.dart';
+export 'secure_storage.dart';
 import 'sandbox.dart';
 import 'sandbox_ui.dart';
 export 'sandbox.dart';
@@ -56,6 +68,9 @@ part 'src/ui/functions.dart';
 part 'src/ui/collections.dart';
 part 'src/ui/session.dart';
 part 'src/ui/sandbox.dart';
+part 'src/ui/permissions.dart';
+part 'src/ui/clipboard.dart';
+part 'src/ui/documents.dart';
 part 'src/ui/node.dart';
 part 'src/ui/widget_batch.dart';
 part 'src/ui/components.dart';

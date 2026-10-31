@@ -9,12 +9,15 @@ final registry = FlaxBindingRegistry([flutterBindings]);
 final source = flaxTestFixtureSource('fetch_host_smoke', packageName: 'flax');
 Finder host(Object key) => flaxTestHost(key);
 
+late FlaxTestPermissions testPermissions;
+
 class Harness extends FlaxTestHarness {
   Harness()
     : super(
         createRuntime: createTestRuntime,
         source: source,
         bindings: registry,
+        permissions: testPermissions.policy,
       );
 
   Widget app({String? code}) => MaterialApp(

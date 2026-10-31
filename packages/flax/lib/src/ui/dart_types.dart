@@ -290,6 +290,7 @@ class FlaxDartTypes {
           future: FlaxFutureBinding(_id('future', type), (value) {
             if (value is Future<E>) return value;
             final result = value.then<E>((v) => _nativeValue(v, item) as E);
+            FlaxPermissionDelivery.inherit(value, result);
             // A bridge conversion can fail before its Future is delivered.
             result.ignore();
             return result;
@@ -486,11 +487,14 @@ class FlaxDartTypes {
               (_session._typeBinding(id) as FlaxStreamTypeBinding).matches(
                 value,
               ),
-          (value) => value is Stream<E>
-              ? value
-              : (value as Stream<Object?>).map<E>(
-                  (v) => _nativeValue(v, item) as E,
-                ),
+          (value) {
+            if (value is Stream<E>) return value;
+            final result = (value as Stream<Object?>).map<E>(
+              (v) => _nativeValue(v, item) as E,
+            );
+            FlaxPermissionDelivery.inherit(value, result);
+            return result;
+          },
         ),
       ),
       [event],
@@ -514,12 +518,18 @@ class FlaxDartTypes {
       return value.toInt();
     }
     if (type.kind == 'future' || type.kind == 'futureOr') {
-      if (value is Future<Object?>) return type.future!.adapt(value);
+      if (value is Future<Object?>) {
+        final result = type.future!.adapt(value);
+        FlaxPermissionDelivery.inherit(value, result);
+        return result;
+      }
       if (type.kind == 'futureOr') return _nativeValue(value, type.item!);
       return type.future!.adapt(Future<Object?>.value(value));
     }
     if (type.kind == 'stream') {
-      return type.stream!.adapt(value as Stream<Object?>);
+      final result = type.stream!.adapt(value as Stream<Object?>);
+      FlaxPermissionDelivery.inherit(value, result);
+      return result;
     }
     if (type.collection case final collection?) {
       if (collection.matches(value)) return value;
@@ -1050,7 +1060,7 @@ class FlaxDartTypes {
     return _calls.putIfAbsent(key, () {
       final selected = method(base, types);
       final target = '@call:$name:${_serial++}';
-      _session._genericMethods[(id, target)] = selected;
+      _session._genericMethods[(id, target)] = (method: selected, name: name);
       _session._specializedContexts[target] = _bindingContext;
       return target;
     });

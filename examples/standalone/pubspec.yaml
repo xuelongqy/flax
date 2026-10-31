@@ -9,6 +9,7 @@ environment:
   flutter: '>=3.47.9'
 
 dependencies:
+  flax_example_support: 0.0.0
   flax: 0.0.0
   flax_websocket: 0.0.0
   flax_local_storage: 0.0.0

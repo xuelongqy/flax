@@ -5694,6 +5694,7 @@ const cupertinoBindings = FlaxBindingModule(
     "native-core-inputs",
     "native-navigation-objects",
     "native-widget-proxies",
+    "permission-guards",
     "proxy-super-constructors",
     "shared-static-readers",
     "widget-interface-proxies",
@@ -6200,6 +6201,80 @@ const cupertinoBindings = FlaxBindingModule(
     ),
   ],
   dartShapes: _flaxDartShapes,
+  permissionGuards: {
+    (
+      "flax.cupertino/cupertino#type:CupertinoDesktopTextSelectionControls",
+      "call",
+      "handleCut",
+    ): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.write",
+        title: "Clipboard write",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
+    (
+      "flax.cupertino/cupertino#type:CupertinoDesktopTextSelectionControls",
+      "call",
+      "handleCopy",
+    ): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.write",
+        title: "Clipboard write",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
+    (
+      "flax.cupertino/cupertino#type:CupertinoDesktopTextSelectionControls",
+      "call",
+      "handlePaste",
+    ): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.read",
+        title: "Clipboard read",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
+    (
+      "flax.cupertino/cupertino#type:CupertinoTextSelectionControls",
+      "call",
+      "handleCut",
+    ): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.write",
+        title: "Clipboard write",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
+    (
+      "flax.cupertino/cupertino#type:CupertinoTextSelectionControls",
+      "call",
+      "handleCopy",
+    ): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.write",
+        title: "Clipboard write",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
+    (
+      "flax.cupertino/cupertino#type:CupertinoTextSelectionControls",
+      "call",
+      "handlePaste",
+    ): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.read",
+        title: "Clipboard read",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
+  },
 );
 final cupertinoPlugin = FlaxBindingPlugin(
   id: "binding:flax.cupertino/cupertino",

@@ -187,7 +187,9 @@ extension _Collections on _Session {
       if (record == null || type.collection?.matches(record.value) != true) {
         throw ArgumentError('Incompatible Dart collection');
       }
-      return _Value(record.value, [_ObjectBorrow(record, input.retain())]);
+      return _Value(_restoreClipboardValue(record.value), [
+        _ObjectBorrow(record, input.retain()),
+      ]);
     }
     FlaxJsValue? shape;
     final (index, existing) = memo.find(this, input);
@@ -340,7 +342,9 @@ extension _Collections on _Session {
       if (record is _WidgetReference) {
         throw ArgumentError('Widget references require a Widget position');
       }
-      return _Value(record.value, [_ObjectBorrow(record, input.retain())]);
+      return _Value(_restoreClipboardValue(record.value), [
+        _ObjectBorrow(record, input.retain()),
+      ]);
     }
     if (classification is FlaxJsString) {
       if (FlaxBufferType.byDartName[classification.value]

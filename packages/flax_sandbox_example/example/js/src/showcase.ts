@@ -11,3 +11,14 @@ export function createSandboxExample(): Widget {
     {},
   ) as Widget;
 }
+
+export function createPermissionsExample(): Widget {
+  return construct(
+    'widget',
+    'flax.example/sandbox#Permissions',
+    '',
+    [],
+    [],
+    {},
+  ) as Widget;
+}

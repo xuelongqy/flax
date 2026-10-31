@@ -70,9 +70,10 @@ JS/JSON/Wasm graphs, remote loading and iOS interpreted Wasm. The
 ESM entry contract and readiness API. Focused macOS, simulator, physical iOS and Android
 gates pass, including Session cleanup and sustained physical iOS joint GC. The task
 records which evidence precedes the final integration review. CSS is excluded, the
-sandbox resource isolation is implemented separately from deferred permissions and
-navigation isolation, and in-place ESM hot replacement remains deferred. SDK
-distribution and broader Wasm feature conformance require separate gates.
+sandbox resource isolation and [module permissions](../architecture/permissions.md) are
+implemented separately from deferred navigation isolation. In-place ESM hot replacement
+remains deferred. SDK distribution and broader Wasm feature conformance require separate
+gates.
 
 [Direct JavaScript FFI](../architecture/ffi.md) now implements the optional npm package,
 shared runtime signatures, native layouts, typed varargs, raw bigint memory access,
@@ -97,7 +98,8 @@ scope.
 The [application data sandbox](../architecture/sandbox.md) scopes files, assets and
 localStorage and disables direct JS FFI. Native Flutter widgets can still reach host
 routes through internal Dart calls, so navigation and ancestor isolation remain open.
-Network/module permissions are a separate deferred capability layer.
+[Network/module permissions](../architecture/permissions.md) now provide a separate
+declaration and authorization layer. Additional device APIs remain provider-owned.
 
 Custom host bindings and plugins execute trusted Dart code; module compatibility checks
 alone are not a security sandbox. Initial synchronous execution and local native asset

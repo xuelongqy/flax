@@ -291,6 +291,11 @@ sandbox:
           'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
           'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageKey'
     'ResizeImage':
+      'methods':
+        'resizeIfNeeded':
+          'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
+          'handler': 'package:flax/sandbox_ui.dart#sandboxResizeIfNeeded'
+          'replace': true
       'instanceMethods':
         'resolve':
           'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'

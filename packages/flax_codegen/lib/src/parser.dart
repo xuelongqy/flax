@@ -4018,7 +4018,7 @@ class FlaxCodegenBindingParser {
             entry.key: entry.value.jsxContent!,
       },
     );
-    final sandboxRules = await _sandboxRules(
+    final guards = await _bindingGuards(
       config,
       scope,
       module,
@@ -4041,7 +4041,8 @@ class FlaxCodegenBindingParser {
           ? null
           : FlaxCodegenTopLevelModel(module.topLevel!.jsName, [
               for (final getter in module.topLevel!.getters)
-                if (sandboxRules.any((rule) => rule.owner == getter.id))
+                if (guards.sandbox.any((rule) => rule.owner == getter.id) ||
+                    guards.permissions.any((rule) => rule.owner == getter.id))
                   FlaxCodegenTopLevelGetterModel(
                     getter.id,
                     getter.name,
@@ -4055,7 +4056,8 @@ class FlaxCodegenBindingParser {
       publicLibraries: module.publicLibraries,
       typeLibraries: module.typeLibraries,
       stateVariants: module.stateVariants,
-      sandboxRules: sandboxRules,
+      sandboxRules: guards.sandbox,
+      permissionRules: guards.permissions,
     );
     guarded.validate();
     return guarded;

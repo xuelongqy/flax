@@ -29,3 +29,12 @@ overrides:
       instanceMethods: {}
     CupertinoPageScaffold: *renderOnlyWidget
     CupertinoButton: *renderOnlyWidget
+
+permissions:
+  version: 1
+  classes:
+    TextSelectionControls:
+      instanceMethods:
+        handlePaste: package:flax/permissions.dart#FlaxPermissionDefinitions.clipboardRead
+        handleCopy: package:flax/permissions.dart#FlaxPermissionDefinitions.clipboardWrite
+        handleCut: package:flax/permissions.dart#FlaxPermissionDefinitions.clipboardWrite

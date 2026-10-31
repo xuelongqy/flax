@@ -92,7 +92,16 @@ Set<String> _engineDependencies(Map<String, dynamic> pubspec) =>
         .toSet();
 
 /// Select the engine at each example's existing runtime factory boundary.
-void selectExampleEngine(String root, String flutter, String engine) {
+void selectExampleEngine(
+  String root,
+  String flutter,
+  String engine, {
+  String? macosTeam,
+}) {
+  macosTeam ??= Platform.environment['FLAX_MACOS_TEAM'];
+  if (macosTeam != null && !RegExp(r'^[A-Z0-9]{10}$').hasMatch(macosTeam)) {
+    throw ArgumentError('Invalid FLAX_MACOS_TEAM');
+  }
   final targetClass = engineFactoryClass(root, engine);
   final knownEngines = discoverEngineIds(root).toSet();
   for (final file
@@ -169,24 +178,61 @@ void selectExampleEngine(String root, String flutter, String engine) {
     final project = File('$flutter/macos/Runner.xcodeproj/project.pbxproj');
     var adHocSigning = false;
     if (project.existsSync()) {
-      final source = project.readAsStringSync();
+      var source = project.readAsStringSync();
+      if (macosTeam != null) {
+        source = source
+            .replaceAll(RegExp(r'[ \t]*DEVELOPMENT_TEAM = [^;]+;'), '')
+            .replaceAllMapped(
+              RegExp(r'CODE_SIGN_IDENTITY = [^;]+;'),
+              (_) =>
+                  'CODE_SIGN_IDENTITY = "Apple Development"; DEVELOPMENT_TEAM = $macosTeam;',
+            )
+            .replaceAll(
+              'CODE_SIGN_STYLE = Manual;',
+              'CODE_SIGN_STYLE = Automatic;',
+            );
+        // Flutter signs the engine binary but leaves nested V8 libraries ad hoc.
+        final signLibraries = jsonEncode(r'''
+set -e
+framework="$TARGET_BUILD_DIR/$FRAMEWORKS_FOLDER_PATH/FlutterMacOS.framework"
+for library in "$framework"/Versions/A/Libraries/*.dylib; do
+  [ -f "$library" ] || continue
+  /usr/bin/codesign --force --sign "$EXPANDED_CODE_SIGN_IDENTITY" --timestamp=none "$library"
+done
+/usr/bin/codesign --force --sign "$EXPANDED_CODE_SIGN_IDENTITY" --timestamp=none "$framework"
+''');
+        source = source.replaceFirst(
+          r'/packages/flutter_tools/bin/macos_assemble.sh embed\n',
+          r'/packages/flutter_tools/bin/macos_assemble.sh embed || exit $?\n' +
+              signLibraries.substring(1, signLibraries.length - 1),
+        );
+      }
       adHocSigning =
           source.contains('CODE_SIGN_IDENTITY = "-";') &&
           !RegExp(r'DEVELOPMENT_TEAM = "?[A-Z0-9]+"?;').hasMatch(source);
       if (!source.contains('ENABLE_HARDENED_RUNTIME = YES;')) {
-        project.writeAsStringSync(
-          source.replaceAllMapped(
-            RegExp(r'^(\s*)CODE_SIGN_IDENTITY =', multiLine: true),
-            (match) =>
-                '${match.group(1)}ENABLE_HARDENED_RUNTIME = YES;\n${match.group(1)}CODE_SIGN_IDENTITY =',
-          ),
+        source = source.replaceAllMapped(
+          RegExp(r'^(\s*)CODE_SIGN_IDENTITY =', multiLine: true),
+          (match) =>
+              '${match.group(1)}ENABLE_HARDENED_RUNTIME = YES;\n${match.group(1)}CODE_SIGN_IDENTITY =',
         );
       }
+      project.writeAsStringSync(source);
     }
     for (final name in ['DebugProfile', 'Release']) {
       final entitlement = File('$flutter/macos/Runner/$name.entitlements');
       if (!entitlement.existsSync()) continue;
       var text = entitlement.readAsStringSync();
+      if (macosTeam != null &&
+          !text.contains('<key>keychain-access-groups</key>')) {
+        final end = text.lastIndexOf('</dict>');
+        if (end < 0) throw FormatException('Invalid macOS entitlements');
+        text = text.replaceRange(
+          end,
+          end,
+          r'<key>keychain-access-groups</key><array><string>$(AppIdentifierPrefix)$(PRODUCT_BUNDLE_IDENTIFIER)</string></array>',
+        );
+      }
       if (!text.contains('com.apple.security.cs.allow-jit')) {
         text = text.replaceFirst(
           '<dict>',
@@ -259,7 +305,9 @@ Future<void> withExample(
       sourceEngines.length == 1 &&
       sourceEngines.single == engine &&
       Directory('$root/examples/$kind/${currentCheckTarget().os}')
-          .existsSync()) {
+          .existsSync() &&
+      !(currentCheckTarget().os == 'macos' &&
+          Platform.environment['FLAX_MACOS_TEAM'] != null)) {
     await action('$root/examples/$kind');
     return;
   }
@@ -353,7 +401,9 @@ Future<void> withPackageExample(
       sourceEngines.length == 1 &&
       sourceEngines.single == engine &&
       Directory('${package.example.path}/${currentCheckTarget().os}')
-          .existsSync()) {
+          .existsSync() &&
+      !(currentCheckTarget().os == 'macos' &&
+          Platform.environment['FLAX_MACOS_TEAM'] != null)) {
     await action(package.example.path);
     return;
   }

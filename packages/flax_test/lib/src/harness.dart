@@ -67,12 +67,14 @@ class FlaxTestHarness {
     required this.source,
     required this.bindings,
     this.plugins,
+    this.permissions,
   });
 
   final FlaxJsRuntime Function() createRuntime;
   final String source;
   final FlaxBindingRegistry bindings;
   final List<FlaxPlugin>? plugins;
+  final FlaxPermissionPolicy? permissions;
   final errors = <Object>[];
   final runtimes = <FlaxJsRuntime>[];
 
@@ -97,6 +99,8 @@ class FlaxTestHarness {
     source: code ?? source,
     bindings: bindings,
     plugins: plugins,
+    permissions: permissions,
+    permissionManifest: permissions?.application.manifest,
     onError: (error, _) => errors.add(error),
   );
 }
@@ -104,6 +108,8 @@ class FlaxTestHarness {
 /// Unmount UI and advance the event queue used by host and module shutdown.
 Future<void> flaxTestUnmount(WidgetTester tester) async {
   await tester.pumpWidget(const SizedBox());
+  await tester.pump(const Duration(milliseconds: 1));
+  await tester.runAsync(() => Future<void>.delayed(Duration.zero));
   await tester.pump(const Duration(milliseconds: 1));
 }
 
@@ -116,6 +122,7 @@ Future<void> flaxTestCloseSession(
   final closed = session.close().then((_) => completed = true);
   for (var turn = 0; turn < 100 && !completed; turn++) {
     await tester.pump(const Duration(milliseconds: 1));
+    await tester.runAsync(() => Future<void>.delayed(Duration.zero));
   }
   expect(completed, isTrue, reason: 'Session closing tasks did not drain');
   await closed;
@@ -150,6 +157,9 @@ class FlaxTestBindingPlugin extends FlaxPlugin {
   Set<String> get globals => plugin.globals;
   @override
   Set<String> get jsModules => plugin.jsModules;
+  @override
+  List<FlaxPermissionDefinition> get permissionDefinitions =>
+      plugin.permissionDefinitions;
   @override
   List<FlaxBindingModule> get bindingModules => [
     for (final module in plugin.bindingModules)

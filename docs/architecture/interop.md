@@ -378,6 +378,11 @@ separate reference metadata. Normal results keep the existing path; failed synch
 calls alone allocate an error envelope, released through the normal host-result
 checkpoint.
 
+Permission-bearing Clipboard payloads use the same admission and live-resource checks as
+ordinary returned values. Raw sources become per-Session views, and a rejected resource
+is replaced by its safe permission failure. Ordinary error identity and stack
+preservation remain unchanged; see [permissions](permissions.md).
+
 Unknown JS errors retain the existing FlaxJsException message/stack diagnostics. Typed
 custom Dart exception and StackTrace parameters still require nominal references;
 diagnostic text does not impersonate a Dart exception subtype or original stack.

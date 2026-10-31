@@ -1842,6 +1842,7 @@ final sdk_servicesBindings = FlaxBindingModule(
     "native-core-inputs",
     "native-navigation-objects",
     "native-widget-proxies",
+    "permission-guards",
     "proxy-super-constructors",
     "sandbox-guards",
     "shared-buffers",
@@ -2633,7 +2634,7 @@ final sdk_servicesBindings = FlaxBindingModule(
     ("flax.core/sdk_services#type:AssetBundle", "call", "clear"):
         FlaxSandboxBinding(_flaxSandbox6, replace: false),
     (
-      "package:flutter/src/services/asset_manifest.dart::AssetManifest.loadFromAssetBundle",
+      "flax.core/sdk_services#function:AssetManifest.loadFromAssetBundle",
       "call",
       "",
     ): FlaxSandboxBinding(
@@ -2641,7 +2642,7 @@ final sdk_servicesBindings = FlaxBindingModule(
       replace: false,
     ),
     (
-      "package:flutter/src/services/_background_isolate_binary_messenger_io.dart::BackgroundIsolateBinaryMessenger.ensureInitialized",
+      "flax.core/sdk_services#function:BackgroundIsolateBinaryMessenger.ensureInitialized",
       "call",
       "",
     ): FlaxSandboxBinding.deny(),
@@ -2823,6 +2824,68 @@ final sdk_servicesBindings = FlaxBindingModule(
       _flaxSandbox57,
       replace: true,
     ),
+  },
+  permissionGuards: {
+    ("flax.core/sdk_services#function:Clipboard.setData", "call", ""): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.write",
+        title: "Clipboard write",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
+    ("flax.core/sdk_services#function:Clipboard.getData", "call", ""): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.read",
+        title: "Clipboard read",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
+    ("flax.core/sdk_services#function:Clipboard.hasStrings", "call", ""): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.read",
+        title: "Clipboard read",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
+    (
+      "flax.core/sdk_services#type:TextSelectionDelegate",
+      "call",
+      "cutSelection",
+    ): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.write",
+        title: "Clipboard write",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
+    (
+      "flax.core/sdk_services#type:TextSelectionDelegate",
+      "call",
+      "pasteText",
+    ): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.read",
+        title: "Clipboard read",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
+    (
+      "flax.core/sdk_services#type:TextSelectionDelegate",
+      "call",
+      "copySelection",
+    ): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.write",
+        title: "Clipboard write",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
   },
 );
 final sdk_servicesPlugin = FlaxBindingPlugin(

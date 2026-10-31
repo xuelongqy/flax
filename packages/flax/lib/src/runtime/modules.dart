@@ -25,11 +25,13 @@ final class FlaxModuleRequest {
     required this.uri,
     required this.expectedKind,
     required this.cancelled,
+    this.authorize,
   });
 
   final Uri uri;
   final FlaxModuleKind? expectedKind;
   final Future<void> cancelled;
+  final void Function(Uri uri)? authorize;
 }
 
 typedef FlaxModuleSourceLoader = Future<FlaxModuleSource> Function(
@@ -45,6 +47,8 @@ final class FlaxModuleLoader {
     Map<String, Uri> imports = const {},
     this.hostModule,
     this.onError,
+    this.authorize,
+    this.encodeError,
   }) : imports = Map.unmodifiable(imports) {
     if (runtime is! FlaxJsModuleRuntime ||
         ((runtime as FlaxJsModuleRuntime).moduleCapabilities & 1) == 0) {
@@ -88,6 +92,10 @@ final class FlaxModuleLoader {
   /// Returns an owned reference to an installed SDK namespace, or null.
   final FlaxJsObject? Function(String specifier)? hostModule;
   final void Function(Object error, StackTrace stack)? onError;
+  final void Function(Uri uri, FlaxModuleKind? kind)? authorize;
+
+  /// Returns an owned JS value when the host preserves structured Dart errors.
+  final FlaxJsValue Function(Object error, StackTrace stack)? encodeError;
   static int _nextBridge = 0;
   FlaxJsObject? _controller;
   FlaxJsObject? _helper;
@@ -192,6 +200,7 @@ final class FlaxModuleLoader {
 
   Future<_ModuleNode> _fetch(Uri uri, FlaxModuleKind? expected) {
     _check();
+    authorize?.call(uri, expected);
     if (expected != null) _capability(expected, false);
     final loadKind = expected == FlaxModuleKind.json ? expected : null;
     final key = (uri, loadKind);
@@ -223,6 +232,7 @@ final class FlaxModuleLoader {
                       uri: uri,
                       expectedKind: loadKind,
                       cancelled: Future.any([cancelled, abort.future]),
+                      authorize: (uri) => authorize?.call(uri, expected),
                     ),
                   ),
                   cancelled.then<FlaxModuleSource>(
@@ -236,6 +246,7 @@ final class FlaxModuleLoader {
                   },
                 );
             _check();
+            authorize?.call(source.uri, source.kind);
             if (loadKind != null && source.kind != loadKind ||
                 loadKind == null && source.kind == FlaxModuleKind.json) {
               throw FormatException('Module type mismatch for ${uri.path}');
@@ -271,6 +282,9 @@ final class FlaxModuleLoader {
 
   _ModuleNode _compile(FlaxModuleSource source) {
     _check();
+    if (source.kind == FlaxModuleKind.wasm) {
+      authorize?.call(source.uri, source.kind);
+    }
     _capability(source.kind, false);
     final uri = source.uri.normalizePath();
     if (!{'http', 'https', 'file', 'flax'}.contains(uri.scheme) ||
@@ -587,16 +601,21 @@ final class FlaxModuleLoader {
       } finally {
         result.release();
       }
-    } catch (error) {
+    } catch (error, stack) {
       if (!_closed) {
         final native = error is FlaxJsException ? _nativeErrors[error] : null;
-        final value =
-            native ??
-            _call(_helper!, 'error', [FlaxJsString(error.toString())]);
+        final encoded = native == null ? encodeError?.call(error, stack) : null;
+        FlaxJsValue? value;
         try {
+          value =
+              native ??
+              (encoded == null
+                  ? _call(_helper!, 'error', [FlaxJsString(error.toString())])
+                  : _call(_helper!, 'box', [encoded]));
           _release(pending.reject.call([value]));
         } finally {
-          if (native == null) _release(value);
+          if (native == null && value != null) _release(value);
+          if (encoded != null) _release(encoded);
         }
       }
     } finally {
@@ -745,6 +764,7 @@ const _bridgeSource = r"""
         dispatch(1, id, false, [error], message, stack);
       }),
     error: message => [new ErrorType(message)],
+    box: error => [error],
   };
 }
 """;

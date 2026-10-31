@@ -44,3 +44,31 @@ class FlaxSandboxGuard {
   final bool replace;
   final bool deny;
 }
+
+/// Whether manifest approval is sufficient or module consent is also required.
+enum FlaxPermissionAuthorization { install, runtime }
+
+/// One reusable permission, owned by trusted host code rather than application JS.
+final class FlaxPermissionDefinition {
+  const FlaxPermissionDefinition({
+    required this.id,
+    required this.title,
+    required this.authorization,
+    this.version = 1,
+  });
+
+  final String id;
+  final String title;
+  final FlaxPermissionAuthorization authorization;
+
+  /// Increment when scope or authorization semantics change incompatibly.
+  final int version;
+}
+
+/// Requires a permission before an exported operation, including sandbox replacement.
+/// Repeat the annotation when all of several permissions are required.
+final class FlaxPermissionGuard {
+  const FlaxPermissionGuard(this.permission);
+
+  final FlaxPermissionDefinition permission;
+}

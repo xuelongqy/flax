@@ -27,7 +27,7 @@ void main() {
         final gradle = File('${app.path}/android/app/build.gradle.kts')
           ..parent.createSync(recursive: true)
           ..writeAsStringSync(
-            'ndkVersion = flutter.ndkVersion\nminSdk = flutter.minSdkVersion\n',
+            'ndkVersion = flutter.ndkVersion\ncompileSdk = flutter.compileSdkVersion\nminSdk = flutter.minSdkVersion\n',
           );
         final properties = File('${app.path}/android/gradle.properties')
           ..writeAsStringSync('');
@@ -35,6 +35,7 @@ void main() {
         final configured = gradle.readAsStringSync();
         expect(configured, contains('abiFilters.add("${target.androidAbi}")'));
         expect(configured, contains('minSdk = 24'));
+        expect(configured, contains('compileSdk = 37'));
         expect(configured, contains('"**/libv8.so", "**/libc++_shared.so"'));
         expect(configured, contains('if (variant.buildType != "release")'));
         expect(
@@ -118,6 +119,15 @@ void main() {
           contains('MACOSX_DEPLOYMENT_TARGET = 15.0;'),
         );
       }
+      config.writeAsStringSync('PRODUCT_NAME = flax_sandbox_playground\n');
+      expect(
+        platformProduct(
+          app.path,
+          FlaxNativeTarget('macos-arm64'),
+          release: false,
+        ),
+        endsWith('/Debug/flax_sandbox_playground.app'),
+      );
     },
   );
   test('hook receipts and diagnostics exclude SDK cache inputs', () {

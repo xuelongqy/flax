@@ -6,6 +6,7 @@ const flaxBindingVersion = 24;
 /// Additive features supported without changing the UI protocol.
 const _supportedCapabilities = <String>{
   'sandbox-guards',
+  'permission-guards',
   'call-layouts',
   'native-functions',
   'native-async-objects',
@@ -764,6 +765,7 @@ class FlaxBindingModule {
     this.dartTypes = const [],
     this.dartShapes = const [],
     this.sandboxGuards = const {},
+    this.permissionGuards = const {},
   }) : // Named public arguments cannot use private initializing formals.
        // ignore: prefer_initializing_formals
        _functions = functions;
@@ -810,6 +812,8 @@ class FlaxBindingModule {
   final List<FlaxDartClassTemplate> dartTypes;
   final List<FlaxDartShapeTemplate> dartShapes;
   final Map<(String, String, String), FlaxSandboxBinding> sandboxGuards;
+  final Map<(String, String, String), List<FlaxPermissionDefinition>>
+  permissionGuards;
 }
 
 /// Registers selected modules and their transitive Dart binding dependencies.

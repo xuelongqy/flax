@@ -41,7 +41,9 @@ Future<void> runScript(WidgetTester tester, Harness h, String script) async {
 
 void main() {
   tearDown(() => Flax.registerPlugins([]));
-  setUp(() {
+  setUp(() async {
+    testPermissions = await FlaxTestPermissions.create();
+    addTearDown(testPermissions.close);
     final previous = HttpOverrides.current;
     HttpOverrides.global = null;
     addTearDown(() => HttpOverrides.global = previous);
@@ -56,6 +58,8 @@ void main() {
     ]) {
       expect(
         () => FlaxSession(
+          permissions: testPermissions.policy,
+          permissionManifest: testPermissions.manifest,
           createRuntime: () => throw StateError('Runtime must not be created'),
           source: source,
           bindings: registry,
@@ -88,6 +92,8 @@ void main() {
               children: [
                 Expanded(
                   child: FlaxView(
+                    permissions: testPermissions.policy,
+                    permissionManifest: testPermissions.manifest,
                     createRuntime: first.create,
                     source: source,
                     bindings: registry,
@@ -97,6 +103,8 @@ void main() {
                 ),
                 Expanded(
                   child: FlaxView(
+                    permissions: testPermissions.policy,
+                    permissionManifest: testPermissions.manifest,
                     createRuntime: second.create,
                     source: source,
                     bindings: registry,
@@ -170,6 +178,8 @@ void main() {
         tester,
         MaterialApp(
           home: FlaxView(
+            permissions: testPermissions.policy,
+            permissionManifest: testPermissions.manifest,
             createRuntime: h.create,
             source: source,
             bindings: registry,
@@ -251,6 +261,8 @@ void main() {
       tester,
       MaterialApp(
         home: FlaxView(
+          permissions: testPermissions.policy,
+          permissionManifest: testPermissions.manifest,
           createRuntime: h.create,
           source: source,
           bindings: registry,
@@ -368,6 +380,8 @@ void main() {
     Flax.registerPlugins([a]);
     final h = Harness();
     final session = FlaxSession(
+      permissions: testPermissions.policy,
+      permissionManifest: testPermissions.manifest,
       createRuntime: h.create,
       source: source,
       bindings: registry,
@@ -446,6 +460,8 @@ void main() {
       final h = Harness();
       final empty = Harness();
       final session = FlaxSession(
+        permissions: testPermissions.policy,
+        permissionManifest: testPermissions.manifest,
         createRuntime: h.create,
         source: source,
         bindings: registry,
@@ -462,6 +478,8 @@ void main() {
               Expanded(child: FlaxView.session(session: session)),
               Expanded(
                 child: FlaxView(
+                  permissions: testPermissions.policy,
+                  permissionManifest: testPermissions.manifest,
                   createRuntime: empty.create,
                   source: source,
                   bindings: registry,
@@ -481,9 +499,7 @@ void main() {
       expect([...h.errors, ...empty.errors], isEmpty);
       await flaxTestUnmount(tester);
       await tester.pumpAndSettle();
-      final closed = session.close();
-      await tester.pumpAndSettle();
-      await closed;
+      await flaxTestCloseSession(tester, session);
       expect(log, ['install:selected', 'close:selected', 'dispose:selected']);
     },
   );
@@ -504,6 +520,8 @@ void main() {
       tester,
       MaterialApp(
         home: FlaxView(
+          permissions: testPermissions.policy,
+          permissionManifest: testPermissions.manifest,
           createRuntime: h.create,
           source: source,
           bindings: registry,
@@ -536,6 +554,8 @@ void main() {
         tester,
         MaterialApp(
           home: FlaxView(
+            permissions: testPermissions.policy,
+            permissionManifest: testPermissions.manifest,
             createRuntime: collision.create,
             source: source,
             bindings: registry,
@@ -645,6 +665,8 @@ void main() {
           tester,
           MaterialApp(
             home: FlaxView(
+              permissions: testPermissions.policy,
+              permissionManifest: testPermissions.manifest,
               createRuntime: h.create,
               source: source,
               bindings: registry,
@@ -824,6 +846,8 @@ void main() {
       });
       final h = _TrackedHarness();
       final session = FlaxSession(
+        permissions: testPermissions.policy,
+        permissionManifest: testPermissions.manifest,
         createRuntime: h.create,
         source: source,
         bindings: registry,
@@ -895,6 +919,8 @@ void main() {
             tester,
             MaterialApp(
               home: FlaxView(
+                permissions: testPermissions.policy,
+                permissionManifest: testPermissions.manifest,
                 createRuntime: h.create,
                 source: source,
                 bindings: registry,
@@ -943,6 +969,8 @@ void main() {
       tester,
       MaterialApp(
         home: FlaxView(
+          permissions: testPermissions.policy,
+          permissionManifest: testPermissions.manifest,
           createRuntime: merged.create,
           source: source,
           bindings: registry,
@@ -965,6 +993,8 @@ void main() {
       tester,
       MaterialApp(
         home: FlaxView(
+          permissions: testPermissions.policy,
+          permissionManifest: testPermissions.manifest,
           createRuntime: duplicate.create,
           source: source,
           bindings: registry,
@@ -984,6 +1014,8 @@ void main() {
       tester,
       MaterialApp(
         home: FlaxView(
+          permissions: testPermissions.policy,
+          permissionManifest: testPermissions.manifest,
           createRuntime: conflicting.create,
           source: source,
           bindings: registry,
@@ -1012,6 +1044,8 @@ void main() {
       tester,
       MaterialApp(
         home: FlaxView(
+          permissions: testPermissions.policy,
+          permissionManifest: testPermissions.manifest,
           createRuntime: version.create,
           source: source,
           bindings: registry,
@@ -1043,6 +1077,8 @@ void main() {
       tester,
       MaterialApp(
         home: FlaxView(
+          permissions: testPermissions.policy,
+          permissionManifest: testPermissions.manifest,
           createRuntime: a.create,
           source: source,
           bindings: registry,
@@ -1073,6 +1109,8 @@ void main() {
       tester,
       MaterialApp(
         home: FlaxView(
+          permissions: testPermissions.policy,
+          permissionManifest: testPermissions.manifest,
           createRuntime: b.create,
           source: source,
           bindings: registry,

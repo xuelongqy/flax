@@ -214,7 +214,14 @@ export function install(
       if (!operation) return;
       pending.delete(id);
       if (ok) operation.resolve(value);
-      else operation.reject(new TypeError(String(value)));
+      else if (
+        value !== null &&
+        typeof value === 'object' &&
+        (value as { code?: unknown }).code === 'FLAX_PERMISSION_DENIED'
+      ) {
+        const details = value as { message: string };
+        operation.reject(Object.assign(new Error(details.message), value));
+      } else operation.reject(new TypeError(String(value)));
     },
     close() {
       if (closed) return;

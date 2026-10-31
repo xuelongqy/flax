@@ -2,9 +2,14 @@
 
 `FlaxView` and `FlaxSession` accept an immutable `FlaxSandbox`. Omitting it keeps
 ordinary trusted host behavior. The sandbox isolates the provided filesystem and asset
-APIs, application localStorage, and direct JavaScript FFI. Business/network permissions
-and navigation isolation are deferred. In particular, sandboxing data does **not**
-prevent native Flutter widgets from navigating the host application.
+APIs, application localStorage, and direct JavaScript FFI. The separate
+[permission contract](permissions.md) controls marked business/network APIs. Navigation
+and host widget tree isolation remain deferred. In particular, sandboxing data does
+**not** prevent native Flutter widgets from navigating the host application.
+
+The [permission catalog](../proposals/permissions.md) records the iOS/Android inventory.
+Selected external Files retain explicit, revocable authority and use dedicated image
+cache identities; ordinary data paths keep their existing sandbox checks.
 
 The [runnable sandbox playground](../../packages/flax_sandbox_example/README.md)
 compares two appIds, File/Image.file access, localStorage and boundary failures. Its
@@ -211,10 +216,11 @@ members. There is no generic resource registry and no ambient current applicatio
 File and Directory constructors validate absolute paths and return real Dart interface
 implementations bound to the current Session's root descriptor. Actual IO traverses from
 that descriptor with openat and no-follow flags, rather than validating a string and
-later reopening the original path. Both endpoints of copy/rename are checked. Root
-deletion/rename is rejected. Symlinks are unsupported, including directory enumeration
-and trees moved by directory rename. Raw byte paths, Link, RandomAccessFile, raw
-open/openSync/openWrite and watchers are unavailable through the sandbox backend.
+later reopening the original path. Directory/no-follow flags match the actual ABI;
+Android/Linux arm64 differs from Linux x86_64. Both endpoints of copy/rename are
+checked. Root deletion/rename is rejected. Symlinks are unsupported, including directory
+enumeration and trees moved by directory rename. Raw byte paths, Link, RandomAccessFile,
+raw open/openSync/openWrite and watchers are unavailable through the sandbox backend.
 FileStat and FileSystemEntity path queries use the same rooted implementation. TLS
 certificate/key path APIs read restricted bytes before invoking their byte counterparts.
 
@@ -296,10 +302,18 @@ try {
 
 This is a host API boundary inside one process, not an OS process sandbox. Rooted
 backends use POSIX and require a working file-descriptor portal; unavailable descriptor
-IO fails closed without a fallback to path checks. macOS is the validated target; mobile
-devices need separate acceptance runs. Permission prompts, network/module origin
-restrictions, Wasm permission switches, quotas, and complete native Flutter
-navigation/ancestor isolation are outside the current implementation. See the Chinese
+IO fails closed without a fallback to path checks. Acceptance covers maintained macOS
+arm64, iOS arm64 simulator and Android arm64 emulator execution. Physical devices need
+separate acceptance. macOS App Sandbox denies reopening `/dev/fd`, so the current
+filesystem backend does not support that host configuration. macOS file/UI acceptance
+uses Flutter's CI host mode, with the OS App Sandbox disabled and Flax's own data
+sandbox enabled. This does not disable signed-host Keychain access control, hardened
+runtime or library validation; Data Protection Keychain itself also works in a signed
+App Sandbox host. Supporting both filesystem sandboxes together requires a backend that
+operates directly on retained descriptors, not a fallback to ordinary file paths.
+[Module permissions](permissions.md) supply declaration approval, consent,
+network/module origins and Wasm controls. Quotas and complete native Flutter
+navigation/ancestor isolation remain deferred. See the Chinese
 [design proposal](../proposals/sandbox.md) for deferred work.
 
 ## Verification
@@ -315,10 +329,12 @@ per-application storage, and Canvas with direct JS FFI disabled:
 ```sh
 dart run melos run check
 dart run melos run check:runtime
-dart run melos run check:runtime:v8
-dart run melos run check:ui:v8
+dart run melos run check:ui
 ```
 
-The UI gate includes package examples and the aggregate application. This is automated
-macOS arm64 acceptance; it does not establish mobile filesystem support, manual visual
-acceptance, or complete isolation of native Flutter widgets.
+The UI gate includes package examples and the aggregate application. Rooted filesystem
+regressions are also registered in the UI suite so device acceptance checks the actual
+ABI, including parent/final symlink rejection and paused-reader cleanup. Native example
+acceptance additionally covers iOS arm64 simulator and Android arm64 emulator behavior.
+These automated checks do not certify physical devices or complete isolation of native
+Flutter widgets.

@@ -165,6 +165,12 @@ class FlaxApplication {
       if (request.uri.scheme != 'file' || request.uri.host.isNotEmpty) {
         throw const FormatException('Unsupported local module URL');
       }
+      if (sandbox != null && request.uri != entry) {
+        throw const FlaxSandboxException(
+          operation: 'module.load',
+          message: 'A sandboxed single-file entry cannot expose its neighboring files; use a manifest or an explicit host loader',
+        );
+      }
       final base = Directory(root).uri;
       if (!request.uri.path.startsWith(base.path)) {
         throw const FormatException('Module escapes its file root');
@@ -314,6 +320,7 @@ class FlaxApplication {
         download: download,
         cacheDirectory: cacheDirectory,
         modules: true,
+        authorize: request.authorize,
       ),
       cancellation: cancellation,
     );

@@ -26714,6 +26714,7 @@ const materialBindings = FlaxBindingModule(
     "native-core-inputs",
     "native-navigation-objects",
     "native-widget-proxies",
+    "permission-guards",
     "proxy-super-constructors",
     "sandbox-guards",
     "shared-static-readers",
@@ -29018,6 +29019,80 @@ const materialBindings = FlaxBindingModule(
   sandboxGuards: {
     ("flax.material/material#type:CircleAvatar", "construct", ""):
         FlaxSandboxBinding(_flaxSandbox0, replace: false),
+  },
+  permissionGuards: {
+    (
+      "flax.material/material#type:DesktopTextSelectionControls",
+      "call",
+      "handleCut",
+    ): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.write",
+        title: "Clipboard write",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
+    (
+      "flax.material/material#type:DesktopTextSelectionControls",
+      "call",
+      "handleCopy",
+    ): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.write",
+        title: "Clipboard write",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
+    (
+      "flax.material/material#type:DesktopTextSelectionControls",
+      "call",
+      "handlePaste",
+    ): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.read",
+        title: "Clipboard read",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
+    (
+      "flax.material/material#type:MaterialTextSelectionControls",
+      "call",
+      "handleCut",
+    ): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.write",
+        title: "Clipboard write",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
+    (
+      "flax.material/material#type:MaterialTextSelectionControls",
+      "call",
+      "handleCopy",
+    ): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.write",
+        title: "Clipboard write",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
+    (
+      "flax.material/material#type:MaterialTextSelectionControls",
+      "call",
+      "handlePaste",
+    ): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.read",
+        title: "Clipboard read",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
   },
 );
 final materialPlugin = FlaxBindingPlugin(

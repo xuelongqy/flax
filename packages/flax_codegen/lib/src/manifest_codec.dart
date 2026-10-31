@@ -150,6 +150,7 @@ const _snapshotFieldKeys = {
 
 const _moduleKeys = {
   'sandboxRules',
+  'permissionRules',
   'extensions',
   'publicLibraries',
   'topLevel',
@@ -2628,6 +2629,26 @@ FlaxCodegenTypeAliasModel? _decodeTypedef(
 }
 
 Map<String, Object?> _encodeModule(FlaxCodegenModuleModel module) => {
+  if (module.permissionRules.isNotEmpty)
+    'permissionRules': [
+      for (final rule in module.permissionRules)
+        {
+          'owner': rule.owner,
+          'kind': rule.kind,
+          'name': rule.name,
+          'operation': rule.operation,
+          'receiver': rule.receiver,
+          'permissions': [
+            for (final definition in rule.permissions)
+              {
+                'id': definition.id,
+                'title': definition.title,
+                'authorization': definition.authorization,
+                'version': definition.version,
+              },
+          ],
+        },
+    ],
   if (module.extensions.isNotEmpty)
     'extensions': [
       for (final extension in module.extensions) _encodeExtension(extension),
@@ -2904,6 +2925,80 @@ FlaxCodegenModuleModel? _decodeModule(
           );
         })
       : <FlaxCodegenSandboxRule>[];
+  final permissionRules = value is Map && value.containsKey('permissionRules')
+      ? object.requiredList('permissionRules', (value, pointer) {
+          final rule = FlaxCodegenManifestObject.read(
+            diagnostics,
+            value,
+            pointer,
+            {'owner', 'kind', 'name', 'operation', 'receiver', 'permissions'},
+          );
+          if (rule == null) return null;
+          final owner = rule.requiredString('owner');
+          final kind = rule.requiredString('kind');
+          final name = rule.requiredString('name');
+          final operation = rule.requiredString('operation');
+          final receiver = rule.requiredBool('receiver');
+          final permissions = rule.requiredList('permissions', (
+            value,
+            pointer,
+          ) {
+            final definition = FlaxCodegenManifestObject.read(
+              diagnostics,
+              value,
+              pointer,
+              {'id', 'title', 'authorization', 'version'},
+            );
+            if (definition == null) return null;
+            final id = definition.requiredString('id');
+            final title = definition.requiredString('title');
+            final authorization = definition.requiredString('authorization');
+            final version = definition.requiredValue<int>(
+              'version',
+              (value, pointer) => value is int && value > 0 ? value : null,
+            );
+            if (id == null ||
+                title == null ||
+                version == null ||
+                !{'install', 'runtime'}.contains(authorization) ||
+                !RegExp(r'^[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*)+$')
+                    .hasMatch(id)) {
+              diagnostics.add(
+                pointer: pointer,
+                message: 'Invalid permission definition.',
+              );
+              return null;
+            }
+            return FlaxCodegenPermissionDefinitionModel(
+              id: id,
+              title: title,
+              authorization: authorization!,
+              version: version,
+            );
+          });
+          if (owner == null ||
+              name == null ||
+              operation == null ||
+              receiver == null ||
+              permissions == null ||
+              permissions.isEmpty ||
+              !{'construct', 'call', 'get', 'set'}.contains(kind)) {
+            diagnostics.add(
+              pointer: pointer,
+              message: 'Invalid permission guard.',
+            );
+            return null;
+          }
+          return FlaxCodegenPermissionRule(
+            owner: owner,
+            kind: kind!,
+            name: name,
+            operation: operation,
+            permissions: permissions,
+            receiver: receiver,
+          );
+        })
+      : <FlaxCodegenPermissionRule>[];
   final library = object.requiredString('library');
   final topLevel = value is Map && value.containsKey('topLevel')
       ? object.requiredValue(
@@ -2997,6 +3092,7 @@ FlaxCodegenModuleModel? _decodeModule(
     functions: functions,
     extensions: extensions ?? const [],
     sandboxRules: sandboxRules ?? const [],
+    permissionRules: permissionRules ?? const [],
     snapshots: snapshots,
     typedefs: typedefs,
     topLevel: topLevel,

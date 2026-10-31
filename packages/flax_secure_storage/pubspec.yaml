@@ -1,0 +1,32 @@
+name: flax_secure_storage
+description: Optional Keychain and Keystore backed secure storage for Flax hosts.
+version: 0.0.0
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.13.2
+  flutter: '>=3.47.9'
+
+dependencies:
+  flax: 0.0.0
+  flutter:
+    sdk: flutter
+  crypto: 3.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: dev.flax.secure_storage
+        pluginClass: FlaxSecureStoragePlugin
+      ios:
+        pluginClass: FlaxSecureStoragePlugin
+        sharedDarwinSource: true
+      macos:
+        pluginClass: FlaxSecureStoragePlugin
+        sharedDarwinSource: true

@@ -1989,18 +1989,25 @@ const sdk_dart_uiBindings = FlaxBindingModule(
         FlaxSandboxBinding.deny(),
     ("flax.core/sdk_dart_ui#type:ChannelBuffers", "call", "allowOverflow"):
         FlaxSandboxBinding.deny(),
-    ("dart:ui::ImmutableBuffer.fromAsset", "call", ""): FlaxSandboxBinding(
-      _flaxSandbox9,
-      replace: true,
-    ),
-    ("dart:ui::ImmutableBuffer.fromFilePath", "call", ""):
+    ("flax.core/sdk_dart_ui#function:ImmutableBuffer.fromAsset", "call", ""):
+        FlaxSandboxBinding(_flaxSandbox9, replace: true),
+    ("flax.core/sdk_dart_ui#function:ImmutableBuffer.fromFilePath", "call", ""):
         FlaxSandboxBinding.deny(),
-    ("dart:ui::IsolateNameServer.lookupPortByName", "call", ""):
-        FlaxSandboxBinding.deny(),
-    ("dart:ui::IsolateNameServer.registerPortWithName", "call", ""):
-        FlaxSandboxBinding.deny(),
-    ("dart:ui::IsolateNameServer.removePortNameMapping", "call", ""):
-        FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_dart_ui#function:IsolateNameServer.lookupPortByName",
+      "call",
+      "",
+    ): FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_dart_ui#function:IsolateNameServer.registerPortWithName",
+      "call",
+      "",
+    ): FlaxSandboxBinding.deny(),
+    (
+      "flax.core/sdk_dart_ui#function:IsolateNameServer.removePortNameMapping",
+      "call",
+      "",
+    ): FlaxSandboxBinding.deny(),
     (
       "flax.core/sdk_dart_ui#type:PlatformDispatcher",
       "call",

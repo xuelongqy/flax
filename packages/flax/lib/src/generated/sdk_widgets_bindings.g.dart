@@ -15840,6 +15840,7 @@ const sdk_widgetsBindings = FlaxBindingModule(
     "native-core-inputs",
     "native-navigation-objects",
     "native-widget-proxies",
+    "permission-guards",
     "proxy-native-members",
     "proxy-super-constructors",
     "sandbox-guards",
@@ -19502,14 +19503,8 @@ const sdk_widgetsBindings = FlaxBindingModule(
   sandboxGuards: {
     ("flax.core/sdk_widgets#type:DefaultAssetBundle", "construct", ""):
         FlaxSandboxBinding(_flaxSandbox0, replace: false),
-    (
-      "package:flutter/src/widgets/basic.dart::DefaultAssetBundle.of",
-      "call",
-      "",
-    ): FlaxSandboxBinding(
-      _flaxSandbox1,
-      replace: true,
-    ),
+    ("flax.core/sdk_widgets#function:DefaultAssetBundle.of", "call", ""):
+        FlaxSandboxBinding(_flaxSandbox1, replace: true),
     ("flax.core/sdk_widgets#type:FadeInImage", "construct", ""):
         FlaxSandboxBinding(_flaxSandbox2, replace: false),
     ("flax.core/sdk_widgets#type:FadeInImage", "construct", "assetNetwork"):
@@ -19519,7 +19514,7 @@ const sdk_widgetsBindings = FlaxBindingModule(
       replace: false,
     ),
     ("flax.core/sdk_widgets#type:Image", "construct", "file"):
-        FlaxSandboxBinding(_flaxSandbox5, replace: false),
+        FlaxSandboxBinding(_flaxSandbox5, replace: true),
     ("flax.core/sdk_widgets#type:Image", "construct", "asset"):
         FlaxSandboxBinding(_flaxSandbox6, replace: true),
     ("flax.core/sdk_widgets#type:ImageIcon", "construct", ""):
@@ -19616,6 +19611,152 @@ const sdk_widgetsBindings = FlaxBindingModule(
       _flaxSandbox26,
       replace: true,
     ),
+  },
+  permissionGuards: {
+    ("flax.core/sdk_widgets#type:ClipboardStatusNotifier", "construct", ""): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.read",
+        title: "Clipboard read",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
+    (
+      "flax.core/sdk_widgets#type:ClipboardStatusNotifier",
+      "call",
+      "addListener",
+    ): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.read",
+        title: "Clipboard read",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
+    (
+      "flax.core/sdk_widgets#type:ClipboardStatusNotifier",
+      "call",
+      "didChangeAppLifecycleState",
+    ): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.read",
+        title: "Clipboard read",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
+    ("flax.core/sdk_widgets#type:ClipboardStatusNotifier", "call", "update"): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.read",
+        title: "Clipboard read",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
+    ("flax.core/sdk_widgets#type:EditableTextState", "call", "cutSelection"): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.write",
+        title: "Clipboard write",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
+    ("flax.core/sdk_widgets#type:EditableTextState", "call", "pasteText"): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.read",
+        title: "Clipboard read",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
+    ("flax.core/sdk_widgets#type:EditableTextState", "call", "copySelection"): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.write",
+        title: "Clipboard write",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
+    (
+      "flax.core/sdk_widgets#type:EmptyTextSelectionControls",
+      "call",
+      "handleCut",
+    ): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.write",
+        title: "Clipboard write",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
+    (
+      "flax.core/sdk_widgets#type:EmptyTextSelectionControls",
+      "call",
+      "handleCopy",
+    ): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.write",
+        title: "Clipboard write",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
+    (
+      "flax.core/sdk_widgets#type:EmptyTextSelectionControls",
+      "call",
+      "handlePaste",
+    ): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.read",
+        title: "Clipboard read",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
+    (
+      "flax.core/sdk_widgets#type:SelectableRegionState",
+      "call",
+      "copySelection",
+    ): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.write",
+        title: "Clipboard write",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
+    ("flax.core/sdk_widgets#type:TextSelectionControls", "call", "handleCut"): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.write",
+        title: "Clipboard write",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
+    (
+      "flax.core/sdk_widgets#type:TextSelectionControls",
+      "call",
+      "handleCopy",
+    ): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.write",
+        title: "Clipboard write",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
+    (
+      "flax.core/sdk_widgets#type:TextSelectionControls",
+      "call",
+      "handlePaste",
+    ): [
+      FlaxPermissionDefinition(
+        id: "flax.clipboard.read",
+        title: "Clipboard read",
+        authorization: FlaxPermissionAuthorization.install,
+        version: 1,
+      ),
+    ],
   },
 );
 final sdk_widgetsPlugin = FlaxBindingPlugin(
@@ -301905,17 +302046,88 @@ Object? _flaxSandbox5(
   Object? receiver,
   Map<String, Object?> values,
 ) {
-  flaxInvokeWithDefaults(
-    api20.checkSandboxFileImage,
+  final _flaxHas15 = values.containsKey("alignment");
+  return flaxInvokeWithDefaults(
+    api20.sandboxImageFile,
     <Object?>[
       context,
       context.requirePolicy<api21.FlaxFilePolicy>(),
       values["file"],
+      values["key"],
+      values["scale"],
+      values["frameBuilder"],
+      values["errorBuilder"],
+      values["semanticLabel"],
+      values["excludeFromSemantics"],
+      values["width"],
+      values["height"],
+      values["color"],
+      values["opacity"],
+      values["colorBlendMode"],
+      values["fit"],
+      (_flaxHas15 ? values["alignment"] : null),
+      values["repeat"],
+      values["centerSlice"],
+      values["matchTextDirection"],
+      values["gaplessPlayback"],
+      values["isAntiAlias"],
+      values["filterQuality"],
+      values["cacheWidth"],
+      values["cacheHeight"],
     ],
-    <int>[1 | 2 | 4],
-    const <String>["", "", ""],
+    <int>[
+      1 |
+          2 |
+          4 |
+          8 |
+          16 |
+          32 |
+          64 |
+          128 |
+          256 |
+          512 |
+          1024 |
+          2048 |
+          4096 |
+          8192 |
+          16384 |
+          (_flaxHas15 ? 32768 : 0) |
+          65536 |
+          131072 |
+          262144 |
+          524288 |
+          1048576 |
+          2097152 |
+          4194304 |
+          8388608,
+    ],
+    const <String>[
+      "",
+      "",
+      "",
+      "key",
+      "scale",
+      "frameBuilder",
+      "errorBuilder",
+      "semanticLabel",
+      "excludeFromSemantics",
+      "width",
+      "height",
+      "color",
+      "opacity",
+      "colorBlendMode",
+      "fit",
+      "alignment",
+      "repeat",
+      "centerSlice",
+      "matchTextDirection",
+      "gaplessPlayback",
+      "isAntiAlias",
+      "filterQuality",
+      "cacheWidth",
+      "cacheHeight",
+    ],
   );
-  return null;
 }
 
 Object? _flaxSandbox6(

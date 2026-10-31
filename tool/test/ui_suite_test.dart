@@ -14,6 +14,13 @@ void main() {
 {"type":"done","success":true}
 ''';
     expect(() => validateUiSuiteResults(complete), returnsNormally);
+    expect(
+      () => validateUiSuiteResults('''
+{"type":"group","group":{"parentID":null,"testCount":1}}
+{"type":"testDone","hidden":false}
+$complete'''),
+      returnsNormally,
+    );
     for (final incomplete in [
       '{"type":"testDone","hidden":true}\n{"type":"done","success":true}',
       complete.replaceFirst('"testCount":2', '"testCount":3'),

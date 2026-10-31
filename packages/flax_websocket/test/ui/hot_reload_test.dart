@@ -8,7 +8,7 @@ import 'package:flax_websocket/flax_websocket.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
 
-import '../support/harness.dart' show registry;
+import '../support/harness.dart' show registry, testPermissions;
 import '../support/runtime_tracker.dart';
 
 Future<(Process?, Uri)> _startDev() async {
@@ -95,7 +95,9 @@ String _liveLabel(RuntimeTracker tracker) => (tracker.evaluate(
 ) as FlaxJsString).value;
 
 void main() {
-  setUp(() {
+  setUp(() async {
+    testPermissions = await FlaxTestPermissions.create();
+    addTearDown(testPermissions.close);
     final previous = HttpOverrides.current;
     HttpOverrides.global = null;
     addTearDown(() => HttpOverrides.global = previous);
@@ -115,6 +117,8 @@ void main() {
       final tracker = RuntimeTracker();
       final errors = <Object>[];
       final session = FlaxSession(
+        permissions: testPermissions.policy,
+        permissionManifest: testPermissions.manifest,
         createRuntime: () => tracker,
         source: source,
         bindings: registry,
@@ -161,9 +165,7 @@ void main() {
       expect(_liveLabel(tracker), 'V3');
       expect(errors, isEmpty);
       await tester.pumpWidget(const SizedBox());
-      final closing = session.close();
-      await tester.pumpAndSettle();
-      await closing;
+      await flaxTestCloseSession(tester, session);
       expect(tracker.handlesAtDispose, 0);
 
       final latestSource = await tester.runAsync(
@@ -171,6 +173,8 @@ void main() {
       );
       final restartedTracker = RuntimeTracker();
       final restarted = FlaxSession(
+        permissions: testPermissions.policy,
+        permissionManifest: testPermissions.manifest,
         createRuntime: () => restartedTracker,
         source:
             '${flaxTestFixtureSource('hot_reload_host', packageName: 'flax_websocket')}\n${latestSource!}',
@@ -186,9 +190,7 @@ void main() {
       expect(_liveLabel(restartedTracker), 'V3');
       expect(errors, isEmpty);
       await tester.pumpWidget(const SizedBox());
-      final restartedClosing = restarted.close();
-      await tester.pumpAndSettle();
-      await restartedClosing;
+      await flaxTestCloseSession(tester, restarted);
       expect(restartedTracker.handlesAtDispose, 0);
     },
   );

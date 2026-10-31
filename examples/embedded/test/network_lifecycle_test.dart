@@ -46,6 +46,11 @@ const probe = r'''
 ''';
 
 void main() {
+  late FlaxTestPermissions permissionFixture;
+  setUp(() async {
+    permissionFixture = await FlaxTestPermissions.create();
+  });
+  tearDown(() => permissionFixture.close());
   testWidgets(
     'page exits cancel transport, detach callbacks and allow reentry',
     (tester) async {
@@ -111,6 +116,7 @@ void main() {
       await flaxTestPumpView(
         tester,
         app.EmbeddedApp(
+          permissions: permissionFixture.policy,
           source: '$probe\n$source',
           createRuntime: () => runtime = RuntimeTracker(),
           onFlaxError: (error, _) => errors.add(error),

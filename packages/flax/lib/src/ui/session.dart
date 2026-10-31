@@ -54,12 +54,61 @@ class _Session {
     required this.assetBundle,
     this.modulesPrepared = false,
     FlaxSandbox? sandbox,
+    FlaxPermissionPolicy? permissions,
+    FlaxPermissionManifest? permissionManifest,
+    Iterable<FlaxPermissionDefinition> permissionDefinitions = const [],
   }) {
+    if (permissions != null &&
+        sandbox != null &&
+        permissionManifest != null &&
+        sandbox.appId != permissionManifest.appId) {
+      throw ArgumentError(
+        'Sandbox and permission application identities differ',
+      );
+    }
+    final permissionOwner = WeakReference(this);
+    this.permissions = FlaxPermissionContext(
+      policy: permissions,
+      manifest: permissionManifest,
+      definitions: [
+        ...permissionDefinitions,
+        for (final module in registry.modules)
+          for (final definitions in module.permissionGuards.values)
+            ...definitions,
+      ],
+      availablePermissions: {
+        'flax.network',
+        'flax.module.remote',
+        'flax.wasm',
+        'flax.clipboard.read',
+        'flax.clipboard.write',
+        for (final module in registry.modules)
+          for (final definitions in module.permissionGuards.values)
+            for (final definition in definitions) definition.id,
+        for (final definition in permissionDefinitions)
+          if (definition.id != 'flax.documents.open' || sandbox != null)
+            definition.id,
+      },
+      canInteract: () =>
+          !(permissionOwner.target?.closing ?? true) &&
+          (WidgetsBinding.instance.lifecycleState == null ||
+              WidgetsBinding.instance.lifecycleState ==
+                  AppLifecycleState.resumed),
+      onError: (error, stack) => permissionOwner.target?.report(error, stack),
+    );
     this.sandbox = sandbox == null ? null : _SessionSandbox(this, sandbox);
+    if (permissions != null) {
+      _permissionLifecycle = _PermissionLifecycle(this);
+    }
   }
   late final _SessionSandbox? sandbox;
+  late final FlaxPermissionContext permissions;
+  FlaxPermissionLease? _wasmPermission;
+  final _remoteModulePermissions = <String, FlaxPermissionLease>{};
   final String? fetchBaseUrl;
   bool _closingSandbox = false;
+  bool _closingPermissions = false;
+  _PermissionLifecycle? _permissionLifecycle;
   Future<String>? _homePath;
   final bool modulesPrepared;
   final String? namespace;
@@ -113,9 +162,11 @@ class _Session {
             ?.reference
             .context;
       }
-      return context == null
-          ? callback(receiver, arguments)
-          : context.run(() => callback(receiver, arguments));
+      return permissions.run(
+        () => context == null
+            ? callback(receiver, arguments)
+            : context.run(() => callback(receiver, arguments)),
+      );
     });
   }
 
@@ -191,7 +242,7 @@ class _Session {
 
   FlaxJsValue bindingCall(FlaxJsValue Function() invoke) {
     try {
-      return invoke();
+      return permissions.run(invoke);
     } catch (error, stack) {
       final exception = exceptionResult(error, stack);
       try {
@@ -221,6 +272,7 @@ class _Session {
         // Even an unbridgeable rejection retains its safe text diagnostics.
       }
       if (original != null) {
+        // Payload admission must stay outside the diagnostics fallback above.
         Error.throwWithStackTrace(original.error, original.stack);
       }
       final message = _textProperty(failure, 'message');
@@ -277,9 +329,11 @@ class _Session {
   final _specializedContexts = <String, _BindingContext?>{};
   final _specializedOwners = <String, String>{};
   FlaxInstanceMethod? _genericMethod(String type, String name) =>
-      _genericMethods[(type, name)] ??
-      _genericMethods[(_specializedOwners[type] ?? type, name)];
-  final _genericMethods = <(String, String), FlaxInstanceMethod>{};
+      (_genericMethods[(type, name)] ??
+              _genericMethods[(_specializedOwners[type] ?? type, name)])
+          ?.method;
+  final _genericMethods =
+      <(String, String), ({FlaxInstanceMethod method, String name})>{};
   FlaxBindingModule? _bindingOwner(String id) =>
       registry._bindingOwners[id] ??
       registry._bindingOwners[_specializedOwners[id]];
@@ -308,6 +362,7 @@ class _Session {
       <String, ({FlaxObjectBinding binding, _BindingContext? context})>{};
   final _proxyLayouts = <(FlaxObjectBinding, int, List<(_CallLayout?, int)>)>[];
   final _objects = <int, _ObjectReference>{};
+  final _clipboardViews = Expando<WeakReference<_PermissionClipboardStatus>>();
   final _objectIds = _IdentityIndex<_ObjectReference>();
   final _streamReferences = <int, _StreamReference>{};
   final _streamViews = _IdentityIndex<Map<String, _StreamReference>>();
@@ -460,6 +515,24 @@ class _Session {
         loadSource: loadSource,
         imports: imports,
         onError: report,
+        encodeError: exceptionResult,
+        authorize: (uri, kind) {
+          requireOpen();
+          if (uri.scheme == 'http' || uri.scheme == 'https') {
+            final key = FlaxOriginPermissionScope.origin(uri);
+            final lease = _remoteModulePermissions.putIfAbsent(key, () {
+              final lease = permissions.network(uri, module: true);
+              final weak = WeakReference(this);
+              lease.onRevoke(() {
+                final session = weak.target;
+                if (session != null) unawaited(session.requestClose());
+              });
+              return lease;
+            });
+            lease.requireActive();
+          }
+          if (kind == FlaxModuleKind.wasm) _requireWasm();
+        },
         hostModule: (specifier) => _moduleInstallation?.namespace(specifier),
       );
       final pending = loader.start(entry);
@@ -569,6 +642,7 @@ class _Session {
     yield 'binding-hosts';
     yield* installModuleSteps(moduleAssets, plugins);
     installHost(plugins);
+    installPermissions();
     yield 'host-plugins';
     runtime.registerHostFunction('__flaxInvalidate', (_, args) {
       if (args.length != 1 || args.single is! FlaxJsNumber) {
@@ -1120,7 +1194,7 @@ class _Session {
         }
         object = materializeDeferredObject(value, type);
       }
-      final native = object.value;
+      final native = _restoreClipboardValue(object.value);
       if (type.objectView?.matches(native) == false) {
         throw ArgumentError('Incompatible generic Dart object');
       }
@@ -1559,6 +1633,16 @@ class _Session {
   }
 
   Future<void> requestClose() {
+    _permissionLifecycle?.remove(this);
+    _permissionLifecycle = null;
+    if (!_closingPermissions) {
+      _closingPermissions = true;
+      _nativeRetirements++;
+      permissions.close().whenComplete(() {
+        _nativeRetirements--;
+        _tryClose();
+      });
+    }
     if (!_closingSandbox && sandbox != null) {
       _closingSandbox = true;
       _nativeRetirements++;
@@ -1610,7 +1694,12 @@ class _Session {
   int _nativeRetirements = 0;
 
   void _dispose() {
+    permissions.close();
     if (!active) return;
+    if (_permissionLifecycle case final observer?) {
+      observer.remove(this);
+      _permissionLifecycle = null;
+    }
     _moduleLoader?.close();
     _moduleLoader = null;
     cancelPromises();

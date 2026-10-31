@@ -11,6 +11,8 @@ class FlaxSession {
     this.loadModule,
     Map<String, Uri> imports = const {},
     this.sandbox,
+    this.permissions,
+    this.permissionManifest,
     List<String> requiredCapabilities = const [],
     this.namespace,
     this.fetchBaseUrl,
@@ -52,10 +54,12 @@ class FlaxSession {
     void Function(Object, StackTrace)? onError,
     List<FlaxPlugin>? plugins,
     FlaxSandbox? sandbox,
+    FlaxPermissionPolicy? permissions,
   }) : this(
          createRuntime: createRuntime,
          bindings: bindings,
          source: application.source,
+         permissionManifest: application.manifest?.permissions,
          sourceUrl: application.sourceUrl,
          entryUri: application.entryUri,
          loadModule: application.loadModule,
@@ -63,6 +67,7 @@ class FlaxSession {
          requiredCapabilities:
              application.manifest?.requiredCapabilities ?? const [],
          sandbox: sandbox ?? application.sandbox,
+         permissions: permissions,
          assetBundle: application.assetBundle,
          namespace: namespace,
          fetchBaseUrl: fetchBaseUrl,
@@ -87,6 +92,8 @@ class FlaxSession {
   final FlaxModuleSourceLoader? loadModule;
   final Map<String, Uri> imports;
   final FlaxSandbox? sandbox;
+  final FlaxPermissionPolicy? permissions;
+  final FlaxPermissionManifest? permissionManifest;
   final List<String> _requiredCapabilities;
   final FlaxBindingRegistry bindings;
   final void Function(Object, StackTrace)? onError;
@@ -200,6 +207,11 @@ class FlaxSession {
         assetBundle: assetBundle,
         modulesPrepared: prepared,
         sandbox: sandbox,
+        permissions: permissions,
+        permissionManifest: permissionManifest,
+        permissionDefinitions: plugins.expand(
+          (plugin) => plugin.permissionDefinitions,
+        ),
       );
       _session = session;
       pendingRuntime = null;
@@ -249,6 +261,11 @@ class FlaxSession {
             fetchBaseUrl: fetchBaseUrl,
             assetBundle: assetBundle,
             sandbox: sandbox,
+            permissions: permissions,
+            permissionManifest: permissionManifest,
+            permissionDefinitions: plugins.expand(
+              (plugin) => plugin.permissionDefinitions,
+            ),
           );
         } catch (_) {
           runtime.dispose();
@@ -282,7 +299,18 @@ class FlaxSession {
     }
   }
 
-  FutureOr<void> _loadEntry(_Session session) => session.loadEntry(
+  FutureOr<void> _loadEntry(_Session session) {
+    if (permissions != null) {
+      return () async {
+        await session.permissions.refresh();
+        session.requireOpen();
+        await _startEntry(session);
+      }();
+    }
+    return _startEntry(session);
+  }
+
+  FutureOr<void> _startEntry(_Session session) => session.loadEntry(
     FlaxModuleSource(
       uri:
           entryUri ??
@@ -364,6 +392,8 @@ class FlaxView extends StatelessWidget {
     this.loadModule,
     this.imports = const {},
     this.sandbox,
+    this.permissions,
+    this.permissionManifest,
     this.loadingBuilder,
     this.errorBuilder,
     this.developmentMode = false,
@@ -383,6 +413,7 @@ class FlaxView extends StatelessWidget {
     Key? key,
     required FlaxJsRuntime Function() createRuntime,
     FlaxSandbox? sandbox,
+    FlaxPermissionPolicy? permissions,
     Map<String, Uri> imports = const {},
     FlaxModuleSourceLoader? loadModule,
     FlaxBindingRegistry? bindings,
@@ -403,6 +434,7 @@ class FlaxView extends StatelessWidget {
       key: key,
       createRuntime: createRuntime,
       sandbox: sandbox,
+      permissions: permissions,
       imports: imports,
       loadModule: loadModule,
       bindings: bindings,
@@ -423,6 +455,7 @@ class FlaxView extends StatelessWidget {
     Key? key,
     required FlaxJsRuntime Function() createRuntime,
     FlaxSandbox? sandbox,
+    FlaxPermissionPolicy? permissions,
     Map<String, Uri> imports = const {},
     FlaxModuleSourceLoader? loadModule,
     FlaxBindingRegistry? bindings,
@@ -438,6 +471,7 @@ class FlaxView extends StatelessWidget {
     key: key,
     createRuntime: createRuntime,
     sandbox: sandbox,
+    permissions: permissions,
     imports: imports,
     loadModule: loadModule,
     bindings: bindings,
@@ -458,6 +492,7 @@ class FlaxView extends StatelessWidget {
     Key? key,
     required FlaxJsRuntime Function() createRuntime,
     FlaxSandbox? sandbox,
+    FlaxPermissionPolicy? permissions,
     Map<String, Uri> imports = const {},
     FlaxModuleSourceLoader? loadModule,
     FlaxBindingRegistry? bindings,
@@ -474,6 +509,7 @@ class FlaxView extends StatelessWidget {
     key: key,
     createRuntime: createRuntime,
     sandbox: sandbox,
+    permissions: permissions,
     imports: imports,
     loadModule: loadModule,
     bindings: bindings,
@@ -497,6 +533,7 @@ class FlaxView extends StatelessWidget {
     Key? key,
     required FlaxJsRuntime Function() createRuntime,
     FlaxSandbox? sandbox,
+    FlaxPermissionPolicy? permissions,
     Map<String, Uri> imports = const {},
     FlaxModuleSourceLoader? loadModule,
     FlaxBindingRegistry? bindings,
@@ -513,6 +550,7 @@ class FlaxView extends StatelessWidget {
     key: key,
     createRuntime: createRuntime,
     sandbox: sandbox,
+    permissions: permissions,
     imports: imports,
     loadModule: loadModule,
     bindings: bindings,
@@ -533,6 +571,7 @@ class FlaxView extends StatelessWidget {
     Key? key,
     required FlaxJsRuntime Function() createRuntime,
     FlaxSandbox? sandbox,
+    FlaxPermissionPolicy? permissions,
     Map<String, Uri> imports = const {},
     FlaxModuleSourceLoader? loadModule,
     FlaxBindingRegistry? bindings,
@@ -568,6 +607,7 @@ class FlaxView extends StatelessWidget {
       key: key,
       createRuntime: createRuntime,
       sandbox: sandbox,
+      permissions: permissions,
       imports: imports,
       loadModule: loadModule,
       bindings: bindings,
@@ -597,9 +637,11 @@ class FlaxView extends StatelessWidget {
     this.errorBuilder,
     this.developmentMode = false,
     this.sandbox,
+    this.permissions,
     this.imports = const {},
     this.loadModule,
   }) : source = null,
+       permissionManifest = null,
        entryUri = null,
        sourceUrl = null,
        _session = null,
@@ -618,6 +660,8 @@ class FlaxView extends StatelessWidget {
       loadModule = null,
       imports = const {},
       sandbox = null,
+      permissions = null,
+      permissionManifest = null,
       createRuntime = null,
       source = null,
       bindings = null,
@@ -649,6 +693,8 @@ class FlaxView extends StatelessWidget {
        loadModule = null,
        imports = const {},
        sandbox = null,
+       permissions = null,
+       permissionManifest = null,
        createRuntime = null,
        source = null,
        bindings = null,
@@ -663,6 +709,8 @@ class FlaxView extends StatelessWidget {
   final FlaxModuleSourceLoader? loadModule;
   final Map<String, Uri> imports;
   final FlaxSandbox? sandbox;
+  final FlaxPermissionPolicy? permissions;
+  final FlaxPermissionManifest? permissionManifest;
 
   final _ApplicationInput? _input;
 
@@ -732,6 +780,7 @@ class FlaxView extends StatelessWidget {
           loadModule,
           imports,
           sandbox,
+          permissions,
         )),
         onLoaded: onLoaded,
         configuration: this,
@@ -759,6 +808,8 @@ class FlaxView extends StatelessWidget {
               loadModule,
               imports,
               sandbox,
+              permissions,
+              permissionManifest,
               bindings,
               namespace,
               fetchBaseUrl,
@@ -824,6 +875,10 @@ class _SessionRootState extends State<_SessionRoot> {
           requiredCapabilities:
               widget.application?.manifest?.requiredCapabilities ?? const [],
           sandbox: configuration.sandbox,
+          permissions: configuration.permissions,
+          permissionManifest:
+              widget.application?.manifest?.permissions ??
+              configuration.permissionManifest,
           bindings: configuration.bindings ?? FlaxBindingRegistry([]),
           onError: configuration.onError,
           plugins: configuration.plugins,

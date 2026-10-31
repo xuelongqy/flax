@@ -44,7 +44,12 @@ Future<String> loadAggregateSource({String? storageDirectory}) async {
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(EmbeddedApp(source: await loadAggregateSource()));
+  runApp(
+    EmbeddedApp(
+      source: await loadAggregateSource(),
+      permissions: await approveTrustedExamplePermissions('example.gallery'),
+    ),
+  );
 }
 
 class EmbeddedApp extends StatefulWidget {
@@ -59,6 +64,7 @@ class EmbeddedApp extends StatefulWidget {
     ),
     this.onFlaxError,
     this.sandboxDemoDirectory,
+    this.permissions,
   });
 
   final String source;
@@ -67,6 +73,7 @@ class EmbeddedApp extends StatefulWidget {
   final String? fetchBaseUrl;
   final void Function(Object, StackTrace)? onFlaxError;
   final String? sandboxDemoDirectory;
+  final FlaxPermissionPolicy? permissions;
 
   @override
   State<EmbeddedApp> createState() => _EmbeddedAppState();
@@ -100,6 +107,8 @@ class _EmbeddedAppState extends State<EmbeddedApp> {
     ],
     child: _mounted
         ? FlaxView(
+            permissions: widget.permissions,
+            permissionManifest: widget.permissions?.application.manifest,
             key: ValueKey('aggregate-view-$_generation'),
             createRuntime: widget.createRuntime ?? createExampleRuntime,
             source: widget.source,

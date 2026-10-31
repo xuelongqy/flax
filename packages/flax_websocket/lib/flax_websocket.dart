@@ -50,6 +50,7 @@ class _WebSocketHost implements FlaxPluginInstance {
   final FlaxHostContext context;
   final FlaxWebSocketPlugin plugin;
   final _connections = <int, FlaxWebSocketConnection>{};
+  final _permissions = <int, FlaxPermissionLease>{};
   final _clients = Set<HttpClient>.identity();
   FlaxJsObject? _state;
   bool _closed = false;
@@ -89,25 +90,91 @@ class _WebSocketHost implements FlaxPluginInstance {
           }
           final settings = (jsonDecode((args[2] as FlaxJsString).value) as Map)
               .cast<String, Object?>();
-          final client = plugin.createHttpClient?.call() ?? HttpClient();
-          if (!_clients.add(client)) {
-            throw StateError(
-              'createHttpClient must return a new client per connection',
+          FlaxPermissionLease permission;
+          try {
+            final permissions = context.permissions;
+            if (permissions == null) {
+              throw const FlaxPermissionException(
+                permission: 'flax.network',
+                operation: 'WebSocket',
+                reason: 'notDeclared',
+              );
+            }
+            final uri = Uri.parse(settings['url'] as String);
+            final headers = (settings['headers'] as Map)
+                .cast<String, Object?>();
+            for (final entry in headers.entries) {
+              if (entry.key.toLowerCase() != 'host') continue;
+              final values = (entry.value as List).cast<String>();
+              if (values.length != 1) {
+                throw const FlaxPermissionException(
+                  permission: 'flax.network',
+                  operation: 'WebSocket.headers',
+                  reason: 'hostHeaderMismatch',
+                );
+              }
+              FlaxPermissionContext.checkHostHeader(uri, values.single);
+            }
+            permission = permissions.network(uri);
+          } on FlaxPermissionException catch (error) {
+            _emit(
+              id,
+              'close',
+              jsonEncode({
+                'code': 1006,
+                'wasClean': false,
+                'error': true,
+                'permissionError': error.toJson(),
+              }),
             );
+            return const FlaxJsUndefined();
           }
+          late HttpClient client;
+          var ownsClient = false;
+          try {
+            client = plugin.createHttpClient?.call() ?? HttpClient();
+            ownsClient = _clients.add(client);
+            if (!ownsClient) {
+              throw StateError(
+                'createHttpClient must return a new client per connection',
+              );
+            }
+            permission.requireActive();
+          } catch (_) {
+            permission.close();
+            if (ownsClient) {
+              _clients.remove(client);
+              client.close(force: true);
+            }
+            rethrow;
+          }
+          _permissions[id] = permission;
           final connection = FlaxWebSocketConnection(
             client,
             (kind, value) => _emit(id, kind, value),
             () {
               _connections.remove(id);
               _clients.remove(client);
+              final permission = _permissions.remove(id);
+              // Accepted events queued before normal completion retain their grant.
+              if (permission != null) context.enqueue(permission.close);
             },
+          );
+          permission.onRevoke(
+            () => connection.abort(
+              const FlaxPermissionException(
+                permission: 'flax.network',
+                operation: 'WebSocket',
+                reason: 'revoked',
+              ),
+            ),
           );
           _connections[id] = connection;
           connection.open(settings).ignore();
         case 'send':
           final connection = _connections[id];
           if (connection == null) return const FlaxJsUndefined();
+          _permissions[id]?.requireActive();
           final value = args[2];
           connection.send(
             value is FlaxJsString
@@ -139,10 +206,18 @@ class _WebSocketHost implements FlaxPluginInstance {
     }
     _pendingMessages++;
     _pendingBytes += size;
+    final permission = _permissions[id];
     context.enqueue(() {
       _pendingMessages--;
       _pendingBytes -= size;
       if (_closed) return;
+      if (kind == 'open' || kind == 'message') {
+        try {
+          permission?.requireActive();
+        } catch (_) {
+          return;
+        }
+      }
       final data = switch (value) {
         Uint8List() => context.runtime.createArrayBuffer(value),
         List<int>() => context.runtime.createArrayBuffer(

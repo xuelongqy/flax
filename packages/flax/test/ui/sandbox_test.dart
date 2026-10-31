@@ -10,6 +10,7 @@ import 'package:material_ui/material_ui.dart';
 
 import '../support/engine.dart';
 import '../support/harness.dart' show registry;
+import '../sandbox/file_system_test.dart' as file_system;
 
 class _Bundle extends CachingAssetBundle {
   @override
@@ -22,6 +23,7 @@ class _Bundle extends CachingAssetBundle {
 }
 
 void main() {
+  group('rooted filesystem', file_system.main);
   test('sandbox cannot dispatch messages to host channel listeners', () async {
     final scratch = await Directory.systemTemp.createTemp('flax-host-channel-');
     final hostFile = await File('${scratch.path}/host.txt')

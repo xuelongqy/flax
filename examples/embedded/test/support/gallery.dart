@@ -26,6 +26,7 @@ Future<void> exerciseGallery(WidgetTester tester) async {
     ('websocket', 'A conversation, in real time.'),
     ('storage', 'A little memory goes a long way.'),
     ('sandbox', 'A home of their own.'),
+    ('permissions', 'Approve manifest & run'),
   ];
   expect(find.text('${entries.length} modules'), findsOneWidget);
   for (final entry in entries) {

@@ -3,4 +3,10 @@ library;
 
 export 'src/sandbox/sandbox.dart';
 export 'src/sandbox/file_system.dart'
-    show FlaxFilePolicy, FlaxSandboxFile, FlaxSandboxDirectory;
+    show
+        FlaxFilePolicy,
+        FlaxSandboxFile,
+        FlaxSandboxDirectory,
+        FlaxSelectedFile,
+        FlaxDocumentBackend,
+        FlaxLocalDocumentBackend;

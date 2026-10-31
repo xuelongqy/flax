@@ -7,7 +7,10 @@ import {
 } from '@flax/example-cupertino-ui/showcase';
 import { createFetchExample } from '@flax/example-core/fetch';
 import { createStorageExample } from '@flax/example-local-storage/showcase';
-import { createSandboxExample } from '@flax/example-sandbox/showcase';
+import {
+  createSandboxExample,
+  createPermissionsExample,
+} from '@flax/example-sandbox/showcase';
 import {
   createMaterialExample,
   materialCollections,
@@ -135,6 +138,16 @@ const examples = [
     tag: 'ISOLATION',
     description: 'Compare application homes, file images, storage and blocked access.',
     create: createSandboxExample,
+  },
+  {
+    id: 'permissions',
+    title: 'Permissions',
+    mark: 'P',
+    color: 0xff466f91,
+    tag: 'CONSENT',
+    description:
+      'Approve declarations, request module consent, revoke resources and select a File.',
+    create: createPermissionsExample,
   },
 ] as const;
 

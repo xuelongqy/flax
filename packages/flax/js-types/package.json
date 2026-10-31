@@ -20,6 +20,9 @@
     "./host": {
       "types": "./types/host/index.d.ts"
     },
+    "./documents": {
+      "types": "./types/host/documents.d.ts"
+    },
     "./assets": {
       "types": "./types/runtime/assets.d.ts"
     }
@@ -37,9 +40,13 @@
     "web-streams-polyfill": "4.3.0"
   },
   "peerDependencies": {
+    "@flax/dart": "workspace:*",
     "@flax/flutter": "workspace:*"
   },
   "peerDependenciesMeta": {
+    "@flax/dart": {
+      "optional": true
+    },
     "@flax/flutter": {
       "optional": true
     }

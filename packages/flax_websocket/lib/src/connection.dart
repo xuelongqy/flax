@@ -5,6 +5,7 @@ import 'dart:math';
 
 import 'package:web_socket_channel/io.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
+import 'package:flax/permissions.dart';
 
 import 'observed_socket.dart';
 
@@ -23,6 +24,7 @@ class FlaxWebSocketConnection {
   Timer? _timeout;
   bool _ended = false, _closing = false, _failed = false;
   bool _writing = false;
+  FlaxPermissionException? _permissionError;
 
   Future<void> open(Map<String, Object?> settings) async {
     final timeout = settings['handshakeTimeout'] as int;
@@ -184,8 +186,9 @@ class FlaxWebSocketConnection {
     );
   }
 
-  void abort() {
+  void abort([FlaxPermissionException? permissionError]) {
     if (_ended) return;
+    _permissionError = permissionError;
     _failed = true;
     _finish(1006, '', false, true);
   }
@@ -207,6 +210,8 @@ class FlaxWebSocketConnection {
         'reason': reason,
         'wasClean': clean,
         'error': error,
+        if (_permissionError != null)
+          'permissionError': _permissionError!.toJson(),
       }),
     );
   }

@@ -2631,6 +2631,21 @@ class FlaxCodegenBindingEmitter {
             : 'FlaxSandboxBinding(_flaxSandbox$index, replace: ${rule.replace}),',
       );
     }
+    final permissionGuards = StringBuffer();
+    for (final rule in module.permissionRules) {
+      permissionGuards.write(
+        '(${_quote(rule.owner)}, ${_quote(rule.kind)}, ${_quote(rule.name)}): [',
+      );
+      for (final definition in rule.permissions) {
+        permissionGuards.write(
+          'FlaxPermissionDefinition(id: ${_quote(definition.id)}, '
+          'title: ${_quote(definition.title)}, '
+          'authorization: FlaxPermissionAuthorization.${definition.authorization}, '
+          'version: ${definition.version}),',
+        );
+      }
+      permissionGuards.write('],');
+    }
     out.writeln(
       '], constants: [${constantGroups.entries.map((group) => 'FlaxConstantGroup(${group.key}, {${group.value.entries.map((entry) => '${_quote(entry.key)}: ${entry.value}').join(',')}})').join(',')}], moduleId: ${_quote(_literalModuleId(module))}, '
       'dependencyModules: ${jsonEncode(dependencyIds)}, '
@@ -2639,7 +2654,8 @@ class FlaxCodegenBindingEmitter {
       'requiredCapabilities: ${_capabilitiesDartLiteral(module.requiredCapabilities)}, '
       'stateVariants: [${module.stateVariants.map((variant) => '_stateVariant_${variant.name}').join(', ')}]'
       ', dartTypes: [${_vmTypeTemplates(module).join(',')}], dartShapes: _flaxDartShapes'
-      '${module.sandboxRules.isEmpty ? '' : ', sandboxGuards: {$sandboxGuards}'});',
+      '${module.sandboxRules.isEmpty ? '' : ', sandboxGuards: {$sandboxGuards}'}'
+      '${module.permissionRules.isEmpty ? '' : ', permissionGuards: {$permissionGuards}'});',
     );
     out.writeln('final ${module.name}Plugin = FlaxBindingPlugin(');
     out.writeln('id: ${_quote('binding:${_literalModuleId(module)}')},');
@@ -3869,12 +3885,18 @@ import 'package:flax/bindings.dart';
         tearOff: target,
         dynamicDefaults:
             method.instance &&
-            _dartModule.sandboxRules.any(
-              (rule) =>
-                  rule.owner == type.id &&
-                  rule.kind == 'call' &&
-                  rule.name == method.name,
-            ),
+            (_dartModule.sandboxRules.any(
+                  (rule) =>
+                      rule.owner == type.id &&
+                      rule.kind == 'call' &&
+                      rule.name == method.name,
+                ) ||
+                _dartModule.permissionRules.any(
+                  (rule) =>
+                      rule.owner == type.id &&
+                      rule.kind == 'call' &&
+                      rule.name == method.name,
+                )),
       );
     }
     out.writeln('}');
@@ -5797,7 +5819,7 @@ $_typescriptHostImport
           );
         }
         out.writeln(
-          '}, ${jsonEncode(type.getters.where((getter) => getter.cache && !module.sandboxRules.any((rule) => rule.operation == 'classes/${type.name}/getters/${getter.name}')).map((getter) => getter.name).toList())}, ${jsonEncode(type.supertypes)});',
+          '}, ${jsonEncode(type.getters.where((getter) => getter.cache && !module.sandboxRules.any((rule) => rule.operation == 'classes/${type.name}/getters/${getter.name}') && !module.permissionRules.any((rule) => rule.operation == 'classes/${type.name}/getters/${getter.name}')).map((getter) => getter.name).toList())}, ${jsonEncode(type.supertypes)});',
         );
         for (final constant in constants.enumNames) {
           final methods = module

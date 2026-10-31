@@ -97,6 +97,15 @@ export async function prepareApplication({
     id: text(id ?? metadata.flax?.id ?? metadata.name, 'id'),
     version: text(metadata.version, 'version'),
     entry: text(entry, 'entry'),
+    ...(metadata.flax?.name === undefined
+      ? {}
+      : { name: text(metadata.flax.name, 'name') }),
+    ...(metadata.flax?.defaultLocale === undefined
+      ? {}
+      : { defaultLocale: metadata.flax.defaultLocale }),
+    ...(metadata.flax?.permissions === undefined
+      ? {}
+      : { permissions: metadata.flax.permissions }),
     ...(modules === undefined
       ? {}
       : {
@@ -123,6 +132,7 @@ export async function prepareApplication({
       'Application entry must be a relative file outside reserved resource paths',
     );
   }
+  validatePermissions(manifest);
   validateModules(manifest);
   const source = resolve(project, assetsDirectory ?? 'assets');
   const output = resolve(project, outputDirectory);
@@ -187,6 +197,7 @@ export async function packApplication({ directory, outputFile = `${directory}.fl
     throw new Error('Invalid application manifest or entry');
   }
   text(manifest.id, 'id');
+  validatePermissions(manifest);
   validateModules(manifest);
   text(manifest.version, 'version');
   if (manifest.description !== undefined && typeof manifest.description !== 'string') {
@@ -268,6 +279,35 @@ export async function packApplication({ directory, outputFile = `${directory}.fl
     await rm(staging, { recursive: true, force: true });
   }
   return target;
+}
+
+function validatePermissions(manifest) {
+  const { permissions, defaultLocale } = manifest;
+  if (permissions === undefined) return;
+  const object = (value) =>
+    value !== null && typeof value === 'object' && !Array.isArray(value);
+  const locale = (value) =>
+    typeof value === 'string' && /^[a-zA-Z]{2,8}(?:-[a-zA-Z0-9]{1,8})*$/.test(value);
+  if (!object(permissions) || !locale(defaultLocale)) {
+    throw new Error('Application permissions require a map and a valid defaultLocale');
+  }
+  for (const [id, entry] of Object.entries(permissions)) {
+    if (
+      !/^[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*)+$/.test(id) ||
+      !object(entry) ||
+      !object(entry.purpose)
+    ) {
+      throw new Error(`Invalid permission declaration: ${id}`);
+    }
+    if (!Object.hasOwn(entry.purpose, defaultLocale)) {
+      throw new Error(`Permission ${id} is missing its default purpose translation`);
+    }
+    for (const [language, purpose] of Object.entries(entry.purpose)) {
+      if (!locale(language) || typeof purpose !== 'string' || !purpose.trim()) {
+        throw new Error(`Invalid permission purpose translation: ${id}/${language}`);
+      }
+    }
+  }
 }
 
 function validateModules(manifest) {

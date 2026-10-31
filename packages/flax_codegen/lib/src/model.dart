@@ -1330,6 +1330,31 @@ class FlaxCodegenSandboxRule {
   final List<FlaxCodegenParameterModel> parameters;
 }
 
+class FlaxCodegenPermissionDefinitionModel {
+  const FlaxCodegenPermissionDefinitionModel({
+    required this.id,
+    required this.title,
+    required this.authorization,
+    this.version = 1,
+  });
+  final String id, title, authorization;
+  final int version;
+}
+
+class FlaxCodegenPermissionRule {
+  const FlaxCodegenPermissionRule({
+    required this.owner,
+    required this.kind,
+    required this.name,
+    required this.operation,
+    required this.permissions,
+    this.receiver = false,
+  });
+  final String owner, kind, name, operation;
+  final List<FlaxCodegenPermissionDefinitionModel> permissions;
+  final bool receiver;
+}
+
 class FlaxCodegenModuleModel {
   const FlaxCodegenModuleModel({
     required this.name,
@@ -1357,6 +1382,7 @@ class FlaxCodegenModuleModel {
     this.jsxContentSlots = const {},
     this.stateVariants = const [],
     this.sandboxRules = const [],
+    this.permissionRules = const [],
     // Keep the public parameter name while deriving built-in capabilities.
     // ignore: prefer_initializing_formals
   }) : _requiredCapabilities = requiredCapabilities;
@@ -1371,6 +1397,7 @@ class FlaxCodegenModuleModel {
   final List<FlaxCodegenFunctionModel> functions;
   final List<FlaxCodegenExtensionModel> extensions;
   final List<FlaxCodegenSandboxRule> sandboxRules;
+  final List<FlaxCodegenPermissionRule> permissionRules;
 
   Iterable<FlaxCodegenFunctionModel> enumFunctions(
     FlaxCodegenClassModel type,
@@ -1429,6 +1456,7 @@ class FlaxCodegenModuleModel {
       ..._requiredCapabilities,
       'call-layouts',
       if (sandboxRules.isNotEmpty) 'sandbox-guards',
+      if (permissionRules.isNotEmpty) 'permission-guards',
     }.toList()..sort();
     bool callback(FlaxCodegenTypeRef type) =>
         type.kind == 'callback' && type.typeParameters.isNotEmpty ||

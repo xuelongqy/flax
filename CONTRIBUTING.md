@@ -112,6 +112,22 @@ validation because no Team ID exists. Receipts record this exception. Developer 
 distribution signing is not tested by this local gate; sign the app and its engine with
 the same real identity for distribution.
 
+Permission examples use the optional secure-storage plugin. On macOS its Data Protection
+Keychain needs Keychain Sharing and a valid development profile; ad hoc signatures
+cannot access it. Set `FLAX_MACOS_TEAM=<team-id>` for prepared example launchers and
+checks after configuring that team's profile in Xcode. The launcher configures its
+disposable project, signs embedded V8 libraries before sealing the engine framework, and
+preserves the checked-in signing settings. Library validation stays enabled for these
+signed hosts. It does not register devices or obtain profiles automatically. Hosts with
+their own secure-storage backend follow that backend's requirements.
+
+For native macOS file/UI acceptance, set `LUCI_CI=True` when running `check:ui`.
+Flutter's CI mode disables the host OS App Sandbox while preserving its other
+entitlements. Flax's module sandbox stays enabled. The current rooted file backend
+requires reopening `/dev/fd`, which macOS App Sandbox denies. This host limitation is
+independent of Data Protection Keychain; do not disable Flax isolation or change the
+file backend to unchecked path access to bypass it.
+
 For iOS arm64 simulator acceptance, build `flax_ios_debug_sim_arm64` with the verified
 static V8 jitless SDK and matching `flax_mac_debug_arm64` host tools in the fork. Set
 `FLAX_CHECK_TARGET=ios-simulator-arm64` and `FLAX_CHECK_DEVICE=<simulator-id>`, then run

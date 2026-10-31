@@ -1,9 +1,18 @@
 part of '../../bindings.dart';
 
 final _futureOwners = Expando<_PendingPromise>();
+final _permissionFutures = Expando<List<FlaxPermissionLease>>();
+final _selectedFileFutures = Expando<FlaxSelectedFile>();
 
 class _PendingFuture {
-  _PendingFuture(this.result, this.future);
+  _PendingFuture(this.result, this.future, this.beforeDelivery)
+    : permissions = _permissionFutures[future],
+      delivery = FlaxPermissionDelivery.of(future),
+      selectedFile = _selectedFileFutures[future];
+  final List<FlaxPermissionLease>? permissions;
+  final ({Set<FlaxPermissionDelivery> checks, bool errorsOnly})? delivery;
+  final FlaxSelectedFile? selectedFile;
+  final void Function(Object?)? beforeDelivery;
   final FlaxTypeRef result;
   // This GC edge must survive AOT even though Dart never reads the source.
   @pragma('vm:entry-point')
@@ -99,25 +108,28 @@ extension _AsyncCalls on _Session {
       if (pending == null) return const FlaxJsUndefined();
       _futureOwners[pending.completer.future] = null;
       if (!(args[2] as FlaxJsBoolean).value) {
-        final original = originalDartError(args[3]);
-        if (original != null) {
-          pending.completer.completeError(original.error, original.stack);
-          return const FlaxJsUndefined();
-        }
-        if (args[3] is! FlaxJsString ||
-            (args[4] is! FlaxJsString && args[4] is! FlaxJsNull)) {
+        try {
+          final original = originalDartError(args[3]);
+          if (original != null) {
+            pending.completer.completeError(original.error, original.stack);
+            return const FlaxJsUndefined();
+          }
+          if (args[3] is! FlaxJsString ||
+              (args[4] is! FlaxJsString && args[4] is! FlaxJsNull)) {
+            throw ArgumentError('Invalid Promise rejection');
+          }
+          final stack = args[4] is FlaxJsString
+              ? (args[4] as FlaxJsString).value
+              : '';
           pending.completer.completeError(
-            ArgumentError('Invalid Promise rejection'),
+            FlaxJsException((args[3] as FlaxJsString).value, jsStack: stack),
+            stack.isEmpty ? StackTrace.current : StackTrace.fromString(stack),
           );
-          return const FlaxJsUndefined();
+        } catch (error, stack) {
+          // The pending entry is already removed. Admission failure must settle
+          // its completer too, rather than abandon the converted JS Promise.
+          pending.completer.completeError(error, stack);
         }
-        final stack = args[4] is FlaxJsString
-            ? (args[4] as FlaxJsString).value
-            : '';
-        pending.completer.completeError(
-          FlaxJsException((args[3] as FlaxJsString).value, jsStack: stack),
-          stack.isEmpty ? StackTrace.current : StackTrace.fromString(stack),
-        );
         return const FlaxJsUndefined();
       }
       _completePromise(pending, args[3]);
@@ -202,9 +214,13 @@ extension _AsyncCalls on _Session {
     _promises.clear();
   }
 
-  FlaxJsValue futureResult(Future<Object?> future, FlaxTypeRef result) {
+  FlaxJsValue futureResult(
+    Future<Object?> future,
+    FlaxTypeRef result, {
+    void Function(Object?)? beforeDelivery,
+  }) {
     final id = _nextFuture++;
-    final pending = _PendingFuture(result, future);
+    final pending = _PendingFuture(result, future, beforeDelivery);
     _pending[id] = pending;
     if (closing) {
       pending.error = StateError('FlaxSessionClosed');
@@ -283,24 +299,37 @@ extension _AsyncCalls on _Session {
           final pending = entry.value;
           FlaxJsValue? result;
           try {
-            if (pending.error == null) {
-              result = pending.context == null
-                  ? memberResult(pending.value, pending.result)
-                  : pending.context!.run(
-                      () => memberResult(pending.value, pending.result),
-                    );
+            try {
+              pending.selectedFile?.requireActive();
+              for (final lease
+                  in pending.permissions ?? const <FlaxPermissionLease>[]) {
+                lease.requireActive();
+              }
+              final delivery = pending.delivery;
+              if (delivery != null &&
+                  (!delivery.errorsOnly || pending.error != null)) {
+                for (final check in delivery.checks) {
+                  check.requireActive();
+                }
+              }
+              if (pending.error == null) {
+                pending.beforeDelivery?.call(pending.value);
+                result = pending.context == null
+                    ? memberResult(pending.value, pending.result)
+                    : pending.context!.run(
+                        () => memberResult(pending.value, pending.result),
+                      );
+              }
+            } catch (error, stack) {
+              pending.error = error;
+              pending.stack = stack;
             }
-          } catch (error, stack) {
-            pending.error = error;
-            pending.stack = stack;
-          }
-          if (pending.error != null) {
-            result = exceptionResult(
-              pending.error!,
-              pending.stack ?? StackTrace.current,
-            );
-          }
-          try {
+            if (pending.error != null) {
+              result = exceptionResult(
+                pending.error!,
+                pending.stack ?? StackTrace.current,
+              );
+            }
             _releaseJs(
               helper('settleFuture').call([
                 FlaxJsNumber(entry.key.toDouble()),
@@ -309,6 +338,10 @@ extension _AsyncCalls on _Session {
               ]),
             );
           } finally {
+            for (final lease
+                in pending.permissions ?? const <FlaxPermissionLease>[]) {
+              lease.close();
+            }
             if (result != null) _releaseJs(result);
           }
         }

@@ -1,5 +1,24 @@
 # Standalone Flutter Host
 
+The default `lib/main.dart` initializes real secure storage for its trusted example
+approval. Before launching on macOS, configure a valid development signing profile and
+the private Keychain group in the shared
+[Apple host setup](../../packages/flax_secure_storage/README.md#apple-host-setup).
+Replace `<team-id>` with that configured team and retain these environment variables for
+the prepared launcher commands below:
+
+```sh
+export FLAX_MACOS_TEAM='<team-id>'
+export LUCI_CI=True
+dart run melos run standalone:run
+```
+
+`LUCI_CI=True` is the tested macOS file/UI configuration. It disables the host OS App
+Sandbox because the current rooted file backend requires `/dev/fd`; Flax's application
+sandbox remains enabled. See the
+[filesystem boundary](../../docs/architecture/sandbox.md) before using another host
+configuration.
+
 ## Native ESM example
 
 The alternate `lib/main_esm.dart` entry uses the same prepared host SDK and runtime. Its

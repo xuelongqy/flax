@@ -17,6 +17,12 @@ import 'package:flax_standalone/assets.dart';
 
 Future<void> applicationScenario(WidgetTester t) async {
   final builtin = FlaxPrefixedAssetBundle();
+  final permissionFixture = (await t.runAsync(
+    () async => FlaxTestPermissions.create(
+      manifest: (await FlaxManifest.load(builtin)).permissions!,
+    ),
+  ))!;
+  addTearDown(permissionFixture.close);
   final storageDirectory = await t.runAsync(
     () => Directory.systemTemp.createTemp('flax-standalone-storage-'),
   );
@@ -46,8 +52,8 @@ runApp(SizedBox());
     (() => {
       const blob = new Blob(['base']); const file = new File([blob], 'base.txt');
       const form = new FormData(); form.append('file', file);
-      return typeof fetch === 'undefined' && typeof Headers === 'undefined' &&
-        typeof Request === 'undefined' && typeof Response === 'undefined' &&
+      return typeof fetch === 'function' && typeof Headers === 'function' &&
+        typeof Request === 'function' && typeof Response === 'function' &&
         typeof localStorage === 'undefined' && typeof WebSocket === 'undefined' && typeof MessageEvent === 'function' &&
         form.get('file') === file && blob.size === 4 &&
         blob.stream() instanceof ReadableStream &&
@@ -62,6 +68,7 @@ runApp(SizedBox());
   expect(baseRuntime!.isDisposed, isTrue);
   await t.runAsync(
     () => app.startApplication(
+      permissions: permissionFixture.policy,
       storageDirectory: storageDirectory!.path,
       assetBundle: builtin,
     ),
@@ -165,6 +172,7 @@ runApp(SizedBox());
     await _pumpApplicationFrame(t);
     await t.runAsync(
       () => app.startApplication(
+        permissions: permissionFixture.policy,
         apiBaseUrl: 'http://127.0.0.1:${server!.port}/',
         storageDirectory: storageDirectory!.path,
         assetBundle: builtin,
@@ -373,6 +381,7 @@ runApp(SizedBox());
   });
   await t.runAsync(
     () => app.startApplication(
+      permissions: permissionFixture.policy,
       storageDirectory: storageDirectory!.path,
       applicationDirectory: sandbox!.directory,
     ),
@@ -395,6 +404,7 @@ runApp(SizedBox());
   for (var launch = 0; launch < 2; launch++) {
     await t.runAsync(
       () => app.startApplication(
+        permissions: permissionFixture.policy,
         storageDirectory: storageDirectory.path,
         packageFile: packageFile!,
         installationDirectory: installationDirectory,
@@ -450,6 +460,7 @@ runApp(SizedBox());
   await _pumpApplicationFrame(t);
   await t.runAsync(
     () => app.startApplication(
+      permissions: permissionFixture.policy,
       storageDirectory: storageDirectory.path,
       scriptFile: scriptFile!,
     ),
@@ -503,6 +514,7 @@ runApp(SizedBox());
       for (var launch = 0; launch < 2; launch++) {
         await t.runAsync(
           () => app.startApplication(
+            permissions: permissionFixture.policy,
             storageDirectory: storageDirectory.path,
             networkUri: Uri.parse(
               'http://127.0.0.1:${artifactServer!.port}/${format == FlaxRemoteFormat.javascript ? 'js' : 'package'}',

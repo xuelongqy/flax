@@ -23,8 +23,9 @@ void main() {
   late FlaxFilePolicy files;
 
   setUp(() async {
-    scratch = await Directory(Platform.environment['TMPDIR']!)
-        .createTemp('flax-sandbox-');
+    scratch = await Directory(
+      Platform.environment['TMPDIR'] ?? Directory.systemTemp.path,
+    ).createTemp('flax-sandbox-');
     sandbox = await FlaxSandbox.create(
       appId: 'test.reader',
       appsDirectory: Directory(p.join(scratch.path, 'apps')),
@@ -195,6 +196,7 @@ void main() {
       expect(await copy.readAsString(), 'value');
       final renamed = await copy.rename(p.join(sandbox.homePath, 'renamed'));
       expect(await files.areIdentical(original.path, renamed.path), isFalse);
+      expect(await files.areIdentical(renamed.path, renamed.path), isTrue);
       expect(
         files.directory(sandbox.homePath).delete(recursive: true),
         throwsA(isA<FlaxSandboxException>()),

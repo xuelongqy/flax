@@ -24,6 +24,38 @@ Both entrances use the shared appearance/FPS shell exactly once. The launcher bu
 application package and its host modules before preparing the Flutter project; no
 temporary project or manually copied script is required from the caller.
 
+## Permission playground
+
+The same standalone application has a **Permission playground** button; the aggregate
+gallery has a **Permissions** page. Its trusted Dart controls show localized declaration
+purposes before installation approval. Change network declaration/host allowance or the
+custom orders declaration, then approve or reload to compare results. Editing appId
+creates a separate module identity. Reload uses saved grants and does not silently
+approve changed declarations.
+
+**Request orders** prompts for module consent. **Load orders (Future)** and **Watch
+orders (Stream)** reuse that permission; revocation rejects pending results and ends the
+stream. Each watch call retains a small authorization token until revocation or Session
+close so final derived results remain checked; completed or cancelled subscriptions stop
+their timers. **Select File / Image.file** uses a native desktop picker and a revocable
+File backend. Its opaque path cannot recreate a grant. Closing/reloading the Session or
+revoking documents disables the File and its image cache. The desktop picker helper does
+not implement Android content URIs or iOS security-scoped documents; mobile hosts
+provide their own FlaxDocumentBackend.
+
+The demo uses the optional real Keychain/Keystore store, with no production memory
+fallback. On macOS the permission controls require Keychain Sharing and a valid signed
+development profile. Set `FLAX_MACOS_TEAM=<team-id>` when using the prepared launcher
+after configuring the profile in Xcode. Also set `LUCI_CI=True` for macOS file/UI runs:
+Flutter then disables the host OS App Sandbox, whose `/dev/fd` restrictions are
+incompatible with the current rooted file backend. Flax's own application sandbox stays
+enabled. The ordinary sandbox page does not need these permission controls. Widget tests
+inject an explicit test store; native integration exercises the platform backend. The
+custom example contains annotated business functions and a small handwritten binding
+module showing the generator's permission metadata. Guard generation across supported
+API forms is covered in flax_codegen tests. Host UI controls are for development and do
+not establish native widget-tree isolation from hostile modules.
+
 ## Try the boundaries
 
 1. Keep the default different appIds. Edit and save a note in each app, then use **Read

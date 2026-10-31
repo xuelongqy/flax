@@ -5,10 +5,17 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
+  late FlaxTestPermissions permissionFixture;
+  setUp(() async {
+    permissionFixture = await FlaxTestPermissions.create();
+  });
+  tearDown(() => permissionFixture.close());
   testWidgets('starts the flax package example', (tester) async {
     tester.platformDispatcher.platformBrightnessTestValue = Brightness.light;
     addTearDown(tester.platformDispatcher.clearPlatformBrightnessTestValue);
-    await tester.runAsync(app.startApplication);
+    await tester.runAsync(
+      () => app.startApplication(permissions: permissionFixture.policy),
+    );
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 20));
     await flaxTestWaitForViews(tester);

@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:test/test.dart';
@@ -142,6 +143,69 @@ int symbol_audit_length(const char *value) { return (int)strlen(value); }
           team.isEmpty,
         );
       }
+    },
+  );
+  test(
+    'macOS Keychain signing preserves existing entitlements and is idempotent',
+    () {
+      final example = Directory.systemTemp.createTempSync(
+        'flax-keychain-signing-',
+      );
+      addTearDown(() => example.deleteSync(recursive: true));
+      final project =
+          File('${example.path}/macos/Runner.xcodeproj/project.pbxproj')
+            ..parent.createSync(recursive: true)
+            ..writeAsStringSync(r'''
+CODE_SIGN_IDENTITY = "-";
+CODE_SIGN_STYLE = Manual;
+shellScript = "\"$FLUTTER_ROOT\"/packages/flutter_tools/bin/macos_assemble.sh embed\n";
+''');
+      final entitlements =
+          File('${example.path}/macos/Runner/DebugProfile.entitlements')
+            ..parent.createSync(recursive: true)
+            ..writeAsStringSync(
+              '<plist><dict><key>existing</key><true/></dict></plist>',
+            );
+      void configure() => selectExampleEngine(
+        Directory.current.path,
+        example.path,
+        'v8',
+        macosTeam: 'A123456789',
+      );
+      configure();
+      final configured = project.readAsStringSync();
+      final rights = entitlements.readAsStringSync();
+      configure();
+      expect(project.readAsStringSync(), configured);
+      expect(entitlements.readAsStringSync(), rights);
+      expect(configured, contains('DEVELOPMENT_TEAM = A123456789;'));
+      expect(configured, contains('CODE_SIGN_STYLE = Automatic;'));
+      final embed = jsonDecode(
+        RegExp(r'shellScript = ("(?:\\.|[^"\\])*");')
+            .firstMatch(configured)!
+            .group(1)!,
+      ) as String;
+      expect(embed, contains('macos_assemble.sh embed || exit \$?'));
+      expect(embed, contains(r'--sign "$EXPANDED_CODE_SIGN_IDENTITY"'));
+      expect(
+        embed.indexOf(r'--timestamp=none "$library"'),
+        lessThan(embed.indexOf(r'--timestamp=none "$framework"')),
+      );
+      expect(
+        rights,
+        contains(r'$(AppIdentifierPrefix)$(PRODUCT_BUNDLE_IDENTIFIER)'),
+      );
+      expect(rights, contains('<key>existing</key><true/>'));
+      expect(rights, isNot(contains('disable-library-validation')));
+      expect(
+        () => selectExampleEngine(
+          Directory.current.path,
+          example.path,
+          'v8',
+          macosTeam: 'invalid',
+        ),
+        throwsArgumentError,
+      );
     },
   );
   test(

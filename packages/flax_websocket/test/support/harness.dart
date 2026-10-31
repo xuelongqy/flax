@@ -12,12 +12,15 @@ final source = flaxTestFixtureSource(
 );
 Finder host(Object key) => flaxTestHost(key);
 
+late FlaxTestPermissions testPermissions;
+
 class Harness extends FlaxTestHarness {
   Harness()
     : super(
         createRuntime: createTestRuntime,
         source: source,
         bindings: registry,
+        permissions: testPermissions.policy,
       );
 
   Widget app({String? code}) => MaterialApp(

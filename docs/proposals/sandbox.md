@@ -1,5 +1,7 @@
 # Flax 沙箱与宿主权限设计：选择性拦截与同步 handler
 
+> 权限实现更新（2026-10-31）：应用清单声明、安装确认、运行时申请、国际化、权限注解与可选安全存储已接入，当前接口见[权限契约](../architecture/permissions.md)，能力目录见[应用权限提案](permissions.md)。这取代本文历史讨论中未声明网络默认放行、Wasm 默认允许和单 JS 入口的权限默认值。权限使用稳定 ID，多个 API 可复用同一定义；剪贴板在安装时披露，不增加 Flax 运行时弹窗。沙箱的 policyType、同步 handler、check/replace/deny 和已实现资源边界不变。
+>
 > 实现范围更新（2026-10-27）：本次落地文件系统、资源包、localStorage、binding
 > guard 与 JS FFI 隔离。**导航隔离按最新决定暂缓**；业务权限、Fetch/WebSocket
 > origins、remoteOrigins 和 Wasm 开关也留待权限设计。本提案中相关配置仍是后续设计，当前不提供
@@ -7,7 +9,7 @@
 > 或网络/模块 policy。已实现契约以[沙箱架构](../architecture/sandbox.md)为准。嵌套 Navigator 和 binding
 > handler 无法拦截所有原生 Widget 内部的根导航调用，当前数据沙箱不保证主项目路由隔离。
 
-状态：**资源隔离已实现，权限与导航仍为后续提案**。实现基线为 main
+状态：**资源隔离与权限机制已实现，导航仍暂缓**。下文保留历史设计中的示意接口、原始统计与未实现标记，不作为当前 API 使用文档。沙箱实现的原始基线为 main
 `8f123f3b9eec2bb60ec9e652f72d679478ce5189`。本次已提供类型化同步 guard、受限文件后端、应用资源包、localStorage 隔离、统一异常、主目录查询和 JS
 FFI 禁用。验证方式及平台限制见[实现契约](../architecture/sandbox.md#verification)。旧 API 统计仍保留其原始采集基线。
 

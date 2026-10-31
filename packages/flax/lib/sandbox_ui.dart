@@ -2,11 +2,15 @@
 library;
 
 import 'dart:io';
+import 'dart:async';
 import 'dart:ui' as ui;
 
 import 'package:flutter/widgets.dart';
+import 'package:flutter/foundation.dart';
 
 import 'sandbox.dart';
+
+part 'src/sandbox/selected_images.dart';
 
 final class FlaxAssetBundlePolicy {
   FlaxAssetBundlePolicy(this.bundle, this.scope);
@@ -284,7 +288,9 @@ FileImage sandboxFileImage(
 }) {
   p.requireFile(c.scope, file);
   // Flutter reads custom Files through readAsBytes, preserving rooted IO and caching.
-  return FileImage(file, scale: scale);
+  return file is FlaxSelectedFile
+      ? FlaxSelectedFileImage(file, scale: scale)
+      : FileImage(file, scale: scale);
 }
 
 ResizeImage sandboxResizeImage(
@@ -297,12 +303,38 @@ ResizeImage sandboxResizeImage(
   bool allowUpscaling = false,
 }) {
   checkSandboxImageProvider(c, p, imageProvider);
-  return ResizeImage(
-    imageProvider,
-    width: width,
-    height: height,
-    policy: policy,
-    allowUpscaling: allowUpscaling,
+  return _selectedImageFiles(imageProvider).isNotEmpty
+      ? _FlaxSelectedResizeImage(
+          imageProvider,
+          width: width,
+          height: height,
+          policy: policy,
+          allowUpscaling: allowUpscaling,
+        )
+      : ResizeImage(
+          imageProvider,
+          width: width,
+          height: height,
+          policy: policy,
+          allowUpscaling: allowUpscaling,
+        );
+}
+
+ImageProvider sandboxResizeIfNeeded(
+  FlaxSandboxContext c,
+  FlaxAssetBundlePolicy p,
+  int? cacheWidth,
+  int? cacheHeight,
+  ImageProvider provider,
+) {
+  checkSandboxImageProvider(c, p, provider);
+  if (cacheWidth == null && cacheHeight == null) return provider;
+  return sandboxResizeImage(
+    c,
+    p,
+    provider,
+    width: cacheWidth,
+    height: cacheHeight,
   );
 }
 

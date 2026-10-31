@@ -1,0 +1,4 @@
+format: 2
+dart:
+  entrypoint: package:flax_secure_storage/flax_secure_storage.dart
+capabilities: []

@@ -36,7 +36,7 @@ Future<List<Object>> _decodeBitmap(
 Future<Uint8List> _transformBitmap(Uint8List pixels, List<int> options) =>
     Isolate.run(() => CanvasDecoder.transformBitmap(pixels, options));
 
-final class FlaxCanvasPlugin implements FlaxPlugin {
+final class FlaxCanvasPlugin extends FlaxPlugin {
   const FlaxCanvasPlugin();
   @override
   String get id => 'flax.canvas';

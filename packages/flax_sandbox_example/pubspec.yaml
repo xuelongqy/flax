@@ -10,9 +10,12 @@ environment:
   flutter: '>=3.47.9'
 
 dependencies:
+  file_selector: 1.1.0
   flax: 0.0.0
   flax_engine_v8: 0.0.0
   flax_local_storage: 0.0.0
+  flax_permissions: 0.0.0
+  flax_secure_storage: 0.0.0
   flutter:
     sdk: flutter
   material_ui: 1.9.0

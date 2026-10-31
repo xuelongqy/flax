@@ -9,8 +9,12 @@ final bindings = FlaxBindingRegistry([flutterBindings]);
 
 Future<void> main() => startApplication();
 
-Future<void> startApplication({String? apiBaseUrl}) async {
+Future<void> startApplication({
+  String? apiBaseUrl,
+  FlaxPermissionPolicy? permissions,
+}) async {
   WidgetsFlutterBinding.ensureInitialized();
+  permissions ??= await approveTrustedExamplePermissions('example.websocket');
 
   Flax.moduleAssets = await FlaxModuleAssets.load(
     bundle: rootBundle,
@@ -22,6 +26,8 @@ Future<void> startApplication({String? apiBaseUrl}) async {
     FlaxExampleApp(
       title: 'WebSocket',
       child: FlaxView(
+        permissions: permissions,
+        permissionManifest: permissions.application.manifest,
         createRuntime: FlaxV8Engine.createRuntime,
         source: source,
         sourceUrl: 'flax:flax_websocket:example',

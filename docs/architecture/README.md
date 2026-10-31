@@ -37,6 +37,10 @@ standalone applications. Flutter owns widgets, layout, painting, and native reso
 Application JS may use only engine language features and the host APIs installed by the
 selected session plugins. Repository maintenance commands belong in `tool/`.
 
+[Module permissions](permissions.md) separate manifest approval, module consent and OS
+prerequisites. [Secure storage](secure-storage.md) keeps trusted records outside module
+reach without adding native storage dependencies to Core.
+
 ## Runtime path
 
 The implemented synchronous path is:

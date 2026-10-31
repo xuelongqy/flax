@@ -18,8 +18,11 @@ Native [runtime modules](docs/architecture/modules.md) load original JavaScript 
 JSON and Wasm from packaged files or HTTP(S). Every application entry is ESM. iOS
 jitless enables Wasm through DrumBrake. The optional
 [application data sandbox](docs/architecture/sandbox.md) isolates provided file APIs,
-assets and localStorage, and disables direct JS FFI. Permissions and navigation
-isolation remain deferred.
+assets and localStorage, and disables direct JS FFI.
+[Module permissions](docs/architecture/permissions.md) add manifest approval, runtime
+consent and revocable API access, with optional OS-permission and
+[secure-storage adapters](docs/architecture/secure-storage.md). Navigation isolation
+remains deferred.
 
 Core owns the public Flutter framework bindings. Material and Cupertino APIs come from
 the standalone `@flax/material-ui` and `@flax/cupertino-ui` packages with their host

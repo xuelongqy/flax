@@ -75,6 +75,23 @@ publicLibraries:
 sandbox:
   'version': 1
   'classes':
+    # Raw transports cannot preserve module origin checks or resource revocation.
+    HttpClient:
+      constructors:
+        '': 'deny'
+    Socket:
+      methods:
+        connect: 'deny'
+    SecureSocket:
+      methods:
+        connect: 'deny'
+        secure: 'deny'
+        secureServer: 'deny'
+    InternetAddress:
+      methods:
+        lookup: 'deny'
+      instanceMethods:
+        reverse: 'deny'
     'Directory':
       'constructors':
         '':

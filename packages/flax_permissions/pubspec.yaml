@@ -1,0 +1,19 @@
+name: flax_permissions
+description: Optional host OS permission queries for Flax module permissions.
+version: 0.0.0
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.13.2
+  flutter: '>=3.47.9'
+
+dependencies:
+  flax: 0.0.0
+  flutter:
+    sdk: flutter
+  permission_handler: 13.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter

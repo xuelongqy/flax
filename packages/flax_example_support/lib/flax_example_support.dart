@@ -4,6 +4,8 @@ import 'dart:ui' show FontFeature, FramePhase, FrameTiming;
 import 'package:flutter/scheduler.dart';
 import 'package:material_ui/material_ui.dart';
 
+export 'src/permissions.dart';
+
 /// Native example chrome; install once outside the application's FlaxViews.
 class FlaxExampleApp extends StatefulWidget {
   const FlaxExampleApp({

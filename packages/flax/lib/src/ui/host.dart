@@ -26,6 +26,10 @@ abstract final class Flax {
   static void registerPlugins(List<FlaxPlugin> plugins) {
     _plugins = _pluginSnapshot(plugins);
   }
+
+  /// Registers a host-owned backend before constructing permission consumers.
+  static void registerSecureStorage(FlaxSecureStorage storage) =>
+      FlaxSecureStorageRegistry.register(storage);
 }
 
 // Initialize one declaration group at a time; the synchronous path still consumes all.
@@ -87,6 +91,7 @@ abstract class FlaxPlugin {
   Set<String> get globals;
   Set<String> get jsModules => const {};
   List<FlaxBindingModule> get bindingModules => const [];
+  List<FlaxPermissionDefinition> get permissionDefinitions => const [];
   FlaxPluginInstance install(FlaxHostContext context);
 }
 
@@ -105,6 +110,11 @@ final class FlaxBindingPlugin extends FlaxPlugin {
   final List<FlaxBindingModule> bindingModules;
   @override
   final Set<String> jsModules;
+  @override
+  List<FlaxPermissionDefinition> get permissionDefinitions => [
+    for (final module in bindingModules)
+      for (final definitions in module.permissionGuards.values) ...definitions,
+  ];
   @override
   Set<String> get globals => const {};
   @override
@@ -133,6 +143,7 @@ abstract class FlaxPluginInstance {
 abstract class FlaxHostContext {
   String? get namespace;
   FlaxSandboxContext? get sandbox => null;
+  FlaxPermissionContext? get permissions => null;
 
   /// Session-private fonts with Flutter public/system fallback.
   ui.FlaxFontCollection? get fontCollection => null;
@@ -174,6 +185,8 @@ class _HostContext implements FlaxHostContext {
   @override
   FlaxSandboxContext? get sandbox => session.sandbox;
   @override
+  FlaxPermissionContext get permissions => session.permissions;
+  @override
   ui.FlaxFontCollection get fontCollection => session._fontResources.collection;
   @override
   FlaxJsRuntime get runtime => session.runtime;
@@ -202,7 +215,7 @@ class _HostContext implements FlaxHostContext {
         throw StateError('FlaxSessionClosed');
       }
       try {
-        return callback(receiver, arguments);
+        return session.permissions.run(() => callback(receiver, arguments));
       } finally {
         requestCheckpoint();
       }
@@ -401,6 +414,7 @@ class _BaseHostPlugin extends FlaxPlugin {
     'TextDecoderStream',
     'requestAnimationFrame',
     'cancelAnimationFrame',
+    'permissions',
   };
   @override
   FlaxPluginInstance install(FlaxHostContext context) {

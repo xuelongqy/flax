@@ -7,6 +7,8 @@ import 'package:crypto/crypto.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
+import '../permissions.dart';
+
 /// The response format is explicit because CDN URLs need not have an extension.
 enum FlaxRemoteFormat { javascript, package }
 
@@ -16,12 +18,15 @@ typedef FlaxDownloader = Future<FlaxDownloadResponse> Function(
 );
 
 class FlaxDownloadRequest {
-  FlaxDownloadRequest._(this.uri, this.headers, this.cancelled);
+  FlaxDownloadRequest._(this.uri, this.headers, this.cancelled, this.authorize);
   final Uri uri;
   final Map<String, String> headers;
 
   /// Completes when the owning View is removed or its input changes.
   final Future<void> cancelled;
+
+  /// Custom adapters must check every redirected target before contacting it.
+  final void Function(Uri uri)? authorize;
 }
 
 class FlaxDownloadResponse {
@@ -72,6 +77,7 @@ class FlaxNetworkOptions {
     String? expectedSha256,
     this.download,
     this.modules = false,
+    this.authorize,
     Directory? cacheDirectory,
     Directory? installationDirectory,
   }) : cacheDirectory = cacheDirectory?.absolute,
@@ -110,6 +116,7 @@ class FlaxNetworkOptions {
   final String? expectedSha256;
   final FlaxDownloader? download;
   final bool modules;
+  final void Function(Uri uri)? authorize;
   final Directory? cacheDirectory;
   final Directory? installationDirectory;
 
@@ -243,7 +250,15 @@ Future<FlaxDownloadedFile> downloadFlaxApplication(
     options.uri,
     Map.unmodifiable(headers),
     cancellation.future,
+    options.authorize,
   );
+  request.authorize?.call(request.uri);
+  if (request.authorize != null && request.headers['host'] != null) {
+    FlaxPermissionContext.checkHostHeader(
+      request.uri,
+      request.headers['host']!,
+    );
+  }
   final pending = Future<FlaxDownloadResponse>.sync(
     () => (options.download ?? _download)(request),
   );
@@ -268,6 +283,7 @@ Future<FlaxDownloadedFile> downloadFlaxApplication(
   try {
     cancellation.check();
     final finalUri = response.finalUri ?? cached?.finalUri ?? options.uri;
+    request.authorize?.call(finalUri);
     if (options.modules && response.finalUri == null) {
       throw const FormatException('Module downloader must provide finalUri');
     }
@@ -566,6 +582,7 @@ Future<FlaxDownloadResponse> _download(FlaxDownloadRequest request) async {
   unawaited(request.cancelled.then((_) => close()));
   try {
     for (var redirects = 0; redirects <= 5; redirects++) {
+      request.authorize?.call(uri);
       final outgoing = await client.getUrl(uri).timeout(_timeout);
       outgoing.followRedirects = false;
       for (final header in request.headers.entries) {

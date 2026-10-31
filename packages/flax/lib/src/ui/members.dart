@@ -323,18 +323,18 @@ extension _MemberCalls on _Session {
       );
       try {
         input.escape(this);
-        final result = callFontAwareFunction(
-          definition.id,
+        final result = _sandboxCall(
+          type,
+          'call',
+          '',
+          null,
           input.values,
-          () => _sandboxCall(
-            type,
-            'call',
-            '',
-            null,
+          () => callFontAwareFunction(
+            definition.id,
             input.values,
             () => definition.invoke(input.values),
-            resultType: definition.result,
           ),
+          resultType: definition.result,
         );
         return holdHostResult(memberResult(result, definition.result));
       } finally {
