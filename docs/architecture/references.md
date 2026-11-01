@@ -12,6 +12,12 @@ pass can finish without traversing the JS heap. Any unmarked target requires the
 V8/CppHeap fixed point. This uses current reachability, not a cached graph or an
 assumption that unchanged registrations imply unchanged references.
 
+When collect-all must finish an existing incremental cycle before an immediate
+fresh cycle, its first pass conservatively retains the bridge handles and drains
+Dart marking. The immediately following fresh pass performs exact joint tracing.
+This avoids repeating V8 work while preserving collect-all reclamation; ordinary
+single-pass collections and background-owner fallback keep their existing paths.
+
 Flutter idle notifications still check Dart ownership. JS work separately marks the heap
 for idle V8 collection, including discarded JS wrappers whose Dart targets remain alive.
 Ordinary V8 pressure collection and session cleanup continue to run.
