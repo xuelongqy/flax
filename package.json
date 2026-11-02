@@ -35,6 +35,8 @@
     "@flax/canvas-runtime": "workspace:*",
     "@flax/webgpu-runtime": "workspace:*",
     "@flax/material-ui-runtime": "workspace:*",
-    "@flax/cupertino-ui-runtime": "workspace:*"
+    "@flax/cupertino-ui-runtime": "workspace:*",
+    "@flax/video-player": "workspace:*",
+    "@flax/video-player-runtime": "workspace:*"
   }
 }

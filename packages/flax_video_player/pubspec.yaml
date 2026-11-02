@@ -1,0 +1,23 @@
+name: flax_video_player
+description: Generated video_player bindings for Flax.
+version: 0.0.0
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.13.2
+  flutter: '>=3.47.9'
+
+dependencies:
+  flax: 0.0.0
+  flutter:
+    sdk: flutter
+  video_player: 2.14.1
+  video_player_platform_interface: ^6.9.0
+
+dev_dependencies:
+  flax_codegen: 0.0.0
+  flax_engine_v8: 0.0.0
+  flax_test: 0.0.0
+  flutter_test:
+    sdk: flutter

@@ -39,6 +39,7 @@ melos:
     bindings:
       - packages/flax_material_ui
       - packages/flax_cupertino_ui
+      - packages/flax_video_player
     engines:
       - packages/flax_engine_v8
     tools:

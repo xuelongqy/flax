@@ -1,0 +1,9 @@
+/.dart_tool/
+/build/
+/example/
+/test/
+/integration_test/
+/js/
+bindings/*
+!bindings/manifest.json
+/tool/

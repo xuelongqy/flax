@@ -4,7 +4,7 @@
   "bootstrap": "assets/flax_modules/registry.js",
   "lock": {
     "manager": "pnpm",
-    "digest": "28cd206b581521e5e96e229caefc532da56b7e662f4aac45af42a75e01c48209"
+    "digest": "acd5ce22586693c2d3af91a55b99e16d2f097597d1cdf03229bf8cb043ac5309"
   },
   "modules": [
     {
@@ -36287,6 +36287,66 @@
       ],
       "subpaths": [
         "@flax/material-ui/index"
+      ]
+    },
+    {
+      "specifier": "@flax/video-player",
+      "owner": "@flax/video-player-runtime:dist/index.js",
+      "version": "0.0.0",
+      "artifact": "2e18d4c4fe30cf048e7bc4fb328c15f29184ff7dbcfe020444d484fea9496929",
+      "asset": "assets/flax_modules/_flax_video-player-2c676145fb82.js",
+      "package": "@flax/video-player-runtime",
+      "source": "dist/index.js",
+      "dependencies": {
+        "@flax/core/bindings": "0.0.0",
+        "@flax/dart/core": "0.0.0",
+        "@flax/dart/io": "0.0.0",
+        "@flax/dart/ui": "0.0.0",
+        "@flax/flutter/foundation": "0.0.0",
+        "@flax/flutter/painting": "0.0.0",
+        "@flax/flutter/widgets": "0.0.0"
+      },
+      "bindings": [
+        {
+          "moduleId": "flax.video/video",
+          "uiProtocol": 24,
+          "requiredCapabilities": [
+            "call-layouts",
+            "generic-member-views",
+            "instance-checks",
+            "native-navigation-objects",
+            "native-widget-proxies"
+          ],
+          "types": [
+            "flax.video/video#type:Caption",
+            "flax.video/video#type:ClosedCaption",
+            "flax.video/video#type:ClosedCaptionFile",
+            "flax.video/video#type:DataSourceType",
+            "flax.video/video#type:DurationRange",
+            "flax.video/video#type:SubRipCaptionFile",
+            "flax.video/video#type:VideoAudioTrack",
+            "flax.video/video#type:VideoFormat",
+            "flax.video/video#type:VideoPlayer",
+            "flax.video/video#type:VideoPlayerController",
+            "flax.video/video#type:VideoPlayerOptions",
+            "flax.video/video#type:VideoPlayerValue",
+            "flax.video/video#type:VideoPlayerWebOptions",
+            "flax.video/video#type:VideoPlayerWebOptionsControls",
+            "flax.video/video#type:VideoProgressColors",
+            "flax.video/video#type:VideoProgressIndicator",
+            "flax.video/video#type:VideoScrubber",
+            "flax.video/video#type:VideoTrack",
+            "flax.video/video#type:VideoViewType",
+            "flax.video/video#type:WebVTTCaptionFile"
+          ],
+          "functions": [
+            "flax.video/video#read:Caption.none",
+            "flax.video/video#read:VideoPlayerController.kUninitializedPlayerId"
+          ]
+        }
+      ],
+      "subpaths": [
+        "@flax/video-player/index"
       ]
     },
     {

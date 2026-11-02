@@ -17,6 +17,7 @@ each capability in its package-owned example; see the
 | Material UI    | `packages/flax_material_ui/example`     | Five collections, editing, selection, dialogs and routes                   |
 | Cupertino UI   | `packages/flax_cupertino_ui/example`    | Four collections, segmented controls, lists and overlays                   |
 | Canvas 2D      | `packages/flax_canvas/example`          | Palette changes and clearing a native drawing surface                      |
+| Video player   | `packages/flax_video_player/example`    | HTTPS trailer switching, playback, scrubbing, volume, looping and speed    |
 | Fetch          | `packages/flax/example`                 | Requests, response content and cancellation                                |
 | WebSocket      | `packages/flax_websocket/example`       | Connection state, messages and disconnecting                               |
 | Local storage  | `packages/flax_local_storage/example`   | Saved counter, notes and persistence across visits                         |
@@ -78,13 +79,13 @@ appearance and FPS disabled when the Dart shell is recreated.
 ## Verification
 
 `test/aggregate_test.dart` checks missing-plugin rejection, shared module identity, all
-nine entrances, state reset after remount, narrow layout and zero runtime handles at
-Session disposal, including an open dialog during unmount.
-`test/network_lifecycle_test.dart` repeats Fetch and WebSocket page exits and reentry,
-checks transport closure and callback removal, and verifies zero handles at Session
-disposal. Its observations use weak references so they do not retain departed pages.
-`integration_test/app_test.dart` follows the same gallery tour in a real macOS
-application and emits the `embedded-module-aggregate` receipt.
+entrances, state reset after remount, narrow layout and zero runtime handles at Session
+disposal, including an open dialog during unmount. `test/network_lifecycle_test.dart`
+repeats Fetch and WebSocket page exits and reentry, checks transport closure and
+callback removal, and verifies zero handles at Session disposal. Its observations use
+weak references so they do not retain departed pages. `integration_test/app_test.dart`
+follows the same gallery tour in a real macOS application and emits the
+`embedded-module-aggregate` receipt.
 
 Owner examples test their own controls. Material and Cupertino exercise their full
 listed collections at desktop and phone widths. Network examples use loopback servers;

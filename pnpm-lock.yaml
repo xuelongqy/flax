@@ -35,6 +35,12 @@ importers:
       '@flax/material-ui-runtime':
         specifier: workspace:*
         version: link:packages/flax_material_ui/js
+      '@flax/video-player':
+        specifier: workspace:*
+        version: link:packages/flax_video_player/js-types
+      '@flax/video-player-runtime':
+        specifier: workspace:*
+        version: link:packages/flax_video_player/js
       '@flax/webgpu-runtime':
         specifier: workspace:*
         version: link:packages/flax_webgpu/js
@@ -101,6 +107,9 @@ importers:
       '@flax/example-sandbox':
         specifier: workspace:*
         version: link:../../../packages/flax_sandbox_example/example/js
+      '@flax/example-video-player':
+        specifier: workspace:*
+        version: link:../../../packages/flax_video_player/example/js
       '@flax/example-websocket':
         specifier: workspace:*
         version: link:../../../packages/flax_websocket/example/js
@@ -119,6 +128,12 @@ importers:
       '@flax/material-ui-runtime':
         specifier: workspace:*
         version: link:../../../packages/flax_material_ui/js
+      '@flax/video-player':
+        specifier: workspace:*
+        version: link:../../../packages/flax_video_player/js-types
+      '@flax/video-player-runtime':
+        specifier: workspace:*
+        version: link:../../../packages/flax_video_player/js
       '@flax/websocket':
         specifier: workspace:*
         version: link:../../../packages/flax_websocket/js-types
@@ -624,6 +639,64 @@ importers:
       '@flax/local-storage-runtime':
         specifier: workspace:*
         version: link:../../../flax_local_storage/js
+
+  packages/flax_video_player/example/js:
+    dependencies:
+      '@flax/core':
+        specifier: workspace:*
+        version: link:../../../flax/js-types
+      '@flax/core-runtime':
+        specifier: workspace:*
+        version: link:../../../flax/js
+      '@flax/dart':
+        specifier: workspace:*
+        version: link:../../../flax_dart/js
+      '@flax/flutter':
+        specifier: workspace:*
+        version: link:../../../flax_flutter/js
+      '@flax/material-ui':
+        specifier: workspace:*
+        version: link:../../../flax_material_ui/js-types
+      '@flax/material-ui-runtime':
+        specifier: workspace:*
+        version: link:../../../flax_material_ui/js
+      '@flax/video-player':
+        specifier: workspace:*
+        version: link:../../js-types
+      '@flax/video-player-runtime':
+        specifier: workspace:*
+        version: link:../../js
+
+  packages/flax_video_player/js:
+    dependencies:
+      '@flax/core':
+        specifier: workspace:*
+        version: link:../../flax/js-types
+      '@flax/core-runtime':
+        specifier: workspace:*
+        version: link:../../flax/js
+      '@flax/dart':
+        specifier: workspace:*
+        version: link:../../flax_dart/js
+      '@flax/flutter':
+        specifier: workspace:*
+        version: link:../../flax_flutter/js
+    devDependencies:
+      '@flax/video-player':
+        specifier: workspace:*
+        version: link:../js-types
+
+  packages/flax_video_player/js-types:
+    dependencies:
+      '@flax/core':
+        specifier: workspace:*
+        version: link:../../flax/js-types
+      '@flax/dart':
+        specifier: workspace:*
+        version: link:../../flax_dart/js
+      '@flax/flutter':
+        specifier: workspace:*
+        version: link:../../flax_flutter/js
 
   packages/flax_webgpu/example/js:
     dependencies:

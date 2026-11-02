@@ -4,7 +4,9 @@ import 'package:flax_embedded/main.dart' as app;
 import 'package:flax_local_storage/flax_local_storage.dart';
 import 'package:flax_sandbox_example/flax_sandbox_example.dart';
 import 'package:flax_test/flax_test.dart';
+import 'package:flax_video_player_example/testing.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'support/gallery.dart';
@@ -13,10 +15,24 @@ import 'support/runtime_tracker.dart';
 void main() {
   late Directory storage;
   late String source;
+  late FlaxFakeVideoPlatform videoPlatform;
+
+  setUp(() {
+    videoPlatform = installGalleryVideoPlatform();
+  });
 
   setUpAll(() async {
     storage = await Directory.systemTemp.createTemp('flax-gallery-storage-');
     source = await app.loadAggregateSource(storageDirectory: storage.path);
+    final assets = await AssetManifest.loadFromAssetBundle(rootBundle);
+    expect(
+      assets.listAssets().where(
+        (asset) =>
+            asset.startsWith('packages/flax_video_player_example/') &&
+            asset.endsWith('.mp4'),
+      ),
+      isEmpty,
+    );
   });
   tearDownAll(() async {
     await FlaxLocalStoragePlugin.shutdown().timeout(
@@ -25,27 +41,32 @@ void main() {
     await storage.delete(recursive: true).timeout(const Duration(seconds: 10));
   });
 
-  testWidgets('missing optional plugins reject their module before use', (
-    tester,
-  ) async {
-    final errors = <Object>[];
-    await flaxTestPumpView(
+  for (final (pluginId, module) in [
+    ('flax.canvas', '@flax/canvas'),
+    ('flax.video-player', '@flax/video-player'),
+  ]) {
+    testWidgets('missing $pluginId rejects its module before use', (
       tester,
-      app.EmbeddedApp(
-        source: source,
-        sandboxDemoDirectory: '${storage.path}/sandbox-demo',
-        plugins: app.galleryPlugins
-            .where((plugin) => plugin.id != 'flax.canvas')
-            .toList(),
-        onFlaxError: (error, _) => errors.add(error),
-      ),
-    );
-    await tester.pump();
-    expect(errors, isNotEmpty);
-    expect(errors.single.toString(), contains('@flax/canvas'));
-    await tester.pumpWidget(const SizedBox.shrink());
-    await tester.pumpAndSettle();
-  });
+    ) async {
+      final errors = <Object>[];
+      await flaxTestPumpView(
+        tester,
+        app.EmbeddedApp(
+          source: source,
+          sandboxDemoDirectory: '${storage.path}/sandbox-demo',
+          plugins: app.galleryPlugins
+              .where((plugin) => plugin.id != pluginId)
+              .toList(),
+          onFlaxError: (error, _) => errors.add(error),
+        ),
+      );
+      await tester.pump();
+      expect(errors, isNotEmpty);
+      expect(errors.single.toString(), contains(module));
+      await tester.pumpWidget(const SizedBox.shrink());
+      await tester.pumpAndSettle();
+    });
+  }
 
   testWidgets('shared modules and recreated views start with clean state', (
     tester,
@@ -109,6 +130,19 @@ void main() {
       );
       await tester.pumpAndSettle();
       await exerciseGallery(tester);
+      await pumpGalleryUntil(
+        tester,
+        () => videoPlatform.disposed.length == videoPlatform.sources.length,
+      );
+      expect(videoPlatform.sources, isNotEmpty);
+      expect(
+        videoPlatform.sources.map((source) => source.uri),
+        everyElement(startsWith('https://download.blender.org/')),
+      );
+      expect(
+        videoPlatform.sources.map((source) => source.asset),
+        everyElement(isNull),
+      );
       tester.view.physicalSize = const Size(390, 844);
       await tester.pumpAndSettle();
       expect(find.text('Choose your playground'), findsOneWidget);

@@ -109,7 +109,9 @@ Removing a paired listener from a successfully disposed wrapper remains safe.
 
 Automatic binding may recognize a conventional synchronous `void dispose()` method so
 the explicit call receives this wrapper-revocation behavior without per-class
-configuration. Recognition does not make Flax the owner and never schedules disposal.
+configuration. Recognition does not make Flax the owner and never schedules disposal. An
+override returning a Future remains an ordinary asynchronous method; it does not inherit
+a parent's synchronous wrapper-revocation metadata.
 
 **Session close never disposes application objects.** It removes registered listeners,
 revokes callbacks, releases bridge references and destroys the engine after accepted

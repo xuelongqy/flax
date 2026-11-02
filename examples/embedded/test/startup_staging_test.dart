@@ -92,6 +92,7 @@ void main() {
     storage = await Directory.systemTemp.createTemp('flax-staged-gallery-');
   });
   setUp(() async {
+    installGalleryVideoPlatform();
     source = await gallery.loadAggregateSource(storageDirectory: storage.path);
     bindings = gallery.createEmbeddedBindings(
       sandboxDemoDirectory: '${storage.path}/sandbox-demo',

@@ -402,6 +402,24 @@ List<FlaxWorkspacePackage> discoverPackages(String root) {
   return packages;
 }
 
+/// Dart staging includes package-local examples without treating them as deliverables.
+List<FlaxWorkspacePackage> discoverDartPackages(String root) {
+  final packages = discoverPackages(root);
+  final names = packages.map((package) => package.name).toSet();
+  for (final owner in [...packages]) {
+    final file = File(p.join(owner.example.path, 'pubspec.yaml'));
+    if (!file.existsSync()) continue;
+    final name = readYamlFile(file)['name'];
+    if (name is! String || !_dartPackageNamePattern.hasMatch(name)) {
+      throw FormatException('Invalid Dart example package name', file.path);
+    }
+    if (!names.add(name)) throw StateError('Duplicate Dart package: $name');
+    packages.add(FlaxWorkspacePackage(name, owner.example));
+  }
+  packages.sort((left, right) => left.name.compareTo(right.name));
+  return packages;
+}
+
 List<FlaxNpmPackage> discoverNpmPackages(String root) {
   final result = <FlaxNpmPackage>[];
   final names = <String>{};
@@ -598,7 +616,7 @@ Set<String> packageDependencyClosure(
   bool includeDevDependencies = true,
 }) {
   final packages = {
-    for (final package in discoverPackages(root)) package.name: package,
+    for (final package in discoverDartPackages(root)) package.name: package,
   };
   final pending = roots.toList();
   final result = <String>{};

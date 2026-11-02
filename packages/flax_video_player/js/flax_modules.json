@@ -1,0 +1,52 @@
+{
+  "formatVersion": 2,
+  "package": "@flax/video-player-runtime",
+  "version": "0.0.0",
+  "modules": [
+    {
+      "specifier": "@flax/video-player",
+      "source": "dist/index.js",
+      "subpathRoot": "dist/generated/libraries/video_player",
+      "helperSubpaths": ["_bindings/video.__module"],
+      "bindings": [
+        {
+          "moduleId": "flax.video/video",
+          "uiProtocol": 24,
+          "requiredCapabilities": [
+            "call-layouts",
+            "generic-member-views",
+            "instance-checks",
+            "native-navigation-objects",
+            "native-widget-proxies"
+          ],
+          "types": [
+            "flax.video/video#type:Caption",
+            "flax.video/video#type:ClosedCaption",
+            "flax.video/video#type:ClosedCaptionFile",
+            "flax.video/video#type:DataSourceType",
+            "flax.video/video#type:DurationRange",
+            "flax.video/video#type:SubRipCaptionFile",
+            "flax.video/video#type:VideoAudioTrack",
+            "flax.video/video#type:VideoFormat",
+            "flax.video/video#type:VideoPlayer",
+            "flax.video/video#type:VideoPlayerController",
+            "flax.video/video#type:VideoPlayerOptions",
+            "flax.video/video#type:VideoPlayerValue",
+            "flax.video/video#type:VideoPlayerWebOptions",
+            "flax.video/video#type:VideoPlayerWebOptionsControls",
+            "flax.video/video#type:VideoProgressColors",
+            "flax.video/video#type:VideoProgressIndicator",
+            "flax.video/video#type:VideoScrubber",
+            "flax.video/video#type:VideoTrack",
+            "flax.video/video#type:VideoViewType",
+            "flax.video/video#type:WebVTTCaptionFile"
+          ],
+          "functions": [
+            "flax.video/video#read:Caption.none",
+            "flax.video/video#read:VideoPlayerController.kUninitializedPlayerId"
+          ]
+        }
+      ]
+    }
+  ]
+}

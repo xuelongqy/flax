@@ -24,6 +24,14 @@
         "../packages/flax_material_ui/js/src/generated/libraries/material/*"
       ],
       "@flax/cupertino-ui": ["../packages/flax_cupertino_ui/js/src/index.ts"],
+      "@flax/video-player": ["../packages/flax_video_player/js/src/index.ts"],
+      "@flax/video-player/dependencies/*": [
+        "../packages/flax_video_player/js/src/generated/dependencies/*",
+        "../packages/flax_video_player/js/src/generated/dependencies/*/index.ts"
+      ],
+      "@flax/video-player/*": [
+        "../packages/flax_video_player/js/src/generated/libraries/video_player/*"
+      ],
       "@flax/cupertino-ui/*": [
         "../packages/flax_cupertino_ui/js/src/generated/libraries/cupertino/*"
       ],
@@ -46,6 +54,7 @@
     "../packages/flax/js/src/flutter/generated/libraries/services/index.ts",
     "../packages/flax_material_ui/js/src/index.ts",
     "../packages/flax_cupertino_ui/js/src/index.ts",
+    "../packages/flax_video_player/js/src/index.ts",
     "../packages/flax/js/src/runtime/index.ts",
     "../packages/flax/js/src/runtime/assets.ts",
     "../packages/flax/js/src/runtime/bindings.ts",
@@ -67,6 +76,7 @@
     "../packages/flax/js/src/flutter/generated/libraries/*/index.ts",
     "../packages/flax/js/src/dart/generated/libraries/*/index.ts",
     "../packages/flax_material_ui/js/src/generated/**/*.ts",
-    "../packages/flax_cupertino_ui/js/src/generated/**/*.ts"
+    "../packages/flax_cupertino_ui/js/src/generated/**/*.ts",
+    "../packages/flax_video_player/js/src/generated/**/*.ts"
   ]
 }

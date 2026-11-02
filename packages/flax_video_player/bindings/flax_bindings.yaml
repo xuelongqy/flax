@@ -1,0 +1,12 @@
+format: 2
+name: video
+imports: [flax]
+library: package:video_player/video_player.dart
+automatic: true
+jsPackage: '@flax/video-player'
+dartOutput: lib/src/generated/video_player_bindings.g.dart
+tsOutput: js/src/generated/bindings.ts
+publicLibraries:
+  package:video_player/video_player.dart:
+    jsPackage: '@flax/video-player'
+    tsOutput: js/src/generated/libraries/video_player/index.ts

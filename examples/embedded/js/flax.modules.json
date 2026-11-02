@@ -34,6 +34,10 @@
       "package": "@flax/canvas-runtime"
     },
     {
+      "specifier": "@flax/video-player",
+      "package": "@flax/video-player-runtime"
+    },
+    {
       "specifier": "@flax/local-storage",
       "package": "@flax/local-storage-runtime"
     }

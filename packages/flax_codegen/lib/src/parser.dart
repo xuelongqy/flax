@@ -1258,7 +1258,18 @@ class FlaxCodegenBindingParser {
     }
 
     final selections = [...parents, own];
-    final disposers = selections.map((s) => s.disposeMethod).nonNulls.toSet();
+    // A subtype can legally replace void dispose() with Future<void> dispose().
+    // Keep that ordinary Future API without inheriting synchronous revocation.
+    final disposers = selections
+        .map((s) => s.disposeMethod)
+        .nonNulls
+        .where(
+          (name) =>
+              name == own.disposeMethod ||
+              element.thisType.lookUpMethod(name, element.library)?.returnType
+                  is VoidType,
+        )
+        .toSet();
     if (disposers.length > 1) {
       throw StateError('Conflicting inherited disposal: ${element.name}');
     }

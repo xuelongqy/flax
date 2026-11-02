@@ -1,0 +1,15 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "paths": {
+      "@flax/video-player": ["./src/index.ts"],
+      "@flax/video-player/dependencies/*": [
+        "./src/generated/dependencies/*",
+        "./src/generated/dependencies/*/index.ts"
+      ],
+      "@flax/video-player/*": ["./src/generated/libraries/video_player/*"]
+    }
+  }
+}

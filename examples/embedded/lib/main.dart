@@ -7,6 +7,7 @@ import 'package:flax_local_storage/flax_local_storage.dart';
 import 'package:flax_material_ui/flax_material_ui.dart';
 import 'package:flax_sandbox_example/flax_sandbox_example.dart';
 import 'package:flax_websocket/flax_websocket.dart';
+import 'package:flax_video_player/flax_video_player.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:material_ui/material_ui.dart' show TextButton;
@@ -24,6 +25,7 @@ final galleryPlugins = <FlaxPlugin>[
   const FlaxMaterialPlugin(),
   const FlaxCupertinoPlugin(),
   const FlaxCanvasPlugin(),
+  const FlaxVideoPlayerPlugin(),
   const FlaxLocalStoragePlugin(),
   FlaxWebSocketPlugin(
     baseUrl: const String.fromEnvironment(

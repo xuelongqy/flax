@@ -1,0 +1,16 @@
+format: 2
+dart:
+  entrypoint: package:flax_video_player/flax_video_player.dart
+javascript:
+  package: '@flax/video-player-runtime'
+  types: '@flax/video-player'
+  version: same
+  mode: runtime
+capabilities:
+  - bindings
+bindingNamespace: flax.video
+bindingDependencies:
+  generate: [video_player_platform_interface]
+registration:
+  bindings:
+    - videoBindings

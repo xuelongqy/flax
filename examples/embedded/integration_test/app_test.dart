@@ -56,7 +56,7 @@ void main() {
         'moduleComposition': true,
         'sharedHostModules': true,
         'sessionRecreation': true,
-        'ownerEntrances': 9,
+        'ownerEntrances': 10,
         'zeroHandlesAtDispose': true,
         'completed': true,
       };

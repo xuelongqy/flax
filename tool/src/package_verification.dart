@@ -47,13 +47,17 @@ void copyDartPackages(
   Directory targetRoot,
   List<String> names,
 ) {
+  final packages = {
+    for (final package in discoverDartPackages(root.path))
+      package.name: package,
+  };
   names = packageDependencyClosure(
     root.path,
     names,
     includeDevDependencies: false,
   ).toList()..sort();
   for (final name in names) {
-    final source = Directory(p.join(root.path, 'packages', name));
+    final source = packages[name]!.directory;
     final target = Directory(p.join(targetRoot.path, name))
       ..createSync(recursive: true);
     for (final directory in [
@@ -90,8 +94,11 @@ void copyDartPackages(
     if (changelog.existsSync()) {
       changelog.copySync(p.join(target.path, 'CHANGELOG.md'));
     }
-    File(p.join(source.path, 'flax_package.yaml'))
-        .copySync(p.join(target.path, 'flax_package.yaml'));
+    // Private examples have a Pub manifest, but no production delivery metadata.
+    final metadata = File(p.join(source.path, 'flax_package.yaml'));
+    if (metadata.existsSync()) {
+      metadata.copySync(p.join(target.path, 'flax_package.yaml'));
+    }
     final buildConfig = File(p.join(source.path, 'build.yaml'));
     if (buildConfig.existsSync()) {
       buildConfig.copySync(p.join(target.path, 'build.yaml'));

@@ -313,7 +313,9 @@ Future<void> withExample(
   }
   final temporary = Directory.systemTemp.createTempSync('flax-$engine-$kind-');
   try {
-    final known = {for (final package in discoverPackages(root)) package.name};
+    final known = {
+      for (final package in discoverDartPackages(root)) package.name,
+    };
     final selected = {
       ...(sourcePubspec['dependencies'] as Map).keys.cast<String>(),
       ...((sourcePubspec['dev_dependencies'] as Map?) ?? const {}).keys
@@ -411,7 +413,7 @@ Future<void> withPackageExample(
     'flax-$engine-${package.name}-example-',
   );
   try {
-    final known = {for (final item in discoverPackages(root)) item.name};
+    final known = {for (final item in discoverDartPackages(root)) item.name};
     final direct = {
       ...(sourcePubspec['dependencies'] as Map).keys.cast<String>(),
       ...((sourcePubspec['dev_dependencies'] as Map?) ?? const {}).keys

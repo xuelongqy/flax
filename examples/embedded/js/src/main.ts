@@ -1,4 +1,5 @@
 import { createCanvasExample } from '@flax/example-canvas/showcase';
+import { createVideoPlayerExample } from '@flax/example-video-player/showcase';
 import { createCoreExample } from '@flax/example-core/showcase';
 import { exampleColors, examplePalette, exampleKey, text } from '@flax/example-core/ui';
 import {
@@ -111,6 +112,16 @@ const examples = [
     tag: 'CONNECT',
     description: 'Send requests, inspect responses and cancel unfinished work.',
     create: createFetchExample,
+  },
+  {
+    id: 'video',
+    title: 'Video player',
+    mark: '▶',
+    color: 0xff526c92,
+    tag: 'NATIVE MEDIA',
+    description:
+      'Stream remote trailers, scrub the timeline and control native playback.',
+    create: createVideoPlayerExample,
   },
   {
     id: 'websocket',

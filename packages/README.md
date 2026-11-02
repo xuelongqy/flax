@@ -21,6 +21,7 @@ and native code together when those parts exist. An extension depends on `flax` 
 | [flax_webgpu](flax_webgpu/README.md)                   | Experimental standard JS WebGPU host backed by Dawn/Metal on macOS arm64                           |
 | [flax_ffi](flax_ffi/README.md)                         | Optional JS-only FFI package, native calls, memory and callbacks                                   |
 | [flax_ffi_codegen](flax_ffi_codegen/README.md)         | Optional Node development tool for C header definitions and resource bindings                      |
+| [flax_video_player](flax_video_player/README.md)       | Optional generated video_player bindings and native playback example                               |
 
 The core JavaScript package is `@flax/core`. Runtime signals use its root entry;
 Flutter, binding types, and host declarations use `/flutter`, `/bindings`, and `/host`.

@@ -46,6 +46,41 @@ void main() {
     return element;
   }
 
+  test('async overrides keep Future disposal without synchronous lifecycle metadata', () async {
+    final parser = FlaxCodegenBindingParser(repoRoot);
+    addTearDown(parser.dispose);
+    final proposal = await parser.proposeLibrary(
+      fixture('async_dispose.dart', const {}),
+    );
+    final module = await parser.parse(proposal.config);
+    final parent = module.classes.singleWhere(
+      (type) => type.name == 'SyncDisposable',
+    );
+    final child = module.classes.singleWhere(
+      (type) => type.name == 'AsyncDisposable',
+    );
+    expect(parent.disposeMethod, 'dispose');
+    expect(child.disposeMethod, isNull);
+    expect(child.capabilities, isNot(contains('Disposable')));
+    final dispose = child.methods.singleWhere(
+      (method) => method.instance && method.name == 'dispose',
+    );
+    expect(dispose.result.kind, 'future');
+    expect(dispose.result.item!.kind, 'void');
+    await expectLater(
+      parser.parse(
+        fixture('async_dispose.dart', const {
+          'AsyncDisposable': FlaxCodegenClassSelection(
+            {},
+            instanceMethods: {'dispose': []},
+            disposeMethod: 'dispose',
+          ),
+        }),
+      ),
+      throwsStateError,
+    );
+  });
+
   test(
     'instance method overrides trim inferred lifecycle capabilities only',
     () async {

@@ -131,6 +131,54 @@ capabilities: [codegen]
     );
   });
 
+  test('staging retains private example dependencies and their assets', () {
+    final owner = package('flax_media');
+    final consumer = package(
+      'flax_gallery',
+      dependencies: ['flax_media_example'],
+    );
+    for (final item in [owner, consumer]) {
+      _write(item.directory, 'README.md', '# ${item.name}\n');
+      _write(item.directory, 'lib/${item.name}.dart', 'library;\n');
+    }
+    _write(owner.example, 'pubspec.yaml', '''
+name: flax_media_example
+publish_to: none
+resolution: workspace
+dependencies:
+  flax_media: 0.0.0
+flutter:
+  assets: [assets/]
+''');
+    _write(owner.example, 'README.md', '# Media example\n');
+    _write(owner.example, 'lib/main.dart', 'void main() {}\n');
+    _write(owner.example, 'assets/clip.txt', 'fixture asset');
+    final target = Directory('${temporary.path}/staged/packages');
+    copyDartPackages(temporary, target, [consumer.name]);
+    expect(
+      File('${target.path}/flax_media_example/assets/clip.txt')
+          .readAsStringSync(),
+      'fixture asset',
+    );
+    final staged = readYamlFile(
+      File('${target.path}/flax_media_example/pubspec.yaml'),
+    );
+    expect(staged, isNot(contains('resolution')));
+    expect((staged['dependencies'] as Map)['flax_media'], {
+      'path': '../flax_media',
+    });
+    final gallery = readYamlFile(
+      File('${target.path}/${consumer.name}/pubspec.yaml'),
+    );
+    expect((gallery['dependencies'] as Map)['flax_media_example'], {
+      'path': '../flax_media_example',
+    });
+    expect(
+      discoverPackages(temporary.path).map((item) => item.name),
+      isNot(contains('flax_media_example')),
+    );
+  });
+
   test('launch preparation builds only the selected package example', () async {
     final material = package('flax_material_ui');
     _write(material.example, 'pubspec.yaml', _flutterPubspec('v8'));

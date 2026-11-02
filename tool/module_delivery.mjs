@@ -160,6 +160,25 @@ const targets = [
     sourceFor: (specifier) => uiSource(specifier, 'cupertino'),
   },
   {
+    packageDirectory: 'packages/flax_video_player/js',
+    manifestPath: 'packages/flax_video_player/bindings/manifest.json',
+    sourceFor: (specifier) => {
+      const main = specifier === '@flax/video-player';
+      const dependency =
+        specifier === '@flax/video-player/dependencies/video_player_platform_interface';
+      if (!main && !dependency) {
+        throw new Error(`Unexpected video_player module: ${specifier}`);
+      }
+      const subpathRoot = main
+        ? 'dist/generated/libraries/video_player'
+        : 'dist/generated/dependencies/video_player_platform_interface';
+      return {
+        source: main ? 'dist/index.js' : `${subpathRoot}/index.js`,
+        subpathRoot,
+      };
+    },
+  },
+  {
     packageDirectory: 'packages/flax_webgpu/js',
     sourceFor: () => {
       throw new Error('Unexpected WebGPU binding module');
