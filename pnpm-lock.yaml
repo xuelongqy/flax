@@ -8,6 +8,12 @@ importers:
 
   .:
     devDependencies:
+      '@flax/audioplayers':
+        specifier: workspace:*
+        version: link:packages/flax_audioplayers/js-types
+      '@flax/audioplayers-runtime':
+        specifier: workspace:*
+        version: link:packages/flax_audioplayers/js
       '@flax/canvas-runtime':
         specifier: workspace:*
         version: link:packages/flax_canvas/js
@@ -68,6 +74,12 @@ importers:
 
   examples/embedded/js:
     dependencies:
+      '@flax/audioplayers':
+        specifier: workspace:*
+        version: link:../../../packages/flax_audioplayers/js-types
+      '@flax/audioplayers-runtime':
+        specifier: workspace:*
+        version: link:../../../packages/flax_audioplayers/js
       '@flax/canvas':
         specifier: workspace:*
         version: link:../../../packages/flax_canvas/js-types
@@ -89,6 +101,9 @@ importers:
       '@flax/dart':
         specifier: workspace:*
         version: link:../../../packages/flax_dart/js
+      '@flax/example-audioplayers':
+        specifier: workspace:*
+        version: link:../../../packages/flax_audioplayers/example/js
       '@flax/example-canvas':
         specifier: workspace:*
         version: link:../../../packages/flax_canvas/example/js
@@ -266,6 +281,64 @@ importers:
       web-streams-polyfill:
         specifier: 4.3.0
         version: 4.3.0
+
+  packages/flax_audioplayers/example/js:
+    dependencies:
+      '@flax/audioplayers':
+        specifier: workspace:*
+        version: link:../../js-types
+      '@flax/audioplayers-runtime':
+        specifier: workspace:*
+        version: link:../../js
+      '@flax/core':
+        specifier: workspace:*
+        version: link:../../../flax/js-types
+      '@flax/core-runtime':
+        specifier: workspace:*
+        version: link:../../../flax/js
+      '@flax/dart':
+        specifier: workspace:*
+        version: link:../../../flax_dart/js
+      '@flax/flutter':
+        specifier: workspace:*
+        version: link:../../../flax_flutter/js
+      '@flax/material-ui':
+        specifier: workspace:*
+        version: link:../../../flax_material_ui/js-types
+      '@flax/material-ui-runtime':
+        specifier: workspace:*
+        version: link:../../../flax_material_ui/js
+
+  packages/flax_audioplayers/js:
+    dependencies:
+      '@flax/core':
+        specifier: workspace:*
+        version: link:../../flax/js-types
+      '@flax/core-runtime':
+        specifier: workspace:*
+        version: link:../../flax/js
+      '@flax/dart':
+        specifier: workspace:*
+        version: link:../../flax_dart/js
+      '@flax/flutter':
+        specifier: workspace:*
+        version: link:../../flax_flutter/js
+    devDependencies:
+      '@flax/audioplayers':
+        specifier: workspace:*
+        version: link:../js-types
+
+  packages/flax_audioplayers/js-types:
+    dependencies:
+      '@flax/core':
+        specifier: workspace:*
+        version: link:../../flax/js-types
+      '@flax/dart':
+        specifier: workspace:*
+        version: link:../../flax_dart/js
+      '@flax/flutter':
+        specifier: workspace:*
+        version: link:../../flax_flutter/js
 
   packages/flax_build/js:
     dependencies:

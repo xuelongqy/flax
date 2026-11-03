@@ -38,6 +38,10 @@
       "package": "@flax/video-player-runtime"
     },
     {
+      "specifier": "@flax/audioplayers",
+      "package": "@flax/audioplayers-runtime"
+    },
+    {
       "specifier": "@flax/local-storage",
       "package": "@flax/local-storage-runtime"
     }

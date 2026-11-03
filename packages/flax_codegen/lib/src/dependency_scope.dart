@@ -83,6 +83,22 @@ extension FlaxCodegenDependencyScope on FlaxCodegenBindingParser {
         })
           ?_sourcePackage(library),
     };
+    final publicSourceLibraries =
+        <String>{
+            for (final config in configs)
+              if (config.sources == null) ...{
+                config.library,
+                ...config.additionalLibraries,
+                ...config.publicLibraries.keys,
+              },
+          }.where((library) {
+            final uri = Uri.tryParse(library);
+            return uri != null &&
+                uri.scheme == 'package' &&
+                uri.pathSegments.length >= 2 &&
+                !uri.pathSegments.skip(1).contains('src');
+          }).toList()
+          ..sort();
     for (final package in generate) {
       final root = packageRoots[package];
       if (root == null) {
@@ -92,13 +108,18 @@ extension FlaxCodegenDependencyScope on FlaxCodegenBindingParser {
           !Directory(p.join(root, 'lib')).existsSync()) {
         throw StateError('Missing dependency library: $package');
       }
-      final uris = await _publicLibraryUris(package, p.join(root, 'lib'));
+      final uris = <String>{
+        // Prefer dependency-owned carriers; public source reexports are fallbacks.
+        ...await _publicLibraryUris(package, p.join(root, 'lib')),
+        ...publicSourceLibraries,
+      };
       for (final uri in uris) {
         final result = await _libraryByUri(uri);
         if (result is! LibraryElementResult) continue;
         for (final element
             in result.element.exportNamespace.definedNames2.values) {
           if (element is! InterfaceElement ||
+              element.isPrivate ||
               _autoHidden(element) ||
               _sourcePackage(element.library.uri.toString()) != package) {
             continue;

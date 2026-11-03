@@ -1,4 +1,5 @@
 import 'package:flax/flax.dart';
+import 'package:flax_audioplayers/flax_audioplayers.dart';
 import 'package:flax_canvas/flax_canvas.dart';
 import 'package:flax_cupertino_ui/flax_cupertino_ui.dart';
 import 'package:flax_embedded/engine.dart';
@@ -26,6 +27,7 @@ final galleryPlugins = <FlaxPlugin>[
   const FlaxCupertinoPlugin(),
   const FlaxCanvasPlugin(),
   const FlaxVideoPlayerPlugin(),
+  const FlaxAudioplayersPlugin(),
   const FlaxLocalStoragePlugin(),
   FlaxWebSocketPlugin(
     baseUrl: const String.fromEnvironment(

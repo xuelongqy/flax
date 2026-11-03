@@ -93,6 +93,7 @@ void main() {
   });
   setUp(() async {
     installGalleryVideoPlatform();
+    installGalleryAudioPlatform();
     source = await gallery.loadAggregateSource(storageDirectory: storage.path);
     bindings = gallery.createEmbeddedBindings(
       sandboxDemoDirectory: '${storage.path}/sandbox-demo',

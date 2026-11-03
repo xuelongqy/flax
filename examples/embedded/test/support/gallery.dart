@@ -1,4 +1,6 @@
 import 'package:flax_local_storage/flax_local_storage.dart';
+import 'package:audioplayers_platform_interface/audioplayers_platform_interface.dart';
+import 'package:flax_audioplayers_example/testing.dart';
 import 'package:flax_sandbox_example/flax_sandbox_example.dart';
 import 'package:flax_test/flax_test.dart';
 import 'package:flax_video_player_example/testing.dart';
@@ -14,6 +16,20 @@ FlaxFakeVideoPlatform installGalleryVideoPlatform() {
   final platform = FlaxFakeVideoPlatform();
   VideoPlayerPlatform.instance = platform;
   addTearDown(() => VideoPlayerPlatform.instance = previous);
+  return platform;
+}
+
+/// Audio has separate player/global platforms; native integration never swaps them.
+FlaxFakeAudioPlatform installGalleryAudioPlatform() {
+  final previous = AudioplayersPlatformInterface.instance;
+  final previousGlobal = GlobalAudioplayersPlatformInterface.instance;
+  final platform = FlaxFakeAudioPlatform();
+  AudioplayersPlatformInterface.instance = platform;
+  GlobalAudioplayersPlatformInterface.instance = FlaxFakeGlobalAudioPlatform();
+  addTearDown(() {
+    AudioplayersPlatformInterface.instance = previous;
+    GlobalAudioplayersPlatformInterface.instance = previousGlobal;
+  });
   return platform;
 }
 
@@ -37,6 +53,7 @@ Future<void> exerciseGallery(WidgetTester tester) async {
     ('fetch', 'Ask. Receive. Explore.'),
     ('video', 'HTTPS stream · H.264 / AAC · 480 × 270'),
     ('websocket', 'A conversation, in real time.'),
+    ('audio', 'HTTPS audio · Native audioplayers'),
     ('storage', 'A little memory goes a long way.'),
     ('sandbox', 'A home of their own.'),
     ('permissions', 'Approve manifest & run'),
@@ -47,9 +64,9 @@ Future<void> exerciseGallery(WidgetTester tester) async {
     await tapGallery(
       tester,
       find.byKey(ValueKey('open-${entry.$1}')),
-      settle: entry.$1 != 'video',
+      settle: entry.$1 != 'video' && entry.$1 != 'audio',
     );
-    if (entry.$1 == 'video') {
+    if (entry.$1 == 'video' || entry.$1 == 'audio') {
       await pumpGalleryUntil(
         tester,
         () => find.text(entry.$2).evaluate().isNotEmpty,
@@ -169,6 +186,42 @@ Future<void> exerciseGallery(WidgetTester tester) async {
         await tapGallery(tester, find.text('Store +1'));
         expect(find.text('Stored: 1'), findsOneWidget);
         await waitGalleryIO(tester, FlaxLocalStoragePlugin.flush());
+      case 'audio':
+        String audioText(String key) {
+          final finder = find.byKey(ValueKey(key));
+          return finder.evaluate().isEmpty
+              ? ''
+              : tester.widget<Text>(finder.last).data ?? '';
+        }
+        await pumpGalleryUntil(
+          tester,
+          () => audioText('audio-status') == 'Paused',
+          timeout: const Duration(seconds: 30),
+        );
+        expect(audioText('audio-time'), isNot('0:00 / 0:00'));
+        await tapGallery(
+          tester,
+          find.byKey(const ValueKey('audio-toggle')),
+          settle: false,
+        );
+        await pumpGalleryUntil(
+          tester,
+          () =>
+              audioText('audio-status') == 'Playing' &&
+              !audioText('audio-time').startsWith('0:00 / '),
+          timeout: const Duration(seconds: 15),
+        );
+        await tapGallery(
+          tester,
+          find.byKey(const ValueKey('audio-source-song-2')),
+          settle: false,
+        );
+        await pumpGalleryUntil(
+          tester,
+          () => audioText('audio-status') == 'Paused',
+          timeout: const Duration(seconds: 30),
+        );
+        expect(audioText('audio-time'), startsWith('0:00 / '));
       case 'sandbox':
         await pumpGalleryUntil(
           tester,

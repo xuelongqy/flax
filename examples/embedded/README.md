@@ -18,6 +18,7 @@ each capability in its package-owned example; see the
 | Cupertino UI   | `packages/flax_cupertino_ui/example`    | Four collections, segmented controls, lists and overlays                   |
 | Canvas 2D      | `packages/flax_canvas/example`          | Palette changes and clearing a native drawing surface                      |
 | Video player   | `packages/flax_video_player/example`    | HTTPS trailer switching, playback, scrubbing, volume, looping and speed    |
+| Audio player   | `packages/flax_audioplayers/example`    | HTTPS music, source switching, seeking, volume, looping and speed          |
 | Fetch          | `packages/flax/example`                 | Requests, response content and cancellation                                |
 | WebSocket      | `packages/flax_websocket/example`       | Connection state, messages and disconnecting                               |
 | Local storage  | `packages/flax_local_storage/example`   | Saved counter, notes and persistence across visits                         |

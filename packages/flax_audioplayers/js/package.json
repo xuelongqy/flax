@@ -1,0 +1,42 @@
+{
+  "name": "@flax/audioplayers-runtime",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Generated audioplayers binding delivery for Flax.",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./flax_modules.json": "./flax_modules.json",
+    "./dependencies/*": {
+      "types": [
+        "./dist/generated/dependencies/*.d.ts",
+        "./dist/generated/dependencies/*/index.d.ts"
+      ]
+    },
+    "./*": {
+      "types": "./dist/generated/libraries/audioplayers/*.d.ts"
+    }
+  },
+  "files": [
+    "dist/index.*",
+    "dist/generated",
+    "flax_modules.json",
+    "README.md"
+  ],
+  "scripts": {
+    "typecheck": "tsc --project tsconfig.npm.json --noEmit",
+    "build": "node --eval \"import { rmSync } from 'node:fs'; rmSync('dist', { recursive: true, force: true })\" && tsc --project tsconfig.npm.json"
+  },
+  "dependencies": {
+    "@flax/core": "workspace:*",
+    "@flax/dart": "workspace:*",
+    "@flax/flutter": "workspace:*",
+    "@flax/core-runtime": "workspace:*"
+  },
+  "devDependencies": {
+    "@flax/audioplayers": "workspace:*"
+  }
+}

@@ -114,6 +114,7 @@ for (const [owner, label] of [
   ['flax_material_ui', '@flax/material-ui'],
   ['flax_cupertino_ui', '@flax/cupertino-ui'],
   ['flax_video_player', '@flax/video-player'],
+  ['flax_audioplayers', '@flax/audioplayers'],
 ]) {
   const emitted = join(build, 'packages', owner, 'js', 'src');
   targets.push([emitted, join(root, 'packages', owner, 'js-types', 'types'), label]);

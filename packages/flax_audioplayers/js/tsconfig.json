@@ -1,0 +1,15 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "paths": {
+      "@flax/audioplayers": ["./src/index.ts"],
+      "@flax/audioplayers/dependencies/*": [
+        "./src/generated/dependencies/*",
+        "./src/generated/dependencies/*/index.ts"
+      ],
+      "@flax/audioplayers/*": ["./src/generated/libraries/audioplayers/*"]
+    }
+  }
+}

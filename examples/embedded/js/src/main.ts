@@ -1,5 +1,6 @@
 import { createCanvasExample } from '@flax/example-canvas/showcase';
 import { createVideoPlayerExample } from '@flax/example-video-player/showcase';
+import { createAudioPlayerExample } from '@flax/example-audioplayers/showcase';
 import { createCoreExample } from '@flax/example-core/showcase';
 import { exampleColors, examplePalette, exampleKey, text } from '@flax/example-core/ui';
 import {
@@ -131,6 +132,15 @@ const examples = [
     tag: 'REAL TIME',
     description: 'Open a connection and exchange messages with an echo server.',
     create: createWebSocketExample,
+  },
+  {
+    id: 'audio',
+    title: 'Audio player',
+    mark: '♫',
+    color: 0xff896c43,
+    tag: 'NATIVE AUDIO',
+    description: 'Stream music, switch sources and control native audio playback.',
+    create: createAudioPlayerExample,
   },
   {
     id: 'storage',

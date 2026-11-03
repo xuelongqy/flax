@@ -1,0 +1,84 @@
+{
+  "formatVersion": 2,
+  "package": "@flax/audioplayers-runtime",
+  "version": "0.0.0",
+  "modules": [
+    {
+      "specifier": "@flax/audioplayers",
+      "source": "dist/index.js",
+      "subpathRoot": "dist/generated/libraries/audioplayers",
+      "helperSubpaths": ["_bindings/audio.__module"],
+      "bindings": [
+        {
+          "moduleId": "flax.audio/audio",
+          "uiProtocol": 24,
+          "requiredCapabilities": [
+            "call-layouts",
+            "generic-member-views",
+            "instance-checks",
+            "native-navigation-objects",
+            "native-widget-proxies"
+          ],
+          "types": [
+            "flax.audio/audio#type:AVAudioSessionCategory",
+            "flax.audio/audio#type:AVAudioSessionOptions",
+            "flax.audio/audio#type:AndroidAudioFocus",
+            "flax.audio/audio#type:AndroidAudioMode",
+            "flax.audio/audio#type:AndroidContentType",
+            "flax.audio/audio#type:AndroidUsageType",
+            "flax.audio/audio#type:AssetSource",
+            "flax.audio/audio#type:AudioCache",
+            "flax.audio/audio#type:AudioContext",
+            "flax.audio/audio#type:AudioContextAndroid",
+            "flax.audio/audio#type:AudioContextConfig",
+            "flax.audio/audio#type:AudioContextConfigFocus",
+            "flax.audio/audio#type:AudioContextConfigRoute",
+            "flax.audio/audio#type:AudioContextIOS",
+            "flax.audio/audio#type:AudioEvent",
+            "flax.audio/audio#type:AudioEventType",
+            "flax.audio/audio#type:AudioLogLevel",
+            "flax.audio/audio#type:AudioLogger",
+            "flax.audio/audio#type:AudioPlayer",
+            "flax.audio/audio#type:AudioPlayerException",
+            "flax.audio/audio#type:AudioPool",
+            "flax.audio/audio#type:BytesSource",
+            "flax.audio/audio#type:DeviceFileSource",
+            "flax.audio/audio#type:FramePositionUpdater",
+            "flax.audio/audio#type:GlobalAudioEvent",
+            "flax.audio/audio#type:GlobalAudioEventType",
+            "flax.audio/audio#type:GlobalAudioScope",
+            "flax.audio/audio#type:PlayerMode",
+            "flax.audio/audio#type:PlayerState",
+            "flax.audio/audio#type:PositionUpdater",
+            "flax.audio/audio#type:ReleaseMode",
+            "flax.audio/audio#type:Source",
+            "flax.audio/audio#type:TimerPositionUpdater",
+            "flax.audio/audio#type:UrlSource"
+          ],
+          "functions": [
+            "flax.audio/audio#function:AndroidAudioFocus.fromInt%3Afactory",
+            "flax.audio/audio#function:AndroidAudioFocus.value%3Aget",
+            "flax.audio/audio#function:AndroidAudioMode.fromInt%3Afactory",
+            "flax.audio/audio#function:AndroidAudioMode.value%3Aget",
+            "flax.audio/audio#function:AndroidContentType.fromInt%3Afactory",
+            "flax.audio/audio#function:AndroidContentType.value%3Aget",
+            "flax.audio/audio#function:AndroidUsageType.fromInt%3Afactory",
+            "flax.audio/audio#function:AndroidUsageType.value%3Aget",
+            "flax.audio/audio#function:AudioCache.instance%3D",
+            "flax.audio/audio#function:AudioLogLevel.compareTo%3Acall",
+            "flax.audio/audio#function:AudioLogLevel.fromInt%3Afactory",
+            "flax.audio/audio#function:AudioLogLevel.level%3Aget",
+            "flax.audio/audio#function:AudioLogger.logLevel%3D",
+            "flax.audio/audio#function:AudioPlayer.preparationTimeout%3D",
+            "flax.audio/audio#function:AudioPlayer.seekingTimeout%3D",
+            "flax.audio/audio#read:AudioCache.instance",
+            "flax.audio/audio#read:AudioLogger.logLevel",
+            "flax.audio/audio#read:AudioPlayer.global",
+            "flax.audio/audio#read:AudioPlayer.preparationTimeout",
+            "flax.audio/audio#read:AudioPlayer.seekingTimeout"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -62,6 +62,7 @@ packages/flax_canvas/js/src/generated/bindings.ts
 packages/flax_cupertino_ui/js/src/generated/
 packages/flax_material_ui/js/src/generated/
 packages/flax_video_player/js/src/generated/
+packages/flax_audioplayers/js/src/generated/
 packages/flax_flutter/js/types/
 packages/flax_dart/js/types/
 packages/flax_codegen/example/author_template/bindings/manifest.json

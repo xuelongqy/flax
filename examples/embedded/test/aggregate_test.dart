@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flax_embedded/main.dart' as app;
+import 'package:flax_audioplayers_example/testing.dart';
 import 'package:flax_local_storage/flax_local_storage.dart';
 import 'package:flax_sandbox_example/flax_sandbox_example.dart';
 import 'package:flax_test/flax_test.dart';
@@ -16,9 +17,11 @@ void main() {
   late Directory storage;
   late String source;
   late FlaxFakeVideoPlatform videoPlatform;
+  late FlaxFakeAudioPlatform audioPlatform;
 
   setUp(() {
     videoPlatform = installGalleryVideoPlatform();
+    audioPlatform = installGalleryAudioPlatform();
   });
 
   setUpAll(() async {
@@ -44,6 +47,7 @@ void main() {
   for (final (pluginId, module) in [
     ('flax.canvas', '@flax/canvas'),
     ('flax.video-player', '@flax/video-player'),
+    ('flax.audioplayers', '@flax/audioplayers'),
   ]) {
     testWidgets('missing $pluginId rejects its module before use', (
       tester,
@@ -135,6 +139,16 @@ void main() {
         () => videoPlatform.disposed.length == videoPlatform.sources.length,
       );
       expect(videoPlatform.sources, isNotEmpty);
+      await pumpGalleryUntil(
+        tester,
+        () => audioPlatform.disposed.length == audioPlatform.created.length,
+      );
+      expect(audioPlatform.sources, hasLength(2));
+      expect(
+        audioPlatform.sources.map((source) => source.url),
+        everyElement(startsWith('https://www.soundhelix.com/')),
+      );
+      expect(audioPlatform.activeListeners, 0);
       expect(
         videoPlatform.sources.map((source) => source.uri),
         everyElement(startsWith('https://download.blender.org/')),

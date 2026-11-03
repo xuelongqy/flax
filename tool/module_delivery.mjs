@@ -189,6 +189,25 @@ const targets = [
       { specifier: '@flax/webgpu/host', source: 'dist/host/bootstrap.js' },
     ],
   },
+  {
+    packageDirectory: 'packages/flax_audioplayers/js',
+    manifestPath: 'packages/flax_audioplayers/bindings/manifest.json',
+    sourceFor: (specifier) => {
+      const main = specifier === '@flax/audioplayers';
+      const dependency =
+        specifier === '@flax/audioplayers/dependencies/audioplayers_platform_interface';
+      if (!main && !dependency) {
+        throw new Error(`Unexpected audioplayers module: ${specifier}`);
+      }
+      const subpathRoot = main
+        ? 'dist/generated/libraries/audioplayers'
+        : 'dist/generated/dependencies/audioplayers_platform_interface';
+      return {
+        source: main ? 'dist/index.js' : `${subpathRoot}/index.js`,
+        subpathRoot,
+      };
+    },
+  },
 ];
 
 for (const [owner, publicName] of [

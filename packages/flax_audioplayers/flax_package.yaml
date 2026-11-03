@@ -1,0 +1,16 @@
+format: 2
+dart:
+  entrypoint: package:flax_audioplayers/flax_audioplayers.dart
+javascript:
+  package: '@flax/audioplayers-runtime'
+  types: '@flax/audioplayers'
+  version: same
+  mode: runtime
+capabilities:
+  - bindings
+bindingNamespace: flax.audio
+bindingDependencies:
+  generate: [audioplayers_platform_interface]
+registration:
+  bindings:
+    - audioBindings

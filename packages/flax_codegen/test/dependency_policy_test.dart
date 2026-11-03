@@ -10,6 +10,121 @@ import 'support/core_package.dart';
 
 void main() {
   test(
+    'opt-in admits transitive public dependency src reexports only',
+    () async {
+      for (final optIn in [false, true]) {
+        final fixture = _Fixture();
+        final values = fixture.package(
+          'values',
+          source: 'class Unused { Unused(); }',
+        );
+        final context = File(p.join(values.path, 'lib/src/context.dart'));
+        context.parent.createSync(recursive: true);
+        context.writeAsStringSync('''
+enum Focus { gain }
+enum Route { speaker }
+class Config {
+  Config(this.focus, this.route);
+  final Focus focus;
+  final Route route;
+}
+class Unexported { Unexported(); }
+class _Private {}
+''');
+        final facade = fixture.package(
+          'facade',
+          dependencies: ['values'],
+          source: '''
+export 'bridge.dart';
+import 'bridge.dart';
+import 'package:values/src/context.dart' show Unexported;
+class Local { Local(); }
+int own() => 1;
+Config echo(Config value) => value;
+Unexported leak(Unexported value) => value;
+''',
+        );
+        File(p.join(facade.path, 'lib/bridge.dart')).writeAsStringSync('''
+export 'package:values/src/context.dart' show Config, Focus, Route;
+''');
+        final host = fixture.package(
+          'host',
+          source: '',
+          dependencies: ['facade', 'values'],
+          generate: optIn ? ['values'] : [],
+        );
+        final config = File(p.join(host.path, 'bindings/flax_bindings.yaml'));
+        config.writeAsStringSync(
+          config.readAsStringSync().replaceAll(
+            'package:host/api.dart',
+            'package:facade/api.dart',
+          ),
+        );
+        fixture.writePackageConfig();
+        final result = await FlaxCodegenPackagePipeline.generateConfig(
+          config.path,
+        );
+        final model = result.localModels.single;
+        expect(
+          model.classes.map((c) => c.name),
+          unorderedEquals(
+            optIn ? ['Config', 'Focus', 'Local', 'Route'] : ['Local'],
+          ),
+        );
+        expect(
+          model.functions.map((f) => f.call.name),
+          unorderedEquals(optIn ? ['echo', 'own'] : ['own']),
+        );
+        expect(
+          model.types.map((t) => t.name),
+          isNot(contains(anyOf('Unexported', '_Private', 'Unused'))),
+        );
+        final unbound = result.skips
+            .where((s) => s.code == 'external_dependency_unbound')
+            .map((s) => s.target);
+        expect(unbound, contains('leak'));
+        if (!optIn) {
+          expect(unbound, containsAll(['Config', 'Focus', 'Route', 'echo']));
+          continue;
+        }
+        expect(model.typeLibraries['Config'], 'package:facade/api.dart');
+        final dependencyOwners = result.manifest.modules.single.model.identities
+            .where(
+              (i) =>
+                  i.owner &&
+                  {
+                    'Config',
+                    'Focus',
+                    'Route',
+                  }.contains(i.wireId.publicBindingName),
+            );
+        expect(dependencyOwners, hasLength(3));
+        expect(
+          dependencyOwners,
+          everyElement(
+            predicate(
+              (dynamic i) =>
+                  i.localDependency == true && i.providerEligible == false,
+            ),
+          ),
+        );
+        final types = {for (final c in model.classes) c.name: c};
+        expect(
+          types['Config']!.constructors.single.parameters.map((p) => p.type.id),
+          [types['Focus']!.id, types['Route']!.id],
+        );
+        final imports = File(p.join(host.path, 'lib/src/generated/api.g.dart'))
+            .readAsStringSync()
+            .split('\n')
+            .where((line) => line.startsWith('import '))
+            .join('\n');
+        expect(imports, contains('package:facade/api.dart'));
+        expect(imports, isNot(contains('package:values/src/')));
+      }
+    },
+  );
+
+  test(
     'unprovided external signatures skip without losing local APIs',
     () async {
       final fixture = _Fixture();

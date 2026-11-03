@@ -1,0 +1,37 @@
+{
+  "name": "@flax/audioplayers",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Declaration-only audioplayers bindings for Flax.",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts"
+    },
+    "./dependencies/*": {
+      "types": [
+        "./types/generated/dependencies/*.d.ts",
+        "./types/generated/dependencies/*/index.d.ts"
+      ]
+    },
+    "./*": {
+      "types": "./types/generated/libraries/audioplayers/*.d.ts"
+    }
+  },
+  "files": [
+    "types/**/*.d.ts",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node ../../../tool/public_types.mjs",
+    "typecheck": "node ../../../tool/public_types.mjs --check"
+  },
+  "dependencies": {
+    "@flax/core": "workspace:*",
+    "@flax/flutter": "workspace:*",
+    "@flax/dart": "workspace:*"
+  },
+  "flax": {
+    "hostBindings": true
+  }
+}

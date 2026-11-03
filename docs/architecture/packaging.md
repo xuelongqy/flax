@@ -52,6 +52,7 @@ selected libraries. This private generated package is separate from the existing
 | `flax_permissions`                                   | Optional query-only permission_handler adapter for host OS state                                                                      |
 | `flax_secure_storage`                                | Optional host-only Keychain and Keystore byte storage                                                                                 |
 | `flax_video_player` / `@flax/video-player-runtime`   | Optional generated video_player bindings for trusted applications; public types use `@flax/video-player`                              |
+| `flax_audioplayers` / `@flax/audioplayers-runtime`   | Optional generated audioplayers bindings for trusted applications; public types use `@flax/audioplayers`                              |
 | `flax_canvas` / `@flax/canvas-runtime`               | Canvas 2D provider and compatibility CanvasView re-export                                                                             |
 | `flax_webgpu` / `@flax/webgpu-runtime`               | Experimental Dawn/Metal WebGPU objects and canvas context with producer-staged dynamic native assets                                  |
 | `flax_engine_v8`                                     | Experimental V8 adapter, locked shared SDK, and engine tests                                                                          |
@@ -216,6 +217,11 @@ owner-local dependency views. The writer omits it for ordinary rows; absence mea
 false, and true is valid only on an owning identity. The original Dart source identity
 remains recorded, but these owner-local views are not eligible as automatic providers
 for another package. Regenerate providers and consumers together.
+
+Configured public source facades also qualify as carriers for explicitly opted-in
+dependencies they reexport, even when the dependency's own public entry omits the type.
+Only the facade's exported namespace is indexed; private source libraries and unexported
+declarations do not become eligible through this fallback.
 
 A configuration imports a Dart package by name:
 

@@ -40,6 +40,7 @@ melos:
       - packages/flax_material_ui
       - packages/flax_cupertino_ui
       - packages/flax_video_player
+      - packages/flax_audioplayers
     engines:
       - packages/flax_engine_v8
     tools:
