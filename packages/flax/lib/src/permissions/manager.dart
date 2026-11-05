@@ -57,6 +57,7 @@ final class FlaxPermissionManager {
   final _providers = <String, FlaxPermissionProvider>{};
   final _owners = <String, _PermissionOwner>{};
   final _native = <String, Map<String, _NativePermissionObservation>>{};
+  _NativePermissionFlight? _nativeRequest;
   int _nativeOrder = 0;
   Map<String, Object?>? _index;
   Future<void> _installationQueue = Future.value();
@@ -421,7 +422,8 @@ final class FlaxPermissionManager {
       owner.failed = true;
       owner.generation++;
     }
-    owner.invalidate();
+    // Consent receives the final storage error after marker recovery has finished.
+    owner.invalidate(preserveConsent: true);
     if (!notify) return;
     final pending = owner.consent;
     if (pending != null && !pending.done.isCompleted) {
@@ -542,7 +544,7 @@ final class FlaxPermissionManager {
       decision['approvedScope'] = _permissionData(narrowed);
       decision['revoked'] = narrowed == null;
     }
-    owner.invalidate(id);
+    owner.invalidate(id: id);
     owner.record['revision'] = (owner.record['revision'] as int) + 1;
     return _commit(owner, () => _save(owner, _clone(owner.record)));
   }
@@ -571,7 +573,7 @@ final class FlaxPermissionManager {
     }
     final generation = ++owner.generation;
     owner.cancelConsent();
-    owner.invalidate(id);
+    owner.invalidate(id: id);
     Map<String, Object?>? candidate;
     Object? revision;
     bool current() =>
@@ -665,6 +667,10 @@ final class FlaxPermissionManager {
 
   /// Invalidate before asynchronous foreground refresh; stale OS grants cannot win.
   void invalidateNative() {
+    for (final owner in _owners.values) {
+      final consent = owner.consent;
+      if (consent != null && _needsNative(consent.id)) owner.cancelConsent();
+    }
     for (final observations in _native.values) {
       for (final entry in observations.entries.toList()) {
         observations[entry.key] = _NativePermissionObservation(
@@ -702,7 +708,12 @@ final class FlaxPermissionManager {
         const FlaxNativePermissionStatus(state: FlaxPermissionState.unknown);
   }
 
-  Future<FlaxNativePermissionStatus> _refreshNative(String id, Object scope) {
+  Future<FlaxNativePermissionStatus> _refreshNative(
+    String id,
+    Object scope, {
+    bool force = false,
+    void Function()? onFailure,
+  }) {
     // Native-free targets must not allocate cache keys, generations or flights.
     if (!_needsNative(id)) {
       return Future.value(const FlaxNativePermissionStatus.notRequired());
@@ -712,9 +723,14 @@ final class FlaxPermissionManager {
     final target = _permissionData(rules.normalize(scope))!;
     final key = jsonEncode(target);
     final observations = _native.putIfAbsent(id, () => {});
-    final pending = observations[key]?.pending;
-    if (pending != null) return pending;
+    final previous = observations[key];
+    final pending = previous?.pending;
+    if (!force && pending != null) {
+      if (onFailure != null) previous!.failureObservers.add(onFailure);
+      return pending;
+    }
     final observation = _NativePermissionObservation(target, ++_nativeOrder);
+    if (onFailure != null) observation.failureObservers.add(onFailure);
     observations[key] = observation;
     bool current() => !_closed && identical(observations[key], observation);
 
@@ -734,8 +750,13 @@ final class FlaxPermissionManager {
               : _permissionData(rules.normalize(response.scope)),
           reason: response.reason,
           serviceStatus: response.serviceStatus,
+          canRequest: response.canRequest,
         );
       } catch (_) {
+        // Capture failure ownership before restrictions can retire its callers.
+        for (final notify in observation.failureObservers) {
+          notify();
+        }
         if (current()) {
           observation.status = const FlaxNativePermissionStatus(
             state: FlaxPermissionState.unknown,
@@ -753,6 +774,7 @@ final class FlaxPermissionManager {
     final future = query();
     observation.pending = future;
     void clear() {
+      observation.failureObservers.clear();
       // An old result/error cannot remove the replacement flight for this target.
       if (identical(observations[key], observation)) observation.pending = null;
     }
@@ -764,6 +786,35 @@ final class FlaxPermissionManager {
       ),
     );
     return future;
+  }
+
+  _NativePermissionFlight _startNativeRequest(String id, Object target) {
+    final flight = _NativePermissionFlight(
+      FlaxNativePermissionRequest._(id, target),
+    );
+    _nativeRequest = flight;
+    // Register callers before host code can observe cancellation or complete.
+    scheduleMicrotask(() async {
+      try {
+        if (!flight.request.isCancelled) {
+          await (native as FlaxNativePermissionRequester).request(
+            flight.request,
+          );
+        }
+        for (final waiter in flight.waiters) {
+          if (!waiter.isCompleted) waiter.complete();
+        }
+      } catch (error, stack) {
+        for (final waiter in flight.waiters) {
+          if (!waiter.isCompleted) waiter.completeError(error, stack);
+        }
+      } finally {
+        flight.settled = true;
+        // Cancelled callers cannot free this slot while OS work is still active.
+        if (identical(_nativeRequest, flight)) _nativeRequest = null;
+      }
+    });
+    return flight;
   }
 
   void _restrictNative(String id, _NativePermissionObservation observation) {
@@ -870,6 +921,56 @@ final class _NativePermissionObservation {
     reason: 'hostPermissionRefreshing',
   );
   Future<FlaxNativePermissionStatus>? pending;
+  final failureObservers = <void Function()>[];
+}
+
+final class _NativePermissionFlight {
+  _NativePermissionFlight(this.request);
+  final FlaxNativePermissionRequest request;
+  final waiters = <Completer<void>>{};
+  Future<FlaxNativePermissionStatus>? refreshed;
+  bool settled = false;
+
+  void remove(Completer<void> waiter) {
+    waiters.remove(waiter);
+    if (!waiter.isCompleted) waiter.complete();
+    if (waiters.isEmpty && !settled && !request.isCancelled) {
+      request._cancelled.complete();
+    }
+  }
+}
+
+// One caller can retire while its shared native/query/consent work continues.
+final class _PermissionCall {
+  bool cancelled = false;
+  _PermissionConsent? consent;
+  void Function()? detachNative;
+  Completer<void>? _waiting;
+
+  Future<void> wait<T>(Future<T> source) {
+    final done = Completer<void>();
+    _waiting = done;
+    unawaited(
+      source.then<void>(
+        (_) {
+          if (!done.isCompleted) done.complete();
+        },
+        onError: (Object error, StackTrace stack) {
+          if (!done.isCompleted) done.completeError(error, stack);
+        },
+      ),
+    );
+    if (cancelled && !done.isCompleted) done.complete();
+    return done.future.whenComplete(() => _waiting = null);
+  }
+
+  void cancel() {
+    if (cancelled) return;
+    cancelled = true;
+    detachNative?.call();
+    final waiting = _waiting;
+    if (waiting != null && !waiting.isCompleted) waiting.complete();
+  }
 }
 
 /// Host-issued proof of the currently approved installation, not a JS credential.
@@ -915,8 +1016,9 @@ final class _PermissionOwner {
         {};
   }
 
-  void invalidate([String? id]) {
+  void invalidate({String? id, bool preserveConsent = false}) {
     for (final context in contexts.toList()) {
+      context._cancelRequests(except: preserveConsent ? consent : null);
       context._invalidate(id);
     }
   }

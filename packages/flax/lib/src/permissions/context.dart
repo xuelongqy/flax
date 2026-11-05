@@ -68,6 +68,7 @@ final class FlaxPermissionContext {
   Future<void>? _closed;
   final _definitions = <String, FlaxPermissionDefinition>{};
   final _leases = <FlaxPermissionLease>{};
+  final _requests = <_PermissionCall>{};
   bool _open = true;
   bool get isOpen => _open;
   bool get canInteract => _canInteract?.call() ?? true;
@@ -291,90 +292,152 @@ final class FlaxPermissionContext {
   }
 
   Future<FlaxPermissionResult> request(String id, {Object? scope}) async {
+    _requireOpen();
     final generation = _owner?.generation;
     var target = _scope(id, scope);
-    final current = await query(id, scope: target);
-    if (_owner?.generation != generation ||
-        current.state == FlaxPermissionState.granted ||
-        current.state == FlaxPermissionState.unavailable ||
-        current.state == FlaxPermissionState.unknown ||
-        current.reason != null && current.reason != 'moduleDenied') {
-      return current;
-    }
-    if (_provider(id).definition.authorization ==
-        FlaxPermissionAuthorization.install) {
-      return current;
-    }
+    final precheck = _precheck(id, target);
+    if (precheck != null) return precheck;
     final owner = _owner!;
     final previous = owner.decision(policy!.account, id)['approvedScope'];
-    if (previous != null) {
-      final combined = _scope(
-        id,
-        _provider(id).scope.combine(previous, target),
-      );
-      if (jsonEncode(combined) != jsonEncode(target)) {
-        final revision = owner.record['revision'];
-        final refreshed = await query(id, scope: combined);
-        if (owner.generation != generation ||
-            owner.record['revision'] != revision ||
-            refreshed.state == FlaxPermissionState.granted) {
-          return _state(id, target);
-        }
-        target = combined;
+    if (previous != null && !_provider(id).scope.covers(previous, target)) {
+      target = _scope(id, _provider(id).scope.combine(previous, target));
+    }
+    final revision = owner.record['revision'];
+    final call = _PermissionCall();
+    _requests.add(call);
+    FlaxPermissionResult interrupted() {
+      final blocked = _precheck(id, _scope(id, scope));
+      if (blocked != null) return blocked;
+      if (owner.decision(policy!.account, id)['revoked'] == true) {
+        return _result(id, FlaxPermissionState.denied, reason: 'moduleDenied');
       }
-    }
-    final blocked =
-        _precheck(id, target) ?? _hostCheck(id, target, requireFull: true);
-    if (blocked != null) return blocked;
-    final callback = policy!.onRequest;
-    if (!canInteract) {
       return _result(
         id,
         FlaxPermissionState.unavailable,
-        reason: 'interactionRequired',
+        reason: 'requestCancelled',
       );
     }
-    if (callback == null) {
-      return _result(
-        id,
-        FlaxPermissionState.unavailable,
-        reason: 'moduleConsentUnavailable',
-      );
-    }
-    final key = _permissionDigest([
-      policy!.account,
-      id,
-      manifest!.permissions[id]!.purpose,
-      (owner.record['declarations'] as Map)[id],
-      target,
-    ]);
-    var pending = owner.consent;
-    if (pending != null && pending.key != key) {
-      return _result(id, FlaxPermissionState.unavailable, reason: 'busy');
-    }
-    if (pending == null) {
-      final request = FlaxPermissionRequest._(
-        appId: manifest!.appId,
-        applicationName: manifest!.name ?? manifest!.appId,
-        definition: _provider(id).definition,
-        purpose: manifest!.purpose(id, policy!.locale),
-        locale: policy!.locale,
-        scope: target,
-        approvedScope: previous == null ? null : _permissionData(previous),
-      );
-      pending = _PermissionConsent(id, key, request, owner.generation);
-      owner.consent = pending;
-      pending.waiters.add(this);
-      unawaited(_consent(pending, callback));
-    } else {
-      pending.waiters.add(this);
-    }
+
     try {
-      await pending.done.future;
+      await call.wait(manager!._refreshNative(id, target));
       _requireOpen();
-      return _state(id, _scope(id, scope));
+      if (owner.generation != generation || call.cancelled) {
+        return interrupted();
+      }
+      if (owner.record['revision'] != revision) {
+        return _state(id, _scope(id, scope));
+      }
+      final current = _state(id, target);
+      if (current.state == FlaxPermissionState.granted) return current;
+      var blocked = _precheck(id, target);
+      if (blocked != null) return blocked;
+      blocked = _hostCheck(id, target, requireFull: true);
+      if (blocked != null &&
+          manager!.native is FlaxNativePermissionRequester &&
+          _nativeStatus(id, target).canRequest) {
+        if (!canInteract) {
+          return _result(
+            id,
+            FlaxPermissionState.unavailable,
+            reason: 'interactionRequired',
+          );
+        }
+        final active = manager!._nativeRequest;
+        if (active != null &&
+            (active.request.isCancelled ||
+                active.request.permission != id ||
+                jsonEncode(active.request.scope) != jsonEncode(target))) {
+          return _result(id, FlaxPermissionState.unavailable, reason: 'busy');
+        }
+        final flight = active ?? manager!._startNativeRequest(id, target);
+        final waiter = Completer<void>();
+        flight.waiters.add(waiter);
+        call.detachNative = () => flight.remove(waiter);
+        try {
+          await call.wait(waiter.future);
+          _requireOpen();
+          if (owner.generation != generation ||
+              call.cancelled ||
+              flight.request.isCancelled) {
+            return interrupted();
+          }
+        } finally {
+          call.detachNative = null;
+          flight.remove(waiter);
+        }
+        // A query started before native work settled cannot establish its result.
+        await call.wait(
+          flight.refreshed ??= manager!._refreshNative(id, target, force: true),
+        );
+        _requireOpen();
+        if (owner.generation != generation || call.cancelled) {
+          return interrupted();
+        }
+        blocked =
+            _precheck(id, target) ?? _hostCheck(id, target, requireFull: true);
+      }
+      if (blocked != null) return blocked;
+      final refreshed = _state(id, _scope(id, scope));
+      if (refreshed.state == FlaxPermissionState.granted ||
+          _provider(id).definition.authorization ==
+              FlaxPermissionAuthorization.install) {
+        return refreshed;
+      }
+      final callback = policy!.onRequest;
+      if (!canInteract) {
+        return _result(
+          id,
+          FlaxPermissionState.unavailable,
+          reason: 'interactionRequired',
+        );
+      }
+      if (callback == null) {
+        return _result(
+          id,
+          FlaxPermissionState.unavailable,
+          reason: 'moduleConsentUnavailable',
+        );
+      }
+      final key = _permissionDigest([
+        policy!.account,
+        id,
+        manifest!.permissions[id]!.purpose,
+        (owner.record['declarations'] as Map)[id],
+        target,
+      ]);
+      var pending = owner.consent;
+      if (pending != null && pending.key != key) {
+        return _result(id, FlaxPermissionState.unavailable, reason: 'busy');
+      }
+      if (pending == null) {
+        final request = FlaxPermissionRequest._(
+          appId: manifest!.appId,
+          applicationName: manifest!.name ?? manifest!.appId,
+          definition: _provider(id).definition,
+          purpose: manifest!.purpose(id, policy!.locale),
+          locale: policy!.locale,
+          scope: target,
+          approvedScope: previous == null ? null : _permissionData(previous),
+        );
+        pending = _PermissionConsent(id, key, request, owner.generation);
+        owner.consent = pending;
+        pending.waiters.add(this);
+        call.consent = pending;
+        unawaited(_consent(pending, callback));
+      } else {
+        pending.waiters.add(this);
+        call.consent = pending;
+      }
+      try {
+        await call.wait(pending.done.future);
+        _requireOpen();
+        if (call.cancelled) return interrupted();
+        return _state(id, _scope(id, scope));
+      } finally {
+        pending.waiters.remove(this);
+      }
     } finally {
-      pending.waiters.remove(this);
+      _requests.remove(call);
     }
   }
 
@@ -383,6 +446,7 @@ final class FlaxPermissionContext {
     FlaxPermissionRequestHandler callback,
   ) async {
     final owner = _owner!;
+    // Pending refresh blocks APIs; actual restriction/invalidation cancels consent.
     bool valid() =>
         !pending.cancelled &&
         !owner.retiring &&
@@ -391,13 +455,7 @@ final class FlaxPermissionContext {
         pending.waiters.any(
           (waiter) =>
               waiter._open &&
-              waiter._precheck(pending.id, pending.request.scope) == null &&
-              waiter._hostCheck(
-                    pending.id,
-                    pending.request.scope,
-                    requireFull: true,
-                  ) ==
-                  null,
+              waiter._precheck(pending.id, pending.request.scope) == null,
         );
     try {
       if (!valid()) return;
@@ -432,8 +490,18 @@ final class FlaxPermissionContext {
         ),
       ]);
       if (!valid()) return;
-      final waiter = pending.waiters.firstWhere((waiter) => waiter._open);
-      await waiter.query(pending.id, scope: pending.request.scope);
+      var failedWhileActive = false;
+      try {
+        await manager!._refreshNative(
+          pending.id,
+          pending.request.scope,
+          onFailure: () => failedWhileActive = valid(),
+        );
+      } catch (_) {
+        // Earlier retirement discards errors; this failure's own restriction does not.
+        if (!failedWhileActive && !valid()) return;
+        rethrow;
+      }
       if (!valid()) return;
       Map<String, Object?>? candidate;
       Object? revision;
@@ -601,10 +669,17 @@ final class FlaxPermissionContext {
     if (!_open) throw StateError('FlaxSessionClosed');
   }
 
+  void _cancelRequests({_PermissionConsent? except}) {
+    for (final call in _requests.toList()) {
+      if (except == null || !identical(call.consent, except)) call.cancel();
+    }
+  }
+
   Future<void> close() {
     if (!_open) return _closed!;
     _open = false;
     _closed = _owner?.queue ?? Future<void>.value();
+    _cancelRequests();
     _invalidate();
     final owner = _owner;
     owner?.contexts.remove(this);

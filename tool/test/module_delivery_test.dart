@@ -55,16 +55,24 @@ void main() {
       'flax_local_storage',
       'flax_canvas',
       'flax_webgpu',
+      'flax_video_player',
+      'flax_audioplayers',
     ]) {
       _writeJson(p.join(temporary.path, 'packages', owner, 'js/package.json'), {
         'name': '@fixture/$owner-runtime',
         'version': '0.0.0',
       });
     }
-    _writeJson(
-      p.join(temporary.path, 'packages/flax_canvas/bindings/manifest.json'),
-      {'formatVersion': 28, 'modules': <Map<String, Object?>>[]},
-    );
+    for (final owner in [
+      'flax_canvas',
+      'flax_video_player',
+      'flax_audioplayers',
+    ]) {
+      _writeJson(
+        p.join(temporary.path, 'packages/$owner/bindings/manifest.json'),
+        {'formatVersion': 28, 'modules': <Map<String, Object?>>[]},
+      );
+    }
     for (final target in _targets) {
       final directory = p.join(temporary.path, 'packages', target.directory);
       final moduleId = 'flax.test/${target.directory}';

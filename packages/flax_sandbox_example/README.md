@@ -28,10 +28,47 @@ temporary project or manually copied script is required from the caller.
 
 The same standalone application has a **Permission playground** button; the aggregate
 gallery has a **Permissions** page. Its trusted Dart controls show localized declaration
-purposes before installation approval. Change network declaration/host allowance or the
-custom orders declaration, then approve or reload to compare results. Editing appId
-creates a separate module identity. Reload uses saved grants and does not silently
-approve changed declarations.
+purposes before installation approval. Change notification/network declaration and host
+allowance or the custom orders declaration, then approve or reload to compare results.
+Editing appId creates a separate module identity. Reload uses saved grants and does not
+silently approve changed declarations.
+
+On **macOS**, this development package includes a private Flutter plugin using the real
+`UNUserNotificationCenter`. Both the standalone launcher and aggregate gallery register
+it through the package's Flutter plugin metadata; no Runner patch or extra entitlement
+is needed. It connects the Flutter host's OS authorization to independent module consent
+and an actual guarded native action:
+
+1. Use **Approve manifest & run** to approve declarations only, then use **Query module
+   notifications**. Query reads state without opening a system or module dialog. **Send
+   notification (guarded)** also never prompts and fails until both layers authorize
+   access.
+2. Use **Request module notifications**. If macOS authorization is still undetermined,
+   the system request runs first. Only after macOS grants access does the separate
+   `material_ui` module dialog appear. The host status, module result and numbered
+   activity show the order. A system denial does not record a module decision.
+3. Alternatively, **Request host notification permission** acquires only the Flutter
+   host's OS authorization. Querying the module still returns `prompt` until that module
+   independently consents. Denying its dialog keeps the guarded API blocked even while
+   the host remains authorized.
+4. After allowing the module, **Send notification (guarded)** submits a real local
+   notification. The result confirms submission to macOS, not presentation: Focus and
+   notification settings may suppress the banner. The notification body identifies the
+   module appId.
+5. **Revoke module notifications** blocks subsequent calls and clears only this module's
+   example notifications; host OS authorization stays unchanged. Another appId needs its
+   own consent. Reload retains saved module decisions. After changing OS settings
+   outside the app, use **Refresh host notification status**. A previously denied OS
+   request may require changing macOS settings manually; the example never opens
+   settings automatically.
+
+This local-notification action is macOS only. It does not add a general notification API
+to Core or the optional bridge. Other native prerequisites retain the explicit
+`FlaxPermissionHandlerAdapter(requestOnDemand: true)` configuration for its supported
+iOS/Android capabilities; mobile hosts still own their native configuration and actual
+device APIs. Module consent reuses `showFlaxPermissionDialog` with a `material_ui`
+builder and localized barrier label. See the
+[optional bridge](../flax_permissions/README.md).
 
 **Request orders** prompts for module consent. **Load orders (Future)** and **Watch
 orders (Stream)** reuse that permission; revocation rejects pending results and ends the
@@ -44,17 +81,19 @@ not implement Android content URIs or iOS security-scoped documents; mobile host
 provide their own FlaxDocumentBackend.
 
 The demo uses the optional real Keychain/Keystore store, with no production memory
-fallback. On macOS the permission controls require Keychain Sharing and a valid signed
-development profile. Set `FLAX_MACOS_TEAM=<team-id>` when using the prepared launcher
-after configuring the profile in Xcode. Also set `LUCI_CI=True` for macOS file/UI runs:
-Flutter then disables the host OS App Sandbox, whose `/dev/fd` restrictions are
-incompatible with the current rooted file backend. Flax's own application sandbox stays
-enabled. The ordinary sandbox page does not need these permission controls. Widget tests
-inject an explicit test store; native integration exercises the platform backend. The
-custom example contains annotated business functions and a small handwritten binding
-module showing the generator's permission metadata. Guard generation across supported
-API forms is covered in flax_codegen tests. Host UI controls are for development and do
-not establish native widget-tree isolation from hostile modules.
+fallback. Its dedicated `flax.permission-playground` namespace keeps its native request
+service separate from the gallery's trusted example policy. On macOS the permission
+controls require Keychain Sharing and a valid signed development profile. Set
+`FLAX_MACOS_TEAM=<team-id>` when using the prepared launcher after configuring the
+profile in Xcode. Also set `LUCI_CI=True` for macOS file/UI runs: Flutter then disables
+the host OS App Sandbox, whose `/dev/fd` restrictions are incompatible with the current
+rooted file backend. Flax's own application sandbox stays enabled. The ordinary sandbox
+page does not need these permission controls. Widget tests inject an explicit test
+store; native integration exercises the platform backend. The custom example contains
+annotated business functions and a small handwritten binding module showing the
+generator's permission metadata. Guard generation across supported API forms is covered
+in flax_codegen tests. Host UI controls are for development and do not establish native
+widget-tree isolation from hostile modules.
 
 ## Try the boundaries
 
@@ -118,3 +157,10 @@ layout and immediate reentry during cleanup. The same workflow runs in
 `example/integration_test/app_test.dart` on macOS. Run the owner example checks with
 `dart run tool/package.dart integration flax_sandbox_example`; the regular `check:ui`
 also includes it. The aggregate tour checks the entrance and its isolation.
+
+`example/test/permissions_notifications_test.dart` runs the actual V8 module and trusted
+panel with explicit test-only platform-channel responses. It checks native request
+ordering, separate host/module denials, guarded backend calls, revocation, distinct
+appIds, cancellation on Session close, and gallery/default-store reentry. These
+deterministic checks do not certify real OS approval or banner presentation; those need
+manual acceptance in the signed macOS application.

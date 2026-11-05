@@ -96,9 +96,36 @@ not the host's OS permission history. Query never prompts or writes consent hist
 
 Install permissions, including network and Clipboard, need no extra module dialog.
 Request cannot restore a missing installation approval. Runtime permissions first
-require a safely queried native prerequisite and then the host consent callback. Module
-requests never call OS request APIs or open settings. An ambiguous native limited scope
-cannot become a full grant. Service status is separate from permission.
+require a safely queried native prerequisite and then the host consent callback. A
+query-only host acquires its OS permissions beforehand. An optional
+`FlaxNativePermissionRequester` can acquire a missing prerequisite during an explicit
+module request when its current `FlaxNativePermissionStatus.canRequest` is true. This
+host capability defaults to false and promises a supported safe attempt, not an OS popup
+or a grant. Core composes the complete supplemental scope before native work, then
+forces a fresh query of that exact target after the request settles. A pending query
+started before native work cannot supply that proof. Only then does Core obtain or reuse
+independent module consent. Native denial/failure does not create module request
+history. An ambiguous native limited scope cannot become a full grant. Service status is
+separate from permission; neither Core nor the default bridge opens settings.
+
+`FlaxNativePermissionAdapter.query` remains unchanged. Hosts that need requests add
+`FlaxNativePermissionRequester.request(FlaxNativePermissionRequest)` using Core alone;
+the token exposes `permission`, immutable normalized `scope`, `isCancelled` and
+`whenCancelled`. Its `Future<void>` settles only after any started native work actually
+finishes or fails. Hosts dismiss their own rationale on cancellation, retain active OS
+work until settlement, and wait for foreground before returning while callers remain.
+The return is never an authorization decision. The optional
+[`flax_permissions`](../../packages/flax_permissions/README.md) package supplies an
+explicit `FlaxPermissionHandlerAdapter(requestOnDemand: true)` opt-in, an
+[injected-service example](../../packages/flax_permissions/example/existing_host.dart)
+and reusable `showFlaxPermissionDialog` with an optional host `WidgetBuilder`. The
+default adapter constructor stays query-only. Configure the host Android manifest and
+iOS usage descriptions/build macros first; query/requestability cannot validate every
+native configuration or guarantee a Dart error instead of native termination. The bridge
+is limited to its supported iOS/Android mappings. Background location stays
+query-only/custom-host because it requires capability-specific prerequisites and may
+involve settings. Restricted, service-disabled and ambiguous limited/provisional states
+are not automatically requested; Android denied may yield an immediate no-dialog result.
 
 Session startup refreshes native snapshots before business ESM runs. A single private
 Flutter lifecycle observer per manager invalidates once on foreground changes, cancels
@@ -119,13 +146,51 @@ grant. Binding checks remain synchronous and fail closed while their native prer
 is unknown. Providers with no native prerequisite bypass native cache and flight
 bookkeeping entirely.
 
+An already-admitted module consent is independent of a benign pending refresh: a
+temporary unknown snapshot blocks API access without discarding the user's answer.
+Completed restrictions/errors and explicit `invalidateNative()` cancel affected native
+consent synchronously and durably fence its publication. Native-free consent survives
+native invalidation. Restoring native authority cannot revive a cancelled transaction.
+
+Native acquisition has one active flight per manager. Equal permission/normalized
+targets share the physical operation across owners and repeated calls from one Session;
+different targets return `busy`. Each caller still enters or reuses its separate module
+consent. Closing one participant preserves peers. Closing/retiring every participant
+signals native cancellation and releases their waits, while retaining the physical slot
+until the native Future settles. A cancelled physical flight cannot be rejoined. Owner
+revocation, declaration changes, storage failure, uninstall and manager close detach
+participants and prevent late consent publication. Switching accounts closes/recreates
+the immutable Session policy; host-global OS state never transfers a module decision.
+
+Each caller remains independently cancellable across the initial query, native work,
+forced refresh and shared module consent. A closed Session rejects promptly; other
+retired requests return the current denial or `unavailable` with `requestCancelled`,
+without reading an older grant while a replacement record is still saving. Shared
+refreshes belong to the manager, so closing one Session cannot abort a live peer.
+Previously retired callers discard late native results and query errors. A query failure
+that itself retires live consent is still reported. Already-started storage commits and
+their corrections still drain, and real storage failures remain reportable.
+
+The optional bridge queues native work across its instances/managers in this isolate,
+waits for foreground before queued work, rechecks status/cancellation after the wait and
+lifecycle after the asynchronous query, and retains the native Future through
+cancellation. After native completion it waits for resumed/null Flutter lifecycle;
+cancellation stops that foreground wait and removes its observer. This does not change
+Core's cancellation of unrelated module consent on background transitions. Other native
+request sources and additional isolates/processes need host coordination.
+
 Requests with identical owner, account, permission, declaration and target share one
-consent flow. A different concurrent request returns `busy`. Closing one waiter does not
-cancel another live waiter. The host receives `request.whenCancelled` to dismiss its own
-prompt. The host must provide real foreground consent and control prompt abuse; Core
-does not prove user gestures from JS. Flutter consent UI is an example integration, not
-a guarantee of isolation from unrestricted host widget traversal. Production hosts must
-keep their approval controls outside module reach.
+module consent flow. A different concurrent request for that owner returns `busy`.
+Closing one waiter does not cancel another live waiter. The host receives
+`request.whenCancelled` and `request.isCancelled` to dismiss or avoid its own prompt.
+The reusable optional dialog removes its exact captured route on cancellation;
+barrier/back dismissal is cancel. The host must provide real foreground consent and
+control prompt abuse; Core does not prove user gestures from JS. The helper provides SDK
+Material defaults. Hosts with another UI library supply its matching dialog builder and
+localized `barrierLabel`; caller themes are captured across the root Navigator and
+keyboard focus stays within the dialog. This UI provides no isolation from unrestricted
+host widget traversal. Production hosts must keep approval controls outside module
+reach.
 
 ## Binding definitions and scope
 

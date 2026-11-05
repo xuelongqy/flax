@@ -6,7 +6,10 @@ import 'package:flax/flax.dart';
 import 'package:flax_engine_v8/flax_engine_v8.dart';
 import 'package:flax_permissions/flax_permissions.dart';
 import 'package:flax_secure_storage/flax_secure_storage.dart';
+import 'package:flutter/services.dart';
 import 'package:material_ui/material_ui.dart';
+
+part 'src/notification_service.dart';
 
 const _orders = FlaxPermissionDefinition(
   id: 'example.orders.read',
@@ -15,6 +18,26 @@ const _orders = FlaxPermissionDefinition(
 );
 const _loadOrdersId = 'flax.example/permissions#function:loadOrders';
 const _watchOrdersId = 'flax.example/permissions#function:watchOrders';
+const _sendNotificationId =
+    'flax.example/permissions#function:sendNotification';
+
+@FlaxPermissionGuard(FlaxPermissionDefinitions.notifications)
+Future<String> sendExampleNotification() async {
+  final context = FlaxPermissionContext.current;
+  final module = context.policy!.application.appId;
+  final lease = context.lease(
+    'flax.notifications',
+    operation: 'notifications.send',
+  );
+  try {
+    return await lease.guardFuture(() async {
+      await _ExampleNotifications.send(module);
+      return 'Notification submitted to macOS. Focus and notification settings control presentation.';
+    });
+  } finally {
+    lease.close();
+  }
+}
 
 @FlaxPermissionGuard(_orders)
 Future<String> loadExampleOrders() async {
@@ -56,6 +79,12 @@ final _businessBindings = FlaxBindingModule(
   requiredCapabilities: const ['permission-guards'],
   functions: [
     FlaxFunctionBinding(
+      _sendNotificationId,
+      const [],
+      const FlaxTypeRef('future', item: FlaxTypeRef('String')),
+      (_) => sendExampleNotification(),
+    ),
+    FlaxFunctionBinding(
       _loadOrdersId,
       const [],
       const FlaxTypeRef('future', item: FlaxTypeRef('String')),
@@ -78,6 +107,9 @@ final _businessBindings = FlaxBindingModule(
     ),
   ],
   permissionGuards: const {
+    (_sendNotificationId, 'call', ''): [
+      FlaxPermissionDefinitions.notifications,
+    ],
     (_loadOrdersId, 'call', ''): [_orders],
     (_watchOrdersId, 'call', ''): [_orders],
   },
@@ -98,9 +130,10 @@ class _PermissionsState extends State<FlaxPermissionsExample> {
   FlaxPermissionApplication? _application;
   FlaxSession? _session;
   bool _declareNetwork = true, _allowNetwork = true, _declareOrders = true;
+  bool _declareNotifications = true, _allowNotifications = true;
   bool _busy = false;
   String _status =
-      'Approve the manifest, then run the module. Grants persist outside data.';
+      'Approve the declaration, then request OS and module consent from the module.';
   final _bindings = FlaxBindingRegistry([flutterBindings, _businessBindings]);
 
   FlaxPermissionManifest get _manifest => FlaxPermissionManifest(
@@ -108,6 +141,13 @@ class _PermissionsState extends State<FlaxPermissionsExample> {
     name: 'Permission demo',
     defaultLocale: 'en',
     permissions: {
+      if (_declareNotifications)
+        'flax.notifications': FlaxPermissionDeclaration(
+          purpose: const {
+            'en': 'Submit a local macOS notification from this module',
+            'zh': '由本模块提交一条 macOS 本地通知',
+          },
+        ),
       if (_declareNetwork)
         'flax.network': FlaxPermissionDeclaration(
           purpose: const {
@@ -150,8 +190,9 @@ class _PermissionsState extends State<FlaxPermissionsExample> {
       final accepted = await showDialog<bool>(
         context: context,
         builder: (context) => AlertDialog(
-          title: const Text('Install module permissions'),
+          title: const Text('Approve module declarations'),
           content: Text(
+            'This approves declarations only. OS authorization and runtime module consent remain separate.\n\n'
             '${manifest.appId}\n\n${manifest.permissions.keys.map((id) => '$id\n${manifest.purpose(id, 'en')}').join('\n\n')}',
           ),
           actions: [
@@ -170,8 +211,12 @@ class _PermissionsState extends State<FlaxPermissionsExample> {
     }
     await _stopSession();
     _manager ??= FlaxPermissionManager(
-      storage: widget.storage ?? await FlaxPlatformSecureStorage.open(),
-      native: const FlaxPermissionHandlerAdapter(),
+      storage:
+          widget.storage ??
+          await FlaxPlatformSecureStorage.open(
+            namespace: 'flax.permission-playground',
+          ),
+      native: const _ExampleNativePermissions(),
       definitions: const [_orders],
     );
     final application = approve
@@ -205,7 +250,9 @@ class _PermissionsState extends State<FlaxPermissionsExample> {
         application: application,
         allow: {
           for (final id in manifest.permissions.keys)
-            if (id != 'flax.network' || _allowNetwork) id,
+            if ((id != 'flax.network' || _allowNetwork) &&
+                (id != 'flax.notifications' || _allowNotifications))
+              id,
         },
         onRequest: _request,
       ),
@@ -235,32 +282,45 @@ class _PermissionsState extends State<FlaxPermissionsExample> {
 
   Future<FlaxPermissionDecision> _request(FlaxPermissionRequest request) async {
     if (!mounted) return FlaxPermissionDecision.cancel;
-    final navigator = Navigator.of(context, rootNavigator: true);
-    final route = DialogRoute<FlaxPermissionDecision>(
+    if (request.definition.id == 'flax.notifications') {
+      _ExampleNotifications.log(
+        '${request.appId}: separate module consent opened',
+      );
+    }
+    final decision = await showFlaxPermissionDialog(
       context: context,
-      builder: (context) => AlertDialog(
+      request: request,
+      barrierLabel: MaterialLocalizations.of(context).modalBarrierDismissLabel,
+      builder: (dialogContext) => AlertDialog(
         title: Text('${request.applicationName}: ${request.definition.title}'),
-        content: Text('${request.purpose}\n\n${request.scope}'),
+        content: Text(
+          [
+            request.purpose,
+            'Requested scope: ${request.scope}',
+            if (request.approvedScope != null)
+              'Previously approved: ${request.approvedScope}',
+          ].join('\n\n'),
+        ),
         actions: [
           TextButton(
             onPressed: () =>
-                Navigator.pop(context, FlaxPermissionDecision.deny),
+                Navigator.pop(dialogContext, FlaxPermissionDecision.deny),
             child: const Text('Deny'),
           ),
           TextButton(
             onPressed: () =>
-                Navigator.pop(context, FlaxPermissionDecision.allow),
+                Navigator.pop(dialogContext, FlaxPermissionDecision.allow),
             child: const Text('Allow module'),
           ),
         ],
       ),
     );
-    unawaited(
-      request.whenCancelled.then((_) {
-        if (route.isActive) navigator.removeRoute(route);
-      }),
-    );
-    return await navigator.push(route) ?? FlaxPermissionDecision.cancel;
+    if (request.definition.id == 'flax.notifications') {
+      _ExampleNotifications.log(
+        '${request.appId}: module decision ${decision.name}',
+      );
+    }
+    return decision;
   }
 
   Future<void> _stopSession() async {
@@ -301,9 +361,86 @@ class _PermissionsState extends State<FlaxPermissionsExample> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          const Text('macOS notifications: host → module → native API'),
+          const Text(
+            '1. Approve manifest & run. '
+            '2. In the module, Request module notifications: macOS asks first, '
+            'then separate module consent. '
+            '3. Send through the guarded API. Query and Send never prompt.',
+          ),
+          const Text(
+            'This native action is macOS only. The host-only request below is optional: '
+            'OS authorization never approves a module automatically.',
+          ),
+          ValueListenableBuilder<String>(
+            valueListenable: _ExampleNotifications.status,
+            builder: (context, value, _) => Text(
+              'Host OS notifications: $value',
+              key: const ValueKey('notification-host-status'),
+            ),
+          ),
+          Wrap(
+            spacing: 8,
+            children: [
+              TextButton(
+                onPressed: _busy || !Platform.isMacOS
+                    ? null
+                    : () => _perform(() async {
+                        await _ExampleNotifications.requestHost();
+                        _manager?.invalidateNative();
+                        await _manager?.refresh();
+                      }),
+                child: const Text('Request host notification permission'),
+              ),
+              TextButton(
+                onPressed: _busy
+                    ? null
+                    : () => _perform(() async {
+                        await _ExampleNotifications.query();
+                        _manager?.invalidateNative();
+                        await _manager?.refresh();
+                      }),
+                child: const Text('Refresh host notification status'),
+              ),
+              TextButton(
+                onPressed: _busy || _application == null
+                    ? null
+                    : () => _perform(() async {
+                        await _manager!.revoke(
+                          _application!,
+                          'flax.notifications',
+                        );
+                        await _ExampleNotifications.clear(_application!.appId);
+                        _ExampleNotifications.log(
+                          '${_application!.appId}: module notifications revoked; host OS permission is unchanged',
+                        );
+                      }),
+                child: const Text('Revoke module notifications'),
+              ),
+            ],
+          ),
+          ValueListenableBuilder<List<String>>(
+            valueListenable: _ExampleNotifications.activity,
+            builder: (context, value, _) => Text(value.join('\n')),
+          ),
+          const SizedBox(height: 16),
           TextField(
             controller: _appId,
             decoration: const InputDecoration(labelText: 'Module appId'),
+          ),
+          CheckboxListTile(
+            title: const Text('Declare notifications'),
+            value: _declareNotifications,
+            onChanged: _busy
+                ? null
+                : (v) => setState(() => _declareNotifications = v!),
+          ),
+          CheckboxListTile(
+            title: const Text('Host allows module notifications'),
+            value: _allowNotifications,
+            onChanged: _busy
+                ? null
+                : (v) => setState(() => _allowNotifications = v!),
           ),
           CheckboxListTile(
             title: const Text('Declare network'),
@@ -383,6 +520,7 @@ class _PermissionsState extends State<FlaxPermissionsExample> {
                             }
                           },
                         );
+                        await _ExampleNotifications.clear(_application!.appId);
                         _application = null;
                         setState(
                           () => _status = 'Secure installation records deleted. Next approval creates a new owner.',
@@ -396,7 +534,7 @@ class _PermissionsState extends State<FlaxPermissionsExample> {
           const SizedBox(height: 16),
           if (_session case final session?)
             SizedBox(
-              height: 440,
+              height: 520,
               child: FlaxView.session(key: ValueKey(session), session: session),
             ),
         ],
@@ -407,10 +545,11 @@ class _PermissionsState extends State<FlaxPermissionsExample> {
 
 const _source = r'''
 import {invokeTopLevel} from '@flax/core/bindings';
-import {Column, GestureDetector, Image, SizedBox, Text, State, StatefulWidget, runApp} from '@flax/flutter/widgets';
+import {GestureDetector, Image, ListView, SizedBox, Text, State, StatefulWidget, runApp} from '@flax/flutter/widgets';
 class Demo extends StatefulWidget { createState() { return new DemoState(); } }
 class DemoState extends State {
   label = 'Query before requesting. Documents use their own system picker.';
+  notifications = 'Module notifications (last query/request): not queried';
   file = null;
   async perform(action) {
     try { const value = await action(); if (this.mounted) this.setState(() => this.label = String(value)); }
@@ -418,7 +557,16 @@ class DemoState extends State {
   }
   build() {
     const button = (label, action) => GestureDetector({onTap: () => void this.perform(action), child: SizedBox({height: 36, child: Text(label)})});
-    return Column({children: [
+    const notificationPermission = async (action) => {
+      const result = await action('flax.notifications');
+      if (this.mounted) this.setState(() => this.notifications = `Module notifications (last query/request): ${JSON.stringify(result)}`);
+      return `${result.state}${result.reason ? `: ${result.reason}` : ''}`;
+    };
+    return ListView({children: [
+      Text(this.notifications),
+      button('Query module notifications', () => notificationPermission(id => permissions.query(id))),
+      button('Request module notifications', () => notificationPermission(id => permissions.request(id))),
+      button('Send notification (guarded)', () => invokeTopLevel('flax.example/permissions#function:sendNotification', [])),
       Text(this.label),
       button('Query orders', async () => JSON.stringify(await permissions.query('example.orders.read'))),
       button('Request orders', async () => JSON.stringify(await permissions.request('example.orders.read'))),

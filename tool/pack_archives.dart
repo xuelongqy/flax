@@ -134,7 +134,7 @@ Future<Map<String, dynamic>> _pack({
       );
       await run('pnpm', [
         'pack',
-        '--ignore-scripts',
+        '--config.ignore-scripts=true',
         '--pack-destination',
         artifacts.path,
       ], directory: copy.path);

@@ -1,5 +1,12 @@
 # Flax 应用权限与 iOS、Android 能力目录
 
+> Implementation update (2026-11-05): this document retains historical design discussion
+> and the capability inventory. The current
+> [permission contract](../architecture/permissions.md) supports optional native request
+> services before separate module consent. The default bridge remains query-only unless
+> the host enables `requestOnDemand: true`; safe attempt does not guarantee OS UI or a
+> grant. Background location needs a custom host flow.
+
 状态：核心权限体系及可选平台包已实现，当前接口以[权限契约](../architecture/permissions.md)为准。平台资料核对日期为 2026-10-30；permission_handler 适配版本为 13.0.2。本文保留设计讨论与能力目录，示意代码不替代已实现接口文档。
 
 本文定义应用清单、安装确认、运行时申请、binding 检查和权限扩展的分工，并按 iOS、Android 的公开应用能力整理目录。ID 已作为能力定义提供，不表示已有对应 Flax
@@ -186,7 +193,13 @@ handler 保持同步，不弹窗、不重试，不更改目标的同步/Future/S
 API 使用失败 Future/Promise
 rejection；Stream 服务在实际订阅启动时也检查。控制器、流和连接绑定调用者与有效范围，只标注工厂不足以保护后续操作，不引入通用 Promise 结果过滤器来隔离任意宿主对象。
 
-模块申请接口可以异步，但不调用 permission_handler.request()。成功后更新当前 Session，不重建并销毁正在等待结果的 JS。同项并发申请合并，不同请求由宿主协调且不无限排队；关闭后的迟到结果不能恢复资源。原生状态查询可能异步，不能要求同步 handler 完成原生查询，也不能只靠永久缓存判断系统授权。具体规则见第 3.2 至 3.5 节。
+The asynchronous module request can now invoke a trusted native requester after explicit
+host opt-in. Core freshly queries the complete target after native work, then separately
+obtains or reuses module consent; neither an OS grant nor a request return value
+approves the module. Equal native targets share physical work, and cancelled native work
+retains its slot until actual settlement. Synchronous guards and query remain
+prompt-free. See the
+[current flow](../architecture/permissions.md#query-request-and-checks).
 
 授权按宿主确认的应用身份、权限 ID 和范围保存，账号相关授权还须绑定账号。不同 API 可以共享，应用重新运行可复用仍有效的授权，不同应用不继承。`manifest.id`
 不是自证身份，宿主须确认归属。记录放在宿主管理区域，不放在 JS 可写的 data、localStorage 或包内容中。
@@ -327,7 +340,11 @@ declare const permissions: {
 };
 ```
 
-scope 使用第 3 节提供者的统一规则，省略时使用该声明的默认申请范围。query 只查询本模块可见状态，不弹窗、不写批准、不增加申请历史，不枚举宿主其他权限。request 是应用显式发起模块授权的唯一入口，建议在用户操作时调用，不自动重试，不请求宿主系统权限。JS 自报 userGesture 不能证明真实交互；可信同意来自宿主界面，由宿主检查可交互状态并约束重复提示。
+Scope follows the provider rules and defaults to the declaration target. Query remains
+prompt-free and does not write module history. Explicit request may first acquire a
+missing host prerequisite through an opted-in trusted requester, then obtain independent
+module consent. There is no automatic retry or settings flow. JS cannot prove user
+interaction; the host controls foreground UI and prompt abuse.
 
 | 返回字段      | 含义                                                                                                                                                         |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -362,7 +379,9 @@ requested 在本权限当前声明版本下记录，用户拒绝或取消后可�
 Android
 14.1.0 起，普通 status 查询无法区分未请求、永久拒绝和已重置为“每次询问”，只有宿主真正 request 的结果可能报告 permanentlyDenied。不能从模块 requested、旧结果或 shouldShowRequestRationale 推导永久准确的 canRequest 标志，也不能将 denied 一律解释为永不允许再次申请。[Android 状态变更][permission-handler-android]
 
-下例 request 由用户点击功能触发；宿主权限不足时返回原因，由宿主提供自己的设置引导，不自动衔接系统申请：
+This example also applies to a query-only host, which acquires OS permissions through
+its own flow first. With the optional native requester enabled, explicit request may
+acquire the prerequisite before module consent:
 
 ```javascript
 // Query and request only this module's permission.
@@ -406,7 +425,12 @@ whenCancelled，最后一个合法等待者关闭、请求失效或卸载时通�
 未提供策略时受控能力默认不允许；未标记普通 binding 不因此全部增加检查。权限定义由可信插件提供，不由 JS 选择 native
 Permission 编号。
 
-1. 确认 Session 仍处于 open、可信应用身份、已批准声明、宿主允许范围、提供者及本次所需的宿主系统前提。宿主权限不足或必要状态未知时直接返回原因，不弹模块授权框。
+1. Validate the open Session, trusted installation, declaration, host allow list,
+   provider and normalized target before any prompt. A missing native prerequisite may
+   invoke a trusted requester only when it explicitly advertises a safe attempt. Freshly
+   query after settlement; a remaining native block returns without module
+   consent/history. See the
+   [current contract](../architecture/permissions.md#query-request-and-checks).
 2. 安装型直接返回有效状态，不弹通用框；操作确认型也不会由 request 代替选择器或认证。申请型若已有有效范围批准则直接复用，否则进入模块授权流程，实际展示前再检查宿主前提与宿主界面状态。
 3. 按安装 owner、账号、权限、声明版本及规范化目标合并同项请求；同一 owner 同时只展示一个模块授权流程，不同项并发可返回 busy，由调用方显式顺序重试。记录本模块申请及用户允许、拒绝或取消；取消或拒绝扩大范围均保留原 approvedScope，不自动重试或排队重弹。
 4. 回调完成后重查 Session、安装实例/账号、声明版本、策略、授权修订和宿主系统前提；新批准可靠写入后再次检查这些条件，才更新活动 Session 并交付。存储完成不等于仍有效，不满足条件不发布迟到批准；普通 rebuild 不产生同意记录。
@@ -415,7 +439,7 @@ Permission 编号。
 宿主自己申请系统权限时，也在宿主级协调并发、原生依赖和分阶段规则，不能仅在单个 FlaxView 排队。Android 实现会拒绝尚有请求运行时再次申请；Dart 链式回调保存在静态字段中，可能被其他调用覆盖。适配层优先等待列表接口返回值，按原请求归属处理，不将链式回调绑定到模块：
 
 ```dart
-// Host-only request from trusted host UI, never JS permissions.request().
+// Trusted native adapter operation; never expose Permission or settings APIs to JS.
 final results = await [Permission.camera].request();
 final status = results[Permission.camera];
 ```

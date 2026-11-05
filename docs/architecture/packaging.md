@@ -26,7 +26,9 @@ The [permission contract](permissions.md) places immutable permission definition
 guard annotations in pure Dart `flax_annotations`, with runtime policies, consent and
 storage consumers in Core. Core and codegen consume that metadata; annotations never
 depend on Core, Flutter or platform permission plugins. The optional `flax_permissions`
-adapter only queries host OS state through permission_handler.
+adapter queries host OS state through permission_handler, optionally requests native
+prerequisites after explicit host opt-in, and supplies customizable module consent UI.
+Core owns only the platform-independent query/request contracts and authorization flow.
 
 The [direct JS FFI capability](ffi.md) is an npm-first exception. `@flax/ffi` is
 standalone JS/TS; Core owns internal Dart bootstrap and retirement. Build tooling
@@ -49,7 +51,7 @@ selected libraries. This private generated package is separate from the existing
 | `@flax/ffi-codegen`                                  | Optional Node development tool for C header definitions and ownership-driven FFI classes; no device runtime                           |
 | `flax_websocket` / `@flax/websocket-runtime`         | WebSocket session plugin                                                                                                              |
 | `flax_local_storage` / `@flax/local-storage-runtime` | Persistent localStorage session plugin                                                                                                |
-| `flax_permissions`                                   | Optional query-only permission_handler adapter for host OS state                                                                      |
+| `flax_permissions`                                   | Optional permission_handler query/request bridge and trusted customizable module consent UI                                           |
 | `flax_secure_storage`                                | Optional host-only Keychain and Keystore byte storage                                                                                 |
 | `flax_video_player` / `@flax/video-player-runtime`   | Optional generated video_player bindings for trusted applications; public types use `@flax/video-player`                              |
 | `flax_audioplayers` / `@flax/audioplayers-runtime`   | Optional generated audioplayers bindings for trusted applications; public types use `@flax/audioplayers`                              |

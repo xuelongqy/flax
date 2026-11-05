@@ -400,7 +400,7 @@ Future<_NpmArchive> _checkNpmPackage(
     ..createSync(recursive: true);
   final result = await Process.run('pnpm', [
     'pack',
-    '--ignore-scripts',
+    '--config.ignore-scripts=true',
     '--json',
     '--pack-destination',
     artifacts.path,

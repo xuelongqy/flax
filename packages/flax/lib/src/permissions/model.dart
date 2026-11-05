@@ -312,22 +312,46 @@ final class FlaxNativePermissionStatus {
     this.scope,
     this.reason,
     this.serviceStatus = FlaxPermissionServiceStatus.notApplicable,
+    this.canRequest = false,
   });
   const FlaxNativePermissionStatus.notRequired()
     : state = FlaxPermissionState.granted,
       scope = null,
       reason = null,
-      serviceStatus = FlaxPermissionServiceStatus.notApplicable;
+      serviceStatus = FlaxPermissionServiceStatus.notApplicable,
+      canRequest = false;
 
   final FlaxPermissionState state;
   final Object? scope;
   final String? reason;
   final FlaxPermissionServiceStatus serviceStatus;
+
+  /// The host supports a safe request attempt, which need not display OS UI.
+  final bool canRequest;
 }
 
 abstract interface class FlaxNativePermissionAdapter {
   /// Must not prompt, request OS permissions or open system settings.
   Future<FlaxNativePermissionStatus> query(String permission, Object scope);
+}
+
+/// Optional host capability; query-only adapters need no request implementation.
+abstract interface class FlaxNativePermissionRequester
+    implements FlaxNativePermissionAdapter {
+  /// Settles only after any started native operation actually finishes or fails.
+  /// Cancellation may dismiss host rationale, but cannot dismiss an OS dialog.
+  /// The host waits for foreground before returning; Core queries the result.
+  Future<void> request(FlaxNativePermissionRequest request);
+}
+
+/// Shared native work has no module identity or module-consent decision.
+final class FlaxNativePermissionRequest {
+  FlaxNativePermissionRequest._(this.permission, this.scope);
+  final String permission;
+  final Object scope;
+  final _cancelled = Completer<void>();
+  bool get isCancelled => _cancelled.isCompleted;
+  Future<void> get whenCancelled => _cancelled.future;
 }
 
 typedef FlaxPermissionRequestHandler = Future<FlaxPermissionDecision> Function(
@@ -352,6 +376,7 @@ final class FlaxPermissionRequest {
   final Object scope;
   final Object? approvedScope;
   final _cancelled = Completer<void>();
+  bool get isCancelled => _cancelled.isCompleted;
   Future<void> get whenCancelled => _cancelled.future;
 }
 
