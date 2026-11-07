@@ -30,7 +30,7 @@ fallback. Sources are captured at call time; bitmap transfer resets the canvas t
 transparent or opaque black and expires its current texture. Explicit GPU image readback
 is synchronous and can stall the Worker; normal presentation stays native.
 
-Worker Canvas 2D, document/HTML image simulation, video and HDR are excluded. The
+Worker Canvas 2D, document/HTML image simulation and video are excluded. The
 [real acceptance fixture](example/js/gpu-workers.js) covers compute, native
 presentation, resize, image pixels, ownership and shutdown. Each cycle requires a
 `stillImages` receipt with 17 named cases and actual canvas pixel snapshots. The
@@ -145,13 +145,13 @@ optional explicit producer preparation step; normal consumers omit it.
 
 ## Implemented coverage and limits
 
-| Area              | Current macOS profile                                                                                                                                                                         |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Standard entry    | `navigator.gpu`, adapter/device requests, actual features, limits, adapter information, WGSL features                                                                                         |
-| Resources         | Buffers, textures/views, samplers, shader modules, bind groups/layouts, compute/render pipelines, queries                                                                                     |
-| Commands          | Compute/render passes, direct/indexed/indirect draws, render bundles, copies, clears, query resolve, queue uploads/submit/completion                                                          |
-| Async/error paths | Async pipelines, compilation information, error scopes/events, device loss, mapAsync/unmap/destroy                                                                                            |
-| Canvas            | Shared Core identity, current-texture identity/expiry, resize, configure/unconfigure, automatic publication, snapshots/exports; BGRA8/RGBA8 with sRGB views, sRGB, opaque/premultiplied alpha |
+| Area              | Current macOS profile                                                                                                                                                                                                                                 |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Standard entry    | `navigator.gpu`, adapter/device requests, actual features, limits, adapter information, WGSL features                                                                                                                                                 |
+| Resources         | Buffers, textures/views, samplers, shader modules, bind groups/layouts, compute/render pipelines, queries                                                                                                                                             |
+| Commands          | Compute/render passes, direct/indexed/indirect draws, render bundles, copies, clears, query resolve, queue uploads/submit/completion                                                                                                                  |
+| Async/error paths | Async pipelines, compilation information, error scopes/events, device loss, mapAsync/unmap/destroy                                                                                                                                                    |
+| Canvas            | Shared Core identity, current-texture identity/expiry, resize, configure/unconfigure, automatic publication, snapshots/exports; BGRA8/RGBA8 with sRGB views, RGBA16Float, sRGB/Display P3, standard/extended tone mapping, opaque/premultiplied alpha |
 
 The
 [standard input semantics acceptance](../../docs/tasks/webgpu-standard-input-semantics.md)
@@ -173,9 +173,8 @@ feature; canvas configurations reject this usage with `TypeError`.
 
 Canvas configuration validates format and view-format feature requirements before
 rejecting legal but unsupported context formats with `TypeError`, then rejects transient
-usage. These content errors preserve the existing configuration and current texture. The
-macOS profile still rejects `rgba16float`, incompatible view formats, P3 display and
-extended HDR tone mapping with `NotSupportedError`. `getConfiguration()` returns fresh
+usage. These content errors preserve the existing configuration and current texture.
+Incompatible view formats throw `NotSupportedError`. `getConfiguration()` returns fresh
 dictionaries and arrays, including `toneMapping` and `viewFormats`, while retaining the
 configured `GPUDevice` identity. It returns `null` before configuration and after
 `unconfigure()`.
@@ -231,11 +230,26 @@ canvases. Canvas snapshots and PNG/JPEG/WebP exports are explicit CPU paths. See
 Core provides pure JS/Wasm Dedicated Workers by default. Selecting this plugin on a
 nonsandboxed Session also enables Worker WebGPU compute and transferable OffscreenCanvas
 rendering. Worker Canvas 2D, general browser DOM/CSS, GPUExternalTexture/video sharing,
-HDR/P3 display, other platforms and full CTS remain outside this profile. See the
+other platforms and full CTS remain outside this profile. See the
 [architecture](../../docs/architecture/webgpu.md) and
 [remaining task](../../docs/tasks/webgpu-js-api.md).
 
 The development plugin uses CocoaPods; Swift Package Manager integration is deferred.
+
+### Wide gamut and HDR
+
+Configure `colorSpace: 'display-p3'` for wide-gamut content. On a compatible display
+Flutter presents it in its existing wide-gamut mode. For extended luminance, configure
+`format: 'rgba16float'` with `toneMapping: { mode: 'extended' }`. Set the boolean
+`FLTEnableExtendedDynamicRange` in the app's Info.plist to opt the matching Flax
+Flutter engine into FP16/EDR output on macOS 26+ with a P3 and EDR capable display.
+The window uses the existing wide-gamut or SDR surface when EDR output is unavailable.
+Standard FP16 content is projected into SDR Display P3 before Flutter composition.
+
+Explicit snapshots and image exports convert color canvases to SDR sRGB RGBA8 for Core's
+image storage. The
+[color canvas probe](../../experiments/webgpu_dawn/color_canvas/README.md) compares
+WebGPU pixels with Flutter color controls and macOS HDR capture.
 
 ## Validation
 

@@ -281,9 +281,10 @@ Mappings, native callbacks and resource finalizers then retire before V8 disposa
 The native ABI, UI protocol and Worker profile remain independent and unchanged. Worker
 graphics requires the maintained owned-buffer primitive and atomic canvas transfer
 capability; an older engine fails before Worker GPU context/listener creation. Worker
-Canvas 2D, document/HTML simulation, shared GPU resources, video, HDR and XR remain
-outside this profile. See the [delivery task](../tasks/webgpu-worker-rendering.md) for
-current platform and lifecycle evidence.
+WebGPU canvases use the same [color configuration and presentation](webgpu.md#mapping-and-presentation)
+as main Sessions. Canvas 2D, document/HTML simulation, shared GPU resources, video and
+XR remain outside this profile. See the
+[delivery task](../tasks/webgpu-worker-rendering.md) for lifecycle evidence.
 
 Selected Workers accept ImageData, ImageBitmap and their OffscreenCanvas snapshots in
 `copyExternalImageToTexture`; sources are captured at call time. `convertToBlob` exports

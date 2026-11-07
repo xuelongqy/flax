@@ -125,19 +125,25 @@ Acquisition fails explicitly if all eight slots are occupied; already submitted 
 is not discarded. The maintained macOS interop currently assumes one Flutter Metal queue
 and counts violations as retirement errors.
 
-The profile supports BGRA8/RGBA8, matching sRGB views, sRGB presentation and
-opaque/premultiplied alpha. Canvas usage defaults to `RENDER_ATTACHMENT`, but an
-explicit usage is not widened: `COPY_DST`-only and valid `STORAGE_BINDING`-only
-configurations are supported. BGRA storage requires `bgra8unorm-storage` on the
-configured device. Invalid usage still produces native validation errors and error
-textures; transient-attachment usage is rejected by dictionary-level `TypeError`.
+The profile supports BGRA8/RGBA8 with matching sRGB views, RGBA16Float, sRGB and Display
+P3, standard and extended tone mapping, and opaque/premultiplied alpha. Canvas usage
+defaults to `RENDER_ATTACHMENT`, but an explicit usage is not widened: `COPY_DST`-only
+and valid `STORAGE_BINDING`-only configurations are supported. BGRA storage requires
+`bgra8unorm-storage` on the configured device. Invalid usage still produces native
+validation errors and error textures; transient-attachment usage is rejected by
+dictionary-level `TypeError`.
 
-Devices enable Dawn's private internal-usage feature. IOSurface textures retain exactly
-the application's public usage and chain an internal `RenderAttachment` usage solely for
-host initialization. Only the native presentation-clear and snapshot encoders opt into
-internal usage; ordinary application encoders retain Dawn's public validation. Every
-acquisition starts uninitialized, including recycled storage, and the existing
-producer/consumer fences and alpha handling remain in the presentation path.
+Devices enable Dawn's private internal-usage feature. The application texture retains
+exactly the configured public usage. Native initialization, color projection and
+snapshots can use private texture usages. Every acquisition starts uninitialized,
+including recycled storage.
+
+Display P3 is converted on the GPU to extended sRGB for Flutter composition. Standard
+FP16 projects in Display P3 first, so a color within P3 can survive even when its sRGB
+encoding has negative channels or channels above one. Extended sRGB FP16 shares its
+texture directly. The same producer/consumer fences protect all published surfaces. The
+macOS host can opt into FP16/EDR backing with `FLTEnableExtendedDynamicRange`. Flutter
+selects the surface format for each window according to screen capability.
 
 Configuration input is snapshotted during dictionary conversion. Each
 `getConfiguration()` call copies the outer dictionary, `viewFormats` and `toneMapping`,
@@ -200,16 +206,17 @@ modify the ordinary zero-copy presentation path.
 Canvas snapshots wait for submitted GPU work before reading the IOSurface. A snapshot
 preserves the current texture identity; transfer expires it and publishes transparent
 black, or opaque black for an opaque canvas. The resulting Core bitmap owns its pixels
-independently. PNG/JPEG/WebP exports use the shared codecs; they are explicit CPU
-readback paths and can stall the caller. Unsupported export MIME types fall back to PNG.
-These paths work in the selected Worker profile; the current synchronous GPU readback
-limit also applies there.
+independently. Wide-gamut and extended snapshots project to SDR sRGB RGBA8.
+PNG/JPEG/WebP exports use the shared codecs and are explicit CPU readback paths and can
+stall the caller. Unsupported export MIME types fall back to PNG. These paths work in
+the selected Worker profile; the current synchronous GPU readback limit also applies
+there.
 
 The Worker acceptance fixture returns `stillImages` with assertions, named cases,
 formats and `pixelSnapshots: true`. Dart acceptance requires those receipts and actual
 canvas-configuration pixel snapshots in every cycle, so omitted image paths cannot pass
 silently. See the [still-image task](../tasks/worker-images.md) for validation status.
 
-Complete WebIDL/CTS conformance, HDR/P3 display, GPUExternalTexture/video sharing,
-Worker Canvas 2D services and other platforms remain open. See the
+Complete WebIDL/CTS conformance, GPUExternalTexture/video sharing, Worker Canvas 2D
+services and other platforms remain open. See the
 [remaining task](../tasks/webgpu-js-api.md).

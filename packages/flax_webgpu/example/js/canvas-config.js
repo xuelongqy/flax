@@ -453,6 +453,242 @@ export async function verifyCanvasConfiguration(device, assert, snapshot) {
     context.unconfigure();
     cases.push(label);
   }
+  async function colorProfiles() {
+    function draw(color) {
+      const texture = context.getCurrentTexture();
+      const encoder = device.createCommandEncoder();
+      const pass = encoder.beginRenderPass({
+        colorAttachments: [
+          {
+            view: texture.createView(),
+            clearValue: color,
+            loadOp: 'clear',
+            storeOp: 'store',
+          },
+        ],
+      });
+      pass.end();
+      device.queue.submit([encoder.finish()]);
+      return texture;
+    }
+    function expectColor(pixels, expected, label, tolerance = 1) {
+      check(
+        pixels.length === canvas.width * canvas.height * 4 &&
+          pixels.every((value, i) => Math.abs(value - expected[i % 4]) <= tolerance),
+        `${label}: ${pixels}`,
+      );
+    }
+    for (const format of ['rgba8unorm', 'bgra8unorm', 'rgba16float']) {
+      for (const colorSpace of ['srgb', 'display-p3']) {
+        for (const mode of ['standard', 'extended']) {
+          const label = `${format}/${colorSpace}/${mode}`;
+          const opaque = format === 'bgra8unorm';
+          const alphaMode = opaque ? 'opaque' : 'premultiplied';
+          const usage =
+            GPUTextureUsage.RENDER_ATTACHMENT |
+            (format === 'rgba16float' && colorSpace === 'display-p3'
+              ? GPUTextureUsage.TEXTURE_BINDING
+              : 0);
+          let pixels;
+          await validation(
+            device,
+            () => {
+              context.configure({
+                device,
+                format,
+                colorSpace,
+                toneMapping: { mode },
+                usage,
+                alphaMode,
+              });
+              const config = context.getConfiguration();
+              check(
+                config.format === format &&
+                  config.colorSpace === colorSpace &&
+                  config.toneMapping.mode === mode,
+                `${label} configuration round-trips independently`,
+              );
+              const texture = draw(
+                opaque ? [0.5, 0.25, 0.125, 0] : [0.25, 0.125, 0.0625, 0.5],
+              );
+              check(
+                texture.format === format && texture.usage === usage,
+                `${label} texture exposes its exact format and usage`,
+              );
+              if (snapshot) pixels = snapshot(device, canvas);
+            },
+            false,
+            `${label} renders with the declared usage`,
+          );
+          if (pixels) {
+            const rgb = colorSpace === 'srgb' ? [128, 64, 32] : [137, 59, 21];
+            expectColor(await pixels, [...rgb, opaque ? 255 : 128], label, 2);
+          }
+        }
+      }
+    }
+    cases.push('color-profiles');
+    await validation(
+      device,
+      () => {
+        context.configure({ device, format: 'rgba16float' });
+        const layout = device.createBindGroupLayout({
+          entries: [{ binding: 0, visibility: GPUShaderStage.FRAGMENT, texture: {} }],
+        });
+        device.createBindGroup({
+          layout,
+          entries: [{ binding: 0, resource: context.getCurrentTexture().createView() }],
+        });
+      },
+      true,
+      'Standard FP16 projection does not grant a public TEXTURE_BINDING usage',
+    );
+    if (!snapshot) return;
+
+    for (const [colorSpace, mode, expected] of [
+      ['srgb', 'standard', [128, 64, 32, 128]],
+      ['srgb', 'extended', [128, 64, 32, 128]],
+      ['display-p3', 'extended', [137, 59, 21, 128]],
+    ]) {
+      const label = `${colorSpace}/${mode}`;
+      context.configure({
+        device,
+        format: 'rgba16float',
+        colorSpace,
+        toneMapping: { mode },
+        alphaMode: 'premultiplied',
+      });
+      let captured;
+      await validation(
+        device,
+        () => {
+          const texture = draw([0.25, 0.125, 0.0625, 0.5]);
+          texture.destroy();
+          check(
+            context.getCurrentTexture() === texture,
+            `${label} explicit destroy preserves current texture identity until expiry`,
+          );
+          captured = createImageBitmap(canvas, { premultiplyAlpha: 'none' });
+        },
+        false,
+        `${label} explicit destroy and snapshot avoid private validation errors`,
+      );
+      expectColor(
+        await snapshot(device, canvas, await captured),
+        expected,
+        `${label} snapshot preserves drawing submitted before destroy`,
+      );
+      await new Promise(requestAnimationFrame);
+      expectColor(
+        await snapshot(device, canvas),
+        expected,
+        `${label} published frame preserves drawing submitted before destroy`,
+      );
+      if (colorSpace === 'srgb' && mode === 'extended') {
+        let empty;
+        await validation(
+          device,
+          () => {
+            context.getCurrentTexture().destroy();
+            empty = snapshot(device, canvas);
+          },
+          false,
+          'Destroying an unused FP16 texture avoids validation errors',
+        );
+        expectColor(
+          await empty,
+          [0, 0, 0, 0],
+          'An unused recycled FP16 texture stays clear',
+        );
+      }
+    }
+    cases.push('color-destroy');
+
+    context.configure({
+      device,
+      format: 'rgba16float',
+      colorSpace: 'display-p3',
+      toneMapping: { mode: 'extended' },
+      alphaMode: 'premultiplied',
+    });
+    const texture = draw([0.25, 0.125, 0.0625, 0.5]);
+    const bitmap = createImageBitmap(canvas, { premultiplyAlpha: 'none' });
+    const exporting = canvas.convertToBlob();
+    check(
+      context.getCurrentTexture() === texture,
+      'Color capture preserves texture identity',
+    );
+    draw([0, 0.5, 0, 0.5]);
+    await new Promise(requestAnimationFrame);
+    expectColor(
+      await snapshot(device, canvas, await bitmap),
+      [137, 59, 21, 128],
+      'createImageBitmap captures the P3 pixels at call time',
+      2,
+    );
+    const blob = await exporting;
+    check(blob.type === 'image/png', 'The default color canvas export is PNG');
+    expectColor(
+      await snapshot(
+        device,
+        canvas,
+        await createImageBitmap(blob, { premultiplyAlpha: 'none' }),
+      ),
+      [137, 59, 21, 128],
+      'PNG exports the current canvas as straight sRGB',
+      2,
+    );
+    expectColor(
+      await snapshot(device, canvas),
+      [0, 255, 0, 128],
+      'A published P3 snapshot captures the later drawing',
+    );
+    expectColor(
+      await snapshot(device, canvas),
+      [0, 0, 0, 0],
+      'Transfer clears publication',
+    );
+    const acquired = draw([0.5, 0, 0, 0.5]);
+    const transferred = snapshot(device, canvas);
+    check(
+      context.getCurrentTexture() !== acquired,
+      'Transfer expires the P3 input texture',
+    );
+    expectColor(
+      await transferred,
+      [255, 0, 0, 128],
+      'Transfer captures the current P3 input',
+    );
+
+    const resized = draw([0, 0.5, 0, 0.5]);
+    canvas.width = 3;
+    check(
+      context.getCurrentTexture() !== resized &&
+        context.getCurrentTexture().width === 3 &&
+        context.getConfiguration().colorSpace === 'display-p3',
+      'Color canvas resize replaces the input and preserves its configuration',
+    );
+    expectColor(
+      await snapshot(device, canvas),
+      [0, 0, 0, 0],
+      'Resize clears old color pixels',
+    );
+    canvas.width = 2;
+    context.configure({
+      device,
+      format: 'rgba16float',
+      toneMapping: { mode: 'extended' },
+      alphaMode: 'premultiplied',
+    });
+    draw([1, 0.125, -0.125, 0.5]);
+    expectColor(
+      await snapshot(device, canvas),
+      [255, 64, 0, 128],
+      'Reconfigured HDR snapshot unpremultiplies and clamps to sRGB RGBA8',
+    );
+    context.unconfigure();
+    cases.push('color-snapshots');
+  }
   try {
     check(
       GPUTextureUsage.TRANSIENT_ATTACHMENT === 32 && Object.isFrozen(GPUTextureUsage),
@@ -564,12 +800,7 @@ export async function verifyCanvasConfiguration(device, assert, snapshot) {
         'View-format feature validation precedes profile restrictions and preserves current texture',
       );
     }
-    for (const options of [
-      { format: 'rgba16float' },
-      { colorSpace: 'display-p3' },
-      { viewFormats: ['bgra8unorm'] },
-      { toneMapping: { mode: 'extended' } },
-    ]) {
+    for (const options of [{ viewFormats: ['bgra8unorm'] }]) {
       throws(
         () => context.configure({ device, format: 'rgba8unorm', ...options }),
         'NotSupportedError',
@@ -617,6 +848,7 @@ export async function verifyCanvasConfiguration(device, assert, snapshot) {
       'Native internal usage and interop features remain private',
     );
     await transientAttachments();
+    await colorProfiles();
     for (const usage of [0, 0x40000000]) await invalidUsage('rgba8unorm', usage);
     if (!device.features.has('bgra8unorm-storage'))
       await invalidUsage('bgra8unorm', GPUTextureUsage.STORAGE_BINDING);
@@ -649,7 +881,7 @@ export async function verifyCanvasConfiguration(device, assert, snapshot) {
 }
 
 export async function verifyCanvasConfigurationPixels(device, assert) {
-  return verifyCanvasConfiguration(device, assert, (targetDevice, canvas) =>
-    readCanvasPixels(targetDevice, canvas, readTexturePixels),
+  return verifyCanvasConfiguration(device, assert, (targetDevice, canvas, bitmap) =>
+    readCanvasPixels(targetDevice, canvas, readTexturePixels, bitmap),
   );
 }

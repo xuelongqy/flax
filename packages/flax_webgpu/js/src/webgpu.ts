@@ -188,6 +188,7 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
         close(): void;
         device(): unknown;
         lose(): void;
+        destroyCurrentTexture(texture: object, handle: bigint): boolean;
         snapshot(transfer: boolean): ImageBitmap;
       }
     >();
@@ -1009,7 +1010,11 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
       proc('wgpuBufferDestroy')(p.pointer);
       p.destroyed = true;
     });
-    method('GPUTexture', 'destroy', (p) => proc('wgpuTextureDestroy')(p.pointer));
+    method('GPUTexture', 'destroy', (p, self) => {
+      if (p.canvas && canvasOps.get(p.canvas)!.destroyCurrentTexture(self, p.pointer))
+        return;
+      proc('wgpuTextureDestroy')(p.pointer);
+    });
     method('GPUTexture', 'createView', (p, _, input) => {
       if (input == null)
         return wrap(
@@ -1827,6 +1832,11 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
           close: () => this.#close(),
           device: () => this.#configuration?.device,
           lose: () => this.#lose(),
+          destroyCurrentTexture: (texture, handle) => {
+            if (this.#lost || this.#current !== texture) return false;
+            check(native.canvas_destroy_texture(this.#surface, handle));
+            return true;
+          },
           snapshot: (transfer) => this.#snapshot(transfer),
         });
         canvasContexts.add(new WeakRef(this));
@@ -1889,16 +1899,13 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
         if (config.usage & constantGroups.GPUTextureUsage.TRANSIENT_ATTACHMENT)
           throw new TypeError('Canvas textures cannot use TRANSIENT_ATTACHMENT');
         if (
-          config.format === 'rgba16float' ||
-          config.colorSpace !== 'srgb' ||
           config.viewFormats?.some(
             (format: string) =>
               format !== config.format && format !== config.format + '-srgb',
-          ) ||
-          config.toneMapping?.mode === 'extended'
+          )
         )
           throw exception(
-            'This macOS profile supports BGRA8/RGBA8, sRGB and matching sRGB views',
+            'Canvas views must match the format or its sRGB variant',
             'NotSupportedError',
           );
         const lost = peer(config.device).destroyed === true;
@@ -1926,6 +1933,8 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
               Number(config.alphaMode === 'opaque'),
               nativeEnum('WGPUTextureFormat', config.format),
               Number(config.viewFormats?.includes(config.format + '-srgb') ?? false),
+              Number(config.colorSpace === 'display-p3'),
+              Number(config.toneMapping.mode === 'extended'),
             ),
           );
         } else if (this.#surface) {
@@ -1987,7 +1996,7 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
       }
       #expire() {
         if (!this.#current) return;
-        destroyTexture.call(this.#current);
+        proc('wgpuTextureDestroy')(peer(this.#current).pointer);
         this.#current = null;
       }
       #resize() {
@@ -2008,6 +2017,8 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
                 Number(config.alphaMode === 'opaque'),
                 nativeEnum('WGPUTextureFormat', config.format),
                 Number(config.viewFormats?.includes(config.format + '-srgb') ?? false),
+                Number(config.colorSpace === 'display-p3'),
+                Number(config.toneMapping.mode === 'extended'),
               ),
             );
           }

@@ -630,6 +630,9 @@ class _AcceptanceState extends State<Acceptance> {
         const requiredCases = {
           'transient-attachment',
           'format-sequencing',
+          'color-profiles',
+          'color-snapshots',
+          'color-destroy',
           'device-loss',
         };
         for (final kind in ['canvas-configuration', 'gpu-workers']) {

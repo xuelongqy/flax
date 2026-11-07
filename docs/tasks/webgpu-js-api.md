@@ -62,9 +62,10 @@ resolutions, including one instanced draw versus 2,304 per-object draws.
 2. Extend the matched Edge comparison to a common screen-presentation endpoint. Current
    browser presentation feedback and Flutter GPU completion cannot be subtracted to
    establish a display-latency difference.
-3. Extend image interop to real decoder-backed video/external textures and validate
-   HDR/P3 display. Canvas-only document/input, shared images, uploads and snapshots are
-   implemented; they do not provide arbitrary browser library compatibility.
+3. Extend image interop to real decoder-backed video and external textures. The
+   [macOS color canvas probe](../../experiments/webgpu_dawn/color_canvas/README.md)
+   validates Display P3 and HDR presentation. The shared browser compatibility surface
+   covers canvas input, images, uploads and snapshots.
 4. Establish supported engine interop tests and platform acceptance beyond the
    experimental macOS arm64, macOS 26+ profile. Keep engines without interop profile 1
    safe.

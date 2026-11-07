@@ -9,26 +9,10 @@ extern "C" int32_t flax_webgpu_canvas_readback(void *value, void *destination,
                 length == size_t(canvas.width) * canvas.height * 4,
             "Invalid canvas snapshot storage");
     auto source = canvas.current;
-    __strong id<MTLTexture> published;
+    __attribute__((objc_precise_lifetime)) id<MTLTexture> published = nil;
     if (source) {
-      // Load/store initializes an unused texture without replacing its JS
-      // identity.
-      wgpu::DawnEncoderInternalUsageDescriptor internal;
-      internal.useInternalUsages = true;
-      wgpu::CommandEncoderDescriptor encoderDescriptor;
-      encoderDescriptor.nextInChain = &internal;
-      auto encoder = canvas.device.CreateCommandEncoder(&encoderDescriptor);
-      wgpu::RenderPassColorAttachment color;
-      color.view = source->texture.CreateView();
-      color.loadOp = wgpu::LoadOp::Load;
-      color.storeOp = wgpu::StoreOp::Store;
-      wgpu::RenderPassDescriptor descriptor;
-      descriptor.colorAttachmentCount = 1;
-      descriptor.colorAttachments = &color;
-      auto pass = encoder.BeginRenderPass(&descriptor);
-      pass.End();
-      auto commands = encoder.Finish();
-      canvas.device.GetQueue().Submit(1, &commands);
+      // Capture without retiring the application texture or publishing a frame.
+      canvas.materializeOutput();
     } else {
       published = [canvas.endpoint->output copyFlaxDawnMetalTexture];
       auto lease = (FlaxWebGpuLease *)objc_getAssociatedObject(
@@ -87,20 +71,38 @@ extern "C" int32_t flax_webgpu_canvas_readback(void *value, void *destination,
               : IOSurfaceGetBaseAddress(source->rgbaPixels));
     const size_t stride = video ? CVPixelBufferGetBytesPerRow(source->pixels)
                                 : IOSurfaceGetBytesPerRow(source->rgbaPixels);
-    if (!pixels || stride < size_t(canvas.width) * 4) {
+    const auto format = canvas.presentationFormat();
+    const bool fp16 = format == wgpu::TextureFormat::RGBA16Float;
+    const size_t bytesPerPixel = fp16 ? 8 : 4;
+    if (!pixels || stride < size_t(canvas.width) * bytesPerPixel) {
       unlock();
       throw std::runtime_error("Invalid canvas IOSurface layout");
     }
+    const auto srgbByte = [](float value) -> uint8_t {
+      if (!(value > 0))
+        return 0;
+      if (value >= 1)
+        return 255;
+      return uint8_t(value * 255 + 0.5f);
+    };
     for (uint32_t y = 0; y < canvas.height; y++)
       for (uint32_t x = 0; x < canvas.width; x++) {
-        const auto *pixel = pixels + stride * y + x * 4;
+        const auto *pixel = pixels + stride * y + x * bytesPerPixel;
         auto *rgba = output + (size_t(y) * canvas.width + x) * 4;
+        if (fp16) {
+          // IOSurface stores encoded extended sRGB; Core takes straight sRGB8.
+          const auto *half = reinterpret_cast<const __fp16 *>(pixel);
+          const float alpha = canvas.opaque ? 1.0f : float(half[3]);
+          for (int channel = 0; channel < 3; channel++)
+            rgba[channel] = alpha > 0 ? srgbByte(float(half[channel]) / alpha) : 0;
+          rgba[3] = srgbByte(alpha);
+          continue;
+        }
         const uint32_t alpha = canvas.opaque ? 255 : pixel[3];
         for (int channel = 0; channel < 3; channel++) {
           const uint32_t value =
-              pixel[canvas.format == wgpu::TextureFormat::BGRA8Unorm
-                        ? 2 - channel
-                        : channel];
+              pixel[format == wgpu::TextureFormat::BGRA8Unorm ? 2 - channel
+                                                             : channel];
           rgba[channel] =
               canvas.opaque ? value
               : alpha       ? std::min(255u, (value * 255 + alpha / 2) / alpha)
@@ -110,15 +112,8 @@ extern "C" int32_t flax_webgpu_canvas_readback(void *value, void *destination,
       }
     unlock();
     if (transfer) {
-      if (canvas.current) {
-        wgpu::SharedTextureMemoryEndAccessState end;
-        require(canvas.current->memory.EndAccess(canvas.current->texture,
-                                                 &end) == wgpu::Status::Success,
-                "Cannot expire the transferred canvas texture");
-        canvas.current->texture.Destroy();
-        canvas.current->leased = false;
-        canvas.current.reset();
-      }
+      require(canvas.discardCurrent() == wgpu::Status::Success,
+              "Cannot expire the transferred canvas texture");
       canvas.acquire();
       canvas.present();
     }
