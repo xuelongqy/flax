@@ -1,11 +1,13 @@
 import { Event, EventTarget, MessageEvent } from './events.js';
 import type { EventInit } from './events.js';
+import type { OffscreenCanvas } from './canvas.js';
+import type { ImageBitmap } from './images.js';
 export interface WorkerOptions {
     type?: 'classic' | 'module';
     name?: string;
     credentials?: 'omit' | 'same-origin' | 'include';
 }
-export type Transferable = ArrayBuffer;
+export type Transferable = ArrayBuffer | OffscreenCanvas | ImageBitmap;
 export interface StructuredSerializeOptions {
     transfer?: Transferable[];
 }
@@ -49,6 +51,7 @@ export interface WorkerScopeOptions {
     id: number;
     name: string;
     type: 'classic' | 'module';
+    canvas?: boolean;
 }
 export declare function installWorkers(global: typeof globalThis, call: Call, scope?: WorkerScopeOptions): {
     receive: (id: number) => boolean;

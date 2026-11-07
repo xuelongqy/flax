@@ -1,6 +1,7 @@
 import { installWorkers, type WorkerScopeOptions } from './workers.js';
 import { installCanvasHost } from './canvas.js';
 import { installImageHost } from './images.js';
+import { installGPUDiagnostics } from './gpu-diagnostics.js';
 import * as streams from 'web-streams-polyfill';
 import { install as installFetch } from './fetch/bootstrap.js';
 import { Blob, File, FormData, blobBuffer } from './data.js';
@@ -88,9 +89,10 @@ export function install(
   };
   setEventErrorReporter(report);
   const clearGlobalEvents = EventTarget.installGlobal(global);
-  const canvases = worker
-    ? undefined
-    : installCanvasHost(global, call, EventTarget, DOMException, Event);
+  const canvases =
+    worker && !worker.canvas
+      ? undefined
+      : installCanvasHost(global, call, EventTarget, DOMException, Event, !!worker);
   const enqueueMicrotask = (callback: () => void) => {
     if (typeof callback !== 'function') throw new TypeError('Expected a function');
     Promise.resolve().then(() => {
@@ -268,7 +270,9 @@ export function install(
       },
     },
     queueMicrotask: enqueueMicrotask,
-    ...(worker ? {} : { requestAnimationFrame, cancelAnimationFrame }),
+    ...(worker && !worker.canvas
+      ? {}
+      : { requestAnimationFrame, cancelAnimationFrame }),
     setTimeout: (
       callback: (...args: any[]) => unknown,
       delay = 0,
@@ -368,7 +372,7 @@ export function install(
     configurable: true,
     enumerable: true,
   });
-  if (worker) Object.freeze(global.navigator);
+  if (worker && !worker.canvas) Object.freeze(global.navigator);
   const randomness = installCrypto(
     global,
     (length) => call('random', length) as ArrayBuffer,
@@ -376,15 +380,14 @@ export function install(
   const clearObjectURLs = installObjectURLs(global);
   const readers = installFileReader(global);
   if (worker) installFileReaderSync(global);
-  const images = canvases
-    ? installImageHost(global, call, canvases, DOMException)
-    : undefined;
+  const images = installImageHost(global, call, canvases, DOMException, !!worker);
   const fetch = installFetch(
     global,
     (operation, ...args) => call('fetch', operation, ...args),
     baseUrl,
   );
   const nativeClone = typeof (global as any).__flaxNativeWorker?.clone === 'function';
+  installGPUDiagnostics(global);
   const workers = installWorkers(global, call, worker);
   const measurements = installPerformance(
     global,
@@ -494,6 +497,17 @@ export function install(
     },
     canvasEvent(target: object, event: string) {
       return canvases?.receive(target, JSON.parse(event));
+    },
+    configureCanvasSources(names: string) {
+      canvases?.configureSources(JSON.parse(names));
+    },
+    updateCanvasSource(
+      name: string,
+      width: number,
+      height: number,
+      buffer: ArrayBuffer | null,
+    ) {
+      canvases?.updateSource(name, width, height, buffer);
     },
     imageSettled(id: number, ok: boolean, value: unknown) {
       images?.settle(id, ok, value);

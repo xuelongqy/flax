@@ -22,22 +22,25 @@ def main():
     parser.add_argument('--preview', action='store_true')
     parser.add_argument('--build-only', action='store_true')
     parser.add_argument('--benchmark', action='store_true', help='Build the matched standard-API benchmark instead of acceptance')
+    parser.add_argument('--three-worker-benchmark', action='store_true', help='Build the matched Three.js main/Worker benchmark')
     parser.add_argument('--example', action='store_true', help='Build the interactive Spectrum studio')
     parser.add_argument('--mode', choices=['debug', 'release'], default='release')
     parser.add_argument('--cycles', type=int, default=3, help='Bounded acceptance Session count (1..30)')
     args = parser.parse_args()
     if not 1 <= args.cycles <= 30:
         parser.error('--cycles must be between 1 and 30')
-    if args.cycles != 3 and (args.example or args.benchmark or args.preview):
+    if args.cycles != 3 and (args.example or args.benchmark or args.three_worker_benchmark or args.preview):
         parser.error('--cycles applies to acceptance')
-    if args.example and args.benchmark:
-        parser.error('--example and --benchmark cannot be combined')
-    if args.benchmark and args.preview:
-        parser.error('--benchmark and --preview cannot be combined')
+    if sum([args.example, args.benchmark, args.three_worker_benchmark]) > 1:
+        parser.error('--example, --benchmark and --three-worker-benchmark cannot be combined')
+    if (args.benchmark or args.three_worker_benchmark) and args.preview:
+        parser.error('benchmark modes and --preview cannot be combined')
+    if args.three_worker_benchmark and args.cts_root:
+        parser.error('--cts-root applies to acceptance')
     support_packages = [] if args.benchmark else ['flax_example_support']
-    output = ROOT / ('.local/webgpu-studio' if args.example else '.local/webgpu-api-benchmark' if args.benchmark else '.local/webgpu-api')
-    dart_entry = ROOT/'experiments/webgpu_dawn/standard_api/app.dart' if args.benchmark else PACKAGE/('example/app/lib/main.dart' if args.example else 'example/app/lib/acceptance.dart')
-    js_entry = ROOT/'experiments/webgpu_dawn/standard_api/flax.mjs' if args.benchmark else PACKAGE/('example/js/src/main.ts' if args.example else 'example/js/main.js')
+    output = ROOT / ('.local/webgpu-three-worker-benchmark' if args.three_worker_benchmark else '.local/webgpu-studio' if args.example else '.local/webgpu-api-benchmark' if args.benchmark else '.local/webgpu-api')
+    dart_entry = ROOT/'experiments/webgpu_dawn/three_worker/app.dart' if args.three_worker_benchmark else ROOT/'experiments/webgpu_dawn/standard_api/app.dart' if args.benchmark else PACKAGE/('example/app/lib/main.dart' if args.example else 'example/app/lib/acceptance.dart')
+    js_entry = ROOT/'experiments/webgpu_dawn/three_worker/flax.mjs' if args.three_worker_benchmark else ROOT/'experiments/webgpu_dawn/standard_api/flax.mjs' if args.benchmark else PACKAGE/('example/js/src/main.ts' if args.example else 'example/js/main.js')
     output.mkdir(parents=True, exist_ok=True)
     temporary = ROOT / '.local/tmp'
     temporary.mkdir(exist_ok=True)
@@ -124,11 +127,20 @@ flutter:
         files=[PACKAGE/'example/js/src'/name for name in ['studio.ts','shaders.ts','metrics.ts']]
         fingerprint=hashlib.sha256(b''.join(file.read_bytes() for file in files)).hexdigest()
         banner='globalThis.__studioSourceSha256='+json.dumps(fingerprint)+';'
+    benchmark_setup = ''
+    banner_expression = json.dumps(banner)
+    if args.three_worker_benchmark:
+        benchmark_setup = f"import {{buildSharedBenchmark,banner as benchmarkBanner}} from {json.dumps((ROOT/'experiments/webgpu_dawn/three_worker/build_browser.mjs').as_uri())};\nconst threeHashes=await buildSharedBenchmark({json.dumps(str(assets/'three'))});\n"
+        banner_expression = 'benchmarkBanner(threeHashes)'
     bundle.write_text(f"import {{prepareModules}} from {json.dumps((ROOT / 'packages/flax_build/js/src/modules.mjs').as_uri())};\n"
                       f"import {{flaxEsbuildPlugin}} from {json.dumps((ROOT / 'packages/flax_build/js/src/esbuild.mjs').as_uri())};\n"
                       f"import {{build}} from {json.dumps((ROOT / 'node_modules/esbuild/lib/main.js').as_uri())};\n"
-                      f"const prepared = await prepareModules({{configPath:{json.dumps(str(config))}}});\n"
-                      f"await build({{entryPoints:[{json.dumps(str(js_entry))}],outfile:{json.dumps(str(assets/'app.js'))},bundle:true,platform:'neutral',format:'esm',target:'es2022',external:['perf_hooks','ansi-colors'],banner:{{js:{json.dumps(banner)}}},plugins:[flaxEsbuildPlugin(prepared.manifest,{{nativeAssets:{{hostDirectory:{json.dumps(str(app))}}}}})]}});\n")
+                      f"const prepared = await prepareModules({{configPath:{json.dumps(str(config))}}});\n" +
+                      benchmark_setup +
+                      f"await build({{entryPoints:[{json.dumps(str(js_entry))}],outfile:{json.dumps(str(assets/'app.js'))},bundle:true,platform:'neutral',format:'esm',target:'es2022',external:['perf_hooks','ansi-colors'],banner:{{js:{banner_expression}}},plugins:[flaxEsbuildPlugin(prepared.manifest,{{nativeAssets:{{hostDirectory:{json.dumps(str(app))}}}}})]}});\n")
+    if not args.example and not args.benchmark and not args.three_worker_benchmark:
+        with bundle.open('a') as script:
+            script.write(f"await build({{entryPoints:[{json.dumps(str(PACKAGE/'example/js/three-renderer-worker.js'))}],outfile:{json.dumps(str(assets/'three/three-renderer-worker.js'))},bundle:true,platform:'neutral',format:'esm',target:'es2022',external:['perf_hooks','ansi-colors']}});\n")
     run(['node', bundle], 'bundle-modules')
     shutil.copyfile(dart_entry, app / 'lib/main.dart')
     project = app / 'macos/Runner.xcodeproj/project.pbxproj'

@@ -4,9 +4,11 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { bloom } from 'three/addons/tsl/display/BloomNode.js';
 import { readTexturePixels } from './images.js';
 
-export async function verifyThreeFeatures(device, assert) {
+export async function verifyThreeFeatures(device, assert, options = {}) {
   const size = 192;
-  const canvas = document.createElement('canvas');
+  const canvas = options.canvas ?? new OffscreenCanvas(size, size);
+  const reportImage =
+    options.reportImage ?? ((value) => __webGpuReport(JSON.stringify(value)));
   const renderer = new THREE.WebGPURenderer({
     canvas,
     device,
@@ -43,15 +45,15 @@ export async function verifyThreeFeatures(device, assert) {
     bitmap.close();
     if (exported) {
       const bytes = new Uint8Array(await (await exported).arrayBuffer());
-      __webGpuReport(
-        JSON.stringify({
-          kind: 'three-image',
-          name,
-          base64: btoa(String.fromCharCode(...bytes)),
-        }),
-      );
+      reportImage({
+        kind: 'three-image',
+        name,
+        base64: btoa(String.fromCharCode(...bytes)),
+      });
     }
-    return readTexturePixels(device, target, size, size);
+    const pixels = await readTexturePixels(device, target, size, size);
+    if (name) await options.onCapture?.('features-' + name, pixels, size, size);
+    return pixels;
   };
   const nextFrame = () => new Promise((resolve) => requestAnimationFrame(resolve));
   const brightness = (pixels) => {
@@ -96,7 +98,7 @@ export async function verifyThreeFeatures(device, assert) {
       scene.add(light);
       await nextFrame();
       renderer.render(scene, camera);
-      const pixels = await capture();
+      const pixels = await capture('model-' + name.replace('.', '-'));
       assert(brightness(pixels) > 10, name + ' produces textured model pixels');
       scene.remove(gltf.scene, light);
       report.models.push({
@@ -253,6 +255,6 @@ export async function verifyThreeFeatures(device, assert) {
       texture.dispose();
     }
     target.destroy();
-    renderer.dispose();
+    await renderer.dispose();
   }
 }

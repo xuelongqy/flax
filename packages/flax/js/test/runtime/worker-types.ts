@@ -6,6 +6,28 @@ void fetch('data:text/plain,worker');
 crypto.getRandomValues(new Uint8Array(4));
 const cloned = structuredClone(new File(['worker'], 'worker.txt'));
 new FileReaderSync().readAsText(cloned);
+const pixels = new ImageData(new Uint8ClampedArray(24), 3, 2);
+declare const sharedPixels: Uint8ClampedArray<SharedArrayBuffer>;
+// @ts-expect-error ImageData requires an ordinary, transferable ArrayBuffer.
+new ImageData(sharedPixels, 1);
+const pixelGraph = structuredClone(
+  { pixels, view: pixels.data },
+  {
+    transfer: [pixels.data.buffer],
+  },
+);
+void createImageBitmap(pixelGraph.pixels, { resizeHeight: 1 }).then((bitmap) => {
+  const copy: ImageBitmap = structuredClone(bitmap);
+  postMessage({ bitmap, copy }, [bitmap]);
+  copy.close();
+});
+void createImageBitmap(new Blob([], { type: 'image/png' }));
+// @ts-expect-error ImageData is serializable; only its data.buffer is transferable.
+postMessage(pixels, [pixels]);
+// @ts-expect-error Dedicated Workers do not install HTML image constructors.
+new Image();
+// @ts-expect-error Dedicated Workers do not expose HTML image types.
+let htmlImage: HTMLImageElement;
 void navigator.hardwareConcurrency;
 void WebAssembly.compileStreaming(fetch('data:application/wasm;base64,AGFzbQEAAAA='));
 void WebAssembly.instantiateStreaming(Promise.resolve(new Response()), {});
@@ -28,8 +50,12 @@ setTimeout(close, 1);
 void window;
 // @ts-expect-error Dedicated Workers do not install a document.
 void document;
-// @ts-expect-error Dedicated Workers do not install animation frames.
+// @ts-expect-error Core-only Workers do not install animation frames.
 requestAnimationFrame(() => {});
+// @ts-expect-error Core-only Workers do not install animation frames.
+cancelAnimationFrame(1);
+// @ts-expect-error Worker canvases require a selected native provider.
+postMessage(new OffscreenCanvas(4, 4), { transfer: [] });
 
 onunhandledrejection = (event) => {
   void event.promise;

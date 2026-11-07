@@ -14,6 +14,7 @@ const flaxCanvasTargetType = 'flax.core/flutter#type:FlaxCanvasTarget';
 /// Stable placement identity, independent of the selected drawing context.
 abstract class FlaxCanvasTarget extends ChangeNotifier
     implements FlaxCanvasContent {
+  void resize(int width, int height);
   FlaxCanvasContent? _content;
   void attach(FlaxCanvasContent content) {
     if (closed) throw StateError('Canvas is closed');
@@ -83,6 +84,7 @@ final class _CanvasTarget extends FlaxCanvasTarget {
   @override
   bool closed = false;
 
+  @override
   void resize(int nextWidth, int nextHeight) {
     width = nextWidth;
     height = nextHeight;

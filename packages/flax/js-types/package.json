@@ -28,6 +28,12 @@
     },
     "./host/worker": {
       "types": "./types/host/worker.d.ts"
+    },
+    "./host/common": {
+      "types": "./types/host/common.d.ts"
+    },
+    "./host/canvas-contexts": {
+      "types": "./types/host/canvas-contexts.d.ts"
     }
   },
   "files": [

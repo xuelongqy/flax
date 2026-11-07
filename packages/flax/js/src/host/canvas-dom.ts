@@ -1,6 +1,6 @@
 import type { Event, EventTarget, DOMExceptionConstructor } from './events.js';
 import type { OffscreenCanvas } from './canvas.js';
-import type { HTMLImageElement } from './images.js';
+import type { HTMLImageElement, PixelImage } from './images.js';
 
 export interface CanvasRect {
   readonly x: number;
@@ -45,7 +45,7 @@ export type ResizeObserverCallback = (
 export interface CanvasDocument extends EventTarget {
   cookie: string;
   readonly defaultView: typeof globalThis;
-  readonly activeElement: OffscreenCanvas | null;
+  readonly activeElement: (OffscreenCanvas & CanvasElement) | null;
   createElement(name: 'canvas'): HTMLCanvasElement;
   createElement(name: 'img'): HTMLImageElement;
   createElementNS(namespace: string, name: 'canvas'): HTMLCanvasElement;
@@ -99,7 +99,8 @@ export interface CanvasElement extends EventTarget, CanvasEventHandlers {
   getAttribute(name: string): string | null;
   removeAttribute(name: string): void;
 }
-export interface HTMLCanvasElement extends OffscreenCanvas {
+export interface HTMLCanvasElement extends OffscreenCanvas, CanvasElement {
+  transferControlToOffscreen(): OffscreenCanvas;
   toBlob(
     callback: (blob: import('./canvas.js').CanvasBlob | null) => unknown,
     type?: string,
@@ -285,6 +286,20 @@ type ElementState = {
   geometry: Geometry;
 };
 type Call = (operation: string, ...args: unknown[]) => unknown;
+type WidgetSource = {
+  name: string;
+  canvas: HTMLCanvasElement;
+  parent: HTMLCanvasElement | null;
+  watched: boolean;
+  width: number;
+  height: number;
+  pixels: PixelImage | undefined;
+};
+type PaintState = {
+  children: Set<WidgetSource>;
+  changed: Set<WidgetSource>;
+  scheduled: boolean;
+};
 
 /** A canvas host surface, not a DOM representation of the Flutter Widget tree. */
 export function installCanvasDom(
@@ -299,13 +314,16 @@ export function installCanvasDom(
   const { MouseEvent, PointerEvent, WheelEvent, KeyboardEvent } =
     eventConstructors(Event);
   const elements = new WeakMap<object, ElementState>();
-  const targets = new WeakMap<object, WeakRef<OffscreenCanvas>>();
+  const targets = new WeakMap<object, WeakRef<OffscreenCanvas & CanvasElement>>();
   const registry = new Set<WeakRef<OffscreenCanvas>>();
   const active = new Map<number, OffscreenCanvas>();
   const captures = new Map<number, OffscreenCanvas>();
   const suppressedMouse = new Set<number>();
   const observers = new Set<CanvasResizeObserver>();
-  let focused: OffscreenCanvas | null = null;
+  const sources = new Map<string, WidgetSource | null>();
+  const widgetCanvases = new WeakMap<object, WidgetSource>();
+  const paintStates = new WeakMap<object, PaintState>();
+  let focused: (OffscreenCanvas & CanvasElement) | null = null;
   let open = true,
     viewport = { width: 0, height: 0, devicePixelRatio: 1 };
   function state(canvas: object) {
@@ -339,6 +357,83 @@ export function installCanvasDom(
     }
     return null;
   }
+  function readSourceSize(name: string): [number, number] | undefined {
+    const size = call('canvasSourceSize', name) as string | undefined;
+    return size?.split(',').map(Number) as [number, number] | undefined;
+  }
+  function measureSource(source: WidgetSource) {
+    if (!open || source.watched) return;
+    [source.width, source.height] = readSourceSize(source.name) ?? [-1, -1];
+  }
+  function findSource(name: string): HTMLCanvasElement | null {
+    if (!sources.has(name)) return null;
+    const existing = sources.get(name);
+    if (existing) {
+      measureSource(existing);
+      return existing.width < 0 ? null : existing.canvas;
+    }
+    const size = readSourceSize(name);
+    if (!size) return null;
+    const [width, height] = size;
+    const canvas = create();
+    const source: WidgetSource = {
+      name,
+      canvas,
+      parent: null,
+      watched: false,
+      width,
+      height,
+      pixels: undefined,
+    };
+    sources.set(name, source);
+    widgetCanvases.set(canvas, source);
+    const readWidth = () => {
+      measureSource(source);
+      return Math.max(0, source.width);
+    };
+    const readHeight = () => {
+      measureSource(source);
+      return Math.max(0, source.height);
+    };
+    Object.defineProperties(canvas, {
+      parentNode: { get: () => source.parent },
+      width: { get: readWidth },
+      height: { get: readHeight },
+      offsetWidth: { get: readWidth },
+      offsetHeight: { get: readHeight },
+    });
+    state(canvas).id = name;
+    return canvas;
+  }
+  function schedulePaint(canvas: HTMLCanvasElement, paint: PaintState) {
+    if (paint.scheduled) return;
+    paint.scheduled = true;
+    global.requestAnimationFrame(() => {
+      paint.scheduled = false;
+      if (!open) return;
+      const changed = Array.from(paint.changed, (source) => source.canvas);
+      paint.changed.clear();
+      const event = new Event('paint');
+      Object.defineProperty(event, 'changedElements', {
+        value: Object.freeze(changed),
+      });
+      canvas.dispatchEvent(event);
+    });
+  }
+  function watch(source: WidgetSource, enabled: boolean) {
+    if (source.watched === enabled) return;
+    if (enabled) measureSource(source);
+    call('canvasSourceWatch', source.name, enabled);
+    source.watched = enabled;
+    source.pixels = undefined;
+    if (source.parent) paintStates.get(source.parent)?.changed.delete(source);
+  }
+  function watchChildren(canvas: OffscreenCanvas, paint: PaintState) {
+    const attributes = state(canvas).attributes;
+    const enabled =
+      attributes.has('layoutsubtree') || attributes.get('content') === 'drawable';
+    for (const source of paint.children) watch(source, enabled);
+  }
   const document: CanvasDocument = Object.assign(new EventTarget(), {
     defaultView: global,
     cookie: '',
@@ -363,7 +458,8 @@ export function installCanvasDom(
       return (document.createElement as (name: string) => any)(name);
     },
     getElementById(id: string) {
-      return find((value) => value.id === String(id));
+      const name = String(id);
+      return findSource(name) ?? find((value) => value.id === name);
     },
     querySelector(selector: string) {
       if (selector === 'canvas') return find(() => true);
@@ -524,23 +620,34 @@ export function installCanvasDom(
       else if (key === 'id') value.id = text;
       else if (key === 'tabindex')
         call('canvasInput', value.target, 'tabIndex', Number(text));
-      else if (key !== 'data-engine' && key !== 'aria-label')
+      else if (
+        key !== 'data-engine' &&
+        key !== 'aria-label' &&
+        !((key === 'layoutsubtree' || key === 'content') && paintStates.has(this)) &&
+        !(key === 'drawable' && widgetCanvases.has(this))
+      )
         throw new DOMException(
           'Unsupported canvas attribute: ' + key,
           'NotSupportedError',
         );
       value.attributes.set(key, text);
+      const paint = paintStates.get(this);
+      if (paint && (key === 'layoutsubtree' || key === 'content'))
+        watchChildren(this, paint);
     },
     getAttribute(this: OffscreenCanvas, name: string) {
       const value = state(this);
-      return name === 'id'
-        ? value.id || null
-        : (value.attributes.get(String(name).toLowerCase()) ?? null);
+      const key = String(name).toLowerCase();
+      return key === 'id' ? value.id || null : (value.attributes.get(key) ?? null);
     },
     removeAttribute(this: OffscreenCanvas, name: string) {
       const value = state(this);
-      value.attributes.delete(name);
-      if (name === 'id') value.id = '';
+      const key = String(name).toLowerCase();
+      value.attributes.delete(key);
+      if (key === 'id') value.id = '';
+      const paint = paintStates.get(this);
+      if (paint && (key === 'layoutsubtree' || key === 'content'))
+        watchChildren(this, paint);
     },
   };
   Object.assign(g, {
@@ -558,6 +665,120 @@ export function installCanvasDom(
   }))
     Object.defineProperty(g, name, { configurable: true, get: read });
   return {
+    get hasSources() {
+      return sources.size > 0;
+    },
+    configureSources(names: string[]) {
+      for (const name of names) sources.set(name, null);
+    },
+    decorateHtml(canvas: HTMLCanvasElement) {
+      if (!sources.size) return;
+      const paint: PaintState = {
+        children: new Set(),
+        changed: new Set(),
+        scheduled: false,
+      };
+      paintStates.set(canvas, paint);
+      function remove(source: WidgetSource) {
+        watch(source, false);
+        paint.children.delete(source);
+        paint.changed.delete(source);
+        source.parent = null;
+      }
+      let handler: ((event: Event) => void) | null = null;
+      const invoke = (event: Event) => handler?.call(canvas, event);
+      Object.defineProperties(canvas, {
+        content: {
+          get: () => methods.getAttribute.call(canvas, 'content') ?? 'fallback',
+          set: (value: string) => methods.setAttribute.call(canvas, 'content', value),
+        },
+        hasAttribute: {
+          value: (name: string) => methods.getAttribute.call(canvas, name) !== null,
+        },
+        requestPaint: {
+          value: () => {
+            state(canvas);
+            schedulePaint(canvas, paint);
+          },
+        },
+        onpaint: {
+          enumerable: true,
+          get: () => handler,
+          set(input: unknown) {
+            const next = typeof input === 'function' ? (input as typeof handler) : null;
+            if (next && !handler) canvas.addEventListener('paint', invoke);
+            if (!next && handler) canvas.removeEventListener('paint', invoke);
+            handler = next;
+          },
+        },
+        appendChild: {
+          value: (child: unknown) => {
+            state(canvas);
+            const source = widgetCanvases.get(child as object);
+            if (!source || widgetCanvases.has(canvas))
+              throw new DOMException(
+                'Expected a registered Widget canvas child',
+                'NotSupportedError',
+              );
+            if (source.parent === canvas) return child;
+            if (source.parent) {
+              const previous = paintStates.get(source.parent)!;
+              watch(source, false);
+              previous.children.delete(source);
+              previous.changed.delete(source);
+            }
+            source.parent = canvas;
+            paint.children.add(source);
+            watchChildren(canvas, paint);
+            return child;
+          },
+        },
+        removeChild: {
+          value: (child: unknown) => {
+            state(canvas);
+            const source = widgetCanvases.get(child as object);
+            if (source?.parent !== canvas)
+              throw new DOMException(
+                'The Widget canvas is not a child',
+                'NotFoundError',
+              );
+            remove(source);
+            return child;
+          },
+        },
+      });
+    },
+    updateSource(
+      name: string,
+      width: number,
+      height: number,
+      buffer: ArrayBuffer | null,
+    ) {
+      const source = sources.get(name);
+      if (!open || !source?.watched || !source.parent) return;
+      source.width = width;
+      source.height = height;
+      source.pixels = buffer
+        ? { width, height, data: new Uint8Array(buffer) }
+        : undefined;
+      const paint = paintStates.get(source.parent)!;
+      if (source.pixels) {
+        paint.changed.add(source);
+        schedulePaint(source.parent, paint);
+      } else {
+        paint.changed.delete(source);
+      }
+    },
+    sourcePixels(value: unknown): PixelImage {
+      const source = widgetCanvases.get(value as object);
+      if (!source) throw new TypeError('Expected a registered Widget canvas');
+      if (!open || !source.pixels)
+        throw new DOMException(
+          'The Widget canvas has no painted snapshot',
+          'InvalidStateError',
+        );
+      return source.pixels;
+    },
     decorate(canvas: OffscreenCanvas, target: object) {
       const style = {} as CanvasStyle;
       const value: ElementState = {
@@ -570,7 +791,7 @@ export function installCanvasDom(
         geometry: { left: 0, top: 0, width: 0, height: 0, connected: false },
       };
       elements.set(canvas, value);
-      targets.set(target, new WeakRef(canvas));
+      targets.set(target, new WeakRef(canvas as OffscreenCanvas & CanvasElement));
       registry.add(new WeakRef(canvas));
       for (const key of ['width', 'height', 'cursor', 'touchAction'] as const) {
         let text = '';
@@ -635,7 +856,14 @@ export function installCanvasDom(
         },
         clientLeft: { value: 0 },
         clientTop: { value: 0 },
-        isConnected: { get: () => value.geometry.connected },
+        isConnected: {
+          get: () => {
+            const source = widgetCanvases.get(canvas);
+            if (!source) return value.geometry.connected;
+            measureSource(source);
+            return source.width >= 0;
+          },
+        },
         clientWidth: {
           get: () => {
             observe(value);
@@ -780,6 +1008,19 @@ export function installCanvasDom(
       return !allowed;
     },
     close() {
+      for (const source of sources.values()) {
+        if (!source) continue;
+        if (source.parent) {
+          const paint = paintStates.get(source.parent);
+          paint?.children.delete(source);
+          paint?.changed.delete(source);
+        }
+        source.parent = null;
+        source.pixels = undefined;
+        source.watched = false;
+        source.width = source.height = -1;
+      }
+      sources.clear();
       for (const observer of observers) observer.disconnect();
       suppressedMouse.clear();
       if (typeof EventTarget.clear === 'function') {

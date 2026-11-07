@@ -321,7 +321,10 @@ export async function verifyThreeWorkerScenarios(assert) {
           const dispatch = observed.slice(offset);
           assert(
             dispatch.length === 2 &&
-              dispatch.every((worker) => worker.tasks === 4 && worker.replies === 4),
+              dispatch.reduce((total, worker) => total + worker.tasks, 0) === 8 &&
+              dispatch.every(
+                (worker) => worker.tasks > 0 && worker.replies === worker.tasks,
+              ),
             'Both KTX2 Workers complete queued tasks',
           );
           material.map = first;

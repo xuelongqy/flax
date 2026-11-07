@@ -11,10 +11,6 @@ declare global {
     var ResizeObserver: {
         new (callback: CanvasDOM.ResizeObserverCallback): ResizeObserver;
     };
-    var ImageData: typeof Images.ImageData;
-    type ImageData = Images.ImageData;
-    var ImageBitmap: typeof Images.ImageBitmap;
-    type ImageBitmap = Images.ImageBitmap;
     type HTMLImageElement = Images.HTMLImageElement;
     var Image: {
         new (width?: number, height?: number): HTMLImageElement;
@@ -27,9 +23,14 @@ declare global {
         arrayBuffer(): Promise<ArrayBuffer>;
     }, ...args: [Images.ImageBitmapOptions?] | [number, number, number, number, Images.ImageBitmapOptions?]): Promise<ImageBitmap>;
 }
-import type { OffscreenCanvas as HostOffscreenCanvas } from './canvas.js';
 export type { OffscreenCanvas, CanvasContextMap, CanvasContextOptionsMap, ImageBitmapRenderingContext, } from './canvas.js';
 import type { ImageBitmapRenderingContext as HostBitmapContext } from './canvas.js';
+import type { OffscreenCanvasConstructor } from './canvas.js';
+declare module './canvas.js' {
+    interface OffscreenCanvasConstructor {
+        new (width: number, height: number): OffscreenCanvas & CanvasDOM.CanvasElement;
+    }
+}
 declare global {
     type ImageBitmapRenderingContext = HostBitmapContext;
     var ImageBitmapRenderingContext: {
@@ -42,6 +43,7 @@ declare global {
     var devicePixelRatio: number;
     var innerWidth: number;
     var innerHeight: number;
+    var OffscreenCanvas: OffscreenCanvasConstructor;
     var HTMLCanvasElement: {
         new (): CanvasDOM.HTMLCanvasElement;
     };
@@ -65,10 +67,6 @@ declare global {
         new (type: string, init?: CanvasDOM.CanvasInputInit): CanvasDOM.KeyboardEvent;
     };
     type KeyboardEvent = CanvasDOM.KeyboardEvent;
-    type OffscreenCanvas = HostOffscreenCanvas;
-    var OffscreenCanvas: {
-        new (width: number, height: number): HostOffscreenCanvas;
-    };
     function requestAnimationFrame(callback: (time: number) => void): number;
     function cancelAnimationFrame(id?: number): void;
 }

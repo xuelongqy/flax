@@ -592,6 +592,8 @@ void main() {
       'PerformanceObserver',
       'PerformanceObserverEntryList',
       'ReadableStream',
+      'GPUCompilationInfo',
+      'GPUCompilationMessage',
       '__flaxBindings',
       '__flaxMount',
     ]) {

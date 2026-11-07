@@ -6,6 +6,48 @@ the maintained Flax engine interop profile 1. It is not a conformant browser
 implementation or a published capability. See the
 [package guide](../../packages/flax_webgpu/README.md) for reproduction and API limits.
 
+## Widget image uploads
+
+With [Widget canvas sources](canvas.md#widget-canvas-sources) enabled in the root
+session, `GPUQueue.copyElementImageToTexture(source, destination)` supports the
+Chrome 150 dictionary form used by Three.js `HTMLTexture`. The newer
+`drawElementImageToTexture(source, destination)` accepts `sourceX`, `sourceY`,
+`sourceWidth`, and `sourceHeight` and a tagged destination texture with optional
+`size`. These experimental interfaces are exported separately as
+`FlaxElementImageQueue`, `FlaxDrawableCanvas`, and `FlaxWidgetCanvasSource` from
+`@flax/webgpu`. [Chrome's API changes](https://developer.chrome.com/blog/html-in-canvas-ot-changes#webgpu_1)
+
+Both methods synchronously upload the last painted snapshot through the existing
+Dawn external image path, including destination alpha and color space conversion.
+Widget rectangles use logical pixels. All four crop fields must be supplied together.
+Outsets beyond the captured boundary sample transparent pixels. Scaling uses nearest
+sampling of the cached raster and a copy writes one destination texture layer.
+Worker uploads continue to use the existing bitmap path. The Widget profile supports
+registered direct children and excludes HTML layout, `ElementImage` capture and
+transfer, and canvas-to-DOM geometry updates.
+
+## Worker rendering
+
+A nonsandboxed parent that selects `FlaxWebGpuPlugin` installs the same binding-free
+provider in its Dedicated Workers and their children. Each Worker owns independent Dawn
+devices and directly encodes/submits native commands. Core supplies contextless
+OffscreenCanvas transfer, HTML placeholders, placement, coalesced resize and vsync
+control. The UI reads current atomic endpoint dimensions; Worker rAF uses the Worker's
+performance clock. Neither commands nor presentation pixels are forwarded through Dart.
+
+Display endpoints and producer Surfaces have separate ownership. Native context teardown
+unconfigures its Surfaces before destroying devices, and native device finalizers
+release ordinary ledger ownership after JS GC. The transfer BackingStore retains its own
+cleanup and image lifetime through queued packets and sender retirement. See the
+[Worker contract](dedicated-workers.md#selected-worker-webgpu) and
+[decision](../decisions/0054-worker-webgpu-and-offscreen-canvas.md).
+
+Core still images are available in Workers independently of this provider. Selected
+WebGPU Workers can upload ImageData/ImageBitmap and canvas snapshots, export PNG/JPEG/
+WebP, and send bitmaps back to the root or nested Workers. Pixel snapshots and encoding
+are explicit CPU paths; they do not replace native texture presentation. Worker HTML
+image elements and Canvas 2D remain excluded.
+
 ## Ownership and calls
 
 ```text
@@ -34,8 +76,21 @@ before encoding. Native validation owns destination limits and pipeline state. T
 swizzle, texture binding dimensions and render-pass draw limits use the pinned Dawn
 extension descriptors; standard default values avoid allocating extension chains.
 Binding-dimension queries return Dawn's actual value rather than echoing the requested
-descriptor; that value is `undefined` in the current core-mode profile. This does not
-widen the supported adapter profile to compatibility mode.
+descriptor; that value is `undefined` in core mode. Adapter requests support native
+`core` and `compatibility` feature levels. The latter uses Dawn's actual device defaults
+and a compatibility-limit chain for the four independent storage stage limits. Adapter
+feature capability does not identify the selected device profile; explicitly requiring
+`core-features-and-limits` can upgrade a compatibility request.
+
+Core supplies native-free `GPUCompilationInfo` and `GPUCompilationMessage` objects in
+main and Worker realms. WebGPU creates them from real compiler results through the
+shared Core factory. Their specialized structured-clone codec preserves private data
+slots and graph identity without exposing GPU handles or importing Dawn into Core.
+Compiler locations use Dawn's UTF-16 diagnostic extension so JS offsets and lengths
+remain correct for non-ASCII source; the native callback copies these scalar values.
+Canonical public declarations remain in the WebGPU SDK. Compilation hints retain
+standard conversion but are not mapped to speculative pipeline prewarming: the pinned
+Dawn ABI has no equivalent entry-point/layout hint operation.
 
 All three programmable encoders check the Uint32Array dynamic-offset range before
 `setBindGroup` reaches Dawn. An out-of-bounds start or length throws RangeError; an
@@ -46,9 +101,11 @@ checkpoint; they never execute JS from Metal/Dawn threads. While API requests re
 unresolved, a coalesced JS event pump advances Dawn; its 1 ms fallback stops when the
 requests settle. Native callback notifications are acknowledged only when their FFI
 listener runs, so a burst of microtasks cannot fill the notification queue. Each session
-owns its devices, callbacks and canvases. Closing stops callbacks, detaches mapped
-views, settles pending work and releases resources. The native library remains resident
-once per process because upstream callback tasks can outlive a dynamic-library lease.
+owns its devices, callbacks and canvases. Root Session close stops callbacks, detaches
+mapped views, settles pending work and releases resources. Detached Worker close instead
+uses native retirement without application Promise handlers or teardown hooks. The
+native library remains resident once per process because upstream callback tasks can
+outlive a dynamic-library lease.
 
 ## Mapping and presentation
 
@@ -68,10 +125,27 @@ Acquisition fails explicitly if all eight slots are occupied; already submitted 
 is not discarded. The maintained macOS interop currently assumes one Flutter Metal queue
 and counts violations as retirement errors.
 
-The profile supports BGRA8/RGBA8, matching sRGB views, sRGB presentation,
-opaque/premultiplied alpha and render-attachment canvas usage. Device loss clears
-presentation and mapped ranges while preserving the configured device's JS identity.
-Reconfiguration can install a replacement device.
+The profile supports BGRA8/RGBA8, matching sRGB views, sRGB presentation and
+opaque/premultiplied alpha. Canvas usage defaults to `RENDER_ATTACHMENT`, but an
+explicit usage is not widened: `COPY_DST`-only and valid `STORAGE_BINDING`-only
+configurations are supported. BGRA storage requires `bgra8unorm-storage` on the
+configured device. Invalid usage still produces native validation errors and error
+textures; transient-attachment usage is rejected by dictionary-level `TypeError`.
+
+Devices enable Dawn's private internal-usage feature. IOSurface textures retain exactly
+the application's public usage and chain an internal `RenderAttachment` usage solely for
+host initialization. Only the native presentation-clear and snapshot encoders opt into
+internal usage; ordinary application encoders retain Dawn's public validation. Every
+acquisition starts uninitialized, including recycled storage, and the existing
+producer/consumer fences and alpha handling remain in the presentation path.
+
+Configuration input is snapshotted during dictionary conversion. Each
+`getConfiguration()` call copies the outer dictionary, `viewFormats` and `toneMapping`,
+preserving `GPUDevice` identity; an unconfigured context returns `null`. Device loss
+clears presentation and mapped ranges while preserving the configured device's JS
+identity. Reconfiguration can install a replacement device. See the
+[canvas configuration follow-up](../tasks/webgpu-canvas-configuration.md) for scoped
+regressions and validation evidence.
 
 ## Native delivery
 
@@ -116,16 +190,26 @@ retain a GPU-only session. The comparison uses original fixtures and identical E
 scenes, with explicit model warmup before animated pose sampling.
 
 `copyExternalImageToTexture` accepts Core ImageData, ImageBitmap, decoded image
-resources, and canvases from either provider. It snapshots CPU pixels only for explicit
-image copies, reuses a per-queue staging texture and delegates flip, alpha, destination
-format and color conversion to Dawn's browser-copy operation. This does not modify the
-ordinary zero-copy presentation path.
+resources in the root, and canvases from the installed provider. Workers accept the
+non-HTML ImageData, ImageBitmap and OffscreenCanvas sources. It captures source pixels
+at call time, before subsequent mutation or transfer, and snapshots CPU pixels only for
+explicit image copies, reuses a per-queue staging texture and delegates flip, alpha,
+destination format and color conversion to Dawn's browser-copy operation. This does not
+modify the ordinary zero-copy presentation path.
 
 Canvas snapshots wait for submitted GPU work before reading the IOSurface. A snapshot
-preserves the current texture identity; transfer expires it and publishes a cleared
-canvas. The resulting Core bitmap owns its pixels independently. PNG/JPEG/WebP exports
-use the shared codecs; they are explicit CPU readback paths and can stall the caller.
+preserves the current texture identity; transfer expires it and publishes transparent
+black, or opaque black for an opaque canvas. The resulting Core bitmap owns its pixels
+independently. PNG/JPEG/WebP exports use the shared codecs; they are explicit CPU
+readback paths and can stall the caller. Unsupported export MIME types fall back to PNG.
+These paths work in the selected Worker profile; the current synchronous GPU readback
+limit also applies there.
+
+The Worker acceptance fixture returns `stillImages` with assertions, named cases,
+formats and `pixelSnapshots: true`. Dart acceptance requires those receipts and actual
+canvas-configuration pixel snapshots in every cycle, so omitted image paths cannot pass
+silently. See the [still-image task](../tasks/worker-images.md) for validation status.
 
 Complete WebIDL/CTS conformance, HDR/P3 display, GPUExternalTexture/video sharing,
-Worker graphics transfer and other platforms remain open. See the
+Worker Canvas 2D services and other platforms remain open. See the
 [remaining task](../tasks/webgpu-js-api.md).

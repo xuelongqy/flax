@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { installCanvasHost } from '../../dist/host/canvas.js';
 import { Event, EventTarget, DOMException } from '../../dist/host/events.js';
 
-function environment() {
+function environment(sourceCall = () => undefined) {
   const global = { DOMException },
     calls = [];
   EventTarget.installGlobal(global);
@@ -12,6 +12,7 @@ function environment() {
     (operation, ...args) => {
       calls.push([operation, ...args]);
       if (operation === 'canvasCreate') return {};
+      return sourceCall(operation, ...args);
     },
     EventTarget,
     DOMException,
@@ -32,6 +33,58 @@ function environment() {
     });
   return { global, host, calls, layout };
 }
+
+test('registered Widget canvas publishes cached pixels before paint and retires on removal', () => {
+  const {
+    global: g,
+    host,
+    calls,
+  } = environment((op, id) =>
+    op === 'canvasSourceSize' && id === 'hud' ? '2,1' : undefined,
+  );
+  const frames = [];
+  g.requestAnimationFrame = (callback) => frames.push(callback);
+  host.configureSources(['hud']);
+  const canvas = g.document.createElement('canvas');
+  const hud = g.document.getElementById('hud');
+  assert.ok(hud instanceof g.HTMLCanvasElement);
+  assert.equal(g.document.querySelector('#hud'), hud);
+  assert.equal(g.document.getElementById('unknown'), null);
+  assert.equal(hud.offsetWidth, 2);
+  assert.equal(hud.offsetHeight, 1);
+  assert.equal(hud.width, 2);
+  assert.equal(hud.height, 1);
+  assert.equal(hud.isConnected, true);
+  canvas.setAttribute('layoutsubtree', '');
+  assert.ok(canvas.hasAttribute('layoutsubtree'));
+  assert.equal(canvas.appendChild(hud), hud);
+  assert.equal(hud.parentNode, canvas);
+  assert.throws(() => host.sourcePixels(hud), { name: 'InvalidStateError' });
+  const paint = [];
+  canvas.onpaint = (event) => {
+    paint.push(event.changedElements);
+    assert.equal(event.target, canvas);
+    assert.equal(host.sourcePixels(hud).data[0], 75);
+  };
+  canvas.addEventListener('paint', (event) => paint.push(event.changedElements));
+  const pixels = Uint8Array.of(75, 0, 0, 255, 0, 0, 0, 0);
+  host.updateSource('hud', 2, 1, pixels.buffer);
+  canvas.requestPaint();
+  assert.equal(frames.length, 1);
+  frames.shift()();
+  assert.deepEqual(paint, [[hud], [hud]]);
+  const callsAfterUpdate = calls.length;
+  canvas.requestPaint();
+  frames.shift()();
+  assert.deepEqual(paint.slice(2), [[], []]);
+  assert.equal(calls.length, callsAfterUpdate);
+  host.updateSource('hud', -1, -1, null);
+  assert.equal(hud.isConnected, false);
+  assert.equal(g.document.getElementById('hud'), null);
+  assert.equal(canvas.removeChild(hud), hud);
+  assert.equal(hud.parentNode, null);
+  assert.throws(() => host.sourcePixels(hud), { name: 'InvalidStateError' });
+});
 
 test('canvas factories share Core providers; geometry reads stay in JS and queries only return mounted canvases', () => {
   const { global: g, host, calls, layout } = environment();

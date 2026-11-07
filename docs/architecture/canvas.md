@@ -22,6 +22,17 @@ keeps that identity. A known mode without its plugin returns null. Unknown mode 
 throw TypeError. Core-only sessions can construct and mount a canvas and use
 `bitmaprenderer`; `2d` and `webgpu` still require their providers.
 
+The selected native WebGPU provider also supports contextless OffscreenCanvas transfer
+and `HTMLCanvasElement.transferControlToOffscreen()`. The HTML element retains root
+layout and input as a placeholder; the receiver owns drawing. A main receiver creates a
+real Core canvas target, while a Worker receiver creates no Dart peer or HTML facade.
+Transfer validates the full graph, including getter mutations, before detaching the
+source. Context-bearing canvases cannot transfer. Native endpoint dimensions provide the
+receiver size and coalesced placeholder updates. `FlaxCanvasTarget.resize` keeps
+unconstrained CanvasView layout and input geometry in sync with the current bitmap; it
+does not forward rendering commands. See the
+[Worker contract](dedicated-workers.md#selected-worker-webgpu).
+
 Core installs `ImageBitmapRenderingContext` on the root, obtained through
 `getContext('bitmaprenderer')`. `transferFromImageBitmap` consumes the source bitmap;
 its width and height become zero. The canvas bitmap takes the image dimensions without
@@ -57,6 +68,33 @@ plugin and its 2D context and constructors do not exist. Do not also put
 
 `requestAnimationFrame` / `cancelAnimationFrame` belong to the base host, not this
 plugin.
+
+## Widget canvas sources
+
+A Dart host can opt a root `FlaxSession` into Widget images by registering
+`canvasSources: {'hud': (key: hudKey, changes: hudChanges)}`. Put the `GlobalKey`
+on a mounted `RepaintBoundary`. Use an existing `Listenable` for same-size painted
+updates, or pass `changes: null` for capture on attachment and layout size changes.
+The host resolves the exact render object through the key.
+
+`document.getElementById('hud')` and `document.querySelector('#hud')` return the
+same Core `HTMLCanvasElement` for the registration while its Widget is laid out.
+Its `width`, `height`, `offsetWidth` and `offsetHeight` report the Widget size
+rounded up to logical pixels. A drawable HTML canvas accepts the source through
+`appendChild` and `removeChild`. The source's `parentNode` reflects that association.
+This association leaves the Flutter Widget in its host layout. Set the parent
+`content` to `'drawable'`, or set the legacy `layoutsubtree` attribute. This
+profile treats registered sources as direct drawable children.
+
+After Flutter paints, Core captures the current boundary to straight RGBA at
+one pixel per logical pixel. Only watched sources capture, with one capture in
+flight per source. Paint notification follows snapshot publication and reports
+the same source objects in `changedElements` via `onpaint` and
+`addEventListener('paint', ...)`. An explicit `requestPaint()` may deliver an
+empty array and does not trigger capture. Removing the child, unmounting the
+Widget, or closing the session invalidates its snapshot. An attached source
+can capture again when the keyed Widget remounts. The canvas source profile uses
+the [WebGPU element upload methods](webgpu.md#widget-image-uploads).
 
 `FlaxCanvasContent` is the shared Dart paint/snapshot contract. The Core target forwards
 notifications to `FlaxCanvasView`; the 2D implementation retains its pictures and image
@@ -318,9 +356,11 @@ ignores embedded profiles. `premultiplyAlpha: none` retains straight source byte
 alongside a premultiplied drawing image; clones preserve them until close. Explicit
 conversions and pixelated resizing use worker-side crop/scale/flip before alpha
 conversion. GPU sources need readback only for those bitmap conversions; ordinary
-drawImage has no added readback. Default bitmaps do not retain a second pixel buffer.
-Display-P3 ICC conversion to sRGB is pixel-verified. PQ/HDR tone mapping, wide-gamut
-canvas storage and output density metadata are not certified.
+drawImage has no added readback. CPU-backed bitmaps retain their owned pixel bytes;
+native-backed bitmaps materialize private bytes when an explicit pixel read, clone or
+transfer requires them. Renderer images remain lazy and local to their realm. Display-P3
+ICC conversion to sRGB is pixel-verified. PQ/HDR tone mapping, wide-gamut canvas storage
+and output density metadata are not certified.
 
 The existing drawImage(ImageData) extension accepts all three drawImage overloads and
 uses the current transform, clip, alpha, effects and composite operation. Bytes are
@@ -390,8 +430,9 @@ applications scale to canvas pixels when display size differs.
 ## Support matrix
 
 - Canvas: OffscreenCanvas 2D, Path2D, gradients, patterns, text, ImageBitmap, ImageData,
-  PNG/JPEG/WebP convertToBlob. HTML canvas, WebGL, Worker transfer and `toDataURL`
-  remain outside scope.
+  PNG/JPEG/WebP convertToBlob and the HTML canvas compatibility below. Worker Canvas 2D
+  and WebGL remain outside scope. Contextless canvas transfer is available to selected
+  WebGPU Workers.
 - State: save/restore/reset, transform, clip, line dash, shadow and ordered CSS filters,
   including drop-shadow. SVG `url()` filters remain unsupported.
 - Pixels: synchronous `getImageData`, `getImageDataAsync`, dirty-rectangle putImageData,
@@ -478,19 +519,34 @@ schedule continuous frames. A canvas using DOM geometry or input has one placeme
 wheel and keyboard events use the real CanvasView. Event propagation covers canvas, its
 document and the session global. There is no HTML element tree.
 
-`ImageData`, `ImageBitmap`, `createImageBitmap`, `Image` and image factories belong to
-Core. Image resources load data URLs or use Core Fetch for URLs; they have
+`ImageData`, `ImageBitmap` and `createImageBitmap` belong to Core and are installed in
+pure Dedicated Workers as well as root Sessions. `Image` and HTML image factories are
+root-only. HTML image resources load data URLs or use Core Fetch for URLs; they have
 decode/load/error and explicit bitmap ownership. Canvas 2D and WebGPU consume the same
-bitmap. Closing releases its backing resource; foreign sessions and closed bitmaps
-reject. Renderers import a Flutter image lazily when they need it.
+bitmap. Closing releases its backing resource; foreign live handles and closed bitmaps
+reject. Structured clone or transfer creates a receiver-owned bitmap from pixels and
+metadata, without transporting a Dart image ID. Renderers import a Flutter image lazily
+when they need it.
 
 Shared codecs use the independent version-1 `flax_image_*` engine extension. Native ABI
 2 is unchanged. The private engine supplies CPU decode, crop/resize/flip and
-PNG/JPEG/WebP encode. Missing extensions reject; installing Core does not allocate a
-Canvas 2D decoder. Existing Canvas codecs remain available on the maintained engine.
-`convertToBlob`, HTML-style `toBlob` and `toDataURL` are explicit export paths;
-synchronous `toDataURL` can block the UI isolate and should not run each frame.
+PNG/JPEG/WebP encode. These CPU operations run through `Isolate.run` in both root and
+Worker hosts; UI image import/readback operations remain root-only. Missing extensions
+reject; installing Core does not allocate a Canvas 2D decoder. Existing Canvas codecs
+remain available on the maintained engine. `convertToBlob`, HTML-style `toBlob` and
+`toDataURL` are explicit export paths; synchronous `toDataURL` can block the UI isolate
+and should not run each frame.
 
-General HTML nodes, CSS layout/selectors, video decoders and Worker canvas transfer are
-outside this adapter. Unsupported factories/styles reject instead of creating
+ImageData sub-serialization preserves its actual data view and graph aliases, including
+an explicitly transferred data buffer. ImageBitmap clone copies private pixels and
+transfer detaches them only after the whole message validates. Contextless canvas
+leases, bitmaps and ordinary buffers use the same atomic native transfer path.
+Image-only host checkpoints release unreachable or detached bitmap caches, and host
+close discards late CPU codec results. See the
+[Worker image contract](dedicated-workers.md#still-images).
+
+General HTML nodes, CSS layout/selectors, video decoders and Worker Canvas 2D are
+outside this adapter. Selected WebGPU Workers support OffscreenCanvas image
+capture/export and contextless OffscreenCanvas transfer; the main HTML placeholder
+retains layout and input. Unsupported factories/styles reject instead of creating
 nonfunctional nodes.

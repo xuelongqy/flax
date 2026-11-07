@@ -13,7 +13,11 @@ extern "C" int32_t flax_webgpu_canvas_readback(void *value, void *destination,
     if (source) {
       // Load/store initializes an unused texture without replacing its JS
       // identity.
-      auto encoder = canvas.device.CreateCommandEncoder();
+      wgpu::DawnEncoderInternalUsageDescriptor internal;
+      internal.useInternalUsages = true;
+      wgpu::CommandEncoderDescriptor encoderDescriptor;
+      encoderDescriptor.nextInChain = &internal;
+      auto encoder = canvas.device.CreateCommandEncoder(&encoderDescriptor);
       wgpu::RenderPassColorAttachment color;
       color.view = source->texture.CreateView();
       color.loadOp = wgpu::LoadOp::Load;
@@ -26,7 +30,7 @@ extern "C" int32_t flax_webgpu_canvas_readback(void *value, void *destination,
       auto commands = encoder.Finish();
       canvas.device.GetQueue().Submit(1, &commands);
     } else {
-      published = [canvas.output copyFlaxDawnMetalTexture];
+      published = [canvas.endpoint->output copyFlaxDawnMetalTexture];
       auto lease = (FlaxWebGpuLease *)objc_getAssociatedObject(
           published, @selector(copyFlaxDawnMetalTexture));
       if (lease)

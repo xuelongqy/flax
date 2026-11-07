@@ -4,11 +4,13 @@ import { GLTFExporter } from 'three/addons/exporters/GLTFExporter.js';
 import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
 import { readTexturePixels } from './images.js';
 
-export async function verifyThreeAdvanced(device, assert) {
+export async function verifyThreeAdvanced(device, assert, options = {}) {
   const size = 192,
     models = [],
     mixers = [];
-  const canvas = window.document.createElement('canvas');
+  const canvas = options.canvas ?? new OffscreenCanvas(size, size);
+  const reportImage =
+    options.reportImage ?? ((value) => __webGpuReport(JSON.stringify(value)));
   const renderer = new THREE.WebGPURenderer({
     canvas,
     device,
@@ -48,13 +50,12 @@ export async function verifyThreeAdvanced(device, assert) {
     let binary = '';
     for (let i = 0; i < png.length; i += 8192)
       binary += String.fromCharCode(...png.subarray(i, i + 8192));
-    __webGpuReport(
-      JSON.stringify({
-        kind: 'three-image',
-        name: 'advanced-' + name,
-        base64: btoa(binary),
-      }),
-    );
+    reportImage({
+      kind: 'three-image',
+      name: 'advanced-' + name,
+      base64: btoa(binary),
+    });
+    await options.onCapture?.('advanced-' + name, pixels, size, size);
     return pixels;
   };
   const changed = (a, b) => {
@@ -76,7 +77,7 @@ export async function verifyThreeAdvanced(device, assert) {
   };
   const report = { animations: [], meshopt: null, texturedExports: [] };
   const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
-  const timing = window.crypto.randomUUID();
+  const timing = crypto.randomUUID();
   performance.mark(timing, { detail: { scene: 'three-advanced' } });
   try {
     let original;
@@ -102,8 +103,27 @@ export async function verifyThreeAdvanced(device, assert) {
       mixer.clipAction(gltf.animations[0]).play();
       mixer.setTime(0);
       // The first draw initializes Three.js geometry and uniform observation caches.
-      await frame();
-      renderer.render(scene, camera);
+      if (options.animationLoop && name === 'skinned') {
+        let frames = 0;
+        await new Promise((resolve, reject) => {
+          renderer.setAnimationLoop(() => {
+            try {
+              renderer.render(scene, camera);
+              if (++frames === 3) {
+                renderer.setAnimationLoop(null);
+                resolve();
+              }
+            } catch (error) {
+              renderer.setAnimationLoop(null);
+              reject(error);
+            }
+          });
+        });
+        report.animationLoopFrames = frames;
+      } else {
+        await frame();
+        renderer.render(scene, camera);
+      }
       const rest = await capture(name + '-rest');
       mixer.setTime(0.5);
       if (name === 'skinned')
@@ -249,6 +269,6 @@ export async function verifyThreeAdvanced(device, assert) {
     for (const texture of textures) texture.dispose();
     for (const image of images) image?.close?.();
     target.destroy();
-    renderer.dispose();
+    await renderer.dispose();
   }
 }

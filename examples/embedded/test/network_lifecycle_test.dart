@@ -16,6 +16,7 @@ import 'support/runtime_tracker.dart';
 const probe = r'''
 (() => {
   const signals = [], sockets = [];
+  const socketEvents = ['open', 'message', 'error', 'close'];
   for (const [name, refs, select] of [
     ['AbortController', signals, value => value.signal],
     ['WebSocket', sockets, value => value],
@@ -31,13 +32,13 @@ const probe = r'''
   globalThis.__networkLifecycle = () => ({
     signals: signals.map(ref => {
       const value = ref.deref();
-      return value ? {aborted: value.aborted, listeners: value.listeners.length,
+      return value ? {aborted: value.aborted, listensForAbort: value.hasListeners('abort'),
         dependents: value.retainedDependents.size} : null;
     }),
     sockets: sockets.map(ref => {
       const value = ref.deref();
       return value ? {state: value.readyState, handlers: value.handlers.size,
-        listeners: value.listeners.length,
+        listenerTypes: socketEvents.filter(type => value.hasListeners(type)).length,
         callbacksCleared: [value.onopen, value.onmessage, value.onerror, value.onclose]
           .every(callback => callback === null)} : null;
     })
@@ -146,7 +147,7 @@ void main() {
         for (final signal in snapshot()['signals'] as List) {
           if (signal == null) continue;
           expect(signal['aborted'], isTrue);
-          expect(signal['listeners'], 0);
+          expect(signal['listensForAbort'], isFalse);
           expect(signal['dependents'], 0);
         }
         await tapGallery(tester, find.byKey(const ValueKey('open-fetch')));
@@ -169,7 +170,7 @@ void main() {
         expect(connections, 1);
         final active = (snapshot()['sockets'] as List).last as Map;
         expect(active['handlers'], 4);
-        expect(active['listeners'], 4);
+        expect(active['listenerTypes'], 4);
         await tapGallery(tester, find.text('Send message'));
         await pumpGalleryUntil(
           tester,
@@ -188,7 +189,7 @@ void main() {
           if (socket == null) continue;
           expect(socket['state'], 3);
           expect(socket['handlers'], 0);
-          expect(socket['listeners'], 0);
+          expect(socket['listenerTypes'], 0);
           expect(socket['callbacksCleared'], isTrue);
         }
         expect(errors, isEmpty);

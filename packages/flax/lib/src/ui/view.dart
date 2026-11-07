@@ -19,8 +19,10 @@ class FlaxSession {
     this.onError,
     AssetBundle? assetBundle,
     List<FlaxPlugin>? plugins,
+    Map<String, FlaxCanvasSource> canvasSources = const {},
   }) : plugins = _pluginSnapshot(plugins ?? Flax._plugins),
        imports = Map.unmodifiable(imports),
+       canvasSources = Map.unmodifiable(canvasSources),
        _requiredCapabilities = List.unmodifiable([
          'esm',
          ...requiredCapabilities,
@@ -55,6 +57,7 @@ class FlaxSession {
     List<FlaxPlugin>? plugins,
     FlaxSandbox? sandbox,
     FlaxPermissionPolicy? permissions,
+    Map<String, FlaxCanvasSource> canvasSources = const {},
   }) : this(
          createRuntime: createRuntime,
          bindings: bindings,
@@ -73,6 +76,7 @@ class FlaxSession {
          fetchBaseUrl: fetchBaseUrl,
          onError: onError,
          plugins: plugins,
+         canvasSources: canvasSources,
        );
 
   final String? namespace;
@@ -84,6 +88,7 @@ class FlaxSession {
   /// Defaults to assets/flax inside Flutter's rootBundle.
   final AssetBundle assetBundle;
   final List<FlaxPlugin> plugins;
+  final Map<String, FlaxCanvasSource> canvasSources;
   final FlaxModuleAssets? _moduleAssets;
   final FlaxJsRuntime Function() createRuntime;
   final String source;
@@ -206,6 +211,7 @@ class FlaxSession {
         entryUri: entryUri,
         fetchBaseUrl: fetchBaseUrl,
         assetBundle: assetBundle,
+        canvasSources: canvasSources,
         modulesPrepared: prepared,
         sandbox: sandbox,
         permissions: permissions,
@@ -262,6 +268,7 @@ class FlaxSession {
             entryUri: entryUri,
             fetchBaseUrl: fetchBaseUrl,
             assetBundle: assetBundle,
+            canvasSources: canvasSources,
             sandbox: sandbox,
             permissions: permissions,
             permissionManifest: permissionManifest,
