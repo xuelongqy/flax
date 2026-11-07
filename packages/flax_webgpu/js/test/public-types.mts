@@ -5,7 +5,12 @@ import type {} from '@flax/canvas/globals';
 import { CanvasView } from '@flax/core/bindings';
 
 const canvas = new OffscreenCanvas(64, 64);
+canvas.style.width = '64px';
 CanvasView(canvas, { width: 64, height: 64 });
+const transferred = document.createElement('canvas').transferControlToOffscreen();
+CanvasView(transferred);
+// @ts-expect-error The HTML placeholder owns the Flutter layout and input adapter.
+void transferred.style;
 canvas.getContext('2d')?.fillRect(0, 0, 1, 1);
 const context = canvas.getContext('webgpu');
 const adapter = await navigator.gpu.requestAdapter();

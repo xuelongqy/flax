@@ -139,6 +139,15 @@ abstract class FlaxPluginInstance {
   void dispose();
 }
 
+/// An installed native provider may initialize the same host module in Workers.
+/// Configuration contains sendable values only; Flutter objects stay in this isolate.
+abstract interface class FlaxWorkerPluginInstance {
+  String get workerModule;
+  Set<String> get workerNativeAssets;
+  Future<Map<String, Object?>> get workerConfiguration;
+  void workerMessage(String operation, List<Object?> arguments);
+}
+
 /// Public engine-independent extension boundary for host plugins.
 abstract class FlaxHostContext {
   String? get namespace;
@@ -385,6 +394,8 @@ class _BaseHostPlugin extends FlaxPlugin {
     'crypto',
     'navigator',
     'structuredClone',
+    'GPUCompilationInfo',
+    'GPUCompilationMessage',
     'setTimeout',
     'setInterval',
     'clearTimeout',
@@ -476,10 +487,12 @@ class _BaseHost implements FlaxPluginInstance {
     this.workerId,
     this.workerName = '',
     this.workerType = 'classic',
+    this.workerNativeAssets = const {},
   }) : _fetch = _FetchHost(context, fetchBaseUrl);
   final FlaxHostContext context;
   final int? workerId;
   final String workerName, workerType;
+  final Set<String> workerNativeAssets;
   _DedicatedWorkers? _workers;
   final _FetchHost _fetch;
   final _clock = Stopwatch()..start();
@@ -488,6 +501,7 @@ class _BaseHost implements FlaxPluginInstance {
   final _timers = <int, Timer>{};
   final _queued = <int>{};
   final _canvasTargets = <_CanvasTarget>{};
+  final _canvasSources = <String, _WidgetCanvasSource>{};
   FlaxJsObject? _state;
   final _methods = <String, FlaxJsFunction>{};
   bool _closed = false;
@@ -495,6 +509,7 @@ class _BaseHost implements FlaxPluginInstance {
   bool _ffiInstalled = false;
   bool _ffiRetiring = false;
   bool _ffiQueued = false;
+  bool _imagesActive = false;
   int? _rafHandle;
   late final _images = _SharedImages(
     context,
@@ -553,10 +568,12 @@ class _BaseHost implements FlaxPluginInstance {
     context.registerFunction('__flaxBaseCall', (_, args) {
       final operation = (args[0] as FlaxJsString).value;
       if (workerId != null &&
-          (operation.startsWith('ffi') ||
+          ((operation.startsWith('ffi') && workerNativeAssets.isEmpty) ||
               operation.startsWith('canvas') ||
-              operation.startsWith('image') ||
-              operation == 'raf')) {
+              operation == 'imageNative' ||
+              operation == 'imagePixels' ||
+              operation == 'imageEncode' ||
+              operation == 'raf' && workerNativeAssets.isEmpty)) {
         throw UnsupportedError(
           'Workers support pure JS and Wasm host operations',
         );
@@ -612,6 +629,22 @@ class _BaseHost implements FlaxPluginInstance {
           );
         case 'workerCheckpoint':
           context.enqueue(() {});
+        case 'workerProviderMessage':
+          (context as _WorkerHostContext).providerMessage(
+            (args[1] as FlaxJsString).value,
+            (args[2] as FlaxJsString).value,
+            [
+              for (final value in args.skip(3))
+                switch (value) {
+                  FlaxJsString(:final value) => value,
+                  FlaxJsNumber(:final value) => value,
+                  FlaxJsBoolean(:final value) => value,
+                  _ => throw ArgumentError(
+                    'Worker provider messages require scalar values',
+                  ),
+                },
+            ],
+          );
         case 'workerReport':
           (context as _WorkerHostContext).parent.send([
             workerId,
@@ -657,6 +690,8 @@ class _BaseHost implements FlaxPluginInstance {
         case 'image':
           if (context.isClosing) throw StateError('FlaxSessionClosed');
           _images.start(args);
+        case 'imageActivity':
+          _imagesActive = (args[1] as FlaxJsBoolean).value;
         case 'imageEncode':
           return _returnBytes(
             FlaxImageCodec.encode(
@@ -683,6 +718,17 @@ class _BaseHost implements FlaxPluginInstance {
                 )
                 .toDouble(),
           );
+        case 'canvasSourceSize':
+          final name = (args[1] as FlaxJsString).value;
+          final size = _canvasSources[name]?.currentBoundary?.size;
+          return size == null
+              ? const FlaxJsUndefined()
+              : FlaxJsString('${size.width.ceil()},${size.height.ceil()}');
+        case 'canvasSourceWatch':
+          final name = (args[1] as FlaxJsString).value;
+          if (!_closed) {
+            _canvasSources[name]?.watch((args[2] as FlaxJsBoolean).value);
+          }
         case 'canvasCreate':
           if (context.isClosing) throw StateError('FlaxSessionClosed');
           final target = _CanvasTarget(
@@ -772,6 +818,11 @@ class _BaseHost implements FlaxPluginInstance {
             );
           }
           final id = (args[1] as FlaxJsString).value;
+          if (workerId != null && !workerNativeAssets.contains(id)) {
+            throw StateError(
+              'Native code asset is not selected for this Worker: $id',
+            );
+          }
           if (id.isEmpty || id.contains('\u0000')) {
             throw ArgumentError('Invalid native code asset id');
           }
@@ -863,16 +914,88 @@ class _BaseHost implements FlaxPluginInstance {
                 ? context.evaluateSource(_baseHostSource)
                 : context.evaluate(
                     '($flaxBaseBootstrap)(globalThis, $flaxBaseBootstrapBridge, '
-                    '${jsonEncode({'id': workerId, 'name': workerName, 'type': workerType})})',
+                    '${jsonEncode({'id': workerId, 'name': workerName, 'type': workerType, 'canvas': workerNativeAssets.isNotEmpty})})',
                     sourceUrl: 'flax:worker-base',
                   ))
             as FlaxJsObject;
     _fetch._state = _state!.getProperty('fetch') as FlaxJsObject;
+    if (host is _HostContext && host.session.canvasSources.isNotEmpty) {
+      for (final entry in host.session.canvasSources.entries) {
+        final name = entry.key;
+        _canvasSources[name] = _WidgetCanvasSource(
+          entry.value,
+          _scheduleCanvasSources,
+          (width, height, pixels) =>
+              _updateCanvasSource(name, width, height, pixels),
+          context.report,
+        );
+      }
+      _call('configureCanvasSources', [
+        FlaxJsString(jsonEncode(_canvasSources.keys.toList())),
+      ]);
+    }
+  }
+
+  bool _canvasSourcesScheduled = false;
+
+  void _scheduleCanvasSources({bool requestFrame = true}) {
+    if (_closed) return;
+    final binding = SchedulerBinding.instance;
+    if (!_canvasSourcesScheduled) {
+      _canvasSourcesScheduled = true;
+      final owner = WeakReference(this);
+      binding.addPostFrameCallback((_) {
+        final host = owner.target;
+        if (host == null || host._closed) return;
+        host._canvasSourcesScheduled = false;
+        for (final source in host._canvasSources.values) {
+          source.afterPaint();
+        }
+        if (host._canvasSources.values.any((source) => source.watched)) {
+          host._scheduleCanvasSources(requestFrame: false);
+        }
+      });
+    }
+    if (requestFrame) binding.ensureVisualUpdate();
+  }
+
+  void _updateCanvasSource(
+    String name,
+    int width,
+    int height,
+    Uint8List? pixels,
+  ) {
+    if (_closed || !context.isActive || context.isClosing) return;
+    final buffer = pixels == null
+        ? null
+        : context.runtime.createArrayBuffer(pixels);
+    try {
+      _call('updateCanvasSource', [
+        FlaxJsString(name),
+        FlaxJsNumber(width.toDouble()),
+        FlaxJsNumber(height.toDouble()),
+        buffer ?? const FlaxJsNull(),
+      ]);
+      context.requestCheckpoint();
+    } catch (error, stack) {
+      context.report(error, stack);
+    } finally {
+      buffer?.release();
+    }
   }
 
   void _scheduleRaf() {
     if (_rafScheduled || _closed) return;
     _rafScheduled = true;
+    if (context case final _WorkerHostContext worker) {
+      worker.scheduleFrame((_) {
+        _rafScheduled = false;
+        if (!_closed) {
+          _call('fireRaf', [FlaxJsNumber(_clock.elapsedMicroseconds / 1000)]);
+        }
+      });
+      return;
+    }
     _rafHandle = SchedulerBinding.instance.scheduleFrameCallback((_) {
       _rafHandle = null;
       _rafScheduled = false;
@@ -928,7 +1051,12 @@ class _BaseHost implements FlaxPluginInstance {
   }
 
   void presentCanvases() {
-    if (!_closed && _canvasTargets.isNotEmpty) _call('present', const []);
+    if (!_closed &&
+        (_imagesActive ||
+            _canvasTargets.isNotEmpty ||
+            workerId != null && workerNativeAssets.isNotEmpty)) {
+      _call('present', const []);
+    }
   }
 
   void _call(String name, List<FlaxJsValue> args) {
@@ -976,10 +1104,14 @@ class _BaseHost implements FlaxPluginInstance {
   void close() {
     if (_closed) return;
     _closed = true;
+    for (final source in _canvasSources.values) {
+      source.watch(false);
+    }
+    _canvasSources.clear();
     _secureRandom = null;
     _workers?.close();
     _fetch.close();
-    if (workerId == null) _images.close();
+    _images.close();
     for (final timer in _timers.values) {
       timer.cancel();
     }
@@ -994,6 +1126,7 @@ class _BaseHost implements FlaxPluginInstance {
     // Detached Workers dispose their isolate without application teardown callbacks.
     if (workerId == null) context.enqueue(() => _call('close', const []));
     if (_ffiInstalled) {
+      if (workerId != null) return;
       // Prior host settlements and their JS finally jobs run before retirement.
       (context as _HostContext).session._nativeRetirements++;
       context.enqueue(() {

@@ -2,6 +2,44 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { createContext, runInContext } from 'node:vm';
 import { buildHost, hostBundles } from '../../../../../tool/src/host_bundle.mjs';
+import { Event, EventTarget } from '../../dist/host/events.js';
+
+test('EventTarget keeps internal fields private on ordinary and derived instances', () => {
+  class Target extends EventTarget {}
+  for (const target of [new EventTarget(), new Target()]) {
+    assert.deepEqual(Reflect.ownKeys(target), []);
+    assert.deepEqual({ ...target }, {});
+    assert.deepEqual(Object.getOwnPropertyDescriptors(target), {});
+    let delivered = 0;
+    const listener = function (event) {
+      delivered++;
+      assert.equal(this, target);
+      assert.equal(event.target, target);
+      assert.equal(event.currentTarget, target);
+    };
+    target.addEventListener('change', listener, { once: true });
+    target.dispatchEvent(new Event('change'));
+    target.dispatchEvent(new Event('change'));
+    assert.equal(delivered, 1);
+    target.addEventListener('change', listener);
+    EventTarget.clear(target);
+    target.dispatchEvent(new Event('change'));
+    assert.equal(delivered, 1);
+  }
+  const global = {};
+  const clear = EventTarget.installGlobal(global);
+  let delivered = 0;
+  global.addEventListener('change', function (event) {
+    delivered++;
+    assert.equal(this, global);
+    assert.equal(event.target, global);
+    assert.equal(event.currentTarget, global);
+  });
+  global.dispatchEvent(new Event('change'));
+  clear();
+  global.dispatchEvent(new Event('change'));
+  assert.equal(delivered, 1);
+});
 
 test('base environment provides Fetch, data and streams by default', async () => {
   const context = createContext({

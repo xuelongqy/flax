@@ -20,6 +20,218 @@ export async function readTexturePixels(device, texture, width = 2, height = 2) 
   return pixels;
 }
 
+// Both root and Worker fixtures use the same GPU readback, including exact-only usages.
+export async function readCanvasPixels(device, canvas, readPixels) {
+  const bitmap = canvas.transferToImageBitmap();
+  const target = device.createTexture({
+    size: [canvas.width, canvas.height],
+    format: 'rgba8unorm',
+    usage:
+      GPUTextureUsage.COPY_SRC |
+      GPUTextureUsage.COPY_DST |
+      GPUTextureUsage.RENDER_ATTACHMENT,
+  });
+  try {
+    device.queue.copyExternalImageToTexture({ source: bitmap }, { texture: target }, [
+      canvas.width,
+      canvas.height,
+    ]);
+    return await readPixels(device, target, canvas.width, canvas.height);
+  } finally {
+    bitmap.close();
+    target.destroy();
+  }
+}
+
+// Serialized into a real Dedicated Worker. Dependencies are explicit parameters.
+export async function verifyWorkerStillImages(device, assert, readPixels, readCanvas) {
+  let assertions = 0;
+  const cases = [],
+    formats = [];
+  const check = (ok, label) => {
+    assertions++;
+    assert(ok, label);
+  };
+  const pattern = [255, 0, 0, 255, 0, 255, 0, 128, 0, 0, 255, 255, 255, 255, 255, 255];
+  const data = new ImageData(new Uint8ClampedArray(pattern), 2, 2);
+  const target = device.createTexture({
+    size: [2, 2],
+    format: 'rgba8unorm',
+    usage:
+      GPUTextureUsage.COPY_SRC |
+      GPUTextureUsage.COPY_DST |
+      GPUTextureUsage.RENDER_ATTACHMENT,
+  });
+  const canvas = new OffscreenCanvas(2, 2),
+    context = canvas.getContext('webgpu');
+  const bitmaps = [];
+  const keep = (bitmap) => {
+    bitmaps.push(bitmap);
+    return bitmap;
+  };
+  const upload = (source) =>
+    device.queue.copyExternalImageToTexture({ source }, { texture: target }, [2, 2]);
+  async function pixels(expected, label, tolerance = 0) {
+    const actual = await readPixels(device, target);
+    check(
+      actual.length === expected.length &&
+        actual.every((value, i) => Math.abs(value - expected[i]) <= tolerance),
+      `${label}: ${actual}`,
+    );
+  }
+  const solid = (color) => [...color, ...color, ...color, ...color];
+  function configure(alphaMode = 'premultiplied') {
+    context.configure({
+      device,
+      format: 'rgba8unorm',
+      alphaMode,
+      usage: GPUTextureUsage.RENDER_ATTACHMENT | GPUTextureUsage.COPY_DST,
+    });
+  }
+  function draw(color) {
+    const current = context.getCurrentTexture();
+    const encoder = device.createCommandEncoder();
+    const pass = encoder.beginRenderPass({
+      colorAttachments: [
+        {
+          view: current.createView(),
+          loadOp: 'clear',
+          storeOp: 'store',
+          clearValue: color,
+        },
+      ],
+    });
+    pass.end();
+    device.queue.submit([encoder.finish()]);
+    return current;
+  }
+  try {
+    check(
+      typeof Image === 'undefined' && typeof HTMLImageElement === 'undefined',
+      'Still-image Worker has no HTML image globals',
+    );
+    upload(data);
+    data.data.fill(0);
+    await pixels(pattern, 'ImageData upload captures bytes before mutation');
+    cases.push('image-data-upload');
+    data.data.set(pattern);
+    const bitmap = keep(await createImageBitmap(data));
+    upload(bitmap);
+    const moved = keep(structuredClone(bitmap, { transfer: [bitmap] }));
+    moved.close();
+    check(bitmap.width === 0, 'Upload source can transfer immediately');
+    await pixels(pattern, 'Bitmap upload survives source transfer and close');
+    cases.push('bitmap-upload', 'call-time-capture');
+
+    configure();
+    draw([0, 1, 0, 1]);
+    const captured = createImageBitmap(canvas);
+    upload(canvas);
+    draw([0, 0, 1, 1]);
+    await pixels(solid([0, 255, 0, 255]), 'Canvas upload captures call-time pixels');
+    const canvasBitmap = keep(await captured);
+    upload(canvasBitmap);
+    await pixels(
+      solid([0, 255, 0, 255]),
+      'createImageBitmap snapshots the canvas before yielding',
+    );
+    cases.push('canvas-source');
+
+    for (const [requested, expected, name, tolerance] of [
+      ['image/png', 'image/png', 'png-export', 0],
+      ['image/jpeg', 'image/jpeg', 'jpeg-export', 8],
+      ['image/webp', 'image/webp', 'webp-export', 8],
+      ['image/unsupported', 'image/png', 'mime-fallback', 0],
+    ]) {
+      const current = draw([1, 0, 0, 1]);
+      const exporting = canvas.convertToBlob({ type: requested, quality: 1 });
+      check(
+        context.getCurrentTexture() === current,
+        'Encoding preserves current texture identity',
+      );
+      draw([0, 0, 1, 1]);
+      const blob = await exporting;
+      check(
+        blob.type === expected && blob.size > 16,
+        `${name} returns encoded ${expected}`,
+      );
+      const decoded = keep(await createImageBitmap(blob));
+      check(decoded.width === 2 && decoded.height === 2, `${name} decoded dimensions`);
+      upload(decoded);
+      await pixels(
+        solid([255, 0, 0, 255]),
+        `${name} captures pixels before later drawing`,
+        tolerance,
+      );
+      decoded.close();
+      cases.push(name);
+      if (!formats.includes(expected)) formats.push(expected);
+      if (name === 'png-export') cases.push('blob-decode-upload');
+    }
+
+    draw([0.25, 0, 0, 0.5]);
+    const alphaBlob = await canvas.convertToBlob();
+    const alpha = keep(await createImageBitmap(alphaBlob));
+    upload(alpha);
+    await pixels(solid([128, 0, 0, 128]), 'Canvas export unpremultiplies alpha', 2);
+    device.queue.copyExternalImageToTexture(
+      { source: alpha },
+      { texture: target, premultipliedAlpha: true },
+      [2, 2],
+    );
+    await pixels(solid([64, 0, 0, 128]), 'External upload can premultiply alpha', 2);
+    cases.push('alpha');
+
+    for (const [mode, expected, name] of [
+      ['premultiplied', [0, 0, 0, 0], 'transparent-reset'],
+      ['opaque', [0, 0, 0, 255], 'opaque-reset'],
+    ]) {
+      configure(mode);
+      const current = draw([1, 0, 0, 1]);
+      const frozen = keep(canvas.transferToImageBitmap());
+      check(
+        context.getCurrentTexture() !== current,
+        'Bitmap transfer expires the canvas texture',
+      );
+      device.pushErrorScope('validation');
+      const encoder = device.createCommandEncoder();
+      const pass = encoder.beginRenderPass({
+        colorAttachments: [
+          {
+            view: current.createView(),
+            loadOp: 'clear',
+            storeOp: 'store',
+          },
+        ],
+      });
+      pass.end();
+      device.queue.submit([encoder.finish()]);
+      const expired = device.popErrorScope();
+      upload(frozen);
+      await pixels(
+        solid([255, 0, 0, 255]),
+        `${mode} frozen bitmap retains exact pixels`,
+      );
+      const reset = await readCanvas(device, canvas, readPixels);
+      check(reset.join() === solid(expected).join(), `${name}: ${reset}`);
+      check(
+        (await expired) instanceof GPUValidationError,
+        'Submitting the expired canvas texture reports validation failure',
+      );
+      cases.push(name);
+    }
+    cases.push('texture-expiry');
+    return {
+      receipt: { assertions, cases, formats, pixelSnapshots: true },
+      bitmap: await createImageBitmap(data),
+    };
+  } finally {
+    for (const bitmap of bitmaps) bitmap.close();
+    context.unconfigure();
+    target.destroy();
+  }
+}
+
 // Real GPU pixel acceptance; shared with the WebGPU-only and Canvas 2D sessions.
 export async function verifyImages(device, assert) {
   const source = new ImageData(

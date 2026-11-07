@@ -1,4 +1,4 @@
-import type { CanvasHost, OffscreenCanvas } from './canvas.js';
+import type { CanvasHost, CanvasTransfers, OffscreenCanvas } from './canvas.js';
 import type { DOMExceptionConstructor } from './events.js';
 import type { Blob } from './data.js';
 import type { Event, EventTarget } from './events.js';
@@ -19,7 +19,7 @@ export interface ImageDataSettings {
 export interface ImageData {
   readonly width: number;
   readonly height: number;
-  readonly data: Uint8ClampedArray;
+  readonly data: Uint8ClampedArray<ArrayBuffer>;
   readonly colorSpace: 'srgb';
   readonly pixelFormat: 'rgba-unorm8';
 }
@@ -92,18 +92,51 @@ function checkedImageSize(
   return { width: w, height: h, length: pixels * 4 };
 }
 
+// Capture intrinsic accessors before application getters can replace prototypes.
+const apply = Reflect.apply;
+const weakGet = WeakMap.prototype.get;
+const bufferLength = Object.getOwnPropertyDescriptor(
+  ArrayBuffer.prototype,
+  'byteLength',
+)!.get!;
+const bufferResizable = Object.getOwnPropertyDescriptor(
+  ArrayBuffer.prototype,
+  'resizable',
+)!.get!;
+const typedPrototype = Object.getPrototypeOf(Uint8Array.prototype);
+const viewType = Object.getOwnPropertyDescriptor(
+  typedPrototype,
+  Symbol.toStringTag,
+)!.get!;
+const viewBuffer = Object.getOwnPropertyDescriptor(typedPrototype, 'buffer')!.get!;
+const viewOffset = Object.getOwnPropertyDescriptor(typedPrototype, 'byteOffset')!.get!;
+const viewLength = Object.getOwnPropertyDescriptor(typedPrototype, 'byteLength')!.get!;
+const Bytes = Uint8Array;
+const byteLength = (buffer: ArrayBuffer): number => apply(bufferLength, buffer, []);
+const bytesOf = (view: ArrayBufferView): Uint8Array =>
+  new Bytes(
+    apply(viewBuffer, view, []),
+    apply(viewOffset, view, []),
+    apply(viewLength, view, []),
+  );
+type ImageDataState = {
+  width: number;
+  height: number;
+  data: Uint8ClampedArray<ArrayBuffer>;
+};
+const imageDataStates = new WeakMap<object, ImageDataState>();
+const imageDataState = (value: object): ImageDataState | undefined =>
+  apply(weakGet, imageDataStates, [value]);
+
 class SharedImageData {
-  private readonly imageWidth: number;
-  private readonly imageHeight: number;
-  private readonly pixels: Uint8ClampedArray;
   get width(): number {
-    return this.imageWidth;
+    return imageDataState(this)!.width;
   }
   get height(): number {
-    return this.imageHeight;
+    return imageDataState(this)!.height;
   }
-  get data(): Uint8ClampedArray {
-    return this.pixels;
+  get data(): Uint8ClampedArray<ArrayBuffer> {
+    return imageDataState(this)!.data;
   }
   get colorSpace(): 'srgb' {
     return 'srgb';
@@ -112,7 +145,7 @@ class SharedImageData {
     return 'rgba-unorm8';
   }
   constructor(
-    dataOrWidth: Uint8ClampedArray | number,
+    dataOrWidth: Uint8ClampedArray<ArrayBuffer> | number,
     widthOrHeight: number,
     heightOrSettings?: number | ImageDataSettings,
     settings?: ImageDataSettings,
@@ -124,33 +157,35 @@ class SharedImageData {
     ) {
       pixelSettings(heightOrSettings as ImageDataSettings | undefined);
       const size = checkedImageSize(dataOrWidth as number, widthOrHeight);
-      this.imageWidth = size.width;
-      this.imageHeight = size.height;
-      this.pixels = new Uint8ClampedArray(size.length);
+      imageDataStates.set(this, {
+        width: size.width,
+        height: size.height,
+        data: new Uint8ClampedArray(size.length),
+      });
       return;
     }
-    if (!(dataOrWidth instanceof Uint8ClampedArray))
+    if (apply(viewType, dataOrWidth, []) !== 'Uint8ClampedArray')
       throw new TypeError('ImageData requires a Uint8ClampedArray.');
+    const data = dataOrWidth as Uint8ClampedArray<ArrayBuffer>;
+    // The intrinsic also rejects SharedArrayBuffer, regardless of public properties.
+    if (apply(bufferResizable, apply(viewBuffer, data, []), []))
+      throw new TypeError('ImageData requires a fixed-length ArrayBuffer.');
     const hasHeight =
       typeof heightOrSettings !== 'object' && heightOrSettings !== undefined;
     pixelSettings(
       hasHeight ? settings : (heightOrSettings as ImageDataSettings | undefined),
     );
     const width = integer(widthOrHeight, 0, 0xffffffff);
-    if (
-      width === 0 ||
-      dataOrWidth.length === 0 ||
-      dataOrWidth.length % (4 * width) !== 0
-    )
+    const givenHeight = hasHeight
+      ? integer(heightOrSettings as number, 0, 0xffffffff)
+      : undefined;
+    const length = apply(viewLength, data, []);
+    if (width === 0 || length === 0 || length % (4 * width) !== 0)
       throw imageDataIndexError('The source data does not match the width.');
-    const height = !hasHeight
-      ? dataOrWidth.length / (4 * width)
-      : integer(heightOrSettings as number, 0, 0xffffffff);
-    if (height === 0 || dataOrWidth.length !== 4 * width * height)
+    const height = givenHeight ?? length / (4 * width);
+    if (height === 0 || length !== 4 * width * height)
       throw imageDataIndexError('The source data does not match the dimensions.');
-    this.imageWidth = width;
-    this.imageHeight = height;
-    this.pixels = dataOrWidth;
+    imageDataStates.set(this, { width, height, data });
   }
 }
 
@@ -197,7 +232,8 @@ function defineConstructors() {
       return closed.has(this) ? 0 : sources.get(this)!.height;
     }
     get [imageIdKey]() {
-      return closed.has(this) ? -1 : sources.get(this)!.canvasId;
+      const source = sources.get(this)!;
+      return closed.has(this) || source.width === 0 ? -1 : source.canvasId;
     }
     close() {
       if (closed.has(this)) return;
@@ -208,6 +244,7 @@ function defineConstructors() {
   Object.defineProperty(SharedImageData, 'name', { value: 'ImageData' });
   return {
     ImageData: SharedImageData,
+    data: imageDataState,
     ImageBitmap,
     make: (source: BitmapSource) => new ImageBitmap(secret, source),
     source: (bitmap: object) => sources.get(bitmap),
@@ -217,12 +254,16 @@ const canonical = constructors(globalThis);
 export const ImageData: {
   new (width: number, height: number, settings?: ImageDataSettings): ImageData;
   new (
-    data: Uint8ClampedArray,
+    data: Uint8ClampedArray<ArrayBuffer>,
     width: number,
     height?: number,
     settings?: ImageDataSettings,
   ): ImageData;
-  new (data: Uint8ClampedArray, width: number, settings?: ImageDataSettings): ImageData;
+  new (
+    data: Uint8ClampedArray<ArrayBuffer>,
+    width: number,
+    settings?: ImageDataSettings,
+  ): ImageData;
   readonly prototype: ImageData;
 } = canonical.ImageData;
 export const ImageBitmap: { new (): ImageBitmap; readonly prototype: ImageBitmap } =
@@ -235,6 +276,8 @@ export interface ImageHost {
   isSource(source: unknown): boolean;
   bitmap(source: BitmapSource): ImageBitmap;
   transfer(bitmap: ImageBitmap): ImageBitmap;
+  prepareTransfers(list: unknown[]): CanvasTransfers;
+  deserialize(record: any[]): ImageData | ImageBitmap;
   source(bitmap: object): BitmapSource;
   read(source: unknown): PixelImage;
   onClose(bitmap: object, callback: () => void): void;
@@ -258,17 +301,31 @@ export function imageHost(global: typeof globalThis = globalThis): ImageHost {
 export function installImageHost(
   global: typeof globalThis,
   call: Call,
-  canvases: CanvasHost,
+  canvases: CanvasHost | undefined,
   Exception: DOMExceptionConstructor,
+  worker = false,
 ): ImageHost {
   const g = global as any,
     classes = constructors(global);
   let open = true,
     next = 1;
-  const owned = new WeakMap<object, BitmapSource>();
-  const transfers = new WeakMap<object, () => ImageBitmap>();
+  type BitmapState = {
+    width: number;
+    height: number;
+    closed: boolean;
+    backing: BitmapSource | undefined;
+    pixels: PixelImage | undefined;
+    buffer: ArrayBuffer | undefined;
+    source: BitmapSource;
+    callbacks: (() => void)[];
+  };
+  const owned = new WeakMap<object, BitmapState>();
+  const ownedState = (value: object): BitmapState | undefined =>
+    apply(weakGet, owned, [value]);
   const elements = new WeakMap<object, ImageBitmap>();
-  const records = new Set<{ ref: WeakRef<ImageBitmap>; close(): void }>();
+  const elementSources = new WeakSet<object>();
+  const records: { ref: WeakRef<ImageBitmap>; state: BitmapState }[] = [];
+  let active = false;
   const pending = new Map<
     number,
     { resolve(value: any): void; reject(error: unknown): void }
@@ -299,6 +356,121 @@ export function installImageHost(
         reject(error);
       }
     });
+  }
+  function activity(value: boolean) {
+    if (active === value) return;
+    active = value;
+    call('imageActivity', value);
+  }
+  function alive(state: BitmapState): boolean {
+    return (
+      !state.closed && (state.buffer === undefined || byteLength(state.buffer) !== 0)
+    );
+  }
+  function release(state: BitmapState) {
+    if (state.closed) return;
+    state.closed = true;
+    const backing = state.backing;
+    state.backing = undefined;
+    state.pixels = undefined;
+    state.buffer = undefined;
+    // Native detach already committed ownership. Cleanup must not turn success into failure.
+    try {
+      backing?.close();
+    } catch {}
+    for (let i = 0; i < state.callbacks.length; i++) {
+      try {
+        state.callbacks[i]!();
+      } catch {}
+    }
+    state.callbacks.length = 0;
+  }
+  function capture(state: BitmapState): PixelImage {
+    if (!open || !alive(state))
+      throw new Exception('ImageBitmap is closed', 'DataCloneError');
+    if (!state.pixels) {
+      const pixels = state.backing!.pixels();
+      if (!alive(state)) throw new Exception('ImageBitmap is closed', 'DataCloneError');
+      const data = new Bytes(bytesOf(pixels.data));
+      if (data.byteLength !== state.width * state.height * 4)
+        throw new Exception('Invalid bitmap pixels', 'DataCloneError');
+      state.pixels = {
+        width: state.width,
+        height: state.height,
+        data,
+        colorSpace: pixels.colorSpace ?? 'srgb',
+        premultiplied: pixels.premultiplied === true,
+      };
+      state.buffer = data.buffer as ArrayBuffer;
+    }
+    return state.pixels;
+  }
+  function makeBitmap(backing: BitmapSource, pixels?: PixelImage): ImageBitmap {
+    check();
+    host.sweep();
+    const state: BitmapState = {
+      width: backing.width,
+      height: backing.height,
+      closed: false,
+      backing,
+      pixels,
+      buffer: pixels?.data.buffer as ArrayBuffer | undefined,
+      source: undefined!,
+      callbacks: [],
+    };
+    const source: BitmapSource = {
+      ...backing,
+      get width() {
+        return alive(state) ? state.width : 0;
+      },
+      get height() {
+        return alive(state) ? state.height : 0;
+      },
+      close: () => release(state),
+      pixels() {
+        if (!alive(state))
+          throw new Exception('ImageBitmap is closed', 'InvalidStateError');
+        const pixels = capture(state);
+        // Renderer consumers receive snapshots, never the transferable private buffer.
+        return { ...pixels, data: new Bytes(pixels.data) };
+      },
+    };
+    if (backing.native)
+      source.native = () => {
+        if (!alive(state))
+          throw new Exception('ImageBitmap is closed', 'InvalidStateError');
+        return state.backing!.native!();
+      };
+    state.source = source;
+    const bitmap = classes.make(source);
+    owned.set(bitmap, state);
+    records[records.length] = { ref: new WeakRef(bitmap), state };
+    activity(true);
+    return bitmap;
+  }
+  function fromOwnedPixels(pixels: PixelImage): ImageBitmap {
+    let id: number | undefined;
+    return makeBitmap(
+      {
+        width: pixels.width,
+        height: pixels.height,
+        close() {
+          if (id !== undefined) call('imageClose', id);
+        },
+        pixels: () => pixels,
+        native() {
+          id ??= call(
+            'imagePixels',
+            pixels.data,
+            pixels.width,
+            pixels.height,
+          ) as number;
+          g.__flaxModules?.require('@flax/core/navigation');
+          return call('imageNative', id) as object;
+        },
+      },
+      pixels,
+    );
   }
   function nativeBitmap(value: {
     id: number;
@@ -368,12 +540,12 @@ export function installImageHost(
     const width =
       options.resizeWidth ??
       (options.resizeHeight
-        ? Math.max(1, Math.round((sw! * options.resizeHeight) / sh!))
+        ? Math.max(1, Math.ceil((sw! * options.resizeHeight) / sh!))
         : sw!);
     const height =
       options.resizeHeight ??
       (options.resizeWidth
-        ? Math.max(1, Math.round((sh! * options.resizeWidth) / sw!))
+        ? Math.max(1, Math.ceil((sh! * options.resizeWidth) / sw!))
         : sh!);
     return rpc('transform', source.data, [
       source.width,
@@ -397,88 +569,130 @@ export function installImageHost(
         source !== null &&
         (source instanceof classes.ImageData ||
           owned.has(source) ||
-          source instanceof HostImage ||
-          canvases.isCanvas(source))
+          elementSources.has(source) ||
+          canvases?.isCanvas(source) === true)
       );
     },
-    bitmap(source) {
-      check();
-      host.sweep();
-      const callbacks = new Set<() => void>();
-      let closed = false;
-      let backing: BitmapSource | undefined = source;
-      let record: { ref: WeakRef<ImageBitmap>; close(): void };
-      const wrapped: BitmapSource = {
-        ...source,
-        close() {
-          if (closed) return;
-          closed = true;
-          backing?.close();
-          backing = undefined;
-          delete wrapped.native;
-          records.delete(record);
-          for (const fn of callbacks) fn();
-          callbacks.clear();
+    bitmap: makeBitmap,
+    transfer(bitmap) {
+      // Same-realm bitmaprenderer ownership only; structured transfers use native detach.
+      host.source(bitmap);
+      const state = ownedState(bitmap)!;
+      const receiver = makeBitmap(state.backing!, state.pixels);
+      state.backing = undefined;
+      release(state);
+      return receiver;
+    },
+    prepareTransfers(list) {
+      const buffers: unknown[] = [];
+      const validated: BitmapState[] = [];
+      for (let i = 0; i < list.length; i++) {
+        const value = list[i];
+        const state =
+          value && typeof value === 'object' ? ownedState(value) : undefined;
+        if (!state) {
+          buffers[i] = value;
+          continue;
+        }
+        capture(state);
+        validated[validated.length] = state;
+        buffers[i] = state.buffer;
+      }
+      return {
+        buffers,
+        serialize(value) {
+          const data = classes.data(value);
+          if (data) {
+            if (!apply(viewLength, data.data, []))
+              throw new Exception('ImageData is detached', 'DataCloneError');
+            // Native WriteValue shares its graph map with this host record. Preserve the view.
+            return ['ImageData', data.width, data.height, data.data];
+          }
+          const state = ownedState(value);
+          if (!state) return undefined;
+          const pixels = capture(state);
+          validated[validated.length] = state;
+          return [
+            'ImageBitmap',
+            state.width,
+            state.height,
+            state.buffer,
+            pixels.colorSpace ?? 'srgb',
+            pixels.premultiplied === true,
+          ];
         },
-        pixels() {
-          if (closed) throw new Exception('ImageBitmap is closed', 'InvalidStateError');
-          return backing!.pixels();
+        validate() {
+          // No application getters, provider callbacks or replaceable collection methods.
+          for (let i = 0; i < validated.length; i++) {
+            const state = validated[i]!;
+            if (!open || !alive(state))
+              throw new Exception('ImageBitmap ownership changed', 'DataCloneError');
+          }
         },
       };
-      const bitmap = classes.make(wrapped);
-      owned.set(bitmap, wrapped);
-      transfers.set(bitmap, () => {
-        host.source(bitmap);
-        const source = backing!;
-        backing = undefined;
-        bitmap.close();
-        return host.bitmap(source);
-      });
-      closeObservers.set(bitmap, callbacks);
-      record = { ref: new WeakRef(bitmap), close: wrapped.close };
-      records.add(record);
-      return bitmap;
     },
-    transfer(bitmap) {
-      if (!owned.has(bitmap))
-        throw new TypeError('Expected ImageBitmap from this session');
-      host.source(bitmap);
-      return transfers.get(bitmap)!();
+    deserialize(record) {
+      if (record[0] === 'ImageData')
+        return new classes.ImageData(record[3], record[1], record[2]);
+      const width = record[1],
+        height = record[2],
+        buffer = record[3];
+      if (
+        record[0] !== 'ImageBitmap' ||
+        !Number.isInteger(width) ||
+        !Number.isInteger(height) ||
+        width <= 0 ||
+        height <= 0 ||
+        byteLength(buffer) !== width * height * 4 ||
+        (record[4] !== 'srgb' && record[4] !== 'display-p3') ||
+        typeof record[5] !== 'boolean'
+      )
+        throw new Exception('Invalid ImageBitmap record', 'DataCloneError');
+      // Deserialized bytes belong exclusively to this realm; never adopt sender IDs or GPU objects.
+      return fromOwnedPixels({
+        width,
+        height,
+        data: new Bytes(buffer),
+        colorSpace: record[4],
+        premultiplied: record[5],
+      });
     },
     source(bitmap) {
       check();
-      if (bitmap instanceof HostImage) {
+      if (elementSources.has(bitmap)) {
         const image = elements.get(bitmap);
         if (!image)
           throw new Exception('The image is not decoded', 'InvalidStateError');
         bitmap = image;
       }
-      const source = owned.get(bitmap);
-      if (!source) throw new TypeError('Expected ImageBitmap from this session');
-      if ((bitmap as ImageBitmap).width === 0)
+      const state = ownedState(bitmap);
+      if (!state) throw new TypeError('Expected ImageBitmap from this session');
+      if (!alive(state))
         throw new Exception('ImageBitmap is closed', 'InvalidStateError');
-      return source;
+      return state.source;
     },
     read(source) {
       check();
-      if (source instanceof classes.ImageData) {
-        if (source.data.byteLength === 0)
+      const data =
+        source && typeof source === 'object' ? classes.data(source) : undefined;
+      if (data) {
+        if (!apply(viewLength, data.data, []))
           throw new Exception('ImageData is detached', 'InvalidStateError');
+        const pixels = bytesOf(data.data);
         return {
-          width: source.width,
-          height: source.height,
-          data: new Uint8Array(
-            source.data.buffer,
-            source.data.byteOffset,
-            source.data.byteLength,
-          ),
+          width: data.width,
+          height: data.height,
+          data: pixels,
           colorSpace: 'srgb',
           premultiplied: false,
         };
       }
-      if (source instanceof classes.ImageBitmap || source instanceof HostImage)
+      if (
+        source instanceof classes.ImageBitmap ||
+        (typeof source === 'object' && source !== null && elementSources.has(source))
+      )
         return host.source(source).pixels();
-      if (canvases.isCanvas(source)) {
+      if (canvases?.isCanvas(source)) {
         const backend = canvases.backend(source as object);
         if (!backend) {
           if (!source.width || !source.height)
@@ -506,7 +720,7 @@ export function installImageHost(
     onClose(bitmap, callback) {
       host.source(bitmap);
       bitmap = elements.get(bitmap) ?? bitmap;
-      closeObservers.get(bitmap)!.add(callback);
+      ownedState(bitmap)!.callbacks.push(callback);
     },
     register(value) {
       check();
@@ -519,7 +733,9 @@ export function installImageHost(
     async create(source, ...args) {
       check();
       const result =
-        source instanceof HostImage ? undefined : factory?.(source, ...args);
+        typeof source === 'object' && source !== null && elementSources.has(source)
+          ? undefined
+          : factory?.(source, ...args);
       if (result) return result;
       if (
         source &&
@@ -554,21 +770,7 @@ export function installImageHost(
       return transformed(host.read(source), args);
     },
     fromPixels(source) {
-      const pixels = source.data.slice();
-      let id: number | undefined;
-      return host.bitmap({
-        width: source.width,
-        height: source.height,
-        close() {
-          if (id !== undefined) call('imageClose', id);
-        },
-        pixels: () => ({ ...source, data: pixels }),
-        native() {
-          id ??= call('imagePixels', pixels, source.width, source.height) as number;
-          g.__flaxModules?.require('@flax/core/navigation');
-          return call('imageNative', id) as object;
-        },
-      });
+      return fromOwnedPixels({ ...source, data: new Bytes(bytesOf(source.data)) });
     },
     async encode(source, type = 'image/png', quality = 0.92) {
       check();
@@ -605,30 +807,45 @@ export function installImageHost(
     },
     settle(id, ok, value) {
       const item = pending.get(id);
-      if (!item) return;
+      if (!item) {
+        if (open && ok && typeof value?.id === 'number') call('imageClose', value.id);
+        return;
+      }
       pending.delete(id);
       if (ok) item.resolve(value);
       else item.reject(new Exception(String(value), 'InvalidStateError'));
     },
     sweep() {
-      for (const record of records)
-        if (!record.ref.deref()) {
-          records.delete(record);
-          record.close();
-        }
+      let retained = 0;
+      for (let i = 0; i < records.length; i++) {
+        const record = records[i]!;
+        if (!record.ref.deref() || !alive(record.state)) release(record.state);
+        else records[retained++] = record;
+      }
+      records.length = retained;
+      activity(retained !== 0);
     },
     close() {
       if (!open) return;
-      for (const record of records) record.close();
-      records.clear();
       open = false;
+      for (let i = 0; i < records.length; i++) release(records[i]!.state);
+      records.length = 0;
+      activity(false);
       for (const item of pending.values())
         item.reject(new Exception('The image session closed', 'InvalidStateError'));
       pending.clear();
       factory = undefined;
     },
   };
-  const closeObservers = new WeakMap<object, Set<() => void>>();
+  Object.assign(g, {
+    ImageData: classes.ImageData,
+    ImageBitmap: classes.ImageBitmap,
+    createImageBitmap: (source: unknown, ...args: Options) =>
+      host.create(source, ...args),
+  });
+  Object.defineProperty(g, hostKey, { value: host });
+  // The image foundation needs neither Flutter objects nor a canvas provider.
+  if (worker || !canvases) return host;
   const BaseTarget = g.EventTarget ?? globalThis.EventTarget;
   const BaseEvent = g.Event ?? globalThis.Event;
   class HostImage extends BaseTarget {
@@ -641,6 +858,7 @@ export function installImageHost(
     crossOrigin: string | null = null;
     constructor(width?: number, height?: number) {
       super();
+      elementSources.add(this);
       if (width !== undefined) this.width = width;
       if (height !== undefined) this.height = height;
     }
@@ -837,13 +1055,8 @@ export function installImageHost(
   });
   Object.assign(g, {
     ImageBitmapRenderingContext,
-    ImageData: classes.ImageData,
-    ImageBitmap: classes.ImageBitmap,
     Image: HostImage,
     HTMLImageElement: HostImage,
-    createImageBitmap: (source: unknown, ...args: Options) =>
-      host.create(source, ...args),
   });
-  Object.defineProperty(g, hostKey, { value: host });
   return host;
 }

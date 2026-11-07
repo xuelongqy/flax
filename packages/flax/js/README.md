@@ -54,6 +54,8 @@ copy objects. Generated target tokens, session identity and Context/State lifeti
 validated by the existing bridge. See
 [checked views](../../../docs/architecture/objects.md#checked-views-and-dart-type-diagnostics).
 
-Pure JS/Wasm Dedicated Workers use `Worker` in main sessions. Worker script types are
-available through `@flax/core/host/worker`; see the
+Pure JS/Wasm Dedicated Workers use `Worker` in main sessions. They include non-HTML
+`ImageData`, `ImageBitmap` and `createImageBitmap`, CPU Blob decoding/transforms, and
+image clone/transfer. Worker script types are available through `@flax/core/host/worker`
+without Image/HTMLImageElement, window or document globals; see the
 [worker contract](../../../docs/architecture/dedicated-workers.md).

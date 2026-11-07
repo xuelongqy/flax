@@ -1,0 +1,744 @@
+{
+  "schemaVersion": 1,
+  "status": "Performance and required functional validation complete; independent acceptance tracked externally; uncommitted.",
+  "evidenceRoot": "/Volumes/MAC_HOME/CodexHome/review-evidence/worker-tail-main-20261102-100714",
+  "independentAcceptance": "/Volumes/MAC_HOME/CodexHome/review-evidence/worker-tail-main-20261102-100714/independent-final-review.json",
+  "initialSources": {
+    "flax": {
+      "base": "d954085ff34814cab21d8991b6b590bec9e182eb",
+      "digest": "92e028c86e84a2d1f072a35b49a7295f1650323b79c8262147f9014647626089",
+      "fingerprint": "f8a1289e739341e7845d13630e13e2dbfb09db53abb75027992f12862a6d421f"
+    },
+    "flutter": {
+      "base": "439033d726d47670b7228864298cce3e9ddbd4c9",
+      "digest": "67eed88d64874e0806b3b5e0e301aafd54c1d065dac50487ad0f6a9827536ff9",
+      "fingerprint": "3daf5c2782955fede3a89966414f236a4cf07a5d14fa7ecf70ce68e23515aaa7"
+    },
+    "dart": {
+      "base": "416e33b0ffaef062a60ec966bb8c82ed2b83f128",
+      "digest": "a1f9272240988e96e550cb262069ef42c17b2fe090e9c536d36ea3bd2786fc85",
+      "fingerprint": "c37bd456189db7b6d050156abf7d34267f6e813cf7f2944e350d951237379a2b"
+    }
+  },
+  "acceptedEngines": "Read-only flax_mac_joint_gc_candidate_{debug,release}_arm64; canonical ordinary engine outputs were not replaced.",
+  "artifacts": {
+    "path": "/Volumes/MAC_HOME/CodexHome/review-evidence/worker-tail-main-20261102-100714/artifacts-v1",
+    "manifestSha256": "604d4f7c460a78f6edef4a91360a2db8b8f7fc562a93e59fdfe3fc8a0ba64cfd",
+    "entries": 523
+  },
+  "changes": {
+    "retainedNewRuntimeOptimization": false,
+    "inheritedThreeDefaultDescriptorShortcuts": "Preserved unchanged.",
+    "fixture": "Greedy KTX2 WorkerPool: both Workers receive work, total tasks=8, each replies=tasks; no 4/4 fairness assumption. Later 2 corrupt tasks make final dispatch totals 10.",
+    "documentation": "Corrected callback-flags wording and recorded current-main evidence."
+  },
+  "protocol": {
+    "workerOrder": [0, 1, 2, 2, 1, 0],
+    "meshoptColdTasks": 2,
+    "meshoptReusedTasks": 8,
+    "postCompletionObservationMs": 30,
+    "validationOutsideTiming": true,
+    "noCTSInMatchedWorkerProfiles": true,
+    "standardAPIOrder": ["flax", "edge", "edge", "flax"],
+    "dimensions": [
+      [960, 540],
+      [640, 360],
+      [960, 540]
+    ],
+    "warmupSubmittedFrames": 31,
+    "phaseDurationSeconds": 8,
+    "warmupExcludedWithinPhase": true,
+    "quantiles": "Per phase and process; never pooled across phases.",
+    "apiTotalEndpoint": "Frame API start immediately before uniform upload through return from queue.submit; includes native backend work.",
+    "completionPromiseEndpoint": "Same frame API start through the onSubmittedWorkDone callback; includes API CPU, GPU waiting and host notification delivery, not submit-only or physical screen latency.",
+    "quietInstrumentation": "No native/JS/Dart probes; GPU timing, native handoff, CPU details and browser trace are separate rounds."
+  },
+  "environment": {
+    "displayPhysical": [3440, 1440],
+    "viewportLogical": [1100, 668],
+    "devicePixelRatio": 1,
+    "refreshHz": 120,
+    "sequenceSeconds": 306.9997886659985,
+    "loadSamples": 276,
+    "sampledHeavyOverlaps": 0,
+    "powerBefore": "Now drawing from 'AC Power'\n",
+    "powerAfter": "Now drawing from 'AC Power'\n",
+    "thermalBefore": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded\n",
+    "thermalAfter": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded\n",
+    "backgroundLimits": "Not a lab-idle machine: mds_stores up to 254% CPU and Codex Renderer up to 272% in recorded samples; 1 s samples can miss shorter overlap. Previous 60 Hz results are not a before/after control."
+  },
+  "workerQuiet": [
+    {
+      "label": "quiet-normal-3",
+      "elapsedSeconds": 21.155552124997484,
+      "sessions": 3,
+      "records": 120,
+      "workerAssertions": 405,
+      "retirements": 4,
+      "postCloseRssMiB": [247.546875, 372.828125, 377.71875, 403.375],
+      "peakRssMiB": 453.859375,
+      "meshopt": [
+        {
+          "workers": 0,
+          "batches": 6,
+          "coldCompletionMedianMs": 2.5209999999998445,
+          "reusedCompletionMedianMs": 6.264500000000112,
+          "reusedWorkGapMedianMs": 6.285000000000082,
+          "reusedFullGapMedianMs": 28.643500000000017,
+          "reusedObservedMedianMs": 47.36800000000005
+        },
+        {
+          "workers": 1,
+          "batches": 6,
+          "coldCompletionMedianMs": 41.044000000000096,
+          "reusedCompletionMedianMs": 32.14300000000003,
+          "reusedWorkGapMedianMs": 24.858499999999935,
+          "reusedFullGapMedianMs": 25.68299999999988,
+          "reusedObservedMedianMs": 63.1255000000001
+        },
+        {
+          "workers": 2,
+          "batches": 6,
+          "coldCompletionMedianMs": 36.53949999999986,
+          "reusedCompletionMedianMs": 6.738999999999805,
+          "reusedWorkGapMedianMs": 6.606999999999971,
+          "reusedFullGapMedianMs": 25.152000000000044,
+          "reusedObservedMedianMs": 37.23050000000012
+        }
+      ]
+    },
+    {
+      "label": "quiet-normal-4",
+      "elapsedSeconds": 20.559714082999562,
+      "sessions": 3,
+      "records": 120,
+      "workerAssertions": 405,
+      "retirements": 4,
+      "postCloseRssMiB": [246.125, 367.0625, 398.3125, 404.515625],
+      "peakRssMiB": 469.40625,
+      "meshopt": [
+        {
+          "workers": 0,
+          "batches": 6,
+          "coldCompletionMedianMs": 2.5205000000000837,
+          "reusedCompletionMedianMs": 6.270499999999856,
+          "reusedWorkGapMedianMs": 6.283999999999878,
+          "reusedFullGapMedianMs": 28.465999999999894,
+          "reusedObservedMedianMs": 46.756499999999846
+        },
+        {
+          "workers": 1,
+          "batches": 6,
+          "coldCompletionMedianMs": 35.60050000000001,
+          "reusedCompletionMedianMs": 32.92050000000006,
+          "reusedWorkGapMedianMs": 25.912500000000023,
+          "reusedFullGapMedianMs": 26.291500000000042,
+          "reusedObservedMedianMs": 66.9565
+        },
+        {
+          "workers": 2,
+          "batches": 6,
+          "coldCompletionMedianMs": 35.958000000000084,
+          "reusedCompletionMedianMs": 6.596499999999878,
+          "reusedWorkGapMedianMs": 6.483500000000049,
+          "reusedFullGapMedianMs": 25.863500000000045,
+          "reusedObservedMedianMs": 38.30300000000011
+        }
+      ]
+    }
+  ],
+  "trace": {
+    "profile": "trace-light-3: noCTS/noGetHeapStatistics/sparseDart events; diagnostic only",
+    "nativeEvents": 15945,
+    "dartEvents": 2983,
+    "frames": 845,
+    "batches": 54,
+    "overflow": 0,
+    "requestedPassCounts": {
+      "1": 93,
+      "2": 1
+    },
+    "jointV8MajorCounts": {
+      "1": 76,
+      "2": 63
+    },
+    "delivery": {
+      "schemaVersion": 2,
+      "matched": 279,
+      "nativePostResults": {
+        "1": 664
+      },
+      "portBeforeApiReturn": 0,
+      "portBeforeWrapperReturn": 0,
+      "witness": {
+        "channel": 60,
+        "batchIndex": 46,
+        "postApiBeginToPortMs": 26.062,
+        "postApiEndToPortMs": 26.054,
+        "postApiDurationMs": 0.008,
+        "stwBeforePortMs": 26.008,
+        "portToHandlerMs": 0.05
+      }
+    },
+    "requestSourceCounts": {
+      "immediate-v8": 73,
+      "dart-collector-active-js-defer": 12,
+      "unmarked-delayed-request": 7,
+      "proactive-idle": 6,
+      "delayed-external-v8-branch": 1
+    },
+    "backgroundDartRequestMarkers": 0,
+    "reusedOrdering": "5 of 6 one-Worker batches straddle logged STW exit before completion; all 6 two-Worker batches complete before that GC. All 13 selected joint phases contain 2 V8 majors in 1 Dart old pass.",
+    "triggerLimit": "Callback flags are metadata, not a complete V8 allocation/idle cause. Seven delayed requests lack a direct source marker.",
+    "frameAlignment": "Per-frame rasterFinishWallTime minus rasterFinish; no forced frames and no dropped-frame inference during static decoder sections.",
+    "inputComparison": true
+  },
+  "edge": {
+    "version": "Edg/156.0.4314.58",
+    "shaderSha256": "68661f2c01fe1e7ca883af8f1d3a88bd55415b278bc5389b0e5380433e52da24",
+    "sceneSha256": "82495052bfd21c63861c80e2ed8116d3692fd4f7e6c2070c1e8192e6fa42892b",
+    "quietRuns": [
+      {
+        "kind": "flax",
+        "phases": [
+          {
+            "width": 960,
+            "height": 540,
+            "rafCallbackFps": 119.993756715816,
+            "apiTotal": {
+              "count": 930,
+              "p50Ms": 0.34999999999990905,
+              "p95Ms": 1.7420000000001892,
+              "p99Ms": 1.9340000000001965
+            },
+            "completionPromise": {
+              "count": 930,
+              "p50Ms": 1.7600000000002183,
+              "p95Ms": 3.2280000000000655,
+              "p99Ms": 3.5469999999995707
+            }
+          },
+          {
+            "width": 640,
+            "height": 360,
+            "rafCallbackFps": 120.00359236560372,
+            "apiTotal": {
+              "count": 929,
+              "p50Ms": 0.63799999999992,
+              "p95Ms": 1.61200000000008,
+              "p99Ms": 1.9640000000003965
+            },
+            "completionPromise": {
+              "count": 929,
+              "p50Ms": 1.856999999999971,
+              "p95Ms": 2.9729999999999563,
+              "p99Ms": 3.2600000000002183
+            }
+          },
+          {
+            "width": 960,
+            "height": 540,
+            "rafCallbackFps": 119.99961847597133,
+            "apiTotal": {
+              "count": 930,
+              "p50Ms": 0.4220000000004802,
+              "p95Ms": 1.6349999999993088,
+              "p99Ms": 1.865000000000009
+            },
+            "completionPromise": {
+              "count": 930,
+              "p50Ms": 1.873000000000502,
+              "p95Ms": 3.163000000000011,
+              "p99Ms": 3.46100000000024
+            }
+          }
+        ]
+      },
+      {
+        "kind": "edge",
+        "phases": [
+          {
+            "width": 960,
+            "height": 540,
+            "rafCallbackFps": 120.01900193440639,
+            "apiTotal": {
+              "count": 930,
+              "p50Ms": 0.020000003278255463,
+              "p95Ms": 0.125,
+              "p99Ms": 0.1600000038743019
+            },
+            "completionPromise": {
+              "count": 930,
+              "p50Ms": 1.030000001192093,
+              "p95Ms": 2.2049999982118607,
+              "p99Ms": 2.540000006556511
+            }
+          },
+          {
+            "width": 640,
+            "height": 360,
+            "rafCallbackFps": 120.00085161894236,
+            "apiTotal": {
+              "count": 929,
+              "p50Ms": 0.07999999821186066,
+              "p95Ms": 0.14500000327825546,
+              "p99Ms": 0.16499999910593033
+            },
+            "completionPromise": {
+              "count": 929,
+              "p50Ms": 1.4799999967217445,
+              "p95Ms": 2.225000001490116,
+              "p99Ms": 2.4549999982118607
+            }
+          },
+          {
+            "width": 960,
+            "height": 540,
+            "rafCallbackFps": 120.00007741933095,
+            "apiTotal": {
+              "count": 929,
+              "p50Ms": 0.07500000298023224,
+              "p95Ms": 0.12999999523162842,
+              "p99Ms": 0.14999999850988388
+            },
+            "completionPromise": {
+              "count": 929,
+              "p50Ms": 1.6400000005960464,
+              "p95Ms": 2.309999994933605,
+              "p99Ms": 2.524999998509884
+            }
+          }
+        ]
+      },
+      {
+        "kind": "edge",
+        "phases": [
+          {
+            "width": 960,
+            "height": 540,
+            "rafCallbackFps": 119.97917780722481,
+            "apiTotal": {
+              "count": 929,
+              "p50Ms": 0.020000003278255463,
+              "p95Ms": 0.10000000149011612,
+              "p99Ms": 0.1550000011920929
+            },
+            "completionPromise": {
+              "count": 929,
+              "p50Ms": 0.9200000017881393,
+              "p95Ms": 1.7999999970197678,
+              "p99Ms": 2.3849999979138374
+            }
+          },
+          {
+            "width": 640,
+            "height": 360,
+            "rafCallbackFps": 119.99907097489748,
+            "apiTotal": {
+              "count": 929,
+              "p50Ms": 0.08500000089406967,
+              "p95Ms": 0.14500000327825546,
+              "p99Ms": 0.19500000029802322
+            },
+            "completionPromise": {
+              "count": 929,
+              "p50Ms": 1.5800000056624413,
+              "p95Ms": 2.219999998807907,
+              "p99Ms": 2.5349999964237213
+            }
+          },
+          {
+            "width": 960,
+            "height": 540,
+            "rafCallbackFps": 119.99969032344441,
+            "apiTotal": {
+              "count": 929,
+              "p50Ms": 0.07999999821186066,
+              "p95Ms": 0.13499999791383743,
+              "p99Ms": 0.17499999701976776
+            },
+            "completionPromise": {
+              "count": 929,
+              "p50Ms": 1.7349999994039536,
+              "p95Ms": 2.350000001490116,
+              "p99Ms": 2.564999997615814
+            }
+          }
+        ]
+      },
+      {
+        "kind": "flax",
+        "phases": [
+          {
+            "width": 960,
+            "height": 540,
+            "rafCallbackFps": 119.99674847520262,
+            "apiTotal": {
+              "count": 929,
+              "p50Ms": 0.38799999999991996,
+              "p95Ms": 1.7250000000003638,
+              "p99Ms": 1.9379999999991924
+            },
+            "completionPromise": {
+              "count": 929,
+              "p50Ms": 1.8139999999999645,
+              "p95Ms": 3.25,
+              "p99Ms": 3.4720000000002074
+            }
+          },
+          {
+            "width": 640,
+            "height": 360,
+            "rafCallbackFps": 119.99981419383609,
+            "apiTotal": {
+              "count": 929,
+              "p50Ms": 0.7350000000005821,
+              "p95Ms": 1.4470000000001164,
+              "p99Ms": 1.639999999999418
+            },
+            "completionPromise": {
+              "count": 929,
+              "p50Ms": 2.005000000000109,
+              "p95Ms": 2.824999999999818,
+              "p99Ms": 3.062999999999988
+            }
+          },
+          {
+            "width": 960,
+            "height": 540,
+            "rafCallbackFps": 119.99810271528253,
+            "apiTotal": {
+              "count": 930,
+              "p50Ms": 0.6920000000000073,
+              "p95Ms": 1.5850000000000364,
+              "p99Ms": 1.7729999999992287
+            },
+            "completionPromise": {
+              "count": 930,
+              "p50Ms": 2.1019999999998618,
+              "p95Ms": 3.1859999999996944,
+              "p99Ms": 3.395999999999958
+            }
+          }
+        ]
+      }
+    ],
+    "separateDetailed": {
+      "flax": [
+        {
+          "width": 960,
+          "height": 540,
+          "rafCallbackFps": 119.99944258323445,
+          "encodeCommands": {
+            "count": 929,
+            "p50Ms": 0.22299999999995634,
+            "p95Ms": 0.88799999999992,
+            "p99Ms": 1.0369999999998072
+          },
+          "submit": {
+            "count": 929,
+            "p50Ms": 0.07999999999992724,
+            "p95Ms": 0.3710000000000946,
+            "p99Ms": 0.43499999999994543
+          }
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "rafCallbackFps": 119.99882323734631,
+          "encodeCommands": {
+            "count": 929,
+            "p50Ms": 0.22300000000007003,
+            "p95Ms": 0.9149999999999636,
+            "p99Ms": 1.076999999999316
+          },
+          "submit": {
+            "count": 929,
+            "p50Ms": 0.07799999999997453,
+            "p95Ms": 0.36599999999998545,
+            "p99Ms": 0.4230000000002292
+          }
+        },
+        {
+          "width": 960,
+          "height": 540,
+          "rafCallbackFps": 119.87108058623403,
+          "encodeCommands": {
+            "count": 929,
+            "p50Ms": 0.29500000000007276,
+            "p95Ms": 0.9360000000006039,
+            "p99Ms": 1.0599999999999454
+          },
+          "submit": {
+            "count": 929,
+            "p50Ms": 0.10399999999981446,
+            "p95Ms": 0.3809999999998581,
+            "p99Ms": 0.443000000000211
+          }
+        }
+      ],
+      "edge": [
+        {
+          "width": 960,
+          "height": 540,
+          "rafCallbackFps": 119.98521472518091,
+          "encodeCommands": {
+            "count": 929,
+            "p50Ms": 0.009999997913837433,
+            "p95Ms": 0.044999994337558746,
+            "p99Ms": 0.06499999761581421
+          },
+          "submit": {
+            "count": 929,
+            "p50Ms": 0.005000002682209015,
+            "p95Ms": 0.02499999850988388,
+            "p99Ms": 0.03500000387430191
+          }
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "rafCallbackFps": 119.99989688510311,
+          "encodeCommands": {
+            "count": 930,
+            "p50Ms": 0.034999996423721313,
+            "p95Ms": 0.06000000238418579,
+            "p99Ms": 0.07999999821186066
+          },
+          "submit": {
+            "count": 930,
+            "p50Ms": 0.019999995827674866,
+            "p95Ms": 0.034999996423721313,
+            "p99Ms": 0.03999999910593033
+          }
+        },
+        {
+          "width": 960,
+          "height": 540,
+          "rafCallbackFps": 119.99984516152242,
+          "encodeCommands": {
+            "count": 929,
+            "p50Ms": 0.030000001192092896,
+            "p95Ms": 0.054999999701976776,
+            "p99Ms": 0.07500000298023224
+          },
+          "submit": {
+            "count": 929,
+            "p50Ms": 0.019999995827674866,
+            "p95Ms": 0.034999996423721313,
+            "p99Ms": 0.044999994337558746
+          }
+        }
+      ]
+    },
+    "separateGpu": {
+      "flax": [
+        {
+          "width": 960,
+          "height": 540,
+          "rafCallbackFps": 119.99796429718265,
+          "gpuPass": {
+            "count": 928,
+            "p50Ms": 0.32768,
+            "p95Ms": 0.32768,
+            "p99Ms": 0.393216
+          }
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "rafCallbackFps": 119.87254841304214,
+          "gpuPass": {
+            "count": 929,
+            "p50Ms": 0.131072,
+            "p95Ms": 0.196608,
+            "p99Ms": 0.196608
+          }
+        },
+        {
+          "width": 960,
+          "height": 540,
+          "rafCallbackFps": 119.61210066719553,
+          "gpuPass": {
+            "count": 926,
+            "p50Ms": 0.32768,
+            "p95Ms": 0.32768,
+            "p99Ms": 0.393216
+          }
+        }
+      ],
+      "edge": [
+        {
+          "width": 960,
+          "height": 540,
+          "rafCallbackFps": 120.00092903948754,
+          "gpuPass": {
+            "count": 929,
+            "p50Ms": 0.32768,
+            "p95Ms": 0.32768,
+            "p99Ms": 0.32768
+          }
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "rafCallbackFps": 119.9982193812285,
+          "gpuPass": {
+            "count": 929,
+            "p50Ms": 0.131072,
+            "p95Ms": 0.196608,
+            "p99Ms": 0.196608
+          }
+        },
+        {
+          "width": 960,
+          "height": 540,
+          "rafCallbackFps": 119.99989688521835,
+          "gpuPass": {
+            "count": 930,
+            "p50Ms": 0.32768,
+            "p95Ms": 0.32768,
+            "p99Ms": 0.32768
+          }
+        }
+      ]
+    },
+    "separateNativeHandoff": [
+      {
+        "width": 960,
+        "height": 540,
+        "publishToFlutterTextureRead": {
+          "p95Ms": 0.307583,
+          "count": 928,
+          "p99Ms": 0.368166,
+          "p50Ms": 0.102084
+        },
+        "publishToFlutterGpuCompletion": {
+          "p95Ms": 1.442,
+          "count": 928,
+          "p99Ms": 1.561875,
+          "p50Ms": 1.261584
+        }
+      },
+      {
+        "width": 640,
+        "height": 360,
+        "publishToFlutterTextureRead": {
+          "p95Ms": 0.305416,
+          "count": 929,
+          "p99Ms": 0.368875,
+          "p50Ms": 0.131125
+        },
+        "publishToFlutterGpuCompletion": {
+          "p95Ms": 1.279959,
+          "count": 929,
+          "p99Ms": 1.411792,
+          "p50Ms": 1.114125
+        }
+      },
+      {
+        "width": 960,
+        "height": 540,
+        "publishToFlutterTextureRead": {
+          "p95Ms": 0.303125,
+          "count": 928,
+          "p99Ms": 0.366333,
+          "p50Ms": 0.143541
+        },
+        "publishToFlutterGpuCompletion": {
+          "p95Ms": 1.436208,
+          "count": 928,
+          "p99Ms": 1.530416,
+          "p50Ms": 1.264667
+        }
+      }
+    ],
+    "separateBrowserPresentation": {
+      "source": ".local/worker-tail-main/edge-final/edge-trace-trace.json",
+      "rendererPid": 11795,
+      "method": "Match a webgpu-start mark inside its AnimationFrame interval; join args.id to AnimationFrame::Presentation.",
+      "endpoint": "Chrome renderer presentation feedback; not physical pixel illumination and not comparable to Flax GPU completion.",
+      "warmupSubmittedFrames": 31,
+      "excludedVerificationDraws": 3,
+      "unmatchedMeasuredMarks": 0,
+      "pipelineReporterStates": {
+        "STATE_NO_UPDATE_DESIRED": 4,
+        "STATE_PRESENTED_ALL": 1088,
+        "STATE_DROPPED": 2
+      },
+      "phases": [
+        {
+          "width": 960,
+          "height": 540,
+          "jsRenderStartToPresentationFeedback": {
+            "count": 329,
+            "p50Ms": 10.843,
+            "p95Ms": 18.889,
+            "p99Ms": 19.056
+          }
+        },
+        {
+          "width": 640,
+          "height": 360,
+          "jsRenderStartToPresentationFeedback": {
+            "count": 329,
+            "p50Ms": 11.539,
+            "p95Ms": 12.398,
+            "p99Ms": 12.41
+          }
+        },
+        {
+          "width": 960,
+          "height": 540,
+          "jsRenderStartToPresentationFeedback": {
+            "count": 329,
+            "p50Ms": 10.845,
+            "p95Ms": 18.924,
+            "p99Ms": 19.443
+          }
+        }
+      ]
+    },
+    "endpointLimits": "API includes native backend work. CompletionPromise, GPU pass/consumer completion, browser presentation feedback and physical illumination are distinct; physical screen latency and uncapped maximum throughput were not measured."
+  },
+  "functional": {
+    "jsTests": 8,
+    "jsSplit": [6, 2],
+    "typechecks": 2,
+    "runtimeContracts": 59,
+    "ffiReproducibility": true,
+    "gateEvidence": "/Volumes/MAC_HOME/CodexHome/review-evidence/worker-tail-main-20261102-100714/reviewer-checks-task3",
+    "probeFreeDefault": {
+      "sessions": 6,
+      "frames": 720,
+      "workerAssertions": 810,
+      "zeroRetirements": 8
+    },
+    "diagnostic": {
+      "sessions": 3,
+      "workerAssertions": 405,
+      "zeroRetirements": 4
+    },
+    "separateCTS": {
+      "sessions": 3,
+      "passed": 1404,
+      "skipped": 108,
+      "scope": "Bounded pinned groups; functional only. Not 12-Session acceptance or full CTS/WebIDL conformance."
+    }
+  },
+  "rejectedTiming": {
+    "path": "/Volumes/MAC_HOME/CodexHome/review-evidence/worker-tail-main-20261102-100714/discarded-sequence-1",
+    "manifestSha256": "8f38fef12115f0290a060b4018f57beb71e7c3ac64b94b3350dc094eb5d4342a",
+    "reason": "Actual external snapshot/runtime-test overlap after preflight; excluded from performance results."
+  },
+  "limitations": [
+    "Finite 3-Session per-process RSS observations do not establish a general leak bound.",
+    "Existing 21 descriptor/WebIDL differences remain outside this task; no full conformance claim.",
+    "No supported synchronous cheaper joint-GC API or useful proven runtime candidate was found; GC policy/accounting/task ordering remain unchanged."
+  ],
+  "publication": {
+    "committed": false,
+    "pushed": false,
+    "published": false
+  }
+}

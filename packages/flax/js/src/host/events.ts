@@ -167,27 +167,27 @@ interface Listener {
 }
 export class EventTarget {
   private static readonly globals = new WeakMap<object, EventTarget>();
-  private readonly listeners: Listener[] = [];
-  private receiver: EventTarget = this;
+  readonly #listeners: Listener[] = [];
+  #receiver: EventTarget = this;
   /** @internal */ static installGlobal(global: typeof globalThis): () => void {
     const target = new EventTarget();
-    target.receiver = global as unknown as EventTarget;
+    target.#receiver = global as unknown as EventTarget;
     EventTarget.globals.set(global, target);
     global.addEventListener = target.addEventListener.bind(target);
     global.removeEventListener = target.removeEventListener.bind(target);
     global.dispatchEvent = target.dispatchEvent.bind(target);
     return () => {
-      for (const listener of [...target.listeners]) {
+      for (const listener of [...target.#listeners]) {
         target.removeEventListener(listener.type, listener.callback, listener.capture);
       }
     };
   }
   protected hasListeners(type: string): boolean {
-    return this.listeners.some((listener) => listener.type === type);
+    return this.#listeners.some((listener) => listener.type === type);
   }
   protected listenersChanged(_type: string): void {}
   /** @internal */ static clear(target: EventTarget): void {
-    for (const listener of [...target.listeners])
+    for (const listener of [...target.#listeners])
       target.removeEventListener(listener.type, listener.callback, listener.capture);
   }
   addEventListener(
@@ -208,7 +208,7 @@ export class EventTarget {
     type = String(type);
     if (
       settings.signal?.aborted ||
-      this.listeners.some(
+      this.#listeners.some(
         (l) => l.type === type && l.callback === callback && l.capture === capture,
       )
     )
@@ -220,7 +220,7 @@ export class EventTarget {
       once: Boolean(settings.once),
       passive: Boolean(settings.passive),
     };
-    this.listeners.push(listener);
+    this.#listeners.push(listener);
     this.listenersChanged(type);
     if (settings.signal) {
       const remove = () => this.removeEventListener(type, callback, capture);
@@ -236,12 +236,12 @@ export class EventTarget {
     const global = EventTarget.globals.get(this);
     if (global) return global.removeEventListener(type, callback, options);
     const capture = typeof options === 'boolean' ? options : Boolean(options?.capture);
-    const index = this.listeners.findIndex(
+    const index = this.#listeners.findIndex(
       (l) =>
         l.type === String(type) && l.callback === callback && l.capture === capture,
     );
     if (index < 0) return;
-    const [listener] = this.listeners.splice(index, 1);
+    const [listener] = this.#listeners.splice(index, 1);
     listener?.detach?.();
     this.listenersChanged(listener!.type);
   }
@@ -255,16 +255,16 @@ export class EventTarget {
       throw new DOMException('Event is already being dispatched', 'InvalidStateError');
     event.dispatching = true;
     const targets = path.map((target) => EventTarget.globals.get(target) ?? target);
-    event.path = targets.map((target) => target.receiver);
+    event.path = targets.map((target) => target.#receiver);
     event.target = event.path[0] ?? null;
     const invoke = (target: EventTarget, capture: boolean, phase: number) => {
-      event.currentTarget = target.receiver;
+      event.currentTarget = target.#receiver;
       event.eventPhase = phase;
-      for (const listener of [...target.listeners]) {
+      for (const listener of [...target.#listeners]) {
         if (
           listener.type !== event.type ||
           listener.capture !== capture ||
-          !target.listeners.includes(listener)
+          !target.#listeners.includes(listener)
         )
           continue;
         if (listener.once)
@@ -276,7 +276,7 @@ export class EventTarget {
         event.passive = listener.passive;
         try {
           if (typeof listener.callback === 'function')
-            listener.callback.call(target.receiver, event);
+            listener.callback.call(target.#receiver, event);
           else listener.callback.handleEvent(event);
         } catch (error) {
           report(error);

@@ -1,6 +1,7 @@
 /// Optional standard WebGPU host backed by Dawn/Metal.
 library;
 
+import 'dart:async';
 import 'dart:io';
 import 'dart:ffi';
 import 'dart:ui' as ui;
@@ -24,8 +25,6 @@ final class FlaxWebGpuPlugin extends FlaxPlugin {
     'GPUSupportedLimits',
     'GPUAdapterInfo',
     'GPUDeviceLostInfo',
-    'GPUCompilationInfo',
-    'GPUCompilationMessage',
     'GPUError',
     'GPUPipelineError',
     'GPUCanvasContext',
@@ -92,15 +91,51 @@ final class FlaxWebGpuPlugin extends FlaxPlugin {
   }
 }
 
-final class _WebGpuHost implements FlaxPluginInstance {
+final class _WebGpuHost
+    implements FlaxPluginInstance, FlaxWorkerPluginInstance {
   _WebGpuHost(this.context);
   final FlaxHostContext context;
   FlaxJsObject? state;
   bool closed = false;
   final surfaces = Expando<_GpuCanvasContent>();
   final contents = <WeakReference<_GpuCanvasContent>>[];
+  final _workerReady = Completer<String>();
+  String? _workerInitializationError;
+  @override
+  String get workerModule => '@flax/webgpu/host';
+  @override
+  Set<String> get workerNativeAssets => const {'@flax/webgpu/dawn'};
+  @override
+  Future<Map<String, Object?>> get workerConfiguration async {
+    final registry = await _workerReady.future;
+    if (_workerInitializationError != null) {
+      throw StateError(_workerInitializationError!);
+    }
+    return {'registry': registry};
+  }
+
+  @override
+  void workerMessage(String operation, List<Object?> arguments) {
+    if (closed || !context.isActive) return;
+    if (operation != 'resize' ||
+        arguments.length != 1 ||
+        arguments.first is! num) {
+      throw ArgumentError('Unknown WebGPU Worker operation');
+    }
+    _call('resize', [FlaxJsNumber((arguments.first as num).toDouble())]);
+  }
+
   void install() {
     context.registerFunction('__flaxWebGpuCall', (_, args) {
+      if ((args[0] as FlaxJsString).value == 'resize') {
+        context
+            .requireObject<FlaxCanvasTarget>(args[1], flaxCanvasTargetType)
+            .resize(
+              (args[2] as FlaxJsNumber).value.toInt(),
+              (args[3] as FlaxJsNumber).value.toInt(),
+            );
+        return const FlaxJsUndefined();
+      }
       if ((args[0] as FlaxJsString).value == 'surface') {
         final target = context.requireObject<FlaxCanvasTarget>(
           args[1],
@@ -134,10 +169,27 @@ final class _WebGpuHost implements FlaxPluginInstance {
     if (closed || !context.isActive) return;
     context.enqueue(() {
       if (!closed) {
-        _call('initialize', [
-          FlaxJsString(value),
-          if (error != null) FlaxJsString(error),
-        ]);
+        try {
+          _call('initialize', [
+            FlaxJsString(value),
+            if (error != null) FlaxJsString(error),
+          ]);
+          if (!_workerReady.isCompleted) {
+            if (error != null || value == '0') {
+              _workerInitializationError =
+                  error ?? 'The Flutter texture registry is unavailable';
+              _workerReady.complete('0');
+            } else {
+              _workerReady.complete(value);
+            }
+          }
+        } catch (failure) {
+          if (!_workerReady.isCompleted) {
+            _workerInitializationError = failure.toString();
+            _workerReady.complete('0');
+          }
+          rethrow;
+        }
       }
     });
   }

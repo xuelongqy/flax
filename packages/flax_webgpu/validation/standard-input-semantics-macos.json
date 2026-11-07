@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 1,
+  "status": "Functional validation complete; independent final acceptance tracked externally; uncommitted.",
+  "scope": "macOS arm64 standard input semantics; bounded WebGPU profile, not full CTS/WebIDL conformance.",
+  "flaxBase": "d954085ff34814cab21d8991b6b590bec9e182eb",
+  "dawnRevision": "5fbd545292cb7a4a9a275e322abec6007ffe2ae8",
+  "gpuwebRevision": "22507c95ccb9e705eddc7cab8f28aa46b134f5fe",
+  "ctsRevision": "cc11994e92512d0a3715e9d28876ec48accb971a",
+  "initialPackageDigest": "4c3e5162367f7191680aff523ae1efb0f0c8497b7f5e7a07cc994e4834fc12a5",
+  "evidenceRoot": "/Volumes/MAC_HOME/CodexHome/review-evidence/webgpu-api-gaps-20261102",
+  "independentAcceptance": "/Volumes/MAC_HOME/CodexHome/review-evidence/webgpu-api-gaps-20261102/independent-final-review.json",
+  "artifact": {
+    "manifestSha256": "08dbf56b2105d37f3bae4c0c36c8ec16407968c338d6c4882edbdebf0daceb7b",
+    "entries": 257,
+    "nativeApplication": "/Volumes/MAC_HOME/CodexHome/review-evidence/webgpu-api-gaps-20261102/artifacts-v1/acceptance.app",
+    "summary": "/Volumes/MAC_HOME/CodexHome/review-evidence/webgpu-api-gaps-20261102/artifacts-v1/raw/summary.json"
+  },
+  "changes": [
+    "Dictionary own data properties preserve ordinary object prototypes under inherited accessors.",
+    "Inherited dictionary members are read first; each dictionary field order is generated lexically.",
+    "writeBuffer rejects unaligned selected source content synchronously while preserving byte/element units and native validation.",
+    "drawIndexed enforces signed32 baseVertex on render passes and bundles through one shared scalar check.",
+    "setVertexBuffer accepts only null/undefined unbinding, converts numeric arguments once and forwards omitted size to Dawn."
+  ],
+  "preservation": [
+    "Existing nullish descriptor fast paths and inherited working-tree changes preserved.",
+    "No native ABI, Core, maintained Flutter/Dart engine or GC-policy change.",
+    "Signed-integer Node microdiagnostic is not an FPS/screen-latency comparison."
+  ],
+  "checks": {
+    "converterTests": 8,
+    "exampleTests": 2,
+    "typechecks": ["WebGPU runtime", "declaration-only SDK", "example"],
+    "runtimeContracts": 59,
+    "ffiReproducibility": true,
+    "initialRegression": "6 existing converter tests pass, 2 new regressions fail before the fix.",
+    "generation": "62 dictionary member maps match sorted pinned IDL; runtime and declaration-only SDK types regenerated.",
+    "native": {
+      "passed": true,
+      "sessions": 3,
+      "frames": 360,
+      "standardInputAssertions": 171,
+      "standardInputSemantics": [
+        {
+          "assertions": 57,
+          "dictionaryAccessors": true,
+          "dictionaryMemberOrder": true,
+          "writeBufferReadback": true,
+          "signedIndexedDraws": true,
+          "nullishVertexBuffers": true
+        },
+        {
+          "assertions": 57,
+          "dictionaryAccessors": true,
+          "dictionaryMemberOrder": true,
+          "writeBufferReadback": true,
+          "signedIndexedDraws": true,
+          "nullishVertexBuffers": true
+        },
+        {
+          "assertions": 57,
+          "dictionaryAccessors": true,
+          "dictionaryMemberOrder": true,
+          "writeBufferReadback": true,
+          "signedIndexedDraws": true,
+          "nullishVertexBuffers": true
+        }
+      ],
+      "cts": [
+        {
+          "file": "cts-0.json",
+          "pass": 474,
+          "skip": 36,
+          "writeBuffer": {
+            "pass": 6
+          }
+        },
+        {
+          "file": "cts-1.json",
+          "pass": 474,
+          "skip": 36,
+          "writeBuffer": {
+            "pass": 6
+          }
+        },
+        {
+          "file": "cts-2.json",
+          "pass": 474,
+          "skip": 36,
+          "writeBuffer": {
+            "pass": 6
+          }
+        }
+      ],
+      "ctsTotals": {
+        "passCount": 1422,
+        "skipCount": 108
+      },
+      "ctsArchiveSha256": "a47a5fb4c2c42a41bc7b39274d84b0b0402db6f3d5d91b75321580701fd99a54",
+      "ctsFilesCompared": 1328,
+      "retirements": [
+        {
+          "kind": "retired",
+          "cycle": -1,
+          "before": [0, 0, 0, 0, 0, 0],
+          "after": [0, 0, 0, 0, 0, 0],
+          "workersBefore": [0, 0],
+          "workersAfter": [0, 0],
+          "rssAtClose": 266452992,
+          "rssAfter": 253362176,
+          "peakRss": 335183872,
+          "elapsedMs": 1355
+        },
+        {
+          "kind": "retired",
+          "cycle": 0,
+          "before": [1, 1, 6, 8, 4, 0],
+          "after": [0, 0, 0, 0, 0, 0],
+          "workersBefore": [2, 2],
+          "workersAfter": [0, 0],
+          "rssAtClose": 438206464,
+          "rssAfter": 433700864,
+          "peakRss": 584908800,
+          "elapsedMs": 14862
+        },
+        {
+          "kind": "retired",
+          "cycle": 1,
+          "before": [1, 1, 6, 8, 4, 0],
+          "after": [0, 0, 0, 0, 0, 0],
+          "workersBefore": [2, 2],
+          "workersAfter": [0, 0],
+          "rssAtClose": 465059840,
+          "rssAfter": 460275712,
+          "peakRss": 626311168,
+          "elapsedMs": 23431
+        },
+        {
+          "kind": "retired",
+          "cycle": 2,
+          "before": [1, 1, 6, 8, 4, 0],
+          "after": [0, 0, 0, 0, 0, 0],
+          "workersBefore": [2, 2],
+          "workersAfter": [0, 0],
+          "rssAtClose": 479019008,
+          "rssAfter": 473874432,
+          "peakRss": 633405440,
+          "elapsedMs": 31977
+        }
+      ],
+      "workerAssertions": 405,
+      "nativeApplicationSha256": "0364794bf2ec3831d2a4639738ea0bde8e5a1a285ac958bc1a9dd9ba557184fb"
+    }
+  },
+  "host": {
+    "signing": "Existing configured team selected through supported FLAX_MACOS_TEAM; normal Keychain and permission approval.",
+    "failedFirstRun": "Ad-hoc host failed Keychain initialization before WebGPU JS; failed log retained, not accepted as runtime evidence.",
+    "engine": "Read-only existing joint-GC-candidate Debug/Release aliases; no engine rebuild or adoption."
+  },
+  "remainingFeasible": [
+    "Other buffer methods retain raw-offset/default-range conversion differences.",
+    "copyBufferToBuffer overload selection and coercible offsets need a separate bounded correction.",
+    "Broader WebIDL/CTS coverage remains possible."
+  ],
+  "excluded": [
+    "Compatibility adapters require a separately validated profile.",
+    "Video external textures, XR, Worker graphics transfer and HDR/P3 display.",
+    "Complete browser/DOM, full CTS conformance, FPS improvements and GC-tail repair."
+  ],
+  "publication": {
+    "committed": false,
+    "pushed": false,
+    "published": false
+  }
+}

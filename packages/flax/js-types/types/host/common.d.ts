@@ -3,12 +3,25 @@ export interface Navigator {
     readonly platform: string;
     readonly hardwareConcurrency: number;
 }
+export type { OffscreenCanvas, OffscreenCanvasConstructor } from './canvas.js';
+export type { CanvasContextMap, CanvasContextOptionsMap } from './canvas-contexts.js';
+export type { HTMLCanvasElement } from './canvas-dom.js';
+export type { HTMLImageElement, ImageData, ImageBitmap, ImageDataSettings, ImageBitmapOptions, } from './images.js';
 export type * from './wasm.js';
 export type { Crypto, CryptoConstructor } from './crypto.js';
 export type { Performance, PerformanceEntry, PerformanceMark, PerformanceMeasure, PerformanceMarkOptions, PerformanceMeasureOptions, PerformanceObserver, PerformanceObserverInit, PerformanceObserverEntryList, PerformanceObserverCallback, PerformanceObserverConstructor, PerformanceMarkConstructor, } from './performance.js';
 import type * as Timing from './performance.js';
 import type * as Random from './crypto.js';
+import type * as Images from './images.js';
 declare global {
+    var ImageData: typeof Images.ImageData;
+    type ImageData = Images.ImageData;
+    var ImageBitmap: typeof Images.ImageBitmap;
+    type ImageBitmap = Images.ImageBitmap;
+    function createImageBitmap(source: ImageBitmap | ImageData | OffscreenCanvas | {
+        arrayBuffer(): Promise<ArrayBuffer>;
+    }, ...args: [Images.ImageBitmapOptions?] | [number, number, number, number, Images.ImageBitmapOptions?]): Promise<ImageBitmap>;
+    type OffscreenCanvas = import('./canvas.js').OffscreenCanvas;
     function structuredClone<T>(value: T, options?: import('./workers.js').StructuredSerializeOptions): T;
     var location: Readonly<Pick<URL, 'href' | 'origin' | 'protocol' | 'host' | 'hostname' | 'port' | 'pathname' | 'search' | 'hash' | 'toString'>>;
     type Crypto = Random.Crypto;

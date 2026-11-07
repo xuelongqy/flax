@@ -20,9 +20,11 @@ const char *flax_webgpu_wgsl(void *context);
 void *flax_webgpu_proc(const char *name);
 int32_t flax_webgpu_init(const char *name, void *data, size_t size);
 int32_t flax_webgpu_adapter(void *context, uint64_t request,
-                            uint32_t preference, uint32_t fallback);
+                            uint32_t preference, uint32_t fallback,
+                            uint32_t feature_level);
 int32_t flax_webgpu_device(void *context, WGPUAdapter adapter, uint64_t request,
                            const char *descriptor);
+void flax_webgpu_release_device(WGPUDevice device);
 const char *flax_webgpu_info(uint32_t kind, void *object);
 int32_t flax_webgpu_map(void *context, WGPUBuffer buffer, uint64_t request,
                         uint64_t mode, uint64_t offset, uint64_t size);
@@ -41,7 +43,20 @@ int32_t flax_webgpu_pipeline(void *context, WGPUDevice device, uint64_t request,
 /* Session, mapping, surface, IOSurface and publication counts; index 5 is
  * unsafe retirement. */
 uint64_t flax_webgpu_live(uint32_t kind);
-void *flax_webgpu_canvas_create(void *registry);
+void *flax_webgpu_canvas_create(void *context, void *registry);
+/* Private owned ArrayBuffer backing storage; only its original address is a lease.
+ * The backing-store deleter owns token_release independently of any JS runtime. */
+void *flax_webgpu_canvas_token_create(void *registry, uint32_t width, uint32_t height);
+void flax_webgpu_canvas_token_release(void *token);
+uint32_t flax_webgpu_canvas_token_dimension(void *token, uint32_t axis);
+int64_t flax_webgpu_canvas_token_id(void *token);
+int32_t flax_webgpu_canvas_token_resize(void *token, uint32_t width, uint32_t height);
+void *flax_webgpu_canvas_token_display(void *token);
+int64_t flax_webgpu_canvas_display_id(void *display);
+uint64_t flax_webgpu_canvas_display_size(void *display);
+int32_t flax_webgpu_canvas_display_initialize(void *display, void *registry);
+void flax_webgpu_canvas_display_release(void *display);
+void *flax_webgpu_canvas_from_token(void *context, void *token);
 int64_t flax_webgpu_canvas_id(void *canvas);
 int32_t flax_webgpu_canvas_configure(void *canvas, WGPUDevice device,
                                      uint32_t width, uint32_t height,

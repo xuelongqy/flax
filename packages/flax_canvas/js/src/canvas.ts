@@ -1799,10 +1799,7 @@ export class Canvas2DBackend implements CanvasBackend {
     this.context?.reset();
     this.buffer.reset();
   }
-  async convertToBlob(options?: {
-    type?: string;
-    quality?: number;
-  }): Promise<{ arrayBuffer(): Promise<ArrayBuffer>; type: string }> {
+  async convertToBlob(options?: { type?: string; quality?: number }): Promise<Blob> {
     if (this.width === 0 || this.height === 0)
       throw indexSizeError('Cannot serialize an empty canvas');
     this.flush();
@@ -1817,14 +1814,7 @@ export class Canvas2DBackend implements CanvasBackend {
         : type === 'image/webp'
           ? 0.8
           : 0.92;
-    const BlobCtor = (
-      globalThis as {
-        Blob?: new (
-          parts: unknown[],
-          opts?: { type?: string },
-        ) => { arrayBuffer(): Promise<ArrayBuffer>; type: string };
-      }
-    ).Blob;
+    const BlobCtor = globalThis.Blob;
     if (BlobCtor == null) throw new TypeError('Blob is required');
     const bytes = await rpc(
       this.call,
@@ -1833,6 +1823,8 @@ export class Canvas2DBackend implements CanvasBackend {
       type,
       quality,
     );
+    if (!(bytes instanceof ArrayBuffer))
+      throw new TypeError('Canvas encoder must return an ArrayBuffer.');
     return new BlobCtor([bytes], { type });
   }
   transferToImageBitmap(): ImageBitmap {

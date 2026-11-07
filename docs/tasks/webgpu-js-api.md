@@ -56,9 +56,9 @@ resolutions, including one instanced draw versus 2,304 per-object draws.
 ## Remaining work
 
 1. Extend the bounded CTS selection to broader semantic/WebIDL coverage. The current
-   selection passes 468 cases and explicitly skips 36 Float16Array-polyfill cases in
+   selection passes 567 cases and explicitly skips 36 Float16Array-polyfill cases in
    each of three sessions; full conformance is still open. See the
-   [API extension receipt](../../packages/flax_webgpu/validation/api-extensions-macos.json).
+   [API completion receipt](../../packages/flax_webgpu/validation/api-completion-macos.json).
 2. Extend the matched Edge comparison to a common screen-presentation endpoint. Current
    browser presentation feedback and Flutter GPU completion cannot be subtracted to
    establish a display-latency difference.

@@ -1,4 +1,4 @@
-import type { CanvasHost } from './canvas.js';
+import type { CanvasHost, CanvasTransfers } from './canvas.js';
 import type { DOMExceptionConstructor } from './events.js';
 import type { Blob } from './data.js';
 import type { Event, EventTarget } from './events.js';
@@ -17,7 +17,7 @@ export interface ImageDataSettings {
 export interface ImageData {
     readonly width: number;
     readonly height: number;
-    readonly data: Uint8ClampedArray;
+    readonly data: Uint8ClampedArray<ArrayBuffer>;
     readonly colorSpace: 'srgb';
     readonly pixelFormat: 'rgba-unorm8';
 }
@@ -59,8 +59,8 @@ export interface BitmapSource {
 export declare const imageIdKey: unique symbol;
 export declare const ImageData: {
     new (width: number, height: number, settings?: ImageDataSettings): ImageData;
-    new (data: Uint8ClampedArray, width: number, height?: number, settings?: ImageDataSettings): ImageData;
-    new (data: Uint8ClampedArray, width: number, settings?: ImageDataSettings): ImageData;
+    new (data: Uint8ClampedArray<ArrayBuffer>, width: number, height?: number, settings?: ImageDataSettings): ImageData;
+    new (data: Uint8ClampedArray<ArrayBuffer>, width: number, settings?: ImageDataSettings): ImageData;
     readonly prototype: ImageData;
 };
 export declare const ImageBitmap: {
@@ -75,6 +75,8 @@ export interface ImageHost {
     isSource(source: unknown): boolean;
     bitmap(source: BitmapSource): ImageBitmap;
     transfer(bitmap: ImageBitmap): ImageBitmap;
+    prepareTransfers(list: unknown[]): CanvasTransfers;
+    deserialize(record: any[]): ImageData | ImageBitmap;
     source(bitmap: object): BitmapSource;
     read(source: unknown): PixelImage;
     onClose(bitmap: object, callback: () => void): void;
@@ -88,5 +90,5 @@ export interface ImageHost {
     close(): void;
 }
 export declare function imageHost(global?: typeof globalThis): ImageHost;
-export declare function installImageHost(global: typeof globalThis, call: Call, canvases: CanvasHost, Exception: DOMExceptionConstructor): ImageHost;
+export declare function installImageHost(global: typeof globalThis, call: Call, canvases: CanvasHost | undefined, Exception: DOMExceptionConstructor, worker?: boolean): ImageHost;
 export {};

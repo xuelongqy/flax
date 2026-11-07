@@ -206,6 +206,13 @@ Streams. Core also provides `canvas.getContext('bitmaprenderer')` and the root
 `ImageBitmapRenderingContext` constructor identity. Drawing with `2d` or `webgpu`
 requires its renderer plugin. Core Fetch handles HTTP(S), data and session Blob URLs.
 
+Pure Dedicated Workers also provide `ImageData`, `ImageBitmap` and `createImageBitmap`.
+Blob decode and bitmap transforms use CPU codecs without a canvas or Flutter binding.
+Structured cloning preserves ImageData data-buffer aliases; ImageBitmap supports clone
+and transfer in both directions and nested Workers. Image/HTMLImageElement remain
+root-only. See the
+[Worker image contract](../../docs/architecture/dedicated-workers.md#still-images).
+
 `window`, `self` and `globalThis` refer to the same session global. User Timing includes
 `performance.mark/measure`, entry queries/clearing and `PerformanceObserver` for mark
 and measure entries. Root `crypto.getRandomValues` and `crypto.randomUUID` use secure

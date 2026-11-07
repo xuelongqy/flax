@@ -3,6 +3,12 @@ part of '../../bindings.dart';
 // Preserve Blob MIME metadata across the private Worker resource broker.
 final _workerSourceTypes = Expando<String>('Worker resource MIME');
 
+typedef _WorkerSetup = ({
+  List<(String, String)> sources,
+  List<(String, Map<String, Object?>)> modules,
+  Set<String> nativeAssets,
+});
+
 class _DedicatedWorker {
   bool started = false, terminated = false, exited = false;
   final cancelled = Completer<void>();
@@ -11,6 +17,8 @@ class _DedicatedWorker {
   final fetches = <int, _FetchHost>{};
   SendPort? control;
   RawReceivePort? exit;
+  bool framePending = false;
+  int? frameHandle;
 }
 
 class _DedicatedWorkers {
@@ -31,6 +39,38 @@ class _DedicatedWorkers {
   bool closed = false;
   bool retiring = false;
   final finished = Completer<void>();
+  Future<_WorkerSetup>? _setup;
+
+  Future<_WorkerSetup> configuration() => _setup ??= _loadConfiguration();
+  Future<_WorkerSetup> _loadConfiguration() async {
+    if (context case final _WorkerHostContext host) return host.setup;
+    final session = (context as _HostContext).session;
+    final providers = session.sandbox == null
+        ? session._hostInstallations
+              .map((value) => value.instance)
+              .whereType<FlaxWorkerPluginInstance>()
+              .toList()
+        : const <FlaxWorkerPluginInstance>[];
+    if (providers.isEmpty) {
+      return (
+        sources: const <(String, String)>[],
+        modules: const <(String, Map<String, Object?>)>[],
+        nativeAssets: const <String>{},
+      );
+    }
+    return (
+      sources: session._moduleInstallation!.workerSources({
+        for (final provider in providers) provider.workerModule,
+      }),
+      modules: [
+        for (final provider in providers)
+          (provider.workerModule, await provider.workerConfiguration),
+      ],
+      nativeAssets: {
+        for (final provider in providers) ...provider.workerNativeAssets,
+      },
+    );
+  }
 
   int create() {
     if (closed) throw StateError('FlaxSessionClosed');
@@ -137,6 +177,11 @@ class _DedicatedWorkers {
   }
 
   void retire(_DedicatedWorker worker) {
+    final frame = worker.frameHandle;
+    if (frame != null) {
+      SchedulerBinding.instance.cancelFrameCallbackWithId(frame);
+    }
+    worker.frameHandle = null;
     for (final fetch in worker.fetches.values) {
       fetch.dispose();
     }
@@ -162,13 +207,18 @@ class _DedicatedWorkers {
       _start(id, source.uri.toString(), type, name, utf8.decode(source.bytes));
     } catch (error) {
       if (!closed && !worker.terminated) {
-        deliver(id, 'error', [error.toString(), url]);
-        terminate(id);
+        _finishStartup(id, worker, [error.toString(), url]);
       }
     }
   }
 
-  void _start(int id, String url, String type, String name, String source) {
+  Future<void> _start(
+    int id,
+    String url,
+    String type,
+    String name,
+    String source,
+  ) async {
     final worker = workers[id];
     if (closed || worker == null || worker.terminated || worker.started) return;
     String? wasmDenied;
@@ -188,14 +238,26 @@ class _DedicatedWorkers {
       }
     }
     worker.started = true;
+    late _WorkerSetup setup;
+    try {
+      setup = await Future.any<_WorkerSetup>([
+        configuration(),
+        worker.cancelled.future.then<_WorkerSetup>(
+          (_) => throw StateError('Worker is closed'),
+        ),
+      ]);
+    } catch (error) {
+      _finishStartup(id, worker, [error.toString(), url]);
+      return;
+    }
+    if (closed || worker.terminated) {
+      _finishStartup(id, worker);
+      return;
+    }
     worker.exit = RawReceivePort((dynamic _) {
       // onExit follows native disposal in the worker's finally block.
       worker.exit?.close();
-      if (!closed) {
-        context.enqueue(() {
-          if (!closed) deliver(id, 'finish', const []);
-        });
-      }
+      _enqueueFinish(id);
       if (!worker.cancelled.isCompleted) worker.cancelled.complete();
       worker.exited = true;
       worker.control = null;
@@ -219,20 +281,47 @@ class _DedicatedWorkers {
             host.session._moduleLoader?.imports ?? const <String, Uri>{},
           _ => const <String, Uri>{},
         },
+        setup,
       ),
       debugName: name.isEmpty ? 'Flax Dedicated Worker $id' : name,
       onExit: worker.exit!.sendPort,
     ).then(
       (_) {},
       onError: (Object error, StackTrace stack) {
-        receive([id, 'error', error.toString()]);
-        terminate(id);
-        worker.exit?.close();
-        retire(worker);
-        workers.remove(id);
-        finishClose();
+        _finishStartup(id, worker, [error.toString()]);
       },
     );
+  }
+
+  void _finishStartup(
+    int id,
+    _DedicatedWorker worker, [
+    List<String>? details,
+  ]) {
+    if (!identical(workers[id], worker)) return;
+    final error = worker.terminated ? null : details;
+    worker.exit?.close();
+    worker.exited = true;
+    if (worker.terminated) {
+      retire(worker);
+      workers.remove(id);
+    } else {
+      terminate(id);
+    }
+    finishClose();
+    _enqueueFinish(id, error);
+  }
+
+  void _enqueueFinish(int id, [List<String>? error]) {
+    if (closed || context.isClosing) return;
+    context.enqueue(() {
+      if (closed || context.isClosing) return;
+      try {
+        if (error != null) deliver(id, 'error', error);
+      } finally {
+        if (!closed && !context.isClosing) deliver(id, 'finish', const []);
+      }
+    });
   }
 
   void receive(dynamic value) {
@@ -253,6 +342,40 @@ class _DedicatedWorkers {
     if (value[1] == 'control') {
       worker.control = value[2] as SendPort;
       if (closed || worker.terminated) worker.control!.send('stop');
+    } else if (value[1] == 'raf' && !closed && !worker.terminated) {
+      if (worker.framePending) return;
+      worker.framePending = true;
+      void send(double time) {
+        worker.framePending = false;
+        worker.frameHandle = null;
+        if (!closed && !worker.terminated) worker.control?.send(['raf', time]);
+      }
+
+      if (context case final _WorkerHostContext host) {
+        host.scheduleFrame(send);
+      } else {
+        worker.frameHandle = SchedulerBinding.instance.scheduleFrameCallback(
+          (time) => send(time.inMicroseconds / 1000),
+        );
+      }
+    } else if (value[1] == 'provider' && !closed && !worker.terminated) {
+      final module = value[2] as String;
+      final operation = value[3] as String;
+      final arguments = (value[4] as List).cast<Object?>();
+      if (context case final _WorkerHostContext host) {
+        host.providerMessage(module, operation, arguments);
+      } else {
+        final session = (context as _HostContext).session;
+        if (session.sandbox != null) return;
+        final provider = session._hostInstallations
+            .map((value) => value.instance)
+            .whereType<FlaxWorkerPluginInstance>()
+            .where((value) => value.workerModule == module)
+            .firstOrNull;
+        if (provider != null) {
+          context.enqueue(() => provider.workerMessage(operation, arguments));
+        }
+      }
     } else if (value[1] == 'cancelLoad') {
       final pending = worker.loads.remove(value[2]);
       if (pending != null && !pending.isCompleted) pending.complete();
@@ -369,6 +492,7 @@ class _DedicatedWorkers {
     if (!worker.started || worker.exited) {
       retire(worker);
       workers.remove(id);
+      if (!worker.exited) _enqueueFinish(id);
     }
   }
 
@@ -401,11 +525,29 @@ class _DedicatedWorkers {
 // Isolate.spawn keeps this carrier in the parent's isolate group. Only immutable
 // startup strings and control messages cross Dart; JS payloads stay native.
 Future<void> _runDedicatedWorker(
-  (int, String, String, String, String, String?, SendPort, Map<String, Uri>)
+  (
+    int,
+    String,
+    String,
+    String,
+    String,
+    String?,
+    SendPort,
+    Map<String, Uri>,
+    _WorkerSetup,
+  )
   input,
 ) async {
-  final (id, url, type, name, source, wasmDenied, parent, imports) = input;
-  final context = _WorkerHostContext(id, parent, url, imports, wasmDenied);
+  final (id, url, type, name, source, wasmDenied, parent, imports, setup) =
+      input;
+  final context = _WorkerHostContext(
+    id,
+    parent,
+    url,
+    imports,
+    wasmDenied,
+    setup,
+  );
   parent.send([id, 'control', context.port.sendPort]);
   try {
     context._runtime = createDetachedWorkerRuntime();
@@ -418,7 +560,19 @@ Future<void> _runDedicatedWorker(
       workerId: id,
       workerName: name,
       workerType: type,
+      workerNativeAssets: setup.nativeAssets,
     )..install();
+    for (final (source, url) in setup.sources) {
+      _releaseJs(context.evaluate(source, sourceUrl: url));
+    }
+    for (final (module, configuration) in setup.modules) {
+      final value = context.evaluate(
+        'globalThis.__flaxModules.require(${jsonEncode(module)}).installWorker('
+        'globalThis, ${jsonEncode(configuration)})',
+        sourceUrl: 'flax:worker-provider',
+      );
+      if (value is FlaxJsObject) context.providers.add(value);
+    }
     _installWasmPermissionGuard(context.runtime, context.requireWasm);
     if (type == 'module') {
       context.modules = FlaxModuleLoader(
@@ -446,6 +600,10 @@ Future<void> _runDedicatedWorker(
       _releaseJs(context.evaluate(source, sourceUrl: url));
     }
     context.ready = true;
+    while (!context.isClosing && context.pendingMessages > 0) {
+      context.pendingMessages--;
+      context.enqueue(context._deliverMessage);
+    }
     context.requestCheckpoint();
   } catch (error, stack) {
     if (!context.isClosing) context.report(error, stack);
@@ -460,8 +618,18 @@ class _WorkerHostContext extends FlaxHostContext {
     this.scriptUrl,
     this.imports,
     this.wasmDenied,
+    this.setup,
   ) {
     port = RawReceivePort((dynamic message) {
+      if (message is List && message.first == 'raf') {
+        if (closing) return;
+        final callbacks = frames.toList();
+        frames.clear();
+        for (final callback in callbacks) {
+          enqueue(() => callback(message[1] as double));
+        }
+        return;
+      }
       if (message is List && message.first == 'source') {
         final pending = loads.remove(message[1]);
         if (pending == null) return;
@@ -503,8 +671,12 @@ class _WorkerHostContext extends FlaxHostContext {
         return;
       }
       if (message is int && !isClosing) {
-        pendingMessages++;
-        requestCheckpoint();
+        if (ready) {
+          enqueue(_deliverMessage);
+        } else {
+          pendingMessages++;
+          requestCheckpoint();
+        }
       }
     }, 'Flax Dedicated Worker tasks');
   }
@@ -512,6 +684,39 @@ class _WorkerHostContext extends FlaxHostContext {
   final SendPort parent;
   final String scriptUrl;
   final String? wasmDenied;
+  final _WorkerSetup setup;
+  final frames = <void Function(double)>[];
+  final providerMessages = <(String, String, Object?), List<Object?>>{};
+  bool providerMessagesQueued = false;
+  void providerMessage(
+    String module,
+    String operation,
+    List<Object?> arguments,
+  ) {
+    if (closing) return;
+    if (!setup.modules.any((entry) => entry.$1 == module)) {
+      throw StateError('Worker provider was not selected: $module');
+    }
+    providerMessages[(module, operation, arguments.firstOrNull)] = arguments;
+    if (providerMessagesQueued) return;
+    providerMessagesQueued = true;
+    enqueue(() {
+      providerMessagesQueued = false;
+      final messages = Map.of(providerMessages);
+      providerMessages.clear();
+      for (final entry in messages.entries) {
+        parent.send([id, 'provider', entry.key.$1, entry.key.$2, entry.value]);
+      }
+    });
+  }
+
+  final providers = <FlaxJsObject>[];
+  void scheduleFrame(void Function(double) callback) {
+    if (closing) return;
+    frames.add(callback);
+    if (frames.length == 1) parent.send([id, 'raf', null]);
+  }
+
   void requireWasm() {
     if (closing) throw StateError('Worker is closed');
     if (wasmDenied != null) throw _workerError(jsonDecode(wasmDenied!));
@@ -557,6 +762,7 @@ class _WorkerHostContext extends FlaxHostContext {
       flushing = false,
       closing = false,
       disposed = false;
+  // Entry initialization can await host tasks before buffered messages may run.
   int pendingMessages = 0;
   final tasks = Queue<void Function()>();
   final results = <FlaxJsObject>[];
@@ -693,6 +899,10 @@ class _WorkerHostContext extends FlaxHostContext {
     }
   }
 
+  void _deliverMessage() {
+    base!._call('workerMessage', [FlaxJsNumber(id.toDouble())]);
+  }
+
   @override
   void enqueue(void Function() action) {
     if (closing) return;
@@ -712,17 +922,18 @@ class _WorkerHostContext extends FlaxHostContext {
     if (closing || flushing) return;
     flushing = true;
     try {
-      while (!closing && tasks.isNotEmpty) {
-        tasks.removeFirst()();
-      }
-      runtime.drainMicrotasks();
-      if (ready && !closing && pendingMessages > 0) {
-        pendingMessages--;
-        base!._call('workerMessage', [FlaxJsNumber(id.toDouble())]);
+      // New checkpoint work yields to Dart ports before the next flush.
+      var remainingTasks = tasks.length;
+      do {
+        if (remainingTasks > 0) {
+          tasks.removeFirst()();
+          remainingTasks--;
+        }
         runtime.drainMicrotasks();
-      }
-      if (!closing) base!._call('workerRejections', const []);
-      if (!closing) runtime.drainMicrotasks();
+        if (!closing) base!._call('workerRejections', const []);
+        if (!closing) runtime.drainMicrotasks();
+      } while (!closing && remainingTasks > 0);
+      if (!closing) base?.presentCanvases();
     } catch (error, stack) {
       if (!closing) report(error, stack);
       close();
@@ -732,7 +943,7 @@ class _WorkerHostContext extends FlaxHostContext {
       }
       results.clear();
       flushing = false;
-      if (!closing && (tasks.isNotEmpty || ready && pendingMessages > 0)) {
+      if (!closing && tasks.isNotEmpty) {
         requestCheckpoint();
       }
     }
@@ -762,6 +973,8 @@ class _WorkerHostContext extends FlaxHostContext {
   void close() {
     if (closing) return;
     closing = true;
+    frames.clear();
+    providerMessages.clear();
     for (final token in resources.keys.toList()) {
       cancelResource(token);
     }
@@ -789,7 +1002,11 @@ class _WorkerHostContext extends FlaxHostContext {
       } finally {
         try {
           // Destroy the independent isolate without running application teardown hooks.
+          while (_runtime != null && !_runtime!.retireNativeFfi()) {
+            await Future<void>.delayed(const Duration(milliseconds: 1));
+          }
           _runtime?.dispose();
+          providers.clear();
           try {
             modules?.close();
           } finally {

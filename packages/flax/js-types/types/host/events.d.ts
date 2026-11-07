@@ -109,9 +109,8 @@ export declare class MessageEvent<T = unknown> extends Event {
     constructor(type: string, options?: MessageEventInit<T>);
 }
 export declare class EventTarget {
+    #private;
     private static readonly globals;
-    private readonly listeners;
-    private receiver;
     /** @internal */ static installGlobal(global: typeof globalThis): () => void;
     protected hasListeners(type: string): boolean;
     protected listenersChanged(_type: string): void;

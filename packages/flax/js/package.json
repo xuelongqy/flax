@@ -41,8 +41,18 @@
       "types": "./dist/host/images.d.ts",
       "import": "./dist/host/images.js"
     },
+    "./host/gpu-diagnostics": {
+      "types": "./dist/host/gpu-diagnostics.d.ts",
+      "import": "./dist/host/gpu-diagnostics.js"
+    },
     "./host/worker": {
       "types": "./dist/host/worker.d.ts"
+    },
+    "./host/common": {
+      "types": "./dist/host/common.d.ts"
+    },
+    "./host/canvas-contexts": {
+      "types": "./dist/host/canvas-contexts.d.ts"
     }
   },
   "files": [
@@ -63,7 +73,9 @@
     "dist/host/canvas-dom.js",
     "dist/host/canvas-dom.js.map",
     "dist/host/images.js",
-    "dist/host/images.js.map"
+    "dist/host/images.js.map",
+    "dist/host/gpu-diagnostics.js",
+    "dist/host/gpu-diagnostics.js.map"
   ],
   "scripts": {
     "typecheck": "tsc --project tsconfig.npm.json --noEmit && tsc --project tsconfig.bindings.json --noEmit && tsc --project tsconfig.host.json && tsc --project tsconfig.test.json && tsc --project tsconfig.worker.json",

@@ -2,11 +2,13 @@
 #include "flax/webgpu.h"
 #import <Foundation/Foundation.h>
 #include <atomic>
+#include <algorithm>
 #include <chrono>
 #include <condition_variable>
 #include <cstring>
 #include <deque>
 #include <dlfcn.h>
+#include <limits>
 #include <memory>
 #include <mutex>
 #include <stdexcept>
@@ -20,6 +22,13 @@ thread_local std::string errorText, resultText;
 std::atomic<size_t> contexts{0}, mappings{0};
 std::atomic<size_t> surfaces{0}, storages{0}, publications{0},
     retirementErrors{0};
+std::atomic<size_t> canvasTokens{0}, canvasEndpoints{0};
+std::atomic<size_t> callbackContexts{0};
+std::atomic<size_t> ownedDeviceRefs{0};
+struct CallbackLease {
+  CallbackLease() { ++callbackContexts; }
+  ~CallbackLease() { --callbackContexts; }
+};
 NSString *string(wgpu::StringView value) {
   if (!value.data)
     return @"";
@@ -69,10 +78,11 @@ NSArray *featureNames(const wgpu::SupportedFeatures &supported) {
         [result addObject:@(f.name)];
   return result;
 }
-NSDictionary *limits(const wgpu::Limits &value) {
+NSDictionary *limits(const wgpu::Limits &value,
+                     const wgpu::CompatibilityModeLimits &compatibility) {
   auto result = [NSMutableDictionary new];
 #define LIMIT(name) result[@ #name] = @(value.name);
-#define STAGE_LIMIT(name, common) result[@ #name] = @(value.common);
+#define STAGE_LIMIT(name) result[@ #name] = @(compatibility.name);
 #include "limits.inc"
 #undef LIMIT
 #undef STAGE_LIMIT
@@ -96,6 +106,8 @@ struct Event {
   __strong NSDictionary *value;
   std::shared_ptr<void> owner;
 };
+struct Surface;
+void retireSurface(Surface *surface);
 struct State {
   wgpu::Instance instance = wgpu::CreateInstance();
   std::mutex mutex;
@@ -104,6 +116,8 @@ struct State {
   bool notificationPending = false;
   std::deque<Event> events;
   Event delivered;
+  std::unordered_map<WGPUDevice, wgpu::Device> ownedDevices;
+  std::vector<Surface *> ownedCanvases;
   State() {
     if (!instance)
       throw std::runtime_error("Cannot create Dawn instance");
@@ -124,11 +138,45 @@ struct State {
     }
   }
   void stop() {
-    std::lock_guard lock(mutex);
-    closed = true;
-    notify = nullptr;
-    events.clear();
-    delivered = {};
+    std::deque<Event> discarded;
+    Event last;
+    decltype(ownedDevices) retired;
+    std::vector<Surface *> canvases;
+    {
+      std::lock_guard lock(mutex);
+      if (closed.exchange(true)) return;
+      notify = nullptr;
+      discarded.swap(events);
+      last = std::move(delivered);
+      retired.swap(ownedDevices);
+      ownedDeviceRefs -= retired.size();
+      canvases.swap(ownedCanvases);
+    }
+    // Remove published producers before destroying devices and cancelling their work.
+    for (auto canvas : canvases) retireSurface(canvas);
+    // Cancel outstanding Dawn work before FFI can release callback trampolines.
+    for (auto &[pointer, device] : retired) device.Destroy();
+  }
+  void ownDevice(wgpu::Device device, const std::atomic<bool> &lost) {
+    bool retire;
+    {
+      std::lock_guard lock(mutex);
+      retire = closed;
+      if (!retire && !lost && ownedDevices.emplace(device.Get(), device).second)
+        ++ownedDeviceRefs;
+    }
+    if (retire) device.Destroy();
+  }
+  void forgetDevice(WGPUDevice pointer) {
+    wgpu::Device retired;
+    {
+      std::lock_guard lock(mutex);
+      auto found = ownedDevices.find(pointer);
+      if (found == ownedDevices.end()) return;
+      retired = std::move(found->second);
+      ownedDevices.erase(found);
+      --ownedDeviceRefs;
+    }
   }
 };
 using Context = std::shared_ptr<State>;
@@ -203,6 +251,14 @@ extern "C" uint64_t flax_webgpu_live(uint32_t kind) {
     return publications;
   case 5:
     return retirementErrors;
+  case 6:
+    return canvasTokens;
+  case 7:
+    return canvasEndpoints;
+  case 8:
+    return callbackContexts;
+  case 9:
+    return ownedDeviceRefs;
   default:
     return 0;
   }
@@ -286,11 +342,17 @@ extern "C" const char *flax_webgpu_stats(void *context) {
   return result;
 }
 extern "C" int32_t flax_webgpu_adapter(void *context, uint64_t request,
-                                       uint32_t preference, uint32_t fallback) {
+                                       uint32_t preference, uint32_t fallback,
+                                       uint32_t feature_level) {
   return status([&] {
     auto s = live(context);
     std::weak_ptr<State> weak = s;
     wgpu::RequestAdapterOptions options;
+    if (feature_level != 1 && feature_level != 2)
+      throw std::invalid_argument("Invalid WebGPU feature level");
+    options.featureLevel = feature_level == 1
+                               ? wgpu::FeatureLevel::Compatibility
+                               : wgpu::FeatureLevel::Core;
     options.backendType = wgpu::BackendType::Metal;
     options.forceFallbackAdapter = fallback;
     options.powerPreference = preference == 1 ? wgpu::PowerPreference::LowPower
@@ -299,7 +361,7 @@ extern "C" int32_t flax_webgpu_adapter(void *context, uint64_t request,
                                   : wgpu::PowerPreference::Undefined;
     s->instance.RequestAdapter(
         &options, wgpu::CallbackMode::AllowSpontaneous,
-        [weak, request](wgpu::RequestAdapterStatus result,
+        [weak, request, callback = std::make_shared<CallbackLease>()](wgpu::RequestAdapterStatus result,
                         wgpu::Adapter adapter, wgpu::StringView message) {
           @autoreleasepool {
             if (auto s = weak.lock()) {
@@ -335,9 +397,10 @@ extern "C" int32_t flax_webgpu_device(void *context, WGPUAdapter adapter,
     auto nativeAdapter = wgpu::Adapter::Acquire(retained(adapter));
     std::vector<wgpu::FeatureName> requested;
     for (auto feature : {wgpu::FeatureName::SharedTextureMemoryIOSurface,
-                         wgpu::FeatureName::SharedFenceMTLSharedEvent}) {
+                         wgpu::FeatureName::SharedFenceMTLSharedEvent,
+                         wgpu::FeatureName::DawnInternalUsages}) {
       if (!nativeAdapter.HasFeature(feature))
-        throw std::runtime_error("Dawn Metal texture sharing is unavailable");
+        throw std::runtime_error("Dawn canvas interop features are unavailable");
       requested.push_back(feature);
     }
     for (NSString *name in input[@"requiredFeatures"] ?: @[]) {
@@ -352,20 +415,25 @@ extern "C" int32_t flax_webgpu_device(void *context, WGPUAdapter adapter,
         throw std::invalid_argument("Invalid WebGPU feature name");
     }
     wgpu::Limits required;
+    wgpu::CompatibilityModeLimits requiredCompatibility;
     NSDictionary *requestedLimits = input[@"requiredLimits"];
     for (NSString *key in requestedLimits ?: @{}) {
       bool found = false;
 #define LIMIT(name)                                                            \
   if ([key isEqualToString:@ #name]) {                                         \
-    required.name = [requestedLimits[key] unsignedLongLongValue];              \
+    auto n = [requestedLimits[key] unsignedLongLongValue];                     \
+    if (n >= std::numeric_limits<decltype(required.name)>::max())              \
+      throw std::invalid_argument("Invalid required WebGPU limit value");      \
+    required.name = n;                                                         \
     found = true;                                                              \
   }
-#define STAGE_LIMIT(name, common)                                              \
+#define STAGE_LIMIT(name)                                                      \
   if ([key isEqualToString:@ #name]) {                                         \
     auto n = [requestedLimits[key] unsignedLongLongValue];                     \
-    required.common = required.common == wgpu::kLimitU32Undefined              \
-                          ? n                                                  \
-                          : std::max<uint64_t>(required.common, n);            \
+    if (n >= wgpu::kLimitU32Undefined)                                         \
+      throw std::invalid_argument("Invalid required WebGPU limit value");      \
+    requiredCompatibility.name = n;                                            \
+    required.nextInChain = &requiredCompatibility;                             \
     found = true;                                                              \
   }
 #include "limits.inc"
@@ -378,6 +446,7 @@ extern "C" int32_t flax_webgpu_device(void *context, WGPUAdapter adapter,
     std::string queueLabel =
         [(input[@"defaultQueue"][@"label"] ?: @"") UTF8String];
     wgpu::DeviceDescriptor desc;
+    auto lost = std::make_shared<std::atomic<bool>>(false);
     desc.label = {label.data(), label.size()};
     desc.defaultQueue.label = {queueLabel.data(), queueLabel.size()};
     desc.requiredFeatureCount = requested.size();
@@ -405,14 +474,16 @@ extern "C" int32_t flax_webgpu_device(void *context, WGPUAdapter adapter,
     });
     desc.SetDeviceLostCallback(
         wgpu::CallbackMode::AllowSpontaneous,
-        [weak](const wgpu::Device &device, wgpu::DeviceLostReason reason,
+        [weak, lost, callback = std::make_shared<CallbackLease>()](const wgpu::Device &device, wgpu::DeviceLostReason reason,
                wgpu::StringView message) {
           @autoreleasepool {
+            *lost = true;
             {
               std::lock_guard lock(devicesMutex);
               devices.erase(device.Get());
             }
-            if (auto s = weak.lock())
+            if (auto s = weak.lock()) {
+              s->forgetDevice(device.Get());
               s->emit(@{
                 @"event" : @"lost",
                 @"device" : address(device.Get()),
@@ -421,20 +492,23 @@ extern "C" int32_t flax_webgpu_device(void *context, WGPUAdapter adapter,
                     : @"unknown",
                 @"message" : string(message)
               });
+            }
           }
         });
     nativeAdapter.RequestDevice(
         &desc, wgpu::CallbackMode::AllowSpontaneous,
-        [weak, request](wgpu::RequestDeviceStatus result, wgpu::Device device,
+        [weak, request, lost, callback = std::make_shared<CallbackLease>()](wgpu::RequestDeviceStatus result, wgpu::Device device,
                         wgpu::StringView message) {
           @autoreleasepool {
             if (auto s = weak.lock()) {
               if (result == wgpu::RequestDeviceStatus::Success) {
-                auto raw = device.MoveToCHandle();
+                auto raw = device.Get();
                 {
                   std::lock_guard lock(devicesMutex);
-                  devices[raw] = weak;
+                  if (!*lost) devices[raw] = weak;
                 }
+                s->ownDevice(device, *lost);
+                device.MoveToCHandle();
                 auto owner = std::shared_ptr<void>(
                     raw, [](void *p) { wgpuDeviceRelease((WGPUDevice)p); });
                 s->emit(
@@ -458,11 +532,37 @@ extern "C" int32_t flax_webgpu_device(void *context, WGPUAdapter adapter,
 
 #include "canvas.inc"
 #include "images.inc"
+
+extern "C" void flax_webgpu_release_device(WGPUDevice device) {
+  Context owner;
+  {
+    std::lock_guard lock(devicesMutex);
+    auto found = devices.find(device);
+    if (found != devices.end()) {
+      owner = found->second.lock();
+      devices.erase(found);
+    }
+  }
+  if (owner) {
+    std::vector<Surface *> canvases;
+    {
+      std::lock_guard lock(owner->mutex);
+      canvases = owner->ownedCanvases;
+    }
+    // Native finalizers run on the JS owner; spontaneous loss only updates ledgers.
+    for (auto canvas : canvases)
+      if (canvas->device.Get() == device) canvas->unconfigure();
+    owner->forgetDevice(device);
+  }
+  wgpuDeviceRelease(device);
+}
 extern "C" const char *flax_webgpu_info(uint32_t kind, void *object) {
   const char *result = nullptr;
   status([&] {
     wgpu::SupportedFeatures supported;
     wgpu::Limits supportedLimits;
+    wgpu::CompatibilityModeLimits compatibilityLimits;
+    supportedLimits.nextInChain = &compatibilityLimits;
     if (kind == 1) {
       auto adapter = wgpu::Adapter::Acquire(retained((WGPUAdapter)object));
       adapter.GetFeatures(&supported);
@@ -471,7 +571,7 @@ extern "C" const char *flax_webgpu_info(uint32_t kind, void *object) {
       adapter.GetInfo(&info);
       result = json(@{
         @"features" : featureNames(supported),
-        @"limits" : limits(supportedLimits),
+        @"limits" : limits(supportedLimits, compatibilityLimits),
         @"info" : @{
           @"vendor" : string(info.vendor),
           @"architecture" : string(info.architecture),
@@ -489,7 +589,7 @@ extern "C" const char *flax_webgpu_info(uint32_t kind, void *object) {
       device.GetLimits(&supportedLimits);
       result = json(@{
         @"features" : featureNames(supported),
-        @"limits" : limits(supportedLimits)
+        @"limits" : limits(supportedLimits, compatibilityLimits)
       });
     }
   });
@@ -521,7 +621,7 @@ extern "C" int32_t flax_webgpu_map(void *context, WGPUBuffer buffer,
     auto value = wgpu::Buffer::Acquire(retained(buffer));
     value.MapAsync(wgpu::MapMode(mode), offset, size,
                    wgpu::CallbackMode::AllowSpontaneous,
-                   [weak, request, keepAlive = value](
+                   [weak, request, keepAlive = value, callback = std::make_shared<CallbackLease>()](
                        wgpu::MapAsyncStatus result, wgpu::StringView message) {
                      (void)keepAlive;
                      @autoreleasepool {
@@ -570,7 +670,7 @@ extern "C" int32_t flax_webgpu_done(void *context, WGPUQueue queue,
     auto value = wgpu::Queue::Acquire(retained(queue));
     value.OnSubmittedWorkDone(
         wgpu::CallbackMode::AllowSpontaneous,
-        [weak, request, keepAlive = value](wgpu::QueueWorkDoneStatus result,
+        [weak, request, keepAlive = value, callback = std::make_shared<CallbackLease>()](wgpu::QueueWorkDoneStatus result,
                                            wgpu::StringView message) {
           (void)keepAlive;
           @autoreleasepool {
@@ -595,7 +695,7 @@ extern "C" int32_t flax_webgpu_pop_error(void *context, WGPUDevice device,
     std::weak_ptr<State> weak = s;
     auto value = wgpu::Device::Acquire(retained(device));
     value.PopErrorScope(wgpu::CallbackMode::AllowSpontaneous,
-                        [weak, request](wgpu::PopErrorScopeStatus result,
+                        [weak, request, callback = std::make_shared<CallbackLease>()](wgpu::PopErrorScopeStatus result,
                                         wgpu::ErrorType type,
                                         wgpu::StringView message) {
                           @autoreleasepool {
@@ -626,7 +726,7 @@ extern "C" int32_t flax_webgpu_compilation_info(void *context,
     auto value = wgpu::ShaderModule::Acquire(retained(shader));
     value.GetCompilationInfo(
         wgpu::CallbackMode::AllowSpontaneous,
-        [weak, request,
+        [weak, request, callback = std::make_shared<CallbackLease>(),
          keepAlive = value](wgpu::CompilationInfoRequestStatus result,
                             const wgpu::CompilationInfo *info) {
           (void)keepAlive;
@@ -636,6 +736,17 @@ extern "C" int32_t flax_webgpu_compilation_info(void *context,
               if (result == wgpu::CompilationInfoRequestStatus::Success) {
                 for (size_t i = 0; i < info->messageCount; ++i) {
                   const auto &m = info->messages[i];
+                  const wgpu::DawnCompilationMessageUtf16 *utf16 = nullptr;
+                  // WebGPU uses UTF-16 units, not Dawn's UTF-8 base fields.
+                  for (auto chain = m.nextInChain; chain;
+                       chain = chain->nextInChain) {
+                    if (chain->sType ==
+                        wgpu::SType::DawnCompilationMessageUtf16) {
+                      utf16 = reinterpret_cast<
+                          const wgpu::DawnCompilationMessageUtf16 *>(chain);
+                      break;
+                    }
+                  }
                   [messages addObject:@{
                     @"message" : string(m.message),
                     @"type" : m.type == wgpu::CompilationMessageType::Error
@@ -644,9 +755,9 @@ extern "C" int32_t flax_webgpu_compilation_info(void *context,
                         ? @"warning"
                         : @"info",
                     @"lineNum" : @(m.lineNum),
-                    @"linePos" : @(m.linePos),
-                    @"offset" : @(m.offset),
-                    @"length" : @(m.length)
+                    @"linePos" : @(utf16 ? utf16->linePos : m.linePos),
+                    @"offset" : @(utf16 ? utf16->offset : m.offset),
+                    @"length" : @(utf16 ? utf16->length : m.length)
                   }];
                 }
                 s->emit(@{@"request" : @(request), @"messages" : messages});
@@ -669,7 +780,7 @@ extern "C" int32_t flax_webgpu_pipeline(void *context, WGPUDevice device,
     auto s = live(context);
     std::weak_ptr<State> weak = s;
     auto value = wgpu::Device::Acquire(retained(device));
-    auto complete = [weak, request, keepAlive = value](
+    auto complete = [weak, request, keepAlive = value, callback = std::make_shared<CallbackLease>()](
                         auto status, auto pipeline, wgpu::StringView message) {
       (void)keepAlive;
       @autoreleasepool {

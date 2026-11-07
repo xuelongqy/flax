@@ -3,6 +3,9 @@ import type { EventInit } from './events.js';
 import { Response } from './fetch/http.js';
 import { ReadableStream } from 'web-streams-polyfill';
 import { blobRange } from './fetch/local-resources.js';
+import { gpuDiagnosticsHost } from './gpu-diagnostics.js';
+import type { CanvasHost, CanvasTransfers, OffscreenCanvas } from './canvas.js';
+import type { ImageHost, ImageBitmap } from './images.js';
 import {
   Blob,
   blobParts,
@@ -17,7 +20,7 @@ export interface WorkerOptions {
   name?: string;
   credentials?: 'omit' | 'same-origin' | 'include';
 }
-export type Transferable = ArrayBuffer;
+export type Transferable = ArrayBuffer | OffscreenCanvas | ImageBitmap;
 export interface StructuredSerializeOptions {
   transfer?: Transferable[];
 }
@@ -76,6 +79,7 @@ export interface WorkerScopeOptions {
   id: number;
   name: string;
   type: 'classic' | 'module';
+  canvas?: boolean;
 }
 
 function transfers(
@@ -154,7 +158,24 @@ export function installWorkers(
     DOMException.prototype,
     'message',
   )!.get!;
-  const serializeHost = (value: object) => {
+  const diagnostics = gpuDiagnosticsHost(global);
+  const canvases = g.__flaxCanvasHost as CanvasHost | undefined;
+  const images = g[Symbol.for('flax.image.host')] as ImageHost | undefined;
+  function prepareTransfers(list: unknown[]): CanvasTransfers {
+    const image = images?.prepareTransfers(list);
+    const canvas = canvases?.prepareTransfers(image?.buffers ?? list);
+    return {
+      buffers: canvas?.buffers ?? image?.buffers ?? list,
+      serialize: (value) => canvas?.serialize(value) ?? image?.serialize(value),
+      validate() {
+        canvas?.validate();
+        image?.validate();
+      },
+    };
+  }
+  const serializeHost = (value: object, transfer?: CanvasTransfers) => {
+    const canvas = transfer?.serialize(value);
+    if (canvas) return canvas;
     const parts = blobParts(value);
     if (parts) {
       const file = fileMetadata(value);
@@ -164,12 +185,24 @@ export function installWorkers(
     }
     if (value instanceof DOMException)
       return ['DOMException', exceptionMessage.call(value), exceptionName.call(value)];
-    return undefined;
+    return diagnostics.serialize(value);
   };
   const deserializeHost = (record: any[]) => {
+    if (record[0] === 'ImageData' || record[0] === 'ImageBitmap') {
+      if (!images)
+        throw new DOMException('Image host is unavailable', 'DataCloneError');
+      return images.deserialize(record);
+    }
+    if (record[0] === 'OffscreenCanvas') {
+      if (!canvases)
+        throw new DOMException('Canvas provider is unavailable', 'DataCloneError');
+      return canvases.restoreTransfer(record[1]);
+    }
     if (record[0] === 'DOMException') return new DOMException(record[1], record[2]);
     if (record[0] === 'Blob' || record[0] === 'File')
       return restoreBlob(record[1], record[2], record[3], record[4]);
+    if (record[0] === 'GPUCompilationInfo' || record[0] === 'GPUCompilationMessage')
+      return diagnostics.deserialize(record);
     throw new DOMException('Invalid platform clone record', 'DataCloneError');
   };
   Object.defineProperty(g, 'structuredClone', {
@@ -190,11 +223,14 @@ export function installWorkers(
           'structuredClone requires a matching Flax engine',
           'NotSupportedError',
         );
+      const list = transfers(transfer === undefined ? [] : { transfer });
+      const prepared = prepareTransfers(list);
       return engine.clone(
         value,
-        transfers(transfer === undefined ? [] : { transfer }),
-        serializeHost,
+        prepared?.buffers ?? list,
+        (value: object) => serializeHost(value, prepared),
         deserializeHost,
+        prepared?.validate,
       );
     },
   });
@@ -317,7 +353,16 @@ export function installWorkers(
       input?: Transferable[] | StructuredSerializeOptions,
     ): void {
       if (!arguments.length) throw new TypeError('postMessage needs a message');
-      nativeRequired().post(this.#id, false, message, transfers(input), serializeHost);
+      const list = transfers(input);
+      const prepared = prepareTransfers(list);
+      nativeRequired().post(
+        this.#id,
+        false,
+        message,
+        prepared?.buffers ?? list,
+        (value: object) => serializeHost(value, prepared),
+        prepared?.validate,
+      );
     }
     terminate(): void {
       if (this.#terminated) return;
@@ -401,12 +446,15 @@ export function installWorkers(
       ) {
         requireScope(this ?? g);
         if (!arguments.length) throw new TypeError('postMessage needs a message');
+        const list = transfers(input);
+        const prepared = prepareTransfers(list);
         nativeRequired().post(
           scope!.id,
           true,
           message,
-          transfers(input),
-          serializeHost,
+          prepared?.buffers ?? list,
+          (value: object) => serializeHost(value, prepared),
+          prepared?.validate,
         );
       }
       close() {

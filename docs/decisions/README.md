@@ -138,3 +138,7 @@ its reason and practical consequences, and update this index.
 
 - [0053: Detached Dedicated Workers](0053-dedicated-workers.md) is an experimental
   integration; macOS acceptance is recorded with the implementation.
+
+- [0054: Worker-owned WebGPU and transferable OffscreenCanvas](0054-worker-webgpu-and-offscreen-canvas.md)
+  is an experimental integration; native ownership, isolated rendering and acceptance
+  remain separate from the default pure JS/Wasm Worker profile.

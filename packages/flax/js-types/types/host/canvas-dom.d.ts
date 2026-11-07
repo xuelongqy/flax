@@ -1,6 +1,6 @@
 import type { Event, EventTarget, DOMExceptionConstructor } from './events.js';
 import type { OffscreenCanvas } from './canvas.js';
-import type { HTMLImageElement } from './images.js';
+import type { HTMLImageElement, PixelImage } from './images.js';
 export interface CanvasRect {
     readonly x: number;
     readonly y: number;
@@ -40,7 +40,7 @@ export type ResizeObserverCallback = (entries: ResizeObserverEntry[], observer: 
 export interface CanvasDocument extends EventTarget {
     cookie: string;
     readonly defaultView: typeof globalThis;
-    readonly activeElement: OffscreenCanvas | null;
+    readonly activeElement: (OffscreenCanvas & CanvasElement) | null;
     createElement(name: 'canvas'): HTMLCanvasElement;
     createElement(name: 'img'): HTMLImageElement;
     createElementNS(namespace: string, name: 'canvas'): HTMLCanvasElement;
@@ -95,7 +95,8 @@ export interface CanvasElement extends EventTarget, CanvasEventHandlers {
     getAttribute(name: string): string | null;
     removeAttribute(name: string): void;
 }
-export interface HTMLCanvasElement extends OffscreenCanvas {
+export interface HTMLCanvasElement extends OffscreenCanvas, CanvasElement {
+    transferControlToOffscreen(): OffscreenCanvas;
     toBlob(callback: (blob: import('./canvas.js').CanvasBlob | null) => unknown, type?: string, quality?: number): void;
     toDataURL(type?: string, quality?: number): string;
 }
@@ -315,6 +316,11 @@ export type KeyboardEvent = InstanceType<ReturnType<typeof eventConstructors>['K
 type Call = (operation: string, ...args: unknown[]) => unknown;
 /** A canvas host surface, not a DOM representation of the Flutter Widget tree. */
 export declare function installCanvasDom(global: typeof globalThis, call: Call, create: () => HTMLCanvasElement, EventTarget: typeof import('./events.js').EventTarget, DOMException: DOMExceptionConstructor, Event: typeof import('./events.js').Event): {
+    readonly hasSources: boolean;
+    configureSources(names: string[]): void;
+    decorateHtml(canvas: HTMLCanvasElement): void;
+    updateSource(name: string, width: number, height: number, buffer: ArrayBuffer | null): void;
+    sourcePixels(value: unknown): PixelImage;
     decorate(canvas: OffscreenCanvas, target: object): void;
     observe(canvas: object): void;
     receive(target: object, input: Record<string, any>): boolean;

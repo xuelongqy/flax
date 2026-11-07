@@ -1,7 +1,9 @@
 // This application uses standard GPU objects; native signatures stay in the host.
 import { CanvasView } from '@flax/core/bindings';
+import { signal } from '@flax/core';
 import { verifyThree } from './three-acceptance.js';
 import { verifyImages } from './images.js';
+import { verifyCanvasConfigurationPixels } from './canvas-config.js';
 import { verifyApiExtensions } from './api-extensions.js';
 import { verifyThreeFeatures } from './three-features.js';
 import { verifyBrowserBase } from './browser-base.js';
@@ -9,10 +11,20 @@ import { verifyThreeAdvanced } from './three-advanced.js';
 import { verifyThreeWorkers } from './three-workers.js';
 import { verifyThreeKtxWorkers } from './three-ktx-workers.js';
 import { verifyThreeWorkerScenarios } from './three-worker-scenarios.js';
+import {
+  verifyThreeWorkerRenderer,
+  armThreeWorkerRendererForSessionClose,
+} from './three-worker-renderer.js';
 import { verifyHostTools } from './host-tools.js';
-import { runApp } from '@flax/flutter/widgets';
+import {
+  verifyGpuWorkers,
+  armGpuWorkerForSessionClose,
+  verifyGpuDeviceGc,
+} from './gpu-workers.js';
+import { runApp, Center } from '@flax/flutter/widgets';
 const canvas = new OffscreenCanvas(960, 540);
-runApp(CanvasView(canvas));
+const displayedCanvas = signal(CanvasView(canvas));
+runApp(Center({ child: displayedCanvas.bind }));
 let observedSize;
 const resizeObserver = new ResizeObserver((entries) => {
   observedSize = entries[0];
@@ -35,11 +47,23 @@ const throws = (action, name) => {
 };
 (async () => {
   report({ kind: 'host-tools', ...(await verifyHostTools(assert)) });
+  report({
+    kind: 'gpu-workers',
+    ...(await verifyGpuWorkers(
+      assert,
+      (value) => {
+        displayedCanvas.value = CanvasView(value);
+      },
+      report,
+    )),
+  });
+  displayedCanvas.value = CanvasView(canvas);
   const adapter = await navigator.gpu.requestAdapter({
     powerPreference: 'high-performance',
   });
   assert(adapter, 'A Metal adapter is required');
   const device = await adapter.requestDevice();
+  report({ kind: 'gpu-device-gc', ...(await verifyGpuDeviceGc(assert)) });
   const canvasFormat = globalThis.__expectCanvas2D
     ? navigator.gpu.getPreferredCanvasFormat()
     : 'rgba8unorm';
@@ -55,7 +79,13 @@ const throws = (action, name) => {
       'Canvas 2D pixels must survive coexistence',
     );
   } else assert(ctx2D === null, 'WebGPU-only sessions must not require Canvas 2D');
-  device.onuncapturederror = (event) => report({ error: event.error.message });
+  device.addEventListener('uncapturederror', (event) =>
+    report({ error: event.error.message }),
+  );
+  report({
+    kind: 'canvas-configuration',
+    ...(await verifyCanvasConfigurationPixels(device, assert)),
+  });
   const initialization = device.createBuffer({
     size: 16,
     usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST,
@@ -214,7 +244,16 @@ const throws = (action, name) => {
     'Cross-device resources must be validated',
   );
   other.destroy();
-  throws(() => foreignContext.getCurrentTexture(), 'OperationError');
+  const lostTexture = foreignContext.getCurrentTexture();
+  assert(
+    lostTexture instanceof GPUTexture &&
+      lostTexture.width === 2 &&
+      lostTexture.height === 2 &&
+      lostTexture.format === canvasFormat &&
+      lostTexture.usage === GPUTextureUsage.RENDER_ATTACHMENT &&
+      foreignContext.getCurrentTexture() === lostTexture,
+    'A configured lost device returns a cached invalid texture with canvas metadata',
+  );
   assert(
     foreignContext.getConfiguration().device === other,
     'Device loss must preserve configuration identity',
@@ -224,6 +263,7 @@ const throws = (action, name) => {
     (await other.lost).reason === 'destroyed',
     'Device loss must settle on the owning JS thread',
   );
+  foreignContext.unconfigure();
   mappedUpload.destroy();
   report({ kind: 'compute', adapter: adapter.info, values: result, assertions });
   const context = canvas.getContext('webgpu');
@@ -242,9 +282,14 @@ const throws = (action, name) => {
   report({ kind: 'images', assertions });
   await verifyThree(device, assert, imagePng);
   report({ kind: 'three', assertions });
+  const rootThreeFrames = new Map();
+  const captureThreeFrame = (name, pixels, width, height) => {
+    assert(!rootThreeFrames.has(name), 'Root scene snapshot names are unique');
+    rootThreeFrames.set(name, { pixels: Uint8Array.from(pixels), width, height });
+  };
   report({
     kind: 'three-features',
-    ...(await verifyThreeFeatures(device, assert)),
+    ...(await verifyThreeFeatures(device, assert, { onCapture: captureThreeFrame })),
     assertions,
   });
   report({
@@ -254,15 +299,28 @@ const throws = (action, name) => {
   });
   report({
     kind: 'three-advanced',
-    ...(await verifyThreeAdvanced(device, assert)),
+    ...(await verifyThreeAdvanced(device, assert, { onCapture: captureThreeFrame })),
     assertions,
   });
   report({ kind: 'three-workers', ...(await verifyThreeWorkers(assert)), assertions });
   report({
     kind: 'three-ktx-workers',
-    ...(await verifyThreeKtxWorkers(assert)),
+    ...(await verifyThreeKtxWorkers(assert, { onCapture: captureThreeFrame })),
     assertions,
   });
+  report({
+    kind: 'three-worker-renderer',
+    ...(await verifyThreeWorkerRenderer(
+      assert,
+      rootThreeFrames,
+      (value) => {
+        displayedCanvas.value = CanvasView(value);
+      },
+      report,
+    )),
+    assertions,
+  });
+  displayedCanvas.value = CanvasView(canvas);
   const scenarioAssertions = assertions;
   report({
     kind: 'three-worker-scenarios',
@@ -358,7 +416,7 @@ const throws = (action, name) => {
         globalThis.retainedMappedRange =
           globalThis.retainedMappedBuffer.getMappedRange();
         encoded.sort((a, b) => a - b);
-        report({
+        const rendered = {
           kind: 'rendered',
           frames,
           format: texture.format,
@@ -366,7 +424,23 @@ const throws = (action, name) => {
             p50: encoded[Math.floor(encoded.length * 0.5)],
             p95: encoded[Math.floor(encoded.length * 0.95)],
           },
-        });
+        };
+        (globalThis.__preview
+          ? Promise.resolve([{ armed: false }, { armed: false }])
+          : Promise.all([
+              armGpuWorkerForSessionClose(),
+              armThreeWorkerRendererForSessionClose(report),
+            ])
+        )
+          .then(([worker, three]) =>
+            report({
+              ...rendered,
+              gpuWorkerAtSessionClose: worker.armed,
+              threeWorkerRendererAtSessionClose: three.armed,
+              threeWorkerRendererNestedAtSessionClose: three.nestedWorkers,
+            }),
+          )
+          .catch((error) => report({ error: error.stack ?? String(error) }));
       }
       if (frames < 120 || globalThis.__preview) requestAnimationFrame(frame);
     } catch (error) {

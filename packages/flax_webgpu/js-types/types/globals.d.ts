@@ -1,5 +1,9 @@
 import type * as WebGPU from './types.g.js';
+import type { OffscreenCanvasConstructor } from '@flax/core/host/common';
 declare global {
+    var OffscreenCanvas: OffscreenCanvasConstructor;
+    function requestAnimationFrame(callback: (time: number) => void): number;
+    function cancelAnimationFrame(id?: number): void;
     type GPU = WebGPU.GPU;
     var GPU: {
         readonly prototype: WebGPU.GPU;
@@ -151,10 +155,12 @@ declare global {
     var GPUShaderStage: typeof WebGPU.GPUShaderStage;
     var GPUColorWrite: typeof WebGPU.GPUColorWrite;
 }
-declare module '@flax/core/host' {
+declare module '@flax/core/host/canvas-contexts' {
     interface CanvasContextMap {
         webgpu: WebGPU.GPUCanvasContext;
     }
+}
+declare module '@flax/core/host/common' {
     interface Navigator {
         readonly gpu: WebGPU.GPU;
     }
