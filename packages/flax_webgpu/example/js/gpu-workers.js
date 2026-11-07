@@ -81,8 +81,8 @@ function workerEntry(
           (condition, message) => {
             if (!condition) throw Error(message);
           },
-          (targetDevice, canvas) =>
-            readCanvasPixels(targetDevice, canvas, readTexturePixels),
+          (targetDevice, canvas, bitmap) =>
+            readCanvasPixels(targetDevice, canvas, readTexturePixels, bitmap),
         );
         if (result.pixelSnapshots !== true)
           throw Error('Worker canvas pixels were skipped');

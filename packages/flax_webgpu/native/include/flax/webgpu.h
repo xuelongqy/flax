@@ -62,8 +62,10 @@ int32_t flax_webgpu_canvas_configure(void *canvas, WGPUDevice device,
                                      uint32_t width, uint32_t height,
                                      uint64_t usage, uint32_t opaque,
                                      WGPUTextureFormat format,
-                                     uint32_t srgb_view);
+                                     uint32_t srgb_view, uint32_t display_p3,
+                                     uint32_t extended_tone_mapping);
 WGPUTexture flax_webgpu_canvas_texture(void *canvas);
+int32_t flax_webgpu_canvas_destroy_texture(void *canvas, WGPUTexture texture);
 int32_t flax_webgpu_canvas_present(void *canvas);
 int32_t flax_webgpu_canvas_readback(void *canvas, void *pixels, size_t length,
                                     uint32_t transfer);

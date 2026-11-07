@@ -21,8 +21,12 @@ export async function readTexturePixels(device, texture, width = 2, height = 2) 
 }
 
 // Both root and Worker fixtures use the same GPU readback, including exact-only usages.
-export async function readCanvasPixels(device, canvas, readPixels) {
-  const bitmap = canvas.transferToImageBitmap();
+export async function readCanvasPixels(
+  device,
+  canvas,
+  readPixels,
+  bitmap = canvas.transferToImageBitmap(),
+) {
   const target = device.createTexture({
     size: [canvas.width, canvas.height],
     format: 'rgba8unorm',
