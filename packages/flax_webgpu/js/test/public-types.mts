@@ -1,6 +1,6 @@
 import type {} from '@flax/core/host';
 import type {} from '@flax/webgpu/globals';
-import type { GPUTextureViewDimension } from '@flax/webgpu';
+import { acquireVideoFrame, type GPUTextureViewDimension } from '@flax/webgpu';
 import type {} from '@flax/canvas/globals';
 import { CanvasView } from '@flax/core/bindings';
 
@@ -13,6 +13,30 @@ CanvasView(transferred);
 void transferred.style;
 canvas.getContext('2d')?.fillRect(0, 0, 1, 1);
 const context = canvas.getContext('webgpu');
+function videoBindings(device: GPUDevice, destination: GPUTexture) {
+  const frame: unknown = acquireVideoFrame('player');
+  if (!(frame instanceof VideoFrame)) return;
+  const texture: unknown = device.importExternalTexture({
+    source: frame,
+    colorSpace: 'display-p3',
+  });
+  if (!(texture instanceof GPUExternalTexture)) return;
+  const layout = device.createBindGroupLayout({
+    entries: [{ binding: 0, visibility: GPUShaderStage.FRAGMENT, externalTexture: {} }],
+  });
+  device.createBindGroup({ layout, entries: [{ binding: 0, resource: texture }] });
+  device.queue.copyExternalImageToTexture(
+    { source: frame, flipY: true },
+    { texture: destination },
+    [frame.displayWidth, frame.displayHeight],
+  );
+  frame.close();
+  // @ts-expect-error The host only supplies acquired VideoFrame instances.
+  new VideoFrame();
+  // @ts-expect-error External textures are imported through a GPUDevice.
+  new GPUExternalTexture();
+}
+void videoBindings;
 const adapter = await navigator.gpu.requestAdapter();
 if (adapter && context) {
   const device = await adapter.requestDevice({

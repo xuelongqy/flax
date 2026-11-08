@@ -16,6 +16,7 @@ const normalize = (value: string) => value.toLowerCase().replace(/[^a-z0-9]/g, '
 const nativeEnums = new Map<string, number | bigint>();
 const nativeEnumTypes = new Set<string>();
 const bufferBindings = new WeakSet<object>();
+const externalTextureBindings = new WeakSet<object>();
 const noArguments: [] = [];
 for (const [name, value] of Object.entries(constants)) {
   nativeEnums.set(normalize(name), value);
@@ -115,7 +116,8 @@ export function convert(
     if (value == null && dictionary) return convert(dictionary, value, resource);
     if (value != null && ['object', 'function'].includes(typeof value)) {
       for (const choice of choices) {
-        if (!metadata.objects.includes(`W${choice}`)) continue;
+        if (choice !== 'VideoFrame' && !metadata.objects.includes(`W${choice}`))
+          continue;
         try {
           resource(value, choice);
           if (choice === 'GPUBuffer' && choices.includes('GPUBufferBinding')) {
@@ -123,6 +125,7 @@ export function convert(
             bufferBindings.add(binding);
             return binding;
           }
+          if (choice === 'GPUExternalTexture') externalTextureBindings.add(value);
           return value;
         } catch (error) {
           if (!(error instanceof TypeError)) throw error;
@@ -240,6 +243,8 @@ export function nativeEnum(type: string, value: unknown): number | bigint {
 
 /** One arena owns all temporary descriptor bytes through a synchronous Dawn call. */
 export class DescriptorArena extends Arena {
+  declare externalTextures: Set<object> | undefined;
+
   constructor(
     readonly init: (name: string, pointer: bigint, length: number) => void,
     readonly resource: (value: unknown, kind: string) => bigint,
@@ -340,7 +345,15 @@ export class DescriptorArena extends Arena {
           offset: item.offset ?? 0,
           ...(Object.hasOwn(item, 'size') ? { size: item.size } : {}),
         };
-      else if (item) {
+      else if (externalTextureBindings.has(item)) {
+        (this.externalTextures ??= new Set()).add(item);
+        input = {
+          ...input,
+          nextInChain: this.struct('WGPUExternalTextureBindingEntry', {
+            externalTexture: item,
+          }).pointer,
+        };
+      } else if (item) {
         try {
           this.resource(item, 'GPUSampler');
           input = { ...input, sampler: item };
@@ -350,6 +363,11 @@ export class DescriptorArena extends Arena {
         }
       }
     }
+    if (type === 'WGPUBindGroupLayoutEntry' && Object.hasOwn(input, 'externalTexture'))
+      input = {
+        ...input,
+        nextInChain: this.struct('WGPUExternalTextureBindingLayout').pointer,
+      };
     if (type === 'WGPUTexelCopyBufferInfo') input = { ...input, layout: input };
     // Dawn already supplies the standard defaults; allocate chains only for overrides.
     if (

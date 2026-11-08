@@ -23,30 +23,41 @@ def main():
     parser.add_argument('--build-only', action='store_true')
     parser.add_argument('--benchmark', action='store_true', help='Build the matched standard-API benchmark instead of acceptance')
     parser.add_argument('--three-worker-benchmark', action='store_true', help='Build the matched Three.js main/Worker benchmark')
+    parser.add_argument('--video', type=Path, metavar='FIXTURE',
+                        help='Validate Flutter SDR video frames with raw WebGPU and Three.js')
     parser.add_argument('--example', action='store_true', help='Build the interactive Spectrum studio')
     parser.add_argument('--mode', choices=['debug', 'release'], default='release')
     parser.add_argument('--cycles', type=int, default=3, help='Bounded acceptance Session count (1..30)')
     args = parser.parse_args()
+    video = args.video is not None
     if not 1 <= args.cycles <= 30:
         parser.error('--cycles must be between 1 and 30')
-    if args.cycles != 3 and (args.example or args.benchmark or args.three_worker_benchmark or args.preview):
+    if args.cycles != 3 and (args.example or args.benchmark or args.three_worker_benchmark or video or args.preview):
         parser.error('--cycles applies to acceptance')
-    if sum([args.example, args.benchmark, args.three_worker_benchmark]) > 1:
-        parser.error('--example, --benchmark and --three-worker-benchmark cannot be combined')
-    if (args.benchmark or args.three_worker_benchmark) and args.preview:
-        parser.error('benchmark modes and --preview cannot be combined')
-    if args.three_worker_benchmark and args.cts_root:
-        parser.error('--cts-root applies to acceptance')
-    support_packages = [] if args.benchmark else ['flax_example_support']
+    if sum([args.example, args.benchmark, args.three_worker_benchmark, video]) > 1:
+        parser.error('--example, --benchmark, --three-worker-benchmark and --video are exclusive')
+    if (args.benchmark or args.three_worker_benchmark or video) and args.preview:
+        parser.error('benchmark and video modes do not support --preview')
+    if (args.three_worker_benchmark or video) and args.cts_root:
+        parser.error('--cts-root applies to standard API acceptance')
+    if video and not args.video.is_file():
+        parser.error('--video requires a local fixture file')
+    support_packages = [] if args.benchmark or video else ['flax_example_support']
     output = ROOT / ('.local/webgpu-three-worker-benchmark' if args.three_worker_benchmark else '.local/webgpu-studio' if args.example else '.local/webgpu-api-benchmark' if args.benchmark else '.local/webgpu-api')
     dart_entry = ROOT/'experiments/webgpu_dawn/three_worker/app.dart' if args.three_worker_benchmark else ROOT/'experiments/webgpu_dawn/standard_api/app.dart' if args.benchmark else PACKAGE/('example/app/lib/main.dart' if args.example else 'example/app/lib/acceptance.dart')
     js_entry = ROOT/'experiments/webgpu_dawn/three_worker/flax.mjs' if args.three_worker_benchmark else ROOT/'experiments/webgpu_dawn/standard_api/flax.mjs' if args.benchmark else PACKAGE/('example/js/src/main.ts' if args.example else 'example/js/main.js')
+    if video:
+        output = ROOT / '.local/webgpu-video'
+        dart_entry = PACKAGE / 'example/app/lib/video.dart'
+        js_entry = PACKAGE / 'example/js/video.js'
     output.mkdir(parents=True, exist_ok=True)
     temporary = ROOT / '.local/tmp'
     temporary.mkdir(exist_ok=True)
     env = dict(os.environ, TMPDIR=str(temporary), TMP=str(temporary), TEMP=str(temporary),
                PATH=str(args.flutter_root / 'bin') + ':' + os.environ['PATH'])
     env['FLAX_WEBGPU_CYCLES'] = str(args.cycles)
+    if video:
+        env['FLAX_WEBGPU_VIDEO_FILE'] = str(args.video.resolve())
     flutter = args.flutter_root / 'bin/flutter'
     dart = args.flutter_root / 'bin/dart'
     engine = args.flutter_root / 'engine/src'
@@ -97,16 +108,21 @@ flutter:
     - assets/app.js
     - assets/flax_modules/
 ''')
-    if not args.benchmark:
+    if support_packages:
         manifest=app/'pubspec.yaml'
         manifest.write_text(manifest.read_text().replace('  flax:\n', '  flax_example_support:\n    path: ../packages/flax_example_support\n  flax:\n',1))
-    if not args.example and not args.benchmark:
+    if not args.example and not args.benchmark and not video:
         manifest=app/'pubspec.yaml'
         manifest.write_text(manifest.read_text().replace('    - assets/app.js\n', '    - assets/app.js\n    - assets/three/\n    - assets/three/draco/\n    - assets/three/basis/\n'))
     assets = app / 'assets'
     assets.mkdir(exist_ok=True)
-    if not args.example and not args.benchmark:
+    if not args.example and not args.benchmark and not video:
         shutil.copytree(PACKAGE/'example/fixtures/three', assets/'three', dirs_exist_ok=True)
+        draco = assets / 'three/draco'
+        draco.mkdir(exist_ok=True)
+        decoder = PACKAGE / 'example/js/node_modules/three/examples/jsm/libs/draco/gltf'
+        for name in ['draco_wasm_wrapper.js', 'draco_decoder.wasm']:
+            shutil.copyfile(decoder / name, draco / name)
     scene = (ROOT / 'experiments/webgpu_dawn/scene.wgsl').read_text()
     config = output / 'flax.modules.json'
     config.write_text(json.dumps({'formatVersion':1, 'flutterProject':'app', 'output':'assets/flax_modules',
@@ -138,7 +154,7 @@ flutter:
                       f"const prepared = await prepareModules({{configPath:{json.dumps(str(config))}}});\n" +
                       benchmark_setup +
                       f"await build({{entryPoints:[{json.dumps(str(js_entry))}],outfile:{json.dumps(str(assets/'app.js'))},bundle:true,platform:'neutral',format:'esm',target:'es2022',external:['perf_hooks','ansi-colors'],banner:{{js:{banner_expression}}},plugins:[flaxEsbuildPlugin(prepared.manifest,{{nativeAssets:{{hostDirectory:{json.dumps(str(app))}}}}})]}});\n")
-    if not args.example and not args.benchmark and not args.three_worker_benchmark:
+    if not args.example and not args.benchmark and not args.three_worker_benchmark and not video:
         with bundle.open('a') as script:
             script.write(f"await build({{entryPoints:[{json.dumps(str(PACKAGE/'example/js/three-renderer-worker.js'))}],outfile:{json.dumps(str(assets/'three/three-renderer-worker.js'))},bundle:true,platform:'neutral',format:'esm',target:'es2022',external:['perf_hooks','ansi-colors']}});\n")
     run(['node', bundle], 'bundle-modules')
@@ -155,9 +171,19 @@ flutter:
         shutil.copyfile(args.flutter_root/'packages/flutter_tools/templates/cocoapods/Podfile-macos', podfile)
     podfile.write_text(re.sub(r"platform :osx, '[^']+'", "platform :osx, '26.0'", podfile.read_text()))
     window = app / 'macos/Runner/MainFlutterWindow.swift'
-    text = window.read_text().replace('    let windowFrame = self.frame\n', '')
+    template = args.flutter_root / 'packages/flutter_tools/templates/app/macos.tmpl/Runner/MainFlutterWindow.swift'
+    text = (template if video else window).read_text().replace('    let windowFrame = self.frame\n', '')
     text = re.sub(r'setFrame\([^\n]+',
       f'setFrame(NSRect(x:100,y:100,width:{1180 if args.example else 1100},height:{940 if args.example else 700}), display:true)', text)
+    if video:
+        marker = '    RegisterGeneratedPlugins(registry: flutterViewController)'
+        if text.count(marker) != 1:
+            raise RuntimeError('The generated Runner no longer exposes the Flutter plugin registration point')
+        text = text.replace(marker, marker + '''
+    WebGpuVideoFixture.register(
+      with: flutterViewController.registrar(forPlugin: "FlaxWebGpuVideoFixture"))
+''')
+        text += '\n' + (PACKAGE / 'example/app/macos/VideoFixture.swift').read_text()
     window.write_text(text)
     for name in ['DebugProfile','Release']:
         path = app / f'macos/Runner/{name}.entitlements'
@@ -174,6 +200,11 @@ flutter:
          f'--local-engine-host={engine_name}', 'build','macos',f'--{args.mode}','--no-pub',
          f'--dart-define=WEBGPU_OUTPUT={output}',
          f'--dart-define=WEBGPU_PREVIEW={str(args.preview).lower()}'], 'app-build', cwd=app)
+    if video:
+        if not env.get('FLAX_MACOS_TEAM'):
+            run(['codesign', '--force', '--sign', '-', '--preserve-metadata=entitlements,flags',
+                 product], 'sign-local-app')
+        run(['codesign', '--verify', '--deep', '--strict', product], 'verify-local-app')
     if not args.build_only:
         (output / 'application.json').unlink(missing_ok=True)
         run([product / 'Contents/MacOS/flax_webgpu_example'], 'application', timeout=3600 if args.preview or args.example else max(300 if args.cts_root else 180, args.cycles * 60))
