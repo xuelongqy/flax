@@ -208,10 +208,11 @@ std::shared_ptr<CanvasToken> canvasToken(void *address) {
   return found->second;
 }
 
-// Clamp in linear P3 so ordinary P3 colors survive in Flutter's extended sRGB.
-constexpr char kStandardProjection[] = R"(
+// Project for Flutter in encoded extended sRGB. Standard range clamps in P3.
+constexpr char kColorProjection[] = R"(
 @group(0) @binding(0) var inputTexture: texture_2d<f32>;
 override sourceP3: bool;
+override standardRange: bool;
 override opaque: bool;
 
 const srgbToP3 = mat3x3f(
@@ -245,14 +246,17 @@ fn vertex(@builtin(vertex_index) index: u32) -> @builtin(position) vec4f {
 fn fragment(@builtin(position) position: vec4f) -> @location(0) vec4f {
   let color = textureLoad(inputTexture, vec2i(position.xy), 0);
   let alpha = select(color.a, 1.0, opaque);
-  if (!(alpha > 0.0)) {
+  if (alpha == 0.0 || (standardRange && !(alpha > 0.0))) {
     return vec4f(0);
   }
   var linearP3 = decodeSrgb(color.rgb / alpha);
   if (!sourceP3) {
     linearP3 = srgbToP3 * linearP3;
   }
-  let sRGB = encodeSrgb(p3ToSrgb * clamp(linearP3, vec3f(0), vec3f(1)));
+  if (standardRange) {
+    linearP3 = clamp(linearP3, vec3f(0), vec3f(1));
+  }
+  let sRGB = encodeSrgb(p3ToSrgb * linearP3);
   return vec4f(sRGB * alpha, alpha);
 }
 )";
@@ -262,19 +266,23 @@ struct Surface {
   std::shared_ptr<Endpoint> endpoint;
   wgpu::Device device;
   uint32_t width = 0, height = 0;
+  uint32_t maxTextureDimension2D = 0;
   wgpu::TextureUsage usage;
   wgpu::TextureFormat format = wgpu::TextureFormat::BGRA8Unorm;
-  bool srgbView = false;
+  std::vector<wgpu::TextureFormat> viewFormats;
   bool displayP3 = false;
   bool extendedToneMapping = false;
   bool opaque = true;
-  bool invalidUsage = false;
+  bool unknownUsage = false;
+  bool invalidConfiguration = false;
+  bool invalidSize = false;
   std::vector<std::shared_ptr<Storage>> pool;
   std::shared_ptr<Storage> current;
   wgpu::Texture colorInput;
   bool outputFrozen = false;
-  wgpu::Texture projectionInput;
-  wgpu::RenderPipeline standardProjection;
+  wgpu::Texture lastDrawingBuffer;
+  wgpu::RenderPipeline colorProjection;
+  wgpu::BindGroup projectionBinding;
 #if FLAX_WEBGPU_BENCHMARK
   std::shared_ptr<BenchmarkMetrics> metrics;
 #endif
@@ -310,14 +318,34 @@ struct Surface {
     current.reset();
     return result;
   }
-  void unconfigure() {
+  void resetDrawingBuffer() {
     discardCurrent();
     if ([endpoint->output publish:nil] && endpoint->textureId)
       [endpoint->registry textureFrameAvailable:endpoint->textureId];
-    projectionInput = nullptr;
-    standardProjection = nullptr;
+    projectionBinding = nullptr;
+    colorProjection = nullptr;
+    lastDrawingBuffer = nullptr;
     pool.clear();
+  }
+  void unconfigure() {
+    resetDrawingBuffer();
+    viewFormats = std::vector<wgpu::TextureFormat>{};
     device = nullptr;
+  }
+  void setSize(uint32_t nextWidth, uint32_t nextHeight) {
+    width = nextWidth;
+    height = nextHeight;
+    invalidSize = !width || !height || width > maxTextureDimension2D ||
+                  height > maxTextureDimension2D;
+  }
+  void validateTextureDescriptor(const wgpu::TextureDescriptor &descriptor) {
+    if (unknownUsage) {
+      // Dawn also has native-only usage bits; they are not WebGPU permissions.
+      device.InjectError(wgpu::ErrorType::Validation,
+                         "Invalid canvas texture usage flags");
+    } else {
+      device.ValidateTextureDescriptor(&descriptor);
+    }
   }
   ~Surface() {
     if (auto state = owner.lock()) {
@@ -413,17 +441,13 @@ struct Surface {
     descriptor.dimension = wgpu::TextureDimension::e2D;
     descriptor.size = {width, height, 1};
     descriptor.format = format;
-    const auto viewFormat = format == wgpu::TextureFormat::BGRA8Unorm
-                                ? wgpu::TextureFormat::BGRA8UnormSrgb
-                                : wgpu::TextureFormat::RGBA8UnormSrgb;
-    descriptor.viewFormatCount = srgbView ? 1 : 0;
-    descriptor.viewFormats = srgbView ? &viewFormat : nullptr;
+    descriptor.viewFormatCount = viewFormats.size();
+    descriptor.viewFormats = viewFormats.data();
     descriptor.usage = usage;
-    if (invalidUsage) {
+    if (invalidConfiguration || invalidSize) {
       // Invalid configurations still expose an error texture with the requested
       // properties, without acquiring or publishing IOSurface storage.
-      device.InjectError(wgpu::ErrorType::Validation,
-                         "The canvas configuration has invalid texture usage");
+      validateTextureDescriptor(descriptor);
       return device.CreateErrorTexture(&descriptor);
     }
     wgpu::DawnTextureInternalUsageDescriptor internal;
@@ -453,8 +477,7 @@ struct Surface {
       wgpu::TextureDescriptor output;
       output.size = descriptor.size;
       output.format = presentationFormat();
-      output.usage =
-          wgpu::TextureUsage::CopyDst | wgpu::TextureUsage::RenderAttachment;
+      output.usage = wgpu::TextureUsage::RenderAttachment;
       frame->texture = frame->memory.CreateTexture(&output);
     } else {
       frame->texture = frame->memory.CreateTexture(&descriptor);
@@ -485,22 +508,22 @@ struct Surface {
     }
 #endif
     if (usesColorInput) {
-      internal.internalUsage |=
-          wgpu::TextureUsage::CopySrc | wgpu::TextureUsage::TextureBinding;
+      internal.internalUsage |= wgpu::TextureUsage::CopySrc;
       colorInput = device.CreateTexture(&descriptor);
       return colorInput;
     }
     return current->texture;
   }
-  void projectStandard() {
-    if (!standardProjection) {
+  void renderColorOutput() {
+    if (!colorProjection) {
       wgpu::ShaderSourceWGSL wgsl;
-      wgsl.code = kStandardProjection;
+      wgsl.code = kColorProjection;
       wgpu::ShaderModuleDescriptor shader;
       shader.nextInChain = &wgsl;
       auto module = device.CreateShaderModule(&shader);
       wgpu::ConstantEntry constants[] = {
           {.key = "sourceP3", .value = double(displayP3)},
+          {.key = "standardRange", .value = double(projectsStandardRange())},
           {.key = "opaque", .value = double(opaque)},
       };
       wgpu::ColorTargetState target;
@@ -508,7 +531,7 @@ struct Surface {
       wgpu::FragmentState fragment;
       fragment.module = module;
       fragment.entryPoint = "fragment";
-      fragment.constantCount = 2;
+      fragment.constantCount = std::size(constants);
       fragment.constants = constants;
       fragment.targetCount = 1;
       fragment.targets = &target;
@@ -516,38 +539,32 @@ struct Surface {
       pipeline.vertex.module = module;
       pipeline.vertex.entryPoint = "vertex";
       pipeline.fragment = &fragment;
-      standardProjection = device.CreateRenderPipeline(&pipeline);
+      colorProjection = device.CreateRenderPipeline(&pipeline);
+
+      // One texture keeps the raw drawing buffer after the JS texture expires.
+      wgpu::TextureDescriptor descriptor;
+      descriptor.size = {width, height, 1};
+      descriptor.format = format;
+      descriptor.usage = wgpu::TextureUsage::CopyDst |
+                         wgpu::TextureUsage::CopySrc |
+                         wgpu::TextureUsage::TextureBinding;
+      lastDrawingBuffer = device.CreateTexture(&descriptor);
+      wgpu::BindGroupEntry entry{.textureView = lastDrawingBuffer.CreateView()};
+      wgpu::BindGroupDescriptor binding;
+      binding.layout = colorProjection.GetBindGroupLayout(0);
+      binding.entryCount = 1;
+      binding.entries = &entry;
+      projectionBinding = device.CreateBindGroup(&binding);
     }
     wgpu::DawnEncoderInternalUsageDescriptor internal;
     internal.useInternalUsages = true;
     wgpu::CommandEncoderDescriptor commands;
     commands.nextInChain = &internal;
     auto encoder = device.CreateCommandEncoder(&commands);
-    auto source = colorInput;
-    if (!(usage & wgpu::TextureUsage::TextureBinding)) {
-      // A public Dawn bind group validates the declared usage of its texture.
-      if (!projectionInput) {
-        wgpu::TextureDescriptor descriptor;
-        descriptor.size = {width, height, 1};
-        descriptor.format = format;
-        descriptor.usage =
-            wgpu::TextureUsage::CopyDst | wgpu::TextureUsage::TextureBinding;
-        projectionInput = device.CreateTexture(&descriptor);
-      }
-      wgpu::TexelCopyTextureInfo input{
-          .texture = colorInput, .aspect = wgpu::TextureAspect::All};
-      wgpu::TexelCopyTextureInfo output{
-          .texture = projectionInput, .aspect = wgpu::TextureAspect::All};
-      wgpu::Extent3D size{width, height, 1};
-      encoder.CopyTextureToTexture(&input, &output, &size);
-      source = projectionInput;
-    }
-    wgpu::BindGroupEntry entry{.textureView = source.CreateView()};
-    wgpu::BindGroupDescriptor binding;
-    binding.layout = standardProjection.GetBindGroupLayout(0);
-    binding.entryCount = 1;
-    binding.entries = &entry;
-    auto bindGroup = device.CreateBindGroup(&binding);
+    wgpu::TexelCopyTextureInfo input{.texture = colorInput};
+    wgpu::TexelCopyTextureInfo retained{.texture = lastDrawingBuffer};
+    wgpu::Extent3D size{width, height, 1};
+    encoder.CopyTextureToTexture(&input, &retained, &size);
     wgpu::RenderPassColorAttachment color;
     color.view = current->texture.CreateView();
     color.loadOp = wgpu::LoadOp::Clear;
@@ -556,38 +573,12 @@ struct Surface {
     passDescriptor.colorAttachmentCount = 1;
     passDescriptor.colorAttachments = &color;
     auto pass = encoder.BeginRenderPass(&passDescriptor);
-    pass.SetPipeline(standardProjection);
-    pass.SetBindGroup(0, bindGroup);
+    pass.SetPipeline(colorProjection);
+    pass.SetBindGroup(0, projectionBinding);
     pass.Draw(3);
     pass.End();
     auto projected = encoder.Finish();
     device.GetQueue().Submit(1, &projected);
-  }
-  void renderColorOutput() {
-    if (projectsStandardRange()) {
-      projectStandard();
-      return;
-    }
-    // Flutter samples extended sRGB. Keep out-of-gamut channels in the FP16 IOSurface.
-    constexpr float decode[] = {2.4f, 1.0f / 1.055f, 0.055f / 1.055f,
-                                1.0f / 12.92f, 0.04045f, 0, 0};
-    constexpr float toSrgb[] = {1.22494018f, -0.04205695f, -0.01963755f,
-                                -0.22494018f, 1.04205695f, -0.07863605f,
-                                0, 0, 1.0982736f};
-    constexpr float encode[] = {1.0f / 2.4f, 1.13711897f, 0, 12.92f,
-                                0.0031308f, -0.055f, 0};
-    const auto alpha = opaque ? wgpu::AlphaMode::Opaque : wgpu::AlphaMode::Premultiplied;
-    wgpu::CopyTextureForBrowserOptions options;
-    options.needsColorSpaceConversion = true;
-    options.srcAlphaMode = options.dstAlphaMode = alpha;
-    options.srcTransferFunctionParameters = decode;
-    options.conversionMatrix = toSrgb;
-    options.dstTransferFunctionParameters = encode;
-    options.internalUsage = true;
-    wgpu::TexelCopyTextureInfo input{.texture = colorInput, .aspect = wgpu::TextureAspect::All};
-    wgpu::TexelCopyTextureInfo output{.texture = current->texture, .aspect = wgpu::TextureAspect::All};
-    wgpu::Extent3D size{width, height, 1};
-    device.GetQueue().CopyTextureForBrowser(&input, &output, &size, &options);
   }
   void initializeOutput(wgpu::LoadOp loadOp) {
     wgpu::DawnEncoderInternalUsageDescriptor internal;
@@ -771,58 +762,63 @@ extern "C" void *flax_webgpu_canvas_from_token(void *context, void *value) {
   return result;
 }
 extern "C" int32_t flax_webgpu_canvas_configure(void *value, WGPUDevice device,
-                                                uint32_t width, uint32_t height,
-                                                uint64_t usage, uint32_t opaque,
-                                                WGPUTextureFormat format,
-                                                uint32_t srgbView,
+                                                const WGPUTextureDescriptor *input,
+                                                uint32_t opaque,
                                                 uint32_t displayP3,
                                                 uint32_t extendedToneMapping) {
   return status([&] {
     auto &canvas = *static_cast<Surface *>(value);
-    require(width && height, "WebGPU canvas dimensions must be nonzero");
+    const auto &descriptor = *reinterpret_cast<const wgpu::TextureDescriptor *>(input);
+    const auto format = descriptor.format;
+    require(format == wgpu::TextureFormat::BGRA8Unorm ||
+                format == wgpu::TextureFormat::RGBA8Unorm ||
+                format == wgpu::TextureFormat::RGBA16Float,
+            "Unsupported canvas texture format");
     auto nextDevice = wgpu::Device::Acquire(retained(device));
     wgpu::Limits limits;
     nextDevice.GetLimits(&limits);
-    require(width <= limits.maxTextureDimension2D &&
-                height <= limits.maxTextureDimension2D,
-            "The canvas exceeds the device texture size limit");
-    require(format == WGPUTextureFormat_BGRA8Unorm ||
-                format == WGPUTextureFormat_RGBA8Unorm ||
-                format == WGPUTextureFormat_RGBA16Float,
-            "Unsupported canvas texture format");
-    canvas.unconfigure();
+    std::vector<wgpu::TextureFormat> viewFormats;
+    if (descriptor.viewFormatCount)
+      viewFormats.assign(descriptor.viewFormats,
+                         descriptor.viewFormats + descriptor.viewFormatCount);
+    const auto srgbFormat = format == wgpu::TextureFormat::BGRA8Unorm
+                                ? wgpu::TextureFormat::BGRA8UnormSrgb
+                            : format == wgpu::TextureFormat::RGBA8Unorm
+                                ? wgpu::TextureFormat::RGBA8UnormSrgb
+                                : format;
+    const bool incompatibleViews = std::ranges::any_of(viewFormats, [&](auto view) {
+      return view != format && view != srgbFormat;
+    });
+    canvas.resetDrawingBuffer();
     canvas.device = std::move(nextDevice);
-    canvas.format = wgpu::TextureFormat(format);
-    canvas.srgbView = srgbView != 0;
+    canvas.format = format;
+    canvas.viewFormats = std::move(viewFormats);
     canvas.displayP3 = displayP3 != 0;
     canvas.extendedToneMapping = extendedToneMapping != 0;
-    canvas.width = width;
-    canvas.height = height;
-    canvas.usage = wgpu::TextureUsage(usage);
+    canvas.maxTextureDimension2D = limits.maxTextureDimension2D;
+    canvas.setSize(descriptor.size.width, descriptor.size.height);
+    canvas.usage = descriptor.usage;
     canvas.opaque = opaque;
     constexpr auto publicUsages = wgpu::TextureUsage::CopySrc |
                                   wgpu::TextureUsage::CopyDst |
                                   wgpu::TextureUsage::TextureBinding |
                                   wgpu::TextureUsage::StorageBinding |
                                   wgpu::TextureUsage::RenderAttachment;
-    const bool unknownUsage = bool(canvas.usage & ~publicUsages);
-    canvas.invalidUsage =
-        canvas.usage == wgpu::TextureUsage::None || unknownUsage ||
+    canvas.unknownUsage = bool(canvas.usage & ~publicUsages);
+    canvas.invalidConfiguration =
+        incompatibleViews || canvas.unknownUsage ||
+        canvas.usage == wgpu::TextureUsage::None ||
         (canvas.format == wgpu::TextureFormat::BGRA8Unorm &&
          bool(canvas.usage & wgpu::TextureUsage::StorageBinding) &&
          !canvas.device.HasFeature(wgpu::FeatureName::BGRA8UnormStorage));
-    if (unknownUsage) {
-      // Dawn also has native-only usage bits; they are not WebGPU permissions.
-      canvas.device.InjectError(wgpu::ErrorType::Validation,
-                                "Invalid canvas texture usage flags");
-    } else {
-      wgpu::TextureDescriptor descriptor;
-      descriptor.size = {width, height, 1};
-      descriptor.format = canvas.format;
-      descriptor.usage = canvas.usage;
-      canvas.device.ValidateTextureDescriptor(&descriptor);
-    }
+    canvas.validateTextureDescriptor(descriptor);
   });
+}
+extern "C" void flax_webgpu_canvas_resize(void *value, uint32_t width,
+                                           uint32_t height) {
+  auto &canvas = *static_cast<Surface *>(value);
+  canvas.resetDrawingBuffer();
+  canvas.setSize(width, height);
 }
 extern "C" WGPUTexture flax_webgpu_canvas_texture(void *value) {
   WGPUTexture result = nullptr;

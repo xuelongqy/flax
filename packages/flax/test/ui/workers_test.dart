@@ -468,45 +468,78 @@ void main() {
         const receiver = structuredClone(moved,{transfer:[moved]});
         assert(moved.width === 0 && receiver.width === 1,'same realm commit');
         receiver.close();
+        const captured = host.elementImage(host.read(pixels));
+        rejected(() => structuredClone(captured));
+        const untouched = new ArrayBuffer(3);
+        rejected(() => structuredClone({captured, get last(){ captured.close(); return 1; }},
+          {transfer:[captured,untouched]}));
+        assert(untouched.byteLength === 3, 'failed ElementImage transfer must not detach siblings');
+        const snapshot = host.elementImage(host.read(pixels));
+        const transferred = structuredClone({snapshot, again:snapshot},{transfer:[snapshot]});
+        assert(transferred.snapshot instanceof ElementImage && transferred.snapshot === transferred.again,
+          'ElementImage transfer brand and identity');
+        assert(host.readElementImage(transferred.snapshot).data.join() === '17,34,51,255',
+          'ElementImage transfer pixels');
+        rejected(() => host.readElementImage(snapshot), 'InvalidStateError');
+        transferred.snapshot.close();
         return true;
       }
-      function verifyGraph(value) {
-        if (!(value.image instanceof ImageData) || !(value.bitmap instanceof ImageBitmap) ||
-            value.image !== value.alias || value.image.data !== value.data ||
-            value.data.buffer !== value.buffer || value.map.get(value.image) !== value.bitmap ||
-            value.bitmap !== value.again || value.data[0] !== 17 || value.bytes.byteLength !== 5)
-          throw Error('Cross-realm image graph lost identity or bytes');
+      function verifyGraphs(values) {
         const host = globalThis[Symbol.for('flax.image.host')];
-        if (host.read(value.bitmap).data.join() !== '17,34,51,255') throw Error('Cross-realm bitmap pixels');
+        for (const value of values) {
+          const ArrayType = value.hdr ? Float16Array : Uint8ClampedArray;
+          const colorSpace = value.hdr ? 'display-p3' : 'srgb';
+          const pixelFormat = value.hdr ? 'rgba-float16' : 'rgba-unorm8';
+          if (!(value.image instanceof ImageData) || !(value.bitmap instanceof ImageBitmap) ||
+              !(value.data instanceof ArrayType) || value.image !== value.alias ||
+              value.image.data !== value.data || value.data.buffer !== value.buffer ||
+              value.data.byteOffset !== (value.hdr ? 4 : 0) ||
+              value.map.get(value.image) !== value.bitmap || value.bitmap !== value.again ||
+              value.data.join() !== (value.hdr ? '1.5,-0.25,0.03125,0.5' : '17,34,51,255') ||
+              value.image.colorSpace !== colorSpace || value.image.pixelFormat !== pixelFormat ||
+              value.bytes.byteLength !== 5)
+            throw Error('Cross-realm image graph lost identity or pixels: ' + pixelFormat);
+          const pixels = host.read(value.bitmap);
+          const data = value.hdr
+            ? new Float16Array(pixels.data.buffer, pixels.data.byteOffset, 4)
+            : pixels.data;
+          if (pixels.colorSpace !== colorSpace || pixels.pixelFormat !== pixelFormat ||
+              pixels.premultiplied !== value.hdr ||
+              data.join() !== (value.hdr ? '0.75,-0.125,0.015625,0.5' : '17,34,51,255'))
+            throw Error('Cross-realm bitmap pixels: ' + pixelFormat);
+        }
       }
-      function entry(checkImages, verifyGraph) {
+      function transfers(values) {
+        return values.flatMap(value => [value.bitmap, value.buffer, value.bytes]);
+      }
+      function entry(checkImages, verifyGraphs, transfers) {
         onmessage = async ({data}) => {
           try {
             if (data.check) { postMessage({checked:await checkImages(postMessage)}); return; }
-            verifyGraph(data.value);
+            verifyGraphs(data.values);
             if (data.nested) {
-              const source = '('+entry.toString()+')('+checkImages.toString()+','+verifyGraph.toString()+')';
+              const source = '('+entry.toString()+')('+[checkImages,verifyGraphs,transfers].join(',')+')';
               const url = URL.createObjectURL(new Blob([source]));
               const child = new Worker(url);
-              const value = await new Promise((resolve,reject) => {
+              const values = await new Promise((resolve,reject) => {
                 child.onerror = event => reject(Error(event.message));
-                child.onmessage = ({data}) => data.error ? reject(Error(data.error)) : resolve(data.value);
-                child.postMessage({value:data.value},[data.value.bitmap,data.value.buffer,data.value.bytes]);
+                child.onmessage = ({data}) => data.error ? reject(Error(data.error)) : resolve(data.values);
+                child.postMessage({values:data.values},transfers(data.values));
               });
               URL.revokeObjectURL(url);
-              verifyGraph(value);
-              postMessage({value},[value.bitmap,value.buffer,value.bytes]);
+              verifyGraphs(values);
+              postMessage({values},transfers(values));
             } else {
-              const value = structuredClone(data.value);
-              data.value.bitmap.close();
-              verifyGraph(value);
-              postMessage({value},[value.bitmap,value.buffer,value.bytes]);
+              const values = structuredClone(data.values);
+              for (const value of data.values) value.bitmap.close();
+              verifyGraphs(values);
+              postMessage({values},transfers(values));
             }
             close();
           } catch(error) { postMessage({error:String(error.stack||error)}); close(); }
         };
       }
-      const source = '('+entry.toString()+')('+checkImages.toString()+','+verifyGraph.toString()+')';
+      const source = '('+entry.toString()+')('+[checkImages,verifyGraphs,transfers].join(',')+')';
       const url = URL.createObjectURL(new Blob([source]));
       for (const nested of [false,true]) {
         const worker = new Worker(url);
@@ -517,17 +550,25 @@ void main() {
         });
         let answer = receive(); worker.postMessage({check:true});
         if (!(await answer).checked) throw Error('Worker image checks omitted');
-        const data = new Uint8ClampedArray([17,34,51,255]), image = new ImageData(data,1);
-        const bitmap = await createImageBitmap(image), bytes = new ArrayBuffer(5);
-        const value = {image,alias:image,data,buffer:data.buffer,bitmap,again:bitmap,bytes,map:new Map([[image,bitmap]])};
+        const values = [];
+        for (const hdr of [false,true]) {
+          const data = hdr ? new Float16Array(new ArrayBuffer(16),4,4) : new Uint8ClampedArray(4);
+          data.set(hdr ? [1.5,-0.25,0.03125,0.5] : [17,34,51,255]);
+          const settings = hdr ? {colorSpace:'display-p3',pixelFormat:'rgba-float16'} : undefined;
+          const image = new ImageData(data,1,1,settings);
+          const bitmap = await createImageBitmap(image, hdr ? {premultiplyAlpha:'premultiply'} : undefined);
+          const bytes = new ArrayBuffer(5);
+          values.push({hdr,image,alias:image,data,buffer:data.buffer,bitmap,again:bitmap,bytes,map:new Map([[image,bitmap]])});
+        }
         answer = receive();
-        worker.postMessage({value,nested},nested ? [bitmap,data.buffer,bytes] : []);
-        if (bitmap.width !== (nested ? 0 : 1) || data.byteLength !== (nested ? 0 : 4))
-          throw Error('Sender ownership');
-        const returned = (await answer).value;
+        worker.postMessage({values,nested},nested ? transfers(values) : []);
+        for (const {hdr,bitmap,data} of values)
+          if (bitmap.width !== (nested ? 0 : 1) || data.byteLength !== (nested ? 0 : hdr ? 8 : 4))
+            throw Error('Sender ownership');
+        const returned = (await answer).values;
         await new Promise(resolve => setTimeout(resolve,20));
-        verifyGraph(returned);
-        returned.bitmap.close(); bitmap.close();
+        verifyGraphs(returned);
+        for (const value of [...returned,...values]) value.bitmap.close();
       }
       URL.revokeObjectURL(url);
     ''', waitForWorkersToExit: true);

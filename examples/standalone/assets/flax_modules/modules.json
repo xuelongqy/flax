@@ -78,7 +78,7 @@
       "specifier": "@flax/core/bindings",
       "owner": "@flax/core-runtime:dist/runtime/bindings.js",
       "version": "0.0.0",
-      "artifact": "510f8fb96d698e1f221acc68d77c0886f815bb6e211a8d0a28093247c86efaab",
+      "artifact": "7455f6e8671c60c26374005369228bbc5a6b6a5fc41ad5f233f07b282ffea87c",
       "asset": "assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js",
       "package": "@flax/core-runtime",
       "source": "dist/runtime/bindings.js",

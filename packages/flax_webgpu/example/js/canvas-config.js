@@ -304,25 +304,25 @@ export async function verifyCanvasConfiguration(device, assert, snapshot) {
       lostDevice.destroy();
     }
   }
-  async function invalidUsage(format, usage) {
-    await validation(
-      device,
-      () => context.configure({ device, format, usage }),
-      true,
-      `${format}/${usage} rejects invalid configuration usage`,
-    );
-    check(
-      context.getConfiguration().usage === usage,
-      'Invalid usage remains reflected',
-    );
+  async function invalidCurrentTexture(label, previous) {
+    const { format, usage } = context.getConfiguration();
+    let texture;
     await validation(
       device,
       () => {
-        const texture = context.getCurrentTexture();
-        check(texture.usage === usage, 'Error texture retains the requested usage');
+        texture = context.getCurrentTexture();
         check(
-          texture.width === 2 && texture.format === format,
-          'Error texture properties',
+          texture instanceof GPUTexture &&
+            texture !== previous &&
+            texture.width === canvas.width &&
+            texture.height === canvas.height &&
+            texture.depthOrArrayLayers === 1 &&
+            texture.mipLevelCount === 1 &&
+            texture.sampleCount === 1 &&
+            texture.dimension === '2d' &&
+            texture.usage === usage &&
+            texture.format === format,
+          `${label} returns a new GPUTexture with the requested metadata`,
         );
         check(
           context.getCurrentTexture() === texture,
@@ -335,9 +335,80 @@ export async function verifyCanvasConfiguration(device, assert, snapshot) {
         );
       },
       true,
-      'Invalid configuration returns a validation error texture',
+      `${label} reports a validation error on acquisition`,
     );
+    return texture;
+  }
+  async function invalidUsage(format, usage) {
+    await validation(
+      device,
+      () => context.configure({ device, format, usage }),
+      true,
+      `${format}/${usage} rejects invalid configuration usage`,
+    );
+    check(
+      context.getConfiguration().usage === usage,
+      'Invalid usage remains reflected',
+    );
+    await invalidCurrentTexture('Invalid usage');
     context.unconfigure();
+  }
+  async function invalidCanvasDescriptor() {
+    const config = { device, format: 'rgba8unorm', usage: GPUTextureUsage.COPY_DST };
+    context.configure({ device, format: config.format });
+    const previous = context.getCurrentTexture();
+    const viewFormats = ['rgba8unorm-srgb', 'bgra8unorm'];
+    await validation(
+      device,
+      () => context.configure({ ...config, viewFormats }),
+      true,
+      'Incompatible canvas view format at configure',
+    );
+    check(
+      context.getConfiguration().viewFormats.join() === viewFormats.join() &&
+        context.getConfiguration().usage === config.usage,
+      'Invalid view format configuration remains reflected',
+    );
+    await invalidCurrentTexture('Incompatible canvas view format', previous);
+    context.unconfigure();
+    const invalidWidths = [0, device.limits.maxTextureDimension2D + 1];
+    // Worker canvases use the transfer token's 32-bit dimensions.
+    if (typeof document !== 'undefined') invalidWidths.push(2 ** 32 + 2);
+    for (const width of invalidWidths) {
+      canvas.width = width;
+      await validation(
+        device,
+        () => context.configure(config),
+        true,
+        `Invalid canvas width ${width} at configure`,
+      );
+      const invalid = await invalidCurrentTexture(`Configured width ${width}`);
+      let recovered;
+      await validation(
+        device,
+        () => {
+          canvas.width = 2;
+          recovered = context.getCurrentTexture();
+          check(
+            recovered !== invalid && recovered.width === 2,
+            'Valid resize recovers',
+          );
+          recovered.createView();
+        },
+        false,
+        'Valid resize recovers without reconfiguration',
+      );
+      await validation(
+        device,
+        () => (canvas.width = width),
+        false,
+        `Resize to invalid width ${width} defers validation`,
+      );
+      await invalidCurrentTexture(`Resized width ${width}`, recovered);
+      context.unconfigure();
+    }
+    canvas.width = 2;
+    cases.push('descriptor-validation');
   }
   async function exercise(target, format, usage) {
     const copy = usage === GPUTextureUsage.COPY_DST;
@@ -614,6 +685,7 @@ export async function verifyCanvasConfiguration(device, assert, snapshot) {
     const texture = draw([0.25, 0.125, 0.0625, 0.5]);
     const bitmap = createImageBitmap(canvas, { premultiplyAlpha: 'none' });
     const exporting = canvas.convertToBlob();
+    const jpegExport = canvas.convertToBlob({ type: 'IMAGE/JPEG', quality: 0.9 });
     check(
       context.getCurrentTexture() === texture,
       'Color capture preserves texture identity',
@@ -626,18 +698,75 @@ export async function verifyCanvasConfiguration(device, assert, snapshot) {
       'createImageBitmap captures the P3 pixels at call time',
       2,
     );
+    function checkPng(buffer, depth, colorTag, label) {
+      const bytes = new DataView(buffer);
+      check(
+        bytes.getUint32(0) === 0x89504e47 && bytes.getUint8(24) === depth,
+        `${label} writes ${depth}-bit PNG samples`,
+      );
+      let profile;
+      let dpi96 = false;
+      for (let offset = 8; offset + 12 <= bytes.byteLength;) {
+        const length = bytes.getUint32(offset);
+        const name = bytes.getUint32(offset + 4);
+        const data = offset + 8;
+        if (name === 0x63494350 && length === 4) profile = bytes.getUint32(data);
+        if (name === 0x70485973 && length === 9)
+          dpi96 =
+            bytes.getUint32(data) === 3780 &&
+            bytes.getUint32(data + 4) === 3780 &&
+            bytes.getUint8(data + 8) === 1;
+        offset += 12 + length;
+      }
+      check(profile === colorTag && dpi96, `${label} writes its color tag and 96 dpi`);
+    }
     const blob = await exporting;
     check(blob.type === 'image/png', 'The default color canvas export is PNG');
-    expectColor(
-      await snapshot(
-        device,
-        canvas,
-        await createImageBitmap(blob, { premultiplyAlpha: 'none' }),
-      ),
-      [137, 59, 21, 128],
-      'PNG exports the current canvas as straight sRGB',
-      2,
+    checkPng(await blob.arrayBuffer(), 16, 0x09100001, 'Extended FP16 export');
+    const jpeg = await jpegExport;
+    check(
+      jpeg.type === 'image/jpeg' &&
+        new TextDecoder().decode(await jpeg.arrayBuffer()).includes('ICC_PROFILE'),
+      'JPEG export normalizes MIME and includes the SDR Display P3 profile',
     );
+    const sdrCanvas =
+      typeof document === 'undefined'
+        ? new OffscreenCanvas(1, 1)
+        : document.createElement('canvas');
+    sdrCanvas.width = sdrCanvas.height = 1;
+    const sdrContext = sdrCanvas.getContext('webgpu');
+    try {
+      sdrContext.configure({
+        device,
+        format: 'rgba8unorm',
+        colorSpace: 'display-p3',
+        usage: GPUTextureUsage.COPY_DST,
+      });
+      device.queue.writeTexture(
+        { texture: sdrContext.getCurrentTexture() },
+        new Uint8Array([180, 32, 12, 255]),
+        {},
+        [1, 1],
+      );
+      const type = 'application/x-unsupported';
+      const sdrBlob = sdrCanvas.toBlob
+        ? await new Promise((resolve) => sdrCanvas.toBlob(resolve, type))
+        : await sdrCanvas.convertToBlob({ type });
+      check(sdrBlob?.type === 'image/png', 'Unsupported MIME falls back to PNG');
+      checkPng(await sdrBlob.arrayBuffer(), 8, 0x0c0d0001, 'SDR Display P3 export');
+      if (sdrCanvas.toDataURL) {
+        const prefix = 'data:image/png;base64,';
+        const url = sdrCanvas.toDataURL(type);
+        check(url.startsWith(prefix), 'toDataURL falls back to PNG');
+        const encoded = Uint8Array.from(atob(url.slice(prefix.length)), (c) =>
+          c.charCodeAt(0),
+        );
+        checkPng(encoded.buffer, 8, 0x0c0d0001, 'Display P3 data URL');
+      }
+    } finally {
+      sdrContext.unconfigure();
+    }
+    cases.push('color-exports');
     expectColor(
       await snapshot(device, canvas),
       [0, 255, 0, 128],
@@ -698,9 +827,6 @@ export async function verifyCanvasConfiguration(device, assert, snapshot) {
       context.getConfiguration() === null,
       'Configuration is null before configure',
     );
-    const zero = new OffscreenCanvas(0, 2).getContext('webgpu');
-    throws(() => zero.configure({ device, format: 'rgba8unorm' }), 'OperationError');
-    check(zero.getConfiguration() === null, 'Failed configure retains null state');
     throws(() => context.getCurrentTexture(), 'InvalidStateError');
     context.configure({ device, format: 'rgba8unorm' });
     const defaults = context.getConfiguration();
@@ -785,6 +911,7 @@ export async function verifyCanvasConfiguration(device, assert, snapshot) {
       ['astc-4x4-unorm', 'texture-compression-astc'],
       ['rgba16snorm', 'texture-formats-tier1'],
     ]) {
+      if (device.features.has(feature)) continue;
       throws(
         () =>
           context.configure({
@@ -793,34 +920,28 @@ export async function verifyCanvasConfiguration(device, assert, snapshot) {
             viewFormats: ['bgra8unorm', format],
             colorSpace: 'display-p3',
           }),
-        device.features.has(feature) ? 'NotSupportedError' : 'TypeError',
+        'TypeError',
       );
       check(
         context.getCurrentTexture() === preserved,
         'View-format feature validation precedes profile restrictions and preserves current texture',
       );
     }
-    for (const options of [{ viewFormats: ['bgra8unorm'] }]) {
-      throws(
-        () => context.configure({ device, format: 'rgba8unorm', ...options }),
-        'NotSupportedError',
-      );
-      throws(
-        () =>
-          context.configure({
-            device,
-            format: 'rgba8unorm',
-            ...options,
-            usage:
-              GPUTextureUsage.TRANSIENT_ATTACHMENT | GPUTextureUsage.RENDER_ATTACHMENT,
-          }),
-        'TypeError',
-      );
-      check(
-        context.getCurrentTexture() === preserved,
-        'Profile and transient rejection preserve current texture',
-      );
-    }
+    throws(
+      () =>
+        context.configure({
+          device,
+          format: 'rgba8unorm',
+          viewFormats: ['bgra8unorm'],
+          usage:
+            GPUTextureUsage.TRANSIENT_ATTACHMENT | GPUTextureUsage.RENDER_ATTACHMENT,
+        }),
+      'TypeError',
+    );
+    check(
+      context.getCurrentTexture() === preserved,
+      'Transient rejection precedes view-format validation and preserves current texture',
+    );
     throws(
       () =>
         context.configure({
@@ -848,6 +969,7 @@ export async function verifyCanvasConfiguration(device, assert, snapshot) {
       'Native internal usage and interop features remain private',
     );
     await transientAttachments();
+    await invalidCanvasDescriptor();
     await colorProfiles();
     for (const usage of [0, 0x40000000]) await invalidUsage('rgba8unorm', usage);
     if (!device.features.has('bgra8unorm-storage'))

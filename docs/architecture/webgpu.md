@@ -9,22 +9,25 @@ implementation or a published capability. See the
 ## Widget image uploads
 
 With [Widget canvas sources](canvas.md#widget-canvas-sources) enabled in the root
-session, `GPUQueue.copyElementImageToTexture(source, destination)` supports the
-Chrome 150 dictionary form used by Three.js `HTMLTexture`. The newer
+session, `GPUQueue.copyElementImageToTexture(source, destination)` supports the Chrome
+150 dictionary form used by Three.js `HTMLTexture`. The newer
 `drawElementImageToTexture(source, destination)` accepts `sourceX`, `sourceY`,
-`sourceWidth`, and `sourceHeight` and a tagged destination texture with optional
-`size`. These experimental interfaces are exported separately as
-`FlaxElementImageQueue`, `FlaxDrawableCanvas`, and `FlaxWidgetCanvasSource` from
-`@flax/webgpu`. [Chrome's API changes](https://developer.chrome.com/blog/html-in-canvas-ot-changes#webgpu_1)
+`sourceWidth`, and `sourceHeight` and a tagged destination texture with optional `size`.
+These experimental interfaces are exported separately as `FlaxElementImageQueue`,
+`FlaxDrawableCanvas`, and `FlaxWidgetCanvasSource` from `@flax/webgpu`.
+[Chrome's API changes](https://developer.chrome.com/blog/html-in-canvas-ot-changes#webgpu_1)
 
-Both methods synchronously upload the last painted snapshot through the existing
-Dawn external image path, including destination alpha and color space conversion.
-Widget rectangles use logical pixels. All four crop fields must be supplied together.
-Outsets beyond the captured boundary sample transparent pixels. Scaling uses nearest
-sampling of the cached raster and a copy writes one destination texture layer.
-Worker uploads continue to use the existing bitmap path. The Widget profile supports
-registered direct children and excludes HTML layout, `ElementImage` capture and
-transfer, and canvas-to-DOM geometry updates.
+Both methods synchronously upload the last painted snapshot through the existing Dawn
+external image path, including destination alpha and color space conversion. Widget
+rectangles use logical pixels. All four crop fields must be supplied together. Outsets
+beyond the captured boundary sample transparent pixels. Scaling uses nearest sampling of
+the cached raster and a copy writes one destination texture layer.
+`HTMLCanvasElement.captureElementImage(child)` captures a registered drawable child's
+last painted snapshot. Transfer the result in the message transfer list, then call
+`drawElementImageToTexture` with the received `ElementImage` on a WebGPU Worker queue.
+Worker callers can use the `FlaxWorkerElementImageQueue` type from `@flax/webgpu`. The
+snapshot has its own lifetime and remains usable after the Widget changes or unmounts.
+Call `close()` to release it. Flutter owns the registered children's layout.
 
 ## Worker rendering
 
@@ -149,8 +152,13 @@ Configuration input is snapshotted during dictionary conversion. Each
 `getConfiguration()` call copies the outer dictionary, `viewFormats` and `toneMapping`,
 preserving `GPUDevice` identity; an unconfigured context returns `null`. Device loss
 clears presentation and mapped ranges while preserving the configured device's JS
-identity. Reconfiguration can install a replacement device. See the
-[canvas configuration follow-up](../tasks/webgpu-canvas-configuration.md) for scoped
+identity. Invalid texture descriptors, including incompatible views, are reported
+through GPU validation while the attempted configuration stays visible. A zero size or a
+resize beyond the device limit validates on the next acquisition. Canvas transfers and
+Worker rendering use unsigned 32-bit dimensions in the native ownership token. Larger
+dimensions throw `TypeError` at the token boundary. An invalid frame keeps one error
+texture until expiry. Reconfiguration or valid dimensions can restore presentation. See
+the [canvas configuration follow-up](../tasks/webgpu-canvas-configuration.md) for scoped
 regressions and validation evidence.
 
 ## Native delivery
@@ -203,14 +211,20 @@ explicit image copies, reuses a per-queue staging texture and delegates flip, al
 destination format and color conversion to Dawn's browser-copy operation. This does not
 modify the ordinary zero-copy presentation path.
 
-Canvas snapshots wait for submitted GPU work before reading the IOSurface. A snapshot
-preserves the current texture identity; transfer expires it and publishes transparent
-black, or opaque black for an opaque canvas. The resulting Core bitmap owns its pixels
-independently. Wide-gamut and extended snapshots project to SDR sRGB RGBA8.
-PNG/JPEG/WebP exports use the shared codecs and are explicit CPU readback paths and can
-stall the caller. Unsupported export MIME types fall back to PNG. These paths work in
-the selected Worker profile; the current synchronous GPU readback limit also applies
-there.
+Canvas snapshots wait for submitted GPU work before reading the drawing buffer. A
+snapshot preserves the current texture identity; transfer expires it and publishes
+transparent black, or opaque black for an opaque canvas. The resulting Core bitmap owns
+its pixels independently, including the configured gamut, float16 samples and alpha
+mode. Transformed presentation retains a reusable copy of the unprojected buffer for
+snapshots after frame publication. Direct IOSurface presentation uses the original
+storage. PNG export tags Display P3 and writes float16 sources at 16 bits per channel.
+Extended float16 canvases export HDR PNG in Rec.2020 PQ. JPEG exports use SDR and keep
+the configured color profile. WebP uses the shared sRGB SDR encoder. Unsupported export
+MIME types fall back to PNG.
+
+File export captures pixels at the call. `convertToBlob()` and `toBlob()` compress them
+off the JS thread. The explicit GPU readback can block both main and Worker callers, and
+`toDataURL()` also compresses synchronously.
 
 The Worker acceptance fixture returns `stillImages` with assertions, named cases,
 formats and `pixelSnapshots: true`. Dart acceptance requires those receipts and actual

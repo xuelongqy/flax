@@ -4,10 +4,10 @@
 #include <atomic>
 #include <algorithm>
 #include <chrono>
-#include <condition_variable>
 #include <cstring>
 #include <deque>
 #include <dlfcn.h>
+#include <future>
 #include <limits>
 #include <memory>
 #include <mutex>
@@ -532,6 +532,7 @@ extern "C" int32_t flax_webgpu_device(void *context, WGPUAdapter adapter,
 
 #include "canvas.inc"
 #include "images.inc"
+#include "encode.inc"
 
 extern "C" void flax_webgpu_release_device(WGPUDevice device) {
   Context owner;

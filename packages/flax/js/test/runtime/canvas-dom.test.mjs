@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { installCanvasHost } from '../../dist/host/canvas.js';
 import { Event, EventTarget, DOMException } from '../../dist/host/events.js';
+import { installImageHost } from '../../dist/host/images.js';
 
 function environment(sourceCall = () => undefined) {
   const global = { DOMException },
@@ -84,6 +85,40 @@ test('registered Widget canvas publishes cached pixels before paint and retires 
   assert.equal(canvas.removeChild(hud), hud);
   assert.equal(hud.parentNode, null);
   assert.throws(() => host.sourcePixels(hud), { name: 'InvalidStateError' });
+});
+
+test('captureElementImage owns a drawable direct child snapshot', () => {
+  const { global: g, host } = environment((operation) =>
+    operation === 'canvasSourceSize' ? '1,1' : undefined,
+  );
+  const images = installImageHost(g, () => {}, host, DOMException);
+  g.requestAnimationFrame = () => {};
+  const plain = g.document.createElement('canvas');
+  assert.equal(plain.captureElementImage, undefined);
+  host.configureSources(['hud']);
+  const canvas = g.document.createElement('canvas');
+  const other = g.document.createElement('canvas');
+  const hud = g.document.getElementById('hud');
+  assert.equal(typeof canvas.captureElementImage, 'function');
+  assert.equal(new g.OffscreenCanvas(1, 1).captureElementImage, undefined);
+  canvas.appendChild(hud);
+  assert.throws(() => canvas.captureElementImage(hud), { name: 'InvalidStateError' });
+  canvas.content = 'drawable';
+  assert.throws(() => canvas.captureElementImage(hud), { name: 'InvalidStateError' });
+  host.updateSource('hud', 1, 1, Uint8Array.of(75, 10, 25, 255).buffer);
+  other.content = 'drawable';
+  assert.throws(() => other.captureElementImage(hud), { name: 'InvalidStateError' });
+  const captured = canvas.captureElementImage(hud);
+  assert.ok(captured instanceof g.ElementImage);
+  host.updateSource('hud', 1, 1, Uint8Array.of(100, 20, 30, 255).buffer);
+  assert.deepEqual([...images.readElementImage(captured).data], [75, 10, 25, 255]);
+  canvas.removeChild(hud);
+  assert.throws(() => canvas.captureElementImage(hud), { name: 'InvalidStateError' });
+  assert.equal(images.readElementImage(captured).width, 1);
+  captured.close();
+  assert.throws(() => images.readElementImage(captured), { name: 'InvalidStateError' });
+  images.close();
+  host.close();
 });
 
 test('canvas factories share Core providers; geometry reads stay in JS and queries only return mounted canvases', () => {

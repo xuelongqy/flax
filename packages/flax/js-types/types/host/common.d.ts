@@ -6,7 +6,7 @@ export interface Navigator {
 export type { OffscreenCanvas, OffscreenCanvasConstructor } from './canvas.js';
 export type { CanvasContextMap, CanvasContextOptionsMap } from './canvas-contexts.js';
 export type { HTMLCanvasElement } from './canvas-dom.js';
-export type { HTMLImageElement, ImageData, ImageBitmap, ImageDataSettings, ImageBitmapOptions, } from './images.js';
+export type { HTMLImageElement, ImageData, ImageBitmap, ElementImage, ImageDataSettings, ImageBitmapOptions, } from './images.js';
 export type * from './wasm.js';
 export type { Crypto, CryptoConstructor } from './crypto.js';
 export type { Performance, PerformanceEntry, PerformanceMark, PerformanceMeasure, PerformanceMarkOptions, PerformanceMeasureOptions, PerformanceObserver, PerformanceObserverInit, PerformanceObserverEntryList, PerformanceObserverCallback, PerformanceObserverConstructor, PerformanceMarkConstructor, } from './performance.js';
@@ -18,6 +18,11 @@ declare global {
     type ImageData = Images.ImageData;
     var ImageBitmap: typeof Images.ImageBitmap;
     type ImageBitmap = Images.ImageBitmap;
+    var ElementImage: {
+        readonly prototype: ElementImage;
+        [Symbol.hasInstance](value: unknown): value is ElementImage;
+    };
+    type ElementImage = Images.ElementImage;
     function createImageBitmap(source: ImageBitmap | ImageData | OffscreenCanvas | {
         arrayBuffer(): Promise<ArrayBuffer>;
     }, ...args: [Images.ImageBitmapOptions?] | [number, number, number, number, Images.ImageBitmapOptions?]): Promise<ImageBitmap>;

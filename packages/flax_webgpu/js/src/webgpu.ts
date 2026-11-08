@@ -1,4 +1,10 @@
-import { DynamicLibrary, NativeFinalizer, toArrayBuffer, toString } from '@flax/ffi';
+import {
+  Buffer,
+  DynamicLibrary,
+  NativeFinalizer,
+  toArrayBuffer,
+  toString,
+} from '@flax/ffi';
 import { definitions } from './generated/definitions.g.js';
 import {
   DescriptorArena,
@@ -184,12 +190,13 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
       object,
       {
         flush(): void;
-        resize(): void;
+        resize(width: number, height: number): void;
         close(): void;
         device(): unknown;
         lose(): void;
         destroyCurrentTexture(texture: object, handle: bigint): boolean;
         snapshot(transfer: boolean): ImageBitmap;
+        captureEncoding(): { pixels: PixelImage; extended: boolean };
       }
     >();
     for (const kind of [
@@ -356,6 +363,11 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
             : 'GPUInternalError'
       ](message);
     }
+    function copyEncodedImage(handle: bigint): ArrayBuffer {
+      const length = new BigUint64Array(1);
+      const bytes = native.encoded_image_bytes(handle, length);
+      return toArrayBuffer(bytes, Number(length[0]));
+    }
     function drain() {
       if (!open) return;
       for (;;) {
@@ -393,7 +405,13 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
               ? new g.GPUPipelineError(event.message, { reason: event.reason })
               : exception(event.message, event.error),
           );
-        else if (event.kind) {
+        else if (event.kind === 'EncodedImage') {
+          try {
+            item.resolve(copyEncodedImage(BigInt(event.handle)));
+          } catch (error) {
+            item.reject(error);
+          }
+        } else if (event.kind) {
           // poll() lends the event's reference until the next poll.
           const value = wrap(
             event.kind,
@@ -1034,9 +1052,14 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
         ),
       );
     });
+    // OffscreenCanvas dimensions can exceed the native texture's 32-bit fields.
+    getter('GPUTexture', 'width', (p) =>
+      p.canvas ? p.descriptor.size[0] : Number(proc('wgpuTextureGetWidth')(p.pointer)),
+    );
+    getter('GPUTexture', 'height', (p) =>
+      p.canvas ? p.descriptor.size[1] : Number(proc('wgpuTextureGetHeight')(p.pointer)),
+    );
     for (const [name, nativeName] of Object.entries({
-      width: 'GetWidth',
-      height: 'GetHeight',
       depthOrArrayLayers: 'GetDepthOrArrayLayers',
       mipLevelCount: 'GetMipLevelCount',
       sampleCount: 'GetSampleCount',
@@ -1145,22 +1168,47 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
     });
     const uploads = new WeakMap<
       object,
-      { width: number; height: number; texture: any }
+      Partial<
+        Record<
+          'rgba8unorm' | 'rgba16float',
+          { width: number; height: number; texture: any }
+        >
+      >
     >();
     const createTexture = classes.GPUDevice.prototype.createTexture;
     const destroyTexture = classes.GPUTexture.prototype.destroy;
+    const srgbToP3 = [
+      0.82259287, 0.03319951, 0.01708535, 0.17753395, 0.9667835, 0.07239572, 0, 0,
+      0.91030148,
+    ];
+    const p3ToSrgb = [
+      1.22494018, -0.04205695, -0.01963755, -0.22494018, 1.04205695, -0.07863605, 0, 0,
+      1.0982736,
+    ];
+    const decodeSrgb = [2.4, 1 / 1.055, 0.055 / 1.055, 1 / 12.92, 0.04045, 0, 0];
+    const encodeSrgb = [1 / 2.4, 1.055 ** 2.4, 0, 12.92, 0.0031308, -0.055, 0];
     function uploadExternalPixels(
       p: Peer,
       self: object,
       pixels: PixelImage,
       dest: any,
       extent: any,
-      width: number,
-      height: number,
-      data: Uint8Array,
       flipY: boolean,
+      x = 0,
+      y = 0,
     ) {
-      let upload = uploads.get(self);
+      const width = Array.isArray(extent) ? extent[0] : extent.width;
+      const height = (Array.isArray(extent) ? extent[1] : extent.height) ?? 1;
+      const layers =
+        (Array.isArray(extent) ? extent[2] : extent.depthOrArrayLayers) ?? 1;
+      if (x + width > pixels.width || y + height > pixels.height || layers > 1)
+        throw exception('The copy exceeds the source image');
+      const fp16 = pixels.pixelFormat === 'rgba-float16';
+      const format = fp16 ? 'rgba16float' : 'rgba8unorm';
+      const bytesPerPixel = fp16 ? 8 : 4;
+      let staging = uploads.get(self);
+      if (!staging) uploads.set(self, (staging = {}));
+      let upload = staging[format];
       if (!upload || upload.width < width || upload.height < height) {
         if (upload) destroyTexture.call(upload.texture);
         upload = {
@@ -1168,31 +1216,33 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
           height: Math.max(1, height),
           texture: createTexture.call(p.device, {
             size: [Math.max(1, width), Math.max(1, height)],
-            format: 'rgba8unorm',
+            format,
             usage: 7,
           }),
         };
-        uploads.set(self, upload);
+        staging[format] = upload;
       }
       const a = arena();
       try {
-        proc('wgpuQueueWriteTexture')(
-          p.pointer,
-          a.struct('WGPUTexelCopyTextureInfo', { texture: upload.texture }).pointer,
-          data,
-          data.byteLength,
-          a.struct('WGPUTexelCopyBufferLayout', { bytesPerRow: width * 4 }).pointer,
-          a.struct('WGPUExtent3D', [width, height, 1]).pointer,
-        );
+        const stagingImage = a.struct('WGPUTexelCopyTextureInfo', {
+          texture: upload.texture,
+        });
+        if (width && height && layers) {
+          const data = byteRange(pixels.data, 0, undefined);
+          const layout = a.struct('WGPUTexelCopyBufferLayout', {
+            offset: (y * pixels.width + x) * bytesPerPixel,
+            bytesPerRow: pixels.width * bytesPerPixel,
+          });
+          proc('wgpuQueueWriteTexture')(
+            p.pointer,
+            stagingImage.pointer,
+            data,
+            data.byteLength,
+            layout.pointer,
+            a.struct('WGPUExtent3D', [width, height, 1]).pointer,
+          );
+        }
         const conversion = (pixels.colorSpace ?? 'srgb') !== dest.colorSpace;
-        const toP3 = [
-          0.82259287, 0.03319951, 0.01708535, 0.17753395, 0.9667835, 0.07239572, 0, 0,
-          0.91030148,
-        ];
-        const toSrgb = [
-          1.22494018, -0.04205695, -0.01963755, -0.22494018, 1.04205695, -0.07863605, 0,
-          0, 1.0982736,
-        ];
         const options = a.struct('WGPUCopyTextureForBrowserOptions', {
           flipY,
           srcAlphaMode: pixels.premultiplied ? 'premultiplied' : 'unpremultiplied',
@@ -1200,31 +1250,16 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
           needsColorSpaceConversion: conversion,
           ...(conversion
             ? {
-                srcTransferFunctionParameters: [
-                  2.4,
-                  1 / 1.055,
-                  0.055 / 1.055,
-                  1 / 12.92,
-                  0.04045,
-                  0,
-                  0,
-                ],
-                conversionMatrix: dest.colorSpace === 'display-p3' ? toP3 : toSrgb,
-                dstTransferFunctionParameters: [
-                  1 / 2.4,
-                  Math.pow(1.055, 2.4),
-                  0,
-                  12.92,
-                  0.0031308,
-                  -0.055,
-                  0,
-                ],
+                srcTransferFunctionParameters: decodeSrgb,
+                conversionMatrix:
+                  dest.colorSpace === 'display-p3' ? srgbToP3 : p3ToSrgb,
+                dstTransferFunctionParameters: encodeSrgb,
               }
             : {}),
         });
         proc('wgpuQueueCopyTextureForBrowser')(
           p.pointer,
-          a.struct('WGPUTexelCopyTextureInfo', { texture: upload.texture }).pointer,
+          stagingImage.pointer,
           a.struct('WGPUTexelCopyTextureInfo', dest).pointer,
           a.struct('WGPUExtent3D', extent).pointer,
           options.pointer,
@@ -1240,42 +1275,19 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
         const source = convert('GPUCopyExternalImageSourceInfo', input, pointer);
         const dest = convert('GPUCopyExternalImageDestInfo', destination, pointer);
         const extent = convert('GPUExtent3D', size, pointer);
-        const width = Array.isArray(extent) ? extent[0] : extent.width;
-        const height = (Array.isArray(extent) ? extent[1] : extent.height) ?? 1;
         const pixels = images().read(source.source);
         const x =
           (Array.isArray(source.origin) ? source.origin[0] : source.origin.x) ?? 0;
         const y =
           (Array.isArray(source.origin) ? source.origin[1] : source.origin.y) ?? 0;
-        if (x + width > pixels.width || y + height > pixels.height)
-          throw exception('The copy exceeds the source image');
-        let data = byteRange(pixels.data, 0, undefined);
-        if (x !== 0 || y !== 0 || width !== pixels.width || height !== pixels.height) {
-          data = new Uint8Array(width * height * 4);
-          for (let row = 0; row < height; row++)
-            data.set(
-              pixels.data.subarray(
-                ((y + row) * pixels.width + x) * 4,
-                ((y + row) * pixels.width + x + width) * 4,
-              ),
-              row * width * 4,
-            );
-        }
-        uploadExternalPixels(
-          p,
-          self,
-          pixels,
-          dest,
-          extent,
-          width,
-          height,
-          data,
-          source.flipY,
-        );
+        uploadExternalPixels(p, self, pixels, dest, extent, source.flipY, x, y);
       },
     );
-    if (!worker && canvasHost.hasSources) {
-      for (const name of ['copyElementImageToTexture', 'drawElementImageToTexture']) {
+    if (worker || canvasHost.hasSources) {
+      const elementImageMethods = worker
+        ? ['drawElementImageToTexture']
+        : ['copyElementImageToTexture', 'drawElementImageToTexture'];
+      for (const name of elementImageMethods) {
         const legacy = name === 'copyElementImageToTexture';
         const rectNames = legacy
           ? ['sx', 'sy', 'swidth', 'sheight']
@@ -1326,7 +1338,9 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
               throw exception('An element image copies to a single texture layer');
 
             // Read the snapshot after all application dictionary getters and conversions.
-            const pixels = canvasHost.sourcePixels(source);
+            const pixels =
+              (legacy ? undefined : images().readElementImage(source)) ??
+              canvasHost.sourcePixels(source);
             let [x = 0, y = 0, sw = pixels.width, sh = pixels.height] = rect;
             if (sw === 0 || sh === 0)
               throw exception('The source rectangle is empty', 'DataError');
@@ -1384,12 +1398,9 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
             uploadExternalPixels(
               p,
               self,
-              pixels,
+              data === pixels.data ? pixels : { ...pixels, width, height, data },
               dest,
               [width, height, 1],
-              width,
-              height,
-              data,
               false,
             );
           },
@@ -1815,6 +1826,7 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
     });
     if (!g.navigator)
       Object.defineProperty(g, 'navigator', { value: navigator, configurable: true });
+    const nativeCanvasDimension = (value: number) => Math.min(value, 0xffffffff);
     class GPUCanvasContext {
       #surface: bigint = 0n;
       #configuration: any = null;
@@ -1828,7 +1840,7 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
         this.#target = target;
         canvasOps.set(this, {
           flush: () => this.#flush(),
-          resize: () => this.#resize(),
+          resize: (width, height) => this.#resize(width, height),
           close: () => this.#close(),
           device: () => this.#configuration?.device,
           lose: () => this.#lose(),
@@ -1837,23 +1849,30 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
             check(native.canvas_destroy_texture(this.#surface, handle));
             return true;
           },
-          snapshot: (transfer) => this.#snapshot(transfer),
+          snapshot: (transfer) => images().fromPixels(this.#snapshotPixels(transfer)),
+          captureEncoding: () => ({
+            pixels: this.#snapshotPixels(false),
+            extended: this.#configuration?.toneMapping.mode === 'extended',
+          }),
         });
         canvasContexts.add(new WeakRef(this));
       }
       get canvas() {
         return this.#canvas;
       }
-      #snapshot(transfer: boolean): ImageBitmap {
+      #snapshotPixels(transfer: boolean): PixelImage {
         if (!open) throw exception('The WebGPU session closed', 'InvalidStateError');
         const width = this.canvas.width,
           height = this.canvas.height;
         if (!width || !height)
           throw exception('Cannot capture an empty canvas', 'IndexSizeError');
-        if (width * height > Math.floor(0x7fffffff / 4))
+        const config = this.#configuration;
+        const fp16 = config?.format === 'rgba16float';
+        const bytesPerPixel = fp16 ? 8 : 4;
+        if (width * height > Math.floor(0x7fffffff / bytesPerPixel))
           throw new RangeError('Canvas snapshot is too large');
-        const data = new Uint8Array(width * height * 4);
-        if (this.#configuration && !this.#lost)
+        const data = new Uint8Array(width * height * bytesPerPixel);
+        if (config && !this.#lost)
           check(
             native.canvas_readback(
               this.#surface,
@@ -1862,18 +1881,24 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
               Number(transfer),
             ),
           );
-        else if (this.#configuration?.alphaMode === 'opaque') {
+        else if (config?.alphaMode === 'opaque') {
           // Device loss skips readback but still requires configured opaque alpha.
-          for (let i = 3; i < data.length; i += 4) data[i] = 255;
+          if (fp16) {
+            const components = new Uint16Array(data.buffer);
+            for (let i = 3; i < components.length; i += 4) components[i] = 0x3c00;
+          } else {
+            for (let i = 3; i < data.length; i += 4) data[i] = 255;
+          }
         }
         if (transfer) this.#expire();
-        return images().fromPixels({
+        return {
           width,
           height,
           data,
-          colorSpace: 'srgb',
-          premultiplied: false,
-        });
+          colorSpace: config?.colorSpace ?? 'srgb',
+          pixelFormat: fp16 ? 'rgba-float16' : 'rgba-unorm8',
+          premultiplied: config?.alphaMode === 'premultiplied',
+        };
       }
       configure(input: unknown) {
         if (!open) throw exception('The WebGPU session closed', 'InvalidStateError');
@@ -1881,7 +1906,7 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
         const features = featureValues.get(
           readonlyValues.get(config.device)!.fields.features as object,
         )!;
-        // Required features precede both canvas-format and profile restrictions.
+        // Required features are checked before the canvas format and usage.
         for (const format of [config.format, ...config.viewFormats]) {
           let feature: string | undefined;
           if (format === 'depth32float-stencil8') feature = format;
@@ -1898,16 +1923,6 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
           throw new TypeError(`Unsupported canvas texture format: ${config.format}`);
         if (config.usage & constantGroups.GPUTextureUsage.TRANSIENT_ATTACHMENT)
           throw new TypeError('Canvas textures cannot use TRANSIENT_ATTACHMENT');
-        if (
-          config.viewFormats?.some(
-            (format: string) =>
-              format !== config.format && format !== config.format + '-srgb',
-          )
-        )
-          throw exception(
-            'Canvas views must match the format or its sRGB variant',
-            'NotSupportedError',
-          );
         const lost = peer(config.device).destroyed === true;
         if (!lost && !registry)
           throw exception(
@@ -1923,20 +1938,23 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
           canvasFinalizer.attach(this, this.#surface);
         }
         if (!lost) {
-          check(
-            native.canvas_configure(
-              this.#surface,
-              pointer(config.device, 'GPUDevice'),
-              integer(this.canvas.width, 32),
-              integer(this.canvas.height, 32),
-              config.usage,
-              Number(config.alphaMode === 'opaque'),
-              nativeEnum('WGPUTextureFormat', config.format),
-              Number(config.viewFormats?.includes(config.format + '-srgb') ?? false),
-              Number(config.colorSpace === 'display-p3'),
-              Number(config.toneMapping.mode === 'extended'),
-            ),
-          );
+          const a = arena();
+          try {
+            const desc = this.#textureDescriptor(config);
+            desc.size = desc.size.map(nativeCanvasDimension);
+            check(
+              native.canvas_configure(
+                this.#surface,
+                pointer(config.device, 'GPUDevice'),
+                a.struct('WGPUTextureDescriptor', desc).pointer,
+                Number(config.alphaMode === 'opaque'),
+                Number(config.colorSpace === 'display-p3'),
+                Number(config.toneMapping.mode === 'extended'),
+              ),
+            );
+          } finally {
+            a.releaseAll();
+          }
         } else if (this.#surface) {
           native.canvas_unconfigure(this.#surface);
         }
@@ -1966,21 +1984,29 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
             }
           : null;
       }
+      #textureDescriptor(config: any) {
+        return {
+          size: [this.canvas.width, this.canvas.height, 1],
+          format: config.format,
+          usage: config.usage,
+          viewFormats: config.viewFormats,
+        };
+      }
       getCurrentTexture() {
         if (!open || !this.#configuration)
           throw exception('The canvas is not configured', 'InvalidStateError');
         if (!this.#current) {
           const config = this.#configuration;
-          const desc = {
-            size: [this.canvas.width, this.canvas.height, 1],
-            format: config.format,
-            usage: config.usage,
-            viewFormats: config.viewFormats,
-          };
+          const desc = this.#textureDescriptor(config);
           // Dawn creates a real error texture on a lost device, with the full
           // descriptor and ordinary GPUTexture ownership, without surface storage.
-          if (this.#lost) this.#current = createTexture.call(config.device, desc);
-          else {
+          if (this.#lost) {
+            this.#current = createTexture.call(config.device, {
+              ...desc,
+              size: desc.size.map(nativeCanvasDimension),
+            });
+            peer(this.#current).descriptor = desc;
+          } else {
             const handle = native.canvas_texture(this.#surface);
             if (!handle) throw exception(toString(native.error())!);
             this.#current = wrap('GPUTexture', handle, config.device, desc);
@@ -1999,32 +2025,14 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
         proc('wgpuTextureDestroy')(peer(this.#current).pointer);
         this.#current = null;
       }
-      #resize() {
+      #resize(width: number, height: number) {
         try {
-          if (this.#configuration && !this.#lost) {
-            const config = this.#configuration;
-            if (!this.canvas.width || !this.canvas.height) {
-              native.canvas_unconfigure(this.#surface);
-              return;
-            }
-            check(
-              native.canvas_configure(
-                this.#surface,
-                pointer(config.device, 'GPUDevice'),
-                integer(this.canvas.width, 32),
-                integer(this.canvas.height, 32),
-                config.usage,
-                Number(config.alphaMode === 'opaque'),
-                nativeEnum('WGPUTextureFormat', config.format),
-                Number(config.viewFormats?.includes(config.format + '-srgb') ?? false),
-                Number(config.colorSpace === 'display-p3'),
-                Number(config.toneMapping.mode === 'extended'),
-              ),
+          if (this.#configuration && !this.#lost)
+            native.canvas_resize(
+              this.#surface,
+              nativeCanvasDimension(width),
+              nativeCanvasDimension(height),
             );
-          }
-        } catch (error) {
-          native.canvas_unconfigure(this.#surface);
-          throw error;
         } finally {
           // Retire shared native access before destroying the cached texture.
           this.#expire();
@@ -2065,27 +2073,60 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
       Object.defineProperty(GPUCanvasContext.prototype, name, { enumerable: true });
     g.GPUCanvasContext = GPUCanvasContext;
     const unregisterCanvas = canvasHost.register('webgpu', (canvas, target) => {
-      const context = new GPUCanvasContext(secret, canvas, target);
-      const operations = canvasOps.get(context)!;
+      const canvasContext = new GPUCanvasContext(secret, canvas, target);
+      const operations = canvasOps.get(canvasContext)!;
+      function capture(type = 'image/png', quality = 0.92) {
+        type = String(type).toLowerCase();
+        if (!['image/png', 'image/jpeg', 'image/webp'].includes(type))
+          type = 'image/png';
+        if (!Number.isFinite(quality) || quality < 0 || quality > 1) quality = 0.92;
+        const { pixels, extended } = operations.captureEncoding();
+        const fp16 = pixels.pixelFormat === 'rgba-float16';
+        const p3 = pixels.colorSpace === 'display-p3';
+        const args =
+          type !== 'image/webp' && (fp16 || p3)
+            ? [
+                pixels.data,
+                pixels.data.byteLength,
+                pixels.width,
+                pixels.height,
+                Number(fp16),
+                Number(p3),
+                Number(pixels.premultiplied),
+                type === 'image/jpeg' ? 1 : fp16 && extended ? 2 : 0,
+                quality,
+              ]
+            : null;
+        return { type, quality, pixels, args };
+      }
       return {
-        getContext: () => context,
-        resize: () => operations.resize(),
+        getContext: () => canvasContext,
+        resize: (width, height) => operations.resize(width, height),
         flush: () => operations.flush(),
         snapshot: () => operations.snapshot(false),
-        convertToBlob: (options) => {
+        async convertToBlob(options) {
+          const { type, quality, pixels, args } = capture(
+            options?.type,
+            Number(options?.quality ?? 0.92),
+          );
+          if (!args) return images().encode(pixels, type, quality);
+          return request((id) => native.encode_image_async(context, id, ...args)).then(
+            (bytes) => new g.Blob([bytes], { type }),
+          );
+        },
+        toDataURL(requestedType, requestedQuality) {
+          const { type, quality, pixels, args } = capture(
+            requestedType,
+            requestedQuality,
+          );
+          if (!args) return images().dataURL(pixels, type, quality);
+          const encoded = native.encode_image(...args);
+          if (!encoded) return 'data:,';
           try {
-            const bitmap = operations.snapshot(false);
-            try {
-              return images().encode(
-                images().read(bitmap),
-                String(options?.type ?? 'image/png').toLowerCase(),
-                Number(options?.quality ?? 0.92),
-              );
-            } finally {
-              bitmap.close();
-            }
-          } catch (error) {
-            return Promise.reject(error);
+            const data = Buffer.from(copyEncodedImage(encoded)).toString('base64');
+            return `data:${type};base64,${data}`;
+          } finally {
+            native.encoded_image_release(encoded);
           }
         },
         transferToImageBitmap() {

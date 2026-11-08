@@ -1,5 +1,12 @@
-export async function readTexturePixels(device, texture, width = 2, height = 2) {
-  const stride = Math.ceil((width * 4) / 256) * 256;
+export async function readTexturePixels(
+  device,
+  texture,
+  width = 2,
+  height = 2,
+  bytesPerPixel = 4,
+) {
+  const rowBytes = width * bytesPerPixel;
+  const stride = Math.ceil(rowBytes / 256) * 256;
   const buffer = device.createBuffer({
     size: stride * height,
     usage: GPUBufferUsage.COPY_DST | GPUBufferUsage.MAP_READ,
@@ -14,7 +21,7 @@ export async function readTexturePixels(device, texture, width = 2, height = 2) 
   const bytes = new Uint8Array(buffer.getMappedRange()),
     pixels = [];
   for (let y = 0; y < height; y++)
-    pixels.push(...bytes.subarray(y * stride, y * stride + width * 4));
+    pixels.push(...bytes.subarray(y * stride, y * stride + rowBytes));
   buffer.unmap();
   buffer.destroy();
   return pixels;
@@ -47,8 +54,111 @@ export async function readCanvasPixels(
   }
 }
 
+export async function verifyWideStillImages(device, check, readPixels) {
+  const components = new Float16Array(new ArrayBuffer(36), 4, 16);
+  components.set([
+    -0.125, 1.5, 0.375, 0.5, 1.25, -0.5, 0.1875, 1, 0.25, 0.5, 1.75, 0.75, 1.75, 0.125,
+    -0.25, 0.25,
+  ]);
+  const colorSpace = 'display-p3';
+  const data = new ImageData(components, 2, 2, {
+    colorSpace,
+    pixelFormat: 'rgba-float16',
+  });
+  const target = device.createTexture({
+    size: [2, 2],
+    format: 'rgba16float',
+    usage:
+      GPUTextureUsage.COPY_SRC |
+      GPUTextureUsage.COPY_DST |
+      GPUTextureUsage.RENDER_ATTACHMENT,
+  });
+  const canvas = new OffscreenCanvas(2, 2),
+    context = canvas.getContext('webgpu');
+  const destination = { texture: target, colorSpace, premultipliedAlpha: true };
+  const upload = (source) =>
+    device.queue.copyExternalImageToTexture({ source }, destination, [2, 2]);
+  async function expectPixels(expected, label) {
+    const bytes = new Uint8Array(await readPixels(device, target, 2, 2, 8));
+    const actual = new Float16Array(bytes.buffer);
+    check(
+      actual.length === expected.length &&
+        actual.every((value, i) => value === expected[i]),
+      `${label}: ${actual}`,
+    );
+  }
+  let bitmap;
+  try {
+    const crop = [
+      0.4375, 0.03125, -0.0625, 0.25, 0, 0, 0, 0, 1.25, -0.5, 0.1875, 1, 0, 0, 0, 0,
+    ];
+    device.queue.copyExternalImageToTexture(
+      { source: data, origin: [1, 0], flipY: true },
+      destination,
+      [1, 2],
+    );
+    await expectPixels(crop, 'Offset FP16 ImageData crop, flip and premultiplication');
+    device.pushErrorScope('validation');
+    device.queue.copyExternalImageToTexture({ source: data }, destination, [2, 2, 0]);
+    check((await device.popErrorScope()) === null, 'Zero-depth upload is valid');
+    await expectPixels(crop, 'Zero-depth upload leaves the destination intact');
+    let error;
+    try {
+      device.queue.copyExternalImageToTexture({ source: data }, destination, [2, 2, 2]);
+    } catch (caught) {
+      error = caught;
+    }
+    check(error?.name === 'OperationError', 'External image has at most one layer');
+
+    context.configure({
+      device,
+      format: 'rgba16float',
+      colorSpace,
+      toneMapping: { mode: 'standard' },
+      alphaMode: 'premultiplied',
+      usage: GPUTextureUsage.COPY_DST,
+    });
+    const current = context.getCurrentTexture();
+    const write = (pixels) =>
+      device.queue.writeTexture(
+        { texture: current },
+        pixels,
+        { bytesPerRow: 16 },
+        [2, 2],
+      );
+    const later = new Float16Array([...components.slice(8), ...components.slice(0, 8)]);
+    write(components);
+    upload(canvas);
+    check(context.getCurrentTexture() === current, 'FP16 snapshot preserves identity');
+    write(later);
+    await expectPixels(components, 'Current P3 FP16 snapshot captures at call time');
+    await new Promise(requestAnimationFrame);
+    upload(canvas);
+    await expectPixels(later, 'Published P3 FP16 snapshot keeps the drawing buffer');
+
+    bitmap = canvas.transferToImageBitmap();
+    upload(bitmap);
+    await expectPixels(later, 'Transferred P3 FP16 drawing buffer keeps raw values');
+    upload(canvas);
+    await expectPixels(new Float16Array(16), 'FP16 transfer clears the drawing buffer');
+    return { bitmap, values: Array.from(later) };
+  } catch (error) {
+    bitmap?.close();
+    throw error;
+  } finally {
+    context.unconfigure();
+    target.destroy();
+  }
+}
+
 // Serialized into a real Dedicated Worker. Dependencies are explicit parameters.
-export async function verifyWorkerStillImages(device, assert, readPixels, readCanvas) {
+export async function verifyWorkerStillImages(
+  device,
+  assert,
+  readPixels,
+  readCanvas,
+  verifyWide,
+) {
   let assertions = 0;
   const cases = [],
     formats = [];
@@ -225,9 +335,14 @@ export async function verifyWorkerStillImages(device, assert, readPixels, readCa
       cases.push(name);
     }
     cases.push('texture-expiry');
+    const outgoing = keep(await createImageBitmap(data));
+    const wide = await verifyWide(device, check, readPixels);
+    cases.push('wide-color-roundtrip');
+    bitmaps.pop(); // The caller transfers this bitmap.
     return {
       receipt: { assertions, cases, formats, pixelSnapshots: true },
-      bitmap: await createImageBitmap(data),
+      bitmap: outgoing,
+      wide,
     };
   } finally {
     for (const bitmap of bitmaps) bitmap.close();
@@ -238,6 +353,8 @@ export async function verifyWorkerStillImages(device, assert, readPixels, readCa
 
 // Real GPU pixel acceptance; shared with the WebGPU-only and Canvas 2D sessions.
 export async function verifyImages(device, assert) {
+  const wide = await verifyWideStillImages(device, assert, readTexturePixels);
+  wide.bitmap.close();
   const source = new ImageData(
     new Uint8ClampedArray([
       255, 0, 0, 255, 0, 255, 0, 128, 0, 0, 255, 255, 255, 255, 255, 255,

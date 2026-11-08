@@ -5,7 +5,7 @@ import { ReadableStream } from 'web-streams-polyfill';
 import { blobRange } from './fetch/local-resources.js';
 import { gpuDiagnosticsHost } from './gpu-diagnostics.js';
 import type { CanvasHost, CanvasTransfers, OffscreenCanvas } from './canvas.js';
-import type { ImageHost, ImageBitmap } from './images.js';
+import type { ImageHost, ImageBitmap, ElementImage } from './images.js';
 import {
   Blob,
   blobParts,
@@ -20,7 +20,7 @@ export interface WorkerOptions {
   name?: string;
   credentials?: 'omit' | 'same-origin' | 'include';
 }
-export type Transferable = ArrayBuffer | OffscreenCanvas | ImageBitmap;
+export type Transferable = ArrayBuffer | OffscreenCanvas | ImageBitmap | ElementImage;
 export interface StructuredSerializeOptions {
   transfer?: Transferable[];
 }
@@ -188,7 +188,11 @@ export function installWorkers(
     return diagnostics.serialize(value);
   };
   const deserializeHost = (record: any[]) => {
-    if (record[0] === 'ImageData' || record[0] === 'ImageBitmap') {
+    if (
+      record[0] === 'ImageData' ||
+      record[0] === 'ImageBitmap' ||
+      record[0] === 'ElementImage'
+    ) {
       if (!images)
         throw new DOMException('Image host is unavailable', 'DataCloneError');
       return images.deserialize(record);

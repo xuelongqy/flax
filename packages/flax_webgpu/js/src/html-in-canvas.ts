@@ -1,4 +1,4 @@
-import type { Event, HTMLCanvasElement } from '@flax/core/host/common';
+import type { ElementImage, Event, HTMLCanvasElement } from '@flax/core/host/common';
 import type { GPUCopyExternalImageDestInfo, GPUExtent3D, GPUQueue } from './types.g.js';
 
 /** An HTMLCanvasElement returned for a registered Flutter Widget source. */
@@ -21,11 +21,30 @@ export interface FlaxDrawableCanvas extends HTMLCanvasElement {
   hasAttribute(name: string): boolean;
   appendChild<T extends FlaxWidgetCanvasSource>(child: T): T;
   removeChild<T extends FlaxWidgetCanvasSource>(child: T): T;
+  captureElementImage(child: FlaxWidgetCanvasSource): ElementImage;
   requestPaint(): void;
 }
 
-/** The root-only experimental HTML-in-Canvas queue methods. */
-export interface FlaxElementImageQueue extends GPUQueue {
+interface ElementImageDrawQueue<Source> extends GPUQueue {
+  drawElementImageToTexture(
+    source: {
+      source: Source;
+      sourceX?: number;
+      sourceY?: number;
+      sourceWidth?: number;
+      sourceHeight?: number;
+    },
+    destination: GPUCopyExternalImageDestInfo & { size?: GPUExtent3D },
+  ): void;
+}
+
+/** The WebGPU Worker queue can draw captured ElementImages. */
+export type FlaxWorkerElementImageQueue = ElementImageDrawQueue<ElementImage>;
+
+/** Available on root queues when the host registers Widget sources. */
+export interface FlaxElementImageQueue extends ElementImageDrawQueue<
+  FlaxWidgetCanvasSource | ElementImage
+> {
   copyElementImageToTexture(
     source: {
       source: FlaxWidgetCanvasSource;
@@ -39,15 +58,5 @@ export interface FlaxElementImageQueue extends GPUQueue {
       width?: number;
       height?: number;
     },
-  ): void;
-  drawElementImageToTexture(
-    source: {
-      source: FlaxWidgetCanvasSource;
-      sourceX?: number;
-      sourceY?: number;
-      sourceWidth?: number;
-      sourceHeight?: number;
-    },
-    destination: GPUCopyExternalImageDestInfo & { size?: GPUExtent3D },
   ): void;
 }

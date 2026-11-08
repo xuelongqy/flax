@@ -9,7 +9,8 @@ option(FLAX_WEBGPU_BENCHMARK "Build private benchmark instrumentation" OFF)
 target_compile_definitions(flax_webgpu PRIVATE FLAX_WEBGPU_BENCHMARK=$<BOOL:${FLAX_WEBGPU_BENCHMARK}>)
 target_include_directories(flax_webgpu PUBLIC include PRIVATE generated)
 target_link_libraries(flax_webgpu PRIVATE dawn::webgpu_dawn "-framework Foundation"
-  "-framework CoreVideo" "-framework IOSurface" "-framework Metal")
+  "-framework CoreVideo" "-framework IOSurface" "-framework Metal"
+  "-framework CoreGraphics" "-framework CoreImage" "-framework ImageIO")
 target_compile_options(flax_webgpu PRIVATE -Wall -Wextra $<$<COMPILE_LANGUAGE:OBJCXX>:-fobjc-arc>)
 target_link_options(flax_webgpu PRIVATE
   "-Wl,-exported_symbols_list,${CMAKE_CURRENT_SOURCE_DIR}/exports.txt")

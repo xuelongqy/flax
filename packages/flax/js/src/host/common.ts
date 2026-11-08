@@ -11,6 +11,7 @@ export type {
   HTMLImageElement,
   ImageData,
   ImageBitmap,
+  ElementImage,
   ImageDataSettings,
   ImageBitmapOptions,
 } from './images.js';
@@ -38,6 +39,11 @@ declare global {
   type ImageData = Images.ImageData;
   var ImageBitmap: typeof Images.ImageBitmap;
   type ImageBitmap = Images.ImageBitmap;
+  var ElementImage: {
+    readonly prototype: ElementImage;
+    [Symbol.hasInstance](value: unknown): value is ElementImage;
+  };
+  type ElementImage = Images.ElementImage;
   function createImageBitmap(
     source:
       | ImageBitmap

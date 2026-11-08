@@ -3,6 +3,7 @@ import {
   ImageBitmap,
   imageHost,
   imageIdKey,
+  toSrgbRgba8,
   type ImageHost,
 } from '@flax/core-runtime/host/images';
 export { ImageData, ImageBitmap, imageIdKey };
@@ -346,12 +347,6 @@ function pixelSettings(settings: ImageDataSettings = {}): void {
       'NotSupportedError',
       'Canvas currently stores sRGB RGBA8 pixels.',
     );
-}
-
-function validImageData(image: ImageData): void {
-  if (!(image instanceof ImageData)) throw new TypeError('Expected ImageData.');
-  if (image.data.byteLength === 0)
-    throw invalidState('The ImageData buffer is detached.');
 }
 
 export class CanvasGradient {
@@ -1227,7 +1222,6 @@ export class OffscreenCanvasRenderingContext2D {
       throw invalidState('The ImageBitmap is closed.');
     if (isOffscreenCanvas(image) && (image.width === 0 || image.height === 0))
       throw invalidState('The source canvas is empty.');
-    if (image instanceof ImageData) validImageData(image);
     if (![3, 5, 9].includes(arguments.length))
       throw new TypeError('drawImage requires 3, 5 or 9 arguments.');
     dx = +dx;
@@ -1238,8 +1232,10 @@ export class OffscreenCanvasRenderingContext2D {
     }
     rest = rest.map((n) => +n);
 
+    const images = imageHosts.get(this.call)!;
+    const pixels = image instanceof ImageData ? images.read(image) : undefined;
     const dimensions =
-      'naturalWidth' in image ? imageHosts.get(this.call)!.source(image) : image;
+      pixels ?? ('naturalWidth' in image ? images.source(image) : image);
     let sx = 0,
       sy = 0,
       sw = dimensions.width,
@@ -1266,18 +1262,13 @@ export class OffscreenCanvasRenderingContext2D {
       h === 0
     )
       return;
-    if (image instanceof ImageData) {
+    if (pixels) {
+      const bytes = toSrgbRgba8(pixels);
       this.record(OP.drawImagePixels, () => {
-        this.buffer.u32(image.width);
-        this.buffer.u32(image.height);
+        this.buffer.u32(pixels.width);
+        this.buffer.u32(pixels.height);
         [sx, sy, sw, sh, x, y, w, h].forEach((n) => this.buffer.f64(n));
-        this.buffer.bytes(
-          new Uint8Array(
-            image.data.buffer,
-            image.data.byteOffset,
-            image.data.byteLength,
-          ),
-        );
+        this.buffer.bytes(bytes);
       });
       return;
     }
@@ -1356,7 +1347,10 @@ export class OffscreenCanvasRenderingContext2D {
   ): ImageData {
     if (arguments.length === 1) {
       if (!(sw instanceof ImageData)) throw new TypeError('Expected ImageData.');
-      return new ImageData(sw.width, sw.height);
+      return new ImageData(sw.width, sw.height, {
+        colorSpace: sw.colorSpace,
+        pixelFormat: sw.pixelFormat,
+      });
     }
     return new ImageData(
       Math.abs(integer(sw as number)),
@@ -1370,18 +1364,21 @@ export class OffscreenCanvasRenderingContext2D {
     dy: number,
     dirtyX = 0,
     dirtyY = 0,
-    dirtyWidth = image?.width,
-    dirtyHeight = image?.height,
+    dirtyWidth?: number,
+    dirtyHeight?: number,
   ): void {
     if (arguments.length !== 3 && arguments.length < 7)
       throw new TypeError('putImageData requires 3 or 7 arguments.');
-    validImageData(image);
+    if (!(image instanceof ImageData)) throw new TypeError('Expected ImageData.');
     dx = integer(dx);
     dy = integer(dy);
     dirtyX = integer(dirtyX);
     dirtyY = integer(dirtyY);
-    dirtyWidth = integer(dirtyWidth);
-    dirtyHeight = integer(dirtyHeight);
+    if (dirtyWidth !== undefined) dirtyWidth = integer(dirtyWidth);
+    if (dirtyHeight !== undefined) dirtyHeight = integer(dirtyHeight);
+    const pixels = imageHosts.get(this.call)!.read(image);
+    dirtyWidth ??= pixels.width;
+    dirtyHeight ??= pixels.height;
     if (dirtyWidth < 0) {
       dirtyX += dirtyWidth;
       dirtyWidth = -dirtyWidth;
@@ -1392,22 +1389,18 @@ export class OffscreenCanvasRenderingContext2D {
     }
     const left = Math.max(0, dirtyX),
       top = Math.max(0, dirtyY);
-    const right = Math.min(image.width, dirtyX + dirtyWidth);
-    const bottom = Math.min(image.height, dirtyY + dirtyHeight);
+    const right = Math.min(pixels.width, dirtyX + dirtyWidth);
+    const bottom = Math.min(pixels.height, dirtyY + dirtyHeight);
     if (right <= left || bottom <= top) return;
+    const bytes = toSrgbRgba8(pixels);
     this.record(OP.putImageData, () => {
       this.buffer.u32(right - left);
       this.buffer.u32(bottom - top);
       this.buffer.f64(dx + left);
       this.buffer.f64(dy + top);
-      const bytes = new Uint8Array(
-        image.data.buffer,
-        image.data.byteOffset,
-        image.data.byteLength,
-      );
       for (let y = top; y < bottom; y++)
         this.buffer.bytes(
-          bytes.subarray((y * image.width + left) * 4, (y * image.width + right) * 4),
+          bytes.subarray((y * pixels.width + left) * 4, (y * pixels.width + right) * 4),
         );
     });
   }
@@ -2075,15 +2068,15 @@ function sourceBitmap(
   transformed = false,
 ): Promise<ImageBitmap> {
   if (source instanceof ImageData) {
-    validImageData(source);
+    const pixels = imageHosts.get(call)!.read(source);
     return rpc(
       call,
       'createImageBitmapPixels',
-      source.width,
-      source.height,
-      source.data,
+      pixels.width,
+      pixels.height,
+      pixels.data,
       transformed || options?.premultiplyAlpha === 'none',
-    ).then((id) => makeBitmap(call, id as number, source.width, source.height));
+    ).then((id) => makeBitmap(call, id as number, pixels.width, pixels.height));
   }
   if (isOffscreenCanvas(source)) {
     if (source.width === 0 || source.height === 0)
@@ -2248,6 +2241,11 @@ export function installCanvas(
     (canvas, target) => new Canvas2DBackend(canvas, hostCall, target),
   );
   const unregisterImages = images.register((source, ...args) => {
+    if (source instanceof ImageData) {
+      const pixels = images.read(source);
+      if (pixels.colorSpace !== 'srgb' || pixels.pixelFormat !== 'rgba-unorm8')
+        return undefined;
+    }
     if (
       isOffscreenCanvas(source) &&
       !(canvasHost(source).backend(source) instanceof Canvas2DBackend)
