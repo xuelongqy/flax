@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:ffi';
+import 'dart:io' show Platform;
 import 'dart:isolate';
 import 'dart:typed_data';
 
@@ -1095,6 +1096,48 @@ final class FlaxNativeJsRuntime
       _checked(
         arena,
         (error) => _bindPeer(_handle, object._id, target, origin, error),
+      );
+    });
+  }
+
+  // Older engine clients and sessions that never acquire a view need no lookup.
+  static final _ownedPeerCalls = FlaxBindings(
+    Platform.isAndroid
+        ? DynamicLibrary.open('libflutter.so')
+        : DynamicLibrary.process(),
+  );
+
+  void bindOwnedDartPeer(FlaxJsObject view, Object target) {
+    if (view is! _NativeObject) {
+      throw ArgumentError('Expected a native JS view');
+    }
+    view._check(this);
+    _entry((arena) {
+      _checked(
+        arena,
+        (error) => _ownedPeerCalls.flax_engine_bind_owned_peer(
+          _handle,
+          view._id,
+          target,
+          error,
+        ),
+      );
+    });
+  }
+
+  void unlinkOwnedDartPeer(FlaxJsObject view) {
+    if (view is! _NativeObject) {
+      throw ArgumentError('Expected a native JS view');
+    }
+    view._check(this);
+    _entry((arena) {
+      _checked(
+        arena,
+        (error) => _ownedPeerCalls.flax_engine_unlink_owned_peer(
+          _handle,
+          view._id,
+          error,
+        ),
       );
     });
   }

@@ -22,6 +22,36 @@ class FlaxBindings {
     ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName) lookup,
   ) : _lookup = lookup;
 
+  int flax_engine_bind_owned_peer(
+    ffi.Pointer<FlaxRuntime> arg0,
+    int arg1,
+    Object target,
+    ffi.Pointer<FlaxError> arg3,
+  ) {
+    return _flax_engine_bind_owned_peer(arg0, arg1, target, arg3);
+  }
+
+  late final _flax_engine_bind_owned_peerPtr =
+      _lookup<
+        ffi.NativeFunction<
+          ffi.Int32 Function(
+            ffi.Pointer<FlaxRuntime>,
+            FlaxValueId,
+            ffi.Handle,
+            ffi.Pointer<FlaxError>,
+          )
+        >
+      >('flax_engine_bind_owned_peer');
+  late final _flax_engine_bind_owned_peer = _flax_engine_bind_owned_peerPtr
+      .asFunction<
+        int Function(
+          ffi.Pointer<FlaxRuntime>,
+          int,
+          Object,
+          ffi.Pointer<FlaxError>,
+        )
+      >();
+
   int flax_engine_defer_idle_gc_current_isolate() {
     return _flax_engine_defer_idle_gc_current_isolate();
   }
@@ -127,6 +157,29 @@ class FlaxBindings {
       );
   late final _flax_engine_shutdown_current_isolate =
       _flax_engine_shutdown_current_isolatePtr.asFunction<void Function()>();
+
+  int flax_engine_unlink_owned_peer(
+    ffi.Pointer<FlaxRuntime> arg0,
+    int arg1,
+    ffi.Pointer<FlaxError> arg2,
+  ) {
+    return _flax_engine_unlink_owned_peer(arg0, arg1, arg2);
+  }
+
+  late final _flax_engine_unlink_owned_peerPtr =
+      _lookup<
+        ffi.NativeFunction<
+          ffi.Int32 Function(
+            ffi.Pointer<FlaxRuntime>,
+            FlaxValueId,
+            ffi.Pointer<FlaxError>,
+          )
+        >
+      >('flax_engine_unlink_owned_peer');
+  late final _flax_engine_unlink_owned_peer = _flax_engine_unlink_owned_peerPtr
+      .asFunction<
+        int Function(ffi.Pointer<FlaxRuntime>, int, ffi.Pointer<FlaxError>)
+      >();
 
   ffi.Pointer<FlaxEngineExecutionApi> flax_get_engine_execution_api(int arg0) {
     return _flax_get_engine_execution_api(arg0);
