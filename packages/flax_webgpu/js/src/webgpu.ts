@@ -19,6 +19,7 @@ import type { CanvasHost, OffscreenCanvas } from '@flax/core-runtime/host/canvas
 import arities from './arity.g.js';
 import { imageHost, type PixelImage } from '@flax/core-runtime/host/images';
 import { gpuDiagnosticsHost } from '@flax/core-runtime/host/gpu-diagnostics';
+import { installVideoFrames, type VideoSources } from './video-frames.js';
 
 type Call = (operation: string, ...args: unknown[]) => unknown;
 type Peer = {
@@ -36,17 +37,26 @@ type Peer = {
   lost?: (info: any) => void;
   destroyed?: boolean;
   canvas?: any;
+  commandEncoder?: Peer | undefined;
+  externalTextures?: Set<object> | undefined;
 };
 
-export function installWebGpu(global: typeof globalThis, host: Call, worker = false) {
+export function installWebGpu(
+  global: typeof globalThis,
+  host: Call,
+  worker = false,
+  videoSources: VideoSources = [],
+) {
   const g = global as any;
   const images = () => imageHost(global);
   const diagnostics = gpuDiagnosticsHost(global);
+  const hasVideoSources = !worker && videoSources.length > 0;
   const library = DynamicLibrary.codeAsset('@flax/webgpu/dawn');
   const signatures = definitions as any;
   const native: Record<string, any> = {};
   let startupContext = 0n,
     startupNotify = 0n;
+  let startupVideo: ReturnType<typeof installVideoFrames> | undefined;
   try {
     for (const [name, signature] of Object.entries(signatures))
       if (name.startsWith('flax_webgpu_'))
@@ -93,6 +103,10 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
       nextRequest = 1;
     const peers = new WeakMap<object, Peer>();
     const resources = new Set<WeakRef<object>>();
+    // Video creates short-lived GPU wrappers at playback rate.
+    const collectedResources = videoSources.length
+      ? new FinalizationRegistry<WeakRef<object>>((ref) => resources.delete(ref))
+      : undefined;
     const deviceObjects = new Map<string, WeakRef<any>>();
     const mapped = new Map<WeakRef<ArrayBuffer>, bigint>();
     const protectedBuffers = new WeakSet<ArrayBuffer>();
@@ -102,6 +116,12 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
     >();
     const finalizers = new Map<string, NativeFinalizer>();
     let registry: bigint = 0n;
+    const video = (startupVideo = installVideoFrames(
+      global,
+      native,
+      () => registry,
+      worker ? [] : videoSources,
+    ));
     let initialize: (value: boolean) => void;
     const ready = new Promise<boolean>((resolve) => {
       initialize = resolve;
@@ -242,8 +262,13 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
       return p;
     }
     function pointer(value: unknown, kind: string) {
+      if (kind === 'VideoFrame') {
+        if (!video.frame(value))
+          throw new TypeError('Expected a VideoFrame from this session');
+        return 0n;
+      }
       if (kind === 'GPUCopyExternalImageSource') {
-        if (!images().isSource(value))
+        if (!video.frame(value) && !images().isSource(value))
           throw new TypeError('Expected an image source from this session');
         return 0n;
       }
@@ -317,8 +342,19 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
         descriptor: desc,
       });
       finalizer(kind).attach(result, handle);
-      resources.add(new WeakRef(result));
+      const ref = new WeakRef(result);
+      resources.add(ref);
+      collectedResources?.register(result, ref);
       return result;
+    }
+    function retainExternalTextures(encoder: Peer, textures: Set<object>) {
+      const retained = (encoder.externalTextures ??= new Set());
+      for (const texture of textures) retained.add(texture);
+    }
+    function moveExternalTextures(encoder: Peer, result: object) {
+      if (!encoder.externalTextures) return;
+      peer(result).externalTextures = encoder.externalTextures;
+      encoder.externalTextures = undefined;
     }
     function request(start: (id: number) => number): Promise<any> {
       if (!open)
@@ -508,6 +544,7 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
       'GPUBuffer',
       'GPUTexture',
       'GPUTextureView',
+      'GPUExternalTexture',
       'GPUSampler',
       'GPUShaderModule',
       'GPUBindGroupLayout',
@@ -845,6 +882,38 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
         schedulePump();
       }
     });
+    function liveVideoHandle(frame: { handle: bigint }) {
+      if (!frame.handle)
+        throw exception('The video frame is closed', 'InvalidStateError');
+      return frame.handle;
+    }
+    function importVideo(device: bigint, frame: bigint, colorSpace: string) {
+      const handle = native.video_frame_import(
+        device,
+        frame,
+        colorSpace === 'display-p3' ? 1 : 0,
+      );
+      if (!handle)
+        throw exception(toString(native.error()) || 'Cannot import the video frame');
+      return handle;
+    }
+    const setExternalTextureLabel = Object.getOwnPropertyDescriptor(
+      classes.GPUExternalTexture.prototype,
+      'label',
+    )!.set!;
+    method('GPUDevice', 'importExternalTexture', (p, self, input) => {
+      const desc = convert('GPUExternalTextureDescriptor', input, pointer);
+      const frame = liveVideoHandle(video.frame(desc.source)!);
+      // The descriptor keeps the frame alive with the imported texture.
+      const texture = wrap(
+        'GPUExternalTexture',
+        importVideo(p.pointer, frame, desc.colorSpace),
+        self,
+        desc,
+      );
+      if (desc.label) setExternalTextureLabel.call(texture, desc.label);
+      return texture;
+    });
     const creations = [
       'Buffer',
       'Texture',
@@ -879,6 +948,7 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
             self,
             desc,
           );
+          if (a.externalTextures) peer(object).externalTextures = a.externalTextures;
           if (kind === 'Buffer') {
             const b = peer(object);
             b.mapMode = desc.mappedAtCreation ? 2 : 0;
@@ -1086,10 +1156,24 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
     getter('GPUQuerySet', 'type', (p) => p.descriptor.type);
     const commandBufferPointer = (value: unknown) => pointer(value, 'GPUCommandBuffer');
     method('GPUQueue', 'submit', (p, _, commands) => {
-      const list = sequence(commands, commandBufferPointer);
+      let retained: object[] | undefined;
+      const list = sequence(
+        commands,
+        hasVideoSources
+          ? (value) => {
+              const command = peer(value, 'GPUCommandBuffer');
+              if (command.externalTextures) (retained ??= []).push(value);
+              return command.pointer;
+            }
+          : commandBufferPointer,
+      );
       const a = arena();
       try {
         proc('wgpuQueueSubmit')(p.pointer, list.length, a.array('pointer', list));
+        // Dawn consumes command buffers even when submission validation fails.
+        if (retained)
+          for (const command of retained)
+            peers.get(command)!.externalTextures = undefined;
       } finally {
         a.releaseAll();
       }
@@ -1275,11 +1359,52 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
         const source = convert('GPUCopyExternalImageSourceInfo', input, pointer);
         const dest = convert('GPUCopyExternalImageDestInfo', destination, pointer);
         const extent = convert('GPUExtent3D', size, pointer);
-        const pixels = images().read(source.source);
         const x =
           (Array.isArray(source.origin) ? source.origin[0] : source.origin.x) ?? 0;
         const y =
           (Array.isArray(source.origin) ? source.origin[1] : source.origin.y) ?? 0;
+        const frame = video.frame(source.source);
+        if (frame) {
+          const frameHandle = liveVideoHandle(frame);
+          const { displayWidth, displayHeight } = frame.info;
+          const width = Array.isArray(extent) ? extent[0] : extent.width;
+          const height = (Array.isArray(extent) ? extent[1] : extent.height) ?? 1;
+          const layers =
+            (Array.isArray(extent) ? extent[2] : extent.depthOrArrayLayers) ?? 1;
+          if (x + width > displayWidth || y + height > displayHeight || layers > 1)
+            throw exception('The copy exceeds the source video frame');
+          const a = arena();
+          let handle = 0n;
+          try {
+            handle = importVideo(
+              peer(p.device, 'GPUDevice').pointer,
+              frameHandle,
+              dest.colorSpace,
+            );
+            const copy = a.struct('WGPUImageCopyExternalTexture', {
+              origin: [x, y, 0],
+              naturalSize: { width: displayWidth, height: displayHeight },
+            });
+            copy.value.externalTexture = handle;
+            proc('wgpuQueueCopyExternalTextureForBrowser')(
+              p.pointer,
+              copy.pointer,
+              a.struct('WGPUTexelCopyTextureInfo', dest).pointer,
+              a.struct('WGPUExtent3D', extent).pointer,
+              a.struct('WGPUCopyTextureForBrowserOptions', {
+                flipY: source.flipY,
+                dstAlphaMode: dest.premultipliedAlpha
+                  ? 'premultiplied'
+                  : 'unpremultiplied',
+              }).pointer,
+            );
+          } finally {
+            if (handle) proc('wgpuExternalTextureRelease')(handle);
+            a.releaseAll();
+          }
+          return;
+        }
+        const pixels = images().read(source.source);
         uploadExternalPixels(p, self, pixels, dest, extent, source.flipY, x, y);
       },
     );
@@ -1412,31 +1537,29 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
       ['beginComputePass', 'ComputePassEncoder'],
       ['beginRenderPass', 'RenderPassEncoder'],
       ['finish', 'CommandBuffer'],
-    ] as const)
+    ] as const) {
+      const finish = methodName === 'finish';
+      const type = finish
+        ? 'GPUCommandBufferDescriptor'
+        : `GPU${resultKind.replace('Encoder', 'Descriptor')}`;
+      const nativeName = `wgpuCommandEncoder${methodName[0]!.toUpperCase()}${methodName.slice(1)}`;
       method('GPUCommandEncoder', methodName, (p, _, input) => {
-        if (methodName === 'finish' && input == null)
-          return wrap(
-            'GPUCommandBuffer',
-            proc('wgpuCommandEncoderFinish')(p.pointer, 0n),
-            p.device,
-          );
-        const descKind =
-          methodName === 'finish'
-            ? 'CommandBuffer'
-            : resultKind.replace('Encoder', 'Descriptor');
-        const type =
-          methodName === 'finish' ? 'GPUCommandBufferDescriptor' : `GPU${descKind}`;
-        return descriptor(type, input, (a, desc) =>
-          wrap(
-            `GPU${resultKind}`,
-            proc(
-              `wgpuCommandEncoder${methodName[0]!.toUpperCase()}${methodName.slice(1)}`,
-            )(p.pointer, a.struct(`W${type}`, desc).pointer),
-            p.device,
-            desc,
-          ),
-        );
+        const result =
+          finish && input == null
+            ? wrap('GPUCommandBuffer', proc(nativeName)(p.pointer, 0n), p.device)
+            : descriptor(type, input, (a, desc) =>
+                wrap(
+                  `GPU${resultKind}`,
+                  proc(nativeName)(p.pointer, a.struct(`W${type}`, desc).pointer),
+                  p.device,
+                  desc,
+                ),
+              );
+        if (finish) moveExternalTextures(p, result);
+        else if (hasVideoSources) peer(result).commandEncoder = p;
+        return result;
       });
+    }
     method(
       'GPUCommandEncoder',
       'copyBufferToBuffer',
@@ -1557,7 +1680,8 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
           if (count === 4)
             throw new TypeError('setBindGroup needs two, three or five arguments');
           index = integer(index, 32);
-          const handle = group == null ? 0n : pointer(group, 'GPUBindGroup');
+          const binding = group == null ? undefined : peer(group, 'GPUBindGroup');
+          const handle = binding?.pointer ?? 0n;
           let values: number[] | undefined;
           if (count >= 5) {
             if (!(offsets instanceof Uint32Array))
@@ -1570,6 +1694,8 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
           } else if (offsets !== undefined) {
             values = sequence(offsets, dynamicOffset);
           }
+          if (binding?.externalTextures)
+            retainExternalTextures(p.commandEncoder ?? p, binding.externalTextures);
           if (!values?.length) {
             setBindGroup(p.pointer, index, handle, 0, 0n);
             return;
@@ -1589,7 +1715,10 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
         },
       );
       if (kind !== 'RenderBundleEncoder')
-        method(`GPU${kind}`, 'end', (p) => proc(`wgpu${kind}End`)(p.pointer));
+        method(`GPU${kind}`, 'end', (p) => {
+          proc(`wgpu${kind}End`)(p.pointer);
+          if (p.commandEncoder) p.commandEncoder = undefined;
+        });
     }
     method('GPUComputePassEncoder', 'dispatchWorkgroups', (p, _, x, y = 1, z = 1) =>
       proc('wgpuComputePassEncoderDispatchWorkgroups')(
@@ -1690,8 +1819,8 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
         );
     }
     method('GPURenderBundleEncoder', 'finish', (p, _, input) =>
-      descriptor('GPURenderBundleDescriptor', input, (a, desc) =>
-        wrap(
+      descriptor('GPURenderBundleDescriptor', input, (a, desc) => {
+        const result = wrap(
           'GPURenderBundle',
           proc('wgpuRenderBundleEncoderFinish')(
             p.pointer,
@@ -1699,19 +1828,37 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
           ),
           p.device,
           desc,
-        ),
-      ),
+        );
+        moveExternalTextures(p, result);
+        return result;
+      }),
     );
     const renderBundlePointer = (value: unknown) => pointer(value, 'GPURenderBundle');
     method('GPURenderPassEncoder', 'executeBundles', (p, _, input) => {
-      const list = sequence(input, renderBundlePointer),
-        a = arena();
+      let retained: object[] | undefined;
+      const list = sequence(
+        input,
+        hasVideoSources
+          ? (value) => {
+              const bundle = peer(value, 'GPURenderBundle');
+              if (bundle.externalTextures) (retained ??= []).push(value);
+              return bundle.pointer;
+            }
+          : renderBundlePointer,
+      );
+      const a = arena();
       try {
         proc('wgpuRenderPassEncoderExecuteBundles')(
           p.pointer,
           list.length,
           a.array('pointer', list),
         );
+        if (retained)
+          for (const bundle of retained)
+            retainExternalTextures(
+              p.commandEncoder ?? p,
+              peers.get(bundle)!.externalTextures!,
+            );
       } finally {
         a.releaseAll();
       }
@@ -2151,6 +2298,7 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
       close() {
         if (!open) return;
         if (pumpTimer !== undefined) g.clearTimeout(pumpTimer);
+        video.close();
         retiringDevices.clear();
         unregisterCanvas();
         unregisterTransfers();
@@ -2206,6 +2354,8 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
           finalizer(p.kind).detach(object);
           proc(`wgpu${p.kind.slice(3)}Release`)(p.pointer);
           p.live = false;
+          if (p.commandEncoder) p.commandEncoder = undefined;
+          if (p.externalTextures) p.externalTextures = undefined;
         }
         resources.clear();
         deviceObjects.clear();
@@ -2220,6 +2370,7 @@ export function installWebGpu(global: typeof globalThis, host: Call, worker = fa
     releaseContext.attach(state, context);
     return state;
   } catch (error) {
+    startupVideo?.close();
     if (startupNotify) library.unregisterCallback(startupNotify);
     if (startupContext) native.release_context(startupContext);
     library.close();

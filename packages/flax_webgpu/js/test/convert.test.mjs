@@ -32,6 +32,44 @@ test('opaque resources reject raw pointers and foreign objects', () => {
     offset: 0,
   });
 });
+test('external texture descriptors convert a branded VideoFrame in IDL member order', () => {
+  const frame = {};
+  kinds.set(frame, 'VideoFrame');
+  const reads = [];
+  const desc = convert(
+    'GPUExternalTextureDescriptor',
+    new Proxy(
+      { source: frame },
+      {
+        get(value, key, receiver) {
+          reads.push(key);
+          return Reflect.get(value, key, receiver);
+        },
+      },
+    ),
+    resource,
+  );
+  assert.deepEqual(reads, ['label', 'colorSpace', 'source']);
+  assert.deepEqual(desc, { label: '', colorSpace: 'srgb', source: frame });
+  for (const source of [Object.create(frame), {}, 1n, null])
+    assert.throws(
+      () => convert('GPUExternalTextureDescriptor', { source }, resource),
+      TypeError,
+    );
+  assert.throws(
+    () =>
+      convert(
+        'GPUExternalTextureDescriptor',
+        { source: frame, colorSpace: 'rec2020' },
+        resource,
+      ),
+    TypeError,
+  );
+
+  const texture = {};
+  kinds.set(texture, 'GPUExternalTexture');
+  assert.equal(convert('GPUBindingResource', texture, resource), texture);
+});
 test('extent and color sequences convert iterators with bounded dimensions', () => {
   assert.deepEqual(convert('GPUExtent3D', new Set([32, 16]), resource), [32, 16]);
   assert.throws(() => convert('GPUExtent3D', [], resource), TypeError);

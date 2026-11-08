@@ -40,9 +40,17 @@ int32_t flax_webgpu_compilation_info(void *context, WGPUShaderModule shader,
                                      uint64_t request);
 int32_t flax_webgpu_pipeline(void *context, WGPUDevice device, uint64_t request,
                              uint32_t kind, const void *descriptor);
-/* Session, mapping, surface, IOSurface and publication counts; index 5 is
- * unsafe retirement. */
+/* Index 5 counts unsafe canvas retirement. Indices 10–13 count video frames,
+ * pixel-buffer leases, pending GPU reads and retirement errors. */
 uint64_t flax_webgpu_live(uint32_t kind);
+/* A registered producer returns an owned frame, or null with an empty error
+ * while no frame is available. Frame info timestamps and durations are in µs. */
+void *flax_webgpu_video_frame_acquire(void *registry, const char *source_id);
+const char *flax_webgpu_video_frame_info(void *frame);
+/* Returns an owned Dawn handle; color_space is 0 (sRGB) or 1 (Display P3). */
+WGPUExternalTexture flax_webgpu_video_frame_import(WGPUDevice device, void *frame,
+                                                   uint32_t color_space);
+void flax_webgpu_video_frame_release(void *frame);
 void *flax_webgpu_canvas_create(void *context, void *registry);
 /* Private owned ArrayBuffer backing storage; only its original address is a lease.
  * The backing-store deleter owns token_release independently of any JS runtime. */

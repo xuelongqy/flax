@@ -230,12 +230,62 @@ canvases. Canvas snapshots and PNG/JPEG/WebP exports are explicit CPU paths. See
 
 Core provides pure JS/Wasm Dedicated Workers by default. Selecting this plugin on a
 nonsandboxed Session also enables Worker WebGPU compute and transferable OffscreenCanvas
-rendering. Worker Canvas 2D, general browser DOM/CSS, GPUExternalTexture/video sharing,
+rendering. Worker Canvas 2D, Worker video sources, general browser DOM/CSS,
 other platforms and full CTS remain outside this profile. See the
 [architecture](../../docs/architecture/webgpu.md) and
 [remaining task](../../docs/tasks/webgpu-js-api.md).
 
 The development plugin uses CocoaPods; Swift Package Manager integration is deferred.
+
+### macOS video frames
+
+Once the Flutter engine is running, create a
+`FlaxWebGpuVideoSource(registry: registrar.textures)` in the macOS producer. Publish
+each ready IOSurface-backed `CVPixelBuffer` on the platform thread
+with its timestamp and optional duration in microseconds. Flutter can render the
+producer with `Texture(textureId: ...)`. Send its opaque `sourceId` through the
+producer's Dart integration and grant the Session a name. Prepare the
+`@flax/webgpu` module from `@flax/webgpu-runtime` alongside `@flax/webgpu/host` for
+Sessions with video sources.
+
+```dart
+FlaxWebGpuPlugin(videoSources: {'movie': nativeSourceId})
+```
+
+Acquire the latest frame when the renderer needs one. A source with no published
+frame, an ungranted name or a disposed source returns `null`.
+
+```js
+import { acquireVideoFrame } from '@flax/webgpu';
+
+const frame = acquireVideoFrame('movie');
+if (frame) {
+  try {
+    videoTexture.setFrame(frame); // THREE.VideoFrameTexture
+    renderer.render(scene, camera);
+  } finally {
+    frame.close();
+  }
+}
+```
+
+Use `device.importExternalTexture({source: frame})` with WGSL `texture_external` for
+direct sampling. `queue.copyExternalImageToTexture({source: frame}, destination, size)`
+converts and copies into a regular GPU texture. Three.js 0.186.1 uses the latter path.
+Both read the source IOSurface on the GPU and accept sRGB and Display P3 destinations.
+
+The source accepts opaque full-frame SDR buffers. Publish BT.709 NV12 in video or full
+range, or BGRA with BT.709 or sRGB color. Untagged BGRA uses sRGB. The producer owns
+decode, playback and geometry preparation. Treat each buffer's pixels and attachments
+as immutable while retained. Call `dispose()` on the platform thread when the video
+source retires. A previously acquired frame can outlive the source. Closing a frame
+expires its imported textures immediately, with GPU completion determining when the
+buffer returns to its pool. The Session closes any remaining frames during teardown.
+
+The VideoFrame surface covers sizes, timestamps, format and `close()`. Acquisition
+is main-realm only. HDR video, HTML media elements and WebCodecs decode and frame
+construction are outside this profile. See the
+[macOS video acceptance](example/README.md#video-frame-acceptance) for reproduction.
 
 ### Wide gamut and HDR
 

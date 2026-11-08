@@ -29,6 +29,24 @@ Worker callers can use the `FlaxWorkerElementImageQueue` type from `@flax/webgpu
 snapshot has its own lifetime and remains usable after the Widget changes or unmounts.
 Call `close()` to release it. Flutter owns the registered children's layout.
 
+## SDR video frames
+
+The native macOS `FlaxWebGpuVideoSource` is a FlutterTexture producer that retains
+the latest ready IOSurface-backed CVPixelBuffer. Flutter draws the texture ID. A
+separate UUID identifies the producer within the Flutter texture registry, and
+`FlaxWebGpuPlugin(videoSources: ...)` grants selected names to a Session.
+`acquireVideoFrame(name)` obtains the latest frame through the existing native
+asset and returns a realm-branded VideoFrame. Frame acquisition and sampling stay
+on the JS/native path after the registry is ready.
+
+Dawn imports full-frame SDR BGRA and BT.709 NV12 in video or full range.
+`GPUDevice.importExternalTexture` samples the surface's native plane views, and
+`GPUQueue.copyExternalImageToTexture` performs GPU color conversion and copying.
+An acquired frame owns its buffer lease independently of the producer. Close and
+Session teardown expire imports, end shared access and hold the decoder buffer
+until the completion fence. A Frame and its GPU objects belong to the realm that
+acquired them.
+
 ## Worker rendering
 
 A nonsandboxed parent that selects `FlaxWebGpuPlugin` installs the same binding-free
@@ -231,6 +249,6 @@ formats and `pixelSnapshots: true`. Dart acceptance requires those receipts and 
 canvas-configuration pixel snapshots in every cycle, so omitted image paths cannot pass
 silently. See the [still-image task](../tasks/worker-images.md) for validation status.
 
-Complete WebIDL/CTS conformance, GPUExternalTexture/video sharing, Worker Canvas 2D
+Complete WebIDL/CTS conformance, HDR and Worker video sources, Worker Canvas 2D
 services and other platforms remain open. See the
 [remaining task](../tasks/webgpu-js-api.md).

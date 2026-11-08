@@ -25,6 +25,8 @@ std::atomic<size_t> surfaces{0}, storages{0}, publications{0},
 std::atomic<size_t> canvasTokens{0}, canvasEndpoints{0};
 std::atomic<size_t> callbackContexts{0};
 std::atomic<size_t> ownedDeviceRefs{0};
+std::atomic<size_t> videoFrames{0}, videoPixels{0}, videoFences{0},
+    videoRetirementErrors{0};
 struct CallbackLease {
   CallbackLease() { ++callbackContexts; }
   ~CallbackLease() { --callbackContexts; }
@@ -259,6 +261,14 @@ extern "C" uint64_t flax_webgpu_live(uint32_t kind) {
     return callbackContexts;
   case 9:
     return ownedDeviceRefs;
+  case 10:
+    return videoFrames;
+  case 11:
+    return videoPixels;
+  case 12:
+    return videoFences;
+  case 13:
+    return videoRetirementErrors;
   default:
     return 0;
   }
@@ -403,6 +413,8 @@ extern "C" int32_t flax_webgpu_device(void *context, WGPUAdapter adapter,
         throw std::runtime_error("Dawn canvas interop features are unavailable");
       requested.push_back(feature);
     }
+    if (nativeAdapter.HasFeature(wgpu::FeatureName::DawnMultiPlanarFormats))
+      requested.push_back(wgpu::FeatureName::DawnMultiPlanarFormats);
     for (NSString *name in input[@"requiredFeatures"] ?: @[]) {
       bool found = false;
       for (auto f : features)
@@ -533,6 +545,7 @@ extern "C" int32_t flax_webgpu_device(void *context, WGPUAdapter adapter,
 #include "canvas.inc"
 #include "images.inc"
 #include "encode.inc"
+#include "video.inc"
 
 extern "C" void flax_webgpu_release_device(WGPUDevice device) {
   Context owner;

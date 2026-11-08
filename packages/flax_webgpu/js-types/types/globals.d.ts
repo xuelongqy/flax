@@ -1,7 +1,13 @@
 import type * as WebGPU from './types.g.js';
 import type { OffscreenCanvasConstructor } from '@flax/core/host/common';
+import type { VideoFrame as HostVideoFrame } from './video-frame.js';
 declare global {
     var OffscreenCanvas: OffscreenCanvasConstructor;
+    type VideoFrame = HostVideoFrame;
+    var VideoFrame: {
+        readonly prototype: HostVideoFrame;
+        [Symbol.hasInstance](value: unknown): value is HostVideoFrame;
+    };
     function requestAnimationFrame(callback: (time: number) => void): number;
     function cancelAnimationFrame(id?: number): void;
     type GPU = WebGPU.GPU;
@@ -27,6 +33,11 @@ declare global {
     type GPUTextureView = WebGPU.GPUTextureView;
     var GPUTextureView: {
         readonly prototype: WebGPU.GPUTextureView;
+    };
+    type GPUExternalTexture = WebGPU.GPUExternalTexture;
+    var GPUExternalTexture: {
+        readonly prototype: WebGPU.GPUExternalTexture;
+        [Symbol.hasInstance](value: unknown): value is WebGPU.GPUExternalTexture;
     };
     type GPUSampler = WebGPU.GPUSampler;
     var GPUSampler: {
