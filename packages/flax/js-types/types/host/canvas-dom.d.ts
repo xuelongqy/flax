@@ -1,6 +1,6 @@
 import type { Event, EventTarget, DOMExceptionConstructor } from './events.js';
 import type { OffscreenCanvas } from './canvas.js';
-import type { HTMLImageElement, PixelImage } from './images.js';
+import { type HTMLImageElement, type PixelImage } from './images.js';
 export interface CanvasRect {
     readonly x: number;
     readonly y: number;

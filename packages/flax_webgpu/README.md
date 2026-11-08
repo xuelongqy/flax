@@ -33,10 +33,9 @@ is synchronous and can stall the Worker; normal presentation stays native.
 Worker Canvas 2D, document/HTML image simulation and video are excluded. The
 [real acceptance fixture](example/js/gpu-workers.js) covers compute, native
 presentation, resize, image pixels, ownership and shutdown. Each cycle requires a
-`stillImages` receipt with 17 named cases and actual canvas pixel snapshots. The
-[still-image task](../../docs/tasks/worker-images.md) separates development checks from
-pending independent acceptance. See the
-[architecture](../../docs/architecture/webgpu.md).
+`stillImages` receipt with 19 named cases and actual canvas pixel snapshots. The
+[still-image task](../../docs/tasks/worker-images.md) records the original validation.
+See the [architecture](../../docs/architecture/webgpu.md) for the current profile.
 
 Worker TypeScript imports `@flax/core/host/worker` and `@flax/webgpu/globals`; the GPU
 declarations do not install main-realm `window`, `document`, `Image` or
@@ -45,9 +44,9 @@ declarations do not install main-realm `window`, `document`, `Image` or
 The [Three.js renderer acceptance](../../docs/tasks/three-worker-renderer.md) also runs
 upstream WebGPURenderer entirely inside a Dedicated Worker, reusing the model,
 skeletal/morph animation, Meshopt, nested KTX2 and TSL/Bloom fixtures. Three macOS
-Sessions passed 60 root/Worker GPU comparisons and 24 actual Flutter canvas captures
-with zero pixel error, including renderer animation and nested decoder retirement. Its
-task record identifies the final independent delivery receipt.
+Sessions passed 60 exact root/Worker GPU pixel comparisons and 24 Flutter canvas
+captures within the display sampling tolerance, including renderer animation and nested
+decoder retirement. Its task record identifies the independent delivery receipt.
 
 ## Use
 
@@ -92,13 +91,13 @@ Use macOS 26+ arm64, the repository's locked pnpm/Pub dependencies, CMake, Ninja
 CocoaPods and Xcode. The maintained Flutter 3.47.9/Dart 3.13.7 checkout must have its
 ordinary `flax_mac_debug_arm64` and `flax_mac_release_arm64` builds. Build them with
 `engine/src/flutter/flax/tools/build_engine.py --sdk /path/to/verified/v8-sdk --mode <debug|release>`.
-For Worker acceptance, the matching engine must include the owned ArrayBuffer FFI
-bridge and the structured-clone transfer validation for Canvas and ImageBitmap.
-The V8 SDK is independent of Dawn. The engine retains its macOS 15 baseline; this
-optional Dawn binary raises only the WebGPU profile to macOS 26. The current UI isolate
-must use Impeller with Metal. Installation checks the optional engine interop version
-and renderer query before creating a Dawn context. Disabling Impeller rejects WebGPU
-installation with an explicit diagnostic.
+For Worker acceptance, the matching engine must include the owned ArrayBuffer FFI bridge
+and the structured-clone transfer validation for Canvas and ImageBitmap. The V8 SDK is
+independent of Dawn. The engine retains its macOS 15 baseline; this optional Dawn binary
+raises only the WebGPU profile to macOS 26. The current UI isolate must use Impeller
+with Metal. Installation checks the optional engine interop version and renderer query
+before creating a Dawn context. Disabling Impeller rejects WebGPU installation with an
+explicit diagnostic.
 
 The native producer is explicit. Obtain the locked official Dawn archive and extract its
 single top-level directory into a local SDK directory, keeping the archive as
@@ -174,9 +173,11 @@ feature; canvas configurations reject this usage with `TypeError`.
 Canvas configuration validates format and view-format feature requirements before
 rejecting legal but unsupported context formats with `TypeError`, then rejects transient
 usage. These content errors preserve the existing configuration and current texture.
-Incompatible view formats throw `NotSupportedError`. `getConfiguration()` returns fresh
-dictionaries and arrays, including `toneMapping` and `viewFormats`, while retaining the
-configured `GPUDevice` identity. It returns `null` before configuration and after
+Incompatible view formats produce a `GPUValidationError` and an error texture. An
+invalid canvas size reports GPU validation at configuration or the next acquisition
+after a resize. `getConfiguration()` returns fresh dictionaries and arrays, including
+`toneMapping` and `viewFormats`, while retaining the configured `GPUDevice` identity and
+the attempted configuration. It returns `null` before configuration and after
 `unconfigure()`.
 
 Device loss retains the configuration and current texture identity until expiry.
@@ -241,13 +242,15 @@ The development plugin uses CocoaPods; Swift Package Manager integration is defe
 Configure `colorSpace: 'display-p3'` for wide-gamut content. On a compatible display
 Flutter presents it in its existing wide-gamut mode. For extended luminance, configure
 `format: 'rgba16float'` with `toneMapping: { mode: 'extended' }`. Set the boolean
-`FLTEnableExtendedDynamicRange` in the app's Info.plist to opt the matching Flax
-Flutter engine into FP16/EDR output on macOS 26+ with a P3 and EDR capable display.
-The window uses the existing wide-gamut or SDR surface when EDR output is unavailable.
-Standard FP16 content is projected into SDR Display P3 before Flutter composition.
+`FLTEnableExtendedDynamicRange` in the app's Info.plist to opt the matching Flax Flutter
+engine into FP16/EDR output on macOS 26+ with a P3 and EDR capable display. The window
+uses the existing wide-gamut or SDR surface when EDR output is unavailable. Standard
+FP16 content is projected into SDR Display P3 before Flutter composition.
 
-Explicit snapshots and image exports convert color canvases to SDR sRGB RGBA8 for Core's
-image storage. The
+Explicit bitmap snapshots preserve the drawing buffer's gamut and pixel format,
+including extended float16 values. `convertToBlob()`, `toBlob()` and `toDataURL()`
+export tagged Display P3 PNG and JPEG. Extended float16 PNG export uses Rec.2020 PQ.
+JPEG and WebP use SDR, and WebP uses sRGB. The
 [color canvas probe](../../experiments/webgpu_dawn/color_canvas/README.md) compares
 WebGPU pixels with Flutter color controls and macOS HDR capture.
 

@@ -1,13 +1,13 @@
 import { Event, EventTarget, MessageEvent } from './events.js';
 import type { EventInit } from './events.js';
 import type { OffscreenCanvas } from './canvas.js';
-import type { ImageBitmap } from './images.js';
+import type { ImageBitmap, ElementImage } from './images.js';
 export interface WorkerOptions {
     type?: 'classic' | 'module';
     name?: string;
     credentials?: 'omit' | 'same-origin' | 'include';
 }
-export type Transferable = ArrayBuffer | OffscreenCanvas | ImageBitmap;
+export type Transferable = ArrayBuffer | OffscreenCanvas | ImageBitmap | ElementImage;
 export interface StructuredSerializeOptions {
     transfer?: Transferable[];
 }

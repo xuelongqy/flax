@@ -674,6 +674,8 @@ class _AcceptanceState extends State<Acceptance> {
               'mixed-transfer-roundtrip',
               'mixed-transfer-drop',
               'root-receiver',
+              'wide-color-roundtrip',
+              'wide-color-root-receiver',
             };
             final images = reports.single['stillImages'];
             if (images is! Map ||

@@ -16,6 +16,7 @@ const groups = [
   'api/validation/encoding/cmds/copyBufferToBuffer',
   'api/validation/encoding/cmds/setBindGroup',
   'api/validation/buffer/mapping',
+  'web_platform/canvas/configure',
   'idl/constructable',
   'idl/javascript',
 ];
@@ -39,6 +40,12 @@ const selectedTests = {
     'mapAsync,offsetAndSizeAlignment',
     'getMappedRange,sizeAndOffsetOOB,mappedAtCreation',
     'getMappedRange,sizeAndOffsetOOB,mapped',
+  ],
+  'web_platform/canvas/configure': [
+    'defaults',
+    'device',
+    'size_zero_before_configure',
+    'size_zero_after_configure',
   ],
   'idl/javascript': [
     'obj,Object_keys',

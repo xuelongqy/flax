@@ -2,6 +2,7 @@ import { verifyCanvasConfiguration } from './canvas-config.js';
 import {
   readTexturePixels,
   readCanvasPixels,
+  verifyWideStillImages,
   verifyWorkerStillImages,
 } from './images.js';
 
@@ -10,6 +11,7 @@ function workerEntry(
   verifyCanvasConfiguration,
   readTexturePixels,
   readCanvasPixels,
+  verifyWideStillImages,
   verifyWorkerStillImages,
 ) {
   let device, canvas, context;
@@ -56,7 +58,7 @@ function workerEntry(
       if (data.action === 'nested') {
         const url = URL.createObjectURL(
           new Blob([
-            `(${workerEntry.toString()})(${verifyCanvasConfiguration.toString()},${readTexturePixels.toString()},${readCanvasPixels.toString()},${verifyWorkerStillImages.toString()})`,
+            `(${workerEntry.toString()})(${verifyCanvasConfiguration.toString()},${readTexturePixels.toString()},${readCanvasPixels.toString()},${verifyWideStillImages.toString()},${verifyWorkerStillImages.toString()})`,
           ]),
         );
         const child = new Worker(url);
@@ -88,15 +90,19 @@ function workerEntry(
           throw Error('Worker canvas pixels were skipped');
         postMessage({ canvasConfiguration: result });
       } else if (data.action === 'still-images') {
-        const { receipt, bitmap } = await verifyWorkerStillImages(
+        const { receipt, bitmap, wide } = await verifyWorkerStillImages(
           device,
           (ok, message) => {
             if (!ok) throw Error(message);
           },
           readTexturePixels,
           readCanvasPixels,
+          verifyWideStillImages,
         );
-        postMessage({ stillImages: receipt, bitmap, alias: bitmap }, [bitmap]);
+        postMessage({ stillImages: receipt, bitmap, alias: bitmap, wide }, [
+          bitmap,
+          wide.bitmap,
+        ]);
       } else if (data.action === 'image-roundtrip' || data.action === 'image-echo') {
         const transfer = (packet) => [
           packet.bitmap,
@@ -138,7 +144,7 @@ function workerEntry(
         if (data.action === 'image-roundtrip') {
           const url = URL.createObjectURL(
             new Blob([
-              `(${workerEntry.toString()})(${verifyCanvasConfiguration.toString()},${readTexturePixels.toString()},${readCanvasPixels.toString()},${verifyWorkerStillImages.toString()})`,
+              `(${workerEntry.toString()})(${verifyCanvasConfiguration.toString()},${readTexturePixels.toString()},${readCanvasPixels.toString()},${verifyWideStillImages.toString()},${verifyWorkerStillImages.toString()})`,
             ]),
           );
           const child = new Worker(url);
@@ -332,7 +338,7 @@ export async function verifyGpuWorkers(assert, show, report) {
   const url = URL.createObjectURL(
     new Blob(
       [
-        `(${workerEntry.toString()})(${verifyCanvasConfiguration.toString()},${readTexturePixels.toString()},${readCanvasPixels.toString()},${verifyWorkerStillImages.toString()})`,
+        `(${workerEntry.toString()})(${verifyCanvasConfiguration.toString()},${readTexturePixels.toString()},${readCanvasPixels.toString()},${verifyWideStillImages.toString()},${verifyWorkerStillImages.toString()})`,
       ],
       {
         type: 'text/javascript',
@@ -819,6 +825,37 @@ export async function verifyGpuWorkers(assert, show, report) {
       } finally {
         rootTarget.destroy();
       }
+      const wide = imageResult.wide;
+      const wideTarget = mainDevice.createTexture({
+        size: [2, 2],
+        format: 'rgba16float',
+        usage:
+          GPUTextureUsage.COPY_SRC |
+          GPUTextureUsage.COPY_DST |
+          GPUTextureUsage.RENDER_ATTACHMENT,
+      });
+      try {
+        mainDevice.queue.copyExternalImageToTexture(
+          { source: wide.bitmap },
+          {
+            texture: wideTarget,
+            colorSpace: 'display-p3',
+            premultipliedAlpha: true,
+          },
+          [2, 2],
+        );
+        const bytes = new Uint8Array(
+          await readTexturePixels(mainDevice, wideTarget, 2, 2, 8),
+        );
+        imageCheck(
+          new Float16Array(bytes.buffer).every((value, i) => value === wide.values[i]),
+          'Root uploads exact P3 FP16 pixels from the retired Worker',
+        );
+        stillImages.cases.push('wide-color-root-receiver');
+      } finally {
+        wideTarget.destroy();
+        wide.bitmap.close();
+      }
       const local = new OffscreenCanvas(40, 20);
       const clone = structuredClone(local, { transfer: [local] });
       await renderReceived(clone, 'clone', [40, 20]);
@@ -846,7 +883,7 @@ export async function verifyGpuWorkers(assert, show, report) {
 export async function armGpuWorkerForSessionClose() {
   const url = URL.createObjectURL(
     new Blob([
-      `(${workerEntry.toString()})(${verifyCanvasConfiguration.toString()},${readTexturePixels.toString()},${readCanvasPixels.toString()},${verifyWorkerStillImages.toString()})`,
+      `(${workerEntry.toString()})(${verifyCanvasConfiguration.toString()},${readTexturePixels.toString()},${readCanvasPixels.toString()},${verifyWideStillImages.toString()},${verifyWorkerStillImages.toString()})`,
     ]),
   );
   const worker = new Worker(url);

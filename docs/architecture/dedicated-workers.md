@@ -99,24 +99,29 @@ Deserialization failures dispatch `messageerror`; normal user exceptions dispatc
 ## Still images
 
 Pure Core Workers install `ImageData`, `ImageBitmap` and `createImageBitmap` without a
-renderer plugin. Blob decoding and ImageData/ImageBitmap crop, resize, flip and sampling
-reuse CPU image operations 0..2 in `Isolate.run`. Inferred resize dimensions round up;
-resizing a 4 by 3 source to height 1 produces width 2. Storage remains sRGB RGBA8. HTML
-Image/HTMLImageElement, bitmaprenderer and Flutter image objects remain root-only.
+renderer plugin. Blob decoding and sRGB RGBA8 bitmap transforms reuse CPU image
+operations in `Isolate.run`. Wide-gamut and float16 image transforms keep their pixel
+format and color space in Core. Inferred resize dimensions round up. HTML
+Image/HTMLImageElement, bitmaprenderer and Flutter image objects are root-only.
 
-ImageData serialization includes its actual Uint8ClampedArray in the existing V8 graph.
-Cloned or transferred `.data.buffer` aliases, view offsets and repeated ImageData
-references therefore survive both message directions and nested Workers. Private data
-and dimensions are authoritative even when application code shadows public getters.
-ImageData itself is not transferable; its buffer is. The constructor preserves the
-supplied Uint8ClampedArray view and requires ordinary ArrayBuffer backing; shared
-backing is rejected. Public declarations expose that transferable buffer type.
+ImageData serialization includes its actual Uint8ClampedArray or Float16Array in the
+existing V8 graph. Cloned or transferred `.data.buffer` aliases, view offsets and
+repeated ImageData references therefore survive both message directions and nested
+Workers. Private data and dimensions are authoritative even when application code
+shadows public getters. ImageData itself is not transferable; its buffer is. The
+constructor preserves the supplied typed-array view and requires ordinary ArrayBuffer
+backing; shared backing is rejected. Public declarations expose that transferable buffer
+type.
 
 An ImageBitmap owns private pixel bytes and metadata. Clone copies those bytes; transfer
 moves an ordinary detachable buffer and immediately exposes zero sender dimensions.
 Renderer consumers receive independent pixel snapshots. Native renderer resources are
 imported or captured lazily; Dart IDs, ui.Image objects and GPU pointers never cross the
 channel. A receiver remains usable after its sender closes or exits.
+
+A captured Widget `ElementImage` uses the same private pixel transfer. Include it in the
+transfer list to draw it on the receiver's WebGPU queue. Successful transfer consumes
+the sender's snapshot, and `close()` releases a live snapshot.
 
 Bitmap buffers, ordinary buffers and authenticated canvas leases share one native
 transfer list. Native serialization validates buffers, runs a private precommit check,
@@ -281,18 +286,18 @@ Mappings, native callbacks and resource finalizers then retire before V8 disposa
 The native ABI, UI protocol and Worker profile remain independent and unchanged. Worker
 graphics requires the maintained owned-buffer primitive and atomic canvas transfer
 capability; an older engine fails before Worker GPU context/listener creation. Worker
-WebGPU canvases use the same [color configuration and presentation](webgpu.md#mapping-and-presentation)
-as main Sessions. Canvas 2D, document/HTML simulation, shared GPU resources, video and
-XR remain outside this profile. See the
-[delivery task](../tasks/webgpu-worker-rendering.md) for lifecycle evidence.
+WebGPU canvases use the same
+[color configuration and presentation](webgpu.md#mapping-and-presentation) as main
+Sessions. Canvas 2D, document/HTML simulation, shared GPU resources, video and XR remain
+outside this profile. See the [delivery task](../tasks/webgpu-worker-rendering.md) for
+lifecycle evidence.
 
 Selected Workers accept ImageData, ImageBitmap and their OffscreenCanvas snapshots in
-`copyExternalImageToTexture`; sources are captured at call time. `convertToBlob` exports
-PNG, JPEG or WebP through the shared CPU codecs, with PNG fallback for unsupported MIME
-types. `transferToImageBitmap` expires the current canvas texture and replaces its
-content with transparent black, or opaque black for an opaque canvas. Explicit GPU image
-capture/export synchronously waits for readback and can stall the Worker; ordinary
-native presentation is unchanged. The [still-image task](../tasks/worker-images.md)
+`copyExternalImageToTexture`. Sources are captured at call time. `convertToBlob` exports
+PNG, JPEG or WebP, with PNG fallback for unsupported MIME types. `transferToImageBitmap`
+expires the current canvas texture and replaces its content with transparent black, or
+opaque black for an opaque canvas. Explicit GPU image capture/export synchronously waits
+for readback and can stall the Worker. The [still-image task](../tasks/worker-images.md)
 records the candidate's verification gates.
 
 ## Existing Core APIs and remaining gaps

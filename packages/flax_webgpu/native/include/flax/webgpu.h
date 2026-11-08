@@ -59,11 +59,10 @@ void flax_webgpu_canvas_display_release(void *display);
 void *flax_webgpu_canvas_from_token(void *context, void *token);
 int64_t flax_webgpu_canvas_id(void *canvas);
 int32_t flax_webgpu_canvas_configure(void *canvas, WGPUDevice device,
-                                     uint32_t width, uint32_t height,
-                                     uint64_t usage, uint32_t opaque,
-                                     WGPUTextureFormat format,
-                                     uint32_t srgb_view, uint32_t display_p3,
+                                     const WGPUTextureDescriptor *descriptor,
+                                     uint32_t opaque, uint32_t display_p3,
                                      uint32_t extended_tone_mapping);
+void flax_webgpu_canvas_resize(void *canvas, uint32_t width, uint32_t height);
 WGPUTexture flax_webgpu_canvas_texture(void *canvas);
 int32_t flax_webgpu_canvas_destroy_texture(void *canvas, WGPUTexture texture);
 int32_t flax_webgpu_canvas_present(void *canvas);
@@ -71,6 +70,18 @@ int32_t flax_webgpu_canvas_readback(void *canvas, void *pixels, size_t length,
                                     uint32_t transfer);
 void flax_webgpu_canvas_unconfigure(void *canvas);
 void flax_webgpu_canvas_release(void *canvas);
+/* Encoded bytes stay valid until the returned image handle is released. */
+const void *flax_webgpu_encode_image(const void *pixels, size_t length,
+                                     uint32_t width, uint32_t height,
+                                     uint32_t float16, uint32_t display_p3,
+                                     uint32_t premultiplied, uint32_t type,
+                                     double quality);
+int32_t flax_webgpu_encode_image_async(
+    void *context, uint64_t request, const void *pixels, size_t length,
+    uint32_t width, uint32_t height, uint32_t float16, uint32_t display_p3,
+    uint32_t premultiplied, uint32_t type, double quality);
+const void *flax_webgpu_encoded_image_bytes(const void *image, size_t *length);
+void flax_webgpu_encoded_image_release(const void *image);
 #ifdef __cplusplus
 }
 #endif

@@ -36,6 +36,7 @@ export interface CanvasBackend {
   getContext(options?: unknown): object | null;
   resize(width: number, height: number): void;
   convertToBlob(options?: { type?: string; quality?: number }): Promise<CanvasBlob>;
+  toDataURL?(type?: string, quality?: number): string;
   transferToImageBitmap(): CanvasImageBitmap;
   flush?(): void;
   readPixels?(sx: number, sy: number, sw: number, sh: number): Promise<unknown>;
@@ -342,6 +343,8 @@ export function installCanvasHost(
     }
     toDataURL(type?: string, quality?: number): string {
       if (!this.width || !this.height) return 'data:,';
+      const backend = attached(this).backend;
+      if (backend?.toDataURL) return backend.toDataURL(type, quality);
       const images = imageHost(global);
       return images.dataURL(images.read(this), type, quality);
     }

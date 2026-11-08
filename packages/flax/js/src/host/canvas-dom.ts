@@ -1,6 +1,6 @@
 import type { Event, EventTarget, DOMExceptionConstructor } from './events.js';
 import type { OffscreenCanvas } from './canvas.js';
-import type { HTMLImageElement, PixelImage } from './images.js';
+import { imageHost, type HTMLImageElement, type PixelImage } from './images.js';
 
 export interface CanvasRect {
   readonly x: number;
@@ -699,6 +699,19 @@ export function installCanvasDom(
           value: () => {
             state(canvas);
             schedulePaint(canvas, paint);
+          },
+        },
+        captureElementImage: {
+          value: (child: unknown) => {
+            state(canvas);
+            const source = widgetCanvases.get(child as object);
+            if (!source) throw new TypeError('Expected a registered Widget canvas');
+            if (source.parent !== canvas || !source.watched || !source.pixels)
+              throw new DOMException(
+                'The Widget canvas has no drawable snapshot on this canvas',
+                'InvalidStateError',
+              );
+            return imageHost(global).elementImage(source.pixels);
           },
         },
         onpaint: {

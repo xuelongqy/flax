@@ -72,29 +72,30 @@ plugin.
 ## Widget canvas sources
 
 A Dart host can opt a root `FlaxSession` into Widget images by registering
-`canvasSources: {'hud': (key: hudKey, changes: hudChanges)}`. Put the `GlobalKey`
-on a mounted `RepaintBoundary`. Use an existing `Listenable` for same-size painted
-updates, or pass `changes: null` for capture on attachment and layout size changes.
-The host resolves the exact render object through the key.
+`canvasSources: {'hud': (key: hudKey, changes: hudChanges)}`. Put the `GlobalKey` on a
+mounted `RepaintBoundary`. Use an existing `Listenable` for same-size painted updates,
+or pass `changes: null` for capture on attachment and layout size changes. The host
+resolves the exact render object through the key.
 
-`document.getElementById('hud')` and `document.querySelector('#hud')` return the
-same Core `HTMLCanvasElement` for the registration while its Widget is laid out.
-Its `width`, `height`, `offsetWidth` and `offsetHeight` report the Widget size
-rounded up to logical pixels. A drawable HTML canvas accepts the source through
-`appendChild` and `removeChild`. The source's `parentNode` reflects that association.
-This association leaves the Flutter Widget in its host layout. Set the parent
-`content` to `'drawable'`, or set the legacy `layoutsubtree` attribute. This
-profile treats registered sources as direct drawable children.
+`document.getElementById('hud')` and `document.querySelector('#hud')` return the same
+Core `HTMLCanvasElement` for the registration while its Widget is laid out. Its `width`,
+`height`, `offsetWidth` and `offsetHeight` report the Widget size rounded up to logical
+pixels. A drawable HTML canvas accepts the source through `appendChild` and
+`removeChild`. The source's `parentNode` reflects that association. This association
+leaves the Flutter Widget in its host layout. Set the parent `content` to `'drawable'`,
+or set the legacy `layoutsubtree` attribute. This profile treats registered sources as
+direct drawable children.
 
-After Flutter paints, Core captures the current boundary to straight RGBA at
-one pixel per logical pixel. Only watched sources capture, with one capture in
-flight per source. Paint notification follows snapshot publication and reports
-the same source objects in `changedElements` via `onpaint` and
-`addEventListener('paint', ...)`. An explicit `requestPaint()` may deliver an
-empty array and does not trigger capture. Removing the child, unmounting the
-Widget, or closing the session invalidates its snapshot. An attached source
-can capture again when the keyed Widget remounts. The canvas source profile uses
-the [WebGPU element upload methods](webgpu.md#widget-image-uploads).
+After Flutter paints, Core captures the current boundary to straight RGBA at one pixel
+per logical pixel. Only watched sources capture, with one capture in flight per source.
+Paint notification follows snapshot publication and reports the same source objects in
+`changedElements` via `onpaint` and `addEventListener('paint', ...)`. An explicit
+`requestPaint()` may deliver an empty array and does not trigger capture. Removing the
+child, unmounting the Widget, or closing the session invalidates its snapshot. An
+attached source can capture again when the keyed Widget remounts. The canvas source
+profile uses the [WebGPU element upload methods](webgpu.md#widget-image-uploads).
+`captureElementImage(child)` takes an independent snapshot of that raster for main or
+Worker WebGPU uploads. Transfer hands ownership of the snapshot to the receiver.
 
 `FlaxCanvasContent` is the shared Dart paint/snapshot contract. The Core target forwards
 notifications to `FlaxCanvasView`; the 2D implementation retains its pictures and image
@@ -368,12 +369,12 @@ captured in the command batch, and the engine uses the same image drawing path. 
 corrects the former three-argument putImageData shortcut while preserving call shapes.
 `putImageData` continues to ignore drawing state.
 
-ImageData exposes readonly width/height/data, colorSpace and pixelFormat. Only
-sRGB/rgba-unorm8 storage is implemented: recognized wider formats raise
-NotSupportedError instead of being silently ignored. Context attributes report unorm8;
-unsupported P3 or float16 contexts return null. The desynchronized hint is reported as
-false. Numeric pixel arguments are converted and range-checked before allocation or
-dispatch; detached buffers and invalid source objects fail before encoding.
+ImageData exposes readonly width/height/data, colorSpace and pixelFormat. Core supports
+sRGB and Display P3 with `Uint8ClampedArray` or `Float16Array` storage. Canvas 2D
+converts wide image inputs to its sRGB RGBA8 backing. Context attributes report unorm8
+and the desynchronized hint reports false. Synchronous Canvas 2D pixel reads use the
+backing format. Numeric pixel arguments are converted and range-checked before
+allocation or dispatch. Detached buffers and invalid sources fail before encoding.
 
 getTransform returns an independent two-dimensional affine value with a/b/c/d/e/f,
 matching matrix aliases, inverse, multiply, translate/scale/rotate, transformPoint and
@@ -531,11 +532,13 @@ when they need it.
 Shared codecs use the independent version-1 `flax_image_*` engine extension. Native ABI
 2 is unchanged. The private engine supplies CPU decode, crop/resize/flip and
 PNG/JPEG/WebP encode. These CPU operations run through `Isolate.run` in both root and
-Worker hosts; UI image import/readback operations remain root-only. Missing extensions
-reject; installing Core does not allocate a Canvas 2D decoder. Existing Canvas codecs
-remain available on the maintained engine. `convertToBlob`, HTML-style `toBlob` and
-`toDataURL` are explicit export paths; synchronous `toDataURL` can block the UI isolate
-and should not run each frame.
+Worker hosts. Core preserves P3 and float16 for in-memory bitmap transforms, and
+converts to sRGB RGBA8 at the shared codec and Flutter image import boundaries. UI image
+import/readback operations remain root-only. Missing extensions reject; installing Core
+does not allocate a Canvas 2D decoder. Existing Canvas codecs remain available on the
+maintained engine. `convertToBlob`, HTML-style `toBlob` and `toDataURL` are explicit
+export paths; synchronous `toDataURL` can block the UI isolate and should not run each
+frame.
 
 ImageData sub-serialization preserves its actual data view and graph aliases, including
 an explicitly transferred data buffer. ImageBitmap clone copies private pixels and

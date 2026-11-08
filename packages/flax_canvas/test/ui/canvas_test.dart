@@ -650,6 +650,16 @@ void main() {
       check(failed, 'zero read dimensions');
       const asynchronous = await c.getImageDataAsync(0,0,4,4);
       check(asynchronous.data.every((v,i) => v === pixels.data[i]), 'sync/async readback parity');
+      const wide = new ImageData(new Float16Array([2,0,0,1, 0,1,0,1]), 2, 1,
+        {colorSpace:'display-p3', pixelFormat:'rgba-float16'});
+      const wideBlank = c.createImageData(wide);
+      check(wideBlank.colorSpace === 'display-p3' && wideBlank.data instanceof Float16Array,
+        'createImageData preserves its source settings');
+      c.putImageData(wide, 0, 5, 1, 0, 1, 1);
+      c.drawImage(wide, 0, 6);
+      check(c.getImageData(1,5,1,1).data.join() === '0,255,0,255' &&
+        c.getImageData(0,6,1,1).data.join() === '255,0,0,255',
+        'Canvas2D draws wide image data into its sRGB backing');
       c.reset(); c.font = '20px sans-serif'; c.textBaseline = 'top';
       c.fillText('MMMM',0,0,16);
       const text = c.getImageData(0,0,80,24);

@@ -1,5 +1,6 @@
 import type {} from '@flax/core/host/worker';
 import type {} from '@flax/webgpu/globals';
+import type { FlaxWidgetCanvasSource, FlaxWorkerElementImageQueue } from '@flax/webgpu';
 
 const canvas = new OffscreenCanvas(64, 64);
 void navigator.gpu.requestAdapter();
@@ -23,6 +24,19 @@ async function stillImages(device: GPUDevice, texture: GPUTexture) {
   bitmap.close();
 }
 void stillImages;
+function drawElementImage(
+  queue: FlaxWorkerElementImageQueue,
+  snapshot: ElementImage,
+  widget: FlaxWidgetCanvasSource,
+  texture: GPUTexture,
+) {
+  queue.drawElementImageToTexture({ source: snapshot }, { texture, size: [2, 2] });
+  // @ts-expect-error A Worker draws transferred ElementImages.
+  queue.drawElementImageToTexture({ source: widget }, { texture });
+  // @ts-expect-error The legacy copy method is available in the root realm.
+  queue.copyElementImageToTexture({ source: widget }, { destination: { texture } });
+}
+void drawElementImage;
 // @ts-expect-error A WebGPU Worker has no HTML Image constructor.
 new Image();
 // @ts-expect-error A WebGPU Worker has no HTML image type.

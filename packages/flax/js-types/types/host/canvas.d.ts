@@ -35,6 +35,7 @@ export interface CanvasBackend {
         type?: string;
         quality?: number;
     }): Promise<CanvasBlob>;
+    toDataURL?(type?: string, quality?: number): string;
     transferToImageBitmap(): CanvasImageBitmap;
     flush?(): void;
     readPixels?(sx: number, sy: number, sw: number, sh: number): Promise<unknown>;
