@@ -205,6 +205,13 @@ owning Session or loading operation. Ordinary rebuilds retain both the wrapper a
 Session; changing the underlying host bundle's identity replaces them. Borrowed root and
 named page Views use their Session's bundle.
 
+Ordinary binary reads through `FlaxPrefixedAssetBundle.load` return a fresh, writable
+snapshot of the asset's logical byte range. JavaScript can share that owned snapshot
+without exposing Flutter's read-only asset storage or adjacent bytes. `loadBuffer`
+continues to delegate directly to the underlying bundle so native Flutter image loading
+does not copy through Dart. Explicit custom bundles remain unchanged; the binary interop
+contract still rejects read-only storage for writable sharing.
+
 Switching between the prefixed default and an explicit bundle also replaces an owning
 View's Session, even when both selections use the same underlying host object. Explicit
 selection changes the resource root; an ordinary rebuild with the same selection does

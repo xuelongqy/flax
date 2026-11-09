@@ -1,0 +1,45 @@
+name: flax_survivors
+description: Lumen Outpost, an offline Flax Canvas survival game.
+version: 0.0.0
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.13.2
+  flutter: '>=3.47.9'
+
+dependencies:
+  path_provider: 2.1.6
+  flax: 0.0.0
+  flax_engine_v8: 0.0.0
+  flax_material_ui: 0.0.0
+  flax_canvas: 0.0.0
+  flax_local_storage: 0.0.0
+  flax_audioplayers: 0.0.0
+  material_ui: 1.9.0
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  audioplayers: 6.8.1
+  flax_test: 0.0.0
+  audioplayers_platform_interface: 7.2.0
+  flutter_lints: 6.0.0
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+
+dependency_overrides:
+  audioplayers:
+    path: vendor/audioplayers
+  audioplayers_darwin:
+    path: vendor/audioplayers_darwin
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/flax/
+    - assets/flax/assets/images/
+    - assets/flax/assets/audio/
+    - assets/flax_modules/

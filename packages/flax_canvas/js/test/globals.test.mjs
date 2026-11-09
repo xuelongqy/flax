@@ -1,4 +1,4 @@
-import { installImageHost } from '../../../flax/js/dist/host/images.js';
+import { installImageHost, imageHost } from '../../../flax/js/dist/host/images.js';
 import { installCanvasHost } from '../../../flax/js/dist/host/canvas.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -961,4 +961,184 @@ test('bitmap option ranges reject before decoding and ImageData draw uses image 
   canvas.flush();
   assert.equal(commits.filter((op) => op === OP.drawImagePixels).length, 3);
   assert(!commits.includes(OP.putImageData));
+});
+
+test('bitmap draws share one batch hold without canvas-brand exceptions', () => {
+  const log = [];
+  let committed;
+  let id = 10;
+  const global = install((operation, ...args) => {
+    if (operation === 'create') return { width: 4, height: 4 };
+    if (operation === 'transferToImageBitmap') return id++;
+    if (operation === 'commit') committed = new Uint8Array(args[1]);
+    if (['retainImage', 'closeImage', 'commit'].includes(operation))
+      log.push([operation, args[0]]);
+  });
+  const source = new global.OffscreenCanvas(4, 4);
+  source.getContext('2d');
+  const bitmap = source.transferToImageBitmap();
+  const target = new global.OffscreenCanvas(4, 4);
+  const ctx = target.getContext('2d');
+  const OriginalTypeError = globalThis.TypeError;
+  let errors = 0;
+  try {
+    globalThis.TypeError = class extends OriginalTypeError {
+      constructor(...args) {
+        super(...args);
+        errors++;
+      }
+    };
+    for (let i = 0; i < 9; i++) ctx.drawImage(bitmap, i, 0);
+    ctx.reset();
+    ctx.drawImage(bitmap, 0, 0);
+  } finally {
+    globalThis.TypeError = OriginalTypeError;
+  }
+  assert.equal(errors, 0, 'valid bitmap must not throw internally');
+  bitmap.close();
+  assert.throws(() => ctx.drawImage(bitmap, 0, 0), { name: 'InvalidStateError' });
+  target.flush();
+  assert.equal(opcodes(committed).filter((op) => op === OP.drawImage).length, 10);
+  assert.ok(opcodes(committed).includes(OP.reset));
+  assert.deepEqual(
+    log.map(([op]) => op),
+    ['retainImage', 'closeImage', 'commit', 'closeImage'],
+  );
+});
+
+test('bitmap holds are isolated by image, batch and failed commit', () => {
+  const retained = [],
+    closed = [];
+  let nextId = 1,
+    fail = false;
+  const global = install((operation, ...args) => {
+    if (operation === 'create') return { width: 4, height: 4 };
+    if (operation === 'transferToImageBitmap' || operation === 'snapshotImageSync')
+      return nextId++;
+    if (operation === 'retainImage') retained.push(args[0]);
+    if (operation === 'closeImage') closed.push(args[0]);
+    if (operation === 'commit' && fail) {
+      fail = false;
+      throw Error('commit failed');
+    }
+  });
+  const source = new global.OffscreenCanvas(4, 4);
+  source.getContext('2d');
+  const a = source.transferToImageBitmap(),
+    b = source.transferToImageBitmap();
+  const dest = new global.OffscreenCanvas(4, 4),
+    ctx = dest.getContext('2d');
+  ctx.drawImage(a, 0, 0);
+  ctx.drawImage(a, 1, 0);
+  ctx.drawImage(b, 0, 0);
+  ctx.drawImage(source, 0, 0);
+  ctx.drawImage(source, 0, 0);
+  fail = true;
+  assert.throws(() => dest.flush(), /commit failed/);
+  assert.deepEqual(retained, [1, 2]);
+  assert.deepEqual(closed, [1, 2, 3, 4]);
+  ctx.drawImage(a, 0, 0);
+  ctx.drawImage(a, 0, 0);
+  dest.flush();
+  assert.deepEqual(retained, [1, 2, 1]);
+  assert.deepEqual(closed, [1, 2, 3, 4, 1]);
+  a.close();
+  assert.throws(() => ctx.drawImage(a, 0, 0), { name: 'InvalidStateError' });
+  b.close();
+});
+
+test('bitmap aliases share a hold but cloned bitmap IDs remain independent', async () => {
+  const global = {},
+    retains = [],
+    closes = [];
+  let state;
+  state = installCanvas(global, (operation, ...args) => {
+    if (operation === 'create') return { width: 4, height: 4 };
+    if (operation === 'transferToImageBitmap') return 1;
+    if (operation === 'cloneImage') state.settle(args[0], true, 2);
+    if (operation === 'retainImage') retains.push(args[0]);
+    if (operation === 'closeImage') closes.push(args[0]);
+  });
+  const source = new global.OffscreenCanvas(4, 4);
+  source.getContext('2d');
+  const original = source.transferToImageBitmap();
+  const clone = await global.createImageBitmap(original);
+  const target = new global.OffscreenCanvas(4, 4),
+    ctx = target.getContext('2d');
+  const alias = original;
+  ctx.drawImage(original, 0, 0);
+  ctx.drawImage(alias, 1, 1);
+  const transferred = imageHost(global).transfer(original);
+  assert.throws(() => ctx.drawImage(original, 0, 0), { name: 'InvalidStateError' });
+  ctx.drawImage(transferred, 2, 2);
+  ctx.drawImage(clone, 0, 0);
+  ctx.drawImage(clone, 1, 1);
+  target.flush();
+  assert.deepEqual(retains, [1, 2]);
+  assert.deepEqual(closes, [1, 2]);
+  transferred.close();
+  clone.close();
+});
+
+test('one failed image release does not skip remaining batch releases', () => {
+  let next = 1,
+    fail = true;
+  const released = [],
+    retained = [];
+  const global = install((op, ...args) => {
+    if (op === 'create') return { width: 4, height: 4 };
+    if (op === 'transferToImageBitmap') return next++;
+    if (op === 'retainImage') retained.push(args[0]);
+    if (op === 'closeImage') {
+      released.push(args[0]);
+      if (fail) {
+        fail = false;
+        throw Error('close failed');
+      }
+    }
+  });
+  const src = new global.OffscreenCanvas(4, 4);
+  src.getContext('2d');
+  const a = src.transferToImageBitmap(),
+    b = src.transferToImageBitmap();
+  const dst = new global.OffscreenCanvas(4, 4),
+    ctx = dst.getContext('2d');
+  ctx.drawImage(a, 0, 0);
+  ctx.drawImage(b, 0, 0);
+  assert.throws(() => dst.flush(), /close failed/);
+  assert.deepEqual(released, [1, 2]);
+  ctx.drawImage(a, 0, 0);
+  dst.flush();
+  assert.deepEqual(retained, [1, 2, 1]);
+  a.close();
+  b.close();
+});
+
+test('resizing flushes and reacquires a bitmap hold', () => {
+  const calls = [];
+  const global = install((op, ...args) => {
+    if (op === 'create') return { width: 4, height: 4 };
+    if (op === 'transferToImageBitmap') return 9;
+    if (['retainImage', 'closeImage', 'commit', 'resize'].includes(op)) calls.push(op);
+  });
+  const src = new global.OffscreenCanvas(4, 4);
+  src.getContext('2d');
+  const bitmap = src.transferToImageBitmap();
+  const dst = new global.OffscreenCanvas(4, 4),
+    ctx = dst.getContext('2d');
+  ctx.drawImage(bitmap, 0, 0);
+  ctx.drawImage(bitmap, 1, 0);
+  dst.width = 8;
+  ctx.drawImage(bitmap, 0, 0);
+  dst.flush();
+  assert.deepEqual(calls, [
+    'retainImage',
+    'commit',
+    'closeImage',
+    'resize',
+    'retainImage',
+    'commit',
+    'closeImage',
+  ]);
+  bitmap.close();
 });

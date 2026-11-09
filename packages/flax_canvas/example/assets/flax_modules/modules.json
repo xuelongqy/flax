@@ -4,7 +4,7 @@
   "bootstrap": "assets/flax_modules/registry.js",
   "lock": {
     "manager": "pnpm",
-    "digest": "f77dd00a002d9025b11a6818285a925815410de9a54f5f8439ace68fa065b9d5"
+    "digest": "5d20a324e3b0bd791b9442dfd095bef98cc04ac5339eb58fe8579833917852d5"
   },
   "modules": [
     {
@@ -49,7 +49,7 @@
       "specifier": "@flax/core",
       "owner": "@flax/core-runtime:dist/runtime/index.js",
       "version": "0.0.0",
-      "artifact": "de982f9b16aa67fda522f96c159a7b2995815226b752896906e77860eb3cf0ff",
+      "artifact": "7c67a1e09deace615d2ee1fd818bf85ff38044697e8f377b1888df4aa9ab8d21",
       "asset": "assets/flax_modules/_flax_core-14fe61593557.js",
       "package": "@flax/core-runtime",
       "source": "dist/runtime/index.js",
@@ -63,7 +63,7 @@
       "specifier": "@flax/core/bindings",
       "owner": "@flax/core-runtime:dist/runtime/bindings.js",
       "version": "0.0.0",
-      "artifact": "510f8fb96d698e1f221acc68d77c0886f815bb6e211a8d0a28093247c86efaab",
+      "artifact": "4feda8f3ba2c56f5eca8e45f1d7a789cc7f69beb010e7f87afd3a785a1230175",
       "asset": "assets/flax_modules/_flax_core_bindings-d3b4a70bd856.js",
       "package": "@flax/core-runtime",
       "source": "dist/runtime/bindings.js",

@@ -48,6 +48,14 @@ if (!selectedPackage) {
   });
 
   if (!aggregateOnly) {
+    execFileSync(
+      process.execPath,
+      [resolve(bundleOptions.absWorkingDir, 'examples/survivors/js/tool/bundle.mjs')],
+      {
+        cwd: resolve(bundleOptions.absWorkingDir, 'examples/survivors/js'),
+        stdio: 'inherit',
+      },
+    );
     const standaloneRoot = resolve(
       bundleOptions.absWorkingDir,
       'examples/standalone/js',

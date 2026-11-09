@@ -295,17 +295,18 @@ opportunistic and needs a later canvas call, flush, or session dispose.
 `drawImage(OffscreenCanvas)` synchronously creates a deferred snapshot handle and closes
 it after flush, including a failed commit. GPU work runs on the raster task runner;
 handle creation does not read pixels back to the CPU. Each draw takes a new source
-snapshot. Reusing an `ImageBitmap` avoids that snapshot, while image-retain calls still
-cross the host boundary. The fillRect benchmark does not measure these image costs.
-Non-repeat pattern axes use `TileMode.decal`, so they do not smear edge pixels. Invalid
-repetition values throw `SyntaxError`; `null`, `undefined`, and `''` mean `repeat`. Live
-`CanvasGradient` / `CanvasPattern` mutations are rewritten before the next fill or
-stroke. Gradient stops are sorted by offset without mutating insertion order in
-JavaScript; equal offsets keep insertion order. Gradients use the drawing CTM; creating
-or assigning a gradient does not capture a transform. Baked paths preserve that paint
-transform while drawing geometry in canvas coordinates. Radial gradients map the two
-circles onto the engine's conical gradient. Zero stops normalize to transparent black
-and a single stop to a solid color before recording.
+snapshot. Reusing an `ImageBitmap` avoids that snapshot; each pending batch retains a
+given bitmap ID once and releases it after commit, including a failed commit. The
+fillRect benchmark does not measure these image costs. Non-repeat pattern axes use
+`TileMode.decal`, so they do not smear edge pixels. Invalid repetition values throw
+`SyntaxError`; `null`, `undefined`, and `''` mean `repeat`. Live `CanvasGradient` /
+`CanvasPattern` mutations are rewritten before the next fill or stroke. Gradient stops
+are sorted by offset without mutating insertion order in JavaScript; equal offsets keep
+insertion order. Gradients use the drawing CTM; creating or assigning a gradient does
+not capture a transform. Baked paths preserve that paint transform while drawing
+geometry in canvas coordinates. Radial gradients map the two circles onto the engine's
+conical gradient. Zero stops normalize to transparent black and a single stop to a solid
+color before recording.
 
 `reset()` clears committed and pending pixels, state, stack and path; the native reset
 also removes the active clip. `transferToImageBitmap()` requires an existing context,

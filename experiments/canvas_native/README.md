@@ -273,12 +273,12 @@ monotonic image-size scaling curve.
 
 ### Dart calls and operation work
 
-A second, separate Session instruments the Canvas host callback bodies. Its timings are
-diagnostic and are excluded from the FPS comparison. It verifies exactly one commit per
-sampled frame, N snapshotImageSync/closeImage pairs for the Canvas mode, and N
-retainImage/closeImage pairs for the bitmap mode. Both therefore make **2N + 1 Canvas
-host calls per frame** in this workload. Clear/fill/draw commands share one batch; rAF
-and benchmark probes are outside that count.
+A second, separate Session instrumented the Canvas host callback bodies in the
+historical run above. Its timings are diagnostic and excluded from the FPS comparison.
+That version made one commit and N snapshotImageSync/closeImage pairs for Canvas mode,
+or N retainImage/closeImage pairs for bitmap mode: **2N + 1 Canvas host calls per
+frame**. Clear/fill/draw commands share one batch; rAF and benchmark probes are outside
+that count.
 
 For 128 draws, the diagnostic callback-body averages per frame were:
 
@@ -300,11 +300,13 @@ resource sweep and Dart work, costs **2.199 us/call**. At 128 draws, 256 such
 image-reference calls would cost about 0.563 ms, estimated from the isolated loop; the
 commit has a different payload and is measured separately.
 
-Reusing a bitmap removes repeated snapshot creation and its rendering/resource work. It
-does not reduce this implementation's number of image host calls. Static or rarely
-changing sources should prepare and reuse a bitmap; changed source content requires
-rebuilding that bitmap. This experiment does not compare a cache against a changing
-source or include its cache-invalidation cost.
+The current encoder retains a reused bitmap once per pending batch, so this same
+bitmap-mode workload now expects one retain, one release and one commit per frame. The
+measurements above predate that change and do not establish its speedup. Canvas sources
+still take a new snapshot per draw. Static or rarely changing sources should prepare and
+reuse a bitmap; changed source content requires rebuilding that bitmap. This experiment
+does not compare a cache against a changing source or include its cache-invalidation
+cost.
 
 All 30 uninstrumented phases (6,630 frames) and ten diagnostic phases (569 frames)
 passed, with matching frame timings, exact operation counts, no readback operations and

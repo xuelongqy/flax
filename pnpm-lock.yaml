@@ -224,6 +224,55 @@ importers:
         specifier: 7.0.2
         version: 7.0.2
 
+  examples/survivors/js:
+    dependencies:
+      '@flax/audioplayers':
+        specifier: workspace:*
+        version: link:../../../packages/flax_audioplayers/js-types
+      '@flax/audioplayers-runtime':
+        specifier: workspace:*
+        version: link:../../../packages/flax_audioplayers/js
+      '@flax/canvas':
+        specifier: workspace:*
+        version: link:../../../packages/flax_canvas/js-types
+      '@flax/canvas-runtime':
+        specifier: workspace:*
+        version: link:../../../packages/flax_canvas/js
+      '@flax/core':
+        specifier: workspace:*
+        version: link:../../../packages/flax/js-types
+      '@flax/core-runtime':
+        specifier: workspace:*
+        version: link:../../../packages/flax/js
+      '@flax/dart':
+        specifier: workspace:*
+        version: link:../../../packages/flax_dart/js
+      '@flax/flutter':
+        specifier: workspace:*
+        version: link:../../../packages/flax_flutter/js
+      '@flax/local-storage':
+        specifier: workspace:*
+        version: link:../../../packages/flax_local_storage/js-types
+      '@flax/local-storage-runtime':
+        specifier: workspace:*
+        version: link:../../../packages/flax_local_storage/js
+      '@flax/material-ui':
+        specifier: workspace:*
+        version: link:../../../packages/flax_material_ui/js-types
+      '@flax/material-ui-runtime':
+        specifier: workspace:*
+        version: link:../../../packages/flax_material_ui/js
+    devDependencies:
+      '@flax/build':
+        specifier: workspace:*
+        version: link:../../../packages/flax_build/js
+      esbuild:
+        specifier: 0.28.2
+        version: 0.28.2
+      typescript:
+        specifier: 7.0.2
+        version: 7.0.2
+
   packages/flax/example/js:
     dependencies:
       '@flax/core':

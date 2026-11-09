@@ -190,6 +190,8 @@ Future<String> runDesktopApplication(
   String marker, {
   Duration timeout = const Duration(minutes: 10),
   Map<String, String>? environment,
+  String? logPath,
+  String? failureMarker,
 }) async {
   final macosName = product.endsWith('.app')
       ? product.split('/').last.replaceFirst(RegExp(r'\.app$'), '')
@@ -210,13 +212,28 @@ Future<String> runDesktopApplication(
       'DYLD_LIBRARY_PATH': '',
     },
   );
+  if (logPath != null) File(logPath).writeAsStringSync('');
+  var scenarioFailed = false;
+  void record(String text) {
+    if (logPath != null) {
+      File(logPath).writeAsStringSync(text, mode: FileMode.append);
+    }
+  }
+
   var activated = target.os != 'macos';
   Future<ProcessResult>? activation;
   final journal = UiResultJournal();
   final output = process.stdout
       .transform(utf8.decoder)
+      .map((text) {
+        record(text);
+        return text;
+      })
       .transform(const LineSplitter())
       .map((line) {
+        if (failureMarker != null && line.contains(failureMarker)) {
+          scenarioFailed = true;
+        }
         final testLog = journal.collect(line);
         if (!activated && testLog) {
           activated = true;
@@ -227,7 +244,10 @@ Future<String> runDesktopApplication(
         return '$line\n';
       })
       .join();
-  final errors = process.stderr.transform(utf8.decoder).join();
+  final errors = process.stderr.transform(utf8.decoder).map((text) {
+    record(text);
+    return text;
+  }).join();
   try {
     final (code, out, err) = await (process.exitCode, output, errors).wait
         .timeout(
@@ -243,7 +263,10 @@ Future<String> runDesktopApplication(
     }
     stdout.write(out);
     stderr.write(err);
-    if (code != 0 || !out.contains(marker) || journal.hasFailure) {
+    if (code != 0 ||
+        !out.contains(marker) ||
+        journal.hasFailure ||
+        scenarioFailed) {
       throw StateError('Application failed: $code $out $err');
     }
     return out;
@@ -280,6 +303,8 @@ Future<String> runMobileApplication(
   String marker, {
   Duration timeout = const Duration(minutes: 3),
   String? uiResultsPath,
+  String? failureMarker,
+  String? logPath,
 }) async {
   if (target.name.contains('simulator')) {
     await run('xcrun', ['simctl', 'install', device, product]);
@@ -302,6 +327,8 @@ Future<String> runMobileApplication(
       marker,
       timeout: timeout,
       uiResultsPath: uiResultsPath,
+      failureMarker: failureMarker,
+      logPath: logPath,
     );
     // Tests may fail before launch returns; await the same failure below.
     waiting.ignore();
@@ -361,6 +388,8 @@ Future<String> runMobileApplication(
       marker,
       timeout: timeout,
       uiResultsPath: uiResultsPath,
+      failureMarker: failureMarker,
+      logPath: logPath,
     );
   }
   final sdk =
@@ -402,6 +431,8 @@ Future<String> runMobileApplication(
     marker,
     timeout: timeout,
     uiResultsPath: uiResultsPath,
+    failureMarker: failureMarker,
+    logPath: logPath,
   );
   // Tests may fail before launch returns; await the same failure below.
   waiting.ignore();
@@ -430,7 +461,10 @@ Future<String> _waitForMarker(
   String marker, {
   required Duration timeout,
   String? uiResultsPath,
+  String? failureMarker,
+  String? logPath,
 }) async {
+  if (logPath != null) File(logPath).writeAsStringSync('');
   final completed = Completer<bool>();
   final log = StringBuffer();
   final uiResults = <String, String>{};
@@ -447,6 +481,7 @@ Future<String> _waitForMarker(
   void collect(String line) {
     stdout.writeln(line);
     log.writeln(line);
+
     if (journal.collect(line)) saveResults();
     final results = line.indexOf('FLAX_UI_RESULT:');
     if (results >= 0 && uiResultsPath != null) {
@@ -459,18 +494,28 @@ Future<String> _waitForMarker(
       completed.complete(!journal.hasFailure);
     }
     if ((line.contains('FLAX_PLATFORM_FAILED') ||
-            line.contains('FLAX_ENGINE_FAILED')) &&
+            line.contains('FLAX_ENGINE_FAILED') ||
+            (failureMarker != null && line.contains(failureMarker))) &&
         !completed.isCompleted) {
       completed.complete(false);
     }
   }
 
+  String record(String text) {
+    if (logPath != null) {
+      File(logPath).writeAsStringSync(text, mode: FileMode.append);
+    }
+    return text;
+  }
+
   final out = process.stdout
       .transform(utf8.decoder)
+      .map(record)
       .transform(const LineSplitter())
       .listen(collect);
   final err = process.stderr
       .transform(utf8.decoder)
+      .map(record)
       .transform(const LineSplitter())
       .listen(collect);
   process.exitCode.then((_) {

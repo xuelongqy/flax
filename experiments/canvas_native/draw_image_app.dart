@@ -197,8 +197,8 @@ class _FrameProbe extends FlaxPlugin implements FlaxPluginInstance {
         final expected = switch (operation) {
           'commit' => frames,
           'snapshotImageSync' => mode == 'offscreen' ? frames * count : 0,
-          'retainImage' => mode == 'bitmap' ? frames * count : 0,
-          _ => frames * count,
+          'retainImage' => mode == 'bitmap' ? frames : 0,
+          _ => mode == 'bitmap' ? frames : frames * count,
         };
         _check(
           (operations[operation]?.count ?? 0) == expected,

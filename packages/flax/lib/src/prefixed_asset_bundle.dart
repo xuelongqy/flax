@@ -68,7 +68,10 @@ class FlaxPrefixedAssetBundle extends CachingAssetBundle {
         utf8.encode(jsonEncode(base64Encode(Uint8List.sublistView(data)))),
       );
     }
-    return bundle.load(_key(key));
+    final data = await bundle.load(_key(key));
+    return ByteData.sublistView(
+      Uint8List.fromList(Uint8List.sublistView(data)),
+    );
   }
 
   @override

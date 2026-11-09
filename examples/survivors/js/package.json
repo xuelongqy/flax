@@ -1,0 +1,37 @@
+{
+  "name": "@flax/example-survivors",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Lumen Outpost, an offline Canvas survival game.",
+  "flax": {
+    "id": "lumen-outpost",
+    "name": "Lumen Outpost",
+    "defaultLocale": "en"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --test test/*.test.mjs",
+    "bundle": "node tool/bundle.mjs"
+  },
+  "dependencies": {
+    "@flax/core": "workspace:*",
+    "@flax/dart": "workspace:*",
+    "@flax/flutter": "workspace:*",
+    "@flax/material-ui": "workspace:*",
+    "@flax/canvas": "workspace:*",
+    "@flax/local-storage": "workspace:*",
+    "@flax/audioplayers": "workspace:*",
+    "@flax/core-runtime": "workspace:*",
+    "@flax/material-ui-runtime": "workspace:*",
+    "@flax/canvas-runtime": "workspace:*",
+    "@flax/local-storage-runtime": "workspace:*",
+    "@flax/audioplayers-runtime": "workspace:*"
+  },
+  "devDependencies": {
+    "@flax/build": "workspace:*",
+    "typescript": "7.0.2",
+    "esbuild": "0.28.2"
+  }
+}

@@ -50,12 +50,11 @@ packages:
     source: hosted
     version: "2.13.1"
   audioplayers:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
-      name: audioplayers
-      sha256: "2ba4bb2944baacbdd5372ff8254a8e7feb8c10d7739545e392f5605a8f618745"
-      url: "https://pub.dev"
-    source: hosted
+      path: "examples/survivors/vendor/audioplayers"
+      relative: true
+    source: path
     version: "6.8.1"
   audioplayers_android:
     dependency: transitive
@@ -66,12 +65,11 @@ packages:
     source: hosted
     version: "5.3.0"
   audioplayers_darwin:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
-      name: audioplayers_darwin
-      sha256: "1ca553add991384ecf421b9569da850f3ab2472ffb83f6970b0416365abc51be"
-      url: "https://pub.dev"
-    source: hosted
+      path: "examples/survivors/vendor/audioplayers_darwin"
+      relative: true
+    source: path
     version: "6.5.0"
   audioplayers_linux:
     dependency: transitive
