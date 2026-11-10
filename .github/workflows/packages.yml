@@ -115,6 +115,14 @@ jobs:
 
       - name: Bootstrap Flutter and locked workspace dependencies
         run: |
+          # The fork omits upstream tags, which Flutter uses to derive its SDK version.
+          flutter_lock="$FLUTTER_ROOT/engine/src/flutter/flax/source.lock.json"
+          flutter_version=$(node -p 'require(process.argv[1]).flutter' "$flutter_lock")
+          flutter_revision=$(node -p 'require(process.argv[1]).flutterRevision' "$flutter_lock")
+          git -C "$FLUTTER_ROOT" fetch --no-tags https://github.com/flutter/flutter.git \
+            "refs/tags/$flutter_version:refs/tags/$flutter_version"
+          test "$(git -C "$FLUTTER_ROOT" rev-parse "refs/tags/$flutter_version^{commit}")" = "$flutter_revision"
+          git -C "$FLUTTER_ROOT" merge-base --is-ancestor "$flutter_revision" "$FLAX_FLUTTER_REVISION"
           flutter precache --macos
           flutter pub get --enforce-lockfile
           pnpm install --frozen-lockfile
