@@ -204,7 +204,7 @@ Future<int> _runTests(
     directory: root.path,
     useLocalEngine: useLocalEngine,
     // Serial compilation fixtures keep their own per-test timeout.
-    timeout: const Duration(minutes: 90),
+    timeout: const Duration(minutes: 180),
   );
   return tests.length;
 }

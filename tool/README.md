@@ -84,7 +84,11 @@ so Linux static CI never downloads CastXML or needs Xcode.
 
 `check_platform.dart` rejects the retired SDK matrix. Use the maintained-engine gates
 above for current runtime acceptance. `dart run melos run check` uses an existing
-matching maintained engine for native package/generator tests; it never builds one.
+matching maintained engine for native package/generator tests; it never builds one. It
+runs `check:common`, `check:unit`, and `check:validation` in order. These preserve the
+shared preparation/tool tests, package unit/benchmark suites, and static/archive checks
+respectively. Package test subprocesses have a finite 180-minute aggregate budget;
+individual test timeouts and serial codegen fixtures remain unchanged.
 
 `package.dart` discovers Pub packages under `packages/`. `check <name>` runs that
 package's analysis, Dart/Flutter unit tests, binding check, JS build/type/tests, host
@@ -191,14 +195,19 @@ inputs and outputs before restoring anything, and rewrites generated Dart import
 for the consuming checkout. Missing or mismatched artifacts fail. Machine-local package
 configuration and compiler caches are excluded.
 
-The reusable macOS CI job prepares the fixed maintained fork and its normal Debug engine
-before workspace, runtime, FFI and release checks. `prepare_ci_sdk.dart` is an explicit
-producer entry that reuses `prepareFlaxEngineSdk` and the existing V8 lock; it prints
-the verified SDK directory and exports `FLAX_CI_V8_SDK` through `GITHUB_ENV` when
-present. Ordinary checks do not invoke this downloader. Dawn preparation remains owned
-by the WebGPU package. The workflow compares generated and cached `sky_engine`
-directories after the build, Pub resolution and checks. Hosted-only disk cleanup is kept
-inside the guarded workflow, outside all local helper commands.
+The reusable macOS CI matrix prepares the fixed maintained fork and its normal Debug
+engine independently in both ordinary runner lanes, each with a 360-minute job budget.
+Both run `check:common`; the unit lane runs `check:unit`, while the validation lane runs
+`check:validation` and all runtime, FFI and release gates. Both retain source and SDK
+checks; only validation produces and uploads the archive proof. The release command's
+nested complete archive check has a finite 60-minute budget and still removes any
+inherited `FLAX_ARCHIVE_PROOF`. `prepare_ci_sdk.dart` is an explicit producer entry that
+reuses `prepareFlaxEngineSdk` and the existing V8 lock; it prints the verified SDK
+directory and exports `FLAX_CI_V8_SDK` through `GITHUB_ENV` when present. Ordinary
+checks do not invoke this downloader. Dawn preparation remains owned by the WebGPU
+package. The workflow compares generated and cached `sky_engine` directories after the
+build, Pub resolution and checks. Hosted-only disk cleanup is kept inside the guarded
+workflow, outside all local helper commands.
 
 Hosted execution remains pending a push of the pinned maintained-fork and Flax commits;
 see the [integration task](../docs/tasks/webgpu-js-api.md#latest-main-integration).

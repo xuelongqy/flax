@@ -207,16 +207,19 @@ decisions.
 
 ## CI
 
-PR/main checks and manual archive checks share one macOS arm64 job in
-[packages.yml](.github/workflows/packages.yml). It checks out the fixed maintained fork,
-runs ordinary gclient hooks, obtains the locked V8 SDK through `prepare_ci_sdk.dart`,
-builds the matching Debug engine with two jobs and explicitly produces the pinned Dawn
-asset. Bootstrap precedes the engine build; directory comparisons verify that later Pub
-and workspace checks keep the generated maintained `dart:ui` declarations selected. The
-job then runs complete `melos check`, `check:runtime`, `ffi:check` and `release:check`;
-`result` requires the reused job to succeed. No tests are skipped to accommodate stock
-Flutter. Hosted cleanup requires GitHub-hosted macOS arm64 and at least 50 GiB free; it
-is not a local development command.
+PR/main checks and manual archive checks share two ordinary macOS arm64 matrix lanes in
+[packages.yml](.github/workflows/packages.yml). Both check out the fixed maintained
+fork, run ordinary gclient hooks, obtain the locked V8 SDK through
+`prepare_ci_sdk.dart`, build the matching Debug engine with two jobs and explicitly
+produce the pinned Dawn asset. Bootstrap precedes the engine build; directory
+comparisons verify that later Pub and workspace checks keep the generated maintained
+`dart:ui` declarations selected. The lanes then run `check:common`. The unit lane runs
+`check:unit`; the validation lane runs `check:validation`, `check:runtime`, `ffi:check`
+and `release:check`, and uploads the archive proof. Both verify selected SDK
+declarations and clean sources. `result` requires both lanes to succeed. Ordinary
+`check` runs all three workspace phases in their original order. No tests are skipped to
+accommodate stock Flutter. Hosted cleanup requires GitHub-hosted macOS arm64 and at
+least 50 GiB free; it is not a local development command.
 
 The fork source is based on Flutter 3.47.9/Dart 3.13.7; its full Git history may report
 a derived prerelease framework version. The CI source pin and engine source lock are the

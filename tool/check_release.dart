@@ -24,6 +24,7 @@ Future<void> main(List<String> arguments) => command(() async {
     Platform.resolvedExecutable,
     ['run', 'tool/check_packages.dart'],
     directory: root,
+    timeout: const Duration(minutes: 60),
     inheritEnvironment: false,
     environment: {
       for (final entry in Platform.environment.entries)

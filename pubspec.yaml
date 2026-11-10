@@ -168,9 +168,8 @@ melos:
       description:
         Verify all owner UI modules and aggregate behavior with the local V8 engine.
       run: dart run tool/check_ui.dart
-    check:
-      description:
-        Check the workspace using an existing matching engine; never fetch or build one.
+    check:common:
+      description: Prepare and check shared workspace inputs with the matching engine.
       steps:
         - dart run melos run host:check
         - dart run melos run example:bundle
@@ -178,11 +177,24 @@ melos:
         - node tool/ui_bundle.mjs
         - dart run melos run js:test
         - dart test tool/test
+    check:unit:
+      description: Run package unit suites and benchmark statistics tests.
+      steps:
         - dart run tool/package.dart tests
         - dart run melos run bench:engines:test
+    check:validation:
+      description: Check static sources, archives, and native configuration.
+      steps:
         - dart run melos run analyze
         - dart run melos run format:check
         - dart run melos run js:typecheck
         - dart run melos run docs:check
         - dart run melos run packages:check
         - dart run melos run native:configure
+    check:
+      description:
+        Check the workspace using an existing matching engine; never fetch or build one.
+      steps:
+        - dart run melos run check:common
+        - dart run melos run check:unit
+        - dart run melos run check:validation

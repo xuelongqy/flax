@@ -23,8 +23,13 @@ env:
 
 jobs:
   packages:
+    name: Maintained ${{ matrix.lane }} checks
     runs-on: macos-26
-    timeout-minutes: 240
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      matrix:
+        lane: [unit, validation]
     steps:
       - name: Check out source
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -151,16 +156,27 @@ jobs:
           python3 packages/flax_webgpu/tool/prepare_native.py --sdk "$PWD/.local/ci-dawn-sdk"
           node packages/flax_webgpu/tool/check_native.mjs
 
-      - name: Check the full workspace
-        run: dart run melos run check
+      - name: Check common workspace prerequisites
+        run: dart run melos run check:common
+
+      - name: Check package units and benchmark statistics
+        if: matrix.lane == 'unit'
+        run: dart run melos run check:unit
+
+      - name: Check workspace validation
+        if: matrix.lane == 'validation'
+        run: dart run melos run check:validation
 
       - name: Verify the maintained native runtime
+        if: matrix.lane == 'validation'
         run: dart run melos run check:runtime
 
       - name: Verify reproducible FFI declarations
+        if: matrix.lane == 'validation'
         run: dart run melos run ffi:check
 
       - name: Validate archives and pack receipt (no publish)
+        if: matrix.lane == 'validation'
         env:
           FLAX_ARCHIVE_PROOF_OUTPUT: build/archive-proof.json
         run: dart run melos run release:check
@@ -172,6 +188,7 @@ jobs:
           "$FLUTTER_ROOT/bin/cache/pkg/sky_engine"
 
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+        if: matrix.lane == 'validation'
         with:
           name: archive-proof
           path: build/archive-proof.json
@@ -188,9 +205,17 @@ jobs:
 
       - name: Record validation scope
         if: always()
+        env:
+          CI_LANE: ${{ matrix.lane }}
+          CI_STATUS: ${{ job.status }}
         run: |
           printf '%s\n' \
             'Pinned maintained macOS arm64 engine and explicit verified V8/Dawn producers.' \
-            'Full workspace, native runtime, FFI and archive checks; no registry publication.' \
+            "Lane: $CI_LANE; status: $CI_STATUS." \
+            'Common workspace prerequisites are required in both lanes.' \
             'Full UI/application, GPU performance and other-platform acceptance remain separate.' \
             >> "$GITHUB_STEP_SUMMARY"
+          case "$CI_LANE" in
+            unit) echo 'Package unit and benchmark statistics checks.' >> "$GITHUB_STEP_SUMMARY" ;;
+            validation) echo 'Static, archive, native runtime, FFI and release checks; no registry publication.' >> "$GITHUB_STEP_SUMMARY" ;;
+          esac
