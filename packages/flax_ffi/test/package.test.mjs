@@ -47,14 +47,29 @@ before(async () => {
     }),
   );
   await writeFile(resolve(directory, 'pnpm-workspace.yaml'), 'packages: []\n');
+  // Reuse the workspace's locked registry versions in the disposable consumer.
+  await copyFile(
+    resolve(repository, 'pnpm-lock.yaml'),
+    resolve(directory, 'pnpm-lock.yaml'),
+  );
   const store = await exec('pnpm', ['store', 'path'], { cwd: repository });
   await exec(
     'pnpm',
-    ['install', '--offline', '--ignore-scripts', '--store-dir', store.stdout.trim()],
+    [
+      'install',
+      '--offline',
+      '--ignore-scripts',
+      '--no-frozen-lockfile',
+      '--store-dir',
+      store.stdout.trim(),
+    ],
     {
       cwd: directory,
     },
-  );
+  ).catch((error) => {
+    error.message += `\n${error.stdout}${error.stderr}`;
+    throw error;
+  });
 });
 after(async () => {
   if (directory) await rm(directory, { recursive: true, force: true });
