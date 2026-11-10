@@ -84,8 +84,8 @@ jobs:
           git clone --filter=blob:none --no-checkout https://chromium.googlesource.com/chromium/tools/depot_tools.git .local/depot_tools
           git -C .local/depot_tools checkout --detach "$FLAX_DEPOT_TOOLS_REVISION"
           # Disabled auto-updates also skip gclient's normal tool bootstrap.
-          .local/depot_tools/ensure_bootstrap
-          .local/depot_tools/python-bin/python3 --version
+          "$PWD/.local/depot_tools/ensure_bootstrap"
+          "$PWD/.local/depot_tools/python-bin/python3" --version
           echo "$PWD/.local/depot_tools" >> "$GITHUB_PATH"
 
       - name: Sync the maintained engine dependencies
