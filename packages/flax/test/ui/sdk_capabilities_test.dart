@@ -73,12 +73,16 @@ void main() {
         expect(h.number('calls'), 1);
         expect(peers, hasLength(2));
         h.execute('order = null; other = null;');
-        for (var round = 0; round < 8 && peers.any(_alive); round++) {
-          h.runtime.drainMicrotasks();
-          h.execute(flaxTestJsGarbagePressure);
-          await tester.runAsync(flaxTestCollectDartGarbage);
-          await tester.pump();
-        }
+        h.runtime.drainMicrotasks();
+        h.execute(flaxTestJsGarbagePressure);
+        await tester.runAsync(flaxTestCollectDartGarbage);
+        await flaxTestRunIdle(
+          tester,
+          () => flaxTestWaitForGc(
+            h.runtime,
+            () => !peers.any(_alive) && h.boolean('weak.deref() === undefined'),
+          ),
+        );
         expect(peers.any(_alive), isFalse);
         expect(h.boolean('weak.deref() === undefined'), isTrue);
       } finally {

@@ -513,6 +513,9 @@ export async function verifyImages(device, assert) {
     });
   rgbaPass.end();
   device.queue.submit([rgbaEncoder.finish()]);
+  const twoD = new OffscreenCanvas(2, 2),
+    ctx = twoD.getContext('2d'),
+    gpuPattern = ctx?.createPattern(rgbaCanvas, 'repeat');
   const rgbaImage = rgbaCanvas.transferToImageBitmap();
   device.queue.copyExternalImageToTexture(
     { source: rgbaImage },
@@ -551,8 +554,6 @@ export async function verifyImages(device, assert) {
     Math.abs((await read(target))[0] - 128) <= 2,
     'HTML image resource uploads through WebGPU',
   );
-  const twoD = new OffscreenCanvas(2, 2),
-    ctx = twoD.getContext('2d');
   if (ctx) {
     ctx.drawImage(htmlImage, 0, 0);
     const px = ctx.getImageData(0, 0, 1, 1).data;
@@ -568,6 +569,32 @@ export async function verifyImages(device, assert) {
     assert(
       Math.abs((await read(target))[0] - 128) <= 2,
       'WebGPU uploads Canvas 2D pixels',
+    );
+    ctx.fillStyle = gpuPattern;
+    ctx.fillRect(0, 0, 2, 2);
+    assert(
+      ctx
+        .getImageData(0, 0, 2, 2)
+        .data.every((value, i) => value === [255, 0, 0, 255][i % 4]),
+      'Canvas 2D pattern keeps WebGPU pixels after source transfer and unconfigure',
+    );
+    const bitmapCanvas = new OffscreenCanvas(2, 2),
+      bitmapContext = bitmapCanvas.getContext('bitmaprenderer');
+    bitmapContext.transferFromImageBitmap(image);
+    let bitmapPattern;
+    try {
+      bitmapPattern = ctx.createPattern(bitmapCanvas, 'repeat');
+    } finally {
+      bitmapContext.transferFromImageBitmap(null);
+    }
+    ctx.clearRect(0, 0, 2, 2);
+    ctx.fillStyle = bitmapPattern;
+    ctx.fillRect(0, 0, 2, 2);
+    assert(
+      ctx
+        .getImageData(0, 0, 2, 2)
+        .data.every((value, i) => Math.abs(value - source.data[i]) <= 1),
+      'Canvas 2D pattern keeps bitmaprenderer pixels after clearing its source',
     );
   }
   for (const bitmap of [image, transformed, decoded, frozen, blank]) bitmap.close();

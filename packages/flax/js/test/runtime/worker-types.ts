@@ -2,6 +2,12 @@ import type {} from '@flax/core/host/worker';
 
 onmessage = ({ data }) => postMessage(data, { transfer: [data.buffer] });
 addEventListener('message', (event) => postMessage(event.data));
+const { port1, port2 } = new MessageChannel();
+port1.addEventListener('message', ({ ports: [reply] }) => reply?.postMessage('ready'));
+port1.start();
+postMessage(null, [port2]);
+// @ts-expect-error Only a channel or a transfer can create MessagePort instances.
+new MessagePort();
 void fetch('data:text/plain,worker');
 crypto.getRandomValues(new Uint8Array(4));
 const cloned = structuredClone(new File(['worker'], 'worker.txt'));

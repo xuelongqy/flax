@@ -756,6 +756,15 @@ export function installImageHost(
       },
     });
   }
+  async function decodeBlob(source: Blob, options?: ImageBitmapOptions) {
+    const value = await rpc(
+      'decode',
+      await source.arrayBuffer(),
+      options?.colorSpaceConversion !== 'none',
+      options?.imageOrientation !== 'flipY',
+    );
+    return nativeBitmap(value);
+  }
   function settings(input?: ImageBitmapOptions): ImageBitmapOptions {
     const output: Record<string, string | number> = Object.create(null);
     if (input == null) return output;
@@ -1072,13 +1081,7 @@ export function installImageHost(
         'arrayBuffer' in source &&
         typeof (source as any).arrayBuffer === 'function'
       ) {
-        const value = await rpc(
-          'decode',
-          await (source as Blob).arrayBuffer(),
-          options.colorSpaceConversion !== 'none',
-          options.imageOrientation !== 'flipY',
-        );
-        const bitmap = nativeBitmap(value);
+        const bitmap = await decodeBlob(source as Blob, options);
         if (
           crop ||
           options.resizeWidth ||
@@ -1220,7 +1223,8 @@ export function installImageHost(
           if (!response.ok) throw new Error('Image HTTP status ' + response.status);
           blob = await response.blob();
         }
-        const bitmap = await host.create(blob);
+        // Keep straight pixels so each renderer can choose how to handle alpha.
+        const bitmap = await decodeBlob(blob);
         if (generation !== this.#generation || !open) {
           bitmap.close();
           throw new Exception('Image source changed', 'AbortError');

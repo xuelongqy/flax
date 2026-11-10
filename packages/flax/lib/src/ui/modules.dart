@@ -356,19 +356,7 @@ class _ModuleInstallation {
     final registry = _registry;
     final canonical = _namespaces[specifier];
     if (registry == null || _closed || canonical == null) return null;
-    final require = registry.getProperty('require') as FlaxJsFunction;
-    try {
-      final result = require.call([
-        FlaxJsString(canonical),
-      ], thisValue: registry);
-      if (result is! FlaxJsObject) {
-        _releaseJs(result);
-        throw StateError('Invalid SDK namespace: $specifier');
-      }
-      return result;
-    } finally {
-      require.release();
-    }
+    return _requirePreparedModule(registry, canonical);
   }
 
   void _call(String name) {
@@ -400,6 +388,20 @@ class _ModuleInstallation {
       _registry = null;
       _namespaces.clear();
     }
+  }
+}
+
+FlaxJsObject _requirePreparedModule(FlaxJsObject registry, String specifier) {
+  final require = registry.getProperty('require') as FlaxJsFunction;
+  try {
+    final result = require.call([FlaxJsString(specifier)], thisValue: registry);
+    if (result is! FlaxJsObject) {
+      _releaseJs(result);
+      throw StateError('Invalid SDK namespace: $specifier');
+    }
+    return result;
+  } finally {
+    require.release();
   }
 }
 

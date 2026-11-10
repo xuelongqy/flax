@@ -285,5 +285,7 @@ presentation hook belong to the base host.
 ## Dedicated Workers
 
 Core provides pure JS/Wasm [Dedicated Workers](dedicated-workers.md). A background Dart
-isolate owns each independent V8 heap; Worker host services exclude Flutter UI, window
-and document. Native clone queues carry messages and buffer ownership.
+isolate owns each independent V8 heap. Worker host services exclude Flutter UI, window
+and document. Native clone queues carry messages and buffer ownership. Sessions and
+Workers also expose [message channels](dedicated-workers.md#message-channels) with
+transferable MessagePort endpoints.

@@ -30,9 +30,9 @@ worker thread pool or alternate main-thread decoder.
 Ready message events, timers, native FFI callbacks and animation callbacks share one
 FIFO task queue. Each task completes the Worker's microtask, rejection-notification and
 follow-up microtask checkpoint before the next task runs. A flush handles the tasks
-queued when it begins; newly queued work waits for the next Dart turn. Messages received
-before entry initialization wait until it finishes; other host tasks keep running so
-module loading and top-level await can complete.
+queued when it begins. Newly queued work waits for the next Dart turn. Messages to the
+Worker global wait for entry initialization to finish. Started MessagePorts and other
+host tasks keep running during module loading and top-level await.
 
 `terminate()` closes the native channel, discards queued packets, calls V8's thread-safe
 `TerminateExecution` and wakes the owning Dart isolate. Native interruption handles
@@ -89,12 +89,40 @@ message.
 Invalid transfers, functions, Proxies, promises, shared buffers and unsupported platform
 objects raise `DataCloneError`. Core, Canvas and WebGPU platform objects are marked
 explicitly so their private implementation cannot silently clone as an empty record.
-Streams, GPU handles, MessagePort and compiled WebAssembly.Module transfer remain
-unavailable. ImageBitmap is cloneable and transferable. The selected WebGPU profile also
-adds contextless OffscreenCanvas render ownership to the transfer list. Blob/File are
-cloned without detaching their immutable contents, and are rejected in transfer lists.
+Streams, GPU handles and compiled WebAssembly.Module transfer remain unavailable.
+ImageBitmap is cloneable and transferable. The selected WebGPU profile also adds
+contextless OffscreenCanvas render ownership to the transfer list. Blob/File are cloned
+without detaching their immutable contents, and are rejected in transfer lists.
 Deserialization failures dispatch `messageerror`; normal user exceptions dispatch
 `error`.
+
+## Message channels
+
+Core exposes `MessageChannel` and `MessagePort` in Sessions and Dedicated Workers on the
+matching engine. `new MessageChannel()` creates two entangled ports. A port receives
+`message` and `messageerror` events after `start()` or the first assignment to
+`onmessage`. An `addEventListener('message', ...)` listener needs an explicit `start()`.
+
+`Worker.postMessage`, the Worker global `postMessage`, `MessagePort.postMessage`, and
+`structuredClone` can transfer a port alongside the other supported transferable types.
+A port must be in the transfer list to appear in a cloned graph. Message events expose
+all transferred ports in a frozen `event.ports` array, in transfer-list order, even when
+the message graph does not reference them. When both refer to a transferred port, they
+share the same receiver object.
+
+Native endpoints own their queues independently of the Worker parent/child channel.
+Sibling Workers can exchange messages directly after they each receive an endpoint.
+Transfer detaches the old wrapper and moves its pending FIFO to the new wrapper, whose
+queue starts paused. The existing clone transaction revalidates ports, buffers and
+platform transfer state after serialization before it commits ownership changes.
+
+`close()` discards the port's pending inbound messages and disconnects its peer.
+Messages already queued at the peer remain available. Native retirement closes endpoints
+still owned by a terminating realm and releases transfers in discarded packets,
+including ports nested in their queues. Started ports stay reachable while they can
+receive messages. Unreachable paused ports can release their native endpoint through
+garbage collection. See the
+[HTML message port contract](https://html.spec.whatwg.org/multipage/web-messaging.html#message-ports).
 
 ## Still images
 
@@ -242,6 +270,11 @@ Flutter bindings in a Worker. A Core-only or sandboxed parent does not grant Wor
 native authority. A selected Worker has its parent's existing trusted native authority;
 this extension does not create a new FFI security sandbox.
 
+A provider can explicitly expose selected prepared, binding-free modules to Worker ESM.
+A WebGPU video grant makes `@flax/webgpu` importable for
+[SDR frame acquisition](webgpu.md#sdr-video-frames). The Worker loader resolves only the
+provider's explicit exports as prepared SDK imports.
+
 Each Worker owns a separate Dawn context, adapters and devices. JS encodes commands and
 submits directly through that Worker's JSI/libffi path. GPUDevice, GPUTexture and other
 GPU resources cannot be cloned or transferred. Compute results can use ordinary mapped
@@ -308,12 +341,8 @@ main Sessions; Worker support does not introduce a second browser compatibility 
 Flutter services stay excluded; the selected WebGPU profile supplies native
 OffscreenCanvas rendering and explicit still-image import/export.
 
-The remaining message gap is MessageChannel/MessagePort and transferable Streams. The
-native channel currently binds a parent/child runtime pair. Transferable ports need
-independent endpoint ownership, queue migration, atomic mixed transfers and cleanup of
-ports discarded in transit. Stream transfer additionally needs that channel plus
-backpressure, cancellation and cross-realm error propagation. A same-thread channel
-facade would not satisfy those contracts, so neither API is installed.
+Transferable Streams remain unavailable. Stream transfer needs a protocol for
+backpressure, cancellation and cross-realm error propagation over the message channel.
 
 Synchronous HTTP(S)/application imports and synchronous access to another realm's Blob
 registry remain unavailable. Dart's resource loaders are asynchronous while

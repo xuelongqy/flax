@@ -1,12 +1,21 @@
 import type * as WebGPU from './types.g.js';
 import type { OffscreenCanvasConstructor } from '@flax/core/host/common';
-import type { VideoFrame as HostVideoFrame } from './video-frame.js';
+import type { VideoFrame as HostVideoFrame, VideoFrameInit, VideoColorSpace as HostVideoColorSpace, VideoColorSpaceInit, VideoFrameCopyToOptions as HostVideoFrameCopyToOptions, PlaneLayout as HostPlaneLayout, VideoPixelFormat as HostVideoPixelFormat } from './video-frame.js';
 declare global {
     var OffscreenCanvas: OffscreenCanvasConstructor;
     type VideoFrame = HostVideoFrame;
+    type VideoFrameCopyToOptions = HostVideoFrameCopyToOptions;
+    type PlaneLayout = HostPlaneLayout;
+    type VideoPixelFormat = HostVideoPixelFormat;
     var VideoFrame: {
+        new (source: HostVideoFrame, init?: VideoFrameInit): HostVideoFrame;
         readonly prototype: HostVideoFrame;
         [Symbol.hasInstance](value: unknown): value is HostVideoFrame;
+    };
+    type VideoColorSpace = HostVideoColorSpace;
+    var VideoColorSpace: {
+        new (init?: VideoColorSpaceInit): HostVideoColorSpace;
+        readonly prototype: HostVideoColorSpace;
     };
     function requestAnimationFrame(callback: (time: number) => void): number;
     function cancelAnimationFrame(id?: number): void;

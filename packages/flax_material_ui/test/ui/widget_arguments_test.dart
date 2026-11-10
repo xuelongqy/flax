@@ -374,6 +374,13 @@ void main() {
           await t.pump();
           if (collected && weak.target == null) break;
         }
+        await flaxTestRunIdle(
+          t,
+          () => flaxTestWaitForGc(h.runtime, () {
+            if (h.boolean('weakJS.deref() === undefined')) collected = true;
+            return collected && weak.target == null;
+          }),
+        );
         expect(collected, isTrue);
         expect(weak.target, isNull);
         expect(h.runtime.activeSubscriptions, 0);

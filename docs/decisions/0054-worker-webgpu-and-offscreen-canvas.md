@@ -60,6 +60,15 @@ application JS is required to reclaim images during termination. Selected WebGPU
 reuse explicit external-image upload, snapshot and export operations; their synchronous
 GPU readback can stall, while normal presentation stays native.
 
+### Native SDR video
+
+A nonsandboxed host can grant its Dedicated Workers selected names from the Session's
+native video sources. The provider snapshots those names during installation and
+explicitly exports the prepared `@flax/webgpu` module to Worker ESM. Frames acquire
+independent realm-owned leases from the existing native registry and release them during
+native retirement. The SDR source and GPU paths follow the
+[video contract](../architecture/webgpu.md#sdr-video-frames).
+
 ## Consequences
 
 Core has one small optional Worker-provider boundary and no Dawn dependency. Core-only
@@ -69,8 +78,8 @@ protocol 24, Worker profile 2 and the macOS interop version remain separate cont
 optional owned-buffer and transfer capabilities fail closed on an older engine.
 
 The UI retains CanvasView, HTML placeholder layout/input and texture registration.
-Worker Canvas 2D, HTML layout emulation, shared GPU devices/resources, video, HDR and XR
-remain excluded. Startup and encoding performance require matched controls rather than
-an FPS inference from the absence of a per-draw proxy. Still-image clone/transfer,
-lifecycle and pixel acceptance are tracked separately in the
-[still-image task](../tasks/worker-images.md).
+Worker Canvas 2D, HTML layout emulation, shared GPU devices/resources, VideoFrame
+transfer, HTML media, HDR and XR remain excluded. Startup and encoding performance
+require matched controls rather than an FPS inference from the absence of a per-draw
+proxy. Still-image clone/transfer, lifecycle and pixel acceptance are tracked separately
+in the [still-image task](../tasks/worker-images.md).

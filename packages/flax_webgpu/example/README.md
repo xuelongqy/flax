@@ -137,11 +137,11 @@ until session disposal.
 
 Use the same macOS prerequisites as the studio. The acceptance app decodes a local
 1080p60 BT.709 clip off the platform thread and publishes IOSurface-backed frames
-through a Flutter texture producer. It renders the same frames with Flutter
-`Texture`, direct WebGPU sampling, and unmodified Three.js `VideoFrameTexture`.
+through a Flutter texture producer. It renders the same frames with Flutter `Texture`,
+direct WebGPU sampling, and unmodified Three.js `VideoFrameTexture`.
 
-Generate a fixture with a red-to-green change between the first two frames and
-fixed gray and blue reference patches. The clip stays on the workspace volume.
+Generate a fixture with a red-to-green change between the first two frames and fixed
+gray and blue reference patches. The clip stays on the workspace volume.
 
 ```sh
 mkdir -p "$PWD/.local/tmp"
@@ -161,7 +161,14 @@ python3 packages/flax_webgpu/tool/run_macos.py --video .local/video-1080p60.mp4 
 ```
 
 The app checks pixels for NV12 video and full range and for BGRA, Display P3 upload,
-expiry, source disposal and Session resource retirement. It records submission FPS
-and frame acquisition to GPU queue callback latency for each 1920 × 1080 path after
-warmup. Pixel captures run separately from timing. Results and PNGs are in
-`.local/webgpu-video/`.
+expiry, source disposal and Session resource retirement. A module Worker checks source
+grants, raw sampling and copying for two successive frames, and termination with an
+active frame lease. Clone checks require independent GPU import expiry, a shared pixel
+lease, real color metadata, timing overrides, garbage collection and Worker retirement.
+Original-plane readback checks full/cropped NV12 limited/full range and BGRA bytes,
+custom reordered layouts, untouched padding, shared DataView offsets and clone/close
+side effects. The granted Worker repeats readback with its own leases. Explicit format
+conversion rejects with `NotSupportedError`. These CPU checks run outside measurement.
+The app records submission FPS and frame acquisition to GPU queue callback latency for
+each 1920 × 1080 path after warmup. Pixel captures run separately from timing. Results
+and PNGs are in `.local/webgpu-video/`.

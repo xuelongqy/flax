@@ -148,6 +148,12 @@ abstract interface class FlaxWorkerPluginInstance {
   void workerMessage(String operation, List<Object?> arguments);
 }
 
+/// Opts a Worker provider into exposing selected, binding-free prepared modules.
+abstract interface class FlaxWorkerModuleExports {
+  /// Canonical prepared module names importable by Worker application code.
+  Set<String> get workerImportModules;
+}
+
 /// Public engine-independent extension boundary for host plugins.
 abstract class FlaxHostContext {
   String? get namespace;

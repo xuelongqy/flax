@@ -1331,7 +1331,9 @@ export class OffscreenCanvasRenderingContext2D {
     ) {
       throw canvasException('SyntaxError', 'Invalid pattern repetition.');
     }
-    const id = patternImageId(image, this.call);
+    if (isOffscreenCanvas(image) && (image.width === 0 || image.height === 0))
+      return null;
+    const id = imageId(image, this.call);
     if (id == null) {
       if (isOffscreenCanvas(image)) return null;
       throw new TypeError('Unsupported pattern source.');
@@ -1930,8 +1932,20 @@ function imageId(image: object, call: Call, borrow?: Canvas2DBackend): number | 
   if (isOffscreenCanvas(image)) {
     if (image.width === 0 || image.height === 0)
       throw invalidState('The source canvas is empty.');
-    (canvasHost(image).backend(image, '2d') as Canvas2DBackend).flush();
-    const id = call('snapshotImageSync', surfaceOf(image)) as number;
+    const host = canvasHost(image);
+    const backend = host.backend(image);
+    if (backend && !(backend instanceof Canvas2DBackend)) {
+      const bitmap = backend.snapshot?.();
+      if (!bitmap) throw invalidState('The source canvas cannot be captured.');
+      try {
+        return imageId(bitmap, call, borrow);
+      } finally {
+        bitmap.close();
+      }
+    }
+    const source = backend ?? (host.backend(image, '2d') as Canvas2DBackend);
+    source.flush();
+    const id = call('snapshotImageSync', source[surfaceKey]) as number;
     borrow?.borrowImage(id);
     return id;
   }
@@ -1943,18 +1957,6 @@ function imageId(image: object, call: Call, borrow?: Canvas2DBackend): number | 
   return id;
 }
 
-function patternImageId(image: object, call: Call): number | null {
-  if (isOffscreenCanvas(image)) {
-    if (image.width === 0 || image.height === 0) return null;
-    (canvasHost(image).backend(image, '2d') as Canvas2DBackend).flush();
-    return call('snapshotImageSync', surfaceOf(image)) as number;
-  }
-  const id = sharedImageId(image, call) ?? readImageId(image);
-  if (id == null) return null;
-  if (closedId(id)) throw invalidState('The ImageBitmap is closed.');
-  call('retainImage', id);
-  return id;
-}
 function sharedImageId(image: object, call: Call): number | null {
   const shared = imageHosts.get(call)!;
   if (image instanceof ImageBitmap) shared.source(image);

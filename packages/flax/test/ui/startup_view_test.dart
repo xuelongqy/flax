@@ -283,6 +283,7 @@ void main() {
         ),
       );
       await _until(tester, () => errors.isNotEmpty);
+      await tester.pump();
       expect(errors, hasLength(1));
       expect(errors.single.toString(), contains('business failure'));
       expect(find.byType(ErrorWidget), findsOneWidget);

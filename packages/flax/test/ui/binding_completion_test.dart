@@ -66,13 +66,16 @@ void main() {
         expect(h.boolean('weakConstructed.deref() !== undefined'), isTrue);
         expect(values.callHeldCompletionDecorated('value'), expected);
         values.holdCompletionDecorated(null);
-        for (var i = 0; i < 8; i++) {
-          await _collect(tester, h);
-          if (!values.completionDecoratedAlive &&
-              h.boolean('weakConstructed.deref() === undefined')) {
-            break;
-          }
-        }
+        await _collect(tester, h);
+        await flaxTestRunIdle(
+          tester,
+          () => flaxTestWaitForGc(
+            h.runtime,
+            () =>
+                !values.completionDecoratedAlive &&
+                h.boolean('weakConstructed.deref() === undefined'),
+          ),
+        );
         expect(values.completionDecoratedAlive, isFalse, reason: creation);
         expect(h.boolean('weakConstructed.deref() === undefined'), isTrue);
       }
@@ -117,9 +120,14 @@ void main() {
       expect(h.number('future.calls'), greaterThan(0));
       expect(h.number('future.echo(4)'), 5);
       h.execute('future = undefined');
-      for (var i = 0; i < 4 && values.liveCompletionAsyncValues != 0; i++) {
-        await _collect(tester, h);
-      }
+      await _collect(tester, h);
+      await flaxTestRunIdle(
+        tester,
+        () => flaxTestWaitForGc(
+          h.runtime,
+          () => values.liveCompletionAsyncValues == 0,
+        ),
+      );
       expect(
         values.liveCompletionAsyncValues,
         0,
@@ -343,10 +351,16 @@ void main() {
         await _collect(tester, h);
         expect(h.boolean('weakCallback.deref() !== undefined'), isTrue);
         h.execute('boxedCallback = null');
-        for (var i = 0; i < 8; i++) {
-          await _collect(tester, h);
-          if (h.boolean('weakCallback.deref() === undefined')) break;
-        }
+        await _collect(tester, h);
+        await flaxTestRunIdle(
+          tester,
+          () => flaxTestWaitForGc(
+            h.runtime,
+            () =>
+                h.boolean('weakCallback.deref() === undefined') &&
+                !h.boolean('completion.completionCallbackAlive()'),
+          ),
+        );
         expect(h.boolean('weakCallback.deref() === undefined'), isTrue);
         expect(h.boolean('completion.completionCallbackAlive()'), isFalse);
         expect(h.errors, isEmpty);

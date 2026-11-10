@@ -17,6 +17,7 @@ import {
 } from './convert.js';
 import type { CanvasHost, OffscreenCanvas } from '@flax/core-runtime/host/canvas';
 import arities from './arity.g.js';
+import type { GPURenderPipelineDescriptor } from './types.g.js';
 import { imageHost, type PixelImage } from '@flax/core-runtime/host/images';
 import { gpuDiagnosticsHost } from '@flax/core-runtime/host/gpu-diagnostics';
 import { installVideoFrames, type VideoSources } from './video-frames.js';
@@ -50,7 +51,7 @@ export function installWebGpu(
   const g = global as any;
   const images = () => imageHost(global);
   const diagnostics = gpuDiagnosticsHost(global);
-  const hasVideoSources = !worker && videoSources.length > 0;
+  const hasVideoSources = videoSources.length > 0;
   const library = DynamicLibrary.codeAsset('@flax/webgpu/dawn');
   const signatures = definitions as any;
   const native: Record<string, any> = {};
@@ -103,8 +104,10 @@ export function installWebGpu(
       nextRequest = 1;
     const peers = new WeakMap<object, Peer>();
     const resources = new Set<WeakRef<object>>();
+    const minResourceSweepInterval = 16_384;
+    let resourcesUntilSweep = minResourceSweepInterval;
     // Video creates short-lived GPU wrappers at playback rate.
-    const collectedResources = videoSources.length
+    const collectedResources = hasVideoSources
       ? new FinalizationRegistry<WeakRef<object>>((ref) => resources.delete(ref))
       : undefined;
     const deviceObjects = new Map<string, WeakRef<any>>();
@@ -120,7 +123,7 @@ export function installWebGpu(
       global,
       native,
       () => registry,
-      worker ? [] : videoSources,
+      videoSources,
     ));
     let initialize: (value: boolean) => void;
     const ready = new Promise<boolean>((resolve) => {
@@ -311,6 +314,18 @@ export function installWebGpu(
         a.releaseAll();
       }
     }
+    function injectValidationError(device: Peer, message: string) {
+      const a = arena();
+      try {
+        proc('wgpuDeviceInjectError')(
+          device.pointer,
+          nativeEnum('WGPUErrorType', 'validation'),
+          a.string(message).$bytes,
+        );
+      } finally {
+        a.releaseAll();
+      }
+    }
     function finalizer(kind: string) {
       let value = finalizers.get(kind);
       if (!value) {
@@ -344,7 +359,15 @@ export function installWebGpu(
       finalizer(kind).attach(result, handle);
       const ref = new WeakRef(result);
       resources.add(ref);
-      collectedResources?.register(result, ref);
+      if (collectedResources) {
+        collectedResources.register(result, ref);
+      } else if (--resourcesUntilSweep === 0) {
+        for (const entry of resources) {
+          if (entry.deref() === undefined) resources.delete(entry);
+        }
+        // Scale the next interval to avoid repeatedly scanning live wrappers.
+        resourcesUntilSweep = Math.max(minResourceSweepInterval, resources.size);
+      }
       return result;
     }
     function retainExternalTextures(encoder: Peer, textures: Set<object>) {
@@ -356,22 +379,27 @@ export function installWebGpu(
       peer(result).externalTextures = encoder.externalTextures;
       encoder.externalTextures = undefined;
     }
+    function startRequest(
+      start: (id: number) => number,
+      resolve: (value: any) => void,
+      reject: (reason: unknown) => void,
+    ) {
+      if (!open) {
+        reject(exception('The WebGPU session is closed', 'InvalidStateError'));
+        return;
+      }
+      const id = nextRequest++;
+      pending.set(id, { resolve, reject });
+      try {
+        check(start(id));
+        schedulePump();
+      } catch (error) {
+        pending.delete(id);
+        reject(error);
+      }
+    }
     function request(start: (id: number) => number): Promise<any> {
-      if (!open)
-        return Promise.reject(
-          exception('The WebGPU session is closed', 'InvalidStateError'),
-        );
-      return new Promise((resolve, reject) => {
-        const id = nextRequest++;
-        pending.set(id, { resolve, reject });
-        try {
-          check(start(id));
-          schedulePump();
-        } catch (error) {
-          pending.delete(id);
-          reject(error);
-        }
-      });
+      return new Promise((resolve, reject) => startRequest(start, resolve, reject));
     }
     const retiringDevices = new Set<object>();
     let pumpQueued = false,
@@ -799,6 +827,32 @@ export function installWebGpu(
       featureValues.set(result, new Set(values));
       return result;
     }
+    function deviceFeatures(device: object) {
+      const features = readonlyValues.get(device)!.fields.features as object;
+      return featureValues.get(features)!;
+    }
+    function validateTextureFormat(device: object, format?: string | null) {
+      if (format == null) return;
+      let feature: string | undefined;
+      if (format === 'depth32float-stencil8') feature = format;
+      else if (format.startsWith('bc')) feature = 'texture-compression-bc';
+      else if (format.startsWith('etc2') || format.startsWith('eac'))
+        feature = 'texture-compression-etc2';
+      else if (format.startsWith('astc')) feature = 'texture-compression-astc';
+      else if (/^(r|rg|rgba)16(unorm|snorm)$/.test(format))
+        feature = 'texture-formats-tier1';
+      if (feature && !deviceFeatures(device).has(feature))
+        throw new TypeError(`Texture format ${format} requires ${feature}`);
+    }
+    function validateRenderPipelineFormats(
+      device: object,
+      desc: GPURenderPipelineDescriptor,
+    ) {
+      if (desc.fragment)
+        for (const target of desc.fragment.targets)
+          validateTextureFormat(device, target?.format);
+      validateTextureFormat(device, desc.depthStencil?.format);
+    }
     function initializeAdapter(value: any) {
       const info = JSON.parse(toString(native.info(1, peer(value).pointer))!);
       for (const key of ['vendor', 'architecture', 'device'])
@@ -813,21 +867,39 @@ export function installWebGpu(
         isFallbackAdapter: info.isFallbackAdapter,
       });
     }
-    const uncapturedListeners = new WeakMap<object, any>();
+    const { addEventListener, removeEventListener } = g.EventTarget.prototype;
+    const uncapturedListeners = new WeakMap<
+      object,
+      { callback: Function; listener: (event: unknown) => void }
+    >();
     Object.defineProperty(classes.GPUDevice.prototype, 'onuncapturederror', {
       configurable: true,
       enumerable: true,
       get() {
         peer(this, 'GPUDevice');
-        return uncapturedListeners.get(this) ?? null;
+        return uncapturedListeners.get(this)?.callback ?? null;
       },
       set(fn) {
         peer(this, 'GPUDevice');
-        const listener = uncapturedListeners.get(this);
-        if (listener) this.removeEventListener('uncapturederror', listener);
-        const next = typeof fn === 'function' ? fn : null;
-        uncapturedListeners.set(this, next);
-        if (next) this.addEventListener('uncapturederror', next);
+        const handler = uncapturedListeners.get(this);
+        const callback = typeof fn === 'function' ? fn : null;
+        if (handler) {
+          if (callback) handler.callback = callback;
+          else {
+            removeEventListener.call(this, 'uncapturederror', handler.listener);
+            uncapturedListeners.delete(this);
+          }
+        } else if (callback) {
+          // Keep the same listener position while the handler callback changes.
+          const entry = {
+            callback,
+            listener: (event: unknown): void => {
+              Reflect.apply(entry.callback, this, [event]);
+            },
+          };
+          uncapturedListeners.set(this, entry);
+          addEventListener.call(this, 'uncapturederror', entry.listener);
+        }
       },
     });
     function initializeDevice(value: any) {
@@ -937,21 +1009,52 @@ export function installWebGpu(
             self,
           );
         return descriptor(`GPU${kind}Descriptor`, input, (a, desc) => {
-          if (kind === 'ShaderModule') {
-            const source = a.struct('WGPUShaderSourceWGSL', { code: desc.code });
-            desc = { ...desc, nextInChain: source.pointer };
+          switch (kind) {
+            case 'ShaderModule': {
+              const source = a.struct('WGPUShaderSourceWGSL', { code: desc.code });
+              desc = { ...desc, nextInChain: source.pointer };
+              break;
+            }
+            case 'Texture':
+              validateTextureFormat(self, desc.format);
+              for (const format of desc.viewFormats)
+                validateTextureFormat(self, format);
+              break;
+            case 'BindGroupLayout':
+              for (const entry of desc.entries)
+                validateTextureFormat(self, entry.storageTexture?.format);
+              break;
+            case 'RenderPipeline':
+              validateRenderPipelineFormats(self, desc);
+              break;
+            case 'RenderBundleEncoder':
+              for (const format of desc.colorFormats)
+                validateTextureFormat(self, format);
+              validateTextureFormat(self, desc.depthStencilFormat);
+              break;
+            case 'QuerySet':
+              if (
+                desc.type === 'timestamp' &&
+                !deviceFeatures(self).has('timestamp-query')
+              )
+                throw new TypeError('Timestamp query sets require timestamp-query');
+              break;
           }
+          const mappedAtCreation = kind === 'Buffer' && desc.mappedAtCreation;
+          if (mappedAtCreation && desc.size % 4 !== 0)
+            throw new RangeError(
+              'A buffer mapped at creation must have a size divisible by 4',
+            );
           const packed = a.struct(`WGPU${kind}Descriptor`, desc);
-          const object = wrap(
-            `GPU${kind}`,
-            proc(`wgpuDeviceCreate${kind}`)(p.pointer, packed.pointer),
-            self,
-            desc,
-          );
+          const handle = proc(`wgpuDeviceCreate${kind}`)(p.pointer, packed.pointer);
+          // Dawn returns null if it cannot allocate the initial buffer mapping.
+          if (!handle && mappedAtCreation)
+            throw new RangeError('Cannot allocate the initial buffer mapping');
+          const object = wrap(`GPU${kind}`, handle, self, desc);
           if (a.externalTextures) peer(object).externalTextures = a.externalTextures;
           if (kind === 'Buffer') {
             const b = peer(object);
-            b.mapMode = desc.mappedAtCreation ? 2 : 0;
+            b.mapMode = mappedAtCreation ? 2 : 0;
             b.mapOffset = 0;
             b.mapSize = desc.size;
             b.ranges = [];
@@ -964,22 +1067,29 @@ export function installWebGpu(
       ['RenderPipeline', 2],
     ] as const)
       method('GPUDevice', `create${kind}Async`, (p, self, input) =>
-        descriptor(`GPU${kind}Descriptor`, input, (a, desc) =>
-          request((id) =>
-            native.pipeline(
-              context,
-              p.pointer,
-              id,
-              type,
-              a.struct(`WGPU${kind}Descriptor`, desc).pointer,
+        descriptor(`GPU${kind}Descriptor`, input, (a, desc) => {
+          if (kind === 'RenderPipeline') validateRenderPipelineFormats(self, desc);
+          // Settle directly to preserve ordering with the device's lost promise.
+          return new Promise((resolve, reject) =>
+            startRequest(
+              (id) =>
+                native.pipeline(
+                  context,
+                  p.pointer,
+                  id,
+                  type,
+                  a.struct(`WGPU${kind}Descriptor`, desc).pointer,
+                ),
+              (value) => {
+                const result = peer(value);
+                result.device = self;
+                result.label = desc.label ?? '';
+                resolve(value);
+              },
+              reject,
             ),
-          ).then((value) => {
-            const result = peer(value);
-            result.device = self;
-            result.label = desc.label ?? '';
-            return value;
-          }),
-        ),
+          );
+        }),
       );
     for (const kind of ['ComputePipeline', 'RenderPipeline'])
       method(`GPU${kind}`, 'getBindGroupLayout', (p, _, index) =>
@@ -1006,25 +1116,29 @@ export function installWebGpu(
       offset = integer(offset);
       size =
         size === undefined ? Math.max(0, p.descriptor.size - offset) : integer(size);
-      if (p.pendingMap || p.mapMode)
-        return Promise.reject(exception('The buffer is already mapped or pending'));
-      const generation = nextRequest;
-      p.pendingMap = generation;
-      return request((id) =>
-        native.map(context, p.pointer, id, mode, offset, size),
-      ).then(
-        () => {
-          if (p.pendingMap !== generation)
-            throw exception('Mapping was cancelled', 'AbortError');
-          p.pendingMap = 0;
-          p.mapMode = mode;
-          p.mapOffset = offset;
-          p.mapSize = size;
-        },
-        (error) => {
-          if (p.pendingMap === generation) p.pendingMap = 0;
-          throw error;
-        },
+      if (p.pendingMap || p.mapMode) {
+        const message = 'The buffer is already mapped or pending';
+        injectValidationError(peer(p.device, 'GPUDevice'), message);
+        return Promise.reject(exception(message));
+      }
+      return new Promise<void>((resolve, reject) =>
+        startRequest(
+          (id) => {
+            p.pendingMap = id;
+            return native.map(context, p.pointer, id, mode, offset, size);
+          },
+          () => {
+            p.pendingMap = 0;
+            p.mapMode = mode;
+            p.mapOffset = offset;
+            p.mapSize = size;
+            resolve();
+          },
+          (error) => {
+            p.pendingMap = 0;
+            reject(error);
+          },
+        ),
       );
     });
     method('GPUBuffer', 'getMappedRange', (p, _, at = 0, length?: number) => {
@@ -1058,6 +1172,11 @@ export function installWebGpu(
       return buffer;
     });
     function unmap(p: Peer, flush: boolean) {
+      if (p.pendingMap) {
+        const item = pending.get(p.pendingMap);
+        pending.delete(p.pendingMap);
+        item?.reject(exception('Mapping was cancelled', 'AbortError'));
+      }
       let failure: unknown;
       for (const range of p.ranges ?? []) {
         try {
@@ -1110,8 +1229,9 @@ export function installWebGpu(
           proc('wgpuTextureCreateView')(p.pointer, 0n),
           p.device,
         );
-      return descriptor('GPUTextureViewDescriptor', input, (a, desc) =>
-        wrap(
+      return descriptor('GPUTextureViewDescriptor', input, (a, desc) => {
+        validateTextureFormat(p.device, desc.format);
+        return wrap(
           'GPUTextureView',
           proc('wgpuTextureCreateView')(
             p.pointer,
@@ -1119,8 +1239,8 @@ export function installWebGpu(
           ),
           p.device,
           desc,
-        ),
-      );
+        );
+      });
     });
     // OffscreenCanvas dimensions can exceed the native texture's 32-bit fields.
     getter('GPUTexture', 'width', (p) =>
@@ -1262,8 +1382,8 @@ export function installWebGpu(
     const createTexture = classes.GPUDevice.prototype.createTexture;
     const destroyTexture = classes.GPUTexture.prototype.destroy;
     const srgbToP3 = [
-      0.82259287, 0.03319951, 0.01708535, 0.17753395, 0.9667835, 0.07239572, 0, 0,
-      0.91030148,
+      0.82246197, 0.0331942, 0.01708263, 0.17753803, 0.9668058, 0.07239744, 0, 0,
+      0.91051993,
     ];
     const p3ToSrgb = [
       1.22494018, -0.04205695, -0.01963755, -0.22494018, 1.04205695, -0.07863605, 0, 0,
@@ -1271,6 +1391,16 @@ export function installWebGpu(
     ];
     const decodeSrgb = [2.4, 1 / 1.055, 0.055 / 1.055, 1 / 12.92, 0.04045, 0, 0];
     const encodeSrgb = [1 / 2.4, 1.055 ** 2.4, 0, 12.92, 0.0031308, -0.055, 0];
+    function validateExternalCopyFormat(queue: Peer, texture: object) {
+      const format = peer(texture, 'GPUTexture').descriptor.format;
+      // Dawn's browser copy also accepts snorm, which WebGPU excludes.
+      if (!format.endsWith('snorm')) return true;
+      injectValidationError(
+        peer(queue.device, 'GPUDevice'),
+        'External images cannot be copied to signed-normalized textures',
+      );
+      return false;
+    }
     function uploadExternalPixels(
       p: Peer,
       self: object,
@@ -1287,6 +1417,7 @@ export function installWebGpu(
         (Array.isArray(extent) ? extent[2] : extent.depthOrArrayLayers) ?? 1;
       if (x + width > pixels.width || y + height > pixels.height || layers > 1)
         throw exception('The copy exceeds the source image');
+      if (!validateExternalCopyFormat(p, dest.texture)) return;
       const fp16 = pixels.pixelFormat === 'rgba-float16';
       const format = fp16 ? 'rgba16float' : 'rgba8unorm';
       const bytesPerPixel = fp16 ? 8 : 4;
@@ -1373,6 +1504,7 @@ export function installWebGpu(
             (Array.isArray(extent) ? extent[2] : extent.depthOrArrayLayers) ?? 1;
           if (x + width > displayWidth || y + height > displayHeight || layers > 1)
             throw exception('The copy exceeds the source video frame');
+          if (!validateExternalCopyFormat(p, dest.texture)) return;
           const a = arena();
           let handle = 0n;
           try {
@@ -2050,22 +2182,10 @@ export function installWebGpu(
       configure(input: unknown) {
         if (!open) throw exception('The WebGPU session closed', 'InvalidStateError');
         const config = convert('GPUCanvasConfiguration', input, pointer);
-        const features = featureValues.get(
-          readonlyValues.get(config.device)!.fields.features as object,
-        )!;
         // Required features are checked before the canvas format and usage.
-        for (const format of [config.format, ...config.viewFormats]) {
-          let feature: string | undefined;
-          if (format === 'depth32float-stencil8') feature = format;
-          else if (format.startsWith('bc')) feature = 'texture-compression-bc';
-          else if (format.startsWith('etc2') || format.startsWith('eac'))
-            feature = 'texture-compression-etc2';
-          else if (format.startsWith('astc')) feature = 'texture-compression-astc';
-          else if (/^(r|rg|rgba)16(unorm|snorm)$/.test(format))
-            feature = 'texture-formats-tier1';
-          if (feature && !features.has(feature))
-            throw new TypeError(`Texture format ${format} requires ${feature}`);
-        }
+        validateTextureFormat(config.device, config.format);
+        for (const format of config.viewFormats)
+          validateTextureFormat(config.device, format);
         if (!['bgra8unorm', 'rgba8unorm', 'rgba16float'].includes(config.format))
           throw new TypeError(`Unsupported canvas texture format: ${config.format}`);
         if (config.usage & constantGroups.GPUTextureUsage.TRANSIENT_ATTACHMENT)

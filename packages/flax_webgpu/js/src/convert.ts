@@ -73,6 +73,13 @@ export function convert(
   value: any,
   resource: (value: unknown, kind: string) => bigint,
 ): any {
+  if (type === '[Clamp] unsigned short') {
+    const number = +(value as number);
+    const clamped = Math.min(Math.max(number || 0, 0), 65535);
+    const floor = Math.floor(clamped);
+    // Web IDL rounds halfway values toward the even integer.
+    return clamped === floor + 0.5 && floor % 2 === 0 ? floor : Math.round(clamped);
+  }
   type = type
     .replace(/\[[^\]]*\]\s*/g, '')
     .replace(/\s+/g, ' ')
@@ -322,6 +329,10 @@ export class DescriptorArena extends Arena {
       value.data = input.data;
       value.length = input.length;
       return { pointer, value };
+    }
+    if (type === 'WGPURenderPassColorAttachment' && input?.depthSlice === 0xffffffff) {
+      // Dawn reserves UINT32_MAX for omission. Keep an explicit out-of-range slice.
+      input = { ...input, depthSlice: 0xfffffffe };
     }
     if (type === 'WGPUExtent3D' || type === 'WGPUOrigin3D' || type === 'WGPUColor') {
       if (Array.isArray(input) || ArrayBuffer.isView(input)) {

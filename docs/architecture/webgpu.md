@@ -31,21 +31,56 @@ Call `close()` to release it. Flutter owns the registered children's layout.
 
 ## SDR video frames
 
-The native macOS `FlaxWebGpuVideoSource` is a FlutterTexture producer that retains
-the latest ready IOSurface-backed CVPixelBuffer. Flutter draws the texture ID. A
-separate UUID identifies the producer within the Flutter texture registry, and
-`FlaxWebGpuPlugin(videoSources: ...)` grants selected names to a Session.
-`acquireVideoFrame(name)` obtains the latest frame through the existing native
-asset and returns a realm-branded VideoFrame. Frame acquisition and sampling stay
-on the JS/native path after the registry is ready.
+The native macOS `FlaxWebGpuVideoSource` is a FlutterTexture producer that retains the
+latest ready IOSurface-backed CVPixelBuffer. Flutter draws the texture ID. A separate
+UUID identifies the producer within the Flutter texture registry, and
+`FlaxWebGpuPlugin(videoSources: ...)` grants selected names to the main Session realm.
+`acquireVideoFrame(name)` obtains the latest frame through the existing native asset and
+returns a realm-branded VideoFrame. Frame acquisition and sampling stay on the JS/native
+path after the registry is ready.
 
 Dawn imports full-frame SDR BGRA and BT.709 NV12 in video or full range.
 `GPUDevice.importExternalTexture` samples the surface's native plane views, and
-`GPUQueue.copyExternalImageToTexture` performs GPU color conversion and copying.
-An acquired frame owns its buffer lease independently of the producer. Close and
-Session teardown expire imports, end shared access and hold the decoder buffer
-until the completion fence. A Frame and its GPU objects belong to the realm that
-acquired them.
+`GPUQueue.copyExternalImageToTexture` performs GPU color conversion and copying. An
+acquired frame owns its buffer lease independently of the producer. Close and Session
+teardown expire imports, end shared access and hold the decoder buffer until the
+completion fence. A VideoFrame and its GPU objects stay in the acquiring realm.
+
+In a nonsandboxed Session, `workerVideoSources` grants a subset of `videoSources` to
+Dedicated Workers and their descendants. The default is empty. Installation validates
+and snapshots both selections. A Worker with a video grant can import
+`acquireVideoFrame` from the prepared `@flax/webgpu` module. It acquires its own leases
+from the native producer and releases them during native Worker retirement.
+
+`VideoFrame.clone()` and `new VideoFrame(frame, {timestamp, duration})` create an
+independent lease over the same pixel buffer without copying pixels or reacquiring the
+producer. GPU imports belong to each lease: closing one frame expires its imported
+textures without expiring its siblings. Explicit construction supports timing overrides;
+image transformations and raw-pixel construction remain outside this profile.
+
+Frames expose readonly full-frame `codedRect` and `visibleRect` snapshots, rotation
+zero, flip false, and real BT.709/sRGB `VideoColorSpace` metadata. The color-space
+object has readonly fields and `toJSON()`; it is created lazily when read. Rectangle
+snapshots have the standard numeric fields and `toJSON()` without installing a general
+DOM geometry API. `metadata()` returns a fresh empty dictionary because these producers
+supply no registered frame metadata. Closing clears dimensions, format and rectangles,
+while timing and color-space information remain readable. Cloning or reading metadata
+from a closed frame throws `InvalidStateError`.
+
+`allocationSize()` and `copyTo(destination)` expose original NV12 or BGRA planes.
+They support full frames, cropped rectangles, and custom per-plane offsets and strides,
+including reordered planes. NV12 crop offsets must be even; odd crop dimensions round
+the chroma plane up. Destination BufferSource views retain their actual byte offset and
+length, including shared backing stores, and row padding remains untouched. Copying is
+an explicit synchronous native CPU read inside a Promise-returning method and may stall
+the caller; ordinary rendering and sampling perform no CPU readback. Closing a sibling
+clone does not prevent readback. Getters and iterators are converted before checking the
+frame again, so closing it during options conversion cannot access released storage.
+
+Omit `format` to copy original bytes. Explicit output formats require color conversion
+and throw `NotSupportedError`, including explicit BGRA for BGRA input; `colorSpace`
+without `format` is enum-checked and otherwise ignored. Raw-pixel construction, image
+transforms, WebCodecs decode and cross-realm VideoFrame transfer remain unimplemented.
 
 ## Worker rendering
 
@@ -249,6 +284,5 @@ formats and `pixelSnapshots: true`. Dart acceptance requires those receipts and 
 canvas-configuration pixel snapshots in every cycle, so omitted image paths cannot pass
 silently. See the [still-image task](../tasks/worker-images.md) for validation status.
 
-Complete WebIDL/CTS conformance, HDR and Worker video sources, Worker Canvas 2D
-services and other platforms remain open. See the
-[remaining task](../tasks/webgpu-js-api.md).
+Complete WebIDL/CTS conformance, HDR video sources, Worker Canvas 2D services and other
+platforms remain open. See the [remaining task](../tasks/webgpu-js-api.md).

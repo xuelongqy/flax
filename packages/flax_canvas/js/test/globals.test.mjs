@@ -334,6 +334,85 @@ test('createPattern rejects invalid repetition and retains bitmaps', () => {
   assert.deepEqual(retained, [1, 1, 1, 1]);
 });
 
+test('createPattern snapshots other canvas backends and keeps the image lease', () => {
+  const global = {};
+  const nativeImage = {};
+  const coreCall = (operation, ...args) => {
+    if (operation === 'canvasCreate') return { width: args[0], height: args[1] };
+    if (operation === 'imagePixels') return 1;
+    if (operation === 'imageNative') return nativeImage;
+  };
+  const canvases = installCanvasHost(global, coreCall, EventTarget, DOMException);
+  const images = installImageHost(global, coreCall, canvases, DOMException);
+  const leases = new Map(),
+    operations = [];
+  let nextId = 1,
+    gpuSnapshots = 0;
+  const installed = install2D(global, (operation, ...args) => {
+    if (operation === 'create') return { width: args[0], height: args[1] };
+    if (operation === 'importSharedImage') {
+      assert.equal(args[0], nativeImage);
+      const id = nextId++;
+      leases.set(id, 1);
+      operations.push(['import', id]);
+      return id;
+    }
+    if (operation === 'retainImage' || operation === 'closeImage') {
+      leases.set(args[0], leases.get(args[0]) + (operation === 'retainImage' ? 1 : -1));
+      operations.push([operation, args[0]]);
+    }
+  });
+  canvases.register('webgpu', (canvas) => ({
+    getContext: () => ({ canvas }),
+    snapshot() {
+      gpuSnapshots++;
+      return images.bitmap({
+        width: 4,
+        height: 4,
+        native: () => nativeImage,
+        close() {},
+      });
+    },
+  }));
+  try {
+    const destination = new global.OffscreenCanvas(4, 4),
+      context = destination.getContext('2d');
+    for (const [mode, id] of [
+      ['bitmaprenderer', 1],
+      ['webgpu', 2],
+    ]) {
+      const source = new global.OffscreenCanvas(4, 4);
+      source.getContext(mode);
+      const pattern = context.createPattern(source, 'repeat');
+      assert(pattern instanceof global.CanvasPattern);
+      assert.deepEqual(operations.splice(0), [
+        ['import', id],
+        ['retainImage', id],
+        ['closeImage', id],
+      ]);
+      assert.equal(leases.get(id), 1, 'Pattern retains the closed temporary snapshot');
+      context.fillStyle = pattern;
+      context.fillRect(0, 0, 4, 4);
+      destination.flush();
+      assert.equal(leases.get(id), 1, 'Pattern keeps its lease after a draw');
+      for (const [width, height] of [
+        [0, 4],
+        [4, 0],
+      ]) {
+        const empty = new global.OffscreenCanvas(width, height);
+        empty.getContext(mode);
+        assert.equal(context.createPattern(empty, 'repeat'), null);
+      }
+      assert.deepEqual(operations, []);
+    }
+    assert.equal(gpuSnapshots, 1);
+  } finally {
+    installed.close();
+    images.close();
+    canvases.close();
+  }
+});
+
 test('OffscreenCanvas drawImage snapshots close after flush', () => {
   const closed = [];
   let nextId = 1;

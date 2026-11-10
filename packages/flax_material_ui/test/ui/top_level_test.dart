@@ -240,12 +240,15 @@ void main() {
       h.execute(
         'topLevel.functions.ContextValues.setSelectedContextListener(null)',
       );
-      for (var i = 0; i < 8; i++) {
-        await t.runAsync(flaxTestCollectDartGarbage);
-        h.execute(flaxTestJsGarbagePressure);
-        await t.pump();
-        if (h.boolean('weakContextListener.deref() === undefined')) break;
-      }
+      await t.runAsync(flaxTestCollectDartGarbage);
+      h.execute(flaxTestJsGarbagePressure);
+      await flaxTestRunIdle(
+        t,
+        () => flaxTestWaitForGc(
+          h.runtime,
+          () => h.boolean('weakContextListener.deref() === undefined'),
+        ),
+      );
       expect(h.boolean('weakContextListener.deref() === undefined'), isTrue);
       expect(h.errors, isEmpty);
     } finally {

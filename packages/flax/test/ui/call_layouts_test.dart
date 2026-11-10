@@ -235,11 +235,18 @@ var inputLayout = [{name: 'value', required: true, positional: true}];
       await t.pumpAndSettle();
       expect(peers.any(_alive), isTrue);
       h.execute('counter = undefined');
-      for (var i = 0; i < 8 && peers.any(_alive); i++) {
-        h.execute(flaxTestJsGarbagePressure);
-        await t.runAsync(flaxTestCollectDartGarbage);
-        await t.pumpAndSettle();
-      }
+      h.execute(flaxTestJsGarbagePressure);
+      await t.runAsync(flaxTestCollectDartGarbage);
+      await t.pumpAndSettle();
+      await flaxTestRunIdle(
+        t,
+        () => flaxTestWaitForGc(
+          h.runtime,
+          () =>
+              !peers.any(_alive) &&
+              h.boolean('weakCounter.deref() === undefined'),
+        ),
+      );
       expect(peers.any(_alive), isFalse);
       expect(h.boolean('weakCounter.deref() === undefined'), isTrue);
       expect(h.runtime.isDisposed, isFalse);

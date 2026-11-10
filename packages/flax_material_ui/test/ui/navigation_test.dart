@@ -144,6 +144,9 @@ void main() {
       await t.pumpAndSettle();
       expect(h.errors, isEmpty);
       expect(find.text('Detail'), findsOneWidget);
+      WeakReference<ModalRoute<dynamic>> captureRoute() =>
+          WeakReference(ModalRoute.of(t.element(find.text('Detail')))!);
+      final retiredRoute = captureRoute();
       final builds = h.read('navigation.detailBuilds');
       await t.tap(find.text('Detail increment'));
       await t.pumpAndSettle();
@@ -153,6 +156,16 @@ void main() {
       await t.pumpAndSettle();
       expect(find.text('Result {"selected":["a",3]}'), findsOneWidget);
       await collectWidgetConfigurations(t);
+      await flaxTestRunIdle(
+        t,
+        () => flaxTestWaitForGc(
+          h.runtime,
+          () =>
+              retiredRoute.target == null &&
+              (steady == null || h.runtime.handles == steady),
+        ),
+      );
+      expect(retiredRoute.target, isNull);
       steady ??= h.runtime.handles;
       subscriptions ??= h.runtime.activeSubscriptions;
       expect(h.runtime.pendingFutures, 0);

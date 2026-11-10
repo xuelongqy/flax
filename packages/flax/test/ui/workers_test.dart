@@ -19,6 +19,7 @@ Future<void> script(
   bool approved = true,
   Future<void> Function(FlaxJsRuntime)? whileRunning,
   void Function(FlaxJsRuntime)? prepareRuntime,
+  void Function()? afterSuccess,
   List<FlaxPlugin> plugins = const [],
 }) async {
   late FlaxJsRuntime runtime;
@@ -84,6 +85,7 @@ Future<void> script(
           }
           expect(native.workerCountsForTesting(), (0, 0));
         }
+        afterSuccess?.call();
         return;
       }
       await Future<void>.delayed(const Duration(milliseconds: 5));
@@ -261,6 +263,233 @@ void main() {
       if (String(order) !== expected)
         throw Error('Worker task order: ' + String(order) + '; expected ' + expected);
     ''', waitForWorkersToExit: true),
+  );
+  test(
+    'MessagePort transfer moves a paused FIFO between sibling Workers',
+    () => script(r'''
+      const {port1: send, port2: receive} = new MessageChannel();
+      const {port1: extra, port2: extraPeer} = new MessageChannel();
+      const urls = [];
+      const worker = source => {
+        const url = URL.createObjectURL(new Blob([source]));
+        urls.push(url);
+        return new Worker(url, {type:'module'});
+      };
+      const next = worker => new Promise((resolve, reject) => {
+        worker.onmessage = resolve;
+        worker.onerror = event => reject(Error(event.message));
+        worker.onmessageerror = () => reject(Error('Worker messageerror'));
+      });
+      try {
+        const receiver = worker(`
+          const local = new MessageChannel();
+          await new Promise(resolve => {
+            local.port1.onmessage = resolve;
+            local.port2.postMessage('module startup');
+          });
+          local.port1.close(); local.port2.close();
+          let receive;
+          const seen = [];
+          onmessage = async ({data, ports}) => {
+            if (data === 'start') {
+              await new Promise(resolve => setTimeout(resolve, 15));
+              if (seen.length !== 0) throw Error('Transferred port started early');
+              receive.start();
+              return;
+            }
+            const [extra, port] = ports;
+            if (!Object.isFrozen(ports) || ports.length !== 2 ||
+                !(port instanceof MessagePort) || port !== data.port ||
+                port !== data.alias || new Uint8Array(data.buffer)[0] !== 73)
+              throw Error('Worker event did not restore transfers in order');
+            receive = port;
+            receive.addEventListener('message', ({data, ports}) => {
+              const tag = typeof data === 'string' ? data : data.tag;
+              seen.push(tag);
+              Promise.resolve().then(() => seen.push('microtask:' + tag));
+              if (tag === 'after') {
+                if (ports.length !== 1) throw Error('Port transfer-only list was lost');
+                ports[0].postMessage('reply');
+                ports[0].close();
+                receive.close();
+                Promise.resolve().then(() => { postMessage(seen); close(); });
+              }
+            });
+            const extraMessage = await new Promise(resolve => {
+              extra.onmessage = null;
+              extra.addEventListener('message', ({data}) => resolve(data));
+            });
+            extra.close();
+            postMessage(extraMessage);
+          };
+        `);
+        const sender = worker(`
+          onmessage = ({ports: [send]}) => {
+            const reply = new MessageChannel();
+            reply.port2.onmessage = ({data}) => {
+              reply.port2.close();
+              const outbound = new MessageChannel();
+              outbound.port1.postMessage(data);
+              outbound.port1.close();
+              postMessage(null, [outbound.port2]);
+              close();
+            };
+            send.postMessage({get tag() {
+              send.close();
+              postMessage('sent');
+              // Let the sibling drain the old queue after the peer loss wake.
+              const end = performance.now() + 300;
+              while (performance.now() < end) {}
+              return 'after';
+            }}, {transfer:[reply.port1]});
+          };
+        `);
+        const buffer = new Uint8Array([73]).buffer;
+        let stale = 0;
+        receive.onmessage = () => stale++;
+        send.postMessage('before');
+        extraPeer.postMessage('transfer-only');
+        extraPeer.close();
+        const ready = next(receiver);
+        receiver.postMessage({port:receive, alias:receive, buffer}, [extra, buffer, receive]);
+        if (buffer.byteLength !== 0) throw Error('Mixed transfer did not detach ArrayBuffer');
+        receive.postMessage('stale');
+        receive.close();
+        if ((await ready).data !== 'transfer-only') throw Error('Transfer-only port did not deliver');
+        const sent = next(sender);
+        sender.postMessage(null, [send]);
+        if ((await sent).data !== 'sent') throw Error('Sibling did not send');
+        const reply = next(sender), delivered = next(receiver);
+        receiver.postMessage('start');
+        const {ports: [outbound]} = await Promise.race([
+          reply,
+          new Promise((_, reject) => setTimeout(() =>
+            reject(Error('Lost a send when its source closed during serialization')), 2000)),
+        ]);
+        const ack = await new Promise(resolve => {
+          outbound.onmessage = ({data}) => { outbound.close(); resolve(data); };
+        });
+        if (ack !== 'reply' ||
+            String((await delivered).data) !== 'before,microtask:before,after,microtask:after' || stale)
+          throw Error('Port transfer broke direct delivery, FIFO, or detachment');
+      } finally {
+        for (const url of urls) URL.revokeObjectURL(url);
+      }
+    ''', waitForWorkersToExit: true),
+  );
+  test(
+    'Structured clone commits MessagePort transfers only after validation',
+    () async {
+      final probe = FlaxEngine.createRuntime() as FlaxNativeJsRuntime;
+      int? portCount() {
+        final count = probe.evaluate('__flaxNativeWorker.portCount?.()');
+        return count is FlaxJsNumber ? count.value.toInt() : null;
+      }
+
+      try {
+        probe.installWorkerBridge(0);
+        final before = portCount();
+        await script(
+          r'''
+      const channel = new MessageChannel();
+      const {port1: send, port2: receive} = channel;
+      const rejected = operation => {
+        try { operation(); } catch (error) {
+          if (error.name === 'DataCloneError') return;
+          throw error;
+        }
+        throw Error('Expected DataCloneError');
+      };
+      const buffer = new ArrayBuffer(8);
+      rejected(() => structuredClone(channel));
+      rejected(() => structuredClone(receive));
+      rejected(() => structuredClone(receive, {transfer:[buffer, receive, receive]}));
+      rejected(() => structuredClone({}, {transfer:[buffer, Object.create(MessagePort.prototype)]}));
+      rejected(() => receive.postMessage(null, [receive, buffer]));
+      send.postMessage('before');
+      let moved;
+      rejected(() => structuredClone({get reentry() {
+        moved = structuredClone({port:receive, alias:receive}, {transfer:[receive]});
+        return 1;
+      }}, {transfer:[buffer, receive]}));
+      if (buffer.byteLength !== 8 || moved.port === receive || moved.port !== moved.alias)
+        throw Error('Failed transfer changed ArrayBuffer or lost clone identity');
+      rejected(() => structuredClone(null, {transfer:[receive]}));
+      receive.close();
+      send.postMessage('after');
+      send.close();
+      const seen = [];
+      await new Promise(resolve => {
+        moved.port.onmessage = ({data}) => {
+          seen.push(data);
+          if (data === 'after') resolve();
+        };
+      });
+      if (String(seen) !== 'before,after') throw Error('Clone lost its port queue: ' + seen);
+      moved.port.close();
+
+      const guarded = new MessageChannel(), bytes = new ArrayBuffer(3);
+      const oldGet = WeakMap.prototype.get, oldValues = Map.prototype.values,
+        oldIterator = Array.prototype[Symbol.iterator];
+      let hooks = 0, packet;
+      try {
+        packet = structuredClone({port:guarded.port2, get last() {
+          WeakMap.prototype.get = Map.prototype.values = Array.prototype[Symbol.iterator] = () => {
+            hooks++; throw Error('Prototype hook during port transfer');
+          };
+          return 1;
+        }}, {transfer:[guarded.port2, bytes]});
+      } finally {
+        WeakMap.prototype.get = oldGet; Map.prototype.values = oldValues;
+        Array.prototype[Symbol.iterator] = oldIterator;
+      }
+      if (hooks || bytes.byteLength || packet.last !== 1 ||
+          !(packet.port instanceof MessagePort) || packet.port === guarded.port2)
+        throw Error('Port transfer called a prototype hook or lost ownership');
+      packet.port.close(); guarded.port1.close();
+
+      const discarded = new MessageChannel();
+      discarded.port2.onmessage = () => { throw Error('Closed port received a message'); };
+      discarded.port1.postMessage('queued');
+      discarded.port2.close();
+      discarded.port1.postMessage('ignored');
+      discarded.port1.close();
+
+      const url = URL.createObjectURL(new Blob(['await new Promise(()=>{})']));
+      try {
+        const unopened = new Worker(url, {type:'module'});
+        const channel = new MessageChannel();
+        const nested = new MessageChannel();
+        channel.port1.postMessage(null, [nested.port2]);
+        unopened.postMessage(null, [channel.port2]);
+        unopened.terminate();
+        rejected(() => structuredClone(null, {transfer:[channel.port2]}));
+        rejected(() => structuredClone(null, {transfer:[nested.port2]}));
+        channel.port1.close(); nested.port1.close();
+      } finally {
+        URL.revokeObjectURL(url);
+      }
+
+      const cycleA = new MessageChannel(), cycleB = new MessageChannel();
+      cycleA.port1.postMessage(null, [cycleB.port2]);
+      cycleB.port1.postMessage(null, [cycleA.port2]);
+      cycleA.port1.close(); cycleB.port1.close();
+      await new Promise(resolve => setTimeout(resolve, 10));
+    ''',
+          waitForWorkersToExit: true,
+          afterSuccess: () {
+            expect(
+              before,
+              isNotNull,
+              reason: 'Native port counter is installed',
+            );
+            expect(portCount(), before, reason: 'Unopened port packets retire');
+          },
+        );
+      } finally {
+        probe.dispose();
+      }
+    },
   );
   test(
     'Worker rejection events finish before the next queued message',

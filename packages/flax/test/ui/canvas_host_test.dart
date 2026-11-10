@@ -92,7 +92,10 @@ void main() {
         await gesture.moveBy(const Offset(30, 10));
         await gesture.up();
         await tester.pump();
-        await tester.sendKeyEvent(LogicalKeyboardKey.arrowLeft);
+        await tester.sendKeyEvent(
+          LogicalKeyboardKey.arrowLeft,
+          physicalKey: PhysicalKeyboardKey.arrowLeft,
+        );
         await tester.pump();
         h.execute(
           "if(!inputs.includes('pointerdown')||!inputs.includes('pointerup')||!inputs.includes('lostpointercapture')||!inputs.includes('ArrowLeft'))throw Error(JSON.stringify(inputs));",

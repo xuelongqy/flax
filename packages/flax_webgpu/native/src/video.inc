@@ -20,6 +20,17 @@ struct VideoPixels {
   VideoBuffer buffer;
 };
 
+struct VideoPixelReadLock {
+  explicit VideoPixelReadLock(CVPixelBufferRef buffer) : buffer(buffer) {
+    require(CVPixelBufferLockBaseAddress(buffer, kCVPixelBufferLock_ReadOnly) == kCVReturnSuccess,
+            "Cannot lock video frame pixels");
+  }
+  ~VideoPixelReadLock() {
+    CVPixelBufferUnlockBaseAddress(buffer, kCVPixelBufferLock_ReadOnly);
+  }
+  CVPixelBufferRef buffer;
+};
+
 struct VideoImport {
   wgpu::Device device;
   wgpu::SharedTextureMemory memory;
@@ -33,6 +44,11 @@ struct VideoFrame {
              int64_t timestamp, int64_t duration)
       : pixels(std::make_shared<VideoPixels>(std::move(buffer))), size(size), format(format),
         bt709(bt709), timestamp(timestamp), duration(duration) {
+    ++videoFrames;
+  }
+  VideoFrame(const VideoFrame &source)
+      : pixels(source.pixels), size(source.size), format(source.format), bt709(source.bt709),
+        timestamp(source.timestamp), duration(source.duration) {
     ++videoFrames;
   }
   ~VideoFrame() { --videoFrames; }
@@ -300,9 +316,92 @@ extern "C" const char *flax_webgpu_video_frame_info(void *frame) {
       @"timestamp" : @(value.timestamp),
       @"duration" : value.duration < 0 ? (id)NSNull.null : @(value.duration),
       @"format" : value.nv12() ? @"NV12" : @"BGRA",
+      @"colorSpace" : @{
+        @"primaries" : @"bt709",
+        @"transfer" : value.bt709 ? @"bt709" : @"iec61966-2-1",
+        @"matrix" : value.nv12() ? @"bt709" : @"rgb",
+        @"fullRange" : @(!value.nv12() ||
+                        value.format == kCVPixelFormatType_420YpCbCr8BiPlanarFullRange),
+      },
     });
   });
   return result;
+}
+
+extern "C" void *flax_webgpu_video_frame_clone(void *frame) {
+  void *result = nullptr;
+  status([&] {
+    require(frame, "Missing video frame");
+    // A clone shares pixels, while its imports and their expiry belong to this lease.
+    result = new VideoFrame(*static_cast<VideoFrame *>(frame));
+  });
+  return result;
+}
+
+extern "C" int32_t flax_webgpu_video_frame_copy(void *frame, void *destination, size_t length,
+                                                uint32_t x, uint32_t y, uint32_t width,
+                                                uint32_t height, const uint32_t *layout,
+                                                uint32_t planes) {
+  return status([&] {
+    require(frame && destination && layout, "Missing video copy storage");
+    auto &value = *static_cast<VideoFrame *>(frame);
+    const bool nv12 = value.nv12();
+    require(planes == (nv12 ? 2u : 1u) && width && height &&
+                x <= value.size.width && width <= value.size.width - x &&
+                y <= value.size.height && height <= value.size.height - y &&
+                (!nv12 || (x % 2 == 0 && y % 2 == 0)),
+            "Invalid video copy rectangle or plane count");
+
+    const auto buffer = value.pixels->buffer.get();
+    VideoPixelReadLock lock(buffer);
+    struct Plane {
+      const uint8_t *base;
+      size_t stride, top, left, rows, rowBytes, destinationStride;
+      uint64_t offset, end;
+    };
+    std::array<Plane, 2> copies;
+    for (uint32_t i = 0; i < planes; ++i) {
+      const size_t sampleWidth = nv12 && i == 1 ? 2 : 1;
+      const size_t sampleBytes = nv12 ? (i == 1 ? 2 : 1) : 4;
+      const auto planeWidth = nv12 ? CVPixelBufferGetWidthOfPlane(buffer, i)
+                                  : CVPixelBufferGetWidth(buffer);
+      const auto planeHeight = nv12 ? CVPixelBufferGetHeightOfPlane(buffer, i)
+                                   : CVPixelBufferGetHeight(buffer);
+      const auto stride = nv12 ? CVPixelBufferGetBytesPerRowOfPlane(buffer, i)
+                              : CVPixelBufferGetBytesPerRow(buffer);
+      const auto base = static_cast<const uint8_t *>(
+          nv12 ? CVPixelBufferGetBaseAddressOfPlane(buffer, i)
+               : CVPixelBufferGetBaseAddress(buffer));
+      const size_t top = y / sampleWidth, left = (x / sampleWidth) * sampleBytes;
+      const size_t rows = (size_t(height) + sampleWidth - 1) / sampleWidth;
+      const size_t rowBytes = ((size_t(width) + sampleWidth - 1) / sampleWidth) * sampleBytes;
+      require(base && planeWidth == (size_t(value.size.width) + sampleWidth - 1) / sampleWidth &&
+                  planeHeight == (size_t(value.size.height) + sampleWidth - 1) / sampleWidth &&
+                  planeWidth <= SIZE_MAX / sampleBytes && stride >= planeWidth * sampleBytes &&
+                  planeHeight <= SIZE_MAX / stride && top <= planeHeight &&
+                  rows <= planeHeight - top && left <= stride && rowBytes <= stride - left &&
+                  reinterpret_cast<uintptr_t>(base) <= UINTPTR_MAX - planeHeight * stride,
+              "Invalid source video plane storage");
+      const uint64_t offset = layout[2 * i], destinationStride = layout[2 * i + 1];
+      const uint64_t end = offset + destinationStride * rows;
+      require(destinationStride >= rowBytes && end <= UINT32_MAX && end <= length &&
+                  reinterpret_cast<uintptr_t>(destination) <= UINTPTR_MAX - end,
+              "Invalid destination video plane storage");
+      for (uint32_t earlier = 0; earlier < i; ++earlier)
+        require(offset >= copies[earlier].end || copies[earlier].offset >= end,
+                "Overlapping destination video planes");
+      copies[i] = {base, stride, top, left, rows, rowBytes,
+                   static_cast<size_t>(destinationStride), offset, end};
+    }
+    // Validate every plane before writing; source and destination padding stay untouched.
+    for (uint32_t i = 0; i < planes; ++i) {
+      const auto &copy = copies[i];
+      const auto source = copy.base + copy.top * copy.stride + copy.left;
+      auto output = static_cast<uint8_t *>(destination) + copy.offset;
+      for (size_t row = 0; row < copy.rows; ++row)
+        memcpy(output + row * copy.destinationStride, source + row * copy.stride, copy.rowBytes);
+    }
+  });
 }
 
 extern "C" WGPUExternalTexture flax_webgpu_video_frame_import(WGPUDevice raw, void *frame,

@@ -1,4 +1,5 @@
 import StandardDOMException from 'core-js-pure/actual/dom-exception/index.js';
+import type { MessagePort } from './workers.js';
 
 export type EventListener =
   ((event: Event) => void) | { handleEvent(event: Event): void };
@@ -140,14 +141,14 @@ export interface MessageEventInit<T = unknown> extends EventInit {
   origin?: string;
   lastEventId?: string;
   source?: EventTarget | null;
-  ports?: readonly unknown[];
+  ports?: readonly MessagePort[];
 }
 export class MessageEvent<T = unknown> extends Event {
   readonly data: T;
   readonly origin: string;
   readonly lastEventId: string;
   readonly source: EventTarget | null;
-  readonly ports: readonly unknown[];
+  readonly ports: readonly MessagePort[];
   constructor(type: string, options: MessageEventInit<T> = {}) {
     super(type, options);
     this.data = (options.data === undefined ? null : options.data) as T;

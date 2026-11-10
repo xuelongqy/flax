@@ -90,10 +90,9 @@ Future<void> main(List<String> arguments) => command(() async {
     copyDartPackages(Directory(root), packages, missing);
     for (final owner in owners) {
       for (final directory in ['test', '.dart_tool/flax/ui']) {
-        copyTree(
-          Directory('$root/packages/$owner/$directory'),
-          Directory('${packages.path}/$owner/$directory'),
-        );
+        final source = Directory('$root/packages/$owner/$directory');
+        if (directory == '.dart_tool/flax/ui' && !source.existsSync()) continue;
+        copyTree(source, Directory('${packages.path}/$owner/$directory'));
       }
     }
     rewriteDartDirectiveUris(packages, Directory(root), packages.parent);

@@ -129,13 +129,16 @@ void main() {
         native.trigger();
         expect(h.number('parity.calls()'), 4);
         native = null;
-        for (var i = 0; i < 40; i++) {
-          h.execute(flaxTestJsGarbagePressure);
-          h.runtime.drainMicrotasks();
-          await tester.pump();
-          await tester.runAsync(flaxTestCollectDartGarbage);
-          if (!h.boolean('parity.tapAlive() || parity.tileAlive()')) break;
-        }
+        h.execute(flaxTestJsGarbagePressure);
+        h.runtime.drainMicrotasks();
+        await tester.runAsync(flaxTestCollectDartGarbage);
+        await flaxTestRunIdle(
+          tester,
+          () => flaxTestWaitForGc(
+            h.runtime,
+            () => !h.boolean('parity.tapAlive() || parity.tileAlive()'),
+          ),
+        );
         expect(h.boolean('parity.tapAlive() || parity.tileAlive()'), isFalse);
         expect(h.errors, isEmpty);
       } finally {
@@ -282,16 +285,18 @@ void main() {
         h.execute('core.callRecord(parity.CoreValues.retainedRecord)');
         expect(h.number('recordCalls'), 2);
         CoreValues.retainedRecord = null;
-        for (var i = 0; i < 40; i++) {
-          h.execute(flaxTestJsGarbagePressure);
-          h.runtime.drainMicrotasks();
-          await tester.pump();
-          await tester.runAsync(flaxTestCollectDartGarbage);
-          if (!h.boolean('weakRecord.deref() !== undefined') &&
-              !CoreValues.payloadAlive) {
-            break;
-          }
-        }
+        h.execute(flaxTestJsGarbagePressure);
+        h.runtime.drainMicrotasks();
+        await tester.runAsync(flaxTestCollectDartGarbage);
+        await flaxTestRunIdle(
+          tester,
+          () => flaxTestWaitForGc(
+            h.runtime,
+            () =>
+                h.boolean('weakRecord.deref() === undefined') &&
+                !CoreValues.payloadAlive,
+          ),
+        );
         expect(h.boolean('weakRecord.deref() === undefined'), isTrue);
         expect(CoreValues.payloadAlive, isFalse);
         CoreValues.retainedRecord = ('retained', 1);
@@ -301,13 +306,16 @@ void main() {
             recordAliases.push(new WeakRef(parity.CoreValues.retainedRecord));
           }
         ''');
-        for (var i = 0; i < 40; i++) {
-          h.execute(flaxTestJsGarbagePressure);
-          h.runtime.drainMicrotasks();
-          await tester.pump();
-          await tester.runAsync(flaxTestCollectDartGarbage);
-          if (h.boolean('recordAliases.every(alias => !alias.deref())')) break;
-        }
+        h.execute(flaxTestJsGarbagePressure);
+        h.runtime.drainMicrotasks();
+        await tester.runAsync(flaxTestCollectDartGarbage);
+        await flaxTestRunIdle(
+          tester,
+          () => flaxTestWaitForGc(
+            h.runtime,
+            () => h.boolean('recordAliases.every(alias => !alias.deref())'),
+          ),
+        );
         expect(
           h.number('recordAliases.filter(alias => alias.deref()).length'),
           0,

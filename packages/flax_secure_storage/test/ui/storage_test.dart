@@ -13,7 +13,7 @@ void main() {
   String? failure;
   var number = 0;
   setUp(() {
-    debugDefaultTargetPlatformOverride = TargetPlatform.macOS;
+    if (kDebugMode) debugDefaultTargetPlatformOverride = TargetPlatform.macOS;
     records.clear();
     calls = [];
     failure = null;
@@ -40,7 +40,7 @@ void main() {
         });
   });
   tearDown(() {
-    debugDefaultTargetPlatformOverride = null;
+    if (kDebugMode) debugDefaultTargetPlatformOverride = null;
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMethodCallHandler(channel, null);
   });

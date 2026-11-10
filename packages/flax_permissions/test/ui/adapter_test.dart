@@ -90,6 +90,7 @@ void main() {
   final requests = <List<int>>[];
   Future<Map<int, int>> Function(List<int>)? requestAnswer;
   void Function(int)? onStatusQuery;
+  // These mobile fixtures require Flutter's debug-only platform override.
   setUp(() {
     debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
     status = 0;
@@ -151,6 +152,7 @@ void main() {
       );
       expect(calls.toSet(), {'checkPermissionStatus'});
     },
+    skip: !kDebugMode,
   );
   test('location service is separate and unsupported capabilities never trigger prompts', () async {
     status = 1;
@@ -178,7 +180,7 @@ void main() {
       (await adapter.query('flax.camera', const {})).state,
       FlaxPermissionState.unavailable,
     );
-  });
+  }, skip: !kDebugMode);
 
   test(
     'local network is unsupported on iOS without invoking its native group',
@@ -195,6 +197,7 @@ void main() {
       );
       expect(calls, ['checkPermissionStatus']);
     },
+    skip: !kDebugMode,
   );
 
   test(
@@ -238,6 +241,7 @@ void main() {
       );
       expect(requests, isEmpty);
     },
+    skip: !kDebugMode,
   );
 
   test('native grant still requires module consent and avoids global chained callbacks', () async {
@@ -262,7 +266,7 @@ void main() {
       [Permission.camera.value],
     ]);
     expect(foreignCallbacks, 0);
-  });
+  }, skip: !kDebugMode);
 
   test('direct adapter requests recheck opt-out, restricted and background eligibility', () async {
     for (final (nativeAdapter, permission, nativeStatus) in [
@@ -285,7 +289,7 @@ void main() {
       expect(probe.tokens, hasLength(1));
     }
     expect(requests, isEmpty);
-  });
+  }, skip: !kDebugMode);
 
   test(
     'separate managers serialize physical OS Futures after all waiters close',
@@ -319,6 +323,7 @@ void main() {
       ]);
       expect(leftProbe.settled, 1);
     },
+    skip: !kDebugMode,
   );
 
   test('queued cancellation skips native UI and granted queue recheck waits for resumed', () async {
@@ -362,7 +367,7 @@ void main() {
     expect(requests, hasLength(1));
     expect(cancelledProbe.settled, 1);
     expect(grantedProbe.settled, 1);
-  });
+  }, skip: !kDebugMode);
 
   for (final outcome in ['resume', 'cancel', 'restricted']) {
     test('queued denied target waits for foreground: $outcome', () async {
@@ -419,7 +424,7 @@ void main() {
         if (outcome == 'restricted') expect(response.requested, isFalse);
       }
       binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
-    });
+    }, skip: !kDebugMode);
   }
 
   test(
@@ -451,6 +456,7 @@ void main() {
       );
       expect(requests, hasLength(1));
     },
+    skip: !kDebugMode,
   );
 
   test(
@@ -493,5 +499,6 @@ void main() {
         FlaxPermissionState.granted,
       );
     },
+    skip: !kDebugMode,
   );
 }

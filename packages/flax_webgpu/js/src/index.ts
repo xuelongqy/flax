@@ -1,4 +1,5 @@
 // The runtime is installed by FlaxWebGpuPlugin before application execution.
 export type * from './types.g.js';
 export type * from './html-in-canvas.js';
-export { acquireVideoFrame, type VideoFrame } from './video-frame.js';
+export { acquireVideoFrame } from './video-frame.js';
+export type * from './video-frame.js';

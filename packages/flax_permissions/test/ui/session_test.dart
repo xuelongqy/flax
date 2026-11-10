@@ -112,6 +112,7 @@ void main() {
   late Completer<Map<int, int>> physical;
   Completer<int>? heldQuery;
   var status = 0, nativeCalls = 0, queries = 0;
+  // These mobile fixtures require Flutter's debug-only platform override.
   setUp(() {
     debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
     binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
@@ -204,6 +205,7 @@ void main() {
       expect(prompts, 1);
       expect(nativeCalls, 0);
     },
+    skip: !kDebugMode,
   );
 
   test('OS inactive/paused preserves native work, waits for resumed, and cancels unrelated module UI', () async {
@@ -249,7 +251,7 @@ void main() {
     expect(nativeCalls, 1);
     answer.complete(FlaxPermissionDecision.allow);
     expect((await second).state, FlaxPermissionState.prompt);
-  });
+  }, skip: !kDebugMode);
 
   for (final phase in ['native Future', 'foreground wait']) {
     test(
@@ -290,6 +292,7 @@ void main() {
         expect(modules, 0);
         expect(nativeCalls, 1);
       },
+      skip: !kDebugMode,
     );
   }
 }

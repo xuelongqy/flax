@@ -6,6 +6,7 @@ final _workerSourceTypes = Expando<String>('Worker resource MIME');
 typedef _WorkerSetup = ({
   List<(String, String)> sources,
   List<(String, Map<String, Object?>)> modules,
+  Set<String> importModules,
   Set<String> nativeAssets,
 });
 
@@ -55,17 +56,25 @@ class _DedicatedWorkers {
       return (
         sources: const <(String, String)>[],
         modules: const <(String, Map<String, Object?>)>[],
+        importModules: const <String>{},
         nativeAssets: const <String>{},
       );
     }
+    final importModules = {
+      for (final provider in providers)
+        if (provider case final FlaxWorkerModuleExports exports)
+          ...exports.workerImportModules,
+    };
     return (
       sources: session._moduleInstallation!.workerSources({
         for (final provider in providers) provider.workerModule,
+        ...importModules,
       }),
       modules: [
         for (final provider in providers)
           (provider.workerModule, await provider.workerConfiguration),
       ],
+      importModules: importModules,
       nativeAssets: {
         for (final provider in providers) ...provider.workerNativeAssets,
       },
@@ -326,9 +335,12 @@ class _DedicatedWorkers {
 
   void receive(dynamic value) {
     if (value is int) {
-      if (!closed && workers[value]?.terminated == false) {
+      // Negative native tickets wake MessagePorts, including during Worker startup.
+      bool active() =>
+          !closed && (value < 0 || workers[value]?.terminated == false);
+      if (active()) {
         context.enqueue(() {
-          if (!closed && workers[value]?.terminated == false) {
+          if (active()) {
             deliver(value, 'message', const []);
           }
         });
@@ -579,6 +591,9 @@ Future<void> _runDedicatedWorker(
         runtime: context.runtime,
         imports: imports,
         loadSource: context.loadSource,
+        hostModule: setup.importModules.isEmpty
+            ? null
+            : context.moduleNamespace,
         onError: context.report,
         authorize: (_, kind) {
           if (context.isClosing) throw StateError('Worker is closed');
@@ -864,6 +879,16 @@ class _WorkerHostContext extends FlaxHostContext {
       module,
     ]);
     return result.future;
+  }
+
+  FlaxJsObject? moduleNamespace(String specifier) {
+    if (closing || !setup.importModules.contains(specifier)) return null;
+    final registry = runtime.getGlobal('__flaxModules') as FlaxJsObject;
+    try {
+      return _requirePreparedModule(registry, specifier);
+    } finally {
+      registry.release();
+    }
   }
 
   @override

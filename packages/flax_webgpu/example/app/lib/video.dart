@@ -49,10 +49,12 @@ class VideoReportPlugin extends FlaxPlugin {
   @override
   FlaxPluginInstance install(FlaxHostContext context) {
     context.registerFunction('__videoReport', (_, args) {
-      report(
-        (jsonDecode((args.single as FlaxJsString).value) as Map)
-            .cast<String, dynamic>(),
-      );
+      final value = (jsonDecode((args.single as FlaxJsString).value) as Map)
+          .cast<String, dynamic>();
+      if (value['kind'] == 'resources') {
+        return FlaxJsString(jsonEncode(List.generate(14, live)));
+      }
+      report(value);
       return const FlaxJsUndefined();
     });
     return VideoReportInstance();
@@ -110,19 +112,22 @@ class _VideoAcceptanceState extends State<VideoAcceptance> {
         'source',
       ))!;
       textureId = sourceInfo['textureId'] as int;
+      final sourceId = sourceInfo['sourceId'] as String;
       final config = {
         'modeOrder':
             Platform.environment['FLAX_WEBGPU_VIDEO_ORDER'] ?? 'direct,three',
         'refreshRate': view.display.refreshRate,
       };
       final source = await rootBundle.loadString('assets/app.js');
+      final workerVideoSources = {'movie'};
       final value = FlaxSession(
         createRuntime: () => runtime = FlaxEngine.createRuntime(),
         source: 'globalThis.__videoConfig=${jsonEncode(config)};\n$source',
         bindings: FlaxBindingRegistry([flutterBindings]),
         plugins: [
           FlaxWebGpuPlugin(
-            videoSources: {'movie': sourceInfo['sourceId'] as String},
+            videoSources: {'movie': sourceId, 'session-only': sourceId},
+            workerVideoSources: workerVideoSources,
           ),
           VideoReportPlugin(report),
         ],
@@ -130,6 +135,8 @@ class _VideoAcceptanceState extends State<VideoAcceptance> {
       );
       session = value;
       await value.ready;
+      // Later changes to the host's set must not grant access to a new Worker.
+      workerVideoSources.add('session-only');
       if (mounted) setState(() {});
     } catch (error, stack) {
       fail('$error\n$stack');

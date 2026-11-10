@@ -16,7 +16,7 @@ env:
   FLAX_PR_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
   FLUTTER_ROOT: ${{ github.workspace }}/.local/flutter-ci
   FLUTTER_GIT_URL: https://github.com/xuelongqy/flutter.git
-  FLAX_FLUTTER_REVISION: 4d8a992d5f4a8c983b45ce1b33aaae0474c70de8
+  FLAX_FLUTTER_REVISION: dc25696b507f28102a59f4bd195620663cbe95f2
   FLAX_DEPOT_TOOLS_REVISION: ce92a2e156beaaf1f2ed3a651a5c96f55bb78b80
   DEPOT_TOOLS_UPDATE: '0'
   VPYTHON_BYPASS: manually managed python not supported by chrome operations

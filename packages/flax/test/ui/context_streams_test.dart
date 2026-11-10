@@ -356,12 +356,15 @@ void main() {
             values.observedWeak!.target?.mounted == false;
         expect(retainedUnmounted(), isTrue);
         h.execute('contextStreamHooks.liveStream = null');
-        await t.runAsync(() async {
-          for (var i = 0; i < 3; i++) {
-            h.execute(flaxTestJsGarbagePressure);
-            await flaxTestCollectDartGarbage();
-          }
-        });
+        h.execute(flaxTestJsGarbagePressure);
+        await t.runAsync(flaxTestCollectDartGarbage);
+        await flaxTestRunIdle(
+          t,
+          () => flaxTestWaitForGc(
+            h.runtime,
+            () => values.observedWeak!.target == null,
+          ),
+        );
         expect(values.observedWeak!.target, isNull);
         expect(values.retained, isNotNull);
         expect(h.errors, isEmpty);

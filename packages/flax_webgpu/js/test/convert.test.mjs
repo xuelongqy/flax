@@ -116,6 +116,20 @@ test('WebIDL numeric, string and record conversion preserves edge cases', () => 
   );
 });
 
+test('sampler anisotropy clamps non-finite values and rounds ties to even', () => {
+  for (const [maxAnisotropy, expected] of [
+    [2.5, 2],
+    [3.5, 4],
+    [NaN, 0],
+    [Infinity, 65535],
+  ]) {
+    assert.equal(
+      convert('GPUSamplerDescriptor', { maxAnisotropy }, resource).maxAnisotropy,
+      expected,
+    );
+  }
+});
+
 test('texture swizzles validate their converted string before native encoding', () => {
   for (const swizzle of ['bgra', 'rrr1', '01rg', 1111])
     assert.equal(

@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:flax/flax.dart';
 import 'package:flax_test/flax_test.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -27,6 +28,7 @@ Future<void> _until(WidgetTester tester, bool Function() ready) async {
 }
 
 void main() {
+  // FlaxView builds development reload controls only in debug mode.
   testWidgets(
     'reload button moves without blocking content and replaces owned sessions',
     (tester) async {
@@ -114,6 +116,7 @@ void main() {
         isTrue,
       );
     },
+    skip: !kDebugMode,
   );
 
   testWidgets(
@@ -204,5 +207,6 @@ void main() {
         await tester.runAsync(() => cache.delete(recursive: true));
       }
     },
+    skip: !kDebugMode,
   );
 }

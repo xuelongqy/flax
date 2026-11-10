@@ -32,7 +32,7 @@ def build(flutter_root, engine_src, output, edr=False):
         if count != 1:
             raise RuntimeError(f'WebGPU runner staging changed: {name}')
     source, count = re.subn(
-        r'^    window = .+\n    text = .+\n    text = re\.sub\(.+\n.+\n    window\.write_text\(text\)$',
+        r'^    window = .+\n(?s:.*?)^    window\.write_text\(text\)$',
         f"    shutil.copyfile({str(HERE / 'MainFlutterWindow.swift')!r}, app / 'macos/Runner/MainFlutterWindow.swift')",
         source,
         flags=re.M,

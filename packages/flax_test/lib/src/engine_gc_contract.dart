@@ -457,9 +457,8 @@ void flaxEngineGcContract({
     final runtime = FlaxEngine.createRuntime() as FlaxNativeJsRuntime;
     try {
       final (origin, target) = _separateOrigin(runtime);
-      for (var i = 0; i < 8 && _dartAlive(origin); i++) {
-        await flaxTestCollectDartGarbage();
-      }
+      await flaxTestCollectDartGarbage();
+      await flaxTestWaitForGc(runtime, () => !_dartAlive(origin));
       expect(_dartAlive(origin), isFalse);
       expect(_dartAlive(target), isTrue);
       runtime.registerHostFunction('collect', (_, _) {

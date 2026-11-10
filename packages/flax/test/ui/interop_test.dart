@@ -1208,21 +1208,26 @@ void main() {
       );
       expect(h.number('p.invokeSaved()'), 42);
       // Count closures retained by Dart independently of temporary JS handles.
+      final baselineCallback = WeakReference(fixture.Probe.retained!);
       h.execute('p.clearSaved()');
       await t.pumpAndSettle();
-      for (var i = 0; i < 10; i++) {
-        await t.runAsync(flaxTestCollectDartGarbage);
-        await t.pumpAndSettle();
-      }
+      await t.runAsync(flaxTestCollectDartGarbage);
+      await flaxTestRunIdle(
+        t,
+        () =>
+            flaxTestWaitForGc(h.runtime, () => baselineCallback.target == null),
+      );
+      expect(baselineCallback.target, isNull);
       final baseline = h.runtime.handles;
       h.execute('p.save(producer)');
       await t.pumpAndSettle();
       expect(h.runtime.handles, greaterThan(baseline));
       h.execute('p.clearSaved()');
-      for (var i = 0; i < 30 && h.runtime.handles != baseline; i++) {
-        await t.runAsync(flaxTestCollectDartGarbage);
-        await t.pumpAndSettle();
-      }
+      await t.runAsync(flaxTestCollectDartGarbage);
+      await flaxTestRunIdle(
+        t,
+        () => flaxTestWaitForGc(h.runtime, () => h.runtime.handles == baseline),
+      );
       expect(
         h.runtime.handles,
         baseline,

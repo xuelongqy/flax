@@ -47,6 +47,13 @@ uint64_t flax_webgpu_live(uint32_t kind);
  * while no frame is available. Frame info timestamps and durations are in µs. */
 void *flax_webgpu_video_frame_acquire(void *registry, const char *source_id);
 const char *flax_webgpu_video_frame_info(void *frame);
+/* Returns an independent owned lease sharing the same pixel buffer. */
+void *flax_webgpu_video_frame_clone(void *frame);
+/* Copies original-format planes; layout contains offset/stride pairs in bytes. */
+int32_t flax_webgpu_video_frame_copy(void *frame, void *destination, size_t length,
+                                     uint32_t x, uint32_t y, uint32_t width,
+                                     uint32_t height, const uint32_t *layout,
+                                     uint32_t planes);
 /* Returns an owned Dawn handle; color_space is 0 (sRGB) or 1 (Display P3). */
 WGPUExternalTexture flax_webgpu_video_frame_import(WGPUDevice device, void *frame,
                                                    uint32_t color_space);

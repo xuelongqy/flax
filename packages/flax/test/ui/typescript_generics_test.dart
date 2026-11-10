@@ -71,17 +71,21 @@ void main() {
       await tester.runAsync(flaxTestCollectDartGarbage);
       expect(_ownersAlive(owners), isTrue);
       h.execute('compilerHooks.release()');
-      for (var i = 0; i < 40; i++) {
-        h.runtime.drainMicrotasks();
-        h.execute(flaxTestJsGarbagePressure);
-        await tester.pumpAndSettle();
-        await tester.runAsync(flaxTestCollectDartGarbage);
-        if (h.boolean(
-          'compilerWeak.deref() === undefined && compilerMethodsWeak.deref() === undefined',
-        )) {
-          break;
-        }
-      }
+      h.runtime.drainMicrotasks();
+      h.execute(flaxTestJsGarbagePressure);
+      await tester.pumpAndSettle();
+      await tester.runAsync(flaxTestCollectDartGarbage);
+      await flaxTestRunIdle(
+        tester,
+        () => flaxTestWaitForGc(
+          h.runtime,
+          () =>
+              owners.every((owner) => owner.target == null) &&
+              h.boolean(
+                'compilerWeak.deref() === undefined && compilerMethodsWeak.deref() === undefined',
+              ),
+        ),
+      );
       expect(h.boolean('compilerWeak.deref() === undefined'), isTrue);
       expect(h.boolean('compilerMethodsWeak.deref() === undefined'), isTrue);
       expect(owners, hasLength(2));

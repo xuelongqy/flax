@@ -4,6 +4,7 @@ import path from 'node:path';
 const [ctsRoot, output, main] = process.argv.slice(2);
 const groups = [
   'api/operation/adapter/info',
+  'api/operation/buffers/map_ArrayBuffer',
   'api/operation/command_buffer/basic',
   'api/operation/onSubmittedWorkDone',
   'api/validation/buffer/destroy',
@@ -17,10 +18,15 @@ const groups = [
   'api/validation/encoding/cmds/setBindGroup',
   'api/validation/buffer/mapping',
   'web_platform/canvas/configure',
+  'api/validation/queue/copyToTexture/CopyExternalImageToTexture',
   'idl/constructable',
   'idl/javascript',
 ];
 const selectedTests = {
+  'api/operation/buffers/map_ArrayBuffer': ['postMessage'],
+  'api/validation/queue/copyToTexture/CopyExternalImageToTexture': [
+    'source_offscreenCanvas,state',
+  ],
   'api/validation/encoding/cmds/render/draw': ['max_draw_count'],
   'api/validation/encoding/cmds/clearBuffer': [
     'default_args',
@@ -91,6 +97,8 @@ globalThis.__runWebGpuCts=async()=>{
       const selected=${JSON.stringify(selectedTests)}[path];
       if(selected&&!selected.includes(test.testPath.join(',')))continue;
       for(const item of test.iterate(null)){
+      // Keep the two MessageChannel transfer cases separate from browser canvas-state expectations.
+      if(path==='api/validation/queue/copyToTexture/CopyExternalImageToTexture'&&!item.id.params.state.startsWith('detached-'))continue;
       const query=new TestQuerySingleCase('webgpu',parts,item.id.test,item.id.params);
       const [rec,result]=log.record(query.toString());
       // The pinned test excludes Float16Array, but its bundled Proxy polyfill has a different name.

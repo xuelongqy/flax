@@ -30,7 +30,8 @@ fallback. Sources are captured at call time; bitmap transfer resets the canvas t
 transparent or opaque black and expires its current texture. Explicit GPU image readback
 is synchronous and can stall the Worker; normal presentation stays native.
 
-Worker Canvas 2D, document/HTML image simulation and video are excluded. The
+Worker Canvas 2D and document/HTML image simulation are excluded. Workers with an
+explicit host grant can acquire [SDR video frames](#macos-video-frames). The
 [real acceptance fixture](example/js/gpu-workers.js) covers compute, native
 presentation, resize, image pixels, ownership and shutdown. Each cycle requires a
 `stillImages` receipt with 19 named cases and actual canvas pixel snapshots. The
@@ -230,8 +231,8 @@ canvases. Canvas snapshots and PNG/JPEG/WebP exports are explicit CPU paths. See
 
 Core provides pure JS/Wasm Dedicated Workers by default. Selecting this plugin on a
 nonsandboxed Session also enables Worker WebGPU compute and transferable OffscreenCanvas
-rendering. Worker Canvas 2D, Worker video sources, general browser DOM/CSS,
-other platforms and full CTS remain outside this profile. See the
+rendering. Worker Canvas 2D, general browser DOM/CSS and other platforms remain outside
+this profile. Full CTS conformance remains open. See the
 [architecture](../../docs/architecture/webgpu.md) and
 [remaining task](../../docs/tasks/webgpu-js-api.md).
 
@@ -241,19 +242,24 @@ The development plugin uses CocoaPods; Swift Package Manager integration is defe
 
 Once the Flutter engine is running, create a
 `FlaxWebGpuVideoSource(registry: registrar.textures)` in the macOS producer. Publish
-each ready IOSurface-backed `CVPixelBuffer` on the platform thread
-with its timestamp and optional duration in microseconds. Flutter can render the
-producer with `Texture(textureId: ...)`. Send its opaque `sourceId` through the
-producer's Dart integration and grant the Session a name. Prepare the
-`@flax/webgpu` module from `@flax/webgpu-runtime` alongside `@flax/webgpu/host` for
-Sessions with video sources.
+each ready IOSurface-backed `CVPixelBuffer` on the platform thread with its timestamp
+and optional duration in microseconds. Flutter can render the producer with
+`Texture(textureId: ...)`. Send its opaque `sourceId` through the producer's Dart
+integration and grant the Session a name. Prepare the `@flax/webgpu` module from
+`@flax/webgpu-runtime` alongside `@flax/webgpu/host` for Sessions with video sources.
 
 ```dart
 FlaxWebGpuPlugin(videoSources: {'movie': nativeSourceId})
 ```
 
-Acquire the latest frame when the renderer needs one. A source with no published
-frame, an ungranted name or a disposed source returns `null`.
+To let Dedicated Workers and their children acquire that source, set
+`workerVideoSources: {'movie'}` on the same plugin in a nonsandboxed Session. The
+allowlist defaults to empty and every entry must name a source in `videoSources`. Both
+grants are captured at installation. Granted Workers can import the same helper from
+`@flax/webgpu`.
+
+Acquire the latest frame when the renderer needs one. A source with no published frame,
+an ungranted name or a disposed source returns `null`.
 
 ```js
 import { acquireVideoFrame } from '@flax/webgpu';
@@ -276,15 +282,27 @@ Both read the source IOSurface on the GPU and accept sRGB and Display P3 destina
 
 The source accepts opaque full-frame SDR buffers. Publish BT.709 NV12 in video or full
 range, or BGRA with BT.709 or sRGB color. Untagged BGRA uses sRGB. The producer owns
-decode, playback and geometry preparation. Treat each buffer's pixels and attachments
-as immutable while retained. Call `dispose()` on the platform thread when the video
-source retires. A previously acquired frame can outlive the source. Closing a frame
-expires its imported textures immediately, with GPU completion determining when the
-buffer returns to its pool. The Session closes any remaining frames during teardown.
+decode, playback and geometry preparation. Treat each buffer's pixels and attachments as
+immutable while retained. Call `dispose()` on the platform thread when the video source
+retires. A previously acquired frame can outlive the source. Closing a frame expires its
+imported textures immediately, with GPU completion determining when the buffer returns
+to its pool. The Session closes any remaining frames during teardown.
 
-The VideoFrame surface covers sizes, timestamps, format and `close()`. Acquisition
-is main-realm only. HDR video, HTML media elements and WebCodecs decode and frame
-construction are outside this profile. See the
+The VideoFrame surface includes zero-pixel-copy `clone()`, timing-only construction from
+another frame, full-frame rectangles, rotation/flip, `metadata()` and real
+`VideoColorSpace` metadata with `toJSON()`. Closing a frame expires only its own
+imports; clones remain usable. Timing and color-space metadata remain readable after
+close. Rectangles are readonly snapshots with the standard numeric fields, without a
+general DOM geometry global. `allocationSize()` and Promise-returning `copyTo()` copy
+original NV12/BGRA planes with optional crop and per-plane offset/stride layouts.
+They accept ArrayBuffer, SharedArrayBuffer and views, preserving view bounds and row
+padding. NV12 crop x/y offsets must be even; crop width/height may be odd. This explicit
+CPU read can stall; ordinary GPU rendering does not call it. Omit `format`: explicit
+output formats throw `NotSupportedError` because they require color conversion, even
+when requesting BGRA from a BGRA frame. A valid `colorSpace` alone is ignored.
+The main realm and explicitly granted Workers each own their frames. HDR video, HTML
+media elements, WebCodecs decode, raw-pixel construction, format conversion and frame
+transfer are outside this profile. See the
 [macOS video acceptance](example/README.md#video-frame-acceptance) for reproduction.
 
 ### Wide gamut and HDR
@@ -365,15 +383,25 @@ python3 packages/flax_webgpu/tool/run_macos.py \
   --cts-root "$PWD/.local/webgpu-cts"
 ```
 
-The bounded selection now runs 603 cases per session: 567 pass and 36 are explicitly
-skipped, across three sessions including the GPU-only RGBA8 session. It retains the
-original five groups' 65 cases and adds immediate-data validation, texture-swizzle
-validation, the draw-count-limit test, queue `writeBuffer` validation and the pinned
-JavaScript interface/prototype group. The 36 skips are the pinned CTS's Proxy-based
-`_Float16Array` polyfill, which is not a native BufferSource; upstream intends to
-exclude Float16Array here but filters by a different constructor name. The CTS sources
-remain unmodified, and the harness records the skips rather than weakening runtime input
-checks.
+The preceding bounded acceptance ran 603 cases per session: 567 passed and 36 were
+explicitly skipped, across three sessions including the GPU-only RGBA8 session. It
+retained the original five groups' 65 cases and adds immediate-data validation,
+texture-swizzle validation, the draw-count-limit test, queue `writeBuffer` validation
+and the pinned JavaScript interface/prototype group. The 36 skips are the pinned CTS's
+Proxy-based `_Float16Array` polyfill, which is not a native BufferSource; upstream
+intends to exclude Float16Array here but filters by a different constructor name. The
+CTS sources remain unmodified, and the harness records the skips rather than weakening
+runtime input checks.
+
+A separate full run of pinned CTS revision `cc11994e92512d0a3715e9d28876ec48accb971a`
+completed all 697 groups on macOS on 2026-11-08: 272,283 passed, 2,059 failed and 14,240
+skipped out of 288,582 cases. That is a baseline result, before the subsequent focused
+fixes, rather than a final conformance pass. The largest categories include Dawn/Metal
+compressed-texture sampling, older ImageBitmap orientation expectations and
+browser-dependent tests. Six failures were blocked by the then-missing MessageChannel;
+those cases are now included in the bounded harness. See the
+[remaining work](../../docs/tasks/webgpu-js-api.md#remaining-work) for the distinction
+between native issues, profile limits and unimplemented services.
 
 The [API completion receipt](validation/api-completion-macos.json) also covers native
 compatibility devices, buffer overload/default-range conversion, error brands and

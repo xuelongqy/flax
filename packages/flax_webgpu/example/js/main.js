@@ -109,22 +109,40 @@ const throws = (action, name) => {
   );
   throws(() => initial.transfer(), 'TypeError');
   const ordinary = new ArrayBuffer(8);
-  throws(() => structuredClone(initial, { transfer: [initial] }), 'DataCloneError');
+  throws(() => structuredClone(initial, { transfer: [initial] }), 'TypeError');
   throws(
     () => structuredClone([ordinary, initial], { transfer: [ordinary, initial] }),
-    'DataCloneError',
+    'TypeError',
   );
   assert(
     ordinary.byteLength === 8 && initial.byteLength === 16,
     'Rejected mapped transfer must be atomic',
   );
+  throws(
+    () => structuredClone(null, { transfer: [initial, ordinary, ordinary] }),
+    'DataCloneError',
+  );
+  const getterError = new Error('Mapped transfer getter failure');
+  try {
+    structuredClone(
+      { get value() { throw getterError; } },
+      { transfer: [initial, ordinary] },
+    );
+    assert(false, 'Mapped transfer must run serialization getters');
+  } catch (error) {
+    assert(error === getterError, 'Getter errors must precede mapped transfer errors');
+  }
+  assert(
+    ordinary.byteLength === 8 && initial.byteLength === 16,
+    'Earlier transfer errors must preserve every buffer',
+  );
   const workerUrl = URL.createObjectURL(new Blob(['onmessage = () => {};']));
   const transferWorker = new Worker(workerUrl);
   try {
-    throws(() => transferWorker.postMessage(initial, [initial]), 'DataCloneError');
+    throws(() => transferWorker.postMessage(initial, [initial]), 'TypeError');
     throws(
       () => transferWorker.postMessage([ordinary, initial], [ordinary, initial]),
-      'DataCloneError',
+      'TypeError',
     );
     assert(
       ordinary.byteLength === 8 && new Uint32Array(initial)[0] === 1,
@@ -146,7 +164,7 @@ const throws = (action, name) => {
         },
         { transfer: [ordinary, guarded] },
       ),
-    'DataCloneError',
+    'TypeError',
   );
   assert(
     ordinary.byteLength === 8 && guarded.byteLength === 8,

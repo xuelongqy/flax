@@ -241,8 +241,18 @@ declare global {
     type ResponseInit = FetchHttp.ResponseInit;
     function fetch(input: string | URL | FetchHttp.Request, init?: FetchHttp.RequestInit): Promise<FetchHttp.Response>;
 }
-export type { Worker, WorkerConstructor, WorkerOptions, Transferable, StructuredSerializeOptions, ErrorEvent, ErrorEventInit, } from './workers.js';
+export type { MessageChannel, MessagePort, Worker, WorkerConstructor, WorkerOptions, Transferable, StructuredSerializeOptions, ErrorEvent, ErrorEventInit, } from './workers.js';
 declare global {
+    type MessageChannel = import('./workers.js').MessageChannel;
+    var MessageChannel: {
+        new (): MessageChannel;
+        readonly prototype: MessageChannel;
+    };
+    type MessagePort = import('./workers.js').MessagePort;
+    var MessagePort: {
+        readonly prototype: MessagePort;
+        [Symbol.hasInstance](value: unknown): value is MessagePort;
+    };
     type Worker = import('./workers.js').Worker;
     type WorkerOptions = import('./workers.js').WorkerOptions;
     type Transferable = import('./workers.js').Transferable;
