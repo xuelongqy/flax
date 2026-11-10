@@ -44,6 +44,7 @@ packages/flax_webgpu/example/validation/canvas-compatibility-macos-arm64.json
 packages/flax_webgpu/example/validation/dedicated-workers-macos.json
 packages/flax_webgpu/example/validation/macos-arm64.json
 packages/flax_webgpu/validation/canvas-compatibility-macos.json
+packages/flax_webgpu/validation/worker-rendering-macos.json
 
 # Pinned/generated Three.js inputs retain their original bytes.
 packages/flax_webgpu/example/fixtures/three/basis/

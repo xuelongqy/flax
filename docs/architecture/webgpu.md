@@ -67,8 +67,8 @@ supply no registered frame metadata. Closing clears dimensions, format and recta
 while timing and color-space information remain readable. Cloning or reading metadata
 from a closed frame throws `InvalidStateError`.
 
-`allocationSize()` and `copyTo(destination)` expose original NV12 or BGRA planes.
-They support full frames, cropped rectangles, and custom per-plane offsets and strides,
+`allocationSize()` and `copyTo(destination)` expose original NV12 or BGRA planes. They
+support full frames, cropped rectangles, and custom per-plane offsets and strides,
 including reordered planes. NV12 crop offsets must be even; odd crop dimensions round
 the chroma plane up. Destination BufferSource views retain their actual byte offset and
 length, including shared backing stores, and row padding remains untouched. Copying is

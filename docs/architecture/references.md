@@ -7,23 +7,23 @@ scanner or a second Widget lifecycle. Flutter owns Elements, State, scheduling a
 application disposal. See [ADR 0039](../decisions/0039-engine-owned-cross-heap-gc.md).
 
 Dart major GC keeps the Dart targets that JS could still reach, traces their ordinary
-Dart references, and posts a confirmation request to the owner. Dart GC finishes
-without waiting for a V8 major. Further requests join the pending batch. V8 can use an
-eligible major to confirm reachability with fresh Dart marking and reclaim rootless
-cycles. The collectors follow registered cross-heap edges to a fixed point.
+Dart references, and posts a confirmation request to the owner. Dart GC finishes without
+waiting for a V8 major. Further requests join the pending batch. V8 can use an eligible
+major to confirm reachability with fresh Dart marking and reclaim rootless cycles. The
+collectors follow registered cross-heap edges to a fixed point.
 
-JS activity and Flutter idle notifications can also schedule confirmation, including
-for discarded JS wrappers whose Dart targets remain alive. The first scheduled
-confirmation waits one second. A Flutter frame in the preceding 100 ms postpones
-idle-only work. A Dart GC request can proceed during frame delivery. Ordinary V8 GC
-continues on its own schedule.
+JS activity and Flutter idle notifications can also schedule confirmation, including for
+discarded JS wrappers whose Dart targets remain alive. The first scheduled confirmation
+waits one second. A Flutter frame in the preceding 100 ms postpones idle-only work. A
+Dart GC request can proceed during frame delivery. Ordinary V8 GC continues on its own
+schedule.
 
 Each Session has a separate V8 Context and microtask queue within its UI isolate's
 shared heap. Joint confirmation runs outside active JS jobs. The V8-led path reserves
-the Dart collector with at most one additional eligible Dart isolate in the group.
-If the reservation stays unavailable through the deadline and grace period, a safe
-owner task runs staged joint collection. This keeps rootless cycles collectible when
-several workers remain active. The deadline governs when the task is eligible to run.
+the Dart collector with at most one additional eligible Dart isolate in the group. If
+the reservation stays unavailable through the deadline and grace period, a safe owner
+task runs staged joint collection. This keeps rootless cycles collectible when several
+workers remain active. The deadline governs when the task is eligible to run.
 
 ## Retention directions
 

@@ -294,15 +294,15 @@ another frame, full-frame rectangles, rotation/flip, `metadata()` and real
 imports; clones remain usable. Timing and color-space metadata remain readable after
 close. Rectangles are readonly snapshots with the standard numeric fields, without a
 general DOM geometry global. `allocationSize()` and Promise-returning `copyTo()` copy
-original NV12/BGRA planes with optional crop and per-plane offset/stride layouts.
-They accept ArrayBuffer, SharedArrayBuffer and views, preserving view bounds and row
-padding. NV12 crop x/y offsets must be even; crop width/height may be odd. This explicit
-CPU read can stall; ordinary GPU rendering does not call it. Omit `format`: explicit
-output formats throw `NotSupportedError` because they require color conversion, even
-when requesting BGRA from a BGRA frame. A valid `colorSpace` alone is ignored.
-The main realm and explicitly granted Workers each own their frames. HDR video, HTML
-media elements, WebCodecs decode, raw-pixel construction, format conversion and frame
-transfer are outside this profile. See the
+original NV12/BGRA planes with optional crop and per-plane offset/stride layouts. They
+accept ArrayBuffer, SharedArrayBuffer and views, preserving view bounds and row padding.
+NV12 crop x/y offsets must be even; crop width/height may be odd. This explicit CPU read
+can stall; ordinary GPU rendering does not call it. Omit `format`: explicit output
+formats throw `NotSupportedError` because they require color conversion, even when
+requesting BGRA from a BGRA frame. A valid `colorSpace` alone is ignored. The main realm
+and explicitly granted Workers each own their frames. HDR video, HTML media elements,
+WebCodecs decode, raw-pixel construction, format conversion and frame transfer are
+outside this profile. See the
 [macOS video acceptance](example/README.md#video-frame-acceptance) for reproduction.
 
 ### Wide gamut and HDR

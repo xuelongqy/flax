@@ -41,14 +41,13 @@ Hermes build paths and `--engine` selection are removed. Applications use the co
 target. Workspace commands use V8 without an engine option.
 
 One Dart UI isolate owns one V8 heap and CppHeap. Sessions have separate Contexts,
-microtask queues and module state. Dart retains its ordinary parallel marking and
-keeps JS-to-Dart targets while confirmation is pending. It coalesces requests and
-finishes its collection without waiting for V8. Eligible V8 major collections use
-staged Dart marking to follow Dart origins and JS peers to a fixed point. Either
-business root retains the pair. Rootless cross-heap cycles can be reclaimed. Moving and
-minor collections preserve conditional handles. A safe owner task can complete a
-staged collection when V8-led confirmation repeatedly cannot reserve Dart. GC never
-calls business code.
+microtask queues and module state. Dart retains its ordinary parallel marking and keeps
+JS-to-Dart targets while confirmation is pending. It coalesces requests and finishes its
+collection without waiting for V8. Eligible V8 major collections use staged Dart marking
+to follow Dart origins and JS peers to a fixed point. Either business root retains the
+pair. Rootless cross-heap cycles can be reclaimed. Moving and minor collections preserve
+conditional handles. A safe owner task can complete a staged collection when V8-led
+confirmation repeatedly cannot reserve Dart. GC never calls business code.
 
 Bridge identity indices are weak. Finalizer and shutdown indices retain only detached
 cleanup metadata, never business objects or JS facades. Session close releases pending

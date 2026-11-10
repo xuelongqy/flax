@@ -357,77 +357,146 @@ function checkFrame(frame, format, fullRange = format === 'BGRA') {
 }
 
 async function verifyFrameReadback(frame, index) {
-  const check = (ok, message) => { if (!ok) throw new Error(message); };
-  const width = frame.codedWidth, height = frame.codedHeight;
+  const check = (ok, message) => {
+    if (!ok) throw new Error(message);
+  };
+  const width = frame.codedWidth,
+    height = frame.codedHeight;
   const nv12 = frame.format === 'NV12';
   const expectedLayout = nv12
-    ? [{ offset: 0, stride: width }, { offset: width * height, stride: width }]
+    ? [
+        { offset: 0, stride: width },
+        { offset: width * height, stride: width },
+      ]
     : [{ offset: 0, stride: width * 4 }];
   const full = new Uint8Array(frame.allocationSize());
   const layout = await frame.copyTo(full);
-  check(JSON.stringify(layout) === JSON.stringify(expectedLayout) &&
-    full.length === width * height * (nv12 ? 1.5 : 4), 'Wrong original plane allocation');
-  const x = 128, y = 128;
+  check(
+    JSON.stringify(layout) === JSON.stringify(expectedLayout) &&
+      full.length === width * height * (nv12 ? 1.5 : 4),
+    'Wrong original plane allocation',
+  );
+  const x = 128,
+    y = 128;
   let pixel;
   if (nv12) {
-    const uv = layout[1].offset + y / 2 * width + x;
+    const uv = layout[1].offset + (y / 2) * width + x;
     const range = frame.colorSpace.fullRange;
-    const luma = (full[y * width + x] - (range ? 0 : 16)) * 255 / (range ? 255 : 219);
-    const cb = (full[uv] - 128) * 255 / (range ? 255 : 224);
-    const cr = (full[uv + 1] - 128) * 255 / (range ? 255 : 224);
-    pixel = [luma + 1.5748 * cr, luma - .18732427 * cb - .46812427 * cr,
-      luma + 1.8556 * cb, 255].map((value) => Math.round(Math.max(0, Math.min(255, value))));
+    const luma = ((full[y * width + x] - (range ? 0 : 16)) * 255) / (range ? 255 : 219);
+    const cb = ((full[uv] - 128) * 255) / (range ? 255 : 224);
+    const cr = ((full[uv + 1] - 128) * 255) / (range ? 255 : 224);
+    pixel = [
+      luma + 1.5748 * cr,
+      luma - 0.18732427 * cb - 0.46812427 * cr,
+      luma + 1.8556 * cb,
+      255,
+    ].map((value) => Math.round(Math.max(0, Math.min(255, value))));
   } else {
     const at = (y * width + x) * 4;
     pixel = [full[at + 2], full[at + 1], full[at], full[at + 3]];
   }
-  check(pixel[index] > 220 && pixel[3] === 255 &&
-    pixel.slice(0, 3).every((value, channel) => channel === index || value < 35),
-    `Wrong original ${frame.format} bytes: ${pixel}`);
+  check(
+    pixel[index] > 220 &&
+      pixel[3] === 255 &&
+      pixel.slice(0, 3).every((value, channel) => channel === index || value < 35),
+    `Wrong original ${frame.format} bytes: ${pixel}`,
+  );
 
-  const options = { rect: { x, y, width: 3, height: 3 }, layout: nv12
-    ? [{ offset: 16, stride: 5 }, { offset: 1, stride: 6 }]
-    : [{ offset: 3, stride: 16 }] };
+  const options = {
+    rect: { x, y, width: 3, height: 3 },
+    layout: nv12
+      ? [
+          { offset: 16, stride: 5 },
+          { offset: 1, stride: 6 },
+        ]
+      : [{ offset: 3, stride: 16 }],
+  };
   const size = frame.allocationSize(options);
   const shared = typeof SharedArrayBuffer === 'function';
-  const destination = new Uint8Array(shared ? new SharedArrayBuffer(size + 16) : new ArrayBuffer(size + 16)).fill(165);
+  const destination = new Uint8Array(
+    shared ? new SharedArrayBuffer(size + 16) : new ArrayBuffer(size + 16),
+  ).fill(165);
   const view = new DataView(destination.buffer, 8, size);
-  const cloneSource = frame.clone(), clone = cloneSource.clone();
+  const cloneSource = frame.clone(),
+    clone = cloneSource.clone();
   cloneSource.close();
   let cropLayout;
   try {
     const pending = clone.copyTo(view, options);
     clone.close();
     cropLayout = await pending;
-    check(JSON.stringify(cropLayout) === JSON.stringify(options.layout), 'Wrong custom copy layout');
+    check(
+      JSON.stringify(cropLayout) === JSON.stringify(options.layout),
+      'Wrong custom copy layout',
+    );
     const expected = new Uint8Array(destination.length).fill(165);
     for (let plane = 0; plane < layout.length; plane++) {
-      const sample = plane === 1 ? 2 : 1, bytesPerSample = nv12 ? sample : 4;
+      const sample = plane === 1 ? 2 : 1,
+        bytesPerSample = nv12 ? sample : 4;
       const rowBytes = Math.ceil(3 / sample) * bytesPerSample;
       for (let row = 0; row < Math.ceil(3 / sample); row++) {
-        const at = layout[plane].offset + (y / sample + row) * layout[plane].stride +
-          x / sample * bytesPerSample;
-        expected.set(full.subarray(at, at + rowBytes),
-          8 + options.layout[plane].offset + row * options.layout[plane].stride);
+        const at =
+          layout[plane].offset +
+          (y / sample + row) * layout[plane].stride +
+          (x / sample) * bytesPerSample;
+        expected.set(
+          full.subarray(at, at + rowBytes),
+          8 + options.layout[plane].offset + row * options.layout[plane].stride,
+        );
       }
     }
-    check(destination.every((value, at) => value === expected[at]),
-      'Cropped plane bytes or destination padding changed');
-  } finally { clone.close(); }
+    check(
+      destination.every((value, at) => value === expected[at]),
+      'Cropped plane bytes or destination padding changed',
+    );
+  } finally {
+    clone.close();
+  }
   let closed;
-  try { await clone.copyTo(view, options); } catch (error) { closed = error.name; }
+  try {
+    await clone.copyTo(view, options);
+  } catch (error) {
+    closed = error.name;
+  }
   check(closed === 'InvalidStateError', 'Closed clone was readable');
   const reentrant = frame.clone();
   let getterClosed;
   try {
-    await reentrant.copyTo(view, { get rect() { reentrant.close(); return options.rect; } });
-  } catch (error) { getterClosed = error.name; }
-  finally { reentrant.close(); }
-  check(getterClosed === 'InvalidStateError', 'Options getter left a stale native frame');
+    await reentrant.copyTo(view, {
+      get rect() {
+        reentrant.close();
+        return options.rect;
+      },
+    });
+  } catch (error) {
+    getterClosed = error.name;
+  } finally {
+    reentrant.close();
+  }
+  check(
+    getterClosed === 'InvalidStateError',
+    'Options getter left a stale native frame',
+  );
   let conversion;
-  try { await frame.copyTo(full, { format: 'BGRA' }); } catch (error) { conversion = error.name; }
-  check(conversion === 'NotSupportedError', 'Explicit format silently copied unconverted bytes');
-  return { size: full.length, layout, pixel, cropLayout, shared, closed, getterClosed, conversion };
+  try {
+    await frame.copyTo(full, { format: 'BGRA' });
+  } catch (error) {
+    conversion = error.name;
+  }
+  check(
+    conversion === 'NotSupportedError',
+    'Explicit format silently copied unconverted bytes',
+  );
+  return {
+    size: full.length,
+    layout,
+    pixel,
+    cropLayout,
+    shared,
+    closed,
+    getterClosed,
+    conversion,
+  };
 }
 
 async function readVideoPixel(device, texture) {

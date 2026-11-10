@@ -125,7 +125,11 @@ const throws = (action, name) => {
   const getterError = new Error('Mapped transfer getter failure');
   try {
     structuredClone(
-      { get value() { throw getterError; } },
+      {
+        get value() {
+          throw getterError;
+        },
+      },
       { transfer: [initial, ordinary] },
     );
     assert(false, 'Mapped transfer must run serialization getters');
