@@ -11,6 +11,9 @@ class FakeContext {
   save() {}
   restore() {}
   translate() {}
+  rotate() {}
+  rect() {}
+  clip() {}
   fillRect() {}
   strokeRect() {}
   beginPath() {}
@@ -32,7 +35,8 @@ class FakeContext {
     this.start = [x, y];
   }
   lineTo(x, y) {
-    this.lines.push(Math.atan2(y - this.start[1], x - this.start[0]));
+    if (this.strokeStyle === '#ffb13d')
+      this.lines.push(Math.atan2(y - this.start[1], x - this.start[0]));
   }
 }
 globalThis.OffscreenCanvas = class {
@@ -85,6 +89,7 @@ test('both presets draw actual locked volley lanes before and after phase crossi
   const scene = new Scene({
     actors: { width: 600, height: 600, close() {} },
     floor: { width: 640, height: 640, close() {} },
+    projectiles: { width: 512, height: 512, close() {} },
   });
   waitFor(
     game,
@@ -92,10 +97,11 @@ test('both presets draw actual locked volley lanes before and after phase crossi
   );
   const first = [...game.guardianRadialAngles(guardian.id)];
   guardian.hp = guardian.maxHp * 0.4;
-  for (const quality of ['balanced', 'detailed']) {
-    scene.draw(game, quality, 960, 960);
-    sameAngles(scene.canvas.ctx.lines, first);
-  }
+  for (const quality of ['balanced', 'detailed'])
+    for (const reduced of [false, true]) {
+      scene.draw(game, quality, 960, 960, reduced);
+      sameAngles(scene.canvas.ctx.lines, first);
+    }
   waitFor(game, () => game.projectiles.some((p) => p.kind === 'enemy'));
   sameAngles(
     game.projectiles
@@ -109,10 +115,11 @@ test('both presets draw actual locked volley lanes before and after phase crossi
     () => guardian.warning > 0 && game.guardianRadialAngles(guardian.id)?.length === 18,
   );
   const second = [...game.guardianRadialAngles(guardian.id)];
-  for (const quality of ['balanced', 'detailed']) {
-    scene.draw(game, quality, 960, 960);
-    sameAngles(scene.canvas.ctx.lines, second);
-  }
+  for (const quality of ['balanced', 'detailed'])
+    for (const reduced of [false, true]) {
+      scene.draw(game, quality, 960, 960, reduced);
+      sameAngles(scene.canvas.ctx.lines, second);
+    }
   waitFor(game, () => game.projectiles.some((p) => p.kind === 'enemy'));
   sameAngles(
     game.projectiles

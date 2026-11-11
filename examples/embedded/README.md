@@ -17,6 +17,7 @@ each capability in its package-owned example; see the
 | Material UI    | `packages/flax_material_ui/example`     | Five collections, editing, selection, dialogs and routes                   |
 | Cupertino UI   | `packages/flax_cupertino_ui/example`    | Four collections, segmented controls, lists and overlays                   |
 | Canvas 2D      | `packages/flax_canvas/example`          | Palette changes and clearing a native drawing surface                      |
+| Lumen Outpost  | `examples/survivors`                    | Endless survival combat, native menus and saved game settings              |
 | Video player   | `packages/flax_video_player/example`    | HTTPS trailer switching, playback, scrubbing, volume, looping and speed    |
 | Audio player   | `packages/flax_audioplayers/example`    | HTTPS music, source switching, seeking, volume, looping and speed          |
 | Fetch          | `packages/flax/example`                 | Requests, response content and cancellation                                |
@@ -68,6 +69,15 @@ production Flax UI framework. Package examples remain independently runnable wit
 own plugin requirements. Material and Cupertino keep their native app and theme
 environments inside their selected preview.
 
+Lumen Outpost uses its own Session, `lumen-outpost` storage namespace and
+package-prefixed game assets. Its showcase only creates the native entrance; the game
+source, images and sounds are shared with the [standalone game](../survivors/README.md).
+The gallery keeps its toolbar and Back button, and does not change the app's orientation
+or system UI. Mobile portrait shows the game's existing landscape prompt; rotate the
+device to play. Leaving combat or unmounting Flax closes the child game Session.
+`--aggregate` prepares the normal game bundle as part of the gallery's dependency
+closure.
+
 The Dart host uses the shared
 [`FlaxExampleApp`](../../packages/flax_example_support/README.md) shell. The toolbar's
 settings button opens a native drawer; **System**, **Light** and **Dark** update both
@@ -86,7 +96,11 @@ repeats Fetch and WebSocket page exits and reentry, checks transport closure and
 callback removal, and verifies zero handles at Session disposal. Its observations use
 weak references so they do not retain departed pages. `integration_test/app_test.dart`
 follows the same gallery tour in a real macOS application and emits the
-`embedded-module-aggregate` receipt.
+`embedded-module-aggregate` receipt. `test/survivors_gallery_test.dart` exercises
+compact landscape play, Back, persistent settings on reentry, independent storage, and
+whole-gallery removal during both combat and child-session loading. It checks game image
+handles, focus, animation callbacks, audio listeners/players and zero runtime handles
+after disposal.
 
 Owner examples test their own controls. Material and Cupertino exercise their full
 listed collections at desktop and phone widths. Network examples use loopback servers;

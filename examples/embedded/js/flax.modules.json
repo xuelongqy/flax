@@ -14,6 +14,10 @@
       "package": "@flax/core-runtime"
     },
     {
+      "specifier": "@flax/core/assets",
+      "package": "@flax/core-runtime"
+    },
+    {
       "specifier": "@flax/flutter/widgets",
       "package": "@flax/core-runtime"
     },

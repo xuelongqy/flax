@@ -402,19 +402,30 @@ List<FlaxWorkspacePackage> discoverPackages(String root) {
   return packages;
 }
 
-/// Dart staging includes package-local examples without treating them as deliverables.
+/// Private examples can be composed as Dart dependencies without delivery metadata.
 List<FlaxWorkspacePackage> discoverDartPackages(String root) {
   final packages = discoverPackages(root);
   final names = packages.map((package) => package.name).toSet();
-  for (final owner in [...packages]) {
-    final file = File(p.join(owner.example.path, 'pubspec.yaml'));
+  final examples = [for (final owner in packages) owner.example];
+  final topLevel = Directory(p.join(root, 'examples'));
+  if (topLevel.existsSync()) {
+    for (final example in topLevel.listSync().whereType<Directory>()) {
+      final file = File(p.join(example.path, 'pubspec.yaml'));
+      if (file.existsSync() && readYamlFile(file)['publish_to'] == 'none') {
+        examples.add(example);
+      }
+    }
+  }
+  for (final example in examples) {
+    final file = File(p.join(example.path, 'pubspec.yaml'));
     if (!file.existsSync()) continue;
-    final name = readYamlFile(file)['name'];
+    final manifest = readYamlFile(file);
+    final name = manifest['name'];
     if (name is! String || !_dartPackageNamePattern.hasMatch(name)) {
       throw FormatException('Invalid Dart example package name', file.path);
     }
     if (!names.add(name)) throw StateError('Duplicate Dart package: $name');
-    packages.add(FlaxWorkspacePackage(name, owner.example));
+    packages.add(FlaxWorkspacePackage(name, example));
   }
   packages.sort((left, right) => left.name.compareTo(right.name));
   return packages;

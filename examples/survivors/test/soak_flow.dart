@@ -330,8 +330,9 @@ Future<Map<String, Object?>> soakFlow(
     );
     expect(
       mounted['baked'] as int,
-      greaterThanOrEqualTo((baseline['baked'] as int) + 2),
+      greaterThanOrEqualTo((baseline['baked'] as int) + 3),
     );
+    expect(mounted['transformed'], (baseline['transformed'] as int) + 1);
     expect(
       mounted['lifecycleObservers'] as int,
       greaterThan(baseline['lifecycleObservers'] as int),
@@ -342,6 +343,7 @@ Future<Map<String, Object?>> soakFlow(
       return [
         'live',
         'inputs',
+        'transformed',
         'baked',
         'retained',
         'bitmapOutcomesBalanced',

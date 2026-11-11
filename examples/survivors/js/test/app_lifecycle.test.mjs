@@ -80,6 +80,8 @@ class FakeContext {
   restore() {}
   translate() {}
   rotate() {}
+  rect() {}
+  clip() {}
   fillRect() {}
   strokeRect() {}
   beginPath() {}
@@ -100,6 +102,8 @@ class FakeContext {
     };
   }
   drawImage(image) {
+    if (globalThis.__failSceneDraw && image.from)
+      throw Error('test first draw failure');
     this.images.push(image);
   }
 }
@@ -253,12 +257,13 @@ test('mobile idle pad takes immediate rim input while floating and edge pads sha
 test('restart discards old hit effects while retaining scene assets', () => {
   const game = state();
   const image = () => ({ width: 400, height: 200, close() {} });
-  const assets = { actors: image(), floor: image() };
+  const assets = { actors: image(), floor: image(), projectiles: image() };
   const scene = new Scene(assets);
   game.scene = scene;
   const hit = scene.hit,
     floor = scene.floor,
-    atlas = scene.atlas;
+    atlas = scene.atlas,
+    projectilePoses = scene.projectilePoses;
   scene.events(
     [{ type: 'hit', x: 1600, y: 900 }],
     false,
@@ -274,7 +279,9 @@ test('restart discards old hit effects while retaining scene assets', () => {
   assert.equal(scene.hit, hit);
   assert.equal(scene.floor, floor);
   assert.equal(scene.atlas, atlas);
+  assert.equal(scene.projectilePoses, projectilePoses);
   assert.equal(scene.assets.floor, assets.floor);
+  assert.equal(scene.assets.projectiles, assets.projectiles);
   scene.dispose();
 });
 
@@ -332,7 +339,7 @@ function runStep(game, start) {
   game.tick(start + 17);
 }
 
-test('guardian reward keeps combat running, plays its cue and preserves historical wins', () => {
+test('guardian reward offers a deferred evolution, resumes combat and preserves historical wins', () => {
   const game = state();
   game.screen.value = 'game';
   game.profile.wins = 4;
@@ -361,9 +368,18 @@ test('guardian reward keeps combat running, plays its cue and preserves historic
     },
   };
   runStep(game, 1000);
-  assert.equal(game.game.phase, 'playing');
+  assert.equal(game.game.phase, 'upgrade');
   assert.equal(game.game.guardiansDefeated, 1);
-  assert.deepEqual(sounds, ['win']);
+  assert.deepEqual(sounds, ['pause', 'win']);
+  const card = nodesOf(game.overlay(960, 540)).find(
+    (node) => node.type === 'lumen-outpost/upgrade#Card',
+  ).args;
+  assert.equal(card.rankLabel, 'Evolution');
+  card.onPressed();
+  assert.equal(game.game.phase, 'playing');
+  assert.equal(game.game.player.boltMode, 'pierce');
+  assert.equal(game.game.level, 1, 'guardian evolution does not consume a level');
+  assert.deepEqual(sounds, ['pause', 'win', 'music']);
   assert.equal(game.profile.wins, 4);
   game.screen.value = 'title';
   const menu = nodesOf(game.overlay(960, 540));
@@ -711,6 +727,145 @@ test('upgrade cards receive the current offer copy and selection callback', () =
   assert.equal(game.updates, 0, 'choosing an upgrade keeps the game shell mounted');
 });
 
+test('encounter HUD uses damage transitions and gives the electric-ground hint once per run', () => {
+  const game = state();
+  game.screen.value = 'game';
+  game.scene = { canvas: {}, draw() {}, clearEffects() {} };
+  const { x, y } = game.game.player;
+  const nest = {
+    id: 900,
+    kind: 'nest',
+    x: x - 200,
+    y,
+    radius: 30,
+    hp: 260,
+    maxHp: 260,
+    angle: 0,
+    warning: 0,
+    hit: 0,
+  };
+  game.game.enemies = [nest];
+  game.game.elapsed = 90;
+  game.game.activeDischarge = { x, y, radius: 118, started: 90, expiresAt: 110 };
+  const updates = game.updates,
+    canvasWidgets = globalThis.__canvasWidgets;
+  game.publishHud();
+  const hud = { children: game.hud(540) };
+  const objective = nodesOf(hud).find(
+    (node) =>
+      node.type === 'Text' &&
+      node.value?.read &&
+      node.value.read().includes('Summoning nest'),
+  );
+  assert.ok(objective);
+  assert.match(objective.value.read(), /100%/);
+  assert.match(objective.value.read(), /Electric ground/);
+  const style = objective.style;
+  nest.hp = 259;
+  game.publishHud();
+  assert.equal(
+    game.nestHealth.value,
+    100,
+    'damage inside one 10% interval publishes no new progress',
+  );
+  nest.hp = 230;
+  game.publishHud();
+  assert.match(objective.value.read(), /90%/);
+  assert.equal(objective.style, style, 'progress changes reuse the native text style');
+  for (const phase of ['upgrade', 'paused']) {
+    game.game.phase = phase;
+    game.publishGameOverlay();
+    assert.equal(
+      nodesOf(hud).some(
+        (node) =>
+          node.type === 'Text' &&
+          node.value?.read &&
+          node.value.read().includes('Summoning nest'),
+      ),
+      false,
+      `${phase} overlay hides the center objective banner`,
+    );
+    assert.ok(
+      nodesOf(hud).some((node) => node.type === 'Tooltip' && node.message === 'Pulse'),
+    );
+  }
+  game.game.phase = 'playing';
+  game.publishGameOverlay();
+  assert.ok(
+    nodesOf(hud).some(
+      (node) =>
+        node.type === 'Text' &&
+        node.value?.read &&
+        node.value.read().includes('Summoning nest'),
+    ),
+  );
+  assert.equal(game.updates, updates, 'overlay transitions keep the page mounted');
+  game.game.pause();
+  for (let i = 0; i < 120; i++) game.publishHud();
+  assert.equal(game.fieldHint.value, true, 'paused wall time never consumes the hint');
+  game.game.elapsed = 96;
+  game.publishHud();
+  assert.equal(game.fieldHint.value, false);
+  game.game.activeDischarge = undefined;
+  game.publishHud();
+  game.game.elapsed = 180;
+  game.game.activeDischarge = { x, y, radius: 118, started: 180, expiresAt: 200 };
+  game.publishHud();
+  assert.equal(
+    game.fieldHint.value,
+    false,
+    'later fields keep the initial lesson quiet',
+  );
+  assert.equal(game.updates, updates);
+  assert.equal(globalThis.__canvasWidgets, canvasWidgets);
+  game.start();
+  assert.equal(game.nestHealth.value, undefined);
+  assert.equal(game.fieldHintStarted, undefined);
+  assert.equal(game.fieldHint.value, false);
+});
+
+test('evolution cards reuse the native card with localized evolution labels', () => {
+  const game = state();
+  game.screen.value = 'game';
+  game.game.phase = 'upgrade';
+  game.game.offers = [
+    {
+      id: 'evolution:bolt:pierce',
+      title: 'Rail Bolt',
+      description: 'Pierce three threats.',
+      kind: 'evolution',
+      rank: 1,
+    },
+    {
+      id: 'evolution:bolt:blast',
+      title: 'Burst Bolt',
+      description: 'Explode on impact.',
+      kind: 'evolution',
+      rank: 1,
+    },
+  ];
+  game.publishGameOverlay();
+  for (const [language, rankLabel, titles] of [
+    ['en', 'Evolution', ['Rail Bolt', 'Burst Bolt']],
+    ['zh', '进化', ['贯穿电弧', '爆破电弧']],
+  ]) {
+    game.profile.language = language;
+    const cards = nodesOf(game.overlay(960, 540))
+      .filter((node) => node.type === 'lumen-outpost/upgrade#Card')
+      .map((node) => node.args);
+    assert.deepEqual(
+      cards.map((card) => card.title),
+      titles,
+    );
+    for (const card of cards) {
+      assert.equal(card.rankLabel, rankLabel);
+      assert.equal(card.rank, 1);
+      assert.equal(card.maxRank, 1);
+      assert.equal(typeof card.onPressed, 'function');
+    }
+  }
+});
+
 test('async asset ownership closes stale/failed results and transfers retry ownership', async () => {
   function images() {
     const image = () => ({
@@ -721,7 +876,7 @@ test('async asset ownership closes stale/failed results and transfers retry owne
         this.closes++;
       },
     });
-    return { actors: image(), floor: image() };
+    return { actors: image(), floor: image(), projectiles: image() };
   }
   let complete;
   globalThis.__sceneLoad = () =>
@@ -731,11 +886,16 @@ test('async asset ownership closes stale/failed results and transfers retry owne
   const stale = state();
   const pending = stale.load();
   const ignored = images();
+  ignored.actors.close = function () {
+    this.closes++;
+    throw Error('released host');
+  };
   stale.mounted = false;
   complete(ignored);
   await pending;
   assert.equal(ignored.actors.closes, 1);
   assert.equal(ignored.floor.closes, 1);
+  assert.equal(ignored.projectiles.closes, 1);
 
   const pendingLoads = [];
   globalThis.__sceneLoad = () => new Promise((resolve) => pendingLoads.push(resolve));
@@ -748,12 +908,14 @@ test('async asset ownership closes stale/failed results and transfers retry owne
   await oldLoad;
   assert.equal(oldAssets.actors.closes, 1);
   assert.equal(oldAssets.floor.closes, 1);
+  assert.equal(oldAssets.projectiles.closes, 1);
   pendingLoads[1](newAssets);
   await newLoad;
   assert.equal(superseded.screen.value, 'title');
   superseded.dispose();
   assert.equal(newAssets.actors.closes, 1);
   assert.equal(newAssets.floor.closes, 1);
+  assert.equal(newAssets.projectiles.closes, 1);
 
   const game = state(),
     bad = images(),
@@ -765,15 +927,31 @@ test('async asset ownership closes stale/failed results and transfers retry owne
   assert.equal(game.screen.value, 'error');
   assert.equal(bad.actors.closes, 1);
   assert.equal(bad.floor.closes, 1);
+  assert.equal(bad.projectiles.closes, 1);
+  const failedDraw = images();
+  globalThis.__sceneLoad = () => Promise.resolve(failedDraw);
+  globalThis.__failSceneDraw = true;
+  try {
+    await game.load();
+  } finally {
+    delete globalThis.__failSceneDraw;
+  }
+  assert.equal(game.screen.value, 'error');
+  assert.deepEqual(
+    Object.values(failedDraw).map((image) => image.closes),
+    [1, 1, 1],
+  );
   globalThis.__sceneLoad = () => Promise.resolve(good);
   await game.load();
   assert.equal(game.screen.value, 'title');
   assert.equal(game.atlasError, '');
   assert.equal(good.actors.closes, 0);
   assert.equal(good.floor.closes, 0);
+  assert.equal(good.projectiles.closes, 0);
   game.dispose();
   assert.equal(good.actors.closes, 1);
   assert.equal(good.floor.closes, 1);
+  assert.equal(good.projectiles.closes, 1);
   delete globalThis.__sceneLoad;
 });
 

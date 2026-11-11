@@ -44,7 +44,8 @@ class SurvivorsImageProbe {
   final live = <int, Map<String, Object?>>{};
   var next = 0, created = 0, disposed = 0;
   final bitmaps = <String, Map<String, Object?>>{};
-  var completedInputs = 0, completedBakes = 0, failedInputs = 0;
+  var completedInputs = 0, completedTransforms = 0, completedBakes = 0;
+  var failedInputs = 0;
   var closedBitmaps = 0, sessionDisposedBitmaps = 0;
 
   void bitmapCreated(int session, int id, String operation) {
@@ -52,6 +53,7 @@ class SurvivorsImageProbe {
     final key = '$session:$id';
     if (bitmaps.containsKey(key)) throw StateError('Duplicate bitmap $key');
     if (operation == 'createImageBitmap') completedInputs++;
+    if (operation == 'transformImageBitmap') completedTransforms++;
     if (operation == 'transferToImageBitmap') completedBakes++;
     bitmaps[key] = {
       'session': session,
@@ -91,9 +93,10 @@ class SurvivorsImageProbe {
   Map<String, Object?> snapshot() => {
     'live': live.length,
     'bitmapOutcomesBalanced':
-        completedInputs + completedBakes ==
+        completedInputs + completedTransforms + completedBakes ==
         closedBitmaps + sessionDisposedBitmaps + bitmaps.length,
     'completedInputs': completedInputs,
+    'completedTransforms': completedTransforms,
     'completedBakes': completedBakes,
     'failedInputs': failedInputs,
     'closedBitmaps': closedBitmaps,
@@ -103,6 +106,9 @@ class SurvivorsImageProbe {
         .length,
     'baked': bitmaps.values
         .where((v) => v['operation'] == 'transferToImageBitmap')
+        .length,
+    'transformed': bitmaps.values
+        .where((v) => v['operation'] == 'transformImageBitmap')
         .length,
     'retained': bitmaps.values.fold<int>(
       0,

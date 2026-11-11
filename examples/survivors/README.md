@@ -6,14 +6,35 @@ macOS and Android use maintained V8 JIT; iOS uses maintained V8 jitless.
 
 The opening quickly offers a weapon choice. Bolt ranks fire 1/2/3/5-shot fans, Orbit
 Blades grow to six blades and Chain Discharge reaches ten targets. Swarm, flanking,
-siege and recovery phases repeat every 90 active seconds. The first guardian arrives at
-two minutes; each clear repairs 20% health, grants energy, readies Pulse and starts a
-two-minute interval before the next guardian. Ordinary enemies keep spawning.
+siege and recovery phases repeat every 90 active seconds. After 150 seconds, ordinary
+waves gradually retain more siege pressure, reaching the siege mix at five minutes. The
+first guardian arrives at two minutes; each clear repairs 20% health, grants energy,
+readies Pulse and starts a two-minute interval before the next guardian. Ordinary
+enemies keep spawning.
+
+The first optional reactor activates at 45 active seconds. Spend three seconds inside
+its hexagonal floor plate to bank an Overcharge for the existing Pulse control. A linear
+meter shows capture progress. An Overcharge draws in nearby enemies before clearing
+hostile shots. Time the blast for the opening after a guardian's charge to break its
+shield and briefly increase the damage it takes.
+
+Battery Bugs join after 30 active seconds. Their deaths damage nearby enemies and can
+start a chain reaction; each relay halves the remaining blast damage. A summoning nest
+appears at one minute; destroying it stops reinforcements and gives six seconds of
+relief from ordinary spawns. Electrical ground appears at 90 seconds, warns before each
+discharge, and damages enemies as well as the player. Sparse cover blocks movement and
+shots; Guardian charges can smash it.
+
+From level three, Bolt can evolve into Rail Bolt, which pierces several different
+targets, or Burst Bolt, which deals splash damage. The choice lasts for the current run.
+Existing weapon ranks continue to improve the selected branch.
 
 Difficulty stops increasing after 20 active minutes, permanent equipment keeps its
-existing rank caps, and later levels offer repairs with a bounded energy requirement.
-Time always counts up. Score is kills plus ten times completed active seconds. Older
-profile records are preserved; historical win counts are hidden and never increased.
+existing rank caps, and fully capped equipment uses 640 energy for each repeat repair.
+Enemy health grows from the opening curve to a capped ten times base health at 20
+minutes. Weapon damage and attack cadence keep their existing progression. Time always
+counts up. Score is kills plus ten times completed active seconds. Older profile records
+are preserved; historical win counts are hidden and never increased.
 
 ## Launch
 
@@ -37,6 +58,16 @@ audits its engine libraries and preserves the product in
 products contain no integration-test entry or acceptance commands. Bundle resources are
 loaded from the owning Session's AssetBundle; audioplayers receives decoded bundled
 bytes through `BytesSource`.
+
+The same game is available as **Lumen Outpost** in the outer
+[Flax Playground](../embedded/README.md). From the root, run
+`dart run melos run example:run` and open that card. The gallery uses this example's
+private `./showcase` export and `FlaxSurvivorsView`, with its own game Session and the
+same `lumen-outpost` profile namespace. Images, audio and game code are packaged once
+from this example. The gallery retains its toolbar and Back button, while this
+standalone launcher retains fullscreen landscape startup and iOS resume handling. The
+embedded view does not change host orientation or system UI; mobile portrait shows the
+landscape prompt.
 
 | Target                 | Environment before launch                                                                                                      |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
@@ -90,18 +121,28 @@ correctly.
 The industrial battlefield uses a separately baked floor texture and upright eight-way
 actor poses. Movement and nearby targets determine facing; idle actors retain their last
 direction. The HUD uses compact cyan bars, weapon cards and circular touch controls.
-Pulse shows its existing cooldown and readiness, then releases a brief cyan shockwave.
-Reduced Motion keeps the readiness cue and a quiet ring without rotating charge arcs or
-radial marks. These visuals never change damage, range or cooldown.
+Pulse shows its existing cooldown and readiness, then releases one brief cyan shockwave.
+Armor plates, capacitor blocks, short angular impacts and inward charge chevrons keep
+combat readable without persistent range or cooldown rings around actors. Electrical
+ground uses a hatched octagon enclosing the damaging area and the player's collision
+radius. A transparent projectile atlas gives ordinary bolts a familiar cyan energy head,
+piercing shots a thin flechette, burst shots metallic fins around a warm core, and
+hostile shots an orange-red pointed tracer. Short fading tails follow velocity; the
+bright head stays anchored to the existing projectile position. A restrained hostile
+halo marks its collision area. Scene bakes 32 reusable flight directions once, so combat
+draws reuse bitmap poses without per-shot transforms. Burst impacts keep the existing
+six-effect limit and short lifetime, using local cyan shards and a warm flash. Reduced
+Motion retains static readiness and warning cues. These visuals never change damage,
+range or cooldown.
 
 Energy-crystal sprite quads increase from 18 to 30 world units, about 67% larger on each
 axis, for clearer drops on landscape phones. Pickup reach, attraction, energy value,
 population limits and the existing atlas/draw path remain unchanged.
 
-Start waits for both scene images; Retry reloads failed assets. Audio and persistence
-failures permit silent or unsaved play and show status text. Settings and results use
-one versioned profile in the dedicated `lumen-outpost` namespace; writes acknowledge a
-host storage flush. No active encounter is restored after process death.
+Start waits for all three scene images; Retry reloads failed assets. Audio and
+persistence failures permit silent or unsaved play and show status text. Settings and
+results use one versioned profile in the dedicated `lumen-outpost` namespace; writes
+acknowledge a host storage flush. No active encounter is restored after process death.
 
 Settings includes Chinese/English selection and an optional FPS display. Chinese is the
 default for profiles without a language choice; FPS is off by default. Both choices are
@@ -131,7 +172,9 @@ cache are not modified.
 These overrides participate in the repository's shared Dart workspace resolution, so
 other examples in this worktree also use the patched packages. A staged standalone
 Survivors consumer keeps its relative overrides; unrelated outside consumers retain
-their own dependency selection.
+their own dependency selection. Staged Playground consumers copy this private game
+package and promote the same local audio overrides into the consumer's root manifest,
+where Pub applies them.
 
 ## Checks and evidence
 

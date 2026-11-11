@@ -107,7 +107,23 @@ void main() {
         );
         expect(
           mounted['baked'] as int,
-          greaterThanOrEqualTo((imageBaseline['baked'] as int) + 2),
+          greaterThanOrEqualTo((imageBaseline['baked'] as int) + 3),
+        );
+        expect(
+          mounted['transformed'],
+          (imageBaseline['transformed'] as int) + 1,
+        );
+        expect(
+          mounted['completedTransforms'],
+          (imageBaseline['completedTransforms'] as int) + 1,
+        );
+        expect(mounted['bitmapOutcomesBalanced'], isTrue);
+        expect(
+          (mounted['handles'] as List).any(
+            (image) => image['width'] == 512 && image['height'] == 512,
+          ),
+          isTrue,
+          reason: 'The projectile atlas retains its resized native bitmap',
         );
         final gesture = await tester.startGesture(
           tester

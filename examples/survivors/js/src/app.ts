@@ -84,6 +84,8 @@ import { action, chrome, panel, upgradeHeading } from './presentation';
 declare const __FLAX_SURVIVORS_ACCEPTANCE__: boolean;
 
 const cyan = Color(0xff63f5f4),
+  gold = Color(0xffffcc65),
+  purple = Color(0xffd9adff),
   white = Color(0xffedf8ff),
   dim = Color(0xff9fb6c3);
 const ink = Color(0xff101d29),
@@ -157,7 +159,14 @@ function offerCard(
 ): Widget {
   const s = strings(language),
     copy = offerCopy(offer, language);
-  const maxRank = offer.kind === 'repair' ? 0 : offer.kind === 'weapon' ? 4 : 3;
+  const maxRank =
+    offer.kind === 'repair'
+      ? 0
+      : offer.kind === 'evolution'
+        ? 1
+        : offer.kind === 'weapon'
+          ? 4
+          : 3;
   const weapon = offer.id.includes('bolt')
     ? 'bolt'
     : offer.id.includes('orbit')
@@ -186,7 +195,12 @@ function offerCard(
       {
         title: copy.title,
         description: copy.description,
-        rankLabel: maxRank === 0 ? '+20%' : `${s.rank} ${offer.rank} / ${maxRank}`,
+        rankLabel:
+          offer.kind === 'evolution'
+            ? s.evolution
+            : maxRank === 0
+              ? '+20%'
+              : `${s.rank} ${offer.rank} / ${maxRank}`,
         rank: offer.rank,
         maxRank,
         index,
@@ -202,16 +216,12 @@ function offerCard(
   });
 }
 function closeSceneAssets(assets: SceneAssets): void {
-  try {
-    assets.actors.close();
-  } catch {
-    /* Continue releasing the other bitmap. */
-  }
-  try {
-    assets.floor.close();
-  } catch {
-    /* Session shutdown can make release unavailable. */
-  }
+  for (const bitmap of [assets.actors, assets.floor, assets.projectiles])
+    try {
+      bitmap.close();
+    } catch {
+      /* Session shutdown can make release unavailable; continue with the others. */
+    }
 }
 const time = (s: number): string =>
   `${Math.floor(s / 60)
@@ -284,6 +294,13 @@ class GameState extends State<GameWidget> {
   private readonly level = signal(1);
   private readonly seconds = signal(0);
   private readonly cooldown = signal(0);
+  private readonly reactorSeconds = signal(0);
+  private readonly reactorActive = computed(() => this.reactorSeconds.value > 0);
+  private readonly overchargeReady = signal(false);
+  private readonly nestHealth = signal<number | undefined>(undefined);
+  private readonly nestActive = computed(() => this.nestHealth.value !== undefined);
+  private readonly fieldHint = signal(false);
+  private fieldHintStarted: number | undefined;
   private readonly bolt = signal(0);
   private readonly orbit = signal(0);
   private readonly chain = signal(0);
@@ -487,6 +504,7 @@ class GameState extends State<GameWidget> {
         ? 1
         : Math.floor(Math.random() * 0x100000000),
     );
+    this.fieldHintStarted = undefined;
     if (this.width > 0 && this.height > 0) {
       const view = viewport(this.width, this.height);
       this.game.setViewport(view.width, view.height);
@@ -566,6 +584,19 @@ class GameState extends State<GameWidget> {
   }
   private publishHud(): void {
     const game = this.game;
+    const reactor = game.reactor;
+    const reactorSeconds = reactor
+      ? Math.max(0, Math.ceil(reactor.expiresAt - game.elapsed))
+      : 0;
+    const overchargeReady = game.overchargeReady;
+    const nest = game.nest;
+    const nestHealth = nest
+      ? Math.ceil(Math.max(0, nest.hp / nest.maxHp) * 10) * 10
+      : undefined;
+    if (game.discharge && this.fieldHintStarted === undefined)
+      this.fieldHintStarted = game.elapsed;
+    const fieldHint =
+      this.fieldHintStarted !== undefined && game.elapsed - this.fieldHintStarted < 6;
     if (__FLAX_SURVIVORS_ACCEPTANCE__ && this.samples.enabled) {
       this.uiCounts.hudPublishes++;
       this.uiCounts.hudChanges +=
@@ -576,6 +607,10 @@ class GameState extends State<GameWidget> {
         Number(this.level.value !== game.level) +
         Number(this.seconds.value !== Math.floor(game.elapsed)) +
         Number(this.cooldown.value !== Math.ceil(game.player.pulseCooldown * 10)) +
+        Number(this.reactorSeconds.value !== reactorSeconds) +
+        Number(this.overchargeReady.value !== overchargeReady) +
+        Number(this.nestHealth.value !== nestHealth) +
+        Number(this.fieldHint.value !== fieldHint) +
         Number(this.bolt.value !== game.player.weapons.bolt) +
         Number(this.orbit.value !== game.player.weapons.orbit) +
         Number(this.chain.value !== game.player.weapons.chain);
@@ -588,6 +623,10 @@ class GameState extends State<GameWidget> {
       this.level.value = game.level;
       this.seconds.value = Math.floor(game.elapsed);
       this.cooldown.value = Math.ceil(game.player.pulseCooldown * 10);
+      this.reactorSeconds.value = reactorSeconds;
+      this.overchargeReady.value = overchargeReady;
+      this.nestHealth.value = nestHealth;
+      this.fieldHint.value = fieldHint;
       this.bolt.value = game.player.weapons.bolt;
       this.orbit.value = game.player.weapons.orbit;
       this.chain.value = game.player.weapons.chain;
@@ -621,13 +660,15 @@ class GameState extends State<GameWidget> {
         if (event.type === 'hit' && event.target === 'player')
           this.haptic(() => HapticFeedback.lightImpact());
         if (event.type === 'guardian') guardianCleared = true;
-        if (event.type === 'pulse')
+        if (event.type === 'reactorCapture')
+          this.haptic(() => HapticFeedback.selectionClick());
+        const sound = event.type === 'overcharge' ? 'pulse' : event.type;
+        if (sound === 'pulse')
           this.haptic(() =>
             this.platform === TargetPlatform.iOS
               ? HapticFeedback.vibrate()
               : HapticFeedback.mediumImpact(),
           );
-        const sound = event.type === 'level' ? 'upgrade' : event.type;
         if (sound === 'shot' || sound === 'hit' || sound === 'pulse')
           this.sounds?.play(sound, this.profile.effects);
       }
@@ -1080,6 +1121,57 @@ class GameState extends State<GameWidget> {
         }),
       }),
       Positioned({
+        left: 8,
+        right: 8,
+        top: 14 + headerHeight + cardSize,
+        child: IgnorePointer({
+          child: Center({
+            child: bind(() => {
+              if (this.gameOverlay.value !== 'playing') return SizedBox();
+              const capturing = this.reactorActive.value;
+              const nesting = this.nestActive.value;
+              const ready = this.overchargeReady.value;
+              const fieldHint = this.fieldHint.value;
+              if (!capturing && !nesting && !ready && !fieldHint) return SizedBox();
+              const color = nesting ? purple : gold;
+              return Container({
+                padding: EdgeInsets.symmetric({ horizontal: 8, vertical: 4 }),
+                decoration: BoxDecoration({
+                  color: panelInk,
+                  border: Border.all({ color }),
+                  borderRadius: BorderRadius.circular(4),
+                }),
+                child: Text(
+                  bind(() =>
+                    [
+                      nesting
+                        ? `${s.nest} · ${s.nestHint} · ${this.nestHealth.value}%`
+                        : capturing
+                          ? `${s.reactor} ${this.reactorSeconds.value}s · ${s.reactorHold}`
+                          : ready
+                            ? `${s.overchargeReady} · ${s.overchargeHint}`
+                            : '',
+                      fieldHint ? s.fieldHint : '',
+                    ]
+                      .filter(Boolean)
+                      .join('\n'),
+                  ),
+                  {
+                    textAlign: TextAlign.center,
+                    maxLines: 3,
+                    style: TextStyle({
+                      color,
+                      fontSize: 12 * scale,
+                      fontWeight: FontWeight.bold,
+                    }),
+                  },
+                ),
+              });
+            }),
+          }),
+        }),
+      }),
+      Positioned({
         right: 2,
         top: 0,
         child: Tooltip({
@@ -1143,7 +1235,11 @@ class GameState extends State<GameWidget> {
                     color: Color(0x55101d29),
                     shape: BoxShape.circle,
                     border: Border.all({
-                      color: this.cooldown.value === 0 ? cyan : border,
+                      color: this.overchargeReady.value
+                        ? gold
+                        : this.cooldown.value === 0
+                          ? cyan
+                          : border,
                       width: this.cooldown.value === 0 ? 2 : 1,
                     }),
                   }),
@@ -1153,17 +1249,33 @@ class GameState extends State<GameWidget> {
                     Positioned.fill({
                       child: CircularProgressIndicator({
                         value: bind(() => Math.max(0, 1 - this.cooldown.value / 80)),
-                        color: bind(() => (this.cooldown.value <= 15 ? cyan : dim)),
+                        color: bind(() =>
+                          this.overchargeReady.value
+                            ? gold
+                            : this.cooldown.value <= 15
+                              ? cyan
+                              : dim,
+                        ),
                         backgroundColor: unlit,
                         strokeWidth: 2,
-                        semanticsLabel: s.pulseCooldown,
+                        semanticsLabel: bind(() =>
+                          this.overchargeReady.value
+                            ? s.overchargeReady
+                            : s.pulseCooldown,
+                        ),
                       }),
                     }),
                     Positioned.fill({
                       child: Center({
                         child: SizedBox({
                           child: bind(() =>
-                            glyph('crown', 40, this.cooldown.value <= 15, s.pulse),
+                            this.overchargeReady.value
+                              ? Icon(Icons.electric_bolt, {
+                                  size: 40,
+                                  color: gold,
+                                  semanticLabel: s.overchargeReady,
+                                })
+                              : glyph('crown', 40, this.cooldown.value <= 15, s.pulse),
                           ),
                         }),
                       }),

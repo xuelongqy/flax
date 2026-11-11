@@ -122,6 +122,9 @@ importers:
       '@flax/example-sandbox':
         specifier: workspace:*
         version: link:../../../packages/flax_sandbox_example/example/js
+      '@flax/example-survivors':
+        specifier: workspace:*
+        version: link:../../survivors/js
       '@flax/example-video-player':
         specifier: workspace:*
         version: link:../../../packages/flax_video_player/example/js

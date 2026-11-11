@@ -57,18 +57,22 @@ class CanvasProbe extends FlaxPlugin {
 class _ProbeContext implements FlaxHostContext {
   _ProbeContext(this.context, this.probe, this.session);
   final int session;
-  final _pendingInputs = <int>{};
+  final _pendingBitmaps = <int, String>{};
 
   void bitmapSettled(List<FlaxJsValue> arguments) {
     final request = (arguments[0] as FlaxJsNumber).value.toInt();
-    if (!_pendingInputs.remove(request)) return;
+    final operation = _pendingBitmaps.remove(request);
+    if (operation == null) return;
     if (!(arguments[1] as FlaxJsBoolean).value) {
       probe.images?.failedInputs++;
       return;
     }
-    final value = arguments[2] as FlaxJsObject;
-    final id = (value.getProperty('0') as FlaxJsNumber).value.toInt();
-    probe.images?.bitmapCreated(session, id, 'createImageBitmap');
+    final id = operation == 'transformImageBitmap'
+        ? (arguments[2] as FlaxJsNumber).value.toInt()
+        : ((arguments[2] as FlaxJsObject).getProperty('0') as FlaxJsNumber)
+              .value
+              .toInt();
+    probe.images?.bitmapCreated(session, id, operation);
   }
 
   final FlaxHostContext context;
@@ -87,15 +91,18 @@ class _ProbeContext implements FlaxHostContext {
         ifAbsent: () => 1,
       );
       if (operation != 'commit' || !probe.recordCommits) {
-        final request = probe.images != null && operation == 'createImageBitmap'
+        final request =
+            probe.images != null &&
+                (operation == 'createImageBitmap' ||
+                    operation == 'transformImageBitmap')
             ? (arguments[1] as FlaxJsNumber).value.toInt()
             : null;
-        if (request != null) _pendingInputs.add(request);
+        if (request != null) _pendingBitmaps[request] = operation;
         FlaxJsValue result;
         try {
           result = callback(receiver, arguments);
         } catch (_) {
-          if (request != null) _pendingInputs.remove(request);
+          if (request != null) _pendingBitmaps.remove(request);
           rethrow;
         }
         if (operation == 'transferToImageBitmap') {

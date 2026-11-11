@@ -1,4 +1,4 @@
-export const CONTENT_VERSION = 'lumen-endless-1';
+export const CONTENT_VERSION = 'lumen-encounters-4';
 export const WORLD_WIDTH = 3200;
 export const WORLD_HEIGHT = 1800;
 export const VIEW_WIDTH = 960;
@@ -6,6 +6,12 @@ export const VIEW_HEIGHT = 540;
 export const STEP = 1 / 60;
 export const WAVE_SECONDS = 90;
 export const DIFFICULTY_SECONDS = 1200;
+export const LATE_GAME = {
+  firstAt: 150,
+  waveRamp: 150,
+  extraHealth: 6,
+  repairXp: 640,
+};
 
 export const LIMITS = { enemies: 200, projectiles: 300, pickups: 150 };
 export const PLAYER = {
@@ -16,6 +22,61 @@ export const PLAYER = {
   immunity: 0.65,
 };
 export const PULSE = { cooldown: 8, radius: 170, damage: 52, push: 105 };
+export const REACTOR = {
+  firstAt: 45,
+  interval: 45,
+  duration: 16,
+  captureSeconds: 3,
+  radius: 82,
+  distance: 290,
+};
+export const OVERCHARGE = {
+  windup: 0.2,
+  radius: 238,
+  pullSpeed: 210,
+  damage: 110,
+  push: 140,
+  maxArcs: 5,
+};
+export const BATTERY = {
+  firstAt: 30, chance: 0.16, radius: 112, damage: 90, chainFalloff: 0.5,
+};
+export const NEST = {
+  firstAt: 60,
+  afterClear: 90,
+  summonInterval: 6,
+  summonWarning: 1.2,
+  batch: 3,
+  spawnRadius: 86,
+  lull: 6,
+};
+export const DISCHARGE = {
+  firstAt: 90,
+  interval: 90,
+  duration: 20,
+  warning: 1.5,
+  pulseEvery: 3,
+  activeSeconds: 0.35,
+  radius: 118,
+  playerDamage: 14,
+  enemyDamage: 48,
+};
+export const BOLT_EVOLUTION = {
+  level: 3,
+  pierce: {
+    title: 'Rail Bolt',
+    description: 'Heavy bolts pierce up to three different threats.',
+    targets: 3,
+    damageMultiplier: 1.35,
+  },
+  blast: {
+    title: 'Burst Bolt',
+    description: 'Bolts explode on impact and damage nearby threats.',
+    radius: 60,
+    damageMultiplier: 1.15,
+    splashMultiplier: 0.7,
+  },
+};
 export const WEAPONS = {
   bolt: {
     title: 'Arc Bolt',
@@ -81,6 +142,8 @@ export const ENEMIES = {
   flanker: { title: 'Flanker', radius: 12, hp: 21, speed: 88, damage: 9, xp: 2 },
   brute: { title: 'Armored Brute', radius: 23, hp: 125, speed: 33, damage: 19, xp: 5 },
   sentry: { title: 'Sentry', radius: 18, hp: 57, speed: 40, damage: 12, xp: 3 },
+  battery: { title: 'Battery Bug', radius: 16, hp: 38, speed: 58, damage: 11, xp: 2 },
+  nest: { title: 'Summoning Nest', radius: 30, hp: 260, speed: 0, damage: 10, xp: 18 },
   guardian: {
     title: 'Outpost Guardian',
     radius: 46,
@@ -99,6 +162,9 @@ export const GUARDIAN = {
   chargeWarning: 0.85,
   chargeDuration: 0.75,
   chargeSpeed: 420,
+  coreExposure: 2,
+  breakDuration: 3,
+  damageMultiplier: 1.65,
   radialSpeed: 145,
   phaseTwoSpeed: 190,
   radialCount: 12,

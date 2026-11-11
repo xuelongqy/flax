@@ -1,5 +1,6 @@
 import type { Game, Offer } from './game';
 import { WEAPONS } from './content.ts';
+import { coverHit, overlapsCover } from './arena.ts';
 
 export interface PeakCounts {
   min: number[];
@@ -169,6 +170,37 @@ export function pilot(game: Game): {
         y += (((dy / d) * (80 - d)) / 80) * 2;
       }
     }
+  const field = game.discharge;
+  if (field) {
+    const dx = p.x - field.x, dy = p.y - field.y;
+    const distance = Math.hypot(dx, dy);
+    if (distance < field.radius + p.radius + 40) {
+      x = distance ? dx / distance : x || 1;
+      y = distance ? dy / distance : y;
+    }
+  }
+  const blocked = (dx: number, dy: number): boolean => game.covers.some((cover) => {
+    const hit = coverHit(p.x, p.y, dx * 80, dy * 80, p.radius, cover);
+    // A touching actor can leave or slide along an edge without entering the cover.
+    return hit !== undefined && (hit > 0 ||
+      overlapsCover(p.x + dx * 0.01, p.y + dy * 0.01, p.radius, cover));
+  });
+  if (blocked(x, y)) {
+    let best = -Infinity;
+    let nextX = 0, nextY = 0;
+    for (let i = 0; i < 8; i++) {
+      const angle = i * Math.PI / 4;
+      const dx = Math.cos(angle), dy = Math.sin(angle);
+      const score = x * dx + y * dy;
+      if (score > best && !blocked(dx, dy)) {
+        best = score;
+        nextX = dx;
+        nextY = dy;
+      }
+    }
+    x = nextX;
+    y = nextY;
+  }
   const magnitude = Math.max(1, Math.hypot(x, y));
   return {
     phase: game.phase,

@@ -22,6 +22,7 @@
     "@flax/example-websocket": "workspace:*",
     "@flax/example-local-storage": "workspace:*",
     "@flax/example-sandbox": "workspace:*",
+    "@flax/example-survivors": "workspace:*",
     "@flax/cupertino-ui": "workspace:*",
     "@flax/cupertino-ui-runtime": "workspace:*",
     "@flax/websocket": "workspace:*",

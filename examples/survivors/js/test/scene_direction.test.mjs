@@ -3,6 +3,7 @@ import test from 'node:test';
 import { Game } from '../src/game.ts';
 class Context {
   images = [];
+  clips = [];
   stack = [];
   sx = 1;
   rotation = 0;
@@ -42,6 +43,12 @@ class Context {
     this.matrix[5] += this.matrix[1] * x + this.matrix[3] * y;
   }
   fillRect() {}
+  rect(...args) {
+    this.clipRect = args;
+  }
+  clip() {
+    this.clips.push({ args: this.clipRect, matrix: this.matrix.slice() });
+  }
   strokeRect() {}
   beginPath() {}
   arc() {}
@@ -81,20 +88,24 @@ globalThis.OffscreenCanvas = class {
     return this.ctx;
   }
   transferToImageBitmap() {
-    return { width: this.width, height: this.height, close() {} };
+    return { width: this.width, height: this.height, context: this.ctx, close() {} };
   }
 };
 const { Scene } = await import('../src/scene.ts');
 function setup() {
   const actors = { width: 600, height: 600, close() {} };
-  const scene = new Scene({ actors, floor: { width: 640, height: 640, close() {} } });
+  const scene = new Scene({
+    actors,
+    floor: { width: 640, height: 640, close() {} },
+    projectiles: { width: 512, height: 512, close() {} },
+  });
   const game = new Game(1);
   const draws = () =>
     scene.canvas.ctx.images.filter((d) => d.args[0] === actors && d.args[2] < 500);
   const hero = () => draws().find((d) => d.args[1] === 0);
   return { scene, game, draws, hero };
 }
-test('projectile fill reuse preserves visible draw order across frames', () => {
+test('projectile poses preserve source draw order without per-shot transforms across frames', () => {
   const { scene, game } = setup();
   const { x, y } = game.player;
   const enemy = { kind: 'enemy', y, radius: 5, vx: 0, vy: 0, life: 1 };
@@ -103,37 +114,114 @@ test('projectile fill reuse preserves visible draw order across frames', () => {
     { ...enemy, id: 2, x: x - 30 },
     { ...enemy, id: 3, x, kind: 'bolt', vx: 1, vy: 1 },
     { ...enemy, id: 4, x: x + 30 },
+    { ...enemy, id: 5, x: x + 60 },
   );
   const context = scene.canvas.ctx;
-  let color;
-  let arc;
-  let assignments = 0;
-  const paints = [];
-  Object.defineProperty(context, 'fillStyle', {
-    get: () => color,
-    set(value) {
-      color = value;
-      if (color === '#ffb132') assignments++;
-    },
-  });
-  const rotate = context.rotate.bind(context);
+  let saves = 0,
+    rotations = 0;
+  const save = context.save.bind(context),
+    rotate = context.rotate.bind(context);
+  context.save = () => {
+    saves++;
+    save();
+  };
   context.rotate = (angle) => {
-    paints.push(['bolt', angle]);
+    rotations++;
     rotate(angle);
   };
-  context.arc = (...values) => (arc = values);
-  context.fill = () => paints.push(['enemy', color, ...arc]);
-  scene.draw(game, 'balanced');
-  scene.draw(game, 'balanced');
+  for (let frame = 0; frame < 2; frame++) {
+    scene.draw(game, 'balanced');
+    const shots = context.images.filter(
+      (draw) => draw.args[0] === scene.projectilePoses,
+    );
+    assert.deepEqual(
+      shots.map((draw) => (draw.args[2] / 128) * 8 + draw.args[1] / 128),
+      [96, 4, 96, 96],
+    );
+    assert.deepEqual(
+      shots.map((draw) => draw.args[5] + draw.args[7] / 2),
+      [x - 30, x, x + 30, x + 60],
+    );
+  }
+  assert.equal(saves, 2, 'only the shared world transform is saved');
+  assert.equal(rotations, 0, 'flight rotation was baked during construction');
   scene.dispose();
+});
 
-  const frame = [
-    ['enemy', '#ffb132', x - 30, y, 5, 0, Math.PI * 2],
-    ['bolt', Math.PI / 4],
-    ['enemy', '#ffb132', x + 30, y, 5, 0, Math.PI * 2],
+test('all flight poses rotate around the source head and use the nearest of 32 angles', () => {
+  const { scene, game } = setup();
+  const baked = scene.projectilePoses.context.images;
+  const heads = [
+    [414.44, 337.82],
+    [440.93, 333.1],
+    [453.1, 304.95],
+    [415.47, 304.01],
   ];
-  assert.equal(assignments, 2);
-  assert.deepEqual(paints, [...frame, ...frame]);
+  assert.equal(baked.length, 128);
+  for (let index = 0; index < baked.length; index++) {
+    const draw = baked[index],
+      kind = Math.floor(index / 32);
+    assert.deepEqual(
+      scene.projectilePoses.context.clips[index],
+      {
+        args: [(index % 8) * 128, Math.floor(index / 8) * 128, 128, 128],
+        matrix: [1, 0, 0, 1, 0, 0],
+      },
+      'each tile clips faint source noise before rotation',
+    );
+    assert.deepEqual(draw.args.slice(1, 5), [
+      (kind % 2) * 256,
+      Math.floor(kind / 2) * 256,
+      256,
+      256,
+    ]);
+    assert.deepEqual(draw.args.slice(7), [
+      [44, 46, 40, 48][kind] * 2,
+      [44, 46, 40, 64][kind] * 2,
+    ]);
+    assert.equal(draw.rotation, ((index % 32) * Math.PI) / 16);
+    for (let axis = 0; axis < 2; axis++) {
+      const head =
+        draw.quad[0][axis] +
+        (heads[kind][0] / 627) * (draw.quad[1][axis] - draw.quad[0][axis]) +
+        (heads[kind][1] / 627) * (draw.quad[3][axis] - draw.quad[0][axis]);
+      const tileCenter =
+        (axis === 0 ? (index % 8) + 0.5 : Math.floor(index / 8) + 0.5) * 128;
+      assert.ok(
+        Math.abs(head - tileCenter) < 1e-9,
+        'each rotated pose retains the head anchor',
+      );
+    }
+  }
+  const { x, y } = game.player;
+  for (const [angle, expected] of [
+    [0, 0],
+    [Math.PI / 32 - 1e-6, 0],
+    [Math.PI / 32 + 1e-6, 1],
+    [-Math.PI / 32 - 1e-6, 31],
+    [Math.PI / 2, 8],
+    [-Math.PI / 2, 24],
+    [Math.PI, 16],
+  ]) {
+    game.projectiles = [
+      {
+        id: 1,
+        kind: 'bolt',
+        x,
+        y,
+        vx: Math.cos(angle),
+        vy: Math.sin(angle),
+        radius: 4,
+        life: 1,
+      },
+    ];
+    scene.draw(game, 'balanced');
+    const shot = scene.canvas.ctx.images.find(
+      (draw) => draw.args[0] === scene.projectilePoses,
+    );
+    assert.equal((shot.args[2] / 128) * 8 + shot.args[1] / 128, expected);
+  }
+  scene.dispose();
 });
 
 test('upright actors choose all eight movement directions, retain idle and reset on restart', () => {
@@ -280,7 +368,11 @@ test('exact half-octant ties choose the clockwise yaw and actor draws leave simu
 
 test('sprite cells preserve source proportions and effects use their dedicated final row', () => {
   const actors = { width: 600, height: 360, close() {} };
-  const scene = new Scene({ actors, floor: { width: 640, height: 640, close() {} } });
+  const scene = new Scene({
+    actors,
+    floor: { width: 640, height: 640, close() {} },
+    projectiles: { width: 512, height: 512, close() {} },
+  });
   const game = new Game(3);
   game.player.weapons.orbit = 1;
   game.pickups.push({
@@ -321,7 +413,7 @@ test('sprite cells preserve source proportions and effects use their dedicated f
   for (const sprite of sprites)
     assert.ok(Math.abs(sprite.args[7] / sprite.args[8] - 100 / 60) < 1e-9);
   const effects = sprites.filter((d) => d.args[2] === 300).map((d) => d.args[1] / 100);
-  assert.deepEqual([...new Set(effects)].sort(), [0, 1, 2, 3, 5]);
+  assert.deepEqual([...new Set(effects)].sort(), [0, 2, 3, 5]);
   for (const [rank, count] of [
     [1, 2],
     [2, 3],
@@ -348,7 +440,11 @@ test('sprite cells preserve source proportions and effects use their dedicated f
 
 test('mixed sprites preserve world quads through camera scaling, mirroring and rotation', () => {
   const actors = { width: 600, height: 360, close() {} };
-  const scene = new Scene({ actors, floor: { width: 640, height: 640, close() {} } });
+  const scene = new Scene({
+    actors,
+    floor: { width: 640, height: 640, close() {} },
+    projectiles: { width: 512, height: 512, close() {} },
+  });
   const game = new Game(4);
   game.player.weapons.bolt = 0;
   const { x, y } = game.player;
@@ -386,12 +482,15 @@ test('mixed sprites preserve world quads through camera scaling, mirroring and r
     game.setViewport(viewWidth, viewHeight);
     scene.draw(game, 'detailed', physicalWidth, logicalWidth);
     const sprites = scene.canvas.ctx.images.filter((d) => d.args[0] === actors);
-    assert.equal(sprites.length, 4, 'offscreen pickup is culled');
+    assert.equal(
+      sprites.length,
+      3,
+      'offscreen pickup is culled; projectiles use their own atlas',
+    );
     const expected = [
       [0, 300, x - 100, y + 20, 30, 18, false, 0],
       [0, 0, x, y, 72, 43.2, false, 0],
       [400, 0, x + 80, y + 40, 70, 42, true, 0],
-      [100, 300, x + 60, y - 40, 26, 15.6, false, Math.PI / 2],
     ];
     const camera = game.camera;
     const scaleX = scene.canvas.width / camera.width;
@@ -414,6 +513,20 @@ test('mixed sprites preserve world quads through camera scaling, mirroring and r
         for (let axis = 0; axis < 2; axis++)
           assert.ok(Math.abs(sprites[i].quad[corner][axis] - point[axis]) < 1e-9);
       }
+    }
+    const projectile = scene.canvas.ctx.images.find(
+      (draw) => draw.args[0] === scene.projectilePoses,
+    );
+    assert.deepEqual(projectile.args.slice(1, 5), [0, 128, 128, 128]);
+    for (let corner = 0; corner < 4; corner++) {
+      const worldX = x + 60 + (corner === 0 || corner === 3 ? -32 : 32);
+      const worldY = y - 40 + (corner < 2 ? -32 : 32);
+      assert.ok(
+        Math.abs(projectile.quad[corner][0] - (worldX - camera.x) * scaleX) < 1e-9,
+      );
+      assert.ok(
+        Math.abs(projectile.quad[corner][1] - (worldY - camera.y) * scaleY) < 1e-9,
+      );
     }
     assert.equal(scene.canvas.ctx.stack.length, 0);
   }

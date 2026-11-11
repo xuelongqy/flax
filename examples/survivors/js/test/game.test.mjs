@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { Game } from '../src/game.ts';
 import { ENEMIES } from '../src/content.ts';
+import { pilot } from '../src/acceptance.ts';
 import {
   createReplay,
   recordInput,
@@ -40,6 +41,15 @@ function state(game) {
     xp: game.xp,
     kills: game.kills,
     guardiansDefeated: game.guardiansDefeated,
+    reactor: game.reactor,
+    nest: game.nest,
+    discharge: game.discharge,
+    dischargePhase: game.dischargePhase,
+    covers: game.covers,
+    overchargeReady: game.overchargeReady,
+    guardianCores: game.enemies
+      .filter((enemy) => enemy.kind === 'guardian')
+      .map((enemy) => game.guardianCoreState(enemy.id)),
     score: game.score,
     reason: game.endReason,
     viewport: [game.viewWidth, game.viewHeight],
@@ -102,6 +112,195 @@ test('pulse damages and pushes nearby enemies, gates cooldown and requires a fre
   assert.ok(game.events.some((event) => event.type === 'pulse'));
 });
 
+function reactorGame() {
+  const game = new Game(42);
+  game.tick = 2698;
+  game.player.hp = game.player.maxHp = 100000;
+  game.player.weapons.bolt = 0;
+  return game;
+}
+
+function captureReactor(game) {
+  advance(game, 2);
+  assert.ok(game.reactor);
+  game.player.x = game.reactor.x;
+  game.player.y = game.reactor.y;
+  advance(game, 180);
+  assert.equal(game.overchargeReady, true);
+}
+
+test('reactor capture counts active time inside the ring and readies the held Pulse control', () => {
+  const game = reactorGame();
+  game.player.x = 14;
+  game.player.y = 1786;
+  game.setViewport(1100, 400);
+  game.step(idle);
+  assert.equal(game.reactor, undefined);
+  game.step(idle);
+  const reactor = game.reactor;
+  assert.ok(reactor);
+  const camera = game.camera;
+  assert.ok(reactor.x - reactor.radius >= camera.x);
+  assert.ok(reactor.x + reactor.radius <= camera.x + camera.width);
+  assert.ok(reactor.y - reactor.radius >= camera.y);
+  assert.ok(reactor.y + reactor.radius <= camera.y + camera.height);
+  assert.ok(
+    Math.hypot(reactor.x - game.player.x, reactor.y - game.player.y) > reactor.radius,
+  );
+
+  game.player.x = reactor.x;
+  game.player.y = reactor.y;
+  advance(game, 60);
+  assert.equal(game.reactor.progress, 1 / 3);
+  game.player.x = 14;
+  advance(game, 75);
+  assert.equal(game.reactor.progress, 1 / 3);
+  game.player.x = reactor.x;
+  game.pause();
+  advance(game, 200);
+  assert.equal(game.reactor.progress, 1 / 3);
+  game.resume();
+
+  game.player.pulseCooldown = 6;
+  const held = { ...idle, pulse: true };
+  advance(game, 119, held);
+  assert.equal(game.overchargeReady, false);
+  game.step(held);
+  assert.equal(game.overchargeReady, true);
+  assert.equal(game.reactor, undefined);
+  assert.equal(game.player.pulseCooldown, 0);
+  assert.deepEqual(
+    game.events.filter((event) => event.type.startsWith('overcharge')),
+    [],
+  );
+  assert.ok(game.events.some((event) => event.type === 'reactorCapture'));
+  game.step(idle);
+  game.step(held);
+  assert.ok(game.events.some((event) => event.type === 'overchargeWindup'));
+});
+
+test('an uncaptured reactor expires and a second attempt is available before the guardian', () => {
+  const game = reactorGame();
+  advance(game, 2);
+  assert.ok(game.reactor);
+  advance(game, 959);
+  assert.ok(game.reactor);
+  game.step(idle);
+  assert.equal(game.reactor, undefined);
+  assert.equal(game.overchargeReady, false);
+  assert.equal(game.player.pulseCooldown, 0);
+  advance(game, 1739);
+  assert.equal(game.reactor, undefined);
+  game.step(idle);
+  assert.equal(game.elapsed, 90);
+  assert.ok(game.reactor);
+  assert.equal(game.reactor.progress, 0);
+});
+
+test('overcharge detonates after 12 active ticks from its fixed origin with bounded arcs', () => {
+  const game = reactorGame();
+  captureReactor(game);
+  const { x, y } = game.player;
+  const near = Array.from({ length: 7 }, (_, i) =>
+    enemy(900 + i, 'brute', x - 195, y + i * 10, 500),
+  );
+  const nearOrigin = enemy(907, 'brute', x, y + 2, 500);
+  const far = enemy(999, 'brute', x + 320, y, 500);
+  game.enemies = [...near, nearOrigin, far];
+  game.addProjectile('enemy', x - 237, y, 0, 0, 12, 5);
+  game.addProjectile('enemy', x + 270, y, 0, 0, 12, 5);
+  game.addProjectile('bolt', x, y - 120, 0, 0, 16, 5);
+  const [nearShot, farShot, bolt] = game.projectiles;
+  const held = { ...idle, pulse: true };
+  game.step(held);
+  assert.deepEqual(
+    game.events.find((event) => event.type === 'overchargeWindup'),
+    {
+      type: 'overchargeWindup',
+      x,
+      y,
+    },
+  );
+  assert.equal(game.overchargeReady, false);
+  assert.equal(game.player.pulseCooldown, 8);
+  assert.equal(game.projectiles.length, 3);
+  const distanceBeforePull = x - near[0].x;
+
+  game.pause();
+  advance(game, 60, held);
+  assert.equal(game.projectiles.length, 3);
+  game.resume();
+  const move = { ...held, x: 1 };
+  advance(game, 11, move);
+  assert.equal(game.projectiles.length, 3);
+  assert.ok(near.every((enemy) => enemy.hp === 500));
+  const pulled = distanceBeforePull - (x - near[0].x);
+  assert.ok(pulled > 20 && pulled <= 50);
+  assert.ok(Math.hypot(nearOrigin.x - x, nearOrigin.y - y) < 1e-6);
+  assert.ok(far.x > x + 310);
+  game.step(move);
+  const blast = game.events.find((event) => event.type === 'overcharge');
+  assert.ok(blast);
+  assert.equal(blast.x, x);
+  assert.equal(blast.y, y);
+  assert.equal(blast.arcs.length, 5);
+  assert.ok(game.player.x > x + 30);
+  assert.deepEqual(game.projectiles, [farShot, bolt]);
+  assert.equal(game.projectileDamage.has(nearShot.id), false);
+  assert.ok(near.every((enemy) => enemy.hp < 448));
+  assert.equal(far.hp, 500);
+  assert.ok(
+    game.events.every((event) => event.type !== 'pulse' && event.type !== 'hit'),
+  );
+});
+
+test('only an overcharge reaching the exposed guardian breaks its shield temporarily', () => {
+  for (const [useOvercharge, waitForExposure, distance, breaksShield] of [
+    [true, false, 140, false],
+    [true, true, 500, false],
+    [false, true, 140, false],
+    [true, true, 140, true],
+  ]) {
+    const game = reactorGame();
+    if (useOvercharge) captureReactor(game);
+    const guardian = enemy(999, 'guardian', game.player.x + 400, game.player.y, 2000);
+    game.enemies = [guardian];
+    assert.equal(game.guardianCoreState(guardian.id), 'sealed');
+    if (waitForExposure) {
+      for (let i = 0; i < 500 && game.guardianCoreState(guardian.id) === 'sealed'; i++)
+        game.step(idle);
+      assert.equal(game.guardianCoreState(guardian.id), 'exposed');
+      game.pause();
+      advance(game, 140);
+      assert.equal(game.guardianCoreState(guardian.id), 'exposed');
+      game.resume();
+    }
+    guardian.x = game.player.x + distance;
+    guardian.y = game.player.y;
+    game.step({ ...idle, pulse: true });
+    if (useOvercharge) advance(game, 12);
+    assert.equal(
+      game.events.some((event) => event.type === 'shieldBreak'),
+      breaksShield,
+    );
+    if (!breaksShield) continue;
+
+    assert.equal(game.guardianCoreState(guardian.id), 'broken');
+    const hp = guardian.hp;
+    game.addProjectile('bolt', guardian.x, guardian.y, 0, 0, 40, 5);
+    game.step(idle);
+    assert.ok(hp - guardian.hp > 40);
+    advance(game, 178);
+    assert.equal(game.guardianCoreState(guardian.id), 'broken');
+    game.step(idle);
+    assert.equal(game.guardianCoreState(guardian.id), 'sealed');
+    const recoveredHp = guardian.hp;
+    game.addProjectile('bolt', guardian.x, guardian.y, 0, 0, 40, 5);
+    game.step(idle);
+    assert.equal(recoveredHp - guardian.hp, 40);
+  }
+});
+
 test('upgrades are distinct, eligible, reject stale choices and resolve queued levels', () => {
   const fresh = new Game(45);
   fresh.xp = fresh.xpNeeded;
@@ -114,6 +313,7 @@ test('upgrades are distinct, eligible, reject stale choices and resolve queued l
     'weapon:orbit',
   ]);
   const game = new Game(44);
+  game.player.boltMode = 'pierce';
   game.player.weapons = { bolt: 4, orbit: 0, chain: 4 };
   game.player.passives = { fireRate: 3, moveSpeed: 3, pickupRadius: 3, maxHealth: 3 };
   game.xp = 100;
@@ -137,6 +337,7 @@ test('upgrades are distinct, eligible, reject stale choices and resolve queued l
 
 test('capped upgrades yield one repair and maximum health upgrades add current health', () => {
   const game = new Game(9);
+  game.player.boltMode = 'blast';
   game.player.weapons = { bolt: 4, orbit: 4, chain: 4 };
   game.player.passives = { fireRate: 3, moveSpeed: 3, pickupRadius: 3, maxHealth: 2 };
   game.player.hp = 30;
@@ -162,6 +363,7 @@ test('only health ends a run and a guardian reward cannot revive a same-tick dea
     [100, 100, null, 'playing'],
   ]) {
     const game = new Game(8);
+    game.player.boltMode = 'pierce';
     game.tick = 28799;
     game.elapsed = game.tick / 60;
     game.xpNeeded = 1000;
@@ -217,15 +419,21 @@ test('the guardian arrives early, telegraphs attacks and changes phase below hal
   const guardian = game.enemies.find((value) => value.kind === 'guardian');
   assert.ok(guardian);
   let warning = false;
+  let firstAttack;
   const tells = new Set();
   let shots = false;
   for (let i = 0; i < 400; i++) {
     game.step(idle);
     warning ||= guardian.warning > 0;
-    if (guardian.warning > 0) tells.add(game.guardianAttack(guardian.id));
+    if (guardian.warning > 0) {
+      const attack = game.guardianAttack(guardian.id);
+      firstAttack ??= attack;
+      tells.add(attack);
+    }
     shots ||= game.projectiles.some((value) => value.kind === 'enemy');
   }
   assert.ok(warning && shots);
+  assert.equal(firstAttack, 'charge');
   assert.deepEqual([...tells].sort(), ['charge', 'radial']);
   guardian.hp = guardian.maxHp * 0.4;
   const startX = guardian.x;
@@ -236,6 +444,8 @@ test('the guardian arrives early, telegraphs attacks and changes phase below hal
 
 test('ordinary waves continue beyond eight minutes within strict populations', () => {
   const game = new Game(19);
+  game.player.boltMode = 'pierce';
+  game.xpNeeded = 1000000000;
   game.player.hp = game.player.maxHp = 1000000;
   game.player.weapons.bolt = 0;
   let maximum = [0, 0, 0];
@@ -284,6 +494,10 @@ test('fixed-seed tick replay reproduces health, score and end state across rende
   assert.equal(state(one), state(game));
   assert.equal(state(three), state(game));
   assert.ok(['playing', 'upgrade', 'lost'].includes(one.phase));
+  assert.throws(
+    () => runReplay({ ...replay, contentVersion: 'lumen-endless-1' }),
+    /version/i,
+  );
   assert.throws(() => runReplay({ ...replay, contentVersion: 'future' }), /version/i);
   assert.throws(() => runReplay({ ...replay, inputs: [[0, NaN, 0, false]] }), /input/i);
 });
@@ -365,6 +579,7 @@ test('bolt rank two defeats an isolated distant target at least as quickly as ra
 
 test('guardian scheduling defers at capacity, repeats after a clear and keeps ordinary spawns', () => {
   const game = new Game(22);
+  game.player.boltMode = 'pierce';
   game.player.weapons.bolt = 0;
   game.player.hp = game.player.maxHp = 100000;
   game.xpNeeded = 100000;
@@ -412,14 +627,14 @@ test('late difficulty, damage and repair thresholds reach finite ceilings', () =
     game.enemies[0].y = game.player.y;
     game.step(idle);
     assert.ok(game.enemies.every((value) => Number.isFinite(value.maxHp)));
-    assert.equal(game.enemies[0].maxHp, ENEMIES.pursuer.hp * 4);
+    assert.equal(game.enemies[0].maxHp, ENEMIES.pursuer.hp * 10);
     assert.equal(game.player.hp, 100 - ENEMIES.pursuer.damage * 1.6);
     game.player.weapons = { bolt: 4, orbit: 4, chain: 4 };
     game.player.passives = { fireRate: 3, moveSpeed: 3, pickupRadius: 3, maxHealth: 3 };
     game.level = 1000000000;
     game.xp = game.xpNeeded;
     game.step(idle);
-    assert.equal(game.xpNeeded, 320);
+    assert.equal(game.xpNeeded, 640);
     assert.equal(game.offers[0].id, 'repair');
     return game;
   });
@@ -427,13 +642,27 @@ test('late difficulty, damage and repair thresholds reach finite ceilings', () =
 });
 
 test('replay accepts an endless trace past eight minutes with a separate finite work budget', () => {
-  const replay = createReplay(14);
+  const replay = createReplay(1);
+  const source = new Game(1);
+  source.setViewport(3200, 1800);
   recordViewport(replay, 0, 3200, 1800);
-  replay.ticks = 36000;
+  while (source.phase !== 'lost' && source.tick < 36000) {
+    const input = pilot(source);
+    if (source.phase === 'upgrade') {
+      const id = source.offers[input.upgradeIndex].id;
+      recordUpgrade(replay, source.tick, id);
+      source.chooseUpgrade(id);
+    } else {
+      recordInput(replay, source.tick, input);
+      source.step(input);
+    }
+  }
+  assert.equal(source.tick, 36000);
   for (const batch of [1, 3]) {
     const game = runReplay(replay, batch);
     assert.equal(game.elapsed, 600);
     assert.equal(game.phase, 'playing');
+    assert.equal(state(game), state(source));
   }
   assert.throws(() => runReplay({ ...replay, contentVersion: 'lumen-1' }), /version/i);
   assert.throws(() => runReplay({ ...replay, ticks: 4 * 3600 * 60 + 1 }), /tick/i);
@@ -565,7 +794,7 @@ test('adaptive corner spawns stay outside the actual view and defer only without
   covered.tick = 25199;
   covered.elapsed = covered.tick / 60;
   covered.step(idle);
-  assert.equal(covered.enemies.length, 0);
+  assert.ok(covered.enemies.every((actor) => actor.kind === 'nest'));
   assert.equal(covered.phase, 'playing');
 });
 
@@ -655,6 +884,7 @@ test('guardian radial warnings and volleys share exact directions across phases 
     [700, 400, 12],
   ]) {
     const game = new Game(201);
+    game.guardiansDefeated = 2;
     game.player.hp = game.player.maxHp = 100000;
     game.player.weapons = { bolt: 0, orbit: 0, chain: 0 };
     const guardian = enemy(

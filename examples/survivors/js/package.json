@@ -4,6 +4,9 @@
   "private": true,
   "type": "module",
   "description": "Lumen Outpost, an offline Canvas survival game.",
+  "exports": {
+    "./showcase": "./dist/showcase.js"
+  },
   "flax": {
     "id": "lumen-outpost",
     "name": "Lumen Outpost",

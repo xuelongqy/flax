@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { readProfile } from '../dist/profile.js';
 import { offerCopy, strings } from '../dist/i18n.js';
-import { PASSIVES, WEAPONS } from '../dist/content.js';
+import { BOLT_EVOLUTION, PASSIVES, WEAPONS } from '../dist/content.js';
 import { Game } from '../src/game.ts';
 
 const legacy = {
@@ -87,6 +87,10 @@ test('switching languages covers actions, warnings, controls and accessibility',
     'droneDisabled',
     'guardians',
     'fpsHelp',
+    'nest',
+    'nestHint',
+    'fieldHint',
+    'evolution',
   ]) {
     assert.match(chinese[key], /\p{Script=Han}/u, `${key} must have Chinese copy`);
     assert.doesNotMatch(
@@ -101,6 +105,10 @@ test('switching languages covers actions, warnings, controls and accessibility',
   assert.match(english.objective, /endless/i);
   assert.doesNotMatch(chinese.objective, /08:00/);
   assert.doesNotMatch(english.objective, /08:00/);
+  assert.match(chinese.reactorHold, /平台/);
+  assert.match(english.reactorHold, /plate/);
+  assert.match(chinese.fieldHint, /斜纹边界/);
+  assert.match(english.fieldHint, /hatched boundary/);
 });
 
 test('every actual upgrade and repair offer translates without changing combat metadata', () => {
@@ -139,6 +147,8 @@ test('every actual upgrade and repair offer translates without changing combat m
     [
       ...Object.keys(WEAPONS).map((kind) => `weapon:${kind}`),
       ...Object.keys(PASSIVES).map((kind) => `passive:${kind}`),
+      'evolution:bolt:pierce',
+      'evolution:bolt:blast',
       'repair',
     ].sort(),
   );
@@ -157,6 +167,35 @@ test('every actual upgrade and repair offer translates without changing combat m
       `${id} must retain its numerical effect`,
     );
   }
+});
+
+test('Bolt evolutions have distinct localized identities and retain their actual effects', () => {
+  const titles = { zh: new Set(), en: new Set() };
+  for (const mode of ['pierce', 'blast']) {
+    const definition = BOLT_EVOLUTION[mode];
+    const offer = Object.freeze({
+      id: `evolution:bolt:${mode}`,
+      kind: 'evolution',
+      rank: 1,
+      title: definition.title,
+      description: definition.description,
+    });
+    for (const language of ['zh', 'en']) {
+      const copy = offerCopy(offer, language);
+      titles[language].add(copy.title);
+      assert.ok(copy.description.length > 12);
+      if (language === 'zh') {
+        assert.match(copy.title, /\p{Script=Han}/u);
+        assert.ok(
+          copy.description.includes(
+            `${Math.round((definition.damageMultiplier - 1) * 100)}%`,
+          ),
+        );
+      } else assert.equal(copy.title, definition.title);
+    }
+  }
+  assert.equal(titles.zh.size, 2);
+  assert.equal(titles.en.size, 2);
 });
 
 test('unknown upgrade IDs preserve readable fallback copy', () => {

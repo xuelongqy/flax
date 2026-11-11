@@ -208,6 +208,76 @@ flutter:
   });
 
   test(
+    'composed private game stages assets and promotes vendor overrides',
+    () async {
+      final engine = package('flax_engine_v8');
+      _write(engine.directory, 'README.md', '# Runtime\n');
+      _write(
+        engine.directory,
+        'lib/flax_engine_v8.dart',
+        'class FlaxV8Engine {}\n',
+      );
+      final gallery = package('flax_gallery');
+      _write(gallery.example, 'pubspec.yaml', '''
+${_flutterPubspec('v8')}
+  flax_survivors: 0.0.0
+''');
+      final game = Directory('${temporary.path}/examples/survivors');
+      _write(game, 'pubspec.yaml', '''
+name: flax_survivors
+publish_to: none
+resolution: workspace
+dependencies:
+  audioplayers: 6.8.1
+dependency_overrides:
+  audioplayers:
+    path: vendor/audioplayers
+flutter:
+  assets: [assets/flax/]
+''');
+      _write(game, 'README.md', '# Game\n');
+      _write(game, 'lib/flax_survivors.dart', 'library;\n');
+      _write(game, 'assets/flax/flax.json', '{"id":"lumen-outpost"}');
+      _write(game, 'vendor/audioplayers/pubspec.yaml', 'name: audioplayers\n');
+      _write(game, 'vendor/audioplayers/lib/audioplayers.dart', 'library;\n');
+      final original = File('${game.path}/pubspec.yaml').readAsStringSync();
+      await withPackageExample(
+        temporary.path,
+        gallery,
+        'v8',
+        (staged) async {
+          final spec = readYamlFile(File('$staged/pubspec.yaml'));
+          final gamePath = p.normalize(
+            p.join(
+              staged,
+              spec['dependencies']['flax_survivors']['path'] as String,
+            ),
+          );
+          expect(
+            File('$gamePath/assets/flax/flax.json').readAsStringSync(),
+            '{"id":"lumen-outpost"}',
+          );
+          final override = spec['dependency_overrides']['audioplayers']['path'];
+          expect(override, '$gamePath/vendor/audioplayers');
+          expect(File('$override/lib/audioplayers.dart').existsSync(), isTrue);
+          expect(
+            readYamlFile(File('$gamePath/pubspec.yaml')),
+            isNot(contains('resolution')),
+          );
+          expect(File('$gamePath/flax_package.yaml').existsSync(), isFalse);
+        },
+        forApplication: true,
+        runCommand: record,
+      );
+      expect(File('${game.path}/pubspec.yaml').readAsStringSync(), original);
+      expect(
+        discoverPackages(temporary.path).map((item) => item.name),
+        isNot(contains('flax_survivors')),
+      );
+    },
+  );
+
+  test(
     'gallery launch prepares the aggregate without other entrypoints',
     () async {
       _write(temporary, 'examples/embedded/js/package.json', '''

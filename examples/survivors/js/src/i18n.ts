@@ -1,5 +1,5 @@
 import type { Offer } from './game';
-import { WEAPONS } from './content.ts';
+import { BOLT_EVOLUTION, REACTOR, WEAPONS } from './content.ts';
 
 export type Language = 'zh' | 'en';
 
@@ -40,6 +40,7 @@ const en = {
   upgradeHint: 'Select a card · 1 / 2 / 3',
   select: 'Select',
   rank: 'Rank',
+  evolution: 'Evolution',
   maxRank: 'MAX',
   signalLost: 'SIGNAL LOST',
   score: 'Score',
@@ -56,6 +57,14 @@ const en = {
   pause: 'Pause',
   pulse: 'Pulse',
   pulseCooldown: 'Pulse cooldown',
+  reactor: 'Reactor',
+  reactorHold: `Hold the marked plate for ${REACTOR.captureSeconds}s`,
+  overchargeReady: 'Overcharge ready',
+  overchargeHint: 'Pulse near the exposed core',
+  nest: 'Summoning nest',
+  nestHint: 'Destroy to stop reinforcements',
+  fieldHint:
+    'Electric ground: leave the hatched boundary before it pulses. It hits enemies too.',
   movementJoystick: 'Movement joystick',
   boltWeapon: 'Bolt weapon',
   orbitWeapon: 'Orbit weapon',
@@ -111,6 +120,7 @@ const zh: Copy = {
   upgradeHint: '选择卡片 · 1 / 2 / 3',
   select: '选择',
   rank: '阶级',
+  evolution: '进化',
   maxRank: '满阶',
   signalLost: '信号中断',
   score: '得分',
@@ -127,6 +137,13 @@ const zh: Copy = {
   pause: '暂停',
   pulse: '脉冲',
   pulseCooldown: '脉冲冷却',
+  reactor: '反应堆',
+  reactorHold: `在标记平台内停留 ${REACTOR.captureSeconds} 秒`,
+  overchargeReady: '过载就绪',
+  overchargeHint: '靠近暴露的核心释放脉冲',
+  nest: '召唤巢',
+  nestHint: '摧毁以阻止增援',
+  fieldHint: '电场：放电前离开斜纹边界，电流也会伤到敌人。',
   movementJoystick: '移动摇杆',
   boltWeapon: '电弧弹武器',
   orbitWeapon: '环绕刃武器',
@@ -164,6 +181,14 @@ const chineseOffers: Record<string, OfferCopy> = {
   'weapon:chain': {
     title: '连锁放电',
     description: '闪电在附近敌人之间跳跃。',
+  },
+  'evolution:bolt:pierce': {
+    title: '贯穿电弧',
+    description: `每发最多贯穿 ${BOLT_EVOLUTION.pierce.targets} 名敌人，伤害提高 ${Math.round((BOLT_EVOLUTION.pierce.damageMultiplier - 1) * 100)}%。`,
+  },
+  'evolution:bolt:blast': {
+    title: '爆破电弧',
+    description: `命中后在附近爆破，伤害提高 ${Math.round((BOLT_EVOLUTION.blast.damageMultiplier - 1) * 100)}%。`,
   },
   'passive:fireRate': {
     title: '速充电容',

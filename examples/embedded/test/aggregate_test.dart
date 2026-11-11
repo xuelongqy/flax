@@ -123,13 +123,17 @@ void main() {
       tester.view.devicePixelRatio = 1;
       addTearDown(tester.view.resetPhysicalSize);
       addTearDown(tester.view.resetDevicePixelRatio);
-      late RuntimeTracker runtime;
+      final runtimes = <RuntimeTracker>[];
       await flaxTestPumpView(
         tester,
         app.EmbeddedApp(
           source: source,
           sandboxDemoDirectory: '${storage.path}/sandbox-demo',
-          createRuntime: () => runtime = RuntimeTracker(),
+          createRuntime: () {
+            final runtime = RuntimeTracker();
+            runtimes.add(runtime);
+            return runtime;
+          },
         ),
       );
       await tester.pumpAndSettle();
@@ -143,10 +147,20 @@ void main() {
         tester,
         () => audioPlatform.disposed.length == audioPlatform.created.length,
       );
-      expect(audioPlatform.sources, hasLength(2));
+      final streamedAudio = audioPlatform.sources.where(
+        (source) => source.url.startsWith('https://www.soundhelix.com/'),
+      );
+      expect(streamedAudio, hasLength(2));
       expect(
-        audioPlatform.sources.map((source) => source.url),
+        streamedAudio.map((source) => source.url),
         everyElement(startsWith('https://www.soundhelix.com/')),
+      );
+      expect(
+        audioPlatform.sources.where(
+          (source) => !streamedAudio.contains(source),
+        ),
+        isNotEmpty,
+        reason: 'Lumen Outpost plays its own bundled audio',
       );
       expect(audioPlatform.activeListeners, 0);
       expect(
@@ -162,8 +176,15 @@ void main() {
       expect(find.text('Choose your playground'), findsOneWidget);
       expect(tester.takeException(), isNull);
       await tester.pumpWidget(const SizedBox.shrink());
-      await pumpGalleryUntil(tester, () => runtime.isDisposed);
-      expect(runtime.handlesAtDispose, 0);
+      await pumpGalleryUntil(
+        tester,
+        () => runtimes.every((runtime) => runtime.isDisposed),
+      );
+      expect(runtimes, hasLength(2));
+      expect(
+        runtimes.map((runtime) => runtime.handlesAtDispose),
+        everyElement(0),
+      );
       await waitGalleryIO(tester, FlaxSandboxExample.pendingLifecycle);
       await waitGalleryIO(tester, FlaxLocalStoragePlugin.shutdown());
     },
