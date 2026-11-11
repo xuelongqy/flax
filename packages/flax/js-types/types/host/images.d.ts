@@ -1,4 +1,5 @@
-import type { CanvasHost } from './canvas.js';
+/// <reference lib="es2025.float16" preserve="true" />
+import type { CanvasHost, CanvasTransfers } from './canvas.js';
 import type { DOMExceptionConstructor } from './events.js';
 import type { Blob } from './data.js';
 import type { Event, EventTarget } from './events.js';
@@ -10,20 +11,28 @@ export interface ImageBitmapOptions {
     resizeHeight?: number;
     resizeQuality?: 'pixelated' | 'low' | 'medium' | 'high';
 }
+type ImageColorSpace = 'srgb' | 'display-p3';
+type ImagePixelFormat = 'rgba-unorm8' | 'rgba-float16';
+type ImageDataArray = Uint8ClampedArray<ArrayBuffer> | Float16Array<ArrayBuffer>;
 export interface ImageDataSettings {
-    colorSpace?: 'srgb' | 'display-p3';
-    pixelFormat?: 'rgba-unorm8' | 'rgba-float16';
+    colorSpace?: ImageColorSpace;
+    pixelFormat?: ImagePixelFormat;
 }
 export interface ImageData {
     readonly width: number;
     readonly height: number;
-    readonly data: Uint8ClampedArray;
-    readonly colorSpace: 'srgb';
-    readonly pixelFormat: 'rgba-unorm8';
+    readonly data: ImageDataArray;
+    readonly colorSpace: ImageColorSpace;
+    readonly pixelFormat: ImagePixelFormat;
 }
 export interface ImageBitmap {
     readonly width: number;
     readonly height: number;
+    close(): void;
+}
+declare const elementImageBrand: unique symbol;
+export interface ElementImage {
+    readonly [elementImageBrand]: true;
     close(): void;
 }
 /** An image resource for canvas renderers, without an HTML layout node. */
@@ -41,12 +50,16 @@ export interface HTMLImageElement extends EventTarget {
     decode(): Promise<void>;
 }
 export interface PixelImage {
+    /** Packed RGBA bytes. RGB uses the transfer curve of the named color space. */
     data: Uint8Array;
     width: number;
     height: number;
-    colorSpace?: 'srgb' | 'display-p3';
+    colorSpace?: ImageColorSpace;
+    pixelFormat?: ImagePixelFormat;
     premultiplied?: boolean;
 }
+/** Convert to the straight sRGB RGBA8 used by the legacy canvas and codec bridges. */
+export declare function toSrgbRgba8(pixels: PixelImage): Uint8Array;
 export interface BitmapSource {
     width: number;
     height: number;
@@ -59,8 +72,8 @@ export interface BitmapSource {
 export declare const imageIdKey: unique symbol;
 export declare const ImageData: {
     new (width: number, height: number, settings?: ImageDataSettings): ImageData;
-    new (data: Uint8ClampedArray, width: number, height?: number, settings?: ImageDataSettings): ImageData;
-    new (data: Uint8ClampedArray, width: number, settings?: ImageDataSettings): ImageData;
+    new (data: ImageDataArray, width: number, height?: number, settings?: ImageDataSettings): ImageData;
+    new (data: ImageDataArray, width: number, settings?: ImageDataSettings): ImageData;
     readonly prototype: ImageData;
 };
 export declare const ImageBitmap: {
@@ -68,13 +81,16 @@ export declare const ImageBitmap: {
     readonly prototype: ImageBitmap;
 };
 type Call = (operation: string, ...args: unknown[]) => unknown;
-type Options = [
-    ImageBitmapOptions?
-] | [number, number, number, number, ImageBitmapOptions?];
+type BitmapCrop = [number, number, number, number];
+type Options = [ImageBitmapOptions?] | [...BitmapCrop, ImageBitmapOptions?];
 export interface ImageHost {
     isSource(source: unknown): boolean;
     bitmap(source: BitmapSource): ImageBitmap;
     transfer(bitmap: ImageBitmap): ImageBitmap;
+    prepareTransfers(list: unknown[]): CanvasTransfers;
+    deserialize(record: any[]): ImageData | ImageBitmap | ElementImage;
+    elementImage(pixels: PixelImage): ElementImage;
+    readElementImage(value: unknown): PixelImage | undefined;
     source(bitmap: object): BitmapSource;
     read(source: unknown): PixelImage;
     onClose(bitmap: object, callback: () => void): void;
@@ -88,5 +104,5 @@ export interface ImageHost {
     close(): void;
 }
 export declare function imageHost(global?: typeof globalThis): ImageHost;
-export declare function installImageHost(global: typeof globalThis, call: Call, canvases: CanvasHost, Exception: DOMExceptionConstructor): ImageHost;
+export declare function installImageHost(global: typeof globalThis, call: Call, canvases: CanvasHost | undefined, Exception: DOMExceptionConstructor, worker?: boolean): ImageHost;
 export {};

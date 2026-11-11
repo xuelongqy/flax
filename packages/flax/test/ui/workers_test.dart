@@ -19,6 +19,8 @@ Future<void> script(
   bool approved = true,
   Future<void> Function(FlaxJsRuntime)? whileRunning,
   void Function(FlaxJsRuntime)? prepareRuntime,
+  void Function()? afterSuccess,
+  List<FlaxPlugin> plugins = const [],
 }) async {
   late FlaxJsRuntime runtime;
   final errors = <Object>[];
@@ -57,6 +59,7 @@ Future<void> script(
     permissionManifest: application?.manifest?.permissions ?? fixture?.manifest,
     permissions: fixture?.policy,
     bindings: FlaxBindingRegistry([flutterBindings]),
+    plugins: plugins,
     onError: (error, _) => errors.add(error),
   );
   try {
@@ -82,6 +85,7 @@ Future<void> script(
           }
           expect(native.workerCountsForTesting(), (0, 0));
         }
+        afterSuccess?.call();
         return;
       }
       await Future<void>.delayed(const Duration(milliseconds: 5));
@@ -97,6 +101,42 @@ Future<void> script(
     if (permissions == null) await fixture?.close();
     await cache.delete(recursive: true);
   }
+}
+
+class _WorkerSetupPlugin extends FlaxPlugin {
+  _WorkerSetupPlugin(this.configure);
+
+  final Future<Map<String, Object?>> Function() configure;
+
+  @override
+  String get id => 'test.worker-setup';
+  @override
+  Set<String> get globals => const {};
+  @override
+  Set<String> get jsModules => const {'@flax/core/host'};
+  @override
+  FlaxPluginInstance install(FlaxHostContext context) =>
+      _WorkerSetupProvider(configure);
+}
+
+class _WorkerSetupProvider
+    implements FlaxPluginInstance, FlaxWorkerPluginInstance {
+  _WorkerSetupProvider(this.configure);
+
+  final Future<Map<String, Object?>> Function() configure;
+
+  @override
+  String get workerModule => '@flax/core/host';
+  @override
+  Set<String> get workerNativeAssets => const {};
+  @override
+  Future<Map<String, Object?>> get workerConfiguration => configure();
+  @override
+  void workerMessage(String operation, List<Object?> arguments) {}
+  @override
+  void close() {}
+  @override
+  void dispose() {}
 }
 
 Future<void> waitForWorkerSignal(FlaxJsRuntime runtime) async {
@@ -139,6 +179,774 @@ void main() {
       manifest: 'modules/modules.json',
     );
   });
+  test(
+    'Session close cancels Worker startup waiting for a native provider',
+    () async {
+      await script(
+        '''
+      const worker = new Worker('data:text/javascript,onmessage=()=>{}');
+      await new Promise(resolve => setTimeout(resolve, 10));
+    ''',
+        plugins: [
+          _WorkerSetupPlugin(() => Completer<Map<String, Object?>>().future),
+        ],
+      );
+    },
+  );
+  test('Worker reports rejected provider configuration and finishes', () async {
+    await script(
+      '''
+      const events = globalThis.workerStartupEvents;
+      const worker = new Worker('data:text/javascript,postMessage("started")');
+      await new Promise((resolve, reject) => {
+        worker.onerror = event => { events.push(event.message); resolve(); };
+        worker.onmessage = () => reject(Error('Worker ran with rejected configuration'));
+      });
+      await new Promise(resolve => setTimeout(resolve, 0));
+      if (events.join('|') !== 'Bad state: Worker provider rejected|finish')
+        throw Error('Worker startup events: ' + events.join('|'));
+    ''',
+      waitForWorkersToExit: true,
+      prepareRuntime: (runtime) => runtime.evaluate('''
+        const events = globalThis.workerStartupEvents = [];
+        Object.defineProperty(globalThis, '__flaxNativeWorker', {
+          configurable: true,
+          set(bridge) {
+            const finish = bridge.finish;
+            bridge.finish = id => { events.push('finish'); finish.call(bridge, id); };
+            Object.defineProperty(globalThis, '__flaxNativeWorker', {
+              value: bridge, configurable: true,
+            });
+          },
+        });
+        undefined;
+      '''),
+      plugins: [
+        _WorkerSetupPlugin(
+          () async => throw StateError('Worker provider rejected'),
+        ),
+      ],
+    );
+  });
+  test(
+    'Worker startup messages and host tasks retain FIFO microtask boundaries',
+    () => script(r'''
+      const source = `
+        await new Promise(resolve => setTimeout(resolve, 0));
+        const order = [];
+        onmessage = ({data}) => {
+          order.push('message:' + data);
+          Promise.resolve().then(() => order.push('microtask:' + data));
+          if (data !== 1) return;
+          setTimeout(() => {
+            order.push('timer:1');
+            Promise.resolve().then(() => order.push('timer:microtask'));
+          }, 0);
+          setTimeout(() => {
+            order.push('timer:2');
+            postMessage(order);
+            close();
+          }, 0);
+        };
+      `;
+      const url = URL.createObjectURL(new Blob([source]));
+      const worker = new Worker(url, {type:'module'});
+      const answer = new Promise((resolve, reject) => {
+        worker.onmessage = ({data}) => resolve(data);
+        worker.onerror = event => reject(Error(event.message));
+      });
+      worker.postMessage(1);
+      worker.postMessage(2);
+      const order = await answer;
+      URL.revokeObjectURL(url);
+      const expected = 'message:1,microtask:1,message:2,microtask:2,timer:1,timer:microtask,timer:2';
+      if (String(order) !== expected)
+        throw Error('Worker task order: ' + String(order) + '; expected ' + expected);
+    ''', waitForWorkersToExit: true),
+  );
+  test(
+    'MessagePort transfer moves a paused FIFO between sibling Workers',
+    () => script(r'''
+      const {port1: send, port2: receive} = new MessageChannel();
+      const {port1: extra, port2: extraPeer} = new MessageChannel();
+      const urls = [];
+      const worker = source => {
+        const url = URL.createObjectURL(new Blob([source]));
+        urls.push(url);
+        return new Worker(url, {type:'module'});
+      };
+      const next = worker => new Promise((resolve, reject) => {
+        worker.onmessage = resolve;
+        worker.onerror = event => reject(Error(event.message));
+        worker.onmessageerror = () => reject(Error('Worker messageerror'));
+      });
+      try {
+        const receiver = worker(`
+          const local = new MessageChannel();
+          await new Promise(resolve => {
+            local.port1.onmessage = resolve;
+            local.port2.postMessage('module startup');
+          });
+          local.port1.close(); local.port2.close();
+          let receive;
+          const seen = [];
+          onmessage = async ({data, ports}) => {
+            if (data === 'start') {
+              await new Promise(resolve => setTimeout(resolve, 15));
+              if (seen.length !== 0) throw Error('Transferred port started early');
+              receive.start();
+              return;
+            }
+            const [extra, port] = ports;
+            if (!Object.isFrozen(ports) || ports.length !== 2 ||
+                !(port instanceof MessagePort) || port !== data.port ||
+                port !== data.alias || new Uint8Array(data.buffer)[0] !== 73)
+              throw Error('Worker event did not restore transfers in order');
+            receive = port;
+            receive.addEventListener('message', ({data, ports}) => {
+              const tag = typeof data === 'string' ? data : data.tag;
+              seen.push(tag);
+              Promise.resolve().then(() => seen.push('microtask:' + tag));
+              if (tag === 'after') {
+                if (ports.length !== 1) throw Error('Port transfer-only list was lost');
+                ports[0].postMessage('reply');
+                ports[0].close();
+                receive.close();
+                Promise.resolve().then(() => { postMessage(seen); close(); });
+              }
+            });
+            const extraMessage = await new Promise(resolve => {
+              extra.onmessage = null;
+              extra.addEventListener('message', ({data}) => resolve(data));
+            });
+            extra.close();
+            postMessage(extraMessage);
+          };
+        `);
+        const sender = worker(`
+          onmessage = ({ports: [send]}) => {
+            const reply = new MessageChannel();
+            reply.port2.onmessage = ({data}) => {
+              reply.port2.close();
+              const outbound = new MessageChannel();
+              outbound.port1.postMessage(data);
+              outbound.port1.close();
+              postMessage(null, [outbound.port2]);
+              close();
+            };
+            send.postMessage({get tag() {
+              send.close();
+              postMessage('sent');
+              // Let the sibling drain the old queue after the peer loss wake.
+              const end = performance.now() + 300;
+              while (performance.now() < end) {}
+              return 'after';
+            }}, {transfer:[reply.port1]});
+          };
+        `);
+        const buffer = new Uint8Array([73]).buffer;
+        let stale = 0;
+        receive.onmessage = () => stale++;
+        send.postMessage('before');
+        extraPeer.postMessage('transfer-only');
+        extraPeer.close();
+        const ready = next(receiver);
+        receiver.postMessage({port:receive, alias:receive, buffer}, [extra, buffer, receive]);
+        if (buffer.byteLength !== 0) throw Error('Mixed transfer did not detach ArrayBuffer');
+        receive.postMessage('stale');
+        receive.close();
+        if ((await ready).data !== 'transfer-only') throw Error('Transfer-only port did not deliver');
+        const sent = next(sender);
+        sender.postMessage(null, [send]);
+        if ((await sent).data !== 'sent') throw Error('Sibling did not send');
+        const reply = next(sender), delivered = next(receiver);
+        receiver.postMessage('start');
+        const {ports: [outbound]} = await Promise.race([
+          reply,
+          new Promise((_, reject) => setTimeout(() =>
+            reject(Error('Lost a send when its source closed during serialization')), 2000)),
+        ]);
+        const ack = await new Promise(resolve => {
+          outbound.onmessage = ({data}) => { outbound.close(); resolve(data); };
+        });
+        if (ack !== 'reply' ||
+            String((await delivered).data) !== 'before,microtask:before,after,microtask:after' || stale)
+          throw Error('Port transfer broke direct delivery, FIFO, or detachment');
+      } finally {
+        for (const url of urls) URL.revokeObjectURL(url);
+      }
+    ''', waitForWorkersToExit: true),
+  );
+  test(
+    'Structured clone commits MessagePort transfers only after validation',
+    () async {
+      final probe = FlaxEngine.createRuntime() as FlaxNativeJsRuntime;
+      int? portCount() {
+        final count = probe.evaluate('__flaxNativeWorker.portCount?.()');
+        return count is FlaxJsNumber ? count.value.toInt() : null;
+      }
+
+      try {
+        probe.installWorkerBridge(0);
+        final before = portCount();
+        await script(
+          r'''
+      const channel = new MessageChannel();
+      const {port1: send, port2: receive} = channel;
+      const rejected = operation => {
+        try { operation(); } catch (error) {
+          if (error.name === 'DataCloneError') return;
+          throw error;
+        }
+        throw Error('Expected DataCloneError');
+      };
+      const buffer = new ArrayBuffer(8);
+      rejected(() => structuredClone(channel));
+      rejected(() => structuredClone(receive));
+      rejected(() => structuredClone(receive, {transfer:[buffer, receive, receive]}));
+      rejected(() => structuredClone({}, {transfer:[buffer, Object.create(MessagePort.prototype)]}));
+      rejected(() => receive.postMessage(null, [receive, buffer]));
+      send.postMessage('before');
+      let moved;
+      rejected(() => structuredClone({get reentry() {
+        moved = structuredClone({port:receive, alias:receive}, {transfer:[receive]});
+        return 1;
+      }}, {transfer:[buffer, receive]}));
+      if (buffer.byteLength !== 8 || moved.port === receive || moved.port !== moved.alias)
+        throw Error('Failed transfer changed ArrayBuffer or lost clone identity');
+      rejected(() => structuredClone(null, {transfer:[receive]}));
+      receive.close();
+      send.postMessage('after');
+      send.close();
+      const seen = [];
+      await new Promise(resolve => {
+        moved.port.onmessage = ({data}) => {
+          seen.push(data);
+          if (data === 'after') resolve();
+        };
+      });
+      if (String(seen) !== 'before,after') throw Error('Clone lost its port queue: ' + seen);
+      moved.port.close();
+
+      const guarded = new MessageChannel(), bytes = new ArrayBuffer(3);
+      const oldGet = WeakMap.prototype.get, oldValues = Map.prototype.values,
+        oldIterator = Array.prototype[Symbol.iterator];
+      let hooks = 0, packet;
+      try {
+        packet = structuredClone({port:guarded.port2, get last() {
+          WeakMap.prototype.get = Map.prototype.values = Array.prototype[Symbol.iterator] = () => {
+            hooks++; throw Error('Prototype hook during port transfer');
+          };
+          return 1;
+        }}, {transfer:[guarded.port2, bytes]});
+      } finally {
+        WeakMap.prototype.get = oldGet; Map.prototype.values = oldValues;
+        Array.prototype[Symbol.iterator] = oldIterator;
+      }
+      if (hooks || bytes.byteLength || packet.last !== 1 ||
+          !(packet.port instanceof MessagePort) || packet.port === guarded.port2)
+        throw Error('Port transfer called a prototype hook or lost ownership');
+      packet.port.close(); guarded.port1.close();
+
+      const discarded = new MessageChannel();
+      discarded.port2.onmessage = () => { throw Error('Closed port received a message'); };
+      discarded.port1.postMessage('queued');
+      discarded.port2.close();
+      discarded.port1.postMessage('ignored');
+      discarded.port1.close();
+
+      const url = URL.createObjectURL(new Blob(['await new Promise(()=>{})']));
+      try {
+        const unopened = new Worker(url, {type:'module'});
+        const channel = new MessageChannel();
+        const nested = new MessageChannel();
+        channel.port1.postMessage(null, [nested.port2]);
+        unopened.postMessage(null, [channel.port2]);
+        unopened.terminate();
+        rejected(() => structuredClone(null, {transfer:[channel.port2]}));
+        rejected(() => structuredClone(null, {transfer:[nested.port2]}));
+        channel.port1.close(); nested.port1.close();
+      } finally {
+        URL.revokeObjectURL(url);
+      }
+
+      const cycleA = new MessageChannel(), cycleB = new MessageChannel();
+      cycleA.port1.postMessage(null, [cycleB.port2]);
+      cycleB.port1.postMessage(null, [cycleA.port2]);
+      cycleA.port1.close(); cycleB.port1.close();
+      await new Promise(resolve => setTimeout(resolve, 10));
+    ''',
+          waitForWorkersToExit: true,
+          afterSuccess: () {
+            expect(
+              before,
+              isNotNull,
+              reason: 'Native port counter is installed',
+            );
+            expect(portCount(), before, reason: 'Unopened port packets retire');
+          },
+        );
+      } finally {
+        probe.dispose();
+      }
+    },
+  );
+  test(
+    'Worker rejection events finish before the next queued message',
+    () => script(r'''
+      const source = `
+        await new Promise(resolve => setTimeout(resolve, 0));
+        const events = [], reason = {message:'late handler'};
+        let rejected;
+        onunhandledrejection = event => {
+          event.preventDefault();
+          if (event.promise !== rejected || event.reason !== reason)
+            throw Error('Unhandled rejection identity changed');
+          events.push('unhandled');
+        };
+        onrejectionhandled = event => {
+          if (event.promise !== rejected || event.reason !== reason)
+            throw Error('Handled rejection identity changed');
+          events.push('handled');
+        };
+        onmessage = ({data}) => {
+          if (data === 1) rejected = Promise.reject(reason);
+          else {
+            rejected.catch(() => {});
+            setTimeout(() => {postMessage(events); close();}, 0);
+          }
+        };
+      `;
+      const url = URL.createObjectURL(new Blob([source]));
+      const worker = new Worker(url, {type:'module'});
+      const answer = new Promise((resolve, reject) => {
+        worker.onmessage = ({data}) => resolve(data);
+        worker.onerror = event => reject(Error(event.message));
+      });
+      worker.postMessage(1);
+      worker.postMessage(2);
+      const events = await answer;
+      URL.revokeObjectURL(url);
+      if (String(events) !== 'unhandled,handled')
+        throw Error('Worker rejection order: ' + String(events) + '; expected unhandled,handled');
+      const fairnessUrl = URL.createObjectURL(new Blob([`
+        let count = 0;
+        onunhandledrejection = event => {
+          event.preventDefault();
+          if (++count < 8) Promise.reject('next checkpoint');
+        };
+        onmessage = () => {
+          setTimeout(() => {postMessage(count); close();}, 0);
+          Promise.reject('first checkpoint');
+        };
+      `]));
+      const fairnessWorker = new Worker(fairnessUrl);
+      const fairnessAnswer = new Promise((resolve, reject) => {
+        fairnessWorker.onmessage = ({data}) => resolve(data);
+        fairnessWorker.onerror = event => reject(Error(event.message));
+      });
+      fairnessWorker.postMessage(null);
+      const count = await fairnessAnswer;
+      URL.revokeObjectURL(fairnessUrl);
+      if (!(count > 0 && count < 8))
+        throw Error('Worker rejection checkpoints starved the queued Dart timer: ' + count);
+    ''', waitForWorkersToExit: true),
+  );
+  test(
+    'Core Worker still images use CPU codec and transform without UI',
+    () async {
+      await script(r'''
+      const source = `
+        (async () => {
+          for (const name of ['Image', 'HTMLImageElement', 'document', 'OffscreenCanvas'])
+            if (typeof globalThis[name] !== 'undefined') throw Error('Unexpected Worker global ' + name);
+          const host = globalThis[Symbol.for('flax.image.host')];
+          const data = new ImageData(new Uint8ClampedArray([
+            255,0,0,255, 0,255,0,255,
+            0,0,255,255, 255,255,255,255,
+          ]), 2, 2);
+          const bitmap = await createImageBitmap(data, {imageOrientation:'flipY'});
+          const pixels = Array.from(host.read(bitmap).data);
+          if (pixels.join() !== '0,0,255,255,255,255,255,255,255,0,0,255,0,255,0,255')
+            throw Error('CPU transform pixels ' + pixels);
+          const blob = await host.encode(host.read(bitmap), 'image/png');
+          const decoded = await createImageBitmap(blob);
+          if (decoded.width !== 2 || decoded.height !== 2 ||
+              Array.from(host.read(decoded).data).join() !== pixels.join())
+            throw Error('CPU PNG round trip');
+          const cropped = await createImageBitmap(decoded, 0, 0, 1, 1, {
+            resizeWidth:2, resizeHeight:2, resizeQuality:'pixelated',
+          });
+          if (Array.from(host.read(cropped).data).join() !== '0,0,255,255,0,0,255,255,0,0,255,255,0,0,255,255')
+            throw Error('CPU crop and resize');
+          for (const [width, height, options, expected] of [
+            [4, 3, {resizeHeight:1}, [2, 1]],
+            [3, 4, {resizeWidth:1}, [1, 2]],
+          ]) {
+            const resized = await createImageBitmap(new ImageData(width, height), options);
+            if (resized.width !== expected[0] || resized.height !== expected[1])
+              throw Error('Inferred resize dimensions must round up');
+            resized.close();
+          }
+          bitmap.close(); decoded.close(); cropped.close();
+          postMessage({ok:true, type:blob.type, size:blob.size}); close();
+        })().catch(error => { postMessage({error:String(error.stack || error)}); close(); });
+      `;
+      const url = URL.createObjectURL(new Blob([source]));
+      const answer = await new Promise((resolve, reject) => {
+        const worker = new Worker(url);
+        worker.onmessage = event => resolve(event.data);
+        worker.onerror = event => reject(Error(event.message));
+      });
+      URL.revokeObjectURL(url);
+      if (!answer.ok || answer.type !== 'image/png' || answer.size < 20)
+        throw Error(JSON.stringify(answer));
+    ''', waitForWorkersToExit: true);
+    },
+  );
+  test(
+    'Worker image graphs preserve aliases and ownership across nested realms',
+    () async {
+      await script(r'''
+      async function checkImages(post) {
+        const host = globalThis[Symbol.for('flax.image.host')];
+        const assert = (ok, message) => { if (!ok) throw Error(message); };
+        const rejected = (operation, name = 'DataCloneError', label = 'clone') => {
+          try { operation(); } catch (error) {
+            assert(error.name === name, label + ': expected ' + name + ', got ' + error); return;
+          }
+          throw Error(label + ': expected ' + name);
+        };
+        for (const reverse of [false, true]) for (const transfer of [false, true]) {
+          const data = new Uint8ClampedArray(new ArrayBuffer(16), 4, 8);
+          data.set([17,34,51,255, 90,80,70,128]);
+          const image = new ImageData(data, 2);
+          const graph = reverse ? {data, buffer:data.buffer, image} : {image, data, buffer:data.buffer};
+          graph.again = image;
+          graph.map = new Map([[image, data]]);
+          for (const key of ['width','height','data','colorSpace','pixelFormat'])
+            Object.defineProperty(image, key, {get(){throw Error('ImageData getter ' + key)}});
+          const copy = structuredClone(graph, {transfer: transfer ? [data.buffer] : []});
+          assert(copy.image instanceof ImageData && copy.image === copy.again, 'ImageData identity');
+          assert(copy.image.data === copy.data && copy.data.buffer === copy.buffer, 'ImageData aliases');
+          assert(copy.map.get(copy.image) === copy.data && copy.data.byteOffset === 4, 'map and offset');
+          assert(copy.image.width === 2 && copy.image.height === 1 && copy.data[0] === 17, 'private dimensions');
+          assert(data.byteLength === (transfer ? 0 : 8), 'ImageData buffer ownership');
+          if (transfer) rejected(() => structuredClone(image));
+        }
+        const pixels = new ImageData(new Uint8ClampedArray([17,34,51,255]),1);
+        const make = () => createImageBitmap(pixels);
+        const image = await make();
+        Object.defineProperty(image, 'width', {get(){throw Error('bitmap width getter')}});
+        const cloned = structuredClone({image, again:image, map:new Map([[image,image]])});
+        assert(cloned.image instanceof ImageBitmap && cloned.image === cloned.again &&
+          cloned.map.get(cloned.image) === cloned.image, 'bitmap graph identity');
+        host.read(cloned.image).data.fill(0);
+        assert(host.read(cloned.image).data[0] === 17, 'bitmap pixels immutable');
+        image.close();
+        assert(host.read(cloned.image).data[0] === 17, 'clone survives sender close');
+        cloned.image.close();
+        for (const mode of ['post-close','duplicate','unsupported','throw','close','transfer-only','reentrant']) {
+          const bitmap = await make(), buffer = new ArrayBuffer(7);
+          let received;
+          const payload = {bitmap};
+          let list = [bitmap, buffer];
+          if (mode === 'duplicate') list = [bitmap, buffer, bitmap];
+          if (mode === 'unsupported') payload.bad = () => {};
+          if (mode === 'transfer-only') delete payload.bitmap;
+          if (['post-close','throw','close','transfer-only','reentrant'].includes(mode))
+            Object.defineProperty(payload,'last',{enumerable:true,get(){
+              if (mode === 'throw') throw new RangeError('getter failed');
+              if (mode === 'reentrant') received = structuredClone(bitmap,{transfer:[bitmap]});
+              else bitmap.close();
+              return true;
+            }});
+          rejected(
+            () => mode === 'post-close' ? post(payload,list) : structuredClone(payload,{transfer:list}),
+            mode === 'throw' ? 'RangeError' : 'DataCloneError', mode,
+          );
+          assert(buffer.byteLength === 7, 'atomic ordinary buffer: ' + mode);
+          if (['duplicate','unsupported','throw'].includes(mode))
+            assert(bitmap.width === 1 && host.read(bitmap).data[0] === 17, 'atomic bitmap: ' + mode);
+          if (received) { assert(received.width === 1, 'inner transfer'); received.close(); }
+          bitmap.close();
+        }
+        const transferOnly = await make(), bytes = new ArrayBuffer(9);
+        const oldGet = WeakMap.prototype.get, oldValues = Map.prototype.values,
+          oldIterator = Array.prototype[Symbol.iterator];
+        let hooks = 0;
+        try {
+          const packet = structuredClone({get last(){
+            WeakMap.prototype.get = Map.prototype.values = Array.prototype[Symbol.iterator] = () => {
+              hooks++; throw Error('prototype hook');
+            };
+            return 1;
+          }},{transfer:[transferOnly,bytes]});
+          if (packet.last !== 1) throw Error('transfer-only value');
+        } finally {
+          WeakMap.prototype.get = oldGet; Map.prototype.values = oldValues;
+          Array.prototype[Symbol.iterator] = oldIterator;
+        }
+        assert(hooks === 0 && transferOnly.width === 0 && bytes.byteLength === 0,'transfer-only precommit');
+        const invalid = new ImageData(1,1);
+        rejected(() => structuredClone(invalid,{transfer:[invalid]}));
+        assert(invalid.data.byteLength === 4,'ImageData itself is not transferable');
+        const closed = await make(); closed.close();
+        rejected(() => structuredClone(closed));
+        const moved = await make();
+        const receiver = structuredClone(moved,{transfer:[moved]});
+        assert(moved.width === 0 && receiver.width === 1,'same realm commit');
+        receiver.close();
+        const captured = host.elementImage(host.read(pixels));
+        rejected(() => structuredClone(captured));
+        const untouched = new ArrayBuffer(3);
+        rejected(() => structuredClone({captured, get last(){ captured.close(); return 1; }},
+          {transfer:[captured,untouched]}));
+        assert(untouched.byteLength === 3, 'failed ElementImage transfer must not detach siblings');
+        const snapshot = host.elementImage(host.read(pixels));
+        const transferred = structuredClone({snapshot, again:snapshot},{transfer:[snapshot]});
+        assert(transferred.snapshot instanceof ElementImage && transferred.snapshot === transferred.again,
+          'ElementImage transfer brand and identity');
+        assert(host.readElementImage(transferred.snapshot).data.join() === '17,34,51,255',
+          'ElementImage transfer pixels');
+        rejected(() => host.readElementImage(snapshot), 'InvalidStateError');
+        transferred.snapshot.close();
+        return true;
+      }
+      function verifyGraphs(values) {
+        const host = globalThis[Symbol.for('flax.image.host')];
+        for (const value of values) {
+          const ArrayType = value.hdr ? Float16Array : Uint8ClampedArray;
+          const colorSpace = value.hdr ? 'display-p3' : 'srgb';
+          const pixelFormat = value.hdr ? 'rgba-float16' : 'rgba-unorm8';
+          if (!(value.image instanceof ImageData) || !(value.bitmap instanceof ImageBitmap) ||
+              !(value.data instanceof ArrayType) || value.image !== value.alias ||
+              value.image.data !== value.data || value.data.buffer !== value.buffer ||
+              value.data.byteOffset !== (value.hdr ? 4 : 0) ||
+              value.map.get(value.image) !== value.bitmap || value.bitmap !== value.again ||
+              value.data.join() !== (value.hdr ? '1.5,-0.25,0.03125,0.5' : '17,34,51,255') ||
+              value.image.colorSpace !== colorSpace || value.image.pixelFormat !== pixelFormat ||
+              value.bytes.byteLength !== 5)
+            throw Error('Cross-realm image graph lost identity or pixels: ' + pixelFormat);
+          const pixels = host.read(value.bitmap);
+          const data = value.hdr
+            ? new Float16Array(pixels.data.buffer, pixels.data.byteOffset, 4)
+            : pixels.data;
+          if (pixels.colorSpace !== colorSpace || pixels.pixelFormat !== pixelFormat ||
+              pixels.premultiplied !== value.hdr ||
+              data.join() !== (value.hdr ? '0.75,-0.125,0.015625,0.5' : '17,34,51,255'))
+            throw Error('Cross-realm bitmap pixels: ' + pixelFormat);
+        }
+      }
+      function transfers(values) {
+        return values.flatMap(value => [value.bitmap, value.buffer, value.bytes]);
+      }
+      function entry(checkImages, verifyGraphs, transfers) {
+        onmessage = async ({data}) => {
+          try {
+            if (data.check) { postMessage({checked:await checkImages(postMessage)}); return; }
+            verifyGraphs(data.values);
+            if (data.nested) {
+              const source = '('+entry.toString()+')('+[checkImages,verifyGraphs,transfers].join(',')+')';
+              const url = URL.createObjectURL(new Blob([source]));
+              const child = new Worker(url);
+              const values = await new Promise((resolve,reject) => {
+                child.onerror = event => reject(Error(event.message));
+                child.onmessage = ({data}) => data.error ? reject(Error(data.error)) : resolve(data.values);
+                child.postMessage({values:data.values},transfers(data.values));
+              });
+              URL.revokeObjectURL(url);
+              verifyGraphs(values);
+              postMessage({values},transfers(values));
+            } else {
+              const values = structuredClone(data.values);
+              for (const value of data.values) value.bitmap.close();
+              verifyGraphs(values);
+              postMessage({values},transfers(values));
+            }
+            close();
+          } catch(error) { postMessage({error:String(error.stack||error)}); close(); }
+        };
+      }
+      const source = '('+entry.toString()+')('+[checkImages,verifyGraphs,transfers].join(',')+')';
+      const url = URL.createObjectURL(new Blob([source]));
+      for (const nested of [false,true]) {
+        const worker = new Worker(url);
+        if (!nested) await checkImages((value,list) => worker.postMessage(value,list));
+        const receive = () => new Promise((resolve,reject) => {
+          worker.onerror = event => reject(Error(event.message));
+          worker.onmessage = ({data}) => data.error ? reject(Error(data.error)) : resolve(data);
+        });
+        let answer = receive(); worker.postMessage({check:true});
+        if (!(await answer).checked) throw Error('Worker image checks omitted');
+        const values = [];
+        for (const hdr of [false,true]) {
+          const data = hdr ? new Float16Array(new ArrayBuffer(16),4,4) : new Uint8ClampedArray(4);
+          data.set(hdr ? [1.5,-0.25,0.03125,0.5] : [17,34,51,255]);
+          const settings = hdr ? {colorSpace:'display-p3',pixelFormat:'rgba-float16'} : undefined;
+          const image = new ImageData(data,1,1,settings);
+          const bitmap = await createImageBitmap(image, hdr ? {premultiplyAlpha:'premultiply'} : undefined);
+          const bytes = new ArrayBuffer(5);
+          values.push({hdr,image,alias:image,data,buffer:data.buffer,bitmap,again:bitmap,bytes,map:new Map([[image,bitmap]])});
+        }
+        answer = receive();
+        worker.postMessage({values,nested},nested ? transfers(values) : []);
+        for (const {hdr,bitmap,data} of values)
+          if (bitmap.width !== (nested ? 0 : 1) || data.byteLength !== (nested ? 0 : hdr ? 8 : 4))
+            throw Error('Sender ownership');
+        const returned = (await answer).values;
+        await new Promise(resolve => setTimeout(resolve,20));
+        verifyGraphs(returned);
+        for (const value of [...returned,...values]) value.bitmap.close();
+      }
+      URL.revokeObjectURL(url);
+    ''', waitForWorkersToExit: true);
+    },
+  );
+  test(
+    'Worker image-only checkpoints sweep real garbage in root and Worker',
+    () async {
+      await script(r'''
+      async function collectImages() {
+        const host = globalThis[Symbol.for('flax.image.host')];
+        let released = 0;
+        async function allocate() {
+          const bitmap = await createImageBitmap(new ImageData(16, 16));
+          host.onClose(bitmap, () => released++);
+          return new WeakRef(bitmap);
+        }
+        const refs = [await allocate(), await allocate()];
+        for (let attempt = 0; attempt < 40 && released < refs.length; attempt++) {
+          globalThis.imageGarbage = [];
+          for (let i = 0; i < 100; i++) imageGarbage.push(new Array(20000).fill(i));
+          globalThis.imageGarbage = null;
+          await new Promise(resolve => setTimeout(resolve, 5));
+        }
+        if (released !== refs.length || refs.some(ref => ref.deref() !== undefined))
+          throw Error('Image-only checkpoint did not collect and release bitmaps: ' + released);
+        const alive = await createImageBitmap(new ImageData(1, 1));
+        if (alive.width !== 1) throw Error('Image host stopped after garbage collection');
+        alive.close();
+        return released;
+      }
+      await collectImages();
+      const url = URL.createObjectURL(new Blob([
+        `(${collectImages.toString()})().then(count=>{postMessage({count});close()},
+          error=>{postMessage({error:String(error.stack||error)});close()});`,
+      ]));
+      const result = await new Promise((resolve, reject) => {
+        const worker = new Worker(url);
+        worker.onmessage = ({data}) => data.error ? reject(Error(data.error)) : resolve(data);
+        worker.onerror = event => reject(Error(event.message));
+      });
+      URL.revokeObjectURL(url);
+      if (result.count !== 2) throw Error('Worker GC receipt missing');
+    ''', waitForWorkersToExit: true);
+    },
+  );
+  test(
+    'Worker still-image shutdown drops late codecs and unopened mixed packets',
+    () async {
+      await script(r'''
+      const host = globalThis[Symbol.for('flax.image.host')];
+      const input = new ImageData(256, 256);
+      input.data.fill(255);
+      const blob = await host.encode(host.read(input), 'image/png');
+      function producer() {
+        onmessage = async ({data}) => {
+          try {
+            const host = globalThis[Symbol.for('flax.image.host')];
+            const retained = await createImageBitmap(new ImageData(16, 16));
+            // Shutdown must release native ownership without running application cleanup.
+            host.onClose(retained, () => { for (;;) {} });
+            globalThis.retainedImage = retained;
+            const work = data.mode.includes('decode')
+              ? createImageBitmap(data.blob)
+              : createImageBitmap(new ImageData(1024, 1024), {resizeWidth:512});
+            work.then(() => postMessage({late:true}), () => postMessage({late:true}));
+            // Blob.arrayBuffer and decode dispatch run before shutdown, without yielding a task.
+            await Promise.resolve();
+            await Promise.resolve();
+            postMessage({armed:true});
+            if (data.mode.startsWith('close')) close();
+            else for (;;) {}
+          } catch (error) {
+            postMessage({error:String(error.stack || error)});
+          }
+        };
+      }
+      const url = URL.createObjectURL(new Blob([`(${producer.toString()})();`]));
+      try {
+        for (const mode of ['close-transform','terminate-transform','close-decode','terminate-decode']) {
+          const worker = new Worker(url);
+          await new Promise((resolve, reject) => {
+            worker.onmessage = ({data}) => data.armed ? resolve() : reject(Error(JSON.stringify(data)));
+            worker.onerror = event => reject(Error(event.message));
+            worker.postMessage({mode, blob});
+          });
+          if (mode.startsWith('terminate')) worker.terminate();
+          await new Promise(resolve => setTimeout(resolve, 10));
+        }
+        const parentUrl = URL.createObjectURL(new Blob([`
+          const child = new Worker(${JSON.stringify(url)});
+          child.onmessage = ({data}) => postMessage(data);
+          onmessage = ({data}) => child.postMessage(data);
+        `]));
+        const parent = new Worker(parentUrl);
+        await new Promise((resolve, reject) => {
+          parent.onmessage = ({data}) => data.armed ? resolve() : reject(Error(JSON.stringify(data)));
+          parent.onerror = event => reject(Error(event.message));
+          parent.postMessage({mode:'terminate-decode', blob});
+        });
+        parent.terminate();
+        URL.revokeObjectURL(parentUrl);
+
+        const neverUrl = URL.createObjectURL(new Blob(['await new Promise(()=>{})']));
+        const unopened = new Worker(neverUrl, {type:'module'});
+        const bitmap = await createImageBitmap(input);
+        const copy = structuredClone(bitmap);
+        const bytes = new ArrayBuffer(8);
+        unopened.postMessage({image:bitmap, again:bitmap}, [bitmap, bytes]);
+        if (bitmap.width !== 0 || bytes.byteLength !== 0) throw Error('Dropped packet did not detach');
+        unopened.terminate();
+        URL.revokeObjectURL(neverUrl);
+        await new Promise(resolve => setTimeout(resolve, 50));
+        if (copy.width !== 256 || host.read(copy).data[0] !== 255)
+          throw Error('Receiver lost pixels when a different owner retired');
+        copy.close();
+        const after = await createImageBitmap(blob);
+        if (after.width !== 256 || host.read(after).data[0] !== 255)
+          throw Error('Root image host failed after Worker retirement');
+        after.close();
+      } finally {
+        URL.revokeObjectURL(url);
+      }
+    ''', waitForWorkersToExit: true);
+    },
+  );
+  test(
+    'Session close retires pending Worker images without application teardown',
+    () async {
+      await script(r'''
+      const worker = new Worker(URL.createObjectURL(new Blob([`
+        (async () => {
+          const host = globalThis[Symbol.for('flax.image.host')];
+          globalThis.bitmap = await createImageBitmap(new ImageData(32,32));
+          host.onClose(bitmap, () => { for (;;) {} });
+          createImageBitmap(new ImageData(1024,1024), {resizeWidth:512})
+            .then(() => { for (;;) {} }, () => { for (;;) {} });
+          postMessage('armed');
+          for (;;) {}
+        })();
+      `])));
+      await new Promise((resolve,reject) => {
+        worker.onmessage = ({data}) => data === 'armed' ? resolve() : reject(Error(String(data)));
+        worker.onerror = event => reject(Error(event.message));
+      });
+      // The harness closes the Session while CPU work and the Worker runtime are live.
+    ''');
+    },
+  );
   test('Worker host entries recheck resource and inline source URLs', () async {
     final server = await HttpServer.bind(InternetAddress.loopbackIPv4, 0);
     final cache = await Directory.systemTemp.createTemp(

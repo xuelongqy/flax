@@ -1,3 +1,106 @@
+namespace {
+void awaitSnapshot(std::future<bool> completion) {
+  require(completion.wait_for(std::chrono::seconds(30)) == std::future_status::ready,
+          "Canvas snapshot GPU completion timed out");
+  require(completion.get(), "Cannot read the canvas drawing buffer");
+}
+
+void readDrawingTexture(Surface &canvas, const wgpu::Texture &texture,
+                        uint8_t *output, size_t rowBytes) {
+  const size_t stride = (rowBytes + 255) & ~size_t(255);
+  wgpu::Limits limits;
+  require(canvas.device.GetLimits(&limits) == wgpu::Status::Success,
+          "Cannot read WebGPU buffer limits");
+  // A valid texture can hold more bytes than the device allows in one buffer.
+  const uint32_t rowsPerCopy =
+      std::min<uint64_t>(canvas.height, limits.maxBufferSize / stride);
+  require(rowsPerCopy > 0, "Cannot fit a canvas row in a GPU buffer");
+  wgpu::BufferDescriptor bufferDescriptor;
+  bufferDescriptor.size = stride * rowsPerCopy;
+  bufferDescriptor.usage = wgpu::BufferUsage::CopyDst | wgpu::BufferUsage::MapRead;
+  auto buffer = canvas.device.CreateBuffer(&bufferDescriptor);
+  auto queue = canvas.device.GetQueue();
+  for (uint32_t y = 0; y < canvas.height; y += rowsPerCopy) {
+    const auto rows = std::min(rowsPerCopy, canvas.height - y);
+    wgpu::DawnEncoderInternalUsageDescriptor internal;
+    internal.useInternalUsages = true;
+    wgpu::CommandEncoderDescriptor descriptor;
+    descriptor.nextInChain = &internal;
+    auto encoder = canvas.device.CreateCommandEncoder(&descriptor);
+    wgpu::TexelCopyTextureInfo source{.texture = texture, .origin = {0, y, 0}};
+    wgpu::TexelCopyBufferInfo destination;
+    destination.buffer = buffer;
+    destination.layout.bytesPerRow = uint32_t(stride);
+    wgpu::Extent3D size{canvas.width, rows, 1};
+    encoder.CopyTextureToBuffer(&source, &destination, &size);
+    auto commands = encoder.Finish();
+    queue.Submit(1, &commands);
+    const size_t length = stride * rows;
+    auto done = std::make_shared<std::promise<bool>>();
+    auto completion = done->get_future();
+    buffer.MapAsync(wgpu::MapMode::Read, 0, length,
+                    wgpu::CallbackMode::AllowSpontaneous,
+                    [done](wgpu::MapAsyncStatus result, wgpu::StringView) {
+                      done->set_value(result == wgpu::MapAsyncStatus::Success);
+                    });
+    awaitSnapshot(std::move(completion));
+    auto *pixels = static_cast<const uint8_t *>(buffer.GetConstMappedRange(0, length));
+    require(pixels != nullptr, "Cannot map the canvas drawing buffer");
+    for (uint32_t row = 0; row < rows; ++row)
+      memcpy(output + (y + row) * rowBytes, pixels + row * stride, rowBytes);
+    buffer.Unmap();
+  }
+}
+
+bool readDrawingSurface(Surface &canvas, uint8_t *output, size_t rowBytes) {
+  auto source = canvas.current;
+  __attribute__((objc_precise_lifetime)) id<MTLTexture> published = nil;
+  if (source) {
+    // Initialize untouched recycled storage without publishing or expiring it.
+    canvas.materializeOutput();
+  } else {
+    published = [canvas.endpoint->output copyFlaxDawnMetalTexture];
+    auto lease = (FlaxWebGpuLease *)objc_getAssociatedObject(
+        published, @selector(copyFlaxDawnMetalTexture));
+    if (lease)
+      source = lease->storage;
+  }
+  if (!source)
+    return false;
+
+  auto done = std::make_shared<std::promise<bool>>();
+  auto completion = done->get_future();
+  canvas.device.GetQueue().OnSubmittedWorkDone(
+      wgpu::CallbackMode::AllowSpontaneous,
+      [done](wgpu::QueueWorkDoneStatus result, wgpu::StringView) {
+        done->set_value(result == wgpu::QueueWorkDoneStatus::Success);
+      });
+  awaitSnapshot(std::move(completion));
+
+  const bool video = source->pixels != nullptr;
+  require(video ? CVPixelBufferLockBaseAddress(source->pixels,
+                                               kCVPixelBufferLock_ReadOnly) ==
+                      kCVReturnSuccess
+                : IOSurfaceLock(source->rgbaPixels, kIOSurfaceLockReadOnly,
+                                nullptr) == kIOReturnSuccess,
+          "Cannot read the canvas IOSurface");
+  const auto *pixels = static_cast<const uint8_t *>(
+      video ? CVPixelBufferGetBaseAddress(source->pixels)
+            : IOSurfaceGetBaseAddress(source->rgbaPixels));
+  const size_t stride = video ? CVPixelBufferGetBytesPerRow(source->pixels)
+                              : IOSurfaceGetBytesPerRow(source->rgbaPixels);
+  if (pixels && stride >= rowBytes)
+    for (uint32_t y = 0; y < canvas.height; ++y)
+      memcpy(output + y * rowBytes, pixels + y * stride, rowBytes);
+  if (video)
+    CVPixelBufferUnlockBaseAddress(source->pixels, kCVPixelBufferLock_ReadOnly);
+  else
+    IOSurfaceUnlock(source->rgbaPixels, kIOSurfaceLockReadOnly, nullptr);
+  require(pixels && stride >= rowBytes, "Invalid canvas IOSurface layout");
+  return true;
+}
+} // namespace
+
 // Explicit snapshots only. Ordinary frame presentation never reads pixels.
 extern "C" int32_t flax_webgpu_canvas_readback(void *value, void *destination,
                                                size_t length,
@@ -5,116 +108,39 @@ extern "C" int32_t flax_webgpu_canvas_readback(void *value, void *destination,
   return status([&] {
     auto &canvas = *static_cast<Surface *>(value);
     auto *output = static_cast<uint8_t *>(destination);
-    require(canvas.device && output &&
-                length == size_t(canvas.width) * canvas.height * 4,
+    const bool fp16 = canvas.format == wgpu::TextureFormat::RGBA16Float;
+    const size_t rowBytes = size_t(canvas.width) * (fp16 ? 8 : 4);
+    require(canvas.device && output && rowBytes && canvas.height &&
+                length / canvas.height == rowBytes && length % canvas.height == 0,
             "Invalid canvas snapshot storage");
-    auto source = canvas.current;
-    __strong id<MTLTexture> published;
-    if (source) {
-      // Load/store initializes an unused texture without replacing its JS
-      // identity.
-      auto encoder = canvas.device.CreateCommandEncoder();
-      wgpu::RenderPassColorAttachment color;
-      color.view = source->texture.CreateView();
-      color.loadOp = wgpu::LoadOp::Load;
-      color.storeOp = wgpu::StoreOp::Store;
-      wgpu::RenderPassDescriptor descriptor;
-      descriptor.colorAttachmentCount = 1;
-      descriptor.colorAttachments = &color;
-      auto pass = encoder.BeginRenderPass(&descriptor);
-      pass.End();
-      auto commands = encoder.Finish();
-      canvas.device.GetQueue().Submit(1, &commands);
-    } else {
-      published = [canvas.output copyFlaxDawnMetalTexture];
-      auto lease = (FlaxWebGpuLease *)objc_getAssociatedObject(
-          published, @selector(copyFlaxDawnMetalTexture));
-      if (lease)
-        source = lease->storage;
-    }
-    if (!source) {
+
+    const auto &texture = canvas.colorInput && !canvas.outputFrozen
+                              ? canvas.colorInput
+                              : canvas.lastDrawingBuffer;
+    bool captured = true;
+    if (texture)
+      readDrawingTexture(canvas, texture, output, rowBytes);
+    else if (!readDrawingSurface(canvas, output, rowBytes)) {
       memset(output, 0, length);
-      if (canvas.opaque)
+      captured = false;
+    }
+
+    if (canvas.format == wgpu::TextureFormat::BGRA8Unorm)
+      for (size_t i = 0; i < length; i += 4)
+        std::swap(output[i], output[i + 2]);
+    if (canvas.opaque) {
+      if (fp16) {
+        const uint16_t one = 0x3c00;
+        for (size_t i = 6; i < length; i += 8)
+          memcpy(output + i, &one, sizeof(one));
+      } else {
         for (size_t i = 3; i < length; i += 4)
           output[i] = 255;
-      return;
-    }
-    struct Completion {
-      std::mutex mutex;
-      std::condition_variable changed;
-      bool ready = false;
-      wgpu::QueueWorkDoneStatus status = wgpu::QueueWorkDoneStatus::Error;
-    };
-    auto done = std::make_shared<Completion>();
-    canvas.device.GetQueue().OnSubmittedWorkDone(
-        wgpu::CallbackMode::AllowSpontaneous,
-        [done](wgpu::QueueWorkDoneStatus result, wgpu::StringView) {
-          {
-            std::lock_guard lock(done->mutex);
-            done->status = result;
-            done->ready = true;
-          }
-          done->changed.notify_one();
-        });
-    {
-      std::unique_lock lock(done->mutex);
-      require(done->changed.wait_for(lock, std::chrono::seconds(30),
-                                     [&] { return done->ready; }),
-              "Canvas snapshot GPU completion timed out");
-      require(done->status == wgpu::QueueWorkDoneStatus::Success,
-              "Canvas snapshot device was lost");
-    }
-    const bool video = source->pixels != nullptr;
-    require(video ? CVPixelBufferLockBaseAddress(source->pixels,
-                                                 kCVPixelBufferLock_ReadOnly) ==
-                        kCVReturnSuccess
-                  : IOSurfaceLock(source->rgbaPixels, kIOSurfaceLockReadOnly,
-                                  nullptr) == kIOReturnSuccess,
-            "Cannot read the canvas IOSurface");
-    auto unlock = [&] {
-      if (video)
-        CVPixelBufferUnlockBaseAddress(source->pixels,
-                                       kCVPixelBufferLock_ReadOnly);
-      else
-        IOSurfaceUnlock(source->rgbaPixels, kIOSurfaceLockReadOnly, nullptr);
-    };
-    auto pixels = static_cast<const uint8_t *>(
-        video ? CVPixelBufferGetBaseAddress(source->pixels)
-              : IOSurfaceGetBaseAddress(source->rgbaPixels));
-    const size_t stride = video ? CVPixelBufferGetBytesPerRow(source->pixels)
-                                : IOSurfaceGetBytesPerRow(source->rgbaPixels);
-    if (!pixels || stride < size_t(canvas.width) * 4) {
-      unlock();
-      throw std::runtime_error("Invalid canvas IOSurface layout");
-    }
-    for (uint32_t y = 0; y < canvas.height; y++)
-      for (uint32_t x = 0; x < canvas.width; x++) {
-        const auto *pixel = pixels + stride * y + x * 4;
-        auto *rgba = output + (size_t(y) * canvas.width + x) * 4;
-        const uint32_t alpha = canvas.opaque ? 255 : pixel[3];
-        for (int channel = 0; channel < 3; channel++) {
-          const uint32_t value =
-              pixel[canvas.format == wgpu::TextureFormat::BGRA8Unorm
-                        ? 2 - channel
-                        : channel];
-          rgba[channel] =
-              canvas.opaque ? value
-              : alpha       ? std::min(255u, (value * 255 + alpha / 2) / alpha)
-                            : 0;
-        }
-        rgba[3] = alpha;
       }
-    unlock();
-    if (transfer) {
-      if (canvas.current) {
-        wgpu::SharedTextureMemoryEndAccessState end;
-        require(canvas.current->memory.EndAccess(canvas.current->texture,
-                                                 &end) == wgpu::Status::Success,
-                "Cannot expire the transferred canvas texture");
-        canvas.current->texture.Destroy();
-        canvas.current->leased = false;
-        canvas.current.reset();
-      }
+    }
+    if (transfer && captured) {
+      require(canvas.discardCurrent() == wgpu::Status::Success,
+              "Cannot expire the transferred canvas texture");
       canvas.acquire();
       canvas.present();
     }

@@ -19,4 +19,6 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    # The optional macOS launcher generates this directory in its staged app.
+    # ignore: asset_directory_does_not_exist
     - assets/flax_modules/

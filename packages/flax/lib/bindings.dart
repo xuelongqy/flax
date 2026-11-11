@@ -14,7 +14,8 @@ import 'package:crypto/crypto.dart' as crypto;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart' as gestures;
 import 'package:flutter/services.dart' as input;
-import 'package:flutter/rendering.dart' show RenderParagraph, RenderEditable;
+import 'package:flutter/rendering.dart'
+    show RenderParagraph, RenderEditable, RenderRepaintBoundary;
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart'
     show
@@ -90,6 +91,7 @@ part 'src/ui/data.dart';
 part 'src/ui/pages.dart';
 
 part 'src/ui/canvas.dart';
+part 'src/ui/canvas_sources.dart';
 part 'src/ui/images.dart';
 part 'src/ui/host.dart';
 part 'src/ui/fetch.dart';

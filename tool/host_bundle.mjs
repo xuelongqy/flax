@@ -1,4 +1,5 @@
 import { buildHost, buildNotices, hostBundles, root } from './src/host_bundle.mjs';
+import { execFileSync } from 'node:child_process';
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { dirname, relative, join } from 'node:path';
@@ -33,6 +34,20 @@ const selectedBundles = selectedPackage
   : hostBundles;
 if (selectedPackage && selectedBundles.length === 0)
   throw new Error(`Package has no host bundle: ${selectedPackage}`);
+
+if (selectedBundles.some((bundle) => !bundle.base)) {
+  const base = hostBundles.find((bundle) => bundle.base);
+  // Emit shared modules without regenerating the embedded bundles being checked.
+  execFileSync(
+    process.execPath,
+    [
+      join(root, 'node_modules', 'typescript', 'bin', 'tsc'),
+      '--project',
+      join(base.packageRoot, 'js', 'tsconfig.npm.json'),
+    ],
+    { cwd: root, stdio: 'inherit' },
+  );
+}
 
 for (const bundle of selectedBundles) {
   const script = await buildHost(bundle);

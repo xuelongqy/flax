@@ -47,14 +47,29 @@ before(async () => {
     }),
   );
   await writeFile(resolve(directory, 'pnpm-workspace.yaml'), 'packages: []\n');
+  // Reuse the workspace's locked registry versions in the disposable consumer.
+  await copyFile(
+    resolve(repository, 'pnpm-lock.yaml'),
+    resolve(directory, 'pnpm-lock.yaml'),
+  );
   const store = await exec('pnpm', ['store', 'path'], { cwd: repository });
   await exec(
     'pnpm',
-    ['install', '--offline', '--ignore-scripts', '--store-dir', store.stdout.trim()],
+    [
+      'install',
+      '--offline',
+      '--ignore-scripts',
+      '--no-frozen-lockfile',
+      '--store-dir',
+      store.stdout.trim(),
+    ],
     {
       cwd: directory,
     },
-  );
+  ).catch((error) => {
+    error.message += `\n${error.stdout}${error.stderr}`;
+    throw error;
+  });
 });
 after(async () => {
   if (directory) await rm(directory, { recursive: true, force: true });
@@ -191,6 +206,59 @@ test('static CommonJS and node:ffi resolve to the same public API', async () => 
     await readFile(resolve(directory, 'node_modules/@flax/ffi/package.json')),
   );
   assert.equal(installed.name, '@flax/ffi');
+});
+
+test('bundled finalizer detach avoids replaced collection methods', async () => {
+  const result = await build({
+    absWorkingDir: directory,
+    stdin: {
+      resolveDir: directory,
+      contents: `
+        import {NativeFinalizer} from '@flax/ffi';
+        for (const [prototype, method] of [
+          [WeakMap.prototype, 'get'],
+          [WeakMap.prototype, 'has'],
+          [WeakMap.prototype, 'set'],
+          [Set.prototype, 'add'],
+        ]) {
+          const finalizer = new NativeFinalizer(() => {});
+          const target = {};
+          finalizer.attach(target, 1n);
+          const previous = prototype[method];
+          try {
+            prototype[method] = () => { throw new Error('Unexpected collection hook'); };
+            finalizer.detach(target);
+          } finally {
+            prototype[method] = previous;
+          }
+        }
+      `,
+    },
+    bundle: true,
+    write: false,
+    minify: true,
+    keepNames: true,
+    platform: 'neutral',
+    mainFields: ['module', 'main'],
+    format: 'iife',
+    target: 'es2019',
+    supported: { 'async-generator': false, 'for-await': false },
+    logLevel: 'silent',
+    plugins: [flaxEsbuildPlugin(null, { nativeAssets: false })],
+  });
+  let detached = 0;
+  runInNewContext(result.outputFiles[0].text, {
+    __flaxFfiMemory: {
+      finalizer: () => ({
+        attach: () => 1,
+        detach(ids) {
+          assert.deepEqual(Array.from(ids), [1]);
+          detached++;
+        },
+      }),
+    },
+  });
+  assert.equal(detached, 4);
 });
 
 test('standalone buffer retains its type without an installed FFI package', async (t) => {

@@ -132,3 +132,47 @@ playback, measurement and error transitions rebuild the controls. The maintained
 keeps ordinary FFI argument storage on the stack with a heap fallback for large
 aggregates and signatures. Core retains its private frame/publication method handles
 until session disposal.
+
+## Video frame acceptance
+
+Use the same macOS prerequisites as the studio. The acceptance app decodes a local
+1080p60 BT.709 clip off the platform thread and publishes IOSurface-backed frames
+through a Flutter texture producer. It renders the same frames with Flutter `Texture`,
+direct WebGPU sampling, and unmodified Three.js `VideoFrameTexture`.
+
+Generate a fixture with a red-to-green change between the first two frames and fixed
+gray and blue reference patches. The clip stays on the workspace volume.
+
+```sh
+mkdir -p "$PWD/.local/tmp"
+export TMPDIR="$PWD/.local/tmp" TMP="$PWD/.local/tmp" TEMP="$PWD/.local/tmp"
+filters="drawbox=x=0:y=0:w=640:h=360:color=red:t=fill:enable='eq(n,0)'"
+filters="$filters,drawbox=x=0:y=0:w=640:h=360:color=lime:t=fill:enable='gte(n,1)'"
+filters="$filters,drawbox=x=1280:y=720:w=640:h=360:color=blue:t=fill"
+filters="$filters,drawbox=x=1280:y=0:w=640:h=360:color=gray:t=fill"
+filters="$filters,scale=out_color_matrix=bt709:out_range=tv,format=yuv420p"
+filters="$filters,setparams=range=limited:color_primaries=bt709:color_trc=bt709:colorspace=bt709"
+ffmpeg -f lavfi -i 'testsrc=size=1920x1080:rate=60:duration=16' \
+  -vf "$filters" -c:v libx264 -preset ultrafast -crf 18 -g 60 -bf 0 \
+  -x264-params colorprim=bt709:transfer=bt709:colormatrix=bt709 \
+  -movflags +faststart+write_colr .local/video-1080p60.mp4
+python3 packages/flax_webgpu/tool/run_macos.py --video .local/video-1080p60.mp4 \
+  --flutter-root /path/to/maintained/flutter
+```
+
+The app checks pixels for NV12 video and full range and for BGRA, Display P3 upload,
+expiry, source disposal and Session resource retirement. A module Worker checks source
+grants, raw sampling and copying for two successive frames, and termination with an
+active frame lease. Clone checks require independent GPU import expiry, a shared pixel
+lease, real color metadata, timing overrides, garbage collection and Worker retirement.
+Original-plane readback checks full/cropped NV12 limited/full range and BGRA bytes,
+custom reordered layouts, untouched padding, shared DataView offsets and clone/close
+side effects. Packed RGB readback checks all four output formats, sRGB and Display P3
+pixels, and padded destinations. CPU checks run outside measurement. Same-realm transfer
+checks sender expiry, graph aliases, rollback, mixed transfer lists and queue cleanup.
+Run with `FLAX_WEBGPU_VIDEO_WORKER_SOURCES=none` to check that a Worker without
+acquisition grants can render transferred frames, keep one alive through a recorded
+command, return a frame through a MessagePort and retire a remaining live lease. The app
+records submission FPS and frame acquisition to GPU queue callback latency for each 1920
+× 1080 path after warmup. Pixel captures run separately from timing. Results and PNGs
+are in `.local/webgpu-video/`.

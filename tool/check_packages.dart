@@ -698,6 +698,13 @@ Future<void> _checkNpmConsumers(
     File(p.join(directory.path, 'package.json')).writeAsStringSync(
       '${const JsonEncoder.withIndent('  ').convert({'name': 'consumer-${p.basename(directory.path)}', 'private': true, 'type': 'module', 'dependencies': dependencies})}\n',
     );
+    // Separate projects avoid shared-workspace metadata revalidation in pnpm.
+    File(p.join(directory.path, 'pnpm-workspace.yaml')).writeAsStringSync(
+      '${const JsonEncoder.withIndent('  ').convert({
+        'packages': <String>[],
+        'overrides': {for (final archive in archives.values) archive.name: 'file:${p.relative(archive.file.path, from: directory.path)}'},
+      })}\n',
+    );
     final runtimeImports = <String>{
       ..._npmExportSpecifiers(coreName, manifests[coreName]!, runtime: true),
       if (archive.name != core.name)
@@ -739,15 +746,6 @@ Future<void> _checkNpmConsumers(
       })}\n',
     );
   }
-  File(p.join(root.path, 'package.json'))
-      .writeAsStringSync('{"name":"flax-archive-consumers","private":true}\n');
-  File(p.join(root.path, 'pnpm-workspace.yaml')).writeAsStringSync(
-    '${const JsonEncoder.withIndent('  ').convert({
-      'packages': ['*'],
-      'overrides': {for (final archive in archives.values) archive.name: 'file:${p.relative(archive.file.path, from: root.path)}'},
-    })}\n',
-  );
-  await installOfflineNpmConsumer(workspaceRoot, root.path);
   final nodeLoader = File(
     p.join(
       workspaceRoot,
@@ -759,6 +757,7 @@ Future<void> _checkNpmConsumers(
     ),
   ).uri.toString();
   for (final consumer in consumers) {
+    await installOfflineNpmConsumer(workspaceRoot, consumer.path);
     await run('node', [
       '--import',
       nodeLoader,
@@ -788,10 +787,14 @@ Future<void> installOfflineNpmConsumer(
       'Workspace pnpm store is missing; install dependencies first',
     );
   }
+  // Reuse the workspace's locked registry versions in the disposable consumer.
+  File(p.join(workspaceRoot, 'pnpm-lock.yaml'))
+      .copySync(p.join(consumerRoot, 'pnpm-lock.yaml'));
   await run('pnpm', [
     'install',
     '--offline',
     '--ignore-scripts',
+    '--no-frozen-lockfile',
     '--store-dir',
     store,
   ], directory: consumerRoot);

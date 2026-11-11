@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "platform": "macos-arm64",
+  "task": "Dedicated Worker WebGPU rendering",
+  "baseCommit": "d954085ff34814cab21d8991b6b590bec9e182eb",
+  "applicationSource": {
+    "snapshot": "fix-8",
+    "packageDigest": "160f4fe81ef66d5a5a5c43898357c12a1c8a2ace18590be2b9dbfd071bf14e38",
+    "subsequentDelta": "Task documentation and this validation receipt only."
+  },
+  "artifacts": {
+    "directory": "/Volumes/MAC_HOME/CodexHome/review-evidence/webgpu-worker-rendering-20261102/artifacts-v2",
+    "manifestSha256": "cc3c5af4bed10345afb5e07d3206562d843190cc2a217a94fe70991290014dad",
+    "entries": 2052
+  },
+  "engine": {
+    "sourceWorktree": "/Volumes/MAC_HOME/CodexHome/worktrees/webgpu-worker-engine/flutter",
+    "baseCommit": "439033d726d47670b7228864298cce3e9ddbd4c9",
+    "sourcePackageDigest": "990ef5780bce7056e7171fa948fb7df440783cee52f39ed448a8a9f55c65fdb1",
+    "releaseUuid": "89331F50-993D-3518-B0D1-A5173481A26A",
+    "debugUuid": "589B842D-A8C6-3D01-A67F-33808B917F0B",
+    "instrumentedGcUuid": "A4F8F896-95CF-3DA7-B5EB-FDC85E9E7C4E",
+    "originalMaintainedSourceAndOutputsPreserved": true,
+    "matchingEngineRequired": true
+  },
+  "checks": {
+    "coreNodePassed": 145,
+    "webgpuNodePassed": 15,
+    "runtimePassed": 59,
+    "coreUiPassed": 50,
+    "coreUiSplit": {
+      "host": 22,
+      "workers": 24,
+      "canvas": 4
+    },
+    "typesAndHostGeneration": "passed; independently reproduced types",
+    "normalGpuSessions": 3,
+    "mainRenderedFrames": 360,
+    "selectedCtsPerSession": {
+      "passed": 567,
+      "skipped": 36,
+      "failed": 0,
+      "skipReason": "Existing Float16Array proxy cases"
+    },
+    "instrumentedGpuDeviceGc": {
+      "collected": 3,
+      "ledgerBefore": 1,
+      "ledgerAfter": 1
+    },
+    "retirement": {
+      "gpuKinds": 10,
+      "gpuAfter": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "workerAfter": [
+        0,
+        0
+      ]
+    },
+    "focusedFfi": {
+      "debugReportedChecks": 2649,
+      "releaseReportedChecks": 2899,
+      "gcContractsPerMode": 15
+    },
+    "ownedBufferV8ProbeChecks": 8,
+    "independentOwnedBufferReplayChecks": 8
+  },
+  "workerCapabilities": [
+    "navigator.gpu device/queue/compute/readback",
+    "OffscreenCanvas webgpu context",
+    "Transfer with detached sender and native owned lease",
+    "Flutter CanvasView presentation and resize",
+    "Worker requestAnimationFrame with Worker clock",
+    "Nested Workers and deterministic termination/session cleanup"
+  ],
+  "performance": {
+    "resolution": [
+      960,
+      540
+    ],
+    "abbaProcesses": 8,
+    "aggregation": "Median of per-process quantiles; eight startup samples per process are not robust tail estimates.",
+    "ordinaryEncodeSubmitP50Ms": {
+      "baseline": 0.0865,
+      "current": 0.088
+    },
+    "cpuWorkerStartupP50Ms": {
+      "baseline": 28.087,
+      "current": 38.295,
+      "delta": 10.208
+    },
+    "cpuWorkerStartupScope": "GPU-selected Session, one-time per Worker, not per-frame. Core-only profile unchanged.",
+    "nativeCreateAndWgslMs": {
+      "p50": 0.037834,
+      "p95": 0.056708,
+      "independentP50": 0.0265
+    },
+    "nativeGetterControl": {
+      "processes": 1,
+      "samples": 24,
+      "pairsPerSample": 10000,
+      "sourceDetached": true,
+      "nativeBacked": true,
+      "loopP50Ms": 31.93,
+      "loopP95Ms": 34.023,
+      "averageMicrosecondsPerPairAtLoopP50": 3.193,
+      "possibleReadOnlySourceGuardOverlap": true,
+      "baselineCapability": "unsupported",
+      "optimization": "none"
+    },
+    "adoptedSpeculativeOptimizations": [],
+    "decision": "No demonstrated value for delayed native context creation or a lazy globals loader; retain measured startup tradeoff.",
+    "fpsGpuThroughputDisplayLatencyEdgeParityMeasured": false
+  },
+  "independentReview": {
+    "receipt": "/Volumes/MAC_HOME/CodexHome/review-evidence/webgpu-worker-rendering-20261102/independent-final-review.json",
+    "requiredVerdict": "PASS",
+    "recordedSeparately": true
+  },
+  "notCovered": [
+    "Worker Canvas2D",
+    "video/HDR/P3/XR",
+    "other platforms",
+    "general DOM/CSS",
+    "full browser/CTS conformance",
+    "long-run memory or tail bounds"
+  ],
+  "git": {
+    "committed": false,
+    "pushed": false,
+    "published": false,
+    "inheritedChangesPreserved": true
+  }
+}

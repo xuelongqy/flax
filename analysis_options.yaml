@@ -18,6 +18,9 @@ analyzer:
     # Copied hosts/tests are analyzed with their runner's declared dependencies.
     - experiments/webgpu_dawn/app.dart
     - experiments/webgpu_dawn/standard_api/app.dart
+    - experiments/webgpu_dawn/color_canvas/app.dart
+    - experiments/webgpu_dawn/color_canvas/benchmark/app.dart
+    - experiments/webgpu_dawn/three_worker/app.dart
     - experiments/dedicated_workers/carrier/worker_carrier_test.dart
     # Copied into its own generated package and compiled by native-asset acceptance.
     - packages/flax_build/js/src/native/build.dart

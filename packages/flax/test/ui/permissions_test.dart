@@ -560,29 +560,35 @@ globalThis.mapActions = [
         );
         try {
           await tester.runAsync(() => session.ready);
+          // Keep native frame work in this test's Future error zone.
+          final testZone = Zone.current;
           Future<void>? revocation;
-          tester.binding.scheduleFrameCallback((_) {
-            runtime.evaluate(
-              "globalThis.failureDelivered = false; globalThis.pendingFailure = failure().then(() => 'allowed', e => { failureDelivered = true; return {code:e.code,message:e.message,stack:e.stack}; }); undefined;",
-            );
-            completion.completeError(
-              StateError('PRIVATE_BACKEND_RECORD_ERROR'),
-              StackTrace.fromString('PRIVATE_BACKEND_STACK'),
-            );
-          });
-          tester.binding.addPostFrameCallback((_) {
-            expect(backendObserved, isTrue);
-            expect(
-              (runtime.getGlobal('failureDelivered') as FlaxJsBoolean).value,
-              isFalse,
-            );
-            if (revoke) {
-              revocation = fixture.manager.revoke(
-                fixture.application,
-                _business.id,
+          tester.binding.scheduleFrameCallback(
+            testZone.bindUnaryCallback<void, Duration>((_) {
+              runtime.evaluate(
+                "globalThis.failureDelivered = false; globalThis.pendingFailure = failure().then(() => 'allowed', e => { failureDelivered = true; return {code:e.code,message:e.message,stack:e.stack}; }); undefined;",
               );
-            }
-          });
+              completion.completeError(
+                StateError('PRIVATE_BACKEND_RECORD_ERROR'),
+                StackTrace.fromString('PRIVATE_BACKEND_STACK'),
+              );
+            }),
+          );
+          tester.binding.addPostFrameCallback(
+            testZone.bindUnaryCallback<void, Duration>((_) {
+              expectSync(backendObserved, isTrue);
+              expectSync(
+                (runtime.getGlobal('failureDelivered') as FlaxJsBoolean).value,
+                isFalse,
+              );
+              if (revoke) {
+                revocation = fixture.manager.revoke(
+                  fixture.application,
+                  _business.id,
+                );
+              }
+            }),
+          );
           await tester.pump();
           if (revocation != null) {
             await _pumpFuture(tester, revocation!);
@@ -639,28 +645,33 @@ globalThis.mapActions = [
         );
         try {
           await tester.runAsync(() => session.ready);
+          final testZone = Zone.current;
           Future<void>? revocation;
-          tester.binding.scheduleFrameCallback((_) {
-            runtime.evaluate(
-              "globalThis.failureDelivered = false; globalThis.pendingFailure = fetch('https://transport.invalid/').then(() => 'allowed', e => { failureDelivered = true; return {code:e.code,message:e.message}; }); undefined;",
-            );
-            client.opening.completeError(
-              StateError('PRIVATE_TRANSPORT_RECORD_ERROR'),
-            );
-          });
-          tester.binding.addPostFrameCallback((_) {
-            expect(backendObserved, isTrue);
-            expect(
-              (runtime.getGlobal('failureDelivered') as FlaxJsBoolean).value,
-              isFalse,
-            );
-            if (revoke) {
-              revocation = fixture.manager.revoke(
-                fixture.application,
-                'flax.network',
+          tester.binding.scheduleFrameCallback(
+            testZone.bindUnaryCallback<void, Duration>((_) {
+              runtime.evaluate(
+                "globalThis.failureDelivered = false; globalThis.pendingFailure = fetch('https://transport.invalid/').then(() => 'allowed', e => { failureDelivered = true; return {code:e.code,message:e.message}; }); undefined;",
               );
-            }
-          });
+              client.opening.completeError(
+                StateError('PRIVATE_TRANSPORT_RECORD_ERROR'),
+              );
+            }),
+          );
+          tester.binding.addPostFrameCallback(
+            testZone.bindUnaryCallback<void, Duration>((_) {
+              expectSync(backendObserved, isTrue);
+              expectSync(
+                (runtime.getGlobal('failureDelivered') as FlaxJsBoolean).value,
+                isFalse,
+              );
+              if (revoke) {
+                revocation = fixture.manager.revoke(
+                  fixture.application,
+                  'flax.network',
+                );
+              }
+            }),
+          );
           await tester.pump();
           if (revocation != null) {
             await _pumpFuture(tester, revocation!);
@@ -814,19 +825,24 @@ globalThis.mapActions = [
             '"FLAX_PERMISSION_DENIED"',
           );
         } else {
+          final testZone = Zone.current;
           Future<void>? revoked;
-          tester.binding.scheduleFrameCallback((_) {
-            runtime.evaluate(
-              "globalThis.lateText = chosen.$operation.then(() => 'allowed', e => e.code); undefined;",
-            );
-          });
-          tester.binding.addPostFrameCallback((_) {
-            expect(document.reads, greaterThan(0));
-            revoked = fixture.manager.revoke(
-              fixture.application,
-              'flax.documents.open',
-            );
-          });
+          tester.binding.scheduleFrameCallback(
+            testZone.bindUnaryCallback<void, Duration>((_) {
+              runtime.evaluate(
+                "globalThis.lateText = chosen.$operation.then(() => 'allowed', e => e.code); undefined;",
+              );
+            }),
+          );
+          tester.binding.addPostFrameCallback(
+            testZone.bindUnaryCallback<void, Duration>((_) {
+              expectSync(document.reads, greaterThan(0));
+              revoked = fixture.manager.revoke(
+                fixture.application,
+                'flax.documents.open',
+              );
+            }),
+          );
           await tester.pump();
           await _pumpFuture(tester, revoked!);
           expect(
@@ -881,32 +897,37 @@ globalThis.mapActions = [
           );
           try {
             await tester.runAsync(() => session.ready);
+            final testZone = Zone.current;
             Future<void>? revocation;
-            tester.binding.scheduleFrameCallback((_) {
-              runtime.evaluate(
-                'globalThis.pickerDelivered = false; globalThis.pendingPicker = documents.open().then('
-                'value => { pickerDelivered = true; return {cancelled:value === null}; }, '
-                'e => { pickerDelivered = true; return {code:e.code,message:e.message}; }); undefined;',
-              );
-              if (failure) {
-                selected.completeError(StateError('PRIVATE_PICKER_ERROR'));
-              } else {
-                selected.complete(null);
-              }
-            });
-            tester.binding.addPostFrameCallback((_) {
-              expect(observed, isTrue);
-              expect(
-                (runtime.getGlobal('pickerDelivered') as FlaxJsBoolean).value,
-                isFalse,
-              );
-              if (revoke) {
-                revocation = fixture.manager.revoke(
-                  fixture.application,
-                  'flax.documents.open',
+            tester.binding.scheduleFrameCallback(
+              testZone.bindUnaryCallback<void, Duration>((_) {
+                runtime.evaluate(
+                  'globalThis.pickerDelivered = false; globalThis.pendingPicker = documents.open().then('
+                  'value => { pickerDelivered = true; return {cancelled:value === null}; }, '
+                  'e => { pickerDelivered = true; return {code:e.code,message:e.message}; }); undefined;',
                 );
-              }
-            });
+                if (failure) {
+                  selected.completeError(StateError('PRIVATE_PICKER_ERROR'));
+                } else {
+                  selected.complete(null);
+                }
+              }),
+            );
+            tester.binding.addPostFrameCallback(
+              testZone.bindUnaryCallback<void, Duration>((_) {
+                expectSync(observed, isTrue);
+                expectSync(
+                  (runtime.getGlobal('pickerDelivered') as FlaxJsBoolean).value,
+                  isFalse,
+                );
+                if (revoke) {
+                  revocation = fixture.manager.revoke(
+                    fixture.application,
+                    'flax.documents.open',
+                  );
+                }
+              }),
+            );
             await tester.pump();
             if (revocation != null) {
               await _pumpFuture(tester, revocation!);

@@ -2,10 +2,50 @@ import type {} from '@flax/core/host/worker';
 
 onmessage = ({ data }) => postMessage(data, { transfer: [data.buffer] });
 addEventListener('message', (event) => postMessage(event.data));
+const { port1, port2 } = new MessageChannel();
+port1.addEventListener('message', ({ ports: [reply] }) => reply?.postMessage('ready'));
+port1.start();
+postMessage(null, [port2]);
+// @ts-expect-error Only a channel or a transfer can create MessagePort instances.
+new MessagePort();
 void fetch('data:text/plain,worker');
 crypto.getRandomValues(new Uint8Array(4));
 const cloned = structuredClone(new File(['worker'], 'worker.txt'));
 new FileReaderSync().readAsText(cloned);
+const pixels = new ImageData(new Uint8ClampedArray(24), 3, 2);
+const hdr = new ImageData(new Float16Array(24), 3, 2, {
+  colorSpace: 'display-p3',
+  pixelFormat: 'rgba-float16',
+});
+void createImageBitmap(hdr);
+declare const elementImage: ElementImage;
+postMessage({ elementImage }, [elementImage]);
+if (elementImage instanceof ElementImage) elementImage.close();
+// @ts-expect-error ElementImage uses the element drawing API.
+void createImageBitmap(elementImage);
+// @ts-expect-error Only the canvas capture or transfer steps create ElementImage.
+new ElementImage();
+declare const sharedPixels: Uint8ClampedArray<SharedArrayBuffer>;
+// @ts-expect-error ImageData requires an ordinary, transferable ArrayBuffer.
+new ImageData(sharedPixels, 1);
+const pixelGraph = structuredClone(
+  { pixels, view: pixels.data },
+  {
+    transfer: [pixels.data.buffer],
+  },
+);
+void createImageBitmap(pixelGraph.pixels, { resizeHeight: 1 }).then((bitmap) => {
+  const copy: ImageBitmap = structuredClone(bitmap);
+  postMessage({ bitmap, copy }, [bitmap]);
+  copy.close();
+});
+void createImageBitmap(new Blob([], { type: 'image/png' }));
+// @ts-expect-error ImageData is serializable; only its data.buffer is transferable.
+postMessage(pixels, [pixels]);
+// @ts-expect-error Dedicated Workers do not install HTML image constructors.
+new Image();
+// @ts-expect-error Dedicated Workers do not expose HTML image types.
+let htmlImage: HTMLImageElement;
 void navigator.hardwareConcurrency;
 void WebAssembly.compileStreaming(fetch('data:application/wasm;base64,AGFzbQEAAAA='));
 void WebAssembly.instantiateStreaming(Promise.resolve(new Response()), {});
@@ -28,8 +68,12 @@ setTimeout(close, 1);
 void window;
 // @ts-expect-error Dedicated Workers do not install a document.
 void document;
-// @ts-expect-error Dedicated Workers do not install animation frames.
+// @ts-expect-error Core-only Workers do not install animation frames.
 requestAnimationFrame(() => {});
+// @ts-expect-error Core-only Workers do not install animation frames.
+cancelAnimationFrame(1);
+// @ts-expect-error Worker canvases require a selected native provider.
+postMessage(new OffscreenCanvas(4, 4), { transfer: [] });
 
 onunhandledrejection = (event) => {
   void event.promise;

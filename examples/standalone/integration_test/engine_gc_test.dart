@@ -100,6 +100,10 @@ void _registerTests() {
         'invalid ancestry and unbounded flex use Flutter diagnostics: Flutter debug assertions',
         'Context.size preserves native build and non-RenderBox errors: Flutter debug assertions',
         'Material retains its native shape and borderRadius constraint: Flutter debug assertions',
+        'flax_permissions/test/ui/adapter_test.dart (13 cases): Flutter debug-only mobile platform overrides',
+        'flax_permissions/test/ui/session_test.dart (4 cases): Flutter debug-only mobile platform overrides',
+        'reload button moves without blocking content and replaces owned sessions: debug-only development reload controls',
+        'reload re-reads network source and recovers after a failed download: debug-only development reload controls',
       ],
   };
   binding.allTestsPassed.future.then((passed) {

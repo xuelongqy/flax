@@ -1,4 +1,6 @@
-import type { CanvasHost, OffscreenCanvas } from './canvas.js';
+/// <reference lib="es2025.float16" preserve="true" />
+
+import type { CanvasHost, CanvasTransfers, OffscreenCanvas } from './canvas.js';
 import type { DOMExceptionConstructor } from './events.js';
 import type { Blob } from './data.js';
 import type { Event, EventTarget } from './events.js';
@@ -12,20 +14,28 @@ export interface ImageBitmapOptions {
   resizeQuality?: 'pixelated' | 'low' | 'medium' | 'high';
 }
 
+type ImageColorSpace = 'srgb' | 'display-p3';
+type ImagePixelFormat = 'rgba-unorm8' | 'rgba-float16';
+type ImageDataArray = Uint8ClampedArray<ArrayBuffer> | Float16Array<ArrayBuffer>;
 export interface ImageDataSettings {
-  colorSpace?: 'srgb' | 'display-p3';
-  pixelFormat?: 'rgba-unorm8' | 'rgba-float16';
+  colorSpace?: ImageColorSpace;
+  pixelFormat?: ImagePixelFormat;
 }
 export interface ImageData {
   readonly width: number;
   readonly height: number;
-  readonly data: Uint8ClampedArray;
-  readonly colorSpace: 'srgb';
-  readonly pixelFormat: 'rgba-unorm8';
+  readonly data: ImageDataArray;
+  readonly colorSpace: ImageColorSpace;
+  readonly pixelFormat: ImagePixelFormat;
 }
 export interface ImageBitmap {
   readonly width: number;
   readonly height: number;
+  close(): void;
+}
+declare const elementImageBrand: unique symbol;
+export interface ElementImage {
+  readonly [elementImageBrand]: true;
   close(): void;
 }
 /** An image resource for canvas renderers, without an HTML layout node. */
@@ -45,9 +55,6 @@ export interface HTMLImageElement extends EventTarget {
 function error(name: string, message: string): Error {
   return new globalThis.DOMException(message, name);
 }
-function canvasException(name: string, message: string): Error {
-  return error(name, message);
-}
 function indexSizeError(message: string): Error {
   return error('IndexSizeError', message);
 }
@@ -57,62 +64,115 @@ function integer(value: number, min = -0x80000000, max = 0x7fffffff) {
     throw new TypeError('Image integer is outside its supported range');
   return n === 0 ? 0 : n;
 }
-function pixelSettings(settings: ImageDataSettings = {}): void {
-  const space = settings?.colorSpace ?? 'srgb';
-  const format = settings?.pixelFormat ?? 'rgba-unorm8';
-  if (
-    !['srgb', 'display-p3'].includes(space) ||
-    !['rgba-unorm8', 'rgba-float16'].includes(format)
-  )
+function pixelSettings(settings?: ImageDataSettings): Required<ImageDataSettings> {
+  const colorSpace = settings?.colorSpace ?? 'srgb';
+  const pixelFormat = settings?.pixelFormat ?? 'rgba-unorm8';
+  if (!isColorSpace(colorSpace) || !isPixelFormat(pixelFormat))
     throw new TypeError('Invalid ImageData settings.');
-  if (space !== 'srgb' || format !== 'rgba-unorm8')
-    throw canvasException(
-      'NotSupportedError',
-      'Canvas currently stores sRGB RGBA8 pixels.',
-    );
+  return { colorSpace, pixelFormat };
 }
 
-function imageDataIndexError(message: string): Error {
-  return indexSizeError(message);
+function isColorSpace(value: unknown): value is ImageColorSpace {
+  return value === 'srgb' || value === 'display-p3';
+}
+
+function isPixelFormat(value: unknown): value is ImagePixelFormat {
+  return value === 'rgba-unorm8' || value === 'rgba-float16';
+}
+
+function bytesPerPixel(format: ImagePixelFormat): number {
+  return format === 'rgba-float16' ? 8 : 4;
+}
+
+function hasPixelLength(
+  width: number,
+  height: number,
+  pixelFormat: ImagePixelFormat,
+  length: number,
+): boolean {
+  const size = width * height * bytesPerPixel(pixelFormat);
+  return (
+    Number.isInteger(width) &&
+    Number.isInteger(height) &&
+    width > 0 &&
+    height > 0 &&
+    size <= 0x7fffffff &&
+    length === size
+  );
 }
 
 function checkedImageSize(
   width: number,
   height: number,
+  pixelFormat: ImagePixelFormat,
 ): { width: number; height: number; length: number } {
   const w = integer(width, 0, 0xffffffff);
   const h = integer(height, 0, 0xffffffff);
   if (w <= 0 || h <= 0) {
-    throw imageDataIndexError('The source width and height must be greater than zero.');
+    throw indexSizeError('The source width and height must be greater than zero.');
   }
   const pixels = w * h;
-  if (!Number.isFinite(pixels) || pixels > Math.floor(0x7fffffff / 4)) {
+  if (pixels * bytesPerPixel(pixelFormat) > 0x7fffffff) {
     throw new RangeError('The ImageData dimensions are too large.');
   }
   return { width: w, height: h, length: pixels * 4 };
 }
 
+// Capture intrinsic accessors before application getters can replace prototypes.
+const apply = Reflect.apply;
+const defineProperty = Object.defineProperty;
+const weakGet = WeakMap.prototype.get;
+const weakSetAdd = WeakSet.prototype.add;
+const weakSetHas = WeakSet.prototype.has;
+const uncloneable = Symbol.for('flax.uncloneable');
+const bufferLength = Object.getOwnPropertyDescriptor(
+  ArrayBuffer.prototype,
+  'byteLength',
+)!.get!;
+const bufferResizable = Object.getOwnPropertyDescriptor(
+  ArrayBuffer.prototype,
+  'resizable',
+)!.get!;
+const typedPrototype = Object.getPrototypeOf(Uint8Array.prototype);
+const viewType = Object.getOwnPropertyDescriptor(
+  typedPrototype,
+  Symbol.toStringTag,
+)!.get!;
+const viewBuffer = Object.getOwnPropertyDescriptor(typedPrototype, 'buffer')!.get!;
+const viewOffset = Object.getOwnPropertyDescriptor(typedPrototype, 'byteOffset')!.get!;
+const viewLength = Object.getOwnPropertyDescriptor(typedPrototype, 'byteLength')!.get!;
+const Bytes = Uint8Array;
+const ClampedBytes = Uint8ClampedArray;
+const HalfFloats = globalThis.Float16Array;
+const byteLength = (buffer: ArrayBuffer): number => apply(bufferLength, buffer, []);
+const bytesOf = (view: ArrayBufferView): Uint8Array =>
+  new Bytes(
+    apply(viewBuffer, view, []),
+    apply(viewOffset, view, []),
+    apply(viewLength, view, []),
+  );
+const imageDataStates = new WeakMap<object, ImageData>();
+const imageDataState = (value: object): ImageData | undefined =>
+  apply(weakGet, imageDataStates, [value]);
+
 class SharedImageData {
-  private readonly imageWidth: number;
-  private readonly imageHeight: number;
-  private readonly pixels: Uint8ClampedArray;
   get width(): number {
-    return this.imageWidth;
+    return imageDataState(this)!.width;
   }
   get height(): number {
-    return this.imageHeight;
+    return imageDataState(this)!.height;
   }
-  get data(): Uint8ClampedArray {
-    return this.pixels;
+  get data(): ImageDataArray {
+    return imageDataState(this)!.data;
   }
-  get colorSpace(): 'srgb' {
-    return 'srgb';
+  get colorSpace(): ImageColorSpace {
+    return imageDataState(this)!.colorSpace;
   }
-  get pixelFormat(): 'rgba-unorm8' {
-    return 'rgba-unorm8';
+  get pixelFormat(): ImagePixelFormat {
+    return imageDataState(this)!.pixelFormat;
   }
   constructor(
-    dataOrWidth: Uint8ClampedArray | number,
+    dataOrWidth: ImageDataArray | number,
     widthOrHeight: number,
     heightOrSettings?: number | ImageDataSettings,
     settings?: ImageDataSettings,
@@ -122,45 +182,223 @@ class SharedImageData {
       !ArrayBuffer.isView(dataOrWidth) &&
       !(dataOrWidth && typeof dataOrWidth === 'object' && 'length' in dataOrWidth)
     ) {
-      pixelSettings(heightOrSettings as ImageDataSettings | undefined);
-      const size = checkedImageSize(dataOrWidth as number, widthOrHeight);
-      this.imageWidth = size.width;
-      this.imageHeight = size.height;
-      this.pixels = new Uint8ClampedArray(size.length);
+      const format = pixelSettings(heightOrSettings as ImageDataSettings | undefined);
+      const size = checkedImageSize(
+        dataOrWidth as number,
+        widthOrHeight,
+        format.pixelFormat,
+      );
+      const ArrayType =
+        format.pixelFormat === 'rgba-float16' ? HalfFloats : ClampedBytes;
+      if (!ArrayType) throw error('NotSupportedError', 'Float16Array is unavailable');
+      imageDataStates.set(this, {
+        width: size.width,
+        height: size.height,
+        data: new ArrayType(size.length),
+        ...format,
+      });
       return;
     }
-    if (!(dataOrWidth instanceof Uint8ClampedArray))
-      throw new TypeError('ImageData requires a Uint8ClampedArray.');
+    const type = apply(viewType, dataOrWidth, []);
+    if (type !== 'Uint8ClampedArray' && type !== 'Float16Array')
+      throw new TypeError('ImageData requires a Uint8ClampedArray or Float16Array.');
+    const data = dataOrWidth as ImageDataArray;
+    // The intrinsic also rejects SharedArrayBuffer, regardless of public properties.
+    if (apply(bufferResizable, apply(viewBuffer, data, []), []))
+      throw new TypeError('ImageData requires a fixed-length ArrayBuffer.');
     const hasHeight =
       typeof heightOrSettings !== 'object' && heightOrSettings !== undefined;
-    pixelSettings(
-      hasHeight ? settings : (heightOrSettings as ImageDataSettings | undefined),
+    const format = pixelSettings(
+      typeof heightOrSettings === 'object' ? heightOrSettings : settings,
     );
+    const expectedType =
+      format.pixelFormat === 'rgba-float16' ? 'Float16Array' : 'Uint8ClampedArray';
+    if (type !== expectedType)
+      throw error(
+        'InvalidStateError',
+        'ImageData pixel format does not match its array type.',
+      );
     const width = integer(widthOrHeight, 0, 0xffffffff);
-    if (
-      width === 0 ||
-      dataOrWidth.length === 0 ||
-      dataOrWidth.length % (4 * width) !== 0
-    )
-      throw imageDataIndexError('The source data does not match the width.');
-    const height = !hasHeight
-      ? dataOrWidth.length / (4 * width)
-      : integer(heightOrSettings as number, 0, 0xffffffff);
-    if (height === 0 || dataOrWidth.length !== 4 * width * height)
-      throw imageDataIndexError('The source data does not match the dimensions.');
-    this.imageWidth = width;
-    this.imageHeight = height;
-    this.pixels = dataOrWidth;
+    const givenHeight = hasHeight
+      ? integer(heightOrSettings as number, 0, 0xffffffff)
+      : undefined;
+    const length = apply(viewLength, data, []);
+    const rowBytes = bytesPerPixel(format.pixelFormat) * width;
+    if (width === 0 || length === 0 || length % rowBytes !== 0)
+      throw indexSizeError('The source data does not match the width.');
+    const height = givenHeight ?? length / rowBytes;
+    if (height === 0 || length !== rowBytes * height)
+      throw indexSizeError('The source data does not match the dimensions.');
+    imageDataStates.set(this, { width, height, data, ...format });
   }
 }
 
 export interface PixelImage {
+  /** Packed RGBA bytes. RGB uses the transfer curve of the named color space. */
   data: Uint8Array;
   width: number;
   height: number;
-  colorSpace?: 'srgb' | 'display-p3';
+  colorSpace?: ImageColorSpace;
+  pixelFormat?: ImagePixelFormat;
   premultiplied?: boolean;
 }
+
+function halfComponents(bytes: Uint8Array) {
+  if (!HalfFloats) throw error('NotSupportedError', 'Float16Array is unavailable');
+  if (bytes.byteOffset % 2 !== 0) return new HalfFloats(new Bytes(bytes).buffer);
+  return new HalfFloats(bytes.buffer, bytes.byteOffset, bytes.byteLength / 2);
+}
+
+function srgbToLinear(value: number): number {
+  const magnitude = Math.abs(value);
+  return magnitude <= 0.04045
+    ? value / 12.92
+    : Math.sign(value) * ((magnitude + 0.055) / 1.055) ** 2.4;
+}
+
+function linearToSrgb(value: number): number {
+  const magnitude = Math.abs(value);
+  return magnitude <= 0.0031308
+    ? value * 12.92
+    : Math.sign(value) * (1.055 * magnitude ** (1 / 2.4) - 0.055);
+}
+
+/** Convert to the straight sRGB RGBA8 used by the legacy canvas and codec bridges. */
+export function toSrgbRgba8(pixels: PixelImage): Uint8Array {
+  const p3 = pixels.colorSpace === 'display-p3';
+  const float = pixels.pixelFormat === 'rgba-float16';
+  if (!p3 && !float && !pixels.premultiplied) return pixels.data;
+  const input = float ? halfComponents(pixels.data) : pixels.data;
+  const output = new ClampedBytes(input.length);
+  const max = float ? 1 : 255;
+  for (let i = 0; i < input.length; i += 4) {
+    const alpha = input[i + 3]! / max;
+    output[i + 3] = alpha * 255;
+    if (pixels.premultiplied && alpha === 0) continue;
+    const divisor = pixels.premultiplied ? alpha * max : max;
+    let r = input[i]! / divisor;
+    let g = input[i + 1]! / divisor;
+    let b = input[i + 2]! / divisor;
+    if (p3) {
+      const red = srgbToLinear(r);
+      const green = srgbToLinear(g);
+      const blue = srgbToLinear(b);
+      r = linearToSrgb(1.22494018 * red - 0.22494018 * green);
+      g = linearToSrgb(-0.04205695 * red + 1.04205695 * green);
+      b = linearToSrgb(-0.01963755 * red - 0.07863605 * green + 1.0982736 * blue);
+    }
+    output[i] = r * 255;
+    output[i + 1] = g * 255;
+    output[i + 2] = b * 255;
+  }
+  return new Bytes(output.buffer);
+}
+
+function samplePosition(index: number, outputSize: number, inputSize: number): number {
+  return Math.max(
+    0,
+    Math.min(inputSize - 1, ((index + 0.5) * inputSize) / outputSize - 0.5),
+  );
+}
+
+function mix(first: number, second: number, weight: number): number {
+  return weight === 0 || first === second
+    ? first
+    : first * (1 - weight) + second * weight;
+}
+
+function transformWidePixels(
+  source: PixelImage,
+  crop: { x: number; y: number; width: number; height: number },
+  width: number,
+  height: number,
+  options: ImageBitmapOptions,
+): PixelImage {
+  const { x: sx, y: sy, width: sw, height: sh } = crop;
+  const pixelFormat = source.pixelFormat ?? 'rgba-unorm8';
+  checkedImageSize(width, height, pixelFormat);
+  const stride = bytesPerPixel(pixelFormat);
+  const data = new Bytes(width * height * stride);
+  const premultiplied = options.premultiplyAlpha === 'premultiply';
+  const result = {
+    width,
+    height,
+    data,
+    pixelFormat,
+    colorSpace: source.colorSpace ?? 'srgb',
+    premultiplied,
+  };
+  const flip = options.imageOrientation === 'flipY';
+  const sourcePremultiplied = source.premultiplied === true;
+  if (width === sw && height === sh && sourcePremultiplied === premultiplied) {
+    const left = Math.max(0, sx),
+      right = Math.min(source.width, sx + sw);
+    const top = Math.max(0, sy),
+      bottom = Math.min(source.height, sy + sh);
+    for (let row = top; right > left && row < bottom; row++) {
+      const start = (row * source.width + left) * stride;
+      const y = flip ? height - 1 - (row - sy) : row - sy;
+      data.set(
+        source.data.subarray(start, start + (right - left) * stride),
+        (y * width + left - sx) * stride,
+      );
+    }
+    return result;
+  }
+
+  const float = pixelFormat === 'rgba-float16';
+  const input = float ? halfComponents(source.data) : source.data;
+  const output = float ? halfComponents(data) : new ClampedBytes(data.buffer);
+  const max = float ? 1 : 255;
+  // A virtual nearest-neighbor intermediate avoids allocating another image for pixelated resize.
+  const pixelated = options.resizeQuality === 'pixelated';
+  const scaleX = pixelated ? Math.max(1, Math.round(width / sw)) : 1;
+  const scaleY = pixelated ? Math.max(1, Math.round(height / sh)) : 1;
+  const sampleWidth = sw * scaleX,
+    sampleHeight = sh * scaleY;
+  const offset = (x: number, y: number) =>
+    x < 0 || x >= source.width || y < 0 || y >= source.height
+      ? -4
+      : (y * source.width + x) * 4;
+  const channel = (index: number, component: number, alpha: number) => {
+    const value = input[index + component] ?? 0;
+    return sourcePremultiplied ? value : alpha === 0 ? 0 : value * alpha;
+  };
+  for (let y = 0; y < height; y++) {
+    const row = samplePosition(flip ? height - 1 - y : y, height, sampleHeight);
+    const top = Math.floor(row);
+    const y0 = sy + Math.floor(top / scaleY);
+    const y1 = sy + Math.floor(Math.min(top + 1, sampleHeight - 1) / scaleY);
+    const fy = row - top;
+    for (let x = 0; x < width; x++) {
+      const column = samplePosition(x, width, sampleWidth);
+      const left = Math.floor(column);
+      const x0 = sx + Math.floor(left / scaleX);
+      const x1 = sx + Math.floor(Math.min(left + 1, sampleWidth - 1) / scaleX);
+      const fx = column - left;
+      const p00 = offset(x0, y0),
+        p10 = offset(x1, y0);
+      const p01 = offset(x0, y1),
+        p11 = offset(x1, y1);
+      const a00 = (input[p00 + 3] ?? 0) / max,
+        a10 = (input[p10 + 3] ?? 0) / max;
+      const a01 = (input[p01 + 3] ?? 0) / max,
+        a11 = (input[p11 + 3] ?? 0) / max;
+      const alpha = mix(mix(a00, a10, fx), mix(a01, a11, fx), fy);
+      const index = (y * width + x) * 4;
+      output[index + 3] = alpha * max;
+      if (!premultiplied && alpha === 0) continue;
+      for (let c = 0; c < 3; c++) {
+        const upper = mix(channel(p00, c, a00), channel(p10, c, a10), fx);
+        const lower = mix(channel(p01, c, a01), channel(p11, c, a11), fx);
+        const value = mix(upper, lower, fy);
+        output[index + c] = premultiplied ? value : value / alpha;
+      }
+    }
+  }
+  return result;
+}
+
 export interface BitmapSource {
   width: number;
   height: number;
@@ -197,7 +435,8 @@ function defineConstructors() {
       return closed.has(this) ? 0 : sources.get(this)!.height;
     }
     get [imageIdKey]() {
-      return closed.has(this) ? -1 : sources.get(this)!.canvasId;
+      const source = sources.get(this)!;
+      return closed.has(this) || source.width === 0 ? -1 : source.canvasId;
     }
     close() {
       if (closed.has(this)) return;
@@ -205,36 +444,66 @@ function defineConstructors() {
       sources.get(this)!.close();
     }
   }
+  class ElementImage {
+    declare readonly [elementImageBrand]: true;
+    #source: BitmapSource;
+    constructor(token: object, source: BitmapSource) {
+      if (token !== secret) throw new TypeError('Illegal constructor');
+      this.#source = source;
+      defineProperty(this, uncloneable, { value: true });
+    }
+    close() {
+      this.#source.close();
+    }
+  }
+  Object.defineProperty(ElementImage.prototype, Symbol.toStringTag, {
+    value: 'ElementImage',
+    configurable: true,
+  });
   Object.defineProperty(SharedImageData, 'name', { value: 'ImageData' });
   return {
     ImageData: SharedImageData,
+    data: imageDataState,
     ImageBitmap,
+    ElementImage,
     make: (source: BitmapSource) => new ImageBitmap(secret, source),
-    source: (bitmap: object) => sources.get(bitmap),
+    makeElement: (source: BitmapSource) => new ElementImage(secret, source),
   };
 }
 const canonical = constructors(globalThis);
 export const ImageData: {
   new (width: number, height: number, settings?: ImageDataSettings): ImageData;
   new (
-    data: Uint8ClampedArray,
+    data: ImageDataArray,
     width: number,
     height?: number,
     settings?: ImageDataSettings,
   ): ImageData;
-  new (data: Uint8ClampedArray, width: number, settings?: ImageDataSettings): ImageData;
+  new (data: ImageDataArray, width: number, settings?: ImageDataSettings): ImageData;
   readonly prototype: ImageData;
 } = canonical.ImageData;
 export const ImageBitmap: { new (): ImageBitmap; readonly prototype: ImageBitmap } =
   canonical.ImageBitmap;
 
 type Call = (operation: string, ...args: unknown[]) => unknown;
-type Options =
-  [ImageBitmapOptions?] | [number, number, number, number, ImageBitmapOptions?];
+type BitmapCrop = [number, number, number, number];
+type Options = [ImageBitmapOptions?] | [...BitmapCrop, ImageBitmapOptions?];
+const bitmapOptions = [
+  ['colorSpaceConversion', ['default', 'none']],
+  ['imageOrientation', ['from-image', 'flipY']],
+  ['premultiplyAlpha', ['default', 'premultiply', 'none']],
+  ['resizeHeight', null],
+  ['resizeQuality', ['pixelated', 'low', 'medium', 'high']],
+  ['resizeWidth', null],
+] as const;
 export interface ImageHost {
   isSource(source: unknown): boolean;
   bitmap(source: BitmapSource): ImageBitmap;
   transfer(bitmap: ImageBitmap): ImageBitmap;
+  prepareTransfers(list: unknown[]): CanvasTransfers;
+  deserialize(record: any[]): ImageData | ImageBitmap | ElementImage;
+  elementImage(pixels: PixelImage): ElementImage;
+  readElementImage(value: unknown): PixelImage | undefined;
   source(bitmap: object): BitmapSource;
   read(source: unknown): PixelImage;
   onClose(bitmap: object, callback: () => void): void;
@@ -258,17 +527,33 @@ export function imageHost(global: typeof globalThis = globalThis): ImageHost {
 export function installImageHost(
   global: typeof globalThis,
   call: Call,
-  canvases: CanvasHost,
+  canvases: CanvasHost | undefined,
   Exception: DOMExceptionConstructor,
+  worker = false,
 ): ImageHost {
   const g = global as any,
     classes = constructors(global);
   let open = true,
     next = 1;
-  const owned = new WeakMap<object, BitmapSource>();
-  const transfers = new WeakMap<object, () => ImageBitmap>();
+  type BitmapState = {
+    kind: 'ImageBitmap' | 'ElementImage';
+    width: number;
+    height: number;
+    closed: boolean;
+    backing: BitmapSource | undefined;
+    pixels: PixelImage | undefined;
+    buffer: ArrayBuffer | undefined;
+    source: BitmapSource;
+    callbacks: (() => void)[];
+  };
+  const owned = new WeakMap<object, BitmapState>();
+  const ownedState = (value: object): BitmapState | undefined =>
+    apply(weakGet, owned, [value]);
   const elements = new WeakMap<object, ImageBitmap>();
-  const records = new Set<{ ref: WeakRef<ImageBitmap>; close(): void }>();
+  const elementSources = new WeakSet<object>();
+  const records: { ref: WeakRef<ImageBitmap | ElementImage>; state: BitmapState }[] =
+    [];
+  let active = false;
   const pending = new Map<
     number,
     { resolve(value: any): void; reject(error: unknown): void }
@@ -300,6 +585,154 @@ export function installImageHost(
       }
     });
   }
+  function activity(value: boolean) {
+    if (active === value) return;
+    active = value;
+    call('imageActivity', value);
+  }
+  function alive(state: BitmapState): boolean {
+    return (
+      !state.closed && (state.buffer === undefined || byteLength(state.buffer) !== 0)
+    );
+  }
+  function release(state: BitmapState) {
+    if (state.closed) return;
+    state.closed = true;
+    const backing = state.backing;
+    state.backing = undefined;
+    state.pixels = undefined;
+    state.buffer = undefined;
+    // Native detach already committed ownership. Cleanup must not turn success into failure.
+    try {
+      backing?.close();
+    } catch {}
+    for (let i = 0; i < state.callbacks.length; i++) {
+      try {
+        state.callbacks[i]!();
+      } catch {}
+    }
+    state.callbacks.length = 0;
+  }
+  function capture(state: BitmapState): PixelImage {
+    if (!open || !alive(state))
+      throw new Exception(state.kind + ' is closed', 'DataCloneError');
+    if (!state.pixels) {
+      const pixels = copyPixels(state.backing!.pixels(), state.width, state.height);
+      if (!alive(state)) throw new Exception('ImageBitmap is closed', 'DataCloneError');
+      state.pixels = pixels;
+      state.buffer = pixels.data.buffer as ArrayBuffer;
+    }
+    return state.pixels;
+  }
+  function copyPixels(
+    source: PixelImage,
+    width = source.width,
+    height = source.height,
+  ): PixelImage {
+    const colorSpace = source.colorSpace ?? 'srgb';
+    const pixelFormat = source.pixelFormat ?? 'rgba-unorm8';
+    const premultiplied = source.premultiplied === true;
+    const bytes = bytesOf(source.data);
+    if (
+      !isColorSpace(colorSpace) ||
+      !isPixelFormat(pixelFormat) ||
+      !hasPixelLength(width, height, pixelFormat, bytes.byteLength)
+    )
+      throw new Exception('Invalid bitmap pixels', 'DataCloneError');
+    return {
+      width,
+      height,
+      data: new Bytes(bytes),
+      colorSpace,
+      pixelFormat,
+      premultiplied,
+    };
+  }
+  function makeImage(
+    kind: 'ImageBitmap',
+    backing: BitmapSource,
+    pixels?: PixelImage,
+  ): ImageBitmap;
+  function makeImage(
+    kind: 'ElementImage',
+    backing: undefined,
+    pixels: PixelImage,
+  ): ElementImage;
+  function makeImage(
+    kind: BitmapState['kind'],
+    backing?: BitmapSource,
+    pixels?: PixelImage,
+  ): ImageBitmap | ElementImage {
+    check();
+    host.sweep();
+    const size = backing ?? pixels!;
+    const state: BitmapState = {
+      kind,
+      width: size.width,
+      height: size.height,
+      closed: false,
+      backing,
+      pixels,
+      buffer: pixels?.data.buffer as ArrayBuffer | undefined,
+      source: undefined!,
+      callbacks: [],
+    };
+    const source: BitmapSource = {
+      ...backing,
+      get width() {
+        return alive(state) ? state.width : 0;
+      },
+      get height() {
+        return alive(state) ? state.height : 0;
+      },
+      close: () => release(state),
+      pixels() {
+        if (!alive(state))
+          throw new Exception(kind + ' is closed', 'InvalidStateError');
+        const pixels = capture(state);
+        // Renderer consumers receive snapshots, never the transferable private buffer.
+        return { ...pixels, data: new Bytes(pixels.data) };
+      },
+    };
+    if (backing?.native)
+      source.native = () => {
+        if (!alive(state))
+          throw new Exception('ImageBitmap is closed', 'InvalidStateError');
+        return state.backing!.native!();
+      };
+    state.source = source;
+    const image =
+      kind === 'ImageBitmap' ? classes.make(source) : classes.makeElement(source);
+    owned.set(image, state);
+    records[records.length] = { ref: new WeakRef(image), state };
+    activity(true);
+    return image;
+  }
+  function fromOwnedPixels(pixels: PixelImage): ImageBitmap {
+    let id: number | undefined;
+    return makeImage(
+      'ImageBitmap',
+      {
+        width: pixels.width,
+        height: pixels.height,
+        close() {
+          if (id !== undefined) call('imageClose', id);
+        },
+        pixels: () => pixels,
+        native() {
+          id ??= call(
+            'imagePixels',
+            toSrgbRgba8(pixels),
+            pixels.width,
+            pixels.height,
+          ) as number;
+          g.__flaxModules?.require('@flax/core/navigation');
+          return call('imageNative', id) as object;
+        },
+      },
+      pixels,
+    );
+  }
   function nativeBitmap(value: {
     id: number;
     width: number;
@@ -323,65 +756,81 @@ export function installImageHost(
       },
     });
   }
-  function settings(input: ImageBitmapOptions = {}) {
-    const output = { ...input };
-    for (const [key, allowed] of Object.entries({
-      imageOrientation: ['from-image', 'flipY'],
-      premultiplyAlpha: ['default', 'premultiply', 'none'],
-      colorSpaceConversion: ['default', 'none'],
-      resizeQuality: ['pixelated', 'low', 'medium', 'high'],
-    }))
-      if (
-        (input as any)[key] !== undefined &&
-        !allowed.includes(String((input as any)[key]))
-      )
-        throw new TypeError('Invalid bitmap ' + key);
-    for (const key of ['resizeWidth', 'resizeHeight'] as const) {
-      if (input[key] === undefined) continue;
-      output[key] = integer(input[key]!, 0, 0xffffffff);
-      if (output[key] === 0)
+  async function decodeBlob(source: Blob, options?: ImageBitmapOptions) {
+    const value = await rpc(
+      'decode',
+      await source.arrayBuffer(),
+      options?.colorSpaceConversion !== 'none',
+      options?.imageOrientation !== 'flipY',
+    );
+    return nativeBitmap(value);
+  }
+  function settings(input?: ImageBitmapOptions): ImageBitmapOptions {
+    const output: Record<string, string | number> = Object.create(null);
+    if (input == null) return output;
+    if (typeof input !== 'object' && typeof input !== 'function')
+      throw new TypeError('Expected ImageBitmap options.');
+    for (const [key, allowed] of bitmapOptions) {
+      const value = input[key];
+      if (value === undefined) continue;
+      if (allowed) {
+        const choice = String(value);
+        if (!(allowed as readonly string[]).includes(choice))
+          throw new TypeError('Invalid bitmap ' + key);
+        output[key] = choice;
+        continue;
+      }
+      const size = integer(value as number, 0, 0xffffffff);
+      if (size === 0)
         throw new Exception(
           'Bitmap resize dimensions must be positive',
           'InvalidStateError',
         );
+      output[key] = size;
     }
     return output;
   }
-  function transformed(source: PixelImage, args: Options) {
-    const cropped = args.length > 1;
-    if (cropped && args.length < 4) throw new TypeError('Incomplete bitmap crop');
-    const options = settings(
-      (cropped ? args[4] : args[0]) as ImageBitmapOptions | undefined,
-    );
-    let [sx, sy, sw, sh] = cropped
-      ? (args.slice(0, 4) as number[]).map((value) => integer(value))
-      : [0, 0, source.width, source.height];
-    if (sw === 0 || sh === 0) throw new RangeError('Bitmap crop must not be empty');
-    if (sw! < 0) {
-      sx = sx! + sw!;
-      sw = -sw!;
+  function transformed(
+    source: PixelImage,
+    crop: BitmapCrop | undefined,
+    options: ImageBitmapOptions,
+  ) {
+    let [sx, sy, sw, sh] = crop ?? [0, 0, source.width, source.height];
+    if (sw < 0) {
+      sx += sw;
+      sw = -sw;
     }
-    if (sh! < 0) {
-      sy = sy! + sh!;
-      sh = -sh!;
+    if (sh < 0) {
+      sy += sh;
+      sh = -sh;
     }
     const width =
       options.resizeWidth ??
       (options.resizeHeight
-        ? Math.max(1, Math.round((sw! * options.resizeHeight) / sh!))
-        : sw!);
+        ? Math.max(1, Math.ceil((sw * options.resizeHeight) / sh))
+        : sw);
     const height =
       options.resizeHeight ??
       (options.resizeWidth
-        ? Math.max(1, Math.round((sh! * options.resizeWidth) / sw!))
-        : sh!);
+        ? Math.max(1, Math.ceil((sh * options.resizeWidth) / sw))
+        : sh);
+    if (source.colorSpace === 'display-p3' || source.pixelFormat === 'rgba-float16')
+      return fromOwnedPixels(
+        transformWidePixels(
+          source,
+          { x: sx, y: sy, width: sw, height: sh },
+          width,
+          height,
+          options,
+        ),
+      );
     return rpc('transform', source.data, [
       source.width,
       source.height,
-      sx!,
-      sy!,
-      sw!,
-      sh!,
+      sx,
+      sy,
+      sw,
+      sh,
       width,
       height,
       options.imageOrientation === 'flipY' ? 1 : 0,
@@ -396,89 +845,167 @@ export function installImageHost(
         typeof source === 'object' &&
         source !== null &&
         (source instanceof classes.ImageData ||
-          owned.has(source) ||
-          source instanceof HostImage ||
-          canvases.isCanvas(source))
+          ownedState(source)?.kind === 'ImageBitmap' ||
+          elementSources.has(source) ||
+          canvases?.isCanvas(source) === true)
       );
     },
     bitmap(source) {
-      check();
-      host.sweep();
-      const callbacks = new Set<() => void>();
-      let closed = false;
-      let backing: BitmapSource | undefined = source;
-      let record: { ref: WeakRef<ImageBitmap>; close(): void };
-      const wrapped: BitmapSource = {
-        ...source,
-        close() {
-          if (closed) return;
-          closed = true;
-          backing?.close();
-          backing = undefined;
-          delete wrapped.native;
-          records.delete(record);
-          for (const fn of callbacks) fn();
-          callbacks.clear();
-        },
-        pixels() {
-          if (closed) throw new Exception('ImageBitmap is closed', 'InvalidStateError');
-          return backing!.pixels();
-        },
-      };
-      const bitmap = classes.make(wrapped);
-      owned.set(bitmap, wrapped);
-      transfers.set(bitmap, () => {
-        host.source(bitmap);
-        const source = backing!;
-        backing = undefined;
-        bitmap.close();
-        return host.bitmap(source);
-      });
-      closeObservers.set(bitmap, callbacks);
-      record = { ref: new WeakRef(bitmap), close: wrapped.close };
-      records.add(record);
-      return bitmap;
+      return makeImage('ImageBitmap', source);
     },
     transfer(bitmap) {
-      if (!owned.has(bitmap))
-        throw new TypeError('Expected ImageBitmap from this session');
+      // Same-realm bitmaprenderer ownership only; structured transfers use native detach.
       host.source(bitmap);
-      return transfers.get(bitmap)!();
+      const state = ownedState(bitmap)!;
+      const receiver = makeImage('ImageBitmap', state.backing!, state.pixels);
+      state.backing = undefined;
+      release(state);
+      return receiver;
+    },
+    prepareTransfers(list) {
+      const buffers: unknown[] = [];
+      const validated: BitmapState[] = [];
+      let elementTransfers: WeakSet<BitmapState> | undefined;
+      for (let i = 0; i < list.length; i++) {
+        const value = list[i];
+        const state =
+          value && typeof value === 'object' ? ownedState(value) : undefined;
+        if (!state) {
+          buffers[i] = value;
+          continue;
+        }
+        capture(state);
+        if (state.kind === 'ElementImage')
+          apply(weakSetAdd, (elementTransfers ??= new WeakSet()), [state]);
+        validated[validated.length] = state;
+        buffers[i] = state.buffer;
+      }
+      return {
+        buffers,
+        serialize(value) {
+          const data = classes.data(value);
+          if (data) {
+            if (!apply(viewLength, data.data, []))
+              throw new Exception('ImageData is detached', 'DataCloneError');
+            // Native WriteValue shares its graph map with this host record. Preserve the view.
+            return [
+              'ImageData',
+              data.width,
+              data.height,
+              data.data,
+              data.colorSpace,
+              data.pixelFormat,
+            ];
+          }
+          const state = ownedState(value);
+          if (!state) return undefined;
+          if (
+            state.kind === 'ElementImage' &&
+            (!elementTransfers || !apply(weakSetHas, elementTransfers, [state]))
+          )
+            throw new Exception('ElementImage must be transferred', 'DataCloneError');
+          const pixels = capture(state);
+          validated[validated.length] = state;
+          return [
+            state.kind,
+            state.width,
+            state.height,
+            state.buffer,
+            pixels.colorSpace ?? 'srgb',
+            pixels.premultiplied === true,
+            pixels.pixelFormat ?? 'rgba-unorm8',
+          ];
+        },
+        validate() {
+          // No application getters, provider callbacks or replaceable collection methods.
+          for (let i = 0; i < validated.length; i++) {
+            const state = validated[i]!;
+            if (!open || !alive(state))
+              throw new Exception(state.kind + ' ownership changed', 'DataCloneError');
+          }
+        },
+      };
+    },
+    deserialize(record) {
+      if (record[0] === 'ImageData')
+        return new classes.ImageData(record[3], record[1], record[2], {
+          colorSpace: record[4],
+          pixelFormat: record[5],
+        });
+      const kind = record[0],
+        width = record[1],
+        height = record[2],
+        buffer = record[3],
+        colorSpace = record[4],
+        premultiplied = record[5],
+        pixelFormat = record[6] === undefined ? 'rgba-unorm8' : record[6];
+      if (
+        (kind !== 'ImageBitmap' && kind !== 'ElementImage') ||
+        !isColorSpace(colorSpace) ||
+        !isPixelFormat(pixelFormat) ||
+        typeof premultiplied !== 'boolean' ||
+        !hasPixelLength(width, height, pixelFormat, byteLength(buffer))
+      )
+        throw new Exception('Invalid image snapshot record', 'DataCloneError');
+      // Deserialized bytes belong exclusively to this realm; never adopt sender IDs or GPU objects.
+      const pixels = {
+        width,
+        height,
+        data: new Bytes(buffer),
+        colorSpace,
+        pixelFormat,
+        premultiplied,
+      };
+      return kind === 'ImageBitmap'
+        ? fromOwnedPixels(pixels)
+        : makeImage('ElementImage', undefined, pixels);
+    },
+    elementImage(pixels) {
+      return makeImage('ElementImage', undefined, copyPixels(pixels));
+    },
+    readElementImage(value) {
+      const state =
+        value !== null && typeof value === 'object' ? ownedState(value) : undefined;
+      return state?.kind === 'ElementImage' ? state.source.pixels() : undefined;
     },
     source(bitmap) {
       check();
-      if (bitmap instanceof HostImage) {
+      if (elementSources.has(bitmap)) {
         const image = elements.get(bitmap);
         if (!image)
           throw new Exception('The image is not decoded', 'InvalidStateError');
         bitmap = image;
       }
-      const source = owned.get(bitmap);
-      if (!source) throw new TypeError('Expected ImageBitmap from this session');
-      if ((bitmap as ImageBitmap).width === 0)
+      const state = ownedState(bitmap);
+      if (state?.kind !== 'ImageBitmap')
+        throw new TypeError('Expected ImageBitmap from this session');
+      if (!alive(state))
         throw new Exception('ImageBitmap is closed', 'InvalidStateError');
-      return source;
+      return state.source;
     },
     read(source) {
       check();
-      if (source instanceof classes.ImageData) {
-        if (source.data.byteLength === 0)
+      const data =
+        source && typeof source === 'object' ? classes.data(source) : undefined;
+      if (data) {
+        if (!apply(viewLength, data.data, []))
           throw new Exception('ImageData is detached', 'InvalidStateError');
+        const pixels = bytesOf(data.data);
         return {
-          width: source.width,
-          height: source.height,
-          data: new Uint8Array(
-            source.data.buffer,
-            source.data.byteOffset,
-            source.data.byteLength,
-          ),
-          colorSpace: 'srgb',
+          width: data.width,
+          height: data.height,
+          data: pixels,
+          colorSpace: data.colorSpace,
+          pixelFormat: data.pixelFormat,
           premultiplied: false,
         };
       }
-      if (source instanceof classes.ImageBitmap || source instanceof HostImage)
+      if (
+        source instanceof classes.ImageBitmap ||
+        (typeof source === 'object' && source !== null && elementSources.has(source))
+      )
         return host.source(source).pixels();
-      if (canvases.isCanvas(source)) {
+      if (canvases?.isCanvas(source)) {
         const backend = canvases.backend(source as object);
         if (!backend) {
           if (!source.width || !source.height)
@@ -506,7 +1033,7 @@ export function installImageHost(
     onClose(bitmap, callback) {
       host.source(bitmap);
       bitmap = elements.get(bitmap) ?? bitmap;
-      closeObservers.get(bitmap)!.add(callback);
+      ownedState(bitmap)!.callbacks.push(callback);
     },
     register(value) {
       check();
@@ -518,57 +1045,61 @@ export function installImageHost(
     },
     async create(source, ...args) {
       check();
-      const result =
-        source instanceof HostImage ? undefined : factory?.(source, ...args);
-      if (result) return result;
+      if (
+        source &&
+        typeof source === 'object' &&
+        ownedState(source)?.kind === 'ElementImage'
+      )
+        throw new TypeError('Unsupported ImageBitmap source');
+      const cropped = args.length > 1;
+      if (cropped && args.length < 4) throw new TypeError('Incomplete bitmap crop');
+      // Conversions can call application code that detaches or closes the source.
+      const crop: BitmapCrop | undefined = cropped
+        ? [
+            integer(args[0] as number),
+            integer(args[1]!),
+            integer(args[2]!),
+            integer(args[3]!),
+          ]
+        : undefined;
+      const supplied = (cropped ? args[4] : args[0]) as ImageBitmapOptions | undefined;
+      const options = settings(supplied);
+      if (crop && (crop[2] === 0 || crop[3] === 0))
+        throw new RangeError('Bitmap crop must not be empty');
+      if (
+        factory &&
+        !(typeof source === 'object' && source !== null && elementSources.has(source))
+      ) {
+        const providerArgs: Options = crop ? [...crop] : [];
+        if (supplied != null) providerArgs.push(options);
+        const result = factory(source, ...providerArgs);
+        if (result) return result;
+      }
       if (
         source &&
         typeof source === 'object' &&
         'arrayBuffer' in source &&
         typeof (source as any).arrayBuffer === 'function'
       ) {
-        const options = settings(
-          (args.length > 1 ? args[4] : args[0]) as ImageBitmapOptions | undefined,
-        );
-        const value = await rpc(
-          'decode',
-          await (source as Blob).arrayBuffer(),
-          options.colorSpaceConversion !== 'none',
-          options.imageOrientation !== 'flipY',
-        );
-        const bitmap = nativeBitmap(value);
+        const bitmap = await decodeBlob(source as Blob, options);
         if (
-          args.length > 1 ||
+          crop ||
           options.resizeWidth ||
           options.resizeHeight ||
           options.imageOrientation === 'flipY'
         ) {
           try {
-            return await transformed(host.read(bitmap), args);
+            return await transformed(host.read(bitmap), crop, options);
           } finally {
             bitmap.close();
           }
         }
         return bitmap;
       }
-      return transformed(host.read(source), args);
+      return transformed(host.read(source), crop, options);
     },
     fromPixels(source) {
-      const pixels = source.data.slice();
-      let id: number | undefined;
-      return host.bitmap({
-        width: source.width,
-        height: source.height,
-        close() {
-          if (id !== undefined) call('imageClose', id);
-        },
-        pixels: () => ({ ...source, data: pixels }),
-        native() {
-          id ??= call('imagePixels', pixels, source.width, source.height) as number;
-          g.__flaxModules?.require('@flax/core/navigation');
-          return call('imageNative', id) as object;
-        },
-      });
+      return fromOwnedPixels(copyPixels(source));
     },
     async encode(source, type = 'image/png', quality = 0.92) {
       check();
@@ -576,7 +1107,7 @@ export function installImageHost(
       if (!supported.includes(type)) type = 'image/png';
       const bytes = await rpc(
         'encode',
-        source.data,
+        toSrgbRgba8(source),
         source.width,
         source.height,
         type,
@@ -591,7 +1122,7 @@ export function installImageHost(
       const bytes = new Uint8Array(
         call(
           'imageEncode',
-          source.data,
+          toSrgbRgba8(source),
           source.width,
           source.height,
           type,
@@ -605,30 +1136,46 @@ export function installImageHost(
     },
     settle(id, ok, value) {
       const item = pending.get(id);
-      if (!item) return;
+      if (!item) {
+        if (open && ok && typeof value?.id === 'number') call('imageClose', value.id);
+        return;
+      }
       pending.delete(id);
       if (ok) item.resolve(value);
       else item.reject(new Exception(String(value), 'InvalidStateError'));
     },
     sweep() {
-      for (const record of records)
-        if (!record.ref.deref()) {
-          records.delete(record);
-          record.close();
-        }
+      let retained = 0;
+      for (let i = 0; i < records.length; i++) {
+        const record = records[i]!;
+        if (!record.ref.deref() || !alive(record.state)) release(record.state);
+        else records[retained++] = record;
+      }
+      records.length = retained;
+      activity(retained !== 0);
     },
     close() {
       if (!open) return;
-      for (const record of records) record.close();
-      records.clear();
       open = false;
+      for (let i = 0; i < records.length; i++) release(records[i]!.state);
+      records.length = 0;
+      activity(false);
       for (const item of pending.values())
         item.reject(new Exception('The image session closed', 'InvalidStateError'));
       pending.clear();
       factory = undefined;
     },
   };
-  const closeObservers = new WeakMap<object, Set<() => void>>();
+  Object.assign(g, {
+    ImageData: classes.ImageData,
+    ImageBitmap: classes.ImageBitmap,
+    ElementImage: classes.ElementImage,
+    createImageBitmap: (source: unknown, ...args: Options) =>
+      host.create(source, ...args),
+  });
+  Object.defineProperty(g, hostKey, { value: host });
+  // The image foundation needs neither Flutter objects nor a canvas provider.
+  if (worker || !canvases) return host;
   const BaseTarget = g.EventTarget ?? globalThis.EventTarget;
   const BaseEvent = g.Event ?? globalThis.Event;
   class HostImage extends BaseTarget {
@@ -641,6 +1188,7 @@ export function installImageHost(
     crossOrigin: string | null = null;
     constructor(width?: number, height?: number) {
       super();
+      elementSources.add(this);
       if (width !== undefined) this.width = width;
       if (height !== undefined) this.height = height;
     }
@@ -675,7 +1223,8 @@ export function installImageHost(
           if (!response.ok) throw new Error('Image HTTP status ' + response.status);
           blob = await response.blob();
         }
-        const bitmap = await host.create(blob);
+        // Keep straight pixels so each renderer can choose how to handle alpha.
+        const bitmap = await decodeBlob(blob);
         if (generation !== this.#generation || !open) {
           bitmap.close();
           throw new Exception('Image source changed', 'AbortError');
@@ -792,7 +1341,7 @@ export function installImageHost(
         clear(canvas.width, canvas.height);
         return;
       }
-      if (!owned.has(bitmap))
+      if (ownedState(bitmap)?.kind !== 'ImageBitmap')
         throw new TypeError('Expected ImageBitmap from this session');
       const source = host.source(bitmap);
       // Providers without a shared native image use an explicit pixel import.
@@ -837,13 +1386,8 @@ export function installImageHost(
   });
   Object.assign(g, {
     ImageBitmapRenderingContext,
-    ImageData: classes.ImageData,
-    ImageBitmap: classes.ImageBitmap,
     Image: HostImage,
     HTMLImageElement: HostImage,
-    createImageBitmap: (source: unknown, ...args: Options) =>
-      host.create(source, ...args),
   });
-  Object.defineProperty(g, hostKey, { value: host });
   return host;
 }

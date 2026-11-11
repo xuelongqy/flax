@@ -54,6 +54,37 @@ copy objects. Generated target tokens, session identity and Context/State lifeti
 validated by the existing bridge. See
 [checked views](../../../docs/architecture/objects.md#checked-views-and-dart-type-diagnostics).
 
-Pure JS/Wasm Dedicated Workers use `Worker` in main sessions. Worker script types are
-available through `@flax/core/host/worker`; see the
+## Unlinking a view or listener
+
+```ts
+import { addJointListener, ownJointObject, unlinkJoint } from '@flax/core';
+import { TextEditingController } from '@flax/flutter/widgets';
+
+const controller = TextEditingController({ text: 'draft' });
+const view = ownJointObject(controller);
+const listener = addJointListener(view, () => console.log(controller.text));
+
+unlinkJoint(view); // Releases the Dart edge of this view immediately.
+controller.text = 'updated';
+unlinkJoint(listener); // Removes exactly this listener registration.
+```
+
+Each call to `ownJointObject` creates a separate view with the source's Dart type and
+identity. The session accepts live ordinary Dart objects, and throws `TypeError` for
+borrowed Context or State, custom JS implementations, and released or foreign
+references. Use a controller whose disposal the session owns or observes.
+
+`addJointListener` supports generated `TextEditingController` bindings. Each call
+registers a separate synchronous callback, including repeated use of the same function.
+The registration has its own lifetime and a callback that unlinks itself can finish the
+current invocation. Keep the returned token for explicit removal.
+
+`unlinkJoint` returns `true` on the first successful call and `false` on repeats. It
+throws `TypeError` for values without a capability from the current session. After
+unlinking an object view, other views and normal Dart ownership remain usable.
+
+Pure JS/Wasm Dedicated Workers use `Worker` in main sessions. They include non-HTML
+`ImageData`, `ImageBitmap` and `createImageBitmap`, CPU Blob decoding/transforms, and
+image clone/transfer. Worker script types are available through `@flax/core/host/worker`
+without Image/HTMLImageElement, window or document globals; see the
 [worker contract](../../../docs/architecture/dedicated-workers.md).

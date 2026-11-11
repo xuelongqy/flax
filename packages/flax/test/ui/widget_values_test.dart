@@ -518,12 +518,12 @@ void main() {
         WeakReference<Widget> create() =>
             WeakReference(values.iterable().single);
         final weak = create();
-        await t.runAsync(() async {
-          for (var i = 0; i < 3; i++) {
-            h.execute(flaxTestJsGarbagePressure);
-            await flaxTestCollectDartGarbage();
-          }
-        });
+        h.execute(flaxTestJsGarbagePressure);
+        await t.runAsync(flaxTestCollectDartGarbage);
+        await flaxTestRunIdle(
+          t,
+          () => flaxTestWaitForGc(h.runtime, () => weak.target == null),
+        );
         expect(weak.target, isNull);
         expect(h.errors, isEmpty);
       } finally {
@@ -587,6 +587,10 @@ void main() {
           h.execute(flaxTestJsGarbagePressure);
           await flaxTestCollectDartGarbage();
         });
+        await flaxTestRunIdle(
+          t,
+          () => flaxTestWaitForGc(h.runtime, () => weak.target == null),
+        );
         expect(weak.target, isNull);
         expect(h.errors, isEmpty);
       } finally {
@@ -617,12 +621,12 @@ void main() {
         await t.pumpAndSettle();
         WeakReference<Widget> create() => WeakReference(values.record().child);
         final weak = create();
-        await t.runAsync(() async {
-          for (var i = 0; i < 3; i++) {
-            h.execute(flaxTestJsGarbagePressure);
-            await flaxTestCollectDartGarbage();
-          }
-        });
+        h.execute(flaxTestJsGarbagePressure);
+        await t.runAsync(flaxTestCollectDartGarbage);
+        await flaxTestRunIdle(
+          t,
+          () => flaxTestWaitForGc(h.runtime, () => weak.target == null),
+        );
         expect(weak.target, isNull);
         expect(h.errors, isEmpty);
       } finally {

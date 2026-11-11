@@ -15,6 +15,9 @@ const nativeLayouts = layouts as Record<string, NativeType>;
 const normalize = (value: string) => value.toLowerCase().replace(/[^a-z0-9]/g, '');
 const nativeEnums = new Map<string, number | bigint>();
 const nativeEnumTypes = new Set<string>();
+const bufferBindings = new WeakSet<object>();
+const externalTextureBindings = new WeakSet<object>();
+const noArguments: [] = [];
 for (const [name, value] of Object.entries(constants)) {
   nativeEnums.set(normalize(name), value);
   nativeEnumTypes.add(name.slice(0, name.lastIndexOf('_')));
@@ -23,19 +26,60 @@ for (const [name, value] of Object.entries(constants)) {
 export function integer(value: unknown, bits = 64): number {
   const number = Math.trunc(+(value as number));
   const limit = bits === 64 ? Number.MAX_SAFE_INTEGER : 2 ** bits - 1;
-  if (!Number.isFinite(number) || number < 0 || Math.trunc(number) > limit)
+  if (!Number.isFinite(number) || number < 0 || number > limit)
     throw new TypeError(`Expected an unsigned ${bits}-bit integer`);
+  return number === 0 ? 0 : number;
+}
+export function signedInteger(value: unknown): number {
+  const number = Math.trunc(+(value as number));
+  if (!Number.isFinite(number) || number < -2147483648 || number > 2147483647)
+    throw new TypeError('Expected a signed 32-bit integer');
   return number === 0 ? 0 : number;
 }
 export function text(value: unknown): string {
   if (typeof value === 'symbol') throw new TypeError('Cannot convert Symbol to string');
   return String(value);
 }
+function iteratorMethod(value: any): Function | undefined {
+  if (value == null || !['object', 'function'].includes(typeof value))
+    throw new TypeError('Expected a sequence object');
+  const method = value[Symbol.iterator];
+  if (method == null) return undefined;
+  if (typeof method !== 'function') throw new TypeError('Expected an iterator method');
+  return method;
+}
+export function sequence<T>(
+  value: any,
+  item: (value: any) => T,
+  method = iteratorMethod(value),
+): T[] {
+  if (!method) throw new TypeError('Expected a sequence');
+  const iterator = Reflect.apply(method, value, noArguments);
+  if (iterator == null || !['object', 'function'].includes(typeof iterator))
+    throw new TypeError('Expected an iterator object');
+  const next = iterator.next;
+  const result: T[] = [];
+  for (;;) {
+    const step: any = Reflect.apply(next, iterator, noArguments);
+    if (step == null || !['object', 'function'].includes(typeof step))
+      throw new TypeError('Expected an iterator result');
+    if (step.done) return result;
+    // WebIDL sequence conversion propagates conversion errors without IteratorClose.
+    result.push(item(step.value));
+  }
+}
 export function convert(
   type: string,
   value: any,
   resource: (value: unknown, kind: string) => bigint,
 ): any {
+  if (type === '[Clamp] unsigned short') {
+    const number = +(value as number);
+    const clamped = Math.min(Math.max(number || 0, 0), 65535);
+    const floor = Math.floor(clamped);
+    // Web IDL rounds halfway values toward the even integer.
+    return clamped === floor + 0.5 && floor % 2 === 0 ? floor : Math.round(clamped);
+  }
   type = type
     .replace(/\[[^\]]*\]\s*/g, '')
     .replace(/\s+/g, ' ')
@@ -75,22 +119,35 @@ export function convert(
   if (type.startsWith('(') && type.endsWith(')')) {
     const choices = type.slice(1, -1).split(' or ');
     if (value === undefined && choices.includes('undefined')) return undefined;
-    if (value != null && typeof value === 'object') {
-      const sequence = choices.find((item) => item.startsWith('sequence<'));
-      if (sequence && typeof value[Symbol.iterator] === 'function')
-        return convert(sequence, value, resource);
+    const dictionary = choices.find((item) => dictionaries[item]);
+    if (value == null && dictionary) return convert(dictionary, value, resource);
+    if (value != null && ['object', 'function'].includes(typeof value)) {
       for (const choice of choices) {
-        if (!metadata.objects.includes(`W${choice}`)) continue;
+        if (choice !== 'VideoFrame' && !metadata.objects.includes(`W${choice}`))
+          continue;
         try {
           resource(value, choice);
-          return choice === 'GPUBuffer' && choices.includes('GPUBufferBinding')
-            ? { buffer: value, offset: 0 }
-            : value;
+          if (choice === 'GPUBuffer' && choices.includes('GPUBufferBinding')) {
+            const binding = { buffer: value, offset: 0 };
+            bufferBindings.add(binding);
+            return binding;
+          }
+          if (choice === 'GPUExternalTexture') externalTextureBindings.add(value);
+          return value;
         } catch (error) {
           if (!(error instanceof TypeError)) throw error;
         }
       }
-      const dictionary = choices.find((item) => dictionaries[item]);
+      const sequenceType = choices.find((item) => item.startsWith('sequence<'));
+      if (sequenceType) {
+        const method = iteratorMethod(value);
+        if (method)
+          return sequence(
+            value,
+            (item) => convert(sequenceType.slice(9, -1), item, resource),
+            method,
+          );
+      }
       if (dictionary) return convert(dictionary, value, resource);
     }
     const scalar = choices.find(
@@ -103,14 +160,19 @@ export function convert(
     if (!value || !['object', 'function'].includes(typeof value))
       throw new TypeError('Expected a record');
     const separator = type.indexOf(',');
-    return Object.fromEntries(
-      Reflect.ownKeys(value)
-        .filter((key) => Object.getOwnPropertyDescriptor(value, key)?.enumerable)
-        .map((key) => [
-          convert(type.slice(7, separator).trim(), key, resource),
-          convert(type.slice(separator + 1, -1).trim(), value[key], resource),
-        ]),
-    );
+    const result = {};
+    for (const key of Reflect.ownKeys(value)) {
+      if (!Object.getOwnPropertyDescriptor(value, key)?.enumerable) continue;
+      const name = convert(type.slice(7, separator).trim(), key, resource);
+      const item = convert(type.slice(separator + 1, -1).trim(), value[key], resource);
+      Object.defineProperty(result, name, {
+        value: item,
+        writable: true,
+        enumerable: true,
+        configurable: true,
+      });
+    }
+    return result;
   }
   if (enums[type]) {
     const result = text(value);
@@ -119,9 +181,7 @@ export function convert(
     return result;
   }
   if (type.startsWith('sequence<')) {
-    if (value == null || typeof value[Symbol.iterator] !== 'function')
-      throw new TypeError('Expected a sequence');
-    return Array.from(value, (item) => convert(type.slice(9, -1), item, resource));
+    return sequence(value, (item) => convert(type.slice(9, -1), item, resource));
   }
   if (dictionaries[type]) {
     if (value != null && !['object', 'function'].includes(typeof value))
@@ -132,27 +192,28 @@ export function convert(
       const item = value?.[key];
       if (item === undefined) {
         if (field.required) throw new TypeError(`${type}.${key} is required`);
-        if ('default' in field) result[key] = structuredDefault(field.default);
-      } else result[key] = convert(field.type, item, resource);
+        if (!('default' in field)) continue;
+      }
+      Object.defineProperty(result, key, {
+        value:
+          item === undefined
+            ? structuredDefault(field.type, field.default, resource)
+            : convert(field.type, item, resource),
+        writable: true,
+        enumerable: true,
+        configurable: true,
+      });
     }
     if (type === 'GPUTextureViewDescriptor' && !/^[rgba01]{4}$/.test(result.swizzle))
       throw new TypeError('Texture swizzle must contain four rgba01 components');
+    if (type === 'GPUBufferBinding') bufferBindings.add(result);
     return result;
   }
   if (type === 'boolean') return Boolean(value);
   if (type === 'unsigned long') return integer(value, 32);
   if (type === 'unsigned short') return integer(value, 16);
   if (type === 'unsigned long long') return integer(value);
-  if (type === 'long') {
-    const number = +(value as number);
-    if (
-      !Number.isFinite(number) ||
-      Math.trunc(number) < -2147483648 ||
-      Math.trunc(number) > 2147483647
-    )
-      throw new TypeError('Expected a signed 32-bit integer');
-    return Math.trunc(number);
-  }
+  if (type === 'long') return signedInteger(value);
   if (type === 'double' || type === 'float') {
     const result =
       type === 'float' ? Math.fround(+(value as number)) : +(value as number);
@@ -168,17 +229,29 @@ export function convert(
   if (type === 'undefined' && value === undefined) return undefined;
   return value;
 }
-function structuredDefault(value: unknown): unknown {
-  return Array.isArray(value) ? [] : value && typeof value === 'object' ? {} : value;
+function structuredDefault(
+  type: string,
+  value: unknown,
+  resource: (value: unknown, kind: string) => bigint,
+): unknown {
+  if (Array.isArray(value)) return [];
+  if (value && typeof value === 'object')
+    return type.startsWith('record<') ? {} : convert(type, undefined, resource);
+  return value;
 }
 export function nativeEnum(type: string, value: unknown): number | bigint {
-  const result = nativeEnums.get(normalize(`${type}_${text(value)}`));
-  if (result === undefined) throw new TypeError(`Invalid ${type}: ${String(value)}`);
+  const name = text(value);
+  if (enums[type.slice(1)]?.includes(name) === false)
+    throw new TypeError(`Invalid ${type}: ${name}`);
+  const result = nativeEnums.get(normalize(`${type}_${name}`));
+  if (result === undefined) throw new TypeError(`Invalid ${type}: ${name}`);
   return result;
 }
 
 /** One arena owns all temporary descriptor bytes through a synchronous Dawn call. */
 export class DescriptorArena extends Arena {
+  declare externalTextures: Set<object> | undefined;
+
   constructor(
     readonly init: (name: string, pointer: bigint, length: number) => void,
     readonly resource: (value: unknown, kind: string) => bigint,
@@ -257,6 +330,10 @@ export class DescriptorArena extends Arena {
       value.length = input.length;
       return { pointer, value };
     }
+    if (type === 'WGPURenderPassColorAttachment' && input?.depthSlice === 0xffffffff) {
+      // Dawn reserves UINT32_MAX for omission. Keep an explicit out-of-range slice.
+      input = { ...input, depthSlice: 0xfffffffe };
+    }
     if (type === 'WGPUExtent3D' || type === 'WGPUOrigin3D' || type === 'WGPUColor') {
       if (Array.isArray(input) || ArrayBuffer.isView(input)) {
         const names =
@@ -272,14 +349,22 @@ export class DescriptorArena extends Arena {
     }
     if (type === 'WGPUBindGroupEntry') {
       const item = input.resource;
-      if (item?.buffer)
+      if (bufferBindings.has(item))
         input = {
           ...input,
           buffer: item.buffer,
           offset: item.offset ?? 0,
-          ...(item.size === undefined ? {} : { size: item.size }),
+          ...(Object.hasOwn(item, 'size') ? { size: item.size } : {}),
         };
-      else if (item) {
+      else if (externalTextureBindings.has(item)) {
+        (this.externalTextures ??= new Set()).add(item);
+        input = {
+          ...input,
+          nextInChain: this.struct('WGPUExternalTextureBindingEntry', {
+            externalTexture: item,
+          }).pointer,
+        };
+      } else if (item) {
         try {
           this.resource(item, 'GPUSampler');
           input = { ...input, sampler: item };
@@ -289,10 +374,17 @@ export class DescriptorArena extends Arena {
         }
       }
     }
+    if (type === 'WGPUBindGroupLayoutEntry' && Object.hasOwn(input, 'externalTexture'))
+      input = {
+        ...input,
+        nextInChain: this.struct('WGPUExternalTextureBindingLayout').pointer,
+      };
     if (type === 'WGPUTexelCopyBufferInfo') input = { ...input, layout: input };
     // Dawn already supplies the standard defaults; allocate chains only for overrides.
     if (
       type === 'WGPUTextureDescriptor' &&
+      input != null &&
+      Object.hasOwn(input, 'textureBindingViewDimension') &&
       input.textureBindingViewDimension !== undefined
     )
       input = {
@@ -303,6 +395,8 @@ export class DescriptorArena extends Arena {
       };
     if (
       type === 'WGPUTextureViewDescriptor' &&
+      input != null &&
+      Object.hasOwn(input, 'swizzle') &&
       input.swizzle !== undefined &&
       input.swizzle !== 'rgba'
     ) {
@@ -323,6 +417,8 @@ export class DescriptorArena extends Arena {
     }
     if (
       type === 'WGPURenderPassDescriptor' &&
+      input != null &&
+      Object.hasOwn(input, 'maxDrawCount') &&
       input.maxDrawCount !== undefined &&
       input.maxDrawCount !== 50_000_000
     )
@@ -333,7 +429,8 @@ export class DescriptorArena extends Arena {
         }).pointer,
       };
     for (const [key, declaration] of Object.entries(structs[type]!)) {
-      let item = input?.[key];
+      if (input == null || !Object.hasOwn(input, key)) continue;
+      let item = input[key];
       if (item === undefined || item === null) continue;
       // Dawn's initialized descriptor already represents an empty object label.
       if (defaults && key === 'label' && item === '') continue;

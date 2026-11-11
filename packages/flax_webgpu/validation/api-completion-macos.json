@@ -1,0 +1,372 @@
+{
+  "schemaVersion": 1,
+  "scope": "macOS arm64 practical WebGPU API completion; bounded acceptance, not full browser or CTS conformance.",
+  "status": "Functional and performance checks passed; independent final verdict is recorded externally; uncommitted.",
+  "flaxBase": "d954085ff34814cab21d8991b6b590bec9e182eb",
+  "dawnRevision": "5fbd545292cb7a4a9a275e322abec6007ffe2ae8",
+  "gpuwebRevision": "22507c95ccb9e705eddc7cab8f28aa46b134f5fe",
+  "ctsRevision": "cc11994e92512d0a3715e9d28876ec48accb971a",
+  "headerSha256": "44126360bbd35339b3b1ccb8ab5bdf21a4a1109bc05f086b179df5ea5a2734d0",
+  "idlSha256": "5293ea7f38416cb37b0ddfc636286514ff622901caa19504a4bdede2ec5a80b2",
+  "initialPackageDigest": "e8c9c1f4d09ca29abf5608c6eb763e2e3539a3ece707373be20c4cd021f9cefa",
+  "applicationSource": {
+    "snapshot": "fix-2",
+    "packageDigest": "0e0177bb7c85a074bf4aad82750df4d007b180902f78c99e1399148415db34b7",
+    "finalSourceDelta": "Documentation and this receipt only."
+  },
+  "evidenceRoot": "/Volumes/MAC_HOME/CodexHome/review-evidence/webgpu-completion-20261102",
+  "independentAcceptance": "/Volumes/MAC_HOME/CodexHome/review-evidence/webgpu-completion-20261102/independent-final-review.json",
+  "artifact": {
+    "manifestSha256": "53b4fe483251cebe1e767972b18ca508b92841f33f3a10f459624fbeb4e370f4",
+    "entries": 1233,
+    "path": "/Volumes/MAC_HOME/CodexHome/review-evidence/webgpu-completion-20261102/artifacts-v1"
+  },
+  "changes": [
+    "Single-conversion buffer overloads and ranges, iterable/record access order, nullish dictionary defaults, strict enum spelling and USVString labels.",
+    "Standard error/prototype shapes and private normalized buffer-binding branding without reading interface resource expandos.",
+    "Core-owned native-free compilation diagnostic objects and graph-preserving structured clone through main and Worker realms.",
+    "Actual UTF-16 diagnostic locations from Dawn for non-ASCII WGSL source.",
+    "Genuine Dawn compatibility devices, distinct storage stage limits and explicit core upgrade.",
+    "Native EventTarget private fields and preserved class field initialization in generated hosts."
+  ],
+  "checks": {
+    "coreNodeTests": 140,
+    "webgpuConverterTests": 15,
+    "exampleTests": 2,
+    "runtimeContracts": 59,
+    "coreUiTests": 49,
+    "typechecks": ["Core", "WebGPU runtime", "declaration-only SDK", "example"],
+    "generatedHostCount": 4,
+    "ffiReproducibility": true,
+    "nativeProducer": true,
+    "acceptedEngineInputsUnchanged": true,
+    "native": {
+      "passed": true,
+      "sessions": 3,
+      "resolution": [960, 540],
+      "frames": 360,
+      "apiExtensions": [
+        {
+          "cycle": 0,
+          "canvas2D": true,
+          "inputSemantics": {
+            "assertions": 108,
+            "bufferRanges": true,
+            "overloads": true,
+            "sequences": true,
+            "errors": true
+          },
+          "diagnostics": {
+            "assertions": 39,
+            "messages": 1,
+            "worker": true
+          },
+          "compatibility": {
+            "defaultLimits": {
+              "maxStorageBuffersInVertexStage": 0,
+              "maxStorageTexturesInVertexStage": 0,
+              "maxStorageBuffersInFragmentStage": 4,
+              "maxStorageTexturesInFragmentStage": 4
+            },
+            "requiredLimits": {
+              "maxStorageBuffersInVertexStage": 1,
+              "maxStorageTexturesInVertexStage": 1,
+              "maxStorageBuffersInFragmentStage": 5,
+              "maxStorageTexturesInFragmentStage": 5
+            },
+            "upgradedCore": true,
+            "pixels": [23, 89, 177, 255]
+          },
+          "standardInputSemantics": {
+            "assertions": 57,
+            "dictionaryAccessors": true,
+            "dictionaryMemberOrder": true,
+            "writeBufferReadback": true,
+            "signedIndexedDraws": true,
+            "nullishVertexBuffers": true
+          }
+        },
+        {
+          "cycle": 1,
+          "canvas2D": false,
+          "inputSemantics": {
+            "assertions": 108,
+            "bufferRanges": true,
+            "overloads": true,
+            "sequences": true,
+            "errors": true
+          },
+          "diagnostics": {
+            "assertions": 39,
+            "messages": 1,
+            "worker": true
+          },
+          "compatibility": {
+            "defaultLimits": {
+              "maxStorageBuffersInVertexStage": 0,
+              "maxStorageTexturesInVertexStage": 0,
+              "maxStorageBuffersInFragmentStage": 4,
+              "maxStorageTexturesInFragmentStage": 4
+            },
+            "requiredLimits": {
+              "maxStorageBuffersInVertexStage": 1,
+              "maxStorageTexturesInVertexStage": 1,
+              "maxStorageBuffersInFragmentStage": 5,
+              "maxStorageTexturesInFragmentStage": 5
+            },
+            "upgradedCore": true,
+            "pixels": [23, 89, 177, 255]
+          },
+          "standardInputSemantics": {
+            "assertions": 57,
+            "dictionaryAccessors": true,
+            "dictionaryMemberOrder": true,
+            "writeBufferReadback": true,
+            "signedIndexedDraws": true,
+            "nullishVertexBuffers": true
+          }
+        },
+        {
+          "cycle": 2,
+          "canvas2D": true,
+          "inputSemantics": {
+            "assertions": 108,
+            "bufferRanges": true,
+            "overloads": true,
+            "sequences": true,
+            "errors": true
+          },
+          "diagnostics": {
+            "assertions": 39,
+            "messages": 1,
+            "worker": true
+          },
+          "compatibility": {
+            "defaultLimits": {
+              "maxStorageBuffersInVertexStage": 0,
+              "maxStorageTexturesInVertexStage": 0,
+              "maxStorageBuffersInFragmentStage": 4,
+              "maxStorageTexturesInFragmentStage": 4
+            },
+            "requiredLimits": {
+              "maxStorageBuffersInVertexStage": 1,
+              "maxStorageTexturesInVertexStage": 1,
+              "maxStorageBuffersInFragmentStage": 5,
+              "maxStorageTexturesInFragmentStage": 5
+            },
+            "upgradedCore": true,
+            "pixels": [23, 89, 177, 255]
+          },
+          "standardInputSemantics": {
+            "assertions": 57,
+            "dictionaryAccessors": true,
+            "dictionaryMemberOrder": true,
+            "writeBufferReadback": true,
+            "signedIndexedDraws": true,
+            "nullishVertexBuffers": true
+          }
+        }
+      ],
+      "finalCumulativeAssertionsPerSession": [568, 559, 568],
+      "retirements": [
+        {
+          "kind": "retired",
+          "cycle": -1,
+          "before": [0, 0, 0, 0, 0, 0],
+          "after": [0, 0, 0, 0, 0, 0],
+          "workersBefore": [0, 0],
+          "workersAfter": [0, 0],
+          "rssAtClose": 266027008,
+          "rssAfter": 257097728,
+          "peakRss": 337707008,
+          "elapsedMs": 1366
+        },
+        {
+          "kind": "retired",
+          "cycle": 0,
+          "before": [1, 1, 6, 8, 4, 0],
+          "after": [0, 0, 0, 0, 0, 0],
+          "workersBefore": [2, 2],
+          "workersAfter": [0, 0],
+          "rssAtClose": 458260480,
+          "rssAfter": 449757184,
+          "peakRss": 618889216,
+          "elapsedMs": 10328
+        },
+        {
+          "kind": "retired",
+          "cycle": 1,
+          "before": [1, 1, 6, 8, 4, 0],
+          "after": [0, 0, 0, 0, 0, 0],
+          "workersBefore": [2, 2],
+          "workersAfter": [0, 0],
+          "rssAtClose": 474710016,
+          "rssAfter": 469811200,
+          "peakRss": 633176064,
+          "elapsedMs": 19179
+        },
+        {
+          "kind": "retired",
+          "cycle": 2,
+          "before": [1, 1, 6, 8, 4, 0],
+          "after": [0, 0, 0, 0, 0, 0],
+          "workersBefore": [2, 2],
+          "workersAfter": [0, 0],
+          "rssAtClose": 483590144,
+          "rssAfter": 479002624,
+          "peakRss": 644120576,
+          "elapsedMs": 28221
+        }
+      ],
+      "cts": [
+        {
+          "file": "cts-0.json",
+          "total": 603,
+          "pass": 567,
+          "skip": 36
+        },
+        {
+          "file": "cts-1.json",
+          "total": 603,
+          "pass": 567,
+          "skip": 36
+        },
+        {
+          "file": "cts-2.json",
+          "total": 603,
+          "pass": 567,
+          "skip": 36
+        }
+      ]
+    }
+  },
+  "performance": {
+    "processCount": 8,
+    "processesPerVariant": 4,
+    "order": [
+      "baseline",
+      "final",
+      "final",
+      "baseline",
+      "baseline",
+      "final",
+      "final",
+      "baseline"
+    ],
+    "helperSha256": "ae5dad4de56fcc11b0dca334db2705ddc72746231203838e918bb151ae1374dd",
+    "method": {
+      "targetSize": [960, 540],
+      "warmupRoundsPerPhasePerProcess": 80,
+      "sampleRoundsPerPhasePerProcess": 240,
+      "ordinaryRound": "encoder/pass creation, three draw(3) calls, pass end, finish, queue.submit",
+      "stressDrawLoop": "2304 drawIndexed(0,1,0,(draw%3)-1,0) calls; zero index count limits GPU work",
+      "timingExclusions": [
+        "queue.onSubmittedWorkDone waits",
+        "presentation",
+        "GPU timestamp instrumentation",
+        "trace instrumentation"
+      ],
+      "aggregation": "Median of each process percentile, not a pooled sample percentile; p95 ranges describe process variation."
+    },
+    "aggregate": {
+      "ordinaryRoundMs": {
+        "baseline": {
+          "p50": {
+            "medianOfProcessPercentiles": 0.10950000000025284,
+            "minAcrossProcesses": 0.09799999999995634,
+            "maxAcrossProcesses": 0.11300000000005639
+          },
+          "p95": {
+            "medianOfProcessPercentiles": 0.15299999999990632,
+            "minAcrossProcesses": 0.13000000000010914,
+            "maxAcrossProcesses": 0.15899999999987813
+          }
+        },
+        "final": {
+          "p50": {
+            "medianOfProcessPercentiles": 0.10199999999997544,
+            "minAcrossProcesses": 0.09400000000005093,
+            "maxAcrossProcesses": 0.10900000000015098
+          },
+          "p95": {
+            "medianOfProcessPercentiles": 0.14800000000002456,
+            "minAcrossProcesses": 0.12199999999984357,
+            "maxAcrossProcesses": 0.1690000000000964
+          }
+        },
+        "finalVsBaselinePercent": {
+          "p50": -6.849315068730666,
+          "p95": -3.2679738561338767
+        }
+      },
+      "stressRoundMs": {
+        "baseline": {
+          "p50": {
+            "medianOfProcessPercentiles": 0.7055000000000291,
+            "minAcrossProcesses": 0.6859999999999218,
+            "maxAcrossProcesses": 0.7489999999997963
+          },
+          "p95": {
+            "medianOfProcessPercentiles": 0.7800000000002001,
+            "minAcrossProcesses": 0.765999999999849,
+            "maxAcrossProcesses": 0.8309999999999036
+          }
+        },
+        "final": {
+          "p50": {
+            "medianOfProcessPercentiles": 0.70900000000006,
+            "minAcrossProcesses": 0.6840000000001965,
+            "maxAcrossProcesses": 0.7749999999998636
+          },
+          "p95": {
+            "medianOfProcessPercentiles": 0.7779999999999063,
+            "minAcrossProcesses": 0.7480000000000473,
+            "maxAcrossProcesses": 0.8669999999999618
+          }
+        },
+        "finalVsBaselinePercent": {
+          "p50": 0.4961020552842976,
+          "p95": -0.25641025644784765
+        }
+      },
+      "stressDrawLoopMs": {
+        "baseline": {
+          "p50": {
+            "medianOfProcessPercentiles": 0.5520000000001346,
+            "minAcrossProcesses": 0.5399999999999636,
+            "maxAcrossProcesses": 0.5979999999999563
+          },
+          "p95": {
+            "medianOfProcessPercentiles": 0.6034999999997126,
+            "minAcrossProcesses": 0.5940000000000509,
+            "maxAcrossProcesses": 0.65300000000002
+          }
+        },
+        "final": {
+          "p50": {
+            "medianOfProcessPercentiles": 0.5545000000000755,
+            "minAcrossProcesses": 0.5350000000000819,
+            "maxAcrossProcesses": 0.6259999999999764
+          },
+          "p95": {
+            "medianOfProcessPercentiles": 0.60349999999994,
+            "minAcrossProcesses": 0.5890000000001692,
+            "maxAcrossProcesses": 0.68100000000004
+          }
+        },
+        "finalVsBaselinePercent": {
+          "p50": 0.45289855071382057,
+          "p95": 3.768096945577781e-11
+        }
+      }
+    },
+    "conclusion": "All eight instrumented applications passed and fixed outputs were restored. Process p95 ranges overlap. Ordinary-round p50 is lower in this matrix while indexed stress differs by about half a percent; desktop variation and unprofiled GC/scheduling prevent a conclusive gain or regression claim. This is API CPU timing, not FPS, display latency or maximum GPU throughput."
+  },
+  "limitations": [
+    "compilationHints are converted and advisory; the pinned Dawn ABI has no equivalent entry-point/layout hint operation. No speculative pipeline prewarming.",
+    "Current normative WebIDL safe-integer input bounds are retained.",
+    "No full CTS/WebIDL certification, arbitrary DOM/CSS, video/external textures, HDR/P3, XR, Worker graphics or other-platform acceptance.",
+    "API CPU control is not FPS, GPU throughput, physical display latency or a fresh Edge comparison; earlier Worker scheduling/GC tail is not claimed fixed."
+  ],
+  "commitPushPublish": false
+}

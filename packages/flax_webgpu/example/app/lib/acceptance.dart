@@ -46,6 +46,12 @@ Future<void> main() async {
             'origins': ['http://127.0.0.1:${modelServer.port}'],
           },
         ),
+        'flax.module.remote': FlaxPermissionDeclaration(
+          purpose: const {'en': 'Load the checked-in Three.js renderer Worker'},
+          scope: {
+            'origins': ['http://127.0.0.1:${modelServer.port}'],
+          },
+        ),
         'flax.wasm': FlaxPermissionDeclaration(
           purpose: {'en': 'Decode checked-in Draco, Meshopt and KTX fixtures'},
         ),
@@ -54,6 +60,7 @@ Future<void> main() async {
   );
   modelServer.listen((request) async {
     const assets = {
+      '/three-renderer-worker.js': 'application/javascript',
       '/textured-cube.gltf': 'model/gltf+json',
       '/textured-cube.glb': 'model/gltf-binary',
       '/geometry.bin': 'application/octet-stream',
@@ -113,6 +120,7 @@ class ReportPlugin extends FlaxPlugin {
     '__webGpuReport',
     '__webGpuRejectShared',
     '__threeWorkerState',
+    '__webGpuCollect',
   };
   @override
   Set<String> get jsModules => const {};
@@ -120,12 +128,42 @@ class ReportPlugin extends FlaxPlugin {
   List<FlaxBindingModule> get bindingModules => const [];
   @override
   FlaxPluginInstance install(FlaxHostContext context) {
+    final engine = DynamicLibrary.process();
+    if (engine.providesSymbol('flax_ffi_dlopen_collect_session_pending')) {
+      final collect = engine
+          .lookupFunction<
+            Int32 Function(Pointer<Void>),
+            int Function(Pointer<Void>)
+          >('flax_ffi_dlopen_collect_session_pending');
+      context.registerFunction('__webGpuCollect', (_, args) {
+        // The instrumented engine requires an idle owning isolate, outside a JS call.
+        Timer.run(() {
+          if (!context.isActive || context.isClosing) return;
+          final result = collect(nullptr);
+          if (result != 0) {
+            context.report(
+              StateError('Test-only GPU device collection failed: $result'),
+              StackTrace.current,
+            );
+            return;
+          }
+          context.enqueue(() {
+            final value = context.evaluate(
+              'globalThis.__webGpuGcEpoch = (globalThis.__webGpuGcEpoch ?? 0) + 1; undefined;',
+            );
+            if (value is FlaxJsObject) value.release();
+          });
+        });
+        return const FlaxJsUndefined();
+      });
+    }
     context.registerFunction('__threeWorkerState', (_, args) {
       final counts = (context.runtime as FlaxNativeJsRuntime)
           .workerCountsForTesting();
       return FlaxJsString(
         jsonEncode({
           'workers': [counts.$1, counts.$2],
+          'gpu': List.generate(10, live),
           'rss': ProcessInfo.currentRss,
           'peakRss': ProcessInfo.maxRss,
         }),
@@ -245,7 +283,7 @@ class _AcceptanceState extends State<Acceptance> {
           'passed': false,
           'error': message,
           'results': results,
-          'nativeCounts': List.generate(6, live),
+          'nativeCounts': List.generate(10, live),
         }),
       );
     }
@@ -256,6 +294,14 @@ class _AcceptanceState extends State<Acceptance> {
   void report(Map<String, dynamic> value) {
     if (value['error'] != null) {
       fail(value['error'].toString());
+      return;
+    }
+    if (value['kind'] == 'worker-capture') {
+      unawaited(captureWorker(value['phase'] as String));
+      return;
+    }
+    if (value['kind'] == 'three-worker-capture') {
+      unawaited(captureThreeWorker(value));
       return;
     }
     if (value['kind'] == 'three-image') {
@@ -280,8 +326,379 @@ class _AcceptanceState extends State<Acceptance> {
     if (value['kind'] == 'rendered') unawaited(finish());
   }
 
+  Future<void> captureWorker(String phase) async {
+    try {
+      if (!const {
+        'red',
+        'green',
+        'clone',
+        'returned',
+        'copy-dst',
+        'storage',
+        'unused',
+        'terminated',
+      }.contains(phase)) {
+        throw ArgumentError('Invalid Worker capture phase');
+      }
+      for (var frame = 0; frame < 3; frame++) {
+        WidgetsBinding.instance.scheduleFrame();
+        await WidgetsBinding.instance.endOfFrame;
+      }
+      final repaint =
+          boundary.currentContext!.findRenderObject() as RenderRepaintBoundary;
+      FlaxCanvasRenderBox? canvas;
+      void find(RenderObject object) {
+        if (object is FlaxCanvasRenderBox) canvas = object;
+        object.visitChildren(find);
+      }
+
+      find(repaint);
+      if (canvas == null)
+        throw StateError('The Worker canvas render box is missing');
+      final origin = canvas!.localToGlobal(Offset.zero, ancestor: repaint);
+      final image = await repaint.toImage(pixelRatio: 1);
+      try {
+        final bytes = await image.toByteData(
+          format: ui.ImageByteFormat.rawRgba,
+        );
+        var pixels = 0, samples = 0;
+        // Inspect the canvas interior; surrounding black UI cannot satisfy a clear check.
+        final left = (origin.dx + 2).ceil().clamp(0, image.width);
+        final top = (origin.dy + 2).ceil().clamp(0, image.height);
+        final right = (origin.dx + canvas!.size.width - 2).floor().clamp(
+          0,
+          image.width,
+        );
+        final bottom = (origin.dy + canvas!.size.height - 2).floor().clamp(
+          0,
+          image.height,
+        );
+        for (var y = top; y < bottom; y++) {
+          for (var x = left; x < right; x++) {
+            final at = (y * image.width + x) * 4;
+            final red = bytes!.getUint8(at),
+                green = bytes.getUint8(at + 1),
+                blue = bytes.getUint8(at + 2);
+            samples++;
+            final matches = switch (phase) {
+              'terminated' => bytes.getUint8(at + 3) == 0,
+              'unused' =>
+                red < 4 &&
+                    green < 4 &&
+                    blue < 4 &&
+                    bytes.getUint8(at + 3) > 250,
+              'green' || 'storage' => blue < 40 && green > 200 && red < 40,
+              _ => blue < 40 && red > 200 && green < 40,
+            };
+            if (matches) {
+              pixels++;
+            }
+          }
+        }
+        if (output.isNotEmpty) {
+          final png = await image.toByteData(format: ui.ImageByteFormat.png);
+          File('$output/worker-$cycle-$phase.png')
+              .writeAsBytesSync(png!.buffer.asUint8List());
+        }
+        final result = {
+          'phase': phase,
+          'pixels': pixels,
+          'samples': samples,
+          'layout': [canvas!.size.width, canvas!.size.height],
+        };
+        results.add({'kind': 'worker-capture', 'cycle': cycle, ...result});
+        final value = nativeRuntime.evaluate(
+          'globalThis.__workerGpuCapture = ${jsonEncode(result)}; undefined;',
+        );
+        if (value is FlaxJsObject) value.release();
+        nativeRuntime.drainMicrotasks();
+      } finally {
+        image.dispose();
+      }
+    } catch (error, stack) {
+      fail('$error\n$stack');
+    }
+  }
+
+  Future<void> captureThreeWorker(Map<String, dynamic> value) async {
+    try {
+      final name = value['name'] as String;
+      const names = {
+        'features-model-textured-cube-glb',
+        'features-post-plain',
+        'features-post-inverted',
+        'features-post-bloom',
+        'advanced-skinned-rest',
+        'advanced-skinned-pose',
+        'advanced-skinned-restored',
+        'ktx-uastc',
+      };
+      final width = value['width'] as int, height = value['height'] as int;
+      final expected = base64Decode(value['base64'] as String);
+      if (!names.contains(name) ||
+          width != (name == 'ktx-uastc' ? 16 : 192) ||
+          height != width ||
+          expected.length != width * height * 4) {
+        throw ArgumentError('Invalid Three.js Worker capture');
+      }
+      for (var frame = 0; frame < 3; frame++) {
+        WidgetsBinding.instance.scheduleFrame();
+        await WidgetsBinding.instance.endOfFrame;
+      }
+      final repaint =
+          boundary.currentContext!.findRenderObject() as RenderRepaintBoundary;
+      FlaxCanvasRenderBox? canvas;
+      void find(RenderObject object) {
+        if (object is FlaxCanvasRenderBox) canvas = object;
+        object.visitChildren(find);
+      }
+
+      find(repaint);
+      if (canvas == null)
+        throw StateError('The Three.js Worker canvas is missing');
+      final origin = canvas!.localToGlobal(Offset.zero, ancestor: repaint);
+      final image = await repaint.toImage(pixelRatio: 1);
+      try {
+        final bytes = (await image.toByteData(
+          format: ui.ImageByteFormat.rawRgba,
+        ))!;
+        var samples = 0, colored = 0, totalError = 0;
+        final left = (origin.dx + 2).ceil().clamp(0, image.width);
+        final top = (origin.dy + 2).ceil().clamp(0, image.height);
+        final right = (origin.dx + canvas!.size.width - 2).floor().clamp(
+          0,
+          image.width,
+        );
+        final bottom = (origin.dy + canvas!.size.height - 2).floor().clamp(
+          0,
+          image.height,
+        );
+        for (var y = top; y < bottom; y++) {
+          for (var x = left; x < right; x++) {
+            final at = (y * image.width + x) * 4;
+            final sourceX = (x + 0.5 - origin.dx).floor().clamp(0, width - 1);
+            final sourceY = (y + 0.5 - origin.dy).floor().clamp(0, height - 1);
+            final source = (sourceY * width + sourceX) * 4;
+            for (var channel = 0; channel < 4; channel++) {
+              totalError +=
+                  (bytes.getUint8(at + channel) - expected[source + channel])
+                      .abs();
+            }
+            if (bytes.getUint8(at) > 40 ||
+                bytes.getUint8(at + 1) > 40 ||
+                bytes.getUint8(at + 2) > 40) {
+              colored++;
+            }
+            samples++;
+          }
+        }
+        if (output.isNotEmpty) {
+          final png = await image.toByteData(format: ui.ImageByteFormat.png);
+          File('$output/three-worker-display-$cycle-$name.png')
+              .writeAsBytesSync(png!.buffer.asUint8List());
+        }
+        final result = {
+          'name': name,
+          'coloredPixels': colored,
+          'samples': samples,
+          // The Flutter raster may sample a half-pixel canvas edge; exact GPU parity is checked in JS.
+          'meanError': samples == 0 ? 255 : totalError / (samples * 4),
+          'layout': [canvas!.size.width, canvas!.size.height],
+        };
+        results.add({
+          'kind': 'three-worker-display',
+          'cycle': cycle,
+          ...result,
+        });
+        final value = nativeRuntime.evaluate(
+          'globalThis.__threeWorkerCapture = ${jsonEncode(result)}; undefined;',
+        );
+        if (value is FlaxJsObject) value.release();
+        nativeRuntime.drainMicrotasks();
+      } finally {
+        image.dispose();
+      }
+    } catch (error, stack) {
+      fail('$error\n$stack');
+    }
+  }
+
   Future<void> finish() async {
     try {
+      if (cycle >= 0) {
+        const requiredThreeFrames = {
+          'features-model-textured-cube-gltf',
+          'features-model-textured-cube-glb',
+          'features-DirectionalLight-lit',
+          'features-DirectionalLight-shadow',
+          'features-PointLight-lit',
+          'features-PointLight-shadow',
+          'features-SpotLight-lit',
+          'features-SpotLight-shadow',
+          'features-post-plain',
+          'features-post-inverted',
+          'features-post-bloom',
+          'advanced-skinned-rest',
+          'advanced-skinned-pose',
+          'advanced-skinned-restored',
+          'advanced-morph-rest',
+          'advanced-morph-pose',
+          'advanced-morph-restored',
+          'advanced-meshopt',
+          'ktx-etc1s',
+          'ktx-uastc',
+        };
+        final threeReports = results
+            .where(
+              (row) =>
+                  row['cycle'] == cycle &&
+                  row['kind'] == 'three-worker-renderer',
+            )
+            .toList();
+        if (threeReports.length != 1)
+          throw StateError(
+            'Expected one Three.js Worker renderer report for cycle $cycle',
+          );
+        final three = threeReports.single;
+        final comparisons = three['comparisons'];
+        final displays = three['displays'];
+        final nested = three['nested'];
+        const requiredDisplays = {
+          'features-model-textured-cube-glb',
+          'features-post-plain',
+          'features-post-inverted',
+          'features-post-bloom',
+          'advanced-skinned-rest',
+          'advanced-skinned-pose',
+          'advanced-skinned-restored',
+          'ktx-uastc',
+        };
+        final actualDisplays = results
+            .where(
+              (row) =>
+                  row['cycle'] == cycle &&
+                  row['kind'] == 'three-worker-display',
+            )
+            .toList();
+        if (three['version'] != '186' ||
+            three['domFree'] != true ||
+            three['pixelSnapshots'] != true ||
+            comparisons is! List ||
+            comparisons.length != requiredThreeFrames.length ||
+            !requiredThreeFrames.every(
+              (name) => comparisons.any(
+                (row) => row['name'] == name && row['maxError'] <= 1,
+              ),
+            ) ||
+            displays is! List ||
+            displays.length != requiredDisplays.length ||
+            actualDisplays.length != requiredDisplays.length ||
+            !requiredDisplays.every(
+              (name) =>
+                  displays.any((row) => row['name'] == name) &&
+                  actualDisplays.any((row) => row['name'] == name),
+            ) ||
+            !displays.every(
+              (row) => row['coloredPixels'] >= 100 && row['meanError'] <= 6,
+            ) ||
+            three['advanced'] is! Map ||
+            three['advanced']['animationLoopFrames'] != 3 ||
+            nested is! List ||
+            nested.length != 2 ||
+            !const ['etc1s', 'uastc'].every(
+              (mode) => nested.any(
+                (row) =>
+                    row['mode'] == mode &&
+                    (row['workers'] as List).every((count) => count >= 2),
+              ),
+            ) ||
+            three['workersAfter'] is! List ||
+            !(three['workersAfter'] as List).every((count) => count == 0)) {
+          throw StateError(
+            'Three.js Worker renderer omitted required scene pixels, Flutter display, nested decoding or retirement',
+          );
+        }
+        final rendered = results.singleWhere(
+          (row) => row['cycle'] == cycle && row['kind'] == 'rendered',
+        );
+        if (rendered['threeWorkerRendererAtSessionClose'] != true ||
+            rendered['threeWorkerRendererNestedAtSessionClose'] != 1) {
+          throw StateError(
+            'Session close requires a live Three.js renderer and nested KTX2 Worker',
+          );
+        }
+        const requiredCases = {
+          'transient-attachment',
+          'format-sequencing',
+          'color-profiles',
+          'color-snapshots',
+          'color-destroy',
+          'device-loss',
+        };
+        for (final kind in ['canvas-configuration', 'gpu-workers']) {
+          final reports = results
+              .where((row) => row['cycle'] == cycle && row['kind'] == kind)
+              .toList();
+          if (reports.length != 1) {
+            throw StateError('Expected one $kind report for cycle $cycle');
+          }
+          final receipt = kind == 'canvas-configuration'
+              ? reports.single
+              : reports.single['canvasConfiguration'];
+          if (receipt is! Map ||
+              receipt['pixelSnapshots'] != true ||
+              receipt['cases'] is! List ||
+              !requiredCases.every(
+                (name) => (receipt['cases'] as List).contains(name),
+              )) {
+            throw StateError(
+              '$kind did not run actual pixel snapshots and all required canvas API cases',
+            );
+          }
+          if (kind == 'gpu-workers') {
+            const imageCases = {
+              'image-data-upload',
+              'bitmap-upload',
+              'blob-decode-upload',
+              'call-time-capture',
+              'canvas-source',
+              'png-export',
+              'jpeg-export',
+              'webp-export',
+              'mime-fallback',
+              'alpha',
+              'transparent-reset',
+              'opaque-reset',
+              'texture-expiry',
+              'mixed-transfer-atomicity',
+              'mixed-transfer-roundtrip',
+              'mixed-transfer-drop',
+              'root-receiver',
+              'wide-color-roundtrip',
+              'wide-color-root-receiver',
+            };
+            final images = reports.single['stillImages'];
+            if (images is! Map ||
+                images['pixelSnapshots'] != true ||
+                images['assertions'] is! num ||
+                (images['assertions'] as num) < imageCases.length ||
+                images['cases'] is! List ||
+                !imageCases.every(
+                  (name) => (images['cases'] as List).contains(name),
+                ) ||
+                images['formats'] is! List ||
+                !const [
+                  'image/png',
+                  'image/jpeg',
+                  'image/webp',
+                ].every((type) => (images['formats'] as List).contains(type))) {
+              throw StateError(
+                'gpu-workers did not cover actual still-image pixels for cycle $cycle',
+              );
+            }
+          }
+        }
+      }
       await WidgetsBinding.instance.endOfFrame;
       final image =
           await (boundary.currentContext!.findRenderObject()
@@ -310,14 +727,23 @@ class _AcceptanceState extends State<Acceptance> {
       }
       if (!preview) {
         final old = session;
-        final active = List.generate(6, live);
+        final active = List.generate(10, live);
         final activeWorkers = nativeRuntime.workerCountsForTesting();
+        if (cycle >= 0 &&
+            (activeWorkers.$2 == 0 ||
+                active[0] < 2 ||
+                active[1] == 0 ||
+                active[2] == 0)) {
+          throw StateError(
+            'Session close requires an active GPU Worker with mapped memory and a Surface: $active / $activeWorkers',
+          );
+        }
         setState(() => session = null);
         await WidgetsBinding.instance.endOfFrame;
         await old!.close();
         for (
           var attempt = 0;
-          attempt < 200 && List.generate(5, live).any((value) => value != 0);
+          attempt < 200 && List.generate(10, live).any((value) => value != 0);
           attempt++
         ) {
           await Future<void>.delayed(const Duration(milliseconds: 10));
@@ -325,7 +751,7 @@ class _AcceptanceState extends State<Acceptance> {
         }
         final rssAtClose = ProcessInfo.currentRss;
         await Future<void>.delayed(const Duration(seconds: 1));
-        final retired = List.generate(6, live);
+        final retired = List.generate(10, live);
         final retiredWorkers = nativeRuntime.workerCountsForTesting();
         if (retired.any((value) => value != 0)) {
           throw StateError('GPU resources did not retire: $retired');

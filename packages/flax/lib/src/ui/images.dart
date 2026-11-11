@@ -58,6 +58,7 @@ class _SharedImages {
   final FlaxHostContext context;
   final void Function(int, bool, FlaxJsValue) deliver;
   final images = <int, _SharedImage>{};
+  final settling = <_SharedImage>{};
   int next = 1;
   bool closed = false;
   int retain(Uint8List pixels, int width, int height) {
@@ -118,19 +119,23 @@ class _SharedImages {
   ) => _encodeSharedImage(pixels, width, height, type, quality);
 
   void settle(int id, bool ok, Object value) {
-    if (closed || !context.isActive) {
+    if (closed || !context.isActive || context.isClosing) {
       if (value is _SharedImage) value.dispose();
       return;
     }
+    if (value is _SharedImage) settling.add(value);
     context.enqueue(() {
-      if (closed) {
+      if (value is _SharedImage) settling.remove(value);
+      if (closed || !context.isActive || context.isClosing) {
         if (value is _SharedImage) value.dispose();
         return;
       }
       FlaxJsValue result = const FlaxJsUndefined();
+      int? retained;
       try {
         if (value is _SharedImage) {
           final key = next++;
+          retained = key;
           images[key] = value;
           final object = context.runtime.evaluate(
             '({id:$key,width:${value.width},height:${value.height}})',
@@ -149,6 +154,7 @@ class _SharedImages {
         }
         deliver(id, ok, result);
       } catch (error, stack) {
+        if (retained != null) release(retained);
         context.report(error, stack);
       } finally {
         if (result is FlaxJsObject) result.release();
@@ -163,5 +169,9 @@ class _SharedImages {
       image.dispose();
     }
     images.clear();
+    for (final image in settling) {
+      image.dispose();
+    }
+    settling.clear();
   }
 }

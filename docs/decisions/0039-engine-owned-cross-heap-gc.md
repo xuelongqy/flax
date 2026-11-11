@@ -41,11 +41,13 @@ Hermes build paths and `--engine` selection are removed. Applications use the co
 target. Workspace commands use V8 without an engine option.
 
 One Dart UI isolate owns one V8 heap and CppHeap. Sessions have separate Contexts,
-microtask queues and module state. Dart retains its ordinary parallel marking, then
-conditional tracing follows real Dart origins and JS peers to a fixed point. Either
-business root retains the pair; rootless cross-heap cycles can be reclaimed. Moving and
-minor collections preserve conditional handles. JS allocation pressure and Flutter idle
-notifications coalesce owner-thread collection requests. GC never calls business code.
+microtask queues and module state. Dart retains its ordinary parallel marking and keeps
+JS-to-Dart targets while confirmation is pending. It coalesces requests and finishes its
+collection without waiting for V8. Eligible V8 major collections use staged Dart marking
+to follow Dart origins and JS peers to a fixed point. Either business root retains the
+pair. Rootless cross-heap cycles can be reclaimed. Moving and minor collections preserve
+conditional handles. A safe owner task can complete a staged collection when V8-led
+confirmation repeatedly cannot reserve Dart. GC never calls business code.
 
 Bridge identity indices are weak. Finalizer and shutdown indices retain only detached
 cleanup metadata, never business objects or JS facades. Session close releases pending
@@ -74,10 +76,9 @@ Debug/Profile and simulator Profile/Release remain unsupported. Distribution sig
 requires separate validation. Earlier Hermes acceptance describes the previous backend;
 migration acceptance is recorded separately.
 
-Proactive idle collection defers while native frames arrive within 100 ms, preserving
-pending work. Pressure collection bypasses that check, and stopped animation allows idle
-reclamation. This heuristic is not a guarantee of zero GC during animation. Native ESM,
-remote imports and application sandbox implementation are deferred.
+Proactive idle collection defers while native frames arrive within 100 ms and preserves
+pending work. Dart GC requests can still proceed during animation. Native ESM, remote
+imports and application sandbox implementation are deferred.
 
 Flutter still owns Element/State lifecycles. GC does not call application `dispose`, pop
 Routes or reset static state. Applications retain their ordinary Flutter obligations;

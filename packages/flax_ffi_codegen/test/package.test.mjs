@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { execFile } from 'node:child_process';
-import { access, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
+import { access, copyFile, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -45,12 +45,24 @@ test('packed codegen installs alone and exposes its API, types and CLI without n
     }),
   );
   await writeFile(resolve(directory, 'pnpm-workspace.yaml'), 'packages: []\n');
+  // Reuse the workspace's locked registry versions in the disposable consumer.
+  await copyFile(resolve(root, 'pnpm-lock.yaml'), resolve(directory, 'pnpm-lock.yaml'));
   const store = await exec('pnpm', ['store', 'path'], { cwd: root });
   await exec(
     'pnpm',
-    ['install', '--offline', '--ignore-scripts', '--store-dir', store.stdout.trim()],
+    [
+      'install',
+      '--offline',
+      '--ignore-scripts',
+      '--no-frozen-lockfile',
+      '--store-dir',
+      store.stdout.trim(),
+    ],
     { cwd: directory },
-  );
+  ).catch((error) => {
+    error.message += `\n${error.stdout}${error.stderr}`;
+    throw error;
+  });
   await writeFile(
     resolve(directory, 'consumer.mjs'),
     `import assert from 'node:assert/strict';

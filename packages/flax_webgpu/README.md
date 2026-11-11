@@ -10,6 +10,45 @@ the maintained Flax engine below. It is not a published or CTS-conformant browse
 implementation. The host-selected implementation uses existing direct JSI/libffi calls
 internally; application code uses standard GPU objects without raw pointers.
 
+## Dedicated Workers
+
+A nonsandboxed parent using `FlaxWebGpuPlugin` also supplies `navigator.gpu`, native
+OffscreenCanvas and rAF to its Workers. Devices belong to the Worker that creates them;
+GPU resources cannot be cloned or transferred. Use `transferControlToOffscreen()` on a
+contextless HTML canvas and pass the result in the Worker's transfer list. The HTML
+placeholder keeps Flutter layout/input, and Worker resize updates its intrinsic size. A
+contextless OffscreenCanvas can also transfer back to the main realm and be displayed
+with Core CanvasView. Context-bearing transfers throw `InvalidStateError`.
+
+Worker drawing and queue submission call Dawn directly. Presentation shares native
+textures/fences with Flutter, with no frame-pixel readback or per-draw UI-isolate proxy.
+Termination and Session close use native cleanup, including pending callbacks and mapped
+views, without running application cleanup handlers. Core supplies ImageData,
+ImageBitmap, createImageBitmap and image clone/transfer. Selected Workers support
+external-image upload, OffscreenCanvas capture and PNG/JPEG/WebP export with PNG
+fallback. Sources are captured at call time; bitmap transfer resets the canvas to
+transparent or opaque black and expires its current texture. Explicit GPU image readback
+is synchronous and can stall the Worker; normal presentation stays native.
+
+Worker Canvas 2D and document/HTML image simulation are excluded. Workers with an
+explicit host grant can acquire [SDR video frames](#macos-video-frames). The
+[real acceptance fixture](example/js/gpu-workers.js) covers compute, native
+presentation, resize, image pixels, ownership and shutdown. Each cycle requires a
+`stillImages` receipt with 19 named cases and actual canvas pixel snapshots. The
+[still-image task](../../docs/tasks/worker-images.md) records the original validation.
+See the [architecture](../../docs/architecture/webgpu.md) for the current profile.
+
+Worker TypeScript imports `@flax/core/host/worker` and `@flax/webgpu/globals`; the GPU
+declarations do not install main-realm `window`, `document`, `Image` or
+`HTMLImageElement` globals.
+
+The [Three.js renderer acceptance](../../docs/tasks/three-worker-renderer.md) also runs
+upstream WebGPURenderer entirely inside a Dedicated Worker, reusing the model,
+skeletal/morph animation, Meshopt, nested KTX2 and TSL/Bloom fixtures. Three macOS
+Sessions passed 60 exact root/Worker GPU pixel comparisons and 24 Flutter canvas
+captures within the display sampling tolerance, including renderer animation and nested
+decoder retirement. Its task record identifies the independent delivery receipt.
+
 ## Use
 
 The Dart host installs `const FlaxWebGpuPlugin()`. Add `FlaxCanvasPlugin` only when
@@ -53,11 +92,13 @@ Use macOS 26+ arm64, the repository's locked pnpm/Pub dependencies, CMake, Ninja
 CocoaPods and Xcode. The maintained Flutter 3.47.9/Dart 3.13.7 checkout must have its
 ordinary `flax_mac_debug_arm64` and `flax_mac_release_arm64` builds. Build them with
 `engine/src/flutter/flax/tools/build_engine.py --sdk /path/to/verified/v8-sdk --mode <debug|release>`.
-The V8 SDK is independent of Dawn. The engine retains its macOS 15 baseline; this
-optional Dawn binary raises only the WebGPU profile to macOS 26. The current UI isolate
-must use Impeller with Metal. Installation checks the optional engine interop version
-and renderer query before creating a Dawn context. Disabling Impeller rejects WebGPU
-installation with an explicit diagnostic.
+For Worker acceptance, the matching engine must include the owned ArrayBuffer FFI bridge
+and the structured-clone transfer validation for Canvas and ImageBitmap. The V8 SDK is
+independent of Dawn. The engine retains its macOS 15 baseline; this optional Dawn binary
+raises only the WebGPU profile to macOS 26. The current UI isolate must use Impeller
+with Metal. Installation checks the optional engine interop version and renderer query
+before creating a Dawn context. Disabling Impeller rejects WebGPU installation with an
+explicit diagnostic.
 
 The native producer is explicit. Obtain the locked official Dawn archive and extract its
 single top-level directory into a local SDK directory, keeping the archive as
@@ -104,19 +145,53 @@ optional explicit producer preparation step; normal consumers omit it.
 
 ## Implemented coverage and limits
 
-| Area              | Current macOS profile                                                                                                                                                                         |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Standard entry    | `navigator.gpu`, adapter/device requests, actual features, limits, adapter information, WGSL features                                                                                         |
-| Resources         | Buffers, textures/views, samplers, shader modules, bind groups/layouts, compute/render pipelines, queries                                                                                     |
-| Commands          | Compute/render passes, direct/indexed/indirect draws, render bundles, copies, clears, query resolve, queue uploads/submit/completion                                                          |
-| Async/error paths | Async pipelines, compilation information, error scopes/events, device loss, mapAsync/unmap/destroy                                                                                            |
-| Canvas            | Shared Core identity, current-texture identity/expiry, resize, configure/unconfigure, automatic publication, snapshots/exports; BGRA8/RGBA8 with sRGB views, sRGB, opaque/premultiplied alpha |
+| Area              | Current macOS profile                                                                                                                                                                                                                                 |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Standard entry    | `navigator.gpu`, adapter/device requests, actual features, limits, adapter information, WGSL features                                                                                                                                                 |
+| Resources         | Buffers, textures/views, samplers, shader modules, bind groups/layouts, compute/render pipelines, queries                                                                                                                                             |
+| Commands          | Compute/render passes, direct/indexed/indirect draws, render bundles, copies, clears, query resolve, queue uploads/submit/completion                                                                                                                  |
+| Async/error paths | Async pipelines, compilation information, error scopes/events, device loss, mapAsync/unmap/destroy                                                                                                                                                    |
+| Canvas            | Shared Core identity, current-texture identity/expiry, resize, configure/unconfigure, automatic publication, snapshots/exports; BGRA8/RGBA8 with sRGB views, RGBA16Float, sRGB/Display P3, standard/extended tone mapping, opaque/premultiplied alpha |
+
+The
+[standard input semantics acceptance](../../docs/tasks/webgpu-standard-input-semantics.md)
+adds dictionary accessor/member-order compatibility, aligned upload-content checks,
+signed indexed draws and nullable vertex-buffer bindings, with actual GPU readback.
 
 Input checks and pinned IDL generation cover the implemented descriptors and method
 arities. This is an initial WebIDL profile, not a full conversion/prototype conformance
-claim. Supported features and limits come from Dawn; private IOSurface features are not
-exposed to application code. Canvas requires `RENDER_ATTACHMENT` usage and rejects
-incompatible view formats, P3 display and extended HDR tone mapping.
+claim. Supported features and limits come from Dawn; private IOSurface and
+internal-usage features are not exposed to application code. Canvas usage defaults to
+`RENDER_ATTACHMENT`; explicit usage is preserved exactly, including `COPY_DST`-only and
+valid `STORAGE_BINDING`-only configurations. BGRA storage requires the device's
+`bgra8unorm-storage` feature. Private Dawn render usage initializes canvas storage and
+snapshots without granting application render passes that permission. Zero or invalid
+usage produces validation errors. The frozen `GPUTextureUsage` object includes
+`TRANSIENT_ATTACHMENT = 32` in both main and Worker runtimes. Ordinary transient
+textures use Dawn's validation without enabling or exposing its private optimization
+feature; canvas configurations reject this usage with `TypeError`.
+
+Canvas configuration validates format and view-format feature requirements before
+rejecting legal but unsupported context formats with `TypeError`, then rejects transient
+usage. These content errors preserve the existing configuration and current texture.
+Incompatible view formats produce a `GPUValidationError` and an error texture. An
+invalid canvas size reports GPU validation at configuration or the next acquisition
+after a resize. `getConfiguration()` returns fresh dictionaries and arrays, including
+`toneMapping` and `viewFormats`, while retaining the configured `GPUDevice` identity and
+the attempted configuration. It returns `null` before configuration and after
+`unconfigure()`.
+
+Device loss retains the configuration and current texture identity until expiry.
+Subsequent acquisitions return actual native invalid textures with the configured
+format, exact usage and current canvas dimensions. Resize (including same-size
+assignment), reconfiguration, unconfiguration, image transfer and host checkpoints
+expire and destroy the current texture. Lost devices acquire no canvas surface storage;
+reconfiguration with a live device restores the normal presentation path.
+
+The [canvas configuration follow-up](../../docs/tasks/webgpu-canvas-configuration.md)
+tracks focused main/Worker regressions and the current verification status. The
+[API gaps follow-up](../../docs/tasks/webgpu-api-gaps.md) tracks transient textures,
+configuration error ordering and lost-device texture lifetime validation.
 
 Compute passes, render passes and render bundles implement `setImmediates`. Typed-array
 offsets and sizes use elements; ArrayBuffer and DataView ranges use bytes. The frontend
@@ -128,10 +203,18 @@ Texture views support `swizzle`, including constant zero/one channels, when the 
 enables `texture-component-swizzle`. Invalid swizzle strings throw TypeError;
 unsupported feature usage follows Dawn validation. Texture binding dimensions are
 forwarded through `textureBindingViewDimension` and queried from Dawn; the current
-core-mode device returns `undefined`. This does not enable compatibility-mode adapters.
-Render passes forward non-default `maxDrawCount`, including zero, for native draw-count
+core-mode device returns `undefined`. `requestAdapter` accepts native `core` and
+`compatibility` feature levels; returned device features and limits remain Dawn's actual
+values, including independently requested storage stage limits. Compatibility devices
+can request `core-features-and-limits` when the adapter supports that upgrade. Render
+passes forward non-default `maxDrawCount`, including zero, for native draw-count
 validation. Default descriptors allocate no extra extension chains. `compilationHints`
 remains an accepted but unforwarded optimization hint.
+
+Core installs native-free compilation diagnostic objects in main Sessions and Workers.
+`GPUCompilationInfo` and `GPUCompilationMessage` support `structuredClone` and Worker
+messages with real brands, frozen arrays and repeated references. These diagnostic
+objects do not grant Worker GPU authority or make GPU handles transferable.
 
 Mapped ranges are protected native-owned ArrayBuffers: unmap, destroy, device loss and
 session close detach all live views. Transfer/shared Dart-byte escape is rejected;
@@ -146,13 +229,103 @@ transforms. External-image upload accepts those resources and either renderer's
 canvases. Canvas snapshots and PNG/JPEG/WebP exports are explicit CPU paths. See the
 [shared canvas contract](../../docs/architecture/canvas.md#canvas-compatibility).
 
-Core provides pure JS/Wasm Dedicated Workers. Worker graphics transfer remains outside
-this profile. Not implemented: general browser DOM/CSS, GPUExternalTexture/video
-sharing, HDR/P3 display, other platforms and full CTS. These remain explicit limits. See
-the [architecture](../../docs/architecture/webgpu.md) and
+Core provides pure JS/Wasm Dedicated Workers by default. Selecting this plugin on a
+nonsandboxed Session also enables Worker WebGPU compute and transferable OffscreenCanvas
+rendering. Worker Canvas 2D, general browser DOM/CSS and other platforms remain outside
+this profile. Full CTS conformance remains open. See the
+[architecture](../../docs/architecture/webgpu.md) and
 [remaining task](../../docs/tasks/webgpu-js-api.md).
 
 The development plugin uses CocoaPods; Swift Package Manager integration is deferred.
+
+### macOS video frames
+
+Once the Flutter engine is running, create a
+`FlaxWebGpuVideoSource(registry: registrar.textures)` in the macOS producer. Publish
+each ready IOSurface-backed `CVPixelBuffer` on the platform thread with its timestamp
+and optional duration in microseconds. Flutter can render the producer with
+`Texture(textureId: ...)`. Send its opaque `sourceId` through the producer's Dart
+integration and grant the Session a name. Prepare the `@flax/webgpu` module from
+`@flax/webgpu-runtime` alongside `@flax/webgpu/host` for Sessions with video sources.
+
+```dart
+FlaxWebGpuPlugin(videoSources: {'movie': nativeSourceId})
+```
+
+To let Dedicated Workers and their children acquire that source, set
+`workerVideoSources: {'movie'}` on the same plugin in a nonsandboxed Session. The
+allowlist defaults to empty and every entry must name a source in `videoSources`. Both
+grants are captured at installation. Granted Workers can import the same helper from
+`@flax/webgpu`. Workers can receive explicitly transferred frames with an empty
+acquisition allowlist.
+
+Acquire the latest frame when the renderer needs one. A source with no published frame,
+an ungranted name or a disposed source returns `null`.
+
+```js
+import { acquireVideoFrame } from '@flax/webgpu';
+
+const frame = acquireVideoFrame('movie');
+if (frame) {
+  try {
+    videoTexture.setFrame(frame); // THREE.VideoFrameTexture
+    renderer.render(scene, camera);
+  } finally {
+    frame.close();
+  }
+}
+```
+
+Use `device.importExternalTexture({source: frame})` with WGSL `texture_external` for
+direct sampling. `queue.copyExternalImageToTexture({source: frame}, destination, size)`
+converts and copies into a regular GPU texture. Three.js 0.186.1 uses the latter path.
+Both read the source IOSurface on the GPU and accept sRGB and Display P3 destinations.
+
+The source accepts opaque full-frame SDR buffers. Publish BT.709 NV12 in video or full
+range, or BGRA with BT.709 or sRGB color. Untagged BGRA uses sRGB. The producer owns
+decode, playback and geometry preparation. Treat each buffer's pixels and attachments as
+immutable while retained. Call `dispose()` on the platform thread when the video source
+retires. A previously acquired frame can outlive the source. Closing a frame expires its
+imported textures immediately, with GPU completion determining when the buffer returns
+to its pool. The Session closes any remaining frames during teardown.
+
+The VideoFrame surface includes zero-pixel-copy `clone()`, timing-only construction from
+another frame, full-frame rectangles, rotation/flip, `metadata()` and real
+`VideoColorSpace` metadata with `toJSON()`. Closing a frame expires only its own
+imports; clones remain usable. Timing and color-space metadata remain readable after
+close. Rectangles are readonly snapshots with the standard numeric fields, without a
+general DOM geometry global. `allocationSize()` and Promise-returning `copyTo()` copy
+original NV12/BGRA planes with optional crop and per-plane offset/stride layouts. They
+accept ArrayBuffer, SharedArrayBuffer and views, preserving view bounds and row padding.
+NV12 crop x/y offsets must be even. Crop width and height may be odd. This explicit CPU
+read can stall. Pass `format: 'RGBA'`, `'RGBX'`, `'BGRA'` or `'BGRX'` for a single
+packed plane converted to sRGB or Display P3. A formats preserve alpha and X formats
+write 255. Omit `format` to keep the original bytes. A valid `colorSpace` alone has no
+effect. Explicit non-RGB formats throw `NotSupportedError`.
+
+Transfer a live frame using the transfer list of `structuredClone()` or `postMessage()`.
+The sender closes and its GPU imports expire. The receiver takes a new lease on the same
+pixel buffer and preserves timing overrides and color metadata. HDR video, HTML media
+elements, WebCodecs decode, raw-pixel construction and message cloning without a
+transfer list remain outside this profile. See the
+[macOS video acceptance](example/README.md#video-frame-acceptance) for reproduction.
+
+### Wide gamut and HDR
+
+Configure `colorSpace: 'display-p3'` for wide-gamut content. On a compatible display
+Flutter presents it in its existing wide-gamut mode. For extended luminance, configure
+`format: 'rgba16float'` with `toneMapping: { mode: 'extended' }`. Set the boolean
+`FLTEnableExtendedDynamicRange` in the app's Info.plist to opt the matching Flax Flutter
+engine into FP16/EDR output on macOS 26+ with a P3 and EDR capable display. The window
+uses the existing wide-gamut or SDR surface when EDR output is unavailable. Standard
+FP16 content is projected into SDR Display P3 before Flutter composition.
+
+Explicit bitmap snapshots preserve the drawing buffer's gamut and pixel format,
+including extended float16 values. `convertToBlob()`, `toBlob()` and `toDataURL()`
+export tagged Display P3 PNG and JPEG. Extended float16 PNG export uses Rec.2020 PQ.
+JPEG and WebP use SDR, and WebP uses sRGB. The
+[color canvas probe](../../experiments/webgpu_dawn/color_canvas/README.md) compares
+WebGPU pixels with Flutter color controls and macOS HDR capture.
 
 ## Validation
 
@@ -215,14 +388,33 @@ python3 packages/flax_webgpu/tool/run_macos.py \
   --cts-root "$PWD/.local/webgpu-cts"
 ```
 
-The bounded selection now runs 504 cases per session: 468 pass and 36 are explicitly
-skipped, across three sessions including the GPU-only RGBA8 session. It retains the
-original five groups' 65 cases and adds immediate-data validation, texture-swizzle
-validation and the draw-count-limit test. The 36 skips are the pinned CTS's Proxy-based
-`_Float16Array` polyfill, which is not a native BufferSource; upstream intends to
-exclude Float16Array here but filters by a different constructor name. The CTS sources
-remain unmodified, and the harness records the skips rather than weakening runtime input
-checks.
+The preceding bounded acceptance ran 603 cases per session: 567 passed and 36 were
+explicitly skipped, across three sessions including the GPU-only RGBA8 session. It
+retained the original five groups' 65 cases and adds immediate-data validation,
+texture-swizzle validation, the draw-count-limit test, queue `writeBuffer` validation
+and the pinned JavaScript interface/prototype group. The 36 skips are the pinned CTS's
+Proxy-based `_Float16Array` polyfill, which is not a native BufferSource; upstream
+intends to exclude Float16Array here but filters by a different constructor name. The
+CTS sources remain unmodified, and the harness records the skips rather than weakening
+runtime input checks.
+
+A separate full run of pinned CTS revision `cc11994e92512d0a3715e9d28876ec48accb971a`
+completed all 697 groups on macOS on 2026-11-08: 272,283 passed, 2,059 failed and 14,240
+skipped out of 288,582 cases. That is a baseline result, before the subsequent focused
+fixes, rather than a final conformance pass. The largest categories include Dawn/Metal
+compressed-texture sampling, older ImageBitmap orientation expectations and
+browser-dependent tests. Six failures were blocked by the then-missing MessageChannel;
+those cases are now included in the bounded harness. See the
+[remaining work](../../docs/tasks/webgpu-js-api.md#remaining-work) for the distinction
+between native issues, profile limits and unimplemented services.
+
+The [API completion receipt](validation/api-completion-macos.json) also covers native
+compatibility devices, buffer overload/default-range conversion, error brands and
+compilation-diagnostic cloning through Core and Workers. Diagnostic positions use UTF-16
+code units, including non-ASCII shader source. Matched 960 x 540 API CPU controls found
+no consistent encoding regression; they do not measure FPS or display latency.
+`compilationHints` are converted but remain advisory without a matching pinned Dawn
+operation. No pipeline prewarming or browser DOM emulation is added.
 
 The fixture also checks actual immediate-data and swizzled pixels, mapped-source
 detachment, native binding-dimension queries, shared images/exports, committed

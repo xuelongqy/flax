@@ -3,12 +3,30 @@ export interface Navigator {
     readonly platform: string;
     readonly hardwareConcurrency: number;
 }
+export type { OffscreenCanvas, OffscreenCanvasConstructor } from './canvas.js';
+export type { CanvasContextMap, CanvasContextOptionsMap } from './canvas-contexts.js';
+export type { HTMLCanvasElement } from './canvas-dom.js';
+export type { HTMLImageElement, ImageData, ImageBitmap, ElementImage, ImageDataSettings, ImageBitmapOptions, } from './images.js';
 export type * from './wasm.js';
 export type { Crypto, CryptoConstructor } from './crypto.js';
 export type { Performance, PerformanceEntry, PerformanceMark, PerformanceMeasure, PerformanceMarkOptions, PerformanceMeasureOptions, PerformanceObserver, PerformanceObserverInit, PerformanceObserverEntryList, PerformanceObserverCallback, PerformanceObserverConstructor, PerformanceMarkConstructor, } from './performance.js';
 import type * as Timing from './performance.js';
 import type * as Random from './crypto.js';
+import type * as Images from './images.js';
 declare global {
+    var ImageData: typeof Images.ImageData;
+    type ImageData = Images.ImageData;
+    var ImageBitmap: typeof Images.ImageBitmap;
+    type ImageBitmap = Images.ImageBitmap;
+    var ElementImage: {
+        readonly prototype: ElementImage;
+        [Symbol.hasInstance](value: unknown): value is ElementImage;
+    };
+    type ElementImage = Images.ElementImage;
+    function createImageBitmap(source: ImageBitmap | ImageData | OffscreenCanvas | {
+        arrayBuffer(): Promise<ArrayBuffer>;
+    }, ...args: [Images.ImageBitmapOptions?] | [number, number, number, number, Images.ImageBitmapOptions?]): Promise<ImageBitmap>;
+    type OffscreenCanvas = import('./canvas.js').OffscreenCanvas;
     function structuredClone<T>(value: T, options?: import('./workers.js').StructuredSerializeOptions): T;
     var location: Readonly<Pick<URL, 'href' | 'origin' | 'protocol' | 'host' | 'hostname' | 'port' | 'pathname' | 'search' | 'hash' | 'toString'>>;
     type Crypto = Random.Crypto;
@@ -223,8 +241,18 @@ declare global {
     type ResponseInit = FetchHttp.ResponseInit;
     function fetch(input: string | URL | FetchHttp.Request, init?: FetchHttp.RequestInit): Promise<FetchHttp.Response>;
 }
-export type { Worker, WorkerConstructor, WorkerOptions, Transferable, StructuredSerializeOptions, ErrorEvent, ErrorEventInit, } from './workers.js';
+export type { MessageChannel, MessagePort, Worker, WorkerConstructor, WorkerOptions, Transferable, FlaxTransferableMap, StructuredSerializeOptions, ErrorEvent, ErrorEventInit, } from './workers.js';
 declare global {
+    type MessageChannel = import('./workers.js').MessageChannel;
+    var MessageChannel: {
+        new (): MessageChannel;
+        readonly prototype: MessageChannel;
+    };
+    type MessagePort = import('./workers.js').MessagePort;
+    var MessagePort: {
+        readonly prototype: MessagePort;
+        [Symbol.hasInstance](value: unknown): value is MessagePort;
+    };
     type Worker = import('./workers.js').Worker;
     type WorkerOptions = import('./workers.js').WorkerOptions;
     type Transferable = import('./workers.js').Transferable;

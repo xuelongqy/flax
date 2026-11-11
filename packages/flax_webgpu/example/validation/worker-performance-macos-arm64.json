@@ -1,0 +1,313 @@
+{
+  "formatVersion": 1,
+  "status": "Performance and functional validation passed; uncommitted. Independent verdict is retained outside the repository.",
+  "sources": {
+    "taskBase": "fc28581a18e6662148cb8431049e62ccc2f2b324",
+    "measurementBase": "d954085ff34814cab21d8991b6b590bec9e182eb",
+    "flutter": "439033d726d47670b7228864298cce3e9ddbd4c9",
+    "dawn": "5fbd545292cb7a4a9a275e322abec6007ffe2ae8",
+    "cts": "cc11994e92512d0a3715e9d28876ec48accb971a",
+    "ctsArchiveSha256": "a47a5fb4c2c42a41bc7b39274d84b0b0402db6f3d5d91b75321580701fd99a54"
+  },
+  "engineSelection": {
+    "apps": "flax_mac_joint_gc_candidate_release_arm64",
+    "runtimeTests": "Read-only engine-layout aliases select the accepted Debug/Release candidates.",
+    "acceptedFrameworksAndLibrariesVerifiedUnchanged": true,
+    "canonicalEngineOutputsUpgraded": false
+  },
+  "change": {
+    "methods": [
+      "GPUDevice.createCommandEncoder",
+      "GPUTexture.createView",
+      "GPUCommandEncoder.finish"
+    ],
+    "only": "Omitted, undefined or null descriptors use the existing nullable Dawn call directly. Explicit dictionaries remain on the existing conversion path.",
+    "mechanism": "Avoid descriptor conversion/Arena/native initializer calls. createView additionally uses the pinned Dawn native default-view fast path/cache.",
+    "ownership": "Each returned owned reference keeps its existing finalizer; each JS wrapper retains separate identity and public label.",
+    "nativeDebugLabels": "Dawn may default labels from the texture or share native cached-view labels. Debug error strings are implementation-defined; equality is not promised.",
+    "gcPolicyChanged": false
+  },
+  "protocol": {
+    "order": ["A", "B", "B", "A"],
+    "processesPerVariantPerMatrix": 2,
+    "sizes": [
+      [960, 540],
+      [640, 360],
+      [960, 540]
+    ],
+    "warmupFrames": 31,
+    "phaseDurationMs": 8000,
+    "apiMsOrder": ["p50", "p95", "p99"],
+    "quantiles": "Per-process/phase summaries, not pooled percentiles. Raw measurements retained in immutable external evidence.",
+    "viewport": {
+      "logicalWidth": 1100,
+      "logicalHeight": 668,
+      "devicePixelRatio": 1,
+      "displayPhysicalWidth": 1920,
+      "displayPhysicalHeight": 1080
+    },
+    "frameLoop": "Approximately60FPS throughout new-engine A/B and final Edge. Pre-GC120FPS is a separate observation; cause of cap change unverified.",
+    "environment": "AC; no recorded thermal warning. No overlapping builds/tests/snapshot hashing detected; ordinary desktop services including Spotlight active. Equal1s OS load sampling.",
+    "payloads": "CPU A/B use identical benchmark-ON Dawn binary with metrics/timestamps disabled; final native acceptance uses normal OFF.",
+    "endpointLimit": "CPU includes backend work; no uncapped-throughput or physical-display-latency claim."
+  },
+  "quietRuns": [
+    {
+      "process": "1-A",
+      "variant": "A",
+      "peakRssMiB": 340.578,
+      "apiMs": [
+        [0.979, 1.86, 2.079],
+        [0.92, 1.845, 1.997],
+        [0.968, 1.857, 2.008]
+      ],
+      "completionP95Ms": [3.552, 3.358, 3.56]
+    },
+    {
+      "process": "2-B",
+      "variant": "B",
+      "peakRssMiB": 338.375,
+      "apiMs": [
+        [0.839, 1.549, 2.062],
+        [0.865, 1.626, 1.858],
+        [0.84, 1.594, 1.732]
+      ],
+      "completionP95Ms": [3.36, 3.229, 3.291]
+    },
+    {
+      "process": "3-B",
+      "variant": "B",
+      "peakRssMiB": 340.203,
+      "apiMs": [
+        [0.845, 1.62, 1.745],
+        [0.815, 1.577, 1.852],
+        [0.813, 1.58, 1.795]
+      ],
+      "completionP95Ms": [3.314, 3.095, 3.273]
+    },
+    {
+      "process": "4-A",
+      "variant": "A",
+      "peakRssMiB": 342.109,
+      "apiMs": [
+        [0.948, 1.919, 2.213],
+        [0.967, 1.892, 2.14],
+        [0.991, 1.884, 2.087]
+      ],
+      "completionP95Ms": [3.572, 3.41, 3.541]
+    }
+  ],
+  "detailedRuns": [
+    {
+      "process": "1-A",
+      "variant": "A",
+      "apiP95Ms": [1.939, 1.755, 1.902],
+      "encodeP95Ms": [1.217, 1.078, 1.182],
+      "submitP95Ms": [0.378, 0.354, 0.374]
+    },
+    {
+      "process": "2-B",
+      "variant": "B",
+      "apiP95Ms": [1.591, 1.457, 1.569],
+      "encodeP95Ms": [0.895, 0.812, 0.89],
+      "submitP95Ms": [0.354, 0.316, 0.344]
+    },
+    {
+      "process": "3-B",
+      "variant": "B",
+      "apiP95Ms": [1.564, 1.55, 1.577],
+      "encodeP95Ms": [0.882, 0.88, 0.895],
+      "submitP95Ms": [0.339, 0.347, 0.342]
+    },
+    {
+      "process": "4-A",
+      "variant": "A",
+      "apiP95Ms": [1.779, 1.766, 1.824],
+      "encodeP95Ms": [1.12, 1.077, 1.128],
+      "submitP95Ms": [0.348, 0.353, 0.343]
+    }
+  ],
+  "meanOfPhaseQuantiles960": [
+    {
+      "matrix": "quietABBA",
+      "metric": "apiTotal",
+      "quantile": "p50Ms",
+      "A": 0.9715,
+      "B": 0.83425,
+      "decreasePercent": 14.128
+    },
+    {
+      "matrix": "quietABBA",
+      "metric": "apiTotal",
+      "quantile": "p95Ms",
+      "A": 1.88,
+      "B": 1.58575,
+      "decreasePercent": 15.652
+    },
+    {
+      "matrix": "detailedABBA",
+      "metric": "apiTotal",
+      "quantile": "p50Ms",
+      "A": 0.93825,
+      "B": 0.81,
+      "decreasePercent": 13.669
+    },
+    {
+      "matrix": "detailedABBA",
+      "metric": "apiTotal",
+      "quantile": "p95Ms",
+      "A": 1.861,
+      "B": 1.57525,
+      "decreasePercent": 15.355
+    },
+    {
+      "matrix": "detailedABBA",
+      "metric": "encodeCommands",
+      "quantile": "p95Ms",
+      "A": 1.16175,
+      "B": 0.8905,
+      "decreasePercent": 23.348
+    },
+    {
+      "matrix": "detailedABBA",
+      "metric": "submit",
+      "quantile": "p95Ms",
+      "A": 0.36075,
+      "B": 0.34475,
+      "decreasePercent": 4.435
+    }
+  ],
+  "finalBrowser960": {
+    "version": "Edg/156.0.4314.58",
+    "ranges": {
+      "flax": {
+        "apiP50Ms": [0.817, 0.881],
+        "apiP95Ms": [1.468, 1.511],
+        "completionP95Ms": [3.158, 3.202]
+      },
+      "edge": {
+        "apiP50Ms": [0.045, 0.14],
+        "apiP95Ms": [0.18, 0.19],
+        "completionP95Ms": [2.795, 2.93]
+      }
+    },
+    "gpuP50P95Ms": {
+      "flax": [0.32768, 0.32768],
+      "edge": [0.32768, 0.32768]
+    },
+    "gpuQuantization": "Separate GPU timestamp round; no GPU speedup inferred.",
+    "nativePublishToReadP95Ms": [0.339541, 0.348958, 0.35375],
+    "nativePublishToConsumerP95Ms": [1.394417, 1.3045, 1.395334],
+    "presentationMarksMatched": 448,
+    "presentationMarksUnmatched": 0,
+    "browserPresentationP95Ms": [24.795, 24.622, 23.991],
+    "endpointLimit": "Chromium renderer presentation feedback and Flax consumer GPU completion are different endpoints and cannot be subtracted. GPU timestamp values are quantized."
+  },
+  "workerControl": {
+    "sessions": 3,
+    "scenarioAssertions": 405,
+    "order": [0, 1, 2, 2, 1, 0],
+    "decodedBytesPerTask": 2097152,
+    "postCompletionWindowMs": 30,
+    "medians": [
+      {
+        "workers": 0,
+        "batches": 6,
+        "coldMedianMs": 2.463,
+        "reusedMedianMs": 6.2535,
+        "fullGapMedianMs": 26.9865,
+        "observedMedianMs": 43.7675
+      },
+      {
+        "workers": 1,
+        "batches": 6,
+        "coldMedianMs": 34.0305,
+        "reusedMedianMs": 30.561500000000002,
+        "fullGapMedianMs": 24.889,
+        "observedMedianMs": 62.236
+      },
+      {
+        "workers": 2,
+        "batches": 6,
+        "coldMedianMs": 36.545500000000004,
+        "reusedMedianMs": 6.7364999999999995,
+        "fullGapMedianMs": 24.9765,
+        "observedMedianMs": 38.467
+      }
+    ],
+    "preGcTrace": {
+      "nativeSerializeMaxMs": 0.105,
+      "nativeDeserializeMaxMs": 0.161,
+      "parentWakeToPortP99Ms": 25.454,
+      "parentPortToHandlerP95Ms": 0.058,
+      "matchedParentWakes": 279,
+      "unmatchedParentWakes": 0,
+      "result": "Reused one-Worker completion waits behind requested Dart/joint collection; two-Worker completion precedes that pass in the post window. Reused Worker major callbacks include flags64, not uniformly flags40; these bits do not uniquely identify an idle or allocation-pressure trigger.",
+      "scope": "Diagnostic probes only on the frozen pre-GC engine; logging overhead applies. The Dart STW-body span excludes acquiring/releasing its safepoint scope.",
+      "flax": "fc28581a18e6662148cb8431049e62ccc2f2b324",
+      "flutter": "c4a1dad0094e82f4a0f0fb94ee224a1ee351cf77"
+    },
+    "currentLimit": "Single-Worker slow reused batch and roughly25ms full-window gaps remain observable. The separately integrated GC optimization only skips the first joint trace when a concurrent Dart mark is active; this task did not instrument or certify the cause of new-engine pauses."
+  },
+  "semantics": {
+    "edgeDescriptorCases": 60,
+    "candidateCopiedAppAssertions": 117,
+    "defaultViewLifecycleCasesCompared": 36,
+    "defaultViewLifecycleDifferences": 0,
+    "finalAssertionsPerSession": 46,
+    "knownExistingDifferences": "Full copied-app observation retained21 differences over3Sessions:18 getter-only Object.prototype.label assignment failures on explicit dictionaries, and3 texture-view Proxy member-order differences. These pre-existing conversion limits are unchanged; full WebIDL conformance is not claimed."
+  },
+  "validation": {
+    "webgpuJsTests": 6,
+    "exampleJsTests": 2,
+    "webgpuAndExampleTypecheck": "PASS",
+    "runtimeContracts": 59,
+    "runtimeCommand": "Direct SDK dart --packages=.dart_tool/package_config.json tool/check_runtime.dart with the accepted-engine alias; the equivalent Melos wrapper stopped in Pub setup before tests.",
+    "nativeSessions": 12,
+    "frames": 1440,
+    "ctsPerSession": {
+      "passed": 468,
+      "skipped": 36
+    },
+    "ctsExecutions": {
+      "passed": 5616,
+      "skipped": 432
+    },
+    "ctsRuntimeReportedVersion": ["unknown"],
+    "ctsSkipReason": "Pinned CTS Float16Array polyfill is not a native BufferSource.",
+    "workerScenarioAssertions": 1620,
+    "newDefaultDescriptorAssertions": 552,
+    "zeroCountRetirements": 13,
+    "retiredGpuCounters": [0, 0, 0, 0, 0, 0],
+    "retiredWorkerCounters": [0, 0],
+    "nativeBenchmark": false,
+    "rssAfterOneSecondMiB": [
+      425.375, 440.609, 462.125, 509.391, 522.828, 525.375, 514.859, 532.094, 521.984,
+      527.656, 529.828, 530.641
+    ],
+    "peakRssMiB": 704.531,
+    "memoryLimit": "Finite repeated-session observations without forced GC, not a universal leak bound. CTS/extra assertions differ from the quiet CPU workload.",
+    "nativeProducerLibrarySha256": "7e42eab2559fba43a04625826845ca6f374e1c1e93af45bbc8de7abcb83b0308"
+  },
+  "evidence": {
+    "root": "/Volumes/MAC_HOME/CodexHome/review-evidence/webgpu-worker-perf-20261101-153807",
+    "artifacts": "final-artifacts",
+    "artifactsManifestSha256": "f3c1b855811945488f63cef414c4e2495892ec3c1593389f0da545907759dca9",
+    "raw": "final-evidence",
+    "rawManifestSha256": "3b5c4e87e602b01a442c72d5591a8bf9c37592b96e5dbb91fe83bce80070dc35",
+    "prePerformanceSourceSnapshotSha256": "a28e81a4b811ba7bfc03c0a3d44093b50629366d5f489ed1bfe512b39233f1e0",
+    "artifactVerification": "Both complete64-file inventories verified unchanged after all CPU/browser rounds.",
+    "diagnosticProvenance": "Temporary probes and baseline-compatible vendor-header reconstruction were restored by the shared GC integration owner. The integrated GC patch and existing vendor changes were preserved; three initially rebuilt precompiler cache objects had no original backup, so full build-cache restoration is not claimed.",
+    "normalAppInventory": ".local/webgpu-worker-perf/final-normal-app-hashes.json",
+    "normalAppInventorySha256": "7df5a16f5c96804a5c9881fec7da73031ca9e201e62ca68d74fe4618b66ed425"
+  },
+  "limits": [
+    "macOS arm64 M2Max bounded profile only; complete CTS/WebIDL, other platforms, physical input/display latency and maximum uncapped throughput remain unvalidated.",
+    "No GC delay, memory-accounting bypass, Worker dispatch batching or relaxed mapping/pool protection was retained."
+  ],
+  "publication": {
+    "committed": false,
+    "pushed": false,
+    "published": false
+  }
+}

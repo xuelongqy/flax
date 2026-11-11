@@ -70,7 +70,11 @@ void main() {
       await t.pumpAndSettle();
       final builds = h.read('pages.builds');
       int? steady;
+      WeakReference<Page<dynamic>> capturePage() => WeakReference(
+        t.widgetList<Navigator>(find.byType(Navigator)).last.pages.first,
+      );
       for (var i = 0; i < 15; i++) {
+        final retiredPage = capturePage();
         h.execute(
           'pages.list.value = [pages.make("root", {id: $i}, true, $i)]',
         );
@@ -81,6 +85,16 @@ void main() {
         expect(h.read('pages.factories'), 1);
         expect(h.read('pages.builds'), builds);
         await collectWidgetConfigurations(t);
+        await flaxTestRunIdle(
+          t,
+          () => flaxTestWaitForGc(
+            h.runtime,
+            () =>
+                retiredPage.target == null &&
+                (steady == null || h.runtime.handles == steady),
+          ),
+        );
+        expect(retiredPage.target, isNull);
         steady ??= h.runtime.handles;
         expect(h.runtime.handles, steady);
       }
@@ -130,14 +144,66 @@ void main() {
       await h.enter(t);
       int? steady;
       for (var i = 0; i < 10; i++) {
+        final retired = <(String, WeakReference<Object>)>[];
+        h.execute('globalThis.retiredPageRefs = []');
+        void rememberPages(String phase, int start) {
+          final pages = t
+              .widgetList<Navigator>(find.byType(Navigator))
+              .last
+              .pages;
+          for (final page in pages.skip(start)) {
+            retired.add(('$phase:${page.name}', WeakReference(page)));
+            retired.add((
+              '$phase:${page.name}:callback',
+              WeakReference(page.onPopInvoked),
+            ));
+          }
+          h.execute('''
+            for (const page of pages.list.value.slice($start)) {
+              retiredPageRefs.push({name:'$phase:'+page.name, ref:new WeakRef(page)});
+              retiredPageRefs.push({name:'$phase:'+page.name+':callback', ref:new WeakRef(page.onPopInvoked)});
+            }
+          ''');
+          h.runtime.drainMicrotasks();
+        }
+
+        bool retiredCollected() =>
+            retired.every((entry) => entry.$2.target == null) &&
+            h.read(
+                  'retiredPageRefs.every(entry => entry.ref.deref() === undefined)',
+                ) ==
+                true;
+
+        void reportRetired(String phase) {
+          final dartAlive = {
+            for (final (name, weak) in retired) name: weak.target != null,
+          };
+          final jsAlive = h.read(
+            'JSON.stringify(retiredPageRefs.map(({name, ref}) => [name, ref.deref() !== undefined]))',
+          );
+          h.runtime.drainMicrotasks();
+          // ignore: avoid_print
+          print(
+            'Pages retirement $i $phase: Dart=$dartAlive; JS=$jsAlive; handles=${h.runtime.handles}',
+          );
+        }
+
+        rememberPages('R0', 0);
         h.execute(
           'pages.list.value = [pages.make("root", {id: 1}), pages.make("detail", {id: 2})]',
         );
         await t.pumpAndSettle();
+        rememberPages('R1/D1', 0);
         h.execute(
           'pages.list.value = [pages.make("root", {id: 1}), pages.make("detail", {id: 3}, true, 7)]',
         );
         await t.pumpAndSettle();
+        rememberPages('D2', 1);
+        WeakReference<ModalRoute<dynamic>> captureDetailRoute() =>
+            WeakReference(
+              ModalRoute.of(t.element(find.text('Page {"id":3}')))!,
+            );
+        retired.add(('detail Route', captureDetailRoute()));
         await t.tap(find.text('Pop page'));
         await t.pumpAndSettle();
         expect(h.read('pages.original'), true);
@@ -152,6 +218,24 @@ void main() {
         );
         expect(find.text('Page {"id":1}'), findsOneWidget);
         await collectWidgetConfigurations(t);
+        reportRetired('before idle');
+        await flaxTestRunIdle(
+          t,
+          () => flaxTestWaitForGc(
+            h.runtime,
+            () =>
+                retiredCollected() &&
+                (steady == null || h.runtime.handles == steady),
+          ),
+        );
+        reportRetired('after idle');
+        final collected = retiredCollected();
+        h.runtime.drainMicrotasks();
+        expect(
+          collected,
+          isTrue,
+          reason: 'Retired Page ownership must expire before measuring handles',
+        );
         steady ??= h.runtime.handles;
         expect(h.runtime.handles, steady);
       }

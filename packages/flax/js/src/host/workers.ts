@@ -1,8 +1,17 @@
 import { DOMException, Event, EventTarget, MessageEvent } from './events.js';
-import type { EventInit } from './events.js';
+import type {
+  AddEventListenerOptions,
+  EventInit,
+  EventListener,
+  EventListenerOptions,
+} from './events.js';
 import { Response } from './fetch/http.js';
 import { ReadableStream } from 'web-streams-polyfill';
 import { blobRange } from './fetch/local-resources.js';
+import { gpuDiagnosticsHost } from './gpu-diagnostics.js';
+import type { CanvasHost, CanvasTransfers, OffscreenCanvas } from './canvas.js';
+import type { ImageHost, ImageBitmap, ElementImage } from './images.js';
+import type { URL } from './url.js';
 import {
   Blob,
   blobParts,
@@ -17,7 +26,15 @@ export interface WorkerOptions {
   name?: string;
   credentials?: 'omit' | 'same-origin' | 'include';
 }
-export type Transferable = ArrayBuffer;
+/** Optional host packages extend this map through the shared host types. */
+export interface FlaxTransferableMap {}
+export type Transferable =
+  | ArrayBuffer
+  | OffscreenCanvas
+  | ImageBitmap
+  | ElementImage
+  | MessagePort
+  | FlaxTransferableMap[keyof FlaxTransferableMap];
 export interface StructuredSerializeOptions {
   transfer?: Transferable[];
 }
@@ -70,12 +87,62 @@ export interface Worker extends EventTarget {
 export interface WorkerConstructor {
   new (scriptURL: string | URL, options?: WorkerOptions): Worker;
 }
+export interface MessageChannel {
+  readonly port1: MessagePort;
+  readonly port2: MessagePort;
+}
+type MessagePortListener =
+  | ((this: MessagePort, event: MessageEvent<any>) => void)
+  | { handleEvent(event: MessageEvent<any>): void };
+export interface MessagePort extends EventTarget {
+  onmessage: ((this: MessagePort, event: MessageEvent<any>) => unknown) | null;
+  onmessageerror: ((this: MessagePort, event: MessageEvent<any>) => unknown) | null;
+  addEventListener(
+    type: 'message' | 'messageerror',
+    callback: MessagePortListener | null,
+    options?: boolean | AddEventListenerOptions,
+  ): void;
+  addEventListener(
+    type: string,
+    callback: EventListener | null,
+    options?: boolean | AddEventListenerOptions,
+  ): void;
+  removeEventListener(
+    type: 'message' | 'messageerror',
+    callback: MessagePortListener | null,
+    options?: boolean | EventListenerOptions,
+  ): void;
+  removeEventListener(
+    type: string,
+    callback: EventListener | null,
+    options?: boolean | EventListenerOptions,
+  ): void;
+  postMessage(
+    message: unknown,
+    transferOrOptions?: Transferable[] | StructuredSerializeOptions,
+  ): void;
+  start(): void;
+  close(): void;
+}
 
 type Call = (operation: string, ...args: unknown[]) => unknown;
 export interface WorkerScopeOptions {
   id: number;
   name: string;
   type: 'classic' | 'module';
+  canvas?: boolean;
+}
+
+const arrayFrom = Array.from;
+const defineProperty = Object.defineProperty;
+const ownKeys = Object.keys;
+const uncloneable = Symbol.for('flax.uncloneable');
+const uncloneableDescriptor = { __proto__: null, value: true };
+const transferProviderKey = Symbol.for('flax.worker.transfer');
+type ProviderTransfers = CanvasTransfers & { finish(): void };
+interface TransferProvider {
+  prepareTransfers(list: unknown[]): ProviderTransfers | undefined;
+  restore(record: unknown): object;
 }
 
 function transfers(
@@ -88,35 +155,40 @@ function transfers(
   if (list === undefined) return [];
   if (typeof list !== 'object' || !(Symbol.iterator in list))
     throw new TypeError('Expected an iterable transfer list');
-  return Array.from(list as Iterable<unknown>);
+  return arrayFrom(list as Iterable<unknown>);
 }
-function handlers(target: any, types: string[], globalErrors = false) {
+function eventHandler(target: EventTarget, type: string, globalErrors = false) {
+  let callback: ((...args: any[]) => unknown) | null = null;
+  const listener = (event: Event) => {
+    const result =
+      globalErrors && event instanceof ErrorEvent
+        ? callback?.call(
+            target,
+            event.message,
+            event.filename,
+            event.lineno,
+            event.colno,
+            event.error,
+          )
+        : callback?.call(target, event);
+    if (type === 'error' && result === globalErrors) event.preventDefault();
+  };
+  return {
+    get: () => callback,
+    set(value: typeof callback) {
+      if (typeof value !== 'function') value = null;
+      if (!callback && value) target.addEventListener(type, listener);
+      if (callback && !value) target.removeEventListener(type, listener);
+      callback = value;
+    },
+  };
+}
+function handlers(target: EventTarget, types: string[], globalErrors = false) {
   for (const type of types) {
-    let callback: ((...args: any[]) => unknown) | null = null;
-    const listener = (event: Event) => {
-      const result =
-        globalErrors && event instanceof ErrorEvent
-          ? callback?.call(
-              target,
-              event.message,
-              event.filename,
-              event.lineno,
-              event.colno,
-              event.error,
-            )
-          : callback?.call(target, event);
-      if (type === 'error' && result === globalErrors) event.preventDefault();
-    };
-    Object.defineProperty(target, 'on' + type, {
+    defineProperty(target, 'on' + type, {
       configurable: true,
       enumerable: true,
-      get: () => callback,
-      set(value) {
-        if (typeof value !== 'function') value = null;
-        if (!callback && value) target.addEventListener(type, listener);
-        if (callback && !value) target.removeEventListener(type, listener);
-        callback = value;
-      },
+      ...eventHandler(target, type, globalErrors),
     });
   }
 }
@@ -129,6 +201,7 @@ export function installWorkers(
   const g = global as any;
   const native = g.__flaxNativeWorker;
   delete g.__flaxNativeWorker;
+  let closed = false;
   const workers = new Map<number, HostWorker>();
   const resources = new Map<
     number,
@@ -154,7 +227,51 @@ export function installWorkers(
     DOMException.prototype,
     'message',
   )!.get!;
-  const serializeHost = (value: object) => {
+  const diagnostics = gpuDiagnosticsHost(global);
+  const canvases = g.__flaxCanvasHost as CanvasHost | undefined;
+  const images = g[Symbol.for('flax.image.host')] as ImageHost | undefined;
+  let transferProvider: TransferProvider | undefined;
+  if (native) {
+    const descriptor = {
+      __proto__: null,
+      configurable: true,
+      value(provider: TransferProvider) {
+        if (closed || transferProvider)
+          throw new DOMException(
+            'Transfer provider is unavailable',
+            'InvalidStateError',
+          );
+        transferProvider = provider;
+        delete g[transferProviderKey];
+      },
+    };
+    defineProperty(g, transferProviderKey, descriptor);
+  }
+  function prepareTransfers(list: unknown[]): CanvasTransfers & {
+    finish: (() => void) | undefined;
+  } {
+    const image = images?.prepareTransfers(list);
+    const canvas = canvases?.prepareTransfers(image?.buffers ?? list);
+    const buffers = canvas?.buffers ?? image?.buffers ?? list;
+    const optional = transferProvider?.prepareTransfers(buffers);
+    return {
+      buffers: optional?.buffers ?? buffers,
+      serialize(value) {
+        const record = optional?.serialize(value);
+        if (record !== undefined) return ['FlaxTransfer', record];
+        return canvas?.serialize(value) ?? image?.serialize(value);
+      },
+      validate() {
+        canvas?.validate();
+        image?.validate();
+        optional?.validate();
+      },
+      finish: optional?.finish,
+    };
+  }
+  const serializeHost = (value: object, transfer?: CanvasTransfers) => {
+    const canvas = transfer?.serialize(value);
+    if (canvas) return canvas;
     const parts = blobParts(value);
     if (parts) {
       const file = fileMetadata(value);
@@ -164,14 +281,180 @@ export function installWorkers(
     }
     if (value instanceof DOMException)
       return ['DOMException', exceptionMessage.call(value), exceptionName.call(value)];
-    return undefined;
+    return diagnostics.serialize(value);
   };
   const deserializeHost = (record: any[]) => {
+    if (record[0] === 'FlaxTransfer') {
+      if (!transferProvider)
+        throw new DOMException('Transfer provider is unavailable', 'DataCloneError');
+      return transferProvider.restore(record[1]);
+    }
+    if (
+      record[0] === 'ImageData' ||
+      record[0] === 'ImageBitmap' ||
+      record[0] === 'ElementImage'
+    ) {
+      if (!images)
+        throw new DOMException('Image host is unavailable', 'DataCloneError');
+      return images.deserialize(record);
+    }
+    if (record[0] === 'OffscreenCanvas') {
+      if (!canvases)
+        throw new DOMException('Canvas provider is unavailable', 'DataCloneError');
+      return canvases.restoreTransfer(record[1]);
+    }
     if (record[0] === 'DOMException') return new DOMException(record[1], record[2]);
     if (record[0] === 'Blob' || record[0] === 'File')
       return restoreBlob(record[1], record[2], record[3], record[4]);
+    if (record[0] === 'GPUCompilationInfo' || record[0] === 'GPUCompilationMessage')
+      return diagnostics.deserialize(record);
     throw new DOMException('Invalid platform clone record', 'DataCloneError');
   };
+  // Native ownership uses a new ticket on each transfer, including within this realm.
+  interface PortState {
+    started: boolean;
+    retained: MessagePort | undefined;
+  }
+  const ports: Record<number, PortState | undefined> = Object.create(null);
+  const tickets = new WeakMap<object, number>();
+  const ticketFor = tickets.get.bind(tickets);
+  const rememberTicket = tickets.set.bind(tickets);
+  const finalizer =
+    typeof native?.portOpen === 'function'
+      ? new FinalizationRegistry<number>(closePort)
+      : undefined;
+  const registerPort = finalizer?.register.bind(finalizer);
+  const unregisterPort = finalizer?.unregister.bind(finalizer);
+  function forgetPort(id: number) {
+    const state = ports[id];
+    if (!state) return false;
+    delete ports[id];
+    unregisterPort!(state);
+    return true;
+  }
+  function closePort(id: number) {
+    if (forgetPort(id)) native.portClose(id);
+  }
+  function startPort(id: number, port: MessagePort) {
+    const state = ports[id];
+    if (!state || state.started) return;
+    state.started = true;
+    if (native.portStart(id)) state.retained = port;
+  }
+  function forgetTransferred(list: unknown[]) {
+    // Serialization getters may change collection prototypes before we get here.
+    for (let i = 0; i < list.length; i++) {
+      const candidate = list[i];
+      if (typeof candidate !== 'object' || candidate === null) continue;
+      const id = ticketFor(candidate);
+      if (id !== undefined && ports[id] && native.portState(id) === 0) forgetPort(id);
+    }
+  }
+  const portKey = Symbol();
+  type Port = MessagePort;
+  const HostMessagePort = class MessagePort extends EventTarget implements Port {
+    readonly #id: number;
+    readonly #message = eventHandler(this, 'message');
+    readonly #messageError = eventHandler(this, 'messageerror');
+    constructor(key: symbol, id: number) {
+      super();
+      if (key !== portKey) throw new TypeError('Illegal constructor');
+      this.#id = id;
+      if (!native.portBind(id, this))
+        throw new DOMException('MessagePort ownership changed', 'DataCloneError');
+      rememberTicket(this, id);
+      const state: PortState = { started: false, retained: undefined };
+      ports[id] = state;
+      registerPort!(this, id, state);
+    }
+    get onmessage(): Port['onmessage'] {
+      return this.#message.get();
+    }
+    set onmessage(value: Port['onmessage']) {
+      this.#message.set(value);
+      startPort(this.#id, this);
+    }
+    get onmessageerror(): Port['onmessageerror'] {
+      return this.#messageError.get();
+    }
+    set onmessageerror(value: Port['onmessageerror']) {
+      this.#messageError.set(value);
+    }
+    postMessage(
+      message: unknown,
+      input?: Transferable[] | StructuredSerializeOptions,
+    ): void {
+      const id = this.#id;
+      if (!arguments.length) throw new TypeError('postMessage needs a message');
+      post(id, 'port', message, input);
+    }
+    start(): void {
+      startPort(this.#id, this);
+    }
+    close(): void {
+      closePort(this.#id);
+    }
+    get [Symbol.toStringTag]() {
+      return 'MessagePort';
+    }
+  };
+  const makePort = finalizer
+    ? (id: number) => new HostMessagePort(portKey, id)
+    : undefined;
+  if (makePort) {
+    class MessageChannel {
+      readonly #port1: MessagePort;
+      readonly #port2: MessagePort;
+      constructor() {
+        if (closed)
+          throw new DOMException('The session is closed', 'InvalidStateError');
+        const ids = native.portOpen();
+        this.#port1 = makePort!(ids[0]);
+        this.#port2 = makePort!(ids[1]);
+        defineProperty(this, uncloneable, uncloneableDescriptor);
+      }
+      get port1() {
+        return this.#port1;
+      }
+      get port2() {
+        return this.#port2;
+      }
+      get [Symbol.toStringTag]() {
+        return 'MessageChannel';
+      }
+    }
+    Object.defineProperties(g, {
+      MessageChannel: { value: MessageChannel, configurable: true, writable: true },
+      MessagePort: { value: HostMessagePort, configurable: true, writable: true },
+    });
+  }
+  function post(
+    id: number,
+    target: 'parent' | 'child' | 'port',
+    message: unknown,
+    input: Transferable[] | StructuredSerializeOptions | undefined,
+  ) {
+    const list = transfers(input);
+    const prepared = prepareTransfers(list);
+    const serialize = (value: object) => serializeHost(value, prepared);
+    try {
+      const engine = nativeRequired();
+      if (target === 'port')
+        engine.portPost(id, message, prepared.buffers, serialize, prepared.validate);
+      else
+        engine.post(
+          id,
+          target === 'parent',
+          message,
+          prepared.buffers,
+          serialize,
+          prepared.validate,
+        );
+    } finally {
+      prepared.finish?.();
+      forgetTransferred(list);
+    }
+  }
   Object.defineProperty(g, 'structuredClone', {
     configurable: true,
     writable: true,
@@ -190,15 +473,28 @@ export function installWorkers(
           'structuredClone requires a matching Flax engine',
           'NotSupportedError',
         );
-      return engine.clone(
-        value,
-        transfers(transfer === undefined ? [] : { transfer }),
-        serializeHost,
-        deserializeHost,
-      );
+      const list = transfers(transfer === undefined ? [] : { transfer });
+      const prepared = prepareTransfers(list);
+      try {
+        return engine.clone(
+          value,
+          prepared.buffers,
+          (value: object) => serializeHost(value, prepared),
+          prepared.finish
+            ? (record: any[]) => {
+                prepared.finish!();
+                return deserializeHost(record);
+              }
+            : deserializeHost,
+          prepared.validate,
+          makePort,
+        );
+      } finally {
+        prepared.finish?.();
+        forgetTransferred(list);
+      }
     },
   });
-  let closed = false;
   interface WasmSink {
     write(bytes: Uint8Array): void;
     finish(url: string): void;
@@ -317,7 +613,7 @@ export function installWorkers(
       input?: Transferable[] | StructuredSerializeOptions,
     ): void {
       if (!arguments.length) throw new TypeError('postMessage needs a message');
-      nativeRequired().post(this.#id, false, message, transfers(input), serializeHost);
+      post(this.#id, 'child', message, input);
     }
     terminate(): void {
       if (this.#terminated) return;
@@ -401,13 +697,7 @@ export function installWorkers(
       ) {
         requireScope(this ?? g);
         if (!arguments.length) throw new TypeError('postMessage needs a message');
-        nativeRequired().post(
-          scope!.id,
-          true,
-          message,
-          transfers(input),
-          serializeHost,
-        );
+        post(scope!.id, 'parent', message, input);
       }
       close() {
         requireScope(this ?? g);
@@ -544,23 +834,28 @@ export function installWorkers(
   function receive(id: number) {
     if (closed) return false;
     const ownScope = scope?.id === id;
-    const target = ownScope ? g : workers.get(id);
+    const port = id < 0 ? ports[-id] : undefined;
+    const target = id < 0 ? port?.retained : ownScope ? g : workers.get(id);
     if (!target) return false;
     let packet;
     try {
-      packet = nativeRequired().take(id, !ownScope, deserializeHost);
+      const engine = nativeRequired();
+      packet = port
+        ? engine.portTake(-id, deserializeHost, makePort)
+        : engine.take(id, !ownScope, deserializeHost, makePort);
     } catch {
       target.dispatchEvent(new MessageEvent('messageerror'));
       return true;
     }
     if (packet) {
-      const event = new MessageEvent('message', { data: packet[0] });
+      const event = new MessageEvent('message', { data: packet[0], ports: packet[1] });
       // MessageEventInit defaults undefined to null; posted undefined is actual data.
       if (packet[0] === undefined)
         Object.defineProperty(event, 'data', { value: undefined });
       target.dispatchEvent(event);
       return true;
     }
+    if (port && native.portState(-id) !== 2) port.retained = undefined;
     return false;
   }
   return {
@@ -658,6 +953,10 @@ export function installWorkers(
     close() {
       for (const worker of [...workers.values()]) worker.terminate();
       closed = true;
+      transferProvider = undefined;
+      delete g[transferProviderKey];
+      const owned = ownKeys(ports);
+      for (let i = 0; i < owned.length; i++) closePort(+owned[i]!);
       for (const [token, state] of wasmStreams) {
         if (state.stopped) continue;
         state.stopped = true;

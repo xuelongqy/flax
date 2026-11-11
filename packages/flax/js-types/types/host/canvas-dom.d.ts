@@ -1,6 +1,6 @@
 import type { Event, EventTarget, DOMExceptionConstructor } from './events.js';
 import type { OffscreenCanvas } from './canvas.js';
-import type { HTMLImageElement } from './images.js';
+import { type HTMLImageElement, type PixelImage } from './images.js';
 export interface CanvasRect {
     readonly x: number;
     readonly y: number;
@@ -40,7 +40,7 @@ export type ResizeObserverCallback = (entries: ResizeObserverEntry[], observer: 
 export interface CanvasDocument extends EventTarget {
     cookie: string;
     readonly defaultView: typeof globalThis;
-    readonly activeElement: OffscreenCanvas | null;
+    readonly activeElement: (OffscreenCanvas & CanvasElement) | null;
     createElement(name: 'canvas'): HTMLCanvasElement;
     createElement(name: 'img'): HTMLImageElement;
     createElementNS(namespace: string, name: 'canvas'): HTMLCanvasElement;
@@ -95,7 +95,8 @@ export interface CanvasElement extends EventTarget, CanvasEventHandlers {
     getAttribute(name: string): string | null;
     removeAttribute(name: string): void;
 }
-export interface HTMLCanvasElement extends OffscreenCanvas {
+export interface HTMLCanvasElement extends OffscreenCanvas, CanvasElement {
+    transferControlToOffscreen(): OffscreenCanvas;
     toBlob(callback: (blob: import('./canvas.js').CanvasBlob | null) => unknown, type?: string, quality?: number): void;
     toDataURL(type?: string, quality?: number): string;
 }
@@ -167,6 +168,25 @@ declare function eventConstructors(BaseEvent: typeof Event): {
             readonly isPrimary: boolean;
             getCoalescedEvents(): /*elided*/ any[];
             getPredictedEvents(): /*elided*/ any[];
+            readonly clientX: number;
+            readonly clientY: number;
+            readonly screenX: number;
+            readonly screenY: number;
+            readonly pageX: number;
+            readonly pageY: number;
+            readonly offsetX: number;
+            readonly offsetY: number;
+            readonly movementX: number;
+            readonly movementY: number;
+            readonly button: number;
+            readonly buttons: number;
+            readonly ctrlKey: boolean;
+            readonly shiftKey: boolean;
+            readonly altKey: boolean;
+            readonly metaKey: boolean;
+            get x(): number;
+            get y(): number;
+            getModifierState(key: string): boolean;
             readonly type: string;
             readonly bubbles: boolean;
             readonly cancelable: boolean;
@@ -188,25 +208,6 @@ declare function eventConstructors(BaseEvent: typeof Event): {
             composedPath(): EventTarget[];
             get returnValue(): boolean;
             set returnValue(value: boolean);
-            readonly clientX: number;
-            readonly clientY: number;
-            readonly screenX: number;
-            readonly screenY: number;
-            readonly pageX: number;
-            readonly pageY: number;
-            readonly offsetX: number;
-            readonly offsetY: number;
-            readonly movementX: number;
-            readonly movementY: number;
-            readonly button: number;
-            readonly buttons: number;
-            readonly ctrlKey: boolean;
-            readonly shiftKey: boolean;
-            readonly altKey: boolean;
-            readonly metaKey: boolean;
-            get x(): number;
-            get y(): number;
-            getModifierState(key: string): boolean;
         };
         readonly NONE: 0;
         readonly CAPTURING_PHASE: 1;
@@ -219,6 +220,25 @@ declare function eventConstructors(BaseEvent: typeof Event): {
             readonly deltaY: number;
             readonly deltaZ: number;
             readonly deltaMode: number;
+            readonly clientX: number;
+            readonly clientY: number;
+            readonly screenX: number;
+            readonly screenY: number;
+            readonly pageX: number;
+            readonly pageY: number;
+            readonly offsetX: number;
+            readonly offsetY: number;
+            readonly movementX: number;
+            readonly movementY: number;
+            readonly button: number;
+            readonly buttons: number;
+            readonly ctrlKey: boolean;
+            readonly shiftKey: boolean;
+            readonly altKey: boolean;
+            readonly metaKey: boolean;
+            get x(): number;
+            get y(): number;
+            getModifierState(key: string): boolean;
             readonly type: string;
             readonly bubbles: boolean;
             readonly cancelable: boolean;
@@ -240,25 +260,6 @@ declare function eventConstructors(BaseEvent: typeof Event): {
             composedPath(): EventTarget[];
             get returnValue(): boolean;
             set returnValue(value: boolean);
-            readonly clientX: number;
-            readonly clientY: number;
-            readonly screenX: number;
-            readonly screenY: number;
-            readonly pageX: number;
-            readonly pageY: number;
-            readonly offsetX: number;
-            readonly offsetY: number;
-            readonly movementX: number;
-            readonly movementY: number;
-            readonly button: number;
-            readonly buttons: number;
-            readonly ctrlKey: boolean;
-            readonly shiftKey: boolean;
-            readonly altKey: boolean;
-            readonly metaKey: boolean;
-            get x(): number;
-            get y(): number;
-            getModifierState(key: string): boolean;
         };
         readonly DOM_DELTA_PIXEL: 0;
         readonly DOM_DELTA_LINE: 1;
@@ -315,6 +316,11 @@ export type KeyboardEvent = InstanceType<ReturnType<typeof eventConstructors>['K
 type Call = (operation: string, ...args: unknown[]) => unknown;
 /** A canvas host surface, not a DOM representation of the Flutter Widget tree. */
 export declare function installCanvasDom(global: typeof globalThis, call: Call, create: () => HTMLCanvasElement, EventTarget: typeof import('./events.js').EventTarget, DOMException: DOMExceptionConstructor, Event: typeof import('./events.js').Event): {
+    readonly hasSources: boolean;
+    configureSources(names: string[]): void;
+    decorateHtml(canvas: HTMLCanvasElement): void;
+    updateSource(name: string, width: number, height: number, buffer: ArrayBuffer | null): void;
+    sourcePixels(value: unknown): PixelImage;
     decorate(canvas: OffscreenCanvas, target: object): void;
     observe(canvas: object): void;
     receive(target: object, input: Record<string, any>): boolean;

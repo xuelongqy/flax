@@ -269,11 +269,35 @@ class _ModuleInstallation {
   final _namespaces = <String, String>{};
   FlaxJsObject? _registry;
   bool _closed = false;
+  FlaxModuleAssets? _assets;
+
+  List<(String, String)> workerSources(Set<String> requested) {
+    final assets = _assets!;
+    for (final name in requested) {
+      if (!_namespaces.containsKey(name)) {
+        throw StateError('Worker host module was not selected: $name');
+      }
+    }
+    final selected = assets._select(requested);
+    if (selected.any((module) => module.bindings.isNotEmpty)) {
+      throw StateError('Worker host modules cannot require Flutter bindings');
+    }
+    return [
+      (utf8.decode(assets._bootstrap.bytes), assets._bootstrap.sourceUrl),
+      for (final module in selected)
+        (utf8.decode(module.source!.bytes), module.source!.sourceUrl),
+      (
+        'globalThis.__flaxModules.seal(${jsonEncode([for (final module in selected) module.expectation])})',
+        'flax:worker-module-inventory',
+      ),
+    ];
+  }
 
   Iterable<String> installSteps(
     FlaxModuleAssets assets,
     List<_PreparedModule> modules,
   ) sync* {
+    _assets = assets;
     final result = preloaded
         ? context.runtime.getGlobal('__flaxModules')
         : context.evaluateSource(assets._bootstrap);
@@ -332,19 +356,7 @@ class _ModuleInstallation {
     final registry = _registry;
     final canonical = _namespaces[specifier];
     if (registry == null || _closed || canonical == null) return null;
-    final require = registry.getProperty('require') as FlaxJsFunction;
-    try {
-      final result = require.call([
-        FlaxJsString(canonical),
-      ], thisValue: registry);
-      if (result is! FlaxJsObject) {
-        _releaseJs(result);
-        throw StateError('Invalid SDK namespace: $specifier');
-      }
-      return result;
-    } finally {
-      require.release();
-    }
+    return _requirePreparedModule(registry, canonical);
   }
 
   void _call(String name) {
@@ -376,6 +388,20 @@ class _ModuleInstallation {
       _registry = null;
       _namespaces.clear();
     }
+  }
+}
+
+FlaxJsObject _requirePreparedModule(FlaxJsObject registry, String specifier) {
+  final require = registry.getProperty('require') as FlaxJsFunction;
+  try {
+    final result = require.call([FlaxJsString(specifier)], thisValue: registry);
+    if (result is! FlaxJsObject) {
+      _releaseJs(result);
+      throw StateError('Invalid SDK namespace: $specifier');
+    }
+    return result;
+  } finally {
+    require.release();
   }
 }
 

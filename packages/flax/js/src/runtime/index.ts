@@ -144,6 +144,52 @@ export function batch<T>(action: () => T): T {
   return coreBatch(action);
 }
 
+declare const jointListener: unique symbol;
+
+/** The capability for one generated TextEditingController registration. */
+export interface FlaxJointListener {
+  readonly [jointListener]: true;
+}
+
+type JointListenerOwner = {
+  addListener(callback: () => void): void;
+  removeListener(callback: () => void): void;
+};
+
+function jointBindings() {
+  const host = globalThis as typeof globalThis & {
+    __flaxBindings?: {
+      ownJointObject<T extends object>(source: T): T;
+      addJointListener(
+        owner: JointListenerOwner,
+        callback: () => void,
+      ): FlaxJointListener;
+      unlinkJoint(ref: object): boolean;
+    };
+  };
+  if (!host.__flaxBindings?.unlinkJoint)
+    throw new TypeError('Joint capabilities require a Flax session');
+  return host.__flaxBindings;
+}
+
+/** Creates a fresh view of a live ordinary Dart object in this session. */
+export function ownJointObject<T extends object>(source: T): T {
+  return jointBindings().ownJointObject(source);
+}
+
+/** Registers one synchronous listener with its own unlink capability. */
+export function addJointListener(
+  owner: JointListenerOwner,
+  callback: () => void,
+): FlaxJointListener {
+  return jointBindings().addJointListener(owner, callback);
+}
+
+/** Unlinks one local joint capability. Repeated calls return false. */
+export function unlinkJoint(ref: object): boolean {
+  return jointBindings().unlinkJoint(ref);
+}
+
 /** The real absolute persistent data directory for the current application. */
 export async function getHomePath(): Promise<string> {
   // Business code may request its home before importing any generated binding.

@@ -67,7 +67,14 @@ export async function buildHost(bundle, { prepareOnly = false } = {}) {
     format: 'iife',
     globalName: 'FlaxBootstrap',
     target: 'es2019',
-    supported: { 'async-generator': false, 'for-await': false },
+    // Preserve field initialization order and avoid WeakMap-lowered event state.
+    supported: {
+      'class-field': true,
+      'class-private-field': true,
+      'class-static-field': true,
+      'async-generator': false,
+      'for-await': false,
+    },
     minify: true,
     legalComments: 'inline',
     metafile: true,

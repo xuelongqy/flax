@@ -985,6 +985,10 @@ void main() {
         h.execute(write.replaceFirst('VALUE', 'null'));
         expect(h.boolean('$read === null'), isTrue);
         await collect();
+        await flaxTestRunIdle(
+          tester,
+          () => flaxTestWaitForGc(h.runtime, () => weak.target == null),
+        );
         expect(weak.target, isNull, reason: read);
       }
       expect(h.errors, isEmpty);

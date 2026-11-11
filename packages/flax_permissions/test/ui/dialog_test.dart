@@ -118,7 +118,7 @@ void main() {
           request: request,
           barrierLabel: barrierLabel,
           builder: (dialogContext) {
-            expect(
+            expectSync(
               Localizations.of<MaterialLocalizations>(
                 dialogContext,
                 MaterialLocalizations,
@@ -165,14 +165,20 @@ void main() {
         await tester.pumpAndSettle();
         expect(capturedPrimary, localTheme.colorScheme.primary);
         expect(route!.traversalEdgeBehavior, TraversalEdgeBehavior.closedLoop);
-        expect(find.bySemanticsLabel(barrierLabel), findsOneWidget);
+        expect(find.semantics.byLabel(barrierLabel), findsOne);
         denyFocus.requestFocus();
         await tester.pump();
         expect(denyFocus.hasFocus, isTrue);
-        await tester.sendKeyEvent(LogicalKeyboardKey.tab);
+        await tester.sendKeyEvent(
+          LogicalKeyboardKey.tab,
+          physicalKey: PhysicalKeyboardKey.tab,
+        );
         await tester.pump();
         expect(allowFocus.hasFocus, isTrue);
-        await tester.sendKeyEvent(LogicalKeyboardKey.tab);
+        await tester.sendKeyEvent(
+          LogicalKeyboardKey.tab,
+          physicalKey: PhysicalKeyboardKey.tab,
+        );
         await tester.pump();
         expect(denyFocus.hasFocus, isTrue);
         await tester.tap(find.text('Allow module'));

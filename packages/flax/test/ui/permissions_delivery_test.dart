@@ -192,27 +192,35 @@ void main() {
       (tester) async {
         final harness = await _DeliveryHarness.open(tester);
         try {
+          // Keep native frame work in this test's Future error zone.
+          final testZone = Zone.current;
           Future<void>? revocation;
-          tester.binding.scheduleFrameCallback((_) {
-            harness.start(
-              'globalThis.delivered = false; globalThis.pending = load().then('
-              'value => { delivered = true; return {value}; }, '
-              'e => { delivered = true; return {code:e.code,message:e.message}; })',
-            );
-            if (failure) {
-              harness.backend.completeError(StateError('PRIVATE_MANUAL_ERROR'));
-            } else {
-              harness.backend.complete(847);
-            }
-          });
-          tester.binding.addPostFrameCallback((_) {
-            expect(harness.backendSettled, isTrue);
-            expect(
-              (harness.runtime.getGlobal('delivered') as FlaxJsBoolean).value,
-              isFalse,
-            );
-            revocation = harness.revoke();
-          });
+          tester.binding.scheduleFrameCallback(
+            testZone.bindUnaryCallback<void, Duration>((_) {
+              harness.start(
+                'globalThis.delivered = false; globalThis.pending = load().then('
+                'value => { delivered = true; return {value}; }, '
+                'e => { delivered = true; return {code:e.code,message:e.message}; })',
+              );
+              if (failure) {
+                harness.backend.completeError(
+                  StateError('PRIVATE_MANUAL_ERROR'),
+                );
+              } else {
+                harness.backend.complete(847);
+              }
+            }),
+          );
+          tester.binding.addPostFrameCallback(
+            testZone.bindUnaryCallback<void, Duration>((_) {
+              expectSync(harness.backendSettled, isTrue);
+              expectSync(
+                (harness.runtime.getGlobal('delivered') as FlaxJsBoolean).value,
+                isFalse,
+              );
+              revocation = harness.revoke();
+            }),
+          );
           await tester.pump();
           await _pumpFuture(tester, revocation!);
           final result =
@@ -231,27 +239,32 @@ void main() {
       (tester) async {
         final harness = await _DeliveryHarness.open(tester);
         try {
+          final testZone = Zone.current;
           Future<void>? revocation;
-          tester.binding.scheduleFrameCallback((_) {
-            harness.start(
-              'globalThis.delivered = false; globalThis.iterator = watch()[Symbol.asyncIterator](); '
-              'globalThis.pending = iterator.next().then('
-              'value => { delivered = true; return {value}; }, '
-              'e => { delivered = true; return {code:e.code,message:e.message}; })',
-            );
-            if (failure) {
-              harness.events.addError(StateError('PRIVATE_ITERATOR_ERROR'));
-            } else {
-              harness.events.add(847);
-            }
-          });
-          tester.binding.addPostFrameCallback((_) {
-            expect(
-              (harness.runtime.getGlobal('delivered') as FlaxJsBoolean).value,
-              isFalse,
-            );
-            revocation = harness.revoke();
-          });
+          tester.binding.scheduleFrameCallback(
+            testZone.bindUnaryCallback<void, Duration>((_) {
+              harness.start(
+                'globalThis.delivered = false; globalThis.iterator = watch()[Symbol.asyncIterator](); '
+                'globalThis.pending = iterator.next().then('
+                'value => { delivered = true; return {value}; }, '
+                'e => { delivered = true; return {code:e.code,message:e.message}; })',
+              );
+              if (failure) {
+                harness.events.addError(StateError('PRIVATE_ITERATOR_ERROR'));
+              } else {
+                harness.events.add(847);
+              }
+            }),
+          );
+          tester.binding.addPostFrameCallback(
+            testZone.bindUnaryCallback<void, Duration>((_) {
+              expectSync(
+                (harness.runtime.getGlobal('delivered') as FlaxJsBoolean).value,
+                isFalse,
+              );
+              revocation = harness.revoke();
+            }),
+          );
           await tester.pump();
           await _pumpFuture(tester, revocation!);
           final result =
@@ -381,15 +394,22 @@ void main() {
         'globalThis.pending = subscription.asFuture(847).then(value => { delivered = true; return {value}; }, '
         'e => { delivered = true; return {code:e.code}; })',
       );
+      final testZone = Zone.current;
       Future<void>? revocation;
-      tester.binding.scheduleFrameCallback((_) => harness.events.close());
-      tester.binding.addPostFrameCallback((_) {
-        expect(
-          (harness.runtime.getGlobal('delivered') as FlaxJsBoolean).value,
-          isFalse,
-        );
-        revocation = harness.revoke();
-      });
+      tester.binding.scheduleFrameCallback(
+        testZone.bindUnaryCallback<void, Duration>(
+          (_) => harness.events.close(),
+        ),
+      );
+      tester.binding.addPostFrameCallback(
+        testZone.bindUnaryCallback<void, Duration>((_) {
+          expectSync(
+            (harness.runtime.getGlobal('delivered') as FlaxJsBoolean).value,
+            isFalse,
+          );
+          revocation = harness.revoke();
+        }),
+      );
       await tester.pump();
       await _pumpFuture(tester, revocation!);
       expect(await harness.js(tester, 'return await pending;'), {
@@ -418,19 +438,24 @@ void main() {
           'e => { delivered = true; return {code:e.code,message:e.message}; })',
         );
         expect(harness.cancellations, 1);
+        final testZone = Zone.current;
         Future<void>? revocation;
         tester.binding.scheduleFrameCallback(
-          (_) => harness.cancellation.completeError(
-            StateError('PRIVATE_CANCEL_ERROR'),
+          testZone.bindUnaryCallback<void, Duration>(
+            (_) => harness.cancellation.completeError(
+              StateError('PRIVATE_CANCEL_ERROR'),
+            ),
           ),
         );
-        tester.binding.addPostFrameCallback((_) {
-          expect(
-            (harness.runtime.getGlobal('delivered') as FlaxJsBoolean).value,
-            isFalse,
-          );
-          revocation = harness.revoke();
-        });
+        tester.binding.addPostFrameCallback(
+          testZone.bindUnaryCallback<void, Duration>((_) {
+            expectSync(
+              (harness.runtime.getGlobal('delivered') as FlaxJsBoolean).value,
+              isFalse,
+            );
+            revocation = harness.revoke();
+          }),
+        );
         await tester.pump();
         await _pumpFuture(tester, revocation!);
         final result = await harness.js(tester, 'return await pending;') as Map;

@@ -1,9 +1,10 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { setImmediate } from 'node:timers/promises';
 import { installCanvasHost } from '../../dist/host/canvas.js';
 
 function environment() {
-  const global = {};
+  const global = { __flaxNativeWorker: { canvasTransferVersion: 1 } };
   const calls = [];
   const host = installCanvasHost(
     global,
@@ -16,6 +17,155 @@ function environment() {
   );
   return { global, host, calls };
 }
+
+function transferProvider(host) {
+  host.registerTransfers({
+    adopt() {},
+    create: (_canvas, _target, width, height) =>
+      new Uint32Array([width, height]).buffer,
+    dimensions: (token) => Array.from(new Uint32Array(token)),
+    resize: (token, width, height) => new Uint32Array(token).set([width, height]),
+  });
+}
+
+test('HTML canvas transfers rendering while retaining its placement and input target', () => {
+  const { global, host } = environment();
+  transferProvider(host);
+  const html = new global.HTMLCanvasElement();
+  const target = host.target(html);
+  const canvas = html.transferControlToOffscreen();
+  assert.equal(host.target(canvas), target);
+  assert.equal(canvas.width, 300);
+  assert.equal(html.getContext('webgpu'), null);
+  assert.throws(
+    () => {
+      html.width = 42;
+    },
+    { name: 'InvalidStateError' },
+  );
+  assert.throws(() => html.transferControlToOffscreen(), { name: 'InvalidStateError' });
+  canvas.width = 128;
+  assert.equal(canvas.width, 128);
+  assert.equal(html.width, 300);
+});
+
+test('a retained offscreen view keeps its shared HTML target alive until the last owner is collected', async () => {
+  assert.equal(typeof globalThis.gc, 'function', 'Run with --expose-gc');
+  const { global, host, calls } = environment();
+  transferProvider(host);
+  const releases = () => calls.filter(([operation]) => operation === 'canvasRelease');
+  host.register('2d', (canvas, target) => {
+    assert.equal(
+      releases().some(([, released]) => released === target),
+      false,
+    );
+    return renderer(canvas);
+  });
+  let view = {};
+  const reference = (() => {
+    const html = new global.HTMLCanvasElement();
+    const canvas = html.transferControlToOffscreen();
+    host.hold(view, canvas);
+    return new WeakRef(canvas);
+  })();
+  async function collect() {
+    for (let round = 0; round < 10; round++) {
+      await setImmediate();
+      globalThis.gc();
+    }
+  }
+  await collect();
+  host.present();
+  assert.equal(releases().length, 0);
+  assert.equal(host.held(view).getContext('2d').canvas, host.held(view));
+
+  view = undefined;
+  await collect();
+  assert.equal(reference.deref(), undefined);
+  host.present();
+  host.present();
+  assert.equal(releases().length, 1);
+  host.close();
+  host.present();
+  assert.equal(releases().length, 1);
+});
+
+test('canvas transfer revalidates context ownership before detaching any buffer', () => {
+  const { global, host } = environment();
+  transferProvider(host);
+  host.register('webgpu', (canvas) => renderer(canvas));
+  const canvas = new global.OffscreenCanvas(8, 4);
+  const bytes = new ArrayBuffer(4);
+  const prepared = host.prepareTransfers([canvas, bytes]);
+  canvas.getContext('webgpu');
+  assert.throws(prepared.validate, { name: 'InvalidStateError' });
+  assert.equal(canvas.width, 8);
+  assert.equal(bytes.byteLength, 4);
+  assert.equal(prepared.buffers[0].byteLength, 8);
+});
+
+test('canvas precommit validation invokes no replaceable collection methods', () => {
+  const { global, host } = environment();
+  transferProvider(host);
+  const prepared = host.prepareTransfers([new global.OffscreenCanvas(8, 4)]);
+  const keys = Map.prototype.keys,
+    get = WeakMap.prototype.get;
+  let hooks = 0;
+  try {
+    Map.prototype.keys = WeakMap.prototype.get = () => {
+      hooks++;
+      throw Error('Application hook');
+    };
+    prepared.validate();
+  } finally {
+    Map.prototype.keys = keys;
+    WeakMap.prototype.get = get;
+  }
+  assert.equal(hooks, 0);
+});
+
+test('offscreen transfer preserves native dimensions and detaches the source', () => {
+  const { global, host, calls } = environment();
+  transferProvider(host);
+  const canvas = new global.OffscreenCanvas(8, 4);
+  assert.throws(() => host.prepareTransfers([]).serialize(canvas), {
+    name: 'DataCloneError',
+  });
+  const prepared = host.prepareTransfers([canvas]);
+  canvas.width = 17;
+  prepared.validate();
+  const record = structuredClone(prepared.serialize(canvas), {
+    transfer: prepared.buffers,
+  });
+  assert.equal(canvas.width, 0);
+  assert.equal(canvas.height, 0);
+  assert.throws(() => canvas.getContext('webgpu'), { name: 'InvalidStateError' });
+  const received = host.restoreTransfer(record[1]);
+  assert.deepEqual(calls.at(-1), ['canvasCreate', 17, 4]);
+  assert.equal(received.width, 17);
+  assert.equal(received.height, 4);
+});
+
+test('Worker canvas installation supplies OffscreenCanvas without DOM or Dart peers', () => {
+  const global = { __flaxNativeWorker: { canvasTransferVersion: 1 } };
+  const host = installCanvasHost(
+    global,
+    (operation) => {
+      throw new Error(operation);
+    },
+    EventTarget,
+    DOMException,
+    Event,
+    true,
+  );
+  transferProvider(host);
+  const canvas = new global.OffscreenCanvas(8, 4);
+  canvas.width = 17;
+  assert.equal(canvas.width, 17);
+  assert.equal(global.document, undefined);
+  assert.equal(global.HTMLCanvasElement, undefined);
+  assert.equal(canvas.style, undefined);
+});
 
 function renderer(canvas, resized = []) {
   const context = { canvas };

@@ -15,7 +15,11 @@ if (!globalThis.__flaxFfiDlopen && typeof globalThis.__flaxBaseCall === 'functio
   globalThis.__flaxBaseCall('ffiInstall');
 
 const apply = Reflect.apply;
+const weakMapGet = WeakMap.prototype.get;
+const weakMapSet = WeakMap.prototype.set;
 const weakMapDelete = WeakMap.prototype.delete;
+// ES2019 private-field helpers invoke replaceable collection methods during detach.
+const nativeFinalizerStates = new WeakMap();
 function invalid(message, code = 'ERR_INVALID_ARG_VALUE') {
   const ErrorType = code === 'ERR_INVALID_STATE' ? Error : TypeError;
   return Object.assign(new ErrorType(message), { code });
@@ -552,10 +556,12 @@ export function withArena(action) {
   return finishArena(arena, result, false);
 }
 export class NativeFinalizer {
-  #native;
-  #detach = new WeakMap();
   constructor(callback) {
-    this.#native = memory().finalizer(callback);
+    const native = memory().finalizer(callback);
+    apply(weakMapSet, nativeFinalizerStates, [
+      this,
+      { native, pending: new WeakMap() },
+    ]);
   }
   attach(target, token, { detach = target, externalSize = 0 } = {}) {
     if (
@@ -565,25 +571,27 @@ export class NativeFinalizer {
       !['object', 'function'].includes(typeof detach)
     )
       throw invalid('Finalizer target and detach key must be objects');
-    const ids = this.#detach.get(detach) ?? [];
+    const { native, pending } = apply(weakMapGet, nativeFinalizerStates, [this]);
+    const ids = pending.get(detach) ?? [];
     const length = ids.length;
-    const id = this.#native.attach(target, token, externalSize);
+    const id = native.attach(target, token, externalSize);
     try {
       ids.push(id);
-      this.#detach.set(detach, ids);
+      pending.set(detach, ids);
     } catch (error) {
-      this.#native.detach([id]);
+      native.detach([id]);
       ids.length = length;
-      if (length === 0) apply(weakMapDelete, this.#detach, [detach]);
+      if (length === 0) apply(weakMapDelete, pending, [detach]);
       throw error;
     }
   }
   detach(key) {
-    const ids = this.#detach.get(key);
+    const { native, pending } = apply(weakMapGet, nativeFinalizerStates, [this]);
+    const ids = apply(weakMapGet, pending, [key]);
     if (!ids) throw invalid('Finalizer attachment is not pending', 'ERR_INVALID_STATE');
     // Native validates the whole group before cancelling any attachment.
-    this.#native.detach(ids);
-    apply(weakMapDelete, this.#detach, [key]);
+    native.detach(ids);
+    apply(weakMapDelete, pending, [key]);
   }
 }
 

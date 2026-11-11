@@ -20,9 +20,11 @@ const char *flax_webgpu_wgsl(void *context);
 void *flax_webgpu_proc(const char *name);
 int32_t flax_webgpu_init(const char *name, void *data, size_t size);
 int32_t flax_webgpu_adapter(void *context, uint64_t request,
-                            uint32_t preference, uint32_t fallback);
+                            uint32_t preference, uint32_t fallback,
+                            uint32_t feature_level);
 int32_t flax_webgpu_device(void *context, WGPUAdapter adapter, uint64_t request,
                            const char *descriptor);
+void flax_webgpu_release_device(WGPUDevice device);
 const char *flax_webgpu_info(uint32_t kind, void *object);
 int32_t flax_webgpu_map(void *context, WGPUBuffer buffer, uint64_t request,
                         uint64_t mode, uint64_t offset, uint64_t size);
@@ -38,22 +40,77 @@ int32_t flax_webgpu_compilation_info(void *context, WGPUShaderModule shader,
                                      uint64_t request);
 int32_t flax_webgpu_pipeline(void *context, WGPUDevice device, uint64_t request,
                              uint32_t kind, const void *descriptor);
-/* Session, mapping, surface, IOSurface and publication counts; index 5 is
- * unsafe retirement. */
+/* Index 5 counts unsafe canvas retirement. Indices 10–13 count video frames,
+ * pixel-buffer leases, pending GPU reads and retirement errors. */
 uint64_t flax_webgpu_live(uint32_t kind);
-void *flax_webgpu_canvas_create(void *registry);
+/* A registered producer returns an owned frame, or null with an empty error
+ * while no frame is available. Frame info timestamps and durations are in µs. */
+void *flax_webgpu_video_frame_acquire(void *registry, const char *source_id);
+const char *flax_webgpu_video_frame_info(void *frame);
+/* Returns an independent owned lease sharing the same pixel buffer. */
+void *flax_webgpu_video_frame_clone(void *frame);
+/* A one-byte owned ArrayBuffer holds the staged lease until take, abort, or
+ * backing-store release. Only the original address can take the frame. */
+void *flax_webgpu_video_frame_transfer_prepare(void *frame);
+/* Take moves the import-free payload into the receiving context's owned ledger.
+ * Close retires an adopted frame on that context's JS owner thread. */
+void *flax_webgpu_video_frame_transfer_take(void *context, void *address);
+void flax_webgpu_video_frame_transfer_close(void *context, void *frame);
+void flax_webgpu_video_frame_transfer_abort(void *address);
+void flax_webgpu_video_frame_transfer_release(void *address);
+/* Copies original-format planes; layout contains offset/stride pairs in bytes. */
+int32_t flax_webgpu_video_frame_copy(void *frame, void *destination, size_t length,
+                                     uint32_t x, uint32_t y, uint32_t width,
+                                     uint32_t height, const uint32_t *layout,
+                                     uint32_t planes);
+/* Packed format is RGBA, RGBX, BGRA or BGRX in that order. Color space is 0 (sRGB) or 1 (Display P3). */
+int32_t flax_webgpu_video_frame_copy_rgb(void *frame, void *destination, size_t length,
+                                         uint32_t x, uint32_t y, uint32_t width,
+                                         uint32_t height, uint32_t offset, uint32_t stride,
+                                         uint32_t format, uint32_t color_space);
+/* Returns an owned Dawn handle; color_space is 0 (sRGB) or 1 (Display P3). */
+WGPUExternalTexture flax_webgpu_video_frame_import(WGPUDevice device, void *frame,
+                                                   uint32_t color_space);
+void flax_webgpu_video_frame_release(void *frame);
+void *flax_webgpu_canvas_create(void *context, void *registry);
+/* Private owned ArrayBuffer backing storage; only its original address is a lease.
+ * The backing-store deleter owns token_release independently of any JS runtime. */
+void *flax_webgpu_canvas_token_create(void *registry, uint32_t width, uint32_t height);
+void flax_webgpu_canvas_token_release(void *token);
+uint32_t flax_webgpu_canvas_token_dimension(void *token, uint32_t axis);
+int64_t flax_webgpu_canvas_token_id(void *token);
+int32_t flax_webgpu_canvas_token_resize(void *token, uint32_t width, uint32_t height);
+void *flax_webgpu_canvas_token_display(void *token);
+int64_t flax_webgpu_canvas_display_id(void *display);
+uint64_t flax_webgpu_canvas_display_size(void *display);
+int32_t flax_webgpu_canvas_display_initialize(void *display, void *registry);
+void flax_webgpu_canvas_display_release(void *display);
+void *flax_webgpu_canvas_from_token(void *context, void *token);
 int64_t flax_webgpu_canvas_id(void *canvas);
 int32_t flax_webgpu_canvas_configure(void *canvas, WGPUDevice device,
-                                     uint32_t width, uint32_t height,
-                                     uint64_t usage, uint32_t opaque,
-                                     WGPUTextureFormat format,
-                                     uint32_t srgb_view);
+                                     const WGPUTextureDescriptor *descriptor,
+                                     uint32_t opaque, uint32_t display_p3,
+                                     uint32_t extended_tone_mapping);
+void flax_webgpu_canvas_resize(void *canvas, uint32_t width, uint32_t height);
 WGPUTexture flax_webgpu_canvas_texture(void *canvas);
+int32_t flax_webgpu_canvas_destroy_texture(void *canvas, WGPUTexture texture);
 int32_t flax_webgpu_canvas_present(void *canvas);
 int32_t flax_webgpu_canvas_readback(void *canvas, void *pixels, size_t length,
                                     uint32_t transfer);
 void flax_webgpu_canvas_unconfigure(void *canvas);
 void flax_webgpu_canvas_release(void *canvas);
+/* Encoded bytes stay valid until the returned image handle is released. */
+const void *flax_webgpu_encode_image(const void *pixels, size_t length,
+                                     uint32_t width, uint32_t height,
+                                     uint32_t float16, uint32_t display_p3,
+                                     uint32_t premultiplied, uint32_t type,
+                                     double quality);
+int32_t flax_webgpu_encode_image_async(
+    void *context, uint64_t request, const void *pixels, size_t length,
+    uint32_t width, uint32_t height, uint32_t float16, uint32_t display_p3,
+    uint32_t premultiplied, uint32_t type, double quality);
+const void *flax_webgpu_encoded_image_bytes(const void *image, size_t *length);
+void flax_webgpu_encoded_image_release(const void *image);
 #ifdef __cplusplus
 }
 #endif

@@ -1,8 +1,8 @@
 # Standard WebGPU JS integration
 
 Status: shared Core canvas, first macOS Dawn JS profile and normal native packaging
-implemented; latest-main validation is pending and complete conformance remains open.
-See [ADR 0052](../decisions/0052-shared-canvas-and-webgpu.md), the
+implemented; local combined-engine macOS acceptance passes and complete conformance
+remains open. See [ADR 0052](../decisions/0052-shared-canvas-and-webgpu.md), the
 [current architecture](../architecture/webgpu.md) and
 [package instructions](../../packages/flax_webgpu/README.md).
 
@@ -55,16 +55,24 @@ resolutions, including one instanced draw versus 2,304 per-object draws.
 
 ## Remaining work
 
-1. Extend the bounded CTS selection to broader semantic/WebIDL coverage. The current
-   selection passes 468 cases and explicitly skips 36 Float16Array-polyfill cases in
-   each of three sessions; full conformance is still open. See the
-   [API extension receipt](../../packages/flax_webgpu/validation/api-extensions-macos.json).
+1. Address the remaining conformance gaps. The complete combined-engine pinned CTS run
+   finished all 697 groups and 288,582 cases: 272,639 passed, 1,703 failed and 14,240
+   skipped. Compared with the complete previous baseline, 356 failures became passes,
+   with no new failures, skips or changed subcase coverage. Bounded receipts remain
+   separate from this complete run. Separate native Metal/Dawn failures, pinned CTS
+   expectation differences and browser-only dependencies from actionable Flax semantics.
+   Method-name coverage alone is not conformance.
 2. Extend the matched Edge comparison to a common screen-presentation endpoint. Current
    browser presentation feedback and Flutter GPU completion cannot be subtracted to
    establish a display-latency difference.
-3. Extend image interop to real decoder-backed video/external textures and validate
-   HDR/P3 display. Canvas-only document/input, shared images, uploads and snapshots are
-   implemented; they do not provide arbitrary browser library compatibility.
+3. Extend the remaining [video](../architecture/webgpu.md#sdr-video-frames) and image
+   services only with their real color and ownership contracts. Original-format NV12 and
+   BGRA `VideoFrame.allocationSize()`/`copyTo()` support crop and custom plane layouts.
+   HDR video, raw-frame construction, explicit output-format/color conversion and
+   cross-realm frame transfer remain separate work. Canvas 2D still stores sRGB RGBA8;
+   Display P3/Float16 ImageData and WebGPU canvases do not make its backing wide gamut.
+   Worker Canvas 2D and transferable Streams are separate services. Worker frame
+   transfer and HTML media stay separate.
 4. Establish supported engine interop tests and platform acceptance beyond the
    experimental macOS arm64, macOS 26+ profile. Keep engines without interop profile 1
    safe.
@@ -94,11 +102,11 @@ experimental overlays are integrated into the maintained Flutter fork; ordinary 
 builds own image, mapping, FFI and guarded macOS texture/fence behavior. The runner uses
 normal native assets and bounded repeated Sessions.
 
-Local validation covers every workspace check stage through retained successful prefixes
-and focused repair/postfix runs; failed full invocations remain recorded as failures.
-Member unit/generator coverage is 848 cases, including all 755 generator cases after two
-repairs. JS tests pass 326 with five existing skips; tool tests pass 120 with one
-Windows skip. Matching UI coverage is 1,166 tests; the separate 59-test runtime gate
+Earlier integration validation covered every workspace check stage through successful
+prefixes and focused repair/postfix runs; failed full invocations remain recorded as
+failures. Member unit/generator coverage is 848 cases, including all 755 generator cases
+after two repairs. JS tests pass 326 with five existing skips; tool tests pass 120 with
+one Windows skip. Matching UI coverage is 1,166 tests; the separate 59-test runtime gate
 overlaps that coverage. Fourteen Debug/Release FFI variants pass. Fifteen Dart and 17
 npm archive checks pass, with a scoped codegen archive/consumer refresh after its
 tooling repair. The clean Release consumer installs real tarballs with scripts disabled
@@ -143,8 +151,16 @@ checks remain enabled; no stock-engine fallback or test skip closes these bounda
 The hosted build requires 50 GiB free and uses two compiler jobs; cleanup is restricted
 to GitHub-hosted runners and is never a local setup command.
 
-The maintained engine commit and Flax changes remain local until a separately authorized
-push. A hosted workflow cannot fetch that unpublished source pin yet, and no remote CI
-success is claimed. Local producer/setup validation and independent acceptance must be
-distinguished from the later hosted run; full UI/application and other-platform
-certification remain separate.
+The configured engine pin `dc25696b507f28102a59f4bd195620663cbe95f2` is published and
+fetchable. It includes mapped-buffer clone guards and the macOS HDR surface changes. The
+combined local Debug and Release/AOT artifacts have separate source and binary
+manifests; their source bytes match this committed engine tree.
+
+Current local macOS acceptance passes all 1,246 Framework cases, the 60-case runtime
+gate, all 22 example test files and both aggregate stages. The complete Release/AOT
+application passes 1,220 actual cases, with 25 explicitly Debug-only cases not
+applicable and no failures. Three.js main/Worker rendering, SDR video readback and
+calibrated P3/HDR canvas checks pass on the same production inputs. These functional
+checks do not establish a performance improvement or complete CTS conformance. Hosted CI
+status is tracked separately on the pull request; other-platform certification remains
+separate.

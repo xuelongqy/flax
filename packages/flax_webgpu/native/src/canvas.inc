@@ -132,14 +132,16 @@ void require(bool value, const char *message) {
   std::mutex mutex;
   id<MTLTexture> current;
 }
-- (void)publish:(id<MTLTexture>)texture;
+- (BOOL)publish:(id<MTLTexture>)texture;
 - (id<MTLTexture>)copyFlaxDawnMetalTexture;
 - (CVPixelBufferRef)copyPixelBuffer;
 @end
 @implementation FlaxWebGpuTexture
-- (void)publish:(id<MTLTexture>)texture {
+- (BOOL)publish:(id<MTLTexture>)texture {
   std::lock_guard lock(mutex);
+  const BOOL hadFrame = current != nil;
   current = texture;
+  return hadFrame;
 }
 - (id<MTLTexture>)copyFlaxDawnMetalTexture {
   std::lock_guard lock(mutex);
@@ -155,23 +157,18 @@ void require(bool value, const char *message) {
 @end
 
 namespace {
-struct Surface {
+struct Endpoint {
   __strong id<FlaxWebGpuRegistry> registry;
   __strong FlaxWebGpuTexture *output = [FlaxWebGpuTexture new];
-  int64_t textureId;
-  wgpu::Device device;
-  uint32_t width = 0, height = 0;
-  wgpu::TextureUsage usage;
-  wgpu::TextureFormat format = wgpu::TextureFormat::BGRA8Unorm;
-  bool srgbView = false;
-  bool opaque = true;
-  std::vector<std::shared_ptr<Storage>> pool;
-  std::shared_ptr<Storage> current;
-#if FLAX_WEBGPU_BENCHMARK
-  std::shared_ptr<BenchmarkMetrics> metrics;
-#endif
-  explicit Surface(void *registrar)
-      : registry((__bridge id<FlaxWebGpuRegistry>)registrar) {
+  int64_t textureId = 0;
+  std::atomic<uint64_t> size{0};
+  explicit Endpoint(void *registrar) {
+    if (registrar) initialize(registrar);
+    ++canvasEndpoints;
+  }
+  void initialize(void *registrar) {
+    if (textureId) return;
+    registry = (__bridge id<FlaxWebGpuRegistry>)registrar;
     require(registry != nil, "The Flutter texture registry is unavailable");
     auto registerTexture = ^{
       textureId = [registry registerTexture:output];
@@ -180,7 +177,117 @@ struct Surface {
       registerTexture();
     else
       dispatch_sync(dispatch_get_main_queue(), registerTexture);
-    ++surfaces;
+  }
+  ~Endpoint() {
+    [output publish:nil];
+    auto owner = registry;
+    const int64_t id = textureId;
+    if (id) dispatch_async(dispatch_get_main_queue(), ^{
+        [owner unregisterTexture:id];
+      });
+    --canvasEndpoints;
+  }
+};
+struct CanvasToken {
+  std::shared_ptr<Endpoint> endpoint;
+  // The transferable ArrayBuffer exposes only this writable byte.
+  uint8_t transferByte = 0;
+  CanvasToken(void *registry, uint32_t w, uint32_t h)
+      : endpoint(std::make_shared<Endpoint>(registry)) {
+    endpoint->size = (uint64_t(w) << 32) | h;
+    ++canvasTokens;
+  }
+  ~CanvasToken() { --canvasTokens; }
+};
+std::mutex canvasTokensMutex;
+std::unordered_map<void *, std::shared_ptr<CanvasToken>> tokenOwners;
+std::shared_ptr<CanvasToken> canvasToken(void *address) {
+  std::lock_guard lock(canvasTokensMutex);
+  auto found = tokenOwners.find(address);
+  require(found != tokenOwners.end(), "Invalid or retired OffscreenCanvas lease");
+  return found->second;
+}
+
+// Project for Flutter in encoded extended sRGB. Standard range clamps in P3.
+constexpr char kColorProjection[] = R"(
+@group(0) @binding(0) var inputTexture: texture_2d<f32>;
+override sourceP3: bool;
+override standardRange: bool;
+override opaque: bool;
+
+const srgbToP3 = mat3x3f(
+    0.82246197, 0.03319420, 0.01708263,
+    0.17753803, 0.96680580, 0.07239744,
+    0, 0, 0.91051993);
+const p3ToSrgb = mat3x3f(
+    1.22494018, -0.04205695, -0.01963755,
+    -0.22494018, 1.04205695, -0.07863605,
+    0, 0, 1.09827360);
+
+fn decodeSrgb(encoded: vec3f) -> vec3f {
+  let value = abs(encoded);
+  return sign(encoded) * select(value / 12.92,
+      pow((value + 0.055) / 1.055, vec3f(2.4)), value > vec3f(0.04045));
+}
+
+fn encodeSrgb(linear: vec3f) -> vec3f {
+  let value = abs(linear);
+  return sign(linear) * select(value * 12.92,
+      1.055 * pow(value, vec3f(1.0 / 2.4)) - 0.055, value > vec3f(0.0031308));
+}
+
+@vertex
+fn vertex(@builtin(vertex_index) index: u32) -> @builtin(position) vec4f {
+  let positions = array(vec2f(-1, -1), vec2f(3, -1), vec2f(-1, 3));
+  return vec4f(positions[index], 0, 1);
+}
+
+@fragment
+fn fragment(@builtin(position) position: vec4f) -> @location(0) vec4f {
+  let color = textureLoad(inputTexture, vec2i(position.xy), 0);
+  let alpha = select(color.a, 1.0, opaque);
+  if (alpha == 0.0 || (standardRange && !(alpha > 0.0))) {
+    return vec4f(0);
+  }
+  var linearP3 = decodeSrgb(color.rgb / alpha);
+  if (!sourceP3) {
+    linearP3 = srgbToP3 * linearP3;
+  }
+  if (standardRange) {
+    linearP3 = clamp(linearP3, vec3f(0), vec3f(1));
+  }
+  let sRGB = encodeSrgb(p3ToSrgb * linearP3);
+  return vec4f(sRGB * alpha, alpha);
+}
+)";
+
+struct Surface {
+  std::weak_ptr<State> owner;
+  std::shared_ptr<Endpoint> endpoint;
+  wgpu::Device device;
+  uint32_t width = 0, height = 0;
+  uint32_t maxTextureDimension2D = 0;
+  wgpu::TextureUsage usage;
+  wgpu::TextureFormat format = wgpu::TextureFormat::BGRA8Unorm;
+  std::vector<wgpu::TextureFormat> viewFormats;
+  bool displayP3 = false;
+  bool extendedToneMapping = false;
+  bool opaque = true;
+  bool unknownUsage = false;
+  bool invalidConfiguration = false;
+  bool invalidSize = false;
+  std::vector<std::shared_ptr<Storage>> pool;
+  std::shared_ptr<Storage> current;
+  wgpu::Texture colorInput;
+  bool outputFrozen = false;
+  wgpu::Texture lastDrawingBuffer;
+  wgpu::RenderPipeline colorProjection;
+  wgpu::BindGroup projectionBinding;
+#if FLAX_WEBGPU_BENCHMARK
+  std::shared_ptr<BenchmarkMetrics> metrics;
+#endif
+  explicit Surface(const Context &state, std::shared_ptr<Endpoint> value)
+      : owner(state), endpoint(std::move(value)) {
 #if FLAX_WEBGPU_BENCHMARK
     const char *enabled = std::getenv("FLAX_WEBGPU_BENCHMARK_METRICS");
     if (enabled && std::string(enabled) == "1") {
@@ -188,31 +295,78 @@ struct Surface {
       latestBenchmark = metrics;
     }
 #endif
+    std::lock_guard lock(state->mutex);
+    require(!state->closed, "The WebGPU session is closed");
+    state->ownedCanvases.push_back(this);
+    ++surfaces;
+  }
+  void retireColorInput() {
+    if (colorInput) {
+      colorInput.Destroy();
+      colorInput = nullptr;
+    }
+  }
+  wgpu::Status discardCurrent() {
+    retireColorInput();
+    outputFrozen = false;
+    if (!current)
+      return wgpu::Status::Success;
+    wgpu::SharedTextureMemoryEndAccessState end;
+    const auto result = current->memory.EndAccess(current->texture, &end);
+    current->texture.Destroy();
+    current->leased = false;
+    current.reset();
+    return result;
+  }
+  void resetDrawingBuffer() {
+    discardCurrent();
+    if ([endpoint->output publish:nil] && endpoint->textureId)
+      [endpoint->registry textureFrameAvailable:endpoint->textureId];
+    projectionBinding = nullptr;
+    colorProjection = nullptr;
+    lastDrawingBuffer = nullptr;
+    pool.clear();
   }
   void unconfigure() {
-    if (current) {
-      wgpu::SharedTextureMemoryEndAccessState end;
-      current->memory.EndAccess(current->texture, &end);
-      current->texture.Destroy();
-      current->leased = false;
-      current.reset();
-    }
-    [output publish:nil];
-    pool.clear();
+    resetDrawingBuffer();
+    viewFormats = std::vector<wgpu::TextureFormat>{};
     device = nullptr;
   }
+  void setSize(uint32_t nextWidth, uint32_t nextHeight) {
+    width = nextWidth;
+    height = nextHeight;
+    invalidSize = !width || !height || width > maxTextureDimension2D ||
+                  height > maxTextureDimension2D;
+  }
+  void validateTextureDescriptor(const wgpu::TextureDescriptor &descriptor) {
+    if (unknownUsage) {
+      // Dawn also has native-only usage bits; they are not WebGPU permissions.
+      device.InjectError(wgpu::ErrorType::Validation,
+                         "Invalid canvas texture usage flags");
+    } else {
+      device.ValidateTextureDescriptor(&descriptor);
+    }
+  }
   ~Surface() {
+    if (auto state = owner.lock()) {
+      std::lock_guard lock(state->mutex);
+      std::erase(state->ownedCanvases, this);
+    }
     unconfigure();
-    auto owner = registry;
-    const int64_t id = textureId;
-    dispatch_async(dispatch_get_main_queue(), ^{
-      [owner unregisterTexture:id];
-    });
     --surfaces;
   }
+  wgpu::TextureFormat presentationFormat() const {
+    return displayP3 ? wgpu::TextureFormat::RGBA16Float : format;
+  }
+  bool projectsStandardRange() const {
+    return format == wgpu::TextureFormat::RGBA16Float && !extendedToneMapping;
+  }
   MTLPixelFormat metalFormat() const {
-    return format == wgpu::TextureFormat::BGRA8Unorm ? MTLPixelFormatBGRA8Unorm
-                                                     : MTLPixelFormatRGBA8Unorm;
+    switch (presentationFormat()) {
+      case wgpu::TextureFormat::RGBA16Float: return MTLPixelFormatRGBA16Float;
+      case wgpu::TextureFormat::BGRA8Unorm: return MTLPixelFormatBGRA8Unorm;
+      default: return MTLPixelFormatRGBA8Unorm;
+    }
   }
   std::shared_ptr<Storage> allocate() {
     auto frame = std::make_shared<Storage>();
@@ -221,9 +375,13 @@ struct Surface {
       (id)kCVPixelBufferMetalCompatibilityKey : @YES
     };
     IOSurfaceRef surface;
-    if (format == wgpu::TextureFormat::BGRA8Unorm) {
+    const auto outputFormat = presentationFormat();
+    if (outputFormat != wgpu::TextureFormat::RGBA8Unorm) {
+      const auto pixelFormat = outputFormat == wgpu::TextureFormat::RGBA16Float
+                                   ? kCVPixelFormatType_64RGBAHalf
+                                   : kCVPixelFormatType_32BGRA;
       require(CVPixelBufferCreate(kCFAllocatorDefault, width, height,
-                                  kCVPixelFormatType_32BGRA,
+                                  pixelFormat,
                                   (__bridge CFDictionaryRef)attrs,
                                   &frame->pixels) == kCVReturnSuccess,
               "Cannot allocate WebGPU IOSurface");
@@ -278,35 +436,70 @@ struct Surface {
   wgpu::Texture acquire() {
     require(bool(device), "The WebGPU canvas is not configured");
     if (current)
-      return current->texture;
+      return colorInput ? colorInput : current->texture;
+    wgpu::TextureDescriptor descriptor;
+    descriptor.dimension = wgpu::TextureDimension::e2D;
+    descriptor.size = {width, height, 1};
+    descriptor.format = format;
+    descriptor.viewFormatCount = viewFormats.size();
+    descriptor.viewFormats = viewFormats.data();
+    descriptor.usage = usage;
+    if (invalidConfiguration || invalidSize) {
+      // Invalid configurations still expose an error texture with the requested
+      // properties, without acquiring or publishing IOSurface storage.
+      validateTextureDescriptor(descriptor);
+      return device.CreateErrorTexture(&descriptor);
+    }
+    wgpu::DawnTextureInternalUsageDescriptor internal;
+    internal.internalUsage = wgpu::TextureUsage::RenderAttachment;
+    descriptor.nextInChain = &internal;
 #if FLAX_WEBGPU_BENCHMARK
     auto sample = metrics ? std::make_shared<BenchmarkSample>() : nullptr;
 #endif
+    std::shared_ptr<Storage> frame;
     for (const auto &candidate : pool) {
       bool free = false;
       if (candidate->leased.compare_exchange_strong(free, true)) {
-        current = candidate;
+        frame = candidate;
         break;
       }
     }
-    if (!current) {
+    if (!frame) {
       // Pool pressure fails acquisition before the application can submit this
       // frame.
       require(pool.size() < 8,
               "The WebGPU canvas has too many in-flight textures");
-      current = allocate();
-      current->leased = true;
+      frame = allocate();
+      frame->leased = true;
     }
-    wgpu::TextureDescriptor descriptor;
-    descriptor.size = {width, height, 1};
-    descriptor.format = format;
-    const auto viewFormat = format == wgpu::TextureFormat::BGRA8Unorm
-                                ? wgpu::TextureFormat::BGRA8UnormSrgb
-                                : wgpu::TextureFormat::RGBA8UnormSrgb;
-    descriptor.viewFormatCount = srgbView ? 1 : 0;
-    descriptor.viewFormats = srgbView ? &viewFormat : nullptr;
-    descriptor.usage = usage | wgpu::TextureUsage::RenderAttachment;
-    current->texture = current->memory.CreateTexture(&descriptor);
+    const bool usesColorInput = displayP3 || projectsStandardRange();
+    if (usesColorInput) {
+      wgpu::TextureDescriptor output;
+      output.size = descriptor.size;
+      output.format = presentationFormat();
+      output.usage = wgpu::TextureUsage::RenderAttachment;
+      frame->texture = frame->memory.CreateTexture(&output);
+    } else {
+      frame->texture = frame->memory.CreateTexture(&descriptor);
+    }
+    const uint64_t consumed = frame->consumerValue;
+    wgpu::SharedTextureMemoryBeginAccessDescriptor begin;
+    // Each new current texture starts transparent even when its IOSurface is
+    // reused.
+    begin.initialized = false;
+    if (consumed) {
+      begin.fenceCount = begin.signaledValueCount = 1;
+      begin.fences = &frame->consumerFence;
+      begin.signaledValues = &consumed;
+    }
+    if (frame->memory.BeginAccess(frame->texture, &begin) !=
+        wgpu::Status::Success) {
+      frame->texture.Destroy();
+      frame->leased = false;
+      throw std::runtime_error("Cannot acquire the WebGPU canvas texture");
+    }
+    current = std::move(frame);
+    outputFrozen = false;
 #if FLAX_WEBGPU_BENCHMARK
     current->sample = sample;
     if (metrics) {
@@ -314,24 +507,110 @@ struct Surface {
       metrics->samples.push_back(sample);
     }
 #endif
-    const uint64_t consumed = current->consumerValue;
-    wgpu::SharedTextureMemoryBeginAccessDescriptor begin;
-    // Each new current texture starts transparent even when its IOSurface is
-    // reused.
-    begin.initialized = false;
-    if (consumed) {
-      begin.fenceCount = begin.signaledValueCount = 1;
-      begin.fences = &current->consumerFence;
-      begin.signaledValues = &consumed;
+    if (usesColorInput) {
+      internal.internalUsage |= wgpu::TextureUsage::CopySrc;
+      colorInput = device.CreateTexture(&descriptor);
+      return colorInput;
     }
-    require(current->memory.BeginAccess(current->texture, &begin) ==
-                wgpu::Status::Success,
-            "Cannot acquire the WebGPU canvas texture");
     return current->texture;
+  }
+  void renderColorOutput() {
+    if (!colorProjection) {
+      wgpu::ShaderSourceWGSL wgsl;
+      wgsl.code = kColorProjection;
+      wgpu::ShaderModuleDescriptor shader;
+      shader.nextInChain = &wgsl;
+      auto module = device.CreateShaderModule(&shader);
+      wgpu::ConstantEntry constants[] = {
+          {.key = "sourceP3", .value = double(displayP3)},
+          {.key = "standardRange", .value = double(projectsStandardRange())},
+          {.key = "opaque", .value = double(opaque)},
+      };
+      wgpu::ColorTargetState target;
+      target.format = presentationFormat();
+      wgpu::FragmentState fragment;
+      fragment.module = module;
+      fragment.entryPoint = "fragment";
+      fragment.constantCount = std::size(constants);
+      fragment.constants = constants;
+      fragment.targetCount = 1;
+      fragment.targets = &target;
+      wgpu::RenderPipelineDescriptor pipeline;
+      pipeline.vertex.module = module;
+      pipeline.vertex.entryPoint = "vertex";
+      pipeline.fragment = &fragment;
+      colorProjection = device.CreateRenderPipeline(&pipeline);
+
+      // One texture keeps the raw drawing buffer after the JS texture expires.
+      wgpu::TextureDescriptor descriptor;
+      descriptor.size = {width, height, 1};
+      descriptor.format = format;
+      descriptor.usage = wgpu::TextureUsage::CopyDst |
+                         wgpu::TextureUsage::CopySrc |
+                         wgpu::TextureUsage::TextureBinding;
+      lastDrawingBuffer = device.CreateTexture(&descriptor);
+      wgpu::BindGroupEntry entry{.textureView = lastDrawingBuffer.CreateView()};
+      wgpu::BindGroupDescriptor binding;
+      binding.layout = colorProjection.GetBindGroupLayout(0);
+      binding.entryCount = 1;
+      binding.entries = &entry;
+      projectionBinding = device.CreateBindGroup(&binding);
+    }
+    wgpu::DawnEncoderInternalUsageDescriptor internal;
+    internal.useInternalUsages = true;
+    wgpu::CommandEncoderDescriptor commands;
+    commands.nextInChain = &internal;
+    auto encoder = device.CreateCommandEncoder(&commands);
+    wgpu::TexelCopyTextureInfo input{.texture = colorInput};
+    wgpu::TexelCopyTextureInfo retained{.texture = lastDrawingBuffer};
+    wgpu::Extent3D size{width, height, 1};
+    encoder.CopyTextureToTexture(&input, &retained, &size);
+    wgpu::RenderPassColorAttachment color;
+    color.view = current->texture.CreateView();
+    color.loadOp = wgpu::LoadOp::Clear;
+    color.storeOp = wgpu::StoreOp::Store;
+    wgpu::RenderPassDescriptor passDescriptor;
+    passDescriptor.colorAttachmentCount = 1;
+    passDescriptor.colorAttachments = &color;
+    auto pass = encoder.BeginRenderPass(&passDescriptor);
+    pass.SetPipeline(colorProjection);
+    pass.SetBindGroup(0, projectionBinding);
+    pass.Draw(3);
+    pass.End();
+    auto projected = encoder.Finish();
+    device.GetQueue().Submit(1, &projected);
+  }
+  void initializeOutput(wgpu::LoadOp loadOp) {
+    wgpu::DawnEncoderInternalUsageDescriptor internal;
+    internal.useInternalUsages = true;
+    wgpu::CommandEncoderDescriptor encoderDescriptor;
+    encoderDescriptor.nextInChain = &internal;
+    auto encoder = device.CreateCommandEncoder(&encoderDescriptor);
+    wgpu::RenderPassColorAttachment color;
+    color.view = current->texture.CreateView();
+    color.loadOp = loadOp;
+    color.storeOp = wgpu::StoreOp::Store;
+    wgpu::RenderPassDescriptor descriptor;
+    descriptor.colorAttachmentCount = 1;
+    descriptor.colorAttachments = &color;
+    auto pass = encoder.BeginRenderPass(&descriptor);
+    pass.End();
+    auto commands = encoder.Finish();
+    device.GetQueue().Submit(1, &commands);
+  }
+  void materializeOutput() {
+    if (outputFrozen)
+      return;
+    if (colorInput)
+      renderColorOutput();
+    else
+      initializeOutput(wgpu::LoadOp::Load);
   }
   void present() {
     if (!current)
       return;
+    if (colorInput && !outputFrozen)
+      renderColorOutput();
     wgpu::SharedTextureMemoryEndAccessState end;
     require(current->memory.EndAccess(current->texture, &end) ==
                 wgpu::Status::Success,
@@ -346,18 +625,7 @@ struct Surface {
       require(current->memory.BeginAccess(current->texture, &begin) ==
                   wgpu::Status::Success,
               "Cannot clear an unused canvas texture");
-      auto encoder = device.CreateCommandEncoder();
-      wgpu::RenderPassColorAttachment color;
-      color.view = current->texture.CreateView();
-      color.loadOp = wgpu::LoadOp::Clear;
-      color.storeOp = wgpu::StoreOp::Store;
-      wgpu::RenderPassDescriptor passDescriptor;
-      passDescriptor.colorAttachmentCount = 1;
-      passDescriptor.colorAttachments = &color;
-      auto pass = encoder.BeginRenderPass(&passDescriptor);
-      pass.End();
-      auto commands = encoder.Finish();
-      device.GetQueue().Submit(1, &commands);
+      initializeOutput(wgpu::LoadOp::Clear);
       require(current->memory.EndAccess(current->texture, &end) ==
                   wgpu::Status::Success,
               "Cannot release the cleared canvas texture");
@@ -409,46 +677,148 @@ struct Surface {
       current->sample->published = BenchmarkClock::now();
     }
 #endif
-    [output publish:view];
-    [registry textureFrameAvailable:textureId];
+    [endpoint->output publish:view];
+    [endpoint->registry textureFrameAvailable:endpoint->textureId];
+    retireColorInput();
     current->texture.Destroy();
     current.reset();
   }
 };
+void retireSurface(Surface *surface) { surface->unconfigure(); }
 } // namespace
-extern "C" void *flax_webgpu_canvas_create(void *registry) {
+extern "C" void *flax_webgpu_canvas_create(void *context, void *registry) {
   void *result = nullptr;
-  status([&] { result = new Surface(registry); });
+  status([&] { result = new Surface(live(context), std::make_shared<Endpoint>(registry)); });
   return result;
 }
 extern "C" int64_t flax_webgpu_canvas_id(void *value) {
-  return static_cast<Surface *>(value)->textureId;
+  return static_cast<Surface *>(value)->endpoint->textureId;
+}
+extern "C" void *flax_webgpu_canvas_token_create(void *registry, uint32_t width,
+                                                 uint32_t height) {
+  void *result = nullptr;
+  status([&] {
+    auto token = std::make_shared<CanvasToken>(registry, width, height);
+    result = &token->transferByte;
+    std::lock_guard lock(canvasTokensMutex);
+    tokenOwners.emplace(result, std::move(token));
+  });
+  return result;
+}
+extern "C" void flax_webgpu_canvas_token_release(void *value) {
+  std::shared_ptr<CanvasToken> owner;
+  {
+    std::lock_guard lock(canvasTokensMutex);
+    auto found = tokenOwners.find(value);
+    if (found == tokenOwners.end()) {
+      ++retirementErrors;
+      return;
+    }
+    owner = std::move(found->second);
+    tokenOwners.erase(found);
+  }
+}
+extern "C" uint32_t flax_webgpu_canvas_token_dimension(void *value, uint32_t axis) {
+  uint32_t result = 0;
+  status([&] {
+    const auto token = canvasToken(value);
+    const uint64_t size = token->endpoint->size;
+    result = axis ? uint32_t(size) : uint32_t(size >> 32);
+  });
+  return result;
+}
+extern "C" int32_t flax_webgpu_canvas_token_resize(void *value, uint32_t width,
+                                                   uint32_t height) {
+  return status([&] {
+    auto token = canvasToken(value);
+    token->endpoint->size = (uint64_t(width) << 32) | height;
+  });
+}
+extern "C" int64_t flax_webgpu_canvas_token_id(void *value) {
+  int64_t result = 0;
+  status([&] { result = canvasToken(value)->endpoint->textureId; });
+  return result;
+}
+extern "C" void *flax_webgpu_canvas_token_display(void *value) {
+  void *result = nullptr;
+  status([&] { result = new std::shared_ptr<Endpoint>(canvasToken(value)->endpoint); });
+  return result;
+}
+extern "C" int64_t flax_webgpu_canvas_display_id(void *value) {
+  return (*static_cast<std::shared_ptr<Endpoint> *>(value))->textureId;
+}
+extern "C" uint64_t flax_webgpu_canvas_display_size(void *value) {
+  return (*static_cast<std::shared_ptr<Endpoint> *>(value))->size;
+}
+extern "C" int32_t flax_webgpu_canvas_display_initialize(void *value, void *registry) {
+  return status([&] { (*static_cast<std::shared_ptr<Endpoint> *>(value))->initialize(registry); });
+}
+extern "C" void flax_webgpu_canvas_display_release(void *value) {
+  delete static_cast<std::shared_ptr<Endpoint> *>(value);
+}
+extern "C" void *flax_webgpu_canvas_from_token(void *context, void *value) {
+  void *result = nullptr;
+  status([&] { result = new Surface(live(context), canvasToken(value)->endpoint); });
+  return result;
 }
 extern "C" int32_t flax_webgpu_canvas_configure(void *value, WGPUDevice device,
-                                                uint32_t width, uint32_t height,
-                                                uint64_t usage, uint32_t opaque,
-                                                WGPUTextureFormat format,
-                                                uint32_t srgbView) {
+                                                const WGPUTextureDescriptor *input,
+                                                uint32_t opaque,
+                                                uint32_t displayP3,
+                                                uint32_t extendedToneMapping) {
   return status([&] {
     auto &canvas = *static_cast<Surface *>(value);
-    canvas.unconfigure();
-    require(width && height, "WebGPU canvas dimensions must be nonzero");
-    canvas.device = wgpu::Device::Acquire(retained(device));
-    wgpu::Limits limits;
-    canvas.device.GetLimits(&limits);
-    require(width <= limits.maxTextureDimension2D &&
-                height <= limits.maxTextureDimension2D,
-            "The canvas exceeds the device texture size limit");
-    require(format == WGPUTextureFormat_BGRA8Unorm ||
-                format == WGPUTextureFormat_RGBA8Unorm,
+    const auto &descriptor = *reinterpret_cast<const wgpu::TextureDescriptor *>(input);
+    const auto format = descriptor.format;
+    require(format == wgpu::TextureFormat::BGRA8Unorm ||
+                format == wgpu::TextureFormat::RGBA8Unorm ||
+                format == wgpu::TextureFormat::RGBA16Float,
             "Unsupported canvas texture format");
-    canvas.format = wgpu::TextureFormat(format);
-    canvas.srgbView = srgbView != 0;
-    canvas.width = width;
-    canvas.height = height;
-    canvas.usage = wgpu::TextureUsage(usage);
+    auto nextDevice = wgpu::Device::Acquire(retained(device));
+    wgpu::Limits limits;
+    nextDevice.GetLimits(&limits);
+    std::vector<wgpu::TextureFormat> viewFormats;
+    if (descriptor.viewFormatCount)
+      viewFormats.assign(descriptor.viewFormats,
+                         descriptor.viewFormats + descriptor.viewFormatCount);
+    const auto srgbFormat = format == wgpu::TextureFormat::BGRA8Unorm
+                                ? wgpu::TextureFormat::BGRA8UnormSrgb
+                            : format == wgpu::TextureFormat::RGBA8Unorm
+                                ? wgpu::TextureFormat::RGBA8UnormSrgb
+                                : format;
+    const bool incompatibleViews = std::ranges::any_of(viewFormats, [&](auto view) {
+      return view != format && view != srgbFormat;
+    });
+    canvas.resetDrawingBuffer();
+    canvas.device = std::move(nextDevice);
+    canvas.format = format;
+    canvas.viewFormats = std::move(viewFormats);
+    canvas.displayP3 = displayP3 != 0;
+    canvas.extendedToneMapping = extendedToneMapping != 0;
+    canvas.maxTextureDimension2D = limits.maxTextureDimension2D;
+    canvas.setSize(descriptor.size.width, descriptor.size.height);
+    canvas.usage = descriptor.usage;
     canvas.opaque = opaque;
+    constexpr auto publicUsages = wgpu::TextureUsage::CopySrc |
+                                  wgpu::TextureUsage::CopyDst |
+                                  wgpu::TextureUsage::TextureBinding |
+                                  wgpu::TextureUsage::StorageBinding |
+                                  wgpu::TextureUsage::RenderAttachment;
+    canvas.unknownUsage = bool(canvas.usage & ~publicUsages);
+    canvas.invalidConfiguration =
+        incompatibleViews || canvas.unknownUsage ||
+        canvas.usage == wgpu::TextureUsage::None ||
+        (canvas.format == wgpu::TextureFormat::BGRA8Unorm &&
+         bool(canvas.usage & wgpu::TextureUsage::StorageBinding) &&
+         !canvas.device.HasFeature(wgpu::FeatureName::BGRA8UnormStorage));
+    canvas.validateTextureDescriptor(descriptor);
   });
+}
+extern "C" void flax_webgpu_canvas_resize(void *value, uint32_t width,
+                                           uint32_t height) {
+  auto &canvas = *static_cast<Surface *>(value);
+  canvas.resetDrawingBuffer();
+  canvas.setSize(width, height);
 }
 extern "C" WGPUTexture flax_webgpu_canvas_texture(void *value) {
   WGPUTexture result = nullptr;
@@ -457,6 +827,22 @@ extern "C" WGPUTexture flax_webgpu_canvas_texture(void *value) {
     result = texture.MoveToCHandle();
   });
   return result;
+}
+extern "C" int32_t flax_webgpu_canvas_destroy_texture(void *value,
+                                                    WGPUTexture texture) {
+  return status([&] {
+    auto &canvas = *static_cast<Surface *>(value);
+    if (canvas.current) {
+      const auto &input =
+          canvas.colorInput ? canvas.colorInput : canvas.current->texture;
+      if (input.Get() == texture) {
+        // Preserve submitted drawing and initialize untouched recycled storage.
+        canvas.materializeOutput();
+        canvas.outputFrozen = true;
+      }
+    }
+    wgpuTextureDestroy(texture);
+  });
 }
 extern "C" int32_t flax_webgpu_canvas_present(void *value) {
   return status([&] { static_cast<Surface *>(value)->present(); });

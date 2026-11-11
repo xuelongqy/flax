@@ -514,10 +514,14 @@ var weakArgument;
       expect(harness.number('retainedArgumentHits'), 1);
       expect(harness.boolean('weakArgument.deref() !== undefined'), isTrue);
       callback = null;
-      for (var i = 0; i < 8; i++) {
-        await collect();
-        if (harness.boolean('weakArgument.deref() === undefined')) break;
-      }
+      await collect();
+      await flaxTestRunIdle(
+        tester,
+        () => flaxTestWaitForGc(
+          harness.runtime,
+          () => harness.boolean('weakArgument.deref() === undefined'),
+        ),
+      );
       expect(harness.boolean('weakArgument.deref() === undefined'), isTrue);
       // The application still owns the raw Map, but no conversion resources.
       expect(retained, isEmpty);
@@ -610,12 +614,16 @@ var argumentSubscription;
         harness.string('JSON.stringify(streamArgumentEvents)'),
         '[7,"error","done"]',
       );
-      for (var i = 0; i < 8; i++) {
-        harness.execute(flaxTestJsGarbagePressure);
-        await tester.runAsync(flaxTestCollectDartGarbage);
-        await tester.pumpAndSettle();
-        if (harness.boolean('weakStreamArgument.deref() === undefined')) break;
-      }
+      harness.execute(flaxTestJsGarbagePressure);
+      await tester.runAsync(flaxTestCollectDartGarbage);
+      await tester.pumpAndSettle();
+      await flaxTestRunIdle(
+        tester,
+        () => flaxTestWaitForGc(
+          harness.runtime,
+          () => harness.boolean('weakStreamArgument.deref() === undefined'),
+        ),
+      );
       expect(
         harness.boolean('weakStreamArgument.deref() === undefined'),
         isTrue,

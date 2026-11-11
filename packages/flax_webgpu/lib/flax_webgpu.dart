@@ -1,8 +1,10 @@
 /// Optional standard WebGPU host backed by Dawn/Metal.
 library;
 
-import 'dart:io';
+import 'dart:async';
+import 'dart:convert';
 import 'dart:ffi';
+import 'dart:io';
 import 'dart:ui' as ui;
 
 import 'package:flax/flax.dart';
@@ -11,11 +13,30 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
 final class FlaxWebGpuPlugin extends FlaxPlugin {
-  const FlaxWebGpuPlugin();
+  const FlaxWebGpuPlugin({
+    this.videoSources = const {},
+    this.workerVideoSources = const {},
+  });
+
+  /// Maps main-realm source names to IDs supplied by a trusted native host.
+  /// The session takes a snapshot during installation.
+  final Map<String, String> videoSources;
+
+  /// Names from [videoSources] also granted to Dedicated Workers and their
+  /// descendants for direct acquisition. The default grants no source names.
+  final Set<String> workerVideoSources;
+
+  static final _videoSourceId = RegExp(
+    r'^[0-9a-fA-F]{8}-(?:[0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$',
+  );
+
   @override
   String get id => 'flax.webgpu';
   @override
-  Set<String> get jsModules => const {'@flax/webgpu/host'};
+  Set<String> get jsModules => {
+    '@flax/webgpu/host',
+    if (videoSources.isNotEmpty) '@flax/webgpu',
+  };
   @override
   Set<String> get globals => const {
     'GPU',
@@ -24,8 +45,6 @@ final class FlaxWebGpuPlugin extends FlaxPlugin {
     'GPUSupportedLimits',
     'GPUAdapterInfo',
     'GPUDeviceLostInfo',
-    'GPUCompilationInfo',
-    'GPUCompilationMessage',
     'GPUError',
     'GPUPipelineError',
     'GPUCanvasContext',
@@ -35,6 +54,9 @@ final class FlaxWebGpuPlugin extends FlaxPlugin {
     'GPUBuffer',
     'GPUTexture',
     'GPUTextureView',
+    'GPUExternalTexture',
+    'VideoFrame',
+    'VideoColorSpace',
     'GPUSampler',
     'GPUShaderModule',
     'GPUBindGroupLayout',
@@ -63,6 +85,33 @@ final class FlaxWebGpuPlugin extends FlaxPlugin {
   List<FlaxBindingModule> get bindingModules => const [];
   @override
   FlaxPluginInstance install(FlaxHostContext context) {
+    final sources = <List<String>>[];
+    final workerSources = <List<String>>[];
+    final unknownWorkerSources = {...workerVideoSources};
+    for (final entry in videoSources.entries) {
+      final name = entry.key;
+      final id = entry.value;
+      if (name.trim().isEmpty) {
+        throw ArgumentError.value(
+          name,
+          'videoSources',
+          'Expected a source name',
+        );
+      }
+      if (id.length != 36 || !_videoSourceId.hasMatch(id)) {
+        throw ArgumentError.value(id, 'videoSources', 'Expected a source UUID');
+      }
+      final source = [name, id.toUpperCase()];
+      sources.add(source);
+      if (unknownWorkerSources.remove(name)) workerSources.add(source);
+    }
+    if (unknownWorkerSources.isNotEmpty) {
+      throw ArgumentError.value(
+        unknownWorkerSources,
+        'workerVideoSources',
+        'Expected names from videoSources',
+      );
+    }
     if (!Platform.isMacOS) {
       throw UnsupportedError('Dawn WebGPU currently supports macOS arm64');
     }
@@ -88,19 +137,68 @@ final class FlaxWebGpuPlugin extends FlaxPlugin {
         'WebGPU requires the maintained macOS mapping and renderer engine extensions',
       );
     }
-    return _WebGpuHost(context)..install();
+    return _WebGpuHost(context, workerSources, sources.isNotEmpty)
+      ..install(sources);
   }
 }
 
-final class _WebGpuHost implements FlaxPluginInstance {
-  _WebGpuHost(this.context);
+final class _WebGpuHost
+    implements
+        FlaxPluginInstance,
+        FlaxWorkerPluginInstance,
+        FlaxWorkerModuleExports {
+  _WebGpuHost(this.context, this._workerVideoSources, this._receiveVideoFrames);
   final FlaxHostContext context;
+  final List<List<String>> _workerVideoSources;
+  final bool _receiveVideoFrames;
   FlaxJsObject? state;
   bool closed = false;
   final surfaces = Expando<_GpuCanvasContent>();
   final contents = <WeakReference<_GpuCanvasContent>>[];
-  void install() {
+  final _workerReady = Completer<String>();
+  String? _workerInitializationError;
+  @override
+  String get workerModule => '@flax/webgpu/host';
+  @override
+  Set<String> get workerImportModules =>
+      _workerVideoSources.isEmpty ? const {} : const {'@flax/webgpu'};
+  @override
+  Set<String> get workerNativeAssets => const {'@flax/webgpu/dawn'};
+  @override
+  Future<Map<String, Object?>> get workerConfiguration async {
+    final registry = await _workerReady.future;
+    if (_workerInitializationError != null) {
+      throw StateError(_workerInitializationError!);
+    }
+    return {
+      'registry': registry,
+      if (_workerVideoSources.isNotEmpty) 'videoSources': _workerVideoSources,
+      if (_receiveVideoFrames) 'receiveVideoFrames': true,
+    };
+  }
+
+  @override
+  void workerMessage(String operation, List<Object?> arguments) {
+    if (closed || !context.isActive) return;
+    if (operation != 'resize' ||
+        arguments.length != 1 ||
+        arguments.first is! num) {
+      throw ArgumentError('Unknown WebGPU Worker operation');
+    }
+    _call('resize', [FlaxJsNumber((arguments.first as num).toDouble())]);
+  }
+
+  void install(List<List<String>> videoSources) {
     context.registerFunction('__flaxWebGpuCall', (_, args) {
+      if ((args[0] as FlaxJsString).value == 'resize') {
+        context
+            .requireObject<FlaxCanvasTarget>(args[1], flaxCanvasTargetType)
+            .resize(
+              (args[2] as FlaxJsNumber).value.toInt(),
+              (args[3] as FlaxJsNumber).value.toInt(),
+            );
+        return const FlaxJsUndefined();
+      }
       if ((args[0] as FlaxJsString).value == 'surface') {
         final target = context.requireObject<FlaxCanvasTarget>(
           args[1],
@@ -119,7 +217,8 @@ final class _WebGpuHost implements FlaxPluginInstance {
       throw ArgumentError('Unknown WebGPU host operation');
     }, allowClosing: true);
     state = context.evaluate(
-      'globalThis.__flaxModules.require("@flax/webgpu/host").install(globalThis, __flaxWebGpuCall)',
+      'globalThis.__flaxModules.require("@flax/webgpu/host").install('
+      'globalThis, __flaxWebGpuCall, ${jsonEncode(videoSources)})',
       sourceUrl: 'flax:webgpu',
     ) as FlaxJsObject;
     const MethodChannel('flax_webgpu')
@@ -134,10 +233,27 @@ final class _WebGpuHost implements FlaxPluginInstance {
     if (closed || !context.isActive) return;
     context.enqueue(() {
       if (!closed) {
-        _call('initialize', [
-          FlaxJsString(value),
-          if (error != null) FlaxJsString(error),
-        ]);
+        try {
+          _call('initialize', [
+            FlaxJsString(value),
+            if (error != null) FlaxJsString(error),
+          ]);
+          if (!_workerReady.isCompleted) {
+            if (error != null || value == '0') {
+              _workerInitializationError =
+                  error ?? 'The Flutter texture registry is unavailable';
+              _workerReady.complete('0');
+            } else {
+              _workerReady.complete(value);
+            }
+          }
+        } catch (failure) {
+          if (!_workerReady.isCompleted) {
+            _workerInitializationError = failure.toString();
+            _workerReady.complete('0');
+          }
+          rethrow;
+        }
       }
     });
   }

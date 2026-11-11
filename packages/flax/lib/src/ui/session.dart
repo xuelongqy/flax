@@ -54,6 +54,7 @@ class _Session {
     this.entryUri,
     required this.assetBundle,
     this.modulesPrepared = false,
+    this.canvasSources = const {},
     FlaxSandbox? sandbox,
     FlaxPermissionPolicy? permissions,
     FlaxPermissionManifest? permissionManifest,
@@ -107,6 +108,7 @@ class _Session {
   FlaxPermissionLease? _wasmPermission;
   final _remoteModulePermissions = <String, FlaxPermissionLease>{};
   final String? fetchBaseUrl;
+  final Map<String, FlaxCanvasSource> canvasSources;
   final Uri? entryUri;
   bool _closingSandbox = false;
   bool _closingPermissions = false;
@@ -192,6 +194,7 @@ class _Session {
           'static' => _staticOperation(type, operation, name, layout),
           'object' => _objectOperation(type, operation, name, layout),
           'reference' => _dartReferenceOperation(type, operation, name),
+          'joint' => _jointOperation(type, operation, name),
           'stream' => _streamOperation(type, operation, name, layout),
           'state' => _stateOperation(type, operation, name, layout),
           'context' => _contextOperation(type, operation, name, layout),

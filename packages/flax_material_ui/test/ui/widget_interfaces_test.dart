@@ -72,6 +72,15 @@ void main() {
       final weak = WeakReference(InterfaceProxyProbe.saved!);
       InterfaceProxyProbe.clear();
       await collectWidgetConfigurations(t);
+      await flaxTestRunIdle(
+        t,
+        () => flaxTestWaitForGc(
+          h.runtime,
+          () =>
+              weak.target == null &&
+              h.number('interfaceProxies.alive() ? 1 : 0') == 0,
+        ),
+      );
       expect(weak.target, isNull);
       expect(h.number('interfaceProxies.alive() ? 1 : 0'), 0);
       expect(h.errors, isEmpty);
@@ -135,6 +144,15 @@ void main() {
         );
         GenericViewCalls.clear();
         await collectWidgetConfigurations(t);
+        await flaxTestRunIdle(
+          t,
+          () => flaxTestWaitForGc(
+            h.runtime,
+            () =>
+                weak.target == null &&
+                h.number('genericWidgets.alive() ? 1 : 0') == 0,
+          ),
+        );
         expect(weak.target, isNull);
         expect(h.number('genericWidgets.alive() ? 1 : 0'), 0);
         expect(h.errors, isEmpty);
@@ -430,6 +448,23 @@ void main() {
           await t.pump();
           expect(h.runtime.activeSubscriptions, subscriptions);
           await collectWidgetConfigurations(t);
+          if (i > 0) {
+            await flaxTestRunIdle(
+              t,
+              () => flaxTestWaitForGc(
+                h.runtime,
+                () =>
+                    h.runtime.handles -
+                        h.runtime.handleLabels
+                            .where(
+                              (label) =>
+                                  label == '__flaxBindings.releaseContext',
+                            )
+                            .length <=
+                    baseline,
+              ),
+            );
+          }
           if (i == 0) {
             // First use of a custom State loads its shared lifecycle helpers.
             // ignore: avoid_print
@@ -655,8 +690,19 @@ void main() {
         await t.pumpAndSettle();
         h.execute('widgetCallbacks.discard.value=true');
         await t.pumpAndSettle();
+        WeakReference<ExtentContract> captureConfiguration() =>
+            WeakReference(InterfaceBuilder.last!);
+        final retiredConfiguration = captureConfiguration();
         InterfaceBuilder.last = null;
         await collectWidgetConfigurations(t);
+        await flaxTestRunIdle(
+          t,
+          () => flaxTestWaitForGc(
+            h.runtime,
+            () => retiredConfiguration.target == null,
+          ),
+        );
+        expect(retiredConfiguration.target, isNull);
         final baseline = h.runtime.handles;
         final subscriptions = h.runtime.activeSubscriptions;
         for (var i = 0; i < 30; i++) {
@@ -667,6 +713,11 @@ void main() {
         final beforeGc = h.runtime.handles;
         InterfaceBuilder.last = null;
         await collectWidgetConfigurations(t);
+        await flaxTestRunIdle(
+          t,
+          () =>
+              flaxTestWaitForGc(h.runtime, () => h.runtime.handles == baseline),
+        );
         expect(h.runtime.handles, baseline);
         expect(h.errors, isEmpty);
         // ignore: avoid_print

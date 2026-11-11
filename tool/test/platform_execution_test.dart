@@ -6,9 +6,7 @@ import 'package:flax/native_target.dart';
 import 'package:test/test.dart';
 
 import '../check_packages.dart';
-import '../src/package_discovery.dart';
 import '../src/platform_application.dart';
-import '../src/process.dart';
 
 void main() {
   test(
@@ -74,11 +72,15 @@ void main(List<String> args) {
       addTearDown(() => work.deleteSync(recursive: true));
       final workspace = Directory('${work.path}/workspace')..createSync();
       final consumer = Directory('${work.path}/consumer')..createSync();
-      final store =
-          readYamlFile(File('node_modules/.modules.yaml'))['storeDir']
-              as String;
-      const manifest =
-          '{"private":true,"dependencies":{"@preact/signals-core":"1.14.4"}}';
+      final core = jsonDecode(
+        File('packages/flax/js/package.json').readAsStringSync(),
+      ) as Map;
+      final manifest = jsonEncode({
+        'private': true,
+        'dependencies': {
+          '@preact/signals-core': core['dependencies']['@preact/signals-core'],
+        },
+      });
       for (final directory in [workspace, consumer]) {
         File('${directory.path}/package.json').writeAsStringSync(manifest);
         // Keep repository-local fixtures outside the enclosing pnpm workspace.
@@ -87,13 +89,7 @@ void main(List<String> args) {
       }
       File('${consumer.path}/.npmrc')
           .writeAsStringSync('store-dir=${work.path}/empty-store\n');
-      await run('pnpm', [
-        'install',
-        '--offline',
-        '--ignore-scripts',
-        '--store-dir',
-        store,
-      ], directory: workspace.path);
+      await installOfflineNpmConsumer(Directory.current.path, workspace.path);
       await installOfflineNpmConsumer(workspace.path, consumer.path);
       final result = await Process.run('node', [
         '-e',

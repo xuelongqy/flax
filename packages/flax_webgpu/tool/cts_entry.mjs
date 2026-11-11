@@ -4,16 +4,69 @@ import path from 'node:path';
 const [ctsRoot, output, main] = process.argv.slice(2);
 const groups = [
   'api/operation/adapter/info',
+  'api/operation/buffers/map_ArrayBuffer',
   'api/operation/command_buffer/basic',
   'api/operation/onSubmittedWorkDone',
   'api/validation/buffer/destroy',
   'api/validation/error_scope',
+  'api/validation/queue/writeBuffer',
   'api/validation/encoding/cmds/setImmediates',
   'api/validation/capability_checks/features/texture_component_swizzle',
   'api/validation/encoding/cmds/render/draw',
+  'api/validation/encoding/cmds/clearBuffer',
+  'api/validation/encoding/cmds/copyBufferToBuffer',
+  'api/validation/encoding/cmds/setBindGroup',
+  'api/validation/buffer/mapping',
+  'web_platform/canvas/configure',
+  'api/validation/queue/copyToTexture/CopyExternalImageToTexture',
+  'idl/constructable',
+  'idl/javascript',
 ];
 const selectedTests = {
+  'api/operation/buffers/map_ArrayBuffer': ['postMessage'],
+  'api/validation/queue/copyToTexture/CopyExternalImageToTexture': [
+    'source_offscreenCanvas,state',
+  ],
   'api/validation/encoding/cmds/render/draw': ['max_draw_count'],
+  'api/validation/encoding/cmds/clearBuffer': [
+    'default_args',
+    'offset_alignment',
+    'overflow',
+    'out_of_bounds',
+  ],
+  'api/validation/encoding/cmds/copyBufferToBuffer': [
+    'copy_size_alignment',
+    'copy_offset_alignment',
+    'copy_overflow',
+    'copy_out_of_bounds',
+  ],
+  'api/validation/encoding/cmds/setBindGroup': ['u32array_start_and_length'],
+  'api/validation/buffer/mapping': [
+    'mapAsync,sizeUnspecifiedOOB',
+    'mapAsync,offsetAndSizeAlignment',
+    'getMappedRange,sizeAndOffsetOOB,mappedAtCreation',
+    'getMappedRange,sizeAndOffsetOOB,mapped',
+  ],
+  'web_platform/canvas/configure': [
+    'defaults',
+    'device',
+    'size_zero_before_configure',
+    'size_zero_after_configure',
+  ],
+  'idl/javascript': [
+    'obj,Object_keys',
+    'obj,spread',
+    'obj,for_of',
+    'obj,getOwnPropertyDescriptors',
+    'setlike,spread',
+    'setlike,set',
+    'setlike,requiredFeatures',
+    'limits',
+    'readonly_properties',
+    'getter_replacement',
+    'sameObject',
+    'inheritance',
+  ],
 };
 if (!ctsRoot || !output || !main)
   throw new Error('Usage: cts_entry.mjs CTS_ROOT OUTPUT MAIN_ENTRY');
@@ -44,6 +97,8 @@ globalThis.__runWebGpuCts=async()=>{
       const selected=${JSON.stringify(selectedTests)}[path];
       if(selected&&!selected.includes(test.testPath.join(',')))continue;
       for(const item of test.iterate(null)){
+      // Keep the two MessageChannel transfer cases separate from browser canvas-state expectations.
+      if(path==='api/validation/queue/copyToTexture/CopyExternalImageToTexture'&&!item.id.params.state.startsWith('detached-'))continue;
       const query=new TestQuerySingleCase('webgpu',parts,item.id.test,item.id.params);
       const [rec,result]=log.record(query.toString());
       // The pinned test excludes Float16Array, but its bundled Proxy polyfill has a different name.

@@ -6,31 +6,24 @@ peers; rootless cross-language cycles can be reclaimed. Flax does not add a JS h
 scanner or a second Widget lifecycle. Flutter owns Elements, State, scheduling and
 application disposal. See [ADR 0039](../decisions/0039-engine-owned-cross-heap-gc.md).
 
-At the Dart major-GC safepoint, marked Dart origins first propagate through their exact
-JS peers to direct Dart targets. If every registered Dart target is already marked, this
-pass can finish without traversing the JS heap. Any unmarked target requires the full
-V8/CppHeap fixed point. This uses current reachability, not a cached graph or an
-assumption that unchanged registrations imply unchanged references.
+Dart major GC keeps the Dart targets that JS could still reach, traces their ordinary
+Dart references, and posts a confirmation request to the owner. Dart GC finishes without
+waiting for a V8 major. Further requests join the pending batch. V8 can use an eligible
+major to confirm reachability with fresh Dart marking and reclaim rootless cycles. The
+collectors follow registered cross-heap edges to a fixed point.
 
-When collect-all must finish an existing incremental cycle before an immediate
-fresh cycle, its first pass conservatively retains the bridge handles and drains
-Dart marking. The immediately following fresh pass performs exact joint tracing.
-This avoids repeating V8 work while preserving collect-all reclamation; ordinary
-single-pass collections and background-owner fallback keep their existing paths.
-
-Flutter idle notifications still check Dart ownership. JS work separately marks the heap
-for idle V8 collection, including discarded JS wrappers whose Dart targets remain alive.
-Ordinary V8 pressure collection and session cleanup continue to run.
+JS activity and Flutter idle notifications can also schedule confirmation, including for
+discarded JS wrappers whose Dart targets remain alive. The first scheduled confirmation
+waits one second. A Flutter frame in the preceding 100 ms postpones idle-only work. A
+Dart GC request can proceed during frame delivery. Ordinary V8 GC continues on its own
+schedule.
 
 Each Session has a separate V8 Context and microtask queue within its UI isolate's
-shared heap. Active JS jobs defer joint collection to an owner-thread checkpoint. Only
-completed V8 major collections request another joint pass; minor and weak processing
-phases do not escalate to repeated full collections.
-
-The proactive one-second idle request waits while Flutter has delivered a frame in the
-preceding 100 ms. It preserves pending JS work and resumes after animation stops.
-Ordinary Dart/V8 pressure bypasses this frame-inactivity heuristic. Conditional tracing,
-active-job protection and session cleanup remain unchanged.
+shared heap. Joint confirmation runs outside active JS jobs. The V8-led path reserves
+the Dart collector with at most one additional eligible Dart isolate in the group. If
+the reservation stays unavailable through the deadline and grace period, a safe owner
+task runs staged joint collection. This keeps rootless cycles collectible when several
+workers remain active. The deadline governs when the task is eligible to run.
 
 ## Retention directions
 

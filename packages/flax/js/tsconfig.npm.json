@@ -6,6 +6,7 @@
     "src/runtime/bindings.ts",
     "src/flutter/generated/libraries/navigation/index.ts",
     "src/host/index.ts",
+    "src/host/gpu-diagnostics.ts",
     "src/host/documents.ts",
     "src/host/vendor.d.ts",
     "src/host/worker.ts"

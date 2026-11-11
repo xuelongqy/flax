@@ -4,6 +4,23 @@ import 'dart:io';
 import 'dart:isolate';
 import 'dart:typed_data';
 
+import 'package:flax/runtime.dart';
+
+/// Allow deferred joint GC to finish; callers retain their release assertions.
+Future<void> flaxTestWaitForGc(
+  FlaxJsRuntime runtime,
+  bool Function() collected,
+) async {
+  final elapsed = Stopwatch()..start();
+  while (elapsed.elapsed < const Duration(seconds: 8)) {
+    final complete = collected();
+    // A JS WeakRef read keeps its target for this job, so end it before waiting.
+    runtime.drainMicrotasks();
+    if (complete) return;
+    await Future<void>.delayed(const Duration(milliseconds: 100));
+  }
+}
+
 /// Use the VM service or allocation pressure; never invoke framework cleanup.
 Future<void> flaxTestCollectDartGarbage({bool compact = false}) async {
   final info = await developer.Service.getInfo();

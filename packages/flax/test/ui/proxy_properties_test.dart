@@ -880,6 +880,13 @@ void main() {
         await t.pumpAndSettle();
       }();
       await collect();
+      await flaxTestRunIdle(
+        t,
+        () => flaxTestWaitForGc(
+          h.runtime,
+          () => weak.target == null && weakListChild.target == null,
+        ),
+      );
       expect(weak.target, isNull);
       expect(weakListChild.target, isNull);
       expect(h.errors, isEmpty);
@@ -1187,15 +1194,16 @@ void main() {
       ''');
       await t.pumpAndSettle();
       var collected = false;
-      for (var i = 0; i < 60; i++) {
-        h.runtime.drainMicrotasks();
-        h.execute('${flaxTestJsGarbagePressure}anchor.value');
-        await t.pumpAndSettle();
-        if (h.boolean('weak.deref() === undefined')) collected = true;
-        await t.runAsync(flaxTestCollectDartGarbage);
-        await t.pump();
-        if (collected && h.runtime.handles <= before) break;
-      }
+      h.runtime.drainMicrotasks();
+      h.execute('${flaxTestJsGarbagePressure}anchor.value');
+      await t.runAsync(flaxTestCollectDartGarbage);
+      await flaxTestRunIdle(
+        t,
+        () => flaxTestWaitForGc(h.runtime, () {
+          collected = h.boolean('weak.deref() === undefined');
+          return collected && h.runtime.handles <= before;
+        }),
+      );
       expect(collected, isTrue);
       expect(h.runtime.handles, lessThanOrEqualTo(before));
     } finally {

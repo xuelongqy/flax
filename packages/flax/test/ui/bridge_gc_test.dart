@@ -5,6 +5,7 @@ import 'package:flax/flax.dart';
 // Native counters verify reclamation without adding an application GC API.
 // ignore: implementation_imports
 import 'package:flax/src/native/native_runtime.dart';
+import 'package:flax_test/flax_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../.dart_tool/flax/ui/interop_bindings.dart';
@@ -86,7 +87,7 @@ Future<void> _waitForCollection(
   int baselineCells,
 ) async {
   final runtime = harness.runtime.inner as FlaxNativeJsRuntime;
-  await tester.runAsync(() async {
+  await flaxTestRunIdle(tester, () async {
     for (var i = 0; i < 80; i++) {
       await Future<void>.delayed(const Duration(milliseconds: 100));
       final empty = harness.boolean(
@@ -287,8 +288,12 @@ void main() {
             cancelled = error.toString().contains('FlaxSessionClosed');
           },
         );
-        await tester.runAsync(
-          () => Future<void>.delayed(const Duration(seconds: 1)),
+        await flaxTestRunIdle(
+          tester,
+          () => flaxTestWaitForGc(
+            harness.runtime,
+            () => harness.boolean('weakDiscarded.deref() === undefined'),
+          ),
         );
         expect(harness.boolean('weakDiscarded.deref() === undefined'), isTrue);
         expect(

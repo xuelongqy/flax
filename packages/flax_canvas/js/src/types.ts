@@ -274,7 +274,7 @@ export interface OffscreenCanvasRenderingContext2D {
 
 export type OffscreenCanvas = import('@flax/core/host').OffscreenCanvas;
 
-declare module '@flax/core/host' {
+declare module '@flax/core/host/canvas-contexts' {
   interface CanvasContextMap {
     '2d': OffscreenCanvasRenderingContext2D;
   }

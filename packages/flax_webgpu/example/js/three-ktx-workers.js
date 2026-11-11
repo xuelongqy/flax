@@ -2,13 +2,19 @@ import * as THREE from 'three/webgpu';
 import { KTX2Loader } from 'three/addons/loaders/KTX2Loader.js';
 import { readTexturePixels } from './images.js';
 
-export async function verifyThreeKtxWorkers(assert) {
+export async function verifyThreeKtxWorkers(assert, options = {}) {
   const adapter = await navigator.gpu.requestAdapter();
   const compressed = adapter.features.has('texture-compression-bc');
   const device = await adapter.requestDevice({
     requiredFeatures: compressed ? ['texture-compression-bc'] : [],
   });
-  const canvas = document.createElement('canvas');
+  const gpuErrors = [];
+  const failed = (error) => {
+    gpuErrors.push(error);
+    options.onGpuError?.(error);
+  };
+  device.addEventListener('uncapturederror', (event) => failed(event.error.message));
+  const canvas = options.canvas ?? new OffscreenCanvas(16, 16);
   const renderer = new THREE.WebGPURenderer({ canvas, device, antialias: false });
   const geometry = new THREE.PlaneGeometry(2, 2);
   const scene = new THREE.Scene();
@@ -53,6 +59,10 @@ export async function verifyThreeKtxWorkers(assert) {
             loader.workerPool.workers[0] instanceof Worker,
           'KTX2Loader runs its Wasm transcoder in a real Dedicated Worker',
         );
+        await options.onDecoderReady?.({
+          mode,
+          workers: loader.workerPool.workers.length,
+        });
         assert(
           texture.image.width === 8 &&
             texture.image.height === 8 &&
@@ -75,6 +85,7 @@ export async function verifyThreeKtxWorkers(assert) {
         material = new THREE.MeshBasicMaterial({ map: texture });
         const mesh = new THREE.Mesh(geometry, material);
         scene.add(mesh);
+        await new Promise(requestAnimationFrame);
         renderer.render(scene, camera);
         const bitmap = await createImageBitmap(canvas);
         try {
@@ -97,6 +108,16 @@ export async function verifyThreeKtxWorkers(assert) {
             mode +
             ' texture uploads and renders its original red pixels',
         );
+        if (options.keepAnimating)
+          renderer.setAnimationLoop(() => {
+            try {
+              renderer.render(scene, camera);
+            } catch (error) {
+              renderer.setAnimationLoop(null);
+              failed(error.stack ?? String(error));
+            }
+          });
+        await options.onCapture?.('ktx-' + mode, pixels, 16, 16);
         scene.remove(mesh);
         results.push({
           mode,
@@ -122,9 +143,10 @@ export async function verifyThreeKtxWorkers(assert) {
     };
   } finally {
     geometry.dispose();
-    renderer.dispose();
+    await renderer.dispose();
     target.destroy();
     await device.queue.onSubmittedWorkDone();
     device.destroy();
+    assert(gpuErrors.length === 0, 'KTX2 renderer GPU errors: ' + gpuErrors.join('; '));
   }
 }
