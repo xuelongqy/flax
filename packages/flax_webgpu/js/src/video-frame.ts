@@ -99,6 +99,12 @@ export interface VideoFrame {
   close(): void;
 }
 
+declare module '@flax/core/host/common' {
+  interface FlaxTransferableMap {
+    VideoFrame: VideoFrame;
+  }
+}
+
 type AcquireVideoFrame = (source: string) => VideoFrame | null;
 
 // The public and host module specifiers are bundled separately.

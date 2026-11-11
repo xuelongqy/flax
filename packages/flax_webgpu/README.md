@@ -256,7 +256,8 @@ To let Dedicated Workers and their children acquire that source, set
 `workerVideoSources: {'movie'}` on the same plugin in a nonsandboxed Session. The
 allowlist defaults to empty and every entry must name a source in `videoSources`. Both
 grants are captured at installation. Granted Workers can import the same helper from
-`@flax/webgpu`.
+`@flax/webgpu`. Workers can receive explicitly transferred frames with an empty
+acquisition allowlist.
 
 Acquire the latest frame when the renderer needs one. A source with no published frame,
 an ungranted name or a disposed source returns `null`.
@@ -296,13 +297,17 @@ close. Rectangles are readonly snapshots with the standard numeric fields, witho
 general DOM geometry global. `allocationSize()` and Promise-returning `copyTo()` copy
 original NV12/BGRA planes with optional crop and per-plane offset/stride layouts. They
 accept ArrayBuffer, SharedArrayBuffer and views, preserving view bounds and row padding.
-NV12 crop x/y offsets must be even; crop width/height may be odd. This explicit CPU read
-can stall; ordinary GPU rendering does not call it. Omit `format`: explicit output
-formats throw `NotSupportedError` because they require color conversion, even when
-requesting BGRA from a BGRA frame. A valid `colorSpace` alone is ignored. The main realm
-and explicitly granted Workers each own their frames. HDR video, HTML media elements,
-WebCodecs decode, raw-pixel construction, format conversion and frame transfer are
-outside this profile. See the
+NV12 crop x/y offsets must be even. Crop width and height may be odd. This explicit CPU
+read can stall. Pass `format: 'RGBA'`, `'RGBX'`, `'BGRA'` or `'BGRX'` for a single
+packed plane converted to sRGB or Display P3. A formats preserve alpha and X formats
+write 255. Omit `format` to keep the original bytes. A valid `colorSpace` alone has no
+effect. Explicit non-RGB formats throw `NotSupportedError`.
+
+Transfer a live frame using the transfer list of `structuredClone()` or `postMessage()`.
+The sender closes and its GPU imports expire. The receiver takes a new lease on the same
+pixel buffer and preserves timing overrides and color metadata. HDR video, HTML media
+elements, WebCodecs decode, raw-pixel construction and message cloning without a
+transfer list remain outside this profile. See the
 [macOS video acceptance](example/README.md#video-frame-acceptance) for reproduction.
 
 ### Wide gamut and HDR

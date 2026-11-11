@@ -14,7 +14,7 @@ import {
   REVISION,
 } from 'three/webgpu';
 
-const { modeOrder, refreshRate } = globalThis.__videoConfig;
+const { modeOrder, refreshRate, workerVideoAcquisition } = globalThis.__videoConfig;
 const width = 1920;
 const height = 1080;
 const sourceFps = 60;
@@ -43,6 +43,137 @@ function primary(pixel, channel) {
     pixel.slice(0, 3).every((value, i) => i === channel || value < 35) &&
     pixel[3] === 255
   );
+}
+
+function nearPixel(actual, expected, tolerance = 5) {
+  return actual.every(
+    (value, channel) => Math.abs(value - expected[channel]) <= tolerance,
+  );
+}
+
+function verifyFrameTransferRollback(source) {
+  const leases = () =>
+    JSON.parse(report({ kind: 'resources' }))
+      .slice(10, 12)
+      .join();
+  const before = leases();
+  const reject = (operation, name = 'DataCloneError') => {
+    let failure;
+    try {
+      operation();
+    } catch (error) {
+      failure = error.name;
+    }
+    require(failure === name, `Frame transfer failure: ${failure} != ${name}`);
+  };
+  for (const mode of ['duplicate', 'uncloneable', 'throw', 'close', 'nested']) {
+    const frame = source.clone();
+    const bytes = new ArrayBuffer(4);
+    let nested;
+    const payload = {
+      frame,
+      get last() {
+        if (mode === 'uncloneable') return () => {};
+        if (mode === 'throw') throw new RangeError('Graph getter');
+        if (mode === 'close') frame.close();
+        if (mode === 'nested') nested = structuredClone(frame, { transfer: [frame] });
+        return true;
+      },
+    };
+    const transfer = mode === 'duplicate' ? [bytes, frame, frame] : [bytes, frame];
+    reject(
+      () => structuredClone(payload, { transfer }),
+      mode === 'throw' ? 'RangeError' : 'DataCloneError',
+    );
+    require(bytes.byteLength ===
+      4, `Failed frame transfer detached another buffer: ${mode}`);
+    if (mode !== 'close' && mode !== 'nested')
+      require(frame.format ===
+        source.format, `Failed transfer closed the frame: ${mode}`);
+    if (mode === 'nested')
+      require(frame.format === null &&
+        nested?.format === source.format, 'Nested transfer lost ownership');
+    frame.close();
+    nested?.close();
+    require(leases() === before, `Failed frame transfer retained a lease: ${mode}`);
+  }
+  const changed = source.clone();
+  Object.setPrototypeOf(changed, null);
+  reject(() => structuredClone(changed));
+  const received = structuredClone(changed, { transfer: [changed] });
+  require(received instanceof
+    VideoFrame, 'Changed prototype lost the VideoFrame brand');
+  received.close();
+  reject(() => structuredClone(null, { transfer: [changed] }));
+
+  const queued = source.clone();
+  const { port1, port2 } = new MessageChannel();
+  port1.postMessage(queued, [queued]);
+  require(queued.format === null &&
+    leases() !== before, 'Queued frame lost its native lease');
+  port2.close();
+  port1.close();
+  require(leases() === before, 'Discarding the queue retained a video lease');
+
+  for (const [prototype, method] of [
+    [WeakMap.prototype, 'get'],
+    [WeakMap.prototype, 'set'],
+    [Set.prototype, 'add'],
+  ]) {
+    const frame = source.clone();
+    const bytes = new Uint8Array([19, 23]).buffer;
+    const previous = prototype[method];
+    let result;
+    try {
+      result = structuredClone(
+        {
+          frame,
+          alias: frame,
+          bytes,
+          get last() {
+            prototype[method] = () => {
+              throw new Error('Unexpected collection hook');
+            };
+            return true;
+          },
+        },
+        { transfer: [frame, bytes] },
+      );
+    } finally {
+      prototype[method] = previous;
+    }
+    require(frame.format === null &&
+      bytes.byteLength === 0 &&
+      result.last &&
+      result.frame instanceof VideoFrame &&
+      result.frame === result.alias &&
+      result.frame.format === source.format &&
+      new Uint8Array(result.bytes).join() ===
+        '19,23', `Referenced frame transfer invoked ${method} after commit`);
+    result.frame.close();
+    require(leases() ===
+      before, `Received frame retained a lease after ${method} hook`);
+  }
+
+  const unused = source.clone();
+  const oldGet = WeakMap.prototype.get;
+  try {
+    structuredClone(
+      {
+        get last() {
+          WeakMap.prototype.get = () => {
+            throw new Error('Unexpected WeakMap hook');
+          };
+          return true;
+        },
+      },
+      { transfer: [unused] },
+    );
+  } finally {
+    WeakMap.prototype.get = oldGet;
+  }
+  require(unused.format === null, 'Transfer-only frame did not close');
+  return true;
 }
 
 async function capture(mode, format, index) {
@@ -94,7 +225,7 @@ struct Vertex { @builtin(position) position: vec4f, @location(0) uv: vec2f }
     fragment: { module, entryPoint: 'fragment', targets: [{ format }] },
   });
   const sampler = device.createSampler({ minFilter: 'linear', magFilter: 'linear' });
-  return function encode(frame, target, useBundle = false) {
+  return function encode(frame, target, useBundle = false, recording) {
     const external = device.importExternalTexture({ source: frame });
     if (!(external instanceof GPUExternalTexture))
       throw new Error('Wrong external texture brand');
@@ -105,12 +236,14 @@ struct Vertex { @builtin(position) position: vec4f, @location(0) uv: vec2f }
         { binding: 1, resource: sampler },
       ],
     });
-    const encoder = device.createCommandEncoder();
-    const pass = encoder.beginRenderPass({
-      colorAttachments: [
-        { view: target.createView(), loadOp: 'clear', storeOp: 'store' },
-      ],
-    });
+    const encoder = recording?.encoder ?? device.createCommandEncoder();
+    const pass =
+      recording?.pass ??
+      encoder.beginRenderPass({
+        colorAttachments: [
+          { view: target.createView(), loadOp: 'clear', storeOp: 'store' },
+        ],
+      });
     const draw = (commands) => {
       commands.setPipeline(pipeline);
       commands.setBindGroup(0, group);
@@ -151,6 +284,12 @@ function directStage(canvas, device) {
           return encode(clone, target, useBundle);
         });
         const unused = new WeakRef(acquireVideoFrame('movie'));
+        const unusedReceived = new WeakRef(
+          (() => {
+            const frame = acquireVideoFrame('movie');
+            return structuredClone(frame, { transfer: [frame] });
+          })(),
+        );
         for (let attempt = 0; attempt < 20; attempt++) {
           // The previous WeakRef read keeps the control alive for that job.
           await raf();
@@ -159,10 +298,13 @@ function directStage(canvas, device) {
             pair: [i, i + 1],
           }));
           await new Promise((resolve) => setTimeout(resolve, 8));
-          if (unused.deref() === undefined) break;
+          if (unused.deref() === undefined && unusedReceived.deref() === undefined)
+            break;
         }
         delete globalThis.__videoGcPressure;
         require(unused.deref() === undefined, 'GC control frame was still reachable');
+        require(unusedReceived.deref() ===
+          undefined, 'Received GC control frame was still reachable');
         device.pushErrorScope('validation');
         device.queue.submit(recorded);
         const error = await device.popErrorScope();
@@ -191,8 +333,36 @@ function directStage(canvas, device) {
       const command = encode(frame, target);
       const clonedCommand = encode(clone, target);
       const retimedCommand = encode(retimed, target, true);
-      frame.close();
-      frame.close();
+      const rollback = verifyFrameTransferRollback(frame);
+      const { port1, port2 } = new MessageChannel();
+      const bytes = new Uint8Array([42]).buffer;
+      const moved = structuredClone(
+        {
+          frame,
+          alias: frame,
+          bytes,
+          port: port2,
+          get sourceLive() {
+            return frame.format === 'NV12';
+          },
+        },
+        { transfer: [frame, bytes, port2] },
+      );
+      require(moved.frame instanceof VideoFrame &&
+        moved.frame === moved.alias &&
+        moved.sourceLive &&
+        frame.format === null &&
+        moved.frame.timestamp === timestamp &&
+        moved.frame.duration === duration &&
+        moved.frame.colorSpace instanceof VideoColorSpace &&
+        moved.frame.colorSpace !== colors &&
+        JSON.stringify(moved.frame.colorSpace) === JSON.stringify(colors) &&
+        bytes.byteLength === 0 &&
+        new Uint8Array(moved.bytes)[0] === 42 &&
+        moved.port instanceof
+          MessagePort, 'Mixed structuredClone lost frame data or aliases');
+      moved.port.close();
+      port1.close();
       require(frame.codedWidth === 0 &&
         frame.codedHeight === 0 &&
         frame.displayWidth === 0 &&
@@ -234,6 +404,7 @@ function directStage(canvas, device) {
         /external texture|current access/i.test(
           error.message,
         ), `Expired submit: ${error?.message}`);
+      frame.close();
       device.pushErrorScope('validation');
       device.queue.submit([clonedCommand, retimedCommand]);
       const clonePixel = await uploadedPixel(device, clone, 'srgb');
@@ -256,6 +427,12 @@ function directStage(canvas, device) {
         retainedPixel,
         0,
       ), `Closing one clone expired its sibling: ${retainedPixel}`);
+      const receivedPixel = await uploadedPixel(device, moved.frame, 'srgb');
+      require(primary(
+        receivedPixel,
+        0,
+      ), `Transferred frame lost independent pixels: ${receivedPixel}`);
+      moved.frame.close();
       retimed.close();
       target.destroy();
       return {
@@ -263,6 +440,8 @@ function directStage(canvas, device) {
         resubmitError: error.message,
         clonePixel,
         retainedPixel,
+        receivedPixel,
+        rollback,
         before,
         withClones,
       };
@@ -477,15 +656,54 @@ async function verifyFrameReadback(frame, index) {
     getterClosed === 'InvalidStateError',
     'Options getter left a stale native frame',
   );
+  const packed = {};
+  for (const format of ['RGBA', 'RGBX', 'BGRA', 'BGRX']) {
+    const isBgr = format[0] === 'B';
+    const request = {
+      format,
+      ...(isBgr && { colorSpace: 'display-p3' }),
+      rect: options.rect,
+      layout: [{ offset: 3, stride: 16 }],
+    };
+    const size = frame.allocationSize(request);
+    const bytes = new Uint8Array(size + 8).fill(165);
+    const view = bytes.subarray(4, 4 + size);
+    const copied = await frame.copyTo(view, request);
+    check(
+      size === 51 && JSON.stringify(copied) === JSON.stringify(request.layout),
+      `Wrong packed ${format} layout`,
+    );
+    const first = [...view.subarray(3, 7)];
+    const expected = new Uint8Array(bytes.length).fill(165);
+    for (let row = 0; row < 3; ++row)
+      for (let column = 0; column < 3; ++column)
+        expected.set(first, 7 + row * 16 + column * 4);
+    check(
+      bytes.every((value, offset) => value === expected[offset]) && first[3] === 255,
+      `Wrong packed ${format} bytes or destination padding`,
+    );
+    packed[format] = isBgr ? [first[2], first[1], first[0], first[3]] : first;
+  }
+  check(
+    packed.RGBA[index] > 220 &&
+      packed.RGBA.slice(0, 3).every(
+        (value, channel) => channel === index || value < 35,
+      ) &&
+      packed.RGBA.join() === packed.RGBX.join() &&
+      packed.BGRA.join() === packed.BGRX.join() &&
+      packed.BGRA[index] > 220 &&
+      packed.BGRA.join() !== packed.RGBA.join(),
+    `Wrong packed RGB conversion: ${JSON.stringify(packed)}`,
+  );
   let conversion;
   try {
-    await frame.copyTo(full, { format: 'BGRA' });
+    await frame.copyTo(full, { format: 'NV12' });
   } catch (error) {
     conversion = error.name;
   }
   check(
     conversion === 'NotSupportedError',
-    'Explicit format silently copied unconverted bytes',
+    'Explicit non-RGB format silently copied original bytes',
   );
   return {
     size: full.length,
@@ -496,6 +714,7 @@ async function verifyFrameReadback(frame, index) {
     closed,
     getterClosed,
     conversion,
+    packed,
   };
 }
 
@@ -571,6 +790,10 @@ async function verifyPixels(stage, mode, format, device) {
         require(p3.every(
           (value, channel) => Math.abs(value - [234, 52, 35, 255][channel]) <= 5,
         ), `Wrong Display P3 upload: ${p3}`);
+        require(nearPixel(
+          readback[index].packed.BGRA,
+          p3,
+        ), 'CPU and GPU Display P3 conversion differ');
         expiry = await stage.verifyExpiry(frame);
         await stage.verifyRecordedFrame();
         recordedFrameGc = true;
@@ -664,29 +887,11 @@ async function playback(stage, mode, device) {
   };
 }
 
-function workerVideo(acquire, buildEncoder, upload, readPixel, readback) {
-  let device, target, encode;
-  onmessage = async ({ data: index }) => {
+function workerVideo(acquire, buildEncoder, upload, readPixel, readback, nearPixel) {
+  let device, target, encode, recording;
+  onmessage = async ({ data, ports }) => {
     try {
-      const original = acquire('movie');
-      if (!(original instanceof VideoFrame))
-        throw new Error('Missing Worker VideoFrame');
-      const frame = index === 0 ? original.clone() : new VideoFrame(original);
-      original.close();
-      if (
-        !(frame.colorSpace instanceof VideoColorSpace) ||
-        frame.colorSpace.matrix !== 'bt709' ||
-        frame.colorSpace.fullRange !== false ||
-        frame.visibleRect.width !== 1920 ||
-        original.visibleRect !== null ||
-        frame.rotation !== 0 ||
-        frame.flip !== false ||
-        Object.keys(frame.metadata()).length
-      )
-        throw new Error('Wrong Worker clone metadata');
-      if (acquire('session-only') !== null)
-        throw new Error('Worker acquired a source granted only to the Session');
-      if (!device) {
+      if (data === 'prepare') {
         const adapter = await navigator.gpu.requestAdapter();
         if (!adapter) throw new Error('No Worker Metal adapter');
         device = await adapter.requestDevice();
@@ -699,35 +904,106 @@ function workerVideo(acquire, buildEncoder, upload, readPixel, readback) {
           usage: GPUTextureUsage.RENDER_ATTACHMENT | GPUTextureUsage.COPY_SRC,
         });
         encode = buildEncoder(device, format);
+        if (!acquire) {
+          const encoder = device.createCommandEncoder();
+          const pass = encoder.beginRenderPass({
+            colorAttachments: [
+              { view: target.createView(), loadOp: 'clear', storeOp: 'store' },
+            ],
+          });
+          recording = { encoder, pass };
+        }
+        postMessage({ ready: true });
+        return;
       }
-      let transferError;
-      try {
-        postMessage(frame, [frame]);
-      } catch (error) {
-        transferError = error.name;
+      const { index, port, bytes } = data;
+      let frame;
+      if (acquire) {
+        const original = acquire('movie');
+        if (!(original instanceof VideoFrame))
+          throw new Error('Missing Worker VideoFrame');
+        frame = index === 0 ? original.clone() : new VideoFrame(original);
+        original.close();
+        if (original.visibleRect !== null || acquire('session-only') !== null)
+          throw new Error('Worker acquisition or clone ownership is incorrect');
+      } else {
+        frame = data.frame;
+        if (
+          data.alias !== frame ||
+          (index === 0 &&
+            (!(port instanceof MessagePort) ||
+              port !== ports[0] ||
+              new Uint8Array(bytes)[0] !== 37))
+        )
+          throw new Error(
+            'Worker transfer lost aliases, bytes or MessagePort identity',
+          );
+        data.frame = data.alias = null;
       }
-      if (transferError !== 'DataCloneError')
-        throw new Error('Worker VideoFrame was transferable');
+      if (
+        !(frame instanceof VideoFrame) ||
+        !(frame.colorSpace instanceof VideoColorSpace) ||
+        frame.colorSpace.matrix !== 'bt709' ||
+        frame.colorSpace.fullRange !== false ||
+        frame.visibleRect.width !== 1920 ||
+        frame.rotation !== 0 ||
+        frame.flip !== false ||
+        Object.keys(frame.metadata()).length
+      )
+        throw new Error('Wrong Worker frame metadata');
 
       const originalPixels = await readback(frame, index);
       device.pushErrorScope('validation');
-      device.queue.submit([encode(frame, target, index === 1)]);
+      const command = encode(frame, target, index === 1, recording);
+      recording = undefined;
+      let retainedAcrossGc = false;
+      if (!acquire && index === 0) {
+        const recorded = new WeakRef(frame);
+        // Native finalizer cleanup can lag behind WeakRef clearing.
+        const unused = new WeakRef({});
+        frame = null;
+        for (let attempt = 0; attempt < 20; attempt++) {
+          await new Promise((resolve) => setTimeout(resolve, 8));
+          globalThis.__videoGcPressure = Array.from({ length: 65536 }, (_, i) => ({
+            index: i,
+            pair: [i, i + 1],
+          }));
+          if (unused.deref() === undefined) break;
+        }
+        delete globalThis.__videoGcPressure;
+        frame = recorded.deref();
+        if (!frame || unused.deref() !== undefined)
+          throw new Error(
+            'The Worker command did not retain the received frame across GC',
+          );
+        retainedAcrossGc = true;
+      }
+      device.queue.submit([command]);
       const imported = await readPixel(device, target);
       const copied = await upload(device, frame, 'srgb', readPixel);
       const error = await device.popErrorScope();
       if (error) throw new Error(error.message);
+      if (!nearPixel(originalPixels.packed.RGBA, copied))
+        throw new Error('CPU and GPU Worker color conversion differ');
       const result = {
         timestamp: frame.timestamp,
+        duration: frame.duration,
         format: frame.format,
         size: [frame.codedWidth, frame.codedHeight],
         imported,
         copied,
         colorSpace: frame.colorSpace.toJSON(),
         readback: originalPixels,
+        retainedAcrossGc,
       };
       // Leave the second frame and its GPU import live for native Worker retirement.
       if (index === 1) globalThis.__heldWorkerFrame = frame;
-      else frame.close();
+      else if (port) {
+        port.postMessage({ frame, alias: frame, bytes }, [frame, bytes]);
+        if (frame.format !== null || bytes.byteLength !== 0)
+          throw new Error('MessagePort did not transfer the Worker frame and bytes');
+        port.close();
+      } else frame.close();
       postMessage(result);
     } catch (error) {
       postMessage({ error: error.stack ?? String(error) });
@@ -740,43 +1016,122 @@ async function verifyWorkerVideo() {
   checkFrame(acquireVideoFrame('session-only'), 'NV12').close();
   const resources = () => JSON.parse(report({ kind: 'resources' }));
   const before = resources();
-  const entry = `import { acquireVideoFrame } from '@flax/webgpu';
+  const acquisition = workerVideoAcquisition
+    ? `import { acquireVideoFrame } from '@flax/webgpu';`
+    : `const acquireVideoFrame = null;
+      const acquireImportDenied = await import('@flax/webgpu').then(
+        () => false, (error) => error.message.includes('Unresolved bare import'));
+      if (!acquireImportDenied || globalThis[Symbol.for('flax.webgpu.acquireVideoFrame')])
+        throw new Error('Frame reception granted Worker source acquisition');`;
+  const entry = `${acquisition}
     const privateImportDenied = await import('@flax/webgpu/host').then(
       () => false, (error) => error.message.includes('Unresolved bare import'));
     if (!privateImportDenied) throw new Error('Private WebGPU host module was importable');
-    (${workerVideo})(acquireVideoFrame, ${directEncoder}, ${uploadedPixel}, ${readVideoPixel}, ${verifyFrameReadback});`;
+    (${workerVideo})(acquireVideoFrame, ${directEncoder}, ${uploadedPixel},
+      ${readVideoPixel}, ${verifyFrameReadback}, ${nearPixel});`;
   const url = URL.createObjectURL(new Blob([entry], { type: 'text/javascript' }));
   const worker = new Worker(url, { type: 'module' });
   const sample = (index) =>
     new Promise((resolve, reject) => {
-      const timeout = setTimeout(() => reject(Error('Worker video timed out')), 5000);
+      const transfer = !workerVideoAcquisition && index !== 'prepare';
+      const channel = transfer && index === 0 ? new MessageChannel() : null;
+      let result, reply;
+      const close = () => {
+        clearTimeout(timeout);
+        channel?.port1.close();
+        channel?.port2.close();
+      };
+      const failed = (error) => {
+        close();
+        reject(error);
+      };
+      const done = () => {
+        if (!result || (channel && !reply)) return;
+        close();
+        resolve({ ...result, reply });
+      };
+      const timeout = setTimeout(() => failed(Error('Worker video timed out')), 5000);
       worker.onmessage = ({ data }) => {
-        clearTimeout(timeout);
-        if (data.error) reject(Error(data.error));
-        else resolve(data);
+        if (data.error) failed(Error(data.error));
+        else {
+          result = data;
+          done();
+        }
       };
-      worker.onerror = (event) => {
-        clearTimeout(timeout);
-        reject(Error(event.message));
-      };
-      worker.postMessage(index);
+      worker.onerror = (event) => failed(Error(event.message));
+      worker.onmessageerror = () => failed(Error('Worker frame receive failed'));
+      try {
+        if (!transfer) {
+          worker.postMessage(index === 'prepare' ? index : { index });
+          return;
+        }
+        const source = checkFrame(acquireVideoFrame('movie'), 'NV12');
+        const frame = channel
+          ? new VideoFrame(source, { timestamp: -31, duration: 777 })
+          : source;
+        if (channel) source.close();
+        const bytes = channel ? new Uint8Array([37]).buffer : undefined;
+        const port = channel?.port2;
+        if (channel) {
+          channel.port1.onmessage = ({ data }) => {
+            reply = data;
+            done();
+          };
+          channel.port1.onmessageerror = () =>
+            failed(Error('Video MessagePort receive failed'));
+        }
+        worker.postMessage(
+          { index, frame, alias: frame, bytes, port },
+          channel ? [frame, bytes, port] : [frame],
+        );
+        require(frame.format === null &&
+          (!bytes ||
+            bytes.byteLength ===
+              0), 'Worker.postMessage did not transfer the frame and bytes');
+      } catch (error) {
+        failed(error);
+      }
     });
   const frames = [];
   let withFrame;
   try {
+    require((await sample('prepare')).ready, 'Worker video device was not ready');
     for (let index = 0; index < 2; index++) {
       if (index) await sourceCommand('next');
       const frame = await sample(index);
+      const expectedTimestamp =
+        !workerVideoAcquisition && index === 0 ? -31 : index * 16667;
       require(frame.format === 'NV12' &&
         frame.readback.size === width * height * 1.5 &&
         frame.readback.getterClosed === 'InvalidStateError' &&
         frame.size.join() === `${width},${height}` &&
-        Math.abs(frame.timestamp - index * 16667) < 2 &&
+        Math.abs(frame.timestamp - expectedTimestamp) < 2 &&
         primary(frame.imported, index) &&
         primary(
           frame.copied,
           index,
         ), `Wrong Worker video frame: ${JSON.stringify(frame)}`);
+      if (!workerVideoAcquisition && index === 0) {
+        const { reply } = frame;
+        const returned = checkFrame(reply.frame, 'NV12');
+        require(frame.retainedAcrossGc &&
+          frame.duration === 777 &&
+          returned === reply.alias &&
+          returned.timestamp === -31 &&
+          returned.duration === 777 &&
+          new Uint8Array(reply.bytes)[0] ===
+            37, 'VideoFrame MessagePort return lost data');
+        const options = {
+          format: 'RGBA',
+          rect: { x: 128, y: 128, width: 1, height: 1 },
+        };
+        const pixel = new Uint8Array(returned.allocationSize(options));
+        await returned.copyTo(pixel, options);
+        require(primary(pixel, 0), 'Returned frame lost its pixels');
+        returned.close();
+        frame.portReturn = true;
+        delete frame.reply;
+      }
       frames.push(frame);
     }
     withFrame = resources();
@@ -799,7 +1154,7 @@ async function verifyWorkerVideo() {
   require(after.every(
     (count, index) => count === before[index],
   ), `Worker video resources did not retire: ${before} -> ${after}`);
-  return { frames, before, withFrame, after };
+  return { acquisition: workerVideoAcquisition, frames, before, withFrame, after };
 }
 
 async function main() {
@@ -839,9 +1194,12 @@ async function main() {
     require(errors.length === 0, `Uncaptured WebGPU errors: ${JSON.stringify(errors)}`);
     results[mode] = { formats, performance: playbackMetrics };
   }
-  const held = checkFrame(acquireVideoFrame('movie'), 'NV12');
+  const last = checkFrame(acquireVideoFrame('movie'), 'NV12');
   await sourceCommand('dispose');
   require(acquireVideoFrame('movie') === null, 'A disposed video source was visible');
+  const held = structuredClone(last, { transfer: [last] });
+  const readAfterDispose = await verifyFrameReadback(held, 1);
+  require(last.format === null, 'Retired source frame did not transfer');
   const afterDispose = await uploadedPixel(device, held, 'srgb');
   require(afterDispose[0] < 35 &&
     afterDispose[1] > 220 &&
@@ -858,6 +1216,7 @@ async function main() {
     refreshRate,
     threeRevision: REVISION,
     afterDispose,
+    readAfterDispose,
     workerVideo,
     results,
   });

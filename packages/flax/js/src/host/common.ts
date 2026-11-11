@@ -362,10 +362,12 @@ export type {
   WorkerConstructor,
   WorkerOptions,
   Transferable,
+  FlaxTransferableMap,
   StructuredSerializeOptions,
   ErrorEvent,
   ErrorEventInit,
 } from './workers.js';
+
 declare global {
   type MessageChannel = import('./workers.js').MessageChannel;
   var MessageChannel: { new (): MessageChannel; readonly prototype: MessageChannel };

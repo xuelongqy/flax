@@ -91,10 +91,10 @@ objects raise `DataCloneError`. Core, Canvas and WebGPU platform objects are mar
 explicitly so their private implementation cannot silently clone as an empty record.
 Streams, GPU handles and compiled WebAssembly.Module transfer remain unavailable.
 ImageBitmap is cloneable and transferable. The selected WebGPU profile also adds
-contextless OffscreenCanvas render ownership to the transfer list. Blob/File are cloned
-without detaching their immutable contents, and are rejected in transfer lists.
-Deserialization failures dispatch `messageerror`; normal user exceptions dispatch
-`error`.
+contextless OffscreenCanvas render ownership and live VideoFrame leases to the transfer
+list. Blob/File are cloned without detaching their immutable contents, and are rejected
+in transfer lists. Deserialization failures dispatch `messageerror`; normal user
+exceptions dispatch `error`.
 
 ## Message channels
 
@@ -274,6 +274,11 @@ A provider can explicitly expose selected prepared, binding-free modules to Work
 A WebGPU video grant makes `@flax/webgpu` importable for
 [SDR frame acquisition](webgpu.md#sdr-video-frames). The Worker loader resolves only the
 provider's explicit exports as prepared SDK imports.
+
+When the Session has video sources, a selected Worker can receive a VideoFrame in a
+transfer list regardless of its acquisition grants. Its own realm creates a frame lease
+over the same pixels. The sender's GPU imports expire at commit. A discarded packet
+releases its native lease through the private transferred backing store.
 
 Each Worker owns a separate Dawn context, adapters and devices. JS encodes commands and
 submits directly through that Worker's JSI/libffi path. GPUDevice, GPUTexture and other

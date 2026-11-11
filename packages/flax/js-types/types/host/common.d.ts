@@ -241,7 +241,7 @@ declare global {
     type ResponseInit = FetchHttp.ResponseInit;
     function fetch(input: string | URL | FetchHttp.Request, init?: FetchHttp.RequestInit): Promise<FetchHttp.Response>;
 }
-export type { MessageChannel, MessagePort, Worker, WorkerConstructor, WorkerOptions, Transferable, StructuredSerializeOptions, ErrorEvent, ErrorEventInit, } from './workers.js';
+export type { MessageChannel, MessagePort, Worker, WorkerConstructor, WorkerOptions, Transferable, FlaxTransferableMap, StructuredSerializeOptions, ErrorEvent, ErrorEventInit, } from './workers.js';
 declare global {
     type MessageChannel = import('./workers.js').MessageChannel;
     var MessageChannel: {

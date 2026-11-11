@@ -113,13 +113,16 @@ class _VideoAcceptanceState extends State<VideoAcceptance> {
       ))!;
       textureId = sourceInfo['textureId'] as int;
       final sourceId = sourceInfo['sourceId'] as String;
+      final acquireInWorker =
+          Platform.environment['FLAX_WEBGPU_VIDEO_WORKER_SOURCES'] != 'none';
       final config = {
         'modeOrder':
             Platform.environment['FLAX_WEBGPU_VIDEO_ORDER'] ?? 'direct,three',
         'refreshRate': view.display.refreshRate,
+        'workerVideoAcquisition': acquireInWorker,
       };
       final source = await rootBundle.loadString('assets/app.js');
-      final workerVideoSources = {'movie'};
+      final workerVideoSources = <String>{if (acquireInWorker) 'movie'};
       final value = FlaxSession(
         createRuntime: () => runtime = FlaxEngine.createRuntime(),
         source: 'globalThis.__videoConfig=${jsonEncode(config)};\n$source',

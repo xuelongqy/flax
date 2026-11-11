@@ -110,6 +110,7 @@ struct Event {
 };
 struct Surface;
 void retireSurface(Surface *surface);
+using OwnedVideoFrame = std::unique_ptr<void, decltype(&flax_webgpu_video_frame_release)>;
 struct State {
   wgpu::Instance instance = wgpu::CreateInstance();
   std::mutex mutex;
@@ -120,6 +121,7 @@ struct State {
   Event delivered;
   std::unordered_map<WGPUDevice, wgpu::Device> ownedDevices;
   std::vector<Surface *> ownedCanvases;
+  std::unordered_map<void *, OwnedVideoFrame> receivedFrames;
   State() {
     if (!instance)
       throw std::runtime_error("Cannot create Dawn instance");
@@ -143,6 +145,7 @@ struct State {
     std::deque<Event> discarded;
     Event last;
     decltype(ownedDevices) retired;
+    decltype(receivedFrames) frames;
     std::vector<Surface *> canvases;
     {
       std::lock_guard lock(mutex);
@@ -153,9 +156,12 @@ struct State {
       retired.swap(ownedDevices);
       ownedDeviceRefs -= retired.size();
       canvases.swap(ownedCanvases);
+      frames.swap(receivedFrames);
     }
     // Remove published producers before destroying devices and cancelling their work.
     for (auto canvas : canvases) retireSurface(canvas);
+    // Retire adopted video imports on the JS owner before destroying their devices.
+    frames.clear();
     // Cancel outstanding Dawn work before FFI can release callback trampolines.
     for (auto &[pointer, device] : retired) device.Destroy();
   }

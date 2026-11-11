@@ -25,10 +25,44 @@ type FrameInfo = Pick<
 > & {
   colorSpace: Required<VideoColorSpaceInit> & { value?: VideoColorSpaceContract };
 };
-type FrameState = { handle: bigint; info: FrameInfo; ref: WeakRef<object> };
+type FrameState = {
+  handle: bigint;
+  info: FrameInfo;
+  ref: WeakRef<object>;
+  received: boolean;
+};
+type OwnedArrayBuffer = (
+  address: bigint,
+  length: number,
+  release: (address: bigint) => void,
+  token: bigint,
+) => ArrayBuffer;
+type FrameTransfer = {
+  receiver: object;
+  state: FrameState;
+  handle: bigint;
+  address: bigint;
+  buffer: ArrayBuffer;
+  next: FrameTransfer | undefined;
+};
 
 const ByteArray = Uint8Array;
 const PlaneArray = Uint32Array;
+const rgbFormats = ['RGBA', 'RGBX', 'BGRA', 'BGRX'];
+const transferProviderKey = Symbol.for('flax.worker.transfer');
+const uncloneable = Symbol.for('flax.uncloneable');
+const uncloneableDescriptor = { __proto__: null, value: true };
+const apply = Reflect.apply;
+const defineProperty = Object.defineProperty;
+const isArray = Array.isArray;
+const finite = Number.isFinite;
+const parseJSON = JSON.parse;
+const FrameRef = WeakRef;
+const TransferMap = WeakMap;
+const weakGet = WeakMap.prototype.get;
+const weakSet = WeakMap.prototype.set;
+const attachFinalizer = NativeFinalizer.prototype.attach;
+const detachFinalizer = NativeFinalizer.prototype.detach;
 const typedArray = Object.getPrototypeOf(ByteArray.prototype);
 const typedBuffer = Object.getOwnPropertyDescriptor(typedArray, 'buffer')!.get!;
 const typedOffset = Object.getOwnPropertyDescriptor(typedArray, 'byteOffset')!.get!;
@@ -128,6 +162,8 @@ export function installVideoFrames(
   native: Record<string, any>,
   registry: () => bigint,
   sources: VideoSources,
+  ownedArrayBuffer?: OwnedArrayBuffer,
+  context = 0n,
 ) {
   const Exception = (global as any).DOMException;
   const sourceIds: Record<string, string | undefined> = Object.create(null);
@@ -147,9 +183,20 @@ export function installVideoFrames(
   const secret = {};
   const states = new WeakMap<object, FrameState>();
   const active = new Set<WeakRef<object>>();
-  const dropped = new FinalizationRegistry<WeakRef<object>>((ref) =>
-    active.delete(ref),
-  );
+  const getState = states.get.bind(states);
+  const setState = states.set.bind(states);
+  const deleteState = states.delete.bind(states);
+  const activate = active.add.bind(active);
+  const deactivate = active.delete.bind(active);
+  const dropped = new FinalizationRegistry<FrameState>((frame) => {
+    deactivate(frame.ref);
+    if (open && frame.received && frame.handle) {
+      release(frame.handle, true);
+      frame.handle = 0n;
+    }
+  });
+  const registerDrop = dropped.register.bind(dropped);
+  const unregisterDrop = dropped.unregister.bind(dropped);
   let finalizer: NativeFinalizer | undefined;
   let open = true;
 
@@ -202,7 +249,7 @@ export function installVideoFrames(
   }
 
   function state(receiver: object): FrameState {
-    const frame = states.get(receiver);
+    const frame = getState(receiver);
     if (!frame) throw new TypeError('Illegal VideoFrame receiver');
     return frame;
   }
@@ -216,10 +263,8 @@ export function installVideoFrames(
     state(receiver);
     const input = dictionary(options);
     const rawColorSpace = input.colorSpace;
-    if (
-      rawColorSpace !== undefined &&
-      !['srgb', 'display-p3'].includes(text(rawColorSpace))
-    )
+    const colorSpace = rawColorSpace === undefined ? 'srgb' : text(rawColorSpace);
+    if (colorSpace !== 'srgb' && colorSpace !== 'display-p3')
       throw new TypeError('Invalid video destination color space');
     const rawFormat = input.format;
     const format = rawFormat === undefined ? undefined : text(rawFormat);
@@ -245,10 +290,7 @@ export function installVideoFrames(
         'I444AP10',
         'I444AP12',
         'NV12',
-        'RGBA',
-        'RGBX',
-        'BGRA',
-        'BGRX',
+        ...rgbFormats,
       ].includes(format)
     )
       throw new TypeError('Invalid video pixel format');
@@ -293,8 +335,8 @@ export function installVideoFrames(
       (info.format === 'NV12' && (rect.x % 2 !== 0 || rect.y % 2 !== 0))
     )
       throw new TypeError('Invalid video copy rectangle');
-    // Explicit RGB formats require WebCodecs color conversion, even for BGRA input.
-    if (format !== undefined)
+    const packed = format === undefined ? -1 : rgbFormats.indexOf(format);
+    if (format !== undefined && packed === -1)
       throw new Exception(
         'VideoFrame format conversion is unavailable',
         'NotSupportedError',
@@ -304,7 +346,7 @@ export function installVideoFrames(
     const width = Math.trunc(rect.width),
       height = Math.trunc(rect.height);
     const shapes: [number, number][] =
-      info.format === 'NV12'
+      packed === -1 && info.format === 'NV12'
         ? [
             [width, height],
             [Math.ceil(width / 2) * 2, Math.ceil(height / 2)],
@@ -328,21 +370,36 @@ export function installVideoFrames(
       planes.push(plane);
       ends.push(end);
     }
-    return { x, y, width, height, planes, size };
+    return { x, y, width, height, planes, size, packed, colorSpace };
   }
-  function attach(receiver: object, handle: bigint, info: FrameInfo) {
-    const ref = new WeakRef(receiver);
-    states.set(receiver, { handle, info, ref });
+  function release(handle: bigint, received: boolean) {
+    if (received) native.video_frame_transfer_close(context, handle);
+    else native.video_frame_release(handle);
+  }
+  function attach(receiver: object, handle: bigint, info: FrameInfo, received = false) {
+    let ref: WeakRef<object> | undefined;
     try {
-      finalizer ??= new NativeFinalizer(native.video_frame_release);
-      active.add(ref);
-      dropped.register(receiver, ref, ref);
-      finalizer.attach(receiver, handle);
+      ref = new FrameRef(receiver);
+      const frame = { handle, info, ref, received };
+      defineProperty(receiver, uncloneable, uncloneableDescriptor);
+      setState(receiver, frame);
+      activate(ref);
+      registerDrop(receiver, frame, ref);
+      if (!received) {
+        finalizer ??= new NativeFinalizer(native.video_frame_release);
+        apply(attachFinalizer, finalizer, [
+          receiver,
+          handle,
+          { detach: receiver, externalSize: 0 },
+        ]);
+      }
     } catch (error) {
-      states.delete(receiver);
-      active.delete(ref);
-      dropped.unregister(ref);
-      native.video_frame_release(handle);
+      deleteState(receiver);
+      if (ref) {
+        deactivate(ref);
+        unregisterDrop(ref);
+      }
+      release(handle, received);
       throw error;
     }
   }
@@ -358,12 +415,36 @@ export function installVideoFrames(
   function closeFrame(receiver: object) {
     const frame = state(receiver);
     if (!frame.handle) return;
-    finalizer!.detach(receiver);
-    active.delete(frame.ref);
-    dropped.unregister(frame.ref);
+    if (!frame.received) apply(detachFinalizer, finalizer!, [receiver]);
+    deactivate(frame.ref);
+    unregisterDrop(frame.ref);
     const handle = frame.handle;
     frame.handle = 0n;
-    native.video_frame_release(handle);
+    release(handle, frame.received);
+  }
+
+  function adopt(
+    handle: bigint,
+    overrides?: Pick<FrameInfo, 'timestamp' | 'duration'>,
+    received = false,
+  ) {
+    let receiver: VideoFrame, info: FrameInfo;
+    try {
+      const value = toString(native.video_frame_info(handle));
+      if (!value)
+        throw new Exception(
+          toString(native.error()) ?? 'Cannot read video frame information',
+          'OperationError',
+        );
+      const parsed: FrameInfo = parseJSON(value);
+      info = overrides ? { ...parsed, ...overrides } : parsed;
+      receiver = new VideoFrame(secret);
+    } catch (error) {
+      release(handle, received);
+      throw error;
+    }
+    attach(receiver, handle, info, received);
+    return receiver;
   }
   class VideoFrame implements VideoFrameContract {
     constructor(source: object, init: VideoFrameInit = {}) {
@@ -475,20 +556,48 @@ export function installVideoFrames(
       destinationBytes(destination);
       const plan = copyLayout(this, options);
       const bytes = destinationBytes(destination);
-      const { x, y, width, height, planes } = plan;
-      const planeCount = planes.length;
-      const layout = new PlaneArray(planeCount * 2);
-      for (let index = 0; index < planeCount; ++index) {
-        layout[index * 2] = planes[index]!.offset;
-        layout[index * 2 + 1] = planes[index]!.stride;
-      }
+      const { x, y, width, height, planes, packed, colorSpace } = plan;
       const length = typedLength.call(bytes);
       if (length < plan.size)
         throw new TypeError('VideoFrame destination is too small');
-      const copy = native.video_frame_copy;
-      // No application getters may run between the live handle check and native entry.
-      const handle = liveState(this).handle;
-      if (copy(handle, bytes, length, x, y, width, height, layout, planeCount) !== 1)
+      let copied: number;
+      if (packed === -1) {
+        const planeCount = planes.length;
+        const layout = new PlaneArray(planeCount * 2);
+        for (let index = 0; index < planeCount; ++index) {
+          layout[index * 2] = planes[index]!.offset;
+          layout[index * 2 + 1] = planes[index]!.stride;
+        }
+        const copy = native.video_frame_copy;
+        copied = copy(
+          liveState(this).handle,
+          bytes,
+          length,
+          x,
+          y,
+          width,
+          height,
+          layout,
+          planeCount,
+        );
+      } else {
+        const { offset, stride } = planes[0]!;
+        const copy = native.video_frame_copy_rgb;
+        copied = copy(
+          liveState(this).handle,
+          bytes,
+          length,
+          x,
+          y,
+          width,
+          height,
+          offset,
+          stride,
+          packed,
+          colorSpace === 'display-p3' ? 1 : 0,
+        );
+      }
+      if (copied !== 1)
         throw new Exception(
           toString(native.error()) ?? 'Cannot copy video frame pixels',
           'OperationError',
@@ -518,9 +627,7 @@ export function installVideoFrames(
       value: name,
       configurable: true,
     });
-    Object.defineProperty(constructor.prototype, Symbol.for('flax.uncloneable'), {
-      value: true,
-    });
+    defineProperty(constructor.prototype, uncloneable, uncloneableDescriptor);
     Object.defineProperty(global, name, {
       value: constructor,
       configurable: true,
@@ -539,22 +646,7 @@ export function installVideoFrames(
       if (error) throw new Exception(error, 'OperationError');
       return null;
     }
-    let info: FrameInfo;
-    try {
-      const value = toString(native.video_frame_info(handle));
-      if (!value)
-        throw new Exception(
-          toString(native.error()) ?? 'Cannot read video frame information',
-          'OperationError',
-        );
-      info = JSON.parse(value);
-    } catch (error) {
-      native.video_frame_release(handle);
-      throw error;
-    }
-    const frame = new VideoFrame(secret);
-    attach(frame, handle, info);
-    return frame;
+    return adopt(handle);
   }
   if (sources.length)
     Object.defineProperty(global, videoFrameAcquirer, {
@@ -562,9 +654,116 @@ export function installVideoFrames(
       configurable: true,
     });
 
+  const register = (global as any)[transferProviderKey];
+  if (ownedArrayBuffer && register) {
+    register({
+      prepareTransfers(list: unknown[]) {
+        let firstFrame = 0;
+        while (firstFrame < list.length && !getState(list[firstFrame] as object))
+          ++firstFrame;
+        if (firstFrame === list.length) return undefined;
+        const selected = new TransferMap<object, FrameTransfer>();
+        const buffers: unknown[] = [];
+        let first: FrameTransfer | undefined;
+        function finish() {
+          while (first) {
+            const transfer = first;
+            first = transfer.next;
+            if (apply(bufferLength, transfer.buffer, []) === 0)
+              closeFrame(transfer.receiver);
+            else native.video_frame_transfer_abort(transfer.address);
+          }
+        }
+        try {
+          for (let i = 0; i < list.length; ++i) {
+            const receiver = list[i] as object;
+            const state = getState(receiver);
+            let buffer: unknown = receiver;
+            if (state) {
+              if (!open || !state.handle || apply(weakGet, selected, [receiver]))
+                throw new Exception(
+                  'Invalid or duplicate VideoFrame transfer',
+                  'DataCloneError',
+                );
+              const handle = state.handle;
+              const address = native.video_frame_transfer_prepare(handle);
+              if (!address)
+                throw new Exception('Cannot stage the video frame', 'DataCloneError');
+              let transport: ArrayBuffer;
+              try {
+                transport = ownedArrayBuffer(
+                  address,
+                  1,
+                  native.video_frame_transfer_release,
+                  address,
+                );
+              } catch (error) {
+                native.video_frame_transfer_release(address);
+                throw error;
+              }
+              const transfer = {
+                receiver,
+                state,
+                handle,
+                address,
+                buffer: transport,
+                next: first,
+              };
+              first = transfer;
+              apply(weakSet, selected, [receiver, transfer]);
+              buffer = transport;
+            }
+            const descriptor = { __proto__: null, value: buffer };
+            defineProperty(buffers, i, descriptor);
+          }
+        } catch (error) {
+          finish();
+          throw error;
+        }
+        if (!first) return undefined;
+        return {
+          buffers,
+          serialize(value: object) {
+            const transfer = apply(weakGet, selected, [value]) as
+              FrameTransfer | undefined;
+            if (!transfer) return undefined;
+            const { timestamp, duration } = transfer.state.info;
+            return [transfer.buffer, timestamp, duration];
+          },
+          validate() {
+            for (let transfer = first; transfer; transfer = transfer.next)
+              if (!open || transfer.state.handle !== transfer.handle)
+                throw new Exception('VideoFrame ownership changed', 'DataCloneError');
+          },
+          finish,
+        };
+      },
+      restore(record: unknown) {
+        const invalid = () =>
+          new Exception('Invalid VideoFrame transfer', 'DataCloneError');
+        if (!open || !isArray(record) || record.length !== 3) throw invalid();
+        const buffer = record[0],
+          timestamp = record[1],
+          duration = record[2];
+        if (!finite(timestamp) || (duration !== null && !finite(duration)))
+          throw invalid();
+        let length: number;
+        try {
+          length = apply(bufferLength, buffer, []);
+        } catch {
+          throw invalid();
+        }
+        if (length !== 1) throw invalid();
+        const handle = native.video_frame_transfer_take(context, buffer);
+        if (!handle) throw invalid();
+        return adopt(handle, { timestamp, duration }, true);
+      },
+    });
+  }
+
   return {
     frame(value: unknown) {
-      return states.get(value as object);
+      return getState(value as object);
     },
     close() {
       open = false;

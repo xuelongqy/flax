@@ -23,7 +23,7 @@ final class FlaxWebGpuPlugin extends FlaxPlugin {
   final Map<String, String> videoSources;
 
   /// Names from [videoSources] also granted to Dedicated Workers and their
-  /// descendants. Defaults to no Worker video access.
+  /// descendants for direct acquisition. The default grants no source names.
   final Set<String> workerVideoSources;
 
   static final _videoSourceId = RegExp(
@@ -137,7 +137,8 @@ final class FlaxWebGpuPlugin extends FlaxPlugin {
         'WebGPU requires the maintained macOS mapping and renderer engine extensions',
       );
     }
-    return _WebGpuHost(context, workerSources)..install(sources);
+    return _WebGpuHost(context, workerSources, sources.isNotEmpty)
+      ..install(sources);
   }
 }
 
@@ -146,9 +147,10 @@ final class _WebGpuHost
         FlaxPluginInstance,
         FlaxWorkerPluginInstance,
         FlaxWorkerModuleExports {
-  _WebGpuHost(this.context, this._workerVideoSources);
+  _WebGpuHost(this.context, this._workerVideoSources, this._receiveVideoFrames);
   final FlaxHostContext context;
   final List<List<String>> _workerVideoSources;
+  final bool _receiveVideoFrames;
   FlaxJsObject? state;
   bool closed = false;
   final surfaces = Expando<_GpuCanvasContent>();
@@ -171,6 +173,7 @@ final class _WebGpuHost
     return {
       'registry': registry,
       if (_workerVideoSources.isNotEmpty) 'videoSources': _workerVideoSources,
+      if (_receiveVideoFrames) 'receiveVideoFrames': true,
     };
   }
 

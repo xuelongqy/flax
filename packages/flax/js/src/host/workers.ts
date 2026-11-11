@@ -26,8 +26,15 @@ export interface WorkerOptions {
   name?: string;
   credentials?: 'omit' | 'same-origin' | 'include';
 }
+/** Optional host packages extend this map through the shared host types. */
+export interface FlaxTransferableMap {}
 export type Transferable =
-  ArrayBuffer | OffscreenCanvas | ImageBitmap | ElementImage | MessagePort;
+  | ArrayBuffer
+  | OffscreenCanvas
+  | ImageBitmap
+  | ElementImage
+  | MessagePort
+  | FlaxTransferableMap[keyof FlaxTransferableMap];
 export interface StructuredSerializeOptions {
   transfer?: Transferable[];
 }
@@ -131,6 +138,12 @@ const defineProperty = Object.defineProperty;
 const ownKeys = Object.keys;
 const uncloneable = Symbol.for('flax.uncloneable');
 const uncloneableDescriptor = { __proto__: null, value: true };
+const transferProviderKey = Symbol.for('flax.worker.transfer');
+type ProviderTransfers = CanvasTransfers & { finish(): void };
+interface TransferProvider {
+  prepareTransfers(list: unknown[]): ProviderTransfers | undefined;
+  restore(record: unknown): object;
+}
 
 function transfers(
   input: Transferable[] | StructuredSerializeOptions | undefined,
@@ -217,16 +230,43 @@ export function installWorkers(
   const diagnostics = gpuDiagnosticsHost(global);
   const canvases = g.__flaxCanvasHost as CanvasHost | undefined;
   const images = g[Symbol.for('flax.image.host')] as ImageHost | undefined;
-  function prepareTransfers(list: unknown[]): CanvasTransfers {
+  let transferProvider: TransferProvider | undefined;
+  if (native) {
+    const descriptor = {
+      __proto__: null,
+      configurable: true,
+      value(provider: TransferProvider) {
+        if (closed || transferProvider)
+          throw new DOMException(
+            'Transfer provider is unavailable',
+            'InvalidStateError',
+          );
+        transferProvider = provider;
+        delete g[transferProviderKey];
+      },
+    };
+    defineProperty(g, transferProviderKey, descriptor);
+  }
+  function prepareTransfers(list: unknown[]): CanvasTransfers & {
+    finish: (() => void) | undefined;
+  } {
     const image = images?.prepareTransfers(list);
     const canvas = canvases?.prepareTransfers(image?.buffers ?? list);
+    const buffers = canvas?.buffers ?? image?.buffers ?? list;
+    const optional = transferProvider?.prepareTransfers(buffers);
     return {
-      buffers: canvas?.buffers ?? image?.buffers ?? list,
-      serialize: (value) => canvas?.serialize(value) ?? image?.serialize(value),
+      buffers: optional?.buffers ?? buffers,
+      serialize(value) {
+        const record = optional?.serialize(value);
+        if (record !== undefined) return ['FlaxTransfer', record];
+        return canvas?.serialize(value) ?? image?.serialize(value);
+      },
       validate() {
         canvas?.validate();
         image?.validate();
+        optional?.validate();
       },
+      finish: optional?.finish,
     };
   }
   const serializeHost = (value: object, transfer?: CanvasTransfers) => {
@@ -244,6 +284,11 @@ export function installWorkers(
     return diagnostics.serialize(value);
   };
   const deserializeHost = (record: any[]) => {
+    if (record[0] === 'FlaxTransfer') {
+      if (!transferProvider)
+        throw new DOMException('Transfer provider is unavailable', 'DataCloneError');
+      return transferProvider.restore(record[1]);
+    }
     if (
       record[0] === 'ImageData' ||
       record[0] === 'ImageBitmap' ||
@@ -406,6 +451,7 @@ export function installWorkers(
           prepared.validate,
         );
     } finally {
+      prepared.finish?.();
       forgetTransferred(list);
     }
   }
@@ -434,11 +480,17 @@ export function installWorkers(
           value,
           prepared.buffers,
           (value: object) => serializeHost(value, prepared),
-          deserializeHost,
+          prepared.finish
+            ? (record: any[]) => {
+                prepared.finish!();
+                return deserializeHost(record);
+              }
+            : deserializeHost,
           prepared.validate,
           makePort,
         );
       } finally {
+        prepared.finish?.();
         forgetTransferred(list);
       }
     },
@@ -901,6 +953,8 @@ export function installWorkers(
     close() {
       for (const worker of [...workers.values()]) worker.terminate();
       closed = true;
+      transferProvider = undefined;
+      delete g[transferProviderKey];
       const owned = ownKeys(ports);
       for (let i = 0; i < owned.length; i++) closePort(+owned[i]!);
       for (const [token, state] of wasmStreams) {

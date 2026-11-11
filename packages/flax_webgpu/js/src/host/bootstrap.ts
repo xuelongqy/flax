@@ -10,7 +10,11 @@ export function install(
 
 export function installWorker(
   global: typeof globalThis,
-  configuration: { registry: string; videoSources?: VideoSources },
+  configuration: {
+    registry: string;
+    videoSources?: VideoSources;
+    receiveVideoFrames?: boolean;
+  },
 ) {
   const state = installWebGpu(
     global,
@@ -26,6 +30,7 @@ export function installWorker(
     },
     true,
     configuration.videoSources,
+    configuration.receiveVideoFrames,
   );
   state.initialize(configuration.registry);
   return state;

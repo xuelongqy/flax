@@ -47,11 +47,12 @@ export function installWebGpu(
   host: Call,
   worker = false,
   videoSources: VideoSources = [],
+  receiveVideoFrames = false,
 ) {
   const g = global as any;
   const images = () => imageHost(global);
   const diagnostics = gpuDiagnosticsHost(global);
-  const hasVideoSources = videoSources.length > 0;
+  const hasVideoSources = videoSources.length > 0 || receiveVideoFrames;
   const library = DynamicLibrary.codeAsset('@flax/webgpu/dawn');
   const signatures = definitions as any;
   const native: Record<string, any> = {};
@@ -124,6 +125,10 @@ export function installWebGpu(
       native,
       () => registry,
       videoSources,
+      hasVideoSources && typeof memory.ownedArrayBuffer === 'function'
+        ? memory.ownedArrayBuffer.bind(memory)
+        : undefined,
+      context,
     ));
     let initialize: (value: boolean) => void;
     const ready = new Promise<boolean>((resolve) => {

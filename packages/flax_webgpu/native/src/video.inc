@@ -1,5 +1,6 @@
 // The plugin registers this producer in the Flutter texture registry.
 #include <array>
+#include <cmath>
 
 @interface FlaxWebGpuVideoSource : NSObject
 + (instancetype)videoSourceForRegistry:(id)registry sourceId:(NSString *)sourceId;
@@ -62,6 +63,21 @@ struct VideoFrame {
   int64_t timestamp, duration;
   std::vector<VideoImport> imports;
 };
+
+struct VideoTransfer {
+  uint8_t byte = 0;
+  std::unique_ptr<VideoFrame> frame;
+};
+std::mutex videoTransfersMutex;
+std::unordered_map<void *, std::unique_ptr<VideoTransfer>> videoTransfers;
+
+std::unique_ptr<VideoFrame> takeVideoTransfer(void *address) {
+  std::lock_guard lock(videoTransfersMutex);
+  const auto found = videoTransfers.find(address);
+  if (found == videoTransfers.end())
+    return nullptr;
+  return std::move(found->second->frame);
+}
 
 id videoAttachment(CVPixelBufferRef buffer, CFStringRef key) {
   return CFBridgingRelease(CVBufferCopyAttachment(buffer, key, nullptr));
@@ -139,6 +155,68 @@ constexpr float videoSrgbToP3[9] = {
     .82259287f, .03319951f, .01708535f, .17753395f, .9667835f,
     .07239572f, 0.f,        0.f,        .91030148f,
 };
+
+float videoTransfer(float value, const float (&parameters)[7]) {
+  const auto [g, a, b, c, d, e, f] = parameters;
+  const float magnitude = std::abs(value);
+  return std::copysign(magnitude < d ? c * magnitude + f
+                                     : std::pow(a * magnitude + b, g) + e,
+                       value);
+}
+
+uint8_t videoByte(float value) {
+  return static_cast<uint8_t>(std::clamp(value, 0.f, 1.f) * 255.f + .5f);
+}
+
+void validateVideoCopyRect(const VideoFrame &frame, uint32_t x, uint32_t y,
+                           uint32_t width, uint32_t height) {
+  require(width && height && x <= frame.size.width && width <= frame.size.width - x &&
+              y <= frame.size.height && height <= frame.size.height - y &&
+              (!frame.nv12() || (x % 2 == 0 && y % 2 == 0)),
+          "Invalid video copy rectangle");
+}
+
+struct VideoCopyPlane {
+  const uint8_t *start;
+  size_t stride, rows, rowBytes;
+};
+
+VideoCopyPlane videoCopyPlane(const VideoFrame &frame, uint32_t plane, uint32_t x,
+                              uint32_t y, uint32_t width, uint32_t height) {
+  const auto buffer = frame.pixels->buffer.get();
+  const bool nv12 = frame.nv12();
+  const size_t sampleWidth = nv12 && plane == 1 ? 2 : 1;
+  const size_t sampleBytes = nv12 ? sampleWidth : 4;
+  const auto planeWidth = nv12 ? CVPixelBufferGetWidthOfPlane(buffer, plane)
+                               : CVPixelBufferGetWidth(buffer);
+  const auto planeHeight = nv12 ? CVPixelBufferGetHeightOfPlane(buffer, plane)
+                                : CVPixelBufferGetHeight(buffer);
+  const auto stride = nv12 ? CVPixelBufferGetBytesPerRowOfPlane(buffer, plane)
+                           : CVPixelBufferGetBytesPerRow(buffer);
+  const auto base = static_cast<const uint8_t *>(
+      nv12 ? CVPixelBufferGetBaseAddressOfPlane(buffer, plane)
+           : CVPixelBufferGetBaseAddress(buffer));
+  const size_t top = y / sampleWidth, left = (x / sampleWidth) * sampleBytes;
+  const size_t rows = (size_t(height) + sampleWidth - 1) / sampleWidth;
+  const size_t rowBytes = ((size_t(width) + sampleWidth - 1) / sampleWidth) * sampleBytes;
+  require(base && planeWidth == (size_t(frame.size.width) + sampleWidth - 1) / sampleWidth &&
+              planeHeight == (size_t(frame.size.height) + sampleWidth - 1) / sampleWidth &&
+              planeWidth <= SIZE_MAX / sampleBytes && stride >= planeWidth * sampleBytes &&
+              planeHeight <= SIZE_MAX / stride && top <= planeHeight &&
+              rows <= planeHeight - top && left <= stride && rowBytes <= stride - left &&
+              reinterpret_cast<uintptr_t>(base) <= UINTPTR_MAX - planeHeight * stride,
+          "Invalid source video plane storage");
+  return {base + top * stride + left, stride, rows, rowBytes};
+}
+
+uint64_t videoCopyEnd(void *destination, size_t length, uint32_t offset, uint32_t stride,
+                      size_t rows, size_t rowBytes) {
+  const uint64_t end = offset + uint64_t(stride) * rows;
+  require(stride >= rowBytes && end <= UINT32_MAX && end <= length &&
+              reinterpret_cast<uintptr_t>(destination) <= UINTPTR_MAX - end,
+          "Invalid destination video plane storage");
+  return end;
+}
 
 VideoImport &videoImportForDevice(VideoFrame &frame, WGPUDevice raw) {
   for (auto &cached : frame.imports)
@@ -338,68 +416,168 @@ extern "C" void *flax_webgpu_video_frame_clone(void *frame) {
   return result;
 }
 
+extern "C" void *flax_webgpu_video_frame_transfer_prepare(void *frame) {
+  void *result = nullptr;
+  status([&] {
+    require(frame, "Missing video frame");
+    auto token = std::make_unique<VideoTransfer>();
+    token->frame = std::make_unique<VideoFrame>(*static_cast<VideoFrame *>(frame));
+    void *address = &token->byte;
+    std::lock_guard lock(videoTransfersMutex);
+    videoTransfers.emplace(address, std::move(token));
+    result = address;
+  });
+  return result;
+}
+
+extern "C" void *flax_webgpu_video_frame_transfer_take(void *context, void *address) {
+  void *result = nullptr;
+  status([&] {
+    const auto owner = live(context);
+    auto frame = takeVideoTransfer(address);
+    require(frame != nullptr, "Invalid or consumed VideoFrame transfer");
+    void *handle = frame.get();
+    OwnedVideoFrame lease(frame.release(), flax_webgpu_video_frame_release);
+    std::lock_guard lock(owner->mutex);
+    require(!owner->closed, "The receiving WebGPU session closed");
+    owner->receivedFrames.emplace(handle, std::move(lease));
+    result = handle;
+  });
+  return result;
+}
+
+extern "C" void flax_webgpu_video_frame_transfer_close(void *context, void *frame) {
+  if (!context || !frame)
+    return;
+  const auto owner = state(context);
+  decltype(State::receivedFrames)::node_type retired;
+  {
+    std::lock_guard lock(owner->mutex);
+    retired = owner->receivedFrames.extract(frame);
+  }
+}
+
+extern "C" void flax_webgpu_video_frame_transfer_abort(void *address) {
+  takeVideoTransfer(address);
+}
+
+extern "C" void flax_webgpu_video_frame_transfer_release(void *address) {
+  // The backing-store deleter may run in either realm or on packet disposal.
+  decltype(videoTransfers)::node_type token;
+  {
+    std::lock_guard lock(videoTransfersMutex);
+    token = videoTransfers.extract(address);
+  }
+  if (token.empty())
+    ++videoRetirementErrors;
+}
+
 extern "C" int32_t flax_webgpu_video_frame_copy(void *frame, void *destination, size_t length,
                                                 uint32_t x, uint32_t y, uint32_t width,
                                                 uint32_t height, const uint32_t *layout,
                                                 uint32_t planes) {
   return status([&] {
     require(frame && destination && layout, "Missing video copy storage");
-    auto &value = *static_cast<VideoFrame *>(frame);
-    const bool nv12 = value.nv12();
-    require(planes == (nv12 ? 2u : 1u) && width && height &&
-                x <= value.size.width && width <= value.size.width - x &&
-                y <= value.size.height && height <= value.size.height - y &&
-                (!nv12 || (x % 2 == 0 && y % 2 == 0)),
-            "Invalid video copy rectangle or plane count");
-
-    const auto buffer = value.pixels->buffer.get();
-    VideoPixelReadLock lock(buffer);
-    struct Plane {
-      const uint8_t *base;
-      size_t stride, top, left, rows, rowBytes, destinationStride;
-      uint64_t offset, end;
+    const auto &value = *static_cast<VideoFrame *>(frame);
+    require(planes == (value.nv12() ? 2u : 1u), "Invalid video copy plane count");
+    validateVideoCopyRect(value, x, y, width, height);
+    VideoPixelReadLock lock(value.pixels->buffer.get());
+    struct Copy {
+      VideoCopyPlane source;
+      uint32_t offset, stride;
+      uint64_t end;
     };
-    std::array<Plane, 2> copies;
+    std::array<Copy, 2> copies;
     for (uint32_t i = 0; i < planes; ++i) {
-      const size_t sampleWidth = nv12 && i == 1 ? 2 : 1;
-      const size_t sampleBytes = nv12 ? (i == 1 ? 2 : 1) : 4;
-      const auto planeWidth = nv12 ? CVPixelBufferGetWidthOfPlane(buffer, i)
-                                  : CVPixelBufferGetWidth(buffer);
-      const auto planeHeight = nv12 ? CVPixelBufferGetHeightOfPlane(buffer, i)
-                                   : CVPixelBufferGetHeight(buffer);
-      const auto stride = nv12 ? CVPixelBufferGetBytesPerRowOfPlane(buffer, i)
-                              : CVPixelBufferGetBytesPerRow(buffer);
-      const auto base = static_cast<const uint8_t *>(
-          nv12 ? CVPixelBufferGetBaseAddressOfPlane(buffer, i)
-               : CVPixelBufferGetBaseAddress(buffer));
-      const size_t top = y / sampleWidth, left = (x / sampleWidth) * sampleBytes;
-      const size_t rows = (size_t(height) + sampleWidth - 1) / sampleWidth;
-      const size_t rowBytes = ((size_t(width) + sampleWidth - 1) / sampleWidth) * sampleBytes;
-      require(base && planeWidth == (size_t(value.size.width) + sampleWidth - 1) / sampleWidth &&
-                  planeHeight == (size_t(value.size.height) + sampleWidth - 1) / sampleWidth &&
-                  planeWidth <= SIZE_MAX / sampleBytes && stride >= planeWidth * sampleBytes &&
-                  planeHeight <= SIZE_MAX / stride && top <= planeHeight &&
-                  rows <= planeHeight - top && left <= stride && rowBytes <= stride - left &&
-                  reinterpret_cast<uintptr_t>(base) <= UINTPTR_MAX - planeHeight * stride,
-              "Invalid source video plane storage");
-      const uint64_t offset = layout[2 * i], destinationStride = layout[2 * i + 1];
-      const uint64_t end = offset + destinationStride * rows;
-      require(destinationStride >= rowBytes && end <= UINT32_MAX && end <= length &&
-                  reinterpret_cast<uintptr_t>(destination) <= UINTPTR_MAX - end,
-              "Invalid destination video plane storage");
+      const auto copy = videoCopyPlane(value, i, x, y, width, height);
+      const auto offset = layout[2 * i], stride = layout[2 * i + 1];
+      const auto end = videoCopyEnd(destination, length, offset, stride,
+                                    copy.rows, copy.rowBytes);
       for (uint32_t earlier = 0; earlier < i; ++earlier)
         require(offset >= copies[earlier].end || copies[earlier].offset >= end,
                 "Overlapping destination video planes");
-      copies[i] = {base, stride, top, left, rows, rowBytes,
-                   static_cast<size_t>(destinationStride), offset, end};
+      copies[i] = {copy, offset, stride, end};
     }
     // Validate every plane before writing; source and destination padding stay untouched.
     for (uint32_t i = 0; i < planes; ++i) {
       const auto &copy = copies[i];
-      const auto source = copy.base + copy.top * copy.stride + copy.left;
+      const auto &source = copy.source;
       auto output = static_cast<uint8_t *>(destination) + copy.offset;
-      for (size_t row = 0; row < copy.rows; ++row)
-        memcpy(output + row * copy.destinationStride, source + row * copy.stride, copy.rowBytes);
+      for (size_t row = 0; row < source.rows; ++row)
+        memcpy(output + row * copy.stride, source.start + row * source.stride,
+               source.rowBytes);
+    }
+  });
+}
+
+extern "C" int32_t flax_webgpu_video_frame_copy_rgb(
+    void *frame, void *destination, size_t length, uint32_t x, uint32_t y,
+    uint32_t width, uint32_t height, uint32_t offset, uint32_t stride,
+    uint32_t format, uint32_t color_space) {
+  return status([&] {
+    require(frame && destination && format <= 3 && color_space <= 1,
+            "Invalid packed video copy");
+    const auto &value = *static_cast<VideoFrame *>(frame);
+    validateVideoCopyRect(value, x, y, width, height);
+    const size_t rowBytes = size_t(width) * 4;
+    videoCopyEnd(destination, length, offset, stride, height, rowBytes);
+    VideoPixelReadLock lock(value.pixels->buffer.get());
+    const auto plane = videoCopyPlane(value, 0, x, y, width, height);
+    const bool nv12 = value.nv12();
+    const auto chroma = nv12 ? videoCopyPlane(value, 1, x, y, width, height) : VideoCopyPlane{};
+    const auto &matrix = value.format == kCVPixelFormatType_420YpCbCr8BiPlanarFullRange
+                             ? videoBt709Full : videoBt709Limited;
+    const bool p3 = color_space == 1;
+    const bool convert = value.bt709 || p3;
+    const auto &decode = value.bt709 ? videoBt709Decode : videoSrgbDecode;
+    const size_t red = format < 2 ? 0 : 2, blue = 2 - red;
+    const bool opaque = nv12 || format % 2 == 1;
+    auto output = static_cast<uint8_t *>(destination) + offset;
+    for (size_t row = 0; row < height; ++row) {
+      const auto source = plane.start + row * plane.stride;
+      auto out = output + row * stride;
+      if (!convert && format == 2) {
+        memcpy(out, source, rowBytes);
+        continue;
+      }
+      const auto uv = nv12 ? chroma.start + (row / 2) * chroma.stride : nullptr;
+      for (size_t column = 0; column < width; ++column, out += 4) {
+        const auto bgra = source + (nv12 ? column : column * 4);
+        if (!convert) {
+          out[red] = bgra[2];
+          out[1] = bgra[1];
+          out[blue] = bgra[0];
+        } else {
+          std::array<float, 3> encoded;
+          if (nv12) {
+            const size_t chromaOffset = column & ~size_t(1);
+            const float luma = *bgra / 255.f;
+            const float cb = uv[chromaOffset] / 255.f;
+            const float cr = uv[chromaOffset + 1] / 255.f;
+            for (size_t channel = 0; channel < 3; ++channel) {
+              const auto coefficients = matrix.data() + 4 * channel;
+              encoded[channel] = coefficients[0] * luma + coefficients[1] * cb +
+                                 coefficients[2] * cr + coefficients[3];
+            }
+          } else {
+            encoded = {bgra[2] / 255.f, bgra[1] / 255.f, bgra[0] / 255.f};
+          }
+          std::array<float, 3> linear;
+          for (size_t channel = 0; channel < 3; ++channel)
+            linear[channel] = videoTransfer(encoded[channel], decode);
+          if (p3) {
+            const auto srgb = linear;
+            for (size_t channel = 0; channel < 3; ++channel)
+              linear[channel] = videoSrgbToP3[channel] * srgb[0] +
+                                videoSrgbToP3[3 + channel] * srgb[1] +
+                                videoSrgbToP3[6 + channel] * srgb[2];
+          }
+          out[red] = videoByte(videoTransfer(linear[0], videoSrgbEncode));
+          out[1] = videoByte(videoTransfer(linear[1], videoSrgbEncode));
+          out[blue] = videoByte(videoTransfer(linear[2], videoSrgbEncode));
+        }
+        out[3] = opaque ? 255 : bgra[3];
+      }
     }
   });
 }

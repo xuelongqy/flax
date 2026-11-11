@@ -44,7 +44,7 @@ Dawn imports full-frame SDR BGRA and BT.709 NV12 in video or full range.
 `GPUQueue.copyExternalImageToTexture` performs GPU color conversion and copying. An
 acquired frame owns its buffer lease independently of the producer. Close and Session
 teardown expire imports, end shared access and hold the decoder buffer until the
-completion fence. A VideoFrame and its GPU objects stay in the acquiring realm.
+completion fence. GPU imports belong to the realm that created them.
 
 In a nonsandboxed Session, `workerVideoSources` grants a subset of `videoSources` to
 Dedicated Workers and their descendants. The default is empty. Installation validates
@@ -77,10 +77,27 @@ the caller; ordinary rendering and sampling perform no CPU readback. Closing a s
 clone does not prevent readback. Getters and iterators are converted before checking the
 frame again, so closing it during options conversion cannot access released storage.
 
-Omit `format` to copy original bytes. Explicit output formats require color conversion
-and throw `NotSupportedError`, including explicit BGRA for BGRA input; `colorSpace`
-without `format` is enum-checked and otherwise ignored. Raw-pixel construction, image
-transforms, WebCodecs decode and cross-realm VideoFrame transfer remain unimplemented.
+Omit `format` to copy original bytes. A valid `colorSpace` alone has no effect. Explicit
+`RGBA`, `RGBX`, `BGRA` and `BGRX` write one packed plane directly into the destination.
+The default destination is sRGB. Use `colorSpace: 'display-p3'` for Display P3. The copy
+keeps source alpha in A formats and writes 255 for X. Explicit non-RGB formats throw
+`NotSupportedError`.
+
+Put a live frame in the transfer list of `structuredClone`, `Worker.postMessage`, the
+Worker global `postMessage`, or `MessagePort.postMessage`. Successful transfer closes
+the sender and expires its GPU imports. The receiving realm owns a fresh frame lease
+with the same pixels and timing, including any overrides. The packet holds a native
+pixel lease while it waits in the queue. A failed graph or transfer validation keeps any
+otherwise-live frames and buffers attached. Workers in Sessions with video sources can
+receive and render frames even when `workerVideoSources` is empty.
+
+Received leases belong to the destination's native WebGPU context. Explicit close and JS
+collection retire their imports on that realm's JS thread. Native context shutdown
+drains remaining received frames before destroying devices, including Worker teardown.
+
+Ordinary frame cloning across a message, raw-pixel construction, image transforms and
+WebCodecs decode remain outside this profile. Use `frame.clone()` for a second live
+lease in the same realm.
 
 ## Worker rendering
 

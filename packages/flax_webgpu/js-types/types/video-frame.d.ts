@@ -68,6 +68,11 @@ export interface VideoFrame {
     clone(): VideoFrame;
     close(): void;
 }
+declare module '@flax/core/host/common' {
+    interface FlaxTransferableMap {
+        VideoFrame: VideoFrame;
+    }
+}
 export declare const videoFrameAcquirer: unique symbol;
 /** Acquires the current frame of a host-registered source granted to this realm. */
 export declare function acquireVideoFrame(source: string): VideoFrame | null;

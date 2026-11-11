@@ -8,7 +8,10 @@ export interface WorkerOptions {
     name?: string;
     credentials?: 'omit' | 'same-origin' | 'include';
 }
-export type Transferable = ArrayBuffer | OffscreenCanvas | ImageBitmap | ElementImage | MessagePort;
+/** Optional host packages extend this map through the shared host types. */
+export interface FlaxTransferableMap {
+}
+export type Transferable = ArrayBuffer | OffscreenCanvas | ImageBitmap | ElementImage | MessagePort | FlaxTransferableMap[keyof FlaxTransferableMap];
 export interface StructuredSerializeOptions {
     transfer?: Transferable[];
 }

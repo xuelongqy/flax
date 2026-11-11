@@ -49,11 +49,25 @@ void *flax_webgpu_video_frame_acquire(void *registry, const char *source_id);
 const char *flax_webgpu_video_frame_info(void *frame);
 /* Returns an independent owned lease sharing the same pixel buffer. */
 void *flax_webgpu_video_frame_clone(void *frame);
+/* A one-byte owned ArrayBuffer holds the staged lease until take, abort, or
+ * backing-store release. Only the original address can take the frame. */
+void *flax_webgpu_video_frame_transfer_prepare(void *frame);
+/* Take moves the import-free payload into the receiving context's owned ledger.
+ * Close retires an adopted frame on that context's JS owner thread. */
+void *flax_webgpu_video_frame_transfer_take(void *context, void *address);
+void flax_webgpu_video_frame_transfer_close(void *context, void *frame);
+void flax_webgpu_video_frame_transfer_abort(void *address);
+void flax_webgpu_video_frame_transfer_release(void *address);
 /* Copies original-format planes; layout contains offset/stride pairs in bytes. */
 int32_t flax_webgpu_video_frame_copy(void *frame, void *destination, size_t length,
                                      uint32_t x, uint32_t y, uint32_t width,
                                      uint32_t height, const uint32_t *layout,
                                      uint32_t planes);
+/* Packed format is RGBA, RGBX, BGRA or BGRX in that order. Color space is 0 (sRGB) or 1 (Display P3). */
+int32_t flax_webgpu_video_frame_copy_rgb(void *frame, void *destination, size_t length,
+                                         uint32_t x, uint32_t y, uint32_t width,
+                                         uint32_t height, uint32_t offset, uint32_t stride,
+                                         uint32_t format, uint32_t color_space);
 /* Returns an owned Dawn handle; color_space is 0 (sRGB) or 1 (Display P3). */
 WGPUExternalTexture flax_webgpu_video_frame_import(WGPUDevice device, void *frame,
                                                    uint32_t color_space);

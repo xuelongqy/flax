@@ -208,6 +208,59 @@ test('static CommonJS and node:ffi resolve to the same public API', async () => 
   assert.equal(installed.name, '@flax/ffi');
 });
 
+test('bundled finalizer detach avoids replaced collection methods', async () => {
+  const result = await build({
+    absWorkingDir: directory,
+    stdin: {
+      resolveDir: directory,
+      contents: `
+        import {NativeFinalizer} from '@flax/ffi';
+        for (const [prototype, method] of [
+          [WeakMap.prototype, 'get'],
+          [WeakMap.prototype, 'has'],
+          [WeakMap.prototype, 'set'],
+          [Set.prototype, 'add'],
+        ]) {
+          const finalizer = new NativeFinalizer(() => {});
+          const target = {};
+          finalizer.attach(target, 1n);
+          const previous = prototype[method];
+          try {
+            prototype[method] = () => { throw new Error('Unexpected collection hook'); };
+            finalizer.detach(target);
+          } finally {
+            prototype[method] = previous;
+          }
+        }
+      `,
+    },
+    bundle: true,
+    write: false,
+    minify: true,
+    keepNames: true,
+    platform: 'neutral',
+    mainFields: ['module', 'main'],
+    format: 'iife',
+    target: 'es2019',
+    supported: { 'async-generator': false, 'for-await': false },
+    logLevel: 'silent',
+    plugins: [flaxEsbuildPlugin(null, { nativeAssets: false })],
+  });
+  let detached = 0;
+  runInNewContext(result.outputFiles[0].text, {
+    __flaxFfiMemory: {
+      finalizer: () => ({
+        attach: () => 1,
+        detach(ids) {
+          assert.deepEqual(Array.from(ids), [1]);
+          detached++;
+        },
+      }),
+    },
+  });
+  assert.equal(detached, 4);
+});
+
 test('standalone buffer retains its type without an installed FFI package', async (t) => {
   const project = await mkdtemp(resolve(tmpdir(), 'flax-buffer-only-'));
   t.after(() => rm(project, { recursive: true, force: true }));

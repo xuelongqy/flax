@@ -167,8 +167,12 @@ active frame lease. Clone checks require independent GPU import expiry, a shared
 lease, real color metadata, timing overrides, garbage collection and Worker retirement.
 Original-plane readback checks full/cropped NV12 limited/full range and BGRA bytes,
 custom reordered layouts, untouched padding, shared DataView offsets and clone/close
-side effects. The granted Worker repeats readback with its own leases. Explicit format
-conversion rejects with `NotSupportedError`. These CPU checks run outside measurement.
-The app records submission FPS and frame acquisition to GPU queue callback latency for
-each 1920 × 1080 path after warmup. Pixel captures run separately from timing. Results
-and PNGs are in `.local/webgpu-video/`.
+side effects. Packed RGB readback checks all four output formats, sRGB and Display P3
+pixels, and padded destinations. CPU checks run outside measurement. Same-realm transfer
+checks sender expiry, graph aliases, rollback, mixed transfer lists and queue cleanup.
+Run with `FLAX_WEBGPU_VIDEO_WORKER_SOURCES=none` to check that a Worker without
+acquisition grants can render transferred frames, keep one alive through a recorded
+command, return a frame through a MessagePort and retire a remaining live lease. The app
+records submission FPS and frame acquisition to GPU queue callback latency for each 1920
+× 1080 path after warmup. Pixel captures run separately from timing. Results and PNGs
+are in `.local/webgpu-video/`.

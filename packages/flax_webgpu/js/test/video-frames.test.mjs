@@ -290,6 +290,30 @@ async function readbackFixture(format, run) {
       }
       return 1;
     },
+    video_frame_copy_rgb(
+      handle,
+      bytes,
+      length,
+      x,
+      y,
+      width,
+      height,
+      offset,
+      stride,
+      packed,
+      color,
+    ) {
+      calls++;
+      assert(handles.has(handle));
+      assert.equal(length, byteLength.call(bytes));
+      assert.deepEqual(
+        [x, y, width, height, offset, stride, packed, color],
+        [2, 0, 3, 2, 1, 14, 3, 1],
+      );
+      for (let row = 0; row < height; row++)
+        bytes.fill(93, offset + row * stride, offset + row * stride + width * 4);
+      return 1;
+    },
   };
   const global = { DOMException };
   const installed = installVideoFrames(global, native, () => 1n, [['movie', 'id']]);
@@ -382,7 +406,44 @@ test('original-format readback packs full frames and respects cropped padded/reo
     });
 });
 
-test('readback converts options in WebIDL order, rejects conversion requests and validates layouts', async () => {
+test('packed readback plans one plane and uses only the requested destination range', async () => {
+  for (const source of ['NV12', 'BGRA'])
+    await readbackFixture(source, async ({ frame, calls }) => {
+      const options = {
+        colorSpace: 'display-p3',
+        format: 'BGRX',
+        rect: { x: 2, y: 0, width: 3, height: 2 },
+        layout: [{ offset: 1, stride: 14 }],
+      };
+      assert.equal(frame.allocationSize(options), 29);
+      const bytes = new Uint8Array(32).fill(231);
+      assert.deepEqual(
+        await frame.copyTo(bytes.subarray(2, 31), options),
+        options.layout,
+      );
+      const expected = new Uint8Array(bytes.length).fill(231);
+      expected.fill(93, 3, 15);
+      expected.fill(93, 17, 29);
+      assert.deepEqual(bytes, expected);
+      await assert.rejects(frame.copyTo(bytes.subarray(0, 28), options), TypeError);
+      assert.throws(
+        () =>
+          frame.allocationSize({
+            ...options,
+            layout: [
+              { offset: 1, stride: 14 },
+              { offset: 29, stride: 14 },
+            ],
+          }),
+        TypeError,
+      );
+      frame.close();
+      await assert.rejects(frame.copyTo(bytes, options), { name: 'InvalidStateError' });
+      assert.equal(calls(), 1);
+    });
+});
+
+test('readback converts options in WebIDL order, rejects non-RGB formats and validates layouts', async () => {
   await readbackFixture('NV12', async ({ frame, calls }) => {
     const reads = [];
     const number = (key, value) => ({
@@ -437,7 +498,7 @@ test('readback converts options in WebIDL order, rejects conversion requests and
       'rect:x',
       'rect:y',
     ]);
-    for (const format of ['NV12', 'BGRA', 'RGBA', 'I420']) {
+    for (const format of ['NV12', 'I420']) {
       assert.throws(() => frame.allocationSize({ format }), {
         name: 'NotSupportedError',
       });

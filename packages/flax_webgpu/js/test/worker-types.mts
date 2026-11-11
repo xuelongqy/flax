@@ -1,6 +1,10 @@
 import type {} from '@flax/core/host/worker';
 import type {} from '@flax/webgpu/globals';
-import type { FlaxWidgetCanvasSource, FlaxWorkerElementImageQueue } from '@flax/webgpu';
+import type {
+  FlaxWidgetCanvasSource,
+  FlaxWorkerElementImageQueue,
+  VideoFrame as HostVideoFrame,
+} from '@flax/webgpu';
 
 const canvas = new OffscreenCanvas(64, 64);
 void navigator.gpu.requestAdapter();
@@ -9,6 +13,14 @@ canvas.getContext('webgpu')?.configure({
   format: 'bgra8unorm',
 });
 postMessage({ canvas }, [canvas]);
+function transferVideo(frame: HostVideoFrame, port: MessagePort) {
+  const received = structuredClone(frame, { transfer: [frame] });
+  const bytes = new Uint8Array(received.allocationSize({ format: 'RGBA' }));
+  void received.copyTo(bytes, { format: 'RGBA', colorSpace: 'display-p3' });
+  postMessage({ received }, [received, bytes.buffer]);
+  port.postMessage({ received }, { transfer: [received] });
+}
+void transferVideo;
 const frame = requestAnimationFrame((time) => void time);
 cancelAnimationFrame(frame);
 async function stillImages(device: GPUDevice, texture: GPUTexture) {
