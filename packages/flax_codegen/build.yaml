@@ -8,6 +8,7 @@ builders:
         - bindings/manifest.json
         - bindings/js_modules.json
         - lib/src/generated/app.g.dart
+        - lib/src/generated/closed_adapters.g.dart
         - lib/flax_bindings/app.dart
         - js/src/generated/app.ts
     auto_apply: root_package

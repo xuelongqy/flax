@@ -5,6 +5,7 @@ import 'package:glob/glob.dart';
 import 'package:path/path.dart' as p;
 
 import 'config.dart';
+import 'closed_adapters.dart';
 import 'package_pipeline.dart';
 
 /// One build step owns all binding scopes and their shared manifest.
@@ -37,6 +38,7 @@ final class FlaxCodegenBindingsBuilder implements Builder {
         throw ArgumentError('Duplicate Flax builder output: $path');
       }
     }
+    paths.add(flaxCodegenClosedAdaptersOutput);
     buildExtensions = {r'$package$': paths.toList()..sort()};
   }
 
@@ -141,6 +143,7 @@ final class FlaxCodegenBindingsBuilder implements Builder {
     final planned = validation.outputInventory.toSet();
     final missing = planned.difference(allowed).toList()..sort();
     final stale = allowed.difference(planned)..remove(flaxCodegenJsBuildPlan);
+    stale.remove(flaxCodegenClosedAdaptersOutput);
     // Legacy single-app configs still own only the original default paths.
     if (_usesDefaultOutputs) stale.remove(flaxCodegenAggregateDart);
     if (missing.isNotEmpty || stale.isNotEmpty) {

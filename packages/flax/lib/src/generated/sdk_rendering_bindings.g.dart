@@ -28,6 +28,8 @@ import 'package:vector_math/vector_math_64.dart' as api14;
 import 'package:flutter/scheduler.dart' as api15;
 import 'package:flutter/src/rendering/box.dart' as api16;
 
+import 'closed_adapters.g.dart' as _flaxAdapters;
+
 // ignore: unused_element
 const _flaxOmitted = Object();
 const sdk_renderingBindings = FlaxBindingModule(
@@ -741,9 +743,9 @@ const sdk_renderingBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection41Create,
-              _collection41Matches,
-              restore: _collection41Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _AnnotationResult_annotations,
@@ -797,9 +799,9 @@ const sdk_renderingBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection41Create,
-              _collection41Matches,
-              restore: _collection41Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _AnnotationResult_super_get_annotations,
@@ -861,9 +863,9 @@ const sdk_renderingBindings = FlaxBindingModule(
               item: flaxNullableAnyType,
               collection: FlaxCollectionBinding(
                 "iterable:[any?:]",
-                _collection41Create,
-                _collection41Matches,
-                restore: _collection41Restore,
+                _flaxAdapters.flaxAdapter42Create,
+                _flaxAdapters.flaxAdapter42Matches,
+                restore: _flaxAdapters.flaxAdapter42Restore,
               ),
             ),
             id: "callback:<>()->iterable:[any?:]",
@@ -1279,10 +1281,10 @@ const sdk_renderingBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
                   flaxVoidType,
-                  _callback40,
+                  _flaxAdapters.flaxAdapter32,
                   id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-                  invoke: _callback40Invoke,
-                  matches: _callback40Matches,
+                  invoke: _flaxAdapters.flaxAdapter32Invoke,
+                  matches: _flaxAdapters.flaxAdapter32Matches,
                 ),
               ),
             ),
@@ -1476,8 +1478,8 @@ const sdk_renderingBindings = FlaxBindingModule(
                 item: _flaxBinding197,
                 collection: FlaxCollectionBinding(
                   "list:[object:flax.core/sdk_rendering#type:RenderObject]",
-                  _collection42Create,
-                  _collection42Matches,
+                  _flaxAdapters.flaxAdapter98Create,
+                  _flaxAdapters.flaxAdapter98Matches,
                 ),
                 iterable: _flaxBinding1310,
               ),
@@ -1948,10 +1950,10 @@ const sdk_renderingBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
                   flaxVoidType,
-                  _callback86,
+                  _flaxAdapters.flaxAdapter32,
                   id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-                  invoke: _callback86Invoke,
-                  matches: _callback86Matches,
+                  invoke: _flaxAdapters.flaxAdapter32Invoke,
+                  matches: _flaxAdapters.flaxAdapter32Matches,
                 ),
               ),
             ),
@@ -2370,10 +2372,10 @@ const sdk_renderingBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
                   flaxVoidType,
-                  _callback89,
+                  _flaxAdapters.flaxAdapter32,
                   id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-                  invoke: _callback89Invoke,
-                  matches: _callback89Matches,
+                  invoke: _flaxAdapters.flaxAdapter32Invoke,
+                  matches: _flaxAdapters.flaxAdapter32Matches,
                 ),
               ),
             ),
@@ -2600,10 +2602,10 @@ const sdk_renderingBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
                   flaxVoidType,
-                  _callback89,
+                  _flaxAdapters.flaxAdapter32,
                   id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-                  invoke: _callback89Invoke,
-                  matches: _callback89Matches,
+                  invoke: _flaxAdapters.flaxAdapter32Invoke,
+                  matches: _flaxAdapters.flaxAdapter32Matches,
                 ),
               ),
             ),
@@ -3221,10 +3223,10 @@ const sdk_renderingBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
                   flaxVoidType,
-                  _callback101,
+                  _flaxAdapters.flaxAdapter32,
                   id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-                  invoke: _callback101Invoke,
-                  matches: _callback101Matches,
+                  invoke: _flaxAdapters.flaxAdapter32Invoke,
+                  matches: _flaxAdapters.flaxAdapter32Matches,
                 ),
               ),
             ),
@@ -3674,10 +3676,10 @@ const sdk_renderingBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
                   flaxVoidType,
-                  _callback124,
+                  _flaxAdapters.flaxAdapter32,
                   id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-                  invoke: _callback124Invoke,
-                  matches: _callback124Matches,
+                  invoke: _flaxAdapters.flaxAdapter32Invoke,
+                  matches: _flaxAdapters.flaxAdapter32Matches,
                 ),
               ),
             ),
@@ -3901,10 +3903,10 @@ const sdk_renderingBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
                   flaxVoidType,
-                  _callback124,
+                  _flaxAdapters.flaxAdapter32,
                   id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-                  invoke: _callback124Invoke,
-                  matches: _callback124Matches,
+                  invoke: _flaxAdapters.flaxAdapter32Invoke,
+                  matches: _flaxAdapters.flaxAdapter32Matches,
                 ),
               ),
             ),
@@ -4399,10 +4401,10 @@ const sdk_renderingBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
                   flaxVoidType,
-                  _callback185,
+                  _flaxAdapters.flaxAdapter32,
                   id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-                  invoke: _callback185Invoke,
-                  matches: _callback185Matches,
+                  invoke: _flaxAdapters.flaxAdapter32Invoke,
+                  matches: _flaxAdapters.flaxAdapter32Matches,
                 ),
               ),
             ),
@@ -4838,10 +4840,10 @@ const sdk_renderingBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
                   flaxVoidType,
-                  _callback205,
+                  _flaxAdapters.flaxAdapter32,
                   id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-                  invoke: _callback205Invoke,
-                  matches: _callback205Matches,
+                  invoke: _flaxAdapters.flaxAdapter32Invoke,
+                  matches: _flaxAdapters.flaxAdapter32Matches,
                 ),
               ),
             ),
@@ -5311,10 +5313,10 @@ const sdk_renderingBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
                   flaxVoidType,
-                  _callback288,
+                  _flaxAdapters.flaxAdapter32,
                   id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-                  invoke: _callback288Invoke,
-                  matches: _callback288Matches,
+                  invoke: _flaxAdapters.flaxAdapter32Invoke,
+                  matches: _flaxAdapters.flaxAdapter32Matches,
                 ),
               ),
             ),
@@ -5620,10 +5622,10 @@ const sdk_renderingBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
                   flaxVoidType,
-                  _callback288,
+                  _flaxAdapters.flaxAdapter32,
                   id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-                  invoke: _callback288Invoke,
-                  matches: _callback288Matches,
+                  invoke: _flaxAdapters.flaxAdapter32Invoke,
+                  matches: _flaxAdapters.flaxAdapter32Matches,
                 ),
               ),
             ),
@@ -349106,20 +349108,6 @@ Function _flaxShape5<_Shape0, _Shape1, _Shape2, _Shape3>() =>
         withinCallback: withinCallback,
       );
     };
-Object _callback0(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
-      .then<void>((value) => null);
-};
-bool _callback0Matches(Object value) => value is Future<void> Function();
-Object? _callback0Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Future<void> Function())();
-}
 
 Object _callback1(FlaxCallback _flaxBridgeCallback) =>
     (api.RenderBox p0, api.BoxConstraints p1, api1.TextBaseline p2) {
@@ -349151,193 +349139,6 @@ Object? _callback1Invoke(
     positional[0] as api.RenderBox,
     positional[1] as api.BoxConstraints,
     positional[2] as api1.TextBaseline,
-  );
-}
-
-Object _callback2(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
-      .then<void>((value) => null);
-};
-bool _callback2Matches(Object value) => value is Future<void> Function();
-Object? _callback2Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Future<void> Function())();
-}
-
-Object _callback3(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
-      .then<bool>((value) => value as bool);
-};
-bool _callback3Matches(Object value) => value is Future<bool> Function();
-Object? _callback3Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Future<bool> Function())();
-}
-
-Object _callback4(FlaxCallback _flaxBridgeCallback) => (bool p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
-      .then<void>((value) => null);
-};
-bool _callback4Matches(Object value) =>
-    value is Future<void> Function(bool value);
-Object? _callback4Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Future<void> Function(bool value))(positional[0] as bool);
-}
-
-Object _callback5(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
-      .then<double>((value) => value as double);
-};
-bool _callback5Matches(Object value) => value is Future<double> Function();
-Object? _callback5Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Future<double> Function())();
-}
-
-Object _callback6(FlaxCallback _flaxBridgeCallback) => (double p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
-      .then<void>((value) => null);
-};
-bool _callback6Matches(Object value) =>
-    value is Future<void> Function(double value);
-Object? _callback6Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Future<void> Function(double value))(
-    positional[0] as double,
-  );
-}
-
-Object _callback7(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
-      .then<String>((value) => value as String);
-};
-bool _callback7Matches(Object value) => value is Future<String> Function();
-Object? _callback7Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Future<String> Function())();
-}
-
-Object _callback8(FlaxCallback _flaxBridgeCallback) => (String p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
-      .then<void>((value) => null);
-};
-bool _callback8Matches(Object value) =>
-    value is Future<void> Function(String value);
-Object? _callback8Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Future<void> Function(String value))(
-    positional[0] as String,
-  );
-}
-
-Object _callback9(FlaxCallback _flaxBridgeCallback) =>
-    (Map<String, String> p0) {
-      final positional = <Object?>[];
-      final named = <String, Object?>{};
-      positional.add(p0);
-      return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
-          .then<Map<String, Object?>>((value) => value as Map<String, Object?>);
-    };
-bool _callback9Matches(Object value) =>
-    value
-        is Future<Map<String, Object?>> Function(
-          Map<String, String> parameters,
-        );
-Object? _callback9Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function
-      as Future<Map<String, Object?>> Function(Map<String, String> parameters))(
-    positional[0] as Map<String, String>,
-  );
-}
-
-Object _callback10(FlaxCallback _flaxBridgeCallback) => (bool p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
-      .then<void>((value) => null);
-};
-bool _callback10Matches(Object value) =>
-    value is Future<void> Function(bool systemOverlaysAreVisible);
-Object? _callback10Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Future<void> Function(bool systemOverlaysAreVisible))(
-    positional[0] as bool,
-  );
-}
-
-Object _callback11(FlaxCallback _flaxBridgeCallback) =>
-    ({required int priority, required api15.SchedulerBinding scheduler}) {
-      final positional = <Object?>[];
-      final named = <String, Object?>{};
-      named["priority"] = priority;
-      named["scheduler"] = scheduler;
-      return _flaxBridgeCallback.call(positional, named) as bool;
-    };
-bool _callback11Matches(Object value) =>
-    value
-        is bool Function({
-          required int priority,
-          required api15.SchedulerBinding scheduler,
-        });
-Object? _callback11Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function
-      as bool Function({
-        required int priority,
-        required api15.SchedulerBinding scheduler,
-      }))(
-    priority: named["priority"] as int,
-    scheduler: named["scheduler"] as api15.SchedulerBinding,
   );
 }
 
@@ -351061,44 +350862,6 @@ Object? _callback39Invoke(
       ))<Object>(positional[0] as api1.Offset);
 }
 
-Object _callback40(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback40Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback40Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
-Object _callback41(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback41Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback41Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback42Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -351167,25 +350930,6 @@ Object? _callback42Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback43(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback43Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback43Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -352686,25 +352430,6 @@ Object? _callback67Invoke(
       ))<Object>(positional[0] as api1.Offset);
 }
 
-Object _callback68(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback68Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback68Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback69Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -352773,25 +352498,6 @@ Object? _callback69Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback70(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback70Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback70Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -352868,44 +352574,6 @@ Object? _callback71Invoke(
   return null;
 }
 
-Object _callback72(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback72Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback72Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
-Object _callback73(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback73Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback73Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback74Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -352974,25 +352642,6 @@ Object? _callback74Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback75(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback75Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback75Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -353069,44 +352718,6 @@ Object? _callback76Invoke(
   return null;
 }
 
-Object _callback77(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback77Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback77Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
-Object _callback78(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback78Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback78Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback79Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -353175,25 +352786,6 @@ Object? _callback79Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback80(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback80Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback80Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -353270,25 +352862,6 @@ Object? _callback81Invoke(
   return null;
 }
 
-Object _callback82(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback82Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback82Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback83Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -353357,25 +352930,6 @@ Object? _callback83Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback84(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback84Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback84Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -353452,44 +353006,6 @@ Object? _callback85Invoke(
   return null;
 }
 
-Object _callback86(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback86Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback86Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
-Object _callback87(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback87Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback87Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback88Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -353558,25 +353074,6 @@ Object? _callback88Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback89(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback89Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback89Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -353653,25 +353150,6 @@ Object? _callback90Invoke(
   return null;
 }
 
-Object _callback91(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback91Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback91Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback92Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -353740,25 +353218,6 @@ Object? _callback92Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback93(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback93Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback93Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -353835,25 +353294,6 @@ Object? _callback94Invoke(
   return null;
 }
 
-Object _callback95(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback95Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback95Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback96Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -353922,25 +353362,6 @@ Object? _callback96Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback97(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback97Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback97Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -354017,25 +353438,6 @@ Object? _callback98Invoke(
   return null;
 }
 
-Object _callback99(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback99Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback99Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback100Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -354104,44 +353506,6 @@ Object? _callback100Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback101(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback101Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback101Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
-Object _callback102(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback102Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback102Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -354218,25 +353582,6 @@ Object? _callback103Invoke(
   return null;
 }
 
-Object _callback104(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback104Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback104Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback105Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -354305,25 +353650,6 @@ Object? _callback105Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback106(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback106Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback106Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -354400,25 +353726,6 @@ Object? _callback107Invoke(
   return null;
 }
 
-Object _callback108(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback108Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback108Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback109Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -354487,25 +353794,6 @@ Object? _callback109Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback110(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback110Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback110Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -354582,25 +353870,6 @@ Object? _callback111Invoke(
   return null;
 }
 
-Object _callback112(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback112Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback112Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback113Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -354669,25 +353938,6 @@ Object? _callback113Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback114(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback114Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback114Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -354764,25 +354014,6 @@ Object? _callback115Invoke(
   return null;
 }
 
-Object _callback116(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback116Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback116Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback117Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -354851,25 +354082,6 @@ Object? _callback117Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback118(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback118Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback118Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -354946,25 +354158,6 @@ Object? _callback119Invoke(
   return null;
 }
 
-Object _callback120(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback120Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback120Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback121Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -355033,25 +354226,6 @@ Object? _callback121Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback122(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback122Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback122Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -355128,25 +354302,6 @@ Object? _callback123Invoke(
   return null;
 }
 
-Object _callback124(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback124Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback124Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback125Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -355215,25 +354370,6 @@ Object? _callback125Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback126(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback126Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback126Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -355310,25 +354446,6 @@ Object? _callback127Invoke(
   return null;
 }
 
-Object _callback128(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback128Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback128Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback129Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -355397,25 +354514,6 @@ Object? _callback129Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback130(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback130Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback130Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -355492,25 +354590,6 @@ Object? _callback131Invoke(
   return null;
 }
 
-Object _callback132(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback132Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback132Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback133Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -355579,44 +354658,6 @@ Object? _callback133Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback134(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback134Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback134Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
-Object _callback135(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback135Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback135Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -355693,25 +354734,6 @@ Object? _callback136Invoke(
   return null;
 }
 
-Object _callback137(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback137Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback137Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback138Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -355780,25 +354802,6 @@ Object? _callback138Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback139(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback139Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback139Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -355875,25 +354878,6 @@ Object? _callback140Invoke(
   return null;
 }
 
-Object _callback141(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback141Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback141Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback142Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -355962,25 +354946,6 @@ Object? _callback142Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback143(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback143Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback143Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -356057,25 +355022,6 @@ Object? _callback144Invoke(
   return null;
 }
 
-Object _callback145(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback145Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback145Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback146Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -356144,25 +355090,6 @@ Object? _callback146Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback147(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback147Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback147Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -356239,25 +355166,6 @@ Object? _callback148Invoke(
   return null;
 }
 
-Object _callback149(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback149Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback149Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback150Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -356326,25 +355234,6 @@ Object? _callback150Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback151(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback151Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback151Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -356421,25 +355310,6 @@ Object? _callback152Invoke(
   return null;
 }
 
-Object _callback153(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback153Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback153Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback154Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -356508,25 +355378,6 @@ Object? _callback154Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback155(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback155Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback155Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -356603,25 +355454,6 @@ Object? _callback156Invoke(
   return null;
 }
 
-Object _callback157(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback157Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback157Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback158Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -356690,25 +355522,6 @@ Object? _callback158Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback159(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback159Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback159Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -356785,25 +355598,6 @@ Object? _callback160Invoke(
   return null;
 }
 
-Object _callback161(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback161Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback161Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback162Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -356872,25 +355666,6 @@ Object? _callback162Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback163(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback163Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback163Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -356967,25 +355742,6 @@ Object? _callback164Invoke(
   return null;
 }
 
-Object _callback165(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback165Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback165Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback166Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -357054,25 +355810,6 @@ Object? _callback166Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback167(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback167Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback167Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -357149,25 +355886,6 @@ Object? _callback168Invoke(
   return null;
 }
 
-Object _callback169(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback169Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback169Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback170Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -357236,25 +355954,6 @@ Object? _callback170Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback171(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback171Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback171Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -357331,25 +356030,6 @@ Object? _callback172Invoke(
   return null;
 }
 
-Object _callback173(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback173Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback173Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback174Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -357418,25 +356098,6 @@ Object? _callback174Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback175(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback175Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback175Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -357513,25 +356174,6 @@ Object? _callback176Invoke(
   return null;
 }
 
-Object _callback177(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback177Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback177Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback178Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -357600,25 +356242,6 @@ Object? _callback178Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback179(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback179Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback179Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -357695,25 +356318,6 @@ Object? _callback180Invoke(
   return null;
 }
 
-Object _callback181(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback181Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback181Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback182Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -357782,25 +356386,6 @@ Object? _callback182Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback183(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback183Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback183Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -357877,63 +356462,6 @@ Object? _callback184Invoke(
   return null;
 }
 
-Object _callback185(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback185Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback185Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
-Object _callback186(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback186Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback186Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
-Object _callback187(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback187Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback187Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback188Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -358002,25 +356530,6 @@ Object? _callback188Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback189(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback189Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback189Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -358097,25 +356606,6 @@ Object? _callback190Invoke(
   return null;
 }
 
-Object _callback191(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback191Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback191Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback192Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -358184,25 +356674,6 @@ Object? _callback192Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback193(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback193Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback193Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -358279,25 +356750,6 @@ Object? _callback194Invoke(
   return null;
 }
 
-Object _callback195(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback195Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback195Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback196Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -358366,25 +356818,6 @@ Object? _callback196Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback197(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback197Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback197Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -358461,25 +356894,6 @@ Object? _callback198Invoke(
   return null;
 }
 
-Object _callback199(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback199Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback199Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback200Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -358548,25 +356962,6 @@ Object? _callback200Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback201(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback201Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback201Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -358643,25 +357038,6 @@ Object? _callback202Invoke(
   return null;
 }
 
-Object _callback203(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback203Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback203Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback204Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -358730,44 +357106,6 @@ Object? _callback204Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback205(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback205Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback205Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
-Object _callback206(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback206Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback206Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -358844,25 +357182,6 @@ Object? _callback207Invoke(
   return null;
 }
 
-Object _callback208(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback208Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback208Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback209Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -358931,25 +357250,6 @@ Object? _callback209Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback210(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback210Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback210Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -359026,25 +357326,6 @@ Object? _callback211Invoke(
   return null;
 }
 
-Object _callback212(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback212Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback212Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback213Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -359113,25 +357394,6 @@ Object? _callback213Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback214(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback214Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback214Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -359208,25 +357470,6 @@ Object? _callback215Invoke(
   return null;
 }
 
-Object _callback216(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback216Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback216Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback217Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -359295,25 +357538,6 @@ Object? _callback217Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback218(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback218Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback218Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -359390,25 +357614,6 @@ Object? _callback219Invoke(
   return null;
 }
 
-Object _callback220(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback220Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback220Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback221Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -359477,25 +357682,6 @@ Object? _callback221Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback222(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback222Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback222Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -359572,25 +357758,6 @@ Object? _callback223Invoke(
   return null;
 }
 
-Object _callback224(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback224Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback224Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback225Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -359659,25 +357826,6 @@ Object? _callback225Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback226(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback226Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback226Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -359754,44 +357902,6 @@ Object? _callback227Invoke(
   return null;
 }
 
-Object _callback228(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback228Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback228Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
-Object _callback229(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback229Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback229Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback230Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -359860,25 +357970,6 @@ Object? _callback230Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback231(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback231Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback231Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -359955,25 +358046,6 @@ Object? _callback232Invoke(
   return null;
 }
 
-Object _callback233(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback233Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback233Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback234Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -360042,25 +358114,6 @@ Object? _callback234Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback235(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback235Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback235Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -360137,25 +358190,6 @@ Object? _callback236Invoke(
   return null;
 }
 
-Object _callback237(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback237Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback237Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback238Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -360224,25 +358258,6 @@ Object? _callback238Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback239(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback239Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback239Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -360319,25 +358334,6 @@ Object? _callback240Invoke(
   return null;
 }
 
-Object _callback241(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback241Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback241Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback242Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -360406,25 +358402,6 @@ Object? _callback242Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback243(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback243Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback243Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -360501,25 +358478,6 @@ Object? _callback244Invoke(
   return null;
 }
 
-Object _callback245(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback245Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback245Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback246Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -360588,25 +358546,6 @@ Object? _callback246Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback247(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback247Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback247Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -360683,25 +358622,6 @@ Object? _callback248Invoke(
   return null;
 }
 
-Object _callback249(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback249Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback249Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback250Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -360770,25 +358690,6 @@ Object? _callback250Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback251(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback251Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback251Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -360865,25 +358766,6 @@ Object? _callback252Invoke(
   return null;
 }
 
-Object _callback253(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback253Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback253Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback254Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -360952,25 +358834,6 @@ Object? _callback254Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback255(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback255Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback255Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -361047,25 +358910,6 @@ Object? _callback256Invoke(
   return null;
 }
 
-Object _callback257(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback257Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback257Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback258Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -361134,25 +358978,6 @@ Object? _callback258Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback259(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback259Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback259Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -361229,25 +359054,6 @@ Object? _callback260Invoke(
   return null;
 }
 
-Object _callback261(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback261Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback261Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback262Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -361316,25 +359122,6 @@ Object? _callback262Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback263(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback263Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback263Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -361411,25 +359198,6 @@ Object? _callback264Invoke(
   return null;
 }
 
-Object _callback265(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback265Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback265Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback266Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -361498,25 +359266,6 @@ Object? _callback266Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback267(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback267Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback267Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -361593,25 +359342,6 @@ Object? _callback268Invoke(
   return null;
 }
 
-Object _callback269(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback269Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback269Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback270Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -361680,25 +359410,6 @@ Object? _callback270Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback271(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback271Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback271Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -361775,25 +359486,6 @@ Object? _callback272Invoke(
   return null;
 }
 
-Object _callback273(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback273Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback273Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback274Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -361862,44 +359554,6 @@ Object? _callback274Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback275(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback275Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback275Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
-Object _callback276(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback276Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback276Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -361976,25 +359630,6 @@ Object? _callback277Invoke(
   return null;
 }
 
-Object _callback278(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback278Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback278Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback279Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -362063,25 +359698,6 @@ Object? _callback279Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback280(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback280Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback280Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -362158,25 +359774,6 @@ Object? _callback281Invoke(
   return null;
 }
 
-Object _callback282(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback282Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback282Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback283Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -362245,25 +359842,6 @@ Object? _callback283Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback284(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback284Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback284Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -362340,25 +359918,6 @@ Object? _callback285Invoke(
   return null;
 }
 
-Object _callback286(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback286Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback286Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback287Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -362427,25 +359986,6 @@ Object? _callback287Invoke(
         void Function(T constraints) callback,
       ))<api.Constraints>(
     positional[0] as void Function(api.Constraints constraints),
-  );
-  return null;
-}
-
-Object _callback288(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback288Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback288Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
   );
   return null;
 }
@@ -362522,25 +360062,6 @@ Object? _callback289Invoke(
   return null;
 }
 
-Object _callback290(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback290Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback290Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback291Types<_Callback0 extends api.Constraints>(
   FlaxDartTypes types,
 ) {
@@ -362611,51 +360132,6 @@ Object? _callback291Invoke(
     positional[0] as void Function(api.Constraints constraints),
   );
   return null;
-}
-
-Object _callback292(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named) as api11.FutureOr<Object?>;
-};
-bool _callback292Matches(Object value) =>
-    value is api11.FutureOr<Object?> Function();
-Object? _callback292Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as api11.FutureOr<Object?> Function())();
-}
-
-Object _callback293(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named) as api11.FutureOr<Object?>;
-};
-bool _callback293Matches(Object value) =>
-    value is api11.FutureOr<Object?> Function();
-Object? _callback293Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as api11.FutureOr<Object?> Function())();
-}
-
-Object _callback294(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named) as api11.FutureOr<Object?>;
-};
-bool _callback294Matches(Object value) =>
-    value is api11.FutureOr<Object?> Function();
-Object? _callback294Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as api11.FutureOr<Object?> Function())();
 }
 
 FlaxCallbackBinding _callback295Types<_Callback0 extends Object?>(
@@ -362895,25 +360371,6 @@ Object? _callback295Invoke(
   );
 }
 
-Object _callback296(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback296Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback296Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
-}
-
 FlaxCallbackBinding _callback297Types<_Callback0 extends Object>(
   FlaxDartTypes types,
 ) {
@@ -363099,25 +360556,6 @@ Object? _callback299Invoke(
       as api.AnnotationResult<S> Function<S extends Object>(
         api1.Offset localPosition,
       ))<Object>(positional[0] as api1.Offset);
-}
-
-Object _callback300(FlaxCallback _flaxBridgeCallback) => (api.Constraints p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback300Matches(Object value) =>
-    value is void Function(api.Constraints constraints);
-Object? _callback300Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(api.Constraints constraints))(
-    positional[0] as api.Constraints,
-  );
-  return null;
 }
 
 FlaxCallbackBinding _callback301Types<_Callback0 extends api.Constraints>(
@@ -363600,92 +361038,14 @@ Object? _callback308Invoke(
   return null;
 }
 
-Object _collection0Create() => <api5.DiagnosticsNode>[];
-bool _collection0Matches(Object value) => value is List<api5.DiagnosticsNode>;
-Object _collection1Create() => <api5.DiagnosticsNode>[];
-Object _collection1Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api5.DiagnosticsNode>();
-bool _collection1Matches(Object value) =>
-    value is Iterable<api5.DiagnosticsNode>;
-Object _collection2Create() => <api12.HitTestEntry<api12.HitTestTarget>>[];
-Object _collection2Restore(Object value) => (value as Iterable<Object?>)
-    .cast<api12.HitTestEntry<api12.HitTestTarget>>();
-bool _collection2Matches(Object value) =>
-    value is Iterable<api12.HitTestEntry<api12.HitTestTarget>>;
-Object _collection3Create() => <api.CustomPainterSemantics>[];
-bool _collection3Matches(Object value) =>
-    value is List<api.CustomPainterSemantics>;
-Object _collection4Create() => <api.CustomPainterSemantics>[];
-Object _collection4Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api.CustomPainterSemantics>();
-bool _collection4Matches(Object value) =>
-    value is Iterable<api.CustomPainterSemantics>;
-Object _collection5Create() => <api8.SemanticsTag>{};
-bool _collection5Matches(Object value) => value is Set<api8.SemanticsTag>;
-Object _collection6Create() => <api8.SemanticsTag>[];
-Object _collection6Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api8.SemanticsTag>();
-bool _collection6Matches(Object value) => value is Iterable<api8.SemanticsTag>;
-Object _collection7Create() => <String, Object?>{};
-bool _collection7Matches(Object value) => value is Map<String, Object?>;
-Object _collection8Create() => <String, String>{};
-bool _collection8Matches(Object value) => value is Map<String, String>;
 Object _collection9Create() => <api.RenderBox>[];
 Object _collection9Restore(Object value) =>
     (value as Iterable<Object?>).cast<api.RenderBox>();
 bool _collection9Matches(Object value) => value is Iterable<api.RenderBox>;
-Object _collection10Create() => <api8.SemanticsNode>[];
-Object _collection10Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api8.SemanticsNode>();
-bool _collection10Matches(Object value) =>
-    value is Iterable<api8.SemanticsNode>;
-Object _collection11Create() =>
-    <api5.Factory<api12.OneSequenceGestureRecognizer>>{};
-bool _collection11Matches(Object value) =>
-    value is Set<api5.Factory<api12.OneSequenceGestureRecognizer>>;
-Object _collection12Create() =>
-    <api5.Factory<api12.OneSequenceGestureRecognizer>>[];
-Object _collection12Restore(Object value) => (value as Iterable<Object?>)
-    .cast<api5.Factory<api12.OneSequenceGestureRecognizer>>();
-bool _collection12Matches(Object value) =>
-    value is Iterable<api5.Factory<api12.OneSequenceGestureRecognizer>>;
+
 Object _collection13Create() => <api.RenderBox>[];
 bool _collection13Matches(Object value) => value is List<api.RenderBox>;
-Object _collection14Create() => <api2.PlaceholderDimensions>[];
-bool _collection14Matches(Object value) =>
-    value is List<api2.PlaceholderDimensions>;
-Object _collection15Create() => <api2.PlaceholderDimensions>[];
-Object _collection15Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api2.PlaceholderDimensions>();
-bool _collection15Matches(Object value) =>
-    value is Iterable<api2.PlaceholderDimensions>;
-Object _collection16Create() => <api1.TextBox>[];
-bool _collection16Matches(Object value) => value is List<api1.TextBox>;
-Object _collection17Create() => <api1.TextBox>[];
-Object _collection17Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api1.TextBox>();
-bool _collection17Matches(Object value) => value is Iterable<api1.TextBox>;
-Object _collection18Create() => <api.TextSelectionPoint>[];
-bool _collection18Matches(Object value) =>
-    value is List<api.TextSelectionPoint>;
-Object _collection19Create() => <api.TextSelectionPoint>[];
-Object _collection19Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api.TextSelectionPoint>();
-bool _collection19Matches(Object value) =>
-    value is Iterable<api.TextSelectionPoint>;
-Object _collection20Create() => <api1.SemanticsAction>{};
-bool _collection20Matches(Object value) => value is Set<api1.SemanticsAction>;
-Object _collection21Create() => <api1.SemanticsAction>[];
-Object _collection21Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api1.SemanticsAction>();
-bool _collection21Matches(Object value) =>
-    value is Iterable<api1.SemanticsAction>;
-Object _collection22Create() => <api.RenderSliver>[];
-bool _collection22Matches(Object value) => value is List<api.RenderSliver>;
-Object _collection23Create() => <api.RenderSliver>[];
-Object _collection23Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api.RenderSliver>();
-bool _collection23Matches(Object value) => value is Iterable<api.RenderSliver>;
+
 Object _collection24Create() => <api.RenderBox?>[];
 bool _collection24Matches(Object value) => value is List<api.RenderBox?>;
 Object _collection25Create() => <api.RenderBox?>[];
@@ -363699,9 +361059,7 @@ Object _collection27Restore(Object value) =>
     (value as Iterable<Object?>).cast<List<api.RenderBox>>();
 bool _collection27Matches(Object value) =>
     value is Iterable<List<api.RenderBox>>;
-Object _collection28Create() => <int, api.TableColumnWidth>{};
-bool _collection28Matches(Object value) =>
-    value is Map<int, api.TableColumnWidth>;
+
 Object _collection29Create() => <api2.Decoration?>[];
 bool _collection29Matches(Object value) => value is List<api2.Decoration?>;
 Object _collection30Create() => <api2.Decoration?>[];
@@ -363712,72 +361070,13 @@ Object _collection31Create() =>
     <api5.UniqueKey, ({int fromIndex, int toIndex, double value})>{};
 bool _collection31Matches(Object value) =>
     value is Map<api5.UniqueKey, ({int fromIndex, int toIndex, double value})>;
-Object _collection32Create() => <api1.FrameTiming>[];
-bool _collection32Matches(Object value) => value is List<api1.FrameTiming>;
-Object _collection33Create() => <api1.FrameTiming>[];
-Object _collection33Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api1.FrameTiming>();
-bool _collection33Matches(Object value) => value is Iterable<api1.FrameTiming>;
-Object _collection34Create() => <api.RenderView>[];
-Object _collection34Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api.RenderView>();
-bool _collection34Matches(Object value) => value is Iterable<api.RenderView>;
-Object _collection35Create() => <api1.Rect>[];
-bool _collection35Matches(Object value) => value is List<api1.Rect>;
-Object _collection36Create() => <api1.Rect>[];
-Object _collection36Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api1.Rect>();
-bool _collection36Matches(Object value) => value is Iterable<api1.Rect>;
-Object _collection37Create() => <double>[];
-Object _collection37Restore(Object value) =>
-    (value as Iterable<Object?>).cast<double>();
-bool _collection37Matches(Object value) => value is Iterable<double>;
-Object _collection38Create() => <String>[];
-bool _collection38Matches(Object value) => value is List<String>;
-Object _collection39Create() => <String>[];
-Object _collection39Restore(Object value) =>
-    (value as Iterable<Object?>).cast<String>();
-bool _collection39Matches(Object value) => value is Iterable<String>;
+
 Object _collection40Create() => <api.AnnotationEntry<Object?>>[];
 Object _collection40Restore(Object value) =>
     (value as Iterable<Object?>).cast<api.AnnotationEntry<Object?>>();
 bool _collection40Matches(Object value) =>
     value is Iterable<api.AnnotationEntry<Object?>>;
-Object _collection41Create() => <Object?>[];
-Object _collection41Restore(Object value) =>
-    (value as Iterable<Object?>).cast<Object?>();
-bool _collection41Matches(Object value) => value is Iterable<Object?>;
-Object _collection42Create() => <api.RenderObject>[];
-bool _collection42Matches(Object value) => value is List<api.RenderObject>;
-Object _collection43Create() => <api.RenderObject>[];
-Object _collection43Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api.RenderObject>();
-bool _collection43Matches(Object value) => value is Iterable<api.RenderObject>;
-Object _collection44Create() => <num>[];
-bool _collection44Matches(Object value) => value is List<num>;
-Object _collection45Create() => <num>[];
-Object _collection45Restore(Object value) =>
-    (value as Iterable<Object?>).cast<num>();
-bool _collection45Matches(Object value) => value is Iterable<num>;
-Object _collection46Create() => <double>[];
-bool _collection46Matches(Object value) => value is List<double>;
-Future<Object?> _future0Adapt(Future<Object?> value) =>
-    value.then<void>((_) {});
-Future<Object?> _future1Adapt(Future<Object?> value) =>
-    value.then<bool>((value) => value as bool);
-Future<Object?> _future2Adapt(Future<Object?> value) =>
-    value.then<double>((value) => value as double);
-Future<Object?> _future3Adapt(Future<Object?> value) =>
-    value.then<String>((value) => value as String);
-Future<Object?> _future4Adapt(Future<Object?> value) =>
-    value.then<Map<String, Object?>>((value) => value as Map<String, Object?>);
-Future<Object?> _future5Adapt(Future<Object?> value) =>
-    value.then<api1.AppExitResponse>((value) => value as api1.AppExitResponse);
-Future<Object?> _future6Adapt(Future<Object?> value) =>
-    value.then<api1.Image>((value) => value as api1.Image);
-Future<Object?> _future7Adapt(Future<Object?> value) => value;
-Future<Object?> _future8Adapt(Future<Object?> value) =>
-    value.then<api1.Codec>((value) => value as api1.Codec);
+
 T _genericCallbackResult<T>(Object? value) {
   // Test assignability to cover both nullable and non-nullable numeric T.
   // Broad bounds keep their decoded representation; only the Dart use site
@@ -363954,9 +361253,9 @@ const _flaxBinding31 = FlaxTypeRef(
   item: _flaxBinding30,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-    _collection1Create,
-    _collection1Matches,
-    restore: _collection1Restore,
+    _flaxAdapters.flaxAdapter84Create,
+    _flaxAdapters.flaxAdapter84Matches,
+    restore: _flaxAdapters.flaxAdapter84Restore,
   ),
 );
 const _flaxBinding32 = FlaxTypeRef(
@@ -363964,8 +361263,8 @@ const _flaxBinding32 = FlaxTypeRef(
   item: _flaxBinding30,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-    _collection0Create,
-    _collection0Matches,
+    _flaxAdapters.flaxAdapter85Create,
+    _flaxAdapters.flaxAdapter85Matches,
   ),
   iterable: _flaxBinding31,
 );
@@ -364165,9 +361464,9 @@ const _flaxBinding70 = FlaxTypeRef(
   item: _flaxBinding60,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_gestures#type:HitTestEntry<object:flax.core/sdk_gestures#type:HitTestTarget>]",
-    _collection2Create,
-    _collection2Matches,
-    restore: _collection2Restore,
+    _flaxAdapters.flaxAdapter86Create,
+    _flaxAdapters.flaxAdapter86Matches,
+    restore: _flaxAdapters.flaxAdapter86Restore,
   ),
 );
 const _flaxBinding71 = FlaxCallbackBinding.signature(
@@ -364309,9 +361608,9 @@ const _flaxBinding98 = FlaxTypeRef(
   item: _flaxBinding97,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_rendering#type:CustomPainterSemantics]",
-    _collection4Create,
-    _collection4Matches,
-    restore: _collection4Restore,
+    _flaxAdapters.flaxAdapter93Create,
+    _flaxAdapters.flaxAdapter93Matches,
+    restore: _flaxAdapters.flaxAdapter93Restore,
   ),
 );
 const _flaxBinding99 = FlaxTypeRef(
@@ -364319,8 +361618,8 @@ const _flaxBinding99 = FlaxTypeRef(
   item: _flaxBinding97,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_rendering#type:CustomPainterSemantics]",
-    _collection3Create,
-    _collection3Matches,
+    _flaxAdapters.flaxAdapter94Create,
+    _flaxAdapters.flaxAdapter94Matches,
   ),
   iterable: _flaxBinding98,
 );
@@ -364377,9 +361676,9 @@ const _flaxBinding109 = FlaxTypeRef(
   item: _flaxBinding108,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_semantics#type:SemanticsTag]",
-    _collection6Create,
-    _collection6Matches,
-    restore: _collection6Restore,
+    _flaxAdapters.flaxAdapter104Create,
+    _flaxAdapters.flaxAdapter104Matches,
+    restore: _flaxAdapters.flaxAdapter104Restore,
   ),
 );
 const _flaxBinding110 = FlaxTypeRef(
@@ -364388,8 +361687,8 @@ const _flaxBinding110 = FlaxTypeRef(
   item: _flaxBinding108,
   collection: FlaxCollectionBinding(
     "set:[object:flax.core/sdk_semantics#type:SemanticsTag]",
-    _collection5Create,
-    _collection5Matches,
+    _flaxAdapters.flaxAdapter105Create,
+    _flaxAdapters.flaxAdapter105Matches,
   ),
   iterable: _flaxBinding109,
 );
@@ -364408,8 +361707,8 @@ const _flaxBinding113 = FlaxTypeRef(
   key: flaxStringType,
   collection: FlaxCollectionBinding(
     "map:[any?:][String:]",
-    _collection7Create,
-    _collection7Matches,
+    _flaxAdapters.flaxAdapter45Create,
+    _flaxAdapters.flaxAdapter45Matches,
   ),
 );
 const _flaxBinding114 = FlaxCallbackBinding.signature(
@@ -364433,8 +361732,8 @@ const _flaxBinding117 = FlaxTypeRef(
   key: flaxStringType,
   collection: FlaxCollectionBinding(
     "map:[String:][String:]",
-    _collection8Create,
-    _collection8Matches,
+    _flaxAdapters.flaxAdapter46Create,
+    _flaxAdapters.flaxAdapter46Matches,
   ),
 );
 const _flaxBinding118 = FlaxCallbackBinding.signature(
@@ -364797,15 +362096,15 @@ const _flaxBinding186 = FlaxCallbackBinding.signature(
 const _flaxBinding187 = FlaxTypeRef(
   "future",
   item: flaxVoidType,
-  future: FlaxFutureBinding("void:", _future0Adapt),
+  future: FlaxFutureBinding("void:", _flaxAdapters.flaxAdapter14Adapt),
 );
 const _flaxBinding188 = FlaxCallbackBinding(
   [],
   _flaxBinding187,
-  _callback0,
+  _flaxAdapters.flaxAdapter19,
   id: "callback:<>()->future:[void:]",
-  invoke: _callback0Invoke,
-  matches: _callback0Matches,
+  invoke: _flaxAdapters.flaxAdapter19Invoke,
+  matches: _flaxAdapters.flaxAdapter19Matches,
 );
 const _flaxBinding189 = FlaxTypeRef(
   "callback",
@@ -365193,9 +362492,9 @@ const _flaxBinding259 = FlaxTypeRef(
   item: _flaxBinding258,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_semantics#type:SemanticsNode]",
-    _collection10Create,
-    _collection10Matches,
-    restore: _collection10Restore,
+    _flaxAdapters.flaxAdapter103Create,
+    _flaxAdapters.flaxAdapter103Matches,
+    restore: _flaxAdapters.flaxAdapter103Restore,
   ),
 );
 const _flaxBinding260 = FlaxCallbackBinding.signature(
@@ -365218,9 +362517,9 @@ const _flaxBinding262 = FlaxTypeRef(
   item: _flaxBinding261,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_foundation#type:Factory<object:flax.core/sdk_gestures#type:OneSequenceGestureRecognizer>]",
-    _collection12Create,
-    _collection12Matches,
-    restore: _collection12Restore,
+    _flaxAdapters.flaxAdapter82Create,
+    _flaxAdapters.flaxAdapter82Matches,
+    restore: _flaxAdapters.flaxAdapter82Restore,
   ),
 );
 const _flaxBinding263 = FlaxTypeRef(
@@ -365228,8 +362527,8 @@ const _flaxBinding263 = FlaxTypeRef(
   item: _flaxBinding261,
   collection: FlaxCollectionBinding(
     "set:[object:flax.core/sdk_foundation#type:Factory<object:flax.core/sdk_gestures#type:OneSequenceGestureRecognizer>]",
-    _collection11Create,
-    _collection11Matches,
+    _flaxAdapters.flaxAdapter83Create,
+    _flaxAdapters.flaxAdapter83Matches,
   ),
   iterable: _flaxBinding262,
 );
@@ -366012,9 +363311,9 @@ const _flaxBinding411 = FlaxTypeRef(
   item: _flaxBinding410,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_painting#type:PlaceholderDimensions]",
-    _collection15Create,
-    _collection15Matches,
-    restore: _collection15Restore,
+    _flaxAdapters.flaxAdapter91Create,
+    _flaxAdapters.flaxAdapter91Matches,
+    restore: _flaxAdapters.flaxAdapter91Restore,
   ),
 );
 const _flaxBinding412 = FlaxTypeRef(
@@ -366022,8 +363321,8 @@ const _flaxBinding412 = FlaxTypeRef(
   item: _flaxBinding410,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_painting#type:PlaceholderDimensions]",
-    _collection14Create,
-    _collection14Matches,
+    _flaxAdapters.flaxAdapter92Create,
+    _flaxAdapters.flaxAdapter92Matches,
   ),
   iterable: _flaxBinding411,
 );
@@ -366045,9 +363344,9 @@ const _flaxBinding415 = FlaxTypeRef(
   item: _flaxBinding414,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_dart_ui#type:TextBox]",
-    _collection17Create,
-    _collection17Matches,
-    restore: _collection17Restore,
+    _flaxAdapters.flaxAdapter80Create,
+    _flaxAdapters.flaxAdapter80Matches,
+    restore: _flaxAdapters.flaxAdapter80Restore,
   ),
 );
 const _flaxBinding416 = FlaxTypeRef(
@@ -366055,8 +363354,8 @@ const _flaxBinding416 = FlaxTypeRef(
   item: _flaxBinding414,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_dart_ui#type:TextBox]",
-    _collection16Create,
-    _collection16Matches,
+    _flaxAdapters.flaxAdapter81Create,
+    _flaxAdapters.flaxAdapter81Matches,
   ),
   iterable: _flaxBinding415,
 );
@@ -366097,9 +363396,9 @@ const _flaxBinding423 = FlaxTypeRef(
   item: _flaxBinding422,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_rendering#type:TextSelectionPoint]",
-    _collection19Create,
-    _collection19Matches,
-    restore: _collection19Restore,
+    _flaxAdapters.flaxAdapter95Create,
+    _flaxAdapters.flaxAdapter95Matches,
+    restore: _flaxAdapters.flaxAdapter95Restore,
   ),
 );
 const _flaxBinding424 = FlaxTypeRef(
@@ -366107,8 +363406,8 @@ const _flaxBinding424 = FlaxTypeRef(
   item: _flaxBinding422,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_rendering#type:TextSelectionPoint]",
-    _collection18Create,
-    _collection18Matches,
+    _flaxAdapters.flaxAdapter96Create,
+    _flaxAdapters.flaxAdapter96Matches,
   ),
   iterable: _flaxBinding423,
 );
@@ -367228,9 +364527,9 @@ const _flaxBinding642 = FlaxTypeRef(
   item: _flaxBinding641,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_dart_ui#type:SemanticsAction]",
-    _collection21Create,
-    _collection21Matches,
-    restore: _collection21Restore,
+    _flaxAdapters.flaxAdapter74Create,
+    _flaxAdapters.flaxAdapter74Matches,
+    restore: _flaxAdapters.flaxAdapter74Restore,
   ),
 );
 const _flaxBinding643 = FlaxTypeRef(
@@ -367239,8 +364538,8 @@ const _flaxBinding643 = FlaxTypeRef(
   item: _flaxBinding641,
   collection: FlaxCollectionBinding(
     "set:[object:flax.core/sdk_dart_ui#type:SemanticsAction]",
-    _collection20Create,
-    _collection20Matches,
+    _flaxAdapters.flaxAdapter75Create,
+    _flaxAdapters.flaxAdapter75Matches,
   ),
   iterable: _flaxBinding642,
 );
@@ -367452,9 +364751,9 @@ const _flaxBinding673 = FlaxTypeRef(
   item: _flaxBinding383,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_rendering#type:RenderSliver]",
-    _collection23Create,
-    _collection23Matches,
-    restore: _collection23Restore,
+    _flaxAdapters.flaxAdapter99Create,
+    _flaxAdapters.flaxAdapter99Matches,
+    restore: _flaxAdapters.flaxAdapter99Restore,
   ),
 );
 const _flaxBinding674 = FlaxTypeRef(
@@ -367463,8 +364762,8 @@ const _flaxBinding674 = FlaxTypeRef(
   item: _flaxBinding383,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_rendering#type:RenderSliver]",
-    _collection22Create,
-    _collection22Matches,
+    _flaxAdapters.flaxAdapter100Create,
+    _flaxAdapters.flaxAdapter100Matches,
   ),
   iterable: _flaxBinding673,
 );
@@ -367841,8 +365140,8 @@ const _flaxBinding737 = FlaxTypeRef(
   key: flaxIntType,
   collection: FlaxCollectionBinding(
     "map:[object:flax.core/sdk_rendering#type:TableColumnWidth][int:]",
-    _collection28Create,
-    _collection28Matches,
+    _flaxAdapters.flaxAdapter125Create,
+    _flaxAdapters.flaxAdapter125Matches,
   ),
 );
 const _flaxBinding738 = FlaxCallbackBinding.signature(
@@ -368102,10 +365401,10 @@ const _flaxBinding782 = FlaxCallbackBinding.signature(
 const _flaxBinding783 = FlaxCallbackBinding(
   [],
   _flaxBinding187,
-  _callback2,
+  _flaxAdapters.flaxAdapter19,
   id: "callback:<>()->future:[void:]",
-  invoke: _callback2Invoke,
-  matches: _callback2Matches,
+  invoke: _flaxAdapters.flaxAdapter19Invoke,
+  matches: _flaxAdapters.flaxAdapter19Matches,
 );
 const _flaxBinding784 = FlaxTypeRef("callback", callback: _flaxBinding783);
 const _flaxBinding785 = FlaxCallbackBinding.signature(
@@ -368129,24 +365428,24 @@ const _flaxBinding787 = FlaxCallbackBinding.signature(
 const _flaxBinding788 = FlaxTypeRef(
   "future",
   item: flaxBoolType,
-  future: FlaxFutureBinding("bool:", _future1Adapt),
+  future: FlaxFutureBinding("bool:", _flaxAdapters.flaxAdapter11Adapt),
 );
 const _flaxBinding789 = FlaxCallbackBinding(
   [],
   _flaxBinding788,
-  _callback3,
+  _flaxAdapters.flaxAdapter17,
   id: "callback:<>()->future:[bool:]",
-  invoke: _callback3Invoke,
-  matches: _callback3Matches,
+  invoke: _flaxAdapters.flaxAdapter17Invoke,
+  matches: _flaxAdapters.flaxAdapter17Matches,
 );
 const _flaxBinding790 = FlaxTypeRef("callback", callback: _flaxBinding789);
 const _flaxBinding791 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("value", flaxBoolType)],
   _flaxBinding187,
-  _callback4,
+  _flaxAdapters.flaxAdapter36,
   id: "callback:<>(p:r:value:bool:)->future:[void:]",
-  invoke: _callback4Invoke,
-  matches: _callback4Matches,
+  invoke: _flaxAdapters.flaxAdapter36Invoke,
+  matches: _flaxAdapters.flaxAdapter36Matches,
 );
 const _flaxBinding792 = FlaxTypeRef("callback", callback: _flaxBinding791);
 const _flaxBinding793 = FlaxCallbackBinding.signature(
@@ -368161,24 +365460,24 @@ const _flaxBinding793 = FlaxCallbackBinding.signature(
 const _flaxBinding794 = FlaxTypeRef(
   "future",
   item: flaxDoubleType,
-  future: FlaxFutureBinding("double:", _future2Adapt),
+  future: FlaxFutureBinding("double:", _flaxAdapters.flaxAdapter12Adapt),
 );
 const _flaxBinding795 = FlaxCallbackBinding(
   [],
   _flaxBinding794,
-  _callback5,
+  _flaxAdapters.flaxAdapter18,
   id: "callback:<>()->future:[double:]",
-  invoke: _callback5Invoke,
-  matches: _callback5Matches,
+  invoke: _flaxAdapters.flaxAdapter18Invoke,
+  matches: _flaxAdapters.flaxAdapter18Matches,
 );
 const _flaxBinding796 = FlaxTypeRef("callback", callback: _flaxBinding795);
 const _flaxBinding797 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("value", flaxDoubleType)],
   _flaxBinding187,
-  _callback6,
+  _flaxAdapters.flaxAdapter37,
   id: "callback:<>(p:r:value:double:)->future:[void:]",
-  invoke: _callback6Invoke,
-  matches: _callback6Matches,
+  invoke: _flaxAdapters.flaxAdapter37Invoke,
+  matches: _flaxAdapters.flaxAdapter37Matches,
 );
 const _flaxBinding798 = FlaxTypeRef("callback", callback: _flaxBinding797);
 const _flaxBinding799 = FlaxCallbackBinding.signature(
@@ -368201,24 +365500,24 @@ const _flaxBinding800 = FlaxCallbackBinding.signature(
 const _flaxBinding801 = FlaxTypeRef(
   "future",
   item: flaxStringType,
-  future: FlaxFutureBinding("String:", _future3Adapt),
+  future: FlaxFutureBinding("String:", _flaxAdapters.flaxAdapter2Adapt),
 );
 const _flaxBinding802 = FlaxCallbackBinding(
   [],
   _flaxBinding801,
-  _callback7,
+  _flaxAdapters.flaxAdapter16,
   id: "callback:<>()->future:[String:]",
-  invoke: _callback7Invoke,
-  matches: _callback7Matches,
+  invoke: _flaxAdapters.flaxAdapter16Invoke,
+  matches: _flaxAdapters.flaxAdapter16Matches,
 );
 const _flaxBinding803 = FlaxTypeRef("callback", callback: _flaxBinding802);
 const _flaxBinding804 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("value", flaxStringType)],
   _flaxBinding187,
-  _callback8,
+  _flaxAdapters.flaxAdapter31,
   id: "callback:<>(p:r:value:String:)->future:[void:]",
-  invoke: _callback8Invoke,
-  matches: _callback8Matches,
+  invoke: _flaxAdapters.flaxAdapter31Invoke,
+  matches: _flaxAdapters.flaxAdapter31Matches,
 );
 const _flaxBinding805 = FlaxTypeRef("callback", callback: _flaxBinding804);
 const _flaxBinding806 = FlaxCallbackBinding.signature(
@@ -368236,22 +365535,25 @@ const _flaxBinding807 = FlaxTypeRef(
   key: flaxStringType,
   collection: FlaxCollectionBinding(
     "map:[String:][String:]",
-    _collection8Create,
-    _collection8Matches,
+    _flaxAdapters.flaxAdapter46Create,
+    _flaxAdapters.flaxAdapter46Matches,
   ),
 );
 const _flaxBinding808 = FlaxTypeRef(
   "future",
   item: _flaxBinding113,
-  future: FlaxFutureBinding("map:[any?:][String:]", _future4Adapt),
+  future: FlaxFutureBinding(
+    "map:[any?:][String:]",
+    _flaxAdapters.flaxAdapter0Adapt,
+  ),
 );
 const _flaxBinding809 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("parameters", _flaxBinding807)],
   _flaxBinding808,
-  _callback9,
+  _flaxAdapters.flaxAdapter23,
   id: "callback:<>(p:r:parameters:map:[String:][String:])->future:[map:[any?:][String:]]",
-  invoke: _callback9Invoke,
-  matches: _callback9Matches,
+  invoke: _flaxAdapters.flaxAdapter23Invoke,
+  matches: _flaxAdapters.flaxAdapter23Matches,
 );
 const _flaxBinding810 = FlaxTypeRef("callback", callback: _flaxBinding809);
 const _flaxBinding811 = FlaxCallbackBinding.signature(
@@ -368298,9 +365600,9 @@ const _flaxBinding817 = FlaxTypeRef(
   item: _flaxBinding816,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_dart_ui#type:FrameTiming]",
-    _collection33Create,
-    _collection33Matches,
-    restore: _collection33Restore,
+    _flaxAdapters.flaxAdapter61Create,
+    _flaxAdapters.flaxAdapter61Matches,
+    restore: _flaxAdapters.flaxAdapter61Restore,
   ),
 );
 const _flaxBinding818 = FlaxTypeRef(
@@ -368308,8 +365610,8 @@ const _flaxBinding818 = FlaxTypeRef(
   item: _flaxBinding816,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_dart_ui#type:FrameTiming]",
-    _collection32Create,
-    _collection32Matches,
+    _flaxAdapters.flaxAdapter62Create,
+    _flaxAdapters.flaxAdapter62Matches,
   ),
   iterable: _flaxBinding817,
 );
@@ -368426,7 +365728,7 @@ const _flaxBinding842 = FlaxTypeRef(
   item: _flaxBinding841,
   future: FlaxFutureBinding(
     "enum:flax.core/sdk_dart_ui#type:AppExitResponse",
-    _future5Adapt,
+    _flaxAdapters.flaxAdapter5Adapt,
   ),
 );
 const _flaxBinding843 = FlaxCallbackBinding.signature(
@@ -368446,10 +365748,10 @@ const _flaxBinding845 = FlaxCallbackBinding.signature(
 const _flaxBinding846 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("systemOverlaysAreVisible", flaxBoolType)],
   _flaxBinding187,
-  _callback10,
+  _flaxAdapters.flaxAdapter35,
   id: "callback:<>(p:r:systemOverlaysAreVisible:bool:)->future:[void:]",
-  invoke: _callback10Invoke,
-  matches: _callback10Matches,
+  invoke: _flaxAdapters.flaxAdapter35Invoke,
+  matches: _flaxAdapters.flaxAdapter35Matches,
 );
 const _flaxBinding847 = FlaxTypeRef(
   "callback",
@@ -368636,10 +365938,10 @@ const _flaxBinding884 = FlaxCallbackBinding(
     ),
   ],
   flaxBoolType,
-  _callback11,
+  _flaxAdapters.flaxAdapter38,
   id: "callback:<>(n:r:priority:int:,n:r:scheduler:object:flax.core/flutter#type:SchedulerBinding)->bool:",
-  invoke: _callback11Invoke,
-  matches: _callback11Matches,
+  invoke: _flaxAdapters.flaxAdapter38Invoke,
+  matches: _flaxAdapters.flaxAdapter38Matches,
 );
 const _flaxBinding885 = FlaxTypeRef("callback", callback: _flaxBinding884);
 const _flaxBinding886 = FlaxCallbackBinding.signature(
@@ -368730,9 +366032,9 @@ const _flaxBinding904 = FlaxTypeRef(
   item: _flaxBinding862,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_rendering#type:RenderView]",
-    _collection34Create,
-    _collection34Matches,
-    restore: _collection34Restore,
+    _flaxAdapters.flaxAdapter101Create,
+    _flaxAdapters.flaxAdapter101Matches,
+    restore: _flaxAdapters.flaxAdapter101Restore,
   ),
 );
 const _flaxBinding905 = FlaxCallbackBinding.signature(
@@ -368769,9 +366071,9 @@ const _flaxBinding911 = FlaxTypeRef(
   item: flaxRectType,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_dart_ui#type:Rect]",
-    _collection36Create,
-    _collection36Matches,
-    restore: _collection36Restore,
+    _flaxAdapters.flaxAdapter72Create,
+    _flaxAdapters.flaxAdapter72Matches,
+    restore: _flaxAdapters.flaxAdapter72Restore,
   ),
 );
 const _flaxBinding912 = FlaxTypeRef(
@@ -368779,8 +366081,8 @@ const _flaxBinding912 = FlaxTypeRef(
   item: flaxRectType,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_dart_ui#type:Rect]",
-    _collection35Create,
-    _collection35Matches,
+    _flaxAdapters.flaxAdapter73Create,
+    _flaxAdapters.flaxAdapter73Matches,
   ),
   iterable: _flaxBinding911,
 );
@@ -369063,9 +366365,9 @@ const _flaxBinding961 = FlaxTypeRef(
   item: flaxDoubleType,
   collection: FlaxCollectionBinding(
     "iterable:[double:]",
-    _collection37Create,
-    _collection37Matches,
-    restore: _collection37Restore,
+    _flaxAdapters.flaxAdapter123Create,
+    _flaxAdapters.flaxAdapter123Matches,
+    restore: _flaxAdapters.flaxAdapter123Restore,
   ),
 );
 const _flaxBinding962 = FlaxCallbackBinding.signature(
@@ -369173,9 +366475,9 @@ const _flaxBinding979 = FlaxTypeRef(
   item: flaxStringType,
   collection: FlaxCollectionBinding(
     "iterable:[String:]",
-    _collection39Create,
-    _collection39Matches,
-    restore: _collection39Restore,
+    _flaxAdapters.flaxAdapter47Create,
+    _flaxAdapters.flaxAdapter47Matches,
+    restore: _flaxAdapters.flaxAdapter47Restore,
   ),
 );
 const _flaxBinding980 = FlaxTypeRef(
@@ -369183,8 +366485,8 @@ const _flaxBinding980 = FlaxTypeRef(
   item: flaxStringType,
   collection: FlaxCollectionBinding(
     "list:[String:]",
-    _collection38Create,
-    _collection38Matches,
+    _flaxAdapters.flaxAdapter48Create,
+    _flaxAdapters.flaxAdapter48Matches,
   ),
   iterable: _flaxBinding979,
 );
@@ -373852,9 +371154,9 @@ const _flaxBinding1310 = FlaxTypeRef(
   item: _flaxBinding197,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_rendering#type:RenderObject]",
-    _collection43Create,
-    _collection43Matches,
-    restore: _collection43Restore,
+    _flaxAdapters.flaxAdapter97Create,
+    _flaxAdapters.flaxAdapter97Matches,
+    restore: _flaxAdapters.flaxAdapter97Restore,
   ),
 );
 const _flaxBinding1311 = FlaxSetter(
@@ -375214,10 +372516,10 @@ const _flaxBinding1555 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback41,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback41Invoke,
-              matches: _callback41Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -375309,10 +372611,10 @@ const _flaxBinding1555 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback41,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback41Invoke,
-              matches: _callback41Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -375514,8 +372816,8 @@ const _flaxBinding1556 = FlaxTypeRef(
   item: _flaxBinding30,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-    _collection0Create,
-    _collection0Matches,
+    _flaxAdapters.flaxAdapter85Create,
+    _flaxAdapters.flaxAdapter85Matches,
   ),
   iterable: _flaxBinding31,
 );
@@ -375544,10 +372846,10 @@ const _flaxBinding1559 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback43,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback43Invoke,
-              matches: _callback43Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -377845,7 +375147,7 @@ const _flaxBinding1794 = FlaxTypeRef(
   item: _flaxBinding1793,
   future: FlaxFutureBinding(
     "object:flax.core/sdk_dart_ui#type:Image",
-    _future6Adapt,
+    _flaxAdapters.flaxAdapter7Adapt,
   ),
 );
 const _flaxBinding1795 = FlaxInstanceMethod.plain(
@@ -380014,9 +377316,9 @@ const _flaxBinding2002 = FlaxTypeRef(
   item: flaxNumType,
   collection: FlaxCollectionBinding(
     "iterable:[num:]",
-    _collection45Create,
-    _collection45Matches,
-    restore: _collection45Restore,
+    _flaxAdapters.flaxAdapter128Create,
+    _flaxAdapters.flaxAdapter128Matches,
+    restore: _flaxAdapters.flaxAdapter128Restore,
   ),
 );
 const _flaxBinding2003 = FlaxTypeRef(
@@ -380024,8 +377326,8 @@ const _flaxBinding2003 = FlaxTypeRef(
   item: flaxNumType,
   collection: FlaxCollectionBinding(
     "list:[num:]",
-    _collection44Create,
-    _collection44Matches,
+    _flaxAdapters.flaxAdapter129Create,
+    _flaxAdapters.flaxAdapter129Matches,
   ),
   iterable: _flaxBinding2002,
 );
@@ -380043,8 +377345,8 @@ const _flaxBinding2006 = FlaxTypeRef(
   item: flaxDoubleType,
   collection: FlaxCollectionBinding(
     "list:[double:]",
-    _collection46Create,
-    _collection46Matches,
+    _flaxAdapters.flaxAdapter124Create,
+    _flaxAdapters.flaxAdapter124Matches,
   ),
   iterable: _flaxBinding961,
 );
@@ -383943,10 +381245,10 @@ const _flaxBinding2372 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback68,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback68Invoke,
-              matches: _callback68Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -384028,10 +381330,10 @@ const _flaxBinding2372 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback68,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback68Invoke,
-              matches: _callback68Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -384449,10 +381751,10 @@ const _flaxBinding2390 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback70,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback70Invoke,
-              matches: _callback70Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -384556,10 +381858,10 @@ const _flaxBinding2390 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback70,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback70Invoke,
-              matches: _callback70Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -384995,10 +382297,10 @@ const _flaxBinding2418 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback72,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback72Invoke,
-              matches: _callback72Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -385084,10 +382386,10 @@ const _flaxBinding2428 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback73,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback73Invoke,
-              matches: _callback73Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -385192,10 +382494,10 @@ const _flaxBinding2428 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback73,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback73Invoke,
-              matches: _callback73Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -385540,10 +382842,10 @@ const _flaxBinding2438 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback75,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback75Invoke,
-              matches: _callback75Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -385646,10 +382948,10 @@ const _flaxBinding2438 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback75,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback75Invoke,
-              matches: _callback75Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -385989,10 +383291,10 @@ const _flaxBinding2443 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback77,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback77Invoke,
-              matches: _callback77Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -386049,10 +383351,10 @@ const _flaxBinding2448 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback78,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback78Invoke,
-              matches: _callback78Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -386156,10 +383458,10 @@ const _flaxBinding2448 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback78,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback78Invoke,
-              matches: _callback78Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -386524,10 +383826,10 @@ const _flaxBinding2462 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback80,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback80Invoke,
-              matches: _callback80Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -386633,10 +383935,10 @@ const _flaxBinding2462 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback80,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback80Invoke,
-              matches: _callback80Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -387002,10 +384304,10 @@ const _flaxBinding2470 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback82,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback82Invoke,
-              matches: _callback82Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -387114,10 +384416,10 @@ const _flaxBinding2470 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback82,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback82Invoke,
-              matches: _callback82Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -387504,10 +384806,10 @@ const _flaxBinding2482 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback84,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback84Invoke,
-              matches: _callback84Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -387611,10 +384913,10 @@ const _flaxBinding2482 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback84,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback84Invoke,
-              matches: _callback84Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -388253,10 +385555,10 @@ const _flaxBinding2540 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback87,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback87Invoke,
-              matches: _callback87Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -388364,10 +385666,10 @@ const _flaxBinding2540 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback87,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback87Invoke,
-              matches: _callback87Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -389044,10 +386346,10 @@ const _flaxBinding2594 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback91,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback91Invoke,
-              matches: _callback91Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -389157,10 +386459,10 @@ const _flaxBinding2594 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback91,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback91Invoke,
-              matches: _callback91Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -389481,10 +386783,10 @@ const _flaxBinding2600 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback93,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback93Invoke,
-              matches: _callback93Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -389587,10 +386889,10 @@ const _flaxBinding2600 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback93,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback93Invoke,
-              matches: _callback93Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -390020,10 +387322,10 @@ const _flaxBinding2621 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback95,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback95Invoke,
-              matches: _callback95Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -390126,10 +387428,10 @@ const _flaxBinding2621 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback95,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback95Invoke,
-              matches: _callback95Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -390537,10 +387839,10 @@ const _flaxBinding2631 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback97,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback97Invoke,
-              matches: _callback97Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -390644,10 +387946,10 @@ const _flaxBinding2631 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback97,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback97Invoke,
-              matches: _callback97Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -390985,10 +388287,10 @@ const _flaxBinding2637 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback99,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback99Invoke,
-              matches: _callback99Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -391091,10 +388393,10 @@ const _flaxBinding2637 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback99,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback99Invoke,
-              matches: _callback99Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -391610,10 +388912,10 @@ const _flaxBinding2678 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback102,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback102Invoke,
-              matches: _callback102Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -391717,10 +389019,10 @@ const _flaxBinding2678 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback102,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback102Invoke,
-              matches: _callback102Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -392091,10 +389393,10 @@ const _flaxBinding2687 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback104,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback104Invoke,
-              matches: _callback104Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -392198,10 +389500,10 @@ const _flaxBinding2687 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback104,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback104Invoke,
-              matches: _callback104Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -392611,10 +389913,10 @@ const _flaxBinding2702 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback106,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback106Invoke,
-              matches: _callback106Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -392718,10 +390020,10 @@ const _flaxBinding2702 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback106,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback106Invoke,
-              matches: _callback106Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -393146,10 +390448,10 @@ const _flaxBinding2715 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback108,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback108Invoke,
-              matches: _callback108Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -393253,10 +390555,10 @@ const _flaxBinding2715 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback108,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback108Invoke,
-              matches: _callback108Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -393633,10 +390935,10 @@ const _flaxBinding2721 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback110,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback110Invoke,
-              matches: _callback110Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -393740,10 +391042,10 @@ const _flaxBinding2721 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback110,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback110Invoke,
-              matches: _callback110Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -394098,10 +391400,10 @@ const _flaxBinding2728 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback112,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback112Invoke,
-              matches: _callback112Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -394205,10 +391507,10 @@ const _flaxBinding2728 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback112,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback112Invoke,
-              matches: _callback112Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -394658,10 +391960,10 @@ const _flaxBinding2750 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback114,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback114Invoke,
-              matches: _callback114Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -394770,10 +392072,10 @@ const _flaxBinding2750 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback114,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback114Invoke,
-              matches: _callback114Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -395220,10 +392522,10 @@ const _flaxBinding2760 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback116,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback116Invoke,
-              matches: _callback116Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -395333,10 +392635,10 @@ const _flaxBinding2760 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback116,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback116Invoke,
-              matches: _callback116Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -395908,10 +393210,10 @@ const _flaxBinding2803 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback118,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback118Invoke,
-              matches: _callback118Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -396029,10 +393331,10 @@ const _flaxBinding2803 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback118,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback118Invoke,
-              matches: _callback118Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -396546,10 +393848,10 @@ const _flaxBinding2825 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback120,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback120Invoke,
-              matches: _callback120Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -396652,10 +393954,10 @@ const _flaxBinding2825 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback120,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback120Invoke,
-              matches: _callback120Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -397039,10 +394341,10 @@ const _flaxBinding2831 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback122,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback122Invoke,
-              matches: _callback122Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -397147,10 +394449,10 @@ const _flaxBinding2831 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback122,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback122Invoke,
-              matches: _callback122Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -397723,10 +395025,10 @@ const _flaxBinding2883 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback126,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback126Invoke,
-              matches: _callback126Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -397829,10 +395131,10 @@ const _flaxBinding2883 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback126,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback126Invoke,
-              matches: _callback126Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -398366,10 +395668,10 @@ const _flaxBinding2924 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback128,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback128Invoke,
-              matches: _callback128Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -398427,10 +395729,10 @@ const _flaxBinding2924 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback128,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback128Invoke,
-              matches: _callback128Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -398794,10 +396096,10 @@ const _flaxBinding2933 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback130,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback130Invoke,
-              matches: _callback130Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -398908,10 +396210,10 @@ const _flaxBinding2933 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback130,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback130Invoke,
-              matches: _callback130Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -399238,10 +396540,10 @@ const _flaxBinding2941 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback132,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback132Invoke,
-              matches: _callback132Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -399352,10 +396654,10 @@ const _flaxBinding2941 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback132,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback132Invoke,
-              matches: _callback132Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -399750,10 +397052,10 @@ const _flaxBinding2960 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback134,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback134Invoke,
-              matches: _callback134Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -401349,10 +398651,10 @@ const _flaxBinding3208 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback135,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback135Invoke,
-              matches: _callback135Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -401479,10 +398781,10 @@ const _flaxBinding3208 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback135,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback135Invoke,
-              matches: _callback135Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -402583,10 +399885,10 @@ const _flaxBinding3221 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback137,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback137Invoke,
-              matches: _callback137Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -402689,10 +399991,10 @@ const _flaxBinding3221 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback137,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback137Invoke,
-              matches: _callback137Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -402996,10 +400298,10 @@ const _flaxBinding3227 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback139,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback139Invoke,
-              matches: _callback139Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -403102,10 +400404,10 @@ const _flaxBinding3227 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback139,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback139Invoke,
-              matches: _callback139Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -403503,10 +400805,10 @@ const _flaxBinding3242 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback141,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback141Invoke,
-              matches: _callback141Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -403610,10 +400912,10 @@ const _flaxBinding3242 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback141,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback141Invoke,
-              matches: _callback141Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -404295,10 +401597,10 @@ const _flaxBinding3294 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback143,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback143Invoke,
-              matches: _callback143Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -404415,10 +401717,10 @@ const _flaxBinding3294 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback143,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback143Invoke,
-              matches: _callback143Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -405067,10 +402369,10 @@ const _flaxBinding3325 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback145,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback145Invoke,
-              matches: _callback145Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -405189,10 +402491,10 @@ const _flaxBinding3325 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback145,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback145Invoke,
-              matches: _callback145Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -405737,10 +403039,10 @@ const _flaxBinding3348 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback147,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback147Invoke,
-              matches: _callback147Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -405844,10 +403146,10 @@ const _flaxBinding3348 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback147,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback147Invoke,
-              matches: _callback147Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -406270,10 +403572,10 @@ const _flaxBinding3359 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback149,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback149Invoke,
-              matches: _callback149Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -406377,10 +403679,10 @@ const _flaxBinding3359 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback149,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback149Invoke,
-              matches: _callback149Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -406756,10 +404058,10 @@ const _flaxBinding3369 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback151,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback151Invoke,
-              matches: _callback151Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -406868,10 +404170,10 @@ const _flaxBinding3369 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback151,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback151Invoke,
-              matches: _callback151Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -407235,10 +404537,10 @@ const _flaxBinding3374 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback153,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback153Invoke,
-              matches: _callback153Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -407341,10 +404643,10 @@ const _flaxBinding3374 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback153,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback153Invoke,
-              matches: _callback153Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -407679,10 +404981,10 @@ const _flaxBinding3382 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback155,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback155Invoke,
-              matches: _callback155Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -407785,10 +405087,10 @@ const _flaxBinding3382 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback155,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback155Invoke,
-              matches: _callback155Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -408525,10 +405827,10 @@ const _flaxBinding3448 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback157,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback157Invoke,
-              matches: _callback157Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -408631,10 +405933,10 @@ const _flaxBinding3448 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback157,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback157Invoke,
-              matches: _callback157Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -409132,10 +406434,10 @@ const _flaxBinding3453 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback159,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback159Invoke,
-              matches: _callback159Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -409238,10 +406540,10 @@ const _flaxBinding3453 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback159,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback159Invoke,
-              matches: _callback159Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -409720,10 +407022,10 @@ const _flaxBinding3485 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback161,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback161Invoke,
-              matches: _callback161Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -409841,10 +407143,10 @@ const _flaxBinding3485 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback161,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback161Invoke,
-              matches: _callback161Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -410295,10 +407597,10 @@ const _flaxBinding3489 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback163,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback163Invoke,
-              matches: _callback163Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -410410,10 +407712,10 @@ const _flaxBinding3489 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback163,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback163Invoke,
-              matches: _callback163Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -410830,10 +408132,10 @@ const _flaxBinding3490 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback165,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback165Invoke,
-              matches: _callback165Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -410936,10 +408238,10 @@ const _flaxBinding3490 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback165,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback165Invoke,
-              matches: _callback165Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -411286,10 +408588,10 @@ const _flaxBinding3500 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback167,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback167Invoke,
-              matches: _callback167Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -411392,10 +408694,10 @@ const _flaxBinding3500 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback167,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback167Invoke,
-              matches: _callback167Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -411729,10 +409031,10 @@ const _flaxBinding3504 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback169,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback169Invoke,
-              matches: _callback169Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -411835,10 +409137,10 @@ const _flaxBinding3504 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback169,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback169Invoke,
-              matches: _callback169Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -412205,10 +409507,10 @@ const _flaxBinding3514 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback171,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback171Invoke,
-              matches: _callback171Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -412311,10 +409613,10 @@ const _flaxBinding3514 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback171,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback171Invoke,
-              matches: _callback171Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -412759,10 +410061,10 @@ const _flaxBinding3540 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback173,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback173Invoke,
-              matches: _callback173Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -412879,10 +410181,10 @@ const _flaxBinding3540 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback173,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback173Invoke,
-              matches: _callback173Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -413705,10 +411007,10 @@ const _flaxBinding3605 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback175,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback175Invoke,
-              matches: _callback175Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -413823,10 +411125,10 @@ const _flaxBinding3605 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback175,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback175Invoke,
-              matches: _callback175Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -414324,10 +411626,10 @@ const _flaxBinding3606 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback177,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback177Invoke,
-              matches: _callback177Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -414430,10 +411732,10 @@ const _flaxBinding3606 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback177,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback177Invoke,
-              matches: _callback177Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -414762,10 +412064,10 @@ const _flaxBinding3612 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback179,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback179Invoke,
-              matches: _callback179Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -414869,10 +412171,10 @@ const _flaxBinding3612 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback179,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback179Invoke,
-              matches: _callback179Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -415218,10 +412520,10 @@ const _flaxBinding3618 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback181,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback181Invoke,
-              matches: _callback181Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -415324,10 +412626,10 @@ const _flaxBinding3618 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback181,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback181Invoke,
-              matches: _callback181Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -415794,10 +413096,10 @@ const _flaxBinding3641 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback183,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback183Invoke,
-              matches: _callback183Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -415900,10 +413202,10 @@ const _flaxBinding3641 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback183,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback183Invoke,
-              matches: _callback183Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -416453,10 +413755,10 @@ const _flaxBinding3675 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback186,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback186Invoke,
-              matches: _callback186Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -416529,10 +413831,10 @@ const _flaxBinding3682 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback187,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback187Invoke,
-              matches: _callback187Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -416636,10 +413938,10 @@ const _flaxBinding3682 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback187,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback187Invoke,
-              matches: _callback187Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -416997,10 +414299,10 @@ const _flaxBinding3692 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback189,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback189Invoke,
-              matches: _callback189Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -417105,10 +414407,10 @@ const _flaxBinding3692 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback189,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback189Invoke,
-              matches: _callback189Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -417468,10 +414770,10 @@ const _flaxBinding3701 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback191,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback191Invoke,
-              matches: _callback191Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -417576,10 +414878,10 @@ const _flaxBinding3701 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback191,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback191Invoke,
-              matches: _callback191Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -418287,10 +415589,10 @@ const _flaxBinding3761 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback193,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback193Invoke,
-              matches: _callback193Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -418400,10 +415702,10 @@ const _flaxBinding3761 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback193,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback193Invoke,
-              matches: _callback193Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -419012,10 +416314,10 @@ const _flaxBinding3766 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback195,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback195Invoke,
-              matches: _callback195Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -419119,10 +416421,10 @@ const _flaxBinding3766 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback195,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback195Invoke,
-              matches: _callback195Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -419589,10 +416891,10 @@ const _flaxBinding3795 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback197,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback197Invoke,
-              matches: _callback197Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -419696,10 +416998,10 @@ const _flaxBinding3795 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback197,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback197Invoke,
-              matches: _callback197Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -420177,10 +417479,10 @@ const _flaxBinding3809 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback199,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback199Invoke,
-              matches: _callback199Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -420284,10 +417586,10 @@ const _flaxBinding3809 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback199,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback199Invoke,
-              matches: _callback199Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -420880,10 +418182,10 @@ const _flaxBinding3847 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback201,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback201Invoke,
-              matches: _callback201Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -420986,10 +418288,10 @@ const _flaxBinding3847 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback201,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback201Invoke,
-              matches: _callback201Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -421432,10 +418734,10 @@ const _flaxBinding3853 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback203,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback203Invoke,
-              matches: _callback203Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -421544,10 +418846,10 @@ const _flaxBinding3853 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback203,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback203Invoke,
-              matches: _callback203Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -422145,10 +419447,10 @@ const _flaxBinding3900 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback206,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback206Invoke,
-              matches: _callback206Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -422254,10 +419556,10 @@ const _flaxBinding3900 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback206,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback206Invoke,
-              matches: _callback206Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -422627,10 +419929,10 @@ const _flaxBinding3910 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback208,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback208Invoke,
-              matches: _callback208Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -422734,10 +420036,10 @@ const _flaxBinding3910 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback208,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback208Invoke,
-              matches: _callback208Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -423232,10 +420534,10 @@ const _flaxBinding3940 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback210,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback210Invoke,
-              matches: _callback210Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -423340,10 +420642,10 @@ const _flaxBinding3940 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback210,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback210Invoke,
-              matches: _callback210Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -423891,10 +421193,10 @@ const _flaxBinding3966 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback212,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback212Invoke,
-              matches: _callback212Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -423998,10 +421300,10 @@ const _flaxBinding3966 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback212,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback212Invoke,
-              matches: _callback212Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -424437,10 +421739,10 @@ const _flaxBinding3976 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback214,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback214Invoke,
-              matches: _callback214Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -424543,10 +421845,10 @@ const _flaxBinding3976 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback214,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback214Invoke,
-              matches: _callback214Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -425405,10 +422707,10 @@ const _flaxBinding4063 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback216,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback216Invoke,
-              matches: _callback216Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -425587,10 +422889,10 @@ const _flaxBinding4063 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback216,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback216Invoke,
-              matches: _callback216Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -426081,10 +423383,10 @@ const _flaxBinding4069 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback218,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback218Invoke,
-              matches: _callback218Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -426192,10 +423494,10 @@ const _flaxBinding4069 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback218,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback218Invoke,
-              matches: _callback218Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -426560,10 +423862,10 @@ const _flaxBinding4076 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback220,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback220Invoke,
-              matches: _callback220Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -426676,10 +423978,10 @@ const _flaxBinding4076 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback220,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback220Invoke,
-              matches: _callback220Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -427173,10 +424475,10 @@ const _flaxBinding4102 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback222,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback222Invoke,
-              matches: _callback222Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -427288,10 +424590,10 @@ const _flaxBinding4102 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback222,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback222Invoke,
-              matches: _callback222Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -427665,10 +424967,10 @@ const _flaxBinding4120 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback224,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback224Invoke,
-              matches: _callback224Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -427788,10 +425090,10 @@ const _flaxBinding4120 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback224,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback224Invoke,
-              matches: _callback224Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -428201,10 +425503,10 @@ const _flaxBinding4136 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback226,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback226Invoke,
-              matches: _callback226Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -428316,10 +425618,10 @@ const _flaxBinding4136 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback226,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback226Invoke,
-              matches: _callback226Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -428638,10 +425940,10 @@ const _flaxBinding4140 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback228,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback228Invoke,
-              matches: _callback228Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -428730,10 +426032,10 @@ const _flaxBinding4150 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback229,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback229Invoke,
-              matches: _callback229Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -428842,10 +426144,10 @@ const _flaxBinding4150 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback229,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback229Invoke,
-              matches: _callback229Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -429145,10 +426447,10 @@ const _flaxBinding4151 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback231,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback231Invoke,
-              matches: _callback231Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -429264,10 +426566,10 @@ const _flaxBinding4151 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback231,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback231Invoke,
-              matches: _callback231Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -429563,10 +426865,10 @@ const _flaxBinding4152 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback233,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback233Invoke,
-              matches: _callback233Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -429682,10 +426984,10 @@ const _flaxBinding4152 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback233,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback233Invoke,
-              matches: _callback233Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -429981,10 +427283,10 @@ const _flaxBinding4153 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback235,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback235Invoke,
-              matches: _callback235Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -430100,10 +427402,10 @@ const _flaxBinding4153 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback235,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback235Invoke,
-              matches: _callback235Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -430648,10 +427950,10 @@ const _flaxBinding4195 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback237,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback237Invoke,
-              matches: _callback237Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -430775,10 +428077,10 @@ const _flaxBinding4195 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback237,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback237Invoke,
-              matches: _callback237Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -431217,10 +428519,10 @@ const _flaxBinding4204 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback239,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback239Invoke,
-              matches: _callback239Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -431391,10 +428693,10 @@ const _flaxBinding4204 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback239,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback239Invoke,
-              matches: _callback239Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -431813,10 +429115,10 @@ const _flaxBinding4215 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback241,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback241Invoke,
-              matches: _callback241Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -431991,10 +429293,10 @@ const _flaxBinding4215 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback241,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback241Invoke,
-              matches: _callback241Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -432385,10 +429687,10 @@ const _flaxBinding4219 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback243,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback243Invoke,
-              matches: _callback243Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -432563,10 +429865,10 @@ const _flaxBinding4219 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback243,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback243Invoke,
-              matches: _callback243Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -433065,10 +430367,10 @@ const _flaxBinding4244 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback245,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback245Invoke,
-              matches: _callback245Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -433178,10 +430480,10 @@ const _flaxBinding4244 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback245,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback245Invoke,
-              matches: _callback245Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -433633,10 +430935,10 @@ const _flaxBinding4267 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback247,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback247Invoke,
-              matches: _callback247Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -433762,10 +431064,10 @@ const _flaxBinding4267 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback247,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback247Invoke,
-              matches: _callback247Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -434149,10 +431451,10 @@ const _flaxBinding4269 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback249,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback249Invoke,
-              matches: _callback249Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -434291,10 +431593,10 @@ const _flaxBinding4269 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback249,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback249Invoke,
-              matches: _callback249Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -434692,10 +431994,10 @@ const _flaxBinding4277 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback251,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback251Invoke,
-              matches: _callback251Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -434865,10 +432167,10 @@ const _flaxBinding4277 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback251,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback251Invoke,
-              matches: _callback251Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -435241,10 +432543,10 @@ const _flaxBinding4283 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback253,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback253Invoke,
-              matches: _callback253Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -435356,10 +432658,10 @@ const _flaxBinding4283 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback253,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback253Invoke,
-              matches: _callback253Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -435664,10 +432966,10 @@ const _flaxBinding4284 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback255,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback255Invoke,
-              matches: _callback255Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -435837,10 +433139,10 @@ const _flaxBinding4284 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback255,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback255Invoke,
-              matches: _callback255Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -436245,10 +433547,10 @@ const _flaxBinding4300 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback257,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback257Invoke,
-              matches: _callback257Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -436368,10 +433670,10 @@ const _flaxBinding4300 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback257,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback257Invoke,
-              matches: _callback257Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -436714,10 +434016,10 @@ const _flaxBinding4304 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback259,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback259Invoke,
-              matches: _callback259Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -436828,10 +434130,10 @@ const _flaxBinding4304 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback259,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback259Invoke,
-              matches: _callback259Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -437155,10 +434457,10 @@ const _flaxBinding4310 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback261,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback261Invoke,
-              matches: _callback261Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -437269,10 +434571,10 @@ const _flaxBinding4310 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback261,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback261Invoke,
-              matches: _callback261Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -437608,10 +434910,10 @@ const _flaxBinding4317 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback263,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback263Invoke,
-              matches: _callback263Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -437722,10 +435024,10 @@ const _flaxBinding4317 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback263,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback263Invoke,
-              matches: _callback263Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -438080,10 +435382,10 @@ const _flaxBinding4322 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback265,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback265Invoke,
-              matches: _callback265Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -438205,10 +435507,10 @@ const _flaxBinding4322 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback265,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback265Invoke,
-              matches: _callback265Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -438552,10 +435854,10 @@ const _flaxBinding4325 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback267,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback267Invoke,
-              matches: _callback267Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -438678,10 +435980,10 @@ const _flaxBinding4325 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback267,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback267Invoke,
-              matches: _callback267Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -439048,10 +436350,10 @@ const _flaxBinding4327 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback269,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback269Invoke,
-              matches: _callback269Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -439164,10 +436466,10 @@ const _flaxBinding4327 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback269,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback269Invoke,
-              matches: _callback269Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -439542,10 +436844,10 @@ const _flaxBinding4328 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback271,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback271Invoke,
-              matches: _callback271Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -439661,10 +436963,10 @@ const _flaxBinding4328 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback271,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback271Invoke,
-              matches: _callback271Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -439992,10 +437294,10 @@ const _flaxBinding4335 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback273,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback273Invoke,
-              matches: _callback273Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -440170,10 +437472,10 @@ const _flaxBinding4335 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback273,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback273Invoke,
-              matches: _callback273Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -440534,10 +437836,10 @@ const _flaxBinding4336 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback275,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback275Invoke,
-              matches: _callback275Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -440877,10 +438179,10 @@ const _flaxBinding4388 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback276,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback276Invoke,
-              matches: _callback276Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -440991,10 +438293,10 @@ const _flaxBinding4388 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback276,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback276Invoke,
-              matches: _callback276Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -441640,10 +438942,10 @@ const _flaxBinding4425 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback278,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback278Invoke,
-              matches: _callback278Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -441752,10 +439054,10 @@ const _flaxBinding4425 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback278,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback278Invoke,
-              matches: _callback278Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -442237,10 +439539,10 @@ const _flaxBinding4442 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback280,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback280Invoke,
-              matches: _callback280Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -442418,10 +439720,10 @@ const _flaxBinding4442 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback280,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback280Invoke,
-              matches: _callback280Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -442868,10 +440170,10 @@ const _flaxBinding4452 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback282,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback282Invoke,
-              matches: _callback282Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -442981,10 +440283,10 @@ const _flaxBinding4452 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback282,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback282Invoke,
-              matches: _callback282Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -443432,10 +440734,10 @@ const _flaxBinding4481 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback284,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback284Invoke,
-              matches: _callback284Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -443491,10 +440793,10 @@ const _flaxBinding4481 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback284,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback284Invoke,
-              matches: _callback284Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -444162,10 +441464,10 @@ const _flaxBinding4537 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback286,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback286Invoke,
-              matches: _callback286Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -444343,10 +441645,10 @@ const _flaxBinding4537 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback286,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback286Invoke,
-              matches: _callback286Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -445443,10 +442745,10 @@ const _flaxBinding4650 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback290,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback290Invoke,
-              matches: _callback290Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -445563,10 +442865,10 @@ const _flaxBinding4650 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback290,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback290Invoke,
-              matches: _callback290Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -446372,7 +443674,7 @@ const _flaxBinding4724 = FlaxInstanceMethod.shared(
 const _flaxBinding4725 = FlaxTypeRef(
   "futureOr",
   item: flaxNullableAnyType,
-  future: FlaxFutureBinding("any?:", _future7Adapt),
+  future: FlaxFutureBinding("any?:", _flaxAdapters.flaxAdapter15Adapt),
 );
 const _flaxBinding4726 = FlaxTypeRef(
   "object",
@@ -446671,10 +443973,10 @@ const _flaxBinding4776 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               _flaxBinding4725,
-              _callback292,
+              _flaxAdapters.flaxAdapter21,
               id: "callback:<>()->futureOr:[any?:]",
-              invoke: _callback292Invoke,
-              matches: _callback292Matches,
+              invoke: _flaxAdapters.flaxAdapter21Invoke,
+              matches: _flaxAdapters.flaxAdapter21Matches,
             ),
           ),
         ),
@@ -446685,7 +443987,7 @@ const _flaxBinding4776 = FlaxObjectBinding(
       FlaxTypeRef(
         "future",
         item: flaxNullableAnyType,
-        future: FlaxFutureBinding("any?:", _future7Adapt),
+        future: FlaxFutureBinding("any?:", _flaxAdapters.flaxAdapter15Adapt),
       ),
       _RendererBinding_scheduleTask,
       genericFactory: _flaxGeneric_RendererBinding_scheduleTask,
@@ -446792,7 +444094,7 @@ const _flaxBinding4783 = FlaxTypeRef(
   item: _flaxBinding4782,
   future: FlaxFutureBinding(
     "object:flax.core/sdk_dart_ui#type:Codec",
-    _future8Adapt,
+    _flaxAdapters.flaxAdapter6Adapt,
   ),
 );
 const _flaxBinding4784 = FlaxInstanceMethod.plain(
@@ -446964,16 +444266,16 @@ const _flaxBinding4811 = FlaxProxyMember(
 const _flaxBinding4812 = FlaxCallbackBinding(
   [],
   _flaxBinding4725,
-  _callback294,
+  _flaxAdapters.flaxAdapter21,
   id: "callback:<>()->futureOr:[any?:]",
-  invoke: _callback294Invoke,
-  matches: _callback294Matches,
+  invoke: _flaxAdapters.flaxAdapter21Invoke,
+  matches: _flaxAdapters.flaxAdapter21Matches,
 );
 const _flaxBinding4813 = FlaxTypeRef("callback", callback: _flaxBinding4812);
 const _flaxBinding4814 = FlaxTypeRef(
   "future",
   item: flaxNullableAnyType,
-  future: FlaxFutureBinding("any?:", _future7Adapt),
+  future: FlaxFutureBinding("any?:", _flaxAdapters.flaxAdapter15Adapt),
 );
 const _flaxBinding4815 = FlaxCallbackBinding.signature(
   [
@@ -447624,10 +444926,10 @@ const _flaxBinding4913 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               _flaxBinding4725,
-              _callback293,
+              _flaxAdapters.flaxAdapter21,
               id: "callback:<>()->futureOr:[any?:]",
-              invoke: _callback293Invoke,
-              matches: _callback293Matches,
+              invoke: _flaxAdapters.flaxAdapter21Invoke,
+              matches: _flaxAdapters.flaxAdapter21Matches,
             ),
           ),
         ),
@@ -447638,7 +444940,7 @@ const _flaxBinding4913 = FlaxObjectBinding(
       FlaxTypeRef(
         "future",
         item: flaxNullableAnyType,
-        future: FlaxFutureBinding("any?:", _future7Adapt),
+        future: FlaxFutureBinding("any?:", _flaxAdapters.flaxAdapter15Adapt),
       ),
       _RenderingFlutterBinding_scheduleTask,
       genericFactory: _flaxGeneric_RenderingFlutterBinding_scheduleTask,
@@ -447754,10 +445056,10 @@ const _flaxBinding4913 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               _flaxBinding4725,
-              _callback293,
+              _flaxAdapters.flaxAdapter21,
               id: "callback:<>()->futureOr:[any?:]",
-              invoke: _callback293Invoke,
-              matches: _callback293Matches,
+              invoke: _flaxAdapters.flaxAdapter21Invoke,
+              matches: _flaxAdapters.flaxAdapter21Matches,
             ),
           ),
         ),
@@ -447768,7 +445070,7 @@ const _flaxBinding4913 = FlaxObjectBinding(
       FlaxTypeRef(
         "future",
         item: flaxNullableAnyType,
-        future: FlaxFutureBinding("any?:", _future7Adapt),
+        future: FlaxFutureBinding("any?:", _flaxAdapters.flaxAdapter15Adapt),
       ),
       _RenderingFlutterBinding_super_scheduleTask,
       genericFactory: _flaxGeneric_RenderingFlutterBinding_super_scheduleTask,
@@ -448849,8 +446151,8 @@ const _flaxBinding4989 = FlaxTypeRef(
   item: flaxRectType,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_dart_ui#type:Rect]",
-    _collection35Create,
-    _collection35Matches,
+    _flaxAdapters.flaxAdapter73Create,
+    _flaxAdapters.flaxAdapter73Matches,
   ),
   iterable: _flaxBinding911,
 );
@@ -449207,10 +446509,10 @@ const _flaxBinding5023 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback296,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback296Invoke,
-              matches: _callback296Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -453127,10 +450429,10 @@ const _flaxBinding5399 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback300,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback300Invoke,
-              matches: _callback300Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),
@@ -453233,10 +450535,10 @@ const _flaxBinding5399 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("constraints", _flaxBinding571)],
               flaxVoidType,
-              _callback300,
+              _flaxAdapters.flaxAdapter32,
               id: "callback:<>(p:r:constraints:object:flax.core/sdk_rendering#type:Constraints)->void:",
-              invoke: _callback300Invoke,
-              matches: _callback300Matches,
+              invoke: _flaxAdapters.flaxAdapter32Invoke,
+              matches: _flaxAdapters.flaxAdapter32Matches,
             ),
           ),
         ),

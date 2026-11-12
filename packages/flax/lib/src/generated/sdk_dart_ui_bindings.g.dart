@@ -13,6 +13,8 @@ import 'dart:isolate' as api4;
 
 import 'package:flax/sandbox_ui.dart' as api5;
 
+import 'closed_adapters.g.dart' as _flaxAdapters;
+
 // ignore: unused_element
 const _flaxOmitted = Object();
 const sdk_dart_uiBindings = FlaxBindingModule(
@@ -14514,92 +14516,23 @@ Object? _callback5Invoke(
   return null;
 }
 
-Object _callback6(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named) as api3.FutureOr<Object?>;
-};
-bool _callback6Matches(Object value) =>
-    value is api3.FutureOr<Object?> Function();
-Object? _callback6Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as api3.FutureOr<Object?> Function())();
-}
-
-Object _collection0Create() => <api.Offset>[];
-bool _collection0Matches(Object value) => value is List<api.Offset>;
-Object _collection1Create() => <api.Offset>[];
-Object _collection1Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api.Offset>();
-bool _collection1Matches(Object value) => value is Iterable<api.Offset>;
 Object _collection2Create() => <api.RSTransform>[];
 bool _collection2Matches(Object value) => value is List<api.RSTransform>;
 Object _collection3Create() => <api.RSTransform>[];
 Object _collection3Restore(Object value) =>
     (value as Iterable<Object?>).cast<api.RSTransform>();
 bool _collection3Matches(Object value) => value is Iterable<api.RSTransform>;
-Object _collection4Create() => <api.Rect>[];
-bool _collection4Matches(Object value) => value is List<api.Rect>;
-Object _collection5Create() => <api.Rect>[];
-Object _collection5Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api.Rect>();
-bool _collection5Matches(Object value) => value is Iterable<api.Rect>;
-Object _collection6Create() => <api.Color>[];
-bool _collection6Matches(Object value) => value is List<api.Color>;
-Object _collection7Create() => <api.Color>[];
-Object _collection7Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api.Color>();
-bool _collection7Matches(Object value) => value is Iterable<api.Color>;
-Object _collection8Create() => <api.TextBox>[];
-bool _collection8Matches(Object value) => value is List<api.TextBox>;
-Object _collection9Create() => <api.TextBox>[];
-Object _collection9Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api.TextBox>();
-bool _collection9Matches(Object value) => value is Iterable<api.TextBox>;
-Object _collection10Create() => <api.LineMetrics>[];
-bool _collection10Matches(Object value) => value is List<api.LineMetrics>;
-Object _collection11Create() => <api.LineMetrics>[];
-Object _collection11Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api.LineMetrics>();
-bool _collection11Matches(Object value) => value is Iterable<api.LineMetrics>;
-Object _collection12Create() => <double>[];
-bool _collection12Matches(Object value) => value is List<double>;
-Object _collection13Create() => <double>[];
-Object _collection13Restore(Object value) =>
-    (value as Iterable<Object?>).cast<double>();
-bool _collection13Matches(Object value) => value is Iterable<double>;
+
 Object _collection14Create() => <api.PointerData>[];
 bool _collection14Matches(Object value) => value is List<api.PointerData>;
-Object _collection15Create() => <api.PointerData>[];
-Object _collection15Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api.PointerData>();
-bool _collection15Matches(Object value) => value is Iterable<api.PointerData>;
-Object _collection16Create() => <String>[];
-bool _collection16Matches(Object value) => value is List<String>;
-Object _collection17Create() => <String>[];
-Object _collection17Restore(Object value) =>
-    (value as Iterable<Object?>).cast<String>();
-bool _collection17Matches(Object value) => value is Iterable<String>;
-Object _collection18Create() => <api.DisplayFeature>[];
-bool _collection18Matches(Object value) => value is List<api.DisplayFeature>;
-Object _collection19Create() => <api.DisplayFeature>[];
-Object _collection19Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api.DisplayFeature>();
-bool _collection19Matches(Object value) =>
-    value is Iterable<api.DisplayFeature>;
+
 Object _collection20Create() => <api2.StackTrace>[];
 bool _collection20Matches(Object value) => value is List<api2.StackTrace>;
 Object _collection21Create() => <api2.StackTrace>[];
 Object _collection21Restore(Object value) =>
     (value as Iterable<Object?>).cast<api2.StackTrace>();
 bool _collection21Matches(Object value) => value is Iterable<api2.StackTrace>;
-Object _collection22Create() => <Object?>[];
-Object _collection22Restore(Object value) =>
-    (value as Iterable<Object?>).cast<Object?>();
-bool _collection22Matches(Object value) => value is Iterable<Object?>;
+
 Object _collection23Create() => <api.PathMetric>[];
 Object _collection23Restore(Object value) =>
     (value as Iterable<Object?>).cast<api.PathMetric>();
@@ -14616,25 +14549,7 @@ Object _collection27Create() => <api.FlutterView>[];
 Object _collection27Restore(Object value) =>
     (value as Iterable<Object?>).cast<api.FlutterView>();
 bool _collection27Matches(Object value) => value is Iterable<api.FlutterView>;
-Object _collection28Create() => <api.FrameTiming>[];
-bool _collection28Matches(Object value) => value is List<api.FrameTiming>;
-Object _collection29Create() => <api.FrameTiming>[];
-Object _collection29Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api.FrameTiming>();
-bool _collection29Matches(Object value) => value is Iterable<api.FrameTiming>;
-Object _collection30Create() => <api.Locale>[];
-bool _collection30Matches(Object value) => value is List<api.Locale>;
-Object _collection31Create() => <api.Locale>[];
-Object _collection31Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api.Locale>();
-bool _collection31Matches(Object value) => value is Iterable<api.Locale>;
-Object _collection32Create() => <api.StringAttribute>[];
-bool _collection32Matches(Object value) => value is List<api.StringAttribute>;
-Object _collection33Create() => <api.StringAttribute>[];
-Object _collection33Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api.StringAttribute>();
-bool _collection33Matches(Object value) =>
-    value is Iterable<api.StringAttribute>;
+
 Object _collection34Create() => <api.TextDecoration>[];
 bool _collection34Matches(Object value) => value is List<api.TextDecoration>;
 Object _collection35Create() => <api.TextDecoration>[];
@@ -14642,60 +14557,25 @@ Object _collection35Restore(Object value) =>
     (value as Iterable<Object?>).cast<api.TextDecoration>();
 bool _collection35Matches(Object value) =>
     value is Iterable<api.TextDecoration>;
-Object _collection36Create() => <api.Shadow>[];
-bool _collection36Matches(Object value) => value is List<api.Shadow>;
-Object _collection37Create() => <api.Shadow>[];
-Object _collection37Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api.Shadow>();
-bool _collection37Matches(Object value) => value is Iterable<api.Shadow>;
-Object _collection38Create() => <api.FontFeature>[];
-bool _collection38Matches(Object value) => value is List<api.FontFeature>;
-Object _collection39Create() => <api.FontFeature>[];
-Object _collection39Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api.FontFeature>();
-bool _collection39Matches(Object value) => value is Iterable<api.FontFeature>;
-Object _collection40Create() => <api.FontVariation>[];
-bool _collection40Matches(Object value) => value is List<api.FontVariation>;
-Object _collection41Create() => <api.FontVariation>[];
-Object _collection41Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api.FontVariation>();
-bool _collection41Matches(Object value) => value is Iterable<api.FontVariation>;
-Object _collection42Create() => <int>[];
-bool _collection42Matches(Object value) => value is List<int>;
-Object _collection43Create() => <int>[];
-Object _collection43Restore(Object value) =>
-    (value as Iterable<Object?>).cast<int>();
-bool _collection43Matches(Object value) => value is Iterable<int>;
+
 Object _collection44Create() => <api.SemanticsAction>[];
 bool _collection44Matches(Object value) => value is List<api.SemanticsAction>;
-Object _collection45Create() => <api.SemanticsAction>[];
-Object _collection45Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api.SemanticsAction>();
-bool _collection45Matches(Object value) =>
-    value is Iterable<api.SemanticsAction>;
+
 Object _collection46Create() => <api.SemanticsFlag>[];
 bool _collection46Matches(Object value) => value is List<api.SemanticsFlag>;
 Object _collection47Create() => <api.SemanticsFlag>[];
 Object _collection47Restore(Object value) =>
     (value as Iterable<Object?>).cast<api.SemanticsFlag>();
 bool _collection47Matches(Object value) => value is Iterable<api.SemanticsFlag>;
-Future<Object?> _future0Adapt(Future<Object?> value) =>
-    value.then<void>((_) {});
+
 Future<Object?> _future1Adapt(Future<Object?> value) =>
     value.then<api.FrameInfo>((value) => value as api.FrameInfo);
-Future<Object?> _future2Adapt(Future<Object?> value) =>
-    value.then<api.Image>((value) => value as api.Image);
-Future<Object?> _future3Adapt(Future<Object?> value) =>
-    value.then<api1.ByteData?>((value) => value as api1.ByteData?);
-Future<Object?> _future4Adapt(Future<Object?> value) =>
-    value.then<api.Codec>((value) => value as api.Codec);
-Future<Object?> _future5Adapt(Future<Object?> value) => value;
+
 Future<Object?> _future6Adapt(Future<Object?> value) =>
     value.then<api.FragmentProgram>((value) => value as api.FragmentProgram);
 Future<Object?> _future7Adapt(Future<Object?> value) =>
     value.then<api.ImageDescriptor>((value) => value as api.ImageDescriptor);
-Future<Object?> _future8Adapt(Future<Object?> value) =>
-    value.then<api.ImmutableBuffer>((value) => value as api.ImmutableBuffer);
+
 const _flaxBinding0 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dart_ui#type:Rect",
@@ -14913,9 +14793,9 @@ const _flaxBinding33 = FlaxTypeRef(
   item: flaxOffsetType,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/flutter#type:Offset]",
-    _collection1Create,
-    _collection1Matches,
-    restore: _collection1Restore,
+    _flaxAdapters.flaxAdapter67Create,
+    _flaxAdapters.flaxAdapter67Matches,
+    restore: _flaxAdapters.flaxAdapter67Restore,
   ),
 );
 const _flaxBinding34 = FlaxTypeRef(
@@ -14923,8 +14803,8 @@ const _flaxBinding34 = FlaxTypeRef(
   item: flaxOffsetType,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/flutter#type:Offset]",
-    _collection0Create,
-    _collection0Matches,
+    _flaxAdapters.flaxAdapter68Create,
+    _flaxAdapters.flaxAdapter68Matches,
   ),
   iterable: _flaxBinding33,
 );
@@ -14989,9 +14869,9 @@ const _flaxBinding43 = FlaxTypeRef(
   item: flaxRectType,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_dart_ui#type:Rect]",
-    _collection5Create,
-    _collection5Matches,
-    restore: _collection5Restore,
+    _flaxAdapters.flaxAdapter72Create,
+    _flaxAdapters.flaxAdapter72Matches,
+    restore: _flaxAdapters.flaxAdapter72Restore,
   ),
 );
 const _flaxBinding44 = FlaxTypeRef(
@@ -14999,8 +14879,8 @@ const _flaxBinding44 = FlaxTypeRef(
   item: flaxRectType,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_dart_ui#type:Rect]",
-    _collection4Create,
-    _collection4Matches,
+    _flaxAdapters.flaxAdapter73Create,
+    _flaxAdapters.flaxAdapter73Matches,
   ),
   iterable: _flaxBinding43,
 );
@@ -15009,9 +14889,9 @@ const _flaxBinding45 = FlaxTypeRef(
   item: flaxColorType,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/flutter#type:Color]",
-    _collection7Create,
-    _collection7Matches,
-    restore: _collection7Restore,
+    _flaxAdapters.flaxAdapter53Create,
+    _flaxAdapters.flaxAdapter53Matches,
+    restore: _flaxAdapters.flaxAdapter53Restore,
   ),
 );
 const _flaxBinding46 = FlaxTypeRef(
@@ -15020,8 +14900,8 @@ const _flaxBinding46 = FlaxTypeRef(
   item: flaxColorType,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/flutter#type:Color]",
-    _collection6Create,
-    _collection6Matches,
+    _flaxAdapters.flaxAdapter54Create,
+    _flaxAdapters.flaxAdapter54Matches,
   ),
   iterable: _flaxBinding45,
 );
@@ -15125,7 +15005,7 @@ const _flaxBinding60 = FlaxCallbackBinding.signature(
 const _flaxBinding61 = FlaxTypeRef(
   "future",
   item: flaxVoidType,
-  future: FlaxFutureBinding("void:", _future0Adapt),
+  future: FlaxFutureBinding("void:", _flaxAdapters.flaxAdapter14Adapt),
 );
 const _flaxBinding62 = FlaxCallbackBinding(
   [
@@ -15305,9 +15185,9 @@ const _flaxBinding97 = FlaxTypeRef(
   item: _flaxBinding96,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_dart_ui#type:TextBox]",
-    _collection9Create,
-    _collection9Matches,
-    restore: _collection9Restore,
+    _flaxAdapters.flaxAdapter80Create,
+    _flaxAdapters.flaxAdapter80Matches,
+    restore: _flaxAdapters.flaxAdapter80Restore,
   ),
 );
 const _flaxBinding98 = FlaxTypeRef(
@@ -15315,8 +15195,8 @@ const _flaxBinding98 = FlaxTypeRef(
   item: _flaxBinding96,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_dart_ui#type:TextBox]",
-    _collection8Create,
-    _collection8Matches,
+    _flaxAdapters.flaxAdapter81Create,
+    _flaxAdapters.flaxAdapter81Matches,
   ),
   iterable: _flaxBinding97,
 );
@@ -15363,9 +15243,9 @@ const _flaxBinding107 = FlaxTypeRef(
   item: _flaxBinding106,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_dart_ui#type:LineMetrics]",
-    _collection11Create,
-    _collection11Matches,
-    restore: _collection11Restore,
+    _flaxAdapters.flaxAdapter63Create,
+    _flaxAdapters.flaxAdapter63Matches,
+    restore: _flaxAdapters.flaxAdapter63Restore,
   ),
 );
 const _flaxBinding108 = FlaxTypeRef(
@@ -15373,8 +15253,8 @@ const _flaxBinding108 = FlaxTypeRef(
   item: _flaxBinding106,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_dart_ui#type:LineMetrics]",
-    _collection10Create,
-    _collection10Matches,
+    _flaxAdapters.flaxAdapter64Create,
+    _flaxAdapters.flaxAdapter64Matches,
   ),
   iterable: _flaxBinding107,
 );
@@ -15422,9 +15302,9 @@ const _flaxBinding117 = FlaxTypeRef(
   item: flaxDoubleType,
   collection: FlaxCollectionBinding(
     "iterable:[double:]",
-    _collection13Create,
-    _collection13Matches,
-    restore: _collection13Restore,
+    _flaxAdapters.flaxAdapter123Create,
+    _flaxAdapters.flaxAdapter123Matches,
+    restore: _flaxAdapters.flaxAdapter123Restore,
   ),
 );
 const _flaxBinding118 = FlaxTypeRef(
@@ -15432,8 +15312,8 @@ const _flaxBinding118 = FlaxTypeRef(
   item: flaxDoubleType,
   collection: FlaxCollectionBinding(
     "list:[double:]",
-    _collection12Create,
-    _collection12Matches,
+    _flaxAdapters.flaxAdapter124Create,
+    _flaxAdapters.flaxAdapter124Matches,
   ),
   iterable: _flaxBinding117,
 );
@@ -15564,7 +15444,7 @@ const _flaxBinding137 = FlaxTypeRef(
   item: _flaxBinding24,
   future: FlaxFutureBinding(
     "object:flax.core/sdk_dart_ui#type:Image",
-    _future2Adapt,
+    _flaxAdapters.flaxAdapter7Adapt,
   ),
 );
 const _flaxBinding138 = FlaxCallbackBinding.signature(
@@ -15638,9 +15518,9 @@ const _flaxBinding150 = FlaxTypeRef(
   item: _flaxBinding149,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_dart_ui#type:PointerData]",
-    _collection15Create,
-    _collection15Matches,
-    restore: _collection15Restore,
+    _flaxAdapters.flaxAdapter69Create,
+    _flaxAdapters.flaxAdapter69Matches,
+    restore: _flaxAdapters.flaxAdapter69Restore,
   ),
 );
 const _flaxBinding151 = FlaxTypeRef(
@@ -15715,9 +15595,9 @@ const _flaxBinding163 = FlaxTypeRef(
   item: flaxStringType,
   collection: FlaxCollectionBinding(
     "iterable:[String:]",
-    _collection17Create,
-    _collection17Matches,
-    restore: _collection17Restore,
+    _flaxAdapters.flaxAdapter47Create,
+    _flaxAdapters.flaxAdapter47Matches,
+    restore: _flaxAdapters.flaxAdapter47Restore,
   ),
 );
 const _flaxBinding164 = FlaxTypeRef(
@@ -15725,8 +15605,8 @@ const _flaxBinding164 = FlaxTypeRef(
   item: flaxStringType,
   collection: FlaxCollectionBinding(
     "list:[String:]",
-    _collection16Create,
-    _collection16Matches,
+    _flaxAdapters.flaxAdapter48Create,
+    _flaxAdapters.flaxAdapter48Matches,
   ),
   iterable: _flaxBinding163,
 );
@@ -16989,9 +16869,9 @@ const _flaxBinding386 = FlaxTypeRef(
   item: _flaxBinding385,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_dart_ui#type:DisplayFeature]",
-    _collection19Create,
-    _collection19Matches,
-    restore: _collection19Restore,
+    _flaxAdapters.flaxAdapter55Create,
+    _flaxAdapters.flaxAdapter55Matches,
+    restore: _flaxAdapters.flaxAdapter55Restore,
   ),
 );
 const _flaxBinding387 = FlaxTypeRef(
@@ -16999,8 +16879,8 @@ const _flaxBinding387 = FlaxTypeRef(
   item: _flaxBinding385,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_dart_ui#type:DisplayFeature]",
-    _collection18Create,
-    _collection18Matches,
+    _flaxAdapters.flaxAdapter56Create,
+    _flaxAdapters.flaxAdapter56Matches,
   ),
   iterable: _flaxBinding386,
 );
@@ -17810,8 +17690,8 @@ const _flaxBinding502 = FlaxTypeRef(
   item: flaxColorType,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/flutter#type:Color]",
-    _collection6Create,
-    _collection6Matches,
+    _flaxAdapters.flaxAdapter54Create,
+    _flaxAdapters.flaxAdapter54Matches,
   ),
   iterable: _flaxBinding45,
 );
@@ -17821,8 +17701,8 @@ const _flaxBinding503 = FlaxTypeRef(
   item: flaxDoubleType,
   collection: FlaxCollectionBinding(
     "list:[double:]",
-    _collection12Create,
-    _collection12Matches,
+    _flaxAdapters.flaxAdapter124Create,
+    _flaxAdapters.flaxAdapter124Matches,
   ),
   iterable: _flaxBinding117,
 );
@@ -18018,7 +17898,7 @@ const _flaxBinding529 = <FlaxParameter>[
 const _flaxBinding530 = FlaxTypeRef(
   "future",
   item: _flaxBinding52,
-  future: FlaxFutureBinding("ByteData?:", _future3Adapt),
+  future: FlaxFutureBinding("ByteData?:", _flaxAdapters.flaxAdapter3Adapt),
 );
 const _flaxBinding531 = FlaxInstanceMethod.plain(
   _flaxBinding529,
@@ -18128,7 +18008,7 @@ const _flaxBinding548 = FlaxTypeRef(
   item: _flaxBinding547,
   future: FlaxFutureBinding(
     "object:flax.core/sdk_dart_ui#type:Codec",
-    _future4Adapt,
+    _flaxAdapters.flaxAdapter6Adapt,
   ),
 );
 const _flaxBinding549 = FlaxInstanceMethod.plain(
@@ -20240,9 +20120,9 @@ const _flaxBinding888 = FlaxTypeRef(
   item: flaxNullableAnyType,
   collection: FlaxCollectionBinding(
     "iterable:[any?:]",
-    _collection22Create,
-    _collection22Matches,
-    restore: _collection22Restore,
+    _flaxAdapters.flaxAdapter42Create,
+    _flaxAdapters.flaxAdapter42Matches,
+    restore: _flaxAdapters.flaxAdapter42Restore,
   ),
 );
 const _flaxBinding889 = <FlaxParameter>[
@@ -20437,9 +20317,9 @@ const _flaxBinding924 = FlaxObjectBinding(
         item: flaxNullableAnyType,
         collection: FlaxCollectionBinding(
           "iterable:[any?:]",
-          _collection22Create,
-          _collection22Matches,
-          restore: _collection22Restore,
+          _flaxAdapters.flaxAdapter42Create,
+          _flaxAdapters.flaxAdapter42Matches,
+          restore: _flaxAdapters.flaxAdapter42Restore,
         ),
       ),
       _PathMetrics_cast,
@@ -20469,9 +20349,9 @@ const _flaxBinding924 = FlaxObjectBinding(
         item: flaxNullableAnyType,
         collection: FlaxCollectionBinding(
           "iterable:[any?:]",
-          _collection22Create,
-          _collection22Matches,
-          restore: _collection22Restore,
+          _flaxAdapters.flaxAdapter42Create,
+          _flaxAdapters.flaxAdapter42Matches,
+          restore: _flaxAdapters.flaxAdapter42Restore,
         ),
       ),
       _PathMetrics_map,
@@ -20486,9 +20366,9 @@ const _flaxBinding924 = FlaxObjectBinding(
         item: flaxNullableAnyType,
         collection: FlaxCollectionBinding(
           "iterable:[any?:]",
-          _collection22Create,
-          _collection22Matches,
-          restore: _collection22Restore,
+          _flaxAdapters.flaxAdapter42Create,
+          _flaxAdapters.flaxAdapter42Matches,
+          restore: _flaxAdapters.flaxAdapter42Restore,
         ),
       ),
       _PathMetrics_whereType,
@@ -20517,9 +20397,9 @@ const _flaxBinding924 = FlaxObjectBinding(
         item: flaxNullableAnyType,
         collection: FlaxCollectionBinding(
           "iterable:[any?:]",
-          _collection22Create,
-          _collection22Matches,
-          restore: _collection22Restore,
+          _flaxAdapters.flaxAdapter42Create,
+          _flaxAdapters.flaxAdapter42Matches,
+          restore: _flaxAdapters.flaxAdapter42Restore,
         ),
       ),
       _PathMetrics_expand,
@@ -20856,9 +20736,9 @@ const _flaxBinding973 = FlaxTypeRef(
   item: _flaxBinding972,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_dart_ui#type:FrameTiming]",
-    _collection29Create,
-    _collection29Matches,
-    restore: _collection29Restore,
+    _flaxAdapters.flaxAdapter61Create,
+    _flaxAdapters.flaxAdapter61Matches,
+    restore: _flaxAdapters.flaxAdapter61Restore,
   ),
 );
 const _flaxBinding974 = FlaxTypeRef(
@@ -20866,8 +20746,8 @@ const _flaxBinding974 = FlaxTypeRef(
   item: _flaxBinding972,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_dart_ui#type:FrameTiming]",
-    _collection28Create,
-    _collection28Matches,
+    _flaxAdapters.flaxAdapter62Create,
+    _flaxAdapters.flaxAdapter62Matches,
   ),
   iterable: _flaxBinding973,
 );
@@ -20940,9 +20820,9 @@ const _flaxBinding986 = FlaxTypeRef(
   item: _flaxBinding89,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_dart_ui#type:Locale]",
-    _collection31Create,
-    _collection31Matches,
-    restore: _collection31Restore,
+    _flaxAdapters.flaxAdapter65Create,
+    _flaxAdapters.flaxAdapter65Matches,
+    restore: _flaxAdapters.flaxAdapter65Restore,
   ),
 );
 const _flaxBinding987 = FlaxTypeRef(
@@ -20950,8 +20830,8 @@ const _flaxBinding987 = FlaxTypeRef(
   item: _flaxBinding89,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_dart_ui#type:Locale]",
-    _collection30Create,
-    _collection30Matches,
+    _flaxAdapters.flaxAdapter66Create,
+    _flaxAdapters.flaxAdapter66Matches,
   ),
   iterable: _flaxBinding986,
 );
@@ -24974,8 +24854,8 @@ const _flaxBinding1483 = FlaxTypeRef(
   item: flaxStringType,
   collection: FlaxCollectionBinding(
     "list:[String:]",
-    _collection16Create,
-    _collection16Matches,
+    _flaxAdapters.flaxAdapter48Create,
+    _flaxAdapters.flaxAdapter48Matches,
   ),
   iterable: _flaxBinding163,
 );
@@ -24984,9 +24864,9 @@ const _flaxBinding1484 = FlaxTypeRef(
   item: _flaxBinding87,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_dart_ui#type:StringAttribute]",
-    _collection33Create,
-    _collection33Matches,
-    restore: _collection33Restore,
+    _flaxAdapters.flaxAdapter78Create,
+    _flaxAdapters.flaxAdapter78Matches,
+    restore: _flaxAdapters.flaxAdapter78Restore,
   ),
 );
 const _flaxBinding1485 = FlaxTypeRef(
@@ -24994,8 +24874,8 @@ const _flaxBinding1485 = FlaxTypeRef(
   item: _flaxBinding87,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_dart_ui#type:StringAttribute]",
-    _collection32Create,
-    _collection32Matches,
+    _flaxAdapters.flaxAdapter79Create,
+    _flaxAdapters.flaxAdapter79Matches,
   ),
   iterable: _flaxBinding1484,
 );
@@ -26474,9 +26354,9 @@ const _flaxBinding1660 = FlaxTypeRef(
   item: _flaxBinding174,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_dart_ui#type:Shadow]",
-    _collection37Create,
-    _collection37Matches,
-    restore: _collection37Restore,
+    _flaxAdapters.flaxAdapter76Create,
+    _flaxAdapters.flaxAdapter76Matches,
+    restore: _flaxAdapters.flaxAdapter76Restore,
   ),
 );
 const _flaxBinding1661 = FlaxTypeRef(
@@ -26485,8 +26365,8 @@ const _flaxBinding1661 = FlaxTypeRef(
   item: _flaxBinding174,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_dart_ui#type:Shadow]",
-    _collection36Create,
-    _collection36Matches,
+    _flaxAdapters.flaxAdapter77Create,
+    _flaxAdapters.flaxAdapter77Matches,
   ),
   iterable: _flaxBinding1660,
 );
@@ -26499,9 +26379,9 @@ const _flaxBinding1663 = FlaxTypeRef(
   item: _flaxBinding1662,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_dart_ui#type:FontFeature]",
-    _collection39Create,
-    _collection39Matches,
-    restore: _collection39Restore,
+    _flaxAdapters.flaxAdapter57Create,
+    _flaxAdapters.flaxAdapter57Matches,
+    restore: _flaxAdapters.flaxAdapter57Restore,
   ),
 );
 const _flaxBinding1664 = FlaxTypeRef(
@@ -26510,8 +26390,8 @@ const _flaxBinding1664 = FlaxTypeRef(
   item: _flaxBinding1662,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_dart_ui#type:FontFeature]",
-    _collection38Create,
-    _collection38Matches,
+    _flaxAdapters.flaxAdapter58Create,
+    _flaxAdapters.flaxAdapter58Matches,
   ),
   iterable: _flaxBinding1663,
 );
@@ -26524,9 +26404,9 @@ const _flaxBinding1666 = FlaxTypeRef(
   item: _flaxBinding1665,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_dart_ui#type:FontVariation]",
-    _collection41Create,
-    _collection41Matches,
-    restore: _collection41Restore,
+    _flaxAdapters.flaxAdapter59Create,
+    _flaxAdapters.flaxAdapter59Matches,
+    restore: _flaxAdapters.flaxAdapter59Restore,
   ),
 );
 const _flaxBinding1667 = FlaxTypeRef(
@@ -26535,8 +26415,8 @@ const _flaxBinding1667 = FlaxTypeRef(
   item: _flaxBinding1665,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_dart_ui#type:FontVariation]",
-    _collection40Create,
-    _collection40Matches,
+    _flaxAdapters.flaxAdapter60Create,
+    _flaxAdapters.flaxAdapter60Matches,
   ),
   iterable: _flaxBinding1666,
 );
@@ -26792,8 +26672,8 @@ const _flaxBinding1699 = FlaxTypeRef(
   item: flaxOffsetType,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/flutter#type:Offset]",
-    _collection0Create,
-    _collection0Matches,
+    _flaxAdapters.flaxAdapter68Create,
+    _flaxAdapters.flaxAdapter68Matches,
   ),
   iterable: _flaxBinding33,
 );
@@ -26802,9 +26682,9 @@ const _flaxBinding1700 = FlaxTypeRef(
   item: flaxIntType,
   collection: FlaxCollectionBinding(
     "iterable:[int:]",
-    _collection43Create,
-    _collection43Matches,
-    restore: _collection43Restore,
+    _flaxAdapters.flaxAdapter126Create,
+    _flaxAdapters.flaxAdapter126Matches,
+    restore: _flaxAdapters.flaxAdapter126Restore,
   ),
 );
 const _flaxBinding1701 = FlaxTypeRef(
@@ -26813,8 +26693,8 @@ const _flaxBinding1701 = FlaxTypeRef(
   item: flaxIntType,
   collection: FlaxCollectionBinding(
     "list:[int:]",
-    _collection42Create,
-    _collection42Matches,
+    _flaxAdapters.flaxAdapter127Create,
+    _flaxAdapters.flaxAdapter127Matches,
   ),
   iterable: _flaxBinding1700,
 );
@@ -27141,21 +27021,21 @@ const _flaxBinding1747 = FlaxTypeRef(
 const _flaxBinding1748 = FlaxTypeRef(
   "futureOr",
   item: flaxNullableAnyType,
-  future: FlaxFutureBinding("any?:", _future5Adapt),
+  future: FlaxFutureBinding("any?:", _flaxAdapters.flaxAdapter15Adapt),
 );
 const _flaxBinding1749 = FlaxCallbackBinding(
   [],
   _flaxBinding1748,
-  _callback6,
+  _flaxAdapters.flaxAdapter21,
   id: "callback:<>()->futureOr:[any?:]",
-  invoke: _callback6Invoke,
-  matches: _callback6Matches,
+  invoke: _flaxAdapters.flaxAdapter21Invoke,
+  matches: _flaxAdapters.flaxAdapter21Matches,
 );
 const _flaxBinding1750 = FlaxTypeRef("callback", callback: _flaxBinding1749);
 const _flaxBinding1751 = FlaxTypeRef(
   "future",
   item: flaxNullableAnyType,
-  future: FlaxFutureBinding("any?:", _future5Adapt),
+  future: FlaxFutureBinding("any?:", _flaxAdapters.flaxAdapter15Adapt),
 );
 const _flaxBinding1752 = FlaxTypeRef(
   "object",
@@ -27204,7 +27084,7 @@ const _flaxBinding1759 = FlaxTypeRef(
   item: _flaxBinding550,
   future: FlaxFutureBinding(
     "object:flax.core/sdk_dart_ui#type:ImmutableBuffer",
-    _future8Adapt,
+    _flaxAdapters.flaxAdapter8Adapt,
   ),
 );
 const _flaxBinding1760 = FlaxTypeRef(
@@ -27254,9 +27134,9 @@ const _flaxBinding1768 = FlaxTypeRef(
   item: _flaxBinding159,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_dart_ui#type:SemanticsAction]",
-    _collection45Create,
-    _collection45Matches,
-    restore: _collection45Restore,
+    _flaxAdapters.flaxAdapter74Create,
+    _flaxAdapters.flaxAdapter74Matches,
+    restore: _flaxAdapters.flaxAdapter74Restore,
   ),
 );
 const _flaxBinding1769 = FlaxTypeRef(

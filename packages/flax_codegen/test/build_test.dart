@@ -95,6 +95,33 @@ import 'package:flax_annotations/flax_annotations.dart';
   Builder builder([List<String> paths = outputs]) =>
       flaxCodegenBindingsBuilder(BuilderOptions({'outputs': paths}));
 
+  test('builder tracks the optional shared adapter output without extra configuration', () async {
+    final sources = _sources();
+    sources['shop|lib/api.dart'] = '''
+import 'package:flax_annotations/flax_annotations.dart';
+@FlaxExport(scope: 'shop') List<String> cart(List<String> value) => value;
+@FlaxExport(scope: 'admin') List<String> admin(List<String> value) => value;
+''';
+    final result = await _testBuilders(
+      [builder()],
+      sources,
+      rootPackage: 'shop',
+      testingBuilderConfig: false,
+      flattenOutput: true,
+    );
+    expect(result.succeeded, isTrue, reason: result.errors.join('\n'));
+    expect(
+      result.outputs.map((id) => id.path),
+      contains('lib/src/generated/closed_adapters.g.dart'),
+    );
+    expect(
+      result.readerWriter.testing.readString(
+        AssetId('shop', 'lib/generated/shop.g.dart'),
+      ),
+      contains('_flaxAdapters.'),
+    );
+  });
+
   test(
     'builder uses the same config-free app conventions as the CLI',
     () async {

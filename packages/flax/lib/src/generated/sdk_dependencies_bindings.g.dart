@@ -16,6 +16,8 @@ import 'dart:isolate' as api7;
 
 import 'package:flax/src/sandbox/file_system.dart' as api8;
 
+import 'closed_adapters.g.dart' as _flaxAdapters;
+
 // ignore: unused_element
 const _flaxOmitted = Object();
 const sdk_dependenciesBindings = FlaxBindingModule(
@@ -9878,12 +9880,6 @@ Object? _callback17Invoke(
   );
 }
 
-Object _collection0Create() => <int>[];
-bool _collection0Matches(Object value) => value is List<int>;
-Object _collection1Create() => <int>[];
-Object _collection1Restore(Object value) =>
-    (value as Iterable<Object?>).cast<int>();
-bool _collection1Matches(Object value) => value is Iterable<int>;
 Object _collection2Create() => <api3.FileSystemEntity>[];
 bool _collection2Matches(Object value) => value is List<api3.FileSystemEntity>;
 Object _collection3Create() => <api3.FileSystemEntity>[];
@@ -9891,22 +9887,14 @@ Object _collection3Restore(Object value) =>
     (value as Iterable<Object?>).cast<api3.FileSystemEntity>();
 bool _collection3Matches(Object value) =>
     value is Iterable<api3.FileSystemEntity>;
-Object _collection4Create() => <String>[];
-bool _collection4Matches(Object value) => value is List<String>;
-Object _collection5Create() => <String>[];
-Object _collection5Restore(Object value) =>
-    (value as Iterable<Object?>).cast<String>();
-bool _collection5Matches(Object value) => value is Iterable<String>;
+
 Object _collection6Create() => <api3.Cookie>[];
 bool _collection6Matches(Object value) => value is List<api3.Cookie>;
 Object _collection7Create() => <api3.Cookie>[];
 Object _collection7Restore(Object value) =>
     (value as Iterable<Object?>).cast<api3.Cookie>();
 bool _collection7Matches(Object value) => value is Iterable<api3.Cookie>;
-Object _collection8Create() => <Object?>[];
-Object _collection8Restore(Object value) =>
-    (value as Iterable<Object?>).cast<Object?>();
-bool _collection8Matches(Object value) => value is Iterable<Object?>;
+
 Object _collection9Create() => <api3.RedirectInfo>[];
 bool _collection9Matches(Object value) => value is List<api3.RedirectInfo>;
 Object _collection10Create() => <api3.RedirectInfo>[];
@@ -9921,18 +9909,7 @@ Object _collection12Restore(Object value) =>
 bool _collection12Matches(Object value) => value is Iterable<List<int>>;
 Object _collection13Create() => <List<int>>{};
 bool _collection13Matches(Object value) => value is Set<List<int>>;
-Object _collection14Create() => <num>[];
-bool _collection14Matches(Object value) => value is List<num>;
-Object _collection15Create() => <num>[];
-Object _collection15Restore(Object value) =>
-    (value as Iterable<Object?>).cast<num>();
-bool _collection15Matches(Object value) => value is Iterable<num>;
-Object _collection16Create() => <double>[];
-bool _collection16Matches(Object value) => value is List<double>;
-Object _collection17Create() => <double>[];
-Object _collection17Restore(Object value) =>
-    (value as Iterable<Object?>).cast<double>();
-bool _collection17Matches(Object value) => value is Iterable<double>;
+
 Object _collection18Create() => <api2.Uint8List>[];
 bool _collection18Matches(Object value) => value is List<api2.Uint8List>;
 Object _collection19Create() => <api2.Uint8List>[];
@@ -9941,8 +9918,7 @@ Object _collection19Restore(Object value) =>
 bool _collection19Matches(Object value) => value is Iterable<api2.Uint8List>;
 Object _collection20Create() => <api2.Uint8List>{};
 bool _collection20Matches(Object value) => value is Set<api2.Uint8List>;
-Object _collection21Create() => <String, String>{};
-bool _collection21Matches(Object value) => value is Map<String, String>;
+
 Object _collection22Create() => <api3.InternetAddress>[];
 bool _collection22Matches(Object value) => value is List<api3.InternetAddress>;
 Object _collection23Create() => <api3.InternetAddress>[];
@@ -9950,10 +9926,7 @@ Object _collection23Restore(Object value) =>
     (value as Iterable<Object?>).cast<api3.InternetAddress>();
 bool _collection23Matches(Object value) =>
     value is Iterable<api3.InternetAddress>;
-Future<Object?> _future0Adapt(Future<Object?> value) =>
-    value.then<String>((value) => value as String);
-Future<Object?> _future1Adapt(Future<Object?> value) =>
-    value.then<bool>((value) => value as bool);
+
 Future<Object?> _future2Adapt(Future<Object?> value) => value
     .then<api3.FileSystemEntity>((value) => value as api3.FileSystemEntity);
 Future<Object?> _future3Adapt(Future<Object?> value) =>
@@ -9962,15 +9935,13 @@ Future<Object?> _future4Adapt(Future<Object?> value) =>
     value.then<api3.Directory>((value) => value as api3.Directory);
 Future<Object?> _future5Adapt(Future<Object?> value) =>
     value.then<api3.File>((value) => value as api3.File);
-Future<Object?> _future6Adapt(Future<Object?> value) =>
-    value.then<int>((value) => value as int);
+
 Future<Object?> _future7Adapt(Future<Object?> value) =>
     value.then<api4.DateTime>((value) => value as api4.DateTime);
-Future<Object?> _future8Adapt(Future<Object?> value) => value;
+
 Future<Object?> _future9Adapt(Future<Object?> value) => value
     .then<api3.RandomAccessFile>((value) => value as api3.RandomAccessFile);
-Future<Object?> _future10Adapt(Future<Object?> value) =>
-    value.then<api2.Uint8List>((value) => value as api2.Uint8List);
+
 Future<Object?> _future11Adapt(Future<Object?> value) =>
     value.then<List<String>>((value) => value as List<String>);
 Future<Object?> _future12Adapt(Future<Object?> value) => value
@@ -9981,8 +9952,7 @@ Future<Object?> _future14Adapt(Future<Object?> value) =>
     value.then<List<int>>((value) => value as List<int>);
 Future<Object?> _future15Adapt(Future<Object?> value) =>
     value.then<api3.Socket>((value) => value as api3.Socket);
-Future<Object?> _future16Adapt(Future<Object?> value) =>
-    value.then<void>((_) {});
+
 Future<Object?> _future17Adapt(Future<Object?> value) =>
     value.then<List<List<int>>>((value) => value as List<List<int>>);
 Future<Object?> _future18Adapt(Future<Object?> value) =>
@@ -10067,9 +10037,9 @@ const _flaxBinding1 = FlaxTypeRef(
   item: flaxIntType,
   collection: FlaxCollectionBinding(
     "iterable:[int:]",
-    _collection1Create,
-    _collection1Matches,
-    restore: _collection1Restore,
+    _flaxAdapters.flaxAdapter126Create,
+    _flaxAdapters.flaxAdapter126Matches,
+    restore: _flaxAdapters.flaxAdapter126Restore,
   ),
 );
 const _flaxBinding2 = FlaxTypeRef(
@@ -10077,8 +10047,8 @@ const _flaxBinding2 = FlaxTypeRef(
   item: flaxIntType,
   collection: FlaxCollectionBinding(
     "list:[int:]",
-    _collection0Create,
-    _collection0Matches,
+    _flaxAdapters.flaxAdapter127Create,
+    _flaxAdapters.flaxAdapter127Matches,
   ),
   iterable: _flaxBinding1,
 );
@@ -10096,7 +10066,7 @@ const _flaxBinding3 = FlaxTypeRef(
 const _flaxBinding4 = FlaxTypeRef(
   "future",
   item: flaxStringType,
-  future: FlaxFutureBinding("String:", _future0Adapt),
+  future: FlaxFutureBinding("String:", _flaxAdapters.flaxAdapter2Adapt),
 );
 const _flaxBinding5 = <FlaxParameter>[
   FlaxParameter.required("byteStream", _flaxBinding3),
@@ -10315,7 +10285,7 @@ const _flaxBinding47 = FlaxGetter.plain(
 const _flaxBinding48 = FlaxTypeRef(
   "future",
   item: flaxBoolType,
-  future: FlaxFutureBinding("bool:", _future1Adapt),
+  future: FlaxFutureBinding("bool:", _flaxAdapters.flaxAdapter11Adapt),
 );
 const _flaxBinding49 = FlaxInstanceMethod.plain(
   _flaxBinding35,
@@ -10632,7 +10602,7 @@ const _flaxBinding94 = FlaxInstanceMethod.plain(
 const _flaxBinding95 = FlaxTypeRef(
   "future",
   item: flaxIntType,
-  future: FlaxFutureBinding("int:", _future6Adapt),
+  future: FlaxFutureBinding("int:", _flaxAdapters.flaxAdapter13Adapt),
 );
 const _flaxBinding96 = FlaxInstanceMethod.plain(
   _flaxBinding35,
@@ -10665,7 +10635,7 @@ const _flaxBinding100 = FlaxInstanceMethod.plain(
 const _flaxBinding101 = FlaxTypeRef(
   "future",
   item: flaxNullableAnyType,
-  future: FlaxFutureBinding("any?:", _future8Adapt),
+  future: FlaxFutureBinding("any?:", _flaxAdapters.flaxAdapter15Adapt),
 );
 const _flaxBinding102 = <FlaxParameter>[
   FlaxParameter.required("time", flaxDateTimeType),
@@ -10741,7 +10711,7 @@ const _flaxBinding116 = FlaxInstanceMethod.plain(
 const _flaxBinding117 = FlaxTypeRef(
   "future",
   item: flaxUint8ListType,
-  future: FlaxFutureBinding("Uint8List:", _future10Adapt),
+  future: FlaxFutureBinding("Uint8List:", _flaxAdapters.flaxAdapter4Adapt),
 );
 const _flaxBinding118 = FlaxInstanceMethod.plain(
   _flaxBinding35,
@@ -10780,9 +10750,9 @@ const _flaxBinding124 = FlaxTypeRef(
   item: flaxStringType,
   collection: FlaxCollectionBinding(
     "iterable:[String:]",
-    _collection5Create,
-    _collection5Matches,
-    restore: _collection5Restore,
+    _flaxAdapters.flaxAdapter47Create,
+    _flaxAdapters.flaxAdapter47Matches,
+    restore: _flaxAdapters.flaxAdapter47Restore,
   ),
 );
 const _flaxBinding125 = FlaxTypeRef(
@@ -10790,8 +10760,8 @@ const _flaxBinding125 = FlaxTypeRef(
   item: flaxStringType,
   collection: FlaxCollectionBinding(
     "list:[String:]",
-    _collection4Create,
-    _collection4Matches,
+    _flaxAdapters.flaxAdapter48Create,
+    _flaxAdapters.flaxAdapter48Matches,
   ),
   iterable: _flaxBinding124,
 );
@@ -11509,9 +11479,9 @@ const _flaxBinding242 = FlaxTypeRef(
   item: flaxNullableAnyType,
   collection: FlaxCollectionBinding(
     "iterable:[any?:]",
-    _collection8Create,
-    _collection8Matches,
-    restore: _collection8Restore,
+    _flaxAdapters.flaxAdapter42Create,
+    _flaxAdapters.flaxAdapter42Matches,
+    restore: _flaxAdapters.flaxAdapter42Restore,
   ),
 );
 const _flaxBinding243 = <FlaxParameter>[
@@ -11826,7 +11796,7 @@ const _flaxBinding293 = FlaxInstanceMethod.plain(
 const _flaxBinding294 = FlaxTypeRef(
   "futureOr",
   item: flaxNullableAnyType,
-  future: FlaxFutureBinding("any?:", _future8Adapt),
+  future: FlaxFutureBinding("any?:", _flaxAdapters.flaxAdapter15Adapt),
 );
 const _flaxBinding295 = FlaxTypeRef(
   "stream",
@@ -11923,7 +11893,7 @@ const _flaxBinding312 = FlaxTypeRef("callback", callback: _flaxBinding311);
 const _flaxBinding313 = FlaxTypeRef(
   "future",
   item: flaxVoidType,
-  future: FlaxFutureBinding("void:", _future16Adapt),
+  future: FlaxFutureBinding("void:", _flaxAdapters.flaxAdapter14Adapt),
 );
 const _flaxBinding314 = <FlaxParameter>[
   FlaxParameter.required("action", _flaxBinding312),
@@ -12321,7 +12291,7 @@ const _flaxBinding350 = FlaxObjectBinding(
       FlaxTypeRef(
         "future",
         item: flaxNullableAnyType,
-        future: FlaxFutureBinding("any?:", _future8Adapt),
+        future: FlaxFutureBinding("any?:", _flaxAdapters.flaxAdapter15Adapt),
       ),
       _HttpClientResponse_fold,
       genericFactory: _flaxGeneric_HttpClientResponse_fold,
@@ -12361,7 +12331,7 @@ const _flaxBinding350 = FlaxObjectBinding(
       FlaxTypeRef(
         "future",
         item: flaxNullableAnyType,
-        future: FlaxFutureBinding("any?:", _future8Adapt),
+        future: FlaxFutureBinding("any?:", _flaxAdapters.flaxAdapter15Adapt),
       ),
       _HttpClientResponse_drain,
       genericFactory: _flaxGeneric_HttpClientResponse_drain,
@@ -12571,8 +12541,8 @@ const _flaxBinding386 = FlaxTypeRef(
   item: flaxStringType,
   collection: FlaxCollectionBinding(
     "list:[String:]",
-    _collection4Create,
-    _collection4Matches,
+    _flaxAdapters.flaxAdapter48Create,
+    _flaxAdapters.flaxAdapter48Matches,
   ),
   iterable: _flaxBinding124,
 );
@@ -13169,9 +13139,9 @@ const _flaxBinding495 = FlaxTypeRef(
   item: flaxNumType,
   collection: FlaxCollectionBinding(
     "iterable:[num:]",
-    _collection15Create,
-    _collection15Matches,
-    restore: _collection15Restore,
+    _flaxAdapters.flaxAdapter128Create,
+    _flaxAdapters.flaxAdapter128Matches,
+    restore: _flaxAdapters.flaxAdapter128Restore,
   ),
 );
 const _flaxBinding496 = FlaxTypeRef(
@@ -13179,8 +13149,8 @@ const _flaxBinding496 = FlaxTypeRef(
   item: flaxNumType,
   collection: FlaxCollectionBinding(
     "list:[num:]",
-    _collection14Create,
-    _collection14Matches,
+    _flaxAdapters.flaxAdapter129Create,
+    _flaxAdapters.flaxAdapter129Matches,
   ),
   iterable: _flaxBinding495,
 );
@@ -13198,9 +13168,9 @@ const _flaxBinding499 = FlaxTypeRef(
   item: flaxDoubleType,
   collection: FlaxCollectionBinding(
     "iterable:[double:]",
-    _collection17Create,
-    _collection17Matches,
-    restore: _collection17Restore,
+    _flaxAdapters.flaxAdapter123Create,
+    _flaxAdapters.flaxAdapter123Matches,
+    restore: _flaxAdapters.flaxAdapter123Restore,
   ),
 );
 const _flaxBinding500 = FlaxTypeRef(
@@ -13208,8 +13178,8 @@ const _flaxBinding500 = FlaxTypeRef(
   item: flaxDoubleType,
   collection: FlaxCollectionBinding(
     "list:[double:]",
-    _collection16Create,
-    _collection16Matches,
+    _flaxAdapters.flaxAdapter124Create,
+    _flaxAdapters.flaxAdapter124Matches,
   ),
   iterable: _flaxBinding499,
 );
@@ -15231,7 +15201,7 @@ const _flaxBinding826 = FlaxObjectBinding(
       FlaxTypeRef(
         "future",
         item: flaxNullableAnyType,
-        future: FlaxFutureBinding("any?:", _future8Adapt),
+        future: FlaxFutureBinding("any?:", _flaxAdapters.flaxAdapter15Adapt),
       ),
       _Socket_fold,
       genericFactory: _flaxGeneric_Socket_fold,
@@ -15271,7 +15241,7 @@ const _flaxBinding826 = FlaxObjectBinding(
       FlaxTypeRef(
         "future",
         item: flaxNullableAnyType,
-        future: FlaxFutureBinding("any?:", _future8Adapt),
+        future: FlaxFutureBinding("any?:", _flaxAdapters.flaxAdapter15Adapt),
       ),
       _Socket_drain,
       genericFactory: _flaxGeneric_Socket_drain,
@@ -15519,7 +15489,7 @@ const _flaxBinding831 = FlaxObjectBinding(
       FlaxTypeRef(
         "future",
         item: flaxNullableAnyType,
-        future: FlaxFutureBinding("any?:", _future8Adapt),
+        future: FlaxFutureBinding("any?:", _flaxAdapters.flaxAdapter15Adapt),
       ),
       _SecureSocket_fold,
       genericFactory: _flaxGeneric_SecureSocket_fold,
@@ -15552,7 +15522,7 @@ const _flaxBinding831 = FlaxObjectBinding(
       FlaxTypeRef(
         "future",
         item: flaxNullableAnyType,
-        future: FlaxFutureBinding("any?:", _future8Adapt),
+        future: FlaxFutureBinding("any?:", _flaxAdapters.flaxAdapter15Adapt),
       ),
       _SecureSocket_drain,
       genericFactory: _flaxGeneric_SecureSocket_drain,
@@ -24690,8 +24660,8 @@ const _flaxBinding2792 = FlaxTypeRef(
   key: flaxStringType,
   collection: FlaxCollectionBinding(
     "map:[String:][String:]",
-    _collection21Create,
-    _collection21Matches,
+    _flaxAdapters.flaxAdapter46Create,
+    _flaxAdapters.flaxAdapter46Matches,
   ),
 );
 const _flaxBinding2793 = FlaxTypeRef(
@@ -24771,8 +24741,8 @@ const _flaxBinding2803 = FlaxTypeRef(
   item: flaxIntType,
   collection: FlaxCollectionBinding(
     "list:[int:]",
-    _collection0Create,
-    _collection0Matches,
+    _flaxAdapters.flaxAdapter127Create,
+    _flaxAdapters.flaxAdapter127Matches,
   ),
   iterable: _flaxBinding1,
 );

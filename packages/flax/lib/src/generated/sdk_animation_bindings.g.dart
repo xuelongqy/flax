@@ -16,6 +16,8 @@ import 'dart:core' as api4;
 import 'package:flutter/physics.dart' as api5;
 import 'package:flutter/scheduler.dart' as api6;
 
+import 'closed_adapters.g.dart' as _flaxAdapters;
+
 // ignore: unused_element
 const _flaxOmitted = Object();
 const sdk_animationBindings = FlaxBindingModule(
@@ -21342,12 +21344,6 @@ Object? _callback10Invoke(
       ))<Object?>(positional[0] as api.Animatable<Object?>);
 }
 
-Object _collection0Create() => <api1.Offset>[];
-bool _collection0Matches(Object value) => value is List<api1.Offset>;
-Object _collection1Create() => <api1.Offset>[];
-Object _collection1Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api1.Offset>();
-bool _collection1Matches(Object value) => value is Iterable<api1.Offset>;
 Object _collection2Create() => <api.Curve2DSample>[];
 Object _collection2Restore(Object value) =>
     (value as Iterable<Object?>).cast<api.Curve2DSample>();
@@ -21368,12 +21364,7 @@ Object _collection6Restore(Object value) =>
     (value as Iterable<Object?>).cast<api.TweenSequenceItem<Object?>>();
 bool _collection6Matches(Object value) =>
     value is Iterable<api.TweenSequenceItem<Object?>>;
-Object _collection7Create() => <String>[];
-bool _collection7Matches(Object value) => value is List<String>;
-Object _collection8Create() => <String>[];
-Object _collection8Restore(Object value) =>
-    (value as Iterable<Object?>).cast<String>();
-bool _collection8Matches(Object value) => value is Iterable<String>;
+
 T _genericCallbackResult<T>(Object? value) {
   // Test assignability to cover both nullable and non-nullable numeric T.
   // Broad bounds keep their decoded representation; only the Dart use site
@@ -21525,9 +21516,9 @@ const _flaxBinding27 = FlaxTypeRef(
   item: flaxOffsetType,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/flutter#type:Offset]",
-    _collection1Create,
-    _collection1Matches,
-    restore: _collection1Restore,
+    _flaxAdapters.flaxAdapter67Create,
+    _flaxAdapters.flaxAdapter67Matches,
+    restore: _flaxAdapters.flaxAdapter67Restore,
   ),
 );
 const _flaxBinding28 = FlaxTypeRef(
@@ -21535,8 +21526,8 @@ const _flaxBinding28 = FlaxTypeRef(
   item: flaxOffsetType,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/flutter#type:Offset]",
-    _collection0Create,
-    _collection0Matches,
+    _flaxAdapters.flaxAdapter68Create,
+    _flaxAdapters.flaxAdapter68Matches,
   ),
   iterable: _flaxBinding27,
 );
@@ -26628,8 +26619,8 @@ const _flaxBinding638 = FlaxTypeRef(
   item: flaxOffsetType,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/flutter#type:Offset]",
-    _collection0Create,
-    _collection0Matches,
+    _flaxAdapters.flaxAdapter68Create,
+    _flaxAdapters.flaxAdapter68Matches,
   ),
   iterable: _flaxBinding27,
 );
@@ -26638,9 +26629,9 @@ const _flaxBinding639 = FlaxTypeRef(
   item: flaxStringType,
   collection: FlaxCollectionBinding(
     "iterable:[String:]",
-    _collection8Create,
-    _collection8Matches,
-    restore: _collection8Restore,
+    _flaxAdapters.flaxAdapter47Create,
+    _flaxAdapters.flaxAdapter47Matches,
+    restore: _flaxAdapters.flaxAdapter47Restore,
   ),
 );
 const _flaxBinding640 = FlaxTypeRef(
@@ -26649,8 +26640,8 @@ const _flaxBinding640 = FlaxTypeRef(
   item: flaxStringType,
   collection: FlaxCollectionBinding(
     "list:[String:]",
-    _collection7Create,
-    _collection7Matches,
+    _flaxAdapters.flaxAdapter48Create,
+    _flaxAdapters.flaxAdapter48Matches,
   ),
   iterable: _flaxBinding639,
 );

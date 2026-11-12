@@ -79,6 +79,14 @@ and special Widget-list casts keep their existing adapters. Method-generic super
 contexts keep their callable adapters. No callback instances or business objects are
 cached by these shared functions.
 
+Package generation also reuses identical closed callback, collection and Future adapter
+groups across its Dart modules. The package owns the optional
+`lib/src/generated/closed_adapters.g.dart`; normal generate/check and the Builder track
+it, and generation removes it when no shared groups remain. Sharing compares complete
+signatures and bodies using actual declaration identities. Generic adapters and groups
+that capture module-private state stay local. This changes generated Dart layout only,
+with no additional runtime dispatch or package dependencies.
+
 Closed, required-only ordinary and super calls can reuse a selected proxy's complete
 signature when names, positional roles and emitted conversion descriptors agree.
 Defaulted, scoped, snapshot and open generic signatures retain their existing parameter

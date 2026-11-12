@@ -16,6 +16,72 @@ import 'package:test/test.dart';
 import 'support/core_package.dart';
 
 void main() {
+  test('shared adapters follow generate/check, collision protection and orphan cleanup', () async {
+    final package = _tempPackage(
+      name: 'shared_pkg',
+      libraries: {
+        for (final name in ['a', 'b'])
+          '$name.dart': 'List<String> $name(List<String> value) => value;',
+      },
+      configs: {
+        for (final name in ['a', 'b'])
+          'flax_$name.yaml':
+              '''
+format: 2
+name: $name
+library: package:shared_pkg/$name.dart
+dartOutput: lib/$name.g.dart
+tsOutput: js/$name.ts
+functions: [$name]
+''',
+      },
+    );
+    const path = 'lib/src/generated/closed_adapters.g.dart';
+    final helper = File(p.join(package.root.path, path));
+    helper.parent.createSync(recursive: true);
+    helper.writeAsStringSync('// Application code.\n');
+    final before = _packageFilesystemSnapshot(package.root);
+    await expectLater(
+      FlaxCodegenPackagePipeline.generateConfig(
+        package.configPath('flax_a.yaml'),
+      ),
+      throwsA(
+        isA<FlaxCodegenException>().having(
+          (error) => error.diagnostics.any(
+            (d) => d.message.contains('non-generated shared adapter'),
+          ),
+          'collision diagnostic',
+          isTrue,
+        ),
+      ),
+    );
+    _expectPackageFilesystemUnchanged(package.root, before: before);
+    helper.deleteSync();
+    final generated = await FlaxCodegenPackagePipeline.generateConfig(
+      package.configPath('flax_a.yaml'),
+    );
+    expect(generated.outputInventory, contains(path));
+    expect(helper.existsSync(), isTrue);
+    final original = helper.readAsStringSync();
+    await FlaxCodegenPackagePipeline.checkConfig(
+      package.configPath('flax_b.yaml'),
+    );
+    await FlaxCodegenPackagePipeline.generateConfig(
+      package.configPath('flax_b.yaml'),
+    );
+    expect(helper.readAsStringSync(), original);
+    File(p.join(package.root.path, 'lib/b.dart'))
+        .writeAsStringSync('List<int> b(List<int> value) => value;');
+    final changed = await FlaxCodegenPackagePipeline.generateConfig(
+      package.configPath('flax_a.yaml'),
+    );
+    expect(changed.outputInventory, isNot(contains(path)));
+    expect(helper.existsSync(), isFalse);
+    await FlaxCodegenPackagePipeline.checkConfig(
+      package.configPath('flax_a.yaml'),
+    );
+  });
+
   group('FlaxCodegenPackagePipeline.validateConfig', () {
     test('SDK build plan uses the canonical provider route instead of unrelated reexports', () async {
       final workspace = _tempWorkspace();
