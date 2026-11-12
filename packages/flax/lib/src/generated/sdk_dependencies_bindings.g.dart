@@ -10031,6 +10031,3386 @@ T _genericCallbackResult<T>(Object? value) {
   return value as T;
 }
 
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_AsciiCodec_7c_get_3a_name =
+    _Encoding_name;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Cookie_7c_get_3a_name =
+    _Cookie_name;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Cookie_7c_get_3a_value =
+    _Cookie_value;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Cookie_7c_get_3a_expires =
+    _Cookie_expires;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Cookie_7c_get_3a_maxAge =
+    _Cookie_maxAge;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Cookie_7c_get_3a_domain =
+    _Cookie_domain;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Cookie_7c_get_3a_path =
+    _Cookie_path;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Cookie_7c_get_3a_secure =
+    _Cookie_secure;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Cookie_7c_get_3a_httpOnly =
+    _Cookie_httpOnly;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Cookie_7c_call_3a_toString =
+    _Cookie_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Directory_7c_call_3a_toString =
+    _Directory_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Encoding_7c_get_3a_name =
+    _Encoding_name;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_FileStat_7c_get_3a_changed =
+    _FileStat_changed;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_FileStat_7c_get_3a_modified =
+    _FileStat_modified;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_FileStat_7c_get_3a_accessed =
+    _FileStat_accessed;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_FileStat_7c_get_3a_type =
+    _FileStat_type;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_FileStat_7c_get_3a_mode =
+    _FileStat_mode;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_FileStat_7c_get_3a_size =
+    _FileStat_size;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_FileStat_7c_call_3a_toString =
+    _FileStat_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_FileStat_7c_call_3a_modeString =
+    _FileStat_modeString;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_FileSystemEntityType_7c_call_3a_toString =
+    _FileSystemEntityType_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Flow_7c_get_3a_id =
+    _Flow_id;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClient_7c_get_3a_idleTimeout =
+    _HttpClient_idleTimeout;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClient_7c_get_3a_connectionTimeout =
+    _HttpClient_connectionTimeout;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClient_7c_get_3a_maxConnectionsPerHost =
+    _HttpClient_maxConnectionsPerHost;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClient_7c_get_3a_autoUncompress =
+    _HttpClient_autoUncompress;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClient_7c_get_3a_userAgent =
+    _HttpClient_userAgent;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientRequest_7c_get_3a_done =
+    _HttpClientRequest_done;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientRequest_7c_get_3a_persistentConnection =
+    _HttpClientRequest_persistentConnection;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientRequest_7c_get_3a_followRedirects =
+    _HttpClientRequest_followRedirects;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientRequest_7c_get_3a_maxRedirects =
+    _HttpClientRequest_maxRedirects;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientRequest_7c_get_3a_method =
+    _HttpClientRequest_method;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientRequest_7c_get_3a_uri =
+    _HttpClientRequest_uri;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientRequest_7c_get_3a_contentLength =
+    _HttpClientRequest_contentLength;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientRequest_7c_get_3a_bufferOutput =
+    _HttpClientRequest_bufferOutput;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientRequest_7c_get_3a_headers =
+    _HttpClientRequest_headers;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientRequest_7c_get_3a_cookies =
+    _HttpClientRequest_cookies;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientRequest_7c_get_3a_connectionInfo =
+    _HttpClientRequest_connectionInfo;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientRequest_7c_get_3a_encoding =
+    _HttpClientRequest_encoding;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientRequest_7c_call_3a_close =
+    _HttpClientRequest_close;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientRequest_7c_call_3a_flush =
+    _HttpClientRequest_flush;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientResponse_7c_get_3a_statusCode =
+    _HttpClientResponse_statusCode;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientResponse_7c_get_3a_reasonPhrase =
+    _HttpClientResponse_reasonPhrase;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientResponse_7c_get_3a_contentLength =
+    _HttpClientResponse_contentLength;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientResponse_7c_get_3a_compressionState =
+    _HttpClientResponse_compressionState;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientResponse_7c_get_3a_persistentConnection =
+    _HttpClientResponse_persistentConnection;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientResponse_7c_get_3a_isRedirect =
+    _HttpClientResponse_isRedirect;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientResponse_7c_get_3a_redirects =
+    _HttpClientResponse_redirects;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientResponse_7c_get_3a_headers =
+    _HttpClientResponse_headers;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientResponse_7c_get_3a_cookies =
+    _HttpClientResponse_cookies;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientResponse_7c_get_3a_certificate =
+    _HttpClientResponse_certificate;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientResponse_7c_get_3a_connectionInfo =
+    _HttpClientResponse_connectionInfo;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientResponse_7c_get_3a_isBroadcast =
+    _HttpClientResponse_isBroadcast;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientResponse_7c_get_3a_length =
+    _HttpClientResponse_length;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientResponse_7c_get_3a_isEmpty =
+    _HttpClientResponse_isEmpty;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientResponse_7c_get_3a_first =
+    _HttpClientResponse_first;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientResponse_7c_get_3a_last =
+    _HttpClientResponse_last;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientResponse_7c_get_3a_single =
+    _HttpClientResponse_single;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientResponse_7c_call_3a_detachSocket =
+    _HttpClientResponse_detachSocket;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientResponse_7c_call_3a_toList =
+    _HttpClientResponse_toList;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpClientResponse_7c_call_3a_toSet =
+    _HttpClientResponse_toSet;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpConnectionInfo_7c_get_3a_remoteAddress =
+    _HttpConnectionInfo_remoteAddress;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpConnectionInfo_7c_get_3a_remotePort =
+    _HttpConnectionInfo_remotePort;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpConnectionInfo_7c_get_3a_localPort =
+    _HttpConnectionInfo_localPort;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpHeaders_7c_get_3a_date =
+    _HttpHeaders_date;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpHeaders_7c_get_3a_expires =
+    _HttpHeaders_expires;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpHeaders_7c_get_3a_ifModifiedSince =
+    _HttpHeaders_ifModifiedSince;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpHeaders_7c_get_3a_host =
+    _HttpHeaders_host;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpHeaders_7c_get_3a_port =
+    _HttpHeaders_port;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpHeaders_7c_get_3a_contentLength =
+    _HttpHeaders_contentLength;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpHeaders_7c_get_3a_persistentConnection =
+    _HttpHeaders_persistentConnection;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_HttpHeaders_7c_get_3a_chunkedTransferEncoding =
+    _HttpHeaders_chunkedTransferEncoding;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_InternetAddress_7c_get_3a_type =
+    _InternetAddress_type;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_InternetAddress_7c_get_3a_address =
+    _InternetAddress_address;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_InternetAddress_7c_get_3a_host =
+    _InternetAddress_host;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_InternetAddress_7c_get_3a_rawAddress =
+    _InternetAddress_rawAddress;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_InternetAddress_7c_get_3a_isLoopback =
+    _InternetAddress_isLoopback;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_InternetAddress_7c_get_3a_isLinkLocal =
+    _InternetAddress_isLinkLocal;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_InternetAddress_7c_get_3a_isMulticast =
+    _InternetAddress_isMulticast;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_InternetAddressType_7c_get_3a_name =
+    _InternetAddressType_name;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_InternetAddressType_7c_call_3a_toString =
+    _InternetAddressType_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Latin1Codec_7c_get_3a_name =
+    _Encoding_name;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Matrix2_7c_get_3a_storage =
+    _Matrix2_storage;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Matrix2_7c_get_3a_dimension =
+    _Matrix2_dimension;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Matrix2_7c_get_3a_row0 =
+    _Matrix2_row0;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Matrix2_7c_get_3a_row1 =
+    _Matrix2_row1;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Matrix2_7c_call_3a_toString =
+    _Matrix2_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Matrix2_7c_call_3a_clone =
+    _Matrix2_clone;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Matrix2_7c_call_3a_transposed =
+    _Matrix2_transposed;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Matrix2_7c_call_3a_absolute =
+    _Matrix2_absolute;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Matrix2_7c_call_3a_determinant =
+    _Matrix2_determinant;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Matrix2_7c_call_3a_trace =
+    _Matrix2_trace;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Matrix2_7c_call_3a_infinityNorm =
+    _Matrix2_infinityNorm;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Matrix2_7c_call_3a_invert =
+    _Matrix2_invert;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Matrix3_7c_get_3a_storage =
+    _Matrix3_storage;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Matrix3_7c_get_3a_dimension =
+    _Matrix3_dimension;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Matrix3_7c_get_3a_row0 =
+    _Matrix3_row0;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Matrix3_7c_get_3a_row1 =
+    _Matrix3_row1;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Matrix3_7c_get_3a_row2 =
+    _Matrix3_row2;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Matrix3_7c_get_3a_right =
+    _Matrix3_right;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Matrix3_7c_get_3a_up =
+    _Matrix3_up;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Matrix3_7c_get_3a_forward =
+    _Matrix3_forward;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Matrix3_7c_call_3a_toString =
+    _Matrix3_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Matrix3_7c_call_3a_clone =
+    _Matrix3_clone;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Matrix3_7c_call_3a_transposed =
+    _Matrix3_transposed;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Matrix3_7c_call_3a_absolute =
+    _Matrix3_absolute;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Matrix3_7c_call_3a_determinant =
+    _Matrix3_determinant;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Matrix3_7c_call_3a_trace =
+    _Matrix3_trace;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Matrix3_7c_call_3a_infinityNorm =
+    _Matrix3_infinityNorm;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Matrix3_7c_call_3a_invert =
+    _Matrix3_invert;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Matrix3_7c_call_3a_isIdentity =
+    _Matrix3_isIdentity;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Matrix3_7c_call_3a_isZero =
+    _Matrix3_isZero;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Quad_7c_get_3a_point0 =
+    _Quad_point0;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Quad_7c_get_3a_point1 =
+    _Quad_point1;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Quad_7c_get_3a_point2 =
+    _Quad_point2;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Quad_7c_get_3a_point3 =
+    _Quad_point3;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Quad_7c_call_3a_toString =
+    _Quad_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Quaternion_7c_get_3a_storage =
+    _Quaternion_storage;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Quaternion_7c_get_3a_x =
+    _Quaternion_x;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Quaternion_7c_get_3a_y =
+    _Quaternion_y;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Quaternion_7c_get_3a_z =
+    _Quaternion_z;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Quaternion_7c_get_3a_w =
+    _Quaternion_w;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Quaternion_7c_get_3a_radians =
+    _Quaternion_radians;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Quaternion_7c_get_3a_axis =
+    _Quaternion_axis;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Quaternion_7c_get_3a_length2 =
+    _Quaternion_length2;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Quaternion_7c_get_3a_length =
+    _Quaternion_length;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Quaternion_7c_call_3a_clone =
+    _Quaternion_clone;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Quaternion_7c_call_3a_normalize =
+    _Quaternion_normalize;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Quaternion_7c_call_3a_normalized =
+    _Quaternion_normalized;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Quaternion_7c_call_3a_negated =
+    _Quaternion_negated;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Quaternion_7c_call_3a_conjugated =
+    _Quaternion_conjugated;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Quaternion_7c_call_3a_inverted =
+    _Quaternion_inverted;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Quaternion_7c_call_3a_asRotationMatrix =
+    _Quaternion_asRotationMatrix;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Quaternion_7c_call_3a_toString =
+    _Quaternion_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_RandomAccessFile_7c_call_3a_toString =
+    _RandomAccessFile_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_RawSocketOption_7c_get_3a_level =
+    _RawSocketOption_level;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_RawSocketOption_7c_get_3a_option =
+    _RawSocketOption_option;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_RawSocketOption_7c_get_3a_value =
+    _RawSocketOption_value;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_RedirectInfo_7c_get_3a_statusCode =
+    _RedirectInfo_statusCode;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_RedirectInfo_7c_get_3a_method =
+    _RedirectInfo_method;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_RedirectInfo_7c_get_3a_location =
+    _RedirectInfo_location;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_SecureSocket_7c_get_3a_port =
+    _Socket_port;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_SecureSocket_7c_get_3a_remotePort =
+    _Socket_remotePort;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_SecureSocket_7c_get_3a_address =
+    _Socket_address;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_SecureSocket_7c_get_3a_remoteAddress =
+    _Socket_remoteAddress;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_SecureSocket_7c_get_3a_done =
+    _Socket_done;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_SecureSocket_7c_get_3a_isBroadcast =
+    _Socket_isBroadcast;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_SecureSocket_7c_get_3a_length =
+    _Socket_length;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_SecureSocket_7c_get_3a_isEmpty =
+    _Socket_isEmpty;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_SecureSocket_7c_get_3a_first =
+    _Socket_first;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_SecureSocket_7c_get_3a_last =
+    _Socket_last;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_SecureSocket_7c_get_3a_single =
+    _Socket_single;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_SecureSocket_7c_get_3a_encoding =
+    _Socket_encoding;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_SecureSocket_7c_get_3a_peerCertificate =
+    _SecureSocket_peerCertificate;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_SecureSocket_7c_get_3a_selectedProtocol =
+    _SecureSocket_selectedProtocol;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_SecureSocket_7c_call_3a_close =
+    _Socket_close;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_SecureSocket_7c_call_3a_toList =
+    _Socket_toList;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_SecureSocket_7c_call_3a_toSet =
+    _Socket_toSet;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_SecureSocket_7c_call_3a_flush =
+    _Socket_flush;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_SecurityContext_7c_get_3a_allowLegacyUnsafeRenegotiation =
+    _SecurityContext_allowLegacyUnsafeRenegotiation;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Socket_7c_get_3a_done =
+    _Socket_done;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Socket_7c_get_3a_port =
+    _Socket_port;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Socket_7c_get_3a_remotePort =
+    _Socket_remotePort;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Socket_7c_get_3a_address =
+    _Socket_address;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Socket_7c_get_3a_remoteAddress =
+    _Socket_remoteAddress;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Socket_7c_get_3a_isBroadcast =
+    _Socket_isBroadcast;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Socket_7c_get_3a_length =
+    _Socket_length;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Socket_7c_get_3a_isEmpty =
+    _Socket_isEmpty;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Socket_7c_get_3a_first =
+    _Socket_first;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Socket_7c_get_3a_last =
+    _Socket_last;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Socket_7c_get_3a_single =
+    _Socket_single;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Socket_7c_get_3a_encoding =
+    _Socket_encoding;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Socket_7c_call_3a_close =
+    _Socket_close;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Socket_7c_call_3a_toList =
+    _Socket_toList;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Socket_7c_call_3a_toSet =
+    _Socket_toSet;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Socket_7c_call_3a_flush =
+    _Socket_flush;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Stopwatch_7c_get_3a_frequency =
+    _Stopwatch_frequency;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Stopwatch_7c_get_3a_elapsedTicks =
+    _Stopwatch_elapsedTicks;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Stopwatch_7c_get_3a_elapsed =
+    _Stopwatch_elapsed;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Stopwatch_7c_get_3a_elapsedMicroseconds =
+    _Stopwatch_elapsedMicroseconds;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Stopwatch_7c_get_3a_elapsedMilliseconds =
+    _Stopwatch_elapsedMilliseconds;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Stopwatch_7c_get_3a_isRunning =
+    _Stopwatch_isRunning;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Utf8Codec_7c_get_3a_name =
+    _Encoding_name;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_storage =
+    _Vector2_storage;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_length =
+    _Vector2_length;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_length2 =
+    _Vector2_length2;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_isInfinite =
+    _Vector2_isInfinite;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_isNaN =
+    _Vector2_isNaN;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_xx =
+    _Vector2_xx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_xy =
+    _Vector2_xy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_yx =
+    _Vector2_yx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_yy =
+    _Vector2_yy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_xxx =
+    _Vector2_xxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_xxy =
+    _Vector2_xxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_xyx =
+    _Vector2_xyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_xyy =
+    _Vector2_xyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_yxx =
+    _Vector2_yxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_yxy =
+    _Vector2_yxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_yyx =
+    _Vector2_yyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_yyy =
+    _Vector2_yyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_xxxx =
+    _Vector2_xxxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_xxxy =
+    _Vector2_xxxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_xxyx =
+    _Vector2_xxyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_xxyy =
+    _Vector2_xxyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_xyxx =
+    _Vector2_xyxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_xyxy =
+    _Vector2_xyxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_xyyx =
+    _Vector2_xyyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_xyyy =
+    _Vector2_xyyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_yxxx =
+    _Vector2_yxxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_yxxy =
+    _Vector2_yxxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_yxyx =
+    _Vector2_yxyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_yxyy =
+    _Vector2_yxyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_yyxx =
+    _Vector2_yyxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_yyxy =
+    _Vector2_yyxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_yyyx =
+    _Vector2_yyyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_yyyy =
+    _Vector2_yyyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_r =
+    _Vector2_r;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_g =
+    _Vector2_g;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_s =
+    _Vector2_s;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_t =
+    _Vector2_t;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_x =
+    _Vector2_x;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_y =
+    _Vector2_y;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_rr =
+    _Vector2_rr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_rg =
+    _Vector2_rg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_gr =
+    _Vector2_gr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_gg =
+    _Vector2_gg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_rrr =
+    _Vector2_rrr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_rrg =
+    _Vector2_rrg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_rgr =
+    _Vector2_rgr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_rgg =
+    _Vector2_rgg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_grr =
+    _Vector2_grr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_grg =
+    _Vector2_grg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_ggr =
+    _Vector2_ggr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_ggg =
+    _Vector2_ggg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_rrrr =
+    _Vector2_rrrr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_rrrg =
+    _Vector2_rrrg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_rrgr =
+    _Vector2_rrgr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_rrgg =
+    _Vector2_rrgg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_rgrr =
+    _Vector2_rgrr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_rgrg =
+    _Vector2_rgrg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_rggr =
+    _Vector2_rggr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_rggg =
+    _Vector2_rggg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_grrr =
+    _Vector2_grrr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_grrg =
+    _Vector2_grrg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_grgr =
+    _Vector2_grgr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_grgg =
+    _Vector2_grgg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_ggrr =
+    _Vector2_ggrr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_ggrg =
+    _Vector2_ggrg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_gggr =
+    _Vector2_gggr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_gggg =
+    _Vector2_gggg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_ss =
+    _Vector2_ss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_st =
+    _Vector2_st;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_ts =
+    _Vector2_ts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_tt =
+    _Vector2_tt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_sss =
+    _Vector2_sss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_sst =
+    _Vector2_sst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_sts =
+    _Vector2_sts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_stt =
+    _Vector2_stt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_tss =
+    _Vector2_tss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_tst =
+    _Vector2_tst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_tts =
+    _Vector2_tts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_ttt =
+    _Vector2_ttt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_ssss =
+    _Vector2_ssss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_ssst =
+    _Vector2_ssst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_ssts =
+    _Vector2_ssts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_sstt =
+    _Vector2_sstt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_stss =
+    _Vector2_stss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_stst =
+    _Vector2_stst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_stts =
+    _Vector2_stts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_sttt =
+    _Vector2_sttt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_tsss =
+    _Vector2_tsss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_tsst =
+    _Vector2_tsst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_tsts =
+    _Vector2_tsts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_tstt =
+    _Vector2_tstt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_ttss =
+    _Vector2_ttss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_ttst =
+    _Vector2_ttst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_ttts =
+    _Vector2_ttts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_get_3a_tttt =
+    _Vector2_tttt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_call_3a_toString =
+    _Vector2_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_call_3a_normalize =
+    _Vector2_normalize;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_call_3a_normalizeLength =
+    _Vector2_normalizeLength;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_call_3a_normalized =
+    _Vector2_normalized;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector2_7c_call_3a_clone =
+    _Vector2_clone;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_storage =
+    _Vector3_storage;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_length =
+    _Vector3_length;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_length2 =
+    _Vector3_length2;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_isInfinite =
+    _Vector3_isInfinite;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_isNaN =
+    _Vector3_isNaN;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xx =
+    _Vector3_xx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xy =
+    _Vector3_xy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xz =
+    _Vector3_xz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yx =
+    _Vector3_yx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yy =
+    _Vector3_yy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yz =
+    _Vector3_yz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zx =
+    _Vector3_zx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zy =
+    _Vector3_zy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zz =
+    _Vector3_zz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xxx =
+    _Vector3_xxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xxy =
+    _Vector3_xxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xxz =
+    _Vector3_xxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xyx =
+    _Vector3_xyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xyy =
+    _Vector3_xyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xyz =
+    _Vector3_xyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xzx =
+    _Vector3_xzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xzy =
+    _Vector3_xzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xzz =
+    _Vector3_xzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yxx =
+    _Vector3_yxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yxy =
+    _Vector3_yxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yxz =
+    _Vector3_yxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yyx =
+    _Vector3_yyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yyy =
+    _Vector3_yyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yyz =
+    _Vector3_yyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yzx =
+    _Vector3_yzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yzy =
+    _Vector3_yzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yzz =
+    _Vector3_yzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zxx =
+    _Vector3_zxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zxy =
+    _Vector3_zxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zxz =
+    _Vector3_zxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zyx =
+    _Vector3_zyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zyy =
+    _Vector3_zyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zyz =
+    _Vector3_zyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zzx =
+    _Vector3_zzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zzy =
+    _Vector3_zzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zzz =
+    _Vector3_zzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xxxx =
+    _Vector3_xxxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xxxy =
+    _Vector3_xxxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xxxz =
+    _Vector3_xxxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xxyx =
+    _Vector3_xxyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xxyy =
+    _Vector3_xxyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xxyz =
+    _Vector3_xxyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xxzx =
+    _Vector3_xxzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xxzy =
+    _Vector3_xxzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xxzz =
+    _Vector3_xxzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xyxx =
+    _Vector3_xyxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xyxy =
+    _Vector3_xyxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xyxz =
+    _Vector3_xyxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xyyx =
+    _Vector3_xyyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xyyy =
+    _Vector3_xyyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xyyz =
+    _Vector3_xyyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xyzx =
+    _Vector3_xyzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xyzy =
+    _Vector3_xyzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xyzz =
+    _Vector3_xyzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xzxx =
+    _Vector3_xzxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xzxy =
+    _Vector3_xzxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xzxz =
+    _Vector3_xzxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xzyx =
+    _Vector3_xzyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xzyy =
+    _Vector3_xzyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xzyz =
+    _Vector3_xzyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xzzx =
+    _Vector3_xzzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xzzy =
+    _Vector3_xzzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_xzzz =
+    _Vector3_xzzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yxxx =
+    _Vector3_yxxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yxxy =
+    _Vector3_yxxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yxxz =
+    _Vector3_yxxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yxyx =
+    _Vector3_yxyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yxyy =
+    _Vector3_yxyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yxyz =
+    _Vector3_yxyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yxzx =
+    _Vector3_yxzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yxzy =
+    _Vector3_yxzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yxzz =
+    _Vector3_yxzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yyxx =
+    _Vector3_yyxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yyxy =
+    _Vector3_yyxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yyxz =
+    _Vector3_yyxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yyyx =
+    _Vector3_yyyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yyyy =
+    _Vector3_yyyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yyyz =
+    _Vector3_yyyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yyzx =
+    _Vector3_yyzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yyzy =
+    _Vector3_yyzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yyzz =
+    _Vector3_yyzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yzxx =
+    _Vector3_yzxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yzxy =
+    _Vector3_yzxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yzxz =
+    _Vector3_yzxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yzyx =
+    _Vector3_yzyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yzyy =
+    _Vector3_yzyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yzyz =
+    _Vector3_yzyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yzzx =
+    _Vector3_yzzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yzzy =
+    _Vector3_yzzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_yzzz =
+    _Vector3_yzzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zxxx =
+    _Vector3_zxxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zxxy =
+    _Vector3_zxxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zxxz =
+    _Vector3_zxxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zxyx =
+    _Vector3_zxyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zxyy =
+    _Vector3_zxyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zxyz =
+    _Vector3_zxyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zxzx =
+    _Vector3_zxzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zxzy =
+    _Vector3_zxzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zxzz =
+    _Vector3_zxzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zyxx =
+    _Vector3_zyxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zyxy =
+    _Vector3_zyxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zyxz =
+    _Vector3_zyxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zyyx =
+    _Vector3_zyyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zyyy =
+    _Vector3_zyyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zyyz =
+    _Vector3_zyyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zyzx =
+    _Vector3_zyzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zyzy =
+    _Vector3_zyzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zyzz =
+    _Vector3_zyzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zzxx =
+    _Vector3_zzxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zzxy =
+    _Vector3_zzxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zzxz =
+    _Vector3_zzxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zzyx =
+    _Vector3_zzyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zzyy =
+    _Vector3_zzyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zzyz =
+    _Vector3_zzyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zzzx =
+    _Vector3_zzzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zzzy =
+    _Vector3_zzzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_zzzz =
+    _Vector3_zzzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_r =
+    _Vector3_r;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_g =
+    _Vector3_g;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_b =
+    _Vector3_b;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_s =
+    _Vector3_s;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_t =
+    _Vector3_t;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_p =
+    _Vector3_p;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_x =
+    _Vector3_x;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_y =
+    _Vector3_y;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_z =
+    _Vector3_z;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rr =
+    _Vector3_rr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rg =
+    _Vector3_rg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rb =
+    _Vector3_rb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_gr =
+    _Vector3_gr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_gg =
+    _Vector3_gg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_gb =
+    _Vector3_gb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_br =
+    _Vector3_br;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_bg =
+    _Vector3_bg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_bb =
+    _Vector3_bb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rrr =
+    _Vector3_rrr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rrg =
+    _Vector3_rrg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rrb =
+    _Vector3_rrb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rgr =
+    _Vector3_rgr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rgg =
+    _Vector3_rgg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rgb =
+    _Vector3_rgb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rbr =
+    _Vector3_rbr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rbg =
+    _Vector3_rbg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rbb =
+    _Vector3_rbb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_grr =
+    _Vector3_grr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_grg =
+    _Vector3_grg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_grb =
+    _Vector3_grb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ggr =
+    _Vector3_ggr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ggg =
+    _Vector3_ggg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ggb =
+    _Vector3_ggb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_gbr =
+    _Vector3_gbr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_gbg =
+    _Vector3_gbg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_gbb =
+    _Vector3_gbb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_brr =
+    _Vector3_brr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_brg =
+    _Vector3_brg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_brb =
+    _Vector3_brb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_bgr =
+    _Vector3_bgr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_bgg =
+    _Vector3_bgg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_bgb =
+    _Vector3_bgb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_bbr =
+    _Vector3_bbr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_bbg =
+    _Vector3_bbg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_bbb =
+    _Vector3_bbb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rrrr =
+    _Vector3_rrrr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rrrg =
+    _Vector3_rrrg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rrrb =
+    _Vector3_rrrb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rrgr =
+    _Vector3_rrgr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rrgg =
+    _Vector3_rrgg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rrgb =
+    _Vector3_rrgb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rrbr =
+    _Vector3_rrbr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rrbg =
+    _Vector3_rrbg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rrbb =
+    _Vector3_rrbb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rgrr =
+    _Vector3_rgrr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rgrg =
+    _Vector3_rgrg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rgrb =
+    _Vector3_rgrb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rggr =
+    _Vector3_rggr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rggg =
+    _Vector3_rggg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rggb =
+    _Vector3_rggb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rgbr =
+    _Vector3_rgbr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rgbg =
+    _Vector3_rgbg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rgbb =
+    _Vector3_rgbb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rbrr =
+    _Vector3_rbrr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rbrg =
+    _Vector3_rbrg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rbrb =
+    _Vector3_rbrb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rbgr =
+    _Vector3_rbgr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rbgg =
+    _Vector3_rbgg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rbgb =
+    _Vector3_rbgb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rbbr =
+    _Vector3_rbbr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rbbg =
+    _Vector3_rbbg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_rbbb =
+    _Vector3_rbbb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_grrr =
+    _Vector3_grrr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_grrg =
+    _Vector3_grrg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_grrb =
+    _Vector3_grrb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_grgr =
+    _Vector3_grgr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_grgg =
+    _Vector3_grgg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_grgb =
+    _Vector3_grgb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_grbr =
+    _Vector3_grbr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_grbg =
+    _Vector3_grbg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_grbb =
+    _Vector3_grbb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ggrr =
+    _Vector3_ggrr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ggrg =
+    _Vector3_ggrg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ggrb =
+    _Vector3_ggrb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_gggr =
+    _Vector3_gggr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_gggg =
+    _Vector3_gggg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_gggb =
+    _Vector3_gggb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ggbr =
+    _Vector3_ggbr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ggbg =
+    _Vector3_ggbg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ggbb =
+    _Vector3_ggbb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_gbrr =
+    _Vector3_gbrr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_gbrg =
+    _Vector3_gbrg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_gbrb =
+    _Vector3_gbrb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_gbgr =
+    _Vector3_gbgr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_gbgg =
+    _Vector3_gbgg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_gbgb =
+    _Vector3_gbgb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_gbbr =
+    _Vector3_gbbr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_gbbg =
+    _Vector3_gbbg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_gbbb =
+    _Vector3_gbbb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_brrr =
+    _Vector3_brrr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_brrg =
+    _Vector3_brrg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_brrb =
+    _Vector3_brrb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_brgr =
+    _Vector3_brgr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_brgg =
+    _Vector3_brgg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_brgb =
+    _Vector3_brgb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_brbr =
+    _Vector3_brbr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_brbg =
+    _Vector3_brbg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_brbb =
+    _Vector3_brbb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_bgrr =
+    _Vector3_bgrr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_bgrg =
+    _Vector3_bgrg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_bgrb =
+    _Vector3_bgrb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_bggr =
+    _Vector3_bggr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_bggg =
+    _Vector3_bggg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_bggb =
+    _Vector3_bggb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_bgbr =
+    _Vector3_bgbr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_bgbg =
+    _Vector3_bgbg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_bgbb =
+    _Vector3_bgbb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_bbrr =
+    _Vector3_bbrr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_bbrg =
+    _Vector3_bbrg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_bbrb =
+    _Vector3_bbrb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_bbgr =
+    _Vector3_bbgr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_bbgg =
+    _Vector3_bbgg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_bbgb =
+    _Vector3_bbgb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_bbbr =
+    _Vector3_bbbr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_bbbg =
+    _Vector3_bbbg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_bbbb =
+    _Vector3_bbbb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ss =
+    _Vector3_ss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_st =
+    _Vector3_st;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_sp =
+    _Vector3_sp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ts =
+    _Vector3_ts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_tt =
+    _Vector3_tt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_tp =
+    _Vector3_tp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ps =
+    _Vector3_ps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_pt =
+    _Vector3_pt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_pp =
+    _Vector3_pp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_sss =
+    _Vector3_sss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_sst =
+    _Vector3_sst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ssp =
+    _Vector3_ssp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_sts =
+    _Vector3_sts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_stt =
+    _Vector3_stt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_stp =
+    _Vector3_stp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_sps =
+    _Vector3_sps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_spt =
+    _Vector3_spt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_spp =
+    _Vector3_spp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_tss =
+    _Vector3_tss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_tst =
+    _Vector3_tst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_tsp =
+    _Vector3_tsp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_tts =
+    _Vector3_tts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ttt =
+    _Vector3_ttt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ttp =
+    _Vector3_ttp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_tps =
+    _Vector3_tps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_tpt =
+    _Vector3_tpt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_tpp =
+    _Vector3_tpp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_pss =
+    _Vector3_pss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_pst =
+    _Vector3_pst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_psp =
+    _Vector3_psp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_pts =
+    _Vector3_pts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ptt =
+    _Vector3_ptt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ptp =
+    _Vector3_ptp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_pps =
+    _Vector3_pps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ppt =
+    _Vector3_ppt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ppp =
+    _Vector3_ppp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ssss =
+    _Vector3_ssss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ssst =
+    _Vector3_ssst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_sssp =
+    _Vector3_sssp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ssts =
+    _Vector3_ssts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_sstt =
+    _Vector3_sstt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_sstp =
+    _Vector3_sstp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ssps =
+    _Vector3_ssps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_sspt =
+    _Vector3_sspt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_sspp =
+    _Vector3_sspp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_stss =
+    _Vector3_stss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_stst =
+    _Vector3_stst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_stsp =
+    _Vector3_stsp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_stts =
+    _Vector3_stts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_sttt =
+    _Vector3_sttt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_sttp =
+    _Vector3_sttp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_stps =
+    _Vector3_stps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_stpt =
+    _Vector3_stpt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_stpp =
+    _Vector3_stpp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_spss =
+    _Vector3_spss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_spst =
+    _Vector3_spst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_spsp =
+    _Vector3_spsp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_spts =
+    _Vector3_spts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_sptt =
+    _Vector3_sptt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_sptp =
+    _Vector3_sptp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_spps =
+    _Vector3_spps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_sppt =
+    _Vector3_sppt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_sppp =
+    _Vector3_sppp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_tsss =
+    _Vector3_tsss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_tsst =
+    _Vector3_tsst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_tssp =
+    _Vector3_tssp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_tsts =
+    _Vector3_tsts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_tstt =
+    _Vector3_tstt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_tstp =
+    _Vector3_tstp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_tsps =
+    _Vector3_tsps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_tspt =
+    _Vector3_tspt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_tspp =
+    _Vector3_tspp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ttss =
+    _Vector3_ttss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ttst =
+    _Vector3_ttst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ttsp =
+    _Vector3_ttsp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ttts =
+    _Vector3_ttts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_tttt =
+    _Vector3_tttt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_tttp =
+    _Vector3_tttp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ttps =
+    _Vector3_ttps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ttpt =
+    _Vector3_ttpt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ttpp =
+    _Vector3_ttpp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_tpss =
+    _Vector3_tpss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_tpst =
+    _Vector3_tpst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_tpsp =
+    _Vector3_tpsp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_tpts =
+    _Vector3_tpts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_tptt =
+    _Vector3_tptt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_tptp =
+    _Vector3_tptp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_tpps =
+    _Vector3_tpps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_tppt =
+    _Vector3_tppt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_tppp =
+    _Vector3_tppp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_psss =
+    _Vector3_psss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_psst =
+    _Vector3_psst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_pssp =
+    _Vector3_pssp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_psts =
+    _Vector3_psts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_pstt =
+    _Vector3_pstt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_pstp =
+    _Vector3_pstp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_psps =
+    _Vector3_psps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_pspt =
+    _Vector3_pspt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_pspp =
+    _Vector3_pspp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ptss =
+    _Vector3_ptss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ptst =
+    _Vector3_ptst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ptsp =
+    _Vector3_ptsp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ptts =
+    _Vector3_ptts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_pttt =
+    _Vector3_pttt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_pttp =
+    _Vector3_pttp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ptps =
+    _Vector3_ptps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ptpt =
+    _Vector3_ptpt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ptpp =
+    _Vector3_ptpp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ppss =
+    _Vector3_ppss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ppst =
+    _Vector3_ppst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ppsp =
+    _Vector3_ppsp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ppts =
+    _Vector3_ppts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_pptt =
+    _Vector3_pptt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_pptp =
+    _Vector3_pptp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_ppps =
+    _Vector3_ppps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_pppt =
+    _Vector3_pppt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_get_3a_pppp =
+    _Vector3_pppp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_call_3a_toString =
+    _Vector3_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_call_3a_normalize =
+    _Vector3_normalize;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_call_3a_normalizeLength =
+    _Vector3_normalizeLength;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_call_3a_normalized =
+    _Vector3_normalized;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector3_7c_call_3a_clone =
+    _Vector3_clone;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_storage =
+    _Vector4_storage;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_length =
+    _Vector4_length;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_length2 =
+    _Vector4_length2;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_isInfinite =
+    _Vector4_isInfinite;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_isNaN =
+    _Vector4_isNaN;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xx =
+    _Vector4_xx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xy =
+    _Vector4_xy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xz =
+    _Vector4_xz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xw =
+    _Vector4_xw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yx =
+    _Vector4_yx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yy =
+    _Vector4_yy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yz =
+    _Vector4_yz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yw =
+    _Vector4_yw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zx =
+    _Vector4_zx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zy =
+    _Vector4_zy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zz =
+    _Vector4_zz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zw =
+    _Vector4_zw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wx =
+    _Vector4_wx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wy =
+    _Vector4_wy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wz =
+    _Vector4_wz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ww =
+    _Vector4_ww;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xxx =
+    _Vector4_xxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xxy =
+    _Vector4_xxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xxz =
+    _Vector4_xxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xxw =
+    _Vector4_xxw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xyx =
+    _Vector4_xyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xyy =
+    _Vector4_xyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xyz =
+    _Vector4_xyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xyw =
+    _Vector4_xyw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xzx =
+    _Vector4_xzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xzy =
+    _Vector4_xzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xzz =
+    _Vector4_xzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xzw =
+    _Vector4_xzw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xwx =
+    _Vector4_xwx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xwy =
+    _Vector4_xwy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xwz =
+    _Vector4_xwz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xww =
+    _Vector4_xww;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yxx =
+    _Vector4_yxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yxy =
+    _Vector4_yxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yxz =
+    _Vector4_yxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yxw =
+    _Vector4_yxw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yyx =
+    _Vector4_yyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yyy =
+    _Vector4_yyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yyz =
+    _Vector4_yyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yyw =
+    _Vector4_yyw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yzx =
+    _Vector4_yzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yzy =
+    _Vector4_yzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yzz =
+    _Vector4_yzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yzw =
+    _Vector4_yzw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ywx =
+    _Vector4_ywx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ywy =
+    _Vector4_ywy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ywz =
+    _Vector4_ywz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yww =
+    _Vector4_yww;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zxx =
+    _Vector4_zxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zxy =
+    _Vector4_zxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zxz =
+    _Vector4_zxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zxw =
+    _Vector4_zxw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zyx =
+    _Vector4_zyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zyy =
+    _Vector4_zyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zyz =
+    _Vector4_zyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zyw =
+    _Vector4_zyw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zzx =
+    _Vector4_zzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zzy =
+    _Vector4_zzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zzz =
+    _Vector4_zzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zzw =
+    _Vector4_zzw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zwx =
+    _Vector4_zwx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zwy =
+    _Vector4_zwy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zwz =
+    _Vector4_zwz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zww =
+    _Vector4_zww;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wxx =
+    _Vector4_wxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wxy =
+    _Vector4_wxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wxz =
+    _Vector4_wxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wxw =
+    _Vector4_wxw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wyx =
+    _Vector4_wyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wyy =
+    _Vector4_wyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wyz =
+    _Vector4_wyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wyw =
+    _Vector4_wyw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wzx =
+    _Vector4_wzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wzy =
+    _Vector4_wzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wzz =
+    _Vector4_wzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wzw =
+    _Vector4_wzw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wwx =
+    _Vector4_wwx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wwy =
+    _Vector4_wwy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wwz =
+    _Vector4_wwz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_www =
+    _Vector4_www;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xxxx =
+    _Vector4_xxxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xxxy =
+    _Vector4_xxxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xxxz =
+    _Vector4_xxxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xxxw =
+    _Vector4_xxxw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xxyx =
+    _Vector4_xxyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xxyy =
+    _Vector4_xxyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xxyz =
+    _Vector4_xxyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xxyw =
+    _Vector4_xxyw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xxzx =
+    _Vector4_xxzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xxzy =
+    _Vector4_xxzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xxzz =
+    _Vector4_xxzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xxzw =
+    _Vector4_xxzw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xxwx =
+    _Vector4_xxwx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xxwy =
+    _Vector4_xxwy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xxwz =
+    _Vector4_xxwz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xxww =
+    _Vector4_xxww;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xyxx =
+    _Vector4_xyxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xyxy =
+    _Vector4_xyxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xyxz =
+    _Vector4_xyxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xyxw =
+    _Vector4_xyxw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xyyx =
+    _Vector4_xyyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xyyy =
+    _Vector4_xyyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xyyz =
+    _Vector4_xyyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xyyw =
+    _Vector4_xyyw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xyzx =
+    _Vector4_xyzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xyzy =
+    _Vector4_xyzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xyzz =
+    _Vector4_xyzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xyzw =
+    _Vector4_xyzw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xywx =
+    _Vector4_xywx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xywy =
+    _Vector4_xywy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xywz =
+    _Vector4_xywz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xyww =
+    _Vector4_xyww;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xzxx =
+    _Vector4_xzxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xzxy =
+    _Vector4_xzxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xzxz =
+    _Vector4_xzxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xzxw =
+    _Vector4_xzxw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xzyx =
+    _Vector4_xzyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xzyy =
+    _Vector4_xzyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xzyz =
+    _Vector4_xzyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xzyw =
+    _Vector4_xzyw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xzzx =
+    _Vector4_xzzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xzzy =
+    _Vector4_xzzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xzzz =
+    _Vector4_xzzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xzzw =
+    _Vector4_xzzw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xzwx =
+    _Vector4_xzwx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xzwy =
+    _Vector4_xzwy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xzwz =
+    _Vector4_xzwz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xzww =
+    _Vector4_xzww;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xwxx =
+    _Vector4_xwxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xwxy =
+    _Vector4_xwxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xwxz =
+    _Vector4_xwxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xwxw =
+    _Vector4_xwxw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xwyx =
+    _Vector4_xwyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xwyy =
+    _Vector4_xwyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xwyz =
+    _Vector4_xwyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xwyw =
+    _Vector4_xwyw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xwzx =
+    _Vector4_xwzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xwzy =
+    _Vector4_xwzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xwzz =
+    _Vector4_xwzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xwzw =
+    _Vector4_xwzw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xwwx =
+    _Vector4_xwwx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xwwy =
+    _Vector4_xwwy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xwwz =
+    _Vector4_xwwz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_xwww =
+    _Vector4_xwww;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yxxx =
+    _Vector4_yxxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yxxy =
+    _Vector4_yxxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yxxz =
+    _Vector4_yxxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yxxw =
+    _Vector4_yxxw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yxyx =
+    _Vector4_yxyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yxyy =
+    _Vector4_yxyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yxyz =
+    _Vector4_yxyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yxyw =
+    _Vector4_yxyw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yxzx =
+    _Vector4_yxzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yxzy =
+    _Vector4_yxzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yxzz =
+    _Vector4_yxzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yxzw =
+    _Vector4_yxzw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yxwx =
+    _Vector4_yxwx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yxwy =
+    _Vector4_yxwy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yxwz =
+    _Vector4_yxwz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yxww =
+    _Vector4_yxww;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yyxx =
+    _Vector4_yyxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yyxy =
+    _Vector4_yyxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yyxz =
+    _Vector4_yyxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yyxw =
+    _Vector4_yyxw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yyyx =
+    _Vector4_yyyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yyyy =
+    _Vector4_yyyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yyyz =
+    _Vector4_yyyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yyyw =
+    _Vector4_yyyw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yyzx =
+    _Vector4_yyzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yyzy =
+    _Vector4_yyzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yyzz =
+    _Vector4_yyzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yyzw =
+    _Vector4_yyzw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yywx =
+    _Vector4_yywx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yywy =
+    _Vector4_yywy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yywz =
+    _Vector4_yywz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yyww =
+    _Vector4_yyww;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yzxx =
+    _Vector4_yzxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yzxy =
+    _Vector4_yzxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yzxz =
+    _Vector4_yzxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yzxw =
+    _Vector4_yzxw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yzyx =
+    _Vector4_yzyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yzyy =
+    _Vector4_yzyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yzyz =
+    _Vector4_yzyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yzyw =
+    _Vector4_yzyw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yzzx =
+    _Vector4_yzzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yzzy =
+    _Vector4_yzzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yzzz =
+    _Vector4_yzzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yzzw =
+    _Vector4_yzzw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yzwx =
+    _Vector4_yzwx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yzwy =
+    _Vector4_yzwy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yzwz =
+    _Vector4_yzwz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_yzww =
+    _Vector4_yzww;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ywxx =
+    _Vector4_ywxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ywxy =
+    _Vector4_ywxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ywxz =
+    _Vector4_ywxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ywxw =
+    _Vector4_ywxw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ywyx =
+    _Vector4_ywyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ywyy =
+    _Vector4_ywyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ywyz =
+    _Vector4_ywyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ywyw =
+    _Vector4_ywyw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ywzx =
+    _Vector4_ywzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ywzy =
+    _Vector4_ywzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ywzz =
+    _Vector4_ywzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ywzw =
+    _Vector4_ywzw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ywwx =
+    _Vector4_ywwx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ywwy =
+    _Vector4_ywwy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ywwz =
+    _Vector4_ywwz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ywww =
+    _Vector4_ywww;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zxxx =
+    _Vector4_zxxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zxxy =
+    _Vector4_zxxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zxxz =
+    _Vector4_zxxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zxxw =
+    _Vector4_zxxw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zxyx =
+    _Vector4_zxyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zxyy =
+    _Vector4_zxyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zxyz =
+    _Vector4_zxyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zxyw =
+    _Vector4_zxyw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zxzx =
+    _Vector4_zxzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zxzy =
+    _Vector4_zxzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zxzz =
+    _Vector4_zxzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zxzw =
+    _Vector4_zxzw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zxwx =
+    _Vector4_zxwx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zxwy =
+    _Vector4_zxwy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zxwz =
+    _Vector4_zxwz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zxww =
+    _Vector4_zxww;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zyxx =
+    _Vector4_zyxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zyxy =
+    _Vector4_zyxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zyxz =
+    _Vector4_zyxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zyxw =
+    _Vector4_zyxw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zyyx =
+    _Vector4_zyyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zyyy =
+    _Vector4_zyyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zyyz =
+    _Vector4_zyyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zyyw =
+    _Vector4_zyyw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zyzx =
+    _Vector4_zyzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zyzy =
+    _Vector4_zyzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zyzz =
+    _Vector4_zyzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zyzw =
+    _Vector4_zyzw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zywx =
+    _Vector4_zywx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zywy =
+    _Vector4_zywy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zywz =
+    _Vector4_zywz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zyww =
+    _Vector4_zyww;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zzxx =
+    _Vector4_zzxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zzxy =
+    _Vector4_zzxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zzxz =
+    _Vector4_zzxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zzxw =
+    _Vector4_zzxw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zzyx =
+    _Vector4_zzyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zzyy =
+    _Vector4_zzyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zzyz =
+    _Vector4_zzyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zzyw =
+    _Vector4_zzyw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zzzx =
+    _Vector4_zzzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zzzy =
+    _Vector4_zzzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zzzz =
+    _Vector4_zzzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zzzw =
+    _Vector4_zzzw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zzwx =
+    _Vector4_zzwx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zzwy =
+    _Vector4_zzwy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zzwz =
+    _Vector4_zzwz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zzww =
+    _Vector4_zzww;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zwxx =
+    _Vector4_zwxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zwxy =
+    _Vector4_zwxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zwxz =
+    _Vector4_zwxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zwxw =
+    _Vector4_zwxw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zwyx =
+    _Vector4_zwyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zwyy =
+    _Vector4_zwyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zwyz =
+    _Vector4_zwyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zwyw =
+    _Vector4_zwyw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zwzx =
+    _Vector4_zwzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zwzy =
+    _Vector4_zwzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zwzz =
+    _Vector4_zwzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zwzw =
+    _Vector4_zwzw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zwwx =
+    _Vector4_zwwx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zwwy =
+    _Vector4_zwwy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zwwz =
+    _Vector4_zwwz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_zwww =
+    _Vector4_zwww;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wxxx =
+    _Vector4_wxxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wxxy =
+    _Vector4_wxxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wxxz =
+    _Vector4_wxxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wxxw =
+    _Vector4_wxxw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wxyx =
+    _Vector4_wxyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wxyy =
+    _Vector4_wxyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wxyz =
+    _Vector4_wxyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wxyw =
+    _Vector4_wxyw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wxzx =
+    _Vector4_wxzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wxzy =
+    _Vector4_wxzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wxzz =
+    _Vector4_wxzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wxzw =
+    _Vector4_wxzw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wxwx =
+    _Vector4_wxwx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wxwy =
+    _Vector4_wxwy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wxwz =
+    _Vector4_wxwz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wxww =
+    _Vector4_wxww;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wyxx =
+    _Vector4_wyxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wyxy =
+    _Vector4_wyxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wyxz =
+    _Vector4_wyxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wyxw =
+    _Vector4_wyxw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wyyx =
+    _Vector4_wyyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wyyy =
+    _Vector4_wyyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wyyz =
+    _Vector4_wyyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wyyw =
+    _Vector4_wyyw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wyzx =
+    _Vector4_wyzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wyzy =
+    _Vector4_wyzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wyzz =
+    _Vector4_wyzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wyzw =
+    _Vector4_wyzw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wywx =
+    _Vector4_wywx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wywy =
+    _Vector4_wywy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wywz =
+    _Vector4_wywz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wyww =
+    _Vector4_wyww;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wzxx =
+    _Vector4_wzxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wzxy =
+    _Vector4_wzxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wzxz =
+    _Vector4_wzxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wzxw =
+    _Vector4_wzxw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wzyx =
+    _Vector4_wzyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wzyy =
+    _Vector4_wzyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wzyz =
+    _Vector4_wzyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wzyw =
+    _Vector4_wzyw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wzzx =
+    _Vector4_wzzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wzzy =
+    _Vector4_wzzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wzzz =
+    _Vector4_wzzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wzzw =
+    _Vector4_wzzw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wzwx =
+    _Vector4_wzwx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wzwy =
+    _Vector4_wzwy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wzwz =
+    _Vector4_wzwz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wzww =
+    _Vector4_wzww;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wwxx =
+    _Vector4_wwxx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wwxy =
+    _Vector4_wwxy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wwxz =
+    _Vector4_wwxz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wwxw =
+    _Vector4_wwxw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wwyx =
+    _Vector4_wwyx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wwyy =
+    _Vector4_wwyy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wwyz =
+    _Vector4_wwyz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wwyw =
+    _Vector4_wwyw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wwzx =
+    _Vector4_wwzx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wwzy =
+    _Vector4_wwzy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wwzz =
+    _Vector4_wwzz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wwzw =
+    _Vector4_wwzw;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wwwx =
+    _Vector4_wwwx;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wwwy =
+    _Vector4_wwwy;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wwwz =
+    _Vector4_wwwz;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_wwww =
+    _Vector4_wwww;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_r =
+    _Vector4_r;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_g =
+    _Vector4_g;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_b =
+    _Vector4_b;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_a =
+    _Vector4_a;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_s =
+    _Vector4_s;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_t =
+    _Vector4_t;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_p =
+    _Vector4_p;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_q =
+    _Vector4_q;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_x =
+    _Vector4_x;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_y =
+    _Vector4_y;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_z =
+    _Vector4_z;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_w =
+    _Vector4_w;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rr =
+    _Vector4_rr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rg =
+    _Vector4_rg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rb =
+    _Vector4_rb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ra =
+    _Vector4_ra;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gr =
+    _Vector4_gr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gg =
+    _Vector4_gg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gb =
+    _Vector4_gb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ga =
+    _Vector4_ga;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_br =
+    _Vector4_br;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bg =
+    _Vector4_bg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bb =
+    _Vector4_bb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ba =
+    _Vector4_ba;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ar =
+    _Vector4_ar;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ag =
+    _Vector4_ag;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ab =
+    _Vector4_ab;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_aa =
+    _Vector4_aa;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rrr =
+    _Vector4_rrr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rrg =
+    _Vector4_rrg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rrb =
+    _Vector4_rrb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rra =
+    _Vector4_rra;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rgr =
+    _Vector4_rgr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rgg =
+    _Vector4_rgg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rgb =
+    _Vector4_rgb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rga =
+    _Vector4_rga;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rbr =
+    _Vector4_rbr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rbg =
+    _Vector4_rbg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rbb =
+    _Vector4_rbb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rba =
+    _Vector4_rba;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rar =
+    _Vector4_rar;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rag =
+    _Vector4_rag;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rab =
+    _Vector4_rab;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_raa =
+    _Vector4_raa;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_grr =
+    _Vector4_grr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_grg =
+    _Vector4_grg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_grb =
+    _Vector4_grb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gra =
+    _Vector4_gra;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ggr =
+    _Vector4_ggr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ggg =
+    _Vector4_ggg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ggb =
+    _Vector4_ggb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gga =
+    _Vector4_gga;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gbr =
+    _Vector4_gbr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gbg =
+    _Vector4_gbg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gbb =
+    _Vector4_gbb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gba =
+    _Vector4_gba;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gar =
+    _Vector4_gar;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gag =
+    _Vector4_gag;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gab =
+    _Vector4_gab;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gaa =
+    _Vector4_gaa;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_brr =
+    _Vector4_brr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_brg =
+    _Vector4_brg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_brb =
+    _Vector4_brb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bra =
+    _Vector4_bra;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bgr =
+    _Vector4_bgr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bgg =
+    _Vector4_bgg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bgb =
+    _Vector4_bgb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bga =
+    _Vector4_bga;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bbr =
+    _Vector4_bbr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bbg =
+    _Vector4_bbg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bbb =
+    _Vector4_bbb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bba =
+    _Vector4_bba;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bar =
+    _Vector4_bar;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bag =
+    _Vector4_bag;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bab =
+    _Vector4_bab;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_baa =
+    _Vector4_baa;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_arr =
+    _Vector4_arr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_arg =
+    _Vector4_arg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_arb =
+    _Vector4_arb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ara =
+    _Vector4_ara;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_agr =
+    _Vector4_agr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_agg =
+    _Vector4_agg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_agb =
+    _Vector4_agb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_aga =
+    _Vector4_aga;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_abr =
+    _Vector4_abr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_abg =
+    _Vector4_abg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_abb =
+    _Vector4_abb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_aba =
+    _Vector4_aba;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_aar =
+    _Vector4_aar;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_aag =
+    _Vector4_aag;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_aab =
+    _Vector4_aab;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_aaa =
+    _Vector4_aaa;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rrrr =
+    _Vector4_rrrr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rrrg =
+    _Vector4_rrrg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rrrb =
+    _Vector4_rrrb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rrra =
+    _Vector4_rrra;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rrgr =
+    _Vector4_rrgr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rrgg =
+    _Vector4_rrgg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rrgb =
+    _Vector4_rrgb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rrga =
+    _Vector4_rrga;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rrbr =
+    _Vector4_rrbr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rrbg =
+    _Vector4_rrbg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rrbb =
+    _Vector4_rrbb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rrba =
+    _Vector4_rrba;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rrar =
+    _Vector4_rrar;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rrag =
+    _Vector4_rrag;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rrab =
+    _Vector4_rrab;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rraa =
+    _Vector4_rraa;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rgrr =
+    _Vector4_rgrr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rgrg =
+    _Vector4_rgrg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rgrb =
+    _Vector4_rgrb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rgra =
+    _Vector4_rgra;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rggr =
+    _Vector4_rggr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rggg =
+    _Vector4_rggg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rggb =
+    _Vector4_rggb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rgga =
+    _Vector4_rgga;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rgbr =
+    _Vector4_rgbr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rgbg =
+    _Vector4_rgbg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rgbb =
+    _Vector4_rgbb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rgba =
+    _Vector4_rgba;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rgar =
+    _Vector4_rgar;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rgag =
+    _Vector4_rgag;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rgab =
+    _Vector4_rgab;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rgaa =
+    _Vector4_rgaa;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rbrr =
+    _Vector4_rbrr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rbrg =
+    _Vector4_rbrg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rbrb =
+    _Vector4_rbrb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rbra =
+    _Vector4_rbra;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rbgr =
+    _Vector4_rbgr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rbgg =
+    _Vector4_rbgg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rbgb =
+    _Vector4_rbgb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rbga =
+    _Vector4_rbga;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rbbr =
+    _Vector4_rbbr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rbbg =
+    _Vector4_rbbg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rbbb =
+    _Vector4_rbbb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rbba =
+    _Vector4_rbba;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rbar =
+    _Vector4_rbar;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rbag =
+    _Vector4_rbag;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rbab =
+    _Vector4_rbab;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rbaa =
+    _Vector4_rbaa;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rarr =
+    _Vector4_rarr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rarg =
+    _Vector4_rarg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rarb =
+    _Vector4_rarb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rara =
+    _Vector4_rara;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ragr =
+    _Vector4_ragr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ragg =
+    _Vector4_ragg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ragb =
+    _Vector4_ragb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_raga =
+    _Vector4_raga;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rabr =
+    _Vector4_rabr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rabg =
+    _Vector4_rabg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_rabb =
+    _Vector4_rabb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_raba =
+    _Vector4_raba;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_raar =
+    _Vector4_raar;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_raag =
+    _Vector4_raag;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_raab =
+    _Vector4_raab;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_raaa =
+    _Vector4_raaa;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_grrr =
+    _Vector4_grrr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_grrg =
+    _Vector4_grrg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_grrb =
+    _Vector4_grrb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_grra =
+    _Vector4_grra;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_grgr =
+    _Vector4_grgr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_grgg =
+    _Vector4_grgg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_grgb =
+    _Vector4_grgb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_grga =
+    _Vector4_grga;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_grbr =
+    _Vector4_grbr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_grbg =
+    _Vector4_grbg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_grbb =
+    _Vector4_grbb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_grba =
+    _Vector4_grba;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_grar =
+    _Vector4_grar;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_grag =
+    _Vector4_grag;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_grab =
+    _Vector4_grab;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_graa =
+    _Vector4_graa;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ggrr =
+    _Vector4_ggrr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ggrg =
+    _Vector4_ggrg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ggrb =
+    _Vector4_ggrb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ggra =
+    _Vector4_ggra;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gggr =
+    _Vector4_gggr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gggg =
+    _Vector4_gggg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gggb =
+    _Vector4_gggb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ggga =
+    _Vector4_ggga;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ggbr =
+    _Vector4_ggbr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ggbg =
+    _Vector4_ggbg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ggbb =
+    _Vector4_ggbb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ggba =
+    _Vector4_ggba;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ggar =
+    _Vector4_ggar;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ggag =
+    _Vector4_ggag;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ggab =
+    _Vector4_ggab;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ggaa =
+    _Vector4_ggaa;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gbrr =
+    _Vector4_gbrr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gbrg =
+    _Vector4_gbrg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gbrb =
+    _Vector4_gbrb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gbra =
+    _Vector4_gbra;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gbgr =
+    _Vector4_gbgr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gbgg =
+    _Vector4_gbgg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gbgb =
+    _Vector4_gbgb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gbga =
+    _Vector4_gbga;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gbbr =
+    _Vector4_gbbr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gbbg =
+    _Vector4_gbbg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gbbb =
+    _Vector4_gbbb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gbba =
+    _Vector4_gbba;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gbar =
+    _Vector4_gbar;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gbag =
+    _Vector4_gbag;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gbab =
+    _Vector4_gbab;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gbaa =
+    _Vector4_gbaa;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_garr =
+    _Vector4_garr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_garg =
+    _Vector4_garg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_garb =
+    _Vector4_garb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gara =
+    _Vector4_gara;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gagr =
+    _Vector4_gagr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gagg =
+    _Vector4_gagg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gagb =
+    _Vector4_gagb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gaga =
+    _Vector4_gaga;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gabr =
+    _Vector4_gabr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gabg =
+    _Vector4_gabg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gabb =
+    _Vector4_gabb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gaba =
+    _Vector4_gaba;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gaar =
+    _Vector4_gaar;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gaag =
+    _Vector4_gaag;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gaab =
+    _Vector4_gaab;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_gaaa =
+    _Vector4_gaaa;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_brrr =
+    _Vector4_brrr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_brrg =
+    _Vector4_brrg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_brrb =
+    _Vector4_brrb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_brra =
+    _Vector4_brra;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_brgr =
+    _Vector4_brgr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_brgg =
+    _Vector4_brgg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_brgb =
+    _Vector4_brgb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_brga =
+    _Vector4_brga;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_brbr =
+    _Vector4_brbr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_brbg =
+    _Vector4_brbg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_brbb =
+    _Vector4_brbb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_brba =
+    _Vector4_brba;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_brar =
+    _Vector4_brar;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_brag =
+    _Vector4_brag;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_brab =
+    _Vector4_brab;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_braa =
+    _Vector4_braa;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bgrr =
+    _Vector4_bgrr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bgrg =
+    _Vector4_bgrg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bgrb =
+    _Vector4_bgrb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bgra =
+    _Vector4_bgra;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bggr =
+    _Vector4_bggr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bggg =
+    _Vector4_bggg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bggb =
+    _Vector4_bggb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bgga =
+    _Vector4_bgga;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bgbr =
+    _Vector4_bgbr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bgbg =
+    _Vector4_bgbg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bgbb =
+    _Vector4_bgbb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bgba =
+    _Vector4_bgba;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bgar =
+    _Vector4_bgar;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bgag =
+    _Vector4_bgag;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bgab =
+    _Vector4_bgab;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bgaa =
+    _Vector4_bgaa;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bbrr =
+    _Vector4_bbrr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bbrg =
+    _Vector4_bbrg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bbrb =
+    _Vector4_bbrb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bbra =
+    _Vector4_bbra;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bbgr =
+    _Vector4_bbgr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bbgg =
+    _Vector4_bbgg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bbgb =
+    _Vector4_bbgb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bbga =
+    _Vector4_bbga;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bbbr =
+    _Vector4_bbbr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bbbg =
+    _Vector4_bbbg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bbbb =
+    _Vector4_bbbb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bbba =
+    _Vector4_bbba;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bbar =
+    _Vector4_bbar;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bbag =
+    _Vector4_bbag;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bbab =
+    _Vector4_bbab;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bbaa =
+    _Vector4_bbaa;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_barr =
+    _Vector4_barr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_barg =
+    _Vector4_barg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_barb =
+    _Vector4_barb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bara =
+    _Vector4_bara;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bagr =
+    _Vector4_bagr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bagg =
+    _Vector4_bagg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_bagb =
+    _Vector4_bagb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_baga =
+    _Vector4_baga;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_babr =
+    _Vector4_babr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_babg =
+    _Vector4_babg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_babb =
+    _Vector4_babb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_baba =
+    _Vector4_baba;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_baar =
+    _Vector4_baar;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_baag =
+    _Vector4_baag;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_baab =
+    _Vector4_baab;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_baaa =
+    _Vector4_baaa;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_arrr =
+    _Vector4_arrr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_arrg =
+    _Vector4_arrg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_arrb =
+    _Vector4_arrb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_arra =
+    _Vector4_arra;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_argr =
+    _Vector4_argr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_argg =
+    _Vector4_argg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_argb =
+    _Vector4_argb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_arga =
+    _Vector4_arga;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_arbr =
+    _Vector4_arbr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_arbg =
+    _Vector4_arbg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_arbb =
+    _Vector4_arbb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_arba =
+    _Vector4_arba;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_arar =
+    _Vector4_arar;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_arag =
+    _Vector4_arag;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_arab =
+    _Vector4_arab;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_araa =
+    _Vector4_araa;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_agrr =
+    _Vector4_agrr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_agrg =
+    _Vector4_agrg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_agrb =
+    _Vector4_agrb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_agra =
+    _Vector4_agra;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_aggr =
+    _Vector4_aggr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_aggg =
+    _Vector4_aggg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_aggb =
+    _Vector4_aggb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_agga =
+    _Vector4_agga;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_agbr =
+    _Vector4_agbr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_agbg =
+    _Vector4_agbg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_agbb =
+    _Vector4_agbb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_agba =
+    _Vector4_agba;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_agar =
+    _Vector4_agar;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_agag =
+    _Vector4_agag;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_agab =
+    _Vector4_agab;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_agaa =
+    _Vector4_agaa;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_abrr =
+    _Vector4_abrr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_abrg =
+    _Vector4_abrg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_abrb =
+    _Vector4_abrb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_abra =
+    _Vector4_abra;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_abgr =
+    _Vector4_abgr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_abgg =
+    _Vector4_abgg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_abgb =
+    _Vector4_abgb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_abga =
+    _Vector4_abga;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_abbr =
+    _Vector4_abbr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_abbg =
+    _Vector4_abbg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_abbb =
+    _Vector4_abbb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_abba =
+    _Vector4_abba;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_abar =
+    _Vector4_abar;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_abag =
+    _Vector4_abag;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_abab =
+    _Vector4_abab;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_abaa =
+    _Vector4_abaa;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_aarr =
+    _Vector4_aarr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_aarg =
+    _Vector4_aarg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_aarb =
+    _Vector4_aarb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_aara =
+    _Vector4_aara;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_aagr =
+    _Vector4_aagr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_aagg =
+    _Vector4_aagg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_aagb =
+    _Vector4_aagb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_aaga =
+    _Vector4_aaga;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_aabr =
+    _Vector4_aabr;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_aabg =
+    _Vector4_aabg;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_aabb =
+    _Vector4_aabb;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_aaba =
+    _Vector4_aaba;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_aaar =
+    _Vector4_aaar;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_aaag =
+    _Vector4_aaag;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_aaab =
+    _Vector4_aaab;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_aaaa =
+    _Vector4_aaaa;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ss =
+    _Vector4_ss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_st =
+    _Vector4_st;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sp =
+    _Vector4_sp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sq =
+    _Vector4_sq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ts =
+    _Vector4_ts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tt =
+    _Vector4_tt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tp =
+    _Vector4_tp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tq =
+    _Vector4_tq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ps =
+    _Vector4_ps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pt =
+    _Vector4_pt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pp =
+    _Vector4_pp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pq =
+    _Vector4_pq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qs =
+    _Vector4_qs;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qt =
+    _Vector4_qt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qp =
+    _Vector4_qp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qq =
+    _Vector4_qq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sss =
+    _Vector4_sss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sst =
+    _Vector4_sst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ssp =
+    _Vector4_ssp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ssq =
+    _Vector4_ssq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sts =
+    _Vector4_sts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_stt =
+    _Vector4_stt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_stp =
+    _Vector4_stp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_stq =
+    _Vector4_stq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sps =
+    _Vector4_sps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_spt =
+    _Vector4_spt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_spp =
+    _Vector4_spp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_spq =
+    _Vector4_spq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sqs =
+    _Vector4_sqs;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sqt =
+    _Vector4_sqt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sqp =
+    _Vector4_sqp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sqq =
+    _Vector4_sqq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tss =
+    _Vector4_tss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tst =
+    _Vector4_tst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tsp =
+    _Vector4_tsp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tsq =
+    _Vector4_tsq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tts =
+    _Vector4_tts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ttt =
+    _Vector4_ttt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ttp =
+    _Vector4_ttp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ttq =
+    _Vector4_ttq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tps =
+    _Vector4_tps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tpt =
+    _Vector4_tpt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tpp =
+    _Vector4_tpp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tpq =
+    _Vector4_tpq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tqs =
+    _Vector4_tqs;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tqt =
+    _Vector4_tqt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tqp =
+    _Vector4_tqp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tqq =
+    _Vector4_tqq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pss =
+    _Vector4_pss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pst =
+    _Vector4_pst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_psp =
+    _Vector4_psp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_psq =
+    _Vector4_psq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pts =
+    _Vector4_pts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ptt =
+    _Vector4_ptt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ptp =
+    _Vector4_ptp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ptq =
+    _Vector4_ptq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pps =
+    _Vector4_pps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ppt =
+    _Vector4_ppt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ppp =
+    _Vector4_ppp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ppq =
+    _Vector4_ppq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pqs =
+    _Vector4_pqs;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pqt =
+    _Vector4_pqt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pqp =
+    _Vector4_pqp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pqq =
+    _Vector4_pqq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qss =
+    _Vector4_qss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qst =
+    _Vector4_qst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qsp =
+    _Vector4_qsp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qsq =
+    _Vector4_qsq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qts =
+    _Vector4_qts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qtt =
+    _Vector4_qtt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qtp =
+    _Vector4_qtp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qtq =
+    _Vector4_qtq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qps =
+    _Vector4_qps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qpt =
+    _Vector4_qpt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qpp =
+    _Vector4_qpp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qpq =
+    _Vector4_qpq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qqs =
+    _Vector4_qqs;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qqt =
+    _Vector4_qqt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qqp =
+    _Vector4_qqp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qqq =
+    _Vector4_qqq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ssss =
+    _Vector4_ssss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ssst =
+    _Vector4_ssst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sssp =
+    _Vector4_sssp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sssq =
+    _Vector4_sssq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ssts =
+    _Vector4_ssts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sstt =
+    _Vector4_sstt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sstp =
+    _Vector4_sstp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sstq =
+    _Vector4_sstq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ssps =
+    _Vector4_ssps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sspt =
+    _Vector4_sspt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sspp =
+    _Vector4_sspp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sspq =
+    _Vector4_sspq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ssqs =
+    _Vector4_ssqs;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ssqt =
+    _Vector4_ssqt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ssqp =
+    _Vector4_ssqp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ssqq =
+    _Vector4_ssqq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_stss =
+    _Vector4_stss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_stst =
+    _Vector4_stst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_stsp =
+    _Vector4_stsp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_stsq =
+    _Vector4_stsq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_stts =
+    _Vector4_stts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sttt =
+    _Vector4_sttt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sttp =
+    _Vector4_sttp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sttq =
+    _Vector4_sttq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_stps =
+    _Vector4_stps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_stpt =
+    _Vector4_stpt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_stpp =
+    _Vector4_stpp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_stpq =
+    _Vector4_stpq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_stqs =
+    _Vector4_stqs;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_stqt =
+    _Vector4_stqt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_stqp =
+    _Vector4_stqp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_stqq =
+    _Vector4_stqq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_spss =
+    _Vector4_spss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_spst =
+    _Vector4_spst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_spsp =
+    _Vector4_spsp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_spsq =
+    _Vector4_spsq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_spts =
+    _Vector4_spts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sptt =
+    _Vector4_sptt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sptp =
+    _Vector4_sptp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sptq =
+    _Vector4_sptq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_spps =
+    _Vector4_spps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sppt =
+    _Vector4_sppt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sppp =
+    _Vector4_sppp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sppq =
+    _Vector4_sppq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_spqs =
+    _Vector4_spqs;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_spqt =
+    _Vector4_spqt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_spqp =
+    _Vector4_spqp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_spqq =
+    _Vector4_spqq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sqss =
+    _Vector4_sqss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sqst =
+    _Vector4_sqst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sqsp =
+    _Vector4_sqsp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sqsq =
+    _Vector4_sqsq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sqts =
+    _Vector4_sqts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sqtt =
+    _Vector4_sqtt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sqtp =
+    _Vector4_sqtp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sqtq =
+    _Vector4_sqtq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sqps =
+    _Vector4_sqps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sqpt =
+    _Vector4_sqpt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sqpp =
+    _Vector4_sqpp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sqpq =
+    _Vector4_sqpq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sqqs =
+    _Vector4_sqqs;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sqqt =
+    _Vector4_sqqt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sqqp =
+    _Vector4_sqqp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_sqqq =
+    _Vector4_sqqq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tsss =
+    _Vector4_tsss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tsst =
+    _Vector4_tsst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tssp =
+    _Vector4_tssp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tssq =
+    _Vector4_tssq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tsts =
+    _Vector4_tsts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tstt =
+    _Vector4_tstt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tstp =
+    _Vector4_tstp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tstq =
+    _Vector4_tstq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tsps =
+    _Vector4_tsps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tspt =
+    _Vector4_tspt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tspp =
+    _Vector4_tspp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tspq =
+    _Vector4_tspq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tsqs =
+    _Vector4_tsqs;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tsqt =
+    _Vector4_tsqt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tsqp =
+    _Vector4_tsqp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tsqq =
+    _Vector4_tsqq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ttss =
+    _Vector4_ttss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ttst =
+    _Vector4_ttst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ttsp =
+    _Vector4_ttsp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ttsq =
+    _Vector4_ttsq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ttts =
+    _Vector4_ttts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tttt =
+    _Vector4_tttt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tttp =
+    _Vector4_tttp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tttq =
+    _Vector4_tttq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ttps =
+    _Vector4_ttps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ttpt =
+    _Vector4_ttpt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ttpp =
+    _Vector4_ttpp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ttpq =
+    _Vector4_ttpq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ttqs =
+    _Vector4_ttqs;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ttqt =
+    _Vector4_ttqt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ttqp =
+    _Vector4_ttqp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ttqq =
+    _Vector4_ttqq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tpss =
+    _Vector4_tpss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tpst =
+    _Vector4_tpst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tpsp =
+    _Vector4_tpsp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tpsq =
+    _Vector4_tpsq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tpts =
+    _Vector4_tpts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tptt =
+    _Vector4_tptt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tptp =
+    _Vector4_tptp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tptq =
+    _Vector4_tptq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tpps =
+    _Vector4_tpps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tppt =
+    _Vector4_tppt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tppp =
+    _Vector4_tppp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tppq =
+    _Vector4_tppq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tpqs =
+    _Vector4_tpqs;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tpqt =
+    _Vector4_tpqt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tpqp =
+    _Vector4_tpqp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tpqq =
+    _Vector4_tpqq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tqss =
+    _Vector4_tqss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tqst =
+    _Vector4_tqst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tqsp =
+    _Vector4_tqsp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tqsq =
+    _Vector4_tqsq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tqts =
+    _Vector4_tqts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tqtt =
+    _Vector4_tqtt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tqtp =
+    _Vector4_tqtp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tqtq =
+    _Vector4_tqtq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tqps =
+    _Vector4_tqps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tqpt =
+    _Vector4_tqpt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tqpp =
+    _Vector4_tqpp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tqpq =
+    _Vector4_tqpq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tqqs =
+    _Vector4_tqqs;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tqqt =
+    _Vector4_tqqt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tqqp =
+    _Vector4_tqqp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_tqqq =
+    _Vector4_tqqq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_psss =
+    _Vector4_psss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_psst =
+    _Vector4_psst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pssp =
+    _Vector4_pssp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pssq =
+    _Vector4_pssq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_psts =
+    _Vector4_psts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pstt =
+    _Vector4_pstt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pstp =
+    _Vector4_pstp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pstq =
+    _Vector4_pstq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_psps =
+    _Vector4_psps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pspt =
+    _Vector4_pspt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pspp =
+    _Vector4_pspp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pspq =
+    _Vector4_pspq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_psqs =
+    _Vector4_psqs;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_psqt =
+    _Vector4_psqt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_psqp =
+    _Vector4_psqp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_psqq =
+    _Vector4_psqq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ptss =
+    _Vector4_ptss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ptst =
+    _Vector4_ptst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ptsp =
+    _Vector4_ptsp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ptsq =
+    _Vector4_ptsq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ptts =
+    _Vector4_ptts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pttt =
+    _Vector4_pttt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pttp =
+    _Vector4_pttp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pttq =
+    _Vector4_pttq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ptps =
+    _Vector4_ptps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ptpt =
+    _Vector4_ptpt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ptpp =
+    _Vector4_ptpp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ptpq =
+    _Vector4_ptpq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ptqs =
+    _Vector4_ptqs;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ptqt =
+    _Vector4_ptqt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ptqp =
+    _Vector4_ptqp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ptqq =
+    _Vector4_ptqq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ppss =
+    _Vector4_ppss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ppst =
+    _Vector4_ppst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ppsp =
+    _Vector4_ppsp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ppsq =
+    _Vector4_ppsq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ppts =
+    _Vector4_ppts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pptt =
+    _Vector4_pptt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pptp =
+    _Vector4_pptp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pptq =
+    _Vector4_pptq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ppps =
+    _Vector4_ppps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pppt =
+    _Vector4_pppt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pppp =
+    _Vector4_pppp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pppq =
+    _Vector4_pppq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ppqs =
+    _Vector4_ppqs;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ppqt =
+    _Vector4_ppqt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ppqp =
+    _Vector4_ppqp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_ppqq =
+    _Vector4_ppqq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pqss =
+    _Vector4_pqss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pqst =
+    _Vector4_pqst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pqsp =
+    _Vector4_pqsp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pqsq =
+    _Vector4_pqsq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pqts =
+    _Vector4_pqts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pqtt =
+    _Vector4_pqtt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pqtp =
+    _Vector4_pqtp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pqtq =
+    _Vector4_pqtq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pqps =
+    _Vector4_pqps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pqpt =
+    _Vector4_pqpt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pqpp =
+    _Vector4_pqpp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pqpq =
+    _Vector4_pqpq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pqqs =
+    _Vector4_pqqs;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pqqt =
+    _Vector4_pqqt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pqqp =
+    _Vector4_pqqp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_pqqq =
+    _Vector4_pqqq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qsss =
+    _Vector4_qsss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qsst =
+    _Vector4_qsst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qssp =
+    _Vector4_qssp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qssq =
+    _Vector4_qssq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qsts =
+    _Vector4_qsts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qstt =
+    _Vector4_qstt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qstp =
+    _Vector4_qstp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qstq =
+    _Vector4_qstq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qsps =
+    _Vector4_qsps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qspt =
+    _Vector4_qspt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qspp =
+    _Vector4_qspp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qspq =
+    _Vector4_qspq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qsqs =
+    _Vector4_qsqs;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qsqt =
+    _Vector4_qsqt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qsqp =
+    _Vector4_qsqp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qsqq =
+    _Vector4_qsqq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qtss =
+    _Vector4_qtss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qtst =
+    _Vector4_qtst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qtsp =
+    _Vector4_qtsp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qtsq =
+    _Vector4_qtsq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qtts =
+    _Vector4_qtts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qttt =
+    _Vector4_qttt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qttp =
+    _Vector4_qttp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qttq =
+    _Vector4_qttq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qtps =
+    _Vector4_qtps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qtpt =
+    _Vector4_qtpt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qtpp =
+    _Vector4_qtpp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qtpq =
+    _Vector4_qtpq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qtqs =
+    _Vector4_qtqs;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qtqt =
+    _Vector4_qtqt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qtqp =
+    _Vector4_qtqp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qtqq =
+    _Vector4_qtqq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qpss =
+    _Vector4_qpss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qpst =
+    _Vector4_qpst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qpsp =
+    _Vector4_qpsp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qpsq =
+    _Vector4_qpsq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qpts =
+    _Vector4_qpts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qptt =
+    _Vector4_qptt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qptp =
+    _Vector4_qptp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qptq =
+    _Vector4_qptq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qpps =
+    _Vector4_qpps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qppt =
+    _Vector4_qppt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qppp =
+    _Vector4_qppp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qppq =
+    _Vector4_qppq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qpqs =
+    _Vector4_qpqs;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qpqt =
+    _Vector4_qpqt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qpqp =
+    _Vector4_qpqp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qpqq =
+    _Vector4_qpqq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qqss =
+    _Vector4_qqss;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qqst =
+    _Vector4_qqst;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qqsp =
+    _Vector4_qqsp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qqsq =
+    _Vector4_qqsq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qqts =
+    _Vector4_qqts;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qqtt =
+    _Vector4_qqtt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qqtp =
+    _Vector4_qqtp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qqtq =
+    _Vector4_qqtq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qqps =
+    _Vector4_qqps;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qqpt =
+    _Vector4_qqpt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qqpp =
+    _Vector4_qqpp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qqpq =
+    _Vector4_qqpq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qqqs =
+    _Vector4_qqqs;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qqqt =
+    _Vector4_qqqt;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qqqp =
+    _Vector4_qqqp;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_get_3a_qqqq =
+    _Vector4_qqqq;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_call_3a_toString =
+    _Vector4_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_call_3a_normalize =
+    _Vector4_normalize;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_call_3a_normalizeLength =
+    _Vector4_normalizeLength;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_call_3a_normalized =
+    _Vector4_normalized;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_Vector4_7c_call_3a_clone =
+    _Vector4_clone;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_X509Certificate_7c_get_3a_der =
+    _X509Certificate_der;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_X509Certificate_7c_get_3a_pem =
+    _X509Certificate_pem;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_X509Certificate_7c_get_3a_sha1 =
+    _X509Certificate_sha1;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_X509Certificate_7c_get_3a_subject =
+    _X509Certificate_subject;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_X509Certificate_7c_get_3a_issuer =
+    _X509Certificate_issuer;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_X509Certificate_7c_get_3a_startValidity =
+    _X509Certificate_startValidity;
+const flaxMemberflax_2e_core_2f_sdk_5f_dependencies_23_type_3a_X509Certificate_7c_get_3a_endValidity =
+    _X509Certificate_endValidity;
 const _flaxBinding0 = FlaxGetter.plain("name", flaxStringType, _Encoding_name);
 const _flaxBinding1 = FlaxTypeRef(
   "iterable",

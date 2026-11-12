@@ -138,14 +138,31 @@ identity fields. No new callable or business-reference cache is introduced.
 
 Complete closed super-call descriptions also share the existing module constant pool
 when they target the same typed dispatch group. Per-class method maps and operation
-order remain unchanged; generic factories retain their scope. Runtime lookup and cached
-ancestor views are unchanged, and each proxy keeps its actual native lexical-super body.
+order remain unchanged. Runtime lookup and cached ancestor views are unchanged, and each
+proxy keeps its actual native lexical-super body.
+
+Closed ordinary getters and non-void zero-argument methods can additionally share a
+selected non-generic ancestor's typed adapter from generic factories and generated
+modules. The complete effective Manifest description must match. Existing signature
+dependencies provide generated library locations; providers expose stable
+`flaxMember...` const tearoff aliases encoding the full owner wire identity and
+operation. This is an internal generation context, with no Manifest field, capability or
+format change. Imports with a reverse dependency path, same-output aggregate scopes,
+guarded operations, owners requiring explicit type arguments and unsupported member
+shapes retain local adapters. Module initializer dependencies do not change. The
+requested class's matcher still validates each receiver before its ordinary virtual
+call; generic `T`, restricted selections and lexical super identities remain.
 
 Generic factories also reference module constants for type descriptions and parameter
 lists independent of their owner and method type parameters. Descriptions containing
 callbacks or deferred constructors remain local because their helpers can close over the
 factory's type context. Typed calls, lexical super bodies and owner-dependent metadata
-keep their original scope. Shared constants contain no session or receiver.
+keep their original scope. Whole getter/method descriptions and existing typed-dispatch
+super descriptions can also enter the module pool when their adapter is top-level and
+all type/parameter expressions are closed. Hoisting retains the existing description
+constructor and matches exact expressions. Expressions using `types`, `id`, real type
+parameters or local helpers remain local. Shared constants contain no session or
+receiver.
 
 Common descriptions also use smaller immutable implementations of the existing metadata
 interfaces. `FlaxParameter.required` stores two fields instead of five;

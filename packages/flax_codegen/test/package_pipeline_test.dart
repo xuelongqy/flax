@@ -432,6 +432,14 @@ Bag<Child> wrap(Child value) => Bag(value);
         ).readAsStringSync();
         expect(facadeSource, contains('base_Base'));
         expect(facadeSource, contains('facade_Derived'));
+        final nativeFacade = File(
+          p.join(package.root.path, 'lib/facade.g.dart'),
+        ).readAsStringSync();
+        expect(
+          nativeFacade,
+          contains(RegExp(r'_flaxMembers0\s*\.\s*flaxMember')),
+        );
+        expect(nativeFacade, isNot(contains('Object? _Derived_value(')));
 
         expect(facade.functions.map((f) => f.call.name), ['wrap']);
         final child = base.classes.singleWhere((type) => type.name == 'Child');

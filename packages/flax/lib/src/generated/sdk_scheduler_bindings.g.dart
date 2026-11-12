@@ -1558,6 +1558,34 @@ T _genericCallbackResult<T>(Object? value) {
   return value as T;
 }
 
+const flaxMemberflax_2e_core_2f_sdk_5f_scheduler_23_type_3a_Priority_7c_get_3a_value =
+    _Priority_value;
+const flaxMemberflax_2e_core_2f_sdk_5f_scheduler_23_type_3a_Ticker_7c_get_3a_forceFrames =
+    _Ticker_forceFrames;
+const flaxMemberflax_2e_core_2f_sdk_5f_scheduler_23_type_3a_Ticker_7c_get_3a_muted =
+    _Ticker_muted;
+const flaxMemberflax_2e_core_2f_sdk_5f_scheduler_23_type_3a_Ticker_7c_get_3a_isTicking =
+    _Ticker_isTicking;
+const flaxMemberflax_2e_core_2f_sdk_5f_scheduler_23_type_3a_Ticker_7c_get_3a_isActive =
+    _Ticker_isActive;
+const flaxMemberflax_2e_core_2f_sdk_5f_scheduler_23_type_3a_Ticker_7c_get_3a_scheduled =
+    _Ticker_scheduled;
+const flaxMemberflax_2e_core_2f_sdk_5f_scheduler_23_type_3a_Ticker_7c_get_3a_shouldScheduleTick =
+    _Ticker_shouldScheduleTick;
+const flaxMemberflax_2e_core_2f_sdk_5f_scheduler_23_type_3a_Ticker_7c_get_3a_debugLabel =
+    _Ticker_debugLabel;
+const flaxMemberflax_2e_core_2f_sdk_5f_scheduler_23_type_3a_Ticker_7c_call_3a_start =
+    _Ticker_start;
+const flaxMemberflax_2e_core_2f_sdk_5f_scheduler_23_type_3a_TickerCanceled_7c_get_3a_ticker =
+    _TickerCanceled_ticker;
+const flaxMemberflax_2e_core_2f_sdk_5f_scheduler_23_type_3a_TickerCanceled_7c_call_3a_toString =
+    _TickerCanceled_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_scheduler_23_type_3a_TickerFuture_7c_get_3a_orCancel =
+    _TickerFuture_orCancel;
+const flaxMemberflax_2e_core_2f_sdk_5f_scheduler_23_type_3a_TickerFuture_7c_call_3a_asStream =
+    _TickerFuture_asStream;
+const flaxMemberflax_2e_core_2f_sdk_5f_scheduler_23_type_3a_TickerFuture_7c_call_3a_toString =
+    _TickerFuture_toString;
 const _flaxBinding0 = FlaxCallbackBinding.signature(
   [],
   flaxTickerFutureType,

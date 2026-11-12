@@ -344,6 +344,10 @@ Function _flaxClass_State<_Owner0 extends api.StatefulWidget>() =>
     };
 const _flaxDartShapes = <FlaxDartShapeTemplate>[];
 
+const flaxMemberflax_2e_core_2f_components_23_type_3a_StatefulWidget_7c_call_3a_toStringShort =
+    _StatefulWidget_toStringShort;
+const flaxMemberflax_2e_core_2f_components_23_type_3a_StatefulWidget_7c_call_3a_debugDescribeChildren =
+    _StatefulWidget_debugDescribeChildren;
 const _flaxBinding0 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_foundation#type:DiagnosticLevel",

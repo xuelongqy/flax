@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:analyzer/dart/analysis/utilities.dart';
+import 'package:analyzer/dart/ast/ast.dart';
 import 'package:flax_codegen/flax_codegen.dart';
 import 'package:flax_codegen/src/manifest_codec.dart';
 import 'package:path/path.dart' as p;
@@ -311,8 +313,18 @@ void main() {
       diagnostics.throwIfAny();
       final emitter = FlaxCodegenBindingEmitter([module]);
       final source = emitter.dart(module);
+      final factories = parseString(content: source).unit.declarations
+          .whereType<FunctionDeclaration>()
+          .where((fn) => fn.name.lexeme.startsWith('_flaxClass_'));
       final superRows = RegExp(r'"@super:scale": (_flaxBinding\d+)')
           .allMatches(source)
+          // Ordinary registrations retain one shared row. Generic factories
+          // preserve their existing .plain representation when hoisted.
+          .where(
+            (match) => !factories.any(
+              (fn) => match.start >= fn.offset && match.end <= fn.end,
+            ),
+          )
           .map((match) => match.group(1)!)
           .toList();
       expect(superRows.length, greaterThan(1));
@@ -824,6 +836,189 @@ void main() {
 ''',
       );
       expect(emitter.dart(module), source);
+    },
+  );
+
+  test('closed inherited members share immutable rows across actual generic factories', () async {
+    const baseSelection = FlaxCodegenClassSelection(
+      {},
+      kind: 'object',
+      getters: ['label', 'amount'],
+      instanceMethods: {
+        'brief': [],
+        'defaulted': ['offset'],
+      },
+    );
+    const childSelection = FlaxCodegenClassSelection(
+      {
+        '': ['value'],
+      },
+      kind: 'object',
+      getters: ['label', 'amount', 'value'],
+      instanceMethods: {
+        'brief': [],
+        'defaulted': ['offset'],
+        'echo': ['input'],
+      },
+    );
+    for (final split in [false, true]) {
+      final baseConfig = config(const {
+        'MemberBase': baseSelection,
+      }, name: 'member_base');
+      final otherConfig = config(const {
+        'OtherMemberBase': FlaxCodegenClassSelection(
+          {},
+          kind: 'object',
+          getters: ['label'],
+        ),
+      }, name: 'member_other');
+      final childConfig = config({
+        if (!split) 'MemberBase': baseSelection,
+        'MemberChild': childSelection,
+      }, name: 'member_child');
+      await parser.prepare([
+        if (split) baseConfig,
+        if (split) otherConfig,
+        childConfig,
+      ]);
+      final base = split ? await parser.parse(baseConfig) : null;
+      final other = split ? await parser.parse(otherConfig) : null;
+      if (base != null) parser.prepareModules([base]);
+      final child = await parser.parse(childConfig);
+      final scratch = Directory(p.join(root.path, '.local/tmp'))
+          .createTempSync('member-adapters-');
+      try {
+        final baseFile = File(p.join(scratch.path, 'base.dart'));
+        final otherFile = File(p.join(scratch.path, 'other.dart'));
+        final barrel = File(p.join(scratch.path, 'barrel.dart'));
+        final entrypoints = <String, String>{
+          if (split) 'codegen.test/member_base': barrel.uri.toString(),
+          if (split) 'codegen.test/member_other': otherFile.uri.toString(),
+        };
+        final emitter = FlaxCodegenBindingEmitter([
+          ?base,
+          ?other,
+          child,
+        ], memberAdapterEntrypoints: entrypoints);
+        if (base != null) baseFile.writeAsStringSync(emitter.dart(base));
+        if (other != null) {
+          otherFile.writeAsStringSync(emitter.dart(other));
+          barrel.writeAsStringSync(
+            "export '${baseFile.uri}';\nexport '${otherFile.uri}';\n",
+          );
+        }
+        final source = emitter.dart(child);
+        expect(emitter.dart(child), source);
+        expect(source, isNot(contains('Object? _MemberChild_label(')));
+        expect(source, contains('Object? _MemberChild_amount('));
+        expect(source, contains('_MemberChild_defaulted'));
+        expect(source, contains('value is api.MemberChild<_Owner0>'));
+        if (split) expect(source, contains('_flaxMembers0.flaxMember'));
+        final guarded = FlaxCodegenModuleModel(
+          name: child.name,
+          library: child.library,
+          jsPackage: child.jsPackage,
+          dartOutput: child.dartOutput,
+          tsOutput: child.tsOutput,
+          classes: child.classes,
+          types: child.types,
+          typeLibraries: child.typeLibraries,
+          sandboxRules: [
+            FlaxCodegenSandboxRule(
+              owner: child.classes
+                  .singleWhere((type) => type.name == 'MemberChild')
+                  .id,
+              kind: 'get',
+              name: 'label',
+              operation: 'classes/MemberChild/getters/label',
+              deny: true,
+              receiver: true,
+            ),
+          ],
+        );
+        final guardedSource = FlaxCodegenBindingEmitter([
+          ?base,
+          guarded,
+        ], memberAdapterEntrypoints: entrypoints).dart(guarded);
+        expect(guardedSource, contains('Object? _MemberChild_label('));
+        await compileFixture(
+          root.path,
+          emitter,
+          child,
+          dartTestSource: r'''
+void main() {
+  test('closed rows share while T, narrowed results and defaults remain concrete', () {
+    final strings = typedFixtureBinding(_flaxClass_MemberChild<String>());
+    final ints = typedFixtureBinding(_flaxClass_MemberChild<int>());
+    FlaxGetter getter(FlaxObjectBinding binding, String name) =>
+        binding.getters.singleWhere((g) => g.name == name);
+    final value = api.MemberChild<String>('kept');
+    expect(getter(strings, 'label'), same(getter(ints, 'label')));
+    expect(strings.instanceMethods['brief'], same(ints.instanceMethods['brief']));
+    expect(getter(strings, 'label').read(value), 'child:kept');
+    expect(strings.instanceMethods['brief']!.invoke(value, {}), 2);
+    expect(strings.matches!(value), isTrue);
+    expect(ints.matches!(value), isFalse);
+    expect(getter(strings, 'amount').type.kind, 'double');
+    expect(getter(strings, 'amount').read(value), 2.5);
+    expect(strings.instanceMethods['defaulted']!.parameters.single.defaultValue, 2);
+    expect(strings.instanceMethods['defaulted']!.invoke(value, {'offset': 9}), 9);
+    expect(strings.instanceMethods['echo']!.invoke(value, {'input': 'next'}), 'next');
+    expect(() => strings.instanceMethods['echo']!.invoke(value, {'input': 7}), throwsA(isA<TypeError>()));
+    expect(() => getter(strings, 'value').read(api.MemberChild<int>(7)), throwsA(isA<TypeError>()));
+  });
+}
+''',
+        );
+      } finally {
+        scratch.deleteSync(recursive: true);
+      }
+    }
+  });
+
+  test(
+    'required owner arguments retain the unspecialized member guard',
+    () async {
+      final module = await parser.parse(
+        config(const {
+          'MemberBase': FlaxCodegenClassSelection(
+            {},
+            kind: 'object',
+            getters: ['label'],
+            instanceMethods: {'brief': []},
+          ),
+          'RequiredMember': FlaxCodegenClassSelection(
+            {'': []},
+            kind: 'object',
+            getters: ['label'],
+            instanceMethods: {'brief': []},
+          ),
+        }),
+      );
+      expect(
+        module.classes
+            .singleWhere((c) => c.name == 'RequiredMember')
+            .requiresTypeArguments,
+        isTrue,
+      );
+      await compileFixture(
+        root.path,
+        FlaxCodegenBindingEmitter([module]),
+        module,
+        dartTestSource: r'''
+void main() {
+  test('ordinary admission requires T and an explicit factory keeps the typed body', () {
+    final value = api.ConcreteRequiredMember();
+    expect(() => _RequiredMember_label(value), throwsArgumentError);
+    expect(() => _RequiredMember_brief(value, {}), throwsArgumentError);
+    final typed = typedFixtureBinding(_flaxClass_RequiredMember<api.ConcreteRequiredMember>());
+    expect(typed.getters.single.read(value), 'base');
+    expect(typed.instanceMethods['brief']!.invoke(value, {}), 1);
+    expect(typed.matches!(value), isTrue);
+  });
+}
+''',
+      );
     },
   );
 

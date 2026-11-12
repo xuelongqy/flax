@@ -1016,6 +1016,7 @@ final class FlaxCodegenPackagePipeline {
     List<FlaxCodegenModuleModel> modules, {
     List<FlaxCodegenModuleModel> additionalEmitterModules = const [],
     Map<String, String> bindingEntrypoints = const {},
+    Map<String, String> memberAdapterEntrypoints = const {},
     String Function(String)? formatDart,
     Map<String, String> additionalDartSources = const {},
     Map<String, ({String library, Map<String, String> types})> dartLibraries =
@@ -1024,6 +1025,7 @@ final class FlaxCodegenPackagePipeline {
     modules,
     additionalEmitterModules: additionalEmitterModules,
     bindingEntrypoints: bindingEntrypoints,
+    memberAdapterEntrypoints: memberAdapterEntrypoints,
     formatDart: formatDart,
     additionalDartSources: additionalDartSources,
     dartLibraries: dartLibraries,
@@ -1033,6 +1035,7 @@ final class FlaxCodegenPackagePipeline {
     List<FlaxCodegenModuleModel> modules, {
     List<FlaxCodegenModuleModel> additionalEmitterModules = const [],
     Map<String, String> bindingEntrypoints = const {},
+    Map<String, String> memberAdapterEntrypoints = const {},
     String Function(String)? formatDart,
     Map<String, String> additionalDartSources = const {},
     Map<String, ({String library, Map<String, String> types})> dartLibraries =
@@ -1043,6 +1046,7 @@ final class FlaxCodegenPackagePipeline {
     final emitter = FlaxCodegenBindingEmitter(
       _orderedModules([...modules, ...additionalEmitterModules]),
       bindingEntrypoints: bindingEntrypoints,
+      memberAdapterEntrypoints: memberAdapterEntrypoints,
       dartLibraries: dartLibraries,
     );
     final dartSources = _packageDartSources(
@@ -3339,6 +3343,17 @@ Future<Map<String, List<int>>> _planExpectedPackageOutputs({
             module.moduleId.value,
       },
     ),
+    memberAdapterEntrypoints: {
+      for (final module in modules)
+        if (module.moduleId != null)
+          module.moduleId!:
+              'package:${manifest.package}/${p.posix.joinAll(p.split(module.dartOutput).skip(1))}',
+      for (final projection in directDependencies.values)
+        for (final provider in projection.packageManifests)
+          for (final module in provider.modules)
+            if (module.dartLibrary != null)
+              module.moduleId.value: module.dartLibrary!,
+    },
   );
   final embedded = <String, String>{
     if (embedScopeSources)
