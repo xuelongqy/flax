@@ -232,7 +232,8 @@ based on the verified official 3.50.0 tag, which CI fetches explicitly for Flutt
 Git-derived version detection. The port is
 locally source-snapshot verified; earlier Flutter 3.47 pins and hosted receipts do not
 certify this target. The source lock and actual matching artifacts are
-authoritative, not fabricated version-cache contents. No hosted run is claimed. See the
+authoritative, not fabricated version-cache contents. Current hosted results are reported
+by the PR checks. See the
 [upgrade task](docs/tasks/flutter-3-50-upgrade.md) for current gates. The former SDK
 platform workflows remain removed; `check_platform.dart` retains historical `--list`
 plans but rejects execution before fetching or building SDKs. Other platforms and full

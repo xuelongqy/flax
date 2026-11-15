@@ -104,6 +104,8 @@ jobs:
           CONFIG
           gclient sync --no-history --jobs 2 --revision ".@$FLAX_FLUTTER_REVISION"
           echo "$FLUTTER_ROOT/bin" >> "$GITHUB_PATH"
+          test -x "$FLUTTER_ROOT/third_party/ninja/ninja"
+          echo "$FLUTTER_ROOT/third_party/ninja" >> "$GITHUB_PATH"
 
       - name: Set up Node.js
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
@@ -126,6 +128,9 @@ jobs:
 
       - name: Build the matching maintained Debug engine
         run: |
+          # Use the DEPS-pinned binary rather than depot_tools' Python bootstrap shim.
+          test "$(command -v ninja)" = "$FLUTTER_ROOT/third_party/ninja/ninja"
+          ninja --version
           python3 "$FLUTTER_ROOT/engine/src/flutter/flax/tools/sdk_info.py" "$FLAX_CI_V8_SDK" macos-arm64
           python3 "$FLUTTER_ROOT/engine/src/flutter/flax/tools/build_engine.py" --sdk "$FLAX_CI_V8_SDK" --mode debug --jobs 2
           diff -qr "$FLUTTER_ROOT/engine/src/out/flax_mac_debug_arm64/gen/dart-pkg/sky_engine" "$FLUTTER_ROOT/bin/cache/pkg/sky_engine"
