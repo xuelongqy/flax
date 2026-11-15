@@ -5,7 +5,7 @@ import type * as upstream0 from '@flax/flutter/widgets/_bindings/flutter_Navigat
 import '@flax/flutter/widgets/_bindings/flutter_NavigatorState';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_Route';
 import '@flax/flutter/widgets/_bindings/flutter_Route';
-import { _flaxMemberParameters96, _flaxMemberParameters97, _flaxMemberParameters98, _flaxMemberParameters4 } from "@flax/core/navigation/_bindings/flutter.__module";
+import { _flaxMemberParameters97, _flaxMemberParameters98, _flaxMemberParameters99, _flaxMemberParameters4 } from "@flax/core/navigation/_bindings/flutter.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface NavigatorObserver extends Readonly<{ "__flaxBound:package:flutter/src/widgets/navigator.dart::NavigatorObserver": readonly [] }> { readonly __NavigatorObserver: unique symbol;
@@ -20,7 +20,7 @@ didChangeTop(topRoute: Readonly<{ "__flaxBound:package:flutter/src/widgets/navig
 didStartUserGesture(route: Readonly<{ "__flaxBound:package:flutter/src/widgets/navigator.dart::Route": readonly [unknown | null] }> & Readonly<{ "__flaxBound:package:flutter/src/widgets/navigator.dart::_RoutePlaceholder": readonly [] }>, previousRoute: Readonly<{ "__flaxBound:package:flutter/src/widgets/navigator.dart::Route": readonly [unknown | null] }> & Readonly<{ "__flaxBound:package:flutter/src/widgets/navigator.dart::_RoutePlaceholder": readonly [] }> | null): void;
 didStopUserGesture(): void;
 }
-defineObject("flax.core/flutter#type:NavigatorObserver", ["navigator"], [], _flaxBindingMethods("flax.core/flutter#type:NavigatorObserver", "object", {"didPush":_flaxMemberParameters96,"didPop":_flaxMemberParameters96,"didRemove":_flaxMemberParameters96,"didReplace":_flaxMemberParameters97,"didChangeTop":_flaxMemberParameters98,"didStartUserGesture":_flaxMemberParameters96,"didStopUserGesture":_flaxMemberParameters4}, {}), []);
+defineObject("flax.core/flutter#type:NavigatorObserver", ["navigator"], [], _flaxBindingMethods("flax.core/flutter#type:NavigatorObserver", "object", {"didPush":_flaxMemberParameters97,"didPop":_flaxMemberParameters97,"didRemove":_flaxMemberParameters97,"didReplace":_flaxMemberParameters98,"didChangeTop":_flaxMemberParameters99,"didStartUserGesture":_flaxMemberParameters97,"didStopUserGesture":_flaxMemberParameters4}, {}), []);
 export function _NavigatorObserverFactory(): NavigatorObserver {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 0) throw new TypeError('Too many constructor arguments');

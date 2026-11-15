@@ -1438,6 +1438,72 @@ final class _ToleranceProxy extends api.Tolerance
 }
 
 const _flaxDartShapes = <FlaxDartShapeTemplate>[];
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_BoundedFrictionSimulation_7c_get_3a_finalX =
+    _FrictionSimulation_finalX;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_BoundedFrictionSimulation_7c_get_3a_tolerance =
+    _Simulation_tolerance;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_BoundedFrictionSimulation_7c_call_3a_toString =
+    _Simulation_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_ClampedSimulation_7c_get_3a_tolerance =
+    _Simulation_tolerance;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_ClampedSimulation_7c_get_3a_simulation =
+    _ClampedSimulation_simulation;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_ClampedSimulation_7c_get_3a_xMin =
+    _ClampedSimulation_xMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_ClampedSimulation_7c_get_3a_xMax =
+    _ClampedSimulation_xMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_ClampedSimulation_7c_get_3a_dxMin =
+    _ClampedSimulation_dxMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_ClampedSimulation_7c_get_3a_dxMax =
+    _ClampedSimulation_dxMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_ClampedSimulation_7c_call_3a_toString =
+    _Simulation_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_FrictionSimulation_7c_get_3a_tolerance =
+    _Simulation_tolerance;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_FrictionSimulation_7c_get_3a_finalX =
+    _FrictionSimulation_finalX;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_FrictionSimulation_7c_call_3a_toString =
+    _Simulation_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_GravitySimulation_7c_get_3a_tolerance =
+    _Simulation_tolerance;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_GravitySimulation_7c_call_3a_toString =
+    _Simulation_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_ScrollSpringSimulation_7c_get_3a_type =
+    _SpringSimulation_type;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_ScrollSpringSimulation_7c_get_3a_tolerance =
+    _Simulation_tolerance;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_ScrollSpringSimulation_7c_call_3a_toString =
+    _Simulation_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_Simulation_7c_get_3a_tolerance =
+    _Simulation_tolerance;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_Simulation_7c_call_3a_toString =
+    _Simulation_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_SpringDescription_7c_get_3a_mass =
+    _SpringDescription_mass;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_SpringDescription_7c_get_3a_stiffness =
+    _SpringDescription_stiffness;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_SpringDescription_7c_get_3a_damping =
+    _SpringDescription_damping;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_SpringDescription_7c_get_3a_duration =
+    _SpringDescription_duration;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_SpringDescription_7c_get_3a_bounce =
+    _SpringDescription_bounce;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_SpringDescription_7c_call_3a_toString =
+    _SpringDescription_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_SpringSimulation_7c_get_3a_tolerance =
+    _Simulation_tolerance;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_SpringSimulation_7c_get_3a_type =
+    _SpringSimulation_type;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_SpringSimulation_7c_call_3a_toString =
+    _Simulation_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_Tolerance_7c_get_3a_distance =
+    _Tolerance_distance;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_Tolerance_7c_get_3a_time =
+    _Tolerance_time;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_Tolerance_7c_get_3a_velocity =
+    _Tolerance_velocity;
+const flaxMemberflax_2e_core_2f_sdk_5f_physics_23_type_3a_Tolerance_7c_call_3a_toString =
+    _Tolerance_toString;
 const _flaxBinding0 = FlaxCallbackBinding.signature(
   [FlaxCallbackParameter.plain("time", flaxDoubleType)],
   flaxDoubleType,

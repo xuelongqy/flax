@@ -633,6 +633,7 @@ export declare function _RenderDecoratedBoxFactory(options: {
 }): RenderDecoratedBox;
 export interface _RenderDecoratedBoxNative extends RenderDecoratedBox {
     readonly [_flaxDartTypeValue]: _RenderDecoratedBoxNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1090,7 +1091,6 @@ export interface _RenderDecoratedBoxNative extends RenderDecoratedBox {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream16.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

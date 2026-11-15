@@ -9,6 +9,7 @@ import {
 } from '@flax/example-cupertino-ui/showcase';
 import { createFetchExample } from '@flax/example-core/fetch';
 import { createStorageExample } from '@flax/example-local-storage/showcase';
+import { createSurvivorsExample } from '@flax/example-survivors/showcase';
 import {
   createSandboxExample,
   createPermissionsExample,
@@ -104,6 +105,15 @@ const examples = [
     tag: 'CREATIVE TOOLS',
     description: 'Shape a light sculpture, animate it and capture a PNG postcard.',
     create: createCanvasExample,
+  },
+  {
+    id: 'survivors',
+    title: 'Lumen Outpost',
+    mark: 'LO',
+    color: 0xff337c7e,
+    tag: 'CANVAS GAME',
+    description: 'Survive endless waves with Canvas combat and native Flutter menus.',
+    create: createSurvivorsExample,
   },
   {
     id: 'fetch',

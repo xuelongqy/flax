@@ -648,6 +648,7 @@ export interface RenderTapRegionSurface extends Omit<upstream0.RenderProxyBoxWit
 export declare function _RenderTapRegionSurfaceFactory(): RenderTapRegionSurface;
 export interface _RenderTapRegionSurfaceNative extends RenderTapRegionSurface {
     readonly [_flaxDartTypeValue]: _RenderTapRegionSurfaceNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1149,7 +1150,6 @@ export interface _RenderTapRegionSurfaceNative extends RenderTapRegionSurface {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream3.RenderObject | null;
     get owner(): upstream16.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

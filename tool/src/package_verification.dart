@@ -42,11 +42,12 @@ void rewriteDartDirectiveUris(
   }
 }
 
-void copyDartPackages(
+Map<String, Object?> copyDartPackages(
   Directory root,
   Directory targetRoot,
   List<String> names,
 ) {
+  final overrides = <String, Object?>{};
   final packages = {
     for (final package in discoverDartPackages(root.path))
       package.name: package,
@@ -124,9 +125,32 @@ void copyDartPackages(
         dependencies[local] = {'path': '../$local'};
       }
     }
+    // Pub ignores dependency overrides below the consumer's root manifest.
+    final localOverrides = pubspec['dependency_overrides'] as Map?;
+    for (final entry
+        in localOverrides?.entries ?? const <MapEntry<Object?, Object?>>[]) {
+      final override = entry.value;
+      Object? relocated = override;
+      if (override is Map && override['path'] is String) {
+        final path = override['path'] as String;
+        final input = p.normalize(p.join(source.path, path));
+        if (p.isAbsolute(path) || !p.isWithin(source.path, input)) {
+          throw StateError('Package override must stay inside $name: $path');
+        }
+        final output = p.normalize(p.join(target.path, path));
+        copyTree(Directory(input), Directory(output));
+        relocated = {...override, 'path': output};
+      }
+      if (overrides.containsKey(entry.key) &&
+          jsonEncode(overrides[entry.key]) != jsonEncode(relocated)) {
+        throw StateError('Conflicting package override: ${entry.key}');
+      }
+      overrides[entry.key as String] = relocated;
+    }
     File(p.join(target.path, 'pubspec.yaml'))
         .writeAsStringSync(jsonEncode(pubspec));
   }
+  return overrides;
 }
 
 Future<void> verifyPackage(Directory root, {String engine = 'v8'}) async {

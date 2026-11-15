@@ -46,16 +46,16 @@ export interface Expansible extends _FlaxDartWidget, Omit<upstream0.StatefulWidg
     readonly headerBuilder: ((context: upstream2.BuildContext, animation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>) => Widget);
     readonly bodyBuilder: ((context: upstream2.BuildContext, animation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>) => Widget);
     readonly animationStyle: upstream5.AnimationStyle | null;
     readonly duration: upstream6.Duration;
@@ -65,9 +65,9 @@ export interface Expansible extends _FlaxDartWidget, Omit<upstream0.StatefulWidg
     readonly expansibleBuilder: ((context: upstream2.BuildContext, header: Widget, body: Widget, animation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>) => Widget);
     readonly key: upstream1.Key | null;
     createState(): upstream8.State<upstream0.StatefulWidget>;
@@ -101,9 +101,9 @@ export declare function _ExpansibleFactory(options: {
     controller: Readonly<{
         "__flaxBound:package:flutter/src/widgets/expansible.dart::ExpansibleController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>;
     expansibleBuilder?: ((context: upstream2.BuildContext, header: Widget, body: Widget, animation: upstream3.Animation<number>) => Widget) | undefined;
     animationStyle?: (Readonly<{

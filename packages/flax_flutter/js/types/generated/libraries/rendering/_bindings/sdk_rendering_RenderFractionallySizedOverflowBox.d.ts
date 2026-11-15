@@ -625,6 +625,7 @@ export declare function _RenderFractionallySizedOverflowBoxFactory(options?: {
 }): RenderFractionallySizedOverflowBox;
 export interface _RenderFractionallySizedOverflowBoxNative extends RenderFractionallySizedOverflowBox {
     readonly [_flaxDartTypeValue]: _RenderFractionallySizedOverflowBoxNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1080,7 +1081,6 @@ export interface _RenderFractionallySizedOverflowBoxNative extends RenderFractio
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream3.RenderObject | null;
     get owner(): upstream16.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

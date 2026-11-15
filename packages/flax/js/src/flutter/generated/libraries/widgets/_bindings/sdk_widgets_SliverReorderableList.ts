@@ -43,7 +43,7 @@ readonly onReorder: ((oldIndex: number, newIndex: number) => void) | null;
 readonly onReorderItem: ((oldIndex: number, newIndex: number) => void) | null;
 readonly onReorderStart: ((p0: number) => void) | null;
 readonly onReorderEnd: ((p0: number) => void) | null;
-readonly proxyDecorator: ((child: Widget, index: number, animation: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number] }>) => Widget) | null;
+readonly proxyDecorator: ((child: Widget, index: number, animation: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number] }>) => Widget) | null;
 readonly itemExtent: number | null;
 readonly itemExtentBuilder: ((index: number, dimensions: Readonly<{ "__flaxBound:package:flutter/src/rendering/sliver.dart::SliverLayoutDimensions": readonly [] }>) => number | null) | null;
 readonly prototypeItem: Widget | null;

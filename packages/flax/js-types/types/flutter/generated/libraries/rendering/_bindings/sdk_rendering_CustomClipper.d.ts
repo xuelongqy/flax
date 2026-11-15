@@ -13,7 +13,7 @@ import { type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxD
 export interface CustomClipper<T extends unknown | null = unknown | null> extends Omit<upstream0.Listenable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [T];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __CustomClipper: unique symbol;
     readonly [_flaxDartTypeValue]: CustomClipper<T>;
@@ -37,7 +37,7 @@ export declare abstract class CustomClipper<T extends unknown | null = unknown |
     static [_flaxDartTypeCases]: _FlaxSignature1;
     constructor(options?: {
         reclip?: Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> | null | undefined;
     });
     abstract getClip(size: Readonly<{
@@ -48,30 +48,30 @@ export declare abstract class CustomClipper<T extends unknown | null = unknown |
     abstract shouldReclip(oldClipper: Readonly<{
         "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [T];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): boolean;
 }
 export declare namespace CustomClipper {
     function implement<T extends unknown | null = unknown | null>(args: [options?: {
         reclip?: Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> | null | undefined;
     }], implementation: {
         getClip: ((size: upstream5.Size) => (T | DartInput<T>));
         shouldReclip: ((oldClipper: CustomClipper<T>) => boolean);
     }): CustomClipper<T>;
 }
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "addListener" | "removeListener" | "getClip" | "getApproximateClipRect" | "shouldReclip" | "toString" | "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "addListener" | "removeListener" | "getClip" | "getApproximateClipRect" | "shouldReclip" | "toString" | "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 interface _FlaxSignature1 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (abstract new (options?: {
         reclip?: Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> | null | undefined;
     }) => CustomClipper<_Selected0>) & {
         readonly prototype: CustomClipper<_Selected0>;
         implement(args: readonly [options?: {
             reclip?: Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+                "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
             }> | null | undefined;
         }], implementation: Partial<CustomClipper<_Selected0>>): CustomClipper<_Selected0>;
     } & _FlaxInstanceType<CustomClipper<_Selected0>> & _FlaxDartType<CustomClipper<_Selected0>> : never : never;

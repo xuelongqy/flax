@@ -23,6 +23,12 @@ Future<void> _compactFromWorker() async {
   }
 }
 
+void _holdGcWorker(SendPort ready) {
+  final pings = ReceivePort();
+  pings.listen((reply) => (reply as SendPort).send(true));
+  ready.send(pings.sendPort);
+}
+
 @pragma('vm:never-inline')
 (Object, WeakReference<_Owner>) _expandoCycle(FlaxNativeJsRuntime runtime) {
   final anchor = Object();
@@ -206,6 +212,39 @@ void flaxEngineGcContract({
       runtime.evaluate('delete globalThis.root');
       await _reclaimed(runtime, owner);
     } finally {
+      runtime.dispose();
+    }
+  });
+  test('joint GC reclaims a quiet cycle with two live Dart workers', () async {
+    final runtime = FlaxEngine.createRuntime() as FlaxNativeJsRuntime;
+    final workers = <Isolate>[];
+    final pings = <SendPort>[];
+    try {
+      for (var i = 0; i < 2; i++) {
+        final ready = ReceivePort();
+        try {
+          workers.add(await Isolate.spawn(_holdGcWorker, ready.sendPort));
+          pings.add(
+            await ready.first.timeout(const Duration(seconds: 5)) as SendPort,
+          );
+        } finally {
+          ready.close();
+        }
+      }
+      await _reclaimed(runtime, _cycle(runtime, false));
+      for (final ping in pings) {
+        final reply = ReceivePort();
+        try {
+          ping.send(reply.sendPort);
+          expect(await reply.first.timeout(const Duration(seconds: 5)), isTrue);
+        } finally {
+          reply.close();
+        }
+      }
+    } finally {
+      for (final worker in workers) {
+        worker.kill(priority: Isolate.immediate);
+      }
       runtime.dispose();
     }
   });

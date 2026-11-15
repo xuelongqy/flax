@@ -14,6 +14,7 @@ import '@flax/dart/ui/_bindings/sdk_dart_ui_Path';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import type * as upstream7 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
+import '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
@@ -50,6 +51,15 @@ export interface OvalBorder extends Omit<upstream0.CircleBorder, _flaxOwnMembers
     }>, options?: {
         textDirection?: upstream7.TextDirection | null | undefined;
     }): upstream5.Path;
+    hitTest(rect: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, position: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, options?: {
+        textDirection?: upstream7.TextDirection | null | undefined;
+    }): boolean;
     paintInterior(canvas: Readonly<{
         "__flaxBound:dart:ui::Canvas": readonly [];
     }>, rect: Readonly<{
@@ -111,6 +121,15 @@ export interface _OvalBorderNative extends OvalBorder {
     }>, options?: {
         textDirection?: upstream7.TextDirection | null | undefined;
     }): upstream5.Path;
+    hitTest(rect: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, position: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, options?: {
+        textDirection?: upstream7.TextDirection | null | undefined;
+    }): boolean;
     paintInterior(canvas: Readonly<{
         "__flaxBound:dart:ui::Canvas": readonly [];
     }>, rect: Readonly<{
@@ -181,5 +200,5 @@ declare const _OvalBorderBinding: typeof _OvalBorderFactory & (new (options?: {
     eccentricity?: number | undefined;
 }) => _OvalBorderNative);
 export declare const OvalBorder: typeof _OvalBorderBinding & _FlaxInstanceType<OvalBorder> & _FlaxDartType<OvalBorder, readonly ["class", "flax.core/sdk_painting#type:OvalBorder", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "eccentricity" | "preferPaintInterior" | "dimensions" | "side" | "scale" | "lerpFrom" | "lerpTo" | "getInnerPath" | "getOuterPath" | "paintInterior" | "copyWith" | "paint" | "toString" | "add" | "operatorAdd" | "__flaxBound:package:flutter/src/painting/oval_border.dart::OvalBorder" | "__flaxBound:package:flutter/src/painting/circle_border.dart::CircleBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::OutlinedBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "eccentricity" | "preferPaintInterior" | "dimensions" | "side" | "scale" | "lerpFrom" | "lerpTo" | "getInnerPath" | "getOuterPath" | "hitTest" | "paintInterior" | "copyWith" | "paint" | "toString" | "add" | "operatorAdd" | "__flaxBound:package:flutter/src/painting/oval_border.dart::OvalBorder" | "__flaxBound:package:flutter/src/painting/circle_border.dart::CircleBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::OutlinedBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder";
 export {};

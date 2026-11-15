@@ -27,7 +27,8 @@ Future<int> runFlaxCli(
       changed = await flaxInitializeProject(root);
       out('Prepared Flax host setup (${changed.length} files updated).');
       out(
-        'Run flutter pub get, generate bindings, then pnpm --dir js install and pnpm --dir js run build.',
+        'Run Pub with the matching maintained Flutter SDK and explicit local-engine artifact flags. '
+        'Then generate bindings, pnpm --dir js install and pnpm --dir js run build.',
       );
       out(
         'Existing source is preserved. Load the prepared modules and inject the generated View plugin in your host.',

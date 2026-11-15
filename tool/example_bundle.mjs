@@ -38,6 +38,15 @@ if (process.env.FLAX_PREPARED_CHECKS && process.env.FLAX_CHECK_PREPARED === '1')
 if (!selectedPackage) {
   // The gallery's trusted Dart entrance installs this child-application package.
   await bundlePackageExample('flax_sandbox_example');
+  execFileSync(
+    process.execPath,
+    [resolve(bundleOptions.absWorkingDir, 'examples/survivors/js/tool/bundle.mjs')],
+    {
+      cwd: resolve(bundleOptions.absWorkingDir, 'examples/survivors/js'),
+      stdio: 'inherit',
+      env: { ...process.env, FLAX_SURVIVORS_ACCEPTANCE: '0' },
+    },
+  );
   const embeddedRoot = resolve(bundleOptions.absWorkingDir, 'examples/embedded/js');
   await prepareBundleModulesFor(embeddedRoot);
   const embeddedOptions = await bundleOptionsFor(embeddedRoot);

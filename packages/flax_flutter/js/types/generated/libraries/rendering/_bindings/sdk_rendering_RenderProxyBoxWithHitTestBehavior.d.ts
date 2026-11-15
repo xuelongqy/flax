@@ -92,6 +92,7 @@ export interface RenderProxyBoxWithHitTestBehavior extends Omit<upstream0.Render
 }
 export interface RenderProxyBoxWithHitTestBehavior {
     readonly [_flaxDartTypeValue]: RenderProxyBoxWithHitTestBehavior;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -547,7 +548,6 @@ export interface RenderProxyBoxWithHitTestBehavior {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream14.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

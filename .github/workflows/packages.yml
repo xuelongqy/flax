@@ -16,7 +16,7 @@ env:
   FLAX_PR_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
   FLUTTER_ROOT: ${{ github.workspace }}/.local/flutter-ci
   FLUTTER_GIT_URL: https://github.com/xuelongqy/flutter.git
-  FLAX_FLUTTER_REVISION: abe1adc88066d3dcbc8acaa742c6513a38203a40
+  FLAX_FLUTTER_REVISION: 5b35abb0e4301043c5f0b1de129cc3c3da9bf9a4
   FLAX_DEPOT_TOOLS_REVISION: ce92a2e156beaaf1f2ed3a651a5c96f55bb78b80
   DEPOT_TOOLS_UPDATE: '0'
   VPYTHON_BYPASS: manually managed python not supported by chrome operations
@@ -89,6 +89,8 @@ jobs:
         working-directory: .local/flutter-ci
         run: |
           test "$(git rev-parse HEAD)" = "$FLAX_FLUTTER_REVISION"
+          git fetch --no-tags https://github.com/flutter/flutter.git refs/tags/3.50.0:refs/tags/3.50.0
+          test "$(git rev-parse 'refs/tags/3.50.0^{commit}')" = ab2912035e160d9cad6306df307576da6128ebdb
           python3 - <<'CONFIG'
           import os
           from pathlib import Path
@@ -102,6 +104,8 @@ jobs:
           CONFIG
           gclient sync --no-history --jobs 2 --revision ".@$FLAX_FLUTTER_REVISION"
           echo "$FLUTTER_ROOT/bin" >> "$GITHUB_PATH"
+          test -x "$FLUTTER_ROOT/third_party/ninja/ninja"
+          echo "$FLUTTER_ROOT/third_party/ninja" >> "$GITHUB_PATH"
 
       - name: Set up Node.js
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
@@ -124,10 +128,15 @@ jobs:
 
       - name: Build the matching maintained Debug engine
         run: |
+          # Use the DEPS-pinned binary rather than depot_tools' Python bootstrap shim.
+          test "$(command -v ninja)" = "$FLUTTER_ROOT/third_party/ninja/ninja"
+          ninja --version
           python3 "$FLUTTER_ROOT/engine/src/flutter/flax/tools/sdk_info.py" "$FLAX_CI_V8_SDK" macos-arm64
           python3 "$FLUTTER_ROOT/engine/src/flutter/flax/tools/build_engine.py" --sdk "$FLAX_CI_V8_SDK" --mode debug --jobs 2
           diff -qr "$FLUTTER_ROOT/engine/src/out/flax_mac_debug_arm64/gen/dart-pkg/sky_engine" "$FLUTTER_ROOT/bin/cache/pkg/sky_engine"
-          flutter pub get --enforce-lockfile
+          flutter --local-engine-src-path="$FLUTTER_ROOT/engine/src" \
+            --local-engine=flax_mac_debug_arm64 --local-engine-host=flax_mac_debug_arm64 \
+            pub get --enforce-lockfile
           diff -qr "$FLUTTER_ROOT/engine/src/out/flax_mac_debug_arm64/gen/dart-pkg/sky_engine" "$FLUTTER_ROOT/bin/cache/pkg/sky_engine"
 
       - name: Prepare the pinned WebGPU native asset

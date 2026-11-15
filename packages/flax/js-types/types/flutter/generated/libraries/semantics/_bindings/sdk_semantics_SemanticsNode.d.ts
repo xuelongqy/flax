@@ -1,4 +1,4 @@
-import { type FlaxInstanceType as _FlaxInstanceType, type DartList, type DartListInput, type DartSet, type DartSetInput } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartList, type DartListInput, type DartMap, type DartSet, type DartSetInput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticableTreeMixin';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticableTreeMixin';
 import type * as upstream1 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticableTree';
@@ -174,6 +174,7 @@ export interface SemanticsNode extends Omit<upstream0.DiagnosticableTreeMixin, _
         "__flaxBound:package:flutter/src/semantics/semantics_event.dart::SemanticsEvent": readonly [];
     }>): void;
     debugListChildrenInOrder(childOrder: upstream20.DebugSemanticsDumpOrder): DartList<SemanticsNode>;
+    toJson(): DartMap<string, unknown | null>;
     set transform(value: Readonly<{
         "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
     }> | null);
@@ -217,9 +218,9 @@ export declare namespace _SemanticsNodeFactory {
         owner: Readonly<{
             "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsOwner": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>;
     }): SemanticsNode;
 }
@@ -240,9 +241,9 @@ export interface _SemanticsNodeNative extends SemanticsNode {
             owner: Readonly<{
                 "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsOwner": readonly [];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+                "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+                "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
             }>;
         }) => void;
     };
@@ -298,6 +299,7 @@ export interface _SemanticsNodeNative extends SemanticsNode {
         "__flaxBound:package:flutter/src/semantics/semantics_event.dart::SemanticsEvent": readonly [];
     }>): void;
     debugListChildrenInOrder(childOrder: upstream20.DebugSemanticsDumpOrder): DartList<SemanticsNode>;
+    toJson(): DartMap<string, unknown | null>;
     get key(): upstream3.Key | null;
     get id(): number;
     get transform(): upstream5.Matrix4 | null;
@@ -411,5 +413,5 @@ declare const _SemanticsNodeBinding: typeof _SemanticsNodeFactory & (new (option
     showOnScreen?: (() => void) | null | undefined;
 }) => _SemanticsNodeNative) & (new (call: _FlaxProxySuper<_SemanticsNodeNative>) => _SemanticsNodeNative);
 export declare const SemanticsNode: typeof _SemanticsNodeBinding & _FlaxInstanceType<SemanticsNode> & _FlaxDartType<SemanticsNode, readonly ["class", "flax.core/sdk_semantics#type:SemanticsNode", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "key" | "id" | "transform" | "rect" | "parentSemanticsClipRect" | "parentPaintClipRect" | "indexInParent" | "isInvisible" | "isMergedIntoParent" | "areUserActionsBlocked" | "isPartOfNodeMerging" | "mergeAllDescendantsIntoThisNode" | "hasChildren" | "childrenCount" | "childrenCountInTraversalOrder" | "owner" | "attached" | "parent" | "traversalParent" | "depth" | "tags" | "flagsCollection" | "identifier" | "traversalParentIdentifier" | "traversalChildIdentifier" | "label" | "attributedLabel" | "value" | "attributedValue" | "increasedValue" | "attributedIncreasedValue" | "decreasedValue" | "attributedDecreasedValue" | "hint" | "attributedHint" | "tooltip" | "hintOverrides" | "textDirection" | "sortKey" | "textSelection" | "isMultiline" | "scrollChildCount" | "scrollIndex" | "scrollPosition" | "scrollExtentMax" | "scrollExtentMin" | "platformViewId" | "maxValueLength" | "currentValueLength" | "headingLevel" | "linkUrl" | "role" | "controlsNodes" | "minValue" | "maxValue" | "validationResult" | "hitTestBehavior" | "inputType" | "toString" | "toStringShallow" | "toStringDeep" | "toStringShort" | "toDiagnosticsNode" | "debugDescribeChildren" | "debugFillProperties" | "visitChildren" | "isTagged" | "hasFlag" | "updateWith" | "getSemanticsData" | "sendEvent" | "debugListChildrenInOrder" | "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsNode" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "key" | "id" | "transform" | "rect" | "parentSemanticsClipRect" | "parentPaintClipRect" | "indexInParent" | "isInvisible" | "isMergedIntoParent" | "areUserActionsBlocked" | "isPartOfNodeMerging" | "mergeAllDescendantsIntoThisNode" | "hasChildren" | "childrenCount" | "childrenCountInTraversalOrder" | "owner" | "attached" | "parent" | "traversalParent" | "depth" | "tags" | "flagsCollection" | "identifier" | "traversalParentIdentifier" | "traversalChildIdentifier" | "label" | "attributedLabel" | "value" | "attributedValue" | "increasedValue" | "attributedIncreasedValue" | "decreasedValue" | "attributedDecreasedValue" | "hint" | "attributedHint" | "tooltip" | "hintOverrides" | "textDirection" | "sortKey" | "textSelection" | "isMultiline" | "scrollChildCount" | "scrollIndex" | "scrollPosition" | "scrollExtentMax" | "scrollExtentMin" | "platformViewId" | "maxValueLength" | "currentValueLength" | "headingLevel" | "linkUrl" | "role" | "controlsNodes" | "minValue" | "maxValue" | "validationResult" | "hitTestBehavior" | "inputType" | "toString" | "toStringShallow" | "toStringDeep" | "toStringShort" | "toDiagnosticsNode" | "debugDescribeChildren" | "debugFillProperties" | "visitChildren" | "isTagged" | "hasFlag" | "updateWith" | "getSemanticsData" | "sendEvent" | "debugListChildrenInOrder" | "toJson" | "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsNode" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

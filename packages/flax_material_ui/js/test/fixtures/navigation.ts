@@ -63,6 +63,12 @@ const hooks = {
   native: () => navigator.pushNamed('/native', { arguments: { input: ['value', 2] } }),
   pop: (value: unknown = { selected: ['a', 3] }) => navigator.pop(value),
   maybePop: () => navigator.maybePop(),
+  popUntilWithResult: (value: unknown) =>
+    Navigator.popUntilWithResult(
+      detailContext,
+      (route) => route.settings.name === null,
+      value,
+    ),
 };
 Object.assign(globalThis, { navigation: hooks });
 

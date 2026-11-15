@@ -50,9 +50,9 @@ export interface DraggableScrollableSheet extends _FlaxDartWidget, Omit<upstream
     readonly builder: ((context: upstream4.BuildContext, scrollController: Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) => Widget);
     readonly key: upstream1.Key | null;
     createState(): upstream6.State<DraggableScrollableSheet>;
@@ -95,9 +95,9 @@ export declare function _DraggableScrollableSheetFactory(options: {
     controller?: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/draggable_scrollable_sheet.dart::DraggableScrollableController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     shouldCloseOnMinExtent?: boolean | undefined;
     builder: ((context: upstream4.BuildContext, scrollController: upstream5.ScrollController) => Widget);

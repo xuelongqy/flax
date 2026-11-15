@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:ui' as ui;
 
 import 'package:flax/flax.dart';
 import 'package:flax_test/flax_test.dart';
@@ -11,6 +12,89 @@ import '../support/engine.dart';
 import '../support/harness.dart' show registry;
 
 void main() {
+  test(
+    'prefixed binary assets own writable snapshots of readonly subviews',
+    () async {
+      final host = _ReadonlyBundle();
+      final bundle = FlaxPrefixedAssetBundle(bundle: host);
+      final first = await bundle.load('assets/raw.bin');
+      expect(Uint8List.sublistView(first), [11, 22, 33]);
+      expect(first.buffer.lengthInBytes, 3);
+      first.setUint8(0, 44);
+      expect(host.bytes, [99, 11, 22, 33, 88]);
+      final second = await bundle.load('assets/raw.bin');
+      expect(Uint8List.sublistView(second), [11, 22, 33]);
+      second.setUint8(1, 55);
+      expect(Uint8List.sublistView(first), [44, 22, 33]);
+      expect(host.bytes, [99, 11, 22, 33, 88]);
+      final native = await bundle.loadBuffer('assets/raw.bin');
+      try {
+        expect(identical(native, host.nativeBuffer), isTrue);
+        expect(native.length, 3);
+        expect(host.loaded, [
+          'assets/flax/assets/raw.bin',
+          'assets/flax/assets/raw.bin',
+        ]);
+        expect(host.bufferKeys, ['assets/flax/assets/raw.bin']);
+      } finally {
+        native.dispose();
+      }
+    },
+  );
+
+  testWidgets('readonly asset snapshots reach JavaScript Future results', (
+    t,
+  ) async {
+    final errors = <Object>[];
+    final host = _ReadonlyBundle();
+    final runtime = createTestRuntime();
+    final session = FlaxSession(
+      createRuntime: () => runtime,
+      assetBundle: FlaxPrefixedAssetBundle(bundle: host),
+      bindings: registry,
+      plugins: const [],
+      onError: (error, _) => errors.add(error),
+      source: r'''
+const {getAssetBundle} = __flaxModules.require('@flax/core/assets');
+const {runApp, Text} = __flaxModules.require('@flax/flutter/widgets');
+globalThis.assetResult = 'pending';
+(async () => {
+  const first = await getAssetBundle().load('assets/raw.bin');
+  const bytes = new Uint8Array(first.buffer, first.byteOffset, first.byteLength);
+  if (bytes.join() !== '11,22,33') throw new Error('Asset view range changed');
+  bytes[0] = 44;
+  const second = await getAssetBundle().load('assets/raw.bin');
+  const fresh = new Uint8Array(second.buffer, second.byteOffset, second.byteLength);
+  fresh[1] = 55;
+  globalThis.assetResult = bytes.join() + ':' + fresh.join();
+})().catch(error => { globalThis.assetResult = String(error); });
+runApp(Text('asset snapshot'));
+''',
+    );
+    try {
+      await flaxTestPumpView(
+        t,
+        MaterialApp(home: FlaxView.session(session: session)),
+      );
+      for (var attempt = 0; attempt < 100; attempt++) {
+        if ((runtime.evaluate('assetResult') as FlaxJsString).value !=
+            'pending') {
+          break;
+        }
+        await t.pump(const Duration(milliseconds: 10));
+      }
+      expect(
+        (runtime.evaluate('assetResult') as FlaxJsString).value,
+        '44,22,33:11,55,33',
+      );
+      expect(host.bytes, [99, 11, 22, 33, 88]);
+      expect(errors, isEmpty);
+    } finally {
+      await flaxTestUnmount(t);
+      await flaxTestCloseSession(t, session);
+    }
+  });
+
   test(
     'prefixed assets preserve logical keys and native image variants',
     () async {
@@ -207,6 +291,16 @@ void main() {
         await t.tap(find.text('Open dialog'));
         await t.pumpAndSettle();
         expect(find.text('dialog:first:true'), findsOneWidget);
+        expect(
+          (firstRuntime!.evaluate(
+            'barrierDetailsValid',
+          ) as FlaxJsBoolean).value,
+          isTrue,
+        );
+        expect(
+          (firstRuntime!.evaluate('barrierBuilds') as FlaxJsNumber).value,
+          greaterThan(0),
+        );
         final navigator = t.state<NavigatorState>(find.byType(Navigator));
         navigator.pop();
         await t.pumpAndSettle();
@@ -275,6 +369,26 @@ runApp(Text(getAssetBundle().toString()));
       expect(errors, isEmpty);
     },
   );
+}
+
+class _ReadonlyBundle extends CachingAssetBundle {
+  final bytes = Uint8List.fromList([99, 11, 22, 33, 88]);
+  final loaded = <String>[];
+  final bufferKeys = <String>[];
+  ui.ImmutableBuffer? nativeBuffer;
+  @override
+  Future<ByteData> load(String key) async {
+    loaded.add(key);
+    return ByteData.sublistView(bytes, 1, 4).asUnmodifiableView();
+  }
+
+  @override
+  Future<ui.ImmutableBuffer> loadBuffer(String key) async {
+    bufferKeys.add(key);
+    return nativeBuffer = await ui.ImmutableBuffer.fromUint8List(
+      Uint8List.fromList([11, 22, 33]),
+    );
+  }
 }
 
 class _BuiltinBundle extends CachingAssetBundle {
@@ -347,6 +461,8 @@ const {
 } = __flaxModules.require('@flax/flutter/widgets');
 const startupBundle = getAssetBundle();
 globalThis.routeBuilds = 0;
+globalThis.barrierBuilds = 0;
+globalThis.barrierDetailsValid = false;
 function label(context, name) {
   const bundle = DefaultAssetBundle.of(context);
   return Text(
@@ -393,6 +509,13 @@ runApp(
                               onTap: () =>
                                 showGeneralDialog({
                                   context: routeContext,
+                                  barrierBuilder: (context, details, barrier) => {
+                                    globalThis.barrierBuilds++;
+                                    globalThis.barrierDetailsValid = context.mounted &&
+                                      details.barrierDismissible === false &&
+                                      details.barrierLabel === null;
+                                    return barrier;
+                                  },
                                   pageBuilder: () =>
                                     Builder({
                                       builder: (dialogContext) =>

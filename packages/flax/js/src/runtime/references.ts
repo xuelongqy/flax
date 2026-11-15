@@ -1,11 +1,12 @@
+type ReferenceHandle = { type: string; id: number; alive: boolean };
+
 /** Weak aliases share one Dart identity; the cache never roots a JS wrapper. */
 export class ReferenceCache {
-  readonly handles = new WeakMap<
-    object,
-    { type: string; id: number; alive: boolean }
-  >();
+  readonly handles = new WeakMap<object, ReferenceHandle>();
   private readonly aliases = new Map<number, Set<WeakRef<object>>>();
   private cursor: MapIterator<number> | undefined;
+  private uncached?: Map<number, Set<ReferenceHandle>>;
+  private uncachedFinalizer?: FinalizationRegistry<ReferenceHandle>;
 
   get(type: string, id: number): object | null {
     const aliases = this.aliases.get(id);
@@ -35,6 +36,31 @@ export class ReferenceCache {
     this.aliases.set(id, aliases);
   }
 
+  trackUncached(value: object, type: string, id: number): void {
+    const ref = { type, id, alive: true };
+    this.handles.set(value, ref);
+    const uncached = (this.uncached ??= new Map());
+    const entries = uncached.get(id) ?? new Set();
+    entries.add(ref);
+    uncached.set(id, entries);
+    const finalizer = (this.uncachedFinalizer ??= new FinalizationRegistry((ref) =>
+      this.forgetUncached(ref),
+    ));
+    finalizer.register(value, ref, ref);
+  }
+
+  private forgetUncached(ref: ReferenceHandle): void {
+    const entries = this.uncached?.get(ref.id);
+    if (entries?.delete(ref) && entries.size === 0) this.uncached!.delete(ref.id);
+  }
+
+  releaseUncached(value: object): void {
+    const ref = this.handles.get(value)!;
+    ref.alive = false;
+    this.uncachedFinalizer!.unregister(ref);
+    this.forgetUncached(ref);
+  }
+
   transfer(source: object, target: object): void {
     const ref = this.handles.get(source);
     if (!ref || !ref.alive) throw new TypeError('Invalid Dart object alias');
@@ -53,6 +79,11 @@ export class ReferenceCache {
       if (handle) handle.alive = false;
     }
     this.aliases.delete(id);
+    for (const ref of this.uncached?.get(id) ?? []) {
+      ref.alive = false;
+      this.uncachedFinalizer!.unregister(ref);
+    }
+    this.uncached?.delete(id);
   }
 
   sweep(): number[] {

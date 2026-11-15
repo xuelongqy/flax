@@ -12,9 +12,9 @@ import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as 
 export interface Animation<T extends unknown | null = unknown | null> extends Omit<upstream0.Listenable, _flaxOwnMembers0>, Omit<upstream1.ValueListenable<T>, _flaxOwnMembers0 | keyof upstream0.Listenable>, Readonly<{
     "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [T];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [T];
+    "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [T];
 }> {
     readonly __Animation: unique symbol;
     readonly [_flaxDartTypeValue]: Animation<T>;
@@ -39,16 +39,16 @@ export interface Animation<T extends unknown | null = unknown | null> extends Om
 }
 export declare namespace _AnimationFactory {
     function fromValueListenable<T extends unknown | null = unknown | null>(listenable: Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [_FlaxDartOutput<T>];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [_FlaxDartOutput<T>];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>, options?: {
         transformer?: ((p0: _FlaxDartOutput<T>) => (T | _FlaxDartOutput<T>)) | null | undefined;
     }): Animation<T>;
     function fromValueListenable(listenable: Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [unknown | null];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [unknown | null];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>, options?: {
         transformer?: ((p0: unknown | null) => unknown | null) | null | undefined;
     }): Animation<unknown | null>;
@@ -94,13 +94,13 @@ export declare namespace _AnimationFactory {
 }
 declare const _AnimationBinding: typeof _AnimationFactory & (abstract new <T extends unknown | null = unknown | null>() => _AnimationNative<T>);
 export declare const Animation: typeof _AnimationBinding & _FlaxInstanceType<Animation<unknown | null>> & _FlaxDartType<Animation<unknown | null>, readonly ["class", "flax.core/sdk_animation#type:Animation", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "status" | "isDismissed" | "isCompleted" | "isAnimating" | "isForwardOrCompleted" | "addListener" | "removeListener" | "addStatusListener" | "removeStatusListener" | "drive" | "toString" | "toStringDetails" | "__flaxBound:package:flutter/src/animation/animation.dart::Animation" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "status" | "isDismissed" | "isCompleted" | "isAnimating" | "isForwardOrCompleted" | "addListener" | "removeListener" | "addStatusListener" | "removeStatusListener" | "drive" | "toString" | "toStringDetails" | "__flaxBound:package:flutter/src/animation/animation.dart::Animation" | "__flaxBound:package:listen/src/listen.dart::Listenable" | "__flaxBound:package:listen/src/listen.dart::ValueListenable";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (abstract new () => _AnimationNative<_Selected0>) & {
         fromValueListenable: (listenable: Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [_Selected0];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [_Selected0];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>, options?: {
             transformer?: ((p0: _Selected0) => (_Selected0 | DartInput<_Selected0>)) | null | undefined;
         }) => _AnimationNative<_Selected0>;
@@ -121,9 +121,9 @@ interface _FlaxSignature2<_OwnerType0 extends unknown | null> extends _FlaxDartS
 interface _FlaxSignature3 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (abstract new () => _AnimationNative<_Selected0>) & {
         fromValueListenable: (listenable: Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [_Selected0];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [_Selected0];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>, options?: {
             transformer?: ((p0: _Selected0) => (_Selected0 | DartInput<_Selected0>)) | null | undefined;
         }) => _AnimationNative<_Selected0>;

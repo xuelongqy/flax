@@ -192,6 +192,7 @@ class _Session {
           'static' => _staticOperation(type, operation, name, layout),
           'object' => _objectOperation(type, operation, name, layout),
           'reference' => _dartReferenceOperation(type, operation, name),
+          'joint' => _jointOperation(type, operation, name),
           'stream' => _streamOperation(type, operation, name, layout),
           'state' => _stateOperation(type, operation, name, layout),
           'context' => _contextOperation(type, operation, name, layout),

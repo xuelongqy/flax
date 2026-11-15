@@ -37,7 +37,6 @@ export interface AbsorbPointer extends _FlaxDartWidget, Omit<upstream0.SingleChi
     readonly __AbsorbPointer: unique symbol;
     readonly [_flaxDartTypeValue]: AbsorbPointer;
     readonly absorbing: boolean;
-    readonly ignoringSemantics: boolean | null;
     readonly child: Widget | null;
     readonly key: upstream2.Key | null;
     createRenderObject(context: upstream4.BuildContext): upstream3.RenderAbsorbPointer;
@@ -99,7 +98,6 @@ export declare function _AbsorbPointerFactory(options?: {
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
     absorbing?: boolean | undefined;
-    ignoringSemantics?: boolean | null | undefined;
     child?: Widget | null | undefined;
 }): AbsorbPointer;
 export declare namespace _AbsorbPointerFactory {
@@ -116,5 +114,5 @@ export declare namespace _AbsorbPointerFactory {
     };
 }
 export declare const AbsorbPointer: typeof _AbsorbPointerFactory & _FlaxInstanceType<AbsorbPointer> & _FlaxDartType<AbsorbPointer, readonly ["class", "flax.core/sdk_widgets#type:AbsorbPointer", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "absorbing" | "ignoringSemantics" | "child" | "key" | "createRenderObject" | "updateRenderObject" | "debugFillProperties" | "createElement" | "didUnmountRenderObject" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/basic.dart::AbsorbPointer" | "__flaxBound:package:flutter/src/widgets/framework.dart::SingleChildRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "absorbing" | "child" | "key" | "createRenderObject" | "updateRenderObject" | "debugFillProperties" | "createElement" | "didUnmountRenderObject" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/basic.dart::AbsorbPointer" | "__flaxBound:package:flutter/src/widgets/framework.dart::SingleChildRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

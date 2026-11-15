@@ -15,7 +15,12 @@ import {
   type Widget,
 } from '@flax/flutter/widgets';
 import { ValueKey, ValueListenable } from '@flax/flutter/foundation';
-import { TextButton, TextField } from '@flax/material-ui';
+import {
+  DropdownButtonFormField,
+  DropdownMenuItem,
+  TextButton,
+  TextField,
+} from '@flax/material-ui';
 import {
   ChildConsumer,
   TileBatch,
@@ -156,7 +161,26 @@ registerPage('returned-widget', () =>
     render: (_context, content) => content ?? Text('Empty'),
   }),
 );
+const dropdownEvents = { changes: 0, last: null as string | null };
+registerPage('dropdown-enabled', (params) => {
+  const settings = params.value as { enabled?: boolean | null; callback: boolean };
+  return DropdownButtonFormField<string>({
+    items: [
+      DropdownMenuItem<string>({ value: 'a', child: Text('First choice') }),
+      DropdownMenuItem<string>({ value: 'b', child: Text('Second choice') }),
+    ],
+    hint: Text('Choose option'),
+    ...('enabled' in settings ? { enabled: settings.enabled } : {}),
+    onChanged: settings.callback
+      ? (value) => {
+          dropdownEvents.changes++;
+          dropdownEvents.last = value;
+        }
+      : null,
+  });
+});
 Object.assign(globalThis, {
+  dropdownEvents,
   cache,
   label,
   counts,

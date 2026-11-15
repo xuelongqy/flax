@@ -634,6 +634,7 @@ export declare function _RenderFittedBoxFactory(options?: {
 }): RenderFittedBox;
 export interface _RenderFittedBoxNative extends RenderFittedBox {
     readonly [_flaxDartTypeValue]: _RenderFittedBoxNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1096,7 +1097,6 @@ export interface _RenderFittedBoxNative extends RenderFittedBox {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream17.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

@@ -55,9 +55,9 @@ export interface FocusScopeNode extends Omit<upstream0.FocusNode, _flaxOwnMember
 }>, Readonly<{
     "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __FocusScopeNode: unique symbol;
     readonly [_flaxDartTypeValue]: FocusScopeNode;
@@ -75,9 +75,9 @@ export interface FocusScopeNode extends Omit<upstream0.FocusNode, _flaxOwnMember
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>, event: Readonly<{
         "__flaxBound:package:flutter/src/services/raw_keyboard.dart::RawKeyEvent": readonly [];
     }> & Readonly<{
@@ -92,9 +92,9 @@ export interface FocusScopeNode extends Omit<upstream0.FocusNode, _flaxOwnMember
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>, event: Readonly<{
         "__flaxBound:package:flutter/src/services/hardware_keyboard.dart::KeyEvent": readonly [];
     }> & Readonly<{
@@ -138,9 +138,9 @@ export interface FocusScopeNode extends Omit<upstream0.FocusNode, _flaxOwnMember
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null): void;
     nextFocus(): boolean;
     previousFocus(): boolean;
@@ -180,9 +180,9 @@ export interface FocusScopeNode extends Omit<upstream0.FocusNode, _flaxOwnMember
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): void;
     autofocus(node: Readonly<{
         "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
@@ -193,9 +193,9 @@ export interface FocusScopeNode extends Omit<upstream0.FocusNode, _flaxOwnMember
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): void;
     requestScopeFocus(): void;
     set skipTraversal(value: boolean);
@@ -237,9 +237,9 @@ export interface _FocusScopeNodeNative extends FocusScopeNode {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null): void;
     nextFocus(): boolean;
     previousFocus(): boolean;
@@ -279,9 +279,9 @@ export interface _FocusScopeNodeNative extends FocusScopeNode {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): void;
     autofocus(node: Readonly<{
         "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
@@ -292,9 +292,9 @@ export interface _FocusScopeNodeNative extends FocusScopeNode {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): void;
     requestScopeFocus(): void;
     get nearestScope(): FocusScopeNode;
@@ -318,9 +318,9 @@ export interface _FocusScopeNodeNative extends FocusScopeNode {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>, event: Readonly<{
         "__flaxBound:package:flutter/src/services/raw_keyboard.dart::RawKeyEvent": readonly [];
     }> & Readonly<{
@@ -335,9 +335,9 @@ export interface _FocusScopeNodeNative extends FocusScopeNode {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>, event: Readonly<{
         "__flaxBound:package:flutter/src/services/hardware_keyboard.dart::KeyEvent": readonly [];
     }> & Readonly<{
@@ -401,5 +401,5 @@ declare const _FocusScopeNodeBinding: typeof _FocusScopeNodeFactory & (new (opti
     directionalTraversalEdgeBehavior?: upstream9.TraversalEdgeBehavior | undefined;
 }) => _FocusScopeNodeNative);
 export declare const FocusScopeNode: typeof _FocusScopeNodeBinding & _FlaxInstanceType<FocusScopeNode> & _FlaxDartType<FocusScopeNode, readonly ["class", "flax.core/sdk_widgets#type:FocusScopeNode", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "skipTraversal" | "canRequestFocus" | "descendantsAreFocusable" | "descendantsAreTraversable" | "context" | "onKey" | "onKeyEvent" | "parent" | "children" | "traversalChildren" | "debugLabel" | "descendants" | "traversalDescendants" | "ancestors" | "hasFocus" | "hasPrimaryFocus" | "highlightMode" | "nearestScope" | "enclosingScope" | "size" | "offset" | "rect" | "hasListeners" | "traversalEdgeBehavior" | "directionalTraversalEdgeBehavior" | "isFirstFocus" | "focusedChild" | "unfocus" | "consumeKeyboardToken" | "attach" | "dispose" | "requestFocus" | "nextFocus" | "previousFocus" | "focusInDirection" | "debugFillProperties" | "debugDescribeChildren" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "addListener" | "removeListener" | "toString" | "setFirstFocus" | "autofocus" | "requestScopeFocus" | "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusScopeNode" | "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "skipTraversal" | "canRequestFocus" | "descendantsAreFocusable" | "descendantsAreTraversable" | "context" | "onKey" | "onKeyEvent" | "parent" | "children" | "traversalChildren" | "debugLabel" | "descendants" | "traversalDescendants" | "ancestors" | "hasFocus" | "hasPrimaryFocus" | "highlightMode" | "nearestScope" | "enclosingScope" | "size" | "offset" | "rect" | "hasListeners" | "traversalEdgeBehavior" | "directionalTraversalEdgeBehavior" | "isFirstFocus" | "focusedChild" | "unfocus" | "consumeKeyboardToken" | "attach" | "dispose" | "requestFocus" | "nextFocus" | "previousFocus" | "focusInDirection" | "debugFillProperties" | "debugDescribeChildren" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "addListener" | "removeListener" | "toString" | "setFirstFocus" | "autofocus" | "requestScopeFocus" | "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusScopeNode" | "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 export {};

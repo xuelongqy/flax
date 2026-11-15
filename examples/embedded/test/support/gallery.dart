@@ -50,6 +50,7 @@ Future<void> exerciseGallery(WidgetTester tester) async {
     ('material', 'Material, in full color.'),
     ('cupertino', 'Quiet details. Native feel.'),
     ('canvas', 'Make light linger.'),
+    ('survivors', 'OUTPOST'),
     ('fetch', 'Ask. Receive. Explore.'),
     ('video', 'HTTPS stream · H.264 / AAC · 480 × 270'),
     ('websocket', 'A conversation, in real time.'),
@@ -64,9 +65,9 @@ Future<void> exerciseGallery(WidgetTester tester) async {
     await tapGallery(
       tester,
       find.byKey(ValueKey('open-${entry.$1}')),
-      settle: entry.$1 != 'video' && entry.$1 != 'audio',
+      settle: !{'video', 'audio', 'survivors'}.contains(entry.$1),
     );
-    if (entry.$1 == 'video' || entry.$1 == 'audio') {
+    if ({'video', 'audio', 'survivors'}.contains(entry.$1)) {
       await pumpGalleryUntil(
         tester,
         () => find.text(entry.$2).evaluate().isNotEmpty,
@@ -111,6 +112,20 @@ Future<void> exerciseGallery(WidgetTester tester) async {
       case 'canvas':
         await tapGallery(tester, find.byKey(const ValueKey('palette-1')));
         expect(find.text('Bloom · Ember · crisp light'), findsOneWidget);
+      case 'survivors':
+        await selectGalleryGameEnglish(tester);
+        await tapGallery(tester, find.text('Start'), settle: false);
+        await pumpGalleryUntil(
+          tester,
+          () => find.byTooltip('Pause').evaluate().isNotEmpty,
+        );
+        await tapGallery(tester, find.byTooltip('Pulse'), settle: false);
+        for (var i = 0; i < 20; i++) {
+          await tester.runAsync(
+            () => Future<void>.delayed(const Duration(milliseconds: 10)),
+          );
+          await tester.pump(const Duration(milliseconds: 20));
+        }
       case 'fetch':
         expect(find.text('Fetch ready'), findsOneWidget);
       case 'video':
@@ -272,6 +287,25 @@ Future<void> exerciseGallery(WidgetTester tester) async {
     tester,
     find.byKey(const ValueKey('example-settings-close')),
   );
+}
+
+Future<void> selectGalleryGameEnglish(WidgetTester tester) async {
+  await pumpGalleryUntil(
+    tester,
+    () =>
+        find.text('开始行动').evaluate().isNotEmpty ||
+        find.text('Start').evaluate().isNotEmpty,
+  );
+  if (find.text('Start').evaluate().isNotEmpty) return;
+  await tapGallery(tester, find.text('设置'));
+  await tapGallery(
+    tester,
+    find.byWidgetPredicate(
+      (widget) => widget is Semantics && widget.properties.label == '语言: 中文',
+    ),
+  );
+  await tapGallery(tester, find.text('Done'));
+  expect(find.text('Start'), findsOneWidget);
 }
 
 Future<void> tapGallery(

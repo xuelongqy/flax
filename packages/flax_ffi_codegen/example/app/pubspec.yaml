@@ -3,7 +3,8 @@ description: Optional JS FFI with automatically packaged native code.
 version: 0.0.0
 publish_to: none
 environment:
-  sdk: ^3.13.2
+  sdk: ^3.14.0
+  flutter: '>=3.50.0'
 dependencies:
   flax_ffi_assets:
     path: .flax/ffi_assets

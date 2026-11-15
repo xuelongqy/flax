@@ -12,7 +12,7 @@ import 'package:flax/src/native/native_runtime.dart';
 import 'package:ffi/ffi.dart';
 import 'package:flax_test/runtime.dart';
 import 'package:flax_test/flax_test.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';

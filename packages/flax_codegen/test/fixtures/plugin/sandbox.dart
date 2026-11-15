@@ -84,6 +84,24 @@ enum InvalidConstant {
   secret,
 }
 
+@FlaxSandboxGuard(policyType: NotePolicy, handler: missingFlag, replace: true)
+NoteStore incompleteReplacement(String path, {bool useLogicalSize = false}) =>
+    NoteStore(path);
+NoteStore missingFlag(FlaxSandboxContext c, NotePolicy p, String path) =>
+    NoteStore(path);
+
+@FlaxSandboxGuard(
+  policyType: NotePolicy,
+  handler: nonNullableLabel,
+  replace: true,
+)
+NoteStore nullableReplacement({String? label}) => NoteStore(label ?? '');
+NoteStore nonNullableLabel(
+  FlaxSandboxContext c,
+  NotePolicy p, {
+  String label = '',
+}) => NoteStore(label);
+
 @FlaxSandboxGuard(policyType: NotePolicy, handler: asyncGuard)
 void invalidAsync() {}
 void asyncGuard(FlaxSandboxContext c, NotePolicy p) async {}

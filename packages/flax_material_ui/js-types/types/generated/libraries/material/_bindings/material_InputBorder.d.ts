@@ -11,7 +11,8 @@ import type * as upstream4 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import type * as upstream5 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
-import type * as upstream6 from '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
+import '@flax/dart/ui/_bindings/flutter_Offset';
+import type * as upstream7 from '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
@@ -37,6 +38,15 @@ export interface InputBorder {
     lerpTo(b: Readonly<{
         "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
     }> | null, t: number): upstream0.ShapeBorder | null;
+    hitTest(rect: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, position: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, options?: {
+        textDirection?: upstream5.TextDirection | null | undefined;
+    }): boolean;
     paintInterior(canvas: Readonly<{
         "__flaxBound:dart:ui::Canvas": readonly [];
     }>, rect: Readonly<{
@@ -116,7 +126,7 @@ export declare namespace InputBorder {
         }) => Readonly<{
             "__flaxBound:dart:ui::Path": readonly [];
         }>);
-        paint: ((canvas: upstream6.Canvas, rect: upstream4.Rect, options?: {
+        paint: ((canvas: upstream7.Canvas, rect: upstream4.Rect, options?: {
             gapStart?: number | null | undefined;
             gapExtent?: number | undefined;
             gapPercentage?: number | undefined;
@@ -138,5 +148,5 @@ export declare namespace InputBorder {
 export declare namespace InputBorder {
     const none: InputBorder;
 }
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "dimensions" | "preferPaintInterior" | "borderSide" | "isOutline" | "add" | "scale" | "lerpFrom" | "lerpTo" | "getOuterPath" | "getInnerPath" | "paintInterior" | "paint" | "toString" | "copyWith" | "operatorAdd" | "__flaxBound:package:material_ui/src/input_border.dart::InputBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "dimensions" | "preferPaintInterior" | "borderSide" | "isOutline" | "add" | "scale" | "lerpFrom" | "lerpTo" | "getOuterPath" | "getInnerPath" | "hitTest" | "paintInterior" | "paint" | "toString" | "copyWith" | "operatorAdd" | "__flaxBound:package:material_ui/src/input_border.dart::InputBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder";
 export {};

@@ -4,14 +4,15 @@ version: 0.0.0
 publish_to: none
 
 environment:
-  sdk: ^3.13.2
-  flutter: '>=3.47.9'
+  sdk: ^3.14.0
+  flutter: '>=3.50.0'
 
 workspace:
   - packages/*
   - packages/*/example
   - examples/embedded
   - examples/standalone
+  - examples/survivors
   - examples/configured_bindings/host
   - examples/configured_bindings/provider
   - examples/configured_bindings/vendor
@@ -28,7 +29,7 @@ dev_dependencies:
   flutter_lints: 6.0.0
   melos: 8.10.0
   path: 1.9.1
-  test: 1.31.1
+  test: 1.32.0
   yaml: 3.1.4
 
 melos:
@@ -50,7 +51,7 @@ melos:
     analyze:
       description:
         Analyze the Dart and Flutter workspace without resolving dependencies.
-      run: flutter analyze --no-pub --fatal-infos
+      run: dart run tool/package.dart analyze
     format:check:
       description: Check Dart, JavaScript, configuration, and documentation formatting.
       steps:
@@ -59,8 +60,9 @@ melos:
           examples/embedded/integration_test examples/embedded/test_driver
           examples/standalone/lib examples/standalone/test
           examples/standalone/integration_test examples/standalone/test_driver
-          examples/jsx/tool examples/configured_bindings/host/lib
-          examples/configured_bindings/host/test
+          examples/survivors/lib examples/survivors/test
+          examples/survivors/integration_test examples/jsx/tool
+          examples/configured_bindings/host/lib examples/configured_bindings/host/test
           examples/configured_bindings/provider/lib
           examples/configured_bindings/vendor/lib
           examples/configured_bindings/default_app/lib
@@ -156,6 +158,12 @@ melos:
     standalone:run:
       description: Bundle and run the standalone macOS application with prepared assets.
       run: dart run tool/standalone_run.dart
+    survivors:run:
+      description: Bundle and launch Lumen Outpost using the maintained engine.
+      run: dart run tool/survivors_run.dart
+    check:survivors:
+      description: Run the Lumen Outpost application acceptance flow.
+      run: dart run tool/survivors_run.dart --acceptance
     check:standalone:
       description:
         Verify standalone source consumption and relocated release UI with prepared

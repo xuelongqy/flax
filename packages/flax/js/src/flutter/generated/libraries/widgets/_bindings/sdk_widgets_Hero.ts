@@ -43,7 +43,7 @@ readonly [_flaxDartTypeValue]: Hero;
 readonly tag: {};
 readonly createRectTween: ((begin: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }> | null, end: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }> | null) => upstream2.Tween<upstream3.Rect | null>) | null;
 readonly child: Widget;
-readonly flightShuttleBuilder: ((flightContext: upstream4.BuildContext, animation: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number] }>, flightDirection: upstream6.HeroFlightDirection, fromHeroContext: upstream4.BuildContext, toHeroContext: upstream4.BuildContext) => Widget) | null;
+readonly flightShuttleBuilder: ((flightContext: upstream4.BuildContext, animation: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number] }>, flightDirection: upstream6.HeroFlightDirection, fromHeroContext: upstream4.BuildContext, toHeroContext: upstream4.BuildContext) => Widget) | null;
 readonly placeholderBuilder: ((context: upstream4.BuildContext, heroSize: Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>, child: Widget) => Widget) | null;
 readonly transitionOnUserGestures: boolean;
 readonly curve: upstream8.Curve;

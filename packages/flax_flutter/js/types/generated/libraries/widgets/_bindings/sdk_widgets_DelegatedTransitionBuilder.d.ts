@@ -6,14 +6,14 @@ import '@flax/flutter/animation/_bindings/sdk_animation_Animation';
 export type DelegatedTransitionBuilder = ((context: upstream0.BuildContext, animation: Readonly<{
     "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
 }>, secondaryAnimation: Readonly<{
     "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
 }>, allowSnapshotting: boolean, child: Widget | null) => Widget | null);
 export type DelegatedTransitionBuilderInput = ((context: upstream0.BuildContext, animation: upstream1.Animation<number>, secondaryAnimation: upstream1.Animation<number>, allowSnapshotting: boolean, child: Widget | null) => Widget | null);

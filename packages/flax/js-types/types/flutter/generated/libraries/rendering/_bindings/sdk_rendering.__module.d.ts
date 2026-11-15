@@ -415,3 +415,7 @@ export declare const _flaxMemberParameters383: readonly _FlaxMemberParameter[];
 export declare const _flaxMemberParameters384: readonly _FlaxMemberParameter[];
 export declare const _flaxMemberParameters385: readonly _FlaxMemberParameter[];
 export declare const _flaxMemberParameters386: readonly _FlaxMemberParameter[];
+export declare const _flaxMemberParameters387: readonly _FlaxMemberParameter[];
+export declare const _flaxMemberParameters388: readonly _FlaxMemberParameter[];
+export declare const _flaxMemberParameters389: readonly _FlaxMemberParameter[];
+export declare const _flaxMemberParameters390: readonly _FlaxMemberParameter[];

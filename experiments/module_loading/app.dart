@@ -8,7 +8,7 @@ import 'dart:ui' as ui;
 
 import 'package:flax/flax.dart';
 import 'package:flax_test/flax_test.dart' show FlaxTestRuntimeTracker;
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 

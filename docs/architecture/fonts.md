@@ -40,6 +40,13 @@ within a Session. Equal font bytes share native sources without sharing private 
 registrations. Wait for `ready` before measuring or drawing; a retained Picture keeps
 its earlier glyphs and is not reshaped when a font arrives.
 
+Declare the business manifest and font files as ordinary Flutter assets for the business
+AssetBundle. Session-private registration must not rely on static `IconData` references
+to retain its font bytes or runtime-selected glyphs. Flutter 3.50 uses recorded-use icon
+analysis: the narrowly exempted Core runtime constructor does not add glyphs to an icon
+font subset. Host-declared icon fonts still follow Flutter's ordinary static subsetting;
+do not disable tree shaking globally as a substitute for explicit business assets.
+
 ## Existing Flutter APIs and lifetime
 
 The Session resource scope also supplies ordinary Flutter text. JS FontLoader,

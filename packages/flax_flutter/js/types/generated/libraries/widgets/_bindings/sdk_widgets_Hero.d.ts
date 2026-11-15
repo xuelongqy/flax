@@ -54,9 +54,9 @@ export interface Hero extends _FlaxDartWidget, Omit<upstream0.StatefulWidget, _f
     readonly flightShuttleBuilder: ((flightContext: upstream4.BuildContext, animation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>, flightDirection: upstream6.HeroFlightDirection, fromHeroContext: upstream4.BuildContext, toHeroContext: upstream4.BuildContext) => Widget) | null;
     readonly placeholderBuilder: ((context: upstream4.BuildContext, heroSize: Readonly<{
         "__flaxBound:dart:ui::Size": readonly [];

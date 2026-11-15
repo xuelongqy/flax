@@ -16,9 +16,9 @@ export interface AlwaysStoppedAnimation<T extends unknown | null = unknown | nul
 }>, Readonly<{
     "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [T];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [T];
+    "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [T];
 }> {
     readonly __AlwaysStoppedAnimation: unique symbol;
     readonly [_flaxDartTypeValue]: AlwaysStoppedAnimation<T>;
@@ -77,7 +77,7 @@ export declare namespace _AlwaysStoppedAnimationFactory {
 }
 declare const _AlwaysStoppedAnimationBinding: typeof _AlwaysStoppedAnimationFactory & (new <T extends unknown | null = unknown | null>(value: unknown | null) => _AlwaysStoppedAnimationNative<T>);
 export declare const AlwaysStoppedAnimation: typeof _AlwaysStoppedAnimationBinding & _FlaxInstanceType<AlwaysStoppedAnimation<unknown | null>> & _FlaxDartType<AlwaysStoppedAnimation<unknown | null>, readonly ["class", "flax.core/sdk_animation#type:AlwaysStoppedAnimation", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "status" | "value" | "isDismissed" | "isCompleted" | "isAnimating" | "isForwardOrCompleted" | "addListener" | "removeListener" | "addStatusListener" | "removeStatusListener" | "drive" | "toString" | "toStringDetails" | "__flaxBound:package:flutter/src/animation/animations.dart::AlwaysStoppedAnimation" | "__flaxBound:package:flutter/src/animation/animation.dart::Animation" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "status" | "value" | "isDismissed" | "isCompleted" | "isAnimating" | "isForwardOrCompleted" | "addListener" | "removeListener" | "addStatusListener" | "removeStatusListener" | "drive" | "toString" | "toStringDetails" | "__flaxBound:package:flutter/src/animation/animations.dart::AlwaysStoppedAnimation" | "__flaxBound:package:flutter/src/animation/animation.dart::Animation" | "__flaxBound:package:listen/src/listen.dart::Listenable" | "__flaxBound:package:listen/src/listen.dart::ValueListenable";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (new (value: unknown | null) => _AlwaysStoppedAnimationNative<_Selected0>) & {
         (value: (_Selected0 | DartInput<_Selected0>)): _AlwaysStoppedAnimationNative<_Selected0>;

@@ -209,6 +209,7 @@ export { FilterQuality } from "@flax/dart/ui/_bindings/sdk_dart_ui_FilterQuality
 export { FontFeature } from "@flax/dart/ui/_bindings/sdk_dart_ui_FontFeature";
 export { FontVariation } from "@flax/dart/ui/_bindings/sdk_dart_ui_FontVariation";
 export { GlyphInfo } from "@flax/dart/ui/_bindings/sdk_dart_ui_GlyphInfo";
+export { Hyphens } from "@flax/dart/ui/_bindings/sdk_dart_ui_Hyphens";
 export { ImageShader } from "@flax/dart/ui/_bindings/sdk_dart_ui_ImageShader";
 export { LineMetrics } from "@flax/dart/ui/_bindings/sdk_dart_ui_LineMetrics";
 export { Locale } from "@flax/dart/ui/_bindings/sdk_dart_ui_Locale";
@@ -409,6 +410,7 @@ export { AlignmentGeometryTween } from "@flax/flutter/rendering/_bindings/sdk_re
 export { AlignmentTween } from "@flax/flutter/rendering/_bindings/sdk_rendering_AlignmentTween";
 export { BackdropKey } from "@flax/flutter/rendering/_bindings/sdk_rendering_BackdropKey";
 export type { BoxConstraintsTransform, BoxConstraintsTransformInput } from "@flax/flutter/rendering/_bindings/sdk_rendering_BoxConstraintsTransform";
+export { ClipOverlapBehavior } from "@flax/flutter/rendering/_bindings/sdk_rendering_ClipOverlapBehavior";
 export { CustomClipper } from "@flax/flutter/rendering/_bindings/sdk_rendering_CustomClipper";
 export { CustomPainter } from "@flax/flutter/rendering/_bindings/sdk_rendering_CustomPainter";
 export { CustomPainterSemantics } from "@flax/flutter/rendering/_bindings/sdk_rendering_CustomPainterSemantics";
@@ -435,6 +437,7 @@ export { RelativeRect } from "@flax/flutter/rendering/_bindings/sdk_rendering_Re
 export { RenderBox } from "@flax/flutter/rendering/_bindings/sdk_rendering_RenderBox";
 export { RenderObject } from "@flax/flutter/rendering/_bindings/sdk_rendering_RenderObject";
 export { RenderSemanticsGestureHandler } from "@flax/flutter/rendering/_bindings/sdk_rendering_RenderSemanticsGestureHandler";
+export { ScrollCacheExtent } from "@flax/flutter/rendering/_bindings/sdk_rendering_ScrollCacheExtent";
 export type { SemanticsBuilderCallback, SemanticsBuilderCallbackInput } from "@flax/flutter/rendering/_bindings/sdk_rendering_SemanticsBuilderCallback";
 export type { ShaderCallback, ShaderCallbackInput } from "@flax/flutter/rendering/_bindings/sdk_rendering_ShaderCallback";
 export { ShapeBorderClipper } from "@flax/flutter/rendering/_bindings/sdk_rendering_ShapeBorderClipper";
@@ -714,6 +717,7 @@ import "@flax/flutter/widgets/_bindings/sdk_widgets_RootElement";
 import "@flax/flutter/widgets/_bindings/sdk_widgets_RootElementMixin";
 import "@flax/flutter/widgets/_bindings/sdk_widgets_RootRenderObjectElement";
 import "@flax/flutter/widgets/_bindings/sdk_widgets_RouteAware";
+import "@flax/flutter/widgets/_bindings/sdk_widgets_RouteBarrierDetails";
 import "@flax/flutter/widgets/_bindings/sdk_widgets_RouteInformation";
 import "@flax/flutter/widgets/_bindings/sdk_widgets_RouteInformationParser";
 import "@flax/flutter/widgets/_bindings/sdk_widgets_RouteInformationProvider";
@@ -841,6 +845,7 @@ import "@flax/flutter/widgets/_bindings/sdk_widgets_WidgetsFlutterBinding";
 import "@flax/flutter/widgets/_bindings/sdk_widgets_WidgetsLocalizations";
 export { AbsorbPointer } from "@flax/flutter/widgets/_bindings/sdk_widgets_AbsorbPointer";
 export { AbstractLayoutBuilder } from "@flax/flutter/widgets/_bindings/sdk_widgets_AbstractLayoutBuilder";
+export { AccessibilityServiceExtensions } from "@flax/flutter/widgets/_bindings/sdk_widgets_AccessibilityServiceExtensions";
 export { Action } from "@flax/flutter/widgets/_bindings/sdk_widgets_Action";
 export { ActionDispatcher } from "@flax/flutter/widgets/_bindings/sdk_widgets_ActionDispatcher";
 export { ActionListener } from "@flax/flutter/widgets/_bindings/sdk_widgets_ActionListener";
@@ -1062,6 +1067,7 @@ export { ExtendSelectionToNextWordBoundaryOrCaretLocationIntent } from "@flax/fl
 export { ExtendSelectionVerticallyToAdjacentLineIntent } from "@flax/flutter/widgets/_bindings/sdk_widgets_ExtendSelectionVerticallyToAdjacentLineIntent";
 export { ExtendSelectionVerticallyToAdjacentPageIntent } from "@flax/flutter/widgets/_bindings/sdk_widgets_ExtendSelectionVerticallyToAdjacentPageIntent";
 export { FadeInImage } from "@flax/flutter/widgets/_bindings/sdk_widgets_FadeInImage";
+export { FadeInImageTransition } from "@flax/flutter/widgets/_bindings/sdk_widgets_FadeInImageTransition";
 export { FadeTransition } from "@flax/flutter/widgets/_bindings/sdk_widgets_FadeTransition";
 export { FadeUpwardsPageTransitionsBuilder } from "@flax/flutter/widgets/_bindings/sdk_widgets_FadeUpwardsPageTransitionsBuilder";
 export { Feedback } from "@flax/flutter/widgets/_bindings/sdk_widgets_Feedback";
@@ -1394,6 +1400,8 @@ export { RootWidget } from "@flax/flutter/widgets/_bindings/sdk_widgets_RootWidg
 export { RotatedBox } from "@flax/flutter/widgets/_bindings/sdk_widgets_RotatedBox";
 export { RotationTransition } from "@flax/flutter/widgets/_bindings/sdk_widgets_RotationTransition";
 export { RouteAware } from "@flax/flutter/widgets/_bindings/sdk_widgets_RouteAware";
+export type { RouteBarrierBuilder, RouteBarrierBuilderInput } from "@flax/flutter/widgets/_bindings/sdk_widgets_RouteBarrierBuilder";
+export { RouteBarrierDetails } from "@flax/flutter/widgets/_bindings/sdk_widgets_RouteBarrierDetails";
 export type { RouteCompletionCallback, RouteCompletionCallbackInput } from "@flax/flutter/widgets/_bindings/sdk_widgets_RouteCompletionCallback";
 export type { RouteFactory, RouteFactoryInput } from "@flax/flutter/widgets/_bindings/sdk_widgets_RouteFactory";
 export { RouteInformation } from "@flax/flutter/widgets/_bindings/sdk_widgets_RouteInformation";
@@ -1500,6 +1508,8 @@ export { SliverAnimatedOpacity } from "@flax/flutter/widgets/_bindings/sdk_widge
 export { SliverChildBuilderDelegate } from "@flax/flutter/widgets/_bindings/sdk_widgets_SliverChildBuilderDelegate";
 export { SliverChildDelegate } from "@flax/flutter/widgets/_bindings/sdk_widgets_SliverChildDelegate";
 export { SliverChildListDelegate } from "@flax/flutter/widgets/_bindings/sdk_widgets_SliverChildListDelegate";
+export { SliverClipRRect } from "@flax/flutter/widgets/_bindings/sdk_widgets_SliverClipRRect";
+export { SliverClipRect } from "@flax/flutter/widgets/_bindings/sdk_widgets_SliverClipRect";
 export { SliverConstrainedCrossAxis } from "@flax/flutter/widgets/_bindings/sdk_widgets_SliverConstrainedCrossAxis";
 export { SliverCrossAxisExpanded } from "@flax/flutter/widgets/_bindings/sdk_widgets_SliverCrossAxisExpanded";
 export { SliverCrossAxisGroup } from "@flax/flutter/widgets/_bindings/sdk_widgets_SliverCrossAxisGroup";

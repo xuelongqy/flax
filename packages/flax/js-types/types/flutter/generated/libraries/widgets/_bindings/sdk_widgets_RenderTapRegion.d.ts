@@ -679,6 +679,7 @@ export declare function _RenderTapRegionFactory(options?: {
 }): RenderTapRegion;
 export interface _RenderTapRegionNative extends RenderTapRegion {
     readonly [_flaxDartTypeValue]: _RenderTapRegionNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1183,7 +1184,6 @@ export interface _RenderTapRegionNative extends RenderTapRegion {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream3.RenderObject | null;
     get owner(): upstream18.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

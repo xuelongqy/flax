@@ -6,8 +6,8 @@ import '@flax/flutter/rendering/_bindings/sdk_rendering_ViewportOffset';
 export type ViewportBuilder = ((context: upstream0.BuildContext, position: Readonly<{
     "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }>) => Widget);
 export type ViewportBuilderInput = ((context: upstream0.BuildContext, position: upstream1.ViewportOffset) => Widget);

@@ -117,6 +117,163 @@ void main() {
     expect(file.path, startsWith(sandbox.homePath));
   });
 
+  test(
+    'descriptor metadata matches SDK timestamp zones and missing snapshots',
+    () async {
+      final file = files.file(p.join(sandbox.homePath, 'metadata'));
+      file.writeAsStringSync('metadata');
+      final host = File(file.path);
+      final modified = DateTime.utc(2001, 2, 3, 4, 5, 6, 789, 123);
+      final accessed = DateTime.utc(2002, 3, 4, 5, 6, 7, 123, 456);
+      void sameTime(DateTime actual, DateTime expected) {
+        expect(actual.isUtc, expected.isUtc);
+        expect(actual.timeZoneName, expected.timeZoneName);
+        expect(actual.timeZoneOffset, expected.timeZoneOffset);
+        expect(actual.toIso8601String(), expected.toIso8601String());
+        expect(actual.microsecondsSinceEpoch, expected.microsecondsSinceEpoch);
+      }
+
+      file.setLastModifiedSync(modified);
+      await file.setLastAccessed(accessed);
+      final expected = host.statSync();
+      final expectedAsync = await host.stat();
+      for (final stat in [file.statSync(), await file.stat()]) {
+        expect(stat.type, FileSystemEntityType.file);
+        expect(stat.size, 8);
+        expect(stat.mode, expected.mode);
+        expect(stat.modeString(), expected.modeString());
+        expect(
+          stat.accessed.microsecondsSinceEpoch,
+          accessed.microsecondsSinceEpoch,
+        );
+        expect(
+          stat.modified.microsecondsSinceEpoch,
+          modified.microsecondsSinceEpoch,
+        );
+        for (final reference in [expected, expectedAsync]) {
+          sameTime(stat.accessed, reference.accessed);
+          sameTime(stat.modified, reference.modified);
+          sameTime(stat.changed, reference.changed);
+        }
+      }
+      final changedAccess = accessed.add(const Duration(seconds: 7));
+      final changedModified = modified.add(const Duration(seconds: 11));
+      file.setLastAccessedSync(changedAccess);
+      await file.setLastModified(changedModified);
+      final updated = host.statSync();
+      expect(
+        updated.accessed.microsecondsSinceEpoch,
+        changedAccess.microsecondsSinceEpoch,
+      );
+      expect(
+        updated.modified.microsecondsSinceEpoch,
+        changedModified.microsecondsSinceEpoch,
+      );
+      sameTime(await file.lastAccessed(), updated.accessed);
+      sameTime(file.lastAccessedSync(), updated.accessed);
+      sameTime(await file.lastModified(), updated.modified);
+      sameTime(file.lastModifiedSync(), updated.modified);
+      expect(
+        (await files.directory(sandbox.homePath).stat()).type,
+        FileSystemEntityType.directory,
+      );
+      for (final missing in [
+        files.file('${file.path}-missing').statSync(),
+        await files.file('${file.path}-missing').stat(),
+      ]) {
+        expect(missing.type, FileSystemEntityType.notFound);
+        expect(missing.size, -1);
+        expect(missing.mode, 0);
+        expect(missing.modeString(), '---------');
+        for (final time in [
+          missing.changed,
+          missing.modified,
+          missing.accessed,
+        ]) {
+          expect(time, DateTime.fromMillisecondsSinceEpoch(0, isUtc: true));
+          expect(time.isUtc, isTrue);
+        }
+      }
+    },
+  );
+
+  test(
+    'descriptor writes truncate, append, flush and preserve ranged reads',
+    () async {
+      final file = files.file(p.join(sandbox.homePath, 'modes'));
+      await file.writeAsString('long initial value', flush: true);
+      file.writeAsStringSync('short', mode: FileMode.writeOnly, flush: true);
+      expect(await file.readAsString(), 'short');
+      await file.writeAsString('+one', mode: FileMode.append, flush: true);
+      file.writeAsStringSync(
+        '+two',
+        mode: FileMode.writeOnlyAppend,
+        flush: true,
+      );
+      expect(file.readAsStringSync(), 'short+one+two');
+      expect(
+        await file.openRead(5, 9).expand((chunk) => chunk).toList(),
+        utf8.encode('+one'),
+      );
+      expect(await file.openRead(4, 4).toList(), isEmpty);
+      expect(await file.openRead(100).toList(), isEmpty);
+      expect(await file.openRead(0x7fffffffffffffff).toList(), isEmpty);
+      expect(() => file.openRead(-1), throwsRangeError);
+      expect(() => file.openRead(9, 5), throwsRangeError);
+      await file.writeAsBytes([], flush: true);
+      expect(file.lengthSync(), 0);
+      expect(await file.readAsBytes(), isEmpty);
+      await file.writeAsBytes([-1, 256, 257]);
+      expect(file.readAsBytesSync(), [255, 0, 1]);
+      expect(
+        () => file.writeAsBytes([2], mode: FileMode.read),
+        throwsArgumentError,
+      );
+      expect(file.readAsBytesSync(), [255, 0, 1]);
+    },
+  );
+
+  test(
+    'an active ranged read retains its file through replacement and unlink',
+    () async {
+      final file = files.file(p.join(sandbox.homePath, 'pinned'));
+      final original = List.generate(256 * 1024, (index) => index % 251);
+      file.writeAsBytesSync(original);
+      final first = Completer<void>(), done = Completer<void>();
+      final received = <int>[];
+      late StreamSubscription<List<int>> subscription;
+      subscription = file
+          .openRead(17, original.length - 13)
+          .listen(
+            (bytes) {
+              received.addAll(bytes);
+              if (!first.isCompleted) {
+                subscription.pause();
+                first.complete();
+              }
+            },
+            onError: (Object error, StackTrace stack) =>
+                done.completeError(error, stack),
+            onDone: done.complete,
+          );
+      try {
+        await first.future;
+        final pausedLength = received.length;
+        final moved = File(file.path).renameSync('${file.path}-old');
+        File(file.path).writeAsStringSync('replacement');
+        moved.deleteSync();
+        await Future<void>.delayed(Duration.zero);
+        expect(received.length, pausedLength);
+        subscription.resume();
+        await done.future;
+        expect(received, original.sublist(17, original.length - 13));
+        expect(await file.readAsString(), 'replacement');
+      } finally {
+        await subscription.cancel();
+      }
+    },
+  );
+
   test('only application absolute paths are accepted', () {
     for (final path in [
       'note.txt',
@@ -355,6 +512,62 @@ void main() {
       scope.isActive = false;
       await files.close().timeout(const Duration(seconds: 2));
       await subscription.cancel();
+    },
+  );
+
+  test(
+    'explicit close drains a read when a later microtask pauses it',
+    () async {
+      final file = files.file(p.join(sandbox.homePath, 'late-pause'));
+      file.writeAsBytesSync(List.filled(256 * 1024, 1));
+      final first = Completer<void>();
+      Future<void>? closing;
+      var chunks = 0;
+      var pauseRan = false;
+      final errors = <Object>[];
+      late StreamSubscription<List<int>> subscription;
+      subscription = file.openRead().listen(
+        (_) {
+          chunks++;
+          if (chunks == 1) {
+            // Async data delivery lets the producer admit its next read first.
+            // close's empty selected-file wait resumes before this later pause.
+            closing = files.close();
+            scheduleMicrotask(() {
+              pauseRan = true;
+              subscription.pause();
+            });
+            first.complete();
+          }
+        },
+        onError: (Object error, StackTrace stack) {
+          if (!first.isCompleted) {
+            first.completeError(error, stack);
+          } else {
+            errors.add(error);
+          }
+        },
+        onDone: () {
+          if (!first.isCompleted) {
+            first.completeError(
+              StateError('Reader ended before its first chunk'),
+            );
+          }
+        },
+      );
+      try {
+        await first.future;
+        await closing!.timeout(const Duration(seconds: 2));
+        expect(pauseRan, isTrue);
+        expect(scope.isActive, isTrue);
+        expect(chunks, 1);
+        expect(errors, isEmpty);
+      } finally {
+        // Also release the old implementation's stuck waiter after a timeout.
+        subscription.resume();
+        await subscription.cancel();
+        await closing;
+      }
     },
   );
 

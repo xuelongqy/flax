@@ -77,9 +77,9 @@ export declare function _RouterFactory<T extends unknown | null = unknown | null
     routeInformationProvider?: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/router.dart::RouteInformationProvider": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream14.RouteInformation];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream14.RouteInformation];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     routeInformationParser?: Readonly<{
         "__flaxBound:package:flutter/src/widgets/router.dart::RouteInformationParser": readonly [_FlaxDartOutput<T>];
@@ -87,7 +87,7 @@ export declare function _RouterFactory<T extends unknown | null = unknown | null
     routerDelegate: Readonly<{
         "__flaxBound:package:flutter/src/widgets/router.dart::RouterDelegate": readonly [_FlaxDartOutput<T>];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>;
     backButtonDispatcher?: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/router.dart::BackButtonDispatcher": readonly [];
@@ -103,9 +103,9 @@ export declare function _RouterFactory(options: {
     routeInformationProvider?: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/router.dart::RouteInformationProvider": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream14.RouteInformation];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream14.RouteInformation];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     routeInformationParser?: Readonly<{
         "__flaxBound:package:flutter/src/widgets/router.dart::RouteInformationParser": readonly [unknown | null];
@@ -113,7 +113,7 @@ export declare function _RouterFactory(options: {
     routerDelegate: Readonly<{
         "__flaxBound:package:flutter/src/widgets/router.dart::RouterDelegate": readonly [unknown | null];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>;
     backButtonDispatcher?: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/router.dart::BackButtonDispatcher": readonly [];
@@ -169,9 +169,9 @@ interface _FlaxSignature0 extends _FlaxDartSignature {
             routeInformationProvider?: (Readonly<{
                 "__flaxBound:package:flutter/src/widgets/router.dart::RouteInformationProvider": readonly [];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream14.RouteInformation];
+                "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream14.RouteInformation];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+                "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
             }>) | null | undefined;
             routeInformationParser?: Readonly<{
                 "__flaxBound:package:flutter/src/widgets/router.dart::RouteInformationParser": readonly [_Selected0];
@@ -179,7 +179,7 @@ interface _FlaxSignature0 extends _FlaxDartSignature {
             routerDelegate: Readonly<{
                 "__flaxBound:package:flutter/src/widgets/router.dart::RouterDelegate": readonly [_Selected0];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+                "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
             }>;
             backButtonDispatcher?: (Readonly<{
                 "__flaxBound:package:flutter/src/widgets/router.dart::BackButtonDispatcher": readonly [];

@@ -71,6 +71,7 @@ export interface RenderSliver extends Omit<upstream0.RenderObject, _flaxOwnMembe
 }
 export interface RenderSliver {
     readonly [_flaxDartTypeValue]: RenderSliver;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -443,7 +444,6 @@ export interface RenderSliver {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream0.RenderObject | null;
     get owner(): upstream6.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

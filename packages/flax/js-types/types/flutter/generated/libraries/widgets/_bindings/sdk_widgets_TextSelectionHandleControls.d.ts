@@ -38,9 +38,9 @@ export interface TextSelectionHandleControls extends Omit<upstream0.TextSelectio
     }>>, delegate: Readonly<{
         "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [];
     }>, clipboardStatus: (Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream8.ClipboardStatus];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream8.ClipboardStatus];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null, lastSecondaryTapDownPosition: (Readonly<{
         "__flaxBound:dart:ui::Offset": readonly [];
     }> & Readonly<{
@@ -64,13 +64,13 @@ export interface TextSelectionHandleControls extends Omit<upstream0.TextSelectio
     }>, clipboardStatus?: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/text_selection.dart::ClipboardStatusNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream8.ClipboardStatus];
+        "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream8.ClipboardStatus];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream8.ClipboardStatus];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream8.ClipboardStatus];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/binding.dart::WidgetsBindingObserver": readonly [];
     }>) | null): void;
@@ -79,13 +79,13 @@ export interface TextSelectionHandleControls extends Omit<upstream0.TextSelectio
     }>, clipboardStatus?: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/text_selection.dart::ClipboardStatusNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream8.ClipboardStatus];
+        "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream8.ClipboardStatus];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream8.ClipboardStatus];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream8.ClipboardStatus];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/binding.dart::WidgetsBindingObserver": readonly [];
     }>) | null): void;

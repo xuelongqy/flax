@@ -79,6 +79,14 @@ and special Widget-list casts keep their existing adapters. Method-generic super
 contexts keep their callable adapters. No callback instances or business objects are
 cached by these shared functions.
 
+Package generation also reuses identical closed callback, collection and Future adapter
+groups across its Dart modules. The package owns the optional
+`lib/src/generated/closed_adapters.g.dart`; normal generate/check and the Builder track
+it, and generation removes it when no shared groups remain. Sharing compares complete
+signatures and bodies using actual declaration identities. Generic adapters and groups
+that capture module-private state stay local. This changes generated Dart layout only,
+with no additional runtime dispatch or package dependencies.
+
 Closed, required-only ordinary and super calls can reuse a selected proxy's complete
 signature when names, positional roles and emitted conversion descriptors agree.
 Defaulted, scoped, snapshot and open generic signatures retain their existing parameter
@@ -96,6 +104,24 @@ descriptions and parameter lists. Owner-dependent types remain in their factory.
 Callbacks and deferred constructors can reference factory-local helpers even when their
 types are closed, so their descriptions retain that scope. Generic methods use the same
 parameter emitter as ordinary calls; defaults and omission policies remain complete.
+
+Ordinary closed getters and non-void zero-argument methods can also reuse a selected
+non-generic ancestor adapter from a generic factory or another generated module.
+Matching includes the complete Manifest member description. Cross-module calls use
+stable `flaxMember...` const tearoff aliases whose names encode the owner's full wire
+identity and operation; independent providers derive them from existing Manifest data.
+Imports follow existing signature dependencies only, and reverse dependency paths,
+aggregate-library aliases, guarded operations, owners requiring explicit type arguments
+and unsupported shapes keep their local implementation. Module initializer dependencies,
+requested-class matchers and lexical `super` stay unchanged.
+
+Whole immutable getter/method descriptions and existing shared proxy-super descriptions
+can use the same module constant pool inside generic factories once their adapter is
+top-level and every emitted type/parameter description is closed. Real owner/method
+types, `types`/`id`, local callback/deferred helpers and mutable state remain in the
+factory. Hoisting preserves the existing description constructor and reuses exact
+expressions in the constant pool. No callback instances, business receivers or sessions
+enter this pool.
 
 Common Dart descriptions use compact const representations from the base package.
 Required parameters store only their name and type; ordinary callback parameters and
@@ -125,21 +151,21 @@ to metadata defaults. Explicit null values and application defaults are unchange
 
 Ordinary JS object views inherit a private parent prototype and emit only changed method
 layouts, including Widget views. A selected parent in another module is loaded through
-the existing provider import. Dart adapter and descriptor sharing stays within a module;
-cross-module native calls keep their local adapters. Native dispatch still uses the
-actual receiver's binding, with receiver checks, selected collection signatures and
-accessor halves preserved. Public JS proxy classes keep their own lexical-super
-identity; they do not inherit a different Dart constructor. TypeScript shares repeated
-omitted-member key sets as type aliases, without runtime code. Shared tables retain
-metadata only, never callback instances or business receivers. Static readers share one
-installer and readable operation prefix per group, instead of repeating a forwarding
-function for every field. Reads remain lazy and live, preserve Dart exceptions and
-reference identity, and keep the existing readonly property descriptors. This includes
-Material/Cupertino Icons and dynamic name access; icon data stays in Dart constants so
-release font tree shaking remains supported. Generated modules require the additive
-`inherited-binding-members` and `shared-static-readers` capabilities when applicable;
-older runtimes reject them. The current Manifest format is 28; UI protocol 24 and native
-ABI 2 remain unchanged.
+the existing provider import. Dart descriptor inheritance stays within a module; the
+conservative ordinary-member subset above can share static native adapters across
+modules. Native dispatch still uses the actual receiver's binding, with receiver checks,
+selected collection signatures and accessor halves preserved. Public JS proxy classes
+keep their own lexical-super identity; they do not inherit a different Dart constructor.
+TypeScript shares repeated omitted-member key sets as type aliases, without runtime
+code. Shared tables retain metadata only, never callback instances or business
+receivers. Static readers share one installer and readable operation prefix per group,
+instead of repeating a forwarding function for every field. Reads remain lazy and live,
+preserve Dart exceptions and reference identity, and keep the existing readonly property
+descriptors. This includes Material/Cupertino Icons and dynamic name access; icon data
+stays in Dart constants so release font tree shaking remains supported. Generated
+modules require the additive `inherited-binding-members` and `shared-static-readers`
+capabilities when applicable; older runtimes reject them. The current Manifest format is
+28; UI protocol 24 and native ABI 2 remain unchanged.
 
 Proxy constructors, named constructors and ordinary methods reuse complete matching JS
 parameter layouts. Split declaration files import those constants from their existing

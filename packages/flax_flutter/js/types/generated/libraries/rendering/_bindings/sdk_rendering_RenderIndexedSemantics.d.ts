@@ -609,6 +609,7 @@ export declare function _RenderIndexedSemanticsFactory(options: {
 }): RenderIndexedSemantics;
 export interface _RenderIndexedSemanticsNative extends RenderIndexedSemantics {
     readonly [_flaxDartTypeValue]: _RenderIndexedSemanticsNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1064,7 +1065,6 @@ export interface _RenderIndexedSemanticsNative extends RenderIndexedSemantics {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream13.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

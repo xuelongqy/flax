@@ -8,9 +8,9 @@ import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartType
 export interface CupertinoTabController extends Omit<upstream0.ChangeNotifier, _flaxOwnMembers0>, Omit<upstream1.Listenable, _flaxOwnMembers0 | keyof upstream0.ChangeNotifier>, Readonly<{
     "__flaxBound:package:cupertino_ui/src/tab_scaffold.dart::CupertinoTabController": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __CupertinoTabController: unique symbol;
     readonly [_flaxDartTypeValue]: CupertinoTabController;
@@ -50,5 +50,5 @@ declare const _CupertinoTabControllerBinding: typeof _CupertinoTabControllerFact
     initialIndex?: number | undefined;
 }) => _CupertinoTabControllerNative);
 export declare const CupertinoTabController: typeof _CupertinoTabControllerBinding & _FlaxInstanceType<CupertinoTabController> & _FlaxDartType<CupertinoTabController, readonly ["class", "flax.cupertino/cupertino#type:CupertinoTabController", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "index" | "addListener" | "removeListener" | "dispose" | "__flaxBound:package:cupertino_ui/src/tab_scaffold.dart::CupertinoTabController" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "index" | "addListener" | "removeListener" | "dispose" | "__flaxBound:package:cupertino_ui/src/tab_scaffold.dart::CupertinoTabController" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 export {};

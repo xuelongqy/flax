@@ -520,6 +520,7 @@ export declare function _RenderSliverConstrainedCrossAxisFactory(options: {
 }): RenderSliverConstrainedCrossAxis;
 export interface _RenderSliverConstrainedCrossAxisNative extends RenderSliverConstrainedCrossAxis {
     readonly [_flaxDartTypeValue]: _RenderSliverConstrainedCrossAxisNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -905,7 +906,6 @@ export interface _RenderSliverConstrainedCrossAxisNative extends RenderSliverCon
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream12.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

@@ -66,6 +66,9 @@ export interface ExpensiveAndroidViewController extends Omit<upstream0.AndroidVi
     }>): Promise<void>;
     clearFocus(): Promise<void>;
     dispose(): Promise<void>;
+    rejectGesture(options?: {
+        gestureId?: number | null | undefined;
+    }): Promise<void>;
     set pointTransformer(value: ((position: upstream2.Offset) => Readonly<{
         "__flaxBound:dart:ui::Offset": readonly [];
     }> & Readonly<{
@@ -73,5 +76,5 @@ export interface ExpensiveAndroidViewController extends Omit<upstream0.AndroidVi
     }>));
 }
 export declare const ExpensiveAndroidViewController: object & _FlaxInstanceType<ExpensiveAndroidViewController> & _FlaxDartType<ExpensiveAndroidViewController, readonly ["class", "flax.core/sdk_services#type:ExpensiveAndroidViewController", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "viewId" | "awaitingCreation" | "textureId" | "requiresViewComposition" | "pointTransformer" | "isCreated" | "create" | "setSize" | "setOffset" | "sendMotionEvent" | "addOnPlatformViewCreatedListener" | "removeOnPlatformViewCreatedListener" | "setLayoutDirection" | "dispatchPointerEvent" | "clearFocus" | "dispose" | "__flaxBound:package:flutter/src/services/platform_views.dart::ExpensiveAndroidViewController" | "__flaxBound:package:flutter/src/services/platform_views.dart::AndroidViewController" | "__flaxBound:package:flutter/src/services/platform_views.dart::PlatformViewController";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "viewId" | "awaitingCreation" | "textureId" | "requiresViewComposition" | "pointTransformer" | "isCreated" | "create" | "setSize" | "setOffset" | "sendMotionEvent" | "addOnPlatformViewCreatedListener" | "removeOnPlatformViewCreatedListener" | "setLayoutDirection" | "dispatchPointerEvent" | "clearFocus" | "dispose" | "rejectGesture" | "__flaxBound:package:flutter/src/services/platform_views.dart::ExpensiveAndroidViewController" | "__flaxBound:package:flutter/src/services/platform_views.dart::AndroidViewController" | "__flaxBound:package:flutter/src/services/platform_views.dart::PlatformViewController";
 export {};

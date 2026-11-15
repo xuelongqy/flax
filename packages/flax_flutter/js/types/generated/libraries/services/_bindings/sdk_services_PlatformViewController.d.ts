@@ -25,6 +25,9 @@ export interface PlatformViewController {
             "__flaxBound:dart:ui::OffsetBase": readonly [];
         }>) | null | undefined;
     }): Promise<void>;
+    rejectGesture(options?: {
+        gestureId?: number | null | undefined;
+    }): Promise<void>;
     get awaitingCreation(): boolean;
 }
 export declare abstract class PlatformViewController extends _FlaxProxyBase {

@@ -598,12 +598,12 @@ export interface RenderCustomPaint extends Omit<upstream0.RenderProxyBox, _flaxO
     set painter(value: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null);
     set foregroundPainter(value: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null);
     set preferredSize(value: Readonly<{
         "__flaxBound:dart:ui::Size": readonly [];
@@ -617,12 +617,12 @@ export declare function _RenderCustomPaintFactory(options?: {
     painter?: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     foregroundPainter?: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     preferredSize?: (Readonly<{
         "__flaxBound:dart:ui::Size": readonly [];
@@ -647,6 +647,7 @@ export declare function _RenderCustomPaintFactory(options?: {
 }): RenderCustomPaint;
 export interface _RenderCustomPaintNative extends RenderCustomPaint {
     readonly [_flaxDartTypeValue]: _RenderCustomPaintNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1106,7 +1107,6 @@ export interface _RenderCustomPaintNative extends RenderCustomPaint {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream14.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;
@@ -1124,12 +1124,12 @@ export interface _RenderCustomPaintNative extends RenderCustomPaint {
     set painter(value: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null);
     set foregroundPainter(value: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null);
     set preferredSize(value: Readonly<{
         "__flaxBound:dart:ui::Size": readonly [];
@@ -1180,12 +1180,12 @@ export declare abstract class _RenderCustomPaintNative extends _FlaxProxyBase {
         painter?: (Readonly<{
             "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
         foregroundPainter?: (Readonly<{
             "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
         preferredSize?: (Readonly<{
             "__flaxBound:dart:ui::Size": readonly [];
@@ -1214,12 +1214,12 @@ export declare namespace _RenderCustomPaintFactory {
         painter?: (Readonly<{
             "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
         foregroundPainter?: (Readonly<{
             "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
         preferredSize?: (Readonly<{
             "__flaxBound:dart:ui::Size": readonly [];
@@ -1247,12 +1247,12 @@ declare const _RenderCustomPaintBinding: typeof _RenderCustomPaintFactory & (new
     painter?: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     foregroundPainter?: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     preferredSize?: (Readonly<{
         "__flaxBound:dart:ui::Size": readonly [];

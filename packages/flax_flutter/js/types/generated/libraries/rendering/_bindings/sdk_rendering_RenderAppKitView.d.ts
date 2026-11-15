@@ -583,6 +583,7 @@ export declare function _RenderAppKitViewFactory(options: {
 }): RenderAppKitView;
 export interface _RenderAppKitViewNative extends RenderAppKitView {
     readonly [_flaxDartTypeValue]: _RenderAppKitViewNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1031,7 +1032,6 @@ export interface _RenderAppKitViewNative extends RenderAppKitView {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream3.RenderObject | null;
     get owner(): upstream15.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get debugDoingThisPaint(): boolean;

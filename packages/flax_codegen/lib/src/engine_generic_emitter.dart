@@ -586,6 +586,9 @@ extension _EngineGenericEmission on FlaxCodegenBindingEmitter {
           '// ignore: unused_element\nbool _is${owner.name}(Object value) => value is ${_dartName(owner.name)}$args;',
         );
         for (final getter in type.getters) {
+          if (_sharedAdapters.containsKey((type.id, 'get:${getter.name}'))) {
+            continue;
+          }
           final read = '(value as ${_dartName(type.name)}$args).${getter.name}';
           out.writeln(
             '// ignore: unused_element\nObject? _${type.name}_${getter.name}(Object value) ${getter.type.kind == 'void' ? '{ $read; return null; }' : '=> $read;'}',
@@ -620,7 +623,9 @@ extension _EngineGenericEmission on FlaxCodegenBindingEmitter {
         for (final method in type.methods.where(
           (m) => m.instance && !m.deferredFactory,
         )) {
-          _writeMethod(out, type, _vmDefaultMethod(method));
+          if (!_sharedAdapters.containsKey((type.id, 'call:${method.name}'))) {
+            _writeMethod(out, type, _vmDefaultMethod(method));
+          }
           if (type.proxy?.kind == 'extends' &&
               type.proxy!.hasSuperMethod(method.name) &&
               _superDispatch(type, 'call:${method.name}') == null) {
@@ -664,9 +669,9 @@ extension _EngineGenericEmission on FlaxCodegenBindingEmitter {
         }
         out.writeln('default: throw ArgumentError("Unknown constructor"); } }');
         final getters =
-            '[${type.getters.map((g) => 'FlaxGetter${g.encodeKind == null ? '.plain' : ''}(${_quote(g.name)}, ${_ref(g.type)}, _${type.name}_${g.name}${g.encodeKind == null ? '' : ', encode: ${_constant('FlaxTypeRef(${_quote(g.encodeKind!)})')}'})').join(',')}]';
+            '[${type.getters.map((g) => _getterBinding(type, g)).join(',')}]';
         final setters =
-            '[${type.setters.map((g) => 'FlaxSetter(${_quote(g.name)}, ${_ref(g.type)}, _${type.name}_set_${g.name})').join(',')}]';
+            '[${type.setters.map((g) => _setterBinding(type, g)).join(',')}]';
         final methods = _instanceMethods(type);
         final object =
             'FlaxObjectBinding(id, $getters, $methods, constructors: ${_constructors(type)}, create: _create${type.name}, matches: _is${type.name}, setters: $setters, supertypes: [${_quote(owner.id)}, ...${jsonEncode(owner.supertypes)}], listenerPairs: ${jsonEncode(_sortedStringMap(owner.listenerPairs))}, disposeMethod: ${owner.disposeMethod == null ? 'null' : _quote(owner.disposeMethod!)}${_proxyBinding(type)}${_collectionViewBinding(type)})';

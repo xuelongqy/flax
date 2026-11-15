@@ -25,6 +25,7 @@ export interface DecorationImage extends Readonly<{
     readonly __DecorationImage: unique symbol;
     readonly [_flaxDartTypeValue]: DecorationImage;
     readonly image: upstream0.ImageProvider<any>;
+    readonly placeholder: upstream0.ImageProvider<any> | null;
     readonly onError: ((exception: {}, stackTrace: Readonly<{
         "__flaxBound:dart:core::StackTrace": readonly [];
     }> | null) => void) | null;
@@ -46,6 +47,9 @@ export declare function _DecorationImageFactory(options: {
     image: Readonly<{
         "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider": readonly [{}];
     }>;
+    placeholder?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider": readonly [{}];
+    }> | null | undefined;
     onError?: ((exception: {}, stackTrace: upstream1.StackTrace | null) => void) | null | undefined;
     colorFilter?: (Readonly<{
         "__flaxBound:dart:ui::ColorFilter": readonly [];
@@ -72,6 +76,7 @@ export interface _DecorationImageNative extends DecorationImage {
     createPainter(onChanged: (() => void)): upstream8.DecorationImagePainter;
     toString(): string;
     get image(): upstream0.ImageProvider<any>;
+    get placeholder(): upstream0.ImageProvider<any> | null;
     get onError(): ((exception: {}, stackTrace: Readonly<{
         "__flaxBound:dart:core::StackTrace": readonly [];
     }> | null) => void) | null;
@@ -95,6 +100,9 @@ export declare abstract class _DecorationImageNative extends _FlaxProxyBase {
         image: Readonly<{
             "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider": readonly [{}];
         }>;
+        placeholder?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider": readonly [{}];
+        }> | null | undefined;
         onError?: ((exception: {}, stackTrace: upstream1.StackTrace | null) => void) | null | undefined;
         colorFilter?: (Readonly<{
             "__flaxBound:dart:ui::ColorFilter": readonly [];
@@ -122,6 +130,9 @@ export declare namespace _DecorationImageFactory {
         image: Readonly<{
             "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider": readonly [{}];
         }>;
+        placeholder?: Readonly<{
+            "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider": readonly [{}];
+        }> | null | undefined;
         onError?: ((exception: {}, stackTrace: upstream1.StackTrace | null) => void) | null | undefined;
         colorFilter?: (Readonly<{
             "__flaxBound:dart:ui::ColorFilter": readonly [];
@@ -148,6 +159,9 @@ declare const _DecorationImageBinding: typeof _DecorationImageFactory & (new (op
     image: Readonly<{
         "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider": readonly [{}];
     }>;
+    placeholder?: Readonly<{
+        "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider": readonly [{}];
+    }> | null | undefined;
     onError?: ((exception: {}, stackTrace: upstream1.StackTrace | null) => void) | null | undefined;
     colorFilter?: (Readonly<{
         "__flaxBound:dart:ui::ColorFilter": readonly [];

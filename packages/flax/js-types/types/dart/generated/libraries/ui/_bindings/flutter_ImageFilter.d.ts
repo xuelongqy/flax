@@ -55,7 +55,9 @@ export declare namespace _ImageFilterFactory {
         "__flaxBound:dart:ui::FragmentShader": readonly [];
     }> & Readonly<{
         "__flaxBound:dart:ui::Shader": readonly [];
-    }>): ImageFilter;
+    }>, options?: {
+        filterQuality?: upstream2.FilterQuality | undefined;
+    }): ImageFilter;
 }
 export declare namespace _ImageFilterFactory {
     const isShaderFilterSupported: boolean;

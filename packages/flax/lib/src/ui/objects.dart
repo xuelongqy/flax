@@ -4,6 +4,11 @@ final _objectFinalizer = Finalizer<WeakReference<_ObjectReference>>(
   (record) => record.target?.release(),
 );
 
+// Dart can return a different JS wrapper for the same proxy or disposed object.
+final _ineligibleJointObjects = Expando<bool>();
+
+const _jointControllerType = 'flax.core/flutter#type:TextEditingController';
+
 /// An ID indexes weak metadata. The engine follows actual Dart and JS owners.
 class _ObjectReference {
   _ObjectReference(
@@ -88,6 +93,7 @@ class _ObjectReference {
     final receiver = value;
     view.instanceMethods[view.disposeMethod]!.invoke(receiver, const {});
     // The user chose disposal. Do not guess whether Flutter still uses the object.
+    _ineligibleJointObjects[receiver] = true;
     disposing = true;
     for (final listener in listeners.toList()) {
       listener.registrations = 0;
@@ -914,6 +920,8 @@ extension _ObjectCalls on _Session {
           } finally {
             _releaseJs(identity);
           }
+        } else if (peer != null) {
+          _ineligibleJointObjects[value] = true;
         }
         final result = objectResult(
           value,
@@ -929,6 +937,79 @@ extension _ObjectCalls on _Session {
         source.release();
       }
     }
+  }
+
+  _BindingOperation _jointOperation(
+    String type,
+    String operation,
+    String name,
+  ) {
+    if (type.isNotEmpty ||
+        name.isNotEmpty ||
+        (operation != 'own' &&
+            operation != 'unlink' &&
+            operation != 'listen')) {
+      throw ArgumentError('Unknown joint operation');
+    }
+    return (id, args) {
+      if (id != 0 ||
+          args.length != (operation == 'own' ? 2 : 1) ||
+          args.any((argument) => argument is! FlaxJsObject)) {
+        throw ArgumentError('Invalid joint operation arguments');
+      }
+      requireOpen();
+      final source = args.first as FlaxJsObject;
+      final engine = runtime;
+      if (operation == 'unlink') {
+        if (engine is! FlaxNativeJsRuntime ||
+            !(helper(
+              'jointUnlinkPending',
+            ).call([source]) as FlaxJsBoolean).value) {
+          throw ArgumentError('Expected a local joint capability');
+        }
+        engine.unlinkOwnedDartPeer(source);
+        return const FlaxJsUndefined();
+      }
+      final handle = helper('tryObjectHandle').call([source]);
+      final reference = handle is FlaxJsNumber
+          ? _objects[handle.value.toInt()]
+          : null;
+      final value = reference?._value;
+      if (reference == null ||
+          reference.scoped ||
+          reference.disposing ||
+          value == null ||
+          value is BuildContext ||
+          value is State ||
+          value is Stream ||
+          value is Future ||
+          value is Function ||
+          value is FlaxWidgetProxy ||
+          _ineligibleJointObjects[value] == true) {
+        return const FlaxJsNull();
+      }
+      _restoreClipboardValue(value);
+      if (operation == 'listen') {
+        return value is TextEditingController
+            ? holdHostResult(
+                objectResult(
+                  value,
+                  const FlaxTypeRef('object', id: _jointControllerType),
+                ),
+              )
+            : const FlaxJsNull();
+      }
+      if (engine is! FlaxNativeJsRuntime) {
+        throw UnsupportedError('Owned JS views require the Flax engine');
+      }
+      final view = args[1] as FlaxJsObject;
+      if (!(helper('jointAcquirePending').call(args) as FlaxJsBoolean).value) {
+        throw ArgumentError('Expected a pending local joint view');
+      }
+      // A helper result would acquire a Dart facade before the owned cell.
+      engine.bindOwnedDartPeer(view, value);
+      return const FlaxJsBoolean(true);
+    };
   }
 
   _BindingOperation _objectOperation(

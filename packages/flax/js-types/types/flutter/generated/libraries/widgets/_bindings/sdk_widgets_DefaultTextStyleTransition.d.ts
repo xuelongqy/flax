@@ -83,9 +83,9 @@ export declare function _DefaultTextStyleTransitionFactory(options: {
     style: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [upstream4.TextStyle];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream4.TextStyle];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream4.TextStyle];
     }>;
     child: Widget;
     textAlign?: upstream5.TextAlign | null | undefined;

@@ -28,9 +28,9 @@ export interface ShortcutManager extends Omit<upstream0.Diagnosticable, _flaxOwn
 }>, Readonly<{
     "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __ShortcutManager: unique symbol;
     readonly [_flaxDartTypeValue]: ShortcutManager;
@@ -144,5 +144,5 @@ declare const _ShortcutManagerBinding: typeof _ShortcutManagerFactory & (new (op
     modal?: boolean | undefined;
 }) => _ShortcutManagerNative);
 export declare const ShortcutManager: typeof _ShortcutManagerBinding & _FlaxInstanceType<ShortcutManager> & _FlaxDartType<ShortcutManager, readonly ["class", "flax.core/sdk_widgets#type:ShortcutManager", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "modal" | "shortcuts" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "addListener" | "removeListener" | "dispose" | "handleKeypress" | "__flaxBound:package:flutter/src/widgets/shortcuts.dart::ShortcutManager" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "modal" | "shortcuts" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "addListener" | "removeListener" | "dispose" | "handleKeypress" | "__flaxBound:package:flutter/src/widgets/shortcuts.dart::ShortcutManager" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 export {};

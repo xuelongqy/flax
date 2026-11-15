@@ -7,7 +7,8 @@ import 'package:flutter/widgets.dart' as api;
 import 'package:flax/bindings.dart';
 import 'package:flutter/foundation.dart' as api1;
 import 'package:flutter/scheduler.dart' as api2;
-import 'package:flutter/cupertino.dart' as api3;
+
+import 'closed_adapters.g.dart' as _flaxAdapters;
 
 // ignore: unused_element
 const _flaxOmitted = Object();
@@ -82,7 +83,7 @@ const _stateVariant_KeepAliveState = FlaxStateVariantBinding(
 );
 
 abstract class _KeepAliveStateStateHostBase extends FlaxComponentStateBase
-    with api3.AutomaticKeepAliveClientMixin<api.StatefulWidget> {
+    with api.AutomaticKeepAliveClientMixin<api.StatefulWidget> {
   _KeepAliveStateStateHostBase(Object seed) : super(seed);
   @override
   bool get wantKeepAlive =>
@@ -125,7 +126,7 @@ const _stateVariant_SingleTickerProviderState = FlaxStateVariantBinding(
 
 abstract class _SingleTickerProviderStateStateHostBase
     extends FlaxComponentStateBase
-    with api3.SingleTickerProviderStateMixin<api.StatefulWidget> {
+    with api.SingleTickerProviderStateMixin<api.StatefulWidget> {
   _SingleTickerProviderStateStateHostBase(Object seed) : super(seed);
 }
 
@@ -146,7 +147,7 @@ const _stateVariant_TickerProviderState = FlaxStateVariantBinding(
 );
 
 abstract class _TickerProviderStateStateHostBase extends FlaxComponentStateBase
-    with api3.TickerProviderStateMixin<api.StatefulWidget> {
+    with api.TickerProviderStateMixin<api.StatefulWidget> {
   _TickerProviderStateStateHostBase(Object seed) : super(seed);
 }
 
@@ -173,8 +174,8 @@ const _stateVariant_KeepAliveTickerState = FlaxStateVariantBinding(
 
 abstract class _KeepAliveTickerStateStateHostBase extends FlaxComponentStateBase
     with
-        api3.AutomaticKeepAliveClientMixin<api.StatefulWidget>,
-        api3.TickerProviderStateMixin<api.StatefulWidget> {
+        api.AutomaticKeepAliveClientMixin<api.StatefulWidget>,
+        api.TickerProviderStateMixin<api.StatefulWidget> {
   _KeepAliveTickerStateStateHostBase(Object seed) : super(seed);
   @override
   bool get wantKeepAlive =>
@@ -223,8 +224,8 @@ const _stateVariant_KeepAliveSingleTickerState = FlaxStateVariantBinding(
 abstract class _KeepAliveSingleTickerStateStateHostBase
     extends FlaxComponentStateBase
     with
-        api3.AutomaticKeepAliveClientMixin<api.StatefulWidget>,
-        api3.SingleTickerProviderStateMixin<api.StatefulWidget> {
+        api.AutomaticKeepAliveClientMixin<api.StatefulWidget>,
+        api.SingleTickerProviderStateMixin<api.StatefulWidget> {
   _KeepAliveSingleTickerStateStateHostBase(Object seed) : super(seed);
   @override
   bool get wantKeepAlive =>
@@ -341,13 +342,11 @@ Function _flaxClass_State<_Owner0 extends api.StatefulWidget>() =>
       );
     };
 const _flaxDartShapes = <FlaxDartShapeTemplate>[];
-Object _collection0Create() => <api1.DiagnosticsNode>[];
-bool _collection0Matches(Object value) => value is List<api1.DiagnosticsNode>;
-Object _collection1Create() => <api1.DiagnosticsNode>[];
-Object _collection1Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api1.DiagnosticsNode>();
-bool _collection1Matches(Object value) =>
-    value is Iterable<api1.DiagnosticsNode>;
+
+const flaxMemberflax_2e_core_2f_components_23_type_3a_StatefulWidget_7c_call_3a_toStringShort =
+    _StatefulWidget_toStringShort;
+const flaxMemberflax_2e_core_2f_components_23_type_3a_StatefulWidget_7c_call_3a_debugDescribeChildren =
+    _StatefulWidget_debugDescribeChildren;
 const _flaxBinding0 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_foundation#type:DiagnosticLevel",
@@ -416,9 +415,9 @@ const _flaxBinding11 = FlaxTypeRef(
   item: _flaxBinding9,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-    _collection1Create,
-    _collection1Matches,
-    restore: _collection1Restore,
+    _flaxAdapters.flaxAdapter84Create,
+    _flaxAdapters.flaxAdapter84Matches,
+    restore: _flaxAdapters.flaxAdapter84Restore,
   ),
 );
 const _flaxBinding12 = FlaxTypeRef(
@@ -426,8 +425,8 @@ const _flaxBinding12 = FlaxTypeRef(
   item: _flaxBinding9,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-    _collection0Create,
-    _collection0Matches,
+    _flaxAdapters.flaxAdapter85Create,
+    _flaxAdapters.flaxAdapter85Matches,
   ),
   iterable: _flaxBinding11,
 );

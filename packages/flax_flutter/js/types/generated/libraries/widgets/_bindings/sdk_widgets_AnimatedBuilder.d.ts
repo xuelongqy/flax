@@ -72,7 +72,7 @@ export declare function _AnimatedBuilderFactory(options: {
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
     animation: Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>;
     builder: ((context: upstream4.BuildContext, child: Widget | null) => Widget);
     child?: Widget | null | undefined;

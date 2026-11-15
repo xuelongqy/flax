@@ -19,7 +19,7 @@ export interface ShapeBorderClipper extends Omit<upstream0.CustomClipper<upstrea
 }>, Readonly<{
     "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream1.Path];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __ShapeBorderClipper: unique symbol;
     readonly [_flaxDartTypeValue]: ShapeBorderClipper;
@@ -40,7 +40,7 @@ export interface ShapeBorderClipper extends Omit<upstream0.CustomClipper<upstrea
     shouldReclip(oldClipper: Readonly<{
         "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream1.Path];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): boolean;
     toString(): string;
 }
@@ -67,7 +67,7 @@ export interface _ShapeBorderClipperNative extends ShapeBorderClipper {
     shouldReclip(oldClipper: Readonly<{
         "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream1.Path];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): boolean;
     toString(): string;
     get shape(): upstream3.ShapeBorder;
@@ -99,5 +99,5 @@ declare const _ShapeBorderClipperBinding: typeof _ShapeBorderClipperFactory & (n
     textDirection?: upstream4.TextDirection | null | undefined;
 }) => _ShapeBorderClipperNative);
 export declare const ShapeBorderClipper: typeof _ShapeBorderClipperBinding & _FlaxInstanceType<ShapeBorderClipper> & _FlaxDartType<ShapeBorderClipper, readonly ["class", "flax.core/sdk_rendering#type:ShapeBorderClipper", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "shape" | "textDirection" | "addListener" | "removeListener" | "getClip" | "getApproximateClipRect" | "shouldReclip" | "toString" | "__flaxBound:package:flutter/src/rendering/proxy_box.dart::ShapeBorderClipper" | "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "shape" | "textDirection" | "addListener" | "removeListener" | "getClip" | "getApproximateClipRect" | "shouldReclip" | "toString" | "__flaxBound:package:flutter/src/rendering/proxy_box.dart::ShapeBorderClipper" | "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 export {};

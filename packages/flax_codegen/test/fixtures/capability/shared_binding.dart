@@ -77,6 +77,35 @@ class SharedGeneric<T> extends SharedBase {
   T echo(T value) => value;
 }
 
+class MemberBase {
+  String get label => 'base';
+  num get amount => 1;
+  int brief() => 1;
+  int defaulted([int offset = 1]) => offset;
+}
+
+class MemberChild<T> extends MemberBase {
+  MemberChild(this.value);
+  T value;
+  @override
+  String get label => 'child:$value';
+  @override
+  double get amount => 2.5;
+  @override
+  int brief() => 2;
+  @override
+  int defaulted([int offset = 2]) => offset;
+  T echo(T input) => input;
+}
+
+class OtherMemberBase {
+  String get label => 'other';
+}
+
+class RequiredMember<T extends RequiredMember<T>> extends MemberBase {}
+
+class ConcreteRequiredMember extends RequiredMember<ConcreteRequiredMember> {}
+
 class FixedFactory<T> {
   FixedFactory(this.value, {this.label = 'fixed'});
   T value;

@@ -67,13 +67,13 @@ export declare function _TextMagnifierFactory(options: {
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
     magnifierInfo: Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream3.MagnifierInfo];
+        "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream3.MagnifierInfo];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream3.MagnifierInfo];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream3.MagnifierInfo];
     }>;
 }): TextMagnifier;
 export declare namespace _TextMagnifierFactory {

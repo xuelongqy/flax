@@ -7,7 +7,7 @@ import { _flaxMemberParameters28, _flaxMemberParameters29, _flaxMemberParameters
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/foundation/_bindings/sdk_foundation.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
-export interface ChangeNotifier extends Omit<upstream0.Listenable, _flaxOwnMembers0>, Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> { readonly __ChangeNotifier: unique symbol;
+export interface ChangeNotifier extends Omit<upstream0.Listenable, _flaxOwnMembers0>, Readonly<{ "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [] }>, Readonly<{ "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [] }> { readonly __ChangeNotifier: unique symbol;
 readonly [_flaxDartTypeValue]: ChangeNotifier;
 
 readonly hasListeners: boolean;
@@ -40,14 +40,14 @@ _flaxDefineProxyBase(_ChangeNotifierNative.prototype, _ChangeNotifierProxy);
 export namespace _ChangeNotifierFactory { export function implement(args: [], implementation: {}): ChangeNotifier {
 return constructProxy(_ChangeNotifierProxy, args, implementation) as ChangeNotifier; } }
 const _ChangeNotifierBinding = _flaxProxyFactory(_ChangeNotifierFactory, _ChangeNotifierNative) as unknown as typeof _ChangeNotifierFactory & (new() => _ChangeNotifierNative);
-export namespace _ChangeNotifierFactory { export function debugAssertNotDisposed(notifier: Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }>): boolean {
+export namespace _ChangeNotifierFactory { export function debugAssertNotDisposed(notifier: Readonly<{ "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [] }>): boolean {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_foundation#function:ChangeNotifier.debugAssertNotDisposed", [notifier], _flaxMemberParameters28);
 return _flaxResult as boolean;
 } }
-export namespace _ChangeNotifierFactory { export function maybeDispatchObjectCreation(object: Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }>): void {
+export namespace _ChangeNotifierFactory { export function maybeDispatchObjectCreation(object: Readonly<{ "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [] }>): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_foundation#function:ChangeNotifier.maybeDispatchObjectCreation", [object], _flaxMemberParameters29);
 } }
 export const ChangeNotifier: typeof _ChangeNotifierBinding & _FlaxInstanceType<ChangeNotifier> & _FlaxDartType<ChangeNotifier, readonly ["class", "flax.core/sdk_foundation#type:ChangeNotifier", readonly [], false]> = _flaxBindInstanceType<ChangeNotifier, typeof _ChangeNotifierBinding>(_ChangeNotifierBinding, "flax.core/sdk_foundation#type:ChangeNotifier", ["dart:core::Object","flax.core/flutter#type:Listenable"]) as typeof _ChangeNotifierBinding & _FlaxInstanceType<ChangeNotifier> & _FlaxDartType<ChangeNotifier, readonly ["class", "flax.core/sdk_foundation#type:ChangeNotifier", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "addListener" | "removeListener" | "dispose" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "addListener" | "removeListener" | "dispose" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable";

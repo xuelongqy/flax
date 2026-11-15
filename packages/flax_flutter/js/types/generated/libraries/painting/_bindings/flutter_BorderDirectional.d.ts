@@ -12,10 +12,11 @@ import '@flax/dart/ui/_bindings/sdk_dart_ui_Path';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import type * as upstream6 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
+import '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
 import '@flax/flutter/painting/_bindings/flutter_BorderRadius';
-import type * as upstream10 from '@flax/flutter/painting/_bindings/flutter_BoxShape';
+import type * as upstream11 from '@flax/flutter/painting/_bindings/flutter_BoxShape';
 import '@flax/flutter/painting/_bindings/flutter_BoxShape';
 import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface BorderDirectional extends Omit<upstream0.BoxBorder, _flaxOwnMembers0>, Omit<upstream1.ShapeBorder, _flaxOwnMembers0 | keyof upstream0.BoxBorder>, Readonly<{
@@ -49,6 +50,15 @@ export interface BorderDirectional extends Omit<upstream0.BoxBorder, _flaxOwnMem
     }>, options?: {
         textDirection?: upstream6.TextDirection | null | undefined;
     }): upstream4.Path;
+    hitTest(rect: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, position: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, options?: {
+        textDirection?: upstream6.TextDirection | null | undefined;
+    }): boolean;
     paintInterior(canvas: Readonly<{
         "__flaxBound:dart:ui::Canvas": readonly [];
     }>, rect: Readonly<{
@@ -68,7 +78,7 @@ export interface BorderDirectional extends Omit<upstream0.BoxBorder, _flaxOwnMem
         }> & Readonly<{
             "__flaxBound:package:flutter/src/painting/border_radius.dart::BorderRadiusGeometry": readonly [];
         }>) | null | undefined;
-        shape?: upstream10.BoxShape | undefined;
+        shape?: upstream11.BoxShape | undefined;
         textDirection?: upstream6.TextDirection | null | undefined;
     }): void;
     scale(t: number): BorderDirectional;
@@ -136,5 +146,5 @@ export declare namespace _BorderDirectionalFactory {
     }>) | null, t: number): BorderDirectional | null;
 }
 export declare const BorderDirectional: typeof _BorderDirectionalFactory & _FlaxInstanceType<BorderDirectional> & _FlaxDartType<BorderDirectional, readonly ["class", "flax.core/flutter#type:BorderDirectional", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "top" | "bottom" | "isUniform" | "preferPaintInterior" | "dimensions" | "start" | "end" | "add" | "getInnerPath" | "getOuterPath" | "paintInterior" | "paint" | "scale" | "lerpFrom" | "lerpTo" | "toString" | "operatorAdd" | "__flaxBound:package:flutter/src/painting/box_border.dart::BorderDirectional" | "__flaxBound:package:flutter/src/painting/box_border.dart::BoxBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "top" | "bottom" | "isUniform" | "preferPaintInterior" | "dimensions" | "start" | "end" | "add" | "getInnerPath" | "getOuterPath" | "hitTest" | "paintInterior" | "paint" | "scale" | "lerpFrom" | "lerpTo" | "toString" | "operatorAdd" | "__flaxBound:package:flutter/src/painting/box_border.dart::BorderDirectional" | "__flaxBound:package:flutter/src/painting/box_border.dart::BoxBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder";
 export {};

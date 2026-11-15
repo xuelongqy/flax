@@ -47,9 +47,9 @@ export declare function _ListViewFactory(options?: {
     controller?: Bindable<(Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null> | undefined;
     primary?: Bindable<boolean | null> | undefined;
     physics?: Bindable<Readonly<{
@@ -96,9 +96,9 @@ export declare namespace _ListViewFactory {
         controller?: Bindable<(Readonly<{
             "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null> | undefined;
         primary?: Bindable<boolean | null> | undefined;
         physics?: Bindable<Readonly<{
@@ -146,9 +146,9 @@ export declare namespace _ListViewFactory {
         controller?: Bindable<(Readonly<{
             "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null> | undefined;
         primary?: Bindable<boolean | null> | undefined;
         physics?: Bindable<Readonly<{
@@ -158,6 +158,7 @@ export declare namespace _ListViewFactory {
         padding?: Bindable<Readonly<{
             "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
         }> | null> | undefined;
+        itemExtentBuilder?: Bindable<((index: number, dimensions: upstream5.SliverLayoutDimensions) => number | null) | null> | undefined;
         itemBuilder: Bindable<((context: upstream11.BuildContext, index: number) => Widget | null)>;
         findChildIndexCallback?: Bindable<((key: upstream0.Key) => number | null) | null> | undefined;
         findItemIndexCallback?: Bindable<((key: upstream0.Key) => number | null) | null> | undefined;
@@ -194,9 +195,9 @@ export declare namespace _ListViewFactory {
         controller?: Bindable<(Readonly<{
             "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null> | undefined;
         primary?: Bindable<boolean | null> | undefined;
         physics?: Bindable<Readonly<{

@@ -70,9 +70,9 @@ export declare function _CupertinoExpansionTileFactory(options: {
     controller?: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/expansible.dart::ExpansibleController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     transitionMode?: upstream3.ExpansionTileTransitionMode | undefined;
 }): CupertinoExpansionTile;

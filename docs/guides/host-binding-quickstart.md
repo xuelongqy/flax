@@ -34,19 +34,27 @@ Start at the Flax repository root and replace the Flutter path:
 ```sh
 export FLAX_ROOT="$PWD"
 export FLUTTER_ROOT=/path/to/flutter-fork
+export FLUTTER_ENGINE="$FLUTTER_ROOT/engine/src"
 export PATH="$FLUTTER_ROOT/bin:$PATH"
 mkdir -p "$FLAX_ROOT/.local/tmp"
 export TMPDIR="$FLAX_ROOT/.local/tmp" TMP="$FLAX_ROOT/.local/tmp" TEMP="$FLAX_ROOT/.local/tmp"
-flutter pub get --enforce-lockfile
+env -u FLUTTER_ENGINE flutter --local-engine-src-path="$FLUTTER_ENGINE" \
+  --local-engine=flax_mac_debug_arm64 --local-engine-host=flax_mac_debug_arm64 \
+  pub get --enforce-lockfile
 pnpm install --frozen-lockfile
 pnpm run js:build
 
-flutter create --empty --platforms=macos --no-pub "$FLAX_ROOT/.local/cart_host"
+env -u FLUTTER_ENGINE flutter --local-engine-src-path="$FLUTTER_ENGINE" \
+  --local-engine=flax_mac_debug_arm64 --local-engine-host=flax_mac_debug_arm64 \
+  create --empty --platforms=macos --no-pub "$FLAX_ROOT/.local/cart_host"
 cd "$FLAX_ROOT/.local/cart_host"
 ```
 
-An existing host can use its own directory instead of the last two commands. Add this
-entry to its existing pubspec.yaml dev_dependencies section:
+An existing host can use its own directory instead of the last two commands. The
+explicit host-artifact flags are required for Pub and create, even with `--no-pub`: bare
+commands can replace custom cached SDK declarations. They are tooling context, not
+runtime device or mode selection. Add this entry to the host's existing pubspec.yaml
+dev_dependencies section:
 
 ```yaml
 dev_dependencies:
@@ -69,9 +77,13 @@ dependency_overrides:
   flax_cli:
     path: $FLAX_ROOT/packages/flax_cli
 EOF
-flutter pub get
+env -u FLUTTER_ENGINE flutter --local-engine-src-path="$FLUTTER_ENGINE" \
+  --local-engine=flax_mac_debug_arm64 --local-engine-host=flax_mac_debug_arm64 \
+  pub get
 dart run flax_cli:flax init
-flutter pub get
+env -u FLUTTER_ENGINE flutter --local-engine-src-path="$FLUTTER_ENGINE" \
+  --local-engine=flax_mac_debug_arm64 --local-engine-host=flax_mac_debug_arm64 \
+  pub get
 ```
 
 Init now provides js/package.json, js/tsconfig.json, js/build.mjs, a starter JS page,
@@ -104,8 +116,8 @@ pnpm --dir js install
 The checked-in default example already belongs to the configured_bindings workspace,
 which includes default_app/js and default_app/js/sdk. Do not create another workspace
 inside that example. These local dependency paths are a checkout setup detail, not
-binding configuration. Keep both terminal variables for the commands below. If framework
-JS changes later, rebuild it and reinstall these file dependencies with
+binding configuration. Keep these terminal variables for the commands below. If
+framework JS changes later, rebuild it and reinstall these file dependencies with
 `pnpm --dir js install --force`.
 
 ## 2. Annotate Dart and generate bindings
@@ -229,7 +241,7 @@ Future<void> main() async {
 ```
 
 Init has already added these Flutter assets. For a manually configured host, add them to
-pubspec.yaml and run flutter pub get:
+pubspec.yaml and repeat the explicit host-context Pub command from step 1:
 
 ```yaml
 flutter:

@@ -47,6 +47,7 @@ export interface FocusableActionDetector extends _FlaxDartWidget, Omit<upstream0
     readonly autofocus: boolean;
     readonly descendantsAreFocusable: boolean;
     readonly descendantsAreTraversable: boolean;
+    readonly skipTraversal: boolean | null;
     readonly actions: DartMap<upstream6.Type, upstream5.Action<upstream3.Intent>> | null;
     readonly shortcuts: DartMap<upstream4.ShortcutActivator, upstream3.Intent> | null;
     readonly onShowFocusHighlight: ((value: boolean) => void) | null;
@@ -92,13 +93,14 @@ export declare function _FocusableActionDetectorFactory(options: {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     autofocus?: boolean | undefined;
     descendantsAreFocusable?: boolean | undefined;
     descendantsAreTraversable?: boolean | undefined;
+    skipTraversal?: boolean | null | undefined;
     shortcuts?: DartMapInput<upstream4.ShortcutActivator, upstream3.Intent, Readonly<{
         "__flaxBound:package:flutter/src/widgets/shortcuts.dart::ShortcutActivator": readonly [];
     }>, Readonly<{
@@ -138,5 +140,5 @@ export declare namespace _FocusableActionDetectorFactory {
     };
 }
 export declare const FocusableActionDetector: typeof _FocusableActionDetectorFactory & _FlaxInstanceType<FocusableActionDetector> & _FlaxDartType<FocusableActionDetector, readonly ["class", "flax.core/sdk_widgets#type:FocusableActionDetector", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "enabled" | "focusNode" | "autofocus" | "descendantsAreFocusable" | "descendantsAreTraversable" | "actions" | "shortcuts" | "onShowFocusHighlight" | "onShowHoverHighlight" | "onFocusChange" | "mouseCursor" | "includeFocusSemantics" | "child" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/actions.dart::FocusableActionDetector" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "enabled" | "focusNode" | "autofocus" | "descendantsAreFocusable" | "descendantsAreTraversable" | "skipTraversal" | "actions" | "shortcuts" | "onShowFocusHighlight" | "onShowHoverHighlight" | "onFocusChange" | "mouseCursor" | "includeFocusSemantics" | "child" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/actions.dart::FocusableActionDetector" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

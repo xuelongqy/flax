@@ -39,10 +39,17 @@ void main() {
       await tester.pumpAndSettle();
       await exerciseGallery(tester);
       await tapGallery(tester, find.text('Unmount Flax'));
-      await pumpGalleryUntil(tester, () => runtimes.first.isDisposed);
-      expect(runtimes.first.handlesAtDispose, 0);
-      await tapGallery(tester, find.text('Mount Flax'));
+      await pumpGalleryUntil(
+        tester,
+        () => runtimes.every((runtime) => runtime.isDisposed),
+      );
       expect(runtimes, hasLength(2));
+      expect(
+        runtimes.map((runtime) => runtime.handlesAtDispose),
+        everyElement(0),
+      );
+      await tapGallery(tester, find.text('Mount Flax'));
+      expect(runtimes, hasLength(3));
       await tapGallery(tester, find.byKey(const ValueKey('open-core')));
       expect(find.text('Count: 0'), findsOneWidget);
       await tester.pumpWidget(const SizedBox.shrink());
@@ -56,7 +63,7 @@ void main() {
         'moduleComposition': true,
         'sharedHostModules': true,
         'sessionRecreation': true,
-        'ownerEntrances': 11,
+        'ownerEntrances': 12,
         'zeroHandlesAtDispose': true,
         'completed': true,
       };

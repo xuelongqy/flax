@@ -49,13 +49,13 @@ export interface StaticSelectionContainerDelegate extends Omit<upstream0.MultiSe
 }>, Readonly<{
     "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
+    "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }>, Readonly<{
     "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionRegistrar": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }> {
     readonly __StaticSelectionContainerDelegate: unique symbol;
     readonly [_flaxDartTypeValue]: StaticSelectionContainerDelegate;
@@ -68,17 +68,17 @@ export interface StaticSelectionContainerDelegate extends Omit<upstream0.MultiSe
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>, b: Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::Selectable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) => number);
     readonly contentLength: number;
     readonly hasSize: boolean;
@@ -89,18 +89,18 @@ export interface StaticSelectionContainerDelegate extends Omit<upstream0.MultiSe
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): void;
     remove(selectable: Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::Selectable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): void;
     layoutDidChange(): void;
     didChangeSelectables(): void;
@@ -156,18 +156,18 @@ export interface StaticSelectionContainerDelegate extends Omit<upstream0.MultiSe
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): void;
     dispatchSelectionEventToChild(selectable: Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::Selectable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>, event: Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionEvent": readonly [];
     }>): upstream13.SelectionResult;
@@ -176,9 +176,9 @@ export interface StaticSelectionContainerDelegate extends Omit<upstream0.MultiSe
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): upstream22.Matrix4;
     getTransformTo(ancestor: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
@@ -200,9 +200,9 @@ export interface StaticSelectionContainerDelegate extends Omit<upstream0.MultiSe
         }> & Readonly<{
             "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>;
     }): void;
     didReceiveSelectionBoundaryEvents(): void;
@@ -220,18 +220,18 @@ export interface StaticSelectionContainerDelegate extends Omit<upstream0.MultiSe
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): void;
     set selectables(value: DartListInput<upstream8.Selectable, Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::Selectable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>>);
     set currentSelectionEndIndex(value: number);
     set currentSelectionStartIndex(value: number);
@@ -244,18 +244,18 @@ export interface _StaticSelectionContainerDelegateNative extends StaticSelection
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): void;
     remove(selectable: Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::Selectable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): void;
     layoutDidChange(): void;
     didChangeSelectables(): void;
@@ -311,18 +311,18 @@ export interface _StaticSelectionContainerDelegateNative extends StaticSelection
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): void;
     dispatchSelectionEventToChild(selectable: Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::Selectable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>, event: Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionEvent": readonly [];
     }>): upstream13.SelectionResult;
@@ -331,9 +331,9 @@ export interface _StaticSelectionContainerDelegateNative extends StaticSelection
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): upstream22.Matrix4;
     getTransformTo(ancestor: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
@@ -354,9 +354,9 @@ export interface _StaticSelectionContainerDelegateNative extends StaticSelection
         }> & Readonly<{
             "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>;
         forEnd?: boolean | null | undefined;
     }): void;
@@ -375,9 +375,9 @@ export interface _StaticSelectionContainerDelegateNative extends StaticSelection
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): void;
     get selectables(): DartList<upstream8.Selectable>;
     get currentSelectionEndIndex(): number;
@@ -388,17 +388,17 @@ export interface _StaticSelectionContainerDelegateNative extends StaticSelection
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>, b: Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::Selectable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) => number);
     get contentLength(): number;
     get hasSize(): boolean;
@@ -409,9 +409,9 @@ export interface _StaticSelectionContainerDelegateNative extends StaticSelection
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream4.SelectionGeometry];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>>);
     set currentSelectionEndIndex(value: number);
     set currentSelectionStartIndex(value: number);
@@ -427,5 +427,5 @@ export declare namespace _StaticSelectionContainerDelegateFactory {
 }
 declare const _StaticSelectionContainerDelegateBinding: typeof _StaticSelectionContainerDelegateFactory & (new () => _StaticSelectionContainerDelegateNative);
 export declare const StaticSelectionContainerDelegate: typeof _StaticSelectionContainerDelegateBinding & _FlaxInstanceType<StaticSelectionContainerDelegate> & _FlaxDartType<StaticSelectionContainerDelegate, readonly ["class", "flax.core/sdk_widgets#type:StaticSelectionContainerDelegate", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "selectables" | "currentSelectionEndIndex" | "currentSelectionStartIndex" | "value" | "compareOrder" | "contentLength" | "hasSize" | "containerSize" | "hasListeners" | "add" | "remove" | "layoutDidChange" | "didChangeSelectables" | "getSelectionGeometry" | "pushHandleLayers" | "getSelectedContent" | "getSelection" | "handleSelectAll" | "handleSelectWord" | "handleSelectParagraph" | "handleClearSelection" | "handleGranularlyExtendSelection" | "handleDirectionallyExtendSelection" | "handleSelectionEdgeUpdate" | "dispatchSelectionEvent" | "dispose" | "ensureChildUpdated" | "dispatchSelectionEventToChild" | "getTransformFrom" | "getTransformTo" | "addListener" | "removeListener" | "didReceiveSelectionEventFor" | "didReceiveSelectionBoundaryEvents" | "updateLastSelectionEdgeLocation" | "clearInternalSelectionState" | "clearInternalSelectionStateForSelectable" | "__flaxBound:package:flutter/src/widgets/selectable_region.dart::StaticSelectionContainerDelegate" | "__flaxBound:package:flutter/src/widgets/selectable_region.dart::MultiSelectableSelectionContainerDelegate" | "__flaxBound:package:flutter/src/widgets/selection_container.dart::SelectionContainerDelegate" | "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionRegistrar" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "selectables" | "currentSelectionEndIndex" | "currentSelectionStartIndex" | "value" | "compareOrder" | "contentLength" | "hasSize" | "containerSize" | "hasListeners" | "add" | "remove" | "layoutDidChange" | "didChangeSelectables" | "getSelectionGeometry" | "pushHandleLayers" | "getSelectedContent" | "getSelection" | "handleSelectAll" | "handleSelectWord" | "handleSelectParagraph" | "handleClearSelection" | "handleGranularlyExtendSelection" | "handleDirectionallyExtendSelection" | "handleSelectionEdgeUpdate" | "dispatchSelectionEvent" | "dispose" | "ensureChildUpdated" | "dispatchSelectionEventToChild" | "getTransformFrom" | "getTransformTo" | "addListener" | "removeListener" | "didReceiveSelectionEventFor" | "didReceiveSelectionBoundaryEvents" | "updateLastSelectionEdgeLocation" | "clearInternalSelectionState" | "clearInternalSelectionStateForSelectable" | "__flaxBound:package:flutter/src/widgets/selectable_region.dart::StaticSelectionContainerDelegate" | "__flaxBound:package:flutter/src/widgets/selectable_region.dart::MultiSelectableSelectionContainerDelegate" | "__flaxBound:package:flutter/src/widgets/selection_container.dart::SelectionContainerDelegate" | "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler" | "__flaxBound:package:listen/src/listen.dart::ValueListenable" | "__flaxBound:package:listen/src/listen.dart::Listenable" | "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionRegistrar" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier";
 export {};

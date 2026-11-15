@@ -8,8 +8,8 @@ import '@flax/flutter/widgets/_bindings/sdk_widgets_HeroFlightDirection';
 export type HeroFlightShuttleBuilder = ((flightContext: upstream0.BuildContext, animation: Readonly<{
     "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
 }>, flightDirection: upstream2.HeroFlightDirection, fromHeroContext: upstream0.BuildContext, toHeroContext: upstream0.BuildContext) => Widget);
 export type HeroFlightShuttleBuilderInput = ((flightContext: upstream0.BuildContext, animation: upstream1.Animation<number>, flightDirection: upstream2.HeroFlightDirection, fromHeroContext: upstream0.BuildContext, toHeroContext: upstream0.BuildContext) => Widget);

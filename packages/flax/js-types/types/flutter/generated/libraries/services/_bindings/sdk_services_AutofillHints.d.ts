@@ -45,6 +45,7 @@ declare const _AutofillHintsFactory: {
     readonly newUsername: string;
     readonly nickname: string;
     readonly oneTimeCode: string;
+    readonly emailOTPCode: string;
     readonly organizationName: string;
     readonly password: string;
     readonly photo: string;

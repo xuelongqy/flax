@@ -37,7 +37,7 @@ readonly duration: upstream2.Duration;
 readonly reverseDuration: upstream2.Duration | null;
 readonly switchInCurve: upstream3.Curve;
 readonly switchOutCurve: upstream3.Curve;
-readonly transitionBuilder: ((child: Widget, animation: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number] }>) => Widget);
+readonly transitionBuilder: ((child: Widget, animation: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number] }>) => Widget);
 readonly layoutBuilder: ((currentChild: Widget | null, previousChildren: DartListInput<Widget, Widget>) => Widget);
 readonly key: upstream1.Key | null;
 createState(): upstream5.State<AnimatedSwitcher>;
@@ -56,7 +56,7 @@ if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:AnimatedSwitcher", "", [{"name":"key"},{"name":"child"},{"name":"duration","required":true},{"name":"reverseDuration"},{"name":"switchInCurve"},{"name":"switchOutCurve"},{"name":"transitionBuilder"},{"name":"layoutBuilder"}], [], options) as AnimatedSwitcher;
 }
 export declare namespace _AnimatedSwitcherFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _AnimatedSwitcherFactory>[0]>), "child"> & ({ "child"?: (globalThis.NonNullable<globalThis.Parameters<typeof _AnimatedSwitcherFactory>[0]>)["child"]; children?: never } | { "child"?: never; children?: (globalThis.NonNullable<globalThis.Parameters<typeof _AnimatedSwitcherFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
-export namespace _AnimatedSwitcherFactory { export function defaultTransitionBuilder(child: Widget, animation: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number] }>): Widget {
+export namespace _AnimatedSwitcherFactory { export function defaultTransitionBuilder(child: Widget, animation: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number] }>): Widget {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:AnimatedSwitcher.defaultTransitionBuilder", [child, animation], _flaxMemberParameters22);
 return _flaxResult as Widget;

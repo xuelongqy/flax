@@ -15,6 +15,7 @@ import type * as upstream7 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
 import type * as upstream8 from '@flax/dart/ui/_bindings/sdk_dart_ui_Path';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Path';
+import '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
 import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
@@ -76,6 +77,15 @@ export interface UnderlineInputBorder extends Omit<upstream0.InputBorder, _flaxO
     }>, options?: {
         textDirection?: upstream7.TextDirection | null | undefined;
     }): upstream8.Path;
+    hitTest(rect: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, position: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, options?: {
+        textDirection?: upstream7.TextDirection | null | undefined;
+    }): boolean;
     paintInterior(canvas: Readonly<{
         "__flaxBound:dart:ui::Canvas": readonly [];
     }>, rect: Readonly<{
@@ -148,6 +158,15 @@ export interface _UnderlineInputBorderNative extends UnderlineInputBorder {
     }>, options?: {
         textDirection?: upstream7.TextDirection | null | undefined;
     }): upstream8.Path;
+    hitTest(rect: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, position: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, options?: {
+        textDirection?: upstream7.TextDirection | null | undefined;
+    }): boolean;
     paintInterior(canvas: Readonly<{
         "__flaxBound:dart:ui::Canvas": readonly [];
     }>, rect: Readonly<{
@@ -211,5 +230,5 @@ declare const _UnderlineInputBorderBinding: typeof _UnderlineInputBorderFactory 
     }>) | undefined;
 }) => _UnderlineInputBorderNative);
 export declare const UnderlineInputBorder: typeof _UnderlineInputBorderBinding & _FlaxInstanceType<UnderlineInputBorder> & _FlaxDartType<UnderlineInputBorder, readonly ["class", "flax.material/material#type:UnderlineInputBorder", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "borderSide" | "isOutline" | "dimensions" | "preferPaintInterior" | "borderRadius" | "copyWith" | "paint" | "add" | "scale" | "lerpFrom" | "lerpTo" | "getOuterPath" | "getInnerPath" | "paintInterior" | "toString" | "operatorAdd" | "__flaxBound:package:material_ui/src/input_border.dart::UnderlineInputBorder" | "__flaxBound:package:material_ui/src/input_border.dart::InputBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "borderSide" | "isOutline" | "dimensions" | "preferPaintInterior" | "borderRadius" | "copyWith" | "paint" | "add" | "scale" | "lerpFrom" | "lerpTo" | "getOuterPath" | "getInnerPath" | "hitTest" | "paintInterior" | "toString" | "operatorAdd" | "__flaxBound:package:material_ui/src/input_border.dart::UnderlineInputBorder" | "__flaxBound:package:material_ui/src/input_border.dart::InputBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder";
 export {};

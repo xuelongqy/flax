@@ -9,7 +9,7 @@ engines.** Pure JS uses generated Flutter/Material bindings and explicit signals
 update real Flutter widgets, including conditional and keyed subtrees. Owning FlaxViews
 create a runtime through their supplied factory; explicit FlaxSessions can span multiple
 Routes using the engine-owned C ABI/JSI bridge. Flax requires its maintained Flutter
-3.47.9 engine; macOS and Android arm64 use V8 JIT, and iOS arm64 uses V8 jitless. Dart
+3.50.0 engine; macOS and Android arm64 use V8 JIT, and iOS arm64 uses V8 jitless. Dart
 and JS business references participate in joint GC. See the
 [embedded example](examples/embedded/README.md) and
 [host contract](docs/architecture/ui.md).
@@ -73,18 +73,39 @@ inputs with native compilation. See the
 
 ## Quick start
 
-Use the pinned toolchain below, plus CMake 3.24 or newer and a C/C++ compiler. Run these
-commands from the repository root:
+Use the pinned toolchain below, plus CMake 3.24 or newer and a C/C++ compiler. Select
+the maintained [Flutter fork](https://github.com/xuelongqy/flutter) revision pinned by
+the [CI workflow](.github/workflows/packages.yml). The Flutter 3.50 port and its
+remaining acceptance gates are tracked in the
+[upgrade task](docs/tasks/flutter-3-50-upgrade.md).
+
+macOS arm64 requires macOS 15 or newer, Xcode and Ninja. Build the matching host Debug
+artifacts before dependency resolution or static checks, using an already verified V8
+SDK. Run these commands from the Flax repository root:
 
 ```sh
-flutter pub get --enforce-lockfile
+export FLUTTER_ROOT=/path/to/flutter-fork
+export FLUTTER_ENGINE="$FLUTTER_ROOT/engine/src"
+export PATH="$FLUTTER_ROOT/bin:$PATH"
+mkdir -p "$PWD/.local/tmp"
+export TMPDIR="$PWD/.local/tmp" TMP="$PWD/.local/tmp" TEMP="$PWD/.local/tmp"
+python3 "$FLUTTER_ROOT/engine/src/flutter/flax/tools/build_engine.py" \
+  --sdk /path/to/verified/v8-macos-arm64 --target macos-arm64 --mode debug
+env -u FLUTTER_ENGINE flutter --local-engine-src-path="$FLUTTER_ENGINE" \
+  --local-engine=flax_mac_debug_arm64 --local-engine-host=flax_mac_debug_arm64 \
+  pub get --enforce-lockfile
 pnpm install --frozen-lockfile
 dart run melos run check
 ```
 
 The checks verify generated bindings, generator and JS tests, JS compilation and
 example/test bundling, Dart analysis, formatting, documentation, and CMake
-configuration. They do not download or build an engine or run platform UI tests.
+configuration. They do not download or build an engine or run platform UI tests. Bare
+Flutter Pub, analyze and create can update universal artifacts and replace custom cached
+`dart:ui` declarations. For manual static commands, keep the explicit host-artifact
+flags and use `env -u FLUTTER_ENGINE` so nested Flutter commands do not inherit the
+legacy engine hint. The workspace runner supplies this context for dependency/static
+commands without changing runtime target or build-mode restrictions.
 
 Application builds and Vite hot reload share
 [`@flax/build`](packages/flax_build/js/README.md). Its TS compiler translates supported
@@ -99,22 +120,12 @@ For application-owned bindings, separate public/internal View plugins and types-
 SDKs, follow the [integration guide](docs/guides/host-bindings.md) and
 [runnable example](examples/configured_bindings/README.md).
 
-Use the [Flutter fork](https://github.com/xuelongqy/flutter) on `flax/main` with its
-matching local engine. macOS arm64 requires macOS 15 or newer, Xcode and Ninja. Build
-artifacts from the fork using its revision-checked helper and an already verified V8
-SDK:
+The workspace tools use Flutter's official local-engine flags. Dependency/static
+commands select the built macOS Debug host artifacts to protect the custom SDK cache;
+runtime commands select the actual supported platform and build mode. Host artifact
+selection does not enable device Debug on iOS. With the checkout and environment above:
 
 ```sh
-python3 engine/src/flutter/flax/tools/build_engine.py --sdk /path/to/verified/v8-macos-arm64 --mode debug
-```
-
-The Flax workspace tools select `flax_mac_debug_arm64` through Flutter's official local
-engine flags. Select the fork before running commands:
-
-```sh
-export FLUTTER_ROOT=/path/to/flutter-fork
-export PATH="$FLUTTER_ROOT/bin:$PATH"
-flutter pub get --enforce-lockfile
 dart run melos run check:runtime
 dart run melos run check:ui
 dart run tool/check_engine_application.dart debug
@@ -122,9 +133,10 @@ dart run tool/check_engine_application.dart debug
 
 Build matching `profile` and `release` artifacts in the fork before selecting those
 modes in `check_engine_application.dart`. This gate runs runtime and real Widget/State,
-callback, Future and Stream contracts in a macOS application. Current acceptance is
-recorded in the
-[iOS migration acceptance](experiments/canvas_engines/migration-ios-results.md).
+callback, Future and Stream contracts in a macOS application. Current Flutter 3.50
+acceptance is recorded in the [upgrade task](docs/tasks/flutter-3-50-upgrade.md).
+[Earlier iOS migration results](experiments/canvas_engines/migration-ios-results.md) are
+historical evidence, not target-version acceptance.
 
 Android arm64 uses the same engine-owned V8 JIT and joint GC. Build matching debug and
 release Android engines in the Flutter fork with `--target android-arm64`, using its
@@ -203,24 +215,25 @@ no independent SDK runtime fallback. See
 
 | Tool    | Baseline                     | Configuration                  |
 | ------- | ---------------------------- | ------------------------------ |
-| Flutter | 3.47.9 stable                | [.fvmrc](.fvmrc)               |
-| Dart    | 3.13.7, bundled with Flutter | [pubspec.yaml](pubspec.yaml)   |
+| Flutter | 3.50.0 stable                | [.fvmrc](.fvmrc)               |
+| Dart    | 3.14.0, bundled with Flutter | [pubspec.yaml](pubspec.yaml)   |
 | Node.js | 22.23.0                      | [.node-version](.node-version) |
 | pnpm    | 11.24.0                      | [package.json](package.json)   |
 | Melos   | 8.10.0                       | [pubspec.yaml](pubspec.yaml)   |
 
-FVM is optional; the Flutter executable on PATH must use the configured version. Melos
-runs through `dart run`, so a global Melos installation is unnecessary. Commit both
-workspace lockfiles. `melos check` never fetches or builds an engine, but its native
-package and generator tests require an existing matching maintained engine. The
+FVM is optional; the Flutter executable on PATH must use the configured maintained
+checkout, not merely a stock SDK with the same version label. Melos runs through
+`dart run`, so a global Melos installation is unnecessary. Commit both workspace
+lockfiles. `melos check` never fetches or builds an engine, but its native package and
+generator tests require an existing matching maintained engine. The
 [reusable macOS CI job](.github/workflows/packages.yml) explicitly prepares the pinned
 maintained fork, verified V8 SDK and Dawn native payload before workspace, runtime, FFI
 and archive checks. Its hosted build-space cleanup is restricted to GitHub-hosted
-runners; local setup never runs that cleanup. The pinned fork commit and this Flax
-change must be pushed before a hosted run is possible; local validation is not a remote
-CI result. See the
-[integration task](docs/tasks/webgpu-js-api.md#latest-main-integration). The former SDK
-platform workflows remain retired.
+runners; local setup never runs that cleanup. The Flutter 3.50 port still needs a
+separately authorized immutable maintained-fork commit/push and corresponding CI pin;
+local source-snapshot verification is not a hosted CI result. Track current evidence in
+the [upgrade task](docs/tasks/flutter-3-50-upgrade.md), not earlier integration
+receipts. The former SDK platform workflows remain retired.
 
 ## Repository map
 

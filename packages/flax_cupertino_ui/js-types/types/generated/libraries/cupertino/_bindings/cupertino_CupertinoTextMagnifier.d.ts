@@ -83,13 +83,13 @@ export declare function _CupertinoTextMagnifierFactory(options: {
     hideBelowThreshold?: number | undefined;
     horizontalScreenEdgePadding?: number | undefined;
     magnifierInfo: Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream5.MagnifierInfo];
+        "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream5.MagnifierInfo];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream5.MagnifierInfo];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream5.MagnifierInfo];
     }>;
 }): CupertinoTextMagnifier;
 export declare namespace _CupertinoTextMagnifierFactory {

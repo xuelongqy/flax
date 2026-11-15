@@ -670,6 +670,7 @@ export declare function _RenderSemanticsAnnotationsFactory(options: {
 }): RenderSemanticsAnnotations;
 export interface _RenderSemanticsAnnotationsNative extends RenderSemanticsAnnotations {
     readonly [_flaxDartTypeValue]: _RenderSemanticsAnnotationsNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1141,7 +1142,6 @@ export interface _RenderSemanticsAnnotationsNative extends RenderSemanticsAnnota
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream17.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

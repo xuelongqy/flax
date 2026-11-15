@@ -13,6 +13,8 @@ import 'dart:developer' as api4;
 import 'dart:async' as api5;
 import 'dart:io' as api6;
 
+import 'closed_adapters.g.dart' as _flaxAdapters;
+
 // ignore: unused_element
 const _flaxOmitted = Object();
 const sdk_foundationBindings = FlaxBindingModule(
@@ -74,11 +76,7 @@ const sdk_foundationBindings = FlaxBindingModule(
       "flax.core/sdk_foundation#type:BitField",
       [],
       {
-        "reset": FlaxInstanceMethod.plain(
-          _flaxBinding202,
-          flaxVoidType,
-          _BitField_reset,
-        ),
+        "reset": _flaxBinding203,
         "operatorGetIndex": FlaxInstanceMethod.plain(
           <FlaxParameter>[
             FlaxParameter.required("index", FlaxTypeRef("any", nullable: true)),
@@ -96,8 +94,8 @@ const sdk_foundationBindings = FlaxBindingModule(
         ),
       },
       constructors: {
-        "": _flaxBinding203,
-        "filled": _flaxBinding204,
+        "": _flaxBinding204,
+        "filled": _flaxBinding205,
         "@implementation": _flaxBinding131,
       },
       create: _createBitField,
@@ -108,7 +106,7 @@ const sdk_foundationBindings = FlaxBindingModule(
       matches: _isBitField,
       methods: const {},
       proxy: FlaxProxyBinding([
-        _flaxBinding206,
+        _flaxBinding207,
         FlaxProxyMember(
           "operatorGetIndex",
           0,
@@ -148,9 +146,9 @@ const sdk_foundationBindings = FlaxBindingModule(
           FlaxTypeRef("object", id: "flax.core/flutter#type:Iterator"),
           _CachingIterable_iterator,
         ),
-        _flaxBinding207,
         _flaxBinding208,
         _flaxBinding209,
+        _flaxBinding210,
         FlaxGetter.plain(
           "first",
           FlaxTypeRef("any", nullable: true),
@@ -190,9 +188,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _CachingIterable_map,
@@ -208,10 +206,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback9,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback9Invoke,
-                  matches: _callback9Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -221,9 +219,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _CachingIterable_where,
@@ -236,11 +234,11 @@ const sdk_foundationBindings = FlaxBindingModule(
                 "callback",
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
-                  _flaxBinding210,
-                  _callback10,
+                  _flaxBinding211,
+                  _flaxAdapters.flaxAdapter28,
                   id: "callback:<>(p:r:element:any?:)->iterable:[any?:]",
-                  invoke: _callback10Invoke,
-                  matches: _callback10Matches,
+                  invoke: _flaxAdapters.flaxAdapter28Invoke,
+                  matches: _flaxAdapters.flaxAdapter28Matches,
                 ),
               ),
             ),
@@ -250,9 +248,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _CachingIterable_expand,
@@ -260,15 +258,15 @@ const sdk_foundationBindings = FlaxBindingModule(
           ownerTypes: [_flaxDefault_CachingIterable_0],
         ),
         "take": FlaxInstanceMethod.plain(
-          _flaxBinding211,
+          _flaxBinding212,
           FlaxTypeRef(
             "iterable",
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _CachingIterable_take,
@@ -295,23 +293,23 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _CachingIterable_takeWhile,
         ),
         "skip": FlaxInstanceMethod.plain(
-          _flaxBinding211,
+          _flaxBinding212,
           FlaxTypeRef(
             "iterable",
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _CachingIterable_skip,
@@ -338,29 +336,29 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _CachingIterable_skipWhile,
         ),
         "elementAt": FlaxInstanceMethod.plain(
-          _flaxBinding212,
+          _flaxBinding213,
           FlaxTypeRef("any", nullable: true),
           _CachingIterable_elementAt,
         ),
         "toList": FlaxInstanceMethod.plain(
-          _flaxBinding213,
+          _flaxBinding214,
           FlaxTypeRef(
             "list",
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "list:[any?:]",
-              _collection22Create,
-              _collection22Matches,
+              _flaxAdapters.flaxAdapter43Create,
+              _flaxAdapters.flaxAdapter43Matches,
             ),
-            iterable: _flaxBinding210,
+            iterable: _flaxBinding211,
           ),
           _CachingIterable_toList,
         ),
@@ -371,9 +369,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _CachingIterable_cast,
@@ -389,9 +387,9 @@ const sdk_foundationBindings = FlaxBindingModule(
                 item: flaxNullableAnyType,
                 collection: FlaxCollectionBinding(
                   "iterable:[any?:]",
-                  _collection21Create,
-                  _collection21Matches,
-                  restore: _collection21Restore,
+                  _flaxAdapters.flaxAdapter42Create,
+                  _flaxAdapters.flaxAdapter42Matches,
+                  restore: _flaxAdapters.flaxAdapter42Restore,
                 ),
               ),
             ),
@@ -401,9 +399,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _CachingIterable_followedBy,
@@ -415,19 +413,16 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _CachingIterable_whereType,
           genericFactory: _flaxGeneric_CachingIterable_whereType,
           ownerTypes: [_flaxDefault_CachingIterable_0],
         ),
-        "contains": FlaxInstanceMethod.shared(
-          _flaxBinding41,
-          _CachingIterable_contains,
-        ),
+        "contains": _flaxBinding215,
         "forEach": FlaxInstanceMethod.plain(
           <FlaxParameter>[
             FlaxParameter.required(
@@ -437,10 +432,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxVoidType,
-                  _callback13,
+                  _flaxAdapters.flaxAdapter25,
                   id: "callback:<>(p:r:element:any?:)->void:",
-                  invoke: _callback13Invoke,
-                  matches: _callback13Matches,
+                  invoke: _flaxAdapters.flaxAdapter25Invoke,
+                  matches: _flaxAdapters.flaxAdapter25Matches,
                 ),
               ),
             ),
@@ -512,10 +507,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback16,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback16Invoke,
-                  matches: _callback16Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -523,11 +518,7 @@ const sdk_foundationBindings = FlaxBindingModule(
           flaxBoolType,
           _CachingIterable_every,
         ),
-        "join": FlaxInstanceMethod.plain(
-          _flaxBinding214,
-          flaxStringType,
-          _CachingIterable_join,
-        ),
+        "join": _flaxBinding217,
         "any": FlaxInstanceMethod.plain(
           <FlaxParameter>[
             FlaxParameter.required(
@@ -537,10 +528,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback17,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback17Invoke,
-                  matches: _callback17Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -555,10 +546,10 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "set:[any?:]",
-              _collection23Create,
-              _collection23Matches,
+              _flaxAdapters.flaxAdapter44Create,
+              _flaxAdapters.flaxAdapter44Matches,
             ),
-            iterable: _flaxBinding210,
+            iterable: _flaxBinding211,
           ),
           _CachingIterable_toSet,
         ),
@@ -571,10 +562,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback18,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback18Invoke,
-                  matches: _callback18Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -586,10 +577,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [],
                   flaxNullableAnyType,
-                  _callback19,
+                  _flaxAdapters.flaxAdapter20,
                   id: "callback:<>()->any?:",
-                  invoke: _callback19Invoke,
-                  matches: _callback19Matches,
+                  invoke: _flaxAdapters.flaxAdapter20Invoke,
+                  matches: _flaxAdapters.flaxAdapter20Matches,
                 ),
               ),
               required: false,
@@ -607,10 +598,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback20,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback20Invoke,
-                  matches: _callback20Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -622,10 +613,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [],
                   flaxNullableAnyType,
-                  _callback21,
+                  _flaxAdapters.flaxAdapter20,
                   id: "callback:<>()->any?:",
-                  invoke: _callback21Invoke,
-                  matches: _callback21Matches,
+                  invoke: _flaxAdapters.flaxAdapter20Invoke,
+                  matches: _flaxAdapters.flaxAdapter20Matches,
                 ),
               ),
               required: false,
@@ -643,10 +634,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback22,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback22Invoke,
-                  matches: _callback22Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -658,10 +649,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [],
                   flaxNullableAnyType,
-                  _callback23,
+                  _flaxAdapters.flaxAdapter20,
                   id: "callback:<>()->any?:",
-                  invoke: _callback23Invoke,
-                  matches: _callback23Matches,
+                  invoke: _flaxAdapters.flaxAdapter20Invoke,
+                  matches: _flaxAdapters.flaxAdapter20Matches,
                 ),
               ),
               required: false,
@@ -692,9 +683,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _CachingIterable_super_map,
@@ -710,10 +701,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback9,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback9Invoke,
-                  matches: _callback9Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -723,9 +714,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _CachingIterable_super_where,
@@ -738,11 +729,11 @@ const sdk_foundationBindings = FlaxBindingModule(
                 "callback",
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
-                  _flaxBinding210,
-                  _callback10,
+                  _flaxBinding211,
+                  _flaxAdapters.flaxAdapter28,
                   id: "callback:<>(p:r:element:any?:)->iterable:[any?:]",
-                  invoke: _callback10Invoke,
-                  matches: _callback10Matches,
+                  invoke: _flaxAdapters.flaxAdapter28Invoke,
+                  matches: _flaxAdapters.flaxAdapter28Matches,
                 ),
               ),
             ),
@@ -752,9 +743,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _CachingIterable_super_expand,
@@ -762,15 +753,15 @@ const sdk_foundationBindings = FlaxBindingModule(
           ownerTypes: [_flaxDefault_CachingIterable_0],
         ),
         "@super:take": FlaxInstanceMethod.plain(
-          _flaxBinding211,
+          _flaxBinding212,
           FlaxTypeRef(
             "iterable",
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _CachingIterable_super_take,
@@ -797,23 +788,23 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _CachingIterable_super_takeWhile,
         ),
         "@super:skip": FlaxInstanceMethod.plain(
-          _flaxBinding211,
+          _flaxBinding212,
           FlaxTypeRef(
             "iterable",
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _CachingIterable_super_skip,
@@ -840,29 +831,29 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _CachingIterable_super_skipWhile,
         ),
         "@super:elementAt": FlaxInstanceMethod.plain(
-          _flaxBinding212,
+          _flaxBinding213,
           FlaxTypeRef("any", nullable: true),
           _CachingIterable_super_elementAt,
         ),
         "@super:toList": FlaxInstanceMethod.plain(
-          _flaxBinding213,
+          _flaxBinding214,
           FlaxTypeRef(
             "list",
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "list:[any?:]",
-              _collection22Create,
-              _collection22Matches,
+              _flaxAdapters.flaxAdapter43Create,
+              _flaxAdapters.flaxAdapter43Matches,
             ),
-            iterable: _flaxBinding210,
+            iterable: _flaxBinding211,
           ),
           _CachingIterable_super_toList,
         ),
@@ -873,9 +864,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _CachingIterable_super_cast,
@@ -891,9 +882,9 @@ const sdk_foundationBindings = FlaxBindingModule(
                 item: flaxNullableAnyType,
                 collection: FlaxCollectionBinding(
                   "iterable:[any?:]",
-                  _collection21Create,
-                  _collection21Matches,
-                  restore: _collection21Restore,
+                  _flaxAdapters.flaxAdapter42Create,
+                  _flaxAdapters.flaxAdapter42Matches,
+                  restore: _flaxAdapters.flaxAdapter42Restore,
                 ),
               ),
             ),
@@ -903,9 +894,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _CachingIterable_super_followedBy,
@@ -917,16 +908,16 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _CachingIterable_super_whereType,
           genericFactory: _flaxGeneric_CachingIterable_super_whereType,
           ownerTypes: [_flaxDefault_CachingIterable_0],
         ),
-        "@super:contains": _flaxBinding215,
+        "@super:contains": _flaxBinding218,
         "@super:forEach": FlaxInstanceMethod.plain(
           <FlaxParameter>[
             FlaxParameter.required(
@@ -936,10 +927,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxVoidType,
-                  _callback13,
+                  _flaxAdapters.flaxAdapter25,
                   id: "callback:<>(p:r:element:any?:)->void:",
-                  invoke: _callback13Invoke,
-                  matches: _callback13Matches,
+                  invoke: _flaxAdapters.flaxAdapter25Invoke,
+                  matches: _flaxAdapters.flaxAdapter25Matches,
                 ),
               ),
             ),
@@ -1011,10 +1002,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback16,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback16Invoke,
-                  matches: _callback16Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -1022,7 +1013,7 @@ const sdk_foundationBindings = FlaxBindingModule(
           flaxBoolType,
           _CachingIterable_super_every,
         ),
-        "@super:join": _flaxBinding216,
+        "@super:join": _flaxBinding219,
         "@super:any": FlaxInstanceMethod.plain(
           <FlaxParameter>[
             FlaxParameter.required(
@@ -1032,10 +1023,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback17,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback17Invoke,
-                  matches: _callback17Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -1050,10 +1041,10 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "set:[any?:]",
-              _collection23Create,
-              _collection23Matches,
+              _flaxAdapters.flaxAdapter44Create,
+              _flaxAdapters.flaxAdapter44Matches,
             ),
-            iterable: _flaxBinding210,
+            iterable: _flaxBinding211,
           ),
           _CachingIterable_super_toSet,
         ),
@@ -1066,10 +1057,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback18,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback18Invoke,
-                  matches: _callback18Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -1081,10 +1072,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [],
                   flaxNullableAnyType,
-                  _callback19,
+                  _flaxAdapters.flaxAdapter20,
                   id: "callback:<>()->any?:",
-                  invoke: _callback19Invoke,
-                  matches: _callback19Matches,
+                  invoke: _flaxAdapters.flaxAdapter20Invoke,
+                  matches: _flaxAdapters.flaxAdapter20Matches,
                 ),
               ),
               required: false,
@@ -1102,10 +1093,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback20,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback20Invoke,
-                  matches: _callback20Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -1117,10 +1108,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [],
                   flaxNullableAnyType,
-                  _callback21,
+                  _flaxAdapters.flaxAdapter20,
                   id: "callback:<>()->any?:",
-                  invoke: _callback21Invoke,
-                  matches: _callback21Matches,
+                  invoke: _flaxAdapters.flaxAdapter20Invoke,
+                  matches: _flaxAdapters.flaxAdapter20Matches,
                 ),
               ),
               required: false,
@@ -1138,10 +1129,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback22,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback22Invoke,
-                  matches: _callback22Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -1153,10 +1144,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [],
                   flaxNullableAnyType,
-                  _callback23,
+                  _flaxAdapters.flaxAdapter20,
                   id: "callback:<>()->any?:",
-                  invoke: _callback23Invoke,
-                  matches: _callback23Matches,
+                  invoke: _flaxAdapters.flaxAdapter20Invoke,
+                  matches: _flaxAdapters.flaxAdapter20Matches,
                 ),
               ),
               required: false,
@@ -1170,9 +1161,9 @@ const sdk_foundationBindings = FlaxBindingModule(
           FlaxTypeRef("object", id: "flax.core/flutter#type:Iterator"),
           _CachingIterable_super_get_iterator,
         ),
-        "@super:get:length": _flaxBinding217,
-        "@super:get:isEmpty": _flaxBinding218,
-        "@super:get:isNotEmpty": _flaxBinding219,
+        "@super:get:length": _flaxBinding220,
+        "@super:get:isEmpty": _flaxBinding221,
+        "@super:get:isNotEmpty": _flaxBinding222,
         "@super:get:first": FlaxInstanceMethod.plain(
           _flaxBinding131,
           FlaxTypeRef("any", nullable: true),
@@ -1189,7 +1180,7 @@ const sdk_foundationBindings = FlaxBindingModule(
           _CachingIterable_super_get_single,
         ),
       },
-      constructors: {"": _flaxBinding221, "@implementation": _flaxBinding221},
+      constructors: {"": _flaxBinding224, "@implementation": _flaxBinding224},
       create: _createCachingIterable,
       disposeMethod: null,
       listenerPairs: {},
@@ -1202,8 +1193,8 @@ const sdk_foundationBindings = FlaxBindingModule(
           "map",
           0,
           FlaxCallbackBinding(
-            [FlaxCallbackParameter.plain("toElement", _flaxBinding223)],
-            _flaxBinding210,
+            [FlaxCallbackParameter.plain("toElement", _flaxBinding226)],
+            _flaxBinding211,
             _callback24,
             id: "callback:<T:any?:=any?:>(p:r:toElement:callback:<>(p:r:e:any?:)->any?:)->iterable:[any?:]",
             invoke: _callback24Invoke,
@@ -1230,10 +1221,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                       ),
                     ],
                     flaxBoolType,
-                    _callback25,
+                    _flaxAdapters.flaxAdapter30,
                     id: "callback:<>(p:r:element:any?:)->bool:",
-                    invoke: _callback25Invoke,
-                    matches: _callback25Matches,
+                    invoke: _flaxAdapters.flaxAdapter30Invoke,
+                    matches: _flaxAdapters.flaxAdapter30Matches,
                   ),
                 ),
               ),
@@ -1243,9 +1234,9 @@ const sdk_foundationBindings = FlaxBindingModule(
               item: flaxNullableAnyType,
               collection: FlaxCollectionBinding(
                 "iterable:[any?:]",
-                _collection21Create,
-                _collection21Matches,
-                restore: _collection21Restore,
+                _flaxAdapters.flaxAdapter42Create,
+                _flaxAdapters.flaxAdapter42Matches,
+                restore: _flaxAdapters.flaxAdapter42Restore,
               ),
             ),
             id: "callback:<>(p:r:test:callback:<>(p:r:element:any?:)->bool:)->iterable:[any?:]",
@@ -1256,8 +1247,8 @@ const sdk_foundationBindings = FlaxBindingModule(
           "expand",
           0,
           FlaxCallbackBinding(
-            [FlaxCallbackParameter.plain("toElements", _flaxBinding225)],
-            _flaxBinding210,
+            [FlaxCallbackParameter.plain("toElements", _flaxBinding228)],
+            _flaxBinding211,
             _callback26,
             id: "callback:<T:any?:=any?:>(p:r:toElements:callback:<>(p:r:element:any?:)->iterable:[any?:])->iterable:[any?:]",
             invoke: _callback26Invoke,
@@ -1277,9 +1268,9 @@ const sdk_foundationBindings = FlaxBindingModule(
               item: flaxNullableAnyType,
               collection: FlaxCollectionBinding(
                 "iterable:[any?:]",
-                _collection21Create,
-                _collection21Matches,
-                restore: _collection21Restore,
+                _flaxAdapters.flaxAdapter42Create,
+                _flaxAdapters.flaxAdapter42Matches,
+                restore: _flaxAdapters.flaxAdapter42Restore,
               ),
             ),
             id: "callback:<>(p:r:count:int:)->iterable:[any?:]",
@@ -1311,9 +1302,9 @@ const sdk_foundationBindings = FlaxBindingModule(
               item: flaxNullableAnyType,
               collection: FlaxCollectionBinding(
                 "iterable:[any?:]",
-                _collection21Create,
-                _collection21Matches,
-                restore: _collection21Restore,
+                _flaxAdapters.flaxAdapter42Create,
+                _flaxAdapters.flaxAdapter42Matches,
+                restore: _flaxAdapters.flaxAdapter42Restore,
               ),
             ),
             id: "callback:<>(p:r:test:callback:<>(p:r:value:any?:)->bool:)->iterable:[any?:]",
@@ -1330,9 +1321,9 @@ const sdk_foundationBindings = FlaxBindingModule(
               item: flaxNullableAnyType,
               collection: FlaxCollectionBinding(
                 "iterable:[any?:]",
-                _collection21Create,
-                _collection21Matches,
-                restore: _collection21Restore,
+                _flaxAdapters.flaxAdapter42Create,
+                _flaxAdapters.flaxAdapter42Matches,
+                restore: _flaxAdapters.flaxAdapter42Restore,
               ),
             ),
             id: "callback:<>(p:r:count:int:)->iterable:[any?:]",
@@ -1364,9 +1355,9 @@ const sdk_foundationBindings = FlaxBindingModule(
               item: flaxNullableAnyType,
               collection: FlaxCollectionBinding(
                 "iterable:[any?:]",
-                _collection21Create,
-                _collection21Matches,
-                restore: _collection21Restore,
+                _flaxAdapters.flaxAdapter42Create,
+                _flaxAdapters.flaxAdapter42Matches,
+                restore: _flaxAdapters.flaxAdapter42Restore,
               ),
             ),
             id: "callback:<>(p:r:test:callback:<>(p:r:value:any?:)->bool:)->iterable:[any?:]",
@@ -1400,10 +1391,10 @@ const sdk_foundationBindings = FlaxBindingModule(
               item: flaxNullableAnyType,
               collection: FlaxCollectionBinding(
                 "list:[any?:]",
-                _collection22Create,
-                _collection22Matches,
+                _flaxAdapters.flaxAdapter43Create,
+                _flaxAdapters.flaxAdapter43Matches,
               ),
-              iterable: _flaxBinding210,
+              iterable: _flaxBinding211,
             ),
             id: "callback:<>(n:o:growable:bool:)->list:[any?:]",
           ),
@@ -1414,7 +1405,7 @@ const sdk_foundationBindings = FlaxBindingModule(
           0,
           FlaxCallbackBinding(
             [],
-            _flaxBinding210,
+            _flaxBinding211,
             _callback29,
             id: "callback:<R:any?:=any?:>()->iterable:[any?:]",
             invoke: _callback29Invoke,
@@ -1436,9 +1427,9 @@ const sdk_foundationBindings = FlaxBindingModule(
                   item: flaxNullableAnyType,
                   collection: FlaxCollectionBinding(
                     "iterable:[any?:]",
-                    _collection21Create,
-                    _collection21Matches,
-                    restore: _collection21Restore,
+                    _flaxAdapters.flaxAdapter42Create,
+                    _flaxAdapters.flaxAdapter42Matches,
+                    restore: _flaxAdapters.flaxAdapter42Restore,
                   ),
                 ),
               ),
@@ -1448,9 +1439,9 @@ const sdk_foundationBindings = FlaxBindingModule(
               item: flaxNullableAnyType,
               collection: FlaxCollectionBinding(
                 "iterable:[any?:]",
-                _collection21Create,
-                _collection21Matches,
-                restore: _collection21Restore,
+                _flaxAdapters.flaxAdapter42Create,
+                _flaxAdapters.flaxAdapter42Matches,
+                restore: _flaxAdapters.flaxAdapter42Restore,
               ),
             ),
             id: "callback:<>(p:r:other:iterable:[any?:])->iterable:[any?:]",
@@ -1462,7 +1453,7 @@ const sdk_foundationBindings = FlaxBindingModule(
           0,
           FlaxCallbackBinding(
             [],
-            _flaxBinding210,
+            _flaxBinding211,
             _callback30,
             id: "callback:<T:any?:=any?:>()->iterable:[any?:]",
             invoke: _callback30Invoke,
@@ -1472,7 +1463,7 @@ const sdk_foundationBindings = FlaxBindingModule(
           hasSuper: true,
           hasCallContext: true,
         ),
-        _flaxBinding226,
+        _flaxBinding229,
         FlaxProxyMember(
           "forEach",
           0,
@@ -1490,10 +1481,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                       ),
                     ],
                     flaxVoidType,
-                    _callback31,
+                    _flaxAdapters.flaxAdapter25,
                     id: "callback:<>(p:r:element:any?:)->void:",
-                    invoke: _callback31Invoke,
-                    matches: _callback31Matches,
+                    invoke: _flaxAdapters.flaxAdapter25Invoke,
+                    matches: _flaxAdapters.flaxAdapter25Matches,
                   ),
                 ),
               ),
@@ -1540,7 +1531,7 @@ const sdk_foundationBindings = FlaxBindingModule(
           FlaxCallbackBinding(
             [
               FlaxCallbackParameter.plain("initialValue", flaxNullableAnyType),
-              FlaxCallbackParameter.plain("combine", _flaxBinding228),
+              FlaxCallbackParameter.plain("combine", _flaxBinding231),
             ],
             flaxNullableAnyType,
             _callback33,
@@ -1569,10 +1560,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                       ),
                     ],
                     flaxBoolType,
-                    _callback34,
+                    _flaxAdapters.flaxAdapter30,
                     id: "callback:<>(p:r:element:any?:)->bool:",
-                    invoke: _callback34Invoke,
-                    matches: _callback34Matches,
+                    invoke: _flaxAdapters.flaxAdapter30Invoke,
+                    matches: _flaxAdapters.flaxAdapter30Matches,
                   ),
                 ),
               ),
@@ -1582,7 +1573,7 @@ const sdk_foundationBindings = FlaxBindingModule(
           ),
           hasSuper: true,
         ),
-        _flaxBinding230,
+        _flaxBinding233,
         FlaxProxyMember(
           "any",
           0,
@@ -1600,10 +1591,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                       ),
                     ],
                     flaxBoolType,
-                    _callback35,
+                    _flaxAdapters.flaxAdapter30,
                     id: "callback:<>(p:r:element:any?:)->bool:",
-                    invoke: _callback35Invoke,
-                    matches: _callback35Matches,
+                    invoke: _flaxAdapters.flaxAdapter30Invoke,
+                    matches: _flaxAdapters.flaxAdapter30Matches,
                   ),
                 ),
               ),
@@ -1623,10 +1614,10 @@ const sdk_foundationBindings = FlaxBindingModule(
               item: flaxNullableAnyType,
               collection: FlaxCollectionBinding(
                 "set:[any?:]",
-                _collection23Create,
-                _collection23Matches,
+                _flaxAdapters.flaxAdapter44Create,
+                _flaxAdapters.flaxAdapter44Matches,
               ),
-              iterable: _flaxBinding210,
+              iterable: _flaxBinding211,
             ),
             id: "callback:<>()->set:[any?:]",
           ),
@@ -1649,10 +1640,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                       ),
                     ],
                     flaxBoolType,
-                    _callback36,
+                    _flaxAdapters.flaxAdapter30,
                     id: "callback:<>(p:r:element:any?:)->bool:",
-                    invoke: _callback36Invoke,
-                    matches: _callback36Matches,
+                    invoke: _flaxAdapters.flaxAdapter30Invoke,
+                    matches: _flaxAdapters.flaxAdapter30Matches,
                   ),
                 ),
               ),
@@ -1664,10 +1655,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                   callback: FlaxCallbackBinding(
                     [],
                     flaxNullableAnyType,
-                    _callback37,
+                    _flaxAdapters.flaxAdapter20,
                     id: "callback:<>()->any?:",
-                    invoke: _callback37Invoke,
-                    matches: _callback37Matches,
+                    invoke: _flaxAdapters.flaxAdapter20Invoke,
+                    matches: _flaxAdapters.flaxAdapter20Matches,
                   ),
                 ),
                 required: false,
@@ -1696,10 +1687,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                       ),
                     ],
                     flaxBoolType,
-                    _callback38,
+                    _flaxAdapters.flaxAdapter30,
                     id: "callback:<>(p:r:element:any?:)->bool:",
-                    invoke: _callback38Invoke,
-                    matches: _callback38Matches,
+                    invoke: _flaxAdapters.flaxAdapter30Invoke,
+                    matches: _flaxAdapters.flaxAdapter30Matches,
                   ),
                 ),
               ),
@@ -1711,10 +1702,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                   callback: FlaxCallbackBinding(
                     [],
                     flaxNullableAnyType,
-                    _callback39,
+                    _flaxAdapters.flaxAdapter20,
                     id: "callback:<>()->any?:",
-                    invoke: _callback39Invoke,
-                    matches: _callback39Matches,
+                    invoke: _flaxAdapters.flaxAdapter20Invoke,
+                    matches: _flaxAdapters.flaxAdapter20Matches,
                   ),
                 ),
                 required: false,
@@ -1743,10 +1734,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                       ),
                     ],
                     flaxBoolType,
-                    _callback40,
+                    _flaxAdapters.flaxAdapter30,
                     id: "callback:<>(p:r:element:any?:)->bool:",
-                    invoke: _callback40Invoke,
-                    matches: _callback40Matches,
+                    invoke: _flaxAdapters.flaxAdapter30Invoke,
+                    matches: _flaxAdapters.flaxAdapter30Matches,
                   ),
                 ),
               ),
@@ -1758,10 +1749,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                   callback: FlaxCallbackBinding(
                     [],
                     flaxNullableAnyType,
-                    _callback41,
+                    _flaxAdapters.flaxAdapter20,
                     id: "callback:<>()->any?:",
-                    invoke: _callback41Invoke,
-                    matches: _callback41Matches,
+                    invoke: _flaxAdapters.flaxAdapter20Invoke,
+                    matches: _flaxAdapters.flaxAdapter20Matches,
                   ),
                 ),
                 required: false,
@@ -1783,9 +1774,9 @@ const sdk_foundationBindings = FlaxBindingModule(
           ),
           hasSuper: true,
         ),
-        _flaxBinding231,
-        _flaxBinding232,
-        _flaxBinding233,
+        _flaxBinding234,
+        _flaxBinding235,
+        _flaxBinding236,
         FlaxProxyMember(
           "first",
           1,
@@ -1817,21 +1808,21 @@ const sdk_foundationBindings = FlaxBindingModule(
           hasSuper: true,
         ),
       ]),
-      collectionView: _flaxBinding210,
+      collectionView: _flaxBinding211,
     ),
-    _flaxBinding237,
-    _flaxBinding250,
-    _flaxBinding265,
-    _flaxBinding272,
+    _flaxBinding240,
+    _flaxBinding253,
+    _flaxBinding268,
+    _flaxBinding275,
     FlaxObjectBinding(
       "flax.core/sdk_foundation#type:DiagnosticableNode",
       [
-        _flaxBinding273,
-        _flaxBinding274,
-        _flaxBinding275,
         _flaxBinding276,
         _flaxBinding277,
         _flaxBinding278,
+        _flaxBinding279,
+        _flaxBinding280,
+        _flaxBinding281,
         FlaxGetter.plain(
           "value",
           FlaxTypeRef(
@@ -1840,62 +1831,32 @@ const sdk_foundationBindings = FlaxBindingModule(
           ),
           _DiagnosticableNode_value,
         ),
-        _flaxBinding279,
-        _flaxBinding280,
-        _flaxBinding281,
         _flaxBinding282,
         _flaxBinding283,
         _flaxBinding284,
+        _flaxBinding285,
+        _flaxBinding286,
+        _flaxBinding287,
       ],
       {
-        "toDescription": FlaxInstanceMethod.plain(
-          _flaxBinding285,
-          flaxStringType,
-          _DiagnosticableNode_toDescription,
-        ),
-        "isFiltered": FlaxInstanceMethod.shared(
-          _flaxBinding56,
-          _DiagnosticableNode_isFiltered,
-        ),
-        "getProperties": FlaxInstanceMethod.shared(
-          _flaxBinding50,
-          _DiagnosticableNode_getProperties,
-        ),
-        "getChildren": FlaxInstanceMethod.shared(
-          _flaxBinding50,
-          _DiagnosticableNode_getChildren,
-        ),
-        "toTimelineArguments": FlaxInstanceMethod.shared(
-          _flaxBinding58,
-          _DiagnosticableNode_toTimelineArguments,
-        ),
-        "toJsonMap": FlaxInstanceMethod.shared(
-          _flaxBinding60,
-          _DiagnosticableNode_toJsonMap,
-        ),
-        "toJsonMapIterative": FlaxInstanceMethod.shared(
-          _flaxBinding60,
-          _DiagnosticableNode_toJsonMapIterative,
-        ),
-        "toString": FlaxInstanceMethod.plain(
-          _flaxBinding286,
-          flaxStringType,
-          _DiagnosticableNode_toString,
-        ),
-        "toStringDeep": FlaxInstanceMethod.plain(
-          _flaxBinding287,
-          flaxStringType,
-          _DiagnosticableNode_toStringDeep,
-        ),
-        "@super:toDescription": _flaxBinding288,
-        "@super:isFiltered": _flaxBinding289,
-        "@super:getProperties": _flaxBinding290,
-        "@super:getChildren": _flaxBinding291,
-        "@super:toTimelineArguments": _flaxBinding292,
-        "@super:toJsonMap": _flaxBinding293,
-        "@super:toJsonMapIterative": _flaxBinding294,
-        "@super:toString": _flaxBinding295,
-        "@super:toStringDeep": _flaxBinding296,
+        "toDescription": _flaxBinding289,
+        "isFiltered": _flaxBinding290,
+        "getProperties": _flaxBinding291,
+        "getChildren": _flaxBinding292,
+        "toTimelineArguments": _flaxBinding293,
+        "toJsonMap": _flaxBinding294,
+        "toJsonMapIterative": _flaxBinding295,
+        "toString": _flaxBinding297,
+        "toStringDeep": _flaxBinding299,
+        "@super:toDescription": _flaxBinding300,
+        "@super:isFiltered": _flaxBinding301,
+        "@super:getProperties": _flaxBinding302,
+        "@super:getChildren": _flaxBinding303,
+        "@super:toTimelineArguments": _flaxBinding304,
+        "@super:toJsonMap": _flaxBinding305,
+        "@super:toJsonMapIterative": _flaxBinding306,
+        "@super:toString": _flaxBinding307,
+        "@super:toStringDeep": _flaxBinding308,
         "@super:get:value": FlaxInstanceMethod.plain(
           _flaxBinding131,
           FlaxTypeRef(
@@ -1912,18 +1873,18 @@ const sdk_foundationBindings = FlaxBindingModule(
           _flaxBinding52,
           _DiagnosticableNode_super_get_style,
         ),
-        "@super:get:emptyBodyDescription": _flaxBinding257,
-        "@super:get:name": _flaxBinding297,
-        "@super:get:showSeparator": _flaxBinding298,
-        "@super:get:level": _flaxBinding299,
-        "@super:get:showName": _flaxBinding300,
-        "@super:get:linePrefix": _flaxBinding301,
-        "@super:get:allowWrap": _flaxBinding302,
-        "@super:get:allowNameWrap": _flaxBinding303,
-        "@super:get:allowTruncate": _flaxBinding304,
-        "@super:get:textTreeConfiguration": _flaxBinding305,
+        "@super:get:emptyBodyDescription": _flaxBinding260,
+        "@super:get:name": _flaxBinding309,
+        "@super:get:showSeparator": _flaxBinding310,
+        "@super:get:level": _flaxBinding311,
+        "@super:get:showName": _flaxBinding312,
+        "@super:get:linePrefix": _flaxBinding313,
+        "@super:get:allowWrap": _flaxBinding314,
+        "@super:get:allowNameWrap": _flaxBinding315,
+        "@super:get:allowTruncate": _flaxBinding316,
+        "@super:get:textTreeConfiguration": _flaxBinding317,
       },
-      constructors: {"": _flaxBinding307, "@implementation": _flaxBinding307},
+      constructors: {"": _flaxBinding319, "@implementation": _flaxBinding319},
       create: _createDiagnosticableNode,
       disposeMethod: null,
       listenerPairs: {},
@@ -1935,15 +1896,15 @@ const sdk_foundationBindings = FlaxBindingModule(
       matches: _isDiagnosticableNode,
       methods: const {},
       proxy: FlaxProxyBinding([
-        _flaxBinding309,
-        _flaxBinding310,
-        _flaxBinding311,
-        _flaxBinding312,
-        _flaxBinding313,
-        _flaxBinding314,
-        _flaxBinding315,
-        _flaxBinding317,
-        _flaxBinding319,
+        _flaxBinding321,
+        _flaxBinding322,
+        _flaxBinding323,
+        _flaxBinding324,
+        _flaxBinding325,
+        _flaxBinding326,
+        _flaxBinding327,
+        _flaxBinding329,
+        _flaxBinding331,
         FlaxProxyMember(
           "value",
           1,
@@ -1957,130 +1918,96 @@ const sdk_foundationBindings = FlaxBindingModule(
           ),
           hasSuper: true,
         ),
-        _flaxBinding320,
-        _flaxBinding321,
-        _flaxBinding262,
-        _flaxBinding322,
-        _flaxBinding323,
-        _flaxBinding324,
-        _flaxBinding325,
-        _flaxBinding326,
-        _flaxBinding327,
-        _flaxBinding328,
-        _flaxBinding329,
-        _flaxBinding330,
+        _flaxBinding332,
+        _flaxBinding333,
+        _flaxBinding265,
+        _flaxBinding334,
+        _flaxBinding335,
+        _flaxBinding336,
+        _flaxBinding337,
+        _flaxBinding338,
+        _flaxBinding339,
+        _flaxBinding340,
+        _flaxBinding341,
+        _flaxBinding342,
       ]),
     ),
-    _flaxBinding354,
-    _flaxBinding355,
-    _flaxBinding390,
-    _flaxBinding393,
-    _flaxBinding384,
+    _flaxBinding366,
+    _flaxBinding367,
+    _flaxBinding389,
+    _flaxBinding392,
+    _flaxBinding383,
     FlaxObjectBinding(
       "flax.core/sdk_foundation#type:DiagnosticsProperty",
       [
+        _flaxBinding276,
+        _flaxBinding277,
+        _flaxBinding278,
+        _flaxBinding279,
+        _flaxBinding280,
+        _flaxBinding281,
+        FlaxGetter.plain(
+          "value",
+          FlaxTypeRef("any", nullable: true),
+          _DiagnosticsProperty_value,
+        ),
+        _flaxBinding369,
+        _flaxBinding283,
+        _flaxBinding284,
+        _flaxBinding285,
+        _flaxBinding286,
+        _flaxBinding393,
         _flaxBinding394,
         _flaxBinding395,
         _flaxBinding396,
         _flaxBinding397,
         _flaxBinding398,
         _flaxBinding399,
-        FlaxGetter.plain(
-          "value",
-          FlaxTypeRef("any", nullable: true),
-          _DiagnosticsProperty_value,
-        ),
         _flaxBinding400,
         _flaxBinding401,
-        _flaxBinding402,
-        _flaxBinding403,
-        _flaxBinding404,
-        _flaxBinding405,
-        _flaxBinding406,
-        _flaxBinding407,
-        _flaxBinding408,
-        _flaxBinding409,
-        _flaxBinding410,
-        _flaxBinding411,
-        _flaxBinding412,
-        _flaxBinding413,
       ],
       {
-        "toDescription": FlaxInstanceMethod.plain(
-          _flaxBinding285,
-          flaxStringType,
-          _DiagnosticsProperty_toDescription,
-        ),
-        "isFiltered": FlaxInstanceMethod.shared(
-          _flaxBinding56,
-          _DiagnosticsProperty_isFiltered,
-        ),
-        "getProperties": FlaxInstanceMethod.shared(
-          _flaxBinding50,
-          _DiagnosticsProperty_getProperties,
-        ),
-        "getChildren": FlaxInstanceMethod.shared(
-          _flaxBinding50,
-          _DiagnosticsProperty_getChildren,
-        ),
-        "toTimelineArguments": FlaxInstanceMethod.shared(
-          _flaxBinding58,
-          _DiagnosticsProperty_toTimelineArguments,
-        ),
-        "toJsonMap": FlaxInstanceMethod.shared(
-          _flaxBinding60,
-          _DiagnosticsProperty_toJsonMap,
-        ),
-        "toJsonMapIterative": FlaxInstanceMethod.shared(
-          _flaxBinding60,
-          _DiagnosticsProperty_toJsonMapIterative,
-        ),
-        "toString": FlaxInstanceMethod.plain(
-          _flaxBinding286,
-          flaxStringType,
-          _DiagnosticsProperty_toString,
-        ),
-        "toStringDeep": FlaxInstanceMethod.plain(
-          _flaxBinding287,
-          flaxStringType,
-          _DiagnosticsProperty_toStringDeep,
-        ),
-        "valueToString": FlaxInstanceMethod.plain(
-          _flaxBinding285,
-          flaxStringType,
-          _DiagnosticsProperty_valueToString,
-        ),
-        "@super:toDescription": _flaxBinding288,
-        "@super:isFiltered": _flaxBinding289,
-        "@super:getProperties": _flaxBinding290,
-        "@super:getChildren": _flaxBinding291,
-        "@super:toTimelineArguments": _flaxBinding292,
-        "@super:toJsonMap": _flaxBinding293,
-        "@super:toJsonMapIterative": _flaxBinding294,
-        "@super:toString": _flaxBinding295,
-        "@super:toStringDeep": _flaxBinding296,
-        "@super:valueToString": _flaxBinding414,
-        "@super:get:expandableValue": _flaxBinding415,
-        "@super:get:allowWrap": _flaxBinding302,
-        "@super:get:allowNameWrap": _flaxBinding303,
-        "@super:get:ifNull": _flaxBinding416,
-        "@super:get:ifEmpty": _flaxBinding417,
-        "@super:get:tooltip": _flaxBinding418,
-        "@super:get:missingIfNull": _flaxBinding419,
-        "@super:get:propertyType": _flaxBinding420,
+        "toDescription": _flaxBinding402,
+        "isFiltered": _flaxBinding403,
+        "getProperties": _flaxBinding291,
+        "getChildren": _flaxBinding292,
+        "toTimelineArguments": _flaxBinding293,
+        "toJsonMap": _flaxBinding404,
+        "toJsonMapIterative": _flaxBinding405,
+        "toString": _flaxBinding406,
+        "toStringDeep": _flaxBinding407,
+        "valueToString": _flaxBinding408,
+        "@super:toDescription": _flaxBinding300,
+        "@super:isFiltered": _flaxBinding301,
+        "@super:getProperties": _flaxBinding302,
+        "@super:getChildren": _flaxBinding303,
+        "@super:toTimelineArguments": _flaxBinding304,
+        "@super:toJsonMap": _flaxBinding305,
+        "@super:toJsonMapIterative": _flaxBinding306,
+        "@super:toString": _flaxBinding307,
+        "@super:toStringDeep": _flaxBinding308,
+        "@super:valueToString": _flaxBinding409,
+        "@super:get:expandableValue": _flaxBinding410,
+        "@super:get:allowWrap": _flaxBinding314,
+        "@super:get:allowNameWrap": _flaxBinding315,
+        "@super:get:ifNull": _flaxBinding411,
+        "@super:get:ifEmpty": _flaxBinding412,
+        "@super:get:tooltip": _flaxBinding413,
+        "@super:get:missingIfNull": _flaxBinding414,
+        "@super:get:propertyType": _flaxBinding415,
         "@super:get:value": FlaxInstanceMethod.plain(
           _flaxBinding131,
           FlaxTypeRef("any", nullable: true),
           _DiagnosticsProperty_super_get_value,
         ),
-        "@super:get:exception": _flaxBinding421,
-        "@super:get:defaultValue": _flaxBinding422,
-        "@super:get:isInteresting": _flaxBinding423,
-        "@super:get:level": _flaxBinding299,
-        "@super:get:name": _flaxBinding297,
-        "@super:get:showSeparator": _flaxBinding298,
-        "@super:get:showName": _flaxBinding300,
-        "@super:get:linePrefix": _flaxBinding301,
+        "@super:get:exception": _flaxBinding416,
+        "@super:get:defaultValue": _flaxBinding417,
+        "@super:get:isInteresting": _flaxBinding418,
+        "@super:get:level": _flaxBinding311,
+        "@super:get:name": _flaxBinding309,
+        "@super:get:showSeparator": _flaxBinding310,
+        "@super:get:showName": _flaxBinding312,
+        "@super:get:linePrefix": _flaxBinding313,
         "@super:get:emptyBodyDescription": FlaxInstanceMethod.shared(
           flaxNullableStringCall,
           _DiagnosticsProperty_super_get_emptyBodyDescription,
@@ -2089,14 +2016,14 @@ const sdk_foundationBindings = FlaxBindingModule(
           _flaxBinding71,
           _DiagnosticsProperty_super_get_style,
         ),
-        "@super:get:allowTruncate": _flaxBinding304,
-        "@super:get:textTreeConfiguration": _flaxBinding305,
+        "@super:get:allowTruncate": _flaxBinding316,
+        "@super:get:textTreeConfiguration": _flaxBinding317,
       },
       constructors: {
-        "": _flaxBinding424,
-        "lazy": _flaxBinding425,
-        "@implementation": _flaxBinding424,
-        "@implementation:lazy": _flaxBinding425,
+        "": _flaxBinding419,
+        "lazy": _flaxBinding420,
+        "@implementation": _flaxBinding419,
+        "@implementation:lazy": _flaxBinding420,
       },
       create: _createDiagnosticsProperty,
       disposeMethod: null,
@@ -2109,24 +2036,24 @@ const sdk_foundationBindings = FlaxBindingModule(
       matches: _isDiagnosticsProperty,
       methods: const {},
       proxy: FlaxProxyBinding([
-        _flaxBinding309,
-        _flaxBinding310,
-        _flaxBinding311,
-        _flaxBinding312,
-        _flaxBinding313,
-        _flaxBinding314,
-        _flaxBinding315,
-        _flaxBinding317,
-        _flaxBinding319,
+        _flaxBinding321,
+        _flaxBinding322,
+        _flaxBinding323,
+        _flaxBinding324,
+        _flaxBinding325,
+        _flaxBinding326,
+        _flaxBinding327,
+        _flaxBinding329,
+        _flaxBinding331,
+        _flaxBinding421,
+        _flaxBinding422,
+        _flaxBinding339,
+        _flaxBinding340,
+        _flaxBinding423,
+        _flaxBinding424,
+        _flaxBinding425,
         _flaxBinding426,
         _flaxBinding427,
-        _flaxBinding327,
-        _flaxBinding328,
-        _flaxBinding428,
-        _flaxBinding429,
-        _flaxBinding430,
-        _flaxBinding431,
-        _flaxBinding432,
         FlaxProxyMember(
           "value",
           1,
@@ -2137,36 +2064,36 @@ const sdk_foundationBindings = FlaxBindingModule(
           ),
           hasSuper: true,
         ),
-        _flaxBinding433,
-        _flaxBinding434,
-        _flaxBinding435,
-        _flaxBinding324,
-        _flaxBinding322,
-        _flaxBinding323,
-        _flaxBinding325,
-        _flaxBinding326,
-        _flaxBinding262,
-        _flaxBinding383,
-        _flaxBinding329,
-        _flaxBinding330,
+        _flaxBinding428,
+        _flaxBinding429,
+        _flaxBinding430,
+        _flaxBinding336,
+        _flaxBinding334,
+        _flaxBinding335,
+        _flaxBinding337,
+        _flaxBinding338,
+        _flaxBinding265,
+        _flaxBinding382,
+        _flaxBinding341,
+        _flaxBinding342,
       ]),
     ),
-    _flaxBinding459,
-    _flaxBinding462,
-    _flaxBinding466,
-    _flaxBinding487,
-    _flaxBinding488,
+    _flaxBinding454,
+    _flaxBinding457,
+    _flaxBinding461,
+    _flaxBinding482,
+    _flaxBinding483,
     FlaxObjectBinding(
       "flax.core/sdk_foundation#type:EnumProperty",
       [
+        _flaxBinding484,
+        _flaxBinding283,
+        _flaxBinding284,
+        _flaxBinding485,
+        _flaxBinding486,
+        _flaxBinding487,
+        _flaxBinding488,
         _flaxBinding489,
-        _flaxBinding490,
-        _flaxBinding491,
-        _flaxBinding492,
-        _flaxBinding493,
-        _flaxBinding494,
-        _flaxBinding495,
-        _flaxBinding496,
         FlaxGetter.plain(
           "value",
           FlaxTypeRef(
@@ -2176,82 +2103,48 @@ const sdk_foundationBindings = FlaxBindingModule(
           ),
           _EnumProperty_value,
         ),
-        _flaxBinding497,
-        _flaxBinding498,
-        _flaxBinding499,
-        _flaxBinding500,
-        _flaxBinding501,
-        _flaxBinding502,
-        _flaxBinding503,
-        _flaxBinding504,
-        _flaxBinding505,
-        _flaxBinding506,
-        _flaxBinding507,
-        _flaxBinding508,
+        _flaxBinding490,
+        _flaxBinding491,
+        _flaxBinding492,
+        _flaxBinding278,
+        _flaxBinding276,
+        _flaxBinding277,
+        _flaxBinding279,
+        _flaxBinding280,
+        _flaxBinding281,
+        _flaxBinding369,
+        _flaxBinding285,
+        _flaxBinding286,
       ],
       {
-        "toJsonMap": FlaxInstanceMethod.shared(
-          _flaxBinding60,
-          _EnumProperty_toJsonMap,
-        ),
-        "valueToString": FlaxInstanceMethod.plain(
-          _flaxBinding285,
-          flaxStringType,
-          _EnumProperty_valueToString,
-        ),
-        "toDescription": FlaxInstanceMethod.plain(
-          _flaxBinding285,
-          flaxStringType,
-          _EnumProperty_toDescription,
-        ),
-        "getProperties": FlaxInstanceMethod.shared(
-          _flaxBinding50,
-          _EnumProperty_getProperties,
-        ),
-        "getChildren": FlaxInstanceMethod.shared(
-          _flaxBinding50,
-          _EnumProperty_getChildren,
-        ),
-        "isFiltered": FlaxInstanceMethod.shared(
-          _flaxBinding56,
-          _EnumProperty_isFiltered,
-        ),
-        "toTimelineArguments": FlaxInstanceMethod.shared(
-          _flaxBinding58,
-          _EnumProperty_toTimelineArguments,
-        ),
-        "toJsonMapIterative": FlaxInstanceMethod.shared(
-          _flaxBinding60,
-          _EnumProperty_toJsonMapIterative,
-        ),
-        "toStringDeep": FlaxInstanceMethod.plain(
-          _flaxBinding287,
-          flaxStringType,
-          _EnumProperty_toStringDeep,
-        ),
-        "toString": FlaxInstanceMethod.plain(
-          _flaxBinding286,
-          flaxStringType,
-          _EnumProperty_toString,
-        ),
-        "@super:toJsonMap": _flaxBinding293,
-        "@super:valueToString": _flaxBinding414,
-        "@super:toDescription": _flaxBinding288,
-        "@super:getProperties": _flaxBinding290,
-        "@super:getChildren": _flaxBinding291,
-        "@super:isFiltered": _flaxBinding289,
-        "@super:toTimelineArguments": _flaxBinding292,
-        "@super:toJsonMapIterative": _flaxBinding294,
-        "@super:toStringDeep": _flaxBinding296,
-        "@super:toString": _flaxBinding295,
-        "@super:get:expandableValue": _flaxBinding415,
-        "@super:get:allowWrap": _flaxBinding302,
-        "@super:get:allowNameWrap": _flaxBinding303,
-        "@super:get:ifNull": _flaxBinding416,
-        "@super:get:ifEmpty": _flaxBinding417,
-        "@super:get:tooltip": _flaxBinding418,
-        "@super:get:missingIfNull": _flaxBinding419,
-        "@super:get:propertyType": _flaxBinding420,
+        "toJsonMap": _flaxBinding493,
+        "valueToString": _flaxBinding494,
+        "toDescription": _flaxBinding495,
+        "getProperties": _flaxBinding291,
+        "getChildren": _flaxBinding292,
+        "isFiltered": _flaxBinding496,
+        "toTimelineArguments": _flaxBinding293,
+        "toJsonMapIterative": _flaxBinding497,
+        "toStringDeep": _flaxBinding498,
+        "toString": _flaxBinding499,
+        "@super:toJsonMap": _flaxBinding305,
+        "@super:valueToString": _flaxBinding409,
+        "@super:toDescription": _flaxBinding300,
+        "@super:getProperties": _flaxBinding302,
+        "@super:getChildren": _flaxBinding303,
+        "@super:isFiltered": _flaxBinding301,
+        "@super:toTimelineArguments": _flaxBinding304,
+        "@super:toJsonMapIterative": _flaxBinding306,
+        "@super:toStringDeep": _flaxBinding308,
+        "@super:toString": _flaxBinding307,
+        "@super:get:expandableValue": _flaxBinding410,
+        "@super:get:allowWrap": _flaxBinding314,
+        "@super:get:allowNameWrap": _flaxBinding315,
+        "@super:get:ifNull": _flaxBinding411,
+        "@super:get:ifEmpty": _flaxBinding412,
+        "@super:get:tooltip": _flaxBinding413,
+        "@super:get:missingIfNull": _flaxBinding414,
+        "@super:get:propertyType": _flaxBinding415,
         "@super:get:value": FlaxInstanceMethod.plain(
           _flaxBinding131,
           FlaxTypeRef(
@@ -2261,14 +2154,14 @@ const sdk_foundationBindings = FlaxBindingModule(
           ),
           _EnumProperty_super_get_value,
         ),
-        "@super:get:exception": _flaxBinding421,
-        "@super:get:defaultValue": _flaxBinding422,
-        "@super:get:isInteresting": _flaxBinding423,
-        "@super:get:level": _flaxBinding299,
-        "@super:get:name": _flaxBinding297,
-        "@super:get:showSeparator": _flaxBinding298,
-        "@super:get:showName": _flaxBinding300,
-        "@super:get:linePrefix": _flaxBinding301,
+        "@super:get:exception": _flaxBinding416,
+        "@super:get:defaultValue": _flaxBinding417,
+        "@super:get:isInteresting": _flaxBinding418,
+        "@super:get:level": _flaxBinding311,
+        "@super:get:name": _flaxBinding309,
+        "@super:get:showSeparator": _flaxBinding310,
+        "@super:get:showName": _flaxBinding312,
+        "@super:get:linePrefix": _flaxBinding313,
         "@super:get:emptyBodyDescription": FlaxInstanceMethod.shared(
           flaxNullableStringCall,
           _EnumProperty_super_get_emptyBodyDescription,
@@ -2277,10 +2170,10 @@ const sdk_foundationBindings = FlaxBindingModule(
           _flaxBinding71,
           _EnumProperty_super_get_style,
         ),
-        "@super:get:allowTruncate": _flaxBinding304,
-        "@super:get:textTreeConfiguration": _flaxBinding305,
+        "@super:get:allowTruncate": _flaxBinding316,
+        "@super:get:textTreeConfiguration": _flaxBinding317,
       },
-      constructors: {"": _flaxBinding510, "@implementation": _flaxBinding510},
+      constructors: {"": _flaxBinding501, "@implementation": _flaxBinding501},
       create: _createEnumProperty,
       disposeMethod: null,
       listenerPairs: {},
@@ -2293,24 +2186,24 @@ const sdk_foundationBindings = FlaxBindingModule(
       matches: _isEnumProperty,
       methods: const {},
       proxy: FlaxProxyBinding([
-        _flaxBinding314,
-        _flaxBinding426,
-        _flaxBinding309,
-        _flaxBinding311,
-        _flaxBinding312,
-        _flaxBinding310,
-        _flaxBinding313,
-        _flaxBinding315,
-        _flaxBinding319,
-        _flaxBinding317,
-        _flaxBinding427,
+        _flaxBinding326,
+        _flaxBinding421,
+        _flaxBinding321,
+        _flaxBinding323,
+        _flaxBinding324,
+        _flaxBinding322,
+        _flaxBinding325,
         _flaxBinding327,
-        _flaxBinding328,
-        _flaxBinding428,
-        _flaxBinding429,
-        _flaxBinding430,
-        _flaxBinding431,
-        _flaxBinding432,
+        _flaxBinding331,
+        _flaxBinding329,
+        _flaxBinding422,
+        _flaxBinding339,
+        _flaxBinding340,
+        _flaxBinding423,
+        _flaxBinding424,
+        _flaxBinding425,
+        _flaxBinding426,
+        _flaxBinding427,
         FlaxProxyMember(
           "value",
           1,
@@ -2325,25 +2218,25 @@ const sdk_foundationBindings = FlaxBindingModule(
           ),
           hasSuper: true,
         ),
-        _flaxBinding433,
-        _flaxBinding434,
-        _flaxBinding435,
-        _flaxBinding324,
-        _flaxBinding322,
-        _flaxBinding323,
-        _flaxBinding325,
-        _flaxBinding326,
-        _flaxBinding262,
-        _flaxBinding383,
-        _flaxBinding329,
-        _flaxBinding330,
+        _flaxBinding428,
+        _flaxBinding429,
+        _flaxBinding430,
+        _flaxBinding336,
+        _flaxBinding334,
+        _flaxBinding335,
+        _flaxBinding337,
+        _flaxBinding338,
+        _flaxBinding265,
+        _flaxBinding382,
+        _flaxBinding341,
+        _flaxBinding342,
       ]),
     ),
-    _flaxBinding524,
-    _flaxBinding536,
-    _flaxBinding549,
-    _flaxBinding561,
-    _flaxBinding562,
+    _flaxBinding515,
+    _flaxBinding527,
+    _flaxBinding540,
+    _flaxBinding552,
+    _flaxBinding553,
     FlaxObjectBinding(
       "flax.core/sdk_foundation#type:Factory",
       [
@@ -2354,21 +2247,18 @@ const sdk_foundationBindings = FlaxBindingModule(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback42,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback42Invoke,
-              matches: _callback42Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
           _Factory_constructor,
         ),
-        _flaxBinding563,
+        _flaxBinding554,
       ],
       {
-        "toString": FlaxInstanceMethod.shared(
-          flaxStringCall,
-          _Factory_toString,
-        ),
+        "toString": _flaxBinding555,
         "@super:toString": _flaxBinding183,
         "@super:get:constructor": FlaxInstanceMethod.plain(
           _flaxBinding131,
@@ -2377,10 +2267,10 @@ const sdk_foundationBindings = FlaxBindingModule(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback43,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback43Invoke,
-              matches: _callback43Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
           _Factory_super_get_constructor,
@@ -2390,7 +2280,7 @@ const sdk_foundationBindings = FlaxBindingModule(
           _Factory_super_get_type,
         ),
       },
-      constructors: {"": _flaxBinding564, "@implementation": _flaxBinding564},
+      constructors: {"": _flaxBinding556, "@implementation": _flaxBinding556},
       create: _createFactory,
       disposeMethod: null,
       listenerPairs: {},
@@ -2410,31 +2300,31 @@ const sdk_foundationBindings = FlaxBindingModule(
               callback: FlaxCallbackBinding(
                 [],
                 flaxNullableAnyType,
-                _callback43,
+                _flaxAdapters.flaxAdapter20,
                 id: "callback:<>()->any?:",
-                invoke: _callback43Invoke,
-                matches: _callback43Matches,
+                invoke: _flaxAdapters.flaxAdapter20Invoke,
+                matches: _flaxAdapters.flaxAdapter20Matches,
               ),
             ),
             id: "callback:<>()->callback:<>()->any?:",
           ),
           hasSuper: true,
         ),
-        _flaxBinding565,
+        _flaxBinding557,
       ]),
     ),
-    _flaxBinding583,
+    _flaxBinding575,
     FlaxObjectBinding(
       "flax.core/sdk_foundation#type:FlagsSummary",
       [
-        _flaxBinding584,
-        _flaxBinding585,
-        _flaxBinding586,
-        _flaxBinding587,
-        _flaxBinding588,
-        _flaxBinding589,
-        _flaxBinding590,
-        _flaxBinding591,
+        _flaxBinding576,
+        _flaxBinding283,
+        _flaxBinding284,
+        _flaxBinding577,
+        _flaxBinding578,
+        _flaxBinding579,
+        _flaxBinding580,
+        _flaxBinding581,
         FlaxGetter.plain(
           "value",
           FlaxTypeRef(
@@ -2443,80 +2333,46 @@ const sdk_foundationBindings = FlaxBindingModule(
             key: flaxStringType,
             collection: FlaxCollectionBinding(
               "map:[any?:][String:]",
-              _collection0Create,
-              _collection0Matches,
+              _flaxAdapters.flaxAdapter45Create,
+              _flaxAdapters.flaxAdapter45Matches,
             ),
           ),
           _FlagsSummary_value,
         ),
-        _flaxBinding592,
-        _flaxBinding593,
-        _flaxBinding594,
-        _flaxBinding595,
-        _flaxBinding596,
-        _flaxBinding597,
-        _flaxBinding598,
-        _flaxBinding599,
-        _flaxBinding600,
-        _flaxBinding601,
-        _flaxBinding602,
-        _flaxBinding603,
+        _flaxBinding582,
+        _flaxBinding583,
+        _flaxBinding584,
+        _flaxBinding278,
+        _flaxBinding276,
+        _flaxBinding277,
+        _flaxBinding279,
+        _flaxBinding280,
+        _flaxBinding281,
+        _flaxBinding369,
+        _flaxBinding285,
+        _flaxBinding286,
       ],
       {
-        "toJsonMap": FlaxInstanceMethod.shared(
-          _flaxBinding60,
-          _FlagsSummary_toJsonMap,
-        ),
-        "valueToString": FlaxInstanceMethod.plain(
-          _flaxBinding285,
-          flaxStringType,
-          _FlagsSummary_valueToString,
-        ),
-        "toDescription": FlaxInstanceMethod.plain(
-          _flaxBinding285,
-          flaxStringType,
-          _FlagsSummary_toDescription,
-        ),
-        "getProperties": FlaxInstanceMethod.shared(
-          _flaxBinding50,
-          _FlagsSummary_getProperties,
-        ),
-        "getChildren": FlaxInstanceMethod.shared(
-          _flaxBinding50,
-          _FlagsSummary_getChildren,
-        ),
-        "isFiltered": FlaxInstanceMethod.shared(
-          _flaxBinding56,
-          _FlagsSummary_isFiltered,
-        ),
-        "toTimelineArguments": FlaxInstanceMethod.shared(
-          _flaxBinding58,
-          _FlagsSummary_toTimelineArguments,
-        ),
-        "toJsonMapIterative": FlaxInstanceMethod.shared(
-          _flaxBinding60,
-          _FlagsSummary_toJsonMapIterative,
-        ),
-        "toStringDeep": FlaxInstanceMethod.plain(
-          _flaxBinding287,
-          flaxStringType,
-          _FlagsSummary_toStringDeep,
-        ),
-        "toString": FlaxInstanceMethod.plain(
-          _flaxBinding286,
-          flaxStringType,
-          _FlagsSummary_toString,
-        ),
-        "@super:toJsonMap": _flaxBinding293,
-        "@super:valueToString": _flaxBinding414,
-        "@super:toDescription": _flaxBinding288,
-        "@super:getProperties": _flaxBinding290,
-        "@super:getChildren": _flaxBinding291,
-        "@super:isFiltered": _flaxBinding289,
-        "@super:toTimelineArguments": _flaxBinding292,
-        "@super:toJsonMapIterative": _flaxBinding294,
-        "@super:toStringDeep": _flaxBinding296,
-        "@super:toString": _flaxBinding295,
+        "toJsonMap": _flaxBinding585,
+        "valueToString": _flaxBinding586,
+        "toDescription": _flaxBinding587,
+        "getProperties": _flaxBinding291,
+        "getChildren": _flaxBinding292,
+        "isFiltered": _flaxBinding588,
+        "toTimelineArguments": _flaxBinding293,
+        "toJsonMapIterative": _flaxBinding589,
+        "toStringDeep": _flaxBinding590,
+        "toString": _flaxBinding591,
+        "@super:toJsonMap": _flaxBinding305,
+        "@super:valueToString": _flaxBinding409,
+        "@super:toDescription": _flaxBinding300,
+        "@super:getProperties": _flaxBinding302,
+        "@super:getChildren": _flaxBinding303,
+        "@super:isFiltered": _flaxBinding301,
+        "@super:toTimelineArguments": _flaxBinding304,
+        "@super:toJsonMapIterative": _flaxBinding306,
+        "@super:toStringDeep": _flaxBinding308,
+        "@super:toString": _flaxBinding307,
         "@super:get:value": FlaxInstanceMethod.plain(
           _flaxBinding131,
           FlaxTypeRef(
@@ -2525,28 +2381,28 @@ const sdk_foundationBindings = FlaxBindingModule(
             key: flaxStringType,
             collection: FlaxCollectionBinding(
               "map:[any?:][String:]",
-              _collection0Create,
-              _collection0Matches,
+              _flaxAdapters.flaxAdapter45Create,
+              _flaxAdapters.flaxAdapter45Matches,
             ),
           ),
           _FlagsSummary_super_get_value,
         ),
-        "@super:get:level": _flaxBinding299,
-        "@super:get:expandableValue": _flaxBinding415,
-        "@super:get:allowWrap": _flaxBinding302,
-        "@super:get:allowNameWrap": _flaxBinding303,
-        "@super:get:ifNull": _flaxBinding416,
-        "@super:get:ifEmpty": _flaxBinding417,
-        "@super:get:tooltip": _flaxBinding418,
-        "@super:get:missingIfNull": _flaxBinding419,
-        "@super:get:propertyType": _flaxBinding420,
-        "@super:get:exception": _flaxBinding421,
-        "@super:get:defaultValue": _flaxBinding422,
-        "@super:get:isInteresting": _flaxBinding423,
-        "@super:get:name": _flaxBinding297,
-        "@super:get:showSeparator": _flaxBinding298,
-        "@super:get:showName": _flaxBinding300,
-        "@super:get:linePrefix": _flaxBinding301,
+        "@super:get:level": _flaxBinding311,
+        "@super:get:expandableValue": _flaxBinding410,
+        "@super:get:allowWrap": _flaxBinding314,
+        "@super:get:allowNameWrap": _flaxBinding315,
+        "@super:get:ifNull": _flaxBinding411,
+        "@super:get:ifEmpty": _flaxBinding412,
+        "@super:get:tooltip": _flaxBinding413,
+        "@super:get:missingIfNull": _flaxBinding414,
+        "@super:get:propertyType": _flaxBinding415,
+        "@super:get:exception": _flaxBinding416,
+        "@super:get:defaultValue": _flaxBinding417,
+        "@super:get:isInteresting": _flaxBinding418,
+        "@super:get:name": _flaxBinding309,
+        "@super:get:showSeparator": _flaxBinding310,
+        "@super:get:showName": _flaxBinding312,
+        "@super:get:linePrefix": _flaxBinding313,
         "@super:get:emptyBodyDescription": FlaxInstanceMethod.shared(
           flaxNullableStringCall,
           _FlagsSummary_super_get_emptyBodyDescription,
@@ -2555,10 +2411,10 @@ const sdk_foundationBindings = FlaxBindingModule(
           _flaxBinding71,
           _FlagsSummary_super_get_style,
         ),
-        "@super:get:allowTruncate": _flaxBinding304,
-        "@super:get:textTreeConfiguration": _flaxBinding305,
+        "@super:get:allowTruncate": _flaxBinding316,
+        "@super:get:textTreeConfiguration": _flaxBinding317,
       },
-      constructors: {"": _flaxBinding604, "@implementation": _flaxBinding604},
+      constructors: {"": _flaxBinding592, "@implementation": _flaxBinding592},
       create: _createFlagsSummary,
       disposeMethod: null,
       listenerPairs: {},
@@ -2571,16 +2427,16 @@ const sdk_foundationBindings = FlaxBindingModule(
       matches: _isFlagsSummary,
       methods: const {},
       proxy: FlaxProxyBinding([
-        _flaxBinding314,
-        _flaxBinding426,
-        _flaxBinding309,
-        _flaxBinding311,
-        _flaxBinding312,
-        _flaxBinding310,
-        _flaxBinding313,
-        _flaxBinding315,
-        _flaxBinding319,
-        _flaxBinding317,
+        _flaxBinding326,
+        _flaxBinding421,
+        _flaxBinding321,
+        _flaxBinding323,
+        _flaxBinding324,
+        _flaxBinding322,
+        _flaxBinding325,
+        _flaxBinding327,
+        _flaxBinding331,
+        _flaxBinding329,
         FlaxProxyMember(
           "value",
           1,
@@ -2592,40 +2448,40 @@ const sdk_foundationBindings = FlaxBindingModule(
               key: flaxStringType,
               collection: FlaxCollectionBinding(
                 "map:[any?:][String:]",
-                _collection0Create,
-                _collection0Matches,
+                _flaxAdapters.flaxAdapter45Create,
+                _flaxAdapters.flaxAdapter45Matches,
               ),
             ),
             id: "callback:<>()->map:[any?:][String:]",
           ),
           hasSuper: true,
         ),
-        _flaxBinding324,
+        _flaxBinding336,
+        _flaxBinding422,
+        _flaxBinding339,
+        _flaxBinding340,
+        _flaxBinding423,
+        _flaxBinding424,
+        _flaxBinding425,
+        _flaxBinding426,
         _flaxBinding427,
-        _flaxBinding327,
-        _flaxBinding328,
         _flaxBinding428,
         _flaxBinding429,
         _flaxBinding430,
-        _flaxBinding431,
-        _flaxBinding432,
-        _flaxBinding433,
-        _flaxBinding434,
-        _flaxBinding435,
-        _flaxBinding322,
-        _flaxBinding323,
-        _flaxBinding325,
-        _flaxBinding326,
-        _flaxBinding262,
-        _flaxBinding383,
-        _flaxBinding329,
-        _flaxBinding330,
+        _flaxBinding334,
+        _flaxBinding335,
+        _flaxBinding337,
+        _flaxBinding338,
+        _flaxBinding265,
+        _flaxBinding382,
+        _flaxBinding341,
+        _flaxBinding342,
       ]),
     ),
-    _flaxBinding612,
-    _flaxBinding637,
-    _flaxBinding651,
-    _flaxBinding652,
+    _flaxBinding600,
+    _flaxBinding625,
+    _flaxBinding639,
+    _flaxBinding640,
     FlaxObjectBinding(
       "flax.core/sdk_foundation#type:HashedObserverList",
       [
@@ -2634,9 +2490,9 @@ const sdk_foundationBindings = FlaxBindingModule(
           FlaxTypeRef("object", id: "flax.core/flutter#type:Iterator"),
           _HashedObserverList_iterator,
         ),
-        _flaxBinding653,
-        _flaxBinding654,
-        _flaxBinding655,
+        _flaxBinding641,
+        _flaxBinding642,
+        _flaxBinding643,
         FlaxGetter.plain(
           "first",
           FlaxTypeRef("any", nullable: true),
@@ -2668,25 +2524,19 @@ const sdk_foundationBindings = FlaxBindingModule(
           flaxBoolType,
           _HashedObserverList_remove,
         ),
-        "clear": FlaxInstanceMethod.shared(
-          flaxVoidCall,
-          _HashedObserverList_clear,
-        ),
-        "contains": FlaxInstanceMethod.shared(
-          _flaxBinding41,
-          _HashedObserverList_contains,
-        ),
+        "clear": _flaxBinding644,
+        "contains": _flaxBinding645,
         "toList": FlaxInstanceMethod.plain(
-          _flaxBinding213,
+          _flaxBinding214,
           FlaxTypeRef(
             "list",
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "list:[any?:]",
-              _collection22Create,
-              _collection22Matches,
+              _flaxAdapters.flaxAdapter43Create,
+              _flaxAdapters.flaxAdapter43Matches,
             ),
-            iterable: _flaxBinding210,
+            iterable: _flaxBinding211,
           ),
           _HashedObserverList_toList,
         ),
@@ -2697,9 +2547,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _HashedObserverList_cast,
@@ -2715,9 +2565,9 @@ const sdk_foundationBindings = FlaxBindingModule(
                 item: flaxNullableAnyType,
                 collection: FlaxCollectionBinding(
                   "iterable:[any?:]",
-                  _collection21Create,
-                  _collection21Matches,
-                  restore: _collection21Restore,
+                  _flaxAdapters.flaxAdapter42Create,
+                  _flaxAdapters.flaxAdapter42Matches,
+                  restore: _flaxAdapters.flaxAdapter42Restore,
                 ),
               ),
             ),
@@ -2727,9 +2577,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _HashedObserverList_followedBy,
@@ -2756,9 +2606,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _HashedObserverList_map,
@@ -2774,10 +2624,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback45,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback45Invoke,
-                  matches: _callback45Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -2787,9 +2637,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _HashedObserverList_where,
@@ -2801,9 +2651,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _HashedObserverList_whereType,
@@ -2818,11 +2668,11 @@ const sdk_foundationBindings = FlaxBindingModule(
                 "callback",
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
-                  _flaxBinding210,
-                  _callback46,
+                  _flaxBinding211,
+                  _flaxAdapters.flaxAdapter28,
                   id: "callback:<>(p:r:element:any?:)->iterable:[any?:]",
-                  invoke: _callback46Invoke,
-                  matches: _callback46Matches,
+                  invoke: _flaxAdapters.flaxAdapter28Invoke,
+                  matches: _flaxAdapters.flaxAdapter28Matches,
                 ),
               ),
             ),
@@ -2832,9 +2682,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _HashedObserverList_expand,
@@ -2850,10 +2700,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxVoidType,
-                  _callback47,
+                  _flaxAdapters.flaxAdapter25,
                   id: "callback:<>(p:r:element:any?:)->void:",
-                  invoke: _callback47Invoke,
-                  matches: _callback47Matches,
+                  invoke: _flaxAdapters.flaxAdapter25Invoke,
+                  matches: _flaxAdapters.flaxAdapter25Matches,
                 ),
               ),
             ),
@@ -2925,10 +2775,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback50,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback50Invoke,
-                  matches: _callback50Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -2936,11 +2786,7 @@ const sdk_foundationBindings = FlaxBindingModule(
           flaxBoolType,
           _HashedObserverList_every,
         ),
-        "join": FlaxInstanceMethod.plain(
-          _flaxBinding214,
-          flaxStringType,
-          _HashedObserverList_join,
-        ),
+        "join": _flaxBinding646,
         "any": FlaxInstanceMethod.plain(
           <FlaxParameter>[
             FlaxParameter.required(
@@ -2950,10 +2796,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback51,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback51Invoke,
-                  matches: _callback51Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -2968,23 +2814,23 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "set:[any?:]",
-              _collection23Create,
-              _collection23Matches,
+              _flaxAdapters.flaxAdapter44Create,
+              _flaxAdapters.flaxAdapter44Matches,
             ),
-            iterable: _flaxBinding210,
+            iterable: _flaxBinding211,
           ),
           _HashedObserverList_toSet,
         ),
         "take": FlaxInstanceMethod.plain(
-          _flaxBinding211,
+          _flaxBinding212,
           FlaxTypeRef(
             "iterable",
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _HashedObserverList_take,
@@ -3011,23 +2857,23 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _HashedObserverList_takeWhile,
         ),
         "skip": FlaxInstanceMethod.plain(
-          _flaxBinding211,
+          _flaxBinding212,
           FlaxTypeRef(
             "iterable",
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _HashedObserverList_skip,
@@ -3054,9 +2900,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _HashedObserverList_skipWhile,
@@ -3070,10 +2916,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback54,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback54Invoke,
-                  matches: _callback54Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -3085,10 +2931,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [],
                   flaxNullableAnyType,
-                  _callback55,
+                  _flaxAdapters.flaxAdapter20,
                   id: "callback:<>()->any?:",
-                  invoke: _callback55Invoke,
-                  matches: _callback55Matches,
+                  invoke: _flaxAdapters.flaxAdapter20Invoke,
+                  matches: _flaxAdapters.flaxAdapter20Matches,
                 ),
               ),
               required: false,
@@ -3106,10 +2952,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback56,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback56Invoke,
-                  matches: _callback56Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -3121,10 +2967,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [],
                   flaxNullableAnyType,
-                  _callback57,
+                  _flaxAdapters.flaxAdapter20,
                   id: "callback:<>()->any?:",
-                  invoke: _callback57Invoke,
-                  matches: _callback57Matches,
+                  invoke: _flaxAdapters.flaxAdapter20Invoke,
+                  matches: _flaxAdapters.flaxAdapter20Matches,
                 ),
               ),
               required: false,
@@ -3142,10 +2988,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback58,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback58Invoke,
-                  matches: _callback58Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -3157,10 +3003,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [],
                   flaxNullableAnyType,
-                  _callback59,
+                  _flaxAdapters.flaxAdapter20,
                   id: "callback:<>()->any?:",
-                  invoke: _callback59Invoke,
-                  matches: _callback59Matches,
+                  invoke: _flaxAdapters.flaxAdapter20Invoke,
+                  matches: _flaxAdapters.flaxAdapter20Matches,
                 ),
               ),
               required: false,
@@ -3170,7 +3016,7 @@ const sdk_foundationBindings = FlaxBindingModule(
           _HashedObserverList_singleWhere,
         ),
         "elementAt": FlaxInstanceMethod.plain(
-          _flaxBinding212,
+          _flaxBinding213,
           FlaxTypeRef("any", nullable: true),
           _HashedObserverList_elementAt,
         ),
@@ -3188,19 +3034,19 @@ const sdk_foundationBindings = FlaxBindingModule(
           flaxBoolType,
           _HashedObserverList_super_remove,
         ),
-        "@super:clear": _flaxBinding656,
-        "@super:contains": _flaxBinding215,
+        "@super:clear": _flaxBinding647,
+        "@super:contains": _flaxBinding218,
         "@super:toList": FlaxInstanceMethod.plain(
-          _flaxBinding213,
+          _flaxBinding214,
           FlaxTypeRef(
             "list",
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "list:[any?:]",
-              _collection22Create,
-              _collection22Matches,
+              _flaxAdapters.flaxAdapter43Create,
+              _flaxAdapters.flaxAdapter43Matches,
             ),
-            iterable: _flaxBinding210,
+            iterable: _flaxBinding211,
           ),
           _HashedObserverList_super_toList,
         ),
@@ -3211,9 +3057,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _HashedObserverList_super_cast,
@@ -3229,9 +3075,9 @@ const sdk_foundationBindings = FlaxBindingModule(
                 item: flaxNullableAnyType,
                 collection: FlaxCollectionBinding(
                   "iterable:[any?:]",
-                  _collection21Create,
-                  _collection21Matches,
-                  restore: _collection21Restore,
+                  _flaxAdapters.flaxAdapter42Create,
+                  _flaxAdapters.flaxAdapter42Matches,
+                  restore: _flaxAdapters.flaxAdapter42Restore,
                 ),
               ),
             ),
@@ -3241,9 +3087,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _HashedObserverList_super_followedBy,
@@ -3270,9 +3116,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _HashedObserverList_super_map,
@@ -3288,10 +3134,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback45,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback45Invoke,
-                  matches: _callback45Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -3301,9 +3147,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _HashedObserverList_super_where,
@@ -3315,9 +3161,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _HashedObserverList_super_whereType,
@@ -3332,11 +3178,11 @@ const sdk_foundationBindings = FlaxBindingModule(
                 "callback",
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
-                  _flaxBinding210,
-                  _callback46,
+                  _flaxBinding211,
+                  _flaxAdapters.flaxAdapter28,
                   id: "callback:<>(p:r:element:any?:)->iterable:[any?:]",
-                  invoke: _callback46Invoke,
-                  matches: _callback46Matches,
+                  invoke: _flaxAdapters.flaxAdapter28Invoke,
+                  matches: _flaxAdapters.flaxAdapter28Matches,
                 ),
               ),
             ),
@@ -3346,9 +3192,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _HashedObserverList_super_expand,
@@ -3364,10 +3210,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxVoidType,
-                  _callback47,
+                  _flaxAdapters.flaxAdapter25,
                   id: "callback:<>(p:r:element:any?:)->void:",
-                  invoke: _callback47Invoke,
-                  matches: _callback47Matches,
+                  invoke: _flaxAdapters.flaxAdapter25Invoke,
+                  matches: _flaxAdapters.flaxAdapter25Matches,
                 ),
               ),
             ),
@@ -3439,10 +3285,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback50,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback50Invoke,
-                  matches: _callback50Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -3450,7 +3296,7 @@ const sdk_foundationBindings = FlaxBindingModule(
           flaxBoolType,
           _HashedObserverList_super_every,
         ),
-        "@super:join": _flaxBinding216,
+        "@super:join": _flaxBinding219,
         "@super:any": FlaxInstanceMethod.plain(
           <FlaxParameter>[
             FlaxParameter.required(
@@ -3460,10 +3306,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback51,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback51Invoke,
-                  matches: _callback51Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -3478,23 +3324,23 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "set:[any?:]",
-              _collection23Create,
-              _collection23Matches,
+              _flaxAdapters.flaxAdapter44Create,
+              _flaxAdapters.flaxAdapter44Matches,
             ),
-            iterable: _flaxBinding210,
+            iterable: _flaxBinding211,
           ),
           _HashedObserverList_super_toSet,
         ),
         "@super:take": FlaxInstanceMethod.plain(
-          _flaxBinding211,
+          _flaxBinding212,
           FlaxTypeRef(
             "iterable",
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _HashedObserverList_super_take,
@@ -3521,23 +3367,23 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _HashedObserverList_super_takeWhile,
         ),
         "@super:skip": FlaxInstanceMethod.plain(
-          _flaxBinding211,
+          _flaxBinding212,
           FlaxTypeRef(
             "iterable",
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _HashedObserverList_super_skip,
@@ -3564,9 +3410,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _HashedObserverList_super_skipWhile,
@@ -3580,10 +3426,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback54,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback54Invoke,
-                  matches: _callback54Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -3595,10 +3441,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [],
                   flaxNullableAnyType,
-                  _callback55,
+                  _flaxAdapters.flaxAdapter20,
                   id: "callback:<>()->any?:",
-                  invoke: _callback55Invoke,
-                  matches: _callback55Matches,
+                  invoke: _flaxAdapters.flaxAdapter20Invoke,
+                  matches: _flaxAdapters.flaxAdapter20Matches,
                 ),
               ),
               required: false,
@@ -3616,10 +3462,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback56,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback56Invoke,
-                  matches: _callback56Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -3631,10 +3477,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [],
                   flaxNullableAnyType,
-                  _callback57,
+                  _flaxAdapters.flaxAdapter20,
                   id: "callback:<>()->any?:",
-                  invoke: _callback57Invoke,
-                  matches: _callback57Matches,
+                  invoke: _flaxAdapters.flaxAdapter20Invoke,
+                  matches: _flaxAdapters.flaxAdapter20Matches,
                 ),
               ),
               required: false,
@@ -3652,10 +3498,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback58,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback58Invoke,
-                  matches: _callback58Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -3667,10 +3513,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [],
                   flaxNullableAnyType,
-                  _callback59,
+                  _flaxAdapters.flaxAdapter20,
                   id: "callback:<>()->any?:",
-                  invoke: _callback59Invoke,
-                  matches: _callback59Matches,
+                  invoke: _flaxAdapters.flaxAdapter20Invoke,
+                  matches: _flaxAdapters.flaxAdapter20Matches,
                 ),
               ),
               required: false,
@@ -3680,7 +3526,7 @@ const sdk_foundationBindings = FlaxBindingModule(
           _HashedObserverList_super_singleWhere,
         ),
         "@super:elementAt": FlaxInstanceMethod.plain(
-          _flaxBinding212,
+          _flaxBinding213,
           FlaxTypeRef("any", nullable: true),
           _HashedObserverList_super_elementAt,
         ),
@@ -3689,9 +3535,9 @@ const sdk_foundationBindings = FlaxBindingModule(
           FlaxTypeRef("object", id: "flax.core/flutter#type:Iterator"),
           _HashedObserverList_super_get_iterator,
         ),
-        "@super:get:isEmpty": _flaxBinding218,
-        "@super:get:isNotEmpty": _flaxBinding219,
-        "@super:get:length": _flaxBinding217,
+        "@super:get:isEmpty": _flaxBinding221,
+        "@super:get:isNotEmpty": _flaxBinding222,
+        "@super:get:length": _flaxBinding220,
         "@super:get:first": FlaxInstanceMethod.plain(
           _flaxBinding131,
           FlaxTypeRef("any", nullable: true),
@@ -3747,8 +3593,8 @@ const sdk_foundationBindings = FlaxBindingModule(
           ),
           hasSuper: true,
         ),
-        _flaxBinding657,
-        _flaxBinding226,
+        _flaxBinding648,
+        _flaxBinding229,
         FlaxProxyMember(
           "toList",
           0,
@@ -3766,10 +3612,10 @@ const sdk_foundationBindings = FlaxBindingModule(
               item: flaxNullableAnyType,
               collection: FlaxCollectionBinding(
                 "list:[any?:]",
-                _collection22Create,
-                _collection22Matches,
+                _flaxAdapters.flaxAdapter43Create,
+                _flaxAdapters.flaxAdapter43Matches,
               ),
-              iterable: _flaxBinding210,
+              iterable: _flaxBinding211,
             ),
             id: "callback:<>(n:o:growable:bool:)->list:[any?:]",
           ),
@@ -3780,7 +3626,7 @@ const sdk_foundationBindings = FlaxBindingModule(
           0,
           FlaxCallbackBinding(
             [],
-            _flaxBinding210,
+            _flaxBinding211,
             _callback60,
             id: "callback:<R:any?:=any?:>()->iterable:[any?:]",
             invoke: _callback60Invoke,
@@ -3802,9 +3648,9 @@ const sdk_foundationBindings = FlaxBindingModule(
                   item: flaxNullableAnyType,
                   collection: FlaxCollectionBinding(
                     "iterable:[any?:]",
-                    _collection21Create,
-                    _collection21Matches,
-                    restore: _collection21Restore,
+                    _flaxAdapters.flaxAdapter42Create,
+                    _flaxAdapters.flaxAdapter42Matches,
+                    restore: _flaxAdapters.flaxAdapter42Restore,
                   ),
                 ),
               ),
@@ -3814,9 +3660,9 @@ const sdk_foundationBindings = FlaxBindingModule(
               item: flaxNullableAnyType,
               collection: FlaxCollectionBinding(
                 "iterable:[any?:]",
-                _collection21Create,
-                _collection21Matches,
-                restore: _collection21Restore,
+                _flaxAdapters.flaxAdapter42Create,
+                _flaxAdapters.flaxAdapter42Matches,
+                restore: _flaxAdapters.flaxAdapter42Restore,
               ),
             ),
             id: "callback:<>(p:r:other:iterable:[any?:])->iterable:[any?:]",
@@ -3827,8 +3673,8 @@ const sdk_foundationBindings = FlaxBindingModule(
           "map",
           0,
           FlaxCallbackBinding(
-            [FlaxCallbackParameter.plain("toElement", _flaxBinding223)],
-            _flaxBinding210,
+            [FlaxCallbackParameter.plain("toElement", _flaxBinding226)],
+            _flaxBinding211,
             _callback61,
             id: "callback:<T:any?:=any?:>(p:r:toElement:callback:<>(p:r:e:any?:)->any?:)->iterable:[any?:]",
             invoke: _callback61Invoke,
@@ -3855,10 +3701,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                       ),
                     ],
                     flaxBoolType,
-                    _callback62,
+                    _flaxAdapters.flaxAdapter30,
                     id: "callback:<>(p:r:element:any?:)->bool:",
-                    invoke: _callback62Invoke,
-                    matches: _callback62Matches,
+                    invoke: _flaxAdapters.flaxAdapter30Invoke,
+                    matches: _flaxAdapters.flaxAdapter30Matches,
                   ),
                 ),
               ),
@@ -3868,9 +3714,9 @@ const sdk_foundationBindings = FlaxBindingModule(
               item: flaxNullableAnyType,
               collection: FlaxCollectionBinding(
                 "iterable:[any?:]",
-                _collection21Create,
-                _collection21Matches,
-                restore: _collection21Restore,
+                _flaxAdapters.flaxAdapter42Create,
+                _flaxAdapters.flaxAdapter42Matches,
+                restore: _flaxAdapters.flaxAdapter42Restore,
               ),
             ),
             id: "callback:<>(p:r:test:callback:<>(p:r:element:any?:)->bool:)->iterable:[any?:]",
@@ -3882,7 +3728,7 @@ const sdk_foundationBindings = FlaxBindingModule(
           0,
           FlaxCallbackBinding(
             [],
-            _flaxBinding210,
+            _flaxBinding211,
             _callback63,
             id: "callback:<T:any?:=any?:>()->iterable:[any?:]",
             invoke: _callback63Invoke,
@@ -3896,8 +3742,8 @@ const sdk_foundationBindings = FlaxBindingModule(
           "expand",
           0,
           FlaxCallbackBinding(
-            [FlaxCallbackParameter.plain("toElements", _flaxBinding225)],
-            _flaxBinding210,
+            [FlaxCallbackParameter.plain("toElements", _flaxBinding228)],
+            _flaxBinding211,
             _callback64,
             id: "callback:<T:any?:=any?:>(p:r:toElements:callback:<>(p:r:element:any?:)->iterable:[any?:])->iterable:[any?:]",
             invoke: _callback64Invoke,
@@ -3924,10 +3770,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                       ),
                     ],
                     flaxVoidType,
-                    _callback65,
+                    _flaxAdapters.flaxAdapter25,
                     id: "callback:<>(p:r:element:any?:)->void:",
-                    invoke: _callback65Invoke,
-                    matches: _callback65Matches,
+                    invoke: _flaxAdapters.flaxAdapter25Invoke,
+                    matches: _flaxAdapters.flaxAdapter25Matches,
                   ),
                 ),
               ),
@@ -3974,7 +3820,7 @@ const sdk_foundationBindings = FlaxBindingModule(
           FlaxCallbackBinding(
             [
               FlaxCallbackParameter.plain("initialValue", flaxNullableAnyType),
-              FlaxCallbackParameter.plain("combine", _flaxBinding228),
+              FlaxCallbackParameter.plain("combine", _flaxBinding231),
             ],
             flaxNullableAnyType,
             _callback67,
@@ -4003,10 +3849,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                       ),
                     ],
                     flaxBoolType,
-                    _callback68,
+                    _flaxAdapters.flaxAdapter30,
                     id: "callback:<>(p:r:element:any?:)->bool:",
-                    invoke: _callback68Invoke,
-                    matches: _callback68Matches,
+                    invoke: _flaxAdapters.flaxAdapter30Invoke,
+                    matches: _flaxAdapters.flaxAdapter30Matches,
                   ),
                 ),
               ),
@@ -4016,7 +3862,7 @@ const sdk_foundationBindings = FlaxBindingModule(
           ),
           hasSuper: true,
         ),
-        _flaxBinding230,
+        _flaxBinding233,
         FlaxProxyMember(
           "any",
           0,
@@ -4034,10 +3880,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                       ),
                     ],
                     flaxBoolType,
-                    _callback69,
+                    _flaxAdapters.flaxAdapter30,
                     id: "callback:<>(p:r:element:any?:)->bool:",
-                    invoke: _callback69Invoke,
-                    matches: _callback69Matches,
+                    invoke: _flaxAdapters.flaxAdapter30Invoke,
+                    matches: _flaxAdapters.flaxAdapter30Matches,
                   ),
                 ),
               ),
@@ -4057,10 +3903,10 @@ const sdk_foundationBindings = FlaxBindingModule(
               item: flaxNullableAnyType,
               collection: FlaxCollectionBinding(
                 "set:[any?:]",
-                _collection23Create,
-                _collection23Matches,
+                _flaxAdapters.flaxAdapter44Create,
+                _flaxAdapters.flaxAdapter44Matches,
               ),
-              iterable: _flaxBinding210,
+              iterable: _flaxBinding211,
             ),
             id: "callback:<>()->set:[any?:]",
           ),
@@ -4076,9 +3922,9 @@ const sdk_foundationBindings = FlaxBindingModule(
               item: flaxNullableAnyType,
               collection: FlaxCollectionBinding(
                 "iterable:[any?:]",
-                _collection21Create,
-                _collection21Matches,
-                restore: _collection21Restore,
+                _flaxAdapters.flaxAdapter42Create,
+                _flaxAdapters.flaxAdapter42Matches,
+                restore: _flaxAdapters.flaxAdapter42Restore,
               ),
             ),
             id: "callback:<>(p:r:count:int:)->iterable:[any?:]",
@@ -4110,9 +3956,9 @@ const sdk_foundationBindings = FlaxBindingModule(
               item: flaxNullableAnyType,
               collection: FlaxCollectionBinding(
                 "iterable:[any?:]",
-                _collection21Create,
-                _collection21Matches,
-                restore: _collection21Restore,
+                _flaxAdapters.flaxAdapter42Create,
+                _flaxAdapters.flaxAdapter42Matches,
+                restore: _flaxAdapters.flaxAdapter42Restore,
               ),
             ),
             id: "callback:<>(p:r:test:callback:<>(p:r:value:any?:)->bool:)->iterable:[any?:]",
@@ -4129,9 +3975,9 @@ const sdk_foundationBindings = FlaxBindingModule(
               item: flaxNullableAnyType,
               collection: FlaxCollectionBinding(
                 "iterable:[any?:]",
-                _collection21Create,
-                _collection21Matches,
-                restore: _collection21Restore,
+                _flaxAdapters.flaxAdapter42Create,
+                _flaxAdapters.flaxAdapter42Matches,
+                restore: _flaxAdapters.flaxAdapter42Restore,
               ),
             ),
             id: "callback:<>(p:r:count:int:)->iterable:[any?:]",
@@ -4163,9 +4009,9 @@ const sdk_foundationBindings = FlaxBindingModule(
               item: flaxNullableAnyType,
               collection: FlaxCollectionBinding(
                 "iterable:[any?:]",
-                _collection21Create,
-                _collection21Matches,
-                restore: _collection21Restore,
+                _flaxAdapters.flaxAdapter42Create,
+                _flaxAdapters.flaxAdapter42Matches,
+                restore: _flaxAdapters.flaxAdapter42Restore,
               ),
             ),
             id: "callback:<>(p:r:test:callback:<>(p:r:value:any?:)->bool:)->iterable:[any?:]",
@@ -4189,10 +4035,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                       ),
                     ],
                     flaxBoolType,
-                    _callback72,
+                    _flaxAdapters.flaxAdapter30,
                     id: "callback:<>(p:r:element:any?:)->bool:",
-                    invoke: _callback72Invoke,
-                    matches: _callback72Matches,
+                    invoke: _flaxAdapters.flaxAdapter30Invoke,
+                    matches: _flaxAdapters.flaxAdapter30Matches,
                   ),
                 ),
               ),
@@ -4204,10 +4050,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                   callback: FlaxCallbackBinding(
                     [],
                     flaxNullableAnyType,
-                    _callback73,
+                    _flaxAdapters.flaxAdapter20,
                     id: "callback:<>()->any?:",
-                    invoke: _callback73Invoke,
-                    matches: _callback73Matches,
+                    invoke: _flaxAdapters.flaxAdapter20Invoke,
+                    matches: _flaxAdapters.flaxAdapter20Matches,
                   ),
                 ),
                 required: false,
@@ -4236,10 +4082,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                       ),
                     ],
                     flaxBoolType,
-                    _callback74,
+                    _flaxAdapters.flaxAdapter30,
                     id: "callback:<>(p:r:element:any?:)->bool:",
-                    invoke: _callback74Invoke,
-                    matches: _callback74Matches,
+                    invoke: _flaxAdapters.flaxAdapter30Invoke,
+                    matches: _flaxAdapters.flaxAdapter30Matches,
                   ),
                 ),
               ),
@@ -4251,10 +4097,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                   callback: FlaxCallbackBinding(
                     [],
                     flaxNullableAnyType,
-                    _callback75,
+                    _flaxAdapters.flaxAdapter20,
                     id: "callback:<>()->any?:",
-                    invoke: _callback75Invoke,
-                    matches: _callback75Matches,
+                    invoke: _flaxAdapters.flaxAdapter20Invoke,
+                    matches: _flaxAdapters.flaxAdapter20Matches,
                   ),
                 ),
                 required: false,
@@ -4283,10 +4129,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                       ),
                     ],
                     flaxBoolType,
-                    _callback76,
+                    _flaxAdapters.flaxAdapter30,
                     id: "callback:<>(p:r:element:any?:)->bool:",
-                    invoke: _callback76Invoke,
-                    matches: _callback76Matches,
+                    invoke: _flaxAdapters.flaxAdapter30Invoke,
+                    matches: _flaxAdapters.flaxAdapter30Matches,
                   ),
                 ),
               ),
@@ -4298,10 +4144,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                   callback: FlaxCallbackBinding(
                     [],
                     flaxNullableAnyType,
-                    _callback77,
+                    _flaxAdapters.flaxAdapter20,
                     id: "callback:<>()->any?:",
-                    invoke: _callback77Invoke,
-                    matches: _callback77Matches,
+                    invoke: _flaxAdapters.flaxAdapter20Invoke,
+                    matches: _flaxAdapters.flaxAdapter20Matches,
                   ),
                 ),
                 required: false,
@@ -4333,9 +4179,9 @@ const sdk_foundationBindings = FlaxBindingModule(
           ),
           hasSuper: true,
         ),
-        _flaxBinding232,
-        _flaxBinding233,
-        _flaxBinding231,
+        _flaxBinding235,
+        _flaxBinding236,
+        _flaxBinding234,
         FlaxProxyMember(
           "first",
           1,
@@ -4367,20 +4213,20 @@ const sdk_foundationBindings = FlaxBindingModule(
           hasSuper: true,
         ),
       ]),
-      collectionView: _flaxBinding210,
+      collectionView: _flaxBinding211,
     ),
-    _flaxBinding673,
+    _flaxBinding664,
     FlaxObjectBinding(
       "flax.core/sdk_foundation#type:IterableProperty",
       [
-        _flaxBinding674,
-        _flaxBinding675,
-        _flaxBinding676,
-        _flaxBinding677,
-        _flaxBinding678,
-        _flaxBinding679,
-        _flaxBinding680,
-        _flaxBinding681,
+        _flaxBinding665,
+        _flaxBinding283,
+        _flaxBinding284,
+        _flaxBinding666,
+        _flaxBinding667,
+        _flaxBinding668,
+        _flaxBinding669,
+        _flaxBinding670,
         FlaxGetter.plain(
           "value",
           FlaxTypeRef(
@@ -4389,90 +4235,56 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _IterableProperty_value,
         ),
-        _flaxBinding682,
-        _flaxBinding683,
-        _flaxBinding684,
-        _flaxBinding685,
-        _flaxBinding686,
-        _flaxBinding687,
-        _flaxBinding688,
-        _flaxBinding689,
-        _flaxBinding690,
-        _flaxBinding691,
-        _flaxBinding692,
-        _flaxBinding693,
+        _flaxBinding671,
+        _flaxBinding672,
+        _flaxBinding673,
+        _flaxBinding278,
+        _flaxBinding276,
+        _flaxBinding277,
+        _flaxBinding279,
+        _flaxBinding280,
+        _flaxBinding281,
+        _flaxBinding369,
+        _flaxBinding285,
+        _flaxBinding286,
       ],
       {
-        "toJsonMap": FlaxInstanceMethod.shared(
-          _flaxBinding60,
-          _IterableProperty_toJsonMap,
-        ),
-        "valueToString": FlaxInstanceMethod.plain(
-          _flaxBinding285,
-          flaxStringType,
-          _IterableProperty_valueToString,
-        ),
-        "toDescription": FlaxInstanceMethod.plain(
-          _flaxBinding285,
-          flaxStringType,
-          _IterableProperty_toDescription,
-        ),
-        "getProperties": FlaxInstanceMethod.shared(
-          _flaxBinding50,
-          _IterableProperty_getProperties,
-        ),
-        "getChildren": FlaxInstanceMethod.shared(
-          _flaxBinding50,
-          _IterableProperty_getChildren,
-        ),
-        "isFiltered": FlaxInstanceMethod.shared(
-          _flaxBinding56,
-          _IterableProperty_isFiltered,
-        ),
-        "toTimelineArguments": FlaxInstanceMethod.shared(
-          _flaxBinding58,
-          _IterableProperty_toTimelineArguments,
-        ),
-        "toJsonMapIterative": FlaxInstanceMethod.shared(
-          _flaxBinding60,
-          _IterableProperty_toJsonMapIterative,
-        ),
-        "toStringDeep": FlaxInstanceMethod.plain(
-          _flaxBinding287,
-          flaxStringType,
-          _IterableProperty_toStringDeep,
-        ),
-        "toString": FlaxInstanceMethod.plain(
-          _flaxBinding286,
-          flaxStringType,
-          _IterableProperty_toString,
-        ),
-        "@super:toJsonMap": _flaxBinding293,
-        "@super:valueToString": _flaxBinding414,
-        "@super:toDescription": _flaxBinding288,
-        "@super:getProperties": _flaxBinding290,
-        "@super:getChildren": _flaxBinding291,
-        "@super:isFiltered": _flaxBinding289,
-        "@super:toTimelineArguments": _flaxBinding292,
-        "@super:toJsonMapIterative": _flaxBinding294,
-        "@super:toStringDeep": _flaxBinding296,
-        "@super:toString": _flaxBinding295,
-        "@super:get:level": _flaxBinding299,
-        "@super:get:expandableValue": _flaxBinding415,
-        "@super:get:allowWrap": _flaxBinding302,
-        "@super:get:allowNameWrap": _flaxBinding303,
-        "@super:get:ifNull": _flaxBinding416,
-        "@super:get:ifEmpty": _flaxBinding417,
-        "@super:get:tooltip": _flaxBinding418,
-        "@super:get:missingIfNull": _flaxBinding419,
-        "@super:get:propertyType": _flaxBinding420,
+        "toJsonMap": _flaxBinding674,
+        "valueToString": _flaxBinding675,
+        "toDescription": _flaxBinding676,
+        "getProperties": _flaxBinding291,
+        "getChildren": _flaxBinding292,
+        "isFiltered": _flaxBinding677,
+        "toTimelineArguments": _flaxBinding293,
+        "toJsonMapIterative": _flaxBinding678,
+        "toStringDeep": _flaxBinding679,
+        "toString": _flaxBinding680,
+        "@super:toJsonMap": _flaxBinding305,
+        "@super:valueToString": _flaxBinding409,
+        "@super:toDescription": _flaxBinding300,
+        "@super:getProperties": _flaxBinding302,
+        "@super:getChildren": _flaxBinding303,
+        "@super:isFiltered": _flaxBinding301,
+        "@super:toTimelineArguments": _flaxBinding304,
+        "@super:toJsonMapIterative": _flaxBinding306,
+        "@super:toStringDeep": _flaxBinding308,
+        "@super:toString": _flaxBinding307,
+        "@super:get:level": _flaxBinding311,
+        "@super:get:expandableValue": _flaxBinding410,
+        "@super:get:allowWrap": _flaxBinding314,
+        "@super:get:allowNameWrap": _flaxBinding315,
+        "@super:get:ifNull": _flaxBinding411,
+        "@super:get:ifEmpty": _flaxBinding412,
+        "@super:get:tooltip": _flaxBinding413,
+        "@super:get:missingIfNull": _flaxBinding414,
+        "@super:get:propertyType": _flaxBinding415,
         "@super:get:value": FlaxInstanceMethod.plain(
           _flaxBinding131,
           FlaxTypeRef(
@@ -4481,20 +4293,20 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _IterableProperty_super_get_value,
         ),
-        "@super:get:exception": _flaxBinding421,
-        "@super:get:defaultValue": _flaxBinding422,
-        "@super:get:isInteresting": _flaxBinding423,
-        "@super:get:name": _flaxBinding297,
-        "@super:get:showSeparator": _flaxBinding298,
-        "@super:get:showName": _flaxBinding300,
-        "@super:get:linePrefix": _flaxBinding301,
+        "@super:get:exception": _flaxBinding416,
+        "@super:get:defaultValue": _flaxBinding417,
+        "@super:get:isInteresting": _flaxBinding418,
+        "@super:get:name": _flaxBinding309,
+        "@super:get:showSeparator": _flaxBinding310,
+        "@super:get:showName": _flaxBinding312,
+        "@super:get:linePrefix": _flaxBinding313,
         "@super:get:emptyBodyDescription": FlaxInstanceMethod.shared(
           flaxNullableStringCall,
           _IterableProperty_super_get_emptyBodyDescription,
@@ -4503,10 +4315,10 @@ const sdk_foundationBindings = FlaxBindingModule(
           _flaxBinding71,
           _IterableProperty_super_get_style,
         ),
-        "@super:get:allowTruncate": _flaxBinding304,
-        "@super:get:textTreeConfiguration": _flaxBinding305,
+        "@super:get:allowTruncate": _flaxBinding316,
+        "@super:get:textTreeConfiguration": _flaxBinding317,
       },
-      constructors: {"": _flaxBinding695, "@implementation": _flaxBinding695},
+      constructors: {"": _flaxBinding682, "@implementation": _flaxBinding682},
       create: _createIterableProperty,
       disposeMethod: null,
       listenerPairs: {},
@@ -4519,25 +4331,25 @@ const sdk_foundationBindings = FlaxBindingModule(
       matches: _isIterableProperty,
       methods: const {},
       proxy: FlaxProxyBinding([
-        _flaxBinding314,
-        _flaxBinding426,
-        _flaxBinding309,
-        _flaxBinding311,
-        _flaxBinding312,
-        _flaxBinding310,
-        _flaxBinding313,
-        _flaxBinding315,
-        _flaxBinding319,
-        _flaxBinding317,
+        _flaxBinding326,
+        _flaxBinding421,
+        _flaxBinding321,
+        _flaxBinding323,
         _flaxBinding324,
-        _flaxBinding427,
+        _flaxBinding322,
+        _flaxBinding325,
         _flaxBinding327,
-        _flaxBinding328,
-        _flaxBinding428,
-        _flaxBinding429,
-        _flaxBinding430,
-        _flaxBinding431,
-        _flaxBinding432,
+        _flaxBinding331,
+        _flaxBinding329,
+        _flaxBinding336,
+        _flaxBinding422,
+        _flaxBinding339,
+        _flaxBinding340,
+        _flaxBinding423,
+        _flaxBinding424,
+        _flaxBinding425,
+        _flaxBinding426,
+        _flaxBinding427,
         FlaxProxyMember(
           "value",
           1,
@@ -4549,146 +4361,112 @@ const sdk_foundationBindings = FlaxBindingModule(
               item: flaxNullableAnyType,
               collection: FlaxCollectionBinding(
                 "iterable:[any?:]",
-                _collection21Create,
-                _collection21Matches,
-                restore: _collection21Restore,
+                _flaxAdapters.flaxAdapter42Create,
+                _flaxAdapters.flaxAdapter42Matches,
+                restore: _flaxAdapters.flaxAdapter42Restore,
               ),
             ),
             id: "callback:<>()->iterable?:[any?:]",
           ),
           hasSuper: true,
         ),
-        _flaxBinding433,
-        _flaxBinding434,
-        _flaxBinding435,
-        _flaxBinding322,
-        _flaxBinding323,
-        _flaxBinding325,
-        _flaxBinding326,
-        _flaxBinding262,
-        _flaxBinding383,
-        _flaxBinding329,
-        _flaxBinding330,
+        _flaxBinding428,
+        _flaxBinding429,
+        _flaxBinding430,
+        _flaxBinding334,
+        _flaxBinding335,
+        _flaxBinding337,
+        _flaxBinding338,
+        _flaxBinding265,
+        _flaxBinding382,
+        _flaxBinding341,
+        _flaxBinding342,
       ]),
     ),
+    _flaxBinding687,
+    _flaxBinding695,
     _flaxBinding700,
-    _flaxBinding708,
-    _flaxBinding713,
+    _flaxBinding701,
     _flaxBinding714,
-    _flaxBinding727,
-    _flaxBinding742,
-    _flaxBinding743,
-    _flaxBinding733,
+    _flaxBinding729,
+    _flaxBinding730,
+    _flaxBinding720,
     FlaxObjectBinding(
       "flax.core/sdk_foundation#type:ObjectFlagProperty",
       [
-        _flaxBinding744,
-        _flaxBinding745,
-        _flaxBinding746,
-        _flaxBinding747,
-        _flaxBinding748,
-        _flaxBinding749,
-        _flaxBinding750,
-        _flaxBinding751,
+        _flaxBinding731,
+        _flaxBinding283,
+        _flaxBinding284,
+        _flaxBinding732,
+        _flaxBinding733,
+        _flaxBinding734,
+        _flaxBinding735,
+        _flaxBinding736,
         FlaxGetter.plain(
           "value",
           FlaxTypeRef("any", nullable: true),
           _ObjectFlagProperty_value,
         ),
-        _flaxBinding752,
-        _flaxBinding753,
-        _flaxBinding754,
-        _flaxBinding755,
-        _flaxBinding756,
-        _flaxBinding757,
-        _flaxBinding758,
-        _flaxBinding759,
-        _flaxBinding760,
-        _flaxBinding761,
-        _flaxBinding762,
-        _flaxBinding763,
-        _flaxBinding764,
+        _flaxBinding737,
+        _flaxBinding738,
+        _flaxBinding739,
+        _flaxBinding278,
+        _flaxBinding276,
+        _flaxBinding277,
+        _flaxBinding279,
+        _flaxBinding280,
+        _flaxBinding281,
+        _flaxBinding369,
+        _flaxBinding285,
+        _flaxBinding286,
+        _flaxBinding740,
       ],
       {
-        "toJsonMap": FlaxInstanceMethod.shared(
-          _flaxBinding60,
-          _ObjectFlagProperty_toJsonMap,
-        ),
-        "valueToString": FlaxInstanceMethod.plain(
-          _flaxBinding285,
-          flaxStringType,
-          _ObjectFlagProperty_valueToString,
-        ),
-        "toDescription": FlaxInstanceMethod.plain(
-          _flaxBinding285,
-          flaxStringType,
-          _ObjectFlagProperty_toDescription,
-        ),
-        "getProperties": FlaxInstanceMethod.shared(
-          _flaxBinding50,
-          _ObjectFlagProperty_getProperties,
-        ),
-        "getChildren": FlaxInstanceMethod.shared(
-          _flaxBinding50,
-          _ObjectFlagProperty_getChildren,
-        ),
-        "isFiltered": FlaxInstanceMethod.shared(
-          _flaxBinding56,
-          _ObjectFlagProperty_isFiltered,
-        ),
-        "toTimelineArguments": FlaxInstanceMethod.shared(
-          _flaxBinding58,
-          _ObjectFlagProperty_toTimelineArguments,
-        ),
-        "toJsonMapIterative": FlaxInstanceMethod.shared(
-          _flaxBinding60,
-          _ObjectFlagProperty_toJsonMapIterative,
-        ),
-        "toStringDeep": FlaxInstanceMethod.plain(
-          _flaxBinding287,
-          flaxStringType,
-          _ObjectFlagProperty_toStringDeep,
-        ),
-        "toString": FlaxInstanceMethod.plain(
-          _flaxBinding286,
-          flaxStringType,
-          _ObjectFlagProperty_toString,
-        ),
-        "@super:toJsonMap": _flaxBinding293,
-        "@super:valueToString": _flaxBinding414,
-        "@super:toDescription": _flaxBinding288,
-        "@super:getProperties": _flaxBinding290,
-        "@super:getChildren": _flaxBinding291,
-        "@super:isFiltered": _flaxBinding289,
-        "@super:toTimelineArguments": _flaxBinding292,
-        "@super:toJsonMapIterative": _flaxBinding294,
-        "@super:toStringDeep": _flaxBinding296,
-        "@super:toString": _flaxBinding295,
+        "toJsonMap": _flaxBinding741,
+        "valueToString": _flaxBinding742,
+        "toDescription": _flaxBinding743,
+        "getProperties": _flaxBinding291,
+        "getChildren": _flaxBinding292,
+        "isFiltered": _flaxBinding744,
+        "toTimelineArguments": _flaxBinding293,
+        "toJsonMapIterative": _flaxBinding745,
+        "toStringDeep": _flaxBinding746,
+        "toString": _flaxBinding747,
+        "@super:toJsonMap": _flaxBinding305,
+        "@super:valueToString": _flaxBinding409,
+        "@super:toDescription": _flaxBinding300,
+        "@super:getProperties": _flaxBinding302,
+        "@super:getChildren": _flaxBinding303,
+        "@super:isFiltered": _flaxBinding301,
+        "@super:toTimelineArguments": _flaxBinding304,
+        "@super:toJsonMapIterative": _flaxBinding306,
+        "@super:toStringDeep": _flaxBinding308,
+        "@super:toString": _flaxBinding307,
         "@super:get:ifPresent": FlaxInstanceMethod.shared(
           flaxNullableStringCall,
           _ObjectFlagProperty_super_get_ifPresent,
         ),
-        "@super:get:showName": _flaxBinding300,
-        "@super:get:level": _flaxBinding299,
-        "@super:get:expandableValue": _flaxBinding415,
-        "@super:get:allowWrap": _flaxBinding302,
-        "@super:get:allowNameWrap": _flaxBinding303,
-        "@super:get:ifNull": _flaxBinding416,
-        "@super:get:ifEmpty": _flaxBinding417,
-        "@super:get:tooltip": _flaxBinding418,
-        "@super:get:missingIfNull": _flaxBinding419,
-        "@super:get:propertyType": _flaxBinding420,
+        "@super:get:showName": _flaxBinding312,
+        "@super:get:level": _flaxBinding311,
+        "@super:get:expandableValue": _flaxBinding410,
+        "@super:get:allowWrap": _flaxBinding314,
+        "@super:get:allowNameWrap": _flaxBinding315,
+        "@super:get:ifNull": _flaxBinding411,
+        "@super:get:ifEmpty": _flaxBinding412,
+        "@super:get:tooltip": _flaxBinding413,
+        "@super:get:missingIfNull": _flaxBinding414,
+        "@super:get:propertyType": _flaxBinding415,
         "@super:get:value": FlaxInstanceMethod.plain(
           _flaxBinding131,
           FlaxTypeRef("any", nullable: true),
           _ObjectFlagProperty_super_get_value,
         ),
-        "@super:get:exception": _flaxBinding421,
-        "@super:get:defaultValue": _flaxBinding422,
-        "@super:get:isInteresting": _flaxBinding423,
-        "@super:get:name": _flaxBinding297,
-        "@super:get:showSeparator": _flaxBinding298,
-        "@super:get:linePrefix": _flaxBinding301,
+        "@super:get:exception": _flaxBinding416,
+        "@super:get:defaultValue": _flaxBinding417,
+        "@super:get:isInteresting": _flaxBinding418,
+        "@super:get:name": _flaxBinding309,
+        "@super:get:showSeparator": _flaxBinding310,
+        "@super:get:linePrefix": _flaxBinding313,
         "@super:get:emptyBodyDescription": FlaxInstanceMethod.shared(
           flaxNullableStringCall,
           _ObjectFlagProperty_super_get_emptyBodyDescription,
@@ -4697,14 +4475,14 @@ const sdk_foundationBindings = FlaxBindingModule(
           _flaxBinding71,
           _ObjectFlagProperty_super_get_style,
         ),
-        "@super:get:allowTruncate": _flaxBinding304,
-        "@super:get:textTreeConfiguration": _flaxBinding305,
+        "@super:get:allowTruncate": _flaxBinding316,
+        "@super:get:textTreeConfiguration": _flaxBinding317,
       },
       constructors: {
-        "": _flaxBinding765,
-        "has": _flaxBinding766,
-        "@implementation": _flaxBinding765,
-        "@implementation:has": _flaxBinding766,
+        "": _flaxBinding748,
+        "has": _flaxBinding749,
+        "@implementation": _flaxBinding748,
+        "@implementation:has": _flaxBinding749,
       },
       create: _createObjectFlagProperty,
       disposeMethod: null,
@@ -4718,27 +4496,27 @@ const sdk_foundationBindings = FlaxBindingModule(
       matches: _isObjectFlagProperty,
       methods: const {},
       proxy: FlaxProxyBinding([
-        _flaxBinding314,
-        _flaxBinding426,
-        _flaxBinding309,
-        _flaxBinding311,
-        _flaxBinding312,
-        _flaxBinding310,
-        _flaxBinding313,
-        _flaxBinding315,
-        _flaxBinding319,
-        _flaxBinding317,
-        _flaxBinding767,
-        _flaxBinding325,
+        _flaxBinding326,
+        _flaxBinding421,
+        _flaxBinding321,
+        _flaxBinding323,
         _flaxBinding324,
-        _flaxBinding427,
+        _flaxBinding322,
+        _flaxBinding325,
         _flaxBinding327,
-        _flaxBinding328,
-        _flaxBinding428,
-        _flaxBinding429,
-        _flaxBinding430,
-        _flaxBinding431,
-        _flaxBinding432,
+        _flaxBinding331,
+        _flaxBinding329,
+        _flaxBinding750,
+        _flaxBinding337,
+        _flaxBinding336,
+        _flaxBinding422,
+        _flaxBinding339,
+        _flaxBinding340,
+        _flaxBinding423,
+        _flaxBinding424,
+        _flaxBinding425,
+        _flaxBinding426,
+        _flaxBinding427,
         FlaxProxyMember(
           "value",
           1,
@@ -4749,16 +4527,16 @@ const sdk_foundationBindings = FlaxBindingModule(
           ),
           hasSuper: true,
         ),
-        _flaxBinding433,
-        _flaxBinding434,
-        _flaxBinding435,
-        _flaxBinding322,
-        _flaxBinding323,
-        _flaxBinding326,
-        _flaxBinding262,
-        _flaxBinding383,
-        _flaxBinding329,
-        _flaxBinding330,
+        _flaxBinding428,
+        _flaxBinding429,
+        _flaxBinding430,
+        _flaxBinding334,
+        _flaxBinding335,
+        _flaxBinding338,
+        _flaxBinding265,
+        _flaxBinding382,
+        _flaxBinding341,
+        _flaxBinding342,
       ]),
     ),
     FlaxObjectBinding(
@@ -4769,9 +4547,9 @@ const sdk_foundationBindings = FlaxBindingModule(
           FlaxTypeRef("object", id: "flax.core/flutter#type:Iterator"),
           _ObserverList_iterator,
         ),
-        _flaxBinding768,
-        _flaxBinding769,
-        _flaxBinding770,
+        _flaxBinding751,
+        _flaxBinding752,
+        _flaxBinding753,
         FlaxGetter.plain(
           "first",
           FlaxTypeRef("any", nullable: true),
@@ -4803,22 +4581,19 @@ const sdk_foundationBindings = FlaxBindingModule(
           flaxBoolType,
           _ObserverList_remove,
         ),
-        "clear": FlaxInstanceMethod.shared(flaxVoidCall, _ObserverList_clear),
-        "contains": FlaxInstanceMethod.shared(
-          _flaxBinding41,
-          _ObserverList_contains,
-        ),
+        "clear": _flaxBinding754,
+        "contains": _flaxBinding755,
         "toList": FlaxInstanceMethod.plain(
-          _flaxBinding213,
+          _flaxBinding214,
           FlaxTypeRef(
             "list",
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "list:[any?:]",
-              _collection22Create,
-              _collection22Matches,
+              _flaxAdapters.flaxAdapter43Create,
+              _flaxAdapters.flaxAdapter43Matches,
             ),
-            iterable: _flaxBinding210,
+            iterable: _flaxBinding211,
           ),
           _ObserverList_toList,
         ),
@@ -4829,9 +4604,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _ObserverList_cast,
@@ -4847,9 +4622,9 @@ const sdk_foundationBindings = FlaxBindingModule(
                 item: flaxNullableAnyType,
                 collection: FlaxCollectionBinding(
                   "iterable:[any?:]",
-                  _collection21Create,
-                  _collection21Matches,
-                  restore: _collection21Restore,
+                  _flaxAdapters.flaxAdapter42Create,
+                  _flaxAdapters.flaxAdapter42Matches,
+                  restore: _flaxAdapters.flaxAdapter42Restore,
                 ),
               ),
             ),
@@ -4859,9 +4634,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _ObserverList_followedBy,
@@ -4888,9 +4663,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _ObserverList_map,
@@ -4906,10 +4681,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback79,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback79Invoke,
-                  matches: _callback79Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -4919,9 +4694,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _ObserverList_where,
@@ -4933,9 +4708,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _ObserverList_whereType,
@@ -4950,11 +4725,11 @@ const sdk_foundationBindings = FlaxBindingModule(
                 "callback",
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
-                  _flaxBinding210,
-                  _callback80,
+                  _flaxBinding211,
+                  _flaxAdapters.flaxAdapter28,
                   id: "callback:<>(p:r:element:any?:)->iterable:[any?:]",
-                  invoke: _callback80Invoke,
-                  matches: _callback80Matches,
+                  invoke: _flaxAdapters.flaxAdapter28Invoke,
+                  matches: _flaxAdapters.flaxAdapter28Matches,
                 ),
               ),
             ),
@@ -4964,9 +4739,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _ObserverList_expand,
@@ -4982,10 +4757,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxVoidType,
-                  _callback81,
+                  _flaxAdapters.flaxAdapter25,
                   id: "callback:<>(p:r:element:any?:)->void:",
-                  invoke: _callback81Invoke,
-                  matches: _callback81Matches,
+                  invoke: _flaxAdapters.flaxAdapter25Invoke,
+                  matches: _flaxAdapters.flaxAdapter25Matches,
                 ),
               ),
             ),
@@ -5057,10 +4832,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback84,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback84Invoke,
-                  matches: _callback84Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -5068,11 +4843,7 @@ const sdk_foundationBindings = FlaxBindingModule(
           flaxBoolType,
           _ObserverList_every,
         ),
-        "join": FlaxInstanceMethod.plain(
-          _flaxBinding214,
-          flaxStringType,
-          _ObserverList_join,
-        ),
+        "join": _flaxBinding756,
         "any": FlaxInstanceMethod.plain(
           <FlaxParameter>[
             FlaxParameter.required(
@@ -5082,10 +4853,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback85,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback85Invoke,
-                  matches: _callback85Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -5100,23 +4871,23 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "set:[any?:]",
-              _collection23Create,
-              _collection23Matches,
+              _flaxAdapters.flaxAdapter44Create,
+              _flaxAdapters.flaxAdapter44Matches,
             ),
-            iterable: _flaxBinding210,
+            iterable: _flaxBinding211,
           ),
           _ObserverList_toSet,
         ),
         "take": FlaxInstanceMethod.plain(
-          _flaxBinding211,
+          _flaxBinding212,
           FlaxTypeRef(
             "iterable",
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _ObserverList_take,
@@ -5143,23 +4914,23 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _ObserverList_takeWhile,
         ),
         "skip": FlaxInstanceMethod.plain(
-          _flaxBinding211,
+          _flaxBinding212,
           FlaxTypeRef(
             "iterable",
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _ObserverList_skip,
@@ -5186,9 +4957,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _ObserverList_skipWhile,
@@ -5202,10 +4973,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback88,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback88Invoke,
-                  matches: _callback88Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -5217,10 +4988,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [],
                   flaxNullableAnyType,
-                  _callback89,
+                  _flaxAdapters.flaxAdapter20,
                   id: "callback:<>()->any?:",
-                  invoke: _callback89Invoke,
-                  matches: _callback89Matches,
+                  invoke: _flaxAdapters.flaxAdapter20Invoke,
+                  matches: _flaxAdapters.flaxAdapter20Matches,
                 ),
               ),
               required: false,
@@ -5238,10 +5009,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback90,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback90Invoke,
-                  matches: _callback90Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -5253,10 +5024,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [],
                   flaxNullableAnyType,
-                  _callback91,
+                  _flaxAdapters.flaxAdapter20,
                   id: "callback:<>()->any?:",
-                  invoke: _callback91Invoke,
-                  matches: _callback91Matches,
+                  invoke: _flaxAdapters.flaxAdapter20Invoke,
+                  matches: _flaxAdapters.flaxAdapter20Matches,
                 ),
               ),
               required: false,
@@ -5274,10 +5045,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback92,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback92Invoke,
-                  matches: _callback92Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -5289,10 +5060,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [],
                   flaxNullableAnyType,
-                  _callback93,
+                  _flaxAdapters.flaxAdapter20,
                   id: "callback:<>()->any?:",
-                  invoke: _callback93Invoke,
-                  matches: _callback93Matches,
+                  invoke: _flaxAdapters.flaxAdapter20Invoke,
+                  matches: _flaxAdapters.flaxAdapter20Matches,
                 ),
               ),
               required: false,
@@ -5302,7 +5073,7 @@ const sdk_foundationBindings = FlaxBindingModule(
           _ObserverList_singleWhere,
         ),
         "elementAt": FlaxInstanceMethod.plain(
-          _flaxBinding212,
+          _flaxBinding213,
           FlaxTypeRef("any", nullable: true),
           _ObserverList_elementAt,
         ),
@@ -5320,19 +5091,19 @@ const sdk_foundationBindings = FlaxBindingModule(
           flaxBoolType,
           _ObserverList_super_remove,
         ),
-        "@super:clear": _flaxBinding656,
-        "@super:contains": _flaxBinding215,
+        "@super:clear": _flaxBinding647,
+        "@super:contains": _flaxBinding218,
         "@super:toList": FlaxInstanceMethod.plain(
-          _flaxBinding213,
+          _flaxBinding214,
           FlaxTypeRef(
             "list",
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "list:[any?:]",
-              _collection22Create,
-              _collection22Matches,
+              _flaxAdapters.flaxAdapter43Create,
+              _flaxAdapters.flaxAdapter43Matches,
             ),
-            iterable: _flaxBinding210,
+            iterable: _flaxBinding211,
           ),
           _ObserverList_super_toList,
         ),
@@ -5343,9 +5114,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _ObserverList_super_cast,
@@ -5361,9 +5132,9 @@ const sdk_foundationBindings = FlaxBindingModule(
                 item: flaxNullableAnyType,
                 collection: FlaxCollectionBinding(
                   "iterable:[any?:]",
-                  _collection21Create,
-                  _collection21Matches,
-                  restore: _collection21Restore,
+                  _flaxAdapters.flaxAdapter42Create,
+                  _flaxAdapters.flaxAdapter42Matches,
+                  restore: _flaxAdapters.flaxAdapter42Restore,
                 ),
               ),
             ),
@@ -5373,9 +5144,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _ObserverList_super_followedBy,
@@ -5402,9 +5173,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _ObserverList_super_map,
@@ -5420,10 +5191,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback79,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback79Invoke,
-                  matches: _callback79Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -5433,9 +5204,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _ObserverList_super_where,
@@ -5447,9 +5218,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _ObserverList_super_whereType,
@@ -5464,11 +5235,11 @@ const sdk_foundationBindings = FlaxBindingModule(
                 "callback",
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
-                  _flaxBinding210,
-                  _callback80,
+                  _flaxBinding211,
+                  _flaxAdapters.flaxAdapter28,
                   id: "callback:<>(p:r:element:any?:)->iterable:[any?:]",
-                  invoke: _callback80Invoke,
-                  matches: _callback80Matches,
+                  invoke: _flaxAdapters.flaxAdapter28Invoke,
+                  matches: _flaxAdapters.flaxAdapter28Matches,
                 ),
               ),
             ),
@@ -5478,9 +5249,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _ObserverList_super_expand,
@@ -5496,10 +5267,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxVoidType,
-                  _callback81,
+                  _flaxAdapters.flaxAdapter25,
                   id: "callback:<>(p:r:element:any?:)->void:",
-                  invoke: _callback81Invoke,
-                  matches: _callback81Matches,
+                  invoke: _flaxAdapters.flaxAdapter25Invoke,
+                  matches: _flaxAdapters.flaxAdapter25Matches,
                 ),
               ),
             ),
@@ -5571,10 +5342,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback84,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback84Invoke,
-                  matches: _callback84Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -5582,7 +5353,7 @@ const sdk_foundationBindings = FlaxBindingModule(
           flaxBoolType,
           _ObserverList_super_every,
         ),
-        "@super:join": _flaxBinding216,
+        "@super:join": _flaxBinding219,
         "@super:any": FlaxInstanceMethod.plain(
           <FlaxParameter>[
             FlaxParameter.required(
@@ -5592,10 +5363,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback85,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback85Invoke,
-                  matches: _callback85Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -5610,23 +5381,23 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "set:[any?:]",
-              _collection23Create,
-              _collection23Matches,
+              _flaxAdapters.flaxAdapter44Create,
+              _flaxAdapters.flaxAdapter44Matches,
             ),
-            iterable: _flaxBinding210,
+            iterable: _flaxBinding211,
           ),
           _ObserverList_super_toSet,
         ),
         "@super:take": FlaxInstanceMethod.plain(
-          _flaxBinding211,
+          _flaxBinding212,
           FlaxTypeRef(
             "iterable",
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _ObserverList_super_take,
@@ -5653,23 +5424,23 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _ObserverList_super_takeWhile,
         ),
         "@super:skip": FlaxInstanceMethod.plain(
-          _flaxBinding211,
+          _flaxBinding212,
           FlaxTypeRef(
             "iterable",
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _ObserverList_super_skip,
@@ -5696,9 +5467,9 @@ const sdk_foundationBindings = FlaxBindingModule(
             item: flaxNullableAnyType,
             collection: FlaxCollectionBinding(
               "iterable:[any?:]",
-              _collection21Create,
-              _collection21Matches,
-              restore: _collection21Restore,
+              _flaxAdapters.flaxAdapter42Create,
+              _flaxAdapters.flaxAdapter42Matches,
+              restore: _flaxAdapters.flaxAdapter42Restore,
             ),
           ),
           _ObserverList_super_skipWhile,
@@ -5712,10 +5483,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback88,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback88Invoke,
-                  matches: _callback88Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -5727,10 +5498,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [],
                   flaxNullableAnyType,
-                  _callback89,
+                  _flaxAdapters.flaxAdapter20,
                   id: "callback:<>()->any?:",
-                  invoke: _callback89Invoke,
-                  matches: _callback89Matches,
+                  invoke: _flaxAdapters.flaxAdapter20Invoke,
+                  matches: _flaxAdapters.flaxAdapter20Matches,
                 ),
               ),
               required: false,
@@ -5748,10 +5519,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback90,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback90Invoke,
-                  matches: _callback90Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -5763,10 +5534,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [],
                   flaxNullableAnyType,
-                  _callback91,
+                  _flaxAdapters.flaxAdapter20,
                   id: "callback:<>()->any?:",
-                  invoke: _callback91Invoke,
-                  matches: _callback91Matches,
+                  invoke: _flaxAdapters.flaxAdapter20Invoke,
+                  matches: _flaxAdapters.flaxAdapter20Matches,
                 ),
               ),
               required: false,
@@ -5784,10 +5555,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
                   flaxBoolType,
-                  _callback92,
+                  _flaxAdapters.flaxAdapter30,
                   id: "callback:<>(p:r:element:any?:)->bool:",
-                  invoke: _callback92Invoke,
-                  matches: _callback92Matches,
+                  invoke: _flaxAdapters.flaxAdapter30Invoke,
+                  matches: _flaxAdapters.flaxAdapter30Matches,
                 ),
               ),
             ),
@@ -5799,10 +5570,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                 callback: FlaxCallbackBinding(
                   [],
                   flaxNullableAnyType,
-                  _callback93,
+                  _flaxAdapters.flaxAdapter20,
                   id: "callback:<>()->any?:",
-                  invoke: _callback93Invoke,
-                  matches: _callback93Matches,
+                  invoke: _flaxAdapters.flaxAdapter20Invoke,
+                  matches: _flaxAdapters.flaxAdapter20Matches,
                 ),
               ),
               required: false,
@@ -5812,7 +5583,7 @@ const sdk_foundationBindings = FlaxBindingModule(
           _ObserverList_super_singleWhere,
         ),
         "@super:elementAt": FlaxInstanceMethod.plain(
-          _flaxBinding212,
+          _flaxBinding213,
           FlaxTypeRef("any", nullable: true),
           _ObserverList_super_elementAt,
         ),
@@ -5821,9 +5592,9 @@ const sdk_foundationBindings = FlaxBindingModule(
           FlaxTypeRef("object", id: "flax.core/flutter#type:Iterator"),
           _ObserverList_super_get_iterator,
         ),
-        "@super:get:isEmpty": _flaxBinding218,
-        "@super:get:isNotEmpty": _flaxBinding219,
-        "@super:get:length": _flaxBinding217,
+        "@super:get:isEmpty": _flaxBinding221,
+        "@super:get:isNotEmpty": _flaxBinding222,
+        "@super:get:length": _flaxBinding220,
         "@super:get:first": FlaxInstanceMethod.plain(
           _flaxBinding131,
           FlaxTypeRef("any", nullable: true),
@@ -5879,8 +5650,8 @@ const sdk_foundationBindings = FlaxBindingModule(
           ),
           hasSuper: true,
         ),
-        _flaxBinding657,
-        _flaxBinding226,
+        _flaxBinding648,
+        _flaxBinding229,
         FlaxProxyMember(
           "toList",
           0,
@@ -5898,10 +5669,10 @@ const sdk_foundationBindings = FlaxBindingModule(
               item: flaxNullableAnyType,
               collection: FlaxCollectionBinding(
                 "list:[any?:]",
-                _collection22Create,
-                _collection22Matches,
+                _flaxAdapters.flaxAdapter43Create,
+                _flaxAdapters.flaxAdapter43Matches,
               ),
-              iterable: _flaxBinding210,
+              iterable: _flaxBinding211,
             ),
             id: "callback:<>(n:o:growable:bool:)->list:[any?:]",
           ),
@@ -5912,7 +5683,7 @@ const sdk_foundationBindings = FlaxBindingModule(
           0,
           FlaxCallbackBinding(
             [],
-            _flaxBinding210,
+            _flaxBinding211,
             _callback94,
             id: "callback:<R:any?:=any?:>()->iterable:[any?:]",
             invoke: _callback94Invoke,
@@ -5934,9 +5705,9 @@ const sdk_foundationBindings = FlaxBindingModule(
                   item: flaxNullableAnyType,
                   collection: FlaxCollectionBinding(
                     "iterable:[any?:]",
-                    _collection21Create,
-                    _collection21Matches,
-                    restore: _collection21Restore,
+                    _flaxAdapters.flaxAdapter42Create,
+                    _flaxAdapters.flaxAdapter42Matches,
+                    restore: _flaxAdapters.flaxAdapter42Restore,
                   ),
                 ),
               ),
@@ -5946,9 +5717,9 @@ const sdk_foundationBindings = FlaxBindingModule(
               item: flaxNullableAnyType,
               collection: FlaxCollectionBinding(
                 "iterable:[any?:]",
-                _collection21Create,
-                _collection21Matches,
-                restore: _collection21Restore,
+                _flaxAdapters.flaxAdapter42Create,
+                _flaxAdapters.flaxAdapter42Matches,
+                restore: _flaxAdapters.flaxAdapter42Restore,
               ),
             ),
             id: "callback:<>(p:r:other:iterable:[any?:])->iterable:[any?:]",
@@ -5959,8 +5730,8 @@ const sdk_foundationBindings = FlaxBindingModule(
           "map",
           0,
           FlaxCallbackBinding(
-            [FlaxCallbackParameter.plain("toElement", _flaxBinding223)],
-            _flaxBinding210,
+            [FlaxCallbackParameter.plain("toElement", _flaxBinding226)],
+            _flaxBinding211,
             _callback95,
             id: "callback:<T:any?:=any?:>(p:r:toElement:callback:<>(p:r:e:any?:)->any?:)->iterable:[any?:]",
             invoke: _callback95Invoke,
@@ -5987,10 +5758,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                       ),
                     ],
                     flaxBoolType,
-                    _callback96,
+                    _flaxAdapters.flaxAdapter30,
                     id: "callback:<>(p:r:element:any?:)->bool:",
-                    invoke: _callback96Invoke,
-                    matches: _callback96Matches,
+                    invoke: _flaxAdapters.flaxAdapter30Invoke,
+                    matches: _flaxAdapters.flaxAdapter30Matches,
                   ),
                 ),
               ),
@@ -6000,9 +5771,9 @@ const sdk_foundationBindings = FlaxBindingModule(
               item: flaxNullableAnyType,
               collection: FlaxCollectionBinding(
                 "iterable:[any?:]",
-                _collection21Create,
-                _collection21Matches,
-                restore: _collection21Restore,
+                _flaxAdapters.flaxAdapter42Create,
+                _flaxAdapters.flaxAdapter42Matches,
+                restore: _flaxAdapters.flaxAdapter42Restore,
               ),
             ),
             id: "callback:<>(p:r:test:callback:<>(p:r:element:any?:)->bool:)->iterable:[any?:]",
@@ -6014,7 +5785,7 @@ const sdk_foundationBindings = FlaxBindingModule(
           0,
           FlaxCallbackBinding(
             [],
-            _flaxBinding210,
+            _flaxBinding211,
             _callback97,
             id: "callback:<T:any?:=any?:>()->iterable:[any?:]",
             invoke: _callback97Invoke,
@@ -6028,8 +5799,8 @@ const sdk_foundationBindings = FlaxBindingModule(
           "expand",
           0,
           FlaxCallbackBinding(
-            [FlaxCallbackParameter.plain("toElements", _flaxBinding225)],
-            _flaxBinding210,
+            [FlaxCallbackParameter.plain("toElements", _flaxBinding228)],
+            _flaxBinding211,
             _callback98,
             id: "callback:<T:any?:=any?:>(p:r:toElements:callback:<>(p:r:element:any?:)->iterable:[any?:])->iterable:[any?:]",
             invoke: _callback98Invoke,
@@ -6056,10 +5827,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                       ),
                     ],
                     flaxVoidType,
-                    _callback99,
+                    _flaxAdapters.flaxAdapter25,
                     id: "callback:<>(p:r:element:any?:)->void:",
-                    invoke: _callback99Invoke,
-                    matches: _callback99Matches,
+                    invoke: _flaxAdapters.flaxAdapter25Invoke,
+                    matches: _flaxAdapters.flaxAdapter25Matches,
                   ),
                 ),
               ),
@@ -6106,7 +5877,7 @@ const sdk_foundationBindings = FlaxBindingModule(
           FlaxCallbackBinding(
             [
               FlaxCallbackParameter.plain("initialValue", flaxNullableAnyType),
-              FlaxCallbackParameter.plain("combine", _flaxBinding228),
+              FlaxCallbackParameter.plain("combine", _flaxBinding231),
             ],
             flaxNullableAnyType,
             _callback101,
@@ -6135,10 +5906,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                       ),
                     ],
                     flaxBoolType,
-                    _callback102,
+                    _flaxAdapters.flaxAdapter30,
                     id: "callback:<>(p:r:element:any?:)->bool:",
-                    invoke: _callback102Invoke,
-                    matches: _callback102Matches,
+                    invoke: _flaxAdapters.flaxAdapter30Invoke,
+                    matches: _flaxAdapters.flaxAdapter30Matches,
                   ),
                 ),
               ),
@@ -6148,7 +5919,7 @@ const sdk_foundationBindings = FlaxBindingModule(
           ),
           hasSuper: true,
         ),
-        _flaxBinding230,
+        _flaxBinding233,
         FlaxProxyMember(
           "any",
           0,
@@ -6166,10 +5937,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                       ),
                     ],
                     flaxBoolType,
-                    _callback103,
+                    _flaxAdapters.flaxAdapter30,
                     id: "callback:<>(p:r:element:any?:)->bool:",
-                    invoke: _callback103Invoke,
-                    matches: _callback103Matches,
+                    invoke: _flaxAdapters.flaxAdapter30Invoke,
+                    matches: _flaxAdapters.flaxAdapter30Matches,
                   ),
                 ),
               ),
@@ -6189,10 +5960,10 @@ const sdk_foundationBindings = FlaxBindingModule(
               item: flaxNullableAnyType,
               collection: FlaxCollectionBinding(
                 "set:[any?:]",
-                _collection23Create,
-                _collection23Matches,
+                _flaxAdapters.flaxAdapter44Create,
+                _flaxAdapters.flaxAdapter44Matches,
               ),
-              iterable: _flaxBinding210,
+              iterable: _flaxBinding211,
             ),
             id: "callback:<>()->set:[any?:]",
           ),
@@ -6208,9 +5979,9 @@ const sdk_foundationBindings = FlaxBindingModule(
               item: flaxNullableAnyType,
               collection: FlaxCollectionBinding(
                 "iterable:[any?:]",
-                _collection21Create,
-                _collection21Matches,
-                restore: _collection21Restore,
+                _flaxAdapters.flaxAdapter42Create,
+                _flaxAdapters.flaxAdapter42Matches,
+                restore: _flaxAdapters.flaxAdapter42Restore,
               ),
             ),
             id: "callback:<>(p:r:count:int:)->iterable:[any?:]",
@@ -6242,9 +6013,9 @@ const sdk_foundationBindings = FlaxBindingModule(
               item: flaxNullableAnyType,
               collection: FlaxCollectionBinding(
                 "iterable:[any?:]",
-                _collection21Create,
-                _collection21Matches,
-                restore: _collection21Restore,
+                _flaxAdapters.flaxAdapter42Create,
+                _flaxAdapters.flaxAdapter42Matches,
+                restore: _flaxAdapters.flaxAdapter42Restore,
               ),
             ),
             id: "callback:<>(p:r:test:callback:<>(p:r:value:any?:)->bool:)->iterable:[any?:]",
@@ -6261,9 +6032,9 @@ const sdk_foundationBindings = FlaxBindingModule(
               item: flaxNullableAnyType,
               collection: FlaxCollectionBinding(
                 "iterable:[any?:]",
-                _collection21Create,
-                _collection21Matches,
-                restore: _collection21Restore,
+                _flaxAdapters.flaxAdapter42Create,
+                _flaxAdapters.flaxAdapter42Matches,
+                restore: _flaxAdapters.flaxAdapter42Restore,
               ),
             ),
             id: "callback:<>(p:r:count:int:)->iterable:[any?:]",
@@ -6295,9 +6066,9 @@ const sdk_foundationBindings = FlaxBindingModule(
               item: flaxNullableAnyType,
               collection: FlaxCollectionBinding(
                 "iterable:[any?:]",
-                _collection21Create,
-                _collection21Matches,
-                restore: _collection21Restore,
+                _flaxAdapters.flaxAdapter42Create,
+                _flaxAdapters.flaxAdapter42Matches,
+                restore: _flaxAdapters.flaxAdapter42Restore,
               ),
             ),
             id: "callback:<>(p:r:test:callback:<>(p:r:value:any?:)->bool:)->iterable:[any?:]",
@@ -6321,10 +6092,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                       ),
                     ],
                     flaxBoolType,
-                    _callback106,
+                    _flaxAdapters.flaxAdapter30,
                     id: "callback:<>(p:r:element:any?:)->bool:",
-                    invoke: _callback106Invoke,
-                    matches: _callback106Matches,
+                    invoke: _flaxAdapters.flaxAdapter30Invoke,
+                    matches: _flaxAdapters.flaxAdapter30Matches,
                   ),
                 ),
               ),
@@ -6336,10 +6107,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                   callback: FlaxCallbackBinding(
                     [],
                     flaxNullableAnyType,
-                    _callback107,
+                    _flaxAdapters.flaxAdapter20,
                     id: "callback:<>()->any?:",
-                    invoke: _callback107Invoke,
-                    matches: _callback107Matches,
+                    invoke: _flaxAdapters.flaxAdapter20Invoke,
+                    matches: _flaxAdapters.flaxAdapter20Matches,
                   ),
                 ),
                 required: false,
@@ -6368,10 +6139,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                       ),
                     ],
                     flaxBoolType,
-                    _callback108,
+                    _flaxAdapters.flaxAdapter30,
                     id: "callback:<>(p:r:element:any?:)->bool:",
-                    invoke: _callback108Invoke,
-                    matches: _callback108Matches,
+                    invoke: _flaxAdapters.flaxAdapter30Invoke,
+                    matches: _flaxAdapters.flaxAdapter30Matches,
                   ),
                 ),
               ),
@@ -6383,10 +6154,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                   callback: FlaxCallbackBinding(
                     [],
                     flaxNullableAnyType,
-                    _callback109,
+                    _flaxAdapters.flaxAdapter20,
                     id: "callback:<>()->any?:",
-                    invoke: _callback109Invoke,
-                    matches: _callback109Matches,
+                    invoke: _flaxAdapters.flaxAdapter20Invoke,
+                    matches: _flaxAdapters.flaxAdapter20Matches,
                   ),
                 ),
                 required: false,
@@ -6415,10 +6186,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                       ),
                     ],
                     flaxBoolType,
-                    _callback110,
+                    _flaxAdapters.flaxAdapter30,
                     id: "callback:<>(p:r:element:any?:)->bool:",
-                    invoke: _callback110Invoke,
-                    matches: _callback110Matches,
+                    invoke: _flaxAdapters.flaxAdapter30Invoke,
+                    matches: _flaxAdapters.flaxAdapter30Matches,
                   ),
                 ),
               ),
@@ -6430,10 +6201,10 @@ const sdk_foundationBindings = FlaxBindingModule(
                   callback: FlaxCallbackBinding(
                     [],
                     flaxNullableAnyType,
-                    _callback111,
+                    _flaxAdapters.flaxAdapter20,
                     id: "callback:<>()->any?:",
-                    invoke: _callback111Invoke,
-                    matches: _callback111Matches,
+                    invoke: _flaxAdapters.flaxAdapter20Invoke,
+                    matches: _flaxAdapters.flaxAdapter20Matches,
                   ),
                 ),
                 required: false,
@@ -6465,9 +6236,9 @@ const sdk_foundationBindings = FlaxBindingModule(
           ),
           hasSuper: true,
         ),
-        _flaxBinding232,
-        _flaxBinding233,
-        _flaxBinding231,
+        _flaxBinding235,
+        _flaxBinding236,
+        _flaxBinding234,
         FlaxProxyMember(
           "first",
           1,
@@ -6499,10 +6270,10 @@ const sdk_foundationBindings = FlaxBindingModule(
           hasSuper: true,
         ),
       ]),
-      collectionView: _flaxBinding210,
+      collectionView: _flaxBinding211,
     ),
-    _flaxBinding780,
-    _flaxBinding782,
+    _flaxBinding766,
+    _flaxBinding768,
     FlaxObjectBinding(
       "flax.core/sdk_foundation#type:PersistentHashMap",
       [],
@@ -6584,12 +6355,12 @@ const sdk_foundationBindings = FlaxBindingModule(
         ),
       ]),
     ),
-    _flaxBinding814,
-    _flaxBinding826,
-    _flaxBinding817,
-    _flaxBinding847,
-    _flaxBinding863,
-    _flaxBinding866,
+    _flaxBinding800,
+    _flaxBinding812,
+    _flaxBinding803,
+    _flaxBinding833,
+    _flaxBinding849,
+    _flaxBinding852,
     FlaxObjectBinding(
       "flax.core/sdk_foundation#type:SynchronousFuture",
       [],
@@ -6609,11 +6380,14 @@ const sdk_foundationBindings = FlaxBindingModule(
           _SynchronousFuture_asStream,
         ),
         "catchError": FlaxInstanceMethod.plain(
-          _flaxBinding869,
+          _flaxBinding855,
           FlaxTypeRef(
             "future",
             item: flaxNullableAnyType,
-            future: FlaxFutureBinding("any?:", _future5Adapt),
+            future: FlaxFutureBinding(
+              "any?:",
+              _flaxAdapters.flaxAdapter15Adapt,
+            ),
           ),
           _SynchronousFuture_catchError,
         ),
@@ -6625,20 +6399,23 @@ const sdk_foundationBindings = FlaxBindingModule(
                 "callback",
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("value", flaxNullableAnyType)],
-                  _flaxBinding870,
-                  _callback112,
+                  _flaxBinding856,
+                  _flaxAdapters.flaxAdapter29,
                   id: "callback:<>(p:r:value:any?:)->futureOr:[any?:]",
-                  invoke: _callback112Invoke,
-                  matches: _callback112Matches,
+                  invoke: _flaxAdapters.flaxAdapter29Invoke,
+                  matches: _flaxAdapters.flaxAdapter29Matches,
                 ),
               ),
             ),
-            FlaxParameter("onError", _flaxBinding871, required: false),
+            FlaxParameter("onError", _flaxBinding857, required: false),
           ],
           FlaxTypeRef(
             "future",
             item: flaxNullableAnyType,
-            future: FlaxFutureBinding("any?:", _future5Adapt),
+            future: FlaxFutureBinding(
+              "any?:",
+              _flaxAdapters.flaxAdapter15Adapt,
+            ),
           ),
           _SynchronousFuture_then,
           genericFactory: _flaxGeneric_SynchronousFuture_then,
@@ -6654,11 +6431,11 @@ const sdk_foundationBindings = FlaxBindingModule(
                 nullable: true,
                 callback: FlaxCallbackBinding(
                   [],
-                  _flaxBinding870,
-                  _callback113,
+                  _flaxBinding856,
+                  _flaxAdapters.flaxAdapter21,
                   id: "callback:<>()->futureOr:[any?:]",
-                  invoke: _callback113Invoke,
-                  matches: _callback113Matches,
+                  invoke: _flaxAdapters.flaxAdapter21Invoke,
+                  matches: _flaxAdapters.flaxAdapter21Matches,
                 ),
               ),
               required: false,
@@ -6667,16 +6444,22 @@ const sdk_foundationBindings = FlaxBindingModule(
           FlaxTypeRef(
             "future",
             item: flaxNullableAnyType,
-            future: FlaxFutureBinding("any?:", _future5Adapt),
+            future: FlaxFutureBinding(
+              "any?:",
+              _flaxAdapters.flaxAdapter15Adapt,
+            ),
           ),
           _SynchronousFuture_timeout,
         ),
         "whenComplete": FlaxInstanceMethod.plain(
-          _flaxBinding874,
+          _flaxBinding860,
           FlaxTypeRef(
             "future",
             item: flaxNullableAnyType,
-            future: FlaxFutureBinding("any?:", _future5Adapt),
+            future: FlaxFutureBinding(
+              "any?:",
+              _flaxAdapters.flaxAdapter15Adapt,
+            ),
           ),
           _SynchronousFuture_whenComplete,
         ),
@@ -6695,11 +6478,14 @@ const sdk_foundationBindings = FlaxBindingModule(
           _SynchronousFuture_super_asStream,
         ),
         "@super:catchError": FlaxInstanceMethod.plain(
-          _flaxBinding869,
+          _flaxBinding855,
           FlaxTypeRef(
             "future",
             item: flaxNullableAnyType,
-            future: FlaxFutureBinding("any?:", _future5Adapt),
+            future: FlaxFutureBinding(
+              "any?:",
+              _flaxAdapters.flaxAdapter15Adapt,
+            ),
           ),
           _SynchronousFuture_super_catchError,
         ),
@@ -6711,20 +6497,23 @@ const sdk_foundationBindings = FlaxBindingModule(
                 "callback",
                 callback: FlaxCallbackBinding(
                   [FlaxCallbackParameter.plain("value", flaxNullableAnyType)],
-                  _flaxBinding870,
-                  _callback112,
+                  _flaxBinding856,
+                  _flaxAdapters.flaxAdapter29,
                   id: "callback:<>(p:r:value:any?:)->futureOr:[any?:]",
-                  invoke: _callback112Invoke,
-                  matches: _callback112Matches,
+                  invoke: _flaxAdapters.flaxAdapter29Invoke,
+                  matches: _flaxAdapters.flaxAdapter29Matches,
                 ),
               ),
             ),
-            FlaxParameter("onError", _flaxBinding871, required: false),
+            FlaxParameter("onError", _flaxBinding857, required: false),
           ],
           FlaxTypeRef(
             "future",
             item: flaxNullableAnyType,
-            future: FlaxFutureBinding("any?:", _future5Adapt),
+            future: FlaxFutureBinding(
+              "any?:",
+              _flaxAdapters.flaxAdapter15Adapt,
+            ),
           ),
           _SynchronousFuture_super_then,
           genericFactory: _flaxGeneric_SynchronousFuture_super_then,
@@ -6740,11 +6529,11 @@ const sdk_foundationBindings = FlaxBindingModule(
                 nullable: true,
                 callback: FlaxCallbackBinding(
                   [],
-                  _flaxBinding870,
-                  _callback113,
+                  _flaxBinding856,
+                  _flaxAdapters.flaxAdapter21,
                   id: "callback:<>()->futureOr:[any?:]",
-                  invoke: _callback113Invoke,
-                  matches: _callback113Matches,
+                  invoke: _flaxAdapters.flaxAdapter21Invoke,
+                  matches: _flaxAdapters.flaxAdapter21Matches,
                 ),
               ),
               required: false,
@@ -6753,21 +6542,27 @@ const sdk_foundationBindings = FlaxBindingModule(
           FlaxTypeRef(
             "future",
             item: flaxNullableAnyType,
-            future: FlaxFutureBinding("any?:", _future5Adapt),
+            future: FlaxFutureBinding(
+              "any?:",
+              _flaxAdapters.flaxAdapter15Adapt,
+            ),
           ),
           _SynchronousFuture_super_timeout,
         ),
         "@super:whenComplete": FlaxInstanceMethod.plain(
-          _flaxBinding874,
+          _flaxBinding860,
           FlaxTypeRef(
             "future",
             item: flaxNullableAnyType,
-            future: FlaxFutureBinding("any?:", _future5Adapt),
+            future: FlaxFutureBinding(
+              "any?:",
+              _flaxAdapters.flaxAdapter15Adapt,
+            ),
           ),
           _SynchronousFuture_super_whenComplete,
         ),
       },
-      constructors: {"": _flaxBinding875, "@implementation": _flaxBinding875},
+      constructors: {"": _flaxBinding861, "@implementation": _flaxBinding861},
       create: _createSynchronousFuture,
       disposeMethod: null,
       listenerPairs: {},
@@ -6803,7 +6598,7 @@ const sdk_foundationBindings = FlaxBindingModule(
               FlaxCallbackParameter.plain("onError", flaxFunctionType),
               FlaxCallbackParameter.plain(
                 "test",
-                _flaxBinding868,
+                _flaxBinding854,
                 required: false,
                 positional: false,
               ),
@@ -6811,7 +6606,10 @@ const sdk_foundationBindings = FlaxBindingModule(
             FlaxTypeRef(
               "future",
               item: flaxNullableAnyType,
-              future: FlaxFutureBinding("any?:", _future5Adapt),
+              future: FlaxFutureBinding(
+                "any?:",
+                _flaxAdapters.flaxAdapter15Adapt,
+              ),
             ),
             id: "callback:<>(p:r:onError:function:,n:o:test:callback?:<>(p:r:error:any:)->bool:)->future:[any?:]",
           ),
@@ -6822,15 +6620,15 @@ const sdk_foundationBindings = FlaxBindingModule(
           0,
           FlaxCallbackBinding(
             [
-              FlaxCallbackParameter.plain("onValue", _flaxBinding877),
+              FlaxCallbackParameter.plain("onValue", _flaxBinding863),
               FlaxCallbackParameter.plain(
                 "onError",
-                _flaxBinding871,
+                _flaxBinding857,
                 required: false,
                 positional: false,
               ),
             ],
-            _flaxBinding878,
+            _flaxBinding864,
             _callback116,
             id: "callback:<R:any?:=any?:>(p:r:onValue:callback:<>(p:r:value:any?:)->futureOr:[any?:],n:o:onError:function?:)->future:[any?:]",
             invoke: _callback116Invoke,
@@ -6853,11 +6651,11 @@ const sdk_foundationBindings = FlaxBindingModule(
                   nullable: true,
                   callback: FlaxCallbackBinding(
                     [],
-                    _flaxBinding870,
-                    _callback117,
+                    _flaxBinding856,
+                    _flaxAdapters.flaxAdapter21,
                     id: "callback:<>()->futureOr:[any?:]",
-                    invoke: _callback117Invoke,
-                    matches: _callback117Matches,
+                    invoke: _flaxAdapters.flaxAdapter21Invoke,
+                    matches: _flaxAdapters.flaxAdapter21Matches,
                   ),
                 ),
                 required: false,
@@ -6867,7 +6665,10 @@ const sdk_foundationBindings = FlaxBindingModule(
             FlaxTypeRef(
               "future",
               item: flaxNullableAnyType,
-              future: FlaxFutureBinding("any?:", _future5Adapt),
+              future: FlaxFutureBinding(
+                "any?:",
+                _flaxAdapters.flaxAdapter15Adapt,
+              ),
             ),
             id: "callback:<>(p:r:timeLimit:object:flax.core/flutter#type:Duration,n:o:onTimeout:callback?:<>()->futureOr:[any?:])->future:[any?:]",
           ),
@@ -6877,11 +6678,14 @@ const sdk_foundationBindings = FlaxBindingModule(
           "whenComplete",
           0,
           FlaxCallbackBinding.signature(
-            [FlaxCallbackParameter.plain("action", _flaxBinding873)],
+            [FlaxCallbackParameter.plain("action", _flaxBinding859)],
             FlaxTypeRef(
               "future",
               item: flaxNullableAnyType,
-              future: FlaxFutureBinding("any?:", _future5Adapt),
+              future: FlaxFutureBinding(
+                "any?:",
+                _flaxAdapters.flaxAdapter15Adapt,
+              ),
             ),
             id: "callback:<>(p:r:action:callback:<>()->futureOr:[any?:])->future:[any?:]",
           ),
@@ -6889,15 +6693,15 @@ const sdk_foundationBindings = FlaxBindingModule(
         ),
       ]),
     ),
+    _flaxBinding918,
+    _flaxBinding924,
+    _flaxBinding931,
     _flaxBinding932,
-    _flaxBinding938,
-    _flaxBinding945,
-    _flaxBinding946,
-    _flaxBinding948,
+    _flaxBinding934,
     FlaxObjectBinding(
       "flax.core/sdk_foundation#type:ValueNotifier",
       [
-        _flaxBinding949,
+        _flaxBinding241,
         FlaxGetter.plain(
           "value",
           FlaxTypeRef("any", nullable: true),
@@ -6905,39 +6709,27 @@ const sdk_foundationBindings = FlaxBindingModule(
         ),
       ],
       {
-        "addListener": FlaxInstanceMethod.shared(
-          _flaxBinding45,
-          _ValueNotifier_addListener,
-        ),
-        "removeListener": FlaxInstanceMethod.shared(
-          _flaxBinding45,
-          _ValueNotifier_removeListener,
-        ),
-        "dispose": FlaxInstanceMethod.shared(
-          flaxVoidCall,
-          _ValueNotifier_dispose,
-        ),
-        "toString": FlaxInstanceMethod.shared(
-          flaxStringCall,
-          _ValueNotifier_toString,
-        ),
-        "@super:addListener": _flaxBinding242,
-        "@super:removeListener": _flaxBinding243,
-        "@super:dispose": _flaxBinding244,
+        "addListener": _flaxBinding935,
+        "removeListener": _flaxBinding936,
+        "dispose": _flaxBinding937,
+        "toString": _flaxBinding938,
+        "@super:addListener": _flaxBinding245,
+        "@super:removeListener": _flaxBinding246,
+        "@super:dispose": _flaxBinding247,
         "@super:toString": _flaxBinding183,
         "@super:get:value": FlaxInstanceMethod.plain(
           _flaxBinding131,
           FlaxTypeRef("any", nullable: true),
           _ValueNotifier_super_get_value,
         ),
-        "@super:get:hasListeners": _flaxBinding245,
+        "@super:get:hasListeners": _flaxBinding248,
         "@super:set:value": FlaxInstanceMethod.plain(
           [FlaxParameter.required("value", FlaxTypeRef("any", nullable: true))],
           flaxVoidType,
           _ValueNotifier_super_set_value,
         ),
       },
-      constructors: {"": _flaxBinding875, "@implementation": _flaxBinding875},
+      constructors: {"": _flaxBinding861, "@implementation": _flaxBinding861},
       create: _createValueNotifier,
       disposeMethod: "dispose",
       listenerPairs: {"addListener": "removeListener"},
@@ -6957,9 +6749,9 @@ const sdk_foundationBindings = FlaxBindingModule(
       matches: _isValueNotifier,
       methods: const {},
       proxy: FlaxProxyBinding([
-        _flaxBinding246,
-        _flaxBinding247,
-        _flaxBinding248,
+        _flaxBinding249,
+        _flaxBinding250,
+        _flaxBinding251,
         _flaxBinding197,
         FlaxProxyMember(
           "value",
@@ -6971,7 +6763,7 @@ const sdk_foundationBindings = FlaxBindingModule(
           ),
           hasSuper: true,
         ),
-        _flaxBinding249,
+        _flaxBinding252,
         FlaxProxyMember(
           "value",
           2,
@@ -6989,7 +6781,7 @@ const sdk_foundationBindings = FlaxBindingModule(
         ),
       ]),
     ),
-    _flaxBinding971,
+    _flaxBinding960,
   ],
   functions: [
     FlaxFunctionBinding(
@@ -7013,19 +6805,19 @@ const sdk_foundationBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#read:dashedTextConfiguration",
       [],
-      _flaxBinding972,
+      _flaxBinding961,
       _read_dashedTextConfiguration,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#read:debugBrightnessOverride",
       [],
-      _flaxBinding973,
+      _flaxBinding962,
       _read_debugBrightnessOverride,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#read:debugDefaultTargetPlatformOverride",
       [],
-      _flaxBinding974,
+      _flaxBinding963,
       _read_debugDefaultTargetPlatformOverride,
     ),
     FlaxFunctionBinding(
@@ -7043,7 +6835,7 @@ const sdk_foundationBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#read:debugPrint",
       [],
-      _flaxBinding976,
+      _flaxBinding965,
       _read_debugPrint,
     ),
     FlaxFunctionBinding(
@@ -7055,19 +6847,19 @@ const sdk_foundationBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#read:denseTextConfiguration",
       [],
-      _flaxBinding972,
+      _flaxBinding961,
       _read_denseTextConfiguration,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#read:errorPropertyTextConfiguration",
       [],
-      _flaxBinding972,
+      _flaxBinding961,
       _read_errorPropertyTextConfiguration,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#read:errorTextConfiguration",
       [],
-      _flaxBinding972,
+      _flaxBinding961,
       _read_errorTextConfiguration,
     ),
     FlaxFunctionBinding(
@@ -7079,7 +6871,7 @@ const sdk_foundationBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#read:flatTextConfiguration",
       [],
-      _flaxBinding972,
+      _flaxBinding961,
       _read_flatTextConfiguration,
     ),
     FlaxFunctionBinding(
@@ -7187,25 +6979,25 @@ const sdk_foundationBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#read:shallowTextConfiguration",
       [],
-      _flaxBinding972,
+      _flaxBinding961,
       _read_shallowTextConfiguration,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#read:singleLineTextConfiguration",
       [],
-      _flaxBinding972,
+      _flaxBinding961,
       _read_singleLineTextConfiguration,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#read:sparseTextConfiguration",
       [],
-      _flaxBinding972,
+      _flaxBinding961,
       _read_sparseTextConfiguration,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#read:transitionTextConfiguration",
       [],
-      _flaxBinding972,
+      _flaxBinding961,
       _read_transitionTextConfiguration,
     ),
     FlaxFunctionBinding(
@@ -7223,14 +7015,14 @@ const sdk_foundationBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#read:whitespaceTextConfiguration",
       [],
-      _flaxBinding972,
+      _flaxBinding961,
       _read_whitespaceTextConfiguration,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#function:binarySearch",
       [
-        FlaxParameter.required("sortedList", _flaxBinding979),
-        FlaxParameter.required("value", _flaxBinding977),
+        FlaxParameter.required("sortedList", _flaxBinding968),
+        FlaxParameter.required("value", _flaxBinding966),
       ],
       flaxIntType,
       _function_binarySearch,
@@ -7239,27 +7031,27 @@ const sdk_foundationBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#function:compute",
       [
-        FlaxParameter.required("callback", _flaxBinding981),
+        FlaxParameter.required("callback", _flaxBinding970),
         FlaxParameter.required("message", flaxNullableAnyType),
         FlaxParameter("debugLabel", flaxNullableStringType, required: false),
       ],
-      _flaxBinding878,
+      _flaxBinding864,
       _function_compute,
       genericFactory: _flaxGenericFunction1,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#function:consolidateHttpClientResponseBytes",
       [
-        FlaxParameter.required("response", _flaxBinding982),
+        FlaxParameter.required("response", _flaxBinding971),
         FlaxParameter(
           "autoUncompress",
           flaxBoolType,
           required: false,
           defaultValue: true,
         ),
-        FlaxParameter("onBytesReceived", _flaxBinding984, required: false),
+        FlaxParameter("onBytesReceived", _flaxBinding973, required: false),
       ],
-      _flaxBinding985,
+      _flaxBinding974,
       _function_consolidateHttpClientResponseBytes,
     ),
     FlaxFunctionBinding(
@@ -7268,7 +7060,7 @@ const sdk_foundationBindings = FlaxBindingModule(
         FlaxParameter.required("reason", flaxStringType),
         FlaxParameter(
           "debugPrintOverride",
-          _flaxBinding976,
+          _flaxBinding965,
           required: false,
           omitWhenAbsent: true,
         ),
@@ -7286,9 +7078,9 @@ const sdk_foundationBindings = FlaxBindingModule(
       "flax.core/sdk_foundation#function:debugInstrumentAction",
       [
         FlaxParameter.required("description", flaxStringType),
-        FlaxParameter.required("action", _flaxBinding987),
+        FlaxParameter.required("action", _flaxBinding976),
       ],
-      _flaxBinding878,
+      _flaxBinding864,
       _function_debugInstrumentAction,
       genericFactory: _flaxGenericFunction5,
     ),
@@ -7376,8 +7168,8 @@ const sdk_foundationBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#function:listEquals",
       [
-        FlaxParameter.required("a", _flaxBinding988),
-        FlaxParameter.required("b", _flaxBinding988),
+        FlaxParameter.required("a", _flaxBinding977),
+        FlaxParameter.required("b", _flaxBinding977),
       ],
       flaxBoolType,
       _function_listEquals,
@@ -7386,8 +7178,8 @@ const sdk_foundationBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#function:mapEquals",
       [
-        FlaxParameter.required("a", _flaxBinding989),
-        FlaxParameter.required("b", _flaxBinding989),
+        FlaxParameter.required("a", _flaxBinding978),
+        FlaxParameter.required("b", _flaxBinding978),
       ],
       flaxBoolType,
       _function_mapEquals,
@@ -7396,8 +7188,8 @@ const sdk_foundationBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#function:mergeSort",
       [
-        FlaxParameter.required("list", _flaxBinding990),
-        FlaxParameter("compare", _flaxBinding992, required: false),
+        FlaxParameter.required("list", _flaxBinding979),
+        FlaxParameter("compare", _flaxBinding981, required: false),
         FlaxParameter("end", flaxNullableIntType, required: false),
         FlaxParameter("start", flaxIntType, required: false, defaultValue: 0),
       ],
@@ -7417,8 +7209,8 @@ const sdk_foundationBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#function:setEquals",
       [
-        FlaxParameter.required("a", _flaxBinding993),
-        FlaxParameter.required("b", _flaxBinding993),
+        FlaxParameter.required("a", _flaxBinding982),
+        FlaxParameter.required("b", _flaxBinding982),
       ],
       flaxBoolType,
       _function_setEquals,
@@ -7432,15 +7224,15 @@ const sdk_foundationBindings = FlaxBindingModule(
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#function:BindingBase.checkInstance",
-      [FlaxParameter.required("instance", _flaxBinding994)],
-      _flaxBinding995,
+      [FlaxParameter.required("instance", _flaxBinding983)],
+      _flaxBinding984,
       _BindingBase_checkInstance,
       genericFactory: _flaxGenericFunction21,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#function:BindingBase.debugBindingType",
       [],
-      _flaxBinding996,
+      _flaxBinding985,
       _BindingBase_debugBindingType,
     ),
     FlaxFunctionBinding(
@@ -7457,30 +7249,30 @@ const sdk_foundationBindings = FlaxBindingModule(
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#function:ChangeNotifier.debugAssertNotDisposed",
-      [FlaxParameter.required("notifier", _flaxBinding997)],
+      [FlaxParameter.required("notifier", _flaxBinding986)],
       flaxBoolType,
       _ChangeNotifier_debugAssertNotDisposed,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#function:ChangeNotifier.maybeDispatchObjectCreation",
-      [FlaxParameter.required("object", _flaxBinding997)],
+      [FlaxParameter.required("object", _flaxBinding986)],
       flaxVoidType,
       _ChangeNotifier_maybeDispatchObjectCreation,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#function:DiagnosticsNode.toJsonList",
       [
-        FlaxParameter.required("nodes", _flaxBinding998),
+        FlaxParameter.required("nodes", _flaxBinding987),
         FlaxParameter.required("parent", _flaxBinding74),
         FlaxParameter.required("delegate", _flaxBinding59),
       ],
-      _flaxBinding1000,
+      _flaxBinding989,
       _DiagnosticsNode_toJsonList,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#read:Endian.host",
       [],
-      _flaxBinding1001,
+      _flaxBinding990,
       _Endian_static_get_host,
     ),
     FlaxFunctionBinding(
@@ -7491,7 +7283,7 @@ const sdk_foundationBindings = FlaxBindingModule(
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#function:ErrorToConsoleDumper.addWebDumpListener",
-      [FlaxParameter.required("listener", _flaxBinding1003)],
+      [FlaxParameter.required("listener", _flaxBinding992)],
       flaxVoidType,
       _ErrorToConsoleDumper_addWebDumpListener,
     ),
@@ -7510,7 +7302,7 @@ const sdk_foundationBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#function:FlutterError.dumpErrorToConsole",
       [
-        FlaxParameter.required("details", _flaxBinding622),
+        FlaxParameter.required("details", _flaxBinding610),
         FlaxParameter(
           "forceReport",
           flaxBoolType,
@@ -7523,7 +7315,7 @@ const sdk_foundationBindings = FlaxBindingModule(
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#function:FlutterError.addDefaultStackFilter",
-      [FlaxParameter.required("filter", _flaxBinding1004)],
+      [FlaxParameter.required("filter", _flaxBinding993)],
       flaxVoidType,
       _FlutterError_addDefaultStackFilter,
     ),
@@ -7535,64 +7327,64 @@ const sdk_foundationBindings = FlaxBindingModule(
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#function:FlutterError.reportError",
-      [FlaxParameter.required("details", _flaxBinding622)],
+      [FlaxParameter.required("details", _flaxBinding610)],
       flaxVoidType,
       _FlutterError_reportError,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#read:FlutterError.onError",
       [],
-      _flaxBinding1006,
+      _flaxBinding995,
       _FlutterError_static_get_onError,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#read:FlutterError.demangleStackTrace",
       [],
-      _flaxBinding1009,
+      _flaxBinding998,
       _FlutterError_static_get_demangleStackTrace,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#read:FlutterError.presentError",
       [],
-      _flaxBinding1010,
+      _flaxBinding999,
       _FlutterError_static_get_presentError,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#function:FlutterError.onError%3D",
-      [FlaxParameter.required("value", _flaxBinding1006)],
+      [FlaxParameter.required("value", _flaxBinding995)],
       flaxVoidType,
       _FlutterError_static_set_onError,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#function:FlutterError.demangleStackTrace%3D",
-      [FlaxParameter.required("value", _flaxBinding1009)],
+      [FlaxParameter.required("value", _flaxBinding998)],
       flaxVoidType,
       _FlutterError_static_set_demangleStackTrace,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#function:FlutterError.presentError%3D",
-      [FlaxParameter.required("value", _flaxBinding1010)],
+      [FlaxParameter.required("value", _flaxBinding999)],
       flaxVoidType,
       _FlutterError_static_set_presentError,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#read:FlutterErrorDetails.propertiesTransformers",
       [],
-      _flaxBinding1014,
+      _flaxBinding1003,
       _FlutterErrorDetails_static_get_propertiesTransformers,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#read:FlutterMemoryAllocations.instance",
       [],
-      _flaxBinding1015,
+      _flaxBinding1004,
       _FlutterMemoryAllocations_static_get_instance,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#function:FlutterTimeline.startSync",
       [
         FlaxParameter.required("name", flaxStringType),
-        FlaxParameter("arguments", _flaxBinding1016, required: false),
-        FlaxParameter("flow", _flaxBinding1017, required: false),
+        FlaxParameter("arguments", _flaxBinding1005, required: false),
+        FlaxParameter("flow", _flaxBinding1006, required: false),
       ],
       flaxVoidType,
       _FlutterTimeline_startSync,
@@ -7607,7 +7399,7 @@ const sdk_foundationBindings = FlaxBindingModule(
       "flax.core/sdk_foundation#function:FlutterTimeline.instantSync",
       [
         FlaxParameter.required("name", flaxStringType),
-        FlaxParameter("arguments", _flaxBinding1016, required: false),
+        FlaxParameter("arguments", _flaxBinding1005, required: false),
       ],
       flaxVoidType,
       _FlutterTimeline_instantSync,
@@ -7617,8 +7409,8 @@ const sdk_foundationBindings = FlaxBindingModule(
       [
         FlaxParameter.required("name", flaxStringType),
         FlaxParameter.required("function", flaxNullableAnyCallbackType),
-        FlaxParameter("arguments", _flaxBinding1016, required: false),
-        FlaxParameter("flow", _flaxBinding1017, required: false),
+        FlaxParameter("arguments", _flaxBinding1005, required: false),
+        FlaxParameter("flow", _flaxBinding1006, required: false),
       ],
       flaxNullableAnyType,
       _FlutterTimeline_timeSync,
@@ -7627,7 +7419,7 @@ const sdk_foundationBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#function:FlutterTimeline.debugCollect",
       [],
-      _flaxBinding1018,
+      _flaxBinding1007,
       _FlutterTimeline_debugCollect,
     ),
     FlaxFunctionBinding(
@@ -7656,19 +7448,19 @@ const sdk_foundationBindings = FlaxBindingModule(
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#function:LicenseRegistry.addLicense",
-      [FlaxParameter.required("collector", _flaxBinding1022)],
+      [FlaxParameter.required("collector", _flaxBinding1011)],
       flaxVoidType,
       _LicenseRegistry_addLicense,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#read:LicenseRegistry.licenses",
       [],
-      _flaxBinding1020,
+      _flaxBinding1009,
       _LicenseRegistry_static_get_licenses,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#function:StackFrame.fromStackTrace",
-      [FlaxParameter.required("stack", _flaxBinding1007)],
+      [FlaxParameter.required("stack", _flaxBinding996)],
       _flaxBinding113,
       _StackFrame_fromStackTrace,
     ),
@@ -7681,7 +7473,7 @@ const sdk_foundationBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#function:StackFrame.fromStackTraceLine",
       [FlaxParameter.required("line", flaxStringType)],
-      _flaxBinding1023,
+      _flaxBinding1012,
       _StackFrame_fromStackTraceLine,
     ),
     FlaxFunctionBinding(
@@ -7698,13 +7490,13 @@ const sdk_foundationBindings = FlaxBindingModule(
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#function:debugBrightnessOverride%3D",
-      [FlaxParameter.required("value", _flaxBinding973)],
+      [FlaxParameter.required("value", _flaxBinding962)],
       flaxVoidType,
       _write_debugBrightnessOverride,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#function:debugDefaultTargetPlatformOverride%3D",
-      [FlaxParameter.required("value", _flaxBinding974)],
+      [FlaxParameter.required("value", _flaxBinding963)],
       flaxVoidType,
       _write_debugDefaultTargetPlatformOverride,
     ),
@@ -7722,13 +7514,13 @@ const sdk_foundationBindings = FlaxBindingModule(
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_foundation#function:debugPrint%3D",
-      [FlaxParameter.required("value", _flaxBinding976)],
+      [FlaxParameter.required("value", _flaxBinding965)],
       flaxVoidType,
       _write_debugPrint,
     ),
   ],
   constants: [
-    FlaxConstantGroup(_flaxBinding1001, {
+    FlaxConstantGroup(_flaxBinding990, {
       "flax.core/sdk_foundation#read:Endian.big": api.Endian.big,
       "flax.core/sdk_foundation#read:Endian.little": api.Endian.little,
     }),
@@ -9634,30 +9426,10 @@ Object _createDiagnosticable(String ctor, Map<String, Object?> values) =>
     throw ArgumentError('Abstract object has no constructor');
 bool _isDiagnosticableNode(Object value) =>
     value is api.DiagnosticableNode<api.Diagnosticable>;
-Object? _DiagnosticableNode_name(Object value) =>
-    (value as api.DiagnosticableNode<api.Diagnosticable>).name;
-Object? _DiagnosticableNode_showSeparator(Object value) =>
-    (value as api.DiagnosticableNode<api.Diagnosticable>).showSeparator;
-Object? _DiagnosticableNode_level(Object value) =>
-    (value as api.DiagnosticableNode<api.Diagnosticable>).level;
-Object? _DiagnosticableNode_showName(Object value) =>
-    (value as api.DiagnosticableNode<api.Diagnosticable>).showName;
-Object? _DiagnosticableNode_linePrefix(Object value) =>
-    (value as api.DiagnosticableNode<api.Diagnosticable>).linePrefix;
-Object? _DiagnosticableNode_emptyBodyDescription(Object value) =>
-    (value as api.DiagnosticableNode<api.Diagnosticable>).emptyBodyDescription;
 Object? _DiagnosticableNode_value(Object value) =>
     (value as api.DiagnosticableNode<api.Diagnosticable>).value;
 Object? _DiagnosticableNode_style(Object value) =>
     (value as api.DiagnosticableNode<api.Diagnosticable>).style;
-Object? _DiagnosticableNode_allowWrap(Object value) =>
-    (value as api.DiagnosticableNode<api.Diagnosticable>).allowWrap;
-Object? _DiagnosticableNode_allowNameWrap(Object value) =>
-    (value as api.DiagnosticableNode<api.Diagnosticable>).allowNameWrap;
-Object? _DiagnosticableNode_allowTruncate(Object value) =>
-    (value as api.DiagnosticableNode<api.Diagnosticable>).allowTruncate;
-Object? _DiagnosticableNode_textTreeConfiguration(Object value) =>
-    (value as api.DiagnosticableNode<api.Diagnosticable>).textTreeConfiguration;
 Object? _DiagnosticableNode_builder(Object value) =>
     (value as api.DiagnosticableNode<api.Diagnosticable>).builder;
 Object? _DiagnosticableNode_toDescription(
@@ -9677,29 +9449,6 @@ Object? _DiagnosticableNode_isFiltered(
   return (receiver as api.DiagnosticableNode<api.Diagnosticable>).isFiltered(
     values["minLevel"] as api.DiagnosticLevel,
   );
-}
-
-Object? _DiagnosticableNode_getProperties(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as api.DiagnosticableNode<api.Diagnosticable>)
-      .getProperties();
-}
-
-Object? _DiagnosticableNode_getChildren(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as api.DiagnosticableNode<api.Diagnosticable>).getChildren();
-}
-
-Object? _DiagnosticableNode_toTimelineArguments(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as api.DiagnosticableNode<api.Diagnosticable>)
-      .toTimelineArguments();
 }
 
 Object? _DiagnosticableNode_toJsonMap(
@@ -10305,30 +10054,8 @@ Object _createDiagnosticsNode(String ctor, Map<String, Object?> values) {
 
 bool _isDiagnosticsProperty(Object value) =>
     value is api.DiagnosticsProperty<Object?>;
-Object? _DiagnosticsProperty_name(Object value) =>
-    (value as api.DiagnosticsProperty<Object?>).name;
-Object? _DiagnosticsProperty_showSeparator(Object value) =>
-    (value as api.DiagnosticsProperty<Object?>).showSeparator;
-Object? _DiagnosticsProperty_level(Object value) =>
-    (value as api.DiagnosticsProperty<Object?>).level;
-Object? _DiagnosticsProperty_showName(Object value) =>
-    (value as api.DiagnosticsProperty<Object?>).showName;
-Object? _DiagnosticsProperty_linePrefix(Object value) =>
-    (value as api.DiagnosticsProperty<Object?>).linePrefix;
-Object? _DiagnosticsProperty_emptyBodyDescription(Object value) =>
-    (value as api.DiagnosticsProperty<Object?>).emptyBodyDescription;
 Object? _DiagnosticsProperty_value(Object value) =>
     (value as api.DiagnosticsProperty<Object?>).value;
-Object? _DiagnosticsProperty_style(Object value) =>
-    (value as api.DiagnosticsProperty<Object?>).style;
-Object? _DiagnosticsProperty_allowWrap(Object value) =>
-    (value as api.DiagnosticsProperty<Object?>).allowWrap;
-Object? _DiagnosticsProperty_allowNameWrap(Object value) =>
-    (value as api.DiagnosticsProperty<Object?>).allowNameWrap;
-Object? _DiagnosticsProperty_allowTruncate(Object value) =>
-    (value as api.DiagnosticsProperty<Object?>).allowTruncate;
-Object? _DiagnosticsProperty_textTreeConfiguration(Object value) =>
-    (value as api.DiagnosticsProperty<Object?>).textTreeConfiguration;
 Object? _DiagnosticsProperty_expandableValue(Object value) =>
     (value as api.DiagnosticsProperty<Object?>).expandableValue;
 Object? _DiagnosticsProperty_ifNull(Object value) =>
@@ -10364,27 +10091,6 @@ Object? _DiagnosticsProperty_isFiltered(
   return (receiver as api.DiagnosticsProperty<Object?>).isFiltered(
     values["minLevel"] as api.DiagnosticLevel,
   );
-}
-
-Object? _DiagnosticsProperty_getProperties(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as api.DiagnosticsProperty<Object?>).getProperties();
-}
-
-Object? _DiagnosticsProperty_getChildren(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as api.DiagnosticsProperty<Object?>).getChildren();
-}
-
-Object? _DiagnosticsProperty_toTimelineArguments(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as api.DiagnosticsProperty<Object?>).toTimelineArguments();
 }
 
 Object? _DiagnosticsProperty_toJsonMap(
@@ -11114,10 +10820,6 @@ Object _createEndian(String ctor, Map<String, Object?> values) =>
 bool _isEnumProperty(Object value) => value is api.EnumProperty<api3.Enum?>;
 Object? _EnumProperty_expandableValue(Object value) =>
     (value as api.EnumProperty<api3.Enum?>).expandableValue;
-Object? _EnumProperty_allowWrap(Object value) =>
-    (value as api.EnumProperty<api3.Enum?>).allowWrap;
-Object? _EnumProperty_allowNameWrap(Object value) =>
-    (value as api.EnumProperty<api3.Enum?>).allowNameWrap;
 Object? _EnumProperty_ifNull(Object value) =>
     (value as api.EnumProperty<api3.Enum?>).ifNull;
 Object? _EnumProperty_ifEmpty(Object value) =>
@@ -11136,24 +10838,6 @@ Object? _EnumProperty_defaultValue(Object value) =>
     (value as api.EnumProperty<api3.Enum?>).defaultValue;
 Object? _EnumProperty_isInteresting(Object value) =>
     (value as api.EnumProperty<api3.Enum?>).isInteresting;
-Object? _EnumProperty_level(Object value) =>
-    (value as api.EnumProperty<api3.Enum?>).level;
-Object? _EnumProperty_name(Object value) =>
-    (value as api.EnumProperty<api3.Enum?>).name;
-Object? _EnumProperty_showSeparator(Object value) =>
-    (value as api.EnumProperty<api3.Enum?>).showSeparator;
-Object? _EnumProperty_showName(Object value) =>
-    (value as api.EnumProperty<api3.Enum?>).showName;
-Object? _EnumProperty_linePrefix(Object value) =>
-    (value as api.EnumProperty<api3.Enum?>).linePrefix;
-Object? _EnumProperty_emptyBodyDescription(Object value) =>
-    (value as api.EnumProperty<api3.Enum?>).emptyBodyDescription;
-Object? _EnumProperty_style(Object value) =>
-    (value as api.EnumProperty<api3.Enum?>).style;
-Object? _EnumProperty_allowTruncate(Object value) =>
-    (value as api.EnumProperty<api3.Enum?>).allowTruncate;
-Object? _EnumProperty_textTreeConfiguration(Object value) =>
-    (value as api.EnumProperty<api3.Enum?>).textTreeConfiguration;
 Object? _EnumProperty_toJsonMap(Object receiver, Map<String, Object?> values) {
   return (receiver as api.EnumProperty<api3.Enum?>).toJsonMap(
     values["delegate"] as api.DiagnosticsSerializationDelegate,
@@ -11180,31 +10864,10 @@ Object? _EnumProperty_toDescription(
   );
 }
 
-Object? _EnumProperty_getProperties(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as api.EnumProperty<api3.Enum?>).getProperties();
-}
-
-Object? _EnumProperty_getChildren(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as api.EnumProperty<api3.Enum?>).getChildren();
-}
-
 Object? _EnumProperty_isFiltered(Object receiver, Map<String, Object?> values) {
   return (receiver as api.EnumProperty<api3.Enum?>).isFiltered(
     values["minLevel"] as api.DiagnosticLevel,
   );
-}
-
-Object? _EnumProperty_toTimelineArguments(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as api.EnumProperty<api3.Enum?>).toTimelineArguments();
 }
 
 Object? _EnumProperty_toJsonMapIterative(
@@ -11649,10 +11312,6 @@ Object _createFlagProperty(String ctor, Map<String, Object?> values) {
 bool _isFlagsSummary(Object value) => value is api.FlagsSummary<Object?>;
 Object? _FlagsSummary_expandableValue(Object value) =>
     (value as api.FlagsSummary<Object?>).expandableValue;
-Object? _FlagsSummary_allowWrap(Object value) =>
-    (value as api.FlagsSummary<Object?>).allowWrap;
-Object? _FlagsSummary_allowNameWrap(Object value) =>
-    (value as api.FlagsSummary<Object?>).allowNameWrap;
 Object? _FlagsSummary_ifNull(Object value) =>
     (value as api.FlagsSummary<Object?>).ifNull;
 Object? _FlagsSummary_ifEmpty(Object value) =>
@@ -11671,24 +11330,6 @@ Object? _FlagsSummary_defaultValue(Object value) =>
     (value as api.FlagsSummary<Object?>).defaultValue;
 Object? _FlagsSummary_isInteresting(Object value) =>
     (value as api.FlagsSummary<Object?>).isInteresting;
-Object? _FlagsSummary_level(Object value) =>
-    (value as api.FlagsSummary<Object?>).level;
-Object? _FlagsSummary_name(Object value) =>
-    (value as api.FlagsSummary<Object?>).name;
-Object? _FlagsSummary_showSeparator(Object value) =>
-    (value as api.FlagsSummary<Object?>).showSeparator;
-Object? _FlagsSummary_showName(Object value) =>
-    (value as api.FlagsSummary<Object?>).showName;
-Object? _FlagsSummary_linePrefix(Object value) =>
-    (value as api.FlagsSummary<Object?>).linePrefix;
-Object? _FlagsSummary_emptyBodyDescription(Object value) =>
-    (value as api.FlagsSummary<Object?>).emptyBodyDescription;
-Object? _FlagsSummary_style(Object value) =>
-    (value as api.FlagsSummary<Object?>).style;
-Object? _FlagsSummary_allowTruncate(Object value) =>
-    (value as api.FlagsSummary<Object?>).allowTruncate;
-Object? _FlagsSummary_textTreeConfiguration(Object value) =>
-    (value as api.FlagsSummary<Object?>).textTreeConfiguration;
 Object? _FlagsSummary_toJsonMap(Object receiver, Map<String, Object?> values) {
   return (receiver as api.FlagsSummary<Object?>).toJsonMap(
     values["delegate"] as api.DiagnosticsSerializationDelegate,
@@ -11715,31 +11356,10 @@ Object? _FlagsSummary_toDescription(
   );
 }
 
-Object? _FlagsSummary_getProperties(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as api.FlagsSummary<Object?>).getProperties();
-}
-
-Object? _FlagsSummary_getChildren(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as api.FlagsSummary<Object?>).getChildren();
-}
-
 Object? _FlagsSummary_isFiltered(Object receiver, Map<String, Object?> values) {
   return (receiver as api.FlagsSummary<Object?>).isFiltered(
     values["minLevel"] as api.DiagnosticLevel,
   );
-}
-
-Object? _FlagsSummary_toTimelineArguments(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as api.FlagsSummary<Object?>).toTimelineArguments();
 }
 
 Object? _FlagsSummary_toJsonMapIterative(
@@ -12767,10 +12387,6 @@ bool _isIterableProperty(Object value) =>
     value is api.IterableProperty<Object?>;
 Object? _IterableProperty_expandableValue(Object value) =>
     (value as api.IterableProperty<Object?>).expandableValue;
-Object? _IterableProperty_allowWrap(Object value) =>
-    (value as api.IterableProperty<Object?>).allowWrap;
-Object? _IterableProperty_allowNameWrap(Object value) =>
-    (value as api.IterableProperty<Object?>).allowNameWrap;
 Object? _IterableProperty_ifNull(Object value) =>
     (value as api.IterableProperty<Object?>).ifNull;
 Object? _IterableProperty_ifEmpty(Object value) =>
@@ -12789,24 +12405,6 @@ Object? _IterableProperty_defaultValue(Object value) =>
     (value as api.IterableProperty<Object?>).defaultValue;
 Object? _IterableProperty_isInteresting(Object value) =>
     (value as api.IterableProperty<Object?>).isInteresting;
-Object? _IterableProperty_level(Object value) =>
-    (value as api.IterableProperty<Object?>).level;
-Object? _IterableProperty_name(Object value) =>
-    (value as api.IterableProperty<Object?>).name;
-Object? _IterableProperty_showSeparator(Object value) =>
-    (value as api.IterableProperty<Object?>).showSeparator;
-Object? _IterableProperty_showName(Object value) =>
-    (value as api.IterableProperty<Object?>).showName;
-Object? _IterableProperty_linePrefix(Object value) =>
-    (value as api.IterableProperty<Object?>).linePrefix;
-Object? _IterableProperty_emptyBodyDescription(Object value) =>
-    (value as api.IterableProperty<Object?>).emptyBodyDescription;
-Object? _IterableProperty_style(Object value) =>
-    (value as api.IterableProperty<Object?>).style;
-Object? _IterableProperty_allowTruncate(Object value) =>
-    (value as api.IterableProperty<Object?>).allowTruncate;
-Object? _IterableProperty_textTreeConfiguration(Object value) =>
-    (value as api.IterableProperty<Object?>).textTreeConfiguration;
 Object? _IterableProperty_toJsonMap(
   Object receiver,
   Map<String, Object?> values,
@@ -12836,20 +12434,6 @@ Object? _IterableProperty_toDescription(
   );
 }
 
-Object? _IterableProperty_getProperties(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as api.IterableProperty<Object?>).getProperties();
-}
-
-Object? _IterableProperty_getChildren(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as api.IterableProperty<Object?>).getChildren();
-}
-
 Object? _IterableProperty_isFiltered(
   Object receiver,
   Map<String, Object?> values,
@@ -12857,13 +12441,6 @@ Object? _IterableProperty_isFiltered(
   return (receiver as api.IterableProperty<Object?>).isFiltered(
     values["minLevel"] as api.DiagnosticLevel,
   );
-}
-
-Object? _IterableProperty_toTimelineArguments(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as api.IterableProperty<Object?>).toTimelineArguments();
 }
 
 Object? _IterableProperty_toJsonMapIterative(
@@ -13222,10 +12799,6 @@ bool _isObjectFlagProperty(Object value) =>
     value is api.ObjectFlagProperty<Object?>;
 Object? _ObjectFlagProperty_expandableValue(Object value) =>
     (value as api.ObjectFlagProperty<Object?>).expandableValue;
-Object? _ObjectFlagProperty_allowWrap(Object value) =>
-    (value as api.ObjectFlagProperty<Object?>).allowWrap;
-Object? _ObjectFlagProperty_allowNameWrap(Object value) =>
-    (value as api.ObjectFlagProperty<Object?>).allowNameWrap;
 Object? _ObjectFlagProperty_ifNull(Object value) =>
     (value as api.ObjectFlagProperty<Object?>).ifNull;
 Object? _ObjectFlagProperty_ifEmpty(Object value) =>
@@ -13244,24 +12817,6 @@ Object? _ObjectFlagProperty_defaultValue(Object value) =>
     (value as api.ObjectFlagProperty<Object?>).defaultValue;
 Object? _ObjectFlagProperty_isInteresting(Object value) =>
     (value as api.ObjectFlagProperty<Object?>).isInteresting;
-Object? _ObjectFlagProperty_level(Object value) =>
-    (value as api.ObjectFlagProperty<Object?>).level;
-Object? _ObjectFlagProperty_name(Object value) =>
-    (value as api.ObjectFlagProperty<Object?>).name;
-Object? _ObjectFlagProperty_showSeparator(Object value) =>
-    (value as api.ObjectFlagProperty<Object?>).showSeparator;
-Object? _ObjectFlagProperty_showName(Object value) =>
-    (value as api.ObjectFlagProperty<Object?>).showName;
-Object? _ObjectFlagProperty_linePrefix(Object value) =>
-    (value as api.ObjectFlagProperty<Object?>).linePrefix;
-Object? _ObjectFlagProperty_emptyBodyDescription(Object value) =>
-    (value as api.ObjectFlagProperty<Object?>).emptyBodyDescription;
-Object? _ObjectFlagProperty_style(Object value) =>
-    (value as api.ObjectFlagProperty<Object?>).style;
-Object? _ObjectFlagProperty_allowTruncate(Object value) =>
-    (value as api.ObjectFlagProperty<Object?>).allowTruncate;
-Object? _ObjectFlagProperty_textTreeConfiguration(Object value) =>
-    (value as api.ObjectFlagProperty<Object?>).textTreeConfiguration;
 Object? _ObjectFlagProperty_ifPresent(Object value) =>
     (value as api.ObjectFlagProperty<Object?>).ifPresent;
 Object? _ObjectFlagProperty_toJsonMap(
@@ -13293,20 +12848,6 @@ Object? _ObjectFlagProperty_toDescription(
   );
 }
 
-Object? _ObjectFlagProperty_getProperties(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as api.ObjectFlagProperty<Object?>).getProperties();
-}
-
-Object? _ObjectFlagProperty_getChildren(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as api.ObjectFlagProperty<Object?>).getChildren();
-}
-
 Object? _ObjectFlagProperty_isFiltered(
   Object receiver,
   Map<String, Object?> values,
@@ -13314,13 +12855,6 @@ Object? _ObjectFlagProperty_isFiltered(
   return (receiver as api.ObjectFlagProperty<Object?>).isFiltered(
     values["minLevel"] as api.DiagnosticLevel,
   );
-}
-
-Object? _ObjectFlagProperty_toTimelineArguments(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as api.ObjectFlagProperty<Object?>).toTimelineArguments();
 }
 
 Object? _ObjectFlagProperty_toJsonMapIterative(
@@ -14872,8 +14406,6 @@ Object _createUniqueKey(String ctor, Map<String, Object?> values) {
 }
 
 bool _isValueNotifier(Object value) => value is api.ValueNotifier<Object?>;
-Object? _ValueNotifier_hasListeners(Object value) =>
-    (value as api.ValueNotifier<Object?>).hasListeners;
 Object? _ValueNotifier_value(Object value) =>
     (value as api.ValueNotifier<Object?>).value;
 void _ValueNotifier_set_value(Object receiver, Object? value) {
@@ -27967,7 +27499,7 @@ FlaxCallbackBinding _flaxProxySignature_SynchronousFuture_then<
       ),
       FlaxCallbackParameter.plain(
         "onError",
-        _flaxBinding871,
+        _flaxBinding857,
         required: false,
         positional: false,
       ),
@@ -28803,8 +28335,8 @@ Function _flaxGenericFunction51<_Method0 extends Object?>() =>
               ),
             ),
           ),
-          FlaxParameter("arguments", _flaxBinding1016, required: false),
-          FlaxParameter("flow", _flaxBinding1017, required: false),
+          FlaxParameter("arguments", _flaxBinding1005, required: false),
+          FlaxParameter("flow", _flaxBinding1006, required: false),
         ],
         types.ref<_Method0>(),
         invoke,
@@ -28881,8 +28413,8 @@ Function _flaxClass_BitField<_Owner0 extends Object?>() =>
             ),
           },
           constructors: {
-            "": _flaxBinding203,
-            "filled": _flaxBinding204,
+            "": _flaxBinding204,
+            "filled": _flaxBinding205,
             "@implementation": _flaxBinding131,
           },
           create: _createBitField,
@@ -30114,7 +29646,7 @@ Function _flaxClass_CachingIterable<
               ),
             ),
           ],
-          _flaxBinding210,
+          _flaxBinding211,
           _CachingIterable_map,
           genericFactory: _flaxGeneric_CachingIterable_map,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -30164,7 +29696,7 @@ Function _flaxClass_CachingIterable<
                         types.ref<_Owner0>(withinCallback: true),
                       ),
                     ],
-                    _flaxBinding210,
+                    _flaxBinding211,
                     FlaxCallbackAdapters.wrap1<_Owner0, Iterable<Object?>>,
                     id:
                         types
@@ -30181,13 +29713,13 @@ Function _flaxClass_CachingIterable<
               ),
             ),
           ],
-          _flaxBinding210,
+          _flaxBinding211,
           _CachingIterable_expand,
           genericFactory: _flaxGeneric_CachingIterable_expand,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
         ),
         "take": FlaxInstanceMethod.plain(
-          _flaxBinding211,
+          _flaxBinding212,
           types.ref<Iterable<_Owner0>>(),
           _CachingIterable_take,
         ),
@@ -30222,7 +29754,7 @@ Function _flaxClass_CachingIterable<
           _CachingIterable_takeWhile,
         ),
         "skip": FlaxInstanceMethod.plain(
-          _flaxBinding211,
+          _flaxBinding212,
           types.ref<Iterable<_Owner0>>(),
           _CachingIterable_skip,
         ),
@@ -30257,18 +29789,18 @@ Function _flaxClass_CachingIterable<
           _CachingIterable_skipWhile,
         ),
         "elementAt": FlaxInstanceMethod.plain(
-          _flaxBinding212,
+          _flaxBinding213,
           types.ref<_Owner0>(),
           _CachingIterable_elementAt,
         ),
         "toList": FlaxInstanceMethod.plain(
-          _flaxBinding213,
+          _flaxBinding214,
           types.ref<List<_Owner0>>(),
           _CachingIterable_toList,
         ),
         "cast": FlaxInstanceMethod(
           _flaxBinding131,
-          _flaxBinding210,
+          _flaxBinding211,
           _CachingIterable_cast,
           genericFactory: _flaxGeneric_CachingIterable_cast,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -30282,13 +29814,13 @@ Function _flaxClass_CachingIterable<
         ),
         "whereType": FlaxInstanceMethod(
           _flaxBinding131,
-          _flaxBinding210,
+          _flaxBinding211,
           _CachingIterable_whereType,
           genericFactory: _flaxGeneric_CachingIterable_whereType,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
         ),
         "contains": FlaxInstanceMethod.plain(
-          _flaxBinding1024,
+          _flaxBinding1013,
           flaxBoolType,
           _CachingIterable_contains,
         ),
@@ -30439,7 +29971,7 @@ Function _flaxClass_CachingIterable<
           _CachingIterable_every,
         ),
         "join": FlaxInstanceMethod.plain(
-          _flaxBinding214,
+          _flaxBinding216,
           flaxStringType,
           _CachingIterable_join,
         ),
@@ -30655,7 +30187,7 @@ Function _flaxClass_CachingIterable<
               ),
             ),
           ],
-          _flaxBinding210,
+          _flaxBinding211,
           _CachingIterable_super_map,
           genericFactory: _flaxGeneric_CachingIterable_super_map,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -30705,7 +30237,7 @@ Function _flaxClass_CachingIterable<
                         types.ref<_Owner0>(withinCallback: true),
                       ),
                     ],
-                    _flaxBinding210,
+                    _flaxBinding211,
                     FlaxCallbackAdapters.wrap1<_Owner0, Iterable<Object?>>,
                     id:
                         types
@@ -30722,13 +30254,13 @@ Function _flaxClass_CachingIterable<
               ),
             ),
           ],
-          _flaxBinding210,
+          _flaxBinding211,
           _CachingIterable_super_expand,
           genericFactory: _flaxGeneric_CachingIterable_super_expand,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
         ),
         "@super:take": FlaxInstanceMethod.plain(
-          _flaxBinding211,
+          _flaxBinding212,
           types.ref<Iterable<_Owner0>>(),
           _CachingIterable_super_take,
         ),
@@ -30763,7 +30295,7 @@ Function _flaxClass_CachingIterable<
           _CachingIterable_super_takeWhile,
         ),
         "@super:skip": FlaxInstanceMethod.plain(
-          _flaxBinding211,
+          _flaxBinding212,
           types.ref<Iterable<_Owner0>>(),
           _CachingIterable_super_skip,
         ),
@@ -30798,18 +30330,18 @@ Function _flaxClass_CachingIterable<
           _CachingIterable_super_skipWhile,
         ),
         "@super:elementAt": FlaxInstanceMethod.plain(
-          _flaxBinding212,
+          _flaxBinding213,
           types.ref<_Owner0>(),
           _CachingIterable_super_elementAt,
         ),
         "@super:toList": FlaxInstanceMethod.plain(
-          _flaxBinding213,
+          _flaxBinding214,
           types.ref<List<_Owner0>>(),
           _CachingIterable_super_toList,
         ),
         "@super:cast": FlaxInstanceMethod(
           _flaxBinding131,
-          _flaxBinding210,
+          _flaxBinding211,
           _CachingIterable_super_cast,
           genericFactory: _flaxGeneric_CachingIterable_super_cast,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -30823,16 +30355,12 @@ Function _flaxClass_CachingIterable<
         ),
         "@super:whereType": FlaxInstanceMethod(
           _flaxBinding131,
-          _flaxBinding210,
+          _flaxBinding211,
           _CachingIterable_super_whereType,
           genericFactory: _flaxGeneric_CachingIterable_super_whereType,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
         ),
-        "@super:contains": FlaxInstanceMethod.plain(
-          _flaxBinding1024,
-          flaxBoolType,
-          _FlaxProxyDispatch1_super_call_contains,
-        ),
+        "@super:contains": _flaxBinding1014,
         "@super:forEach": FlaxInstanceMethod.plain(
           <FlaxParameter>[
             FlaxParameter.required(
@@ -30979,11 +30507,7 @@ Function _flaxClass_CachingIterable<
           flaxBoolType,
           _CachingIterable_super_every,
         ),
-        "@super:join": FlaxInstanceMethod.plain(
-          _flaxBinding214,
-          flaxStringType,
-          _FlaxProxyDispatch1_super_call_join,
-        ),
+        "@super:join": _flaxBinding219,
         "@super:any": FlaxInstanceMethod.plain(
           <FlaxParameter>[
             FlaxParameter.required(
@@ -31174,21 +30698,9 @@ Function _flaxClass_CachingIterable<
           types.ref<api3.Iterator<_Owner0>>(),
           _CachingIterable_super_get_iterator,
         ),
-        "@super:get:length": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxIntType,
-          _FlaxProxyDispatch1_super_get_length,
-        ),
-        "@super:get:isEmpty": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch1_super_get_isEmpty,
-        ),
-        "@super:get:isNotEmpty": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch1_super_get_isNotEmpty,
-        ),
+        "@super:get:length": _flaxBinding1015,
+        "@super:get:isEmpty": _flaxBinding1016,
+        "@super:get:isNotEmpty": _flaxBinding1017,
         "@super:get:first": FlaxInstanceMethod.plain(
           _flaxBinding131,
           types.ref<_Owner0>(),
@@ -31260,7 +30772,7 @@ Function _flaxClass_CachingIterable<
                 ),
               ),
             ],
-            _flaxBinding210,
+            _flaxBinding211,
             _callback0,
             id:
                 types
@@ -31338,7 +30850,7 @@ Function _flaxClass_CachingIterable<
                           types.ref<_Owner0>(withinCallback: true),
                         ),
                       ],
-                      _flaxBinding210,
+                      _flaxBinding211,
                       FlaxCallbackAdapters.wrap1<_Owner0, Iterable<Object?>>,
                       id:
                           types
@@ -31356,7 +30868,7 @@ Function _flaxClass_CachingIterable<
                 ),
               ),
             ],
-            _flaxBinding210,
+            _flaxBinding211,
             _callback1,
             id:
                 types
@@ -31519,7 +31031,7 @@ Function _flaxClass_CachingIterable<
           0,
           FlaxCallbackBinding(
             [],
-            _flaxBinding210,
+            _flaxBinding211,
             _callback2,
             id:
                 types.key<Iterable<R> Function<R extends Object?>()>() +
@@ -31556,7 +31068,7 @@ Function _flaxClass_CachingIterable<
           0,
           FlaxCallbackBinding(
             [],
-            _flaxBinding210,
+            _flaxBinding211,
             _callback3,
             id:
                 types.key<Iterable<T> Function<T extends Object?>()>() +
@@ -32128,41 +31640,11 @@ Function _flaxClass_DiagnosticableNode<
   bool _isDiagnosticableNode(Object value) =>
       value is api.DiagnosticableNode<_Owner0>;
   // ignore: unused_element
-  Object? _DiagnosticableNode_name(Object value) =>
-      (value as api.DiagnosticableNode<_Owner0>).name;
-  // ignore: unused_element
-  Object? _DiagnosticableNode_showSeparator(Object value) =>
-      (value as api.DiagnosticableNode<_Owner0>).showSeparator;
-  // ignore: unused_element
-  Object? _DiagnosticableNode_level(Object value) =>
-      (value as api.DiagnosticableNode<_Owner0>).level;
-  // ignore: unused_element
-  Object? _DiagnosticableNode_showName(Object value) =>
-      (value as api.DiagnosticableNode<_Owner0>).showName;
-  // ignore: unused_element
-  Object? _DiagnosticableNode_linePrefix(Object value) =>
-      (value as api.DiagnosticableNode<_Owner0>).linePrefix;
-  // ignore: unused_element
-  Object? _DiagnosticableNode_emptyBodyDescription(Object value) =>
-      (value as api.DiagnosticableNode<_Owner0>).emptyBodyDescription;
-  // ignore: unused_element
   Object? _DiagnosticableNode_value(Object value) =>
       (value as api.DiagnosticableNode<_Owner0>).value;
   // ignore: unused_element
   Object? _DiagnosticableNode_style(Object value) =>
       (value as api.DiagnosticableNode<_Owner0>).style;
-  // ignore: unused_element
-  Object? _DiagnosticableNode_allowWrap(Object value) =>
-      (value as api.DiagnosticableNode<_Owner0>).allowWrap;
-  // ignore: unused_element
-  Object? _DiagnosticableNode_allowNameWrap(Object value) =>
-      (value as api.DiagnosticableNode<_Owner0>).allowNameWrap;
-  // ignore: unused_element
-  Object? _DiagnosticableNode_allowTruncate(Object value) =>
-      (value as api.DiagnosticableNode<_Owner0>).allowTruncate;
-  // ignore: unused_element
-  Object? _DiagnosticableNode_textTreeConfiguration(Object value) =>
-      (value as api.DiagnosticableNode<_Owner0>).textTreeConfiguration;
   // ignore: unused_element
   Object? _DiagnosticableNode_builder(Object value) =>
       (value as api.DiagnosticableNode<_Owner0>).builder;
@@ -32195,27 +31677,6 @@ Function _flaxClass_DiagnosticableNode<
     return (receiver as api.DiagnosticableNode<_Owner0>).isFiltered(
       values["minLevel"] as api.DiagnosticLevel,
     );
-  }
-
-  Object? _DiagnosticableNode_getProperties(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.DiagnosticableNode<_Owner0>).getProperties();
-  }
-
-  Object? _DiagnosticableNode_getChildren(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.DiagnosticableNode<_Owner0>).getChildren();
-  }
-
-  Object? _DiagnosticableNode_toTimelineArguments(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.DiagnosticableNode<_Owner0>).toTimelineArguments();
   }
 
   Object? _DiagnosticableNode_toJsonMap(
@@ -32287,58 +31748,22 @@ Function _flaxClass_DiagnosticableNode<
     FlaxObjectBinding(
       id,
       [
-        FlaxGetter.plain(
-          "name",
-          flaxNullableStringType,
-          _DiagnosticableNode_name,
-        ),
-        FlaxGetter.plain(
-          "showSeparator",
-          flaxBoolType,
-          _DiagnosticableNode_showSeparator,
-        ),
-        FlaxGetter.plain("level", _flaxBinding55, _DiagnosticableNode_level),
-        FlaxGetter.plain(
-          "showName",
-          flaxBoolType,
-          _DiagnosticableNode_showName,
-        ),
-        FlaxGetter.plain(
-          "linePrefix",
-          flaxNullableStringType,
-          _DiagnosticableNode_linePrefix,
-        ),
-        FlaxGetter.plain(
-          "emptyBodyDescription",
-          flaxNullableStringType,
-          _DiagnosticableNode_emptyBodyDescription,
-        ),
+        _flaxBinding276,
+        _flaxBinding277,
+        _flaxBinding278,
+        _flaxBinding279,
+        _flaxBinding280,
+        _flaxBinding281,
         FlaxGetter.plain(
           "value",
           types.ref<_Owner0>(),
           _DiagnosticableNode_value,
         ),
         FlaxGetter.plain("style", _flaxBinding51, _DiagnosticableNode_style),
-        FlaxGetter.plain(
-          "allowWrap",
-          flaxBoolType,
-          _DiagnosticableNode_allowWrap,
-        ),
-        FlaxGetter.plain(
-          "allowNameWrap",
-          flaxBoolType,
-          _DiagnosticableNode_allowNameWrap,
-        ),
-        FlaxGetter.plain(
-          "allowTruncate",
-          flaxBoolType,
-          _DiagnosticableNode_allowTruncate,
-        ),
-        FlaxGetter.plain(
-          "textTreeConfiguration",
-          _flaxBinding64,
-          _DiagnosticableNode_textTreeConfiguration,
-        ),
+        _flaxBinding283,
+        _flaxBinding284,
+        _flaxBinding285,
+        _flaxBinding286,
         FlaxGetter.plain(
           "builder",
           _flaxBinding61,
@@ -32347,95 +31772,47 @@ Function _flaxClass_DiagnosticableNode<
       ],
       {
         "toDescription": FlaxInstanceMethod.plain(
-          _flaxBinding285,
+          _flaxBinding288,
           flaxStringType,
           _DiagnosticableNode_toDescription,
         ),
         "isFiltered": FlaxInstanceMethod.plain(
-          _flaxBinding1025,
+          _flaxBinding1018,
           flaxBoolType,
           _DiagnosticableNode_isFiltered,
         ),
-        "getProperties": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding49,
-          _DiagnosticableNode_getProperties,
-        ),
-        "getChildren": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding49,
-          _DiagnosticableNode_getChildren,
-        ),
-        "toTimelineArguments": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding57,
-          _DiagnosticableNode_toTimelineArguments,
-        ),
+        "getProperties": _flaxBinding1019,
+        "getChildren": _flaxBinding1020,
+        "toTimelineArguments": _flaxBinding1021,
         "toJsonMap": FlaxInstanceMethod.plain(
-          _flaxBinding1026,
+          _flaxBinding1022,
           _flaxBinding24,
           _DiagnosticableNode_toJsonMap,
         ),
         "toJsonMapIterative": FlaxInstanceMethod.plain(
-          _flaxBinding1026,
+          _flaxBinding1022,
           _flaxBinding24,
           _DiagnosticableNode_toJsonMapIterative,
         ),
         "toString": FlaxInstanceMethod.plain(
-          _flaxBinding286,
+          _flaxBinding296,
           flaxStringType,
           _DiagnosticableNode_toString,
         ),
         "toStringDeep": FlaxInstanceMethod.plain(
-          _flaxBinding287,
+          _flaxBinding298,
           flaxStringType,
           _DiagnosticableNode_toStringDeep,
         ),
-        "@super:toDescription": FlaxInstanceMethod.plain(
-          _flaxBinding285,
-          flaxStringType,
-          _FlaxProxyDispatch4_super_call_toDescription,
-        ),
-        "@super:isFiltered": FlaxInstanceMethod.plain(
-          _flaxBinding1025,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_call_isFiltered,
-        ),
-        "@super:getProperties": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding49,
-          _FlaxProxyDispatch4_super_call_getProperties,
-        ),
-        "@super:getChildren": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding49,
-          _FlaxProxyDispatch4_super_call_getChildren,
-        ),
-        "@super:toTimelineArguments": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding57,
-          _FlaxProxyDispatch5_super_call_toTimelineArguments,
-        ),
-        "@super:toJsonMap": FlaxInstanceMethod.plain(
-          _flaxBinding1026,
-          _flaxBinding24,
-          _FlaxProxyDispatch5_super_call_toJsonMap,
-        ),
-        "@super:toJsonMapIterative": FlaxInstanceMethod.plain(
-          _flaxBinding1026,
-          _flaxBinding24,
-          _FlaxProxyDispatch5_super_call_toJsonMapIterative,
-        ),
-        "@super:toString": FlaxInstanceMethod.plain(
-          _flaxBinding286,
-          flaxStringType,
-          _FlaxProxyDispatch5_super_call_toString,
-        ),
-        "@super:toStringDeep": FlaxInstanceMethod.plain(
-          _flaxBinding287,
-          flaxStringType,
-          _FlaxProxyDispatch5_super_call_toStringDeep,
-        ),
+        "@super:toDescription": _flaxBinding300,
+        "@super:isFiltered": _flaxBinding1023,
+        "@super:getProperties": _flaxBinding1024,
+        "@super:getChildren": _flaxBinding1025,
+        "@super:toTimelineArguments": _flaxBinding1026,
+        "@super:toJsonMap": _flaxBinding1027,
+        "@super:toJsonMapIterative": _flaxBinding1028,
+        "@super:toString": _flaxBinding307,
+        "@super:toStringDeep": _flaxBinding308,
         "@super:get:value": FlaxInstanceMethod.plain(
           _flaxBinding131,
           types.ref<_Owner0>(),
@@ -32451,56 +31828,16 @@ Function _flaxClass_DiagnosticableNode<
           _flaxBinding51,
           _DiagnosticableNode_super_get_style,
         ),
-        "@super:get:emptyBodyDescription": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableStringType,
-          _FlaxProxyDispatch3_super_get_emptyBodyDescription,
-        ),
-        "@super:get:name": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableStringType,
-          _FlaxProxyDispatch5_super_get_name,
-        ),
-        "@super:get:showSeparator": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_get_showSeparator,
-        ),
-        "@super:get:level": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding55,
-          _FlaxProxyDispatch5_super_get_level,
-        ),
-        "@super:get:showName": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_get_showName,
-        ),
-        "@super:get:linePrefix": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableStringType,
-          _FlaxProxyDispatch5_super_get_linePrefix,
-        ),
-        "@super:get:allowWrap": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_get_allowWrap,
-        ),
-        "@super:get:allowNameWrap": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_get_allowNameWrap,
-        ),
-        "@super:get:allowTruncate": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_get_allowTruncate,
-        ),
-        "@super:get:textTreeConfiguration": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding64,
-          _FlaxProxyDispatch5_super_get_textTreeConfiguration,
-        ),
+        "@super:get:emptyBodyDescription": _flaxBinding1029,
+        "@super:get:name": _flaxBinding1030,
+        "@super:get:showSeparator": _flaxBinding1031,
+        "@super:get:level": _flaxBinding1032,
+        "@super:get:showName": _flaxBinding1033,
+        "@super:get:linePrefix": _flaxBinding1034,
+        "@super:get:allowWrap": _flaxBinding1035,
+        "@super:get:allowNameWrap": _flaxBinding1036,
+        "@super:get:allowTruncate": _flaxBinding1037,
+        "@super:get:textTreeConfiguration": _flaxBinding1038,
       },
       constructors: {
         "": <FlaxParameter>[
@@ -32853,41 +32190,8 @@ Function _flaxClass_DiagnosticsProperty<
   bool _isDiagnosticsProperty(Object value) =>
       value is api.DiagnosticsProperty<_Owner0>;
   // ignore: unused_element
-  Object? _DiagnosticsProperty_name(Object value) =>
-      (value as api.DiagnosticsProperty<_Owner0>).name;
-  // ignore: unused_element
-  Object? _DiagnosticsProperty_showSeparator(Object value) =>
-      (value as api.DiagnosticsProperty<_Owner0>).showSeparator;
-  // ignore: unused_element
-  Object? _DiagnosticsProperty_level(Object value) =>
-      (value as api.DiagnosticsProperty<_Owner0>).level;
-  // ignore: unused_element
-  Object? _DiagnosticsProperty_showName(Object value) =>
-      (value as api.DiagnosticsProperty<_Owner0>).showName;
-  // ignore: unused_element
-  Object? _DiagnosticsProperty_linePrefix(Object value) =>
-      (value as api.DiagnosticsProperty<_Owner0>).linePrefix;
-  // ignore: unused_element
-  Object? _DiagnosticsProperty_emptyBodyDescription(Object value) =>
-      (value as api.DiagnosticsProperty<_Owner0>).emptyBodyDescription;
-  // ignore: unused_element
   Object? _DiagnosticsProperty_value(Object value) =>
       (value as api.DiagnosticsProperty<_Owner0>).value;
-  // ignore: unused_element
-  Object? _DiagnosticsProperty_style(Object value) =>
-      (value as api.DiagnosticsProperty<_Owner0>).style;
-  // ignore: unused_element
-  Object? _DiagnosticsProperty_allowWrap(Object value) =>
-      (value as api.DiagnosticsProperty<_Owner0>).allowWrap;
-  // ignore: unused_element
-  Object? _DiagnosticsProperty_allowNameWrap(Object value) =>
-      (value as api.DiagnosticsProperty<_Owner0>).allowNameWrap;
-  // ignore: unused_element
-  Object? _DiagnosticsProperty_allowTruncate(Object value) =>
-      (value as api.DiagnosticsProperty<_Owner0>).allowTruncate;
-  // ignore: unused_element
-  Object? _DiagnosticsProperty_textTreeConfiguration(Object value) =>
-      (value as api.DiagnosticsProperty<_Owner0>).textTreeConfiguration;
   // ignore: unused_element
   Object? _DiagnosticsProperty_expandableValue(Object value) =>
       (value as api.DiagnosticsProperty<_Owner0>).expandableValue;
@@ -32945,27 +32249,6 @@ Function _flaxClass_DiagnosticsProperty<
     return (receiver as api.DiagnosticsProperty<_Owner0>).isFiltered(
       values["minLevel"] as api.DiagnosticLevel,
     );
-  }
-
-  Object? _DiagnosticsProperty_getProperties(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.DiagnosticsProperty<_Owner0>).getProperties();
-  }
-
-  Object? _DiagnosticsProperty_getChildren(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.DiagnosticsProperty<_Owner0>).getChildren();
-  }
-
-  Object? _DiagnosticsProperty_toTimelineArguments(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.DiagnosticsProperty<_Owner0>).toTimelineArguments();
   }
 
   Object? _DiagnosticsProperty_toJsonMap(
@@ -33270,58 +32553,22 @@ Function _flaxClass_DiagnosticsProperty<
     FlaxObjectBinding(
       id,
       [
-        FlaxGetter.plain(
-          "name",
-          flaxNullableStringType,
-          _DiagnosticsProperty_name,
-        ),
-        FlaxGetter.plain(
-          "showSeparator",
-          flaxBoolType,
-          _DiagnosticsProperty_showSeparator,
-        ),
-        FlaxGetter.plain("level", _flaxBinding55, _DiagnosticsProperty_level),
-        FlaxGetter.plain(
-          "showName",
-          flaxBoolType,
-          _DiagnosticsProperty_showName,
-        ),
-        FlaxGetter.plain(
-          "linePrefix",
-          flaxNullableStringType,
-          _DiagnosticsProperty_linePrefix,
-        ),
-        FlaxGetter.plain(
-          "emptyBodyDescription",
-          flaxNullableStringType,
-          _DiagnosticsProperty_emptyBodyDescription,
-        ),
+        _flaxBinding276,
+        _flaxBinding277,
+        _flaxBinding278,
+        _flaxBinding279,
+        _flaxBinding280,
+        _flaxBinding281,
         FlaxGetter.plain(
           "value",
           types.ref<_Owner0?>(),
           _DiagnosticsProperty_value,
         ),
-        FlaxGetter.plain("style", _flaxBinding70, _DiagnosticsProperty_style),
-        FlaxGetter.plain(
-          "allowWrap",
-          flaxBoolType,
-          _DiagnosticsProperty_allowWrap,
-        ),
-        FlaxGetter.plain(
-          "allowNameWrap",
-          flaxBoolType,
-          _DiagnosticsProperty_allowNameWrap,
-        ),
-        FlaxGetter.plain(
-          "allowTruncate",
-          flaxBoolType,
-          _DiagnosticsProperty_allowTruncate,
-        ),
-        FlaxGetter.plain(
-          "textTreeConfiguration",
-          _flaxBinding64,
-          _DiagnosticsProperty_textTreeConfiguration,
-        ),
+        _flaxBinding369,
+        _flaxBinding283,
+        _flaxBinding284,
+        _flaxBinding285,
+        _flaxBinding286,
         FlaxGetter.plain(
           "expandableValue",
           flaxBoolType,
@@ -33370,190 +32617,74 @@ Function _flaxClass_DiagnosticsProperty<
       ],
       {
         "toDescription": FlaxInstanceMethod.plain(
-          _flaxBinding285,
+          _flaxBinding288,
           flaxStringType,
           _DiagnosticsProperty_toDescription,
         ),
         "isFiltered": FlaxInstanceMethod.plain(
-          _flaxBinding1025,
+          _flaxBinding1018,
           flaxBoolType,
           _DiagnosticsProperty_isFiltered,
         ),
-        "getProperties": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding49,
-          _DiagnosticsProperty_getProperties,
-        ),
-        "getChildren": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding49,
-          _DiagnosticsProperty_getChildren,
-        ),
-        "toTimelineArguments": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding57,
-          _DiagnosticsProperty_toTimelineArguments,
-        ),
+        "getProperties": _flaxBinding1019,
+        "getChildren": _flaxBinding1020,
+        "toTimelineArguments": _flaxBinding1021,
         "toJsonMap": FlaxInstanceMethod.plain(
-          _flaxBinding1026,
+          _flaxBinding1022,
           _flaxBinding24,
           _DiagnosticsProperty_toJsonMap,
         ),
         "toJsonMapIterative": FlaxInstanceMethod.plain(
-          _flaxBinding1026,
+          _flaxBinding1022,
           _flaxBinding24,
           _DiagnosticsProperty_toJsonMapIterative,
         ),
         "toString": FlaxInstanceMethod.plain(
-          _flaxBinding286,
+          _flaxBinding296,
           flaxStringType,
           _DiagnosticsProperty_toString,
         ),
         "toStringDeep": FlaxInstanceMethod.plain(
-          _flaxBinding287,
+          _flaxBinding298,
           flaxStringType,
           _DiagnosticsProperty_toStringDeep,
         ),
         "valueToString": FlaxInstanceMethod.plain(
-          _flaxBinding285,
+          _flaxBinding288,
           flaxStringType,
           _DiagnosticsProperty_valueToString,
         ),
-        "@super:toDescription": FlaxInstanceMethod.plain(
-          _flaxBinding285,
-          flaxStringType,
-          _FlaxProxyDispatch4_super_call_toDescription,
-        ),
-        "@super:isFiltered": FlaxInstanceMethod.plain(
-          _flaxBinding1025,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_call_isFiltered,
-        ),
-        "@super:getProperties": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding49,
-          _FlaxProxyDispatch4_super_call_getProperties,
-        ),
-        "@super:getChildren": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding49,
-          _FlaxProxyDispatch4_super_call_getChildren,
-        ),
-        "@super:toTimelineArguments": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding57,
-          _FlaxProxyDispatch5_super_call_toTimelineArguments,
-        ),
-        "@super:toJsonMap": FlaxInstanceMethod.plain(
-          _flaxBinding1026,
-          _flaxBinding24,
-          _FlaxProxyDispatch5_super_call_toJsonMap,
-        ),
-        "@super:toJsonMapIterative": FlaxInstanceMethod.plain(
-          _flaxBinding1026,
-          _flaxBinding24,
-          _FlaxProxyDispatch5_super_call_toJsonMapIterative,
-        ),
-        "@super:toString": FlaxInstanceMethod.plain(
-          _flaxBinding286,
-          flaxStringType,
-          _FlaxProxyDispatch5_super_call_toString,
-        ),
-        "@super:toStringDeep": FlaxInstanceMethod.plain(
-          _flaxBinding287,
-          flaxStringType,
-          _FlaxProxyDispatch5_super_call_toStringDeep,
-        ),
-        "@super:valueToString": FlaxInstanceMethod.plain(
-          _flaxBinding285,
-          flaxStringType,
-          _FlaxProxyDispatch12_super_call_valueToString,
-        ),
-        "@super:get:expandableValue": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch12_super_get_expandableValue,
-        ),
-        "@super:get:allowWrap": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_get_allowWrap,
-        ),
-        "@super:get:allowNameWrap": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_get_allowNameWrap,
-        ),
-        "@super:get:ifNull": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableStringType,
-          _FlaxProxyDispatch12_super_get_ifNull,
-        ),
-        "@super:get:ifEmpty": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableStringType,
-          _FlaxProxyDispatch12_super_get_ifEmpty,
-        ),
-        "@super:get:tooltip": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableStringType,
-          _FlaxProxyDispatch12_super_get_tooltip,
-        ),
-        "@super:get:missingIfNull": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch12_super_get_missingIfNull,
-        ),
-        "@super:get:propertyType": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxTypeType,
-          _FlaxProxyDispatch12_super_get_propertyType,
-        ),
+        "@super:toDescription": _flaxBinding300,
+        "@super:isFiltered": _flaxBinding1023,
+        "@super:getProperties": _flaxBinding1024,
+        "@super:getChildren": _flaxBinding1025,
+        "@super:toTimelineArguments": _flaxBinding1026,
+        "@super:toJsonMap": _flaxBinding1027,
+        "@super:toJsonMapIterative": _flaxBinding1028,
+        "@super:toString": _flaxBinding307,
+        "@super:toStringDeep": _flaxBinding308,
+        "@super:valueToString": _flaxBinding409,
+        "@super:get:expandableValue": _flaxBinding1039,
+        "@super:get:allowWrap": _flaxBinding1035,
+        "@super:get:allowNameWrap": _flaxBinding1036,
+        "@super:get:ifNull": _flaxBinding1040,
+        "@super:get:ifEmpty": _flaxBinding1041,
+        "@super:get:tooltip": _flaxBinding1042,
+        "@super:get:missingIfNull": _flaxBinding1043,
+        "@super:get:propertyType": _flaxBinding1044,
         "@super:get:value": FlaxInstanceMethod.plain(
           _flaxBinding131,
           types.ref<_Owner0?>(),
           _DiagnosticsProperty_super_get_value,
         ),
-        "@super:get:exception": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableAnyType,
-          _FlaxProxyDispatch12_super_get_exception,
-        ),
-        "@super:get:defaultValue": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableAnyType,
-          _FlaxProxyDispatch12_super_get_defaultValue,
-        ),
-        "@super:get:isInteresting": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch12_super_get_isInteresting,
-        ),
-        "@super:get:level": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding55,
-          _FlaxProxyDispatch5_super_get_level,
-        ),
-        "@super:get:name": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableStringType,
-          _FlaxProxyDispatch5_super_get_name,
-        ),
-        "@super:get:showSeparator": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_get_showSeparator,
-        ),
-        "@super:get:showName": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_get_showName,
-        ),
-        "@super:get:linePrefix": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableStringType,
-          _FlaxProxyDispatch5_super_get_linePrefix,
-        ),
+        "@super:get:exception": _flaxBinding1045,
+        "@super:get:defaultValue": _flaxBinding1046,
+        "@super:get:isInteresting": _flaxBinding1047,
+        "@super:get:level": _flaxBinding1032,
+        "@super:get:name": _flaxBinding1030,
+        "@super:get:showSeparator": _flaxBinding1031,
+        "@super:get:showName": _flaxBinding1033,
+        "@super:get:linePrefix": _flaxBinding1034,
         "@super:get:emptyBodyDescription": FlaxInstanceMethod.plain(
           _flaxBinding131,
           flaxNullableStringType,
@@ -33564,16 +32695,8 @@ Function _flaxClass_DiagnosticsProperty<
           _flaxBinding70,
           _DiagnosticsProperty_super_get_style,
         ),
-        "@super:get:allowTruncate": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_get_allowTruncate,
-        ),
-        "@super:get:textTreeConfiguration": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding64,
-          _FlaxProxyDispatch5_super_get_textTreeConfiguration,
-        ),
+        "@super:get:allowTruncate": _flaxBinding1037,
+        "@super:get:textTreeConfiguration": _flaxBinding1038,
       },
       constructors: {
         "": <FlaxParameter>[
@@ -34312,12 +33435,6 @@ Function _flaxClass_EnumProperty<
   Object? _EnumProperty_expandableValue(Object value) =>
       (value as api.EnumProperty<_Owner0>).expandableValue;
   // ignore: unused_element
-  Object? _EnumProperty_allowWrap(Object value) =>
-      (value as api.EnumProperty<_Owner0>).allowWrap;
-  // ignore: unused_element
-  Object? _EnumProperty_allowNameWrap(Object value) =>
-      (value as api.EnumProperty<_Owner0>).allowNameWrap;
-  // ignore: unused_element
   Object? _EnumProperty_ifNull(Object value) =>
       (value as api.EnumProperty<_Owner0>).ifNull;
   // ignore: unused_element
@@ -34344,33 +33461,6 @@ Function _flaxClass_EnumProperty<
   // ignore: unused_element
   Object? _EnumProperty_isInteresting(Object value) =>
       (value as api.EnumProperty<_Owner0>).isInteresting;
-  // ignore: unused_element
-  Object? _EnumProperty_level(Object value) =>
-      (value as api.EnumProperty<_Owner0>).level;
-  // ignore: unused_element
-  Object? _EnumProperty_name(Object value) =>
-      (value as api.EnumProperty<_Owner0>).name;
-  // ignore: unused_element
-  Object? _EnumProperty_showSeparator(Object value) =>
-      (value as api.EnumProperty<_Owner0>).showSeparator;
-  // ignore: unused_element
-  Object? _EnumProperty_showName(Object value) =>
-      (value as api.EnumProperty<_Owner0>).showName;
-  // ignore: unused_element
-  Object? _EnumProperty_linePrefix(Object value) =>
-      (value as api.EnumProperty<_Owner0>).linePrefix;
-  // ignore: unused_element
-  Object? _EnumProperty_emptyBodyDescription(Object value) =>
-      (value as api.EnumProperty<_Owner0>).emptyBodyDescription;
-  // ignore: unused_element
-  Object? _EnumProperty_style(Object value) =>
-      (value as api.EnumProperty<_Owner0>).style;
-  // ignore: unused_element
-  Object? _EnumProperty_allowTruncate(Object value) =>
-      (value as api.EnumProperty<_Owner0>).allowTruncate;
-  // ignore: unused_element
-  Object? _EnumProperty_textTreeConfiguration(Object value) =>
-      (value as api.EnumProperty<_Owner0>).textTreeConfiguration;
   Object? _EnumProperty_super_get_value(
     Object value,
     Map<String, Object?> values,
@@ -34413,20 +33503,6 @@ Function _flaxClass_EnumProperty<
     );
   }
 
-  Object? _EnumProperty_getProperties(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.EnumProperty<_Owner0>).getProperties();
-  }
-
-  Object? _EnumProperty_getChildren(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.EnumProperty<_Owner0>).getChildren();
-  }
-
   Object? _EnumProperty_isFiltered(
     Object receiver,
     Map<String, Object?> values,
@@ -34434,13 +33510,6 @@ Function _flaxClass_EnumProperty<
     return (receiver as api.EnumProperty<_Owner0>).isFiltered(
       values["minLevel"] as api.DiagnosticLevel,
     );
-  }
-
-  Object? _EnumProperty_toTimelineArguments(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.EnumProperty<_Owner0>).toTimelineArguments();
   }
 
   Object? _EnumProperty_toJsonMapIterative(
@@ -34519,12 +33588,8 @@ Function _flaxClass_EnumProperty<
           flaxBoolType,
           _EnumProperty_expandableValue,
         ),
-        FlaxGetter.plain("allowWrap", flaxBoolType, _EnumProperty_allowWrap),
-        FlaxGetter.plain(
-          "allowNameWrap",
-          flaxBoolType,
-          _EnumProperty_allowNameWrap,
-        ),
+        _flaxBinding283,
+        _flaxBinding284,
         FlaxGetter.plain(
           "ifNull",
           flaxNullableStringType,
@@ -34566,222 +33631,86 @@ Function _flaxClass_EnumProperty<
           flaxBoolType,
           _EnumProperty_isInteresting,
         ),
-        FlaxGetter.plain("level", _flaxBinding55, _EnumProperty_level),
-        FlaxGetter.plain("name", flaxNullableStringType, _EnumProperty_name),
-        FlaxGetter.plain(
-          "showSeparator",
-          flaxBoolType,
-          _EnumProperty_showSeparator,
-        ),
-        FlaxGetter.plain("showName", flaxBoolType, _EnumProperty_showName),
-        FlaxGetter.plain(
-          "linePrefix",
-          flaxNullableStringType,
-          _EnumProperty_linePrefix,
-        ),
-        FlaxGetter.plain(
-          "emptyBodyDescription",
-          flaxNullableStringType,
-          _EnumProperty_emptyBodyDescription,
-        ),
-        FlaxGetter.plain("style", _flaxBinding70, _EnumProperty_style),
-        FlaxGetter.plain(
-          "allowTruncate",
-          flaxBoolType,
-          _EnumProperty_allowTruncate,
-        ),
-        FlaxGetter.plain(
-          "textTreeConfiguration",
-          _flaxBinding64,
-          _EnumProperty_textTreeConfiguration,
-        ),
+        _flaxBinding278,
+        _flaxBinding276,
+        _flaxBinding277,
+        _flaxBinding279,
+        _flaxBinding280,
+        _flaxBinding281,
+        _flaxBinding369,
+        _flaxBinding285,
+        _flaxBinding286,
       ],
       {
         "toJsonMap": FlaxInstanceMethod.plain(
-          _flaxBinding1026,
+          _flaxBinding1022,
           _flaxBinding24,
           _EnumProperty_toJsonMap,
         ),
         "valueToString": FlaxInstanceMethod.plain(
-          _flaxBinding285,
+          _flaxBinding288,
           flaxStringType,
           _EnumProperty_valueToString,
         ),
         "toDescription": FlaxInstanceMethod.plain(
-          _flaxBinding285,
+          _flaxBinding288,
           flaxStringType,
           _EnumProperty_toDescription,
         ),
-        "getProperties": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding49,
-          _EnumProperty_getProperties,
-        ),
-        "getChildren": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding49,
-          _EnumProperty_getChildren,
-        ),
+        "getProperties": _flaxBinding1019,
+        "getChildren": _flaxBinding1020,
         "isFiltered": FlaxInstanceMethod.plain(
-          _flaxBinding1025,
+          _flaxBinding1018,
           flaxBoolType,
           _EnumProperty_isFiltered,
         ),
-        "toTimelineArguments": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding57,
-          _EnumProperty_toTimelineArguments,
-        ),
+        "toTimelineArguments": _flaxBinding1021,
         "toJsonMapIterative": FlaxInstanceMethod.plain(
-          _flaxBinding1026,
+          _flaxBinding1022,
           _flaxBinding24,
           _EnumProperty_toJsonMapIterative,
         ),
         "toStringDeep": FlaxInstanceMethod.plain(
-          _flaxBinding287,
+          _flaxBinding298,
           flaxStringType,
           _EnumProperty_toStringDeep,
         ),
         "toString": FlaxInstanceMethod.plain(
-          _flaxBinding286,
+          _flaxBinding296,
           flaxStringType,
           _EnumProperty_toString,
         ),
-        "@super:toJsonMap": FlaxInstanceMethod.plain(
-          _flaxBinding1026,
-          _flaxBinding24,
-          _FlaxProxyDispatch5_super_call_toJsonMap,
-        ),
-        "@super:valueToString": FlaxInstanceMethod.plain(
-          _flaxBinding285,
-          flaxStringType,
-          _FlaxProxyDispatch12_super_call_valueToString,
-        ),
-        "@super:toDescription": FlaxInstanceMethod.plain(
-          _flaxBinding285,
-          flaxStringType,
-          _FlaxProxyDispatch4_super_call_toDescription,
-        ),
-        "@super:getProperties": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding49,
-          _FlaxProxyDispatch4_super_call_getProperties,
-        ),
-        "@super:getChildren": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding49,
-          _FlaxProxyDispatch4_super_call_getChildren,
-        ),
-        "@super:isFiltered": FlaxInstanceMethod.plain(
-          _flaxBinding1025,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_call_isFiltered,
-        ),
-        "@super:toTimelineArguments": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding57,
-          _FlaxProxyDispatch5_super_call_toTimelineArguments,
-        ),
-        "@super:toJsonMapIterative": FlaxInstanceMethod.plain(
-          _flaxBinding1026,
-          _flaxBinding24,
-          _FlaxProxyDispatch5_super_call_toJsonMapIterative,
-        ),
-        "@super:toStringDeep": FlaxInstanceMethod.plain(
-          _flaxBinding287,
-          flaxStringType,
-          _FlaxProxyDispatch5_super_call_toStringDeep,
-        ),
-        "@super:toString": FlaxInstanceMethod.plain(
-          _flaxBinding286,
-          flaxStringType,
-          _FlaxProxyDispatch5_super_call_toString,
-        ),
-        "@super:get:expandableValue": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch12_super_get_expandableValue,
-        ),
-        "@super:get:allowWrap": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_get_allowWrap,
-        ),
-        "@super:get:allowNameWrap": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_get_allowNameWrap,
-        ),
-        "@super:get:ifNull": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableStringType,
-          _FlaxProxyDispatch12_super_get_ifNull,
-        ),
-        "@super:get:ifEmpty": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableStringType,
-          _FlaxProxyDispatch12_super_get_ifEmpty,
-        ),
-        "@super:get:tooltip": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableStringType,
-          _FlaxProxyDispatch12_super_get_tooltip,
-        ),
-        "@super:get:missingIfNull": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch12_super_get_missingIfNull,
-        ),
-        "@super:get:propertyType": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxTypeType,
-          _FlaxProxyDispatch12_super_get_propertyType,
-        ),
+        "@super:toJsonMap": _flaxBinding1027,
+        "@super:valueToString": _flaxBinding409,
+        "@super:toDescription": _flaxBinding300,
+        "@super:getProperties": _flaxBinding1024,
+        "@super:getChildren": _flaxBinding1025,
+        "@super:isFiltered": _flaxBinding1023,
+        "@super:toTimelineArguments": _flaxBinding1026,
+        "@super:toJsonMapIterative": _flaxBinding1028,
+        "@super:toStringDeep": _flaxBinding308,
+        "@super:toString": _flaxBinding307,
+        "@super:get:expandableValue": _flaxBinding1039,
+        "@super:get:allowWrap": _flaxBinding1035,
+        "@super:get:allowNameWrap": _flaxBinding1036,
+        "@super:get:ifNull": _flaxBinding1040,
+        "@super:get:ifEmpty": _flaxBinding1041,
+        "@super:get:tooltip": _flaxBinding1042,
+        "@super:get:missingIfNull": _flaxBinding1043,
+        "@super:get:propertyType": _flaxBinding1044,
         "@super:get:value": FlaxInstanceMethod.plain(
           _flaxBinding131,
           types.ref<_Owner0?>(),
           _EnumProperty_super_get_value,
         ),
-        "@super:get:exception": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableAnyType,
-          _FlaxProxyDispatch12_super_get_exception,
-        ),
-        "@super:get:defaultValue": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableAnyType,
-          _FlaxProxyDispatch12_super_get_defaultValue,
-        ),
-        "@super:get:isInteresting": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch12_super_get_isInteresting,
-        ),
-        "@super:get:level": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding55,
-          _FlaxProxyDispatch5_super_get_level,
-        ),
-        "@super:get:name": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableStringType,
-          _FlaxProxyDispatch5_super_get_name,
-        ),
-        "@super:get:showSeparator": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_get_showSeparator,
-        ),
-        "@super:get:showName": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_get_showName,
-        ),
-        "@super:get:linePrefix": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableStringType,
-          _FlaxProxyDispatch5_super_get_linePrefix,
-        ),
+        "@super:get:exception": _flaxBinding1045,
+        "@super:get:defaultValue": _flaxBinding1046,
+        "@super:get:isInteresting": _flaxBinding1047,
+        "@super:get:level": _flaxBinding1032,
+        "@super:get:name": _flaxBinding1030,
+        "@super:get:showSeparator": _flaxBinding1031,
+        "@super:get:showName": _flaxBinding1033,
+        "@super:get:linePrefix": _flaxBinding1034,
         "@super:get:emptyBodyDescription": FlaxInstanceMethod.plain(
           _flaxBinding131,
           flaxNullableStringType,
@@ -34792,16 +33721,8 @@ Function _flaxClass_EnumProperty<
           _flaxBinding70,
           _EnumProperty_super_get_style,
         ),
-        "@super:get:allowTruncate": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_get_allowTruncate,
-        ),
-        "@super:get:textTreeConfiguration": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding64,
-          _FlaxProxyDispatch5_super_get_textTreeConfiguration,
-        ),
+        "@super:get:allowTruncate": _flaxBinding1037,
+        "@super:get:textTreeConfiguration": _flaxBinding1038,
       },
       constructors: {
         "": <FlaxParameter>[
@@ -35349,11 +34270,7 @@ Function _flaxClass_Factory<_Owner0 extends Object?>() =>
               flaxStringType,
               _Factory_toString,
             ),
-            "@super:toString": FlaxInstanceMethod.plain(
-              _flaxBinding131,
-              flaxStringType,
-              _FlaxProxyDispatch0_super_call_toString,
-            ),
+            "@super:toString": _flaxBinding1048,
             "@super:get:constructor": FlaxInstanceMethod.plain(
               _flaxBinding131,
               types.define<_Owner0 Function()>(
@@ -35499,12 +34416,6 @@ Function _flaxClass_FlagsSummary<
   Object? _FlagsSummary_expandableValue(Object value) =>
       (value as api.FlagsSummary<_Owner0>).expandableValue;
   // ignore: unused_element
-  Object? _FlagsSummary_allowWrap(Object value) =>
-      (value as api.FlagsSummary<_Owner0>).allowWrap;
-  // ignore: unused_element
-  Object? _FlagsSummary_allowNameWrap(Object value) =>
-      (value as api.FlagsSummary<_Owner0>).allowNameWrap;
-  // ignore: unused_element
   Object? _FlagsSummary_ifNull(Object value) =>
       (value as api.FlagsSummary<_Owner0>).ifNull;
   // ignore: unused_element
@@ -35531,33 +34442,6 @@ Function _flaxClass_FlagsSummary<
   // ignore: unused_element
   Object? _FlagsSummary_isInteresting(Object value) =>
       (value as api.FlagsSummary<_Owner0>).isInteresting;
-  // ignore: unused_element
-  Object? _FlagsSummary_level(Object value) =>
-      (value as api.FlagsSummary<_Owner0>).level;
-  // ignore: unused_element
-  Object? _FlagsSummary_name(Object value) =>
-      (value as api.FlagsSummary<_Owner0>).name;
-  // ignore: unused_element
-  Object? _FlagsSummary_showSeparator(Object value) =>
-      (value as api.FlagsSummary<_Owner0>).showSeparator;
-  // ignore: unused_element
-  Object? _FlagsSummary_showName(Object value) =>
-      (value as api.FlagsSummary<_Owner0>).showName;
-  // ignore: unused_element
-  Object? _FlagsSummary_linePrefix(Object value) =>
-      (value as api.FlagsSummary<_Owner0>).linePrefix;
-  // ignore: unused_element
-  Object? _FlagsSummary_emptyBodyDescription(Object value) =>
-      (value as api.FlagsSummary<_Owner0>).emptyBodyDescription;
-  // ignore: unused_element
-  Object? _FlagsSummary_style(Object value) =>
-      (value as api.FlagsSummary<_Owner0>).style;
-  // ignore: unused_element
-  Object? _FlagsSummary_allowTruncate(Object value) =>
-      (value as api.FlagsSummary<_Owner0>).allowTruncate;
-  // ignore: unused_element
-  Object? _FlagsSummary_textTreeConfiguration(Object value) =>
-      (value as api.FlagsSummary<_Owner0>).textTreeConfiguration;
   Object? _FlagsSummary_super_get_value(
     Object value,
     Map<String, Object?> values,
@@ -35600,20 +34484,6 @@ Function _flaxClass_FlagsSummary<
     );
   }
 
-  Object? _FlagsSummary_getProperties(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.FlagsSummary<_Owner0>).getProperties();
-  }
-
-  Object? _FlagsSummary_getChildren(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.FlagsSummary<_Owner0>).getChildren();
-  }
-
   Object? _FlagsSummary_isFiltered(
     Object receiver,
     Map<String, Object?> values,
@@ -35621,13 +34491,6 @@ Function _flaxClass_FlagsSummary<
     return (receiver as api.FlagsSummary<_Owner0>).isFiltered(
       values["minLevel"] as api.DiagnosticLevel,
     );
-  }
-
-  Object? _FlagsSummary_toTimelineArguments(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.FlagsSummary<_Owner0>).toTimelineArguments();
   }
 
   Object? _FlagsSummary_toJsonMapIterative(
@@ -35698,12 +34561,8 @@ Function _flaxClass_FlagsSummary<
           flaxBoolType,
           _FlagsSummary_expandableValue,
         ),
-        FlaxGetter.plain("allowWrap", flaxBoolType, _FlagsSummary_allowWrap),
-        FlaxGetter.plain(
-          "allowNameWrap",
-          flaxBoolType,
-          _FlagsSummary_allowNameWrap,
-        ),
+        _flaxBinding283,
+        _flaxBinding284,
         FlaxGetter.plain(
           "ifNull",
           flaxNullableStringType,
@@ -35749,222 +34608,86 @@ Function _flaxClass_FlagsSummary<
           flaxBoolType,
           _FlagsSummary_isInteresting,
         ),
-        FlaxGetter.plain("level", _flaxBinding55, _FlagsSummary_level),
-        FlaxGetter.plain("name", flaxNullableStringType, _FlagsSummary_name),
-        FlaxGetter.plain(
-          "showSeparator",
-          flaxBoolType,
-          _FlagsSummary_showSeparator,
-        ),
-        FlaxGetter.plain("showName", flaxBoolType, _FlagsSummary_showName),
-        FlaxGetter.plain(
-          "linePrefix",
-          flaxNullableStringType,
-          _FlagsSummary_linePrefix,
-        ),
-        FlaxGetter.plain(
-          "emptyBodyDescription",
-          flaxNullableStringType,
-          _FlagsSummary_emptyBodyDescription,
-        ),
-        FlaxGetter.plain("style", _flaxBinding70, _FlagsSummary_style),
-        FlaxGetter.plain(
-          "allowTruncate",
-          flaxBoolType,
-          _FlagsSummary_allowTruncate,
-        ),
-        FlaxGetter.plain(
-          "textTreeConfiguration",
-          _flaxBinding64,
-          _FlagsSummary_textTreeConfiguration,
-        ),
+        _flaxBinding278,
+        _flaxBinding276,
+        _flaxBinding277,
+        _flaxBinding279,
+        _flaxBinding280,
+        _flaxBinding281,
+        _flaxBinding369,
+        _flaxBinding285,
+        _flaxBinding286,
       ],
       {
         "toJsonMap": FlaxInstanceMethod.plain(
-          _flaxBinding1026,
+          _flaxBinding1022,
           _flaxBinding24,
           _FlagsSummary_toJsonMap,
         ),
         "valueToString": FlaxInstanceMethod.plain(
-          _flaxBinding285,
+          _flaxBinding288,
           flaxStringType,
           _FlagsSummary_valueToString,
         ),
         "toDescription": FlaxInstanceMethod.plain(
-          _flaxBinding285,
+          _flaxBinding288,
           flaxStringType,
           _FlagsSummary_toDescription,
         ),
-        "getProperties": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding49,
-          _FlagsSummary_getProperties,
-        ),
-        "getChildren": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding49,
-          _FlagsSummary_getChildren,
-        ),
+        "getProperties": _flaxBinding1019,
+        "getChildren": _flaxBinding1020,
         "isFiltered": FlaxInstanceMethod.plain(
-          _flaxBinding1025,
+          _flaxBinding1018,
           flaxBoolType,
           _FlagsSummary_isFiltered,
         ),
-        "toTimelineArguments": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding57,
-          _FlagsSummary_toTimelineArguments,
-        ),
+        "toTimelineArguments": _flaxBinding1021,
         "toJsonMapIterative": FlaxInstanceMethod.plain(
-          _flaxBinding1026,
+          _flaxBinding1022,
           _flaxBinding24,
           _FlagsSummary_toJsonMapIterative,
         ),
         "toStringDeep": FlaxInstanceMethod.plain(
-          _flaxBinding287,
+          _flaxBinding298,
           flaxStringType,
           _FlagsSummary_toStringDeep,
         ),
         "toString": FlaxInstanceMethod.plain(
-          _flaxBinding286,
+          _flaxBinding296,
           flaxStringType,
           _FlagsSummary_toString,
         ),
-        "@super:toJsonMap": FlaxInstanceMethod.plain(
-          _flaxBinding1026,
-          _flaxBinding24,
-          _FlaxProxyDispatch5_super_call_toJsonMap,
-        ),
-        "@super:valueToString": FlaxInstanceMethod.plain(
-          _flaxBinding285,
-          flaxStringType,
-          _FlaxProxyDispatch12_super_call_valueToString,
-        ),
-        "@super:toDescription": FlaxInstanceMethod.plain(
-          _flaxBinding285,
-          flaxStringType,
-          _FlaxProxyDispatch4_super_call_toDescription,
-        ),
-        "@super:getProperties": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding49,
-          _FlaxProxyDispatch4_super_call_getProperties,
-        ),
-        "@super:getChildren": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding49,
-          _FlaxProxyDispatch4_super_call_getChildren,
-        ),
-        "@super:isFiltered": FlaxInstanceMethod.plain(
-          _flaxBinding1025,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_call_isFiltered,
-        ),
-        "@super:toTimelineArguments": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding57,
-          _FlaxProxyDispatch5_super_call_toTimelineArguments,
-        ),
-        "@super:toJsonMapIterative": FlaxInstanceMethod.plain(
-          _flaxBinding1026,
-          _flaxBinding24,
-          _FlaxProxyDispatch5_super_call_toJsonMapIterative,
-        ),
-        "@super:toStringDeep": FlaxInstanceMethod.plain(
-          _flaxBinding287,
-          flaxStringType,
-          _FlaxProxyDispatch5_super_call_toStringDeep,
-        ),
-        "@super:toString": FlaxInstanceMethod.plain(
-          _flaxBinding286,
-          flaxStringType,
-          _FlaxProxyDispatch5_super_call_toString,
-        ),
+        "@super:toJsonMap": _flaxBinding1027,
+        "@super:valueToString": _flaxBinding409,
+        "@super:toDescription": _flaxBinding300,
+        "@super:getProperties": _flaxBinding1024,
+        "@super:getChildren": _flaxBinding1025,
+        "@super:isFiltered": _flaxBinding1023,
+        "@super:toTimelineArguments": _flaxBinding1026,
+        "@super:toJsonMapIterative": _flaxBinding1028,
+        "@super:toStringDeep": _flaxBinding308,
+        "@super:toString": _flaxBinding307,
         "@super:get:value": FlaxInstanceMethod.plain(
           _flaxBinding131,
           types.ref<Map<String, _Owner0?>>(),
           _FlagsSummary_super_get_value,
         ),
-        "@super:get:level": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding55,
-          _FlaxProxyDispatch5_super_get_level,
-        ),
-        "@super:get:expandableValue": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch12_super_get_expandableValue,
-        ),
-        "@super:get:allowWrap": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_get_allowWrap,
-        ),
-        "@super:get:allowNameWrap": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_get_allowNameWrap,
-        ),
-        "@super:get:ifNull": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableStringType,
-          _FlaxProxyDispatch12_super_get_ifNull,
-        ),
-        "@super:get:ifEmpty": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableStringType,
-          _FlaxProxyDispatch12_super_get_ifEmpty,
-        ),
-        "@super:get:tooltip": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableStringType,
-          _FlaxProxyDispatch12_super_get_tooltip,
-        ),
-        "@super:get:missingIfNull": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch12_super_get_missingIfNull,
-        ),
-        "@super:get:propertyType": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxTypeType,
-          _FlaxProxyDispatch12_super_get_propertyType,
-        ),
-        "@super:get:exception": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableAnyType,
-          _FlaxProxyDispatch12_super_get_exception,
-        ),
-        "@super:get:defaultValue": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableAnyType,
-          _FlaxProxyDispatch12_super_get_defaultValue,
-        ),
-        "@super:get:isInteresting": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch12_super_get_isInteresting,
-        ),
-        "@super:get:name": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableStringType,
-          _FlaxProxyDispatch5_super_get_name,
-        ),
-        "@super:get:showSeparator": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_get_showSeparator,
-        ),
-        "@super:get:showName": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_get_showName,
-        ),
-        "@super:get:linePrefix": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableStringType,
-          _FlaxProxyDispatch5_super_get_linePrefix,
-        ),
+        "@super:get:level": _flaxBinding1032,
+        "@super:get:expandableValue": _flaxBinding1039,
+        "@super:get:allowWrap": _flaxBinding1035,
+        "@super:get:allowNameWrap": _flaxBinding1036,
+        "@super:get:ifNull": _flaxBinding1040,
+        "@super:get:ifEmpty": _flaxBinding1041,
+        "@super:get:tooltip": _flaxBinding1042,
+        "@super:get:missingIfNull": _flaxBinding1043,
+        "@super:get:propertyType": _flaxBinding1044,
+        "@super:get:exception": _flaxBinding1045,
+        "@super:get:defaultValue": _flaxBinding1046,
+        "@super:get:isInteresting": _flaxBinding1047,
+        "@super:get:name": _flaxBinding1030,
+        "@super:get:showSeparator": _flaxBinding1031,
+        "@super:get:showName": _flaxBinding1033,
+        "@super:get:linePrefix": _flaxBinding1034,
         "@super:get:emptyBodyDescription": FlaxInstanceMethod.plain(
           _flaxBinding131,
           flaxNullableStringType,
@@ -35975,16 +34698,8 @@ Function _flaxClass_FlagsSummary<
           _flaxBinding70,
           _FlagsSummary_super_get_style,
         ),
-        "@super:get:allowTruncate": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_get_allowTruncate,
-        ),
-        "@super:get:textTreeConfiguration": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding64,
-          _FlaxProxyDispatch5_super_get_textTreeConfiguration,
-        ),
+        "@super:get:allowTruncate": _flaxBinding1037,
+        "@super:get:textTreeConfiguration": _flaxBinding1038,
       },
       constructors: {
         "": <FlaxParameter>[
@@ -37710,18 +36425,18 @@ Function _flaxClass_HashedObserverList<
           _HashedObserverList_clear,
         ),
         "contains": FlaxInstanceMethod.plain(
-          _flaxBinding1024,
+          _flaxBinding1013,
           flaxBoolType,
           _HashedObserverList_contains,
         ),
         "toList": FlaxInstanceMethod.plain(
-          _flaxBinding213,
+          _flaxBinding214,
           types.ref<List<_Owner0>>(),
           _HashedObserverList_toList,
         ),
         "cast": FlaxInstanceMethod(
           _flaxBinding131,
-          _flaxBinding210,
+          _flaxBinding211,
           _HashedObserverList_cast,
           genericFactory: _flaxGeneric_HashedObserverList_cast,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -37760,7 +36475,7 @@ Function _flaxClass_HashedObserverList<
               ),
             ),
           ],
-          _flaxBinding210,
+          _flaxBinding211,
           _HashedObserverList_map,
           genericFactory: _flaxGeneric_HashedObserverList_map,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -37797,7 +36512,7 @@ Function _flaxClass_HashedObserverList<
         ),
         "whereType": FlaxInstanceMethod(
           _flaxBinding131,
-          _flaxBinding210,
+          _flaxBinding211,
           _HashedObserverList_whereType,
           genericFactory: _flaxGeneric_HashedObserverList_whereType,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -37817,7 +36532,7 @@ Function _flaxClass_HashedObserverList<
                         types.ref<_Owner0>(withinCallback: true),
                       ),
                     ],
-                    _flaxBinding210,
+                    _flaxBinding211,
                     FlaxCallbackAdapters.wrap1<_Owner0, Iterable<Object?>>,
                     id:
                         types
@@ -37834,7 +36549,7 @@ Function _flaxClass_HashedObserverList<
               ),
             ),
           ],
-          _flaxBinding210,
+          _flaxBinding211,
           _HashedObserverList_expand,
           genericFactory: _flaxGeneric_HashedObserverList_expand,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -37986,7 +36701,7 @@ Function _flaxClass_HashedObserverList<
           _HashedObserverList_every,
         ),
         "join": FlaxInstanceMethod.plain(
-          _flaxBinding214,
+          _flaxBinding216,
           flaxStringType,
           _HashedObserverList_join,
         ),
@@ -38026,7 +36741,7 @@ Function _flaxClass_HashedObserverList<
           _HashedObserverList_toSet,
         ),
         "take": FlaxInstanceMethod.plain(
-          _flaxBinding211,
+          _flaxBinding212,
           types.ref<Iterable<_Owner0>>(),
           _HashedObserverList_take,
         ),
@@ -38061,7 +36776,7 @@ Function _flaxClass_HashedObserverList<
           _HashedObserverList_takeWhile,
         ),
         "skip": FlaxInstanceMethod.plain(
-          _flaxBinding211,
+          _flaxBinding212,
           types.ref<Iterable<_Owner0>>(),
           _HashedObserverList_skip,
         ),
@@ -38246,7 +36961,7 @@ Function _flaxClass_HashedObserverList<
           _HashedObserverList_singleWhere,
         ),
         "elementAt": FlaxInstanceMethod.plain(
-          _flaxBinding212,
+          _flaxBinding213,
           types.ref<_Owner0>(),
           _HashedObserverList_elementAt,
         ),
@@ -38260,24 +36975,16 @@ Function _flaxClass_HashedObserverList<
           flaxBoolType,
           _HashedObserverList_super_remove,
         ),
-        "@super:clear": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxVoidType,
-          _FlaxProxyDispatch17_super_call_clear,
-        ),
-        "@super:contains": FlaxInstanceMethod.plain(
-          _flaxBinding1024,
-          flaxBoolType,
-          _FlaxProxyDispatch1_super_call_contains,
-        ),
+        "@super:clear": _flaxBinding1049,
+        "@super:contains": _flaxBinding1014,
         "@super:toList": FlaxInstanceMethod.plain(
-          _flaxBinding213,
+          _flaxBinding214,
           types.ref<List<_Owner0>>(),
           _HashedObserverList_super_toList,
         ),
         "@super:cast": FlaxInstanceMethod(
           _flaxBinding131,
-          _flaxBinding210,
+          _flaxBinding211,
           _HashedObserverList_super_cast,
           genericFactory: _flaxGeneric_HashedObserverList_super_cast,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -38316,7 +37023,7 @@ Function _flaxClass_HashedObserverList<
               ),
             ),
           ],
-          _flaxBinding210,
+          _flaxBinding211,
           _HashedObserverList_super_map,
           genericFactory: _flaxGeneric_HashedObserverList_super_map,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -38353,7 +37060,7 @@ Function _flaxClass_HashedObserverList<
         ),
         "@super:whereType": FlaxInstanceMethod(
           _flaxBinding131,
-          _flaxBinding210,
+          _flaxBinding211,
           _HashedObserverList_super_whereType,
           genericFactory: _flaxGeneric_HashedObserverList_super_whereType,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -38373,7 +37080,7 @@ Function _flaxClass_HashedObserverList<
                         types.ref<_Owner0>(withinCallback: true),
                       ),
                     ],
-                    _flaxBinding210,
+                    _flaxBinding211,
                     FlaxCallbackAdapters.wrap1<_Owner0, Iterable<Object?>>,
                     id:
                         types
@@ -38390,7 +37097,7 @@ Function _flaxClass_HashedObserverList<
               ),
             ),
           ],
-          _flaxBinding210,
+          _flaxBinding211,
           _HashedObserverList_super_expand,
           genericFactory: _flaxGeneric_HashedObserverList_super_expand,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -38541,11 +37248,7 @@ Function _flaxClass_HashedObserverList<
           flaxBoolType,
           _HashedObserverList_super_every,
         ),
-        "@super:join": FlaxInstanceMethod.plain(
-          _flaxBinding214,
-          flaxStringType,
-          _FlaxProxyDispatch1_super_call_join,
-        ),
+        "@super:join": _flaxBinding219,
         "@super:any": FlaxInstanceMethod.plain(
           <FlaxParameter>[
             FlaxParameter.required(
@@ -38582,7 +37285,7 @@ Function _flaxClass_HashedObserverList<
           _HashedObserverList_super_toSet,
         ),
         "@super:take": FlaxInstanceMethod.plain(
-          _flaxBinding211,
+          _flaxBinding212,
           types.ref<Iterable<_Owner0>>(),
           _HashedObserverList_super_take,
         ),
@@ -38617,7 +37320,7 @@ Function _flaxClass_HashedObserverList<
           _HashedObserverList_super_takeWhile,
         ),
         "@super:skip": FlaxInstanceMethod.plain(
-          _flaxBinding211,
+          _flaxBinding212,
           types.ref<Iterable<_Owner0>>(),
           _HashedObserverList_super_skip,
         ),
@@ -38802,7 +37505,7 @@ Function _flaxClass_HashedObserverList<
           _HashedObserverList_super_singleWhere,
         ),
         "@super:elementAt": FlaxInstanceMethod.plain(
-          _flaxBinding212,
+          _flaxBinding213,
           types.ref<_Owner0>(),
           _HashedObserverList_super_elementAt,
         ),
@@ -38811,21 +37514,9 @@ Function _flaxClass_HashedObserverList<
           types.ref<api3.Iterator<_Owner0>>(),
           _HashedObserverList_super_get_iterator,
         ),
-        "@super:get:isEmpty": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch1_super_get_isEmpty,
-        ),
-        "@super:get:isNotEmpty": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch1_super_get_isNotEmpty,
-        ),
-        "@super:get:length": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxIntType,
-          _FlaxProxyDispatch1_super_get_length,
-        ),
+        "@super:get:isEmpty": _flaxBinding1016,
+        "@super:get:isNotEmpty": _flaxBinding1017,
+        "@super:get:length": _flaxBinding1015,
         "@super:get:first": FlaxInstanceMethod.plain(
           _flaxBinding131,
           types.ref<_Owner0>(),
@@ -38933,7 +37624,7 @@ Function _flaxClass_HashedObserverList<
           0,
           FlaxCallbackBinding(
             [],
-            _flaxBinding210,
+            _flaxBinding211,
             _callback0,
             id:
                 types.key<Iterable<R> Function<R extends Object?>()>() +
@@ -38996,7 +37687,7 @@ Function _flaxClass_HashedObserverList<
                 ),
               ),
             ],
-            _flaxBinding210,
+            _flaxBinding211,
             _callback1,
             id:
                 types
@@ -39061,7 +37752,7 @@ Function _flaxClass_HashedObserverList<
           0,
           FlaxCallbackBinding(
             [],
-            _flaxBinding210,
+            _flaxBinding211,
             _callback2,
             id:
                 types.key<Iterable<T> Function<T extends Object?>()>() +
@@ -39091,7 +37782,7 @@ Function _flaxClass_HashedObserverList<
                           types.ref<_Owner0>(withinCallback: true),
                         ),
                       ],
-                      _flaxBinding210,
+                      _flaxBinding211,
                       FlaxCallbackAdapters.wrap1<_Owner0, Iterable<Object?>>,
                       id:
                           types
@@ -39109,7 +37800,7 @@ Function _flaxClass_HashedObserverList<
                 ),
               ),
             ],
-            _flaxBinding210,
+            _flaxBinding211,
             _callback3,
             id:
                 types
@@ -39799,12 +38490,6 @@ Function _flaxClass_IterableProperty<
   Object? _IterableProperty_expandableValue(Object value) =>
       (value as api.IterableProperty<_Owner0>).expandableValue;
   // ignore: unused_element
-  Object? _IterableProperty_allowWrap(Object value) =>
-      (value as api.IterableProperty<_Owner0>).allowWrap;
-  // ignore: unused_element
-  Object? _IterableProperty_allowNameWrap(Object value) =>
-      (value as api.IterableProperty<_Owner0>).allowNameWrap;
-  // ignore: unused_element
   Object? _IterableProperty_ifNull(Object value) =>
       (value as api.IterableProperty<_Owner0>).ifNull;
   // ignore: unused_element
@@ -39831,33 +38516,6 @@ Function _flaxClass_IterableProperty<
   // ignore: unused_element
   Object? _IterableProperty_isInteresting(Object value) =>
       (value as api.IterableProperty<_Owner0>).isInteresting;
-  // ignore: unused_element
-  Object? _IterableProperty_level(Object value) =>
-      (value as api.IterableProperty<_Owner0>).level;
-  // ignore: unused_element
-  Object? _IterableProperty_name(Object value) =>
-      (value as api.IterableProperty<_Owner0>).name;
-  // ignore: unused_element
-  Object? _IterableProperty_showSeparator(Object value) =>
-      (value as api.IterableProperty<_Owner0>).showSeparator;
-  // ignore: unused_element
-  Object? _IterableProperty_showName(Object value) =>
-      (value as api.IterableProperty<_Owner0>).showName;
-  // ignore: unused_element
-  Object? _IterableProperty_linePrefix(Object value) =>
-      (value as api.IterableProperty<_Owner0>).linePrefix;
-  // ignore: unused_element
-  Object? _IterableProperty_emptyBodyDescription(Object value) =>
-      (value as api.IterableProperty<_Owner0>).emptyBodyDescription;
-  // ignore: unused_element
-  Object? _IterableProperty_style(Object value) =>
-      (value as api.IterableProperty<_Owner0>).style;
-  // ignore: unused_element
-  Object? _IterableProperty_allowTruncate(Object value) =>
-      (value as api.IterableProperty<_Owner0>).allowTruncate;
-  // ignore: unused_element
-  Object? _IterableProperty_textTreeConfiguration(Object value) =>
-      (value as api.IterableProperty<_Owner0>).textTreeConfiguration;
   Object? _IterableProperty_super_get_value(
     Object value,
     Map<String, Object?> values,
@@ -39900,20 +38558,6 @@ Function _flaxClass_IterableProperty<
     );
   }
 
-  Object? _IterableProperty_getProperties(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.IterableProperty<_Owner0>).getProperties();
-  }
-
-  Object? _IterableProperty_getChildren(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.IterableProperty<_Owner0>).getChildren();
-  }
-
   Object? _IterableProperty_isFiltered(
     Object receiver,
     Map<String, Object?> values,
@@ -39921,13 +38565,6 @@ Function _flaxClass_IterableProperty<
     return (receiver as api.IterableProperty<_Owner0>).isFiltered(
       values["minLevel"] as api.DiagnosticLevel,
     );
-  }
-
-  Object? _IterableProperty_toTimelineArguments(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.IterableProperty<_Owner0>).toTimelineArguments();
   }
 
   Object? _IterableProperty_toJsonMapIterative(
@@ -40042,16 +38679,8 @@ Function _flaxClass_IterableProperty<
           flaxBoolType,
           _IterableProperty_expandableValue,
         ),
-        FlaxGetter.plain(
-          "allowWrap",
-          flaxBoolType,
-          _IterableProperty_allowWrap,
-        ),
-        FlaxGetter.plain(
-          "allowNameWrap",
-          flaxBoolType,
-          _IterableProperty_allowNameWrap,
-        ),
+        _flaxBinding283,
+        _flaxBinding284,
         FlaxGetter.plain(
           "ifNull",
           flaxNullableStringType,
@@ -40097,226 +38726,86 @@ Function _flaxClass_IterableProperty<
           flaxBoolType,
           _IterableProperty_isInteresting,
         ),
-        FlaxGetter.plain("level", _flaxBinding55, _IterableProperty_level),
-        FlaxGetter.plain(
-          "name",
-          flaxNullableStringType,
-          _IterableProperty_name,
-        ),
-        FlaxGetter.plain(
-          "showSeparator",
-          flaxBoolType,
-          _IterableProperty_showSeparator,
-        ),
-        FlaxGetter.plain("showName", flaxBoolType, _IterableProperty_showName),
-        FlaxGetter.plain(
-          "linePrefix",
-          flaxNullableStringType,
-          _IterableProperty_linePrefix,
-        ),
-        FlaxGetter.plain(
-          "emptyBodyDescription",
-          flaxNullableStringType,
-          _IterableProperty_emptyBodyDescription,
-        ),
-        FlaxGetter.plain("style", _flaxBinding70, _IterableProperty_style),
-        FlaxGetter.plain(
-          "allowTruncate",
-          flaxBoolType,
-          _IterableProperty_allowTruncate,
-        ),
-        FlaxGetter.plain(
-          "textTreeConfiguration",
-          _flaxBinding64,
-          _IterableProperty_textTreeConfiguration,
-        ),
+        _flaxBinding278,
+        _flaxBinding276,
+        _flaxBinding277,
+        _flaxBinding279,
+        _flaxBinding280,
+        _flaxBinding281,
+        _flaxBinding369,
+        _flaxBinding285,
+        _flaxBinding286,
       ],
       {
         "toJsonMap": FlaxInstanceMethod.plain(
-          _flaxBinding1026,
+          _flaxBinding1022,
           _flaxBinding24,
           _IterableProperty_toJsonMap,
         ),
         "valueToString": FlaxInstanceMethod.plain(
-          _flaxBinding285,
+          _flaxBinding288,
           flaxStringType,
           _IterableProperty_valueToString,
         ),
         "toDescription": FlaxInstanceMethod.plain(
-          _flaxBinding285,
+          _flaxBinding288,
           flaxStringType,
           _IterableProperty_toDescription,
         ),
-        "getProperties": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding49,
-          _IterableProperty_getProperties,
-        ),
-        "getChildren": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding49,
-          _IterableProperty_getChildren,
-        ),
+        "getProperties": _flaxBinding1019,
+        "getChildren": _flaxBinding1020,
         "isFiltered": FlaxInstanceMethod.plain(
-          _flaxBinding1025,
+          _flaxBinding1018,
           flaxBoolType,
           _IterableProperty_isFiltered,
         ),
-        "toTimelineArguments": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding57,
-          _IterableProperty_toTimelineArguments,
-        ),
+        "toTimelineArguments": _flaxBinding1021,
         "toJsonMapIterative": FlaxInstanceMethod.plain(
-          _flaxBinding1026,
+          _flaxBinding1022,
           _flaxBinding24,
           _IterableProperty_toJsonMapIterative,
         ),
         "toStringDeep": FlaxInstanceMethod.plain(
-          _flaxBinding287,
+          _flaxBinding298,
           flaxStringType,
           _IterableProperty_toStringDeep,
         ),
         "toString": FlaxInstanceMethod.plain(
-          _flaxBinding286,
+          _flaxBinding296,
           flaxStringType,
           _IterableProperty_toString,
         ),
-        "@super:toJsonMap": FlaxInstanceMethod.plain(
-          _flaxBinding1026,
-          _flaxBinding24,
-          _FlaxProxyDispatch5_super_call_toJsonMap,
-        ),
-        "@super:valueToString": FlaxInstanceMethod.plain(
-          _flaxBinding285,
-          flaxStringType,
-          _FlaxProxyDispatch12_super_call_valueToString,
-        ),
-        "@super:toDescription": FlaxInstanceMethod.plain(
-          _flaxBinding285,
-          flaxStringType,
-          _FlaxProxyDispatch4_super_call_toDescription,
-        ),
-        "@super:getProperties": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding49,
-          _FlaxProxyDispatch4_super_call_getProperties,
-        ),
-        "@super:getChildren": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding49,
-          _FlaxProxyDispatch4_super_call_getChildren,
-        ),
-        "@super:isFiltered": FlaxInstanceMethod.plain(
-          _flaxBinding1025,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_call_isFiltered,
-        ),
-        "@super:toTimelineArguments": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding57,
-          _FlaxProxyDispatch5_super_call_toTimelineArguments,
-        ),
-        "@super:toJsonMapIterative": FlaxInstanceMethod.plain(
-          _flaxBinding1026,
-          _flaxBinding24,
-          _FlaxProxyDispatch5_super_call_toJsonMapIterative,
-        ),
-        "@super:toStringDeep": FlaxInstanceMethod.plain(
-          _flaxBinding287,
-          flaxStringType,
-          _FlaxProxyDispatch5_super_call_toStringDeep,
-        ),
-        "@super:toString": FlaxInstanceMethod.plain(
-          _flaxBinding286,
-          flaxStringType,
-          _FlaxProxyDispatch5_super_call_toString,
-        ),
-        "@super:get:level": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding55,
-          _FlaxProxyDispatch5_super_get_level,
-        ),
-        "@super:get:expandableValue": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch12_super_get_expandableValue,
-        ),
-        "@super:get:allowWrap": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_get_allowWrap,
-        ),
-        "@super:get:allowNameWrap": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_get_allowNameWrap,
-        ),
-        "@super:get:ifNull": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableStringType,
-          _FlaxProxyDispatch12_super_get_ifNull,
-        ),
-        "@super:get:ifEmpty": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableStringType,
-          _FlaxProxyDispatch12_super_get_ifEmpty,
-        ),
-        "@super:get:tooltip": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableStringType,
-          _FlaxProxyDispatch12_super_get_tooltip,
-        ),
-        "@super:get:missingIfNull": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch12_super_get_missingIfNull,
-        ),
-        "@super:get:propertyType": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxTypeType,
-          _FlaxProxyDispatch12_super_get_propertyType,
-        ),
+        "@super:toJsonMap": _flaxBinding1027,
+        "@super:valueToString": _flaxBinding409,
+        "@super:toDescription": _flaxBinding300,
+        "@super:getProperties": _flaxBinding1024,
+        "@super:getChildren": _flaxBinding1025,
+        "@super:isFiltered": _flaxBinding1023,
+        "@super:toTimelineArguments": _flaxBinding1026,
+        "@super:toJsonMapIterative": _flaxBinding1028,
+        "@super:toStringDeep": _flaxBinding308,
+        "@super:toString": _flaxBinding307,
+        "@super:get:level": _flaxBinding1032,
+        "@super:get:expandableValue": _flaxBinding1039,
+        "@super:get:allowWrap": _flaxBinding1035,
+        "@super:get:allowNameWrap": _flaxBinding1036,
+        "@super:get:ifNull": _flaxBinding1040,
+        "@super:get:ifEmpty": _flaxBinding1041,
+        "@super:get:tooltip": _flaxBinding1042,
+        "@super:get:missingIfNull": _flaxBinding1043,
+        "@super:get:propertyType": _flaxBinding1044,
         "@super:get:value": FlaxInstanceMethod.plain(
           _flaxBinding131,
           types.ref<Iterable<_Owner0>?>(),
           _IterableProperty_super_get_value,
         ),
-        "@super:get:exception": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableAnyType,
-          _FlaxProxyDispatch12_super_get_exception,
-        ),
-        "@super:get:defaultValue": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableAnyType,
-          _FlaxProxyDispatch12_super_get_defaultValue,
-        ),
-        "@super:get:isInteresting": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch12_super_get_isInteresting,
-        ),
-        "@super:get:name": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableStringType,
-          _FlaxProxyDispatch5_super_get_name,
-        ),
-        "@super:get:showSeparator": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_get_showSeparator,
-        ),
-        "@super:get:showName": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_get_showName,
-        ),
-        "@super:get:linePrefix": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableStringType,
-          _FlaxProxyDispatch5_super_get_linePrefix,
-        ),
+        "@super:get:exception": _flaxBinding1045,
+        "@super:get:defaultValue": _flaxBinding1046,
+        "@super:get:isInteresting": _flaxBinding1047,
+        "@super:get:name": _flaxBinding1030,
+        "@super:get:showSeparator": _flaxBinding1031,
+        "@super:get:showName": _flaxBinding1033,
+        "@super:get:linePrefix": _flaxBinding1034,
         "@super:get:emptyBodyDescription": FlaxInstanceMethod.plain(
           _flaxBinding131,
           flaxNullableStringType,
@@ -40327,16 +38816,8 @@ Function _flaxClass_IterableProperty<
           _flaxBinding70,
           _IterableProperty_super_get_style,
         ),
-        "@super:get:allowTruncate": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_get_allowTruncate,
-        ),
-        "@super:get:textTreeConfiguration": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding64,
-          _FlaxProxyDispatch5_super_get_textTreeConfiguration,
-        ),
+        "@super:get:allowTruncate": _flaxBinding1037,
+        "@super:get:textTreeConfiguration": _flaxBinding1038,
       },
       constructors: {
         "": <FlaxParameter>[
@@ -40873,12 +39354,6 @@ Function _flaxClass_ObjectFlagProperty<
   Object? _ObjectFlagProperty_expandableValue(Object value) =>
       (value as api.ObjectFlagProperty<_Owner0>).expandableValue;
   // ignore: unused_element
-  Object? _ObjectFlagProperty_allowWrap(Object value) =>
-      (value as api.ObjectFlagProperty<_Owner0>).allowWrap;
-  // ignore: unused_element
-  Object? _ObjectFlagProperty_allowNameWrap(Object value) =>
-      (value as api.ObjectFlagProperty<_Owner0>).allowNameWrap;
-  // ignore: unused_element
   Object? _ObjectFlagProperty_ifNull(Object value) =>
       (value as api.ObjectFlagProperty<_Owner0>).ifNull;
   // ignore: unused_element
@@ -40905,33 +39380,6 @@ Function _flaxClass_ObjectFlagProperty<
   // ignore: unused_element
   Object? _ObjectFlagProperty_isInteresting(Object value) =>
       (value as api.ObjectFlagProperty<_Owner0>).isInteresting;
-  // ignore: unused_element
-  Object? _ObjectFlagProperty_level(Object value) =>
-      (value as api.ObjectFlagProperty<_Owner0>).level;
-  // ignore: unused_element
-  Object? _ObjectFlagProperty_name(Object value) =>
-      (value as api.ObjectFlagProperty<_Owner0>).name;
-  // ignore: unused_element
-  Object? _ObjectFlagProperty_showSeparator(Object value) =>
-      (value as api.ObjectFlagProperty<_Owner0>).showSeparator;
-  // ignore: unused_element
-  Object? _ObjectFlagProperty_showName(Object value) =>
-      (value as api.ObjectFlagProperty<_Owner0>).showName;
-  // ignore: unused_element
-  Object? _ObjectFlagProperty_linePrefix(Object value) =>
-      (value as api.ObjectFlagProperty<_Owner0>).linePrefix;
-  // ignore: unused_element
-  Object? _ObjectFlagProperty_emptyBodyDescription(Object value) =>
-      (value as api.ObjectFlagProperty<_Owner0>).emptyBodyDescription;
-  // ignore: unused_element
-  Object? _ObjectFlagProperty_style(Object value) =>
-      (value as api.ObjectFlagProperty<_Owner0>).style;
-  // ignore: unused_element
-  Object? _ObjectFlagProperty_allowTruncate(Object value) =>
-      (value as api.ObjectFlagProperty<_Owner0>).allowTruncate;
-  // ignore: unused_element
-  Object? _ObjectFlagProperty_textTreeConfiguration(Object value) =>
-      (value as api.ObjectFlagProperty<_Owner0>).textTreeConfiguration;
   // ignore: unused_element
   Object? _ObjectFlagProperty_ifPresent(Object value) =>
       (value as api.ObjectFlagProperty<_Owner0>).ifPresent;
@@ -40981,20 +39429,6 @@ Function _flaxClass_ObjectFlagProperty<
     );
   }
 
-  Object? _ObjectFlagProperty_getProperties(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.ObjectFlagProperty<_Owner0>).getProperties();
-  }
-
-  Object? _ObjectFlagProperty_getChildren(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.ObjectFlagProperty<_Owner0>).getChildren();
-  }
-
   Object? _ObjectFlagProperty_isFiltered(
     Object receiver,
     Map<String, Object?> values,
@@ -41002,13 +39436,6 @@ Function _flaxClass_ObjectFlagProperty<
     return (receiver as api.ObjectFlagProperty<_Owner0>).isFiltered(
       values["minLevel"] as api.DiagnosticLevel,
     );
-  }
-
-  Object? _ObjectFlagProperty_toTimelineArguments(
-    Object receiver,
-    Map<String, Object?> values,
-  ) {
-    return (receiver as api.ObjectFlagProperty<_Owner0>).toTimelineArguments();
   }
 
   Object? _ObjectFlagProperty_toJsonMapIterative(
@@ -41095,16 +39522,8 @@ Function _flaxClass_ObjectFlagProperty<
           flaxBoolType,
           _ObjectFlagProperty_expandableValue,
         ),
-        FlaxGetter.plain(
-          "allowWrap",
-          flaxBoolType,
-          _ObjectFlagProperty_allowWrap,
-        ),
-        FlaxGetter.plain(
-          "allowNameWrap",
-          flaxBoolType,
-          _ObjectFlagProperty_allowNameWrap,
-        ),
+        _flaxBinding283,
+        _flaxBinding284,
         FlaxGetter.plain(
           "ifNull",
           flaxNullableStringType,
@@ -41150,43 +39569,15 @@ Function _flaxClass_ObjectFlagProperty<
           flaxBoolType,
           _ObjectFlagProperty_isInteresting,
         ),
-        FlaxGetter.plain("level", _flaxBinding55, _ObjectFlagProperty_level),
-        FlaxGetter.plain(
-          "name",
-          flaxNullableStringType,
-          _ObjectFlagProperty_name,
-        ),
-        FlaxGetter.plain(
-          "showSeparator",
-          flaxBoolType,
-          _ObjectFlagProperty_showSeparator,
-        ),
-        FlaxGetter.plain(
-          "showName",
-          flaxBoolType,
-          _ObjectFlagProperty_showName,
-        ),
-        FlaxGetter.plain(
-          "linePrefix",
-          flaxNullableStringType,
-          _ObjectFlagProperty_linePrefix,
-        ),
-        FlaxGetter.plain(
-          "emptyBodyDescription",
-          flaxNullableStringType,
-          _ObjectFlagProperty_emptyBodyDescription,
-        ),
-        FlaxGetter.plain("style", _flaxBinding70, _ObjectFlagProperty_style),
-        FlaxGetter.plain(
-          "allowTruncate",
-          flaxBoolType,
-          _ObjectFlagProperty_allowTruncate,
-        ),
-        FlaxGetter.plain(
-          "textTreeConfiguration",
-          _flaxBinding64,
-          _ObjectFlagProperty_textTreeConfiguration,
-        ),
+        _flaxBinding278,
+        _flaxBinding276,
+        _flaxBinding277,
+        _flaxBinding279,
+        _flaxBinding280,
+        _flaxBinding281,
+        _flaxBinding369,
+        _flaxBinding285,
+        _flaxBinding286,
         FlaxGetter.plain(
           "ifPresent",
           flaxNullableStringType,
@@ -41195,195 +39586,79 @@ Function _flaxClass_ObjectFlagProperty<
       ],
       {
         "toJsonMap": FlaxInstanceMethod.plain(
-          _flaxBinding1026,
+          _flaxBinding1022,
           _flaxBinding24,
           _ObjectFlagProperty_toJsonMap,
         ),
         "valueToString": FlaxInstanceMethod.plain(
-          _flaxBinding285,
+          _flaxBinding288,
           flaxStringType,
           _ObjectFlagProperty_valueToString,
         ),
         "toDescription": FlaxInstanceMethod.plain(
-          _flaxBinding285,
+          _flaxBinding288,
           flaxStringType,
           _ObjectFlagProperty_toDescription,
         ),
-        "getProperties": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding49,
-          _ObjectFlagProperty_getProperties,
-        ),
-        "getChildren": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding49,
-          _ObjectFlagProperty_getChildren,
-        ),
+        "getProperties": _flaxBinding1019,
+        "getChildren": _flaxBinding1020,
         "isFiltered": FlaxInstanceMethod.plain(
-          _flaxBinding1025,
+          _flaxBinding1018,
           flaxBoolType,
           _ObjectFlagProperty_isFiltered,
         ),
-        "toTimelineArguments": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding57,
-          _ObjectFlagProperty_toTimelineArguments,
-        ),
+        "toTimelineArguments": _flaxBinding1021,
         "toJsonMapIterative": FlaxInstanceMethod.plain(
-          _flaxBinding1026,
+          _flaxBinding1022,
           _flaxBinding24,
           _ObjectFlagProperty_toJsonMapIterative,
         ),
         "toStringDeep": FlaxInstanceMethod.plain(
-          _flaxBinding287,
+          _flaxBinding298,
           flaxStringType,
           _ObjectFlagProperty_toStringDeep,
         ),
         "toString": FlaxInstanceMethod.plain(
-          _flaxBinding286,
+          _flaxBinding296,
           flaxStringType,
           _ObjectFlagProperty_toString,
         ),
-        "@super:toJsonMap": FlaxInstanceMethod.plain(
-          _flaxBinding1026,
-          _flaxBinding24,
-          _FlaxProxyDispatch5_super_call_toJsonMap,
-        ),
-        "@super:valueToString": FlaxInstanceMethod.plain(
-          _flaxBinding285,
-          flaxStringType,
-          _FlaxProxyDispatch12_super_call_valueToString,
-        ),
-        "@super:toDescription": FlaxInstanceMethod.plain(
-          _flaxBinding285,
-          flaxStringType,
-          _FlaxProxyDispatch4_super_call_toDescription,
-        ),
-        "@super:getProperties": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding49,
-          _FlaxProxyDispatch4_super_call_getProperties,
-        ),
-        "@super:getChildren": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding49,
-          _FlaxProxyDispatch4_super_call_getChildren,
-        ),
-        "@super:isFiltered": FlaxInstanceMethod.plain(
-          _flaxBinding1025,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_call_isFiltered,
-        ),
-        "@super:toTimelineArguments": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding57,
-          _FlaxProxyDispatch5_super_call_toTimelineArguments,
-        ),
-        "@super:toJsonMapIterative": FlaxInstanceMethod.plain(
-          _flaxBinding1026,
-          _flaxBinding24,
-          _FlaxProxyDispatch5_super_call_toJsonMapIterative,
-        ),
-        "@super:toStringDeep": FlaxInstanceMethod.plain(
-          _flaxBinding287,
-          flaxStringType,
-          _FlaxProxyDispatch5_super_call_toStringDeep,
-        ),
-        "@super:toString": FlaxInstanceMethod.plain(
-          _flaxBinding286,
-          flaxStringType,
-          _FlaxProxyDispatch5_super_call_toString,
-        ),
+        "@super:toJsonMap": _flaxBinding1027,
+        "@super:valueToString": _flaxBinding409,
+        "@super:toDescription": _flaxBinding300,
+        "@super:getProperties": _flaxBinding1024,
+        "@super:getChildren": _flaxBinding1025,
+        "@super:isFiltered": _flaxBinding1023,
+        "@super:toTimelineArguments": _flaxBinding1026,
+        "@super:toJsonMapIterative": _flaxBinding1028,
+        "@super:toStringDeep": _flaxBinding308,
+        "@super:toString": _flaxBinding307,
         "@super:get:ifPresent": FlaxInstanceMethod.plain(
           _flaxBinding131,
           flaxNullableStringType,
           _ObjectFlagProperty_super_get_ifPresent,
         ),
-        "@super:get:showName": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_get_showName,
-        ),
-        "@super:get:level": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding55,
-          _FlaxProxyDispatch5_super_get_level,
-        ),
-        "@super:get:expandableValue": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch12_super_get_expandableValue,
-        ),
-        "@super:get:allowWrap": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_get_allowWrap,
-        ),
-        "@super:get:allowNameWrap": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_get_allowNameWrap,
-        ),
-        "@super:get:ifNull": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableStringType,
-          _FlaxProxyDispatch12_super_get_ifNull,
-        ),
-        "@super:get:ifEmpty": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableStringType,
-          _FlaxProxyDispatch12_super_get_ifEmpty,
-        ),
-        "@super:get:tooltip": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableStringType,
-          _FlaxProxyDispatch12_super_get_tooltip,
-        ),
-        "@super:get:missingIfNull": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch12_super_get_missingIfNull,
-        ),
-        "@super:get:propertyType": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxTypeType,
-          _FlaxProxyDispatch12_super_get_propertyType,
-        ),
+        "@super:get:showName": _flaxBinding1033,
+        "@super:get:level": _flaxBinding1032,
+        "@super:get:expandableValue": _flaxBinding1039,
+        "@super:get:allowWrap": _flaxBinding1035,
+        "@super:get:allowNameWrap": _flaxBinding1036,
+        "@super:get:ifNull": _flaxBinding1040,
+        "@super:get:ifEmpty": _flaxBinding1041,
+        "@super:get:tooltip": _flaxBinding1042,
+        "@super:get:missingIfNull": _flaxBinding1043,
+        "@super:get:propertyType": _flaxBinding1044,
         "@super:get:value": FlaxInstanceMethod.plain(
           _flaxBinding131,
           types.ref<_Owner0?>(),
           _ObjectFlagProperty_super_get_value,
         ),
-        "@super:get:exception": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableAnyType,
-          _FlaxProxyDispatch12_super_get_exception,
-        ),
-        "@super:get:defaultValue": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableAnyType,
-          _FlaxProxyDispatch12_super_get_defaultValue,
-        ),
-        "@super:get:isInteresting": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch12_super_get_isInteresting,
-        ),
-        "@super:get:name": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableStringType,
-          _FlaxProxyDispatch5_super_get_name,
-        ),
-        "@super:get:showSeparator": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_get_showSeparator,
-        ),
-        "@super:get:linePrefix": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxNullableStringType,
-          _FlaxProxyDispatch5_super_get_linePrefix,
-        ),
+        "@super:get:exception": _flaxBinding1045,
+        "@super:get:defaultValue": _flaxBinding1046,
+        "@super:get:isInteresting": _flaxBinding1047,
+        "@super:get:name": _flaxBinding1030,
+        "@super:get:showSeparator": _flaxBinding1031,
+        "@super:get:linePrefix": _flaxBinding1034,
         "@super:get:emptyBodyDescription": FlaxInstanceMethod.plain(
           _flaxBinding131,
           flaxNullableStringType,
@@ -41394,16 +39669,8 @@ Function _flaxClass_ObjectFlagProperty<
           _flaxBinding70,
           _ObjectFlagProperty_super_get_style,
         ),
-        "@super:get:allowTruncate": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch5_super_get_allowTruncate,
-        ),
-        "@super:get:textTreeConfiguration": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          _flaxBinding64,
-          _FlaxProxyDispatch5_super_get_textTreeConfiguration,
-        ),
+        "@super:get:allowTruncate": _flaxBinding1037,
+        "@super:get:textTreeConfiguration": _flaxBinding1038,
       },
       constructors: {
         "": <FlaxParameter>[
@@ -43061,18 +41328,18 @@ Function _flaxClass_ObserverList<
           _ObserverList_clear,
         ),
         "contains": FlaxInstanceMethod.plain(
-          _flaxBinding1024,
+          _flaxBinding1013,
           flaxBoolType,
           _ObserverList_contains,
         ),
         "toList": FlaxInstanceMethod.plain(
-          _flaxBinding213,
+          _flaxBinding214,
           types.ref<List<_Owner0>>(),
           _ObserverList_toList,
         ),
         "cast": FlaxInstanceMethod(
           _flaxBinding131,
-          _flaxBinding210,
+          _flaxBinding211,
           _ObserverList_cast,
           genericFactory: _flaxGeneric_ObserverList_cast,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -43111,7 +41378,7 @@ Function _flaxClass_ObserverList<
               ),
             ),
           ],
-          _flaxBinding210,
+          _flaxBinding211,
           _ObserverList_map,
           genericFactory: _flaxGeneric_ObserverList_map,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -43148,7 +41415,7 @@ Function _flaxClass_ObserverList<
         ),
         "whereType": FlaxInstanceMethod(
           _flaxBinding131,
-          _flaxBinding210,
+          _flaxBinding211,
           _ObserverList_whereType,
           genericFactory: _flaxGeneric_ObserverList_whereType,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -43168,7 +41435,7 @@ Function _flaxClass_ObserverList<
                         types.ref<_Owner0>(withinCallback: true),
                       ),
                     ],
-                    _flaxBinding210,
+                    _flaxBinding211,
                     FlaxCallbackAdapters.wrap1<_Owner0, Iterable<Object?>>,
                     id:
                         types
@@ -43185,7 +41452,7 @@ Function _flaxClass_ObserverList<
               ),
             ),
           ],
-          _flaxBinding210,
+          _flaxBinding211,
           _ObserverList_expand,
           genericFactory: _flaxGeneric_ObserverList_expand,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -43337,7 +41604,7 @@ Function _flaxClass_ObserverList<
           _ObserverList_every,
         ),
         "join": FlaxInstanceMethod.plain(
-          _flaxBinding214,
+          _flaxBinding216,
           flaxStringType,
           _ObserverList_join,
         ),
@@ -43377,7 +41644,7 @@ Function _flaxClass_ObserverList<
           _ObserverList_toSet,
         ),
         "take": FlaxInstanceMethod.plain(
-          _flaxBinding211,
+          _flaxBinding212,
           types.ref<Iterable<_Owner0>>(),
           _ObserverList_take,
         ),
@@ -43412,7 +41679,7 @@ Function _flaxClass_ObserverList<
           _ObserverList_takeWhile,
         ),
         "skip": FlaxInstanceMethod.plain(
-          _flaxBinding211,
+          _flaxBinding212,
           types.ref<Iterable<_Owner0>>(),
           _ObserverList_skip,
         ),
@@ -43597,7 +41864,7 @@ Function _flaxClass_ObserverList<
           _ObserverList_singleWhere,
         ),
         "elementAt": FlaxInstanceMethod.plain(
-          _flaxBinding212,
+          _flaxBinding213,
           types.ref<_Owner0>(),
           _ObserverList_elementAt,
         ),
@@ -43611,24 +41878,16 @@ Function _flaxClass_ObserverList<
           flaxBoolType,
           _ObserverList_super_remove,
         ),
-        "@super:clear": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxVoidType,
-          _FlaxProxyDispatch17_super_call_clear,
-        ),
-        "@super:contains": FlaxInstanceMethod.plain(
-          _flaxBinding1024,
-          flaxBoolType,
-          _FlaxProxyDispatch1_super_call_contains,
-        ),
+        "@super:clear": _flaxBinding1049,
+        "@super:contains": _flaxBinding1014,
         "@super:toList": FlaxInstanceMethod.plain(
-          _flaxBinding213,
+          _flaxBinding214,
           types.ref<List<_Owner0>>(),
           _ObserverList_super_toList,
         ),
         "@super:cast": FlaxInstanceMethod(
           _flaxBinding131,
-          _flaxBinding210,
+          _flaxBinding211,
           _ObserverList_super_cast,
           genericFactory: _flaxGeneric_ObserverList_super_cast,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -43667,7 +41926,7 @@ Function _flaxClass_ObserverList<
               ),
             ),
           ],
-          _flaxBinding210,
+          _flaxBinding211,
           _ObserverList_super_map,
           genericFactory: _flaxGeneric_ObserverList_super_map,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -43704,7 +41963,7 @@ Function _flaxClass_ObserverList<
         ),
         "@super:whereType": FlaxInstanceMethod(
           _flaxBinding131,
-          _flaxBinding210,
+          _flaxBinding211,
           _ObserverList_super_whereType,
           genericFactory: _flaxGeneric_ObserverList_super_whereType,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -43724,7 +41983,7 @@ Function _flaxClass_ObserverList<
                         types.ref<_Owner0>(withinCallback: true),
                       ),
                     ],
-                    _flaxBinding210,
+                    _flaxBinding211,
                     FlaxCallbackAdapters.wrap1<_Owner0, Iterable<Object?>>,
                     id:
                         types
@@ -43741,7 +42000,7 @@ Function _flaxClass_ObserverList<
               ),
             ),
           ],
-          _flaxBinding210,
+          _flaxBinding211,
           _ObserverList_super_expand,
           genericFactory: _flaxGeneric_ObserverList_super_expand,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -43892,11 +42151,7 @@ Function _flaxClass_ObserverList<
           flaxBoolType,
           _ObserverList_super_every,
         ),
-        "@super:join": FlaxInstanceMethod.plain(
-          _flaxBinding214,
-          flaxStringType,
-          _FlaxProxyDispatch1_super_call_join,
-        ),
+        "@super:join": _flaxBinding219,
         "@super:any": FlaxInstanceMethod.plain(
           <FlaxParameter>[
             FlaxParameter.required(
@@ -43933,7 +42188,7 @@ Function _flaxClass_ObserverList<
           _ObserverList_super_toSet,
         ),
         "@super:take": FlaxInstanceMethod.plain(
-          _flaxBinding211,
+          _flaxBinding212,
           types.ref<Iterable<_Owner0>>(),
           _ObserverList_super_take,
         ),
@@ -43968,7 +42223,7 @@ Function _flaxClass_ObserverList<
           _ObserverList_super_takeWhile,
         ),
         "@super:skip": FlaxInstanceMethod.plain(
-          _flaxBinding211,
+          _flaxBinding212,
           types.ref<Iterable<_Owner0>>(),
           _ObserverList_super_skip,
         ),
@@ -44153,7 +42408,7 @@ Function _flaxClass_ObserverList<
           _ObserverList_super_singleWhere,
         ),
         "@super:elementAt": FlaxInstanceMethod.plain(
-          _flaxBinding212,
+          _flaxBinding213,
           types.ref<_Owner0>(),
           _ObserverList_super_elementAt,
         ),
@@ -44162,21 +42417,9 @@ Function _flaxClass_ObserverList<
           types.ref<api3.Iterator<_Owner0>>(),
           _ObserverList_super_get_iterator,
         ),
-        "@super:get:isEmpty": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch1_super_get_isEmpty,
-        ),
-        "@super:get:isNotEmpty": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch1_super_get_isNotEmpty,
-        ),
-        "@super:get:length": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxIntType,
-          _FlaxProxyDispatch1_super_get_length,
-        ),
+        "@super:get:isEmpty": _flaxBinding1016,
+        "@super:get:isNotEmpty": _flaxBinding1017,
+        "@super:get:length": _flaxBinding1015,
         "@super:get:first": FlaxInstanceMethod.plain(
           _flaxBinding131,
           types.ref<_Owner0>(),
@@ -44284,7 +42527,7 @@ Function _flaxClass_ObserverList<
           0,
           FlaxCallbackBinding(
             [],
-            _flaxBinding210,
+            _flaxBinding211,
             _callback0,
             id:
                 types.key<Iterable<R> Function<R extends Object?>()>() +
@@ -44347,7 +42590,7 @@ Function _flaxClass_ObserverList<
                 ),
               ),
             ],
-            _flaxBinding210,
+            _flaxBinding211,
             _callback1,
             id:
                 types
@@ -44412,7 +42655,7 @@ Function _flaxClass_ObserverList<
           0,
           FlaxCallbackBinding(
             [],
-            _flaxBinding210,
+            _flaxBinding211,
             _callback2,
             id:
                 types.key<Iterable<T> Function<T extends Object?>()>() +
@@ -44442,7 +42685,7 @@ Function _flaxClass_ObserverList<
                           types.ref<_Owner0>(withinCallback: true),
                         ),
                       ],
-                      _flaxBinding210,
+                      _flaxBinding211,
                       FlaxCallbackAdapters.wrap1<_Owner0, Iterable<Object?>>,
                       id:
                           types
@@ -44460,7 +42703,7 @@ Function _flaxClass_ObserverList<
                 ),
               ),
             ],
-            _flaxBinding210,
+            _flaxBinding211,
             _callback3,
             id:
                 types
@@ -45352,7 +43595,7 @@ Function _flaxGeneric_SynchronousFuture_then<
           ),
         ),
       ),
-      FlaxParameter("onError", _flaxBinding871, required: false),
+      FlaxParameter("onError", _flaxBinding857, required: false),
     ],
     types.ref<Future<_Method0>>(),
     invoke,
@@ -45415,7 +43658,7 @@ Function _flaxGeneric_SynchronousFuture_super_then<
           ),
         ),
       ),
-      FlaxParameter("onError", _flaxBinding871, required: false),
+      FlaxParameter("onError", _flaxBinding857, required: false),
     ],
     types.ref<Future<_Method0>>(),
     invoke,
@@ -45724,7 +43967,7 @@ Function _flaxClass_SynchronousFuture<
         ),
         FlaxCallbackParameter.plain(
           "onError",
-          _flaxBinding871,
+          _flaxBinding857,
           required: false,
           positional: false,
         ),
@@ -45870,7 +44113,7 @@ Function _flaxClass_SynchronousFuture<
                         types.ref<_Owner0>(withinCallback: true),
                       ),
                     ],
-                    _flaxBinding870,
+                    _flaxBinding856,
                     _callback0,
                     id:
                         types
@@ -45884,9 +44127,9 @@ Function _flaxClass_SynchronousFuture<
                 ),
               ),
             ),
-            FlaxParameter("onError", _flaxBinding871, required: false),
+            FlaxParameter("onError", _flaxBinding857, required: false),
           ],
-          _flaxBinding878,
+          _flaxBinding864,
           _SynchronousFuture_then,
           genericFactory: _flaxGeneric_SynchronousFuture_then,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -45926,7 +44169,7 @@ Function _flaxClass_SynchronousFuture<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  _flaxBinding870,
+                  _flaxBinding856,
                   _callback2,
                   id:
                       types.key<api5.FutureOr<Object?> Function()>() +
@@ -45985,7 +44228,7 @@ Function _flaxClass_SynchronousFuture<
                         types.ref<_Owner0>(withinCallback: true),
                       ),
                     ],
-                    _flaxBinding870,
+                    _flaxBinding856,
                     _callback3,
                     id:
                         types
@@ -45999,9 +44242,9 @@ Function _flaxClass_SynchronousFuture<
                 ),
               ),
             ),
-            FlaxParameter("onError", _flaxBinding871, required: false),
+            FlaxParameter("onError", _flaxBinding857, required: false),
           ],
-          _flaxBinding878,
+          _flaxBinding864,
           _SynchronousFuture_super_then,
           genericFactory: _flaxGeneric_SynchronousFuture_super_then,
           ownerTypes: [FlaxDartTypes.typeOf<_Owner0>()],
@@ -46041,7 +44284,7 @@ Function _flaxClass_SynchronousFuture<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  _flaxBinding870,
+                  _flaxBinding856,
                   _callback2,
                   id:
                       types.key<api5.FutureOr<Object?> Function()>() +
@@ -46141,7 +44384,7 @@ Function _flaxClass_SynchronousFuture<
                           types.ref<_Owner0>(withinCallback: true),
                         ),
                       ],
-                      _flaxBinding870,
+                      _flaxBinding856,
                       _callback4,
                       id:
                           types
@@ -46158,12 +44401,12 @@ Function _flaxClass_SynchronousFuture<
               ),
               FlaxCallbackParameter.plain(
                 "onError",
-                _flaxBinding871,
+                _flaxBinding857,
                 required: false,
                 positional: false,
               ),
             ],
-            _flaxBinding878,
+            _flaxBinding864,
             _callback5,
             id:
                 types
@@ -46234,7 +44477,7 @@ Function _flaxClass_SynchronousFuture<
                   "callback",
                   callback: FlaxCallbackBinding(
                     [],
-                    _flaxBinding870,
+                    _flaxBinding856,
                     _callback7,
                     id:
                         types.key<api5.FutureOr<Object?> Function()>() +
@@ -46268,9 +44511,6 @@ Function _flaxClass_ValueNotifier<
 >() => (FlaxDartTypes types, String id) {
   // ignore: unused_element
   bool _isValueNotifier(Object value) => value is api.ValueNotifier<_Owner0>;
-  // ignore: unused_element
-  Object? _ValueNotifier_hasListeners(Object value) =>
-      (value as api.ValueNotifier<_Owner0>).hasListeners;
   // ignore: unused_element
   Object? _ValueNotifier_value(Object value) =>
       (value as api.ValueNotifier<_Owner0>).value;
@@ -46344,11 +44584,7 @@ Function _flaxClass_ValueNotifier<
     FlaxObjectBinding(
       id,
       [
-        FlaxGetter.plain(
-          "hasListeners",
-          flaxBoolType,
-          _ValueNotifier_hasListeners,
-        ),
+        _flaxBinding241,
         FlaxGetter.plain("value", types.ref<_Owner0>(), _ValueNotifier_value),
       ],
       {
@@ -46442,26 +44678,14 @@ Function _flaxClass_ValueNotifier<
           flaxVoidType,
           _FlaxProxyDispatch2_super_call_removeListener,
         ),
-        "@super:dispose": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxVoidType,
-          _FlaxProxyDispatch2_super_call_dispose,
-        ),
-        "@super:toString": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxStringType,
-          _FlaxProxyDispatch0_super_call_toString,
-        ),
+        "@super:dispose": _flaxBinding1050,
+        "@super:toString": _flaxBinding1048,
         "@super:get:value": FlaxInstanceMethod.plain(
           _flaxBinding131,
           types.ref<_Owner0>(),
           _ValueNotifier_super_get_value,
         ),
-        "@super:get:hasListeners": FlaxInstanceMethod.plain(
-          _flaxBinding131,
-          flaxBoolType,
-          _FlaxProxyDispatch2_super_get_hasListeners,
-        ),
+        "@super:get:hasListeners": _flaxBinding1051,
         "@super:set:value": FlaxInstanceMethod.plain(
           [FlaxParameter.required("value", types.ref<_Owner0>())],
           flaxVoidType,
@@ -46748,144 +44972,6 @@ Function _flaxShape3<
     withinCallback: withinCallback,
   );
 };
-Object _callback0(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
-      .then<void>((value) => null);
-};
-bool _callback0Matches(Object value) => value is Future<void> Function();
-Object? _callback0Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Future<void> Function())();
-}
-
-Object _callback1(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
-      .then<bool>((value) => value as bool);
-};
-bool _callback1Matches(Object value) => value is Future<bool> Function();
-Object? _callback1Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Future<bool> Function())();
-}
-
-Object _callback2(FlaxCallback _flaxBridgeCallback) => (bool p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
-      .then<void>((value) => null);
-};
-bool _callback2Matches(Object value) =>
-    value is Future<void> Function(bool value);
-Object? _callback2Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Future<void> Function(bool value))(positional[0] as bool);
-}
-
-Object _callback3(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
-      .then<double>((value) => value as double);
-};
-bool _callback3Matches(Object value) => value is Future<double> Function();
-Object? _callback3Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Future<double> Function())();
-}
-
-Object _callback4(FlaxCallback _flaxBridgeCallback) => (double p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
-      .then<void>((value) => null);
-};
-bool _callback4Matches(Object value) =>
-    value is Future<void> Function(double value);
-Object? _callback4Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Future<void> Function(double value))(
-    positional[0] as double,
-  );
-}
-
-Object _callback5(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
-      .then<String>((value) => value as String);
-};
-bool _callback5Matches(Object value) => value is Future<String> Function();
-Object? _callback5Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Future<String> Function())();
-}
-
-Object _callback6(FlaxCallback _flaxBridgeCallback) => (String p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
-      .then<void>((value) => null);
-};
-bool _callback6Matches(Object value) =>
-    value is Future<void> Function(String value);
-Object? _callback6Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Future<void> Function(String value))(
-    positional[0] as String,
-  );
-}
-
-Object _callback7(FlaxCallback _flaxBridgeCallback) =>
-    (Map<String, String> p0) {
-      final positional = <Object?>[];
-      final named = <String, Object?>{};
-      positional.add(p0);
-      return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
-          .then<Map<String, Object?>>((value) => value as Map<String, Object?>);
-    };
-bool _callback7Matches(Object value) =>
-    value
-        is Future<Map<String, Object?>> Function(
-          Map<String, String> parameters,
-        );
-Object? _callback7Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function
-      as Future<Map<String, Object?>> Function(Map<String, String> parameters))(
-    positional[0] as Map<String, String>,
-  );
-}
 
 Object _callback8(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
   final positional = <Object?>[];
@@ -46900,39 +44986,6 @@ Object? _callback8Invoke(
   Map<String, Object?> named,
 ) {
   return (function as Object? Function(Object? e))(positional[0]);
-}
-
-Object _callback9(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback9Matches(Object value) => value is bool Function(Object? element);
-Object? _callback9Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
-Object _callback10(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as Iterable<Object?>;
-};
-bool _callback10Matches(Object value) =>
-    value is Iterable<Object?> Function(Object? element);
-Object? _callback10Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Iterable<Object?> Function(Object? element))(
-    positional[0],
-  );
 }
 
 Object _callback11(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
@@ -46963,23 +45016,6 @@ Object? _callback12Invoke(
   Map<String, Object?> named,
 ) {
   return (function as bool Function(Object? value))(positional[0]);
-}
-
-Object _callback13(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback13Matches(Object value) =>
-    value is void Function(Object? element);
-Object? _callback13Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(Object? element))(positional[0]);
-  return null;
 }
 
 Object _callback14(FlaxCallback _flaxBridgeCallback) =>
@@ -47022,128 +45058,6 @@ Object? _callback15Invoke(
     positional[0],
     positional[1],
   );
-}
-
-Object _callback16(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback16Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback16Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
-Object _callback17(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback17Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback17Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
-Object _callback18(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback18Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback18Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
-Object _callback19(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback19Matches(Object value) => value is Object? Function();
-Object? _callback19Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
-Object _callback20(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback20Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback20Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
-Object _callback21(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback21Matches(Object value) => value is Object? Function();
-Object? _callback21Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
-Object _callback22(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback22Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback22Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
-Object _callback23(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback23Matches(Object value) => value is Object? Function();
-Object? _callback23Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
 }
 
 FlaxCallbackBinding _callback24Types<_Callback0 extends Object?>(
@@ -47213,22 +45127,6 @@ Object? _callback24Invoke(
       as Iterable<T> Function<T extends Object?>(
         T Function(Object? e) toElement,
       ))<Object?>(positional[0] as Object? Function(Object? e));
-}
-
-Object _callback25(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback25Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback25Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
 }
 
 FlaxCallbackBinding _callback26Types<_Callback0 extends Object?>(
@@ -47404,23 +45302,6 @@ Object? _callback30Invoke(
   return (function as Iterable<T> Function<T extends Object?>())<Object?>();
 }
 
-Object _callback31(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback31Matches(Object value) =>
-    value is void Function(Object? element);
-Object? _callback31Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(Object? element))(positional[0]);
-  return null;
-}
-
 Object _callback32(FlaxCallback _flaxBridgeCallback) =>
     (Object? p0, Object? p1) {
       final positional = <Object?>[];
@@ -47550,156 +45431,6 @@ Object? _callback33Invoke(
   );
 }
 
-Object _callback34(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback34Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback34Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
-Object _callback35(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback35Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback35Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
-Object _callback36(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback36Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback36Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
-Object _callback37(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback37Matches(Object value) => value is Object? Function();
-Object? _callback37Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
-Object _callback38(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback38Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback38Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
-Object _callback39(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback39Matches(Object value) => value is Object? Function();
-Object? _callback39Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
-Object _callback40(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback40Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback40Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
-Object _callback41(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback41Matches(Object value) => value is Object? Function();
-Object? _callback41Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
-Object _callback42(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback42Matches(Object value) => value is Object? Function();
-Object? _callback42Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
-Object _callback43(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback43Matches(Object value) => value is Object? Function();
-Object? _callback43Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
 Object _callback44(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
@@ -47713,57 +45444,6 @@ Object? _callback44Invoke(
   Map<String, Object?> named,
 ) {
   return (function as Object? Function(Object? e))(positional[0]);
-}
-
-Object _callback45(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback45Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback45Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
-Object _callback46(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as Iterable<Object?>;
-};
-bool _callback46Matches(Object value) =>
-    value is Iterable<Object?> Function(Object? element);
-Object? _callback46Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Iterable<Object?> Function(Object? element))(
-    positional[0],
-  );
-}
-
-Object _callback47(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback47Matches(Object value) =>
-    value is void Function(Object? element);
-Object? _callback47Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(Object? element))(positional[0]);
-  return null;
 }
 
 Object _callback48(FlaxCallback _flaxBridgeCallback) =>
@@ -47808,38 +45488,6 @@ Object? _callback49Invoke(
   );
 }
 
-Object _callback50(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback50Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback50Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
-Object _callback51(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback51Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback51Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
 Object _callback52(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
@@ -47868,96 +45516,6 @@ Object? _callback53Invoke(
   Map<String, Object?> named,
 ) {
   return (function as bool Function(Object? value))(positional[0]);
-}
-
-Object _callback54(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback54Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback54Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
-Object _callback55(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback55Matches(Object value) => value is Object? Function();
-Object? _callback55Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
-Object _callback56(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback56Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback56Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
-Object _callback57(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback57Matches(Object value) => value is Object? Function();
-Object? _callback57Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
-Object _callback58(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback58Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback58Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
-Object _callback59(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback59Matches(Object value) => value is Object? Function();
-Object? _callback59Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
 }
 
 FlaxCallbackBinding _callback60Types<_Callback0 extends Object?>(
@@ -48059,22 +45617,6 @@ Object? _callback61Invoke(
       as Iterable<T> Function<T extends Object?>(
         T Function(Object? e) toElement,
       ))<Object?>(positional[0] as Object? Function(Object? e));
-}
-
-Object _callback62(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback62Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback62Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
 }
 
 FlaxCallbackBinding _callback63Types<_Callback0 extends Object?>(
@@ -48186,23 +45728,6 @@ Object? _callback64Invoke(
       as Iterable<T> Function<T extends Object?>(
         Iterable<T> Function(Object? element) toElements,
       ))<Object?>(positional[0] as Iterable<Object?> Function(Object? element));
-}
-
-Object _callback65(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback65Matches(Object value) =>
-    value is void Function(Object? element);
-Object? _callback65Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(Object? element))(positional[0]);
-  return null;
 }
 
 Object _callback66(FlaxCallback _flaxBridgeCallback) =>
@@ -48334,38 +45859,6 @@ Object? _callback67Invoke(
   );
 }
 
-Object _callback68(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback68Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback68Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
-Object _callback69(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback69Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback69Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
 Object _callback70(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
@@ -48396,96 +45889,6 @@ Object? _callback71Invoke(
   return (function as bool Function(Object? value))(positional[0]);
 }
 
-Object _callback72(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback72Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback72Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
-Object _callback73(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback73Matches(Object value) => value is Object? Function();
-Object? _callback73Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
-Object _callback74(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback74Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback74Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
-Object _callback75(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback75Matches(Object value) => value is Object? Function();
-Object? _callback75Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
-Object _callback76(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback76Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback76Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
-Object _callback77(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback77Matches(Object value) => value is Object? Function();
-Object? _callback77Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
 Object _callback78(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
@@ -48499,57 +45902,6 @@ Object? _callback78Invoke(
   Map<String, Object?> named,
 ) {
   return (function as Object? Function(Object? e))(positional[0]);
-}
-
-Object _callback79(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback79Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback79Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
-Object _callback80(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as Iterable<Object?>;
-};
-bool _callback80Matches(Object value) =>
-    value is Iterable<Object?> Function(Object? element);
-Object? _callback80Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Iterable<Object?> Function(Object? element))(
-    positional[0],
-  );
-}
-
-Object _callback81(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback81Matches(Object value) =>
-    value is void Function(Object? element);
-Object? _callback81Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(Object? element))(positional[0]);
-  return null;
 }
 
 Object _callback82(FlaxCallback _flaxBridgeCallback) =>
@@ -48594,38 +45946,6 @@ Object? _callback83Invoke(
   );
 }
 
-Object _callback84(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback84Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback84Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
-Object _callback85(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback85Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback85Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
 Object _callback86(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
@@ -48654,96 +45974,6 @@ Object? _callback87Invoke(
   Map<String, Object?> named,
 ) {
   return (function as bool Function(Object? value))(positional[0]);
-}
-
-Object _callback88(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback88Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback88Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
-Object _callback89(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback89Matches(Object value) => value is Object? Function();
-Object? _callback89Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
-Object _callback90(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback90Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback90Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
-Object _callback91(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback91Matches(Object value) => value is Object? Function();
-Object? _callback91Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
-Object _callback92(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback92Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback92Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
-Object _callback93(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback93Matches(Object value) => value is Object? Function();
-Object? _callback93Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
 }
 
 FlaxCallbackBinding _callback94Types<_Callback0 extends Object?>(
@@ -48845,22 +46075,6 @@ Object? _callback95Invoke(
       as Iterable<T> Function<T extends Object?>(
         T Function(Object? e) toElement,
       ))<Object?>(positional[0] as Object? Function(Object? e));
-}
-
-Object _callback96(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback96Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback96Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
 }
 
 FlaxCallbackBinding _callback97Types<_Callback0 extends Object?>(
@@ -48972,23 +46186,6 @@ Object? _callback98Invoke(
       as Iterable<T> Function<T extends Object?>(
         Iterable<T> Function(Object? element) toElements,
       ))<Object?>(positional[0] as Iterable<Object?> Function(Object? element));
-}
-
-Object _callback99(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  _flaxBridgeCallback.call(positional, named);
-};
-bool _callback99Matches(Object value) =>
-    value is void Function(Object? element);
-Object? _callback99Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  (function as void Function(Object? element))(positional[0]);
-  return null;
 }
 
 Object _callback100(FlaxCallback _flaxBridgeCallback) =>
@@ -49120,38 +46317,6 @@ Object? _callback101Invoke(
   );
 }
 
-Object _callback102(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback102Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback102Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
-Object _callback103(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback103Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback103Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
 Object _callback104(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
@@ -49180,162 +46345,6 @@ Object? _callback105Invoke(
   Map<String, Object?> named,
 ) {
   return (function as bool Function(Object? value))(positional[0]);
-}
-
-Object _callback106(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback106Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback106Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
-Object _callback107(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback107Matches(Object value) => value is Object? Function();
-Object? _callback107Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
-Object _callback108(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback108Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback108Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
-Object _callback109(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback109Matches(Object value) => value is Object? Function();
-Object? _callback109Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
-Object _callback110(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as bool;
-};
-bool _callback110Matches(Object value) =>
-    value is bool Function(Object? element);
-Object? _callback110Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as bool Function(Object? element))(positional[0]);
-}
-
-Object _callback111(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback111Matches(Object value) => value is Object? Function();
-Object? _callback111Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
-Object _callback112(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as api5.FutureOr<Object?>;
-};
-bool _callback112Matches(Object value) =>
-    value is api5.FutureOr<Object?> Function(Object? value);
-Object? _callback112Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as api5.FutureOr<Object?> Function(Object? value))(
-    positional[0],
-  );
-}
-
-Object _callback113(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named) as api5.FutureOr<Object?>;
-};
-bool _callback113Matches(Object value) =>
-    value is api5.FutureOr<Object?> Function();
-Object? _callback113Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as api5.FutureOr<Object?> Function())();
-}
-
-Object _callback114(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named) as api5.FutureOr<Object?>;
-};
-bool _callback114Matches(Object value) =>
-    value is api5.FutureOr<Object?> Function();
-Object? _callback114Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as api5.FutureOr<Object?> Function())();
-}
-
-Object _callback115(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as api5.FutureOr<Object?>;
-};
-bool _callback115Matches(Object value) =>
-    value is api5.FutureOr<Object?> Function(Object? value);
-Object? _callback115Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as api5.FutureOr<Object?> Function(Object? value))(
-    positional[0],
-  );
 }
 
 FlaxCallbackBinding _callback116Types<_Callback0 extends Object?>(
@@ -49429,7 +46438,7 @@ FlaxCallbackBinding _callback116Types<_Callback0 extends Object?>(
       ),
       FlaxCallbackParameter.plain(
         "onError",
-        _flaxBinding871,
+        _flaxBinding857,
         required: false,
         positional: false,
       ),
@@ -49490,21 +46499,6 @@ Object? _callback116Invoke(
     positional[0] as api5.FutureOr<Object?> Function(Object? value),
     onError: named["onError"] as Function?,
   );
-}
-
-Object _callback117(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named) as api5.FutureOr<Object?>;
-};
-bool _callback117Matches(Object value) =>
-    value is api5.FutureOr<Object?> Function();
-Object? _callback117Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as api5.FutureOr<Object?> Function())();
 }
 
 Object _callback118(FlaxCallback _flaxBridgeCallback) =>
@@ -49568,29 +46562,9 @@ Object? _callback120Invoke(
   return (function as Future<Object?> Function())();
 }
 
-Object _collection0Create() => <String, Object?>{};
-bool _collection0Matches(Object value) => value is Map<String, Object?>;
-Object _collection1Create() => <String, String>{};
-bool _collection1Matches(Object value) => value is Map<String, String>;
-Object _collection2Create() => <String>[];
-bool _collection2Matches(Object value) => value is List<String>;
-Object _collection3Create() => <String>[];
-Object _collection3Restore(Object value) =>
-    (value as Iterable<Object?>).cast<String>();
-bool _collection3Matches(Object value) => value is Iterable<String>;
-Object _collection4Create() => <api.DiagnosticsNode>[];
-bool _collection4Matches(Object value) => value is List<api.DiagnosticsNode>;
-Object _collection5Create() => <api.DiagnosticsNode>[];
-Object _collection5Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api.DiagnosticsNode>();
-bool _collection5Matches(Object value) =>
-    value is Iterable<api.DiagnosticsNode>;
 Object _collection6Create() => <Object>[];
 bool _collection6Matches(Object value) => value is List<Object>;
-Object _collection7Create() => <Object>[];
-Object _collection7Restore(Object value) =>
-    (value as Iterable<Object?>).cast<Object>();
-bool _collection7Matches(Object value) => value is Iterable<Object>;
+
 Object _collection8Create() => <api.LicenseParagraph>[];
 Object _collection8Restore(Object value) =>
     (value as Iterable<Object?>).cast<api.LicenseParagraph>();
@@ -49607,12 +46581,7 @@ Object _collection12Create() => <api.StackFrame>[];
 Object _collection12Restore(Object value) =>
     (value as Iterable<Object?>).cast<api.StackFrame>();
 bool _collection12Matches(Object value) => value is Iterable<api.StackFrame>;
-Object _collection13Create() => <String?>[];
-bool _collection13Matches(Object value) => value is List<String?>;
-Object _collection14Create() => <String?>[];
-Object _collection14Restore(Object value) =>
-    (value as Iterable<Object?>).cast<String?>();
-bool _collection14Matches(Object value) => value is Iterable<String?>;
+
 Object _collection15Create() => <api.PartialStackFrame>[];
 bool _collection15Matches(Object value) => value is List<api.PartialStackFrame>;
 Object _collection16Create() => <api.PartialStackFrame>[];
@@ -49634,14 +46603,7 @@ Object _collection20Restore(Object value) =>
     (value as Iterable<Object?>).cast<api.AggregatedTimedBlock>();
 bool _collection20Matches(Object value) =>
     value is Iterable<api.AggregatedTimedBlock>;
-Object _collection21Create() => <Object?>[];
-Object _collection21Restore(Object value) =>
-    (value as Iterable<Object?>).cast<Object?>();
-bool _collection21Matches(Object value) => value is Iterable<Object?>;
-Object _collection22Create() => <Object?>[];
-bool _collection22Matches(Object value) => value is List<Object?>;
-Object _collection23Create() => <Object?>{};
-bool _collection23Matches(Object value) => value is Set<Object?>;
+
 Object _collection24Create() => <api3.Comparable<Object>>[];
 bool _collection24Matches(Object value) =>
     value is List<api3.Comparable<Object>>;
@@ -49650,15 +46612,10 @@ Object _collection25Restore(Object value) =>
     (value as Iterable<Object?>).cast<api3.Comparable<Object>>();
 bool _collection25Matches(Object value) =>
     value is Iterable<api3.Comparable<Object>>;
-Object _collection26Create() => <Object?, Object?>{};
-bool _collection26Matches(Object value) => value is Map<Object?, Object?>;
+
 Object _collection27Create() => <Map<String, Object?>>[];
 bool _collection27Matches(Object value) => value is List<Map<String, Object?>>;
-Object _collection28Create() => <Map<String, Object?>>[];
-Object _collection28Restore(Object value) =>
-    (value as Iterable<Object?>).cast<Map<String, Object?>>();
-bool _collection28Matches(Object value) =>
-    value is Iterable<Map<String, Object?>>;
+
 Object _collection29Create() =>
     <
       Iterable<api.DiagnosticsNode> Function(
@@ -49691,19 +46648,7 @@ bool _collection30Matches(Object value) =>
             Iterable<api.DiagnosticsNode> properties,
           )
         >;
-Future<Object?> _future0Adapt(Future<Object?> value) =>
-    value.then<void>((_) {});
-Future<Object?> _future1Adapt(Future<Object?> value) =>
-    value.then<bool>((value) => value as bool);
-Future<Object?> _future2Adapt(Future<Object?> value) =>
-    value.then<double>((value) => value as double);
-Future<Object?> _future3Adapt(Future<Object?> value) =>
-    value.then<String>((value) => value as String);
-Future<Object?> _future4Adapt(Future<Object?> value) =>
-    value.then<Map<String, Object?>>((value) => value as Map<String, Object?>);
-Future<Object?> _future5Adapt(Future<Object?> value) => value;
-Future<Object?> _future6Adapt(Future<Object?> value) =>
-    value.then<api2.Uint8List>((value) => value as api2.Uint8List);
+
 bool _stream0Matches(Object value) => value is api5.Stream<Object?>;
 api5.Stream<Object?> _stream0Adapt(Object value) =>
     value as api5.Stream<Object?>;
@@ -49733,6 +46678,852 @@ T _genericCallbackResult<T>(Object? value) {
   return value as T;
 }
 
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_AbstractNode_7c_get_3a_depth =
+    _AbstractNode_depth;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_AbstractNode_7c_get_3a_owner =
+    _AbstractNode_owner;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_AbstractNode_7c_get_3a_attached =
+    _AbstractNode_attached;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_AbstractNode_7c_get_3a_parent =
+    _AbstractNode_parent;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_AggregatedTimedBlock_7c_get_3a_name =
+    _AggregatedTimedBlock_name;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_AggregatedTimedBlock_7c_get_3a_duration =
+    _AggregatedTimedBlock_duration;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_AggregatedTimedBlock_7c_get_3a_count =
+    _AggregatedTimedBlock_count;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_AggregatedTimedBlock_7c_call_3a_toString =
+    _AggregatedTimedBlock_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_AggregatedTimings_7c_get_3a_timedBlocks =
+    _AggregatedTimings_timedBlocks;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_AggregatedTimings_7c_get_3a_aggregatedBlocks =
+    _AggregatedTimings_aggregatedBlocks;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_BindingBase_7c_get_3a_window =
+    _BindingBase_window;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_BindingBase_7c_get_3a_platformDispatcher =
+    _BindingBase_platformDispatcher;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_BindingBase_7c_get_3a_locked =
+    _BindingBase_locked;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_BindingBase_7c_call_3a_reassembleApplication =
+    _BindingBase_reassembleApplication;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_BindingBase_7c_call_3a_performReassemble =
+    _BindingBase_performReassemble;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_BindingBase_7c_call_3a_toString =
+    _BindingBase_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_Category_7c_get_3a_sections =
+    _Category_sections;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ChangeNotifier_7c_get_3a_hasListeners =
+    _ChangeNotifier_hasListeners;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticPropertiesBuilder_7c_get_3a_properties =
+    _DiagnosticPropertiesBuilder_properties;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticPropertiesBuilder_7c_get_3a_defaultDiagnosticsTreeStyle =
+    _DiagnosticPropertiesBuilder_defaultDiagnosticsTreeStyle;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticPropertiesBuilder_7c_get_3a_emptyBodyDescription =
+    _DiagnosticPropertiesBuilder_emptyBodyDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_Diagnosticable_7c_call_3a_toStringShort =
+    _Diagnosticable_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticableTree_7c_call_3a_toStringShort =
+    _Diagnosticable_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticableTree_7c_call_3a_debugDescribeChildren =
+    _DiagnosticableTree_debugDescribeChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticableTreeMixin_7c_call_3a_toStringShort =
+    _Diagnosticable_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticableTreeMixin_7c_call_3a_debugDescribeChildren =
+    _DiagnosticableTree_debugDescribeChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticableTreeNode_7c_get_3a_value =
+    _DiagnosticableTreeNode_value;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticableTreeNode_7c_get_3a_builder =
+    _DiagnosticableTreeNode_builder;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticableTreeNode_7c_get_3a_style =
+    _DiagnosticableTreeNode_style;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticableTreeNode_7c_get_3a_emptyBodyDescription =
+    _DiagnosticsNode_emptyBodyDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticableTreeNode_7c_get_3a_name =
+    _DiagnosticsNode_name;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticableTreeNode_7c_get_3a_showSeparator =
+    _DiagnosticsNode_showSeparator;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticableTreeNode_7c_get_3a_level =
+    _DiagnosticsNode_level;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticableTreeNode_7c_get_3a_showName =
+    _DiagnosticsNode_showName;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticableTreeNode_7c_get_3a_linePrefix =
+    _DiagnosticsNode_linePrefix;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticableTreeNode_7c_get_3a_allowWrap =
+    _DiagnosticsNode_allowWrap;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticableTreeNode_7c_get_3a_allowNameWrap =
+    _DiagnosticsNode_allowNameWrap;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticableTreeNode_7c_get_3a_allowTruncate =
+    _DiagnosticsNode_allowTruncate;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticableTreeNode_7c_get_3a_textTreeConfiguration =
+    _DiagnosticsNode_textTreeConfiguration;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticableTreeNode_7c_call_3a_getProperties =
+    _DiagnosticsNode_getProperties;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticableTreeNode_7c_call_3a_getChildren =
+    _DiagnosticsNode_getChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticableTreeNode_7c_call_3a_toTimelineArguments =
+    _DiagnosticsNode_toTimelineArguments;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsBlock_7c_get_3a_name =
+    _DiagnosticsNode_name;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsBlock_7c_get_3a_showSeparator =
+    _DiagnosticsNode_showSeparator;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsBlock_7c_get_3a_level =
+    _DiagnosticsNode_level;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsBlock_7c_get_3a_showName =
+    _DiagnosticsNode_showName;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsBlock_7c_get_3a_linePrefix =
+    _DiagnosticsNode_linePrefix;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsBlock_7c_get_3a_emptyBodyDescription =
+    _DiagnosticsNode_emptyBodyDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsBlock_7c_get_3a_value =
+    _DiagnosticsNode_value;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsBlock_7c_get_3a_style =
+    _DiagnosticsNode_style;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsBlock_7c_get_3a_allowWrap =
+    _DiagnosticsNode_allowWrap;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsBlock_7c_get_3a_allowNameWrap =
+    _DiagnosticsNode_allowNameWrap;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsBlock_7c_get_3a_allowTruncate =
+    _DiagnosticsNode_allowTruncate;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsBlock_7c_get_3a_textTreeConfiguration =
+    _DiagnosticsNode_textTreeConfiguration;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsBlock_7c_call_3a_getProperties =
+    _DiagnosticsNode_getProperties;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsBlock_7c_call_3a_getChildren =
+    _DiagnosticsNode_getChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsBlock_7c_call_3a_toTimelineArguments =
+    _DiagnosticsNode_toTimelineArguments;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsNode_7c_get_3a_name =
+    _DiagnosticsNode_name;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsNode_7c_get_3a_showSeparator =
+    _DiagnosticsNode_showSeparator;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsNode_7c_get_3a_level =
+    _DiagnosticsNode_level;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsNode_7c_get_3a_showName =
+    _DiagnosticsNode_showName;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsNode_7c_get_3a_linePrefix =
+    _DiagnosticsNode_linePrefix;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsNode_7c_get_3a_emptyBodyDescription =
+    _DiagnosticsNode_emptyBodyDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsNode_7c_get_3a_value =
+    _DiagnosticsNode_value;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsNode_7c_get_3a_style =
+    _DiagnosticsNode_style;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsNode_7c_get_3a_allowWrap =
+    _DiagnosticsNode_allowWrap;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsNode_7c_get_3a_allowNameWrap =
+    _DiagnosticsNode_allowNameWrap;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsNode_7c_get_3a_allowTruncate =
+    _DiagnosticsNode_allowTruncate;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsNode_7c_get_3a_textTreeConfiguration =
+    _DiagnosticsNode_textTreeConfiguration;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsNode_7c_call_3a_getProperties =
+    _DiagnosticsNode_getProperties;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsNode_7c_call_3a_getChildren =
+    _DiagnosticsNode_getChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsNode_7c_call_3a_toTimelineArguments =
+    _DiagnosticsNode_toTimelineArguments;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsSerializationDelegate_7c_get_3a_subtreeDepth =
+    _DiagnosticsSerializationDelegate_subtreeDepth;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsSerializationDelegate_7c_get_3a_includeProperties =
+    _DiagnosticsSerializationDelegate_includeProperties;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsSerializationDelegate_7c_get_3a_expandPropertyValues =
+    _DiagnosticsSerializationDelegate_expandPropertyValues;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsStackTrace_7c_get_3a_level =
+    _DiagnosticsNode_level;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsStackTrace_7c_get_3a_value =
+    _DiagnosticsNode_value;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsStackTrace_7c_get_3a_allowTruncate =
+    _DiagnosticsNode_allowTruncate;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsStackTrace_7c_get_3a_name =
+    _DiagnosticsNode_name;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsStackTrace_7c_get_3a_showSeparator =
+    _DiagnosticsNode_showSeparator;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsStackTrace_7c_get_3a_showName =
+    _DiagnosticsNode_showName;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsStackTrace_7c_get_3a_linePrefix =
+    _DiagnosticsNode_linePrefix;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsStackTrace_7c_get_3a_emptyBodyDescription =
+    _DiagnosticsNode_emptyBodyDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsStackTrace_7c_get_3a_style =
+    _DiagnosticsNode_style;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsStackTrace_7c_get_3a_allowWrap =
+    _DiagnosticsNode_allowWrap;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsStackTrace_7c_get_3a_allowNameWrap =
+    _DiagnosticsNode_allowNameWrap;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsStackTrace_7c_get_3a_textTreeConfiguration =
+    _DiagnosticsNode_textTreeConfiguration;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsStackTrace_7c_call_3a_getChildren =
+    _DiagnosticsNode_getChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsStackTrace_7c_call_3a_getProperties =
+    _DiagnosticsNode_getProperties;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticsStackTrace_7c_call_3a_toTimelineArguments =
+    _DiagnosticsNode_toTimelineArguments;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DocumentationIcon_7c_get_3a_url =
+    _DocumentationIcon_url;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DoubleProperty_7c_get_3a_expandableValue =
+    _DoubleProperty_expandableValue;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DoubleProperty_7c_get_3a_allowWrap =
+    _DiagnosticsNode_allowWrap;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DoubleProperty_7c_get_3a_allowNameWrap =
+    _DiagnosticsNode_allowNameWrap;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DoubleProperty_7c_get_3a_ifNull =
+    _DoubleProperty_ifNull;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DoubleProperty_7c_get_3a_ifEmpty =
+    _DoubleProperty_ifEmpty;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DoubleProperty_7c_get_3a_tooltip =
+    _DoubleProperty_tooltip;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DoubleProperty_7c_get_3a_missingIfNull =
+    _DoubleProperty_missingIfNull;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DoubleProperty_7c_get_3a_propertyType =
+    _DoubleProperty_propertyType;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DoubleProperty_7c_get_3a_value =
+    _DoubleProperty_value;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DoubleProperty_7c_get_3a_exception =
+    _DoubleProperty_exception;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DoubleProperty_7c_get_3a_defaultValue =
+    _DoubleProperty_defaultValue;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DoubleProperty_7c_get_3a_isInteresting =
+    _DoubleProperty_isInteresting;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DoubleProperty_7c_get_3a_level =
+    _DiagnosticsNode_level;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DoubleProperty_7c_get_3a_name =
+    _DiagnosticsNode_name;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DoubleProperty_7c_get_3a_showSeparator =
+    _DiagnosticsNode_showSeparator;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DoubleProperty_7c_get_3a_showName =
+    _DiagnosticsNode_showName;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DoubleProperty_7c_get_3a_linePrefix =
+    _DiagnosticsNode_linePrefix;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DoubleProperty_7c_get_3a_emptyBodyDescription =
+    _DiagnosticsNode_emptyBodyDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DoubleProperty_7c_get_3a_style =
+    _DiagnosticsNode_style;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DoubleProperty_7c_get_3a_allowTruncate =
+    _DiagnosticsNode_allowTruncate;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DoubleProperty_7c_get_3a_textTreeConfiguration =
+    _DiagnosticsNode_textTreeConfiguration;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DoubleProperty_7c_get_3a_unit =
+    _DoubleProperty_unit;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DoubleProperty_7c_call_3a_getProperties =
+    _DiagnosticsNode_getProperties;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DoubleProperty_7c_call_3a_getChildren =
+    _DiagnosticsNode_getChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DoubleProperty_7c_call_3a_toTimelineArguments =
+    _DiagnosticsNode_toTimelineArguments;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DoubleProperty_7c_call_3a_numberToString =
+    _DoubleProperty_numberToString;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorDescription_7c_get_3a_expandableValue =
+    _ErrorDescription_expandableValue;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorDescription_7c_get_3a_allowWrap =
+    _DiagnosticsNode_allowWrap;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorDescription_7c_get_3a_allowNameWrap =
+    _DiagnosticsNode_allowNameWrap;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorDescription_7c_get_3a_ifNull =
+    _ErrorDescription_ifNull;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorDescription_7c_get_3a_ifEmpty =
+    _ErrorDescription_ifEmpty;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorDescription_7c_get_3a_tooltip =
+    _ErrorDescription_tooltip;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorDescription_7c_get_3a_missingIfNull =
+    _ErrorDescription_missingIfNull;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorDescription_7c_get_3a_propertyType =
+    _ErrorDescription_propertyType;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorDescription_7c_get_3a_value =
+    _ErrorDescription_value;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorDescription_7c_get_3a_exception =
+    _ErrorDescription_exception;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorDescription_7c_get_3a_defaultValue =
+    _ErrorDescription_defaultValue;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorDescription_7c_get_3a_isInteresting =
+    _ErrorDescription_isInteresting;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorDescription_7c_get_3a_level =
+    _DiagnosticsNode_level;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorDescription_7c_get_3a_name =
+    _DiagnosticsNode_name;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorDescription_7c_get_3a_showSeparator =
+    _DiagnosticsNode_showSeparator;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorDescription_7c_get_3a_showName =
+    _DiagnosticsNode_showName;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorDescription_7c_get_3a_linePrefix =
+    _DiagnosticsNode_linePrefix;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorDescription_7c_get_3a_emptyBodyDescription =
+    _DiagnosticsNode_emptyBodyDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorDescription_7c_get_3a_style =
+    _DiagnosticsNode_style;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorDescription_7c_get_3a_allowTruncate =
+    _DiagnosticsNode_allowTruncate;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorDescription_7c_get_3a_textTreeConfiguration =
+    _DiagnosticsNode_textTreeConfiguration;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorDescription_7c_call_3a_getProperties =
+    _DiagnosticsNode_getProperties;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorDescription_7c_call_3a_getChildren =
+    _DiagnosticsNode_getChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorDescription_7c_call_3a_toTimelineArguments =
+    _DiagnosticsNode_toTimelineArguments;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorHint_7c_get_3a_expandableValue =
+    _ErrorHint_expandableValue;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorHint_7c_get_3a_allowWrap =
+    _DiagnosticsNode_allowWrap;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorHint_7c_get_3a_allowNameWrap =
+    _DiagnosticsNode_allowNameWrap;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorHint_7c_get_3a_ifNull =
+    _ErrorHint_ifNull;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorHint_7c_get_3a_ifEmpty =
+    _ErrorHint_ifEmpty;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorHint_7c_get_3a_tooltip =
+    _ErrorHint_tooltip;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorHint_7c_get_3a_missingIfNull =
+    _ErrorHint_missingIfNull;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorHint_7c_get_3a_propertyType =
+    _ErrorHint_propertyType;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorHint_7c_get_3a_value =
+    _ErrorHint_value;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorHint_7c_get_3a_exception =
+    _ErrorHint_exception;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorHint_7c_get_3a_defaultValue =
+    _ErrorHint_defaultValue;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorHint_7c_get_3a_isInteresting =
+    _ErrorHint_isInteresting;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorHint_7c_get_3a_level =
+    _DiagnosticsNode_level;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorHint_7c_get_3a_name =
+    _DiagnosticsNode_name;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorHint_7c_get_3a_showSeparator =
+    _DiagnosticsNode_showSeparator;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorHint_7c_get_3a_showName =
+    _DiagnosticsNode_showName;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorHint_7c_get_3a_linePrefix =
+    _DiagnosticsNode_linePrefix;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorHint_7c_get_3a_emptyBodyDescription =
+    _DiagnosticsNode_emptyBodyDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorHint_7c_get_3a_style =
+    _DiagnosticsNode_style;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorHint_7c_get_3a_allowTruncate =
+    _DiagnosticsNode_allowTruncate;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorHint_7c_get_3a_textTreeConfiguration =
+    _DiagnosticsNode_textTreeConfiguration;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorHint_7c_call_3a_getProperties =
+    _DiagnosticsNode_getProperties;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorHint_7c_call_3a_getChildren =
+    _DiagnosticsNode_getChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorHint_7c_call_3a_toTimelineArguments =
+    _DiagnosticsNode_toTimelineArguments;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSpacer_7c_get_3a_expandableValue =
+    _ErrorSpacer_expandableValue;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSpacer_7c_get_3a_allowWrap =
+    _DiagnosticsNode_allowWrap;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSpacer_7c_get_3a_allowNameWrap =
+    _DiagnosticsNode_allowNameWrap;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSpacer_7c_get_3a_ifNull =
+    _ErrorSpacer_ifNull;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSpacer_7c_get_3a_ifEmpty =
+    _ErrorSpacer_ifEmpty;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSpacer_7c_get_3a_tooltip =
+    _ErrorSpacer_tooltip;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSpacer_7c_get_3a_missingIfNull =
+    _ErrorSpacer_missingIfNull;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSpacer_7c_get_3a_propertyType =
+    _ErrorSpacer_propertyType;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSpacer_7c_get_3a_exception =
+    _ErrorSpacer_exception;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSpacer_7c_get_3a_defaultValue =
+    _ErrorSpacer_defaultValue;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSpacer_7c_get_3a_isInteresting =
+    _ErrorSpacer_isInteresting;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSpacer_7c_get_3a_level =
+    _DiagnosticsNode_level;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSpacer_7c_get_3a_name =
+    _DiagnosticsNode_name;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSpacer_7c_get_3a_showSeparator =
+    _DiagnosticsNode_showSeparator;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSpacer_7c_get_3a_showName =
+    _DiagnosticsNode_showName;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSpacer_7c_get_3a_linePrefix =
+    _DiagnosticsNode_linePrefix;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSpacer_7c_get_3a_emptyBodyDescription =
+    _DiagnosticsNode_emptyBodyDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSpacer_7c_get_3a_style =
+    _DiagnosticsNode_style;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSpacer_7c_get_3a_allowTruncate =
+    _DiagnosticsNode_allowTruncate;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSpacer_7c_get_3a_textTreeConfiguration =
+    _DiagnosticsNode_textTreeConfiguration;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSpacer_7c_call_3a_getProperties =
+    _DiagnosticsNode_getProperties;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSpacer_7c_call_3a_getChildren =
+    _DiagnosticsNode_getChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSpacer_7c_call_3a_toTimelineArguments =
+    _DiagnosticsNode_toTimelineArguments;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSummary_7c_get_3a_expandableValue =
+    _ErrorSummary_expandableValue;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSummary_7c_get_3a_allowWrap =
+    _DiagnosticsNode_allowWrap;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSummary_7c_get_3a_allowNameWrap =
+    _DiagnosticsNode_allowNameWrap;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSummary_7c_get_3a_ifNull =
+    _ErrorSummary_ifNull;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSummary_7c_get_3a_ifEmpty =
+    _ErrorSummary_ifEmpty;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSummary_7c_get_3a_tooltip =
+    _ErrorSummary_tooltip;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSummary_7c_get_3a_missingIfNull =
+    _ErrorSummary_missingIfNull;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSummary_7c_get_3a_propertyType =
+    _ErrorSummary_propertyType;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSummary_7c_get_3a_value =
+    _ErrorSummary_value;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSummary_7c_get_3a_exception =
+    _ErrorSummary_exception;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSummary_7c_get_3a_defaultValue =
+    _ErrorSummary_defaultValue;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSummary_7c_get_3a_isInteresting =
+    _ErrorSummary_isInteresting;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSummary_7c_get_3a_level =
+    _DiagnosticsNode_level;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSummary_7c_get_3a_name =
+    _DiagnosticsNode_name;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSummary_7c_get_3a_showSeparator =
+    _DiagnosticsNode_showSeparator;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSummary_7c_get_3a_showName =
+    _DiagnosticsNode_showName;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSummary_7c_get_3a_linePrefix =
+    _DiagnosticsNode_linePrefix;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSummary_7c_get_3a_emptyBodyDescription =
+    _DiagnosticsNode_emptyBodyDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSummary_7c_get_3a_style =
+    _DiagnosticsNode_style;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSummary_7c_get_3a_allowTruncate =
+    _DiagnosticsNode_allowTruncate;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSummary_7c_get_3a_textTreeConfiguration =
+    _DiagnosticsNode_textTreeConfiguration;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSummary_7c_call_3a_getProperties =
+    _DiagnosticsNode_getProperties;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSummary_7c_call_3a_getChildren =
+    _DiagnosticsNode_getChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ErrorSummary_7c_call_3a_toTimelineArguments =
+    _DiagnosticsNode_toTimelineArguments;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlagProperty_7c_get_3a_expandableValue =
+    _FlagProperty_expandableValue;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlagProperty_7c_get_3a_allowWrap =
+    _DiagnosticsNode_allowWrap;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlagProperty_7c_get_3a_allowNameWrap =
+    _DiagnosticsNode_allowNameWrap;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlagProperty_7c_get_3a_ifNull =
+    _FlagProperty_ifNull;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlagProperty_7c_get_3a_ifEmpty =
+    _FlagProperty_ifEmpty;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlagProperty_7c_get_3a_tooltip =
+    _FlagProperty_tooltip;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlagProperty_7c_get_3a_missingIfNull =
+    _FlagProperty_missingIfNull;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlagProperty_7c_get_3a_propertyType =
+    _FlagProperty_propertyType;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlagProperty_7c_get_3a_value =
+    _FlagProperty_value;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlagProperty_7c_get_3a_exception =
+    _FlagProperty_exception;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlagProperty_7c_get_3a_defaultValue =
+    _FlagProperty_defaultValue;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlagProperty_7c_get_3a_isInteresting =
+    _FlagProperty_isInteresting;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlagProperty_7c_get_3a_level =
+    _DiagnosticsNode_level;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlagProperty_7c_get_3a_name =
+    _DiagnosticsNode_name;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlagProperty_7c_get_3a_showSeparator =
+    _DiagnosticsNode_showSeparator;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlagProperty_7c_get_3a_showName =
+    _DiagnosticsNode_showName;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlagProperty_7c_get_3a_linePrefix =
+    _DiagnosticsNode_linePrefix;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlagProperty_7c_get_3a_emptyBodyDescription =
+    _DiagnosticsNode_emptyBodyDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlagProperty_7c_get_3a_style =
+    _DiagnosticsNode_style;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlagProperty_7c_get_3a_allowTruncate =
+    _DiagnosticsNode_allowTruncate;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlagProperty_7c_get_3a_textTreeConfiguration =
+    _DiagnosticsNode_textTreeConfiguration;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlagProperty_7c_get_3a_ifTrue =
+    _FlagProperty_ifTrue;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlagProperty_7c_get_3a_ifFalse =
+    _FlagProperty_ifFalse;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlagProperty_7c_call_3a_getProperties =
+    _DiagnosticsNode_getProperties;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlagProperty_7c_call_3a_getChildren =
+    _DiagnosticsNode_getChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlagProperty_7c_call_3a_toTimelineArguments =
+    _DiagnosticsNode_toTimelineArguments;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlutterError_7c_get_3a_stackTrace =
+    _FlutterError_stackTrace;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlutterError_7c_get_3a_diagnostics =
+    _FlutterError_diagnostics;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlutterError_7c_get_3a_message =
+    _FlutterError_message;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlutterError_7c_call_3a_toStringShort =
+    _Diagnosticable_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlutterError_7c_call_3a_debugDescribeChildren =
+    _DiagnosticableTree_debugDescribeChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlutterErrorDetails_7c_get_3a_exception =
+    _FlutterErrorDetails_exception;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlutterErrorDetails_7c_get_3a_stack =
+    _FlutterErrorDetails_stack;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlutterErrorDetails_7c_get_3a_library =
+    _FlutterErrorDetails_library;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlutterErrorDetails_7c_get_3a_context =
+    _FlutterErrorDetails_context;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlutterErrorDetails_7c_get_3a_stackFilter =
+    _FlutterErrorDetails_stackFilter;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlutterErrorDetails_7c_get_3a_informationCollector =
+    _FlutterErrorDetails_informationCollector;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlutterErrorDetails_7c_get_3a_silent =
+    _FlutterErrorDetails_silent;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlutterErrorDetails_7c_get_3a_summary =
+    _FlutterErrorDetails_summary;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlutterErrorDetails_7c_call_3a_toStringShort =
+    _Diagnosticable_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlutterErrorDetails_7c_call_3a_exceptionAsString =
+    _FlutterErrorDetails_exceptionAsString;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_FlutterMemoryAllocations_7c_get_3a_hasListeners =
+    _FlutterMemoryAllocations_hasListeners;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_IntProperty_7c_get_3a_expandableValue =
+    _IntProperty_expandableValue;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_IntProperty_7c_get_3a_allowWrap =
+    _DiagnosticsNode_allowWrap;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_IntProperty_7c_get_3a_allowNameWrap =
+    _DiagnosticsNode_allowNameWrap;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_IntProperty_7c_get_3a_ifNull =
+    _IntProperty_ifNull;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_IntProperty_7c_get_3a_ifEmpty =
+    _IntProperty_ifEmpty;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_IntProperty_7c_get_3a_tooltip =
+    _IntProperty_tooltip;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_IntProperty_7c_get_3a_missingIfNull =
+    _IntProperty_missingIfNull;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_IntProperty_7c_get_3a_propertyType =
+    _IntProperty_propertyType;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_IntProperty_7c_get_3a_value =
+    _IntProperty_value;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_IntProperty_7c_get_3a_exception =
+    _IntProperty_exception;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_IntProperty_7c_get_3a_defaultValue =
+    _IntProperty_defaultValue;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_IntProperty_7c_get_3a_isInteresting =
+    _IntProperty_isInteresting;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_IntProperty_7c_get_3a_level =
+    _DiagnosticsNode_level;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_IntProperty_7c_get_3a_name =
+    _DiagnosticsNode_name;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_IntProperty_7c_get_3a_showSeparator =
+    _DiagnosticsNode_showSeparator;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_IntProperty_7c_get_3a_showName =
+    _DiagnosticsNode_showName;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_IntProperty_7c_get_3a_linePrefix =
+    _DiagnosticsNode_linePrefix;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_IntProperty_7c_get_3a_emptyBodyDescription =
+    _DiagnosticsNode_emptyBodyDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_IntProperty_7c_get_3a_style =
+    _DiagnosticsNode_style;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_IntProperty_7c_get_3a_allowTruncate =
+    _DiagnosticsNode_allowTruncate;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_IntProperty_7c_get_3a_textTreeConfiguration =
+    _DiagnosticsNode_textTreeConfiguration;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_IntProperty_7c_get_3a_unit =
+    _IntProperty_unit;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_IntProperty_7c_call_3a_getProperties =
+    _DiagnosticsNode_getProperties;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_IntProperty_7c_call_3a_getChildren =
+    _DiagnosticsNode_getChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_IntProperty_7c_call_3a_toTimelineArguments =
+    _DiagnosticsNode_toTimelineArguments;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_IntProperty_7c_call_3a_numberToString =
+    _IntProperty_numberToString;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_LicenseEntry_7c_get_3a_packages =
+    _LicenseEntry_packages;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_LicenseEntry_7c_get_3a_paragraphs =
+    _LicenseEntry_paragraphs;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_LicenseEntryWithLineBreaks_7c_get_3a_packages =
+    _LicenseEntryWithLineBreaks_packages;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_LicenseEntryWithLineBreaks_7c_get_3a_paragraphs =
+    _LicenseEntry_paragraphs;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_LicenseEntryWithLineBreaks_7c_get_3a_text =
+    _LicenseEntryWithLineBreaks_text;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_LicenseParagraph_7c_get_3a_text =
+    _LicenseParagraph_text;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_LicenseParagraph_7c_get_3a_indent =
+    _LicenseParagraph_indent;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_MessageProperty_7c_get_3a_expandableValue =
+    _MessageProperty_expandableValue;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_MessageProperty_7c_get_3a_allowWrap =
+    _DiagnosticsNode_allowWrap;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_MessageProperty_7c_get_3a_allowNameWrap =
+    _DiagnosticsNode_allowNameWrap;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_MessageProperty_7c_get_3a_ifNull =
+    _MessageProperty_ifNull;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_MessageProperty_7c_get_3a_ifEmpty =
+    _MessageProperty_ifEmpty;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_MessageProperty_7c_get_3a_tooltip =
+    _MessageProperty_tooltip;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_MessageProperty_7c_get_3a_missingIfNull =
+    _MessageProperty_missingIfNull;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_MessageProperty_7c_get_3a_propertyType =
+    _MessageProperty_propertyType;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_MessageProperty_7c_get_3a_exception =
+    _MessageProperty_exception;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_MessageProperty_7c_get_3a_defaultValue =
+    _MessageProperty_defaultValue;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_MessageProperty_7c_get_3a_isInteresting =
+    _MessageProperty_isInteresting;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_MessageProperty_7c_get_3a_level =
+    _DiagnosticsNode_level;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_MessageProperty_7c_get_3a_name =
+    _DiagnosticsNode_name;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_MessageProperty_7c_get_3a_showSeparator =
+    _DiagnosticsNode_showSeparator;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_MessageProperty_7c_get_3a_showName =
+    _DiagnosticsNode_showName;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_MessageProperty_7c_get_3a_linePrefix =
+    _DiagnosticsNode_linePrefix;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_MessageProperty_7c_get_3a_emptyBodyDescription =
+    _DiagnosticsNode_emptyBodyDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_MessageProperty_7c_get_3a_style =
+    _DiagnosticsNode_style;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_MessageProperty_7c_get_3a_allowTruncate =
+    _DiagnosticsNode_allowTruncate;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_MessageProperty_7c_get_3a_textTreeConfiguration =
+    _DiagnosticsNode_textTreeConfiguration;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_MessageProperty_7c_call_3a_getProperties =
+    _DiagnosticsNode_getProperties;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_MessageProperty_7c_call_3a_getChildren =
+    _DiagnosticsNode_getChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_MessageProperty_7c_call_3a_toTimelineArguments =
+    _DiagnosticsNode_toTimelineArguments;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ObjectCreated_7c_get_3a_object =
+    _ObjectEvent_object;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ObjectCreated_7c_get_3a_library =
+    _ObjectCreated_library;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ObjectCreated_7c_get_3a_className =
+    _ObjectCreated_className;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ObjectCreated_7c_call_3a_toMap =
+    _ObjectEvent_toMap;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ObjectDisposed_7c_get_3a_object =
+    _ObjectEvent_object;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ObjectDisposed_7c_call_3a_toMap =
+    _ObjectEvent_toMap;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ObjectEvent_7c_get_3a_object =
+    _ObjectEvent_object;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ObjectEvent_7c_call_3a_toMap =
+    _ObjectEvent_toMap;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_PartialStackFrame_7c_get_3a_package =
+    _PartialStackFrame_package;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_PartialStackFrame_7c_get_3a_className =
+    _PartialStackFrame_className;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_PartialStackFrame_7c_get_3a_method =
+    _PartialStackFrame_method;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_PercentProperty_7c_get_3a_unit =
+    _DoubleProperty_unit;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_PercentProperty_7c_get_3a_expandableValue =
+    _DoubleProperty_expandableValue;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_PercentProperty_7c_get_3a_allowWrap =
+    _DiagnosticsNode_allowWrap;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_PercentProperty_7c_get_3a_allowNameWrap =
+    _DiagnosticsNode_allowNameWrap;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_PercentProperty_7c_get_3a_ifNull =
+    _DoubleProperty_ifNull;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_PercentProperty_7c_get_3a_ifEmpty =
+    _DoubleProperty_ifEmpty;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_PercentProperty_7c_get_3a_tooltip =
+    _DoubleProperty_tooltip;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_PercentProperty_7c_get_3a_missingIfNull =
+    _DoubleProperty_missingIfNull;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_PercentProperty_7c_get_3a_propertyType =
+    _DoubleProperty_propertyType;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_PercentProperty_7c_get_3a_value =
+    _DoubleProperty_value;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_PercentProperty_7c_get_3a_exception =
+    _DoubleProperty_exception;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_PercentProperty_7c_get_3a_defaultValue =
+    _DoubleProperty_defaultValue;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_PercentProperty_7c_get_3a_isInteresting =
+    _DoubleProperty_isInteresting;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_PercentProperty_7c_get_3a_level =
+    _DiagnosticsNode_level;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_PercentProperty_7c_get_3a_name =
+    _DiagnosticsNode_name;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_PercentProperty_7c_get_3a_showSeparator =
+    _DiagnosticsNode_showSeparator;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_PercentProperty_7c_get_3a_showName =
+    _DiagnosticsNode_showName;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_PercentProperty_7c_get_3a_linePrefix =
+    _DiagnosticsNode_linePrefix;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_PercentProperty_7c_get_3a_emptyBodyDescription =
+    _DiagnosticsNode_emptyBodyDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_PercentProperty_7c_get_3a_style =
+    _DiagnosticsNode_style;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_PercentProperty_7c_get_3a_allowTruncate =
+    _DiagnosticsNode_allowTruncate;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_PercentProperty_7c_get_3a_textTreeConfiguration =
+    _DiagnosticsNode_textTreeConfiguration;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_PercentProperty_7c_call_3a_numberToString =
+    _DoubleProperty_numberToString;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_PercentProperty_7c_call_3a_getProperties =
+    _DiagnosticsNode_getProperties;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_PercentProperty_7c_call_3a_getChildren =
+    _DiagnosticsNode_getChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_PercentProperty_7c_call_3a_toTimelineArguments =
+    _DiagnosticsNode_toTimelineArguments;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ReadBuffer_7c_get_3a_data =
+    _ReadBuffer_data;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ReadBuffer_7c_get_3a_hasRemaining =
+    _ReadBuffer_hasRemaining;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ReadBuffer_7c_call_3a_getUint8 =
+    _ReadBuffer_getUint8;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_RepetitiveStackFrameFilter_7c_get_3a_frames =
+    _RepetitiveStackFrameFilter_frames;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_RepetitiveStackFrameFilter_7c_get_3a_numFrames =
+    _RepetitiveStackFrameFilter_numFrames;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_RepetitiveStackFrameFilter_7c_get_3a_replacement =
+    _RepetitiveStackFrameFilter_replacement;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StackFrame_7c_get_3a_source =
+    _StackFrame_source;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StackFrame_7c_get_3a_number =
+    _StackFrame_number;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StackFrame_7c_get_3a_packageScheme =
+    _StackFrame_packageScheme;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StackFrame_7c_get_3a_package =
+    _StackFrame_package;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StackFrame_7c_get_3a_packagePath =
+    _StackFrame_packagePath;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StackFrame_7c_get_3a_line =
+    _StackFrame_line;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StackFrame_7c_get_3a_column =
+    _StackFrame_column;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StackFrame_7c_get_3a_className =
+    _StackFrame_className;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StackFrame_7c_get_3a_method =
+    _StackFrame_method;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StackFrame_7c_get_3a_isConstructor =
+    _StackFrame_isConstructor;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StackFrame_7c_call_3a_toString =
+    _StackFrame_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StringProperty_7c_get_3a_expandableValue =
+    _StringProperty_expandableValue;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StringProperty_7c_get_3a_allowWrap =
+    _DiagnosticsNode_allowWrap;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StringProperty_7c_get_3a_allowNameWrap =
+    _DiagnosticsNode_allowNameWrap;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StringProperty_7c_get_3a_ifNull =
+    _StringProperty_ifNull;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StringProperty_7c_get_3a_ifEmpty =
+    _StringProperty_ifEmpty;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StringProperty_7c_get_3a_tooltip =
+    _StringProperty_tooltip;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StringProperty_7c_get_3a_missingIfNull =
+    _StringProperty_missingIfNull;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StringProperty_7c_get_3a_propertyType =
+    _StringProperty_propertyType;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StringProperty_7c_get_3a_value =
+    _StringProperty_value;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StringProperty_7c_get_3a_exception =
+    _StringProperty_exception;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StringProperty_7c_get_3a_defaultValue =
+    _StringProperty_defaultValue;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StringProperty_7c_get_3a_isInteresting =
+    _StringProperty_isInteresting;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StringProperty_7c_get_3a_level =
+    _DiagnosticsNode_level;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StringProperty_7c_get_3a_name =
+    _DiagnosticsNode_name;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StringProperty_7c_get_3a_showSeparator =
+    _DiagnosticsNode_showSeparator;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StringProperty_7c_get_3a_showName =
+    _DiagnosticsNode_showName;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StringProperty_7c_get_3a_linePrefix =
+    _DiagnosticsNode_linePrefix;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StringProperty_7c_get_3a_emptyBodyDescription =
+    _DiagnosticsNode_emptyBodyDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StringProperty_7c_get_3a_style =
+    _DiagnosticsNode_style;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StringProperty_7c_get_3a_allowTruncate =
+    _DiagnosticsNode_allowTruncate;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StringProperty_7c_get_3a_textTreeConfiguration =
+    _DiagnosticsNode_textTreeConfiguration;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StringProperty_7c_get_3a_quoted =
+    _StringProperty_quoted;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StringProperty_7c_call_3a_getProperties =
+    _DiagnosticsNode_getProperties;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StringProperty_7c_call_3a_getChildren =
+    _DiagnosticsNode_getChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_StringProperty_7c_call_3a_toTimelineArguments =
+    _DiagnosticsNode_toTimelineArguments;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_Summary_7c_get_3a_text =
+    _Summary_text;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_TextTreeConfiguration_7c_get_3a_prefixLineOne =
+    _TextTreeConfiguration_prefixLineOne;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_TextTreeConfiguration_7c_get_3a_suffixLineOne =
+    _TextTreeConfiguration_suffixLineOne;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_TextTreeConfiguration_7c_get_3a_prefixOtherLines =
+    _TextTreeConfiguration_prefixOtherLines;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_TextTreeConfiguration_7c_get_3a_prefixLastChildLineOne =
+    _TextTreeConfiguration_prefixLastChildLineOne;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_TextTreeConfiguration_7c_get_3a_prefixOtherLinesRootNode =
+    _TextTreeConfiguration_prefixOtherLinesRootNode;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_TextTreeConfiguration_7c_get_3a_propertyPrefixIfChildren =
+    _TextTreeConfiguration_propertyPrefixIfChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_TextTreeConfiguration_7c_get_3a_propertyPrefixNoChildren =
+    _TextTreeConfiguration_propertyPrefixNoChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_TextTreeConfiguration_7c_get_3a_linkCharacter =
+    _TextTreeConfiguration_linkCharacter;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_TextTreeConfiguration_7c_get_3a_childLinkSpace =
+    _TextTreeConfiguration_childLinkSpace;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_TextTreeConfiguration_7c_get_3a_lineBreak =
+    _TextTreeConfiguration_lineBreak;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_TextTreeConfiguration_7c_get_3a_lineBreakProperties =
+    _TextTreeConfiguration_lineBreakProperties;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_TextTreeConfiguration_7c_get_3a_beforeName =
+    _TextTreeConfiguration_beforeName;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_TextTreeConfiguration_7c_get_3a_afterName =
+    _TextTreeConfiguration_afterName;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_TextTreeConfiguration_7c_get_3a_afterDescriptionIfBody =
+    _TextTreeConfiguration_afterDescriptionIfBody;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_TextTreeConfiguration_7c_get_3a_afterDescription =
+    _TextTreeConfiguration_afterDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_TextTreeConfiguration_7c_get_3a_beforeProperties =
+    _TextTreeConfiguration_beforeProperties;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_TextTreeConfiguration_7c_get_3a_afterProperties =
+    _TextTreeConfiguration_afterProperties;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_TextTreeConfiguration_7c_get_3a_mandatoryAfterProperties =
+    _TextTreeConfiguration_mandatoryAfterProperties;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_TextTreeConfiguration_7c_get_3a_propertySeparator =
+    _TextTreeConfiguration_propertySeparator;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_TextTreeConfiguration_7c_get_3a_bodyIndent =
+    _TextTreeConfiguration_bodyIndent;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_TextTreeConfiguration_7c_get_3a_showChildren =
+    _TextTreeConfiguration_showChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_TextTreeConfiguration_7c_get_3a_addBlankLineIfNoChildren =
+    _TextTreeConfiguration_addBlankLineIfNoChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_TextTreeConfiguration_7c_get_3a_isNameOnOwnLine =
+    _TextTreeConfiguration_isNameOnOwnLine;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_TextTreeConfiguration_7c_get_3a_footer =
+    _TextTreeConfiguration_footer;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_TextTreeConfiguration_7c_get_3a_mandatoryFooter =
+    _TextTreeConfiguration_mandatoryFooter;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_TextTreeConfiguration_7c_get_3a_isBlankLineBetweenPropertiesAndChildren =
+    _TextTreeConfiguration_isBlankLineBetweenPropertiesAndChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_TimedBlock_7c_get_3a_name =
+    _TimedBlock_name;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_TimedBlock_7c_get_3a_start =
+    _TimedBlock_start;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_TimedBlock_7c_get_3a_end =
+    _TimedBlock_end;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_TimedBlock_7c_get_3a_duration =
+    _TimedBlock_duration;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_TimedBlock_7c_call_3a_toString =
+    _TimedBlock_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_UniqueKey_7c_call_3a_toString =
+    _UniqueKey_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_WriteBuffer_7c_call_3a_done =
+    _WriteBuffer_done;
 const _flaxBinding0 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_foundation#type:AbstractNode",
@@ -49765,15 +47556,15 @@ const _flaxBinding5 = FlaxCallbackBinding.signature(
 const _flaxBinding6 = FlaxTypeRef(
   "future",
   item: flaxVoidType,
-  future: FlaxFutureBinding("void:", _future0Adapt),
+  future: FlaxFutureBinding("void:", _flaxAdapters.flaxAdapter14Adapt),
 );
 const _flaxBinding7 = FlaxCallbackBinding(
   [],
   _flaxBinding6,
-  _callback0,
+  _flaxAdapters.flaxAdapter19,
   id: "callback:<>()->future:[void:]",
-  invoke: _callback0Invoke,
-  matches: _callback0Matches,
+  invoke: _flaxAdapters.flaxAdapter19Invoke,
+  matches: _flaxAdapters.flaxAdapter19Matches,
 );
 const _flaxBinding8 = FlaxTypeRef("callback", callback: _flaxBinding7);
 const _flaxBinding9 = FlaxCallbackBinding.signature(
@@ -49797,24 +47588,24 @@ const _flaxBinding11 = FlaxCallbackBinding.signature(
 const _flaxBinding12 = FlaxTypeRef(
   "future",
   item: flaxBoolType,
-  future: FlaxFutureBinding("bool:", _future1Adapt),
+  future: FlaxFutureBinding("bool:", _flaxAdapters.flaxAdapter11Adapt),
 );
 const _flaxBinding13 = FlaxCallbackBinding(
   [],
   _flaxBinding12,
-  _callback1,
+  _flaxAdapters.flaxAdapter17,
   id: "callback:<>()->future:[bool:]",
-  invoke: _callback1Invoke,
-  matches: _callback1Matches,
+  invoke: _flaxAdapters.flaxAdapter17Invoke,
+  matches: _flaxAdapters.flaxAdapter17Matches,
 );
 const _flaxBinding14 = FlaxTypeRef("callback", callback: _flaxBinding13);
 const _flaxBinding15 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("value", flaxBoolType)],
   _flaxBinding6,
-  _callback2,
+  _flaxAdapters.flaxAdapter36,
   id: "callback:<>(p:r:value:bool:)->future:[void:]",
-  invoke: _callback2Invoke,
-  matches: _callback2Matches,
+  invoke: _flaxAdapters.flaxAdapter36Invoke,
+  matches: _flaxAdapters.flaxAdapter36Matches,
 );
 const _flaxBinding16 = FlaxTypeRef("callback", callback: _flaxBinding15);
 const _flaxBinding17 = FlaxCallbackBinding.signature(
@@ -49829,24 +47620,24 @@ const _flaxBinding17 = FlaxCallbackBinding.signature(
 const _flaxBinding18 = FlaxTypeRef(
   "future",
   item: flaxDoubleType,
-  future: FlaxFutureBinding("double:", _future2Adapt),
+  future: FlaxFutureBinding("double:", _flaxAdapters.flaxAdapter12Adapt),
 );
 const _flaxBinding19 = FlaxCallbackBinding(
   [],
   _flaxBinding18,
-  _callback3,
+  _flaxAdapters.flaxAdapter18,
   id: "callback:<>()->future:[double:]",
-  invoke: _callback3Invoke,
-  matches: _callback3Matches,
+  invoke: _flaxAdapters.flaxAdapter18Invoke,
+  matches: _flaxAdapters.flaxAdapter18Matches,
 );
 const _flaxBinding20 = FlaxTypeRef("callback", callback: _flaxBinding19);
 const _flaxBinding21 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("value", flaxDoubleType)],
   _flaxBinding6,
-  _callback4,
+  _flaxAdapters.flaxAdapter37,
   id: "callback:<>(p:r:value:double:)->future:[void:]",
-  invoke: _callback4Invoke,
-  matches: _callback4Matches,
+  invoke: _flaxAdapters.flaxAdapter37Invoke,
+  matches: _flaxAdapters.flaxAdapter37Matches,
 );
 const _flaxBinding22 = FlaxTypeRef("callback", callback: _flaxBinding21);
 const _flaxBinding23 = FlaxCallbackBinding.signature(
@@ -49864,8 +47655,8 @@ const _flaxBinding24 = FlaxTypeRef(
   key: flaxStringType,
   collection: FlaxCollectionBinding(
     "map:[any?:][String:]",
-    _collection0Create,
-    _collection0Matches,
+    _flaxAdapters.flaxAdapter45Create,
+    _flaxAdapters.flaxAdapter45Matches,
   ),
 );
 const _flaxBinding25 = FlaxCallbackBinding.signature(
@@ -49879,24 +47670,24 @@ const _flaxBinding25 = FlaxCallbackBinding.signature(
 const _flaxBinding26 = FlaxTypeRef(
   "future",
   item: flaxStringType,
-  future: FlaxFutureBinding("String:", _future3Adapt),
+  future: FlaxFutureBinding("String:", _flaxAdapters.flaxAdapter2Adapt),
 );
 const _flaxBinding27 = FlaxCallbackBinding(
   [],
   _flaxBinding26,
-  _callback5,
+  _flaxAdapters.flaxAdapter16,
   id: "callback:<>()->future:[String:]",
-  invoke: _callback5Invoke,
-  matches: _callback5Matches,
+  invoke: _flaxAdapters.flaxAdapter16Invoke,
+  matches: _flaxAdapters.flaxAdapter16Matches,
 );
 const _flaxBinding28 = FlaxTypeRef("callback", callback: _flaxBinding27);
 const _flaxBinding29 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("value", flaxStringType)],
   _flaxBinding6,
-  _callback6,
+  _flaxAdapters.flaxAdapter31,
   id: "callback:<>(p:r:value:String:)->future:[void:]",
-  invoke: _callback6Invoke,
-  matches: _callback6Matches,
+  invoke: _flaxAdapters.flaxAdapter31Invoke,
+  matches: _flaxAdapters.flaxAdapter31Matches,
 );
 const _flaxBinding30 = FlaxTypeRef("callback", callback: _flaxBinding29);
 const _flaxBinding31 = FlaxCallbackBinding.signature(
@@ -49914,22 +47705,25 @@ const _flaxBinding32 = FlaxTypeRef(
   key: flaxStringType,
   collection: FlaxCollectionBinding(
     "map:[String:][String:]",
-    _collection1Create,
-    _collection1Matches,
+    _flaxAdapters.flaxAdapter46Create,
+    _flaxAdapters.flaxAdapter46Matches,
   ),
 );
 const _flaxBinding33 = FlaxTypeRef(
   "future",
   item: _flaxBinding24,
-  future: FlaxFutureBinding("map:[any?:][String:]", _future4Adapt),
+  future: FlaxFutureBinding(
+    "map:[any?:][String:]",
+    _flaxAdapters.flaxAdapter0Adapt,
+  ),
 );
 const _flaxBinding34 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("parameters", _flaxBinding32)],
   _flaxBinding33,
-  _callback7,
+  _flaxAdapters.flaxAdapter23,
   id: "callback:<>(p:r:parameters:map:[String:][String:])->future:[map:[any?:][String:]]",
-  invoke: _callback7Invoke,
-  matches: _callback7Matches,
+  invoke: _flaxAdapters.flaxAdapter23Invoke,
+  matches: _flaxAdapters.flaxAdapter23Matches,
 );
 const _flaxBinding35 = FlaxTypeRef("callback", callback: _flaxBinding34);
 const _flaxBinding36 = FlaxCallbackBinding.signature(
@@ -49968,9 +47762,9 @@ const _flaxBinding42 = FlaxTypeRef(
   item: flaxStringType,
   collection: FlaxCollectionBinding(
     "iterable:[String:]",
-    _collection3Create,
-    _collection3Matches,
-    restore: _collection3Restore,
+    _flaxAdapters.flaxAdapter47Create,
+    _flaxAdapters.flaxAdapter47Matches,
+    restore: _flaxAdapters.flaxAdapter47Restore,
   ),
 );
 const _flaxBinding43 = FlaxTypeRef(
@@ -49978,8 +47772,8 @@ const _flaxBinding43 = FlaxTypeRef(
   item: flaxStringType,
   collection: FlaxCollectionBinding(
     "list:[String:]",
-    _collection2Create,
-    _collection2Matches,
+    _flaxAdapters.flaxAdapter48Create,
+    _flaxAdapters.flaxAdapter48Matches,
   ),
   iterable: _flaxBinding42,
 );
@@ -50007,9 +47801,9 @@ const _flaxBinding48 = FlaxTypeRef(
   item: _flaxBinding46,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-    _collection5Create,
-    _collection5Matches,
-    restore: _collection5Restore,
+    _flaxAdapters.flaxAdapter84Create,
+    _flaxAdapters.flaxAdapter84Matches,
+    restore: _flaxAdapters.flaxAdapter84Restore,
   ),
 );
 const _flaxBinding49 = FlaxTypeRef(
@@ -50017,8 +47811,8 @@ const _flaxBinding49 = FlaxTypeRef(
   item: _flaxBinding46,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-    _collection4Create,
-    _collection4Matches,
+    _flaxAdapters.flaxAdapter85Create,
+    _flaxAdapters.flaxAdapter85Matches,
   ),
   iterable: _flaxBinding48,
 );
@@ -50062,8 +47856,8 @@ const _flaxBinding57 = FlaxTypeRef(
   key: flaxStringType,
   collection: FlaxCollectionBinding(
     "map:[String:][String:]",
-    _collection1Create,
-    _collection1Matches,
+    _flaxAdapters.flaxAdapter46Create,
+    _flaxAdapters.flaxAdapter46Matches,
   ),
 );
 const _flaxBinding58 = FlaxCallbackBinding.signature(
@@ -50169,9 +47963,9 @@ const _flaxBinding77 = FlaxTypeRef(
   item: flaxAnyType,
   collection: FlaxCollectionBinding(
     "iterable:[any:]",
-    _collection7Create,
-    _collection7Matches,
-    restore: _collection7Restore,
+    _flaxAdapters.flaxAdapter40Create,
+    _flaxAdapters.flaxAdapter40Matches,
+    restore: _flaxAdapters.flaxAdapter40Restore,
   ),
 );
 const _flaxBinding78 = FlaxTypeRef(
@@ -50372,9 +48166,9 @@ const _flaxBinding114 = FlaxTypeRef(
   item: flaxNullableStringType,
   collection: FlaxCollectionBinding(
     "iterable:[String?:]",
-    _collection14Create,
-    _collection14Matches,
-    restore: _collection14Restore,
+    _flaxAdapters.flaxAdapter50Create,
+    _flaxAdapters.flaxAdapter50Matches,
+    restore: _flaxAdapters.flaxAdapter50Restore,
   ),
 );
 const _flaxBinding115 = FlaxTypeRef(
@@ -50382,8 +48176,8 @@ const _flaxBinding115 = FlaxTypeRef(
   item: flaxNullableStringType,
   collection: FlaxCollectionBinding(
     "list:[String?:]",
-    _collection13Create,
-    _collection13Matches,
+    _flaxAdapters.flaxAdapter51Create,
+    _flaxAdapters.flaxAdapter51Matches,
   ),
   iterable: _flaxBinding114,
 );
@@ -51033,86 +48827,100 @@ const _flaxBinding201 = FlaxObjectBinding(
 const _flaxBinding202 = <FlaxParameter>[
   FlaxParameter("value", flaxBoolType, required: false, defaultValue: false),
 ];
-const _flaxBinding203 = <FlaxParameter>[
+const _flaxBinding203 = FlaxInstanceMethod.plain(
+  _flaxBinding202,
+  flaxVoidType,
+  _BitField_reset,
+);
+const _flaxBinding204 = <FlaxParameter>[
   FlaxParameter.required("length", flaxIntType),
 ];
-const _flaxBinding204 = <FlaxParameter>[
+const _flaxBinding205 = <FlaxParameter>[
   FlaxParameter.required("length", flaxIntType),
   FlaxParameter.required("value", flaxBoolType),
 ];
-const _flaxBinding205 = FlaxCallbackBinding.signature(
+const _flaxBinding206 = FlaxCallbackBinding.signature(
   [FlaxCallbackParameter.plain("value", flaxBoolType, required: false)],
   flaxVoidType,
   id: "callback:<>(p:o:value:bool:)->void:",
 );
-const _flaxBinding206 = FlaxProxyMember("reset", 0, _flaxBinding205);
-const _flaxBinding207 = FlaxGetter.plain(
+const _flaxBinding207 = FlaxProxyMember("reset", 0, _flaxBinding206);
+const _flaxBinding208 = FlaxGetter.plain(
   "length",
   flaxIntType,
   _CachingIterable_length,
 );
-const _flaxBinding208 = FlaxGetter.plain(
+const _flaxBinding209 = FlaxGetter.plain(
   "isEmpty",
   flaxBoolType,
   _CachingIterable_isEmpty,
 );
-const _flaxBinding209 = FlaxGetter.plain(
+const _flaxBinding210 = FlaxGetter.plain(
   "isNotEmpty",
   flaxBoolType,
   _CachingIterable_isNotEmpty,
 );
-const _flaxBinding210 = FlaxTypeRef(
+const _flaxBinding211 = FlaxTypeRef(
   "iterable",
   item: flaxNullableAnyType,
   collection: FlaxCollectionBinding(
     "iterable:[any?:]",
-    _collection21Create,
-    _collection21Matches,
-    restore: _collection21Restore,
+    _flaxAdapters.flaxAdapter42Create,
+    _flaxAdapters.flaxAdapter42Matches,
+    restore: _flaxAdapters.flaxAdapter42Restore,
   ),
 );
-const _flaxBinding211 = <FlaxParameter>[
+const _flaxBinding212 = <FlaxParameter>[
   FlaxParameter.required("count", flaxIntType),
 ];
-const _flaxBinding212 = <FlaxParameter>[
+const _flaxBinding213 = <FlaxParameter>[
   FlaxParameter.required("index", flaxIntType),
 ];
-const _flaxBinding213 = <FlaxParameter>[
-  FlaxParameter("growable", flaxBoolType, required: false, defaultValue: true),
-];
 const _flaxBinding214 = <FlaxParameter>[
-  FlaxParameter("separator", flaxStringType, required: false, defaultValue: ''),
+  FlaxParameter("growable", flaxBoolType, required: false, defaultValue: true),
 ];
 const _flaxBinding215 = FlaxInstanceMethod.shared(
   _flaxBinding41,
+  _CachingIterable_contains,
+);
+const _flaxBinding216 = <FlaxParameter>[
+  FlaxParameter("separator", flaxStringType, required: false, defaultValue: ''),
+];
+const _flaxBinding217 = FlaxInstanceMethod.plain(
+  _flaxBinding216,
+  flaxStringType,
+  _CachingIterable_join,
+);
+const _flaxBinding218 = FlaxInstanceMethod.shared(
+  _flaxBinding41,
   _FlaxProxyDispatch1_super_call_contains,
 );
-const _flaxBinding216 = FlaxInstanceMethod.plain(
-  _flaxBinding214,
+const _flaxBinding219 = FlaxInstanceMethod.plain(
+  _flaxBinding216,
   flaxStringType,
   _FlaxProxyDispatch1_super_call_join,
 );
-const _flaxBinding217 = FlaxInstanceMethod.shared(
+const _flaxBinding220 = FlaxInstanceMethod.shared(
   flaxIntCall,
   _FlaxProxyDispatch1_super_get_length,
 );
-const _flaxBinding218 = FlaxInstanceMethod.shared(
+const _flaxBinding221 = FlaxInstanceMethod.shared(
   flaxBoolCall,
   _FlaxProxyDispatch1_super_get_isEmpty,
 );
-const _flaxBinding219 = FlaxInstanceMethod.shared(
+const _flaxBinding222 = FlaxInstanceMethod.shared(
   flaxBoolCall,
   _FlaxProxyDispatch1_super_get_isNotEmpty,
 );
-const _flaxBinding220 = FlaxTypeRef(
+const _flaxBinding223 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:Iterator",
   dartType: FlaxDartTypes.typeOf<api3.Iterator<Object?>>,
 );
-const _flaxBinding221 = <FlaxParameter>[
-  FlaxParameter.required("_prefillIterator", _flaxBinding220),
+const _flaxBinding224 = <FlaxParameter>[
+  FlaxParameter.required("_prefillIterator", _flaxBinding223),
 ];
-const _flaxBinding222 = FlaxCallbackBinding(
+const _flaxBinding225 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("e", flaxNullableAnyType)],
   flaxNullableAnyType,
   FlaxCallbackAdapters.wrap1<Object?, Object?>,
@@ -51120,23 +48928,23 @@ const _flaxBinding222 = FlaxCallbackBinding(
   invoke: FlaxCallbackAdapters.invoke1<Object?, Object?>,
   matches: FlaxCallbackAdapters.matches1<Object?, Object?>,
 );
-const _flaxBinding223 = FlaxTypeRef("callback", callback: _flaxBinding222);
-const _flaxBinding224 = FlaxCallbackBinding(
+const _flaxBinding226 = FlaxTypeRef("callback", callback: _flaxBinding225);
+const _flaxBinding227 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("element", flaxNullableAnyType)],
-  _flaxBinding210,
+  _flaxBinding211,
   FlaxCallbackAdapters.wrap1<Object?, Iterable<Object?>>,
   id: "callback:<>(p:r:element:any?:)->iterable:[any?:]",
   invoke: FlaxCallbackAdapters.invoke1<Object?, Iterable<Object?>>,
   matches: FlaxCallbackAdapters.matches1<Object?, Iterable<Object?>>,
 );
-const _flaxBinding225 = FlaxTypeRef("callback", callback: _flaxBinding224);
-const _flaxBinding226 = FlaxProxyMember(
+const _flaxBinding228 = FlaxTypeRef("callback", callback: _flaxBinding227);
+const _flaxBinding229 = FlaxProxyMember(
   "contains",
   0,
   _flaxBinding41,
   hasSuper: true,
 );
-const _flaxBinding227 = FlaxCallbackBinding(
+const _flaxBinding230 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter.plain("previousValue", flaxNullableAnyType),
     FlaxCallbackParameter.plain("element", flaxNullableAnyType),
@@ -51147,134 +48955,134 @@ const _flaxBinding227 = FlaxCallbackBinding(
   invoke: FlaxCallbackAdapters.invoke2<Object?, Object?, Object?>,
   matches: FlaxCallbackAdapters.matches2<Object?, Object?, Object?>,
 );
-const _flaxBinding228 = FlaxTypeRef("callback", callback: _flaxBinding227);
-const _flaxBinding229 = FlaxCallbackBinding.signature(
+const _flaxBinding231 = FlaxTypeRef("callback", callback: _flaxBinding230);
+const _flaxBinding232 = FlaxCallbackBinding.signature(
   [FlaxCallbackParameter.plain("separator", flaxStringType, required: false)],
   flaxStringType,
   id: "callback:<>(p:o:separator:String:)->String:",
 );
-const _flaxBinding230 = FlaxProxyMember(
+const _flaxBinding233 = FlaxProxyMember(
   "join",
   0,
-  _flaxBinding229,
+  _flaxBinding232,
   hasSuper: true,
 );
-const _flaxBinding231 = FlaxProxyMember(
+const _flaxBinding234 = FlaxProxyMember(
   "length",
   1,
   flaxIntCall,
   hasSuper: true,
 );
-const _flaxBinding232 = FlaxProxyMember(
+const _flaxBinding235 = FlaxProxyMember(
   "isEmpty",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding233 = FlaxProxyMember(
+const _flaxBinding236 = FlaxProxyMember(
   "isNotEmpty",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding234 = FlaxGetter.plain(
+const _flaxBinding237 = FlaxGetter.plain(
   "sections",
   _flaxBinding43,
   _Category_sections,
 );
-const _flaxBinding235 = <FlaxParameter>[
+const _flaxBinding238 = <FlaxParameter>[
   FlaxParameter.required("sections", _flaxBinding43),
 ];
-const _flaxBinding236 = FlaxProxyMember(
+const _flaxBinding239 = FlaxProxyMember(
   "sections",
   1,
   _flaxBinding44,
   hasSuper: true,
 );
-const _flaxBinding237 = FlaxObjectBinding(
+const _flaxBinding240 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:Category",
-  [_flaxBinding234],
+  [_flaxBinding237],
   {
     "@super:get:sections": FlaxInstanceMethod.shared(
       _flaxBinding44,
       _Category_super_get_sections,
     ),
   },
-  constructors: {"": _flaxBinding235, "@implementation": _flaxBinding235},
+  constructors: {"": _flaxBinding238, "@implementation": _flaxBinding238},
   create: _createCategory,
   matches: _isCategory,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding236]),
+  proxy: FlaxProxyBinding([_flaxBinding239]),
 );
-const _flaxBinding238 = FlaxGetter.plain(
+const _flaxBinding241 = FlaxGetter.plain(
   "hasListeners",
   flaxBoolType,
   _ChangeNotifier_hasListeners,
 );
-const _flaxBinding239 = FlaxInstanceMethod.shared(
+const _flaxBinding242 = FlaxInstanceMethod.shared(
   _flaxBinding45,
   _ChangeNotifier_addListener,
 );
-const _flaxBinding240 = FlaxInstanceMethod.shared(
+const _flaxBinding243 = FlaxInstanceMethod.shared(
   _flaxBinding45,
   _ChangeNotifier_removeListener,
 );
-const _flaxBinding241 = FlaxInstanceMethod.shared(
+const _flaxBinding244 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _ChangeNotifier_dispose,
 );
-const _flaxBinding242 = FlaxInstanceMethod.shared(
+const _flaxBinding245 = FlaxInstanceMethod.shared(
   _flaxBinding45,
   _FlaxProxyDispatch2_super_call_addListener,
 );
-const _flaxBinding243 = FlaxInstanceMethod.shared(
+const _flaxBinding246 = FlaxInstanceMethod.shared(
   _flaxBinding45,
   _FlaxProxyDispatch2_super_call_removeListener,
 );
-const _flaxBinding244 = FlaxInstanceMethod.shared(
+const _flaxBinding247 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _FlaxProxyDispatch2_super_call_dispose,
 );
-const _flaxBinding245 = FlaxInstanceMethod.shared(
+const _flaxBinding248 = FlaxInstanceMethod.shared(
   flaxBoolCall,
   _FlaxProxyDispatch2_super_get_hasListeners,
 );
-const _flaxBinding246 = FlaxProxyMember(
+const _flaxBinding249 = FlaxProxyMember(
   "addListener",
   0,
   _flaxBinding45,
   hasSuper: true,
 );
-const _flaxBinding247 = FlaxProxyMember(
+const _flaxBinding250 = FlaxProxyMember(
   "removeListener",
   0,
   _flaxBinding45,
   hasSuper: true,
 );
-const _flaxBinding248 = FlaxProxyMember(
+const _flaxBinding251 = FlaxProxyMember(
   "dispose",
   0,
   flaxVoidCall,
   hasSuper: true,
 );
-const _flaxBinding249 = FlaxProxyMember(
+const _flaxBinding252 = FlaxProxyMember(
   "hasListeners",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding250 = FlaxObjectBinding(
+const _flaxBinding253 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:ChangeNotifier",
-  [_flaxBinding238],
+  [_flaxBinding241],
   {
-    "addListener": _flaxBinding239,
-    "removeListener": _flaxBinding240,
-    "dispose": _flaxBinding241,
-    "@super:addListener": _flaxBinding242,
-    "@super:removeListener": _flaxBinding243,
-    "@super:dispose": _flaxBinding244,
-    "@super:get:hasListeners": _flaxBinding245,
+    "addListener": _flaxBinding242,
+    "removeListener": _flaxBinding243,
+    "dispose": _flaxBinding244,
+    "@super:addListener": _flaxBinding245,
+    "@super:removeListener": _flaxBinding246,
+    "@super:dispose": _flaxBinding247,
+    "@super:get:hasListeners": _flaxBinding248,
   },
   constructors: {"": _flaxBinding131, "@implementation": _flaxBinding131},
   create: _createChangeNotifier,
@@ -51284,89 +49092,89 @@ const _flaxBinding250 = FlaxObjectBinding(
   disposeMethod: "dispose",
   listenerPairs: {"addListener": "removeListener"},
   proxy: FlaxProxyBinding([
-    _flaxBinding246,
-    _flaxBinding247,
-    _flaxBinding248,
     _flaxBinding249,
+    _flaxBinding250,
+    _flaxBinding251,
+    _flaxBinding252,
   ]),
 );
-const _flaxBinding251 = FlaxGetter.plain(
+const _flaxBinding254 = FlaxGetter.plain(
   "properties",
   _flaxBinding49,
   _DiagnosticPropertiesBuilder_properties,
 );
-const _flaxBinding252 = FlaxGetter.plain(
+const _flaxBinding255 = FlaxGetter.plain(
   "defaultDiagnosticsTreeStyle",
   _flaxBinding51,
   _DiagnosticPropertiesBuilder_defaultDiagnosticsTreeStyle,
 );
-const _flaxBinding253 = FlaxGetter.plain(
+const _flaxBinding256 = FlaxGetter.plain(
   "emptyBodyDescription",
   flaxNullableStringType,
   _DiagnosticPropertiesBuilder_emptyBodyDescription,
 );
-const _flaxBinding254 = FlaxSetter(
+const _flaxBinding257 = FlaxSetter(
   "defaultDiagnosticsTreeStyle",
   _flaxBinding51,
   _DiagnosticPropertiesBuilder_set_defaultDiagnosticsTreeStyle,
 );
-const _flaxBinding255 = FlaxSetter(
+const _flaxBinding258 = FlaxSetter(
   "emptyBodyDescription",
   flaxNullableStringType,
   _DiagnosticPropertiesBuilder_set_emptyBodyDescription,
 );
-const _flaxBinding256 = FlaxInstanceMethod.shared(
+const _flaxBinding259 = FlaxInstanceMethod.shared(
   _flaxBinding47,
   _DiagnosticPropertiesBuilder_add,
 );
-const _flaxBinding257 = FlaxInstanceMethod.shared(
+const _flaxBinding260 = FlaxInstanceMethod.shared(
   flaxNullableStringCall,
   _FlaxProxyDispatch3_super_get_emptyBodyDescription,
 );
-const _flaxBinding258 = <FlaxParameter>[
+const _flaxBinding261 = <FlaxParameter>[
   FlaxParameter.required("properties", _flaxBinding49),
 ];
-const _flaxBinding259 = FlaxProxyMember(
+const _flaxBinding262 = FlaxProxyMember(
   "add",
   0,
   _flaxBinding47,
   hasSuper: true,
 );
-const _flaxBinding260 = FlaxProxyMember(
+const _flaxBinding263 = FlaxProxyMember(
   "properties",
   1,
   _flaxBinding50,
   hasSuper: true,
 );
-const _flaxBinding261 = FlaxProxyMember(
+const _flaxBinding264 = FlaxProxyMember(
   "defaultDiagnosticsTreeStyle",
   1,
   _flaxBinding52,
   hasSuper: true,
 );
-const _flaxBinding262 = FlaxProxyMember(
+const _flaxBinding265 = FlaxProxyMember(
   "emptyBodyDescription",
   1,
   flaxNullableStringCall,
   hasSuper: true,
 );
-const _flaxBinding263 = FlaxProxyMember(
+const _flaxBinding266 = FlaxProxyMember(
   "defaultDiagnosticsTreeStyle",
   2,
   _flaxBinding53,
   hasSuper: true,
 );
-const _flaxBinding264 = FlaxProxyMember(
+const _flaxBinding267 = FlaxProxyMember(
   "emptyBodyDescription",
   2,
   _flaxBinding54,
   hasSuper: true,
 );
-const _flaxBinding265 = FlaxObjectBinding(
+const _flaxBinding268 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:DiagnosticPropertiesBuilder",
-  [_flaxBinding251, _flaxBinding252, _flaxBinding253],
+  [_flaxBinding254, _flaxBinding255, _flaxBinding256],
   {
-    "add": _flaxBinding256,
+    "add": _flaxBinding259,
     "@super:add": FlaxInstanceMethod.shared(
       _flaxBinding47,
       _DiagnosticPropertiesBuilder_super_add,
@@ -51379,7 +49187,7 @@ const _flaxBinding265 = FlaxObjectBinding(
       _flaxBinding52,
       _DiagnosticPropertiesBuilder_super_get_defaultDiagnosticsTreeStyle,
     ),
-    "@super:get:emptyBodyDescription": _flaxBinding257,
+    "@super:get:emptyBodyDescription": _flaxBinding260,
     "@super:set:defaultDiagnosticsTreeStyle": FlaxInstanceMethod.plain(
       [FlaxParameter.required("value", _flaxBinding51)],
       flaxVoidType,
@@ -51393,28 +49201,28 @@ const _flaxBinding265 = FlaxObjectBinding(
   },
   constructors: {
     "": _flaxBinding131,
-    "fromProperties": _flaxBinding258,
+    "fromProperties": _flaxBinding261,
     "@implementation": _flaxBinding131,
-    "@implementation:fromProperties": _flaxBinding258,
+    "@implementation:fromProperties": _flaxBinding261,
   },
   create: _createDiagnosticPropertiesBuilder,
   matches: _isDiagnosticPropertiesBuilder,
-  setters: [_flaxBinding254, _flaxBinding255],
+  setters: [_flaxBinding257, _flaxBinding258],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding259,
-    _flaxBinding260,
-    _flaxBinding261,
     _flaxBinding262,
     _flaxBinding263,
     _flaxBinding264,
+    _flaxBinding265,
+    _flaxBinding266,
+    _flaxBinding267,
   ]),
 );
-const _flaxBinding266 = FlaxInstanceMethod.shared(
+const _flaxBinding269 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _Diagnosticable_toStringShort,
 );
-const _flaxBinding267 = <FlaxParameter>[
+const _flaxBinding270 = <FlaxParameter>[
   FlaxParameter(
     "minLevel",
     _flaxBinding55,
@@ -51422,32 +49230,32 @@ const _flaxBinding267 = <FlaxParameter>[
     defaultValue: api.DiagnosticLevel.info,
   ),
 ];
-const _flaxBinding268 = FlaxInstanceMethod.plain(
-  _flaxBinding267,
+const _flaxBinding271 = FlaxInstanceMethod.plain(
+  _flaxBinding270,
   flaxStringType,
   _Diagnosticable_toString,
 );
-const _flaxBinding269 = <FlaxParameter>[
+const _flaxBinding272 = <FlaxParameter>[
   FlaxParameter("name", flaxNullableStringType, required: false),
   FlaxParameter("style", _flaxBinding70, required: false),
 ];
-const _flaxBinding270 = FlaxInstanceMethod.plain(
-  _flaxBinding269,
+const _flaxBinding273 = FlaxInstanceMethod.plain(
+  _flaxBinding272,
   _flaxBinding46,
   _Diagnosticable_toDiagnosticsNode,
 );
-const _flaxBinding271 = FlaxInstanceMethod.shared(
+const _flaxBinding274 = FlaxInstanceMethod.shared(
   _flaxBinding67,
   _Diagnosticable_debugFillProperties,
 );
-const _flaxBinding272 = FlaxObjectBinding(
+const _flaxBinding275 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:Diagnosticable",
   [],
   {
-    "toStringShort": _flaxBinding266,
-    "toString": _flaxBinding268,
-    "toDiagnosticsNode": _flaxBinding270,
-    "debugFillProperties": _flaxBinding271,
+    "toStringShort": _flaxBinding269,
+    "toString": _flaxBinding271,
+    "toDiagnosticsNode": _flaxBinding273,
+    "debugFillProperties": _flaxBinding274,
   },
   constructors: {},
   create: _createDiagnosticable,
@@ -51455,70 +49263,99 @@ const _flaxBinding272 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding273 = FlaxGetter.plain(
+const _flaxBinding276 = FlaxGetter.plain(
   "name",
   flaxNullableStringType,
-  _DiagnosticableNode_name,
-);
-const _flaxBinding274 = FlaxGetter.plain(
-  "showSeparator",
-  flaxBoolType,
-  _DiagnosticableNode_showSeparator,
-);
-const _flaxBinding275 = FlaxGetter.plain(
-  "level",
-  _flaxBinding55,
-  _DiagnosticableNode_level,
-);
-const _flaxBinding276 = FlaxGetter.plain(
-  "showName",
-  flaxBoolType,
-  _DiagnosticableNode_showName,
+  _DiagnosticsNode_name,
 );
 const _flaxBinding277 = FlaxGetter.plain(
-  "linePrefix",
-  flaxNullableStringType,
-  _DiagnosticableNode_linePrefix,
+  "showSeparator",
+  flaxBoolType,
+  _DiagnosticsNode_showSeparator,
 );
 const _flaxBinding278 = FlaxGetter.plain(
-  "emptyBodyDescription",
-  flaxNullableStringType,
-  _DiagnosticableNode_emptyBodyDescription,
+  "level",
+  _flaxBinding55,
+  _DiagnosticsNode_level,
 );
 const _flaxBinding279 = FlaxGetter.plain(
+  "showName",
+  flaxBoolType,
+  _DiagnosticsNode_showName,
+);
+const _flaxBinding280 = FlaxGetter.plain(
+  "linePrefix",
+  flaxNullableStringType,
+  _DiagnosticsNode_linePrefix,
+);
+const _flaxBinding281 = FlaxGetter.plain(
+  "emptyBodyDescription",
+  flaxNullableStringType,
+  _DiagnosticsNode_emptyBodyDescription,
+);
+const _flaxBinding282 = FlaxGetter.plain(
   "style",
   _flaxBinding51,
   _DiagnosticableNode_style,
 );
-const _flaxBinding280 = FlaxGetter.plain(
+const _flaxBinding283 = FlaxGetter.plain(
   "allowWrap",
   flaxBoolType,
-  _DiagnosticableNode_allowWrap,
-);
-const _flaxBinding281 = FlaxGetter.plain(
-  "allowNameWrap",
-  flaxBoolType,
-  _DiagnosticableNode_allowNameWrap,
-);
-const _flaxBinding282 = FlaxGetter.plain(
-  "allowTruncate",
-  flaxBoolType,
-  _DiagnosticableNode_allowTruncate,
-);
-const _flaxBinding283 = FlaxGetter.plain(
-  "textTreeConfiguration",
-  _flaxBinding64,
-  _DiagnosticableNode_textTreeConfiguration,
+  _DiagnosticsNode_allowWrap,
 );
 const _flaxBinding284 = FlaxGetter.plain(
+  "allowNameWrap",
+  flaxBoolType,
+  _DiagnosticsNode_allowNameWrap,
+);
+const _flaxBinding285 = FlaxGetter.plain(
+  "allowTruncate",
+  flaxBoolType,
+  _DiagnosticsNode_allowTruncate,
+);
+const _flaxBinding286 = FlaxGetter.plain(
+  "textTreeConfiguration",
+  _flaxBinding64,
+  _DiagnosticsNode_textTreeConfiguration,
+);
+const _flaxBinding287 = FlaxGetter.plain(
   "builder",
   _flaxBinding61,
   _DiagnosticableNode_builder,
 );
-const _flaxBinding285 = <FlaxParameter>[
+const _flaxBinding288 = <FlaxParameter>[
   FlaxParameter("parentConfiguration", _flaxBinding64, required: false),
 ];
-const _flaxBinding286 = <FlaxParameter>[
+const _flaxBinding289 = FlaxInstanceMethod.plain(
+  _flaxBinding288,
+  flaxStringType,
+  _DiagnosticableNode_toDescription,
+);
+const _flaxBinding290 = FlaxInstanceMethod.shared(
+  _flaxBinding56,
+  _DiagnosticableNode_isFiltered,
+);
+const _flaxBinding291 = FlaxInstanceMethod.shared(
+  _flaxBinding50,
+  _DiagnosticsNode_getProperties,
+);
+const _flaxBinding292 = FlaxInstanceMethod.shared(
+  _flaxBinding50,
+  _DiagnosticsNode_getChildren,
+);
+const _flaxBinding293 = FlaxInstanceMethod.shared(
+  _flaxBinding58,
+  _DiagnosticsNode_toTimelineArguments,
+);
+const _flaxBinding294 = FlaxInstanceMethod.shared(
+  _flaxBinding60,
+  _DiagnosticableNode_toJsonMap,
+);
+const _flaxBinding295 = FlaxInstanceMethod.shared(
+  _flaxBinding60,
+  _DiagnosticableNode_toJsonMapIterative,
+);
+const _flaxBinding296 = <FlaxParameter>[
   FlaxParameter(
     "minLevel",
     _flaxBinding55,
@@ -51527,7 +49364,12 @@ const _flaxBinding286 = <FlaxParameter>[
   ),
   FlaxParameter("parentConfiguration", _flaxBinding64, required: false),
 ];
-const _flaxBinding287 = <FlaxParameter>[
+const _flaxBinding297 = FlaxInstanceMethod.plain(
+  _flaxBinding296,
+  flaxStringType,
+  _DiagnosticableNode_toString,
+);
+const _flaxBinding298 = <FlaxParameter>[
   FlaxParameter(
     "minLevel",
     _flaxBinding55,
@@ -51544,91 +49386,96 @@ const _flaxBinding287 = <FlaxParameter>[
   FlaxParameter("prefixOtherLines", flaxNullableStringType, required: false),
   FlaxParameter("wrapWidth", flaxIntType, required: false, defaultValue: 65),
 ];
-const _flaxBinding288 = FlaxInstanceMethod.plain(
-  _flaxBinding285,
+const _flaxBinding299 = FlaxInstanceMethod.plain(
+  _flaxBinding298,
+  flaxStringType,
+  _DiagnosticableNode_toStringDeep,
+);
+const _flaxBinding300 = FlaxInstanceMethod.plain(
+  _flaxBinding288,
   flaxStringType,
   _FlaxProxyDispatch4_super_call_toDescription,
 );
-const _flaxBinding289 = FlaxInstanceMethod.shared(
+const _flaxBinding301 = FlaxInstanceMethod.shared(
   _flaxBinding56,
   _FlaxProxyDispatch5_super_call_isFiltered,
 );
-const _flaxBinding290 = FlaxInstanceMethod.shared(
+const _flaxBinding302 = FlaxInstanceMethod.shared(
   _flaxBinding50,
   _FlaxProxyDispatch4_super_call_getProperties,
 );
-const _flaxBinding291 = FlaxInstanceMethod.shared(
+const _flaxBinding303 = FlaxInstanceMethod.shared(
   _flaxBinding50,
   _FlaxProxyDispatch4_super_call_getChildren,
 );
-const _flaxBinding292 = FlaxInstanceMethod.shared(
+const _flaxBinding304 = FlaxInstanceMethod.shared(
   _flaxBinding58,
   _FlaxProxyDispatch5_super_call_toTimelineArguments,
 );
-const _flaxBinding293 = FlaxInstanceMethod.shared(
+const _flaxBinding305 = FlaxInstanceMethod.shared(
   _flaxBinding60,
   _FlaxProxyDispatch5_super_call_toJsonMap,
 );
-const _flaxBinding294 = FlaxInstanceMethod.shared(
+const _flaxBinding306 = FlaxInstanceMethod.shared(
   _flaxBinding60,
   _FlaxProxyDispatch5_super_call_toJsonMapIterative,
 );
-const _flaxBinding295 = FlaxInstanceMethod.plain(
-  _flaxBinding286,
+const _flaxBinding307 = FlaxInstanceMethod.plain(
+  _flaxBinding296,
   flaxStringType,
   _FlaxProxyDispatch5_super_call_toString,
 );
-const _flaxBinding296 = FlaxInstanceMethod.plain(
-  _flaxBinding287,
+const _flaxBinding308 = FlaxInstanceMethod.plain(
+  _flaxBinding298,
   flaxStringType,
   _FlaxProxyDispatch5_super_call_toStringDeep,
 );
-const _flaxBinding297 = FlaxInstanceMethod.shared(
+const _flaxBinding309 = FlaxInstanceMethod.shared(
   flaxNullableStringCall,
   _FlaxProxyDispatch5_super_get_name,
 );
-const _flaxBinding298 = FlaxInstanceMethod.shared(
+const _flaxBinding310 = FlaxInstanceMethod.shared(
   flaxBoolCall,
   _FlaxProxyDispatch5_super_get_showSeparator,
 );
-const _flaxBinding299 = FlaxInstanceMethod.shared(
+const _flaxBinding311 = FlaxInstanceMethod.shared(
   _flaxBinding63,
   _FlaxProxyDispatch5_super_get_level,
 );
-const _flaxBinding300 = FlaxInstanceMethod.shared(
+const _flaxBinding312 = FlaxInstanceMethod.shared(
   flaxBoolCall,
   _FlaxProxyDispatch5_super_get_showName,
 );
-const _flaxBinding301 = FlaxInstanceMethod.shared(
+const _flaxBinding313 = FlaxInstanceMethod.shared(
   flaxNullableStringCall,
   _FlaxProxyDispatch5_super_get_linePrefix,
 );
-const _flaxBinding302 = FlaxInstanceMethod.shared(
+const _flaxBinding314 = FlaxInstanceMethod.shared(
   flaxBoolCall,
   _FlaxProxyDispatch5_super_get_allowWrap,
 );
-const _flaxBinding303 = FlaxInstanceMethod.shared(
+const _flaxBinding315 = FlaxInstanceMethod.shared(
   flaxBoolCall,
   _FlaxProxyDispatch5_super_get_allowNameWrap,
 );
-const _flaxBinding304 = FlaxInstanceMethod.shared(
+const _flaxBinding316 = FlaxInstanceMethod.shared(
   flaxBoolCall,
   _FlaxProxyDispatch5_super_get_allowTruncate,
 );
-const _flaxBinding305 = FlaxInstanceMethod.shared(
+const _flaxBinding317 = FlaxInstanceMethod.shared(
   _flaxBinding65,
   _FlaxProxyDispatch5_super_get_textTreeConfiguration,
 );
-const _flaxBinding306 = FlaxTypeRef(
+const _flaxBinding318 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_foundation#type:Diagnosticable",
 );
-const _flaxBinding307 = <FlaxParameter>[
+const _flaxBinding319 = <FlaxParameter>[
   FlaxParameter("name", flaxNullableStringType, required: false),
-  FlaxParameter.required("value", _flaxBinding306),
+  FlaxParameter.required("value", _flaxBinding318),
   FlaxParameter.required("style", _flaxBinding70),
 ];
-const _flaxBinding308 = FlaxCallbackBinding.signature(
+const _flaxBinding320 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "parentConfiguration",
@@ -51640,49 +49487,49 @@ const _flaxBinding308 = FlaxCallbackBinding.signature(
   flaxStringType,
   id: "callback:<>(n:o:parentConfiguration:object?:flax.core/sdk_foundation#type:TextTreeConfiguration)->String:",
 );
-const _flaxBinding309 = FlaxProxyMember(
+const _flaxBinding321 = FlaxProxyMember(
   "toDescription",
   0,
-  _flaxBinding308,
+  _flaxBinding320,
   hasSuper: true,
 );
-const _flaxBinding310 = FlaxProxyMember(
+const _flaxBinding322 = FlaxProxyMember(
   "isFiltered",
   0,
   _flaxBinding56,
   hasSuper: true,
 );
-const _flaxBinding311 = FlaxProxyMember(
+const _flaxBinding323 = FlaxProxyMember(
   "getProperties",
   0,
   _flaxBinding50,
   hasSuper: true,
 );
-const _flaxBinding312 = FlaxProxyMember(
+const _flaxBinding324 = FlaxProxyMember(
   "getChildren",
   0,
   _flaxBinding50,
   hasSuper: true,
 );
-const _flaxBinding313 = FlaxProxyMember(
+const _flaxBinding325 = FlaxProxyMember(
   "toTimelineArguments",
   0,
   _flaxBinding58,
   hasSuper: true,
 );
-const _flaxBinding314 = FlaxProxyMember(
+const _flaxBinding326 = FlaxProxyMember(
   "toJsonMap",
   0,
   _flaxBinding60,
   hasSuper: true,
 );
-const _flaxBinding315 = FlaxProxyMember(
+const _flaxBinding327 = FlaxProxyMember(
   "toJsonMapIterative",
   0,
   _flaxBinding60,
   hasSuper: true,
 );
-const _flaxBinding316 = FlaxCallbackBinding.signature(
+const _flaxBinding328 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "parentConfiguration",
@@ -51700,13 +49547,13 @@ const _flaxBinding316 = FlaxCallbackBinding.signature(
   flaxStringType,
   id: "callback:<>(n:o:parentConfiguration:object?:flax.core/sdk_foundation#type:TextTreeConfiguration,n:o:minLevel:enum:flax.core/sdk_foundation#type:DiagnosticLevel)->String:",
 );
-const _flaxBinding317 = FlaxProxyMember(
+const _flaxBinding329 = FlaxProxyMember(
   "toString",
   0,
-  _flaxBinding316,
+  _flaxBinding328,
   hasSuper: true,
 );
-const _flaxBinding318 = FlaxCallbackBinding.signature(
+const _flaxBinding330 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "prefixLineOne",
@@ -51742,79 +49589,79 @@ const _flaxBinding318 = FlaxCallbackBinding.signature(
   flaxStringType,
   id: "callback:<>(n:o:prefixLineOne:String:,n:o:prefixOtherLines:String?:,n:o:parentConfiguration:object?:flax.core/sdk_foundation#type:TextTreeConfiguration,n:o:minLevel:enum:flax.core/sdk_foundation#type:DiagnosticLevel,n:o:wrapWidth:int:)->String:",
 );
-const _flaxBinding319 = FlaxProxyMember(
+const _flaxBinding331 = FlaxProxyMember(
   "toStringDeep",
   0,
-  _flaxBinding318,
+  _flaxBinding330,
   hasSuper: true,
 );
-const _flaxBinding320 = FlaxProxyMember(
+const _flaxBinding332 = FlaxProxyMember(
   "builder",
   1,
   _flaxBinding62,
   hasSuper: true,
 );
-const _flaxBinding321 = FlaxProxyMember(
+const _flaxBinding333 = FlaxProxyMember(
   "style",
   1,
   _flaxBinding52,
   hasSuper: true,
 );
-const _flaxBinding322 = FlaxProxyMember(
+const _flaxBinding334 = FlaxProxyMember(
   "name",
   1,
   flaxNullableStringCall,
   hasSuper: true,
 );
-const _flaxBinding323 = FlaxProxyMember(
+const _flaxBinding335 = FlaxProxyMember(
   "showSeparator",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding324 = FlaxProxyMember(
+const _flaxBinding336 = FlaxProxyMember(
   "level",
   1,
   _flaxBinding63,
   hasSuper: true,
 );
-const _flaxBinding325 = FlaxProxyMember(
+const _flaxBinding337 = FlaxProxyMember(
   "showName",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding326 = FlaxProxyMember(
+const _flaxBinding338 = FlaxProxyMember(
   "linePrefix",
   1,
   flaxNullableStringCall,
   hasSuper: true,
 );
-const _flaxBinding327 = FlaxProxyMember(
+const _flaxBinding339 = FlaxProxyMember(
   "allowWrap",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding328 = FlaxProxyMember(
+const _flaxBinding340 = FlaxProxyMember(
   "allowNameWrap",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding329 = FlaxProxyMember(
+const _flaxBinding341 = FlaxProxyMember(
   "allowTruncate",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding330 = FlaxProxyMember(
+const _flaxBinding342 = FlaxProxyMember(
   "textTreeConfiguration",
   1,
   _flaxBinding65,
   hasSuper: true,
 );
-const _flaxBinding331 = <FlaxParameter>[
+const _flaxBinding343 = <FlaxParameter>[
   FlaxParameter("joiner", flaxStringType, required: false, defaultValue: ', '),
   FlaxParameter(
     "minLevel",
@@ -51823,12 +49670,12 @@ const _flaxBinding331 = <FlaxParameter>[
     defaultValue: api.DiagnosticLevel.debug,
   ),
 ];
-const _flaxBinding332 = FlaxInstanceMethod.plain(
-  _flaxBinding331,
+const _flaxBinding344 = FlaxInstanceMethod.plain(
+  _flaxBinding343,
   flaxStringType,
   _DiagnosticableTree_toStringShallow,
 );
-const _flaxBinding333 = <FlaxParameter>[
+const _flaxBinding345 = <FlaxParameter>[
   FlaxParameter(
     "minLevel",
     _flaxBinding55,
@@ -51844,54 +49691,54 @@ const _flaxBinding333 = <FlaxParameter>[
   FlaxParameter("prefixOtherLines", flaxNullableStringType, required: false),
   FlaxParameter("wrapWidth", flaxIntType, required: false, defaultValue: 65),
 ];
-const _flaxBinding334 = FlaxInstanceMethod.plain(
-  _flaxBinding333,
+const _flaxBinding346 = FlaxInstanceMethod.plain(
+  _flaxBinding345,
   flaxStringType,
   _DiagnosticableTree_toStringDeep,
 );
-const _flaxBinding335 = FlaxInstanceMethod.shared(
+const _flaxBinding347 = FlaxInstanceMethod.shared(
   _flaxBinding50,
   _DiagnosticableTree_debugDescribeChildren,
 );
-const _flaxBinding336 = FlaxInstanceMethod.shared(
+const _flaxBinding348 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _FlaxProxyDispatch7_super_call_toStringShort,
 );
-const _flaxBinding337 = FlaxInstanceMethod.plain(
-  _flaxBinding267,
+const _flaxBinding349 = FlaxInstanceMethod.plain(
+  _flaxBinding270,
   flaxStringType,
   _FlaxProxyDispatch7_super_call_toString,
 );
-const _flaxBinding338 = FlaxInstanceMethod.plain(
-  _flaxBinding269,
+const _flaxBinding350 = FlaxInstanceMethod.plain(
+  _flaxBinding272,
   _flaxBinding46,
   _FlaxProxyDispatch7_super_call_toDiagnosticsNode,
 );
-const _flaxBinding339 = FlaxInstanceMethod.shared(
+const _flaxBinding351 = FlaxInstanceMethod.shared(
   _flaxBinding67,
   _FlaxProxyDispatch8_super_call_debugFillProperties,
 );
-const _flaxBinding340 = FlaxInstanceMethod.plain(
-  _flaxBinding331,
+const _flaxBinding352 = FlaxInstanceMethod.plain(
+  _flaxBinding343,
   flaxStringType,
   _FlaxProxyDispatch9_super_call_toStringShallow,
 );
-const _flaxBinding341 = FlaxInstanceMethod.plain(
-  _flaxBinding333,
+const _flaxBinding353 = FlaxInstanceMethod.plain(
+  _flaxBinding345,
   flaxStringType,
   _FlaxProxyDispatch9_super_call_toStringDeep,
 );
-const _flaxBinding342 = FlaxInstanceMethod.shared(
+const _flaxBinding354 = FlaxInstanceMethod.shared(
   _flaxBinding50,
   _FlaxProxyDispatch9_super_call_debugDescribeChildren,
 );
-const _flaxBinding343 = FlaxProxyMember(
+const _flaxBinding355 = FlaxProxyMember(
   "toStringShort",
   0,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding344 = FlaxCallbackBinding.signature(
+const _flaxBinding356 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "minLevel",
@@ -51903,13 +49750,13 @@ const _flaxBinding344 = FlaxCallbackBinding.signature(
   flaxStringType,
   id: "callback:<>(n:o:minLevel:enum:flax.core/sdk_foundation#type:DiagnosticLevel)->String:",
 );
-const _flaxBinding345 = FlaxProxyMember(
+const _flaxBinding357 = FlaxProxyMember(
   "toString",
   0,
-  _flaxBinding344,
+  _flaxBinding356,
   hasSuper: true,
 );
-const _flaxBinding346 = FlaxCallbackBinding.signature(
+const _flaxBinding358 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "name",
@@ -51927,19 +49774,19 @@ const _flaxBinding346 = FlaxCallbackBinding.signature(
   _flaxBinding46,
   id: "callback:<>(n:o:name:String?:,n:o:style:enum?:flax.core/sdk_foundation#type:DiagnosticsTreeStyle)->object:flax.core/sdk_foundation#type:DiagnosticsNode",
 );
-const _flaxBinding347 = FlaxProxyMember(
+const _flaxBinding359 = FlaxProxyMember(
   "toDiagnosticsNode",
   0,
-  _flaxBinding346,
+  _flaxBinding358,
   hasSuper: true,
 );
-const _flaxBinding348 = FlaxProxyMember(
+const _flaxBinding360 = FlaxProxyMember(
   "debugFillProperties",
   0,
   _flaxBinding67,
   hasSuper: true,
 );
-const _flaxBinding349 = FlaxCallbackBinding.signature(
+const _flaxBinding361 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "joiner",
@@ -51957,13 +49804,13 @@ const _flaxBinding349 = FlaxCallbackBinding.signature(
   flaxStringType,
   id: "callback:<>(n:o:joiner:String:,n:o:minLevel:enum:flax.core/sdk_foundation#type:DiagnosticLevel)->String:",
 );
-const _flaxBinding350 = FlaxProxyMember(
+const _flaxBinding362 = FlaxProxyMember(
   "toStringShallow",
   0,
-  _flaxBinding349,
+  _flaxBinding361,
   hasSuper: true,
 );
-const _flaxBinding351 = FlaxCallbackBinding.signature(
+const _flaxBinding363 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "prefixLineOne",
@@ -51993,32 +49840,32 @@ const _flaxBinding351 = FlaxCallbackBinding.signature(
   flaxStringType,
   id: "callback:<>(n:o:prefixLineOne:String:,n:o:prefixOtherLines:String?:,n:o:minLevel:enum:flax.core/sdk_foundation#type:DiagnosticLevel,n:o:wrapWidth:int:)->String:",
 );
-const _flaxBinding352 = FlaxProxyMember(
+const _flaxBinding364 = FlaxProxyMember(
   "toStringDeep",
   0,
-  _flaxBinding351,
+  _flaxBinding363,
   hasSuper: true,
 );
-const _flaxBinding353 = FlaxProxyMember(
+const _flaxBinding365 = FlaxProxyMember(
   "debugDescribeChildren",
   0,
   _flaxBinding50,
   hasSuper: true,
 );
-const _flaxBinding354 = FlaxObjectBinding(
+const _flaxBinding366 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:DiagnosticableTree",
   [],
   {
-    "toStringShallow": _flaxBinding332,
-    "toStringDeep": _flaxBinding334,
-    "debugDescribeChildren": _flaxBinding335,
-    "@super:toStringShort": _flaxBinding336,
-    "@super:toString": _flaxBinding337,
-    "@super:toDiagnosticsNode": _flaxBinding338,
-    "@super:debugFillProperties": _flaxBinding339,
-    "@super:toStringShallow": _flaxBinding340,
-    "@super:toStringDeep": _flaxBinding341,
-    "@super:debugDescribeChildren": _flaxBinding342,
+    "toStringShallow": _flaxBinding344,
+    "toStringDeep": _flaxBinding346,
+    "debugDescribeChildren": _flaxBinding347,
+    "@super:toStringShort": _flaxBinding348,
+    "@super:toString": _flaxBinding349,
+    "@super:toDiagnosticsNode": _flaxBinding350,
+    "@super:debugFillProperties": _flaxBinding351,
+    "@super:toStringShallow": _flaxBinding352,
+    "@super:toStringDeep": _flaxBinding353,
+    "@super:debugDescribeChildren": _flaxBinding354,
   },
   constructors: {"@implementation": _flaxBinding131},
   create: _createDiagnosticableTree,
@@ -52028,18 +49875,18 @@ const _flaxBinding354 = FlaxObjectBinding(
     "dart:core::Object",
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
-  parent: _flaxBinding272,
+  parent: _flaxBinding275,
   proxy: FlaxProxyBinding([
-    _flaxBinding343,
-    _flaxBinding345,
-    _flaxBinding347,
-    _flaxBinding348,
-    _flaxBinding350,
-    _flaxBinding352,
-    _flaxBinding353,
+    _flaxBinding355,
+    _flaxBinding357,
+    _flaxBinding359,
+    _flaxBinding360,
+    _flaxBinding362,
+    _flaxBinding364,
+    _flaxBinding365,
   ]),
 );
-const _flaxBinding355 = FlaxObjectBinding(
+const _flaxBinding367 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:DiagnosticableTreeMixin",
   [],
   {},
@@ -52052,108 +49899,46 @@ const _flaxBinding355 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:DiagnosticableTree",
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
-  parent: _flaxBinding354,
+  parent: _flaxBinding366,
 );
-const _flaxBinding356 = FlaxGetter.plain(
-  "name",
-  flaxNullableStringType,
-  _DiagnosticsNode_name,
-);
-const _flaxBinding357 = FlaxGetter.plain(
-  "showSeparator",
-  flaxBoolType,
-  _DiagnosticsNode_showSeparator,
-);
-const _flaxBinding358 = FlaxGetter.plain(
-  "level",
-  _flaxBinding55,
-  _DiagnosticsNode_level,
-);
-const _flaxBinding359 = FlaxGetter.plain(
-  "showName",
-  flaxBoolType,
-  _DiagnosticsNode_showName,
-);
-const _flaxBinding360 = FlaxGetter.plain(
-  "linePrefix",
-  flaxNullableStringType,
-  _DiagnosticsNode_linePrefix,
-);
-const _flaxBinding361 = FlaxGetter.plain(
-  "emptyBodyDescription",
-  flaxNullableStringType,
-  _DiagnosticsNode_emptyBodyDescription,
-);
-const _flaxBinding362 = FlaxGetter.plain(
+const _flaxBinding368 = FlaxGetter.plain(
   "value",
   flaxNullableAnyType,
   _DiagnosticsNode_value,
 );
-const _flaxBinding363 = FlaxGetter.plain(
+const _flaxBinding369 = FlaxGetter.plain(
   "style",
   _flaxBinding70,
   _DiagnosticsNode_style,
 );
-const _flaxBinding364 = FlaxGetter.plain(
-  "allowWrap",
-  flaxBoolType,
-  _DiagnosticsNode_allowWrap,
-);
-const _flaxBinding365 = FlaxGetter.plain(
-  "allowNameWrap",
-  flaxBoolType,
-  _DiagnosticsNode_allowNameWrap,
-);
-const _flaxBinding366 = FlaxGetter.plain(
-  "allowTruncate",
-  flaxBoolType,
-  _DiagnosticsNode_allowTruncate,
-);
-const _flaxBinding367 = FlaxGetter.plain(
-  "textTreeConfiguration",
-  _flaxBinding64,
-  _DiagnosticsNode_textTreeConfiguration,
-);
-const _flaxBinding368 = FlaxInstanceMethod.plain(
-  _flaxBinding285,
+const _flaxBinding370 = FlaxInstanceMethod.plain(
+  _flaxBinding288,
   flaxStringType,
   _DiagnosticsNode_toDescription,
 );
-const _flaxBinding369 = FlaxInstanceMethod.shared(
+const _flaxBinding371 = FlaxInstanceMethod.shared(
   _flaxBinding56,
   _DiagnosticsNode_isFiltered,
 );
-const _flaxBinding370 = FlaxInstanceMethod.shared(
-  _flaxBinding50,
-  _DiagnosticsNode_getProperties,
-);
-const _flaxBinding371 = FlaxInstanceMethod.shared(
-  _flaxBinding50,
-  _DiagnosticsNode_getChildren,
-);
 const _flaxBinding372 = FlaxInstanceMethod.shared(
-  _flaxBinding58,
-  _DiagnosticsNode_toTimelineArguments,
-);
-const _flaxBinding373 = FlaxInstanceMethod.shared(
   _flaxBinding60,
   _DiagnosticsNode_toJsonMap,
 );
-const _flaxBinding374 = FlaxInstanceMethod.shared(
+const _flaxBinding373 = FlaxInstanceMethod.shared(
   _flaxBinding60,
   _DiagnosticsNode_toJsonMapIterative,
 );
-const _flaxBinding375 = FlaxInstanceMethod.plain(
-  _flaxBinding286,
+const _flaxBinding374 = FlaxInstanceMethod.plain(
+  _flaxBinding296,
   flaxStringType,
   _DiagnosticsNode_toString,
 );
-const _flaxBinding376 = FlaxInstanceMethod.plain(
-  _flaxBinding287,
+const _flaxBinding375 = FlaxInstanceMethod.plain(
+  _flaxBinding298,
   flaxStringType,
   _DiagnosticsNode_toStringDeep,
 );
-const _flaxBinding377 = <FlaxParameter>[
+const _flaxBinding376 = <FlaxParameter>[
   FlaxParameter.required("message", flaxStringType),
   FlaxParameter(
     "style",
@@ -52169,7 +49954,7 @@ const _flaxBinding377 = <FlaxParameter>[
   ),
   FlaxParameter("allowWrap", flaxBoolType, required: false, defaultValue: true),
 ];
-const _flaxBinding378 = <FlaxParameter>[
+const _flaxBinding377 = <FlaxParameter>[
   FlaxParameter.required("name", flaxNullableStringType),
   FlaxParameter("style", _flaxBinding70, required: false),
   FlaxParameter("showName", flaxBoolType, required: false, defaultValue: true),
@@ -52181,134 +49966,134 @@ const _flaxBinding378 = <FlaxParameter>[
   ),
   FlaxParameter("linePrefix", flaxNullableStringType, required: false),
 ];
-const _flaxBinding379 = FlaxProxyMember("toDescription", 0, _flaxBinding308);
-const _flaxBinding380 = FlaxProxyMember("getProperties", 0, _flaxBinding50);
-const _flaxBinding381 = FlaxProxyMember("getChildren", 0, _flaxBinding50);
-const _flaxBinding382 = FlaxProxyMember("value", 1, flaxNullableAnyCall);
-const _flaxBinding383 = FlaxProxyMember(
+const _flaxBinding378 = FlaxProxyMember("toDescription", 0, _flaxBinding320);
+const _flaxBinding379 = FlaxProxyMember("getProperties", 0, _flaxBinding50);
+const _flaxBinding380 = FlaxProxyMember("getChildren", 0, _flaxBinding50);
+const _flaxBinding381 = FlaxProxyMember("value", 1, flaxNullableAnyCall);
+const _flaxBinding382 = FlaxProxyMember(
   "style",
   1,
   _flaxBinding71,
   hasSuper: true,
 );
-const _flaxBinding384 = FlaxObjectBinding(
+const _flaxBinding383 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:DiagnosticsNode",
   [
-    _flaxBinding356,
-    _flaxBinding357,
-    _flaxBinding358,
-    _flaxBinding359,
-    _flaxBinding360,
-    _flaxBinding361,
-    _flaxBinding362,
-    _flaxBinding363,
-    _flaxBinding364,
-    _flaxBinding365,
-    _flaxBinding366,
-    _flaxBinding367,
+    _flaxBinding276,
+    _flaxBinding277,
+    _flaxBinding278,
+    _flaxBinding279,
+    _flaxBinding280,
+    _flaxBinding281,
+    _flaxBinding368,
+    _flaxBinding369,
+    _flaxBinding283,
+    _flaxBinding284,
+    _flaxBinding285,
+    _flaxBinding286,
   ],
   {
-    "toDescription": _flaxBinding368,
-    "isFiltered": _flaxBinding369,
-    "getProperties": _flaxBinding370,
-    "getChildren": _flaxBinding371,
-    "toTimelineArguments": _flaxBinding372,
-    "toJsonMap": _flaxBinding373,
-    "toJsonMapIterative": _flaxBinding374,
-    "toString": _flaxBinding375,
-    "toStringDeep": _flaxBinding376,
-    "@super:isFiltered": _flaxBinding289,
-    "@super:toTimelineArguments": _flaxBinding292,
-    "@super:toJsonMap": _flaxBinding293,
-    "@super:toJsonMapIterative": _flaxBinding294,
-    "@super:toString": _flaxBinding295,
-    "@super:toStringDeep": _flaxBinding296,
-    "@super:get:name": _flaxBinding297,
-    "@super:get:showSeparator": _flaxBinding298,
-    "@super:get:level": _flaxBinding299,
-    "@super:get:showName": _flaxBinding300,
-    "@super:get:linePrefix": _flaxBinding301,
-    "@super:get:emptyBodyDescription": _flaxBinding257,
+    "toDescription": _flaxBinding370,
+    "isFiltered": _flaxBinding371,
+    "getProperties": _flaxBinding291,
+    "getChildren": _flaxBinding292,
+    "toTimelineArguments": _flaxBinding293,
+    "toJsonMap": _flaxBinding372,
+    "toJsonMapIterative": _flaxBinding373,
+    "toString": _flaxBinding374,
+    "toStringDeep": _flaxBinding375,
+    "@super:isFiltered": _flaxBinding301,
+    "@super:toTimelineArguments": _flaxBinding304,
+    "@super:toJsonMap": _flaxBinding305,
+    "@super:toJsonMapIterative": _flaxBinding306,
+    "@super:toString": _flaxBinding307,
+    "@super:toStringDeep": _flaxBinding308,
+    "@super:get:name": _flaxBinding309,
+    "@super:get:showSeparator": _flaxBinding310,
+    "@super:get:level": _flaxBinding311,
+    "@super:get:showName": _flaxBinding312,
+    "@super:get:linePrefix": _flaxBinding313,
+    "@super:get:emptyBodyDescription": _flaxBinding260,
     "@super:get:style": FlaxInstanceMethod.shared(
       _flaxBinding71,
       _DiagnosticsNode_super_get_style,
     ),
-    "@super:get:allowWrap": _flaxBinding302,
-    "@super:get:allowNameWrap": _flaxBinding303,
-    "@super:get:allowTruncate": _flaxBinding304,
-    "@super:get:textTreeConfiguration": _flaxBinding305,
+    "@super:get:allowWrap": _flaxBinding314,
+    "@super:get:allowNameWrap": _flaxBinding315,
+    "@super:get:allowTruncate": _flaxBinding316,
+    "@super:get:textTreeConfiguration": _flaxBinding317,
   },
   constructors: {
-    "message": _flaxBinding377,
-    "@implementation": _flaxBinding378,
+    "message": _flaxBinding376,
+    "@implementation": _flaxBinding377,
   },
   create: _createDiagnosticsNode,
   matches: _isDiagnosticsNode,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding379,
-    _flaxBinding310,
-    _flaxBinding380,
-    _flaxBinding381,
-    _flaxBinding313,
-    _flaxBinding314,
-    _flaxBinding315,
-    _flaxBinding317,
-    _flaxBinding319,
+    _flaxBinding378,
     _flaxBinding322,
-    _flaxBinding323,
-    _flaxBinding324,
+    _flaxBinding379,
+    _flaxBinding380,
     _flaxBinding325,
     _flaxBinding326,
-    _flaxBinding262,
-    _flaxBinding382,
-    _flaxBinding383,
     _flaxBinding327,
-    _flaxBinding328,
     _flaxBinding329,
-    _flaxBinding330,
+    _flaxBinding331,
+    _flaxBinding334,
+    _flaxBinding335,
+    _flaxBinding336,
+    _flaxBinding337,
+    _flaxBinding338,
+    _flaxBinding265,
+    _flaxBinding381,
+    _flaxBinding382,
+    _flaxBinding339,
+    _flaxBinding340,
+    _flaxBinding341,
+    _flaxBinding342,
   ]),
 );
-const _flaxBinding385 = FlaxGetter.plain(
+const _flaxBinding384 = FlaxGetter.plain(
   "value",
   _flaxBinding68,
   _DiagnosticableTreeNode_value,
 );
-const _flaxBinding386 = FlaxGetter.plain(
+const _flaxBinding385 = FlaxGetter.plain(
   "builder",
   _flaxBinding61,
   _DiagnosticableTreeNode_builder,
 );
-const _flaxBinding387 = FlaxGetter.plain(
+const _flaxBinding386 = FlaxGetter.plain(
   "style",
   _flaxBinding51,
   _DiagnosticableTreeNode_style,
 );
-const _flaxBinding388 = <FlaxParameter>[
+const _flaxBinding387 = <FlaxParameter>[
   FlaxParameter("name", flaxNullableStringType, required: false),
   FlaxParameter.required("value", _flaxBinding68),
   FlaxParameter.required("style", _flaxBinding70),
 ];
-const _flaxBinding389 = FlaxProxyMember(
+const _flaxBinding388 = FlaxProxyMember(
   "value",
   1,
   _flaxBinding69,
   hasSuper: true,
 );
-const _flaxBinding390 = FlaxObjectBinding(
+const _flaxBinding389 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:DiagnosticableTreeNode",
-  [_flaxBinding385, _flaxBinding386, _flaxBinding387],
+  [_flaxBinding384, _flaxBinding385, _flaxBinding386],
   {
-    "@super:getProperties": _flaxBinding290,
-    "@super:getChildren": _flaxBinding291,
-    "@super:toDescription": _flaxBinding288,
-    "@super:isFiltered": _flaxBinding289,
-    "@super:toTimelineArguments": _flaxBinding292,
-    "@super:toJsonMap": _flaxBinding293,
-    "@super:toJsonMapIterative": _flaxBinding294,
-    "@super:toStringDeep": _flaxBinding296,
-    "@super:toString": _flaxBinding295,
+    "@super:getProperties": _flaxBinding302,
+    "@super:getChildren": _flaxBinding303,
+    "@super:toDescription": _flaxBinding300,
+    "@super:isFiltered": _flaxBinding301,
+    "@super:toTimelineArguments": _flaxBinding304,
+    "@super:toJsonMap": _flaxBinding305,
+    "@super:toJsonMapIterative": _flaxBinding306,
+    "@super:toStringDeep": _flaxBinding308,
+    "@super:toString": _flaxBinding307,
     "@super:get:value": FlaxInstanceMethod.shared(
       _flaxBinding69,
       _DiagnosticableTreeNode_super_get_value,
@@ -52321,18 +50106,18 @@ const _flaxBinding390 = FlaxObjectBinding(
       _flaxBinding52,
       _DiagnosticableTreeNode_super_get_style,
     ),
-    "@super:get:emptyBodyDescription": _flaxBinding257,
-    "@super:get:name": _flaxBinding297,
-    "@super:get:showSeparator": _flaxBinding298,
-    "@super:get:level": _flaxBinding299,
-    "@super:get:showName": _flaxBinding300,
-    "@super:get:linePrefix": _flaxBinding301,
-    "@super:get:allowWrap": _flaxBinding302,
-    "@super:get:allowNameWrap": _flaxBinding303,
-    "@super:get:allowTruncate": _flaxBinding304,
-    "@super:get:textTreeConfiguration": _flaxBinding305,
+    "@super:get:emptyBodyDescription": _flaxBinding260,
+    "@super:get:name": _flaxBinding309,
+    "@super:get:showSeparator": _flaxBinding310,
+    "@super:get:level": _flaxBinding311,
+    "@super:get:showName": _flaxBinding312,
+    "@super:get:linePrefix": _flaxBinding313,
+    "@super:get:allowWrap": _flaxBinding314,
+    "@super:get:allowNameWrap": _flaxBinding315,
+    "@super:get:allowTruncate": _flaxBinding316,
+    "@super:get:textTreeConfiguration": _flaxBinding317,
   },
-  constructors: {"": _flaxBinding388, "@implementation": _flaxBinding388},
+  constructors: {"": _flaxBinding387, "@implementation": _flaxBinding387},
   create: _createDiagnosticableTreeNode,
   matches: _isDiagnosticableTreeNode,
   setters: [],
@@ -52341,33 +50126,33 @@ const _flaxBinding390 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:DiagnosticsNode",
     "dart:core::Object",
   ],
-  parent: _flaxBinding384,
+  parent: _flaxBinding383,
   proxy: FlaxProxyBinding([
-    _flaxBinding311,
-    _flaxBinding312,
-    _flaxBinding309,
-    _flaxBinding310,
-    _flaxBinding313,
-    _flaxBinding314,
-    _flaxBinding315,
-    _flaxBinding319,
-    _flaxBinding317,
-    _flaxBinding389,
-    _flaxBinding320,
-    _flaxBinding321,
-    _flaxBinding262,
-    _flaxBinding322,
     _flaxBinding323,
     _flaxBinding324,
+    _flaxBinding321,
+    _flaxBinding322,
     _flaxBinding325,
     _flaxBinding326,
     _flaxBinding327,
-    _flaxBinding328,
+    _flaxBinding331,
     _flaxBinding329,
-    _flaxBinding330,
+    _flaxBinding388,
+    _flaxBinding332,
+    _flaxBinding333,
+    _flaxBinding265,
+    _flaxBinding334,
+    _flaxBinding335,
+    _flaxBinding336,
+    _flaxBinding337,
+    _flaxBinding338,
+    _flaxBinding339,
+    _flaxBinding340,
+    _flaxBinding341,
+    _flaxBinding342,
   ]),
 );
-const _flaxBinding391 = <FlaxParameter>[
+const _flaxBinding390 = <FlaxParameter>[
   FlaxParameter("name", flaxNullableStringType, required: false),
   FlaxParameter(
     "style",
@@ -52410,45 +50195,45 @@ const _flaxBinding391 = <FlaxParameter>[
     omitWhenAbsent: true,
   ),
 ];
-const _flaxBinding392 = FlaxProxyMember(
+const _flaxBinding391 = FlaxProxyMember(
   "value",
   1,
   flaxNullableAnyCall,
   hasSuper: true,
 );
-const _flaxBinding393 = FlaxObjectBinding(
+const _flaxBinding392 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:DiagnosticsBlock",
   [],
   {
-    "@super:toDescription": _flaxBinding288,
-    "@super:isFiltered": _flaxBinding289,
-    "@super:getProperties": _flaxBinding290,
-    "@super:getChildren": _flaxBinding291,
-    "@super:toTimelineArguments": _flaxBinding292,
-    "@super:toJsonMap": _flaxBinding293,
-    "@super:toJsonMapIterative": _flaxBinding294,
-    "@super:toString": _flaxBinding295,
-    "@super:toStringDeep": _flaxBinding296,
-    "@super:get:level": _flaxBinding299,
+    "@super:toDescription": _flaxBinding300,
+    "@super:isFiltered": _flaxBinding301,
+    "@super:getProperties": _flaxBinding302,
+    "@super:getChildren": _flaxBinding303,
+    "@super:toTimelineArguments": _flaxBinding304,
+    "@super:toJsonMap": _flaxBinding305,
+    "@super:toJsonMapIterative": _flaxBinding306,
+    "@super:toString": _flaxBinding307,
+    "@super:toStringDeep": _flaxBinding308,
+    "@super:get:level": _flaxBinding311,
     "@super:get:value": FlaxInstanceMethod.shared(
       flaxNullableAnyCall,
       _DiagnosticsBlock_super_get_value,
     ),
-    "@super:get:allowTruncate": _flaxBinding304,
-    "@super:get:name": _flaxBinding297,
-    "@super:get:showSeparator": _flaxBinding298,
-    "@super:get:showName": _flaxBinding300,
-    "@super:get:linePrefix": _flaxBinding301,
-    "@super:get:emptyBodyDescription": _flaxBinding257,
+    "@super:get:allowTruncate": _flaxBinding316,
+    "@super:get:name": _flaxBinding309,
+    "@super:get:showSeparator": _flaxBinding310,
+    "@super:get:showName": _flaxBinding312,
+    "@super:get:linePrefix": _flaxBinding313,
+    "@super:get:emptyBodyDescription": _flaxBinding260,
     "@super:get:style": FlaxInstanceMethod.shared(
       _flaxBinding71,
       _DiagnosticsBlock_super_get_style,
     ),
-    "@super:get:allowWrap": _flaxBinding302,
-    "@super:get:allowNameWrap": _flaxBinding303,
-    "@super:get:textTreeConfiguration": _flaxBinding305,
+    "@super:get:allowWrap": _flaxBinding314,
+    "@super:get:allowNameWrap": _flaxBinding315,
+    "@super:get:textTreeConfiguration": _flaxBinding317,
   },
-  constructors: {"": _flaxBinding391, "@implementation": _flaxBinding391},
+  constructors: {"": _flaxBinding390, "@implementation": _flaxBinding390},
   create: _createDiagnosticsBlock,
   matches: _isDiagnosticsBlock,
   setters: [],
@@ -52456,173 +50241,150 @@ const _flaxBinding393 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:DiagnosticsNode",
     "dart:core::Object",
   ],
-  parent: _flaxBinding384,
+  parent: _flaxBinding383,
   proxy: FlaxProxyBinding([
-    _flaxBinding309,
-    _flaxBinding310,
-    _flaxBinding311,
-    _flaxBinding312,
-    _flaxBinding313,
-    _flaxBinding314,
-    _flaxBinding315,
-    _flaxBinding317,
-    _flaxBinding319,
-    _flaxBinding324,
-    _flaxBinding392,
-    _flaxBinding329,
+    _flaxBinding321,
     _flaxBinding322,
     _flaxBinding323,
+    _flaxBinding324,
     _flaxBinding325,
     _flaxBinding326,
-    _flaxBinding262,
-    _flaxBinding383,
     _flaxBinding327,
-    _flaxBinding328,
-    _flaxBinding330,
+    _flaxBinding329,
+    _flaxBinding331,
+    _flaxBinding336,
+    _flaxBinding391,
+    _flaxBinding341,
+    _flaxBinding334,
+    _flaxBinding335,
+    _flaxBinding337,
+    _flaxBinding338,
+    _flaxBinding265,
+    _flaxBinding382,
+    _flaxBinding339,
+    _flaxBinding340,
+    _flaxBinding342,
   ]),
 );
-const _flaxBinding394 = FlaxGetter.plain(
-  "name",
-  flaxNullableStringType,
-  _DiagnosticsProperty_name,
-);
-const _flaxBinding395 = FlaxGetter.plain(
-  "showSeparator",
-  flaxBoolType,
-  _DiagnosticsProperty_showSeparator,
-);
-const _flaxBinding396 = FlaxGetter.plain(
-  "level",
-  _flaxBinding55,
-  _DiagnosticsProperty_level,
-);
-const _flaxBinding397 = FlaxGetter.plain(
-  "showName",
-  flaxBoolType,
-  _DiagnosticsProperty_showName,
-);
-const _flaxBinding398 = FlaxGetter.plain(
-  "linePrefix",
-  flaxNullableStringType,
-  _DiagnosticsProperty_linePrefix,
-);
-const _flaxBinding399 = FlaxGetter.plain(
-  "emptyBodyDescription",
-  flaxNullableStringType,
-  _DiagnosticsProperty_emptyBodyDescription,
-);
-const _flaxBinding400 = FlaxGetter.plain(
-  "style",
-  _flaxBinding70,
-  _DiagnosticsProperty_style,
-);
-const _flaxBinding401 = FlaxGetter.plain(
-  "allowWrap",
-  flaxBoolType,
-  _DiagnosticsProperty_allowWrap,
-);
-const _flaxBinding402 = FlaxGetter.plain(
-  "allowNameWrap",
-  flaxBoolType,
-  _DiagnosticsProperty_allowNameWrap,
-);
-const _flaxBinding403 = FlaxGetter.plain(
-  "allowTruncate",
-  flaxBoolType,
-  _DiagnosticsProperty_allowTruncate,
-);
-const _flaxBinding404 = FlaxGetter.plain(
-  "textTreeConfiguration",
-  _flaxBinding64,
-  _DiagnosticsProperty_textTreeConfiguration,
-);
-const _flaxBinding405 = FlaxGetter.plain(
+const _flaxBinding393 = FlaxGetter.plain(
   "expandableValue",
   flaxBoolType,
   _DiagnosticsProperty_expandableValue,
 );
-const _flaxBinding406 = FlaxGetter.plain(
+const _flaxBinding394 = FlaxGetter.plain(
   "ifNull",
   flaxNullableStringType,
   _DiagnosticsProperty_ifNull,
 );
-const _flaxBinding407 = FlaxGetter.plain(
+const _flaxBinding395 = FlaxGetter.plain(
   "ifEmpty",
   flaxNullableStringType,
   _DiagnosticsProperty_ifEmpty,
 );
-const _flaxBinding408 = FlaxGetter.plain(
+const _flaxBinding396 = FlaxGetter.plain(
   "tooltip",
   flaxNullableStringType,
   _DiagnosticsProperty_tooltip,
 );
-const _flaxBinding409 = FlaxGetter.plain(
+const _flaxBinding397 = FlaxGetter.plain(
   "missingIfNull",
   flaxBoolType,
   _DiagnosticsProperty_missingIfNull,
 );
-const _flaxBinding410 = FlaxGetter.plain(
+const _flaxBinding398 = FlaxGetter.plain(
   "propertyType",
   flaxTypeType,
   _DiagnosticsProperty_propertyType,
 );
-const _flaxBinding411 = FlaxGetter.plain(
+const _flaxBinding399 = FlaxGetter.plain(
   "exception",
   flaxNullableAnyType,
   _DiagnosticsProperty_exception,
 );
-const _flaxBinding412 = FlaxGetter.plain(
+const _flaxBinding400 = FlaxGetter.plain(
   "defaultValue",
   flaxNullableAnyType,
   _DiagnosticsProperty_defaultValue,
 );
-const _flaxBinding413 = FlaxGetter.plain(
+const _flaxBinding401 = FlaxGetter.plain(
   "isInteresting",
   flaxBoolType,
   _DiagnosticsProperty_isInteresting,
 );
-const _flaxBinding414 = FlaxInstanceMethod.plain(
-  _flaxBinding285,
+const _flaxBinding402 = FlaxInstanceMethod.plain(
+  _flaxBinding288,
+  flaxStringType,
+  _DiagnosticsProperty_toDescription,
+);
+const _flaxBinding403 = FlaxInstanceMethod.shared(
+  _flaxBinding56,
+  _DiagnosticsProperty_isFiltered,
+);
+const _flaxBinding404 = FlaxInstanceMethod.shared(
+  _flaxBinding60,
+  _DiagnosticsProperty_toJsonMap,
+);
+const _flaxBinding405 = FlaxInstanceMethod.shared(
+  _flaxBinding60,
+  _DiagnosticsProperty_toJsonMapIterative,
+);
+const _flaxBinding406 = FlaxInstanceMethod.plain(
+  _flaxBinding296,
+  flaxStringType,
+  _DiagnosticsProperty_toString,
+);
+const _flaxBinding407 = FlaxInstanceMethod.plain(
+  _flaxBinding298,
+  flaxStringType,
+  _DiagnosticsProperty_toStringDeep,
+);
+const _flaxBinding408 = FlaxInstanceMethod.plain(
+  _flaxBinding288,
+  flaxStringType,
+  _DiagnosticsProperty_valueToString,
+);
+const _flaxBinding409 = FlaxInstanceMethod.plain(
+  _flaxBinding288,
   flaxStringType,
   _FlaxProxyDispatch12_super_call_valueToString,
 );
-const _flaxBinding415 = FlaxInstanceMethod.shared(
+const _flaxBinding410 = FlaxInstanceMethod.shared(
   flaxBoolCall,
   _FlaxProxyDispatch12_super_get_expandableValue,
 );
-const _flaxBinding416 = FlaxInstanceMethod.shared(
+const _flaxBinding411 = FlaxInstanceMethod.shared(
   flaxNullableStringCall,
   _FlaxProxyDispatch12_super_get_ifNull,
 );
-const _flaxBinding417 = FlaxInstanceMethod.shared(
+const _flaxBinding412 = FlaxInstanceMethod.shared(
   flaxNullableStringCall,
   _FlaxProxyDispatch12_super_get_ifEmpty,
 );
-const _flaxBinding418 = FlaxInstanceMethod.shared(
+const _flaxBinding413 = FlaxInstanceMethod.shared(
   flaxNullableStringCall,
   _FlaxProxyDispatch12_super_get_tooltip,
 );
-const _flaxBinding419 = FlaxInstanceMethod.shared(
+const _flaxBinding414 = FlaxInstanceMethod.shared(
   flaxBoolCall,
   _FlaxProxyDispatch12_super_get_missingIfNull,
 );
-const _flaxBinding420 = FlaxInstanceMethod.shared(
+const _flaxBinding415 = FlaxInstanceMethod.shared(
   _flaxBinding72,
   _FlaxProxyDispatch12_super_get_propertyType,
 );
-const _flaxBinding421 = FlaxInstanceMethod.shared(
+const _flaxBinding416 = FlaxInstanceMethod.shared(
   flaxNullableAnyCall,
   _FlaxProxyDispatch12_super_get_exception,
 );
-const _flaxBinding422 = FlaxInstanceMethod.shared(
+const _flaxBinding417 = FlaxInstanceMethod.shared(
   flaxNullableAnyCall,
   _FlaxProxyDispatch12_super_get_defaultValue,
 );
-const _flaxBinding423 = FlaxInstanceMethod.shared(
+const _flaxBinding418 = FlaxInstanceMethod.shared(
   flaxBoolCall,
   _FlaxProxyDispatch12_super_get_isInteresting,
 );
-const _flaxBinding424 = <FlaxParameter>[
+const _flaxBinding419 = <FlaxParameter>[
   FlaxParameter.required("name", flaxNullableStringType),
   FlaxParameter.required("value", flaxNullableAnyType),
   FlaxParameter("description", flaxNullableStringType, required: false),
@@ -52675,7 +50437,7 @@ const _flaxBinding424 = <FlaxParameter>[
     defaultValue: api.DiagnosticLevel.info,
   ),
 ];
-const _flaxBinding425 = <FlaxParameter>[
+const _flaxBinding420 = <FlaxParameter>[
   FlaxParameter.required("name", flaxNullableStringType),
   FlaxParameter.required("computeValue", flaxNullableAnyCallbackType),
   FlaxParameter("description", flaxNullableStringType, required: false),
@@ -52727,82 +50489,82 @@ const _flaxBinding425 = <FlaxParameter>[
     defaultValue: api.DiagnosticLevel.info,
   ),
 ];
-const _flaxBinding426 = FlaxProxyMember(
+const _flaxBinding421 = FlaxProxyMember(
   "valueToString",
   0,
-  _flaxBinding308,
+  _flaxBinding320,
   hasSuper: true,
 );
-const _flaxBinding427 = FlaxProxyMember(
+const _flaxBinding422 = FlaxProxyMember(
   "expandableValue",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding428 = FlaxProxyMember(
+const _flaxBinding423 = FlaxProxyMember(
   "ifNull",
   1,
   flaxNullableStringCall,
   hasSuper: true,
 );
-const _flaxBinding429 = FlaxProxyMember(
+const _flaxBinding424 = FlaxProxyMember(
   "ifEmpty",
   1,
   flaxNullableStringCall,
   hasSuper: true,
 );
-const _flaxBinding430 = FlaxProxyMember(
+const _flaxBinding425 = FlaxProxyMember(
   "tooltip",
   1,
   flaxNullableStringCall,
   hasSuper: true,
 );
-const _flaxBinding431 = FlaxProxyMember(
+const _flaxBinding426 = FlaxProxyMember(
   "missingIfNull",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding432 = FlaxProxyMember(
+const _flaxBinding427 = FlaxProxyMember(
   "propertyType",
   1,
   _flaxBinding72,
   hasSuper: true,
 );
-const _flaxBinding433 = FlaxProxyMember(
+const _flaxBinding428 = FlaxProxyMember(
   "exception",
   1,
   flaxNullableAnyCall,
   hasSuper: true,
 );
-const _flaxBinding434 = FlaxProxyMember(
+const _flaxBinding429 = FlaxProxyMember(
   "defaultValue",
   1,
   flaxNullableAnyCall,
   hasSuper: true,
 );
-const _flaxBinding435 = FlaxProxyMember(
+const _flaxBinding430 = FlaxProxyMember(
   "isInteresting",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding436 = FlaxGetter.plain(
+const _flaxBinding431 = FlaxGetter.plain(
   "subtreeDepth",
   flaxIntType,
   _DiagnosticsSerializationDelegate_subtreeDepth,
 );
-const _flaxBinding437 = FlaxGetter.plain(
+const _flaxBinding432 = FlaxGetter.plain(
   "includeProperties",
   flaxBoolType,
   _DiagnosticsSerializationDelegate_includeProperties,
 );
-const _flaxBinding438 = FlaxGetter.plain(
+const _flaxBinding433 = FlaxGetter.plain(
   "expandPropertyValues",
   flaxBoolType,
   _DiagnosticsSerializationDelegate_expandPropertyValues,
 );
-const _flaxBinding439 = <FlaxParameter>[
+const _flaxBinding434 = <FlaxParameter>[
   FlaxParameter.required("node", _flaxBinding46),
   FlaxParameter(
     "fullDetails",
@@ -52811,28 +50573,28 @@ const _flaxBinding439 = <FlaxParameter>[
     defaultValue: true,
   ),
 ];
-const _flaxBinding440 = FlaxInstanceMethod.plain(
-  _flaxBinding439,
+const _flaxBinding435 = FlaxInstanceMethod.plain(
+  _flaxBinding434,
   _flaxBinding24,
   _DiagnosticsSerializationDelegate_additionalNodeProperties,
 );
-const _flaxBinding441 = FlaxInstanceMethod.shared(
+const _flaxBinding436 = FlaxInstanceMethod.shared(
   _flaxBinding73,
   _DiagnosticsSerializationDelegate_filterChildren,
 );
-const _flaxBinding442 = FlaxInstanceMethod.shared(
+const _flaxBinding437 = FlaxInstanceMethod.shared(
   _flaxBinding73,
   _DiagnosticsSerializationDelegate_filterProperties,
 );
-const _flaxBinding443 = FlaxInstanceMethod.shared(
+const _flaxBinding438 = FlaxInstanceMethod.shared(
   _flaxBinding75,
   _DiagnosticsSerializationDelegate_truncateNodesList,
 );
-const _flaxBinding444 = FlaxInstanceMethod.shared(
+const _flaxBinding439 = FlaxInstanceMethod.shared(
   _flaxBinding76,
   _DiagnosticsSerializationDelegate_delegateForNode,
 );
-const _flaxBinding445 = <FlaxParameter>[
+const _flaxBinding440 = <FlaxParameter>[
   FlaxParameter(
     "includeProperties",
     flaxBoolType,
@@ -52846,12 +50608,12 @@ const _flaxBinding445 = <FlaxParameter>[
     omitWhenAbsent: true,
   ),
 ];
-const _flaxBinding446 = FlaxInstanceMethod.plain(
-  _flaxBinding445,
+const _flaxBinding441 = FlaxInstanceMethod.plain(
+  _flaxBinding440,
   _flaxBinding59,
   _DiagnosticsSerializationDelegate_copyWith,
 );
-const _flaxBinding447 = <FlaxParameter>[
+const _flaxBinding442 = <FlaxParameter>[
   FlaxParameter("subtreeDepth", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
     "includeProperties",
@@ -52860,7 +50622,7 @@ const _flaxBinding447 = <FlaxParameter>[
     defaultValue: false,
   ),
 ];
-const _flaxBinding448 = FlaxCallbackBinding.signature(
+const _flaxBinding443 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain("node", _flaxBinding46),
     FlaxCallbackParameter.plain(
@@ -52873,16 +50635,16 @@ const _flaxBinding448 = FlaxCallbackBinding.signature(
   _flaxBinding24,
   id: "callback:<>(p:r:node:object:flax.core/sdk_foundation#type:DiagnosticsNode,n:o:fullDetails:bool:)->map:[any?:][String:]",
 );
-const _flaxBinding449 = FlaxProxyMember(
+const _flaxBinding444 = FlaxProxyMember(
   "additionalNodeProperties",
   0,
-  _flaxBinding448,
+  _flaxBinding443,
 );
-const _flaxBinding450 = FlaxProxyMember("filterChildren", 0, _flaxBinding73);
-const _flaxBinding451 = FlaxProxyMember("filterProperties", 0, _flaxBinding73);
-const _flaxBinding452 = FlaxProxyMember("truncateNodesList", 0, _flaxBinding75);
-const _flaxBinding453 = FlaxProxyMember("delegateForNode", 0, _flaxBinding76);
-const _flaxBinding454 = FlaxCallbackBinding.signature(
+const _flaxBinding445 = FlaxProxyMember("filterChildren", 0, _flaxBinding73);
+const _flaxBinding446 = FlaxProxyMember("filterProperties", 0, _flaxBinding73);
+const _flaxBinding447 = FlaxProxyMember("truncateNodesList", 0, _flaxBinding75);
+const _flaxBinding448 = FlaxProxyMember("delegateForNode", 0, _flaxBinding76);
+const _flaxBinding449 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "subtreeDepth",
@@ -52900,43 +50662,43 @@ const _flaxBinding454 = FlaxCallbackBinding.signature(
   _flaxBinding59,
   id: "callback:<>(n:o:subtreeDepth:int:,n:o:includeProperties:bool:)->object:flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
 );
-const _flaxBinding455 = FlaxProxyMember("copyWith", 0, _flaxBinding454);
-const _flaxBinding456 = FlaxProxyMember("subtreeDepth", 1, flaxIntCall);
-const _flaxBinding457 = FlaxProxyMember("includeProperties", 1, flaxBoolCall);
-const _flaxBinding458 = FlaxProxyMember(
+const _flaxBinding450 = FlaxProxyMember("copyWith", 0, _flaxBinding449);
+const _flaxBinding451 = FlaxProxyMember("subtreeDepth", 1, flaxIntCall);
+const _flaxBinding452 = FlaxProxyMember("includeProperties", 1, flaxBoolCall);
+const _flaxBinding453 = FlaxProxyMember(
   "expandPropertyValues",
   1,
   flaxBoolCall,
 );
-const _flaxBinding459 = FlaxObjectBinding(
+const _flaxBinding454 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:DiagnosticsSerializationDelegate",
-  [_flaxBinding436, _flaxBinding437, _flaxBinding438],
+  [_flaxBinding431, _flaxBinding432, _flaxBinding433],
   {
-    "additionalNodeProperties": _flaxBinding440,
-    "filterChildren": _flaxBinding441,
-    "filterProperties": _flaxBinding442,
-    "truncateNodesList": _flaxBinding443,
-    "delegateForNode": _flaxBinding444,
-    "copyWith": _flaxBinding446,
+    "additionalNodeProperties": _flaxBinding435,
+    "filterChildren": _flaxBinding436,
+    "filterProperties": _flaxBinding437,
+    "truncateNodesList": _flaxBinding438,
+    "delegateForNode": _flaxBinding439,
+    "copyWith": _flaxBinding441,
   },
-  constructors: {"": _flaxBinding447, "@implementation": _flaxBinding131},
+  constructors: {"": _flaxBinding442, "@implementation": _flaxBinding131},
   create: _createDiagnosticsSerializationDelegate,
   matches: _isDiagnosticsSerializationDelegate,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding449,
+    _flaxBinding444,
+    _flaxBinding445,
+    _flaxBinding446,
+    _flaxBinding447,
+    _flaxBinding448,
     _flaxBinding450,
     _flaxBinding451,
     _flaxBinding452,
     _flaxBinding453,
-    _flaxBinding455,
-    _flaxBinding456,
-    _flaxBinding457,
-    _flaxBinding458,
   ]),
 );
-const _flaxBinding460 = <FlaxParameter>[
+const _flaxBinding455 = <FlaxParameter>[
   FlaxParameter.required("name", flaxStringType),
   FlaxParameter.required("stack", _flaxBinding80),
   FlaxParameter("stackFilter", _flaxBinding84, required: false),
@@ -52947,7 +50709,7 @@ const _flaxBinding460 = <FlaxParameter>[
     defaultValue: true,
   ),
 ];
-const _flaxBinding461 = <FlaxParameter>[
+const _flaxBinding456 = <FlaxParameter>[
   FlaxParameter.required("name", flaxStringType),
   FlaxParameter.required("frame", flaxStringType),
   FlaxParameter(
@@ -52957,43 +50719,43 @@ const _flaxBinding461 = <FlaxParameter>[
     defaultValue: true,
   ),
 ];
-const _flaxBinding462 = FlaxObjectBinding(
+const _flaxBinding457 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:DiagnosticsStackTrace",
   [],
   {
-    "@super:getChildren": _flaxBinding291,
-    "@super:getProperties": _flaxBinding290,
-    "@super:toDescription": _flaxBinding288,
-    "@super:isFiltered": _flaxBinding289,
-    "@super:toTimelineArguments": _flaxBinding292,
-    "@super:toJsonMap": _flaxBinding293,
-    "@super:toJsonMapIterative": _flaxBinding294,
-    "@super:toStringDeep": _flaxBinding296,
-    "@super:toString": _flaxBinding295,
-    "@super:get:allowTruncate": _flaxBinding304,
-    "@super:get:level": _flaxBinding299,
+    "@super:getChildren": _flaxBinding303,
+    "@super:getProperties": _flaxBinding302,
+    "@super:toDescription": _flaxBinding300,
+    "@super:isFiltered": _flaxBinding301,
+    "@super:toTimelineArguments": _flaxBinding304,
+    "@super:toJsonMap": _flaxBinding305,
+    "@super:toJsonMapIterative": _flaxBinding306,
+    "@super:toStringDeep": _flaxBinding308,
+    "@super:toString": _flaxBinding307,
+    "@super:get:allowTruncate": _flaxBinding316,
+    "@super:get:level": _flaxBinding311,
     "@super:get:value": FlaxInstanceMethod.shared(
       flaxNullableAnyCall,
       _DiagnosticsStackTrace_super_get_value,
     ),
-    "@super:get:name": _flaxBinding297,
-    "@super:get:showSeparator": _flaxBinding298,
-    "@super:get:showName": _flaxBinding300,
-    "@super:get:linePrefix": _flaxBinding301,
-    "@super:get:emptyBodyDescription": _flaxBinding257,
+    "@super:get:name": _flaxBinding309,
+    "@super:get:showSeparator": _flaxBinding310,
+    "@super:get:showName": _flaxBinding312,
+    "@super:get:linePrefix": _flaxBinding313,
+    "@super:get:emptyBodyDescription": _flaxBinding260,
     "@super:get:style": FlaxInstanceMethod.shared(
       _flaxBinding71,
       _DiagnosticsStackTrace_super_get_style,
     ),
-    "@super:get:allowWrap": _flaxBinding302,
-    "@super:get:allowNameWrap": _flaxBinding303,
-    "@super:get:textTreeConfiguration": _flaxBinding305,
+    "@super:get:allowWrap": _flaxBinding314,
+    "@super:get:allowNameWrap": _flaxBinding315,
+    "@super:get:textTreeConfiguration": _flaxBinding317,
   },
   constructors: {
-    "": _flaxBinding460,
-    "singleFrame": _flaxBinding461,
-    "@implementation": _flaxBinding460,
-    "@implementation:singleFrame": _flaxBinding461,
+    "": _flaxBinding455,
+    "singleFrame": _flaxBinding456,
+    "@implementation": _flaxBinding455,
+    "@implementation:singleFrame": _flaxBinding456,
   },
   create: _createDiagnosticsStackTrace,
   matches: _isDiagnosticsStackTrace,
@@ -53003,126 +50765,126 @@ const _flaxBinding462 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:DiagnosticsNode",
     "dart:core::Object",
   ],
-  parent: _flaxBinding393,
+  parent: _flaxBinding392,
   proxy: FlaxProxyBinding([
-    _flaxBinding312,
-    _flaxBinding311,
-    _flaxBinding309,
-    _flaxBinding310,
-    _flaxBinding313,
-    _flaxBinding314,
-    _flaxBinding315,
-    _flaxBinding319,
-    _flaxBinding317,
-    _flaxBinding329,
     _flaxBinding324,
-    _flaxBinding392,
-    _flaxBinding322,
     _flaxBinding323,
+    _flaxBinding321,
+    _flaxBinding322,
     _flaxBinding325,
     _flaxBinding326,
-    _flaxBinding262,
-    _flaxBinding383,
     _flaxBinding327,
-    _flaxBinding328,
-    _flaxBinding330,
+    _flaxBinding331,
+    _flaxBinding329,
+    _flaxBinding341,
+    _flaxBinding336,
+    _flaxBinding391,
+    _flaxBinding334,
+    _flaxBinding335,
+    _flaxBinding337,
+    _flaxBinding338,
+    _flaxBinding265,
+    _flaxBinding382,
+    _flaxBinding339,
+    _flaxBinding340,
+    _flaxBinding342,
   ]),
 );
-const _flaxBinding463 = FlaxGetter.plain(
+const _flaxBinding458 = FlaxGetter.plain(
   "url",
   flaxStringType,
   _DocumentationIcon_url,
 );
-const _flaxBinding464 = <FlaxParameter>[
+const _flaxBinding459 = <FlaxParameter>[
   FlaxParameter.required("url", flaxStringType),
 ];
-const _flaxBinding465 = FlaxProxyMember(
+const _flaxBinding460 = FlaxProxyMember(
   "url",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding466 = FlaxObjectBinding(
+const _flaxBinding461 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:DocumentationIcon",
-  [_flaxBinding463],
+  [_flaxBinding458],
   {
     "@super:get:url": FlaxInstanceMethod.shared(
       flaxStringCall,
       _DocumentationIcon_super_get_url,
     ),
   },
-  constructors: {"": _flaxBinding464, "@implementation": _flaxBinding464},
+  constructors: {"": _flaxBinding459, "@implementation": _flaxBinding459},
   create: _createDocumentationIcon,
   matches: _isDocumentationIcon,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding465]),
+  proxy: FlaxProxyBinding([_flaxBinding460]),
 );
-const _flaxBinding467 = FlaxGetter.plain(
+const _flaxBinding462 = FlaxGetter.plain(
   "expandableValue",
   flaxBoolType,
   _DoubleProperty_expandableValue,
 );
-const _flaxBinding468 = FlaxGetter.plain(
+const _flaxBinding463 = FlaxGetter.plain(
   "ifNull",
   flaxNullableStringType,
   _DoubleProperty_ifNull,
 );
-const _flaxBinding469 = FlaxGetter.plain(
+const _flaxBinding464 = FlaxGetter.plain(
   "ifEmpty",
   flaxNullableStringType,
   _DoubleProperty_ifEmpty,
 );
-const _flaxBinding470 = FlaxGetter.plain(
+const _flaxBinding465 = FlaxGetter.plain(
   "tooltip",
   flaxNullableStringType,
   _DoubleProperty_tooltip,
 );
-const _flaxBinding471 = FlaxGetter.plain(
+const _flaxBinding466 = FlaxGetter.plain(
   "missingIfNull",
   flaxBoolType,
   _DoubleProperty_missingIfNull,
 );
-const _flaxBinding472 = FlaxGetter.plain(
+const _flaxBinding467 = FlaxGetter.plain(
   "propertyType",
   flaxTypeType,
   _DoubleProperty_propertyType,
 );
-const _flaxBinding473 = FlaxGetter.plain(
+const _flaxBinding468 = FlaxGetter.plain(
   "value",
   flaxNullableDoubleType,
   _DoubleProperty_value,
 );
-const _flaxBinding474 = FlaxGetter.plain(
+const _flaxBinding469 = FlaxGetter.plain(
   "exception",
   flaxNullableAnyType,
   _DoubleProperty_exception,
 );
-const _flaxBinding475 = FlaxGetter.plain(
+const _flaxBinding470 = FlaxGetter.plain(
   "defaultValue",
   flaxNullableAnyType,
   _DoubleProperty_defaultValue,
 );
-const _flaxBinding476 = FlaxGetter.plain(
+const _flaxBinding471 = FlaxGetter.plain(
   "isInteresting",
   flaxBoolType,
   _DoubleProperty_isInteresting,
 );
-const _flaxBinding477 = FlaxGetter.plain(
+const _flaxBinding472 = FlaxGetter.plain(
   "unit",
   flaxNullableStringType,
   _DoubleProperty_unit,
 );
-const _flaxBinding478 = FlaxInstanceMethod.plain(
-  _flaxBinding285,
+const _flaxBinding473 = FlaxInstanceMethod.plain(
+  _flaxBinding288,
   flaxStringType,
   _DoubleProperty_valueToString,
 );
-const _flaxBinding479 = FlaxInstanceMethod.shared(
+const _flaxBinding474 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _DoubleProperty_numberToString,
 );
-const _flaxBinding480 = <FlaxParameter>[
+const _flaxBinding475 = <FlaxParameter>[
   FlaxParameter.required("name", flaxStringType),
   FlaxParameter.required("value", flaxNullableDoubleType),
   FlaxParameter("ifNull", flaxNullableStringType, required: false),
@@ -53148,7 +50910,7 @@ const _flaxBinding480 = <FlaxParameter>[
     defaultValue: api.DiagnosticLevel.info,
   ),
 ];
-const _flaxBinding481 = FlaxCallbackBinding(
+const _flaxBinding476 = FlaxCallbackBinding(
   [],
   flaxNullableDoubleType,
   FlaxCallbackAdapters.wrap0<double?>,
@@ -53156,10 +50918,10 @@ const _flaxBinding481 = FlaxCallbackBinding(
   invoke: FlaxCallbackAdapters.invoke0<double?>,
   matches: FlaxCallbackAdapters.matches0<double?>,
 );
-const _flaxBinding482 = FlaxTypeRef("callback", callback: _flaxBinding481);
-const _flaxBinding483 = <FlaxParameter>[
+const _flaxBinding477 = FlaxTypeRef("callback", callback: _flaxBinding476);
+const _flaxBinding478 = <FlaxParameter>[
   FlaxParameter.required("name", flaxStringType),
-  FlaxParameter.required("computeValue", _flaxBinding482),
+  FlaxParameter.required("computeValue", _flaxBinding477),
   FlaxParameter("ifNull", flaxNullableStringType, required: false),
   FlaxParameter("showName", flaxBoolType, required: false, defaultValue: true),
   FlaxParameter("unit", flaxNullableStringType, required: false),
@@ -53177,52 +50939,52 @@ const _flaxBinding483 = <FlaxParameter>[
     defaultValue: api.DiagnosticLevel.info,
   ),
 ];
-const _flaxBinding484 = FlaxProxyMember(
+const _flaxBinding479 = FlaxProxyMember(
   "numberToString",
   0,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding485 = FlaxProxyMember(
+const _flaxBinding480 = FlaxProxyMember(
   "unit",
   1,
   flaxNullableStringCall,
   hasSuper: true,
 );
-const _flaxBinding486 = FlaxProxyMember(
+const _flaxBinding481 = FlaxProxyMember(
   "value",
   1,
   flaxNullableDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding487 = FlaxObjectBinding(
+const _flaxBinding482 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:DoubleProperty",
   [
+    _flaxBinding462,
+    _flaxBinding463,
+    _flaxBinding464,
+    _flaxBinding465,
+    _flaxBinding466,
     _flaxBinding467,
     _flaxBinding468,
     _flaxBinding469,
     _flaxBinding470,
     _flaxBinding471,
     _flaxBinding472,
-    _flaxBinding473,
-    _flaxBinding474,
-    _flaxBinding475,
-    _flaxBinding476,
-    _flaxBinding477,
   ],
   {
-    "valueToString": _flaxBinding478,
-    "numberToString": _flaxBinding479,
-    "@super:toJsonMap": _flaxBinding293,
-    "@super:valueToString": _flaxBinding414,
-    "@super:toDescription": _flaxBinding288,
-    "@super:getProperties": _flaxBinding290,
-    "@super:getChildren": _flaxBinding291,
-    "@super:isFiltered": _flaxBinding289,
-    "@super:toTimelineArguments": _flaxBinding292,
-    "@super:toJsonMapIterative": _flaxBinding294,
-    "@super:toStringDeep": _flaxBinding296,
-    "@super:toString": _flaxBinding295,
+    "valueToString": _flaxBinding473,
+    "numberToString": _flaxBinding474,
+    "@super:toJsonMap": _flaxBinding305,
+    "@super:valueToString": _flaxBinding409,
+    "@super:toDescription": _flaxBinding300,
+    "@super:getProperties": _flaxBinding302,
+    "@super:getChildren": _flaxBinding303,
+    "@super:isFiltered": _flaxBinding301,
+    "@super:toTimelineArguments": _flaxBinding304,
+    "@super:toJsonMapIterative": _flaxBinding306,
+    "@super:toStringDeep": _flaxBinding308,
+    "@super:toString": _flaxBinding307,
     "@super:numberToString": FlaxInstanceMethod.shared(
       flaxStringCall,
       _DoubleProperty_super_numberToString,
@@ -53231,26 +50993,26 @@ const _flaxBinding487 = FlaxObjectBinding(
       flaxNullableStringCall,
       _DoubleProperty_super_get_unit,
     ),
-    "@super:get:expandableValue": _flaxBinding415,
-    "@super:get:allowWrap": _flaxBinding302,
-    "@super:get:allowNameWrap": _flaxBinding303,
-    "@super:get:ifNull": _flaxBinding416,
-    "@super:get:ifEmpty": _flaxBinding417,
-    "@super:get:tooltip": _flaxBinding418,
-    "@super:get:missingIfNull": _flaxBinding419,
-    "@super:get:propertyType": _flaxBinding420,
+    "@super:get:expandableValue": _flaxBinding410,
+    "@super:get:allowWrap": _flaxBinding314,
+    "@super:get:allowNameWrap": _flaxBinding315,
+    "@super:get:ifNull": _flaxBinding411,
+    "@super:get:ifEmpty": _flaxBinding412,
+    "@super:get:tooltip": _flaxBinding413,
+    "@super:get:missingIfNull": _flaxBinding414,
+    "@super:get:propertyType": _flaxBinding415,
     "@super:get:value": FlaxInstanceMethod.shared(
       flaxNullableDoubleCall,
       _DoubleProperty_super_get_value,
     ),
-    "@super:get:exception": _flaxBinding421,
-    "@super:get:defaultValue": _flaxBinding422,
-    "@super:get:isInteresting": _flaxBinding423,
-    "@super:get:level": _flaxBinding299,
-    "@super:get:name": _flaxBinding297,
-    "@super:get:showSeparator": _flaxBinding298,
-    "@super:get:showName": _flaxBinding300,
-    "@super:get:linePrefix": _flaxBinding301,
+    "@super:get:exception": _flaxBinding416,
+    "@super:get:defaultValue": _flaxBinding417,
+    "@super:get:isInteresting": _flaxBinding418,
+    "@super:get:level": _flaxBinding311,
+    "@super:get:name": _flaxBinding309,
+    "@super:get:showSeparator": _flaxBinding310,
+    "@super:get:showName": _flaxBinding312,
+    "@super:get:linePrefix": _flaxBinding313,
     "@super:get:emptyBodyDescription": FlaxInstanceMethod.shared(
       flaxNullableStringCall,
       _DoubleProperty_super_get_emptyBodyDescription,
@@ -53259,14 +51021,14 @@ const _flaxBinding487 = FlaxObjectBinding(
       _flaxBinding71,
       _DoubleProperty_super_get_style,
     ),
-    "@super:get:allowTruncate": _flaxBinding304,
-    "@super:get:textTreeConfiguration": _flaxBinding305,
+    "@super:get:allowTruncate": _flaxBinding316,
+    "@super:get:textTreeConfiguration": _flaxBinding317,
   },
   constructors: {
-    "": _flaxBinding480,
-    "lazy": _flaxBinding483,
-    "@implementation": _flaxBinding480,
-    "@implementation:lazy": _flaxBinding483,
+    "": _flaxBinding475,
+    "lazy": _flaxBinding478,
+    "@implementation": _flaxBinding475,
+    "@implementation:lazy": _flaxBinding478,
   },
   create: _createDoubleProperty,
   matches: _isDoubleProperty,
@@ -53277,44 +51039,44 @@ const _flaxBinding487 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:DiagnosticsNode",
     "dart:core::Object",
   ],
-  parent: _flaxBinding384,
+  parent: _flaxBinding383,
   proxy: FlaxProxyBinding([
-    _flaxBinding314,
-    _flaxBinding426,
-    _flaxBinding309,
-    _flaxBinding311,
-    _flaxBinding312,
-    _flaxBinding310,
-    _flaxBinding313,
-    _flaxBinding315,
-    _flaxBinding319,
-    _flaxBinding317,
-    _flaxBinding484,
-    _flaxBinding485,
-    _flaxBinding427,
+    _flaxBinding326,
+    _flaxBinding421,
+    _flaxBinding321,
+    _flaxBinding323,
+    _flaxBinding324,
+    _flaxBinding322,
+    _flaxBinding325,
     _flaxBinding327,
-    _flaxBinding328,
+    _flaxBinding331,
+    _flaxBinding329,
+    _flaxBinding479,
+    _flaxBinding480,
+    _flaxBinding422,
+    _flaxBinding339,
+    _flaxBinding340,
+    _flaxBinding423,
+    _flaxBinding424,
+    _flaxBinding425,
+    _flaxBinding426,
+    _flaxBinding427,
+    _flaxBinding481,
     _flaxBinding428,
     _flaxBinding429,
     _flaxBinding430,
-    _flaxBinding431,
-    _flaxBinding432,
-    _flaxBinding486,
-    _flaxBinding433,
-    _flaxBinding434,
-    _flaxBinding435,
-    _flaxBinding324,
-    _flaxBinding322,
-    _flaxBinding323,
-    _flaxBinding325,
-    _flaxBinding326,
-    _flaxBinding262,
-    _flaxBinding383,
-    _flaxBinding329,
-    _flaxBinding330,
+    _flaxBinding336,
+    _flaxBinding334,
+    _flaxBinding335,
+    _flaxBinding337,
+    _flaxBinding338,
+    _flaxBinding265,
+    _flaxBinding382,
+    _flaxBinding341,
+    _flaxBinding342,
   ]),
 );
-const _flaxBinding488 = FlaxObjectBinding(
+const _flaxBinding483 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:Endian",
   [],
   {},
@@ -53324,114 +51086,91 @@ const _flaxBinding488 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding489 = FlaxGetter.plain(
+const _flaxBinding484 = FlaxGetter.plain(
   "expandableValue",
   flaxBoolType,
   _EnumProperty_expandableValue,
 );
-const _flaxBinding490 = FlaxGetter.plain(
-  "allowWrap",
-  flaxBoolType,
-  _EnumProperty_allowWrap,
-);
-const _flaxBinding491 = FlaxGetter.plain(
-  "allowNameWrap",
-  flaxBoolType,
-  _EnumProperty_allowNameWrap,
-);
-const _flaxBinding492 = FlaxGetter.plain(
+const _flaxBinding485 = FlaxGetter.plain(
   "ifNull",
   flaxNullableStringType,
   _EnumProperty_ifNull,
 );
-const _flaxBinding493 = FlaxGetter.plain(
+const _flaxBinding486 = FlaxGetter.plain(
   "ifEmpty",
   flaxNullableStringType,
   _EnumProperty_ifEmpty,
 );
-const _flaxBinding494 = FlaxGetter.plain(
+const _flaxBinding487 = FlaxGetter.plain(
   "tooltip",
   flaxNullableStringType,
   _EnumProperty_tooltip,
 );
-const _flaxBinding495 = FlaxGetter.plain(
+const _flaxBinding488 = FlaxGetter.plain(
   "missingIfNull",
   flaxBoolType,
   _EnumProperty_missingIfNull,
 );
-const _flaxBinding496 = FlaxGetter.plain(
+const _flaxBinding489 = FlaxGetter.plain(
   "propertyType",
   flaxTypeType,
   _EnumProperty_propertyType,
 );
-const _flaxBinding497 = FlaxGetter.plain(
+const _flaxBinding490 = FlaxGetter.plain(
   "exception",
   flaxNullableAnyType,
   _EnumProperty_exception,
 );
-const _flaxBinding498 = FlaxGetter.plain(
+const _flaxBinding491 = FlaxGetter.plain(
   "defaultValue",
   flaxNullableAnyType,
   _EnumProperty_defaultValue,
 );
-const _flaxBinding499 = FlaxGetter.plain(
+const _flaxBinding492 = FlaxGetter.plain(
   "isInteresting",
   flaxBoolType,
   _EnumProperty_isInteresting,
 );
-const _flaxBinding500 = FlaxGetter.plain(
-  "level",
-  _flaxBinding55,
-  _EnumProperty_level,
+const _flaxBinding493 = FlaxInstanceMethod.shared(
+  _flaxBinding60,
+  _EnumProperty_toJsonMap,
 );
-const _flaxBinding501 = FlaxGetter.plain(
-  "name",
-  flaxNullableStringType,
-  _EnumProperty_name,
+const _flaxBinding494 = FlaxInstanceMethod.plain(
+  _flaxBinding288,
+  flaxStringType,
+  _EnumProperty_valueToString,
 );
-const _flaxBinding502 = FlaxGetter.plain(
-  "showSeparator",
-  flaxBoolType,
-  _EnumProperty_showSeparator,
+const _flaxBinding495 = FlaxInstanceMethod.plain(
+  _flaxBinding288,
+  flaxStringType,
+  _EnumProperty_toDescription,
 );
-const _flaxBinding503 = FlaxGetter.plain(
-  "showName",
-  flaxBoolType,
-  _EnumProperty_showName,
+const _flaxBinding496 = FlaxInstanceMethod.shared(
+  _flaxBinding56,
+  _EnumProperty_isFiltered,
 );
-const _flaxBinding504 = FlaxGetter.plain(
-  "linePrefix",
-  flaxNullableStringType,
-  _EnumProperty_linePrefix,
+const _flaxBinding497 = FlaxInstanceMethod.shared(
+  _flaxBinding60,
+  _EnumProperty_toJsonMapIterative,
 );
-const _flaxBinding505 = FlaxGetter.plain(
-  "emptyBodyDescription",
-  flaxNullableStringType,
-  _EnumProperty_emptyBodyDescription,
+const _flaxBinding498 = FlaxInstanceMethod.plain(
+  _flaxBinding298,
+  flaxStringType,
+  _EnumProperty_toStringDeep,
 );
-const _flaxBinding506 = FlaxGetter.plain(
-  "style",
-  _flaxBinding70,
-  _EnumProperty_style,
+const _flaxBinding499 = FlaxInstanceMethod.plain(
+  _flaxBinding296,
+  flaxStringType,
+  _EnumProperty_toString,
 );
-const _flaxBinding507 = FlaxGetter.plain(
-  "allowTruncate",
-  flaxBoolType,
-  _EnumProperty_allowTruncate,
-);
-const _flaxBinding508 = FlaxGetter.plain(
-  "textTreeConfiguration",
-  _flaxBinding64,
-  _EnumProperty_textTreeConfiguration,
-);
-const _flaxBinding509 = FlaxTypeRef(
+const _flaxBinding500 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:Enum",
   nullable: true,
 );
-const _flaxBinding510 = <FlaxParameter>[
+const _flaxBinding501 = <FlaxParameter>[
   FlaxParameter.required("name", flaxStringType),
-  FlaxParameter.required("value", _flaxBinding509),
+  FlaxParameter.required("value", _flaxBinding500),
   FlaxParameter(
     "defaultValue",
     flaxNullableAnyType,
@@ -53445,116 +51184,116 @@ const _flaxBinding510 = <FlaxParameter>[
     defaultValue: api.DiagnosticLevel.info,
   ),
 ];
-const _flaxBinding511 = FlaxGetter.plain(
+const _flaxBinding502 = FlaxGetter.plain(
   "expandableValue",
   flaxBoolType,
   _ErrorDescription_expandableValue,
 );
-const _flaxBinding512 = FlaxGetter.plain(
+const _flaxBinding503 = FlaxGetter.plain(
   "ifNull",
   flaxNullableStringType,
   _ErrorDescription_ifNull,
 );
-const _flaxBinding513 = FlaxGetter.plain(
+const _flaxBinding504 = FlaxGetter.plain(
   "ifEmpty",
   flaxNullableStringType,
   _ErrorDescription_ifEmpty,
 );
-const _flaxBinding514 = FlaxGetter.plain(
+const _flaxBinding505 = FlaxGetter.plain(
   "tooltip",
   flaxNullableStringType,
   _ErrorDescription_tooltip,
 );
-const _flaxBinding515 = FlaxGetter.plain(
+const _flaxBinding506 = FlaxGetter.plain(
   "missingIfNull",
   flaxBoolType,
   _ErrorDescription_missingIfNull,
 );
-const _flaxBinding516 = FlaxGetter.plain(
+const _flaxBinding507 = FlaxGetter.plain(
   "propertyType",
   flaxTypeType,
   _ErrorDescription_propertyType,
 );
-const _flaxBinding517 = FlaxGetter.plain(
+const _flaxBinding508 = FlaxGetter.plain(
   "value",
   _flaxBinding78,
   _ErrorDescription_value,
 );
-const _flaxBinding518 = FlaxGetter.plain(
+const _flaxBinding509 = FlaxGetter.plain(
   "exception",
   flaxNullableAnyType,
   _ErrorDescription_exception,
 );
-const _flaxBinding519 = FlaxGetter.plain(
+const _flaxBinding510 = FlaxGetter.plain(
   "defaultValue",
   flaxNullableAnyType,
   _ErrorDescription_defaultValue,
 );
-const _flaxBinding520 = FlaxGetter.plain(
+const _flaxBinding511 = FlaxGetter.plain(
   "isInteresting",
   flaxBoolType,
   _ErrorDescription_isInteresting,
 );
-const _flaxBinding521 = FlaxInstanceMethod.plain(
-  _flaxBinding285,
+const _flaxBinding512 = FlaxInstanceMethod.plain(
+  _flaxBinding288,
   flaxStringType,
   _ErrorDescription_valueToString,
 );
-const _flaxBinding522 = <FlaxParameter>[
+const _flaxBinding513 = <FlaxParameter>[
   FlaxParameter.required("message", flaxStringType),
 ];
-const _flaxBinding523 = FlaxProxyMember(
+const _flaxBinding514 = FlaxProxyMember(
   "value",
   1,
   _flaxBinding79,
   hasSuper: true,
 );
-const _flaxBinding524 = FlaxObjectBinding(
+const _flaxBinding515 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:ErrorDescription",
   [
+    _flaxBinding502,
+    _flaxBinding503,
+    _flaxBinding504,
+    _flaxBinding505,
+    _flaxBinding506,
+    _flaxBinding507,
+    _flaxBinding508,
+    _flaxBinding509,
+    _flaxBinding510,
     _flaxBinding511,
-    _flaxBinding512,
-    _flaxBinding513,
-    _flaxBinding514,
-    _flaxBinding515,
-    _flaxBinding516,
-    _flaxBinding517,
-    _flaxBinding518,
-    _flaxBinding519,
-    _flaxBinding520,
   ],
   {
-    "valueToString": _flaxBinding521,
-    "@super:toJsonMap": _flaxBinding293,
-    "@super:valueToString": _flaxBinding414,
-    "@super:toDescription": _flaxBinding288,
-    "@super:getProperties": _flaxBinding290,
-    "@super:getChildren": _flaxBinding291,
-    "@super:isFiltered": _flaxBinding289,
-    "@super:toTimelineArguments": _flaxBinding292,
-    "@super:toJsonMapIterative": _flaxBinding294,
-    "@super:toStringDeep": _flaxBinding296,
-    "@super:toString": _flaxBinding295,
+    "valueToString": _flaxBinding512,
+    "@super:toJsonMap": _flaxBinding305,
+    "@super:valueToString": _flaxBinding409,
+    "@super:toDescription": _flaxBinding300,
+    "@super:getProperties": _flaxBinding302,
+    "@super:getChildren": _flaxBinding303,
+    "@super:isFiltered": _flaxBinding301,
+    "@super:toTimelineArguments": _flaxBinding304,
+    "@super:toJsonMapIterative": _flaxBinding306,
+    "@super:toStringDeep": _flaxBinding308,
+    "@super:toString": _flaxBinding307,
     "@super:get:value": FlaxInstanceMethod.shared(
       _flaxBinding79,
       _ErrorDescription_super_get_value,
     ),
-    "@super:get:expandableValue": _flaxBinding415,
-    "@super:get:allowWrap": _flaxBinding302,
-    "@super:get:allowNameWrap": _flaxBinding303,
-    "@super:get:ifNull": _flaxBinding416,
-    "@super:get:ifEmpty": _flaxBinding417,
-    "@super:get:tooltip": _flaxBinding418,
-    "@super:get:missingIfNull": _flaxBinding419,
-    "@super:get:propertyType": _flaxBinding420,
-    "@super:get:exception": _flaxBinding421,
-    "@super:get:defaultValue": _flaxBinding422,
-    "@super:get:isInteresting": _flaxBinding423,
-    "@super:get:level": _flaxBinding299,
-    "@super:get:name": _flaxBinding297,
-    "@super:get:showSeparator": _flaxBinding298,
-    "@super:get:showName": _flaxBinding300,
-    "@super:get:linePrefix": _flaxBinding301,
+    "@super:get:expandableValue": _flaxBinding410,
+    "@super:get:allowWrap": _flaxBinding314,
+    "@super:get:allowNameWrap": _flaxBinding315,
+    "@super:get:ifNull": _flaxBinding411,
+    "@super:get:ifEmpty": _flaxBinding412,
+    "@super:get:tooltip": _flaxBinding413,
+    "@super:get:missingIfNull": _flaxBinding414,
+    "@super:get:propertyType": _flaxBinding415,
+    "@super:get:exception": _flaxBinding416,
+    "@super:get:defaultValue": _flaxBinding417,
+    "@super:get:isInteresting": _flaxBinding418,
+    "@super:get:level": _flaxBinding311,
+    "@super:get:name": _flaxBinding309,
+    "@super:get:showSeparator": _flaxBinding310,
+    "@super:get:showName": _flaxBinding312,
+    "@super:get:linePrefix": _flaxBinding313,
     "@super:get:emptyBodyDescription": FlaxInstanceMethod.shared(
       flaxNullableStringCall,
       _ErrorDescription_super_get_emptyBodyDescription,
@@ -53563,10 +51302,10 @@ const _flaxBinding524 = FlaxObjectBinding(
       _flaxBinding71,
       _ErrorDescription_super_get_style,
     ),
-    "@super:get:allowTruncate": _flaxBinding304,
-    "@super:get:textTreeConfiguration": _flaxBinding305,
+    "@super:get:allowTruncate": _flaxBinding316,
+    "@super:get:textTreeConfiguration": _flaxBinding317,
   },
-  constructors: {"": _flaxBinding522, "@implementation": _flaxBinding522},
+  constructors: {"": _flaxBinding513, "@implementation": _flaxBinding513},
   create: _createErrorDescription,
   matches: _isErrorDescription,
   setters: [],
@@ -53576,142 +51315,142 @@ const _flaxBinding524 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:DiagnosticsNode",
     "dart:core::Object",
   ],
-  parent: _flaxBinding384,
+  parent: _flaxBinding383,
   proxy: FlaxProxyBinding([
-    _flaxBinding314,
-    _flaxBinding426,
-    _flaxBinding309,
-    _flaxBinding311,
-    _flaxBinding312,
-    _flaxBinding310,
-    _flaxBinding313,
-    _flaxBinding315,
-    _flaxBinding319,
-    _flaxBinding317,
-    _flaxBinding523,
-    _flaxBinding427,
+    _flaxBinding326,
+    _flaxBinding421,
+    _flaxBinding321,
+    _flaxBinding323,
+    _flaxBinding324,
+    _flaxBinding322,
+    _flaxBinding325,
     _flaxBinding327,
-    _flaxBinding328,
+    _flaxBinding331,
+    _flaxBinding329,
+    _flaxBinding514,
+    _flaxBinding422,
+    _flaxBinding339,
+    _flaxBinding340,
+    _flaxBinding423,
+    _flaxBinding424,
+    _flaxBinding425,
+    _flaxBinding426,
+    _flaxBinding427,
     _flaxBinding428,
     _flaxBinding429,
     _flaxBinding430,
-    _flaxBinding431,
-    _flaxBinding432,
-    _flaxBinding433,
-    _flaxBinding434,
-    _flaxBinding435,
-    _flaxBinding324,
-    _flaxBinding322,
-    _flaxBinding323,
-    _flaxBinding325,
-    _flaxBinding326,
-    _flaxBinding262,
-    _flaxBinding383,
-    _flaxBinding329,
-    _flaxBinding330,
+    _flaxBinding336,
+    _flaxBinding334,
+    _flaxBinding335,
+    _flaxBinding337,
+    _flaxBinding338,
+    _flaxBinding265,
+    _flaxBinding382,
+    _flaxBinding341,
+    _flaxBinding342,
   ]),
 );
-const _flaxBinding525 = FlaxGetter.plain(
+const _flaxBinding516 = FlaxGetter.plain(
   "expandableValue",
   flaxBoolType,
   _ErrorHint_expandableValue,
 );
-const _flaxBinding526 = FlaxGetter.plain(
+const _flaxBinding517 = FlaxGetter.plain(
   "ifNull",
   flaxNullableStringType,
   _ErrorHint_ifNull,
 );
-const _flaxBinding527 = FlaxGetter.plain(
+const _flaxBinding518 = FlaxGetter.plain(
   "ifEmpty",
   flaxNullableStringType,
   _ErrorHint_ifEmpty,
 );
-const _flaxBinding528 = FlaxGetter.plain(
+const _flaxBinding519 = FlaxGetter.plain(
   "tooltip",
   flaxNullableStringType,
   _ErrorHint_tooltip,
 );
-const _flaxBinding529 = FlaxGetter.plain(
+const _flaxBinding520 = FlaxGetter.plain(
   "missingIfNull",
   flaxBoolType,
   _ErrorHint_missingIfNull,
 );
-const _flaxBinding530 = FlaxGetter.plain(
+const _flaxBinding521 = FlaxGetter.plain(
   "propertyType",
   flaxTypeType,
   _ErrorHint_propertyType,
 );
-const _flaxBinding531 = FlaxGetter.plain(
+const _flaxBinding522 = FlaxGetter.plain(
   "value",
   _flaxBinding78,
   _ErrorHint_value,
 );
-const _flaxBinding532 = FlaxGetter.plain(
+const _flaxBinding523 = FlaxGetter.plain(
   "exception",
   flaxNullableAnyType,
   _ErrorHint_exception,
 );
-const _flaxBinding533 = FlaxGetter.plain(
+const _flaxBinding524 = FlaxGetter.plain(
   "defaultValue",
   flaxNullableAnyType,
   _ErrorHint_defaultValue,
 );
-const _flaxBinding534 = FlaxGetter.plain(
+const _flaxBinding525 = FlaxGetter.plain(
   "isInteresting",
   flaxBoolType,
   _ErrorHint_isInteresting,
 );
-const _flaxBinding535 = FlaxInstanceMethod.plain(
-  _flaxBinding285,
+const _flaxBinding526 = FlaxInstanceMethod.plain(
+  _flaxBinding288,
   flaxStringType,
   _ErrorHint_valueToString,
 );
-const _flaxBinding536 = FlaxObjectBinding(
+const _flaxBinding527 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:ErrorHint",
   [
+    _flaxBinding516,
+    _flaxBinding517,
+    _flaxBinding518,
+    _flaxBinding519,
+    _flaxBinding520,
+    _flaxBinding521,
+    _flaxBinding522,
+    _flaxBinding523,
+    _flaxBinding524,
     _flaxBinding525,
-    _flaxBinding526,
-    _flaxBinding527,
-    _flaxBinding528,
-    _flaxBinding529,
-    _flaxBinding530,
-    _flaxBinding531,
-    _flaxBinding532,
-    _flaxBinding533,
-    _flaxBinding534,
   ],
   {
-    "valueToString": _flaxBinding535,
-    "@super:toJsonMap": _flaxBinding293,
-    "@super:valueToString": _flaxBinding414,
-    "@super:toDescription": _flaxBinding288,
-    "@super:getProperties": _flaxBinding290,
-    "@super:getChildren": _flaxBinding291,
-    "@super:isFiltered": _flaxBinding289,
-    "@super:toTimelineArguments": _flaxBinding292,
-    "@super:toJsonMapIterative": _flaxBinding294,
-    "@super:toStringDeep": _flaxBinding296,
-    "@super:toString": _flaxBinding295,
+    "valueToString": _flaxBinding526,
+    "@super:toJsonMap": _flaxBinding305,
+    "@super:valueToString": _flaxBinding409,
+    "@super:toDescription": _flaxBinding300,
+    "@super:getProperties": _flaxBinding302,
+    "@super:getChildren": _flaxBinding303,
+    "@super:isFiltered": _flaxBinding301,
+    "@super:toTimelineArguments": _flaxBinding304,
+    "@super:toJsonMapIterative": _flaxBinding306,
+    "@super:toStringDeep": _flaxBinding308,
+    "@super:toString": _flaxBinding307,
     "@super:get:value": FlaxInstanceMethod.shared(
       _flaxBinding79,
       _ErrorHint_super_get_value,
     ),
-    "@super:get:expandableValue": _flaxBinding415,
-    "@super:get:allowWrap": _flaxBinding302,
-    "@super:get:allowNameWrap": _flaxBinding303,
-    "@super:get:ifNull": _flaxBinding416,
-    "@super:get:ifEmpty": _flaxBinding417,
-    "@super:get:tooltip": _flaxBinding418,
-    "@super:get:missingIfNull": _flaxBinding419,
-    "@super:get:propertyType": _flaxBinding420,
-    "@super:get:exception": _flaxBinding421,
-    "@super:get:defaultValue": _flaxBinding422,
-    "@super:get:isInteresting": _flaxBinding423,
-    "@super:get:level": _flaxBinding299,
-    "@super:get:name": _flaxBinding297,
-    "@super:get:showSeparator": _flaxBinding298,
-    "@super:get:showName": _flaxBinding300,
-    "@super:get:linePrefix": _flaxBinding301,
+    "@super:get:expandableValue": _flaxBinding410,
+    "@super:get:allowWrap": _flaxBinding314,
+    "@super:get:allowNameWrap": _flaxBinding315,
+    "@super:get:ifNull": _flaxBinding411,
+    "@super:get:ifEmpty": _flaxBinding412,
+    "@super:get:tooltip": _flaxBinding413,
+    "@super:get:missingIfNull": _flaxBinding414,
+    "@super:get:propertyType": _flaxBinding415,
+    "@super:get:exception": _flaxBinding416,
+    "@super:get:defaultValue": _flaxBinding417,
+    "@super:get:isInteresting": _flaxBinding418,
+    "@super:get:level": _flaxBinding311,
+    "@super:get:name": _flaxBinding309,
+    "@super:get:showSeparator": _flaxBinding310,
+    "@super:get:showName": _flaxBinding312,
+    "@super:get:linePrefix": _flaxBinding313,
     "@super:get:emptyBodyDescription": FlaxInstanceMethod.shared(
       flaxNullableStringCall,
       _ErrorHint_super_get_emptyBodyDescription,
@@ -53720,10 +51459,10 @@ const _flaxBinding536 = FlaxObjectBinding(
       _flaxBinding71,
       _ErrorHint_super_get_style,
     ),
-    "@super:get:allowTruncate": _flaxBinding304,
-    "@super:get:textTreeConfiguration": _flaxBinding305,
+    "@super:get:allowTruncate": _flaxBinding316,
+    "@super:get:textTreeConfiguration": _flaxBinding317,
   },
-  constructors: {"": _flaxBinding522, "@implementation": _flaxBinding522},
+  constructors: {"": _flaxBinding513, "@implementation": _flaxBinding513},
   create: _createErrorHint,
   matches: _isErrorHint,
   setters: [],
@@ -53733,148 +51472,148 @@ const _flaxBinding536 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:DiagnosticsNode",
     "dart:core::Object",
   ],
-  parent: _flaxBinding384,
+  parent: _flaxBinding383,
   proxy: FlaxProxyBinding([
-    _flaxBinding314,
-    _flaxBinding426,
-    _flaxBinding309,
-    _flaxBinding311,
-    _flaxBinding312,
-    _flaxBinding310,
-    _flaxBinding313,
-    _flaxBinding315,
-    _flaxBinding319,
-    _flaxBinding317,
-    _flaxBinding523,
-    _flaxBinding427,
+    _flaxBinding326,
+    _flaxBinding421,
+    _flaxBinding321,
+    _flaxBinding323,
+    _flaxBinding324,
+    _flaxBinding322,
+    _flaxBinding325,
     _flaxBinding327,
-    _flaxBinding328,
+    _flaxBinding331,
+    _flaxBinding329,
+    _flaxBinding514,
+    _flaxBinding422,
+    _flaxBinding339,
+    _flaxBinding340,
+    _flaxBinding423,
+    _flaxBinding424,
+    _flaxBinding425,
+    _flaxBinding426,
+    _flaxBinding427,
     _flaxBinding428,
     _flaxBinding429,
     _flaxBinding430,
-    _flaxBinding431,
-    _flaxBinding432,
-    _flaxBinding433,
-    _flaxBinding434,
-    _flaxBinding435,
-    _flaxBinding324,
-    _flaxBinding322,
-    _flaxBinding323,
-    _flaxBinding325,
-    _flaxBinding326,
-    _flaxBinding262,
-    _flaxBinding383,
-    _flaxBinding329,
-    _flaxBinding330,
+    _flaxBinding336,
+    _flaxBinding334,
+    _flaxBinding335,
+    _flaxBinding337,
+    _flaxBinding338,
+    _flaxBinding265,
+    _flaxBinding382,
+    _flaxBinding341,
+    _flaxBinding342,
   ]),
 );
-const _flaxBinding537 = FlaxGetter.plain(
+const _flaxBinding528 = FlaxGetter.plain(
   "expandableValue",
   flaxBoolType,
   _ErrorSpacer_expandableValue,
 );
-const _flaxBinding538 = FlaxGetter.plain(
+const _flaxBinding529 = FlaxGetter.plain(
   "ifNull",
   flaxNullableStringType,
   _ErrorSpacer_ifNull,
 );
-const _flaxBinding539 = FlaxGetter.plain(
+const _flaxBinding530 = FlaxGetter.plain(
   "ifEmpty",
   flaxNullableStringType,
   _ErrorSpacer_ifEmpty,
 );
-const _flaxBinding540 = FlaxGetter.plain(
+const _flaxBinding531 = FlaxGetter.plain(
   "tooltip",
   flaxNullableStringType,
   _ErrorSpacer_tooltip,
 );
-const _flaxBinding541 = FlaxGetter.plain(
+const _flaxBinding532 = FlaxGetter.plain(
   "missingIfNull",
   flaxBoolType,
   _ErrorSpacer_missingIfNull,
 );
-const _flaxBinding542 = FlaxGetter.plain(
+const _flaxBinding533 = FlaxGetter.plain(
   "propertyType",
   flaxTypeType,
   _ErrorSpacer_propertyType,
 );
-const _flaxBinding543 = FlaxGetter.plain(
+const _flaxBinding534 = FlaxGetter.plain(
   "value",
   flaxVoidType,
   _ErrorSpacer_value,
 );
-const _flaxBinding544 = FlaxGetter.plain(
+const _flaxBinding535 = FlaxGetter.plain(
   "exception",
   flaxNullableAnyType,
   _ErrorSpacer_exception,
 );
-const _flaxBinding545 = FlaxGetter.plain(
+const _flaxBinding536 = FlaxGetter.plain(
   "defaultValue",
   flaxNullableAnyType,
   _ErrorSpacer_defaultValue,
 );
-const _flaxBinding546 = FlaxGetter.plain(
+const _flaxBinding537 = FlaxGetter.plain(
   "isInteresting",
   flaxBoolType,
   _ErrorSpacer_isInteresting,
 );
-const _flaxBinding547 = FlaxInstanceMethod.plain(
-  _flaxBinding285,
+const _flaxBinding538 = FlaxInstanceMethod.plain(
+  _flaxBinding288,
   flaxStringType,
   _ErrorSpacer_valueToString,
 );
-const _flaxBinding548 = FlaxProxyMember(
+const _flaxBinding539 = FlaxProxyMember(
   "value",
   1,
   flaxVoidCall,
   hasSuper: true,
 );
-const _flaxBinding549 = FlaxObjectBinding(
+const _flaxBinding540 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:ErrorSpacer",
   [
+    _flaxBinding528,
+    _flaxBinding529,
+    _flaxBinding530,
+    _flaxBinding531,
+    _flaxBinding532,
+    _flaxBinding533,
+    _flaxBinding534,
+    _flaxBinding535,
+    _flaxBinding536,
     _flaxBinding537,
-    _flaxBinding538,
-    _flaxBinding539,
-    _flaxBinding540,
-    _flaxBinding541,
-    _flaxBinding542,
-    _flaxBinding543,
-    _flaxBinding544,
-    _flaxBinding545,
-    _flaxBinding546,
   ],
   {
-    "valueToString": _flaxBinding547,
-    "@super:toJsonMap": _flaxBinding293,
-    "@super:valueToString": _flaxBinding414,
-    "@super:toDescription": _flaxBinding288,
-    "@super:getProperties": _flaxBinding290,
-    "@super:getChildren": _flaxBinding291,
-    "@super:isFiltered": _flaxBinding289,
-    "@super:toTimelineArguments": _flaxBinding292,
-    "@super:toJsonMapIterative": _flaxBinding294,
-    "@super:toStringDeep": _flaxBinding296,
-    "@super:toString": _flaxBinding295,
-    "@super:get:expandableValue": _flaxBinding415,
-    "@super:get:allowWrap": _flaxBinding302,
-    "@super:get:allowNameWrap": _flaxBinding303,
-    "@super:get:ifNull": _flaxBinding416,
-    "@super:get:ifEmpty": _flaxBinding417,
-    "@super:get:tooltip": _flaxBinding418,
-    "@super:get:missingIfNull": _flaxBinding419,
-    "@super:get:propertyType": _flaxBinding420,
+    "valueToString": _flaxBinding538,
+    "@super:toJsonMap": _flaxBinding305,
+    "@super:valueToString": _flaxBinding409,
+    "@super:toDescription": _flaxBinding300,
+    "@super:getProperties": _flaxBinding302,
+    "@super:getChildren": _flaxBinding303,
+    "@super:isFiltered": _flaxBinding301,
+    "@super:toTimelineArguments": _flaxBinding304,
+    "@super:toJsonMapIterative": _flaxBinding306,
+    "@super:toStringDeep": _flaxBinding308,
+    "@super:toString": _flaxBinding307,
+    "@super:get:expandableValue": _flaxBinding410,
+    "@super:get:allowWrap": _flaxBinding314,
+    "@super:get:allowNameWrap": _flaxBinding315,
+    "@super:get:ifNull": _flaxBinding411,
+    "@super:get:ifEmpty": _flaxBinding412,
+    "@super:get:tooltip": _flaxBinding413,
+    "@super:get:missingIfNull": _flaxBinding414,
+    "@super:get:propertyType": _flaxBinding415,
     "@super:get:value": FlaxInstanceMethod.shared(
       flaxVoidCall,
       _ErrorSpacer_super_get_value,
     ),
-    "@super:get:exception": _flaxBinding421,
-    "@super:get:defaultValue": _flaxBinding422,
-    "@super:get:isInteresting": _flaxBinding423,
-    "@super:get:level": _flaxBinding299,
-    "@super:get:name": _flaxBinding297,
-    "@super:get:showSeparator": _flaxBinding298,
-    "@super:get:showName": _flaxBinding300,
-    "@super:get:linePrefix": _flaxBinding301,
+    "@super:get:exception": _flaxBinding416,
+    "@super:get:defaultValue": _flaxBinding417,
+    "@super:get:isInteresting": _flaxBinding418,
+    "@super:get:level": _flaxBinding311,
+    "@super:get:name": _flaxBinding309,
+    "@super:get:showSeparator": _flaxBinding310,
+    "@super:get:showName": _flaxBinding312,
+    "@super:get:linePrefix": _flaxBinding313,
     "@super:get:emptyBodyDescription": FlaxInstanceMethod.shared(
       flaxNullableStringCall,
       _ErrorSpacer_super_get_emptyBodyDescription,
@@ -53883,8 +51622,8 @@ const _flaxBinding549 = FlaxObjectBinding(
       _flaxBinding71,
       _ErrorSpacer_super_get_style,
     ),
-    "@super:get:allowTruncate": _flaxBinding304,
-    "@super:get:textTreeConfiguration": _flaxBinding305,
+    "@super:get:allowTruncate": _flaxBinding316,
+    "@super:get:textTreeConfiguration": _flaxBinding317,
   },
   constructors: {"": _flaxBinding131, "@implementation": _flaxBinding131},
   create: _createErrorSpacer,
@@ -53895,142 +51634,142 @@ const _flaxBinding549 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:DiagnosticsNode",
     "dart:core::Object",
   ],
-  parent: _flaxBinding384,
+  parent: _flaxBinding383,
   proxy: FlaxProxyBinding([
-    _flaxBinding314,
-    _flaxBinding426,
-    _flaxBinding309,
-    _flaxBinding311,
-    _flaxBinding312,
-    _flaxBinding310,
-    _flaxBinding313,
-    _flaxBinding315,
-    _flaxBinding319,
-    _flaxBinding317,
-    _flaxBinding427,
+    _flaxBinding326,
+    _flaxBinding421,
+    _flaxBinding321,
+    _flaxBinding323,
+    _flaxBinding324,
+    _flaxBinding322,
+    _flaxBinding325,
     _flaxBinding327,
-    _flaxBinding328,
+    _flaxBinding331,
+    _flaxBinding329,
+    _flaxBinding422,
+    _flaxBinding339,
+    _flaxBinding340,
+    _flaxBinding423,
+    _flaxBinding424,
+    _flaxBinding425,
+    _flaxBinding426,
+    _flaxBinding427,
+    _flaxBinding539,
     _flaxBinding428,
     _flaxBinding429,
     _flaxBinding430,
-    _flaxBinding431,
-    _flaxBinding432,
-    _flaxBinding548,
-    _flaxBinding433,
-    _flaxBinding434,
-    _flaxBinding435,
-    _flaxBinding324,
-    _flaxBinding322,
-    _flaxBinding323,
-    _flaxBinding325,
-    _flaxBinding326,
-    _flaxBinding262,
-    _flaxBinding383,
-    _flaxBinding329,
-    _flaxBinding330,
+    _flaxBinding336,
+    _flaxBinding334,
+    _flaxBinding335,
+    _flaxBinding337,
+    _flaxBinding338,
+    _flaxBinding265,
+    _flaxBinding382,
+    _flaxBinding341,
+    _flaxBinding342,
   ]),
 );
-const _flaxBinding550 = FlaxGetter.plain(
+const _flaxBinding541 = FlaxGetter.plain(
   "expandableValue",
   flaxBoolType,
   _ErrorSummary_expandableValue,
 );
-const _flaxBinding551 = FlaxGetter.plain(
+const _flaxBinding542 = FlaxGetter.plain(
   "ifNull",
   flaxNullableStringType,
   _ErrorSummary_ifNull,
 );
-const _flaxBinding552 = FlaxGetter.plain(
+const _flaxBinding543 = FlaxGetter.plain(
   "ifEmpty",
   flaxNullableStringType,
   _ErrorSummary_ifEmpty,
 );
-const _flaxBinding553 = FlaxGetter.plain(
+const _flaxBinding544 = FlaxGetter.plain(
   "tooltip",
   flaxNullableStringType,
   _ErrorSummary_tooltip,
 );
-const _flaxBinding554 = FlaxGetter.plain(
+const _flaxBinding545 = FlaxGetter.plain(
   "missingIfNull",
   flaxBoolType,
   _ErrorSummary_missingIfNull,
 );
-const _flaxBinding555 = FlaxGetter.plain(
+const _flaxBinding546 = FlaxGetter.plain(
   "propertyType",
   flaxTypeType,
   _ErrorSummary_propertyType,
 );
-const _flaxBinding556 = FlaxGetter.plain(
+const _flaxBinding547 = FlaxGetter.plain(
   "value",
   _flaxBinding78,
   _ErrorSummary_value,
 );
-const _flaxBinding557 = FlaxGetter.plain(
+const _flaxBinding548 = FlaxGetter.plain(
   "exception",
   flaxNullableAnyType,
   _ErrorSummary_exception,
 );
-const _flaxBinding558 = FlaxGetter.plain(
+const _flaxBinding549 = FlaxGetter.plain(
   "defaultValue",
   flaxNullableAnyType,
   _ErrorSummary_defaultValue,
 );
-const _flaxBinding559 = FlaxGetter.plain(
+const _flaxBinding550 = FlaxGetter.plain(
   "isInteresting",
   flaxBoolType,
   _ErrorSummary_isInteresting,
 );
-const _flaxBinding560 = FlaxInstanceMethod.plain(
-  _flaxBinding285,
+const _flaxBinding551 = FlaxInstanceMethod.plain(
+  _flaxBinding288,
   flaxStringType,
   _ErrorSummary_valueToString,
 );
-const _flaxBinding561 = FlaxObjectBinding(
+const _flaxBinding552 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:ErrorSummary",
   [
+    _flaxBinding541,
+    _flaxBinding542,
+    _flaxBinding543,
+    _flaxBinding544,
+    _flaxBinding545,
+    _flaxBinding546,
+    _flaxBinding547,
+    _flaxBinding548,
+    _flaxBinding549,
     _flaxBinding550,
-    _flaxBinding551,
-    _flaxBinding552,
-    _flaxBinding553,
-    _flaxBinding554,
-    _flaxBinding555,
-    _flaxBinding556,
-    _flaxBinding557,
-    _flaxBinding558,
-    _flaxBinding559,
   ],
   {
-    "valueToString": _flaxBinding560,
-    "@super:toJsonMap": _flaxBinding293,
-    "@super:valueToString": _flaxBinding414,
-    "@super:toDescription": _flaxBinding288,
-    "@super:getProperties": _flaxBinding290,
-    "@super:getChildren": _flaxBinding291,
-    "@super:isFiltered": _flaxBinding289,
-    "@super:toTimelineArguments": _flaxBinding292,
-    "@super:toJsonMapIterative": _flaxBinding294,
-    "@super:toStringDeep": _flaxBinding296,
-    "@super:toString": _flaxBinding295,
+    "valueToString": _flaxBinding551,
+    "@super:toJsonMap": _flaxBinding305,
+    "@super:valueToString": _flaxBinding409,
+    "@super:toDescription": _flaxBinding300,
+    "@super:getProperties": _flaxBinding302,
+    "@super:getChildren": _flaxBinding303,
+    "@super:isFiltered": _flaxBinding301,
+    "@super:toTimelineArguments": _flaxBinding304,
+    "@super:toJsonMapIterative": _flaxBinding306,
+    "@super:toStringDeep": _flaxBinding308,
+    "@super:toString": _flaxBinding307,
     "@super:get:value": FlaxInstanceMethod.shared(
       _flaxBinding79,
       _ErrorSummary_super_get_value,
     ),
-    "@super:get:expandableValue": _flaxBinding415,
-    "@super:get:allowWrap": _flaxBinding302,
-    "@super:get:allowNameWrap": _flaxBinding303,
-    "@super:get:ifNull": _flaxBinding416,
-    "@super:get:ifEmpty": _flaxBinding417,
-    "@super:get:tooltip": _flaxBinding418,
-    "@super:get:missingIfNull": _flaxBinding419,
-    "@super:get:propertyType": _flaxBinding420,
-    "@super:get:exception": _flaxBinding421,
-    "@super:get:defaultValue": _flaxBinding422,
-    "@super:get:isInteresting": _flaxBinding423,
-    "@super:get:level": _flaxBinding299,
-    "@super:get:name": _flaxBinding297,
-    "@super:get:showSeparator": _flaxBinding298,
-    "@super:get:showName": _flaxBinding300,
-    "@super:get:linePrefix": _flaxBinding301,
+    "@super:get:expandableValue": _flaxBinding410,
+    "@super:get:allowWrap": _flaxBinding314,
+    "@super:get:allowNameWrap": _flaxBinding315,
+    "@super:get:ifNull": _flaxBinding411,
+    "@super:get:ifEmpty": _flaxBinding412,
+    "@super:get:tooltip": _flaxBinding413,
+    "@super:get:missingIfNull": _flaxBinding414,
+    "@super:get:propertyType": _flaxBinding415,
+    "@super:get:exception": _flaxBinding416,
+    "@super:get:defaultValue": _flaxBinding417,
+    "@super:get:isInteresting": _flaxBinding418,
+    "@super:get:level": _flaxBinding311,
+    "@super:get:name": _flaxBinding309,
+    "@super:get:showSeparator": _flaxBinding310,
+    "@super:get:showName": _flaxBinding312,
+    "@super:get:linePrefix": _flaxBinding313,
     "@super:get:emptyBodyDescription": FlaxInstanceMethod.shared(
       flaxNullableStringCall,
       _ErrorSummary_super_get_emptyBodyDescription,
@@ -54039,10 +51778,10 @@ const _flaxBinding561 = FlaxObjectBinding(
       _flaxBinding71,
       _ErrorSummary_super_get_style,
     ),
-    "@super:get:allowTruncate": _flaxBinding304,
-    "@super:get:textTreeConfiguration": _flaxBinding305,
+    "@super:get:allowTruncate": _flaxBinding316,
+    "@super:get:textTreeConfiguration": _flaxBinding317,
   },
-  constructors: {"": _flaxBinding522, "@implementation": _flaxBinding522},
+  constructors: {"": _flaxBinding513, "@implementation": _flaxBinding513},
   create: _createErrorSummary,
   matches: _isErrorSummary,
   setters: [],
@@ -54052,42 +51791,42 @@ const _flaxBinding561 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:DiagnosticsNode",
     "dart:core::Object",
   ],
-  parent: _flaxBinding384,
+  parent: _flaxBinding383,
   proxy: FlaxProxyBinding([
-    _flaxBinding314,
-    _flaxBinding426,
-    _flaxBinding309,
-    _flaxBinding311,
-    _flaxBinding312,
-    _flaxBinding310,
-    _flaxBinding313,
-    _flaxBinding315,
-    _flaxBinding319,
-    _flaxBinding317,
-    _flaxBinding523,
-    _flaxBinding427,
+    _flaxBinding326,
+    _flaxBinding421,
+    _flaxBinding321,
+    _flaxBinding323,
+    _flaxBinding324,
+    _flaxBinding322,
+    _flaxBinding325,
     _flaxBinding327,
-    _flaxBinding328,
+    _flaxBinding331,
+    _flaxBinding329,
+    _flaxBinding514,
+    _flaxBinding422,
+    _flaxBinding339,
+    _flaxBinding340,
+    _flaxBinding423,
+    _flaxBinding424,
+    _flaxBinding425,
+    _flaxBinding426,
+    _flaxBinding427,
     _flaxBinding428,
     _flaxBinding429,
     _flaxBinding430,
-    _flaxBinding431,
-    _flaxBinding432,
-    _flaxBinding433,
-    _flaxBinding434,
-    _flaxBinding435,
-    _flaxBinding324,
-    _flaxBinding322,
-    _flaxBinding323,
-    _flaxBinding325,
-    _flaxBinding326,
-    _flaxBinding262,
-    _flaxBinding383,
-    _flaxBinding329,
-    _flaxBinding330,
+    _flaxBinding336,
+    _flaxBinding334,
+    _flaxBinding335,
+    _flaxBinding337,
+    _flaxBinding338,
+    _flaxBinding265,
+    _flaxBinding382,
+    _flaxBinding341,
+    _flaxBinding342,
   ]),
 );
-const _flaxBinding562 = FlaxObjectBinding(
+const _flaxBinding553 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:ErrorToConsoleDumper",
   [],
   {},
@@ -54097,82 +51836,86 @@ const _flaxBinding562 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding563 = FlaxGetter.plain("type", flaxTypeType, _Factory_type);
-const _flaxBinding564 = <FlaxParameter>[
+const _flaxBinding554 = FlaxGetter.plain("type", flaxTypeType, _Factory_type);
+const _flaxBinding555 = FlaxInstanceMethod.shared(
+  flaxStringCall,
+  _Factory_toString,
+);
+const _flaxBinding556 = <FlaxParameter>[
   FlaxParameter.required("constructor", flaxNullableAnyCallbackType),
 ];
-const _flaxBinding565 = FlaxProxyMember(
+const _flaxBinding557 = FlaxProxyMember(
   "type",
   1,
   _flaxBinding72,
   hasSuper: true,
 );
-const _flaxBinding566 = FlaxGetter.plain(
+const _flaxBinding558 = FlaxGetter.plain(
   "expandableValue",
   flaxBoolType,
   _FlagProperty_expandableValue,
 );
-const _flaxBinding567 = FlaxGetter.plain(
+const _flaxBinding559 = FlaxGetter.plain(
   "ifNull",
   flaxNullableStringType,
   _FlagProperty_ifNull,
 );
-const _flaxBinding568 = FlaxGetter.plain(
+const _flaxBinding560 = FlaxGetter.plain(
   "ifEmpty",
   flaxNullableStringType,
   _FlagProperty_ifEmpty,
 );
-const _flaxBinding569 = FlaxGetter.plain(
+const _flaxBinding561 = FlaxGetter.plain(
   "tooltip",
   flaxNullableStringType,
   _FlagProperty_tooltip,
 );
-const _flaxBinding570 = FlaxGetter.plain(
+const _flaxBinding562 = FlaxGetter.plain(
   "missingIfNull",
   flaxBoolType,
   _FlagProperty_missingIfNull,
 );
-const _flaxBinding571 = FlaxGetter.plain(
+const _flaxBinding563 = FlaxGetter.plain(
   "propertyType",
   flaxTypeType,
   _FlagProperty_propertyType,
 );
-const _flaxBinding572 = FlaxGetter.plain(
+const _flaxBinding564 = FlaxGetter.plain(
   "value",
   flaxNullableBoolType,
   _FlagProperty_value,
 );
-const _flaxBinding573 = FlaxGetter.plain(
+const _flaxBinding565 = FlaxGetter.plain(
   "exception",
   flaxNullableAnyType,
   _FlagProperty_exception,
 );
-const _flaxBinding574 = FlaxGetter.plain(
+const _flaxBinding566 = FlaxGetter.plain(
   "defaultValue",
   flaxNullableAnyType,
   _FlagProperty_defaultValue,
 );
-const _flaxBinding575 = FlaxGetter.plain(
+const _flaxBinding567 = FlaxGetter.plain(
   "isInteresting",
   flaxBoolType,
   _FlagProperty_isInteresting,
 );
-const _flaxBinding576 = FlaxGetter.plain(
+const _flaxBinding568 = FlaxGetter.plain(
   "ifTrue",
   flaxNullableStringType,
   _FlagProperty_ifTrue,
 );
-const _flaxBinding577 = FlaxGetter.plain(
+const _flaxBinding569 = FlaxGetter.plain(
   "ifFalse",
   flaxNullableStringType,
   _FlagProperty_ifFalse,
 );
-const _flaxBinding578 = FlaxInstanceMethod.plain(
-  _flaxBinding285,
+const _flaxBinding570 = FlaxInstanceMethod.plain(
+  _flaxBinding288,
   flaxStringType,
   _FlagProperty_valueToString,
 );
-const _flaxBinding579 = <FlaxParameter>[
+const _flaxBinding571 = <FlaxParameter>[
   FlaxParameter.required("name", flaxStringType),
   FlaxParameter.required("value", flaxNullableBoolType),
   FlaxParameter("ifTrue", flaxNullableStringType, required: false),
@@ -54186,52 +51929,52 @@ const _flaxBinding579 = <FlaxParameter>[
     defaultValue: api.DiagnosticLevel.info,
   ),
 ];
-const _flaxBinding580 = FlaxProxyMember(
+const _flaxBinding572 = FlaxProxyMember(
   "ifTrue",
   1,
   flaxNullableStringCall,
   hasSuper: true,
 );
-const _flaxBinding581 = FlaxProxyMember(
+const _flaxBinding573 = FlaxProxyMember(
   "ifFalse",
   1,
   flaxNullableStringCall,
   hasSuper: true,
 );
-const _flaxBinding582 = FlaxProxyMember(
+const _flaxBinding574 = FlaxProxyMember(
   "value",
   1,
   flaxNullableBoolCall,
   hasSuper: true,
 );
-const _flaxBinding583 = FlaxObjectBinding(
+const _flaxBinding575 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:FlagProperty",
   [
+    _flaxBinding558,
+    _flaxBinding559,
+    _flaxBinding560,
+    _flaxBinding561,
+    _flaxBinding562,
+    _flaxBinding563,
+    _flaxBinding564,
+    _flaxBinding565,
     _flaxBinding566,
     _flaxBinding567,
     _flaxBinding568,
     _flaxBinding569,
-    _flaxBinding570,
-    _flaxBinding571,
-    _flaxBinding572,
-    _flaxBinding573,
-    _flaxBinding574,
-    _flaxBinding575,
-    _flaxBinding576,
-    _flaxBinding577,
   ],
   {
-    "valueToString": _flaxBinding578,
-    "@super:toJsonMap": _flaxBinding293,
-    "@super:valueToString": _flaxBinding414,
-    "@super:toDescription": _flaxBinding288,
-    "@super:getProperties": _flaxBinding290,
-    "@super:getChildren": _flaxBinding291,
-    "@super:isFiltered": _flaxBinding289,
-    "@super:toTimelineArguments": _flaxBinding292,
-    "@super:toJsonMapIterative": _flaxBinding294,
-    "@super:toStringDeep": _flaxBinding296,
-    "@super:toString": _flaxBinding295,
+    "valueToString": _flaxBinding570,
+    "@super:toJsonMap": _flaxBinding305,
+    "@super:valueToString": _flaxBinding409,
+    "@super:toDescription": _flaxBinding300,
+    "@super:getProperties": _flaxBinding302,
+    "@super:getChildren": _flaxBinding303,
+    "@super:isFiltered": _flaxBinding301,
+    "@super:toTimelineArguments": _flaxBinding304,
+    "@super:toJsonMapIterative": _flaxBinding306,
+    "@super:toStringDeep": _flaxBinding308,
+    "@super:toString": _flaxBinding307,
     "@super:get:ifTrue": FlaxInstanceMethod.shared(
       flaxNullableStringCall,
       _FlagProperty_super_get_ifTrue,
@@ -54240,26 +51983,26 @@ const _flaxBinding583 = FlaxObjectBinding(
       flaxNullableStringCall,
       _FlagProperty_super_get_ifFalse,
     ),
-    "@super:get:showName": _flaxBinding300,
-    "@super:get:level": _flaxBinding299,
-    "@super:get:expandableValue": _flaxBinding415,
-    "@super:get:allowWrap": _flaxBinding302,
-    "@super:get:allowNameWrap": _flaxBinding303,
-    "@super:get:ifNull": _flaxBinding416,
-    "@super:get:ifEmpty": _flaxBinding417,
-    "@super:get:tooltip": _flaxBinding418,
-    "@super:get:missingIfNull": _flaxBinding419,
-    "@super:get:propertyType": _flaxBinding420,
+    "@super:get:showName": _flaxBinding312,
+    "@super:get:level": _flaxBinding311,
+    "@super:get:expandableValue": _flaxBinding410,
+    "@super:get:allowWrap": _flaxBinding314,
+    "@super:get:allowNameWrap": _flaxBinding315,
+    "@super:get:ifNull": _flaxBinding411,
+    "@super:get:ifEmpty": _flaxBinding412,
+    "@super:get:tooltip": _flaxBinding413,
+    "@super:get:missingIfNull": _flaxBinding414,
+    "@super:get:propertyType": _flaxBinding415,
     "@super:get:value": FlaxInstanceMethod.shared(
       flaxNullableBoolCall,
       _FlagProperty_super_get_value,
     ),
-    "@super:get:exception": _flaxBinding421,
-    "@super:get:defaultValue": _flaxBinding422,
-    "@super:get:isInteresting": _flaxBinding423,
-    "@super:get:name": _flaxBinding297,
-    "@super:get:showSeparator": _flaxBinding298,
-    "@super:get:linePrefix": _flaxBinding301,
+    "@super:get:exception": _flaxBinding416,
+    "@super:get:defaultValue": _flaxBinding417,
+    "@super:get:isInteresting": _flaxBinding418,
+    "@super:get:name": _flaxBinding309,
+    "@super:get:showSeparator": _flaxBinding310,
+    "@super:get:linePrefix": _flaxBinding313,
     "@super:get:emptyBodyDescription": FlaxInstanceMethod.shared(
       flaxNullableStringCall,
       _FlagProperty_super_get_emptyBodyDescription,
@@ -54268,10 +52011,10 @@ const _flaxBinding583 = FlaxObjectBinding(
       _flaxBinding71,
       _FlagProperty_super_get_style,
     ),
-    "@super:get:allowTruncate": _flaxBinding304,
-    "@super:get:textTreeConfiguration": _flaxBinding305,
+    "@super:get:allowTruncate": _flaxBinding316,
+    "@super:get:textTreeConfiguration": _flaxBinding317,
   },
-  constructors: {"": _flaxBinding579, "@implementation": _flaxBinding579},
+  constructors: {"": _flaxBinding571, "@implementation": _flaxBinding571},
   create: _createFlagProperty,
   matches: _isFlagProperty,
   setters: [],
@@ -54280,144 +52023,121 @@ const _flaxBinding583 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:DiagnosticsNode",
     "dart:core::Object",
   ],
-  parent: _flaxBinding384,
+  parent: _flaxBinding383,
   proxy: FlaxProxyBinding([
-    _flaxBinding314,
-    _flaxBinding426,
-    _flaxBinding309,
-    _flaxBinding311,
-    _flaxBinding312,
-    _flaxBinding310,
-    _flaxBinding313,
-    _flaxBinding315,
-    _flaxBinding319,
-    _flaxBinding317,
-    _flaxBinding580,
-    _flaxBinding581,
-    _flaxBinding325,
+    _flaxBinding326,
+    _flaxBinding421,
+    _flaxBinding321,
+    _flaxBinding323,
     _flaxBinding324,
-    _flaxBinding427,
+    _flaxBinding322,
+    _flaxBinding325,
     _flaxBinding327,
-    _flaxBinding328,
+    _flaxBinding331,
+    _flaxBinding329,
+    _flaxBinding572,
+    _flaxBinding573,
+    _flaxBinding337,
+    _flaxBinding336,
+    _flaxBinding422,
+    _flaxBinding339,
+    _flaxBinding340,
+    _flaxBinding423,
+    _flaxBinding424,
+    _flaxBinding425,
+    _flaxBinding426,
+    _flaxBinding427,
+    _flaxBinding574,
     _flaxBinding428,
     _flaxBinding429,
     _flaxBinding430,
-    _flaxBinding431,
-    _flaxBinding432,
-    _flaxBinding582,
-    _flaxBinding433,
-    _flaxBinding434,
-    _flaxBinding435,
-    _flaxBinding322,
-    _flaxBinding323,
-    _flaxBinding326,
-    _flaxBinding262,
-    _flaxBinding383,
-    _flaxBinding329,
-    _flaxBinding330,
+    _flaxBinding334,
+    _flaxBinding335,
+    _flaxBinding338,
+    _flaxBinding265,
+    _flaxBinding382,
+    _flaxBinding341,
+    _flaxBinding342,
   ]),
 );
-const _flaxBinding584 = FlaxGetter.plain(
+const _flaxBinding576 = FlaxGetter.plain(
   "expandableValue",
   flaxBoolType,
   _FlagsSummary_expandableValue,
 );
-const _flaxBinding585 = FlaxGetter.plain(
-  "allowWrap",
-  flaxBoolType,
-  _FlagsSummary_allowWrap,
-);
-const _flaxBinding586 = FlaxGetter.plain(
-  "allowNameWrap",
-  flaxBoolType,
-  _FlagsSummary_allowNameWrap,
-);
-const _flaxBinding587 = FlaxGetter.plain(
+const _flaxBinding577 = FlaxGetter.plain(
   "ifNull",
   flaxNullableStringType,
   _FlagsSummary_ifNull,
 );
-const _flaxBinding588 = FlaxGetter.plain(
+const _flaxBinding578 = FlaxGetter.plain(
   "ifEmpty",
   flaxNullableStringType,
   _FlagsSummary_ifEmpty,
 );
-const _flaxBinding589 = FlaxGetter.plain(
+const _flaxBinding579 = FlaxGetter.plain(
   "tooltip",
   flaxNullableStringType,
   _FlagsSummary_tooltip,
 );
-const _flaxBinding590 = FlaxGetter.plain(
+const _flaxBinding580 = FlaxGetter.plain(
   "missingIfNull",
   flaxBoolType,
   _FlagsSummary_missingIfNull,
 );
-const _flaxBinding591 = FlaxGetter.plain(
+const _flaxBinding581 = FlaxGetter.plain(
   "propertyType",
   flaxTypeType,
   _FlagsSummary_propertyType,
 );
-const _flaxBinding592 = FlaxGetter.plain(
+const _flaxBinding582 = FlaxGetter.plain(
   "exception",
   flaxNullableAnyType,
   _FlagsSummary_exception,
 );
-const _flaxBinding593 = FlaxGetter.plain(
+const _flaxBinding583 = FlaxGetter.plain(
   "defaultValue",
   flaxNullableAnyType,
   _FlagsSummary_defaultValue,
 );
-const _flaxBinding594 = FlaxGetter.plain(
+const _flaxBinding584 = FlaxGetter.plain(
   "isInteresting",
   flaxBoolType,
   _FlagsSummary_isInteresting,
 );
-const _flaxBinding595 = FlaxGetter.plain(
-  "level",
-  _flaxBinding55,
-  _FlagsSummary_level,
+const _flaxBinding585 = FlaxInstanceMethod.shared(
+  _flaxBinding60,
+  _FlagsSummary_toJsonMap,
 );
-const _flaxBinding596 = FlaxGetter.plain(
-  "name",
-  flaxNullableStringType,
-  _FlagsSummary_name,
+const _flaxBinding586 = FlaxInstanceMethod.plain(
+  _flaxBinding288,
+  flaxStringType,
+  _FlagsSummary_valueToString,
 );
-const _flaxBinding597 = FlaxGetter.plain(
-  "showSeparator",
-  flaxBoolType,
-  _FlagsSummary_showSeparator,
+const _flaxBinding587 = FlaxInstanceMethod.plain(
+  _flaxBinding288,
+  flaxStringType,
+  _FlagsSummary_toDescription,
 );
-const _flaxBinding598 = FlaxGetter.plain(
-  "showName",
-  flaxBoolType,
-  _FlagsSummary_showName,
+const _flaxBinding588 = FlaxInstanceMethod.shared(
+  _flaxBinding56,
+  _FlagsSummary_isFiltered,
 );
-const _flaxBinding599 = FlaxGetter.plain(
-  "linePrefix",
-  flaxNullableStringType,
-  _FlagsSummary_linePrefix,
+const _flaxBinding589 = FlaxInstanceMethod.shared(
+  _flaxBinding60,
+  _FlagsSummary_toJsonMapIterative,
 );
-const _flaxBinding600 = FlaxGetter.plain(
-  "emptyBodyDescription",
-  flaxNullableStringType,
-  _FlagsSummary_emptyBodyDescription,
+const _flaxBinding590 = FlaxInstanceMethod.plain(
+  _flaxBinding298,
+  flaxStringType,
+  _FlagsSummary_toStringDeep,
 );
-const _flaxBinding601 = FlaxGetter.plain(
-  "style",
-  _flaxBinding70,
-  _FlagsSummary_style,
+const _flaxBinding591 = FlaxInstanceMethod.plain(
+  _flaxBinding296,
+  flaxStringType,
+  _FlagsSummary_toString,
 );
-const _flaxBinding602 = FlaxGetter.plain(
-  "allowTruncate",
-  flaxBoolType,
-  _FlagsSummary_allowTruncate,
-);
-const _flaxBinding603 = FlaxGetter.plain(
-  "textTreeConfiguration",
-  _flaxBinding64,
-  _FlagsSummary_textTreeConfiguration,
-);
-const _flaxBinding604 = <FlaxParameter>[
+const _flaxBinding592 = <FlaxParameter>[
   FlaxParameter.required("name", flaxStringType),
   FlaxParameter.required("value", _flaxBinding24),
   FlaxParameter("ifEmpty", flaxNullableStringType, required: false),
@@ -54435,52 +52155,52 @@ const _flaxBinding604 = <FlaxParameter>[
     defaultValue: api.DiagnosticLevel.info,
   ),
 ];
-const _flaxBinding605 = FlaxGetter.plain(
+const _flaxBinding593 = FlaxGetter.plain(
   "stackTrace",
   _flaxBinding80,
   _FlutterError_stackTrace,
 );
-const _flaxBinding606 = FlaxGetter.plain(
+const _flaxBinding594 = FlaxGetter.plain(
   "diagnostics",
   _flaxBinding49,
   _FlutterError_diagnostics,
 );
-const _flaxBinding607 = FlaxGetter.plain(
+const _flaxBinding595 = FlaxGetter.plain(
   "message",
   flaxStringType,
   _FlutterError_message,
 );
-const _flaxBinding608 = <FlaxParameter>[
+const _flaxBinding596 = <FlaxParameter>[
   FlaxParameter.required("diagnostics", _flaxBinding49),
 ];
-const _flaxBinding609 = FlaxProxyMember(
+const _flaxBinding597 = FlaxProxyMember(
   "diagnostics",
   1,
   _flaxBinding50,
   hasSuper: true,
 );
-const _flaxBinding610 = FlaxProxyMember(
+const _flaxBinding598 = FlaxProxyMember(
   "message",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding611 = FlaxProxyMember(
+const _flaxBinding599 = FlaxProxyMember(
   "stackTrace",
   1,
   _flaxBinding81,
   hasSuper: true,
 );
-const _flaxBinding612 = FlaxObjectBinding(
+const _flaxBinding600 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:FlutterError",
-  [_flaxBinding605, _flaxBinding606, _flaxBinding607],
+  [_flaxBinding593, _flaxBinding594, _flaxBinding595],
   {
-    "@super:toString": _flaxBinding337,
-    "@super:toStringShallow": _flaxBinding340,
-    "@super:toStringDeep": _flaxBinding341,
-    "@super:toStringShort": _flaxBinding336,
-    "@super:toDiagnosticsNode": _flaxBinding338,
-    "@super:debugDescribeChildren": _flaxBinding342,
+    "@super:toString": _flaxBinding349,
+    "@super:toStringShallow": _flaxBinding352,
+    "@super:toStringDeep": _flaxBinding353,
+    "@super:toStringShort": _flaxBinding348,
+    "@super:toDiagnosticsNode": _flaxBinding350,
+    "@super:debugDescribeChildren": _flaxBinding354,
     "@super:debugFillProperties": FlaxInstanceMethod.shared(
       _flaxBinding67,
       _FlutterError_super_debugFillProperties,
@@ -54499,10 +52219,10 @@ const _flaxBinding612 = FlaxObjectBinding(
     ),
   },
   constructors: {
-    "": _flaxBinding522,
-    "fromParts": _flaxBinding608,
-    "@implementation": _flaxBinding608,
-    "@implementation:fromParts": _flaxBinding608,
+    "": _flaxBinding513,
+    "fromParts": _flaxBinding596,
+    "@implementation": _flaxBinding596,
+    "@implementation:fromParts": _flaxBinding596,
   },
   create: _createFlutterError,
   matches: _isFlutterError,
@@ -54515,61 +52235,61 @@ const _flaxBinding612 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:DiagnosticableTree",
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
-  parent: _flaxBinding355,
+  parent: _flaxBinding367,
   proxy: FlaxProxyBinding([
-    _flaxBinding345,
-    _flaxBinding350,
-    _flaxBinding352,
-    _flaxBinding343,
-    _flaxBinding347,
-    _flaxBinding353,
-    _flaxBinding348,
-    _flaxBinding609,
-    _flaxBinding610,
-    _flaxBinding611,
+    _flaxBinding357,
+    _flaxBinding362,
+    _flaxBinding364,
+    _flaxBinding355,
+    _flaxBinding359,
+    _flaxBinding365,
+    _flaxBinding360,
+    _flaxBinding597,
+    _flaxBinding598,
+    _flaxBinding599,
   ]),
 );
-const _flaxBinding613 = FlaxGetter.plain(
+const _flaxBinding601 = FlaxGetter.plain(
   "exception",
   flaxAnyType,
   _FlutterErrorDetails_exception,
 );
-const _flaxBinding614 = FlaxGetter.plain(
+const _flaxBinding602 = FlaxGetter.plain(
   "stack",
   _flaxBinding80,
   _FlutterErrorDetails_stack,
 );
-const _flaxBinding615 = FlaxGetter.plain(
+const _flaxBinding603 = FlaxGetter.plain(
   "library",
   flaxNullableStringType,
   _FlutterErrorDetails_library,
 );
-const _flaxBinding616 = FlaxGetter.plain(
+const _flaxBinding604 = FlaxGetter.plain(
   "context",
   _flaxBinding74,
   _FlutterErrorDetails_context,
 );
-const _flaxBinding617 = FlaxGetter.plain(
+const _flaxBinding605 = FlaxGetter.plain(
   "stackFilter",
   _flaxBinding84,
   _FlutterErrorDetails_stackFilter,
 );
-const _flaxBinding618 = FlaxGetter.plain(
+const _flaxBinding606 = FlaxGetter.plain(
   "informationCollector",
   _flaxBinding87,
   _FlutterErrorDetails_informationCollector,
 );
-const _flaxBinding619 = FlaxGetter.plain(
+const _flaxBinding607 = FlaxGetter.plain(
   "silent",
   flaxBoolType,
   _FlutterErrorDetails_silent,
 );
-const _flaxBinding620 = FlaxGetter.plain(
+const _flaxBinding608 = FlaxGetter.plain(
   "summary",
   _flaxBinding46,
   _FlutterErrorDetails_summary,
 );
-const _flaxBinding621 = <FlaxParameter>[
+const _flaxBinding609 = <FlaxParameter>[
   FlaxParameter("context", _flaxBinding74, required: false),
   FlaxParameter("exception", flaxNullableAnyType, required: false),
   FlaxParameter("informationCollector", _flaxBinding87, required: false),
@@ -54578,20 +52298,20 @@ const _flaxBinding621 = <FlaxParameter>[
   FlaxParameter("stack", _flaxBinding80, required: false),
   FlaxParameter("stackFilter", _flaxBinding84, required: false),
 ];
-const _flaxBinding622 = FlaxTypeRef(
+const _flaxBinding610 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_foundation#type:FlutterErrorDetails",
 );
-const _flaxBinding623 = FlaxInstanceMethod.plain(
-  _flaxBinding621,
-  _flaxBinding622,
+const _flaxBinding611 = FlaxInstanceMethod.plain(
+  _flaxBinding609,
+  _flaxBinding610,
   _FlutterErrorDetails_copyWith,
 );
-const _flaxBinding624 = FlaxInstanceMethod.shared(
+const _flaxBinding612 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _FlutterErrorDetails_exceptionAsString,
 );
-const _flaxBinding625 = <FlaxParameter>[
+const _flaxBinding613 = <FlaxParameter>[
   FlaxParameter.required("exception", flaxAnyType),
   FlaxParameter("stack", _flaxBinding80, required: false),
   FlaxParameter(
@@ -54605,7 +52325,7 @@ const _flaxBinding625 = <FlaxParameter>[
   FlaxParameter("informationCollector", _flaxBinding87, required: false),
   FlaxParameter("silent", flaxBoolType, required: false, defaultValue: false),
 ];
-const _flaxBinding626 = FlaxCallbackBinding.signature(
+const _flaxBinding614 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "context",
@@ -54650,91 +52370,91 @@ const _flaxBinding626 = FlaxCallbackBinding.signature(
       positional: false,
     ),
   ],
-  _flaxBinding622,
+  _flaxBinding610,
   id: "callback:<>(n:o:context:object?:flax.core/sdk_foundation#type:DiagnosticsNode,n:o:exception:any?:,n:o:informationCollector:callback?:<>()->iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode],n:o:library:String?:,n:o:silent:bool?:,n:o:stack:object?:flax.core/flutter#type:StackTrace,n:o:stackFilter:callback?:<>(p:r:input:iterable:[String:])->iterable:[String:])->object:flax.core/sdk_foundation#type:FlutterErrorDetails",
 );
-const _flaxBinding627 = FlaxProxyMember(
+const _flaxBinding615 = FlaxProxyMember(
   "copyWith",
   0,
-  _flaxBinding626,
+  _flaxBinding614,
   hasSuper: true,
 );
-const _flaxBinding628 = FlaxProxyMember(
+const _flaxBinding616 = FlaxProxyMember(
   "exceptionAsString",
   0,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding629 = FlaxProxyMember(
+const _flaxBinding617 = FlaxProxyMember(
   "exception",
   1,
   flaxAnyCall,
   hasSuper: true,
 );
-const _flaxBinding630 = FlaxProxyMember(
+const _flaxBinding618 = FlaxProxyMember(
   "stack",
   1,
   _flaxBinding81,
   hasSuper: true,
 );
-const _flaxBinding631 = FlaxProxyMember(
+const _flaxBinding619 = FlaxProxyMember(
   "library",
   1,
   flaxNullableStringCall,
   hasSuper: true,
 );
-const _flaxBinding632 = FlaxProxyMember(
+const _flaxBinding620 = FlaxProxyMember(
   "context",
   1,
   _flaxBinding82,
   hasSuper: true,
 );
-const _flaxBinding633 = FlaxProxyMember(
+const _flaxBinding621 = FlaxProxyMember(
   "stackFilter",
   1,
   _flaxBinding85,
   hasSuper: true,
 );
-const _flaxBinding634 = FlaxProxyMember(
+const _flaxBinding622 = FlaxProxyMember(
   "informationCollector",
   1,
   _flaxBinding88,
   hasSuper: true,
 );
-const _flaxBinding635 = FlaxProxyMember(
+const _flaxBinding623 = FlaxProxyMember(
   "silent",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding636 = FlaxProxyMember(
+const _flaxBinding624 = FlaxProxyMember(
   "summary",
   1,
   _flaxBinding89,
   hasSuper: true,
 );
-const _flaxBinding637 = FlaxObjectBinding(
+const _flaxBinding625 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:FlutterErrorDetails",
   [
-    _flaxBinding613,
-    _flaxBinding614,
-    _flaxBinding615,
-    _flaxBinding616,
-    _flaxBinding617,
-    _flaxBinding618,
-    _flaxBinding619,
-    _flaxBinding620,
+    _flaxBinding601,
+    _flaxBinding602,
+    _flaxBinding603,
+    _flaxBinding604,
+    _flaxBinding605,
+    _flaxBinding606,
+    _flaxBinding607,
+    _flaxBinding608,
   ],
   {
-    "copyWith": _flaxBinding623,
-    "exceptionAsString": _flaxBinding624,
-    "@super:toStringShort": _flaxBinding336,
-    "@super:toString": _flaxBinding337,
-    "@super:toDiagnosticsNode": _flaxBinding338,
-    "@super:debugFillProperties": _flaxBinding339,
+    "copyWith": _flaxBinding611,
+    "exceptionAsString": _flaxBinding612,
+    "@super:toStringShort": _flaxBinding348,
+    "@super:toString": _flaxBinding349,
+    "@super:toDiagnosticsNode": _flaxBinding350,
+    "@super:debugFillProperties": _flaxBinding351,
     "@super:copyWith": FlaxInstanceMethod.plain(
-      _flaxBinding621,
-      _flaxBinding622,
+      _flaxBinding609,
+      _flaxBinding610,
       _FlutterErrorDetails_super_copyWith,
     ),
     "@super:exceptionAsString": FlaxInstanceMethod.shared(
@@ -54774,7 +52494,7 @@ const _flaxBinding637 = FlaxObjectBinding(
       _FlutterErrorDetails_super_get_summary,
     ),
   },
-  constructors: {"": _flaxBinding625, "@implementation": _flaxBinding625},
+  constructors: {"": _flaxBinding613, "@implementation": _flaxBinding613},
   create: _createFlutterErrorDetails,
   matches: _isFlutterErrorDetails,
   setters: [],
@@ -54782,90 +52502,90 @@ const _flaxBinding637 = FlaxObjectBinding(
     "dart:core::Object",
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
-  parent: _flaxBinding272,
+  parent: _flaxBinding275,
   proxy: FlaxProxyBinding([
-    _flaxBinding343,
-    _flaxBinding345,
-    _flaxBinding347,
-    _flaxBinding348,
-    _flaxBinding627,
-    _flaxBinding628,
-    _flaxBinding629,
-    _flaxBinding630,
-    _flaxBinding631,
-    _flaxBinding632,
-    _flaxBinding633,
-    _flaxBinding634,
-    _flaxBinding635,
-    _flaxBinding636,
+    _flaxBinding355,
+    _flaxBinding357,
+    _flaxBinding359,
+    _flaxBinding360,
+    _flaxBinding615,
+    _flaxBinding616,
+    _flaxBinding617,
+    _flaxBinding618,
+    _flaxBinding619,
+    _flaxBinding620,
+    _flaxBinding621,
+    _flaxBinding622,
+    _flaxBinding623,
+    _flaxBinding624,
   ]),
 );
-const _flaxBinding638 = FlaxGetter.plain(
+const _flaxBinding626 = FlaxGetter.plain(
   "hasListeners",
   flaxBoolType,
   _FlutterMemoryAllocations_hasListeners,
 );
-const _flaxBinding639 = FlaxTypeRef(
+const _flaxBinding627 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_foundation#type:ObjectEvent",
 );
-const _flaxBinding640 = FlaxCallbackBinding(
-  [FlaxCallbackParameter.plain("event", _flaxBinding639)],
+const _flaxBinding628 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("event", _flaxBinding627)],
   flaxVoidType,
   FlaxCallbackAdapters.wrapVoid1<api.ObjectEvent>,
   id: "callback:<>(p:r:event:object:flax.core/sdk_foundation#type:ObjectEvent)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<api.ObjectEvent>,
   matches: FlaxCallbackAdapters.matchesVoid1<api.ObjectEvent>,
 );
-const _flaxBinding641 = FlaxTypeRef("callback", callback: _flaxBinding640);
-const _flaxBinding642 = <FlaxParameter>[
-  FlaxParameter.required("listener", _flaxBinding641),
+const _flaxBinding629 = FlaxTypeRef("callback", callback: _flaxBinding628);
+const _flaxBinding630 = <FlaxParameter>[
+  FlaxParameter.required("listener", _flaxBinding629),
 ];
-const _flaxBinding643 = FlaxInstanceMethod.plain(
-  _flaxBinding642,
+const _flaxBinding631 = FlaxInstanceMethod.plain(
+  _flaxBinding630,
   flaxVoidType,
   _FlutterMemoryAllocations_addListener,
 );
-const _flaxBinding644 = FlaxInstanceMethod.plain(
-  _flaxBinding642,
+const _flaxBinding632 = FlaxInstanceMethod.plain(
+  _flaxBinding630,
   flaxVoidType,
   _FlutterMemoryAllocations_removeListener,
 );
-const _flaxBinding645 = <FlaxParameter>[
-  FlaxParameter.required("event", _flaxBinding639),
+const _flaxBinding633 = <FlaxParameter>[
+  FlaxParameter.required("event", _flaxBinding627),
 ];
-const _flaxBinding646 = FlaxInstanceMethod.plain(
-  _flaxBinding645,
+const _flaxBinding634 = FlaxInstanceMethod.plain(
+  _flaxBinding633,
   flaxVoidType,
   _FlutterMemoryAllocations_dispatchObjectEvent,
 );
-const _flaxBinding647 = <FlaxParameter>[
+const _flaxBinding635 = <FlaxParameter>[
   FlaxParameter.required("className", flaxStringType),
   FlaxParameter.required("library", flaxStringType),
   FlaxParameter.required("object", flaxAnyType),
 ];
-const _flaxBinding648 = FlaxInstanceMethod.plain(
-  _flaxBinding647,
+const _flaxBinding636 = FlaxInstanceMethod.plain(
+  _flaxBinding635,
   flaxVoidType,
   _FlutterMemoryAllocations_dispatchObjectCreated,
 );
-const _flaxBinding649 = <FlaxParameter>[
+const _flaxBinding637 = <FlaxParameter>[
   FlaxParameter.required("object", flaxAnyType),
 ];
-const _flaxBinding650 = FlaxInstanceMethod.plain(
-  _flaxBinding649,
+const _flaxBinding638 = FlaxInstanceMethod.plain(
+  _flaxBinding637,
   flaxVoidType,
   _FlutterMemoryAllocations_dispatchObjectDisposed,
 );
-const _flaxBinding651 = FlaxObjectBinding(
+const _flaxBinding639 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:FlutterMemoryAllocations",
-  [_flaxBinding638],
+  [_flaxBinding626],
   {
-    "addListener": _flaxBinding643,
-    "removeListener": _flaxBinding644,
-    "dispatchObjectEvent": _flaxBinding646,
-    "dispatchObjectCreated": _flaxBinding648,
-    "dispatchObjectDisposed": _flaxBinding650,
+    "addListener": _flaxBinding631,
+    "removeListener": _flaxBinding632,
+    "dispatchObjectEvent": _flaxBinding634,
+    "dispatchObjectCreated": _flaxBinding636,
+    "dispatchObjectDisposed": _flaxBinding638,
   },
   constructors: {},
   create: _createFlutterMemoryAllocations,
@@ -54873,7 +52593,7 @@ const _flaxBinding651 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding652 = FlaxObjectBinding(
+const _flaxBinding640 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:FlutterTimeline",
   [],
   {},
@@ -54883,96 +52603,109 @@ const _flaxBinding652 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding653 = FlaxGetter.plain(
+const _flaxBinding641 = FlaxGetter.plain(
   "isEmpty",
   flaxBoolType,
   _HashedObserverList_isEmpty,
 );
-const _flaxBinding654 = FlaxGetter.plain(
+const _flaxBinding642 = FlaxGetter.plain(
   "isNotEmpty",
   flaxBoolType,
   _HashedObserverList_isNotEmpty,
 );
-const _flaxBinding655 = FlaxGetter.plain(
+const _flaxBinding643 = FlaxGetter.plain(
   "length",
   flaxIntType,
   _HashedObserverList_length,
 );
-const _flaxBinding656 = FlaxInstanceMethod.shared(
+const _flaxBinding644 = FlaxInstanceMethod.shared(
+  flaxVoidCall,
+  _HashedObserverList_clear,
+);
+const _flaxBinding645 = FlaxInstanceMethod.shared(
+  _flaxBinding41,
+  _HashedObserverList_contains,
+);
+const _flaxBinding646 = FlaxInstanceMethod.plain(
+  _flaxBinding216,
+  flaxStringType,
+  _HashedObserverList_join,
+);
+const _flaxBinding647 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _FlaxProxyDispatch17_super_call_clear,
 );
-const _flaxBinding657 = FlaxProxyMember(
+const _flaxBinding648 = FlaxProxyMember(
   "clear",
   0,
   flaxVoidCall,
   hasSuper: true,
 );
-const _flaxBinding658 = FlaxGetter.plain(
+const _flaxBinding649 = FlaxGetter.plain(
   "expandableValue",
   flaxBoolType,
   _IntProperty_expandableValue,
 );
-const _flaxBinding659 = FlaxGetter.plain(
+const _flaxBinding650 = FlaxGetter.plain(
   "ifNull",
   flaxNullableStringType,
   _IntProperty_ifNull,
 );
-const _flaxBinding660 = FlaxGetter.plain(
+const _flaxBinding651 = FlaxGetter.plain(
   "ifEmpty",
   flaxNullableStringType,
   _IntProperty_ifEmpty,
 );
-const _flaxBinding661 = FlaxGetter.plain(
+const _flaxBinding652 = FlaxGetter.plain(
   "tooltip",
   flaxNullableStringType,
   _IntProperty_tooltip,
 );
-const _flaxBinding662 = FlaxGetter.plain(
+const _flaxBinding653 = FlaxGetter.plain(
   "missingIfNull",
   flaxBoolType,
   _IntProperty_missingIfNull,
 );
-const _flaxBinding663 = FlaxGetter.plain(
+const _flaxBinding654 = FlaxGetter.plain(
   "propertyType",
   flaxTypeType,
   _IntProperty_propertyType,
 );
-const _flaxBinding664 = FlaxGetter.plain(
+const _flaxBinding655 = FlaxGetter.plain(
   "value",
   flaxNullableIntType,
   _IntProperty_value,
 );
-const _flaxBinding665 = FlaxGetter.plain(
+const _flaxBinding656 = FlaxGetter.plain(
   "exception",
   flaxNullableAnyType,
   _IntProperty_exception,
 );
-const _flaxBinding666 = FlaxGetter.plain(
+const _flaxBinding657 = FlaxGetter.plain(
   "defaultValue",
   flaxNullableAnyType,
   _IntProperty_defaultValue,
 );
-const _flaxBinding667 = FlaxGetter.plain(
+const _flaxBinding658 = FlaxGetter.plain(
   "isInteresting",
   flaxBoolType,
   _IntProperty_isInteresting,
 );
-const _flaxBinding668 = FlaxGetter.plain(
+const _flaxBinding659 = FlaxGetter.plain(
   "unit",
   flaxNullableStringType,
   _IntProperty_unit,
 );
-const _flaxBinding669 = FlaxInstanceMethod.plain(
-  _flaxBinding285,
+const _flaxBinding660 = FlaxInstanceMethod.plain(
+  _flaxBinding288,
   flaxStringType,
   _IntProperty_valueToString,
 );
-const _flaxBinding670 = FlaxInstanceMethod.shared(
+const _flaxBinding661 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _IntProperty_numberToString,
 );
-const _flaxBinding671 = <FlaxParameter>[
+const _flaxBinding662 = <FlaxParameter>[
   FlaxParameter.required("name", flaxStringType),
   FlaxParameter.required("value", flaxNullableIntType),
   FlaxParameter("ifNull", flaxNullableStringType, required: false),
@@ -54997,40 +52730,40 @@ const _flaxBinding671 = <FlaxParameter>[
     defaultValue: api.DiagnosticLevel.info,
   ),
 ];
-const _flaxBinding672 = FlaxProxyMember(
+const _flaxBinding663 = FlaxProxyMember(
   "value",
   1,
   flaxNullableIntCall,
   hasSuper: true,
 );
-const _flaxBinding673 = FlaxObjectBinding(
+const _flaxBinding664 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:IntProperty",
   [
+    _flaxBinding649,
+    _flaxBinding650,
+    _flaxBinding651,
+    _flaxBinding652,
+    _flaxBinding653,
+    _flaxBinding654,
+    _flaxBinding655,
+    _flaxBinding656,
+    _flaxBinding657,
     _flaxBinding658,
     _flaxBinding659,
-    _flaxBinding660,
-    _flaxBinding661,
-    _flaxBinding662,
-    _flaxBinding663,
-    _flaxBinding664,
-    _flaxBinding665,
-    _flaxBinding666,
-    _flaxBinding667,
-    _flaxBinding668,
   ],
   {
-    "valueToString": _flaxBinding669,
-    "numberToString": _flaxBinding670,
-    "@super:toJsonMap": _flaxBinding293,
-    "@super:valueToString": _flaxBinding414,
-    "@super:toDescription": _flaxBinding288,
-    "@super:getProperties": _flaxBinding290,
-    "@super:getChildren": _flaxBinding291,
-    "@super:isFiltered": _flaxBinding289,
-    "@super:toTimelineArguments": _flaxBinding292,
-    "@super:toJsonMapIterative": _flaxBinding294,
-    "@super:toStringDeep": _flaxBinding296,
-    "@super:toString": _flaxBinding295,
+    "valueToString": _flaxBinding660,
+    "numberToString": _flaxBinding661,
+    "@super:toJsonMap": _flaxBinding305,
+    "@super:valueToString": _flaxBinding409,
+    "@super:toDescription": _flaxBinding300,
+    "@super:getProperties": _flaxBinding302,
+    "@super:getChildren": _flaxBinding303,
+    "@super:isFiltered": _flaxBinding301,
+    "@super:toTimelineArguments": _flaxBinding304,
+    "@super:toJsonMapIterative": _flaxBinding306,
+    "@super:toStringDeep": _flaxBinding308,
+    "@super:toString": _flaxBinding307,
     "@super:numberToString": FlaxInstanceMethod.shared(
       flaxStringCall,
       _IntProperty_super_numberToString,
@@ -55039,26 +52772,26 @@ const _flaxBinding673 = FlaxObjectBinding(
       flaxNullableStringCall,
       _IntProperty_super_get_unit,
     ),
-    "@super:get:expandableValue": _flaxBinding415,
-    "@super:get:allowWrap": _flaxBinding302,
-    "@super:get:allowNameWrap": _flaxBinding303,
-    "@super:get:ifNull": _flaxBinding416,
-    "@super:get:ifEmpty": _flaxBinding417,
-    "@super:get:tooltip": _flaxBinding418,
-    "@super:get:missingIfNull": _flaxBinding419,
-    "@super:get:propertyType": _flaxBinding420,
+    "@super:get:expandableValue": _flaxBinding410,
+    "@super:get:allowWrap": _flaxBinding314,
+    "@super:get:allowNameWrap": _flaxBinding315,
+    "@super:get:ifNull": _flaxBinding411,
+    "@super:get:ifEmpty": _flaxBinding412,
+    "@super:get:tooltip": _flaxBinding413,
+    "@super:get:missingIfNull": _flaxBinding414,
+    "@super:get:propertyType": _flaxBinding415,
     "@super:get:value": FlaxInstanceMethod.shared(
       flaxNullableIntCall,
       _IntProperty_super_get_value,
     ),
-    "@super:get:exception": _flaxBinding421,
-    "@super:get:defaultValue": _flaxBinding422,
-    "@super:get:isInteresting": _flaxBinding423,
-    "@super:get:level": _flaxBinding299,
-    "@super:get:name": _flaxBinding297,
-    "@super:get:showSeparator": _flaxBinding298,
-    "@super:get:showName": _flaxBinding300,
-    "@super:get:linePrefix": _flaxBinding301,
+    "@super:get:exception": _flaxBinding416,
+    "@super:get:defaultValue": _flaxBinding417,
+    "@super:get:isInteresting": _flaxBinding418,
+    "@super:get:level": _flaxBinding311,
+    "@super:get:name": _flaxBinding309,
+    "@super:get:showSeparator": _flaxBinding310,
+    "@super:get:showName": _flaxBinding312,
+    "@super:get:linePrefix": _flaxBinding313,
     "@super:get:emptyBodyDescription": FlaxInstanceMethod.shared(
       flaxNullableStringCall,
       _IntProperty_super_get_emptyBodyDescription,
@@ -55067,10 +52800,10 @@ const _flaxBinding673 = FlaxObjectBinding(
       _flaxBinding71,
       _IntProperty_super_get_style,
     ),
-    "@super:get:allowTruncate": _flaxBinding304,
-    "@super:get:textTreeConfiguration": _flaxBinding305,
+    "@super:get:allowTruncate": _flaxBinding316,
+    "@super:get:textTreeConfiguration": _flaxBinding317,
   },
-  constructors: {"": _flaxBinding671, "@implementation": _flaxBinding671},
+  constructors: {"": _flaxBinding662, "@implementation": _flaxBinding662},
   create: _createIntProperty,
   matches: _isIntProperty,
   setters: [],
@@ -55080,157 +52813,134 @@ const _flaxBinding673 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:DiagnosticsNode",
     "dart:core::Object",
   ],
-  parent: _flaxBinding384,
+  parent: _flaxBinding383,
   proxy: FlaxProxyBinding([
-    _flaxBinding314,
-    _flaxBinding426,
-    _flaxBinding309,
-    _flaxBinding311,
-    _flaxBinding312,
-    _flaxBinding310,
-    _flaxBinding313,
-    _flaxBinding315,
-    _flaxBinding319,
-    _flaxBinding317,
-    _flaxBinding484,
-    _flaxBinding485,
-    _flaxBinding427,
+    _flaxBinding326,
+    _flaxBinding421,
+    _flaxBinding321,
+    _flaxBinding323,
+    _flaxBinding324,
+    _flaxBinding322,
+    _flaxBinding325,
     _flaxBinding327,
-    _flaxBinding328,
+    _flaxBinding331,
+    _flaxBinding329,
+    _flaxBinding479,
+    _flaxBinding480,
+    _flaxBinding422,
+    _flaxBinding339,
+    _flaxBinding340,
+    _flaxBinding423,
+    _flaxBinding424,
+    _flaxBinding425,
+    _flaxBinding426,
+    _flaxBinding427,
+    _flaxBinding663,
     _flaxBinding428,
     _flaxBinding429,
     _flaxBinding430,
-    _flaxBinding431,
-    _flaxBinding432,
-    _flaxBinding672,
-    _flaxBinding433,
-    _flaxBinding434,
-    _flaxBinding435,
-    _flaxBinding324,
-    _flaxBinding322,
-    _flaxBinding323,
-    _flaxBinding325,
-    _flaxBinding326,
-    _flaxBinding262,
-    _flaxBinding383,
-    _flaxBinding329,
-    _flaxBinding330,
+    _flaxBinding336,
+    _flaxBinding334,
+    _flaxBinding335,
+    _flaxBinding337,
+    _flaxBinding338,
+    _flaxBinding265,
+    _flaxBinding382,
+    _flaxBinding341,
+    _flaxBinding342,
   ]),
 );
-const _flaxBinding674 = FlaxGetter.plain(
+const _flaxBinding665 = FlaxGetter.plain(
   "expandableValue",
   flaxBoolType,
   _IterableProperty_expandableValue,
 );
-const _flaxBinding675 = FlaxGetter.plain(
-  "allowWrap",
-  flaxBoolType,
-  _IterableProperty_allowWrap,
-);
-const _flaxBinding676 = FlaxGetter.plain(
-  "allowNameWrap",
-  flaxBoolType,
-  _IterableProperty_allowNameWrap,
-);
-const _flaxBinding677 = FlaxGetter.plain(
+const _flaxBinding666 = FlaxGetter.plain(
   "ifNull",
   flaxNullableStringType,
   _IterableProperty_ifNull,
 );
-const _flaxBinding678 = FlaxGetter.plain(
+const _flaxBinding667 = FlaxGetter.plain(
   "ifEmpty",
   flaxNullableStringType,
   _IterableProperty_ifEmpty,
 );
-const _flaxBinding679 = FlaxGetter.plain(
+const _flaxBinding668 = FlaxGetter.plain(
   "tooltip",
   flaxNullableStringType,
   _IterableProperty_tooltip,
 );
-const _flaxBinding680 = FlaxGetter.plain(
+const _flaxBinding669 = FlaxGetter.plain(
   "missingIfNull",
   flaxBoolType,
   _IterableProperty_missingIfNull,
 );
-const _flaxBinding681 = FlaxGetter.plain(
+const _flaxBinding670 = FlaxGetter.plain(
   "propertyType",
   flaxTypeType,
   _IterableProperty_propertyType,
 );
-const _flaxBinding682 = FlaxGetter.plain(
+const _flaxBinding671 = FlaxGetter.plain(
   "exception",
   flaxNullableAnyType,
   _IterableProperty_exception,
 );
-const _flaxBinding683 = FlaxGetter.plain(
+const _flaxBinding672 = FlaxGetter.plain(
   "defaultValue",
   flaxNullableAnyType,
   _IterableProperty_defaultValue,
 );
-const _flaxBinding684 = FlaxGetter.plain(
+const _flaxBinding673 = FlaxGetter.plain(
   "isInteresting",
   flaxBoolType,
   _IterableProperty_isInteresting,
 );
-const _flaxBinding685 = FlaxGetter.plain(
-  "level",
-  _flaxBinding55,
-  _IterableProperty_level,
+const _flaxBinding674 = FlaxInstanceMethod.shared(
+  _flaxBinding60,
+  _IterableProperty_toJsonMap,
 );
-const _flaxBinding686 = FlaxGetter.plain(
-  "name",
-  flaxNullableStringType,
-  _IterableProperty_name,
+const _flaxBinding675 = FlaxInstanceMethod.plain(
+  _flaxBinding288,
+  flaxStringType,
+  _IterableProperty_valueToString,
 );
-const _flaxBinding687 = FlaxGetter.plain(
-  "showSeparator",
-  flaxBoolType,
-  _IterableProperty_showSeparator,
+const _flaxBinding676 = FlaxInstanceMethod.plain(
+  _flaxBinding288,
+  flaxStringType,
+  _IterableProperty_toDescription,
 );
-const _flaxBinding688 = FlaxGetter.plain(
-  "showName",
-  flaxBoolType,
-  _IterableProperty_showName,
+const _flaxBinding677 = FlaxInstanceMethod.shared(
+  _flaxBinding56,
+  _IterableProperty_isFiltered,
 );
-const _flaxBinding689 = FlaxGetter.plain(
-  "linePrefix",
-  flaxNullableStringType,
-  _IterableProperty_linePrefix,
+const _flaxBinding678 = FlaxInstanceMethod.shared(
+  _flaxBinding60,
+  _IterableProperty_toJsonMapIterative,
 );
-const _flaxBinding690 = FlaxGetter.plain(
-  "emptyBodyDescription",
-  flaxNullableStringType,
-  _IterableProperty_emptyBodyDescription,
+const _flaxBinding679 = FlaxInstanceMethod.plain(
+  _flaxBinding298,
+  flaxStringType,
+  _IterableProperty_toStringDeep,
 );
-const _flaxBinding691 = FlaxGetter.plain(
-  "style",
-  _flaxBinding70,
-  _IterableProperty_style,
+const _flaxBinding680 = FlaxInstanceMethod.plain(
+  _flaxBinding296,
+  flaxStringType,
+  _IterableProperty_toString,
 );
-const _flaxBinding692 = FlaxGetter.plain(
-  "allowTruncate",
-  flaxBoolType,
-  _IterableProperty_allowTruncate,
-);
-const _flaxBinding693 = FlaxGetter.plain(
-  "textTreeConfiguration",
-  _flaxBinding64,
-  _IterableProperty_textTreeConfiguration,
-);
-const _flaxBinding694 = FlaxTypeRef(
+const _flaxBinding681 = FlaxTypeRef(
   "iterable",
   nullable: true,
   item: flaxNullableAnyType,
   collection: FlaxCollectionBinding(
     "iterable:[any?:]",
-    _collection21Create,
-    _collection21Matches,
-    restore: _collection21Restore,
+    _flaxAdapters.flaxAdapter42Create,
+    _flaxAdapters.flaxAdapter42Matches,
+    restore: _flaxAdapters.flaxAdapter42Restore,
   ),
 );
-const _flaxBinding695 = <FlaxParameter>[
+const _flaxBinding682 = <FlaxParameter>[
   FlaxParameter.required("name", flaxStringType),
-  FlaxParameter.required("value", _flaxBinding694),
+  FlaxParameter.required("value", _flaxBinding681),
   FlaxParameter(
     "defaultValue",
     flaxNullableAnyType,
@@ -55264,80 +52974,80 @@ const _flaxBinding695 = <FlaxParameter>[
     defaultValue: api.DiagnosticLevel.info,
   ),
 ];
-const _flaxBinding696 = FlaxGetter.plain(
+const _flaxBinding683 = FlaxGetter.plain(
   "packages",
   _flaxBinding42,
   _LicenseEntry_packages,
 );
-const _flaxBinding697 = FlaxGetter.plain(
+const _flaxBinding684 = FlaxGetter.plain(
   "paragraphs",
   _flaxBinding92,
   _LicenseEntry_paragraphs,
 );
-const _flaxBinding698 = FlaxProxyMember("packages", 1, _flaxBinding90);
-const _flaxBinding699 = FlaxProxyMember("paragraphs", 1, _flaxBinding93);
-const _flaxBinding700 = FlaxObjectBinding(
+const _flaxBinding685 = FlaxProxyMember("packages", 1, _flaxBinding90);
+const _flaxBinding686 = FlaxProxyMember("paragraphs", 1, _flaxBinding93);
+const _flaxBinding687 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:LicenseEntry",
-  [_flaxBinding696, _flaxBinding697],
+  [_flaxBinding683, _flaxBinding684],
   {},
   constructors: {"@implementation": _flaxBinding131},
   create: _createLicenseEntry,
   matches: _isLicenseEntry,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding698, _flaxBinding699]),
+  proxy: FlaxProxyBinding([_flaxBinding685, _flaxBinding686]),
 );
-const _flaxBinding701 = FlaxGetter.plain(
+const _flaxBinding688 = FlaxGetter.plain(
   "packages",
   _flaxBinding43,
   _LicenseEntryWithLineBreaks_packages,
 );
-const _flaxBinding702 = FlaxGetter.plain(
+const _flaxBinding689 = FlaxGetter.plain(
   "text",
   flaxStringType,
   _LicenseEntryWithLineBreaks_text,
 );
-const _flaxBinding703 = FlaxInstanceMethod.shared(
+const _flaxBinding690 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _FlaxProxyDispatch18_super_get_text,
 );
-const _flaxBinding704 = <FlaxParameter>[
+const _flaxBinding691 = <FlaxParameter>[
   FlaxParameter.required("packages", _flaxBinding43),
   FlaxParameter.required("text", flaxStringType),
 ];
-const _flaxBinding705 = FlaxProxyMember(
+const _flaxBinding692 = FlaxProxyMember(
   "packages",
   1,
   _flaxBinding44,
   hasSuper: true,
 );
-const _flaxBinding706 = FlaxProxyMember(
+const _flaxBinding693 = FlaxProxyMember(
   "text",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding707 = FlaxProxyMember(
+const _flaxBinding694 = FlaxProxyMember(
   "paragraphs",
   1,
   _flaxBinding93,
   hasSuper: true,
 );
-const _flaxBinding708 = FlaxObjectBinding(
+const _flaxBinding695 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:LicenseEntryWithLineBreaks",
-  [_flaxBinding701, _flaxBinding702],
+  [_flaxBinding688, _flaxBinding689],
   {
     "@super:get:packages": FlaxInstanceMethod.shared(
       _flaxBinding44,
       _LicenseEntryWithLineBreaks_super_get_packages,
     ),
-    "@super:get:text": _flaxBinding703,
+    "@super:get:text": _flaxBinding690,
     "@super:get:paragraphs": FlaxInstanceMethod.shared(
       _flaxBinding93,
       _LicenseEntryWithLineBreaks_super_get_paragraphs,
     ),
   },
-  constructors: {"": _flaxBinding704, "@implementation": _flaxBinding704},
+  constructors: {"": _flaxBinding691, "@implementation": _flaxBinding691},
   create: _createLicenseEntryWithLineBreaks,
   matches: _isLicenseEntryWithLineBreaks,
   setters: [],
@@ -55345,47 +53055,47 @@ const _flaxBinding708 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:LicenseEntry",
     "dart:core::Object",
   ],
-  parent: _flaxBinding700,
-  proxy: FlaxProxyBinding([_flaxBinding705, _flaxBinding706, _flaxBinding707]),
+  parent: _flaxBinding687,
+  proxy: FlaxProxyBinding([_flaxBinding692, _flaxBinding693, _flaxBinding694]),
 );
-const _flaxBinding709 = FlaxGetter.plain(
+const _flaxBinding696 = FlaxGetter.plain(
   "text",
   flaxStringType,
   _LicenseParagraph_text,
 );
-const _flaxBinding710 = FlaxGetter.plain(
+const _flaxBinding697 = FlaxGetter.plain(
   "indent",
   flaxIntType,
   _LicenseParagraph_indent,
 );
-const _flaxBinding711 = <FlaxParameter>[
+const _flaxBinding698 = <FlaxParameter>[
   FlaxParameter.required("text", flaxStringType),
   FlaxParameter.required("indent", flaxIntType),
 ];
-const _flaxBinding712 = FlaxProxyMember(
+const _flaxBinding699 = FlaxProxyMember(
   "indent",
   1,
   flaxIntCall,
   hasSuper: true,
 );
-const _flaxBinding713 = FlaxObjectBinding(
+const _flaxBinding700 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:LicenseParagraph",
-  [_flaxBinding709, _flaxBinding710],
+  [_flaxBinding696, _flaxBinding697],
   {
-    "@super:get:text": _flaxBinding703,
+    "@super:get:text": _flaxBinding690,
     "@super:get:indent": FlaxInstanceMethod.shared(
       flaxIntCall,
       _LicenseParagraph_super_get_indent,
     ),
   },
-  constructors: {"": _flaxBinding711, "@implementation": _flaxBinding711},
+  constructors: {"": _flaxBinding698, "@implementation": _flaxBinding698},
   create: _createLicenseParagraph,
   matches: _isLicenseParagraph,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding706, _flaxBinding712]),
+  proxy: FlaxProxyBinding([_flaxBinding693, _flaxBinding699]),
 );
-const _flaxBinding714 = FlaxObjectBinding(
+const _flaxBinding701 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:LicenseRegistry",
   [],
   {},
@@ -55395,62 +53105,62 @@ const _flaxBinding714 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding715 = FlaxGetter.plain(
+const _flaxBinding702 = FlaxGetter.plain(
   "expandableValue",
   flaxBoolType,
   _MessageProperty_expandableValue,
 );
-const _flaxBinding716 = FlaxGetter.plain(
+const _flaxBinding703 = FlaxGetter.plain(
   "ifNull",
   flaxNullableStringType,
   _MessageProperty_ifNull,
 );
-const _flaxBinding717 = FlaxGetter.plain(
+const _flaxBinding704 = FlaxGetter.plain(
   "ifEmpty",
   flaxNullableStringType,
   _MessageProperty_ifEmpty,
 );
-const _flaxBinding718 = FlaxGetter.plain(
+const _flaxBinding705 = FlaxGetter.plain(
   "tooltip",
   flaxNullableStringType,
   _MessageProperty_tooltip,
 );
-const _flaxBinding719 = FlaxGetter.plain(
+const _flaxBinding706 = FlaxGetter.plain(
   "missingIfNull",
   flaxBoolType,
   _MessageProperty_missingIfNull,
 );
-const _flaxBinding720 = FlaxGetter.plain(
+const _flaxBinding707 = FlaxGetter.plain(
   "propertyType",
   flaxTypeType,
   _MessageProperty_propertyType,
 );
-const _flaxBinding721 = FlaxGetter.plain(
+const _flaxBinding708 = FlaxGetter.plain(
   "value",
   flaxVoidType,
   _MessageProperty_value,
 );
-const _flaxBinding722 = FlaxGetter.plain(
+const _flaxBinding709 = FlaxGetter.plain(
   "exception",
   flaxNullableAnyType,
   _MessageProperty_exception,
 );
-const _flaxBinding723 = FlaxGetter.plain(
+const _flaxBinding710 = FlaxGetter.plain(
   "defaultValue",
   flaxNullableAnyType,
   _MessageProperty_defaultValue,
 );
-const _flaxBinding724 = FlaxGetter.plain(
+const _flaxBinding711 = FlaxGetter.plain(
   "isInteresting",
   flaxBoolType,
   _MessageProperty_isInteresting,
 );
-const _flaxBinding725 = FlaxInstanceMethod.plain(
-  _flaxBinding285,
+const _flaxBinding712 = FlaxInstanceMethod.plain(
+  _flaxBinding288,
   flaxStringType,
   _MessageProperty_valueToString,
 );
-const _flaxBinding726 = <FlaxParameter>[
+const _flaxBinding713 = <FlaxParameter>[
   FlaxParameter.required("name", flaxStringType),
   FlaxParameter.required("message", flaxStringType),
   FlaxParameter(
@@ -55466,52 +53176,52 @@ const _flaxBinding726 = <FlaxParameter>[
     defaultValue: api.DiagnosticLevel.info,
   ),
 ];
-const _flaxBinding727 = FlaxObjectBinding(
+const _flaxBinding714 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:MessageProperty",
   [
-    _flaxBinding715,
-    _flaxBinding716,
-    _flaxBinding717,
-    _flaxBinding718,
-    _flaxBinding719,
-    _flaxBinding720,
-    _flaxBinding721,
-    _flaxBinding722,
-    _flaxBinding723,
-    _flaxBinding724,
+    _flaxBinding702,
+    _flaxBinding703,
+    _flaxBinding704,
+    _flaxBinding705,
+    _flaxBinding706,
+    _flaxBinding707,
+    _flaxBinding708,
+    _flaxBinding709,
+    _flaxBinding710,
+    _flaxBinding711,
   ],
   {
-    "valueToString": _flaxBinding725,
-    "@super:toJsonMap": _flaxBinding293,
-    "@super:valueToString": _flaxBinding414,
-    "@super:toDescription": _flaxBinding288,
-    "@super:getProperties": _flaxBinding290,
-    "@super:getChildren": _flaxBinding291,
-    "@super:isFiltered": _flaxBinding289,
-    "@super:toTimelineArguments": _flaxBinding292,
-    "@super:toJsonMapIterative": _flaxBinding294,
-    "@super:toStringDeep": _flaxBinding296,
-    "@super:toString": _flaxBinding295,
-    "@super:get:expandableValue": _flaxBinding415,
-    "@super:get:allowWrap": _flaxBinding302,
-    "@super:get:allowNameWrap": _flaxBinding303,
-    "@super:get:ifNull": _flaxBinding416,
-    "@super:get:ifEmpty": _flaxBinding417,
-    "@super:get:tooltip": _flaxBinding418,
-    "@super:get:missingIfNull": _flaxBinding419,
-    "@super:get:propertyType": _flaxBinding420,
+    "valueToString": _flaxBinding712,
+    "@super:toJsonMap": _flaxBinding305,
+    "@super:valueToString": _flaxBinding409,
+    "@super:toDescription": _flaxBinding300,
+    "@super:getProperties": _flaxBinding302,
+    "@super:getChildren": _flaxBinding303,
+    "@super:isFiltered": _flaxBinding301,
+    "@super:toTimelineArguments": _flaxBinding304,
+    "@super:toJsonMapIterative": _flaxBinding306,
+    "@super:toStringDeep": _flaxBinding308,
+    "@super:toString": _flaxBinding307,
+    "@super:get:expandableValue": _flaxBinding410,
+    "@super:get:allowWrap": _flaxBinding314,
+    "@super:get:allowNameWrap": _flaxBinding315,
+    "@super:get:ifNull": _flaxBinding411,
+    "@super:get:ifEmpty": _flaxBinding412,
+    "@super:get:tooltip": _flaxBinding413,
+    "@super:get:missingIfNull": _flaxBinding414,
+    "@super:get:propertyType": _flaxBinding415,
     "@super:get:value": FlaxInstanceMethod.shared(
       flaxVoidCall,
       _MessageProperty_super_get_value,
     ),
-    "@super:get:exception": _flaxBinding421,
-    "@super:get:defaultValue": _flaxBinding422,
-    "@super:get:isInteresting": _flaxBinding423,
-    "@super:get:level": _flaxBinding299,
-    "@super:get:name": _flaxBinding297,
-    "@super:get:showSeparator": _flaxBinding298,
-    "@super:get:showName": _flaxBinding300,
-    "@super:get:linePrefix": _flaxBinding301,
+    "@super:get:exception": _flaxBinding416,
+    "@super:get:defaultValue": _flaxBinding417,
+    "@super:get:isInteresting": _flaxBinding418,
+    "@super:get:level": _flaxBinding311,
+    "@super:get:name": _flaxBinding309,
+    "@super:get:showSeparator": _flaxBinding310,
+    "@super:get:showName": _flaxBinding312,
+    "@super:get:linePrefix": _flaxBinding313,
     "@super:get:emptyBodyDescription": FlaxInstanceMethod.shared(
       flaxNullableStringCall,
       _MessageProperty_super_get_emptyBodyDescription,
@@ -55520,10 +53230,10 @@ const _flaxBinding727 = FlaxObjectBinding(
       _flaxBinding71,
       _MessageProperty_super_get_style,
     ),
-    "@super:get:allowTruncate": _flaxBinding304,
-    "@super:get:textTreeConfiguration": _flaxBinding305,
+    "@super:get:allowTruncate": _flaxBinding316,
+    "@super:get:textTreeConfiguration": _flaxBinding317,
   },
-  constructors: {"": _flaxBinding726, "@implementation": _flaxBinding726},
+  constructors: {"": _flaxBinding713, "@implementation": _flaxBinding713},
   create: _createMessageProperty,
   matches: _isMessageProperty,
   setters: [],
@@ -55532,126 +53242,126 @@ const _flaxBinding727 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:DiagnosticsNode",
     "dart:core::Object",
   ],
-  parent: _flaxBinding384,
+  parent: _flaxBinding383,
   proxy: FlaxProxyBinding([
-    _flaxBinding314,
-    _flaxBinding426,
-    _flaxBinding309,
-    _flaxBinding311,
-    _flaxBinding312,
-    _flaxBinding310,
-    _flaxBinding313,
-    _flaxBinding315,
-    _flaxBinding319,
-    _flaxBinding317,
-    _flaxBinding427,
+    _flaxBinding326,
+    _flaxBinding421,
+    _flaxBinding321,
+    _flaxBinding323,
+    _flaxBinding324,
+    _flaxBinding322,
+    _flaxBinding325,
     _flaxBinding327,
-    _flaxBinding328,
+    _flaxBinding331,
+    _flaxBinding329,
+    _flaxBinding422,
+    _flaxBinding339,
+    _flaxBinding340,
+    _flaxBinding423,
+    _flaxBinding424,
+    _flaxBinding425,
+    _flaxBinding426,
+    _flaxBinding427,
+    _flaxBinding539,
     _flaxBinding428,
     _flaxBinding429,
     _flaxBinding430,
-    _flaxBinding431,
-    _flaxBinding432,
-    _flaxBinding548,
-    _flaxBinding433,
-    _flaxBinding434,
-    _flaxBinding435,
-    _flaxBinding324,
-    _flaxBinding322,
-    _flaxBinding323,
-    _flaxBinding325,
-    _flaxBinding326,
-    _flaxBinding262,
-    _flaxBinding383,
-    _flaxBinding329,
-    _flaxBinding330,
+    _flaxBinding336,
+    _flaxBinding334,
+    _flaxBinding335,
+    _flaxBinding337,
+    _flaxBinding338,
+    _flaxBinding265,
+    _flaxBinding382,
+    _flaxBinding341,
+    _flaxBinding342,
   ]),
 );
-const _flaxBinding728 = FlaxGetter.plain(
+const _flaxBinding715 = FlaxGetter.plain(
   "object",
   flaxAnyType,
   _ObjectEvent_object,
 );
-const _flaxBinding729 = FlaxInstanceMethod.shared(
+const _flaxBinding716 = FlaxInstanceMethod.shared(
   _flaxBinding96,
   _ObjectEvent_toMap,
 );
-const _flaxBinding730 = FlaxInstanceMethod.shared(
+const _flaxBinding717 = FlaxInstanceMethod.shared(
   flaxAnyCall,
   _FlaxProxyDispatch21_super_get_object,
 );
-const _flaxBinding731 = FlaxProxyMember("toMap", 0, _flaxBinding96);
-const _flaxBinding732 = FlaxProxyMember(
+const _flaxBinding718 = FlaxProxyMember("toMap", 0, _flaxBinding96);
+const _flaxBinding719 = FlaxProxyMember(
   "object",
   1,
   flaxAnyCall,
   hasSuper: true,
 );
-const _flaxBinding733 = FlaxObjectBinding(
+const _flaxBinding720 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:ObjectEvent",
-  [_flaxBinding728],
-  {"toMap": _flaxBinding729, "@super:get:object": _flaxBinding730},
-  constructors: {"@implementation": _flaxBinding649},
+  [_flaxBinding715],
+  {"toMap": _flaxBinding716, "@super:get:object": _flaxBinding717},
+  constructors: {"@implementation": _flaxBinding637},
   create: _createObjectEvent,
   matches: _isObjectEvent,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding731, _flaxBinding732]),
+  proxy: FlaxProxyBinding([_flaxBinding718, _flaxBinding719]),
 );
-const _flaxBinding734 = FlaxGetter.plain(
+const _flaxBinding721 = FlaxGetter.plain(
   "library",
   flaxStringType,
   _ObjectCreated_library,
 );
-const _flaxBinding735 = FlaxGetter.plain(
+const _flaxBinding722 = FlaxGetter.plain(
   "className",
   flaxStringType,
   _ObjectCreated_className,
 );
-const _flaxBinding736 = FlaxInstanceMethod.shared(
+const _flaxBinding723 = FlaxInstanceMethod.shared(
   _flaxBinding96,
   _FlaxProxyDispatch19_super_call_toMap,
 );
-const _flaxBinding737 = FlaxInstanceMethod.shared(
+const _flaxBinding724 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _FlaxProxyDispatch20_super_get_className,
 );
-const _flaxBinding738 = <FlaxParameter>[
+const _flaxBinding725 = <FlaxParameter>[
   FlaxParameter.required("library", flaxStringType),
   FlaxParameter.required("className", flaxStringType),
   FlaxParameter.required("object", flaxAnyType),
 ];
-const _flaxBinding739 = FlaxProxyMember(
+const _flaxBinding726 = FlaxProxyMember(
   "toMap",
   0,
   _flaxBinding96,
   hasSuper: true,
 );
-const _flaxBinding740 = FlaxProxyMember(
+const _flaxBinding727 = FlaxProxyMember(
   "library",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding741 = FlaxProxyMember(
+const _flaxBinding728 = FlaxProxyMember(
   "className",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding742 = FlaxObjectBinding(
+const _flaxBinding729 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:ObjectCreated",
-  [_flaxBinding734, _flaxBinding735],
+  [_flaxBinding721, _flaxBinding722],
   {
-    "@super:toMap": _flaxBinding736,
+    "@super:toMap": _flaxBinding723,
     "@super:get:library": FlaxInstanceMethod.shared(
       flaxStringCall,
       _ObjectCreated_super_get_library,
     ),
-    "@super:get:className": _flaxBinding737,
-    "@super:get:object": _flaxBinding730,
+    "@super:get:className": _flaxBinding724,
+    "@super:get:object": _flaxBinding717,
   },
-  constructors: {"": _flaxBinding738, "@implementation": _flaxBinding738},
+  constructors: {"": _flaxBinding725, "@implementation": _flaxBinding725},
   create: _createObjectCreated,
   matches: _isObjectCreated,
   setters: [],
@@ -55659,19 +53369,19 @@ const _flaxBinding742 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:ObjectEvent",
     "dart:core::Object",
   ],
-  parent: _flaxBinding733,
+  parent: _flaxBinding720,
   proxy: FlaxProxyBinding([
-    _flaxBinding739,
-    _flaxBinding740,
-    _flaxBinding741,
-    _flaxBinding732,
+    _flaxBinding726,
+    _flaxBinding727,
+    _flaxBinding728,
+    _flaxBinding719,
   ]),
 );
-const _flaxBinding743 = FlaxObjectBinding(
+const _flaxBinding730 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:ObjectDisposed",
   [],
-  {"@super:toMap": _flaxBinding736, "@super:get:object": _flaxBinding730},
-  constructors: {"": _flaxBinding649, "@implementation": _flaxBinding649},
+  {"@super:toMap": _flaxBinding723, "@super:get:object": _flaxBinding717},
+  constructors: {"": _flaxBinding637, "@implementation": _flaxBinding637},
   create: _createObjectDisposed,
   matches: _isObjectDisposed,
   setters: [],
@@ -55679,115 +53389,92 @@ const _flaxBinding743 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:ObjectEvent",
     "dart:core::Object",
   ],
-  parent: _flaxBinding733,
-  proxy: FlaxProxyBinding([_flaxBinding739, _flaxBinding732]),
+  parent: _flaxBinding720,
+  proxy: FlaxProxyBinding([_flaxBinding726, _flaxBinding719]),
 );
-const _flaxBinding744 = FlaxGetter.plain(
+const _flaxBinding731 = FlaxGetter.plain(
   "expandableValue",
   flaxBoolType,
   _ObjectFlagProperty_expandableValue,
 );
-const _flaxBinding745 = FlaxGetter.plain(
-  "allowWrap",
-  flaxBoolType,
-  _ObjectFlagProperty_allowWrap,
-);
-const _flaxBinding746 = FlaxGetter.plain(
-  "allowNameWrap",
-  flaxBoolType,
-  _ObjectFlagProperty_allowNameWrap,
-);
-const _flaxBinding747 = FlaxGetter.plain(
+const _flaxBinding732 = FlaxGetter.plain(
   "ifNull",
   flaxNullableStringType,
   _ObjectFlagProperty_ifNull,
 );
-const _flaxBinding748 = FlaxGetter.plain(
+const _flaxBinding733 = FlaxGetter.plain(
   "ifEmpty",
   flaxNullableStringType,
   _ObjectFlagProperty_ifEmpty,
 );
-const _flaxBinding749 = FlaxGetter.plain(
+const _flaxBinding734 = FlaxGetter.plain(
   "tooltip",
   flaxNullableStringType,
   _ObjectFlagProperty_tooltip,
 );
-const _flaxBinding750 = FlaxGetter.plain(
+const _flaxBinding735 = FlaxGetter.plain(
   "missingIfNull",
   flaxBoolType,
   _ObjectFlagProperty_missingIfNull,
 );
-const _flaxBinding751 = FlaxGetter.plain(
+const _flaxBinding736 = FlaxGetter.plain(
   "propertyType",
   flaxTypeType,
   _ObjectFlagProperty_propertyType,
 );
-const _flaxBinding752 = FlaxGetter.plain(
+const _flaxBinding737 = FlaxGetter.plain(
   "exception",
   flaxNullableAnyType,
   _ObjectFlagProperty_exception,
 );
-const _flaxBinding753 = FlaxGetter.plain(
+const _flaxBinding738 = FlaxGetter.plain(
   "defaultValue",
   flaxNullableAnyType,
   _ObjectFlagProperty_defaultValue,
 );
-const _flaxBinding754 = FlaxGetter.plain(
+const _flaxBinding739 = FlaxGetter.plain(
   "isInteresting",
   flaxBoolType,
   _ObjectFlagProperty_isInteresting,
 );
-const _flaxBinding755 = FlaxGetter.plain(
-  "level",
-  _flaxBinding55,
-  _ObjectFlagProperty_level,
-);
-const _flaxBinding756 = FlaxGetter.plain(
-  "name",
-  flaxNullableStringType,
-  _ObjectFlagProperty_name,
-);
-const _flaxBinding757 = FlaxGetter.plain(
-  "showSeparator",
-  flaxBoolType,
-  _ObjectFlagProperty_showSeparator,
-);
-const _flaxBinding758 = FlaxGetter.plain(
-  "showName",
-  flaxBoolType,
-  _ObjectFlagProperty_showName,
-);
-const _flaxBinding759 = FlaxGetter.plain(
-  "linePrefix",
-  flaxNullableStringType,
-  _ObjectFlagProperty_linePrefix,
-);
-const _flaxBinding760 = FlaxGetter.plain(
-  "emptyBodyDescription",
-  flaxNullableStringType,
-  _ObjectFlagProperty_emptyBodyDescription,
-);
-const _flaxBinding761 = FlaxGetter.plain(
-  "style",
-  _flaxBinding70,
-  _ObjectFlagProperty_style,
-);
-const _flaxBinding762 = FlaxGetter.plain(
-  "allowTruncate",
-  flaxBoolType,
-  _ObjectFlagProperty_allowTruncate,
-);
-const _flaxBinding763 = FlaxGetter.plain(
-  "textTreeConfiguration",
-  _flaxBinding64,
-  _ObjectFlagProperty_textTreeConfiguration,
-);
-const _flaxBinding764 = FlaxGetter.plain(
+const _flaxBinding740 = FlaxGetter.plain(
   "ifPresent",
   flaxNullableStringType,
   _ObjectFlagProperty_ifPresent,
 );
-const _flaxBinding765 = <FlaxParameter>[
+const _flaxBinding741 = FlaxInstanceMethod.shared(
+  _flaxBinding60,
+  _ObjectFlagProperty_toJsonMap,
+);
+const _flaxBinding742 = FlaxInstanceMethod.plain(
+  _flaxBinding288,
+  flaxStringType,
+  _ObjectFlagProperty_valueToString,
+);
+const _flaxBinding743 = FlaxInstanceMethod.plain(
+  _flaxBinding288,
+  flaxStringType,
+  _ObjectFlagProperty_toDescription,
+);
+const _flaxBinding744 = FlaxInstanceMethod.shared(
+  _flaxBinding56,
+  _ObjectFlagProperty_isFiltered,
+);
+const _flaxBinding745 = FlaxInstanceMethod.shared(
+  _flaxBinding60,
+  _ObjectFlagProperty_toJsonMapIterative,
+);
+const _flaxBinding746 = FlaxInstanceMethod.plain(
+  _flaxBinding298,
+  flaxStringType,
+  _ObjectFlagProperty_toStringDeep,
+);
+const _flaxBinding747 = FlaxInstanceMethod.plain(
+  _flaxBinding296,
+  flaxStringType,
+  _ObjectFlagProperty_toString,
+);
+const _flaxBinding748 = <FlaxParameter>[
   FlaxParameter.required("name", flaxStringType),
   FlaxParameter.required("value", flaxNullableAnyType),
   FlaxParameter("ifPresent", flaxNullableStringType, required: false),
@@ -55800,7 +53487,7 @@ const _flaxBinding765 = <FlaxParameter>[
     defaultValue: api.DiagnosticLevel.info,
   ),
 ];
-const _flaxBinding766 = <FlaxParameter>[
+const _flaxBinding749 = <FlaxParameter>[
   FlaxParameter.required("name", flaxStringType),
   FlaxParameter.required("value", flaxNullableAnyType),
   FlaxParameter(
@@ -55810,78 +53497,91 @@ const _flaxBinding766 = <FlaxParameter>[
     defaultValue: api.DiagnosticLevel.info,
   ),
 ];
-const _flaxBinding767 = FlaxProxyMember(
+const _flaxBinding750 = FlaxProxyMember(
   "ifPresent",
   1,
   flaxNullableStringCall,
   hasSuper: true,
 );
-const _flaxBinding768 = FlaxGetter.plain(
+const _flaxBinding751 = FlaxGetter.plain(
   "isEmpty",
   flaxBoolType,
   _ObserverList_isEmpty,
 );
-const _flaxBinding769 = FlaxGetter.plain(
+const _flaxBinding752 = FlaxGetter.plain(
   "isNotEmpty",
   flaxBoolType,
   _ObserverList_isNotEmpty,
 );
-const _flaxBinding770 = FlaxGetter.plain(
+const _flaxBinding753 = FlaxGetter.plain(
   "length",
   flaxIntType,
   _ObserverList_length,
 );
-const _flaxBinding771 = FlaxGetter.plain(
+const _flaxBinding754 = FlaxInstanceMethod.shared(
+  flaxVoidCall,
+  _ObserverList_clear,
+);
+const _flaxBinding755 = FlaxInstanceMethod.shared(
+  _flaxBinding41,
+  _ObserverList_contains,
+);
+const _flaxBinding756 = FlaxInstanceMethod.plain(
+  _flaxBinding216,
+  flaxStringType,
+  _ObserverList_join,
+);
+const _flaxBinding757 = FlaxGetter.plain(
   "package",
   _flaxBinding99,
   _PartialStackFrame_package,
 );
-const _flaxBinding772 = FlaxGetter.plain(
+const _flaxBinding758 = FlaxGetter.plain(
   "className",
   flaxStringType,
   _PartialStackFrame_className,
 );
-const _flaxBinding773 = FlaxGetter.plain(
+const _flaxBinding759 = FlaxGetter.plain(
   "method",
   flaxStringType,
   _PartialStackFrame_method,
 );
-const _flaxBinding774 = FlaxInstanceMethod.shared(
+const _flaxBinding760 = FlaxInstanceMethod.shared(
   _flaxBinding98,
   _PartialStackFrame_matches,
 );
-const _flaxBinding775 = FlaxInstanceMethod.shared(
+const _flaxBinding761 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _FlaxProxyDispatch22_super_get_method,
 );
-const _flaxBinding776 = <FlaxParameter>[
+const _flaxBinding762 = <FlaxParameter>[
   FlaxParameter.required("package", _flaxBinding99),
   FlaxParameter.required("className", flaxStringType),
   FlaxParameter.required("method", flaxStringType),
 ];
-const _flaxBinding777 = FlaxProxyMember(
+const _flaxBinding763 = FlaxProxyMember(
   "matches",
   0,
   _flaxBinding98,
   hasSuper: true,
 );
-const _flaxBinding778 = FlaxProxyMember(
+const _flaxBinding764 = FlaxProxyMember(
   "package",
   1,
   _flaxBinding100,
   hasSuper: true,
 );
-const _flaxBinding779 = FlaxProxyMember(
+const _flaxBinding765 = FlaxProxyMember(
   "method",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding780 = FlaxObjectBinding(
+const _flaxBinding766 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:PartialStackFrame",
-  [_flaxBinding771, _flaxBinding772, _flaxBinding773],
+  [_flaxBinding757, _flaxBinding758, _flaxBinding759],
   {
-    "matches": _flaxBinding774,
+    "matches": _flaxBinding760,
     "@super:matches": FlaxInstanceMethod.shared(
       _flaxBinding98,
       _PartialStackFrame_super_matches,
@@ -55890,22 +53590,22 @@ const _flaxBinding780 = FlaxObjectBinding(
       _flaxBinding100,
       _PartialStackFrame_super_get_package,
     ),
-    "@super:get:className": _flaxBinding737,
-    "@super:get:method": _flaxBinding775,
+    "@super:get:className": _flaxBinding724,
+    "@super:get:method": _flaxBinding761,
   },
-  constructors: {"": _flaxBinding776, "@implementation": _flaxBinding776},
+  constructors: {"": _flaxBinding762, "@implementation": _flaxBinding762},
   create: _createPartialStackFrame,
   matches: _isPartialStackFrame,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding777,
-    _flaxBinding778,
-    _flaxBinding741,
-    _flaxBinding779,
+    _flaxBinding763,
+    _flaxBinding764,
+    _flaxBinding728,
+    _flaxBinding765,
   ]),
 );
-const _flaxBinding781 = <FlaxParameter>[
+const _flaxBinding767 = <FlaxParameter>[
   FlaxParameter.required("name", flaxStringType),
   FlaxParameter.required("fraction", flaxNullableDoubleType),
   FlaxParameter("ifNull", flaxNullableStringType, required: false),
@@ -55919,7 +53619,7 @@ const _flaxBinding781 = <FlaxParameter>[
     defaultValue: api.DiagnosticLevel.info,
   ),
 ];
-const _flaxBinding782 = FlaxObjectBinding(
+const _flaxBinding768 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:PercentProperty",
   [],
   {
@@ -55927,40 +53627,40 @@ const _flaxBinding782 = FlaxObjectBinding(
       flaxStringCall,
       _PercentProperty_super_numberToString,
     ),
-    "@super:toJsonMap": _flaxBinding293,
-    "@super:valueToString": _flaxBinding414,
-    "@super:toDescription": _flaxBinding288,
-    "@super:getProperties": _flaxBinding290,
-    "@super:getChildren": _flaxBinding291,
-    "@super:isFiltered": _flaxBinding289,
-    "@super:toTimelineArguments": _flaxBinding292,
-    "@super:toJsonMapIterative": _flaxBinding294,
-    "@super:toStringDeep": _flaxBinding296,
-    "@super:toString": _flaxBinding295,
+    "@super:toJsonMap": _flaxBinding305,
+    "@super:valueToString": _flaxBinding409,
+    "@super:toDescription": _flaxBinding300,
+    "@super:getProperties": _flaxBinding302,
+    "@super:getChildren": _flaxBinding303,
+    "@super:isFiltered": _flaxBinding301,
+    "@super:toTimelineArguments": _flaxBinding304,
+    "@super:toJsonMapIterative": _flaxBinding306,
+    "@super:toStringDeep": _flaxBinding308,
+    "@super:toString": _flaxBinding307,
     "@super:get:unit": FlaxInstanceMethod.shared(
       flaxNullableStringCall,
       _PercentProperty_super_get_unit,
     ),
-    "@super:get:expandableValue": _flaxBinding415,
-    "@super:get:allowWrap": _flaxBinding302,
-    "@super:get:allowNameWrap": _flaxBinding303,
-    "@super:get:ifNull": _flaxBinding416,
-    "@super:get:ifEmpty": _flaxBinding417,
-    "@super:get:tooltip": _flaxBinding418,
-    "@super:get:missingIfNull": _flaxBinding419,
-    "@super:get:propertyType": _flaxBinding420,
+    "@super:get:expandableValue": _flaxBinding410,
+    "@super:get:allowWrap": _flaxBinding314,
+    "@super:get:allowNameWrap": _flaxBinding315,
+    "@super:get:ifNull": _flaxBinding411,
+    "@super:get:ifEmpty": _flaxBinding412,
+    "@super:get:tooltip": _flaxBinding413,
+    "@super:get:missingIfNull": _flaxBinding414,
+    "@super:get:propertyType": _flaxBinding415,
     "@super:get:value": FlaxInstanceMethod.shared(
       flaxNullableDoubleCall,
       _PercentProperty_super_get_value,
     ),
-    "@super:get:exception": _flaxBinding421,
-    "@super:get:defaultValue": _flaxBinding422,
-    "@super:get:isInteresting": _flaxBinding423,
-    "@super:get:level": _flaxBinding299,
-    "@super:get:name": _flaxBinding297,
-    "@super:get:showSeparator": _flaxBinding298,
-    "@super:get:showName": _flaxBinding300,
-    "@super:get:linePrefix": _flaxBinding301,
+    "@super:get:exception": _flaxBinding416,
+    "@super:get:defaultValue": _flaxBinding417,
+    "@super:get:isInteresting": _flaxBinding418,
+    "@super:get:level": _flaxBinding311,
+    "@super:get:name": _flaxBinding309,
+    "@super:get:showSeparator": _flaxBinding310,
+    "@super:get:showName": _flaxBinding312,
+    "@super:get:linePrefix": _flaxBinding313,
     "@super:get:emptyBodyDescription": FlaxInstanceMethod.shared(
       flaxNullableStringCall,
       _PercentProperty_super_get_emptyBodyDescription,
@@ -55969,10 +53669,10 @@ const _flaxBinding782 = FlaxObjectBinding(
       _flaxBinding71,
       _PercentProperty_super_get_style,
     ),
-    "@super:get:allowTruncate": _flaxBinding304,
-    "@super:get:textTreeConfiguration": _flaxBinding305,
+    "@super:get:allowTruncate": _flaxBinding316,
+    "@super:get:textTreeConfiguration": _flaxBinding317,
   },
-  constructors: {"": _flaxBinding781, "@implementation": _flaxBinding781},
+  constructors: {"": _flaxBinding767, "@implementation": _flaxBinding767},
   create: _createPercentProperty,
   matches: _isPercentProperty,
   setters: [],
@@ -55983,124 +53683,124 @@ const _flaxBinding782 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:DiagnosticsNode",
     "dart:core::Object",
   ],
-  parent: _flaxBinding487,
+  parent: _flaxBinding482,
   proxy: FlaxProxyBinding([
-    _flaxBinding484,
-    _flaxBinding314,
-    _flaxBinding426,
-    _flaxBinding309,
-    _flaxBinding311,
-    _flaxBinding312,
-    _flaxBinding310,
-    _flaxBinding313,
-    _flaxBinding315,
-    _flaxBinding319,
-    _flaxBinding317,
-    _flaxBinding485,
-    _flaxBinding427,
+    _flaxBinding479,
+    _flaxBinding326,
+    _flaxBinding421,
+    _flaxBinding321,
+    _flaxBinding323,
+    _flaxBinding324,
+    _flaxBinding322,
+    _flaxBinding325,
     _flaxBinding327,
-    _flaxBinding328,
+    _flaxBinding331,
+    _flaxBinding329,
+    _flaxBinding480,
+    _flaxBinding422,
+    _flaxBinding339,
+    _flaxBinding340,
+    _flaxBinding423,
+    _flaxBinding424,
+    _flaxBinding425,
+    _flaxBinding426,
+    _flaxBinding427,
+    _flaxBinding481,
     _flaxBinding428,
     _flaxBinding429,
     _flaxBinding430,
-    _flaxBinding431,
-    _flaxBinding432,
-    _flaxBinding486,
-    _flaxBinding433,
-    _flaxBinding434,
-    _flaxBinding435,
-    _flaxBinding324,
-    _flaxBinding322,
-    _flaxBinding323,
-    _flaxBinding325,
-    _flaxBinding326,
-    _flaxBinding262,
-    _flaxBinding383,
-    _flaxBinding329,
-    _flaxBinding330,
+    _flaxBinding336,
+    _flaxBinding334,
+    _flaxBinding335,
+    _flaxBinding337,
+    _flaxBinding338,
+    _flaxBinding265,
+    _flaxBinding382,
+    _flaxBinding341,
+    _flaxBinding342,
   ]),
 );
-const _flaxBinding783 = FlaxGetter.plain(
+const _flaxBinding769 = FlaxGetter.plain(
   "data",
   _flaxBinding110,
   _ReadBuffer_data,
 );
-const _flaxBinding784 = FlaxGetter.plain(
+const _flaxBinding770 = FlaxGetter.plain(
   "hasRemaining",
   flaxBoolType,
   _ReadBuffer_hasRemaining,
 );
-const _flaxBinding785 = FlaxInstanceMethod.shared(
+const _flaxBinding771 = FlaxInstanceMethod.shared(
   flaxIntCall,
   _ReadBuffer_getUint8,
 );
-const _flaxBinding786 = FlaxTypeRef(
+const _flaxBinding772 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_foundation#type:Endian",
   nullable: true,
 );
-const _flaxBinding787 = <FlaxParameter>[
-  FlaxParameter("endian", _flaxBinding786, required: false),
+const _flaxBinding773 = <FlaxParameter>[
+  FlaxParameter("endian", _flaxBinding772, required: false),
 ];
-const _flaxBinding788 = FlaxInstanceMethod.plain(
-  _flaxBinding787,
+const _flaxBinding774 = FlaxInstanceMethod.plain(
+  _flaxBinding773,
   flaxIntType,
   _ReadBuffer_getUint16,
 );
-const _flaxBinding789 = FlaxInstanceMethod.plain(
-  _flaxBinding787,
+const _flaxBinding775 = FlaxInstanceMethod.plain(
+  _flaxBinding773,
   flaxIntType,
   _ReadBuffer_getUint32,
 );
-const _flaxBinding790 = FlaxInstanceMethod.plain(
-  _flaxBinding787,
+const _flaxBinding776 = FlaxInstanceMethod.plain(
+  _flaxBinding773,
   flaxIntType,
   _ReadBuffer_getInt32,
 );
-const _flaxBinding791 = FlaxInstanceMethod.plain(
-  _flaxBinding787,
+const _flaxBinding777 = FlaxInstanceMethod.plain(
+  _flaxBinding773,
   flaxIntType,
   _ReadBuffer_getInt64,
 );
-const _flaxBinding792 = FlaxInstanceMethod.plain(
-  _flaxBinding787,
+const _flaxBinding778 = FlaxInstanceMethod.plain(
+  _flaxBinding773,
   flaxDoubleType,
   _ReadBuffer_getFloat64,
 );
-const _flaxBinding793 = FlaxInstanceMethod.shared(
+const _flaxBinding779 = FlaxInstanceMethod.shared(
   _flaxBinding101,
   _ReadBuffer_getUint8List,
 );
-const _flaxBinding794 = FlaxInstanceMethod.shared(
+const _flaxBinding780 = FlaxInstanceMethod.shared(
   _flaxBinding103,
   _ReadBuffer_getInt32List,
 );
-const _flaxBinding795 = FlaxInstanceMethod.shared(
+const _flaxBinding781 = FlaxInstanceMethod.shared(
   _flaxBinding105,
   _ReadBuffer_getInt64List,
 );
-const _flaxBinding796 = FlaxInstanceMethod.shared(
+const _flaxBinding782 = FlaxInstanceMethod.shared(
   _flaxBinding107,
   _ReadBuffer_getFloat32List,
 );
-const _flaxBinding797 = FlaxInstanceMethod.shared(
+const _flaxBinding783 = FlaxInstanceMethod.shared(
   _flaxBinding109,
   _ReadBuffer_getFloat64List,
 );
-const _flaxBinding798 = <FlaxParameter>[
+const _flaxBinding784 = <FlaxParameter>[
   FlaxParameter.required("data", _flaxBinding110),
 ];
-const _flaxBinding799 = FlaxProxyMember(
+const _flaxBinding785 = FlaxProxyMember(
   "getUint8",
   0,
   flaxIntCall,
   hasSuper: true,
 );
-const _flaxBinding800 = FlaxCallbackBinding.signature(
+const _flaxBinding786 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "endian",
-      _flaxBinding786,
+      _flaxBinding772,
       required: false,
       positional: false,
     ),
@@ -56108,35 +53808,35 @@ const _flaxBinding800 = FlaxCallbackBinding.signature(
   flaxIntType,
   id: "callback:<>(n:o:endian:object?:flax.core/sdk_foundation#type:Endian)->int:",
 );
-const _flaxBinding801 = FlaxProxyMember(
+const _flaxBinding787 = FlaxProxyMember(
   "getUint16",
   0,
-  _flaxBinding800,
+  _flaxBinding786,
   hasSuper: true,
 );
-const _flaxBinding802 = FlaxProxyMember(
+const _flaxBinding788 = FlaxProxyMember(
   "getUint32",
   0,
-  _flaxBinding800,
+  _flaxBinding786,
   hasSuper: true,
 );
-const _flaxBinding803 = FlaxProxyMember(
+const _flaxBinding789 = FlaxProxyMember(
   "getInt32",
   0,
-  _flaxBinding800,
+  _flaxBinding786,
   hasSuper: true,
 );
-const _flaxBinding804 = FlaxProxyMember(
+const _flaxBinding790 = FlaxProxyMember(
   "getInt64",
   0,
-  _flaxBinding800,
+  _flaxBinding786,
   hasSuper: true,
 );
-const _flaxBinding805 = FlaxCallbackBinding.signature(
+const _flaxBinding791 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "endian",
-      _flaxBinding786,
+      _flaxBinding772,
       required: false,
       positional: false,
     ),
@@ -56144,95 +53844,95 @@ const _flaxBinding805 = FlaxCallbackBinding.signature(
   flaxDoubleType,
   id: "callback:<>(n:o:endian:object?:flax.core/sdk_foundation#type:Endian)->double:",
 );
-const _flaxBinding806 = FlaxProxyMember(
+const _flaxBinding792 = FlaxProxyMember(
   "getFloat64",
   0,
-  _flaxBinding805,
+  _flaxBinding791,
   hasSuper: true,
 );
-const _flaxBinding807 = FlaxProxyMember(
+const _flaxBinding793 = FlaxProxyMember(
   "getUint8List",
   0,
   _flaxBinding101,
   hasSuper: true,
 );
-const _flaxBinding808 = FlaxProxyMember(
+const _flaxBinding794 = FlaxProxyMember(
   "getInt32List",
   0,
   _flaxBinding103,
   hasSuper: true,
 );
-const _flaxBinding809 = FlaxProxyMember(
+const _flaxBinding795 = FlaxProxyMember(
   "getInt64List",
   0,
   _flaxBinding105,
   hasSuper: true,
 );
-const _flaxBinding810 = FlaxProxyMember(
+const _flaxBinding796 = FlaxProxyMember(
   "getFloat32List",
   0,
   _flaxBinding107,
   hasSuper: true,
 );
-const _flaxBinding811 = FlaxProxyMember(
+const _flaxBinding797 = FlaxProxyMember(
   "getFloat64List",
   0,
   _flaxBinding109,
   hasSuper: true,
 );
-const _flaxBinding812 = FlaxProxyMember(
+const _flaxBinding798 = FlaxProxyMember(
   "data",
   1,
   _flaxBinding111,
   hasSuper: true,
 );
-const _flaxBinding813 = FlaxProxyMember(
+const _flaxBinding799 = FlaxProxyMember(
   "hasRemaining",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding814 = FlaxObjectBinding(
+const _flaxBinding800 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:ReadBuffer",
-  [_flaxBinding783, _flaxBinding784],
+  [_flaxBinding769, _flaxBinding770],
   {
-    "getUint8": _flaxBinding785,
-    "getUint16": _flaxBinding788,
-    "getUint32": _flaxBinding789,
-    "getInt32": _flaxBinding790,
-    "getInt64": _flaxBinding791,
-    "getFloat64": _flaxBinding792,
-    "getUint8List": _flaxBinding793,
-    "getInt32List": _flaxBinding794,
-    "getInt64List": _flaxBinding795,
-    "getFloat32List": _flaxBinding796,
-    "getFloat64List": _flaxBinding797,
+    "getUint8": _flaxBinding771,
+    "getUint16": _flaxBinding774,
+    "getUint32": _flaxBinding775,
+    "getInt32": _flaxBinding776,
+    "getInt64": _flaxBinding777,
+    "getFloat64": _flaxBinding778,
+    "getUint8List": _flaxBinding779,
+    "getInt32List": _flaxBinding780,
+    "getInt64List": _flaxBinding781,
+    "getFloat32List": _flaxBinding782,
+    "getFloat64List": _flaxBinding783,
     "@super:getUint8": FlaxInstanceMethod.shared(
       flaxIntCall,
       _ReadBuffer_super_getUint8,
     ),
     "@super:getUint16": FlaxInstanceMethod.plain(
-      _flaxBinding787,
+      _flaxBinding773,
       flaxIntType,
       _ReadBuffer_super_getUint16,
     ),
     "@super:getUint32": FlaxInstanceMethod.plain(
-      _flaxBinding787,
+      _flaxBinding773,
       flaxIntType,
       _ReadBuffer_super_getUint32,
     ),
     "@super:getInt32": FlaxInstanceMethod.plain(
-      _flaxBinding787,
+      _flaxBinding773,
       flaxIntType,
       _ReadBuffer_super_getInt32,
     ),
     "@super:getInt64": FlaxInstanceMethod.plain(
-      _flaxBinding787,
+      _flaxBinding773,
       flaxIntType,
       _ReadBuffer_super_getInt64,
     ),
     "@super:getFloat64": FlaxInstanceMethod.plain(
-      _flaxBinding787,
+      _flaxBinding773,
       flaxDoubleType,
       _ReadBuffer_super_getFloat64,
     ),
@@ -56265,89 +53965,89 @@ const _flaxBinding814 = FlaxObjectBinding(
       _ReadBuffer_super_get_hasRemaining,
     ),
   },
-  constructors: {"": _flaxBinding798, "@implementation": _flaxBinding798},
+  constructors: {"": _flaxBinding784, "@implementation": _flaxBinding784},
   create: _createReadBuffer,
   matches: _isReadBuffer,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
+    _flaxBinding785,
+    _flaxBinding787,
+    _flaxBinding788,
+    _flaxBinding789,
+    _flaxBinding790,
+    _flaxBinding792,
+    _flaxBinding793,
+    _flaxBinding794,
+    _flaxBinding795,
+    _flaxBinding796,
+    _flaxBinding797,
+    _flaxBinding798,
     _flaxBinding799,
-    _flaxBinding801,
-    _flaxBinding802,
-    _flaxBinding803,
-    _flaxBinding804,
-    _flaxBinding806,
-    _flaxBinding807,
-    _flaxBinding808,
-    _flaxBinding809,
-    _flaxBinding810,
-    _flaxBinding811,
-    _flaxBinding812,
-    _flaxBinding813,
   ]),
 );
-const _flaxBinding815 = FlaxInstanceMethod.shared(
+const _flaxBinding801 = FlaxInstanceMethod.shared(
   _flaxBinding116,
   _StackFilter_filter,
 );
-const _flaxBinding816 = FlaxProxyMember("filter", 0, _flaxBinding116);
-const _flaxBinding817 = FlaxObjectBinding(
+const _flaxBinding802 = FlaxProxyMember("filter", 0, _flaxBinding116);
+const _flaxBinding803 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:StackFilter",
   [],
-  {"filter": _flaxBinding815},
+  {"filter": _flaxBinding801},
   constructors: {"@implementation": _flaxBinding131},
   create: _createStackFilter,
   matches: _isStackFilter,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding816]),
+  proxy: FlaxProxyBinding([_flaxBinding802]),
 );
-const _flaxBinding818 = FlaxGetter.plain(
+const _flaxBinding804 = FlaxGetter.plain(
   "frames",
   _flaxBinding119,
   _RepetitiveStackFrameFilter_frames,
 );
-const _flaxBinding819 = FlaxGetter.plain(
+const _flaxBinding805 = FlaxGetter.plain(
   "numFrames",
   flaxIntType,
   _RepetitiveStackFrameFilter_numFrames,
 );
-const _flaxBinding820 = FlaxGetter.plain(
+const _flaxBinding806 = FlaxGetter.plain(
   "replacement",
   flaxStringType,
   _RepetitiveStackFrameFilter_replacement,
 );
-const _flaxBinding821 = <FlaxParameter>[
+const _flaxBinding807 = <FlaxParameter>[
   FlaxParameter.required("frames", _flaxBinding119),
   FlaxParameter.required("replacement", flaxStringType),
 ];
-const _flaxBinding822 = FlaxProxyMember(
+const _flaxBinding808 = FlaxProxyMember(
   "filter",
   0,
   _flaxBinding116,
   hasSuper: true,
 );
-const _flaxBinding823 = FlaxProxyMember(
+const _flaxBinding809 = FlaxProxyMember(
   "frames",
   1,
   _flaxBinding120,
   hasSuper: true,
 );
-const _flaxBinding824 = FlaxProxyMember(
+const _flaxBinding810 = FlaxProxyMember(
   "numFrames",
   1,
   flaxIntCall,
   hasSuper: true,
 );
-const _flaxBinding825 = FlaxProxyMember(
+const _flaxBinding811 = FlaxProxyMember(
   "replacement",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding826 = FlaxObjectBinding(
+const _flaxBinding812 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:RepetitiveStackFrameFilter",
-  [_flaxBinding818, _flaxBinding819, _flaxBinding820],
+  [_flaxBinding804, _flaxBinding805, _flaxBinding806],
   {
     "@super:filter": FlaxInstanceMethod.shared(
       _flaxBinding116,
@@ -56366,7 +54066,7 @@ const _flaxBinding826 = FlaxObjectBinding(
       _RepetitiveStackFrameFilter_super_get_replacement,
     ),
   },
-  constructors: {"": _flaxBinding821, "@implementation": _flaxBinding821},
+  constructors: {"": _flaxBinding807, "@implementation": _flaxBinding807},
   create: _createRepetitiveStackFrameFilter,
   matches: _isRepetitiveStackFrameFilter,
   setters: [],
@@ -56374,65 +54074,65 @@ const _flaxBinding826 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:StackFilter",
     "dart:core::Object",
   ],
-  parent: _flaxBinding817,
+  parent: _flaxBinding803,
   proxy: FlaxProxyBinding([
-    _flaxBinding822,
-    _flaxBinding823,
-    _flaxBinding824,
-    _flaxBinding825,
+    _flaxBinding808,
+    _flaxBinding809,
+    _flaxBinding810,
+    _flaxBinding811,
   ]),
 );
-const _flaxBinding827 = FlaxGetter.plain(
+const _flaxBinding813 = FlaxGetter.plain(
   "source",
   flaxStringType,
   _StackFrame_source,
 );
-const _flaxBinding828 = FlaxGetter.plain(
+const _flaxBinding814 = FlaxGetter.plain(
   "number",
   flaxIntType,
   _StackFrame_number,
 );
-const _flaxBinding829 = FlaxGetter.plain(
+const _flaxBinding815 = FlaxGetter.plain(
   "packageScheme",
   flaxStringType,
   _StackFrame_packageScheme,
 );
-const _flaxBinding830 = FlaxGetter.plain(
+const _flaxBinding816 = FlaxGetter.plain(
   "package",
   flaxStringType,
   _StackFrame_package,
 );
-const _flaxBinding831 = FlaxGetter.plain(
+const _flaxBinding817 = FlaxGetter.plain(
   "packagePath",
   flaxStringType,
   _StackFrame_packagePath,
 );
-const _flaxBinding832 = FlaxGetter.plain("line", flaxIntType, _StackFrame_line);
-const _flaxBinding833 = FlaxGetter.plain(
+const _flaxBinding818 = FlaxGetter.plain("line", flaxIntType, _StackFrame_line);
+const _flaxBinding819 = FlaxGetter.plain(
   "column",
   flaxIntType,
   _StackFrame_column,
 );
-const _flaxBinding834 = FlaxGetter.plain(
+const _flaxBinding820 = FlaxGetter.plain(
   "className",
   flaxStringType,
   _StackFrame_className,
 );
-const _flaxBinding835 = FlaxGetter.plain(
+const _flaxBinding821 = FlaxGetter.plain(
   "method",
   flaxStringType,
   _StackFrame_method,
 );
-const _flaxBinding836 = FlaxGetter.plain(
+const _flaxBinding822 = FlaxGetter.plain(
   "isConstructor",
   flaxBoolType,
   _StackFrame_isConstructor,
 );
-const _flaxBinding837 = FlaxInstanceMethod.shared(
+const _flaxBinding823 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _StackFrame_toString,
 );
-const _flaxBinding838 = <FlaxParameter>[
+const _flaxBinding824 = <FlaxParameter>[
   FlaxParameter.required("number", flaxIntType),
   FlaxParameter.required("column", flaxIntType),
   FlaxParameter.required("line", flaxIntType),
@@ -56449,65 +54149,65 @@ const _flaxBinding838 = <FlaxParameter>[
   ),
   FlaxParameter.required("source", flaxStringType),
 ];
-const _flaxBinding839 = FlaxProxyMember(
+const _flaxBinding825 = FlaxProxyMember(
   "source",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding840 = FlaxProxyMember(
+const _flaxBinding826 = FlaxProxyMember(
   "number",
   1,
   flaxIntCall,
   hasSuper: true,
 );
-const _flaxBinding841 = FlaxProxyMember(
+const _flaxBinding827 = FlaxProxyMember(
   "packageScheme",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding842 = FlaxProxyMember(
+const _flaxBinding828 = FlaxProxyMember(
   "package",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding843 = FlaxProxyMember(
+const _flaxBinding829 = FlaxProxyMember(
   "packagePath",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding844 = FlaxProxyMember("line", 1, flaxIntCall, hasSuper: true);
-const _flaxBinding845 = FlaxProxyMember(
+const _flaxBinding830 = FlaxProxyMember("line", 1, flaxIntCall, hasSuper: true);
+const _flaxBinding831 = FlaxProxyMember(
   "column",
   1,
   flaxIntCall,
   hasSuper: true,
 );
-const _flaxBinding846 = FlaxProxyMember(
+const _flaxBinding832 = FlaxProxyMember(
   "isConstructor",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding847 = FlaxObjectBinding(
+const _flaxBinding833 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:StackFrame",
   [
-    _flaxBinding827,
-    _flaxBinding828,
-    _flaxBinding829,
-    _flaxBinding830,
-    _flaxBinding831,
-    _flaxBinding832,
-    _flaxBinding833,
-    _flaxBinding834,
-    _flaxBinding835,
-    _flaxBinding836,
+    _flaxBinding813,
+    _flaxBinding814,
+    _flaxBinding815,
+    _flaxBinding816,
+    _flaxBinding817,
+    _flaxBinding818,
+    _flaxBinding819,
+    _flaxBinding820,
+    _flaxBinding821,
+    _flaxBinding822,
   ],
   {
-    "toString": _flaxBinding837,
+    "toString": _flaxBinding823,
     "@super:toString": _flaxBinding183,
     "@super:get:source": FlaxInstanceMethod.shared(
       flaxStringCall,
@@ -56537,93 +54237,93 @@ const _flaxBinding847 = FlaxObjectBinding(
       flaxIntCall,
       _StackFrame_super_get_column,
     ),
-    "@super:get:className": _flaxBinding737,
-    "@super:get:method": _flaxBinding775,
+    "@super:get:className": _flaxBinding724,
+    "@super:get:method": _flaxBinding761,
     "@super:get:isConstructor": FlaxInstanceMethod.shared(
       flaxBoolCall,
       _StackFrame_super_get_isConstructor,
     ),
   },
-  constructors: {"": _flaxBinding838, "@implementation": _flaxBinding838},
+  constructors: {"": _flaxBinding824, "@implementation": _flaxBinding824},
   create: _createStackFrame,
   matches: _isStackFrame,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
     _flaxBinding197,
-    _flaxBinding839,
-    _flaxBinding840,
-    _flaxBinding841,
-    _flaxBinding842,
-    _flaxBinding843,
-    _flaxBinding844,
-    _flaxBinding845,
-    _flaxBinding741,
-    _flaxBinding779,
-    _flaxBinding846,
+    _flaxBinding825,
+    _flaxBinding826,
+    _flaxBinding827,
+    _flaxBinding828,
+    _flaxBinding829,
+    _flaxBinding830,
+    _flaxBinding831,
+    _flaxBinding728,
+    _flaxBinding765,
+    _flaxBinding832,
   ]),
 );
-const _flaxBinding848 = FlaxGetter.plain(
+const _flaxBinding834 = FlaxGetter.plain(
   "expandableValue",
   flaxBoolType,
   _StringProperty_expandableValue,
 );
-const _flaxBinding849 = FlaxGetter.plain(
+const _flaxBinding835 = FlaxGetter.plain(
   "ifNull",
   flaxNullableStringType,
   _StringProperty_ifNull,
 );
-const _flaxBinding850 = FlaxGetter.plain(
+const _flaxBinding836 = FlaxGetter.plain(
   "ifEmpty",
   flaxNullableStringType,
   _StringProperty_ifEmpty,
 );
-const _flaxBinding851 = FlaxGetter.plain(
+const _flaxBinding837 = FlaxGetter.plain(
   "tooltip",
   flaxNullableStringType,
   _StringProperty_tooltip,
 );
-const _flaxBinding852 = FlaxGetter.plain(
+const _flaxBinding838 = FlaxGetter.plain(
   "missingIfNull",
   flaxBoolType,
   _StringProperty_missingIfNull,
 );
-const _flaxBinding853 = FlaxGetter.plain(
+const _flaxBinding839 = FlaxGetter.plain(
   "propertyType",
   flaxTypeType,
   _StringProperty_propertyType,
 );
-const _flaxBinding854 = FlaxGetter.plain(
+const _flaxBinding840 = FlaxGetter.plain(
   "value",
   flaxNullableStringType,
   _StringProperty_value,
 );
-const _flaxBinding855 = FlaxGetter.plain(
+const _flaxBinding841 = FlaxGetter.plain(
   "exception",
   flaxNullableAnyType,
   _StringProperty_exception,
 );
-const _flaxBinding856 = FlaxGetter.plain(
+const _flaxBinding842 = FlaxGetter.plain(
   "defaultValue",
   flaxNullableAnyType,
   _StringProperty_defaultValue,
 );
-const _flaxBinding857 = FlaxGetter.plain(
+const _flaxBinding843 = FlaxGetter.plain(
   "isInteresting",
   flaxBoolType,
   _StringProperty_isInteresting,
 );
-const _flaxBinding858 = FlaxGetter.plain(
+const _flaxBinding844 = FlaxGetter.plain(
   "quoted",
   flaxBoolType,
   _StringProperty_quoted,
 );
-const _flaxBinding859 = FlaxInstanceMethod.plain(
-  _flaxBinding285,
+const _flaxBinding845 = FlaxInstanceMethod.plain(
+  _flaxBinding288,
   flaxStringType,
   _StringProperty_valueToString,
 );
-const _flaxBinding860 = <FlaxParameter>[
+const _flaxBinding846 = <FlaxParameter>[
   FlaxParameter.required("name", flaxStringType),
   FlaxParameter.required("value", flaxNullableStringType),
   FlaxParameter("description", flaxNullableStringType, required: false),
@@ -56650,69 +54350,69 @@ const _flaxBinding860 = <FlaxParameter>[
     defaultValue: api.DiagnosticLevel.info,
   ),
 ];
-const _flaxBinding861 = FlaxProxyMember(
+const _flaxBinding847 = FlaxProxyMember(
   "quoted",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding862 = FlaxProxyMember(
+const _flaxBinding848 = FlaxProxyMember(
   "value",
   1,
   flaxNullableStringCall,
   hasSuper: true,
 );
-const _flaxBinding863 = FlaxObjectBinding(
+const _flaxBinding849 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:StringProperty",
   [
-    _flaxBinding848,
-    _flaxBinding849,
-    _flaxBinding850,
-    _flaxBinding851,
-    _flaxBinding852,
-    _flaxBinding853,
-    _flaxBinding854,
-    _flaxBinding855,
-    _flaxBinding856,
-    _flaxBinding857,
-    _flaxBinding858,
+    _flaxBinding834,
+    _flaxBinding835,
+    _flaxBinding836,
+    _flaxBinding837,
+    _flaxBinding838,
+    _flaxBinding839,
+    _flaxBinding840,
+    _flaxBinding841,
+    _flaxBinding842,
+    _flaxBinding843,
+    _flaxBinding844,
   ],
   {
-    "valueToString": _flaxBinding859,
-    "@super:toJsonMap": _flaxBinding293,
-    "@super:valueToString": _flaxBinding414,
-    "@super:toDescription": _flaxBinding288,
-    "@super:getProperties": _flaxBinding290,
-    "@super:getChildren": _flaxBinding291,
-    "@super:isFiltered": _flaxBinding289,
-    "@super:toTimelineArguments": _flaxBinding292,
-    "@super:toJsonMapIterative": _flaxBinding294,
-    "@super:toStringDeep": _flaxBinding296,
-    "@super:toString": _flaxBinding295,
+    "valueToString": _flaxBinding845,
+    "@super:toJsonMap": _flaxBinding305,
+    "@super:valueToString": _flaxBinding409,
+    "@super:toDescription": _flaxBinding300,
+    "@super:getProperties": _flaxBinding302,
+    "@super:getChildren": _flaxBinding303,
+    "@super:isFiltered": _flaxBinding301,
+    "@super:toTimelineArguments": _flaxBinding304,
+    "@super:toJsonMapIterative": _flaxBinding306,
+    "@super:toStringDeep": _flaxBinding308,
+    "@super:toString": _flaxBinding307,
     "@super:get:quoted": FlaxInstanceMethod.shared(
       flaxBoolCall,
       _StringProperty_super_get_quoted,
     ),
-    "@super:get:expandableValue": _flaxBinding415,
-    "@super:get:allowWrap": _flaxBinding302,
-    "@super:get:allowNameWrap": _flaxBinding303,
-    "@super:get:ifNull": _flaxBinding416,
-    "@super:get:ifEmpty": _flaxBinding417,
-    "@super:get:tooltip": _flaxBinding418,
-    "@super:get:missingIfNull": _flaxBinding419,
-    "@super:get:propertyType": _flaxBinding420,
+    "@super:get:expandableValue": _flaxBinding410,
+    "@super:get:allowWrap": _flaxBinding314,
+    "@super:get:allowNameWrap": _flaxBinding315,
+    "@super:get:ifNull": _flaxBinding411,
+    "@super:get:ifEmpty": _flaxBinding412,
+    "@super:get:tooltip": _flaxBinding413,
+    "@super:get:missingIfNull": _flaxBinding414,
+    "@super:get:propertyType": _flaxBinding415,
     "@super:get:value": FlaxInstanceMethod.shared(
       flaxNullableStringCall,
       _StringProperty_super_get_value,
     ),
-    "@super:get:exception": _flaxBinding421,
-    "@super:get:defaultValue": _flaxBinding422,
-    "@super:get:isInteresting": _flaxBinding423,
-    "@super:get:level": _flaxBinding299,
-    "@super:get:name": _flaxBinding297,
-    "@super:get:showSeparator": _flaxBinding298,
-    "@super:get:showName": _flaxBinding300,
-    "@super:get:linePrefix": _flaxBinding301,
+    "@super:get:exception": _flaxBinding416,
+    "@super:get:defaultValue": _flaxBinding417,
+    "@super:get:isInteresting": _flaxBinding418,
+    "@super:get:level": _flaxBinding311,
+    "@super:get:name": _flaxBinding309,
+    "@super:get:showSeparator": _flaxBinding310,
+    "@super:get:showName": _flaxBinding312,
+    "@super:get:linePrefix": _flaxBinding313,
     "@super:get:emptyBodyDescription": FlaxInstanceMethod.shared(
       flaxNullableStringCall,
       _StringProperty_super_get_emptyBodyDescription,
@@ -56721,10 +54421,10 @@ const _flaxBinding863 = FlaxObjectBinding(
       _flaxBinding71,
       _StringProperty_super_get_style,
     ),
-    "@super:get:allowTruncate": _flaxBinding304,
-    "@super:get:textTreeConfiguration": _flaxBinding305,
+    "@super:get:allowTruncate": _flaxBinding316,
+    "@super:get:textTreeConfiguration": _flaxBinding317,
   },
-  constructors: {"": _flaxBinding860, "@implementation": _flaxBinding860},
+  constructors: {"": _flaxBinding846, "@implementation": _flaxBinding846},
   create: _createStringProperty,
   matches: _isStringProperty,
   setters: [],
@@ -56733,58 +54433,58 @@ const _flaxBinding863 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:DiagnosticsNode",
     "dart:core::Object",
   ],
-  parent: _flaxBinding384,
+  parent: _flaxBinding383,
   proxy: FlaxProxyBinding([
-    _flaxBinding314,
-    _flaxBinding426,
-    _flaxBinding309,
-    _flaxBinding311,
-    _flaxBinding312,
-    _flaxBinding310,
-    _flaxBinding313,
-    _flaxBinding315,
-    _flaxBinding319,
-    _flaxBinding317,
-    _flaxBinding861,
-    _flaxBinding427,
+    _flaxBinding326,
+    _flaxBinding421,
+    _flaxBinding321,
+    _flaxBinding323,
+    _flaxBinding324,
+    _flaxBinding322,
+    _flaxBinding325,
     _flaxBinding327,
-    _flaxBinding328,
+    _flaxBinding331,
+    _flaxBinding329,
+    _flaxBinding847,
+    _flaxBinding422,
+    _flaxBinding339,
+    _flaxBinding340,
+    _flaxBinding423,
+    _flaxBinding424,
+    _flaxBinding425,
+    _flaxBinding426,
+    _flaxBinding427,
+    _flaxBinding848,
     _flaxBinding428,
     _flaxBinding429,
     _flaxBinding430,
-    _flaxBinding431,
-    _flaxBinding432,
-    _flaxBinding862,
-    _flaxBinding433,
-    _flaxBinding434,
-    _flaxBinding435,
-    _flaxBinding324,
-    _flaxBinding322,
-    _flaxBinding323,
-    _flaxBinding325,
-    _flaxBinding326,
-    _flaxBinding262,
-    _flaxBinding383,
-    _flaxBinding329,
-    _flaxBinding330,
+    _flaxBinding336,
+    _flaxBinding334,
+    _flaxBinding335,
+    _flaxBinding337,
+    _flaxBinding338,
+    _flaxBinding265,
+    _flaxBinding382,
+    _flaxBinding341,
+    _flaxBinding342,
   ]),
 );
-const _flaxBinding864 = FlaxGetter.plain("text", flaxStringType, _Summary_text);
-const _flaxBinding865 = <FlaxParameter>[
+const _flaxBinding850 = FlaxGetter.plain("text", flaxStringType, _Summary_text);
+const _flaxBinding851 = <FlaxParameter>[
   FlaxParameter.required("text", flaxStringType),
 ];
-const _flaxBinding866 = FlaxObjectBinding(
+const _flaxBinding852 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:Summary",
-  [_flaxBinding864],
-  {"@super:get:text": _flaxBinding703},
-  constructors: {"": _flaxBinding865, "@implementation": _flaxBinding865},
+  [_flaxBinding850],
+  {"@super:get:text": _flaxBinding690},
+  constructors: {"": _flaxBinding851, "@implementation": _flaxBinding851},
   create: _createSummary,
   matches: _isSummary,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding706]),
+  proxy: FlaxProxyBinding([_flaxBinding693]),
 );
-const _flaxBinding867 = FlaxCallbackBinding(
+const _flaxBinding853 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("error", flaxAnyType)],
   flaxBoolType,
   FlaxCallbackAdapters.wrap1<Object, bool>,
@@ -56792,181 +54492,181 @@ const _flaxBinding867 = FlaxCallbackBinding(
   invoke: FlaxCallbackAdapters.invoke1<Object, bool>,
   matches: FlaxCallbackAdapters.matches1<Object, bool>,
 );
-const _flaxBinding868 = FlaxTypeRef(
+const _flaxBinding854 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding867,
+  callback: _flaxBinding853,
 );
-const _flaxBinding869 = <FlaxParameter>[
+const _flaxBinding855 = <FlaxParameter>[
   FlaxParameter.required("onError", flaxFunctionType),
-  FlaxParameter("test", _flaxBinding868, required: false),
+  FlaxParameter("test", _flaxBinding854, required: false),
 ];
-const _flaxBinding870 = FlaxTypeRef(
+const _flaxBinding856 = FlaxTypeRef(
   "futureOr",
   item: flaxNullableAnyType,
-  future: FlaxFutureBinding("any?:", _future5Adapt),
+  future: FlaxFutureBinding("any?:", _flaxAdapters.flaxAdapter15Adapt),
 );
-const _flaxBinding871 = FlaxTypeRef("function", nullable: true);
-const _flaxBinding872 = FlaxCallbackBinding(
+const _flaxBinding857 = FlaxTypeRef("function", nullable: true);
+const _flaxBinding858 = FlaxCallbackBinding(
   [],
-  _flaxBinding870,
-  _callback114,
+  _flaxBinding856,
+  _flaxAdapters.flaxAdapter21,
   id: "callback:<>()->futureOr:[any?:]",
-  invoke: _callback114Invoke,
-  matches: _callback114Matches,
+  invoke: _flaxAdapters.flaxAdapter21Invoke,
+  matches: _flaxAdapters.flaxAdapter21Matches,
 );
-const _flaxBinding873 = FlaxTypeRef("callback", callback: _flaxBinding872);
-const _flaxBinding874 = <FlaxParameter>[
-  FlaxParameter.required("action", _flaxBinding873),
+const _flaxBinding859 = FlaxTypeRef("callback", callback: _flaxBinding858);
+const _flaxBinding860 = <FlaxParameter>[
+  FlaxParameter.required("action", _flaxBinding859),
 ];
-const _flaxBinding875 = <FlaxParameter>[
+const _flaxBinding861 = <FlaxParameter>[
   FlaxParameter.required("_value", flaxNullableAnyType),
 ];
-const _flaxBinding876 = FlaxCallbackBinding(
+const _flaxBinding862 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("value", flaxNullableAnyType)],
-  _flaxBinding870,
-  _callback115,
+  _flaxBinding856,
+  _flaxAdapters.flaxAdapter29,
   id: "callback:<>(p:r:value:any?:)->futureOr:[any?:]",
-  invoke: _callback115Invoke,
-  matches: _callback115Matches,
+  invoke: _flaxAdapters.flaxAdapter29Invoke,
+  matches: _flaxAdapters.flaxAdapter29Matches,
 );
-const _flaxBinding877 = FlaxTypeRef("callback", callback: _flaxBinding876);
-const _flaxBinding878 = FlaxTypeRef(
+const _flaxBinding863 = FlaxTypeRef("callback", callback: _flaxBinding862);
+const _flaxBinding864 = FlaxTypeRef(
   "future",
   item: flaxNullableAnyType,
-  future: FlaxFutureBinding("any?:", _future5Adapt),
+  future: FlaxFutureBinding("any?:", _flaxAdapters.flaxAdapter15Adapt),
 );
-const _flaxBinding879 = FlaxGetter.plain(
+const _flaxBinding865 = FlaxGetter.plain(
   "prefixLineOne",
   flaxStringType,
   _TextTreeConfiguration_prefixLineOne,
 );
-const _flaxBinding880 = FlaxGetter.plain(
+const _flaxBinding866 = FlaxGetter.plain(
   "suffixLineOne",
   flaxStringType,
   _TextTreeConfiguration_suffixLineOne,
 );
-const _flaxBinding881 = FlaxGetter.plain(
+const _flaxBinding867 = FlaxGetter.plain(
   "prefixOtherLines",
   flaxStringType,
   _TextTreeConfiguration_prefixOtherLines,
 );
-const _flaxBinding882 = FlaxGetter.plain(
+const _flaxBinding868 = FlaxGetter.plain(
   "prefixLastChildLineOne",
   flaxStringType,
   _TextTreeConfiguration_prefixLastChildLineOne,
 );
-const _flaxBinding883 = FlaxGetter.plain(
+const _flaxBinding869 = FlaxGetter.plain(
   "prefixOtherLinesRootNode",
   flaxStringType,
   _TextTreeConfiguration_prefixOtherLinesRootNode,
 );
-const _flaxBinding884 = FlaxGetter.plain(
+const _flaxBinding870 = FlaxGetter.plain(
   "propertyPrefixIfChildren",
   flaxStringType,
   _TextTreeConfiguration_propertyPrefixIfChildren,
 );
-const _flaxBinding885 = FlaxGetter.plain(
+const _flaxBinding871 = FlaxGetter.plain(
   "propertyPrefixNoChildren",
   flaxStringType,
   _TextTreeConfiguration_propertyPrefixNoChildren,
 );
-const _flaxBinding886 = FlaxGetter.plain(
+const _flaxBinding872 = FlaxGetter.plain(
   "linkCharacter",
   flaxStringType,
   _TextTreeConfiguration_linkCharacter,
 );
-const _flaxBinding887 = FlaxGetter.plain(
+const _flaxBinding873 = FlaxGetter.plain(
   "childLinkSpace",
   flaxStringType,
   _TextTreeConfiguration_childLinkSpace,
 );
-const _flaxBinding888 = FlaxGetter.plain(
+const _flaxBinding874 = FlaxGetter.plain(
   "lineBreak",
   flaxStringType,
   _TextTreeConfiguration_lineBreak,
 );
-const _flaxBinding889 = FlaxGetter.plain(
+const _flaxBinding875 = FlaxGetter.plain(
   "lineBreakProperties",
   flaxBoolType,
   _TextTreeConfiguration_lineBreakProperties,
 );
-const _flaxBinding890 = FlaxGetter.plain(
+const _flaxBinding876 = FlaxGetter.plain(
   "beforeName",
   flaxStringType,
   _TextTreeConfiguration_beforeName,
 );
-const _flaxBinding891 = FlaxGetter.plain(
+const _flaxBinding877 = FlaxGetter.plain(
   "afterName",
   flaxStringType,
   _TextTreeConfiguration_afterName,
 );
-const _flaxBinding892 = FlaxGetter.plain(
+const _flaxBinding878 = FlaxGetter.plain(
   "afterDescriptionIfBody",
   flaxStringType,
   _TextTreeConfiguration_afterDescriptionIfBody,
 );
-const _flaxBinding893 = FlaxGetter.plain(
+const _flaxBinding879 = FlaxGetter.plain(
   "afterDescription",
   flaxStringType,
   _TextTreeConfiguration_afterDescription,
 );
-const _flaxBinding894 = FlaxGetter.plain(
+const _flaxBinding880 = FlaxGetter.plain(
   "beforeProperties",
   flaxStringType,
   _TextTreeConfiguration_beforeProperties,
 );
-const _flaxBinding895 = FlaxGetter.plain(
+const _flaxBinding881 = FlaxGetter.plain(
   "afterProperties",
   flaxStringType,
   _TextTreeConfiguration_afterProperties,
 );
-const _flaxBinding896 = FlaxGetter.plain(
+const _flaxBinding882 = FlaxGetter.plain(
   "mandatoryAfterProperties",
   flaxStringType,
   _TextTreeConfiguration_mandatoryAfterProperties,
 );
-const _flaxBinding897 = FlaxGetter.plain(
+const _flaxBinding883 = FlaxGetter.plain(
   "propertySeparator",
   flaxStringType,
   _TextTreeConfiguration_propertySeparator,
 );
-const _flaxBinding898 = FlaxGetter.plain(
+const _flaxBinding884 = FlaxGetter.plain(
   "bodyIndent",
   flaxStringType,
   _TextTreeConfiguration_bodyIndent,
 );
-const _flaxBinding899 = FlaxGetter.plain(
+const _flaxBinding885 = FlaxGetter.plain(
   "showChildren",
   flaxBoolType,
   _TextTreeConfiguration_showChildren,
 );
-const _flaxBinding900 = FlaxGetter.plain(
+const _flaxBinding886 = FlaxGetter.plain(
   "addBlankLineIfNoChildren",
   flaxBoolType,
   _TextTreeConfiguration_addBlankLineIfNoChildren,
 );
-const _flaxBinding901 = FlaxGetter.plain(
+const _flaxBinding887 = FlaxGetter.plain(
   "isNameOnOwnLine",
   flaxBoolType,
   _TextTreeConfiguration_isNameOnOwnLine,
 );
-const _flaxBinding902 = FlaxGetter.plain(
+const _flaxBinding888 = FlaxGetter.plain(
   "footer",
   flaxStringType,
   _TextTreeConfiguration_footer,
 );
-const _flaxBinding903 = FlaxGetter.plain(
+const _flaxBinding889 = FlaxGetter.plain(
   "mandatoryFooter",
   flaxStringType,
   _TextTreeConfiguration_mandatoryFooter,
 );
-const _flaxBinding904 = FlaxGetter.plain(
+const _flaxBinding890 = FlaxGetter.plain(
   "isBlankLineBetweenPropertiesAndChildren",
   flaxBoolType,
   _TextTreeConfiguration_isBlankLineBetweenPropertiesAndChildren,
 );
-const _flaxBinding905 = <FlaxParameter>[
+const _flaxBinding891 = <FlaxParameter>[
   FlaxParameter.required("prefixLineOne", flaxStringType),
   FlaxParameter.required("prefixOtherLines", flaxStringType),
   FlaxParameter.required("prefixLastChildLineOne", flaxStringType),
@@ -57078,165 +54778,179 @@ const _flaxBinding905 = <FlaxParameter>[
     defaultValue: '',
   ),
 ];
-const _flaxBinding906 = FlaxProxyMember(
+const _flaxBinding892 = FlaxProxyMember(
   "prefixLineOne",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding907 = FlaxProxyMember(
+const _flaxBinding893 = FlaxProxyMember(
   "suffixLineOne",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding908 = FlaxProxyMember(
+const _flaxBinding894 = FlaxProxyMember(
   "prefixOtherLines",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding909 = FlaxProxyMember(
+const _flaxBinding895 = FlaxProxyMember(
   "prefixLastChildLineOne",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding910 = FlaxProxyMember(
+const _flaxBinding896 = FlaxProxyMember(
   "prefixOtherLinesRootNode",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding911 = FlaxProxyMember(
+const _flaxBinding897 = FlaxProxyMember(
   "propertyPrefixIfChildren",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding912 = FlaxProxyMember(
+const _flaxBinding898 = FlaxProxyMember(
   "propertyPrefixNoChildren",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding913 = FlaxProxyMember(
+const _flaxBinding899 = FlaxProxyMember(
   "linkCharacter",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding914 = FlaxProxyMember(
+const _flaxBinding900 = FlaxProxyMember(
   "childLinkSpace",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding915 = FlaxProxyMember(
+const _flaxBinding901 = FlaxProxyMember(
   "lineBreak",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding916 = FlaxProxyMember(
+const _flaxBinding902 = FlaxProxyMember(
   "lineBreakProperties",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding917 = FlaxProxyMember(
+const _flaxBinding903 = FlaxProxyMember(
   "beforeName",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding918 = FlaxProxyMember(
+const _flaxBinding904 = FlaxProxyMember(
   "afterName",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding919 = FlaxProxyMember(
+const _flaxBinding905 = FlaxProxyMember(
   "afterDescriptionIfBody",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding920 = FlaxProxyMember(
+const _flaxBinding906 = FlaxProxyMember(
   "afterDescription",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding921 = FlaxProxyMember(
+const _flaxBinding907 = FlaxProxyMember(
   "beforeProperties",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding922 = FlaxProxyMember(
+const _flaxBinding908 = FlaxProxyMember(
   "afterProperties",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding923 = FlaxProxyMember(
+const _flaxBinding909 = FlaxProxyMember(
   "mandatoryAfterProperties",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding924 = FlaxProxyMember(
+const _flaxBinding910 = FlaxProxyMember(
   "propertySeparator",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding925 = FlaxProxyMember(
+const _flaxBinding911 = FlaxProxyMember(
   "bodyIndent",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding926 = FlaxProxyMember(
+const _flaxBinding912 = FlaxProxyMember(
   "showChildren",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding927 = FlaxProxyMember(
+const _flaxBinding913 = FlaxProxyMember(
   "addBlankLineIfNoChildren",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding928 = FlaxProxyMember(
+const _flaxBinding914 = FlaxProxyMember(
   "isNameOnOwnLine",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding929 = FlaxProxyMember(
+const _flaxBinding915 = FlaxProxyMember(
   "footer",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding930 = FlaxProxyMember(
+const _flaxBinding916 = FlaxProxyMember(
   "mandatoryFooter",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding931 = FlaxProxyMember(
+const _flaxBinding917 = FlaxProxyMember(
   "isBlankLineBetweenPropertiesAndChildren",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding932 = FlaxObjectBinding(
+const _flaxBinding918 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:TextTreeConfiguration",
   [
+    _flaxBinding865,
+    _flaxBinding866,
+    _flaxBinding867,
+    _flaxBinding868,
+    _flaxBinding869,
+    _flaxBinding870,
+    _flaxBinding871,
+    _flaxBinding872,
+    _flaxBinding873,
+    _flaxBinding874,
+    _flaxBinding875,
+    _flaxBinding876,
+    _flaxBinding877,
+    _flaxBinding878,
     _flaxBinding879,
     _flaxBinding880,
     _flaxBinding881,
@@ -57249,20 +54963,6 @@ const _flaxBinding932 = FlaxObjectBinding(
     _flaxBinding888,
     _flaxBinding889,
     _flaxBinding890,
-    _flaxBinding891,
-    _flaxBinding892,
-    _flaxBinding893,
-    _flaxBinding894,
-    _flaxBinding895,
-    _flaxBinding896,
-    _flaxBinding897,
-    _flaxBinding898,
-    _flaxBinding899,
-    _flaxBinding900,
-    _flaxBinding901,
-    _flaxBinding902,
-    _flaxBinding903,
-    _flaxBinding904,
   ],
   {
     "@super:get:prefixLineOne": FlaxInstanceMethod.shared(
@@ -57371,12 +55071,26 @@ const _flaxBinding932 = FlaxObjectBinding(
           _TextTreeConfiguration_super_get_isBlankLineBetweenPropertiesAndChildren,
         ),
   },
-  constructors: {"": _flaxBinding905, "@implementation": _flaxBinding905},
+  constructors: {"": _flaxBinding891, "@implementation": _flaxBinding891},
   create: _createTextTreeConfiguration,
   matches: _isTextTreeConfiguration,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
+    _flaxBinding892,
+    _flaxBinding893,
+    _flaxBinding894,
+    _flaxBinding895,
+    _flaxBinding896,
+    _flaxBinding897,
+    _flaxBinding898,
+    _flaxBinding899,
+    _flaxBinding900,
+    _flaxBinding901,
+    _flaxBinding902,
+    _flaxBinding903,
+    _flaxBinding904,
+    _flaxBinding905,
     _flaxBinding906,
     _flaxBinding907,
     _flaxBinding908,
@@ -57389,23 +55103,9 @@ const _flaxBinding932 = FlaxObjectBinding(
     _flaxBinding915,
     _flaxBinding916,
     _flaxBinding917,
-    _flaxBinding918,
-    _flaxBinding919,
-    _flaxBinding920,
-    _flaxBinding921,
-    _flaxBinding922,
-    _flaxBinding923,
-    _flaxBinding924,
-    _flaxBinding925,
-    _flaxBinding926,
-    _flaxBinding927,
-    _flaxBinding928,
-    _flaxBinding929,
-    _flaxBinding930,
-    _flaxBinding931,
   ]),
 );
-const _flaxBinding933 = <FlaxParameter>[
+const _flaxBinding919 = <FlaxParameter>[
   FlaxParameter.required("node", _flaxBinding46),
   FlaxParameter("parentConfiguration", _flaxBinding64, required: false),
   FlaxParameter(
@@ -57416,12 +55116,12 @@ const _flaxBinding933 = <FlaxParameter>[
   ),
   FlaxParameter("prefixOtherLines", flaxNullableStringType, required: false),
 ];
-const _flaxBinding934 = FlaxInstanceMethod.plain(
-  _flaxBinding933,
+const _flaxBinding920 = FlaxInstanceMethod.plain(
+  _flaxBinding919,
   flaxStringType,
   _TextTreeRenderer_render,
 );
-const _flaxBinding935 = <FlaxParameter>[
+const _flaxBinding921 = <FlaxParameter>[
   FlaxParameter(
     "minLevel",
     _flaxBinding55,
@@ -57442,7 +55142,7 @@ const _flaxBinding935 = <FlaxParameter>[
     defaultValue: -1,
   ),
 ];
-const _flaxBinding936 = FlaxCallbackBinding.signature(
+const _flaxBinding922 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain("node", _flaxBinding46),
     FlaxCallbackParameter.plain(
@@ -57467,70 +55167,70 @@ const _flaxBinding936 = FlaxCallbackBinding.signature(
   flaxStringType,
   id: "callback:<>(p:r:node:object:flax.core/sdk_foundation#type:DiagnosticsNode,n:o:prefixLineOne:String:,n:o:prefixOtherLines:String?:,n:o:parentConfiguration:object?:flax.core/sdk_foundation#type:TextTreeConfiguration)->String:",
 );
-const _flaxBinding937 = FlaxProxyMember(
+const _flaxBinding923 = FlaxProxyMember(
   "render",
   0,
-  _flaxBinding936,
+  _flaxBinding922,
   hasSuper: true,
 );
-const _flaxBinding938 = FlaxObjectBinding(
+const _flaxBinding924 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:TextTreeRenderer",
   [],
   {
-    "render": _flaxBinding934,
+    "render": _flaxBinding920,
     "@super:render": FlaxInstanceMethod.plain(
-      _flaxBinding933,
+      _flaxBinding919,
       flaxStringType,
       _TextTreeRenderer_super_render,
     ),
   },
-  constructors: {"": _flaxBinding935, "@implementation": _flaxBinding935},
+  constructors: {"": _flaxBinding921, "@implementation": _flaxBinding921},
   create: _createTextTreeRenderer,
   matches: _isTextTreeRenderer,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding937]),
+  proxy: FlaxProxyBinding([_flaxBinding923]),
 );
-const _flaxBinding939 = FlaxGetter.plain(
+const _flaxBinding925 = FlaxGetter.plain(
   "name",
   flaxStringType,
   _TimedBlock_name,
 );
-const _flaxBinding940 = FlaxGetter.plain(
+const _flaxBinding926 = FlaxGetter.plain(
   "start",
   flaxDoubleType,
   _TimedBlock_start,
 );
-const _flaxBinding941 = FlaxGetter.plain(
+const _flaxBinding927 = FlaxGetter.plain(
   "end",
   flaxDoubleType,
   _TimedBlock_end,
 );
-const _flaxBinding942 = FlaxGetter.plain(
+const _flaxBinding928 = FlaxGetter.plain(
   "duration",
   flaxDoubleType,
   _TimedBlock_duration,
 );
-const _flaxBinding943 = FlaxInstanceMethod.shared(
+const _flaxBinding929 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _TimedBlock_toString,
 );
-const _flaxBinding944 = <FlaxParameter>[
+const _flaxBinding930 = <FlaxParameter>[
   FlaxParameter.required("name", flaxStringType),
   FlaxParameter.required("start", flaxDoubleType),
   FlaxParameter.required("end", flaxDoubleType),
 ];
-const _flaxBinding945 = FlaxObjectBinding(
+const _flaxBinding931 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:TimedBlock",
-  [_flaxBinding939, _flaxBinding940, _flaxBinding941, _flaxBinding942],
-  {"toString": _flaxBinding943},
-  constructors: {"": _flaxBinding944},
+  [_flaxBinding925, _flaxBinding926, _flaxBinding927, _flaxBinding928],
+  {"toString": _flaxBinding929},
+  constructors: {"": _flaxBinding930},
   create: _createTimedBlock,
   matches: _isTimedBlock,
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding946 = FlaxObjectBinding(
+const _flaxBinding932 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:Unicode",
   [],
   {},
@@ -57540,14 +55240,14 @@ const _flaxBinding946 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding947 = FlaxInstanceMethod.shared(
+const _flaxBinding933 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _UniqueKey_toString,
 );
-const _flaxBinding948 = FlaxObjectBinding(
+const _flaxBinding934 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:UniqueKey",
   [],
-  {"toString": _flaxBinding947, "@super:toString": _flaxBinding183},
+  {"toString": _flaxBinding933, "@super:toString": _flaxBinding183},
   constructors: {"": _flaxBinding131, "@implementation": _flaxBinding131},
   create: _createUniqueKey,
   matches: _isUniqueKey,
@@ -57559,137 +55259,148 @@ const _flaxBinding948 = FlaxObjectBinding(
   ],
   proxy: FlaxProxyBinding([_flaxBinding197]),
 );
-const _flaxBinding949 = FlaxGetter.plain(
-  "hasListeners",
-  flaxBoolType,
-  _ValueNotifier_hasListeners,
+const _flaxBinding935 = FlaxInstanceMethod.shared(
+  _flaxBinding45,
+  _ValueNotifier_addListener,
+);
+const _flaxBinding936 = FlaxInstanceMethod.shared(
+  _flaxBinding45,
+  _ValueNotifier_removeListener,
+);
+const _flaxBinding937 = FlaxInstanceMethod.shared(
+  flaxVoidCall,
+  _ValueNotifier_dispose,
+);
+const _flaxBinding938 = FlaxInstanceMethod.shared(
+  flaxStringCall,
+  _ValueNotifier_toString,
+);
+const _flaxBinding939 = <FlaxParameter>[
+  FlaxParameter.required("byte", flaxIntType),
+];
+const _flaxBinding940 = FlaxInstanceMethod.plain(
+  _flaxBinding939,
+  flaxVoidType,
+  _WriteBuffer_putUint8,
+);
+const _flaxBinding941 = <FlaxParameter>[
+  FlaxParameter.required("value", flaxIntType),
+  FlaxParameter("endian", _flaxBinding772, required: false),
+];
+const _flaxBinding942 = FlaxInstanceMethod.plain(
+  _flaxBinding941,
+  flaxVoidType,
+  _WriteBuffer_putUint16,
+);
+const _flaxBinding943 = FlaxInstanceMethod.plain(
+  _flaxBinding941,
+  flaxVoidType,
+  _WriteBuffer_putUint32,
+);
+const _flaxBinding944 = FlaxInstanceMethod.plain(
+  _flaxBinding941,
+  flaxVoidType,
+  _WriteBuffer_putInt32,
+);
+const _flaxBinding945 = FlaxInstanceMethod.plain(
+  _flaxBinding941,
+  flaxVoidType,
+  _WriteBuffer_putInt64,
+);
+const _flaxBinding946 = <FlaxParameter>[
+  FlaxParameter.required("value", flaxDoubleType),
+  FlaxParameter("endian", _flaxBinding772, required: false),
+];
+const _flaxBinding947 = FlaxInstanceMethod.plain(
+  _flaxBinding946,
+  flaxVoidType,
+  _WriteBuffer_putFloat64,
+);
+const _flaxBinding948 = <FlaxParameter>[
+  FlaxParameter.required("list", flaxUint8ListType),
+];
+const _flaxBinding949 = FlaxInstanceMethod.plain(
+  _flaxBinding948,
+  flaxVoidType,
+  _WriteBuffer_putUint8List,
 );
 const _flaxBinding950 = <FlaxParameter>[
-  FlaxParameter.required("byte", flaxIntType),
+  FlaxParameter.required("list", _flaxBinding102),
 ];
 const _flaxBinding951 = FlaxInstanceMethod.plain(
   _flaxBinding950,
   flaxVoidType,
-  _WriteBuffer_putUint8,
+  _WriteBuffer_putInt32List,
 );
 const _flaxBinding952 = <FlaxParameter>[
-  FlaxParameter.required("value", flaxIntType),
-  FlaxParameter("endian", _flaxBinding786, required: false),
+  FlaxParameter.required("list", _flaxBinding104),
 ];
 const _flaxBinding953 = FlaxInstanceMethod.plain(
   _flaxBinding952,
   flaxVoidType,
-  _WriteBuffer_putUint16,
-);
-const _flaxBinding954 = FlaxInstanceMethod.plain(
-  _flaxBinding952,
-  flaxVoidType,
-  _WriteBuffer_putUint32,
-);
-const _flaxBinding955 = FlaxInstanceMethod.plain(
-  _flaxBinding952,
-  flaxVoidType,
-  _WriteBuffer_putInt32,
-);
-const _flaxBinding956 = FlaxInstanceMethod.plain(
-  _flaxBinding952,
-  flaxVoidType,
-  _WriteBuffer_putInt64,
-);
-const _flaxBinding957 = <FlaxParameter>[
-  FlaxParameter.required("value", flaxDoubleType),
-  FlaxParameter("endian", _flaxBinding786, required: false),
-];
-const _flaxBinding958 = FlaxInstanceMethod.plain(
-  _flaxBinding957,
-  flaxVoidType,
-  _WriteBuffer_putFloat64,
-);
-const _flaxBinding959 = <FlaxParameter>[
-  FlaxParameter.required("list", flaxUint8ListType),
-];
-const _flaxBinding960 = FlaxInstanceMethod.plain(
-  _flaxBinding959,
-  flaxVoidType,
-  _WriteBuffer_putUint8List,
-);
-const _flaxBinding961 = <FlaxParameter>[
-  FlaxParameter.required("list", _flaxBinding102),
-];
-const _flaxBinding962 = FlaxInstanceMethod.plain(
-  _flaxBinding961,
-  flaxVoidType,
-  _WriteBuffer_putInt32List,
-);
-const _flaxBinding963 = <FlaxParameter>[
-  FlaxParameter.required("list", _flaxBinding104),
-];
-const _flaxBinding964 = FlaxInstanceMethod.plain(
-  _flaxBinding963,
-  flaxVoidType,
   _WriteBuffer_putInt64List,
 );
-const _flaxBinding965 = <FlaxParameter>[
+const _flaxBinding954 = <FlaxParameter>[
   FlaxParameter.required("list", _flaxBinding106),
 ];
-const _flaxBinding966 = FlaxInstanceMethod.plain(
-  _flaxBinding965,
+const _flaxBinding955 = FlaxInstanceMethod.plain(
+  _flaxBinding954,
   flaxVoidType,
   _WriteBuffer_putFloat32List,
 );
-const _flaxBinding967 = <FlaxParameter>[
+const _flaxBinding956 = <FlaxParameter>[
   FlaxParameter.required("list", _flaxBinding108),
 ];
-const _flaxBinding968 = FlaxInstanceMethod.plain(
-  _flaxBinding967,
+const _flaxBinding957 = FlaxInstanceMethod.plain(
+  _flaxBinding956,
   flaxVoidType,
   _WriteBuffer_putFloat64List,
 );
-const _flaxBinding969 = FlaxInstanceMethod.shared(
+const _flaxBinding958 = FlaxInstanceMethod.shared(
   _flaxBinding111,
   _WriteBuffer_done,
 );
-const _flaxBinding970 = <FlaxParameter>[
+const _flaxBinding959 = <FlaxParameter>[
   FlaxParameter("startCapacity", flaxIntType, required: false, defaultValue: 8),
 ];
-const _flaxBinding971 = FlaxObjectBinding(
+const _flaxBinding960 = FlaxObjectBinding(
   "flax.core/sdk_foundation#type:WriteBuffer",
   [],
   {
-    "putUint8": _flaxBinding951,
-    "putUint16": _flaxBinding953,
-    "putUint32": _flaxBinding954,
-    "putInt32": _flaxBinding955,
-    "putInt64": _flaxBinding956,
-    "putFloat64": _flaxBinding958,
-    "putUint8List": _flaxBinding960,
-    "putInt32List": _flaxBinding962,
-    "putInt64List": _flaxBinding964,
-    "putFloat32List": _flaxBinding966,
-    "putFloat64List": _flaxBinding968,
-    "done": _flaxBinding969,
+    "putUint8": _flaxBinding940,
+    "putUint16": _flaxBinding942,
+    "putUint32": _flaxBinding943,
+    "putInt32": _flaxBinding944,
+    "putInt64": _flaxBinding945,
+    "putFloat64": _flaxBinding947,
+    "putUint8List": _flaxBinding949,
+    "putInt32List": _flaxBinding951,
+    "putInt64List": _flaxBinding953,
+    "putFloat32List": _flaxBinding955,
+    "putFloat64List": _flaxBinding957,
+    "done": _flaxBinding958,
   },
-  constructors: {"": _flaxBinding970},
+  constructors: {"": _flaxBinding959},
   create: _createWriteBuffer,
   matches: _isWriteBuffer,
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding972 = FlaxTypeRef(
+const _flaxBinding961 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_foundation#type:TextTreeConfiguration",
 );
-const _flaxBinding973 = FlaxTypeRef(
+const _flaxBinding962 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_dart_ui#type:Brightness",
   nullable: true,
 );
-const _flaxBinding974 = FlaxTypeRef(
+const _flaxBinding963 = FlaxTypeRef(
   "enum",
   id: "flax.core/flutter#type:TargetPlatform",
   nullable: true,
 );
-const _flaxBinding975 = FlaxCallbackBinding(
+const _flaxBinding964 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter.plain("message", flaxNullableStringType),
     FlaxCallbackParameter.plain(
@@ -57705,15 +55416,15 @@ const _flaxBinding975 = FlaxCallbackBinding(
   invoke: _callback118Invoke,
   matches: _callback118Matches,
 );
-const _flaxBinding976 = FlaxTypeRef("callback", callback: _flaxBinding975);
-const _flaxBinding977 = FlaxTypeRef(
+const _flaxBinding965 = FlaxTypeRef("callback", callback: _flaxBinding964);
+const _flaxBinding966 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:Comparable",
   dartType: FlaxDartTypes.typeOf<api3.Comparable<Object>>,
 );
-const _flaxBinding978 = FlaxTypeRef(
+const _flaxBinding967 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding977,
+  item: _flaxBinding966,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/flutter#type:Comparable<any:>]",
     _collection25Create,
@@ -57721,30 +55432,30 @@ const _flaxBinding978 = FlaxTypeRef(
     restore: _collection25Restore,
   ),
 );
-const _flaxBinding979 = FlaxTypeRef(
+const _flaxBinding968 = FlaxTypeRef(
   "list",
-  item: _flaxBinding977,
+  item: _flaxBinding966,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/flutter#type:Comparable<any:>]",
     _collection24Create,
     _collection24Matches,
   ),
-  iterable: _flaxBinding978,
+  iterable: _flaxBinding967,
 );
-const _flaxBinding980 = FlaxCallbackBinding(
+const _flaxBinding969 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("message", flaxNullableAnyType)],
-  _flaxBinding870,
+  _flaxBinding856,
   _callback119,
   id: "callback:<>(p:r:message:any?:)->futureOr:[any?:]",
   invoke: _callback119Invoke,
   matches: _callback119Matches,
 );
-const _flaxBinding981 = FlaxTypeRef("callback", callback: _flaxBinding980);
-const _flaxBinding982 = FlaxTypeRef(
+const _flaxBinding970 = FlaxTypeRef("callback", callback: _flaxBinding969);
+const _flaxBinding971 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:HttpClientResponse",
 );
-const _flaxBinding983 = FlaxCallbackBinding(
+const _flaxBinding972 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter.plain("cumulative", flaxIntType),
     FlaxCallbackParameter.plain("total", flaxNullableIntType),
@@ -57755,58 +55466,58 @@ const _flaxBinding983 = FlaxCallbackBinding(
   invoke: FlaxCallbackAdapters.invokeVoid2<int, int?>,
   matches: FlaxCallbackAdapters.matchesVoid2<int, int?>,
 );
-const _flaxBinding984 = FlaxTypeRef(
+const _flaxBinding973 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding983,
+  callback: _flaxBinding972,
 );
-const _flaxBinding985 = FlaxTypeRef(
+const _flaxBinding974 = FlaxTypeRef(
   "future",
   item: flaxUint8ListType,
-  future: FlaxFutureBinding("Uint8List:", _future6Adapt),
+  future: FlaxFutureBinding("Uint8List:", _flaxAdapters.flaxAdapter4Adapt),
 );
-const _flaxBinding986 = FlaxCallbackBinding(
+const _flaxBinding975 = FlaxCallbackBinding(
   [],
-  _flaxBinding878,
+  _flaxBinding864,
   _callback120,
   id: "callback:<>()->future:[any?:]",
   invoke: _callback120Invoke,
   matches: _callback120Matches,
 );
-const _flaxBinding987 = FlaxTypeRef("callback", callback: _flaxBinding986);
-const _flaxBinding988 = FlaxTypeRef(
+const _flaxBinding976 = FlaxTypeRef("callback", callback: _flaxBinding975);
+const _flaxBinding977 = FlaxTypeRef(
   "list",
   nullable: true,
   item: flaxNullableAnyType,
   collection: FlaxCollectionBinding(
     "list:[any?:]",
-    _collection22Create,
-    _collection22Matches,
+    _flaxAdapters.flaxAdapter43Create,
+    _flaxAdapters.flaxAdapter43Matches,
   ),
-  iterable: _flaxBinding210,
+  iterable: _flaxBinding211,
 );
-const _flaxBinding989 = FlaxTypeRef(
+const _flaxBinding978 = FlaxTypeRef(
   "map",
   nullable: true,
   item: flaxNullableAnyType,
   key: flaxNullableAnyType,
   collection: FlaxCollectionBinding(
     "map:[any?:][any?:]",
-    _collection26Create,
-    _collection26Matches,
+    _flaxAdapters.flaxAdapter41Create,
+    _flaxAdapters.flaxAdapter41Matches,
   ),
 );
-const _flaxBinding990 = FlaxTypeRef(
+const _flaxBinding979 = FlaxTypeRef(
   "list",
   item: flaxNullableAnyType,
   collection: FlaxCollectionBinding(
     "list:[any?:]",
-    _collection22Create,
-    _collection22Matches,
+    _flaxAdapters.flaxAdapter43Create,
+    _flaxAdapters.flaxAdapter43Matches,
   ),
-  iterable: _flaxBinding210,
+  iterable: _flaxBinding211,
 );
-const _flaxBinding991 = FlaxCallbackBinding(
+const _flaxBinding980 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter.plain("p0", flaxNullableAnyType),
     FlaxCallbackParameter.plain("p1", flaxNullableAnyType),
@@ -57817,62 +55528,62 @@ const _flaxBinding991 = FlaxCallbackBinding(
   invoke: FlaxCallbackAdapters.invoke2<Object?, Object?, int>,
   matches: FlaxCallbackAdapters.matches2<Object?, Object?, int>,
 );
-const _flaxBinding992 = FlaxTypeRef(
+const _flaxBinding981 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding991,
+  callback: _flaxBinding980,
 );
-const _flaxBinding993 = FlaxTypeRef(
+const _flaxBinding982 = FlaxTypeRef(
   "set",
   nullable: true,
   item: flaxNullableAnyType,
   collection: FlaxCollectionBinding(
     "set:[any?:]",
-    _collection23Create,
-    _collection23Matches,
+    _flaxAdapters.flaxAdapter44Create,
+    _flaxAdapters.flaxAdapter44Matches,
   ),
-  iterable: _flaxBinding210,
+  iterable: _flaxBinding211,
 );
-const _flaxBinding994 = FlaxTypeRef(
+const _flaxBinding983 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_foundation#type:BindingBase",
   nullable: true,
 );
-const _flaxBinding995 = FlaxTypeRef(
+const _flaxBinding984 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_foundation#type:BindingBase",
 );
-const _flaxBinding996 = FlaxTypeRef(
+const _flaxBinding985 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:Type",
   nullable: true,
 );
-const _flaxBinding997 = FlaxTypeRef(
+const _flaxBinding986 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_foundation#type:ChangeNotifier",
 );
-const _flaxBinding998 = FlaxTypeRef(
+const _flaxBinding987 = FlaxTypeRef(
   "list",
   nullable: true,
   item: _flaxBinding46,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-    _collection4Create,
-    _collection4Matches,
+    _flaxAdapters.flaxAdapter85Create,
+    _flaxAdapters.flaxAdapter85Matches,
   ),
   iterable: _flaxBinding48,
 );
-const _flaxBinding999 = FlaxTypeRef(
+const _flaxBinding988 = FlaxTypeRef(
   "iterable",
   item: _flaxBinding24,
   collection: FlaxCollectionBinding(
     "iterable:[map:[any?:][String:]]",
-    _collection28Create,
-    _collection28Matches,
-    restore: _collection28Restore,
+    _flaxAdapters.flaxAdapter39Create,
+    _flaxAdapters.flaxAdapter39Matches,
+    restore: _flaxAdapters.flaxAdapter39Restore,
   ),
 );
-const _flaxBinding1000 = FlaxTypeRef(
+const _flaxBinding989 = FlaxTypeRef(
   "list",
   item: _flaxBinding24,
   collection: FlaxCollectionBinding(
@@ -57880,13 +55591,13 @@ const _flaxBinding1000 = FlaxTypeRef(
     _collection27Create,
     _collection27Matches,
   ),
-  iterable: _flaxBinding999,
+  iterable: _flaxBinding988,
 );
-const _flaxBinding1001 = FlaxTypeRef(
+const _flaxBinding990 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_foundation#type:Endian",
 );
-const _flaxBinding1002 = FlaxCallbackBinding(
+const _flaxBinding991 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("message", flaxStringType)],
   flaxVoidType,
   FlaxCallbackAdapters.wrapVoid1<String>,
@@ -57894,39 +55605,39 @@ const _flaxBinding1002 = FlaxCallbackBinding(
   invoke: FlaxCallbackAdapters.invokeVoid1<String>,
   matches: FlaxCallbackAdapters.matchesVoid1<String>,
 );
-const _flaxBinding1003 = FlaxTypeRef("callback", callback: _flaxBinding1002);
-const _flaxBinding1004 = FlaxTypeRef(
+const _flaxBinding992 = FlaxTypeRef("callback", callback: _flaxBinding991);
+const _flaxBinding993 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_foundation#type:StackFilter",
 );
-const _flaxBinding1005 = FlaxCallbackBinding(
-  [FlaxCallbackParameter.plain("details", _flaxBinding622)],
+const _flaxBinding994 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("details", _flaxBinding610)],
   flaxVoidType,
   FlaxCallbackAdapters.wrapVoid1<api.FlutterErrorDetails>,
   id: "callback:<>(p:r:details:object:flax.core/sdk_foundation#type:FlutterErrorDetails)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<api.FlutterErrorDetails>,
   matches: FlaxCallbackAdapters.matchesVoid1<api.FlutterErrorDetails>,
 );
-const _flaxBinding1006 = FlaxTypeRef(
+const _flaxBinding995 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding1005,
+  callback: _flaxBinding994,
 );
-const _flaxBinding1007 = FlaxTypeRef(
+const _flaxBinding996 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:StackTrace",
 );
-const _flaxBinding1008 = FlaxCallbackBinding(
-  [FlaxCallbackParameter.plain("details", _flaxBinding1007)],
-  _flaxBinding1007,
+const _flaxBinding997 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("details", _flaxBinding996)],
+  _flaxBinding996,
   FlaxCallbackAdapters.wrap1<api3.StackTrace, api3.StackTrace>,
   id: "callback:<>(p:r:details:object:flax.core/flutter#type:StackTrace)->object:flax.core/flutter#type:StackTrace",
   invoke: FlaxCallbackAdapters.invoke1<api3.StackTrace, api3.StackTrace>,
   matches: FlaxCallbackAdapters.matches1<api3.StackTrace, api3.StackTrace>,
 );
-const _flaxBinding1009 = FlaxTypeRef("callback", callback: _flaxBinding1008);
-const _flaxBinding1010 = FlaxTypeRef("callback", callback: _flaxBinding1005);
-const _flaxBinding1011 = FlaxCallbackBinding(
+const _flaxBinding998 = FlaxTypeRef("callback", callback: _flaxBinding997);
+const _flaxBinding999 = FlaxTypeRef("callback", callback: _flaxBinding994);
+const _flaxBinding1000 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("properties", _flaxBinding48)],
   _flaxBinding48,
   FlaxCallbackAdapters
@@ -57937,10 +55648,10 @@ const _flaxBinding1011 = FlaxCallbackBinding(
   matches: FlaxCallbackAdapters
       .matches1<Iterable<api.DiagnosticsNode>, Iterable<api.DiagnosticsNode>>,
 );
-const _flaxBinding1012 = FlaxTypeRef("callback", callback: _flaxBinding1011);
-const _flaxBinding1013 = FlaxTypeRef(
+const _flaxBinding1001 = FlaxTypeRef("callback", callback: _flaxBinding1000);
+const _flaxBinding1002 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding1012,
+  item: _flaxBinding1001,
   collection: FlaxCollectionBinding(
     "iterable:[callback:<>(p:r:properties:iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode])->iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]]",
     _collection30Create,
@@ -57948,75 +55659,255 @@ const _flaxBinding1013 = FlaxTypeRef(
     restore: _collection30Restore,
   ),
 );
-const _flaxBinding1014 = FlaxTypeRef(
+const _flaxBinding1003 = FlaxTypeRef(
   "list",
-  item: _flaxBinding1012,
+  item: _flaxBinding1001,
   collection: FlaxCollectionBinding(
     "list:[callback:<>(p:r:properties:iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode])->iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]]",
     _collection29Create,
     _collection29Matches,
   ),
-  iterable: _flaxBinding1013,
+  iterable: _flaxBinding1002,
 );
-const _flaxBinding1015 = FlaxTypeRef(
+const _flaxBinding1004 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_foundation#type:FlutterMemoryAllocations",
 );
-const _flaxBinding1016 = FlaxTypeRef(
+const _flaxBinding1005 = FlaxTypeRef(
   "map",
   nullable: true,
   item: flaxNullableAnyType,
   key: flaxStringType,
   collection: FlaxCollectionBinding(
     "map:[any?:][String:]",
-    _collection0Create,
-    _collection0Matches,
+    _flaxAdapters.flaxAdapter45Create,
+    _flaxAdapters.flaxAdapter45Matches,
   ),
 );
-const _flaxBinding1017 = FlaxTypeRef(
+const _flaxBinding1006 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:Flow",
   nullable: true,
 );
-const _flaxBinding1018 = FlaxTypeRef(
+const _flaxBinding1007 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_foundation#type:AggregatedTimings",
 );
-const _flaxBinding1019 = FlaxTypeRef(
+const _flaxBinding1008 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_foundation#type:LicenseEntry",
 );
-const _flaxBinding1020 = FlaxTypeRef(
+const _flaxBinding1009 = FlaxTypeRef(
   "stream",
   id: "flax.core/flutter#type:Stream",
   dartType: FlaxDartTypes.typeOf<api5.Stream<api.LicenseEntry>>,
-  item: _flaxBinding1019,
+  item: _flaxBinding1008,
   stream: FlaxStreamBinding(
     "stream:flax.core/flutter#type:Stream[object:flax.core/sdk_foundation#type:LicenseEntry]",
     _stream1Matches,
     _stream1Adapt,
   ),
 );
-const _flaxBinding1021 = FlaxCallbackBinding(
+const _flaxBinding1010 = FlaxCallbackBinding(
   [],
-  _flaxBinding1020,
+  _flaxBinding1009,
   FlaxCallbackAdapters.wrap0<api5.Stream<api.LicenseEntry>>,
   id: "callback:<>()->stream:flax.core/flutter#type:Stream[object:flax.core/sdk_foundation#type:LicenseEntry]",
   invoke: FlaxCallbackAdapters.invoke0<api5.Stream<api.LicenseEntry>>,
   matches: FlaxCallbackAdapters.matches0<api5.Stream<api.LicenseEntry>>,
 );
-const _flaxBinding1022 = FlaxTypeRef("callback", callback: _flaxBinding1021);
-const _flaxBinding1023 = FlaxTypeRef(
+const _flaxBinding1011 = FlaxTypeRef("callback", callback: _flaxBinding1010);
+const _flaxBinding1012 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_foundation#type:StackFrame",
   nullable: true,
 );
-const _flaxBinding1024 = <FlaxParameter>[
+const _flaxBinding1013 = <FlaxParameter>[
   FlaxParameter.required("element", flaxNullableAnyType),
 ];
-const _flaxBinding1025 = <FlaxParameter>[
+const _flaxBinding1014 = FlaxInstanceMethod.plain(
+  _flaxBinding1013,
+  flaxBoolType,
+  _FlaxProxyDispatch1_super_call_contains,
+);
+const _flaxBinding1015 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  flaxIntType,
+  _FlaxProxyDispatch1_super_get_length,
+);
+const _flaxBinding1016 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  flaxBoolType,
+  _FlaxProxyDispatch1_super_get_isEmpty,
+);
+const _flaxBinding1017 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  flaxBoolType,
+  _FlaxProxyDispatch1_super_get_isNotEmpty,
+);
+const _flaxBinding1018 = <FlaxParameter>[
   FlaxParameter.required("minLevel", _flaxBinding55),
 ];
-const _flaxBinding1026 = <FlaxParameter>[
+const _flaxBinding1019 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  _flaxBinding49,
+  _DiagnosticsNode_getProperties,
+);
+const _flaxBinding1020 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  _flaxBinding49,
+  _DiagnosticsNode_getChildren,
+);
+const _flaxBinding1021 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  _flaxBinding57,
+  _DiagnosticsNode_toTimelineArguments,
+);
+const _flaxBinding1022 = <FlaxParameter>[
   FlaxParameter.required("delegate", _flaxBinding59),
 ];
+const _flaxBinding1023 = FlaxInstanceMethod.plain(
+  _flaxBinding1018,
+  flaxBoolType,
+  _FlaxProxyDispatch5_super_call_isFiltered,
+);
+const _flaxBinding1024 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  _flaxBinding49,
+  _FlaxProxyDispatch4_super_call_getProperties,
+);
+const _flaxBinding1025 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  _flaxBinding49,
+  _FlaxProxyDispatch4_super_call_getChildren,
+);
+const _flaxBinding1026 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  _flaxBinding57,
+  _FlaxProxyDispatch5_super_call_toTimelineArguments,
+);
+const _flaxBinding1027 = FlaxInstanceMethod.plain(
+  _flaxBinding1022,
+  _flaxBinding24,
+  _FlaxProxyDispatch5_super_call_toJsonMap,
+);
+const _flaxBinding1028 = FlaxInstanceMethod.plain(
+  _flaxBinding1022,
+  _flaxBinding24,
+  _FlaxProxyDispatch5_super_call_toJsonMapIterative,
+);
+const _flaxBinding1029 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  flaxNullableStringType,
+  _FlaxProxyDispatch3_super_get_emptyBodyDescription,
+);
+const _flaxBinding1030 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  flaxNullableStringType,
+  _FlaxProxyDispatch5_super_get_name,
+);
+const _flaxBinding1031 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  flaxBoolType,
+  _FlaxProxyDispatch5_super_get_showSeparator,
+);
+const _flaxBinding1032 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  _flaxBinding55,
+  _FlaxProxyDispatch5_super_get_level,
+);
+const _flaxBinding1033 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  flaxBoolType,
+  _FlaxProxyDispatch5_super_get_showName,
+);
+const _flaxBinding1034 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  flaxNullableStringType,
+  _FlaxProxyDispatch5_super_get_linePrefix,
+);
+const _flaxBinding1035 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  flaxBoolType,
+  _FlaxProxyDispatch5_super_get_allowWrap,
+);
+const _flaxBinding1036 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  flaxBoolType,
+  _FlaxProxyDispatch5_super_get_allowNameWrap,
+);
+const _flaxBinding1037 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  flaxBoolType,
+  _FlaxProxyDispatch5_super_get_allowTruncate,
+);
+const _flaxBinding1038 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  _flaxBinding64,
+  _FlaxProxyDispatch5_super_get_textTreeConfiguration,
+);
+const _flaxBinding1039 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  flaxBoolType,
+  _FlaxProxyDispatch12_super_get_expandableValue,
+);
+const _flaxBinding1040 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  flaxNullableStringType,
+  _FlaxProxyDispatch12_super_get_ifNull,
+);
+const _flaxBinding1041 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  flaxNullableStringType,
+  _FlaxProxyDispatch12_super_get_ifEmpty,
+);
+const _flaxBinding1042 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  flaxNullableStringType,
+  _FlaxProxyDispatch12_super_get_tooltip,
+);
+const _flaxBinding1043 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  flaxBoolType,
+  _FlaxProxyDispatch12_super_get_missingIfNull,
+);
+const _flaxBinding1044 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  flaxTypeType,
+  _FlaxProxyDispatch12_super_get_propertyType,
+);
+const _flaxBinding1045 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  flaxNullableAnyType,
+  _FlaxProxyDispatch12_super_get_exception,
+);
+const _flaxBinding1046 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  flaxNullableAnyType,
+  _FlaxProxyDispatch12_super_get_defaultValue,
+);
+const _flaxBinding1047 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  flaxBoolType,
+  _FlaxProxyDispatch12_super_get_isInteresting,
+);
+const _flaxBinding1048 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  flaxStringType,
+  _FlaxProxyDispatch0_super_call_toString,
+);
+const _flaxBinding1049 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  flaxVoidType,
+  _FlaxProxyDispatch17_super_call_clear,
+);
+const _flaxBinding1050 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  flaxVoidType,
+  _FlaxProxyDispatch2_super_call_dispose,
+);
+const _flaxBinding1051 = FlaxInstanceMethod.plain(
+  _flaxBinding131,
+  flaxBoolType,
+  _FlaxProxyDispatch2_super_get_hasListeners,
+);

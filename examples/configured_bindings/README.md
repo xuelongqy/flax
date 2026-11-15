@@ -41,7 +41,9 @@ export FLUTTER_ROOT=/path/to/flutter-fork
 export PATH="$FLUTTER_ROOT/bin:$PATH"
 mkdir -p "$PWD/.local/tmp"
 export TMPDIR="$PWD/.local/tmp" TMP="$PWD/.local/tmp" TEMP="$PWD/.local/tmp"
-flutter pub get --enforce-lockfile
+env -u FLUTTER_ENGINE flutter --local-engine-src-path="$FLUTTER_ROOT/engine/src" \
+  --local-engine=flax_mac_debug_arm64 --local-engine-host=flax_mac_debug_arm64 \
+  pub get --enforce-lockfile
 pnpm install --frozen-lockfile
 pnpm run js:build
 cd examples/configured_bindings

@@ -9,12 +9,12 @@ export type SuggestionsBuilder = ((context: upstream0.BuildContext, controller: 
 }> & Readonly<{
     "__flaxBound:package:flutter/src/widgets/editable_text.dart::TextEditingController": readonly [];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream2.TextEditingValue];
+    "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream2.TextEditingValue];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream2.TextEditingValue];
+    "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream2.TextEditingValue];
 }>) => DartIterable<Widget> | Promise<DartIterable<Widget>>);
 export type SuggestionsBuilderInput = ((context: upstream0.BuildContext, controller: upstream1.SearchController) => DartIterableInput<Widget, Widget> | Promise<DartIterableInput<Widget, Widget>>);

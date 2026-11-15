@@ -14,9 +14,9 @@ import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartType
 export interface SemanticsOwner extends Omit<upstream0.ChangeNotifier, _flaxOwnMembers0>, Omit<upstream1.Listenable, _flaxOwnMembers0 | keyof upstream0.ChangeNotifier>, Readonly<{
     "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsOwner": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __SemanticsOwner: unique symbol;
     readonly [_flaxDartTypeValue]: SemanticsOwner;
@@ -86,5 +86,5 @@ declare const _SemanticsOwnerBinding: typeof _SemanticsOwnerFactory & (new (opti
     onSemanticsUpdate: ((update: upstream2.SemanticsUpdate) => void);
 }) => _SemanticsOwnerNative);
 export declare const SemanticsOwner: typeof _SemanticsOwnerBinding & _FlaxInstanceType<SemanticsOwner> & _FlaxDartType<SemanticsOwner, readonly ["class", "flax.core/sdk_semantics#type:SemanticsOwner", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "onSemanticsUpdate" | "rootSemanticsNode" | "addListener" | "removeListener" | "dispose" | "getSemanticsNode" | "sendSemanticsUpdate" | "performAction" | "performActionAt" | "toString" | "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsOwner" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "onSemanticsUpdate" | "rootSemanticsNode" | "addListener" | "removeListener" | "dispose" | "getSemanticsNode" | "sendSemanticsUpdate" | "performAction" | "performActionAt" | "toString" | "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsOwner" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 export {};

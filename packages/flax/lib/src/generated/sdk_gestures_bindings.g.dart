@@ -8,12 +8,11 @@ import 'package:flax/bindings.dart';
 import 'package:flutter/foundation.dart' as api1;
 
 import 'dart:core' as api2;
+import 'dart:ui' as api3;
 
-import 'package:flutter/cupertino.dart' as api3;
+import 'package:vector_math/vector_math_64.dart' as api4;
 
-import 'dart:ui' as api4;
-
-import 'package:vector_math/vector_math_64.dart' as api5;
+import 'closed_adapters.g.dart' as _flaxAdapters;
 
 // ignore: unused_element
 const _flaxOmitted = Object();
@@ -83,10 +82,7 @@ const sdk_gesturesBindings = FlaxBindingModule(
         _flaxBinding756,
       ],
       {
-        "toString": FlaxInstanceMethod.shared(
-          flaxStringCall,
-          _HitTestEntry_toString,
-        ),
+        "toString": _flaxBinding757,
         "@super:toString": _flaxBinding470,
         "@super:get:target": FlaxInstanceMethod.plain(
           _flaxBinding494,
@@ -101,7 +97,7 @@ const sdk_gesturesBindings = FlaxBindingModule(
           _HitTestEntry_super_get_transform,
         ),
       },
-      constructors: {"": _flaxBinding758, "@implementation": _flaxBinding758},
+      constructors: {"": _flaxBinding759, "@implementation": _flaxBinding759},
       create: _createHitTestEntry,
       disposeMethod: null,
       listenerPairs: {},
@@ -124,78 +120,78 @@ const sdk_gesturesBindings = FlaxBindingModule(
           ),
           hasSuper: true,
         ),
-        _flaxBinding759,
+        _flaxBinding760,
       ]),
     ),
-    _flaxBinding772,
-    _flaxBinding774,
-    _flaxBinding777,
+    _flaxBinding773,
+    _flaxBinding775,
     _flaxBinding778,
-    _flaxBinding780,
-    _flaxBinding797,
+    _flaxBinding779,
+    _flaxBinding781,
     _flaxBinding798,
-    _flaxBinding808,
-    _flaxBinding815,
-    _flaxBinding822,
-    _flaxBinding908,
-    _flaxBinding918,
-    _flaxBinding923,
+    _flaxBinding799,
+    _flaxBinding809,
+    _flaxBinding816,
+    _flaxBinding823,
+    _flaxBinding909,
+    _flaxBinding919,
     _flaxBinding924,
+    _flaxBinding925,
     _flaxBinding461,
-    _flaxBinding940,
-    _flaxBinding966,
+    _flaxBinding941,
     _flaxBinding967,
-    _flaxBinding978,
-    _flaxBinding368,
+    _flaxBinding968,
     _flaxBinding979,
-    _flaxBinding1072,
-    _flaxBinding1114,
-    _flaxBinding1156,
-    _flaxBinding1198,
+    _flaxBinding368,
+    _flaxBinding980,
+    _flaxBinding1073,
+    _flaxBinding1115,
+    _flaxBinding1157,
     _flaxBinding1199,
-    _flaxBinding1212,
-    _flaxBinding1254,
-    _flaxBinding1296,
-    _flaxBinding1338,
-    _flaxBinding1380,
-    _flaxBinding1421,
-    _flaxBinding1476,
-    _flaxBinding1519,
-    _flaxBinding1536,
-    _flaxBinding1589,
-    _flaxBinding1597,
-    _flaxBinding1579,
-    _flaxBinding1602,
-    _flaxBinding1645,
-    _flaxBinding1655,
-    _flaxBinding1658,
+    _flaxBinding1200,
+    _flaxBinding1213,
+    _flaxBinding1255,
+    _flaxBinding1297,
+    _flaxBinding1339,
+    _flaxBinding1381,
+    _flaxBinding1422,
+    _flaxBinding1477,
+    _flaxBinding1520,
+    _flaxBinding1537,
+    _flaxBinding1590,
+    _flaxBinding1598,
+    _flaxBinding1580,
+    _flaxBinding1603,
+    _flaxBinding1646,
+    _flaxBinding1656,
+    _flaxBinding1659,
     _flaxBinding437,
-    _flaxBinding1663,
-    _flaxBinding1674,
-    _flaxBinding1701,
-    _flaxBinding1715,
-    _flaxBinding1733,
-    _flaxBinding1741,
-    _flaxBinding1750,
-    _flaxBinding1765,
-    _flaxBinding1773,
-    _flaxBinding1775,
+    _flaxBinding1664,
+    _flaxBinding1675,
+    _flaxBinding1702,
+    _flaxBinding1716,
+    _flaxBinding1734,
+    _flaxBinding1742,
+    _flaxBinding1751,
+    _flaxBinding1766,
+    _flaxBinding1774,
     _flaxBinding1776,
     _flaxBinding1777,
-    _flaxBinding1783,
-    _flaxBinding1792,
-    _flaxBinding1801,
-    _flaxBinding1810,
-    _flaxBinding1818,
-    _flaxBinding1831,
-    _flaxBinding1883,
-    _flaxBinding1889,
-    _flaxBinding1896,
-    _flaxBinding1910,
-    _flaxBinding1919,
-    _flaxBinding793,
+    _flaxBinding1778,
+    _flaxBinding1784,
+    _flaxBinding1793,
+    _flaxBinding1802,
+    _flaxBinding1811,
+    _flaxBinding1819,
+    _flaxBinding1832,
+    _flaxBinding1884,
+    _flaxBinding1890,
+    _flaxBinding1897,
+    _flaxBinding1911,
     _flaxBinding1920,
+    _flaxBinding794,
     _flaxBinding1921,
+    _flaxBinding1922,
   ],
   functions: [
     FlaxFunctionBinding(
@@ -489,16 +485,16 @@ const sdk_gesturesBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.core/sdk_gestures#read:GestureBinding.instance",
       [],
-      _flaxBinding1922,
+      _flaxBinding1923,
       _GestureBinding_static_get_instance,
     ),
     FlaxFunctionBinding(
       "flax.core/sdk_gestures#function:PointerEventConverter.expand",
       [
-        FlaxParameter.required("data", _flaxBinding1924),
-        FlaxParameter.required("devicePixelRatioForView", _flaxBinding1926),
+        FlaxParameter.required("data", _flaxBinding1925),
+        FlaxParameter.required("devicePixelRatioForView", _flaxBinding1927),
       ],
-      _flaxBinding1927,
+      _flaxBinding1928,
       _PointerEventConverter_expand,
     ),
     FlaxFunctionBinding(
@@ -1067,20 +1063,20 @@ final sdk_gesturesPlugin = FlaxBindingPlugin(
 );
 Object? _function_computeHitSlop(Map<String, Object?> values) {
   return api.computeHitSlop(
-    values["kind"] as api4.PointerDeviceKind,
+    values["kind"] as api3.PointerDeviceKind,
     values["settings"] as api.DeviceGestureSettings?,
   );
 }
 
 Object? _function_computePanSlop(Map<String, Object?> values) {
   return api.computePanSlop(
-    values["kind"] as api4.PointerDeviceKind,
+    values["kind"] as api3.PointerDeviceKind,
     values["settings"] as api.DeviceGestureSettings?,
   );
 }
 
 Object? _function_computeScaleSlop(Map<String, Object?> values) {
-  return api.computeScaleSlop(values["kind"] as api4.PointerDeviceKind);
+  return api.computeScaleSlop(values["kind"] as api3.PointerDeviceKind);
 }
 
 Object? _function_debugAssertAllGesturesVarsUnset(Map<String, Object?> values) {
@@ -1542,7 +1538,7 @@ Object? _FlaxProxyDispatch7_super_call_startTrackingPointer(
 ) {
   (receiver as _FlaxProxyDispatch7)._flaxSuper_startTrackingPointer(
     values["pointer"] as int,
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
   return null;
 }
@@ -1797,7 +1793,7 @@ Object? _FlaxProxyDispatch0_super_set_supportedDevices(
   Map<String, Object?> values,
 ) {
   (receiver as _FlaxProxyDispatch0)._flaxSuperSet_supportedDevices(
-    values["value"] as Set<api4.PointerDeviceKind>?,
+    values["value"] as Set<api3.PointerDeviceKind>?,
   );
   return null;
 }
@@ -1814,7 +1810,7 @@ Object _createBaseTapGestureRecognizer(
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas3
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -1923,7 +1919,7 @@ Object? _DelayedMultiDragGestureRecognizer_super_set_onStart(
   Map<String, Object?> values,
 ) {
   (receiver as _DelayedMultiDragGestureRecognizerProxy)._flaxSuperSet_onStart(
-    values["value"] as api.Drag? Function(api4.Offset position)?,
+    values["value"] as api.Drag? Function(api3.Offset position)?,
   );
   return null;
 }
@@ -1940,7 +1936,7 @@ Object _createDelayedMultiDragGestureRecognizer(
         <Object?>[
           (_flaxHas0 ? values["delay"] as api2.Duration : null),
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           values["allowedButtonsFilter"] as bool Function(int buttons)?,
         ],
         <int>[(_flaxHas0 ? 1 : 0) | 2 | 4 | 8],
@@ -1959,7 +1955,7 @@ Object _createDelayedMultiDragGestureRecognizer(
           values['@peer'] as FlaxProxyPeer,
           (_flaxHas1 ? values["delay"] as api2.Duration : null),
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           values["allowedButtonsFilter"] as bool Function(int buttons)?,
         ],
         <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | 16],
@@ -2012,7 +2008,7 @@ Object _createDeviceGestureSettings(String ctor, Map<String, Object?> values) {
       );
     case "fromView":
       return api.DeviceGestureSettings.fromView(
-        values["view"] as api4.FlutterView,
+        values["view"] as api3.FlutterView,
       );
     case '@implementation':
       return _DeviceGestureSettingsProxy(
@@ -2158,7 +2154,7 @@ Object _createDoubleTapGestureRecognizer(
         api.DoubleTapGestureRecognizer.new,
         <Object?>[
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas2
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -2177,7 +2173,7 @@ Object _createDoubleTapGestureRecognizer(
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas3
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -2301,8 +2297,8 @@ Object _createDragDownDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.DragDownDetails.new,
         <Object?>[
-          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
+          (_flaxHas0 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
         ],
         <int>[(_flaxHas0 ? 1 : 0) | 2],
         const <String>["globalPosition", "localPosition"],
@@ -2313,8 +2309,8 @@ Object _createDragDownDetails(String ctor, Map<String, Object?> values) {
         _DragDownDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
+          (_flaxHas1 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
         ],
         <int>[1 | (_flaxHas1 ? 2 : 0) | 4],
         const <String>["", "globalPosition", "localPosition"],
@@ -2382,8 +2378,8 @@ Object _createDragEndDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.DragEndDetails.new,
         <Object?>[
-          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
+          (_flaxHas0 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
           (_flaxHas2 ? values["velocity"] as api.Velocity : null),
           values["primaryVelocity"] as double?,
         ],
@@ -2402,8 +2398,8 @@ Object _createDragEndDetails(String ctor, Map<String, Object?> values) {
         _DragEndDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
+          (_flaxHas1 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
           (_flaxHas3 ? values["velocity"] as api.Velocity : null),
           values["primaryVelocity"] as double?,
         ],
@@ -2554,7 +2550,7 @@ Object? _DragGestureRecognizer_isFlingGesture(
 ) {
   return (receiver as api.DragGestureRecognizer).isFlingGesture(
     values["estimate"] as api.VelocityEstimate,
-    values["kind"] as api4.PointerDeviceKind,
+    values["kind"] as api3.PointerDeviceKind,
   );
 }
 
@@ -2564,7 +2560,7 @@ Object? _DragGestureRecognizer_considerFling(
 ) {
   return (receiver as api.DragGestureRecognizer).considerFling(
     values["estimate"] as api.VelocityEstimate,
-    values["kind"] as api4.PointerDeviceKind,
+    values["kind"] as api3.PointerDeviceKind,
   );
 }
 
@@ -2574,7 +2570,7 @@ Object? _DragGestureRecognizer_hasSufficientGlobalDistanceToAccept(
 ) {
   return (receiver as api.DragGestureRecognizer)
       .hasSufficientGlobalDistanceToAccept(
-        values["pointerDeviceKind"] as api4.PointerDeviceKind,
+        values["pointerDeviceKind"] as api3.PointerDeviceKind,
         values["deviceTouchSlop"] as double?,
       );
 }
@@ -2641,10 +2637,10 @@ Object _createDragStartDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.DragStartDetails.new,
         <Object?>[
-          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
+          (_flaxHas0 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
           values["sourceTimeStamp"] as api2.Duration?,
-          values["kind"] as api4.PointerDeviceKind?,
+          values["kind"] as api3.PointerDeviceKind?,
         ],
         <int>[(_flaxHas0 ? 1 : 0) | 2 | 4 | 8],
         const <String>[
@@ -2660,10 +2656,10 @@ Object _createDragStartDetails(String ctor, Map<String, Object?> values) {
         _DragStartDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
+          (_flaxHas1 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
           values["sourceTimeStamp"] as api2.Duration?,
-          values["kind"] as api4.PointerDeviceKind?,
+          values["kind"] as api3.PointerDeviceKind?,
         ],
         <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | 16],
         const <String>[
@@ -2751,12 +2747,12 @@ Object _createDragUpdateDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.DragUpdateDetails.new,
         <Object?>[
-          values["globalPosition"] as api4.Offset,
-          values["localPosition"] as api4.Offset?,
+          values["globalPosition"] as api3.Offset,
+          values["localPosition"] as api3.Offset?,
           values["sourceTimeStamp"] as api2.Duration?,
-          (_flaxHas3 ? values["delta"] as api4.Offset : null),
+          (_flaxHas3 ? values["delta"] as api3.Offset : null),
           values["primaryDelta"] as double?,
-          values["kind"] as api4.PointerDeviceKind?,
+          values["kind"] as api3.PointerDeviceKind?,
         ],
         <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0) | 16 | 32],
         const <String>[
@@ -2774,12 +2770,12 @@ Object _createDragUpdateDetails(String ctor, Map<String, Object?> values) {
         _DragUpdateDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          values["globalPosition"] as api4.Offset,
-          values["localPosition"] as api4.Offset?,
+          values["globalPosition"] as api3.Offset,
+          values["localPosition"] as api3.Offset?,
           values["sourceTimeStamp"] as api2.Duration?,
-          (_flaxHas4 ? values["delta"] as api4.Offset : null),
+          (_flaxHas4 ? values["delta"] as api3.Offset : null),
           values["primaryDelta"] as double?,
-          values["kind"] as api4.PointerDeviceKind?,
+          values["kind"] as api3.PointerDeviceKind?,
         ],
         <int>[1 | 2 | 4 | 8 | (_flaxHas4 ? 16 : 0) | 32 | 64],
         const <String>[
@@ -2894,7 +2890,7 @@ Object _createEagerGestureRecognizer(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.EagerGestureRecognizer.new,
         <Object?>[
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas1
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -2908,7 +2904,7 @@ Object _createEagerGestureRecognizer(String ctor, Map<String, Object?> values) {
         _EagerGestureRecognizerProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas2
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -3182,15 +3178,15 @@ Object _createForcePressDetails(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.ForcePressDetails(
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
+        globalPosition: values["globalPosition"] as api3.Offset,
+        localPosition: values["localPosition"] as api3.Offset?,
         pressure: values["pressure"] as double,
       );
     case '@implementation':
       return _ForcePressDetailsProxy(
         values['@peer'] as FlaxProxyPeer,
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
+        globalPosition: values["globalPosition"] as api3.Offset,
+        localPosition: values["localPosition"] as api3.Offset?,
         pressure: values["pressure"] as double,
       );
     default:
@@ -3416,7 +3412,7 @@ Object _createForcePressGestureRecognizer(
                     )
               : null),
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas5
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -3449,7 +3445,7 @@ Object _createForcePressGestureRecognizer(
                     )
               : null),
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas6
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -3867,7 +3863,7 @@ void _GestureRecognizer_set_gestureSettings(Object receiver, Object? value) {
 
 void _GestureRecognizer_set_supportedDevices(Object receiver, Object? value) {
   (receiver as api.GestureRecognizer).supportedDevices =
-      value as Set<api4.PointerDeviceKind>?;
+      value as Set<api3.PointerDeviceKind>?;
 }
 
 Object? _GestureRecognizer_toString(
@@ -4071,7 +4067,7 @@ Object _createGestureRecognizer(String ctor, Map<String, Object?> values) {
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas3
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -4158,7 +4154,7 @@ Object? _HitTestResult_pushTransform(
   Map<String, Object?> values,
 ) {
   (receiver as api.HitTestResult).pushTransform(
-    values["transform"] as api5.Matrix4,
+    values["transform"] as api4.Matrix4,
   );
   return null;
 }
@@ -4167,7 +4163,7 @@ Object? _HitTestResult_pushOffset(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  (receiver as api.HitTestResult).pushOffset(values["offset"] as api4.Offset);
+  (receiver as api.HitTestResult).pushOffset(values["offset"] as api3.Offset);
   return null;
 }
 
@@ -4195,7 +4191,7 @@ Object? _HitTestResult_super_pushTransform(
   Map<String, Object?> values,
 ) {
   (receiver as _HitTestResultProxy)._flaxSuper_pushTransform(
-    values["transform"] as api5.Matrix4,
+    values["transform"] as api4.Matrix4,
   );
   return null;
 }
@@ -4205,7 +4201,7 @@ Object? _HitTestResult_super_pushOffset(
   Map<String, Object?> values,
 ) {
   (receiver as _HitTestResultProxy)._flaxSuper_pushOffset(
-    values["offset"] as api4.Offset,
+    values["offset"] as api3.Offset,
   );
   return null;
 }
@@ -4265,7 +4261,7 @@ bool _isHitTestable(Object value) => value is api.HitTestable;
 Object? _HitTestable_hitTest(Object receiver, Map<String, Object?> values) {
   (receiver as api.HitTestable).hitTest(
     values["result"] as api.HitTestResult,
-    values["position"] as api4.Offset,
+    values["position"] as api3.Offset,
   );
   return null;
 }
@@ -4276,7 +4272,7 @@ Object? _HitTestable_hitTestInView(
 ) {
   (receiver as api.HitTestable).hitTestInView(
     values["result"] as api.HitTestResult,
-    values["position"] as api4.Offset,
+    values["position"] as api3.Offset,
     values["viewId"] as int,
   );
   return null;
@@ -4316,7 +4312,7 @@ Object _createHorizontalDragGestureRecognizer(
         api.HorizontalDragGestureRecognizer.new,
         <Object?>[
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas2
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -4403,7 +4399,7 @@ Object? _HorizontalMultiDragGestureRecognizer_super_set_onStart(
 ) {
   (receiver as _HorizontalMultiDragGestureRecognizerProxy)
       ._flaxSuperSet_onStart(
-        values["value"] as api.Drag? Function(api4.Offset position)?,
+        values["value"] as api.Drag? Function(api3.Offset position)?,
       );
   return null;
 }
@@ -4417,7 +4413,7 @@ Object _createHorizontalMultiDragGestureRecognizer(
       return api.HorizontalMultiDragGestureRecognizer(
         debugOwner: values["debugOwner"],
         supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+            values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
         allowedButtonsFilter:
             values["allowedButtonsFilter"] as bool Function(int buttons)?,
       );
@@ -4426,7 +4422,7 @@ Object _createHorizontalMultiDragGestureRecognizer(
         values['@peer'] as FlaxProxyPeer,
         debugOwner: values["debugOwner"],
         supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+            values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
         allowedButtonsFilter:
             values["allowedButtonsFilter"] as bool Function(int buttons)?,
       );
@@ -4451,7 +4447,7 @@ Object? _FlaxProxyDispatch27_super_call_addPosition(
 ) {
   (receiver as _FlaxProxyDispatch27)._flaxSuper_addPosition(
     values["time"] as api2.Duration,
-    values["position"] as api4.Offset,
+    values["position"] as api3.Offset,
   );
   return null;
 }
@@ -4481,12 +4477,12 @@ Object _createIOSScrollViewFlingVelocityTracker(
   switch (ctor) {
     case "":
       return api.IOSScrollViewFlingVelocityTracker(
-        values["kind"] as api4.PointerDeviceKind,
+        values["kind"] as api3.PointerDeviceKind,
       );
     case '@implementation':
       return _IOSScrollViewFlingVelocityTrackerProxy(
         values['@peer'] as FlaxProxyPeer,
-        values["kind"] as api4.PointerDeviceKind,
+        values["kind"] as api3.PointerDeviceKind,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -4562,7 +4558,7 @@ Object? _ImmediateMultiDragGestureRecognizer_super_set_onStart(
   Map<String, Object?> values,
 ) {
   (receiver as _ImmediateMultiDragGestureRecognizerProxy)._flaxSuperSet_onStart(
-    values["value"] as api.Drag? Function(api4.Offset position)?,
+    values["value"] as api.Drag? Function(api3.Offset position)?,
   );
   return null;
 }
@@ -4576,7 +4572,7 @@ Object _createImmediateMultiDragGestureRecognizer(
       return api.ImmediateMultiDragGestureRecognizer(
         debugOwner: values["debugOwner"],
         supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+            values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
         allowedButtonsFilter:
             values["allowedButtonsFilter"] as bool Function(int buttons)?,
       );
@@ -4585,7 +4581,7 @@ Object _createImmediateMultiDragGestureRecognizer(
         values['@peer'] as FlaxProxyPeer,
         debugOwner: values["debugOwner"],
         supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+            values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
         allowedButtonsFilter:
             values["allowedButtonsFilter"] as bool Function(int buttons)?,
       );
@@ -4703,9 +4699,9 @@ Object _createLongPressDownDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.LongPressDownDetails.new,
         <Object?>[
-          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
-          values["kind"] as api4.PointerDeviceKind?,
+          (_flaxHas0 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
+          values["kind"] as api3.PointerDeviceKind?,
         ],
         <int>[(_flaxHas0 ? 1 : 0) | 2 | 4],
         const <String>["globalPosition", "localPosition", "kind"],
@@ -4716,9 +4712,9 @@ Object _createLongPressDownDetails(String ctor, Map<String, Object?> values) {
         _LongPressDownDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
-          values["kind"] as api4.PointerDeviceKind?,
+          (_flaxHas1 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
+          values["kind"] as api3.PointerDeviceKind?,
         ],
         <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8],
         const <String>["", "globalPosition", "localPosition", "kind"],
@@ -4783,8 +4779,8 @@ Object _createLongPressEndDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.LongPressEndDetails.new,
         <Object?>[
-          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
+          (_flaxHas0 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
           (_flaxHas2 ? values["velocity"] as api.Velocity : null),
         ],
         <int>[(_flaxHas0 ? 1 : 0) | 2 | (_flaxHas2 ? 4 : 0)],
@@ -4797,8 +4793,8 @@ Object _createLongPressEndDetails(String ctor, Map<String, Object?> values) {
         _LongPressEndDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
+          (_flaxHas1 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
           (_flaxHas3 ? values["velocity"] as api.Velocity : null),
         ],
         <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | (_flaxHas3 ? 8 : 0)],
@@ -5503,7 +5499,7 @@ Object _createLongPressGestureRecognizer(
         duration: values["duration"] as api2.Duration?,
         postAcceptSlopTolerance: values["postAcceptSlopTolerance"] as double?,
         supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+            values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
         debugOwner: values["debugOwner"],
         allowedButtonsFilter:
             values["allowedButtonsFilter"] as bool Function(int buttons)?,
@@ -5514,7 +5510,7 @@ Object _createLongPressGestureRecognizer(
         duration: values["duration"] as api2.Duration?,
         postAcceptSlopTolerance: values["postAcceptSlopTolerance"] as double?,
         supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+            values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
         debugOwner: values["debugOwner"],
         allowedButtonsFilter:
             values["allowedButtonsFilter"] as bool Function(int buttons)?,
@@ -5592,10 +5588,10 @@ Object _createLongPressMoveUpdateDetails(
       return flaxInvokeWithDefaults(
         api.LongPressMoveUpdateDetails.new,
         <Object?>[
-          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
-          (_flaxHas2 ? values["offsetFromOrigin"] as api4.Offset : null),
-          values["localOffsetFromOrigin"] as api4.Offset?,
+          (_flaxHas0 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
+          (_flaxHas2 ? values["offsetFromOrigin"] as api3.Offset : null),
+          values["localOffsetFromOrigin"] as api3.Offset?,
         ],
         <int>[(_flaxHas0 ? 1 : 0) | 2 | (_flaxHas2 ? 4 : 0) | 8],
         const <String>[
@@ -5612,10 +5608,10 @@ Object _createLongPressMoveUpdateDetails(
         _LongPressMoveUpdateDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
-          (_flaxHas3 ? values["offsetFromOrigin"] as api4.Offset : null),
-          values["localOffsetFromOrigin"] as api4.Offset?,
+          (_flaxHas1 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
+          (_flaxHas3 ? values["offsetFromOrigin"] as api3.Offset : null),
+          values["localOffsetFromOrigin"] as api3.Offset?,
         ],
         <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | (_flaxHas3 ? 8 : 0) | 16],
         const <String>[
@@ -5680,8 +5676,8 @@ Object _createLongPressStartDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.LongPressStartDetails.new,
         <Object?>[
-          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
+          (_flaxHas0 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
         ],
         <int>[(_flaxHas0 ? 1 : 0) | 2],
         const <String>["globalPosition", "localPosition"],
@@ -5692,8 +5688,8 @@ Object _createLongPressStartDetails(String ctor, Map<String, Object?> values) {
         _LongPressStartDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
+          (_flaxHas1 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
         ],
         <int>[1 | (_flaxHas1 ? 2 : 0) | 4],
         const <String>["", "globalPosition", "localPosition"],
@@ -5712,12 +5708,12 @@ Object _createMacOSScrollViewFlingVelocityTracker(
   switch (ctor) {
     case "":
       return api.MacOSScrollViewFlingVelocityTracker(
-        values["kind"] as api4.PointerDeviceKind,
+        values["kind"] as api3.PointerDeviceKind,
       );
     case '@implementation':
       return _MacOSScrollViewFlingVelocityTrackerProxy(
         values['@peer'] as FlaxProxyPeer,
-        values["kind"] as api4.PointerDeviceKind,
+        values["kind"] as api3.PointerDeviceKind,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -5730,7 +5726,7 @@ Object? _MultiDragGestureRecognizer_onStart(Object value) =>
     (value as api.MultiDragGestureRecognizer).onStart;
 void _MultiDragGestureRecognizer_set_onStart(Object receiver, Object? value) {
   (receiver as api.MultiDragGestureRecognizer).onStart =
-      value as api.Drag? Function(api4.Offset position)?;
+      value as api.Drag? Function(api3.Offset position)?;
 }
 
 Object? _MultiDragGestureRecognizer_invokeCallback(
@@ -5794,7 +5790,7 @@ Object? _MultiDragGestureRecognizer_super_set_onStart(
   Map<String, Object?> values,
 ) {
   (receiver as _MultiDragGestureRecognizerProxy)._flaxSuperSet_onStart(
-    values["value"] as api.Drag? Function(api4.Offset position)?,
+    values["value"] as api.Drag? Function(api3.Offset position)?,
   );
   return null;
 }
@@ -5809,7 +5805,7 @@ Object _createMultiDragGestureRecognizer(
         values['@peer'] as FlaxProxyPeer,
         debugOwner: values["debugOwner"],
         supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+            values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
         allowedButtonsFilter:
             values["allowedButtonsFilter"] as bool Function(int buttons)?,
       );
@@ -5851,7 +5847,7 @@ Object? _MultiDragPointerState_accepted(
   Map<String, Object?> values,
 ) {
   (receiver as api.MultiDragPointerState).accepted(
-    values["starter"] as api.Drag? Function(api4.Offset position),
+    values["starter"] as api.Drag? Function(api3.Offset position),
   );
   return null;
 }
@@ -5912,8 +5908,8 @@ Object _createMultiDragPointerState(String ctor, Map<String, Object?> values) {
     case '@implementation':
       return _MultiDragPointerStateProxy(
         values['@peer'] as FlaxProxyPeer,
-        values["initialPosition"] as api4.Offset,
-        values["kind"] as api4.PointerDeviceKind,
+        values["initialPosition"] as api3.Offset,
+        values["kind"] as api3.PointerDeviceKind,
         values["gestureSettings"] as api.DeviceGestureSettings?,
       );
     default:
@@ -6119,7 +6115,7 @@ Object _createMultiTapGestureRecognizer(
         <Object?>[
           (_flaxHas0 ? values["longTapDelay"] as api2.Duration : null),
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas3
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -6141,7 +6137,7 @@ Object _createMultiTapGestureRecognizer(
           values['@peer'] as FlaxProxyPeer,
           (_flaxHas1 ? values["longTapDelay"] as api2.Duration : null),
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas4
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -6211,8 +6207,8 @@ Object _createOffsetPair(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.OffsetPair(
-        local: values["local"] as api4.Offset,
-        global: values["global"] as api4.Offset,
+        local: values["local"] as api3.Offset,
+        global: values["global"] as api3.Offset,
       );
     case "fromEventPosition":
       return api.OffsetPair.fromEventPosition(
@@ -6223,8 +6219,8 @@ Object _createOffsetPair(String ctor, Map<String, Object?> values) {
     case '@implementation':
       return _OffsetPairProxy(
         values['@peer'] as FlaxProxyPeer,
-        local: values["local"] as api4.Offset,
-        global: values["global"] as api4.Offset,
+        local: values["local"] as api3.Offset,
+        global: values["global"] as api3.Offset,
       );
     case "@implementation:fromEventPosition":
       return _OffsetPairProxy.fromEventPosition(
@@ -6308,7 +6304,7 @@ Object? _OneSequenceGestureRecognizer_startTrackingPointer(
 ) {
   (receiver as api.OneSequenceGestureRecognizer).startTrackingPointer(
     values["pointer"] as int,
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
   return null;
 }
@@ -6399,7 +6395,7 @@ Object _createOneSequenceGestureRecognizer(
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas3
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -6437,7 +6433,7 @@ Object _createPanGestureRecognizer(String ctor, Map<String, Object?> values) {
         api.PanGestureRecognizer.new,
         <Object?>[
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas2
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -6520,7 +6516,7 @@ Object? _PointerAddedEvent_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as api.PointerAddedEvent).transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -6530,16 +6526,16 @@ Object? _PointerAddedEvent_copyWith(
 ) {
   return (receiver as api.PointerAddedEvent).copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -6603,7 +6599,7 @@ Object? _PointerAddedEvent_super_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as _PointerAddedEventProxy)._flaxSuper_transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -6613,16 +6609,16 @@ Object? _PointerAddedEvent_super_copyWith(
 ) {
   return (receiver as _PointerAddedEventProxy)._flaxSuper_copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -6776,9 +6772,9 @@ Object _createPointerAddedEvent(String ctor, Map<String, Object?> values) {
           values["viewId"] as int,
           (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
           values["pointer"] as int,
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          (_flaxHas5 ? values["position"] as api3.Offset : null),
           values["obscured"] as bool,
           values["pressureMin"] as double,
           values["pressureMax"] as double,
@@ -6837,9 +6833,9 @@ Object _createPointerAddedEvent(String ctor, Map<String, Object?> values) {
           values["viewId"] as int,
           (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
           values["pointer"] as int,
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas6 ? values["position"] as api4.Offset : null),
+          (_flaxHas6 ? values["position"] as api3.Offset : null),
           values["obscured"] as bool,
           values["pressureMin"] as double,
           values["pressureMax"] as double,
@@ -6961,7 +6957,7 @@ Object? _PointerCancelEvent_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as api.PointerCancelEvent).transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -6971,16 +6967,16 @@ Object? _PointerCancelEvent_copyWith(
 ) {
   return (receiver as api.PointerCancelEvent).copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -7044,7 +7040,7 @@ Object? _PointerCancelEvent_super_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as _PointerCancelEventProxy)._flaxSuper_transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -7054,16 +7050,16 @@ Object? _PointerCancelEvent_super_copyWith(
 ) {
   return (receiver as _PointerCancelEventProxy)._flaxSuper_copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -7121,9 +7117,9 @@ Object _createPointerCancelEvent(String ctor, Map<String, Object?> values) {
           values["viewId"] as int,
           (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
           values["pointer"] as int,
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          (_flaxHas5 ? values["position"] as api3.Offset : null),
           values["buttons"] as int,
           values["obscured"] as bool,
           values["pressureMin"] as double,
@@ -7194,9 +7190,9 @@ Object _createPointerCancelEvent(String ctor, Map<String, Object?> values) {
           values["viewId"] as int,
           (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
           values["pointer"] as int,
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas6 ? values["position"] as api4.Offset : null),
+          (_flaxHas6 ? values["position"] as api3.Offset : null),
           values["buttons"] as int,
           values["obscured"] as bool,
           values["pressureMin"] as double,
@@ -7330,7 +7326,7 @@ Object? _PointerDownEvent_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as api.PointerDownEvent).transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -7340,16 +7336,16 @@ Object? _PointerDownEvent_copyWith(
 ) {
   return (receiver as api.PointerDownEvent).copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -7413,7 +7409,7 @@ Object? _PointerDownEvent_super_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as _PointerDownEventProxy)._flaxSuper_transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -7423,16 +7419,16 @@ Object? _PointerDownEvent_super_copyWith(
 ) {
   return (receiver as _PointerDownEventProxy)._flaxSuper_copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -7490,9 +7486,9 @@ Object _createPointerDownEvent(String ctor, Map<String, Object?> values) {
           values["viewId"] as int,
           (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
           values["pointer"] as int,
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          (_flaxHas5 ? values["position"] as api3.Offset : null),
           values["buttons"] as int,
           values["obscured"] as bool,
           values["pressure"] as double,
@@ -7563,9 +7559,9 @@ Object _createPointerDownEvent(String ctor, Map<String, Object?> values) {
           values["viewId"] as int,
           (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
           values["pointer"] as int,
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas6 ? values["position"] as api4.Offset : null),
+          (_flaxHas6 ? values["position"] as api3.Offset : null),
           values["buttons"] as int,
           values["obscured"] as bool,
           values["pressure"] as double,
@@ -7699,7 +7695,7 @@ Object? _PointerEnterEvent_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as api.PointerEnterEvent).transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -7709,16 +7705,16 @@ Object? _PointerEnterEvent_copyWith(
 ) {
   return (receiver as api.PointerEnterEvent).copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -7782,7 +7778,7 @@ Object? _PointerEnterEvent_super_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as _PointerEnterEventProxy)._flaxSuper_transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -7792,16 +7788,16 @@ Object? _PointerEnterEvent_super_copyWith(
 ) {
   return (receiver as _PointerEnterEventProxy)._flaxSuper_copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -7860,10 +7856,10 @@ Object _createPointerEnterEvent(String ctor, Map<String, Object?> values) {
           values["viewId"] as int,
           (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
           values["pointer"] as int,
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas5 ? values["position"] as api4.Offset : null),
-          (_flaxHas6 ? values["delta"] as api4.Offset : null),
+          (_flaxHas5 ? values["position"] as api3.Offset : null),
+          (_flaxHas6 ? values["delta"] as api3.Offset : null),
           values["buttons"] as int,
           values["obscured"] as bool,
           values["pressureMin"] as double,
@@ -7947,10 +7943,10 @@ Object _createPointerEnterEvent(String ctor, Map<String, Object?> values) {
           values["viewId"] as int,
           (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
           values["pointer"] as int,
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas6 ? values["position"] as api4.Offset : null),
-          (_flaxHas7 ? values["delta"] as api4.Offset : null),
+          (_flaxHas6 ? values["position"] as api3.Offset : null),
+          (_flaxHas7 ? values["delta"] as api3.Offset : null),
           values["buttons"] as int,
           values["obscured"] as bool,
           values["pressureMin"] as double,
@@ -8030,7 +8026,7 @@ bool _isPointerEventConverter(Object value) =>
     value is api.PointerEventConverter;
 Object? _PointerEventConverter_expand(Map<String, Object?> values) {
   return api.PointerEventConverter.expand(
-    values["data"] as Iterable<api4.PointerData>,
+    values["data"] as Iterable<api3.PointerData>,
     values["devicePixelRatioForView"] as double? Function(int viewId),
   );
 }
@@ -8198,7 +8194,7 @@ Object? _PointerExitEvent_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as api.PointerExitEvent).transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -8208,16 +8204,16 @@ Object? _PointerExitEvent_copyWith(
 ) {
   return (receiver as api.PointerExitEvent).copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -8281,7 +8277,7 @@ Object? _PointerExitEvent_super_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as _PointerExitEventProxy)._flaxSuper_transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -8291,16 +8287,16 @@ Object? _PointerExitEvent_super_copyWith(
 ) {
   return (receiver as _PointerExitEventProxy)._flaxSuper_copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -8358,11 +8354,11 @@ Object _createPointerExitEvent(String ctor, Map<String, Object?> values) {
         <Object?>[
           values["viewId"] as int,
           (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["pointer"] as int,
           values["device"] as int,
-          (_flaxHas5 ? values["position"] as api4.Offset : null),
-          (_flaxHas6 ? values["delta"] as api4.Offset : null),
+          (_flaxHas5 ? values["position"] as api3.Offset : null),
+          (_flaxHas6 ? values["delta"] as api3.Offset : null),
           values["buttons"] as int,
           values["obscured"] as bool,
           values["pressureMin"] as double,
@@ -8445,11 +8441,11 @@ Object _createPointerExitEvent(String ctor, Map<String, Object?> values) {
           values['@peer'] as FlaxProxyPeer,
           values["viewId"] as int,
           (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["pointer"] as int,
           values["device"] as int,
-          (_flaxHas6 ? values["position"] as api4.Offset : null),
-          (_flaxHas7 ? values["delta"] as api4.Offset : null),
+          (_flaxHas6 ? values["position"] as api3.Offset : null),
+          (_flaxHas7 ? values["delta"] as api3.Offset : null),
           values["buttons"] as int,
           values["obscured"] as bool,
           values["pressureMin"] as double,
@@ -8591,7 +8587,7 @@ Object? _PointerHoverEvent_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as api.PointerHoverEvent).transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -8601,16 +8597,16 @@ Object? _PointerHoverEvent_copyWith(
 ) {
   return (receiver as api.PointerHoverEvent).copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -8674,7 +8670,7 @@ Object? _PointerHoverEvent_super_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as _PointerHoverEventProxy)._flaxSuper_transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -8684,16 +8680,16 @@ Object? _PointerHoverEvent_super_copyWith(
 ) {
   return (receiver as _PointerHoverEventProxy)._flaxSuper_copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -8751,11 +8747,11 @@ Object _createPointerHoverEvent(String ctor, Map<String, Object?> values) {
         <Object?>[
           values["viewId"] as int,
           (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["pointer"] as int,
           values["device"] as int,
-          (_flaxHas5 ? values["position"] as api4.Offset : null),
-          (_flaxHas6 ? values["delta"] as api4.Offset : null),
+          (_flaxHas5 ? values["position"] as api3.Offset : null),
+          (_flaxHas6 ? values["delta"] as api3.Offset : null),
           values["buttons"] as int,
           values["obscured"] as bool,
           values["pressureMin"] as double,
@@ -8831,11 +8827,11 @@ Object _createPointerHoverEvent(String ctor, Map<String, Object?> values) {
           values['@peer'] as FlaxProxyPeer,
           values["viewId"] as int,
           (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["pointer"] as int,
           values["device"] as int,
-          (_flaxHas6 ? values["position"] as api4.Offset : null),
-          (_flaxHas7 ? values["delta"] as api4.Offset : null),
+          (_flaxHas6 ? values["position"] as api3.Offset : null),
+          (_flaxHas7 ? values["delta"] as api3.Offset : null),
           values["buttons"] as int,
           values["obscured"] as bool,
           values["pressureMin"] as double,
@@ -8974,7 +8970,7 @@ Object? _PointerMoveEvent_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as api.PointerMoveEvent).transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -8984,16 +8980,16 @@ Object? _PointerMoveEvent_copyWith(
 ) {
   return (receiver as api.PointerMoveEvent).copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -9057,7 +9053,7 @@ Object? _PointerMoveEvent_super_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as _PointerMoveEventProxy)._flaxSuper_transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -9067,16 +9063,16 @@ Object? _PointerMoveEvent_super_copyWith(
 ) {
   return (receiver as _PointerMoveEventProxy)._flaxSuper_copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -9135,10 +9131,10 @@ Object _createPointerMoveEvent(String ctor, Map<String, Object?> values) {
           values["viewId"] as int,
           (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
           values["pointer"] as int,
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas5 ? values["position"] as api4.Offset : null),
-          (_flaxHas6 ? values["delta"] as api4.Offset : null),
+          (_flaxHas5 ? values["position"] as api3.Offset : null),
+          (_flaxHas6 ? values["delta"] as api3.Offset : null),
           values["buttons"] as int,
           values["obscured"] as bool,
           values["pressure"] as double,
@@ -9218,10 +9214,10 @@ Object _createPointerMoveEvent(String ctor, Map<String, Object?> values) {
           values["viewId"] as int,
           (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
           values["pointer"] as int,
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas6 ? values["position"] as api4.Offset : null),
-          (_flaxHas7 ? values["delta"] as api4.Offset : null),
+          (_flaxHas6 ? values["position"] as api3.Offset : null),
+          (_flaxHas7 ? values["delta"] as api3.Offset : null),
           values["buttons"] as int,
           values["obscured"] as bool,
           values["pressure"] as double,
@@ -9364,7 +9360,7 @@ Object? _PointerPanZoomEndEvent_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as api.PointerPanZoomEndEvent).transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -9374,16 +9370,16 @@ Object? _PointerPanZoomEndEvent_copyWith(
 ) {
   return (receiver as api.PointerPanZoomEndEvent).copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -9447,7 +9443,7 @@ Object? _PointerPanZoomEndEvent_super_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as _PointerPanZoomEndEventProxy)._flaxSuper_transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -9457,16 +9453,16 @@ Object? _PointerPanZoomEndEvent_super_copyWith(
 ) {
   return (receiver as _PointerPanZoomEndEventProxy)._flaxSuper_copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -9525,7 +9521,7 @@ Object _createPointerPanZoomEndEvent(String ctor, Map<String, Object?> values) {
           (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
           values["device"] as int,
           values["pointer"] as int,
-          (_flaxHas4 ? values["position"] as api4.Offset : null),
+          (_flaxHas4 ? values["position"] as api3.Offset : null),
           values["embedderId"] as int,
           values["synthesized"] as bool,
         ],
@@ -9551,7 +9547,7 @@ Object _createPointerPanZoomEndEvent(String ctor, Map<String, Object?> values) {
           (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
           values["device"] as int,
           values["pointer"] as int,
-          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          (_flaxHas5 ? values["position"] as api3.Offset : null),
           values["embedderId"] as int,
           values["synthesized"] as bool,
         ],
@@ -9648,7 +9644,7 @@ Object? _PointerPanZoomStartEvent_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as api.PointerPanZoomStartEvent).transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -9658,16 +9654,16 @@ Object? _PointerPanZoomStartEvent_copyWith(
 ) {
   return (receiver as api.PointerPanZoomStartEvent).copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -9731,7 +9727,7 @@ Object? _PointerPanZoomStartEvent_super_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as _PointerPanZoomStartEventProxy)._flaxSuper_transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -9741,16 +9737,16 @@ Object? _PointerPanZoomStartEvent_super_copyWith(
 ) {
   return (receiver as _PointerPanZoomStartEventProxy)._flaxSuper_copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -9812,7 +9808,7 @@ Object _createPointerPanZoomStartEvent(
           (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
           values["device"] as int,
           values["pointer"] as int,
-          (_flaxHas4 ? values["position"] as api4.Offset : null),
+          (_flaxHas4 ? values["position"] as api3.Offset : null),
           values["embedderId"] as int,
           values["synthesized"] as bool,
         ],
@@ -9838,7 +9834,7 @@ Object _createPointerPanZoomStartEvent(
           (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
           values["device"] as int,
           values["pointer"] as int,
-          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          (_flaxHas5 ? values["position"] as api3.Offset : null),
           values["embedderId"] as int,
           values["synthesized"] as bool,
         ],
@@ -9947,7 +9943,7 @@ Object? _PointerPanZoomUpdateEvent_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as api.PointerPanZoomUpdateEvent).transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -9957,20 +9953,20 @@ Object? _PointerPanZoomUpdateEvent_copyWith(
 ) {
   return (receiver as api.PointerPanZoomUpdateEvent).copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
-    localPan: values["localPan"] as api4.Offset?,
-    localPanDelta: values["localPanDelta"] as api4.Offset?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
+    localPan: values["localPan"] as api3.Offset?,
+    localPanDelta: values["localPanDelta"] as api3.Offset?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
-    pan: values["pan"] as api4.Offset?,
-    panDelta: values["panDelta"] as api4.Offset?,
+    pan: values["pan"] as api3.Offset?,
+    panDelta: values["panDelta"] as api3.Offset?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -10036,7 +10032,7 @@ Object? _PointerPanZoomUpdateEvent_super_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as _PointerPanZoomUpdateEventProxy)._flaxSuper_transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -10046,20 +10042,20 @@ Object? _PointerPanZoomUpdateEvent_super_copyWith(
 ) {
   return (receiver as _PointerPanZoomUpdateEventProxy)._flaxSuper_copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
-    localPan: values["localPan"] as api4.Offset?,
-    localPanDelta: values["localPanDelta"] as api4.Offset?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
+    localPan: values["localPan"] as api3.Offset?,
+    localPanDelta: values["localPanDelta"] as api3.Offset?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
-    pan: values["pan"] as api4.Offset?,
-    panDelta: values["panDelta"] as api4.Offset?,
+    pan: values["pan"] as api3.Offset?,
+    panDelta: values["panDelta"] as api3.Offset?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -10150,10 +10146,10 @@ Object _createPointerPanZoomUpdateEvent(
           (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
           values["device"] as int,
           values["pointer"] as int,
-          (_flaxHas4 ? values["position"] as api4.Offset : null),
+          (_flaxHas4 ? values["position"] as api3.Offset : null),
           values["embedderId"] as int,
-          (_flaxHas6 ? values["pan"] as api4.Offset : null),
-          (_flaxHas7 ? values["panDelta"] as api4.Offset : null),
+          (_flaxHas6 ? values["pan"] as api3.Offset : null),
+          (_flaxHas7 ? values["panDelta"] as api3.Offset : null),
           values["scale"] as double,
           values["rotation"] as double,
           values["synthesized"] as bool,
@@ -10198,10 +10194,10 @@ Object _createPointerPanZoomUpdateEvent(
           (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
           values["device"] as int,
           values["pointer"] as int,
-          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          (_flaxHas5 ? values["position"] as api3.Offset : null),
           values["embedderId"] as int,
-          (_flaxHas7 ? values["pan"] as api4.Offset : null),
-          (_flaxHas8 ? values["panDelta"] as api4.Offset : null),
+          (_flaxHas7 ? values["pan"] as api3.Offset : null),
+          (_flaxHas8 ? values["panDelta"] as api3.Offset : null),
           values["scale"] as double,
           values["rotation"] as double,
           values["synthesized"] as bool,
@@ -10306,7 +10302,7 @@ Object? _PointerRemovedEvent_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as api.PointerRemovedEvent).transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -10316,16 +10312,16 @@ Object? _PointerRemovedEvent_copyWith(
 ) {
   return (receiver as api.PointerRemovedEvent).copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -10389,7 +10385,7 @@ Object? _PointerRemovedEvent_super_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as _PointerRemovedEventProxy)._flaxSuper_transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -10399,16 +10395,16 @@ Object? _PointerRemovedEvent_super_copyWith(
 ) {
   return (receiver as _PointerRemovedEventProxy)._flaxSuper_copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -10466,9 +10462,9 @@ Object _createPointerRemovedEvent(String ctor, Map<String, Object?> values) {
           values["viewId"] as int,
           (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
           values["pointer"] as int,
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          (_flaxHas5 ? values["position"] as api3.Offset : null),
           values["obscured"] as bool,
           values["pressureMin"] as double,
           values["pressureMax"] as double,
@@ -10521,9 +10517,9 @@ Object _createPointerRemovedEvent(String ctor, Map<String, Object?> values) {
           values["viewId"] as int,
           (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
           values["pointer"] as int,
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas6 ? values["position"] as api4.Offset : null),
+          (_flaxHas6 ? values["position"] as api3.Offset : null),
           values["obscured"] as bool,
           values["pressureMin"] as double,
           values["pressureMax"] as double,
@@ -10580,7 +10576,7 @@ Object? _PointerRouter_addRoute(Object receiver, Map<String, Object?> values) {
   (receiver as api.PointerRouter).addRoute(
     values["pointer"] as int,
     values["route"] as void Function(api.PointerEvent event),
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
   return null;
 }
@@ -10602,7 +10598,7 @@ Object? _PointerRouter_addGlobalRoute(
 ) {
   (receiver as api.PointerRouter).addGlobalRoute(
     values["route"] as void Function(api.PointerEvent event),
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
   return null;
 }
@@ -10629,7 +10625,7 @@ Object? _PointerRouter_super_addRoute(
   (receiver as _PointerRouterProxy)._flaxSuper_addRoute(
     values["pointer"] as int,
     values["route"] as void Function(api.PointerEvent event),
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
   return null;
 }
@@ -10651,7 +10647,7 @@ Object? _PointerRouter_super_addGlobalRoute(
 ) {
   (receiver as _PointerRouterProxy)._flaxSuper_addGlobalRoute(
     values["route"] as void Function(api.PointerEvent event),
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
   return null;
 }
@@ -10699,7 +10695,7 @@ Object? _PointerScaleEvent_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as api.PointerScaleEvent).transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -10709,16 +10705,16 @@ Object? _PointerScaleEvent_copyWith(
 ) {
   return (receiver as api.PointerScaleEvent).copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -10747,7 +10743,7 @@ Object? _PointerScaleEvent_super_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as _PointerScaleEventProxy)._flaxSuper_transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -10757,16 +10753,16 @@ Object? _PointerScaleEvent_super_copyWith(
 ) {
   return (receiver as _PointerScaleEventProxy)._flaxSuper_copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -10838,9 +10834,9 @@ Object _createPointerScaleEvent(String ctor, Map<String, Object?> values) {
         <Object?>[
           values["viewId"] as int,
           (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas4 ? values["position"] as api4.Offset : null),
+          (_flaxHas4 ? values["position"] as api3.Offset : null),
           values["embedderId"] as int,
           values["scale"] as double,
         ],
@@ -10864,9 +10860,9 @@ Object _createPointerScaleEvent(String ctor, Map<String, Object?> values) {
           values['@peer'] as FlaxProxyPeer,
           values["viewId"] as int,
           (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          (_flaxHas5 ? values["position"] as api3.Offset : null),
           values["embedderId"] as int,
           values["scale"] as double,
         ],
@@ -10903,7 +10899,7 @@ Object? _PointerScrollInertiaCancelEvent_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as api.PointerScrollInertiaCancelEvent).transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -10913,16 +10909,16 @@ Object? _PointerScrollInertiaCancelEvent_copyWith(
 ) {
   return (receiver as api.PointerScrollInertiaCancelEvent).copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -10950,7 +10946,7 @@ Object? _PointerScrollInertiaCancelEvent_super_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as _PointerScrollInertiaCancelEventProxy)
-      ._flaxSuper_transformed(values["transform"] as api5.Matrix4?);
+      ._flaxSuper_transformed(values["transform"] as api4.Matrix4?);
 }
 
 Object? _PointerScrollInertiaCancelEvent_super_copyWith(
@@ -10960,16 +10956,16 @@ Object? _PointerScrollInertiaCancelEvent_super_copyWith(
   return (receiver as _PointerScrollInertiaCancelEventProxy)
       ._flaxSuper_copyWith(
         buttons: values["buttons"] as int?,
-        delta: values["delta"] as api4.Offset?,
+        delta: values["delta"] as api3.Offset?,
         device: values["device"] as int?,
         distance: values["distance"] as double?,
         distanceMax: values["distanceMax"] as double?,
         embedderId: values["embedderId"] as int?,
-        kind: values["kind"] as api4.PointerDeviceKind?,
+        kind: values["kind"] as api3.PointerDeviceKind?,
         obscured: values["obscured"] as bool?,
         orientation: values["orientation"] as double?,
         pointer: values["pointer"] as int?,
-        position: values["position"] as api4.Offset?,
+        position: values["position"] as api3.Offset?,
         pressure: values["pressure"] as double?,
         pressureMax: values["pressureMax"] as double?,
         pressureMin: values["pressureMin"] as double?,
@@ -11042,9 +11038,9 @@ Object _createPointerScrollInertiaCancelEvent(
         <Object?>[
           values["viewId"] as int,
           (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas4 ? values["position"] as api4.Offset : null),
+          (_flaxHas4 ? values["position"] as api3.Offset : null),
           values["embedderId"] as int,
         ],
         <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | (_flaxHas4 ? 16 : 0) | 32],
@@ -11066,9 +11062,9 @@ Object _createPointerScrollInertiaCancelEvent(
           values['@peer'] as FlaxProxyPeer,
           values["viewId"] as int,
           (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          (_flaxHas5 ? values["position"] as api3.Offset : null),
           values["embedderId"] as int,
         ],
         <int>[1 | 2 | (_flaxHas2 ? 4 : 0) | 8 | 16 | (_flaxHas5 ? 32 : 0) | 64],
@@ -11153,7 +11149,7 @@ Object? _PointerSignalEvent_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as api.PointerSignalEvent).transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -11163,16 +11159,16 @@ Object? _PointerSignalEvent_copyWith(
 ) {
   return (receiver as api.PointerSignalEvent).copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -11280,9 +11276,9 @@ Object _createPointerSignalEvent(String ctor, Map<String, Object?> values) {
           values["viewId"] as int,
           (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
           values["pointer"] as int,
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas6 ? values["position"] as api4.Offset : null),
+          (_flaxHas6 ? values["position"] as api3.Offset : null),
           values["embedderId"] as int,
         ],
         <int>[
@@ -11432,24 +11428,24 @@ Object? _PointerUpEvent_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as api.PointerUpEvent).transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
 Object? _PointerUpEvent_copyWith(Object receiver, Map<String, Object?> values) {
   return (receiver as api.PointerUpEvent).copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
-    localPosition: values["localPosition"] as api4.Offset?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
+    localPosition: values["localPosition"] as api3.Offset?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -11510,7 +11506,7 @@ Object? _PointerUpEvent_super_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as _PointerUpEventProxy)._flaxSuper_transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -11520,17 +11516,17 @@ Object? _PointerUpEvent_super_copyWith(
 ) {
   return (receiver as _PointerUpEventProxy)._flaxSuper_copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
-    localPosition: values["localPosition"] as api4.Offset?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
+    localPosition: values["localPosition"] as api3.Offset?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -11588,9 +11584,9 @@ Object _createPointerUpEvent(String ctor, Map<String, Object?> values) {
           values["viewId"] as int,
           (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
           values["pointer"] as int,
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          (_flaxHas5 ? values["position"] as api3.Offset : null),
           values["buttons"] as int,
           values["obscured"] as bool,
           values["pressure"] as double,
@@ -11664,9 +11660,9 @@ Object _createPointerUpEvent(String ctor, Map<String, Object?> values) {
           values["viewId"] as int,
           (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
           values["pointer"] as int,
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas6 ? values["position"] as api4.Offset : null),
+          (_flaxHas6 ? values["position"] as api3.Offset : null),
           values["buttons"] as int,
           values["obscured"] as bool,
           values["pressure"] as double,
@@ -11992,7 +11988,7 @@ Object _createPrimaryPointerGestureRecognizer(
           values["preAcceptSlopTolerance"] as double?,
           values["postAcceptSlopTolerance"] as double?,
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas6
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -12183,7 +12179,7 @@ void _ScaleGestureRecognizer_set_trackpadScrollToScaleFactor(
   Object? value,
 ) {
   (receiver as api.ScaleGestureRecognizer).trackpadScrollToScaleFactor =
-      value as api4.Offset;
+      value as api3.Offset;
 }
 
 Object? _ScaleGestureRecognizer_invokeCallback(
@@ -12359,7 +12355,7 @@ Object? _ScaleGestureRecognizer_super_set_trackpadScrollToScaleFactor(
 ) {
   (receiver as _ScaleGestureRecognizerProxy)
       ._flaxSuperSet_trackpadScrollToScaleFactor(
-        values["value"] as api4.Offset,
+        values["value"] as api3.Offset,
       );
   return null;
 }
@@ -12373,14 +12369,14 @@ Object _createScaleGestureRecognizer(String ctor, Map<String, Object?> values) {
         api.ScaleGestureRecognizer.new,
         <Object?>[
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas2
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
           values["dragStartBehavior"] as api.DragStartBehavior,
           values["trackpadScrollCausesScale"] as bool,
           (_flaxHas5
-              ? values["trackpadScrollToScaleFactor"] as api4.Offset
+              ? values["trackpadScrollToScaleFactor"] as api3.Offset
               : null),
         ],
         <int>[1 | 2 | (_flaxHas2 ? 4 : 0) | 8 | 16 | (_flaxHas5 ? 32 : 0)],
@@ -12401,14 +12397,14 @@ Object _createScaleGestureRecognizer(String ctor, Map<String, Object?> values) {
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas3
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
           values["dragStartBehavior"] as api.DragStartBehavior,
           values["trackpadScrollCausesScale"] as bool,
           (_flaxHas6
-              ? values["trackpadScrollToScaleFactor"] as api4.Offset
+              ? values["trackpadScrollToScaleFactor"] as api3.Offset
               : null),
         ],
         <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0) | 16 | 32 | (_flaxHas6 ? 64 : 0)],
@@ -12501,11 +12497,11 @@ Object _createScaleStartDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.ScaleStartDetails.new,
         <Object?>[
-          (_flaxHas0 ? values["focalPoint"] as api4.Offset : null),
-          values["localFocalPoint"] as api4.Offset?,
+          (_flaxHas0 ? values["focalPoint"] as api3.Offset : null),
+          values["localFocalPoint"] as api3.Offset?,
           values["pointerCount"] as int,
           values["sourceTimeStamp"] as api2.Duration?,
-          values["kind"] as api4.PointerDeviceKind?,
+          values["kind"] as api3.PointerDeviceKind?,
         ],
         <int>[(_flaxHas0 ? 1 : 0) | 2 | 4 | 8 | 16],
         const <String>[
@@ -12522,11 +12518,11 @@ Object _createScaleStartDetails(String ctor, Map<String, Object?> values) {
         _ScaleStartDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          (_flaxHas1 ? values["focalPoint"] as api4.Offset : null),
-          values["localFocalPoint"] as api4.Offset?,
+          (_flaxHas1 ? values["focalPoint"] as api3.Offset : null),
+          values["localFocalPoint"] as api3.Offset?,
           values["pointerCount"] as int,
           values["sourceTimeStamp"] as api2.Duration?,
-          values["kind"] as api4.PointerDeviceKind?,
+          values["kind"] as api3.PointerDeviceKind?,
         ],
         <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | 16 | 32],
         const <String>[
@@ -12638,14 +12634,14 @@ Object _createScaleUpdateDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.ScaleUpdateDetails.new,
         <Object?>[
-          (_flaxHas0 ? values["focalPoint"] as api4.Offset : null),
-          values["localFocalPoint"] as api4.Offset?,
+          (_flaxHas0 ? values["focalPoint"] as api3.Offset : null),
+          values["localFocalPoint"] as api3.Offset?,
           values["scale"] as double,
           values["horizontalScale"] as double,
           values["verticalScale"] as double,
           values["rotation"] as double,
           values["pointerCount"] as int,
-          (_flaxHas7 ? values["focalPointDelta"] as api4.Offset : null),
+          (_flaxHas7 ? values["focalPointDelta"] as api3.Offset : null),
           values["sourceTimeStamp"] as api2.Duration?,
         ],
         <int>[
@@ -12678,14 +12674,14 @@ Object _createScaleUpdateDetails(String ctor, Map<String, Object?> values) {
         _ScaleUpdateDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          (_flaxHas1 ? values["focalPoint"] as api4.Offset : null),
-          values["localFocalPoint"] as api4.Offset?,
+          (_flaxHas1 ? values["focalPoint"] as api3.Offset : null),
+          values["localFocalPoint"] as api3.Offset?,
           values["scale"] as double,
           values["horizontalScale"] as double,
           values["verticalScale"] as double,
           values["rotation"] as double,
           values["pointerCount"] as int,
-          (_flaxHas8 ? values["focalPointDelta"] as api4.Offset : null),
+          (_flaxHas8 ? values["focalPointDelta"] as api3.Offset : null),
           values["sourceTimeStamp"] as api2.Duration?,
         ],
         <int>[
@@ -12842,9 +12838,9 @@ Object _createSerialTapDownDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.SerialTapDownDetails.new,
         <Object?>[
-          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
-          values["kind"] as api4.PointerDeviceKind,
+          (_flaxHas0 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
+          values["kind"] as api3.PointerDeviceKind,
           values["buttons"] as int,
           values["count"] as int,
         ],
@@ -12863,9 +12859,9 @@ Object _createSerialTapDownDetails(String ctor, Map<String, Object?> values) {
         _SerialTapDownDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
-          values["kind"] as api4.PointerDeviceKind,
+          (_flaxHas1 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
+          values["kind"] as api3.PointerDeviceKind,
           values["buttons"] as int,
           values["count"] as int,
         ],
@@ -13027,7 +13023,7 @@ Object _createSerialTapGestureRecognizer(
         api.SerialTapGestureRecognizer.new,
         <Object?>[
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas2
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -13046,7 +13042,7 @@ Object _createSerialTapGestureRecognizer(
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas3
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -13124,9 +13120,9 @@ Object _createSerialTapUpDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.SerialTapUpDetails.new,
         <Object?>[
-          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
-          values["kind"] as api4.PointerDeviceKind?,
+          (_flaxHas0 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
+          values["kind"] as api3.PointerDeviceKind?,
           values["count"] as int,
         ],
         <int>[(_flaxHas0 ? 1 : 0) | 2 | 4 | 8],
@@ -13138,9 +13134,9 @@ Object _createSerialTapUpDetails(String ctor, Map<String, Object?> values) {
         _SerialTapUpDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
-          values["kind"] as api4.PointerDeviceKind?,
+          (_flaxHas1 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
+          values["kind"] as api3.PointerDeviceKind?,
           values["count"] as int,
         ],
         <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | 16],
@@ -13173,7 +13169,7 @@ Object _createTapAndDragGestureRecognizer(
       return api.TapAndDragGestureRecognizer(
         debugOwner: values["debugOwner"],
         supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+            values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -13203,7 +13199,7 @@ Object _createTapAndHorizontalDragGestureRecognizer(
       return api.TapAndHorizontalDragGestureRecognizer(
         debugOwner: values["debugOwner"],
         supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+            values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -13232,7 +13228,7 @@ Object _createTapAndPanGestureRecognizer(
       return api.TapAndPanGestureRecognizer(
         debugOwner: values["debugOwner"],
         supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+            values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -13290,9 +13286,9 @@ Object _createTapDownDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.TapDownDetails.new,
         <Object?>[
-          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
-          values["kind"] as api4.PointerDeviceKind?,
+          (_flaxHas0 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
+          values["kind"] as api3.PointerDeviceKind?,
         ],
         <int>[(_flaxHas0 ? 1 : 0) | 2 | 4],
         const <String>["globalPosition", "localPosition", "kind"],
@@ -13303,9 +13299,9 @@ Object _createTapDownDetails(String ctor, Map<String, Object?> values) {
         _TapDownDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
-          values["kind"] as api4.PointerDeviceKind?,
+          (_flaxHas1 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
+          values["kind"] as api3.PointerDeviceKind?,
         ],
         <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8],
         const <String>["", "globalPosition", "localPosition", "kind"],
@@ -13372,17 +13368,17 @@ Object _createTapDragDownDetails(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.TapDragDownDetails(
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset,
-        kind: values["kind"] as api4.PointerDeviceKind?,
+        globalPosition: values["globalPosition"] as api3.Offset,
+        localPosition: values["localPosition"] as api3.Offset,
+        kind: values["kind"] as api3.PointerDeviceKind?,
         consecutiveTapCount: values["consecutiveTapCount"] as int,
       );
     case '@implementation':
       return _TapDragDownDetailsProxy(
         values['@peer'] as FlaxProxyPeer,
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset,
-        kind: values["kind"] as api4.PointerDeviceKind?,
+        globalPosition: values["globalPosition"] as api3.Offset,
+        localPosition: values["localPosition"] as api3.Offset,
+        kind: values["kind"] as api3.PointerDeviceKind?,
         consecutiveTapCount: values["consecutiveTapCount"] as int,
       );
     default:
@@ -13457,8 +13453,8 @@ Object _createTapDragEndDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.TapDragEndDetails.new,
         <Object?>[
-          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
+          (_flaxHas0 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
           (_flaxHas2 ? values["velocity"] as api.Velocity : null),
           values["primaryVelocity"] as double?,
           values["consecutiveTapCount"] as int,
@@ -13479,8 +13475,8 @@ Object _createTapDragEndDetails(String ctor, Map<String, Object?> values) {
         _TapDragEndDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
+          (_flaxHas1 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
           (_flaxHas3 ? values["velocity"] as api.Velocity : null),
           values["primaryVelocity"] as double?,
           values["consecutiveTapCount"] as int,
@@ -13563,19 +13559,19 @@ Object _createTapDragStartDetails(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.TapDragStartDetails(
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset,
+        globalPosition: values["globalPosition"] as api3.Offset,
+        localPosition: values["localPosition"] as api3.Offset,
         sourceTimeStamp: values["sourceTimeStamp"] as api2.Duration?,
-        kind: values["kind"] as api4.PointerDeviceKind?,
+        kind: values["kind"] as api3.PointerDeviceKind?,
         consecutiveTapCount: values["consecutiveTapCount"] as int,
       );
     case '@implementation':
       return _TapDragStartDetailsProxy(
         values['@peer'] as FlaxProxyPeer,
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset,
+        globalPosition: values["globalPosition"] as api3.Offset,
+        localPosition: values["localPosition"] as api3.Offset,
         sourceTimeStamp: values["sourceTimeStamp"] as api2.Duration?,
-        kind: values["kind"] as api4.PointerDeviceKind?,
+        kind: values["kind"] as api3.PointerDeviceKind?,
         consecutiveTapCount: values["consecutiveTapCount"] as int,
       );
     default:
@@ -13640,17 +13636,17 @@ Object _createTapDragUpDetails(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.TapDragUpDetails(
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset,
-        kind: values["kind"] as api4.PointerDeviceKind,
+        globalPosition: values["globalPosition"] as api3.Offset,
+        localPosition: values["localPosition"] as api3.Offset,
+        kind: values["kind"] as api3.PointerDeviceKind,
         consecutiveTapCount: values["consecutiveTapCount"] as int,
       );
     case '@implementation':
       return _TapDragUpDetailsProxy(
         values['@peer'] as FlaxProxyPeer,
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset,
-        kind: values["kind"] as api4.PointerDeviceKind,
+        globalPosition: values["globalPosition"] as api3.Offset,
+        localPosition: values["localPosition"] as api3.Offset,
+        kind: values["kind"] as api3.PointerDeviceKind,
         consecutiveTapCount: values["consecutiveTapCount"] as int,
       );
     default:
@@ -13749,14 +13745,14 @@ Object _createTapDragUpdateDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.TapDragUpdateDetails.new,
         <Object?>[
-          values["globalPosition"] as api4.Offset,
-          values["localPosition"] as api4.Offset,
+          values["globalPosition"] as api3.Offset,
+          values["localPosition"] as api3.Offset,
           values["sourceTimeStamp"] as api2.Duration?,
-          (_flaxHas3 ? values["delta"] as api4.Offset : null),
+          (_flaxHas3 ? values["delta"] as api3.Offset : null),
           values["primaryDelta"] as double?,
-          values["kind"] as api4.PointerDeviceKind?,
-          values["offsetFromOrigin"] as api4.Offset,
-          values["localOffsetFromOrigin"] as api4.Offset,
+          values["kind"] as api3.PointerDeviceKind?,
+          values["offsetFromOrigin"] as api3.Offset,
+          values["localOffsetFromOrigin"] as api3.Offset,
           values["consecutiveTapCount"] as int,
         ],
         <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0) | 16 | 32 | 64 | 128 | 256],
@@ -13778,14 +13774,14 @@ Object _createTapDragUpdateDetails(String ctor, Map<String, Object?> values) {
         _TapDragUpdateDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          values["globalPosition"] as api4.Offset,
-          values["localPosition"] as api4.Offset,
+          values["globalPosition"] as api3.Offset,
+          values["localPosition"] as api3.Offset,
           values["sourceTimeStamp"] as api2.Duration?,
-          (_flaxHas4 ? values["delta"] as api4.Offset : null),
+          (_flaxHas4 ? values["delta"] as api3.Offset : null),
           values["primaryDelta"] as double?,
-          values["kind"] as api4.PointerDeviceKind?,
-          values["offsetFromOrigin"] as api4.Offset,
-          values["localOffsetFromOrigin"] as api4.Offset,
+          values["kind"] as api3.PointerDeviceKind?,
+          values["offsetFromOrigin"] as api3.Offset,
+          values["localOffsetFromOrigin"] as api3.Offset,
           values["consecutiveTapCount"] as int,
         ],
         <int>[1 | 2 | 4 | 8 | (_flaxHas4 ? 16 : 0) | 32 | 64 | 128 | 256 | 512],
@@ -14269,7 +14265,7 @@ Object _createTapGestureRecognizer(String ctor, Map<String, Object?> values) {
         api.TapGestureRecognizer.new,
         <Object?>[
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas2
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -14292,7 +14288,7 @@ Object _createTapGestureRecognizer(String ctor, Map<String, Object?> values) {
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas3
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -14339,10 +14335,10 @@ Object _createTapMoveDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.TapMoveDetails.new,
         <Object?>[
-          values["kind"] as api4.PointerDeviceKind,
-          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
-          (_flaxHas2 ? values["delta"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
+          values["kind"] as api3.PointerDeviceKind,
+          (_flaxHas1 ? values["globalPosition"] as api3.Offset : null),
+          (_flaxHas2 ? values["delta"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
         ],
         <int>[1 | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0) | 8],
         const <String>["kind", "globalPosition", "delta", "localPosition"],
@@ -14354,10 +14350,10 @@ Object _createTapMoveDetails(String ctor, Map<String, Object?> values) {
         _TapMoveDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          values["kind"] as api4.PointerDeviceKind,
-          (_flaxHas2 ? values["globalPosition"] as api4.Offset : null),
-          (_flaxHas3 ? values["delta"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
+          values["kind"] as api3.PointerDeviceKind,
+          (_flaxHas2 ? values["globalPosition"] as api3.Offset : null),
+          (_flaxHas3 ? values["delta"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
         ],
         <int>[1 | 2 | (_flaxHas2 ? 4 : 0) | (_flaxHas3 ? 8 : 0) | 16],
         const <String>["", "kind", "globalPosition", "delta", "localPosition"],
@@ -14417,9 +14413,9 @@ Object _createTapUpDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.TapUpDetails.new,
         <Object?>[
-          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
-          values["kind"] as api4.PointerDeviceKind,
+          (_flaxHas0 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
+          values["kind"] as api3.PointerDeviceKind,
         ],
         <int>[(_flaxHas0 ? 1 : 0) | 2 | 4],
         const <String>["globalPosition", "localPosition", "kind"],
@@ -14430,9 +14426,9 @@ Object _createTapUpDetails(String ctor, Map<String, Object?> values) {
         _TapUpDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
-          values["kind"] as api4.PointerDeviceKind,
+          (_flaxHas1 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
+          values["kind"] as api3.PointerDeviceKind,
         ],
         <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8],
         const <String>["", "globalPosition", "localPosition", "kind"],
@@ -14514,12 +14510,12 @@ Object _createVelocity(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.Velocity(
-        pixelsPerSecond: values["pixelsPerSecond"] as api4.Offset,
+        pixelsPerSecond: values["pixelsPerSecond"] as api3.Offset,
       );
     case '@implementation':
       return _VelocityProxy(
         values['@peer'] as FlaxProxyPeer,
-        pixelsPerSecond: values["pixelsPerSecond"] as api4.Offset,
+        pixelsPerSecond: values["pixelsPerSecond"] as api3.Offset,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -14554,18 +14550,18 @@ Object _createVelocityEstimate(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.VelocityEstimate(
-        pixelsPerSecond: values["pixelsPerSecond"] as api4.Offset,
+        pixelsPerSecond: values["pixelsPerSecond"] as api3.Offset,
         confidence: values["confidence"] as double,
         duration: values["duration"] as api2.Duration,
-        offset: values["offset"] as api4.Offset,
+        offset: values["offset"] as api3.Offset,
       );
     case '@implementation':
       return _VelocityEstimateProxy(
         values['@peer'] as FlaxProxyPeer,
-        pixelsPerSecond: values["pixelsPerSecond"] as api4.Offset,
+        pixelsPerSecond: values["pixelsPerSecond"] as api3.Offset,
         confidence: values["confidence"] as double,
         duration: values["duration"] as api2.Duration,
-        offset: values["offset"] as api4.Offset,
+        offset: values["offset"] as api3.Offset,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -14581,7 +14577,7 @@ Object? _VelocityTracker_addPosition(
 ) {
   (receiver as api.VelocityTracker).addPosition(
     values["time"] as api2.Duration,
-    values["position"] as api4.Offset,
+    values["position"] as api3.Offset,
   );
   return null;
 }
@@ -14611,17 +14607,17 @@ Object _createVelocityTracker(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "withKind":
       return api.VelocityTracker.withKind(
-        values["kind"] as api4.PointerDeviceKind,
+        values["kind"] as api3.PointerDeviceKind,
       );
     case '@implementation':
       return _VelocityTrackerProxy.withKind(
         values['@peer'] as FlaxProxyPeer,
-        values["kind"] as api4.PointerDeviceKind,
+        values["kind"] as api3.PointerDeviceKind,
       );
     case "@implementation:withKind":
       return _VelocityTrackerProxy.withKind(
         values['@peer'] as FlaxProxyPeer,
-        values["kind"] as api4.PointerDeviceKind,
+        values["kind"] as api3.PointerDeviceKind,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -14653,7 +14649,7 @@ Object _createVerticalDragGestureRecognizer(
         api.VerticalDragGestureRecognizer.new,
         <Object?>[
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas2
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -14739,7 +14735,7 @@ Object? _VerticalMultiDragGestureRecognizer_super_set_onStart(
   Map<String, Object?> values,
 ) {
   (receiver as _VerticalMultiDragGestureRecognizerProxy)._flaxSuperSet_onStart(
-    values["value"] as api.Drag? Function(api4.Offset position)?,
+    values["value"] as api.Drag? Function(api3.Offset position)?,
   );
   return null;
 }
@@ -14753,7 +14749,7 @@ Object _createVerticalMultiDragGestureRecognizer(
       return api.VerticalMultiDragGestureRecognizer(
         debugOwner: values["debugOwner"],
         supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+            values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
         allowedButtonsFilter:
             values["allowedButtonsFilter"] as bool Function(int buttons)?,
       );
@@ -14762,7 +14758,7 @@ Object _createVerticalMultiDragGestureRecognizer(
         values['@peer'] as FlaxProxyPeer,
         debugOwner: values["debugOwner"],
         supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+            values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
         allowedButtonsFilter:
             values["allowedButtonsFilter"] as bool Function(int buttons)?,
       );
@@ -14778,8 +14774,8 @@ abstract interface class _FlaxProxyDispatch32 {
   api2.Duration get _flaxSuperGet_timeStamp;
   int get _flaxSuperGet_pointer;
   int get _flaxSuperGet_device;
-  api4.Offset get _flaxSuperGet_position;
-  api4.Offset get _flaxSuperGet_localDelta;
+  api3.Offset get _flaxSuperGet_position;
+  api3.Offset get _flaxSuperGet_localDelta;
   bool get _flaxSuperGet_down;
   bool get _flaxSuperGet_obscured;
   double get _flaxSuperGet_pressureMin;
@@ -14869,7 +14865,7 @@ int _FlaxProxyDispatch32_get_device(
   return _flaxConvertedResult;
 }
 
-api4.Offset _FlaxProxyDispatch32_get_position(
+api3.Offset _FlaxProxyDispatch32_get_position(
   _FlaxProxyDispatch32 _flaxReceiver,
   int _flaxMember,
 ) {
@@ -14879,11 +14875,11 @@ api4.Offset _FlaxProxyDispatch32_get_position(
     const {},
   );
   if (!_flaxResult.$1) return _flaxReceiver._flaxSuperGet_position;
-  final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+  final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
   return _flaxConvertedResult;
 }
 
-api4.Offset _FlaxProxyDispatch32_get_localDelta(
+api3.Offset _FlaxProxyDispatch32_get_localDelta(
   _FlaxProxyDispatch32 _flaxReceiver,
   int _flaxMember,
 ) {
@@ -14893,7 +14889,7 @@ api4.Offset _FlaxProxyDispatch32_get_localDelta(
     const {},
   );
   if (!_flaxResult.$1) return _flaxReceiver._flaxSuperGet_localDelta;
-  final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+  final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
   return _flaxConvertedResult;
 }
 
@@ -15150,7 +15146,7 @@ abstract interface class _FlaxProxyDispatch0 {
     api.PointerPanZoomStartEvent event,
   );
   bool _flaxSuper_isPointerPanZoomAllowed(api.PointerPanZoomStartEvent event);
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer);
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer);
   int _flaxSuper_getButtonsForPointer(int pointer);
   String _flaxSuper_toStringShallow({
     Object? joiner = _flaxOmitted,
@@ -15164,10 +15160,10 @@ abstract interface class _FlaxProxyDispatch0 {
   });
   List<api1.DiagnosticsNode> _flaxSuper_debugDescribeChildren();
   Object? get _flaxSuperGet_debugOwner;
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices;
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices;
   bool Function(int buttons) get _flaxSuperGet_allowedButtonsFilter;
   void _flaxSuperSet_gestureSettings(api.DeviceGestureSettings? value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value);
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value);
 }
 
 void _FlaxProxyDispatch0_call_addAllowedPointer(
@@ -15305,7 +15301,7 @@ bool _FlaxProxyDispatch0_call_isPointerPanZoomAllowed(
   return _flaxConvertedResult;
 }
 
-api4.PointerDeviceKind _FlaxProxyDispatch0_call_getKindForPointer(
+api3.PointerDeviceKind _FlaxProxyDispatch0_call_getKindForPointer(
   _FlaxProxyDispatch0 _flaxReceiver,
   int _flaxMember,
   int pointer,
@@ -15316,7 +15312,7 @@ api4.PointerDeviceKind _FlaxProxyDispatch0_call_getKindForPointer(
   if (!_flaxResult.$1) {
     return _flaxReceiver._flaxSuper_getKindForPointer(pointer);
   }
-  final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+  final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
   return _flaxConvertedResult;
 }
 
@@ -15421,7 +15417,7 @@ Object? _FlaxProxyDispatch0_get_debugOwner(
   return _flaxConvertedResult;
 }
 
-Set<api4.PointerDeviceKind>? _FlaxProxyDispatch0_get_supportedDevices(
+Set<api3.PointerDeviceKind>? _FlaxProxyDispatch0_get_supportedDevices(
   _FlaxProxyDispatch0 _flaxReceiver,
   int _flaxMember,
 ) {
@@ -15431,7 +15427,7 @@ Set<api4.PointerDeviceKind>? _FlaxProxyDispatch0_get_supportedDevices(
     const {},
   );
   if (!_flaxResult.$1) return _flaxReceiver._flaxSuperGet_supportedDevices;
-  final _flaxConvertedResult = _flaxResult.$2 as Set<api4.PointerDeviceKind>?;
+  final _flaxConvertedResult = _flaxResult.$2 as Set<api3.PointerDeviceKind>?;
   return _flaxConvertedResult;
 }
 
@@ -15464,7 +15460,7 @@ void _FlaxProxyDispatch0_set_gestureSettings(
 void _FlaxProxyDispatch0_set_supportedDevices(
   _FlaxProxyDispatch0 _flaxReceiver,
   int _flaxMember,
-  Set<api4.PointerDeviceKind>? value,
+  Set<api3.PointerDeviceKind>? value,
 ) {
   final result = _flaxReceiver._flaxPeer.call(_flaxMember, [value], const {});
   if (!result.$1) {
@@ -15758,10 +15754,10 @@ api.DeviceGestureSettings? _FlaxProxyDispatch5_get_gestureSettings(
 
 abstract interface class _FlaxProxyDispatch16 {
   FlaxProxyPeer get _flaxPeer;
-  api4.Offset get _flaxSuperGet_localPosition;
+  api3.Offset get _flaxSuperGet_localPosition;
 }
 
-api4.Offset _FlaxProxyDispatch16_get_localPosition(
+api3.Offset _FlaxProxyDispatch16_get_localPosition(
   _FlaxProxyDispatch16 _flaxReceiver,
   int _flaxMember,
 ) {
@@ -15771,16 +15767,16 @@ api4.Offset _FlaxProxyDispatch16_get_localPosition(
     const {},
   );
   if (!_flaxResult.$1) return _flaxReceiver._flaxSuperGet_localPosition;
-  final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+  final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
   return _flaxConvertedResult;
 }
 
 abstract interface class _FlaxProxyDispatch29 {
   FlaxProxyPeer get _flaxPeer;
-  api4.PointerDeviceKind get _flaxSuperGet_kind;
+  api3.PointerDeviceKind get _flaxSuperGet_kind;
 }
 
-api4.PointerDeviceKind _FlaxProxyDispatch29_get_kind(
+api3.PointerDeviceKind _FlaxProxyDispatch29_get_kind(
   _FlaxProxyDispatch29 _flaxReceiver,
   int _flaxMember,
 ) {
@@ -15790,7 +15786,7 @@ api4.PointerDeviceKind _FlaxProxyDispatch29_get_kind(
     const {},
   );
   if (!_flaxResult.$1) return _flaxReceiver._flaxSuperGet_kind;
-  final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+  final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
   return _flaxConvertedResult;
 }
 
@@ -15836,7 +15832,7 @@ api2.Duration? _FlaxProxyDispatch19_get_sourceTimeStamp(
 
 abstract interface class _FlaxProxyDispatch27 {
   FlaxProxyPeer get _flaxPeer;
-  void _flaxSuper_addPosition(api2.Duration time, api4.Offset position);
+  void _flaxSuper_addPosition(api2.Duration time, api3.Offset position);
   api.Velocity _flaxSuper_getVelocity();
 }
 
@@ -15844,7 +15840,7 @@ void _FlaxProxyDispatch27_call_addPosition(
   _FlaxProxyDispatch27 _flaxReceiver,
   int _flaxMember,
   api2.Duration time,
-  api4.Offset position,
+  api3.Offset position,
 ) {
   final _flaxResult = _flaxReceiver._flaxPeer.call(_flaxMember, <Object?>[
     time,
@@ -15940,10 +15936,10 @@ double _FlaxProxyDispatch37_get_confidence(
 
 abstract interface class _FlaxProxyDispatch42 {
   FlaxProxyPeer get _flaxPeer;
-  api4.Offset get _flaxSuperGet_pixelsPerSecond;
+  api3.Offset get _flaxSuperGet_pixelsPerSecond;
 }
 
-api4.Offset _FlaxProxyDispatch42_get_pixelsPerSecond(
+api3.Offset _FlaxProxyDispatch42_get_pixelsPerSecond(
   _FlaxProxyDispatch42 _flaxReceiver,
   int _flaxMember,
 ) {
@@ -15953,7 +15949,7 @@ api4.Offset _FlaxProxyDispatch42_get_pixelsPerSecond(
     const {},
   );
   if (!_flaxResult.$1) return _flaxReceiver._flaxSuperGet_pixelsPerSecond;
-  final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+  final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
   return _flaxConvertedResult;
 }
 
@@ -15967,7 +15963,7 @@ final class _BaseTapGestureRecognizerProxy extends api.BaseTapGestureRecognizer
   _BaseTapGestureRecognizerProxy(
     this._flaxPeer, {
     Object? super.debugOwner,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons) super.allowedButtonsFilter,
     double? super.preAcceptSlopTolerance,
     double? super.postAcceptSlopTolerance,
@@ -16218,7 +16214,7 @@ final class _BaseTapGestureRecognizerProxy extends api.BaseTapGestureRecognizer
     final _flaxHas1 = !identical(transform, _flaxOmitted);
     flaxInvokeWithDefaults(
       super.startTrackingPointer,
-      <Object?>[pointer, (_flaxHas1 ? transform as api5.Matrix4? : null)],
+      <Object?>[pointer, (_flaxHas1 ? transform as api4.Matrix4? : null)],
       <int>[1 | (_flaxHas1 ? 2 : 0)],
       const <String>["", ""],
     );
@@ -16314,11 +16310,11 @@ final class _BaseTapGestureRecognizerProxy extends api.BaseTapGestureRecognizer
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 22, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -16704,9 +16700,9 @@ final class _BaseTapGestureRecognizerProxy extends api.BaseTapGestureRecognizer
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 45);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -16732,9 +16728,9 @@ final class _BaseTapGestureRecognizerProxy extends api.BaseTapGestureRecognizer
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 49, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -16852,7 +16848,7 @@ final class _DelayedMultiDragGestureRecognizerProxy
     this._flaxPeer, {
     api2.Duration super.delay,
     Object? super.debugOwner,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons)? super.allowedButtonsFilter,
   });
   @override
@@ -17004,11 +17000,11 @@ final class _DelayedMultiDragGestureRecognizerProxy
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 12, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -17266,15 +17262,15 @@ final class _DelayedMultiDragGestureRecognizerProxy
   }
 
   @override
-  api.Drag? Function(api4.Offset position)? get onStart {
+  api.Drag? Function(api3.Offset position)? get onStart {
     final _flaxResult = _flaxPeer.call(24, const [], const {});
     if (!_flaxResult.$1) return super.onStart;
     final _flaxConvertedResult =
-        _flaxResult.$2 as api.Drag? Function(api4.Offset position)?;
+        _flaxResult.$2 as api.Drag? Function(api3.Offset position)?;
     return _flaxConvertedResult;
   }
 
-  api.Drag? Function(api4.Offset position)? get _flaxSuperGet_onStart {
+  api.Drag? Function(api3.Offset position)? get _flaxSuperGet_onStart {
     return super.onStart;
   }
 
@@ -17292,9 +17288,9 @@ final class _DelayedMultiDragGestureRecognizerProxy
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 27);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -17306,7 +17302,7 @@ final class _DelayedMultiDragGestureRecognizerProxy
   }
 
   @override
-  set onStart(api.Drag? Function(api4.Offset position)? value) {
+  set onStart(api.Drag? Function(api3.Offset position)? value) {
     final result = _flaxPeer.call(29, [value], const {});
     if (!result.$1) {
       super.onStart = value;
@@ -17314,7 +17310,7 @@ final class _DelayedMultiDragGestureRecognizerProxy
     }
   }
 
-  void _flaxSuperSet_onStart(api.Drag? Function(api4.Offset position)? value) {
+  void _flaxSuperSet_onStart(api.Drag? Function(api3.Offset position)? value) {
     super.onStart = value;
   }
 
@@ -17326,9 +17322,9 @@ final class _DelayedMultiDragGestureRecognizerProxy
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 31, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -17484,7 +17480,7 @@ final class _DoubleTapGestureRecognizerProxy
   _DoubleTapGestureRecognizerProxy(
     this._flaxPeer, {
     Object? super.debugOwner,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons) super.allowedButtonsFilter,
   });
   @override
@@ -17572,11 +17568,11 @@ final class _DoubleTapGestureRecognizerProxy
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 8, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -17914,9 +17910,9 @@ final class _DoubleTapGestureRecognizerProxy
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 27);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -17976,9 +17972,9 @@ final class _DoubleTapGestureRecognizerProxy
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 33, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -18147,8 +18143,8 @@ final class _DragDownDetailsProxy extends api.DragDownDetails
   bool _flaxCalledSuper = false;
   _DragDownDetailsProxy(
     this._flaxPeer, {
-    api4.Offset super.globalPosition,
-    api4.Offset? super.localPosition,
+    api3.Offset super.globalPosition,
+    api3.Offset? super.localPosition,
   });
   @override
   String toStringShort() {
@@ -18220,21 +18216,21 @@ final class _DragDownDetailsProxy extends api.DragDownDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 }
@@ -18248,8 +18244,8 @@ final class _DragEndDetailsProxy extends api.DragEndDetails
   bool _flaxCalledSuper = false;
   _DragEndDetailsProxy(
     this._flaxPeer, {
-    api4.Offset super.globalPosition,
-    api4.Offset? super.localPosition,
+    api3.Offset super.globalPosition,
+    api3.Offset? super.localPosition,
     api.Velocity super.velocity,
     double? super.primaryVelocity,
   });
@@ -18323,21 +18319,21 @@ final class _DragEndDetailsProxy extends api.DragEndDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
@@ -18375,10 +18371,10 @@ final class _DragStartDetailsProxy extends api.DragStartDetails
   bool _flaxCalledSuper = false;
   _DragStartDetailsProxy(
     this._flaxPeer, {
-    api4.Offset super.globalPosition,
-    api4.Offset? super.localPosition,
+    api3.Offset super.globalPosition,
+    api3.Offset? super.localPosition,
     api2.Duration? super.sourceTimeStamp,
-    api4.PointerDeviceKind? super.kind,
+    api3.PointerDeviceKind? super.kind,
   });
   @override
   String toStringShort() {
@@ -18450,21 +18446,21 @@ final class _DragStartDetailsProxy extends api.DragStartDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
@@ -18481,14 +18477,14 @@ final class _DragStartDetailsProxy extends api.DragStartDetails
   }
 
   @override
-  api4.PointerDeviceKind? get kind {
+  api3.PointerDeviceKind? get kind {
     final _flaxResult = _flaxPeer.call(7, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind?;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind?;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind? get _flaxSuperGet_kind {
+  api3.PointerDeviceKind? get _flaxSuperGet_kind {
     return super.kind;
   }
 }
@@ -18502,12 +18498,12 @@ final class _DragUpdateDetailsProxy extends api.DragUpdateDetails
   bool _flaxCalledSuper = false;
   _DragUpdateDetailsProxy(
     this._flaxPeer, {
-    required api4.Offset super.globalPosition,
-    api4.Offset? super.localPosition,
+    required api3.Offset super.globalPosition,
+    api3.Offset? super.localPosition,
     api2.Duration? super.sourceTimeStamp,
-    api4.Offset super.delta,
+    api3.Offset super.delta,
     double? super.primaryDelta,
-    api4.PointerDeviceKind? super.kind,
+    api3.PointerDeviceKind? super.kind,
   });
   @override
   String toStringShort() {
@@ -18579,21 +18575,21 @@ final class _DragUpdateDetailsProxy extends api.DragUpdateDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
@@ -18610,14 +18606,14 @@ final class _DragUpdateDetailsProxy extends api.DragUpdateDetails
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(7, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
@@ -18634,14 +18630,14 @@ final class _DragUpdateDetailsProxy extends api.DragUpdateDetails
   }
 
   @override
-  api4.PointerDeviceKind? get kind {
+  api3.PointerDeviceKind? get kind {
     final _flaxResult = _flaxPeer.call(9, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind?;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind?;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind? get _flaxSuperGet_kind {
+  api3.PointerDeviceKind? get _flaxSuperGet_kind {
     return super.kind;
   }
 }
@@ -18655,7 +18651,7 @@ final class _EagerGestureRecognizerProxy extends api.EagerGestureRecognizer
   bool _flaxCalledSuper = false;
   _EagerGestureRecognizerProxy(
     this._flaxPeer, {
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons) super.allowedButtonsFilter,
   });
   @override
@@ -18843,7 +18839,7 @@ final class _EagerGestureRecognizerProxy extends api.EagerGestureRecognizer
     final _flaxHas1 = !identical(transform, _flaxOmitted);
     flaxInvokeWithDefaults(
       super.startTrackingPointer,
-      <Object?>[pointer, (_flaxHas1 ? transform as api5.Matrix4? : null)],
+      <Object?>[pointer, (_flaxHas1 ? transform as api4.Matrix4? : null)],
       <int>[1 | (_flaxHas1 ? 2 : 0)],
       const <String>["", ""],
     );
@@ -18939,11 +18935,11 @@ final class _EagerGestureRecognizerProxy extends api.EagerGestureRecognizer
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 18, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -19209,9 +19205,9 @@ final class _EagerGestureRecognizerProxy extends api.EagerGestureRecognizer
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 32);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -19237,9 +19233,9 @@ final class _EagerGestureRecognizerProxy extends api.EagerGestureRecognizer
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 36, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -19669,8 +19665,8 @@ final class _ForcePressDetailsProxy extends api.ForcePressDetails
   bool _flaxCalledSuper = false;
   _ForcePressDetailsProxy(
     this._flaxPeer, {
-    required api4.Offset super.globalPosition,
-    api4.Offset? super.localPosition,
+    required api3.Offset super.globalPosition,
+    api3.Offset? super.localPosition,
     required double super.pressure,
   });
   @override
@@ -19743,21 +19739,21 @@ final class _ForcePressDetailsProxy extends api.ForcePressDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
@@ -19789,7 +19785,7 @@ final class _ForcePressGestureRecognizerProxy
     double Function(double pressureMin, double pressureMax, double pressure)
     super.interpolation,
     Object? super.debugOwner,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons) super.allowedButtonsFilter,
   });
   @override
@@ -19977,7 +19973,7 @@ final class _ForcePressGestureRecognizerProxy
     final _flaxHas1 = !identical(transform, _flaxOmitted);
     flaxInvokeWithDefaults(
       super.startTrackingPointer,
-      <Object?>[pointer, (_flaxHas1 ? transform as api5.Matrix4? : null)],
+      <Object?>[pointer, (_flaxHas1 ? transform as api4.Matrix4? : null)],
       <int>[1 | (_flaxHas1 ? 2 : 0)],
       const <String>["", ""],
     );
@@ -20073,11 +20069,11 @@ final class _ForcePressGestureRecognizerProxy
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 18, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -20439,9 +20435,9 @@ final class _ForcePressGestureRecognizerProxy
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 39);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -20527,9 +20523,9 @@ final class _ForcePressGestureRecognizerProxy
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 47, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -20799,7 +20795,7 @@ final class _GestureRecognizerProxy extends api.GestureRecognizer
   _GestureRecognizerProxy(
     this._flaxPeer, {
     Object? super.debugOwner,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons) super.allowedButtonsFilter,
   });
   @override
@@ -21064,11 +21060,11 @@ final class _GestureRecognizerProxy extends api.GestureRecognizer
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 17, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -21168,9 +21164,9 @@ final class _GestureRecognizerProxy extends api.GestureRecognizer
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 23);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -21196,9 +21192,9 @@ final class _GestureRecognizerProxy extends api.GestureRecognizer
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 27, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -21347,14 +21343,14 @@ final class _HitTestEntryProxy<_Owner0 extends api.HitTestTarget>
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(2, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 }
@@ -21383,7 +21379,7 @@ final class _HitTestResultProxy extends api.HitTestResult
   }
 
   @override
-  void pushTransform(api5.Matrix4 transform) {
+  void pushTransform(api4.Matrix4 transform) {
     final _flaxResult = _flaxPeer.call(1, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -21394,13 +21390,13 @@ final class _HitTestResultProxy extends api.HitTestResult
     return;
   }
 
-  void _flaxSuper_pushTransform(api5.Matrix4 transform) {
+  void _flaxSuper_pushTransform(api4.Matrix4 transform) {
     super.pushTransform(transform);
     return;
   }
 
   @override
-  void pushOffset(api4.Offset offset) {
+  void pushOffset(api3.Offset offset) {
     final _flaxResult = _flaxPeer.call(2, <Object?>[
       offset,
     ], <String, Object?>{});
@@ -21411,7 +21407,7 @@ final class _HitTestResultProxy extends api.HitTestResult
     return;
   }
 
-  void _flaxSuper_pushOffset(api4.Offset offset) {
+  void _flaxSuper_pushOffset(api3.Offset offset) {
     super.pushOffset(offset);
     return;
   }
@@ -21477,7 +21473,7 @@ final class _HitTestableProxy implements api.HitTestable {
   final FlaxProxyPeer _flaxPeer;
   _HitTestableProxy(this._flaxPeer);
   @override
-  void hitTest(api.HitTestResult result, api4.Offset position) {
+  void hitTest(api.HitTestResult result, api3.Offset position) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       result,
       position,
@@ -21491,7 +21487,7 @@ final class _HitTestableProxy implements api.HitTestable {
   @override
   void hitTestInView(
     api.HitTestResult result,
-    api4.Offset position,
+    api3.Offset position,
     int viewId,
   ) {
     final _flaxResult = _flaxPeer.call(1, <Object?>[
@@ -21517,7 +21513,7 @@ final class _HorizontalMultiDragGestureRecognizerProxy
   _HorizontalMultiDragGestureRecognizerProxy(
     this._flaxPeer, {
     Object? super.debugOwner,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons)? super.allowedButtonsFilter,
   });
   @override
@@ -21669,11 +21665,11 @@ final class _HorizontalMultiDragGestureRecognizerProxy
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 12, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -21919,15 +21915,15 @@ final class _HorizontalMultiDragGestureRecognizerProxy
   }
 
   @override
-  api.Drag? Function(api4.Offset position)? get onStart {
+  api.Drag? Function(api3.Offset position)? get onStart {
     final _flaxResult = _flaxPeer.call(23, const [], const {});
     if (!_flaxResult.$1) return super.onStart;
     final _flaxConvertedResult =
-        _flaxResult.$2 as api.Drag? Function(api4.Offset position)?;
+        _flaxResult.$2 as api.Drag? Function(api3.Offset position)?;
     return _flaxConvertedResult;
   }
 
-  api.Drag? Function(api4.Offset position)? get _flaxSuperGet_onStart {
+  api.Drag? Function(api3.Offset position)? get _flaxSuperGet_onStart {
     return super.onStart;
   }
 
@@ -21945,9 +21941,9 @@ final class _HorizontalMultiDragGestureRecognizerProxy
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 26);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -21959,7 +21955,7 @@ final class _HorizontalMultiDragGestureRecognizerProxy
   }
 
   @override
-  set onStart(api.Drag? Function(api4.Offset position)? value) {
+  set onStart(api.Drag? Function(api3.Offset position)? value) {
     final result = _flaxPeer.call(28, [value], const {});
     if (!result.$1) {
       super.onStart = value;
@@ -21967,7 +21963,7 @@ final class _HorizontalMultiDragGestureRecognizerProxy
     }
   }
 
-  void _flaxSuperSet_onStart(api.Drag? Function(api4.Offset position)? value) {
+  void _flaxSuperSet_onStart(api.Drag? Function(api3.Offset position)? value) {
     super.onStart = value;
   }
 
@@ -21979,9 +21975,9 @@ final class _HorizontalMultiDragGestureRecognizerProxy
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 30, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -22097,14 +22093,14 @@ final class _IOSScrollViewFlingVelocityTrackerProxy
   final FlaxProxyPeer _flaxPeer;
   _IOSScrollViewFlingVelocityTrackerProxy(
     this._flaxPeer,
-    api4.PointerDeviceKind super.kind,
+    api3.PointerDeviceKind super.kind,
   );
   @override
-  void addPosition(api2.Duration time, api4.Offset position) {
+  void addPosition(api2.Duration time, api3.Offset position) {
     return _FlaxProxyDispatch27_call_addPosition(this, 0, time, position);
   }
 
-  void _flaxSuper_addPosition(api2.Duration time, api4.Offset position) {
+  void _flaxSuper_addPosition(api2.Duration time, api3.Offset position) {
     super.addPosition(time, position);
     return;
   }
@@ -22128,8 +22124,8 @@ final class _IOSScrollViewFlingVelocityTrackerProxy
   }
 
   @override
-  api4.PointerDeviceKind get kind => _FlaxProxyDispatch29_get_kind(this, 3);
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get kind => _FlaxProxyDispatch29_get_kind(this, 3);
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 }
@@ -22145,7 +22141,7 @@ final class _ImmediateMultiDragGestureRecognizerProxy
   _ImmediateMultiDragGestureRecognizerProxy(
     this._flaxPeer, {
     Object? super.debugOwner,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons)? super.allowedButtonsFilter,
   });
   @override
@@ -22297,11 +22293,11 @@ final class _ImmediateMultiDragGestureRecognizerProxy
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 12, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -22547,15 +22543,15 @@ final class _ImmediateMultiDragGestureRecognizerProxy
   }
 
   @override
-  api.Drag? Function(api4.Offset position)? get onStart {
+  api.Drag? Function(api3.Offset position)? get onStart {
     final _flaxResult = _flaxPeer.call(23, const [], const {});
     if (!_flaxResult.$1) return super.onStart;
     final _flaxConvertedResult =
-        _flaxResult.$2 as api.Drag? Function(api4.Offset position)?;
+        _flaxResult.$2 as api.Drag? Function(api3.Offset position)?;
     return _flaxConvertedResult;
   }
 
-  api.Drag? Function(api4.Offset position)? get _flaxSuperGet_onStart {
+  api.Drag? Function(api3.Offset position)? get _flaxSuperGet_onStart {
     return super.onStart;
   }
 
@@ -22573,9 +22569,9 @@ final class _ImmediateMultiDragGestureRecognizerProxy
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 26);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -22587,7 +22583,7 @@ final class _ImmediateMultiDragGestureRecognizerProxy
   }
 
   @override
-  set onStart(api.Drag? Function(api4.Offset position)? value) {
+  set onStart(api.Drag? Function(api3.Offset position)? value) {
     final result = _flaxPeer.call(28, [value], const {});
     if (!result.$1) {
       super.onStart = value;
@@ -22595,7 +22591,7 @@ final class _ImmediateMultiDragGestureRecognizerProxy
     }
   }
 
-  void _flaxSuperSet_onStart(api.Drag? Function(api4.Offset position)? value) {
+  void _flaxSuperSet_onStart(api.Drag? Function(api3.Offset position)? value) {
     super.onStart = value;
   }
 
@@ -22607,9 +22603,9 @@ final class _ImmediateMultiDragGestureRecognizerProxy
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 30, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -22786,9 +22782,9 @@ final class _LongPressDownDetailsProxy extends api.LongPressDownDetails
   bool _flaxCalledSuper = false;
   _LongPressDownDetailsProxy(
     this._flaxPeer, {
-    api4.Offset super.globalPosition,
-    api4.Offset? super.localPosition,
-    api4.PointerDeviceKind? super.kind,
+    api3.Offset super.globalPosition,
+    api3.Offset? super.localPosition,
+    api3.PointerDeviceKind? super.kind,
   });
   @override
   String toStringShort() {
@@ -22860,33 +22856,33 @@ final class _LongPressDownDetailsProxy extends api.LongPressDownDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.PointerDeviceKind? get kind {
+  api3.PointerDeviceKind? get kind {
     final _flaxResult = _flaxPeer.call(6, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind?;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind?;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind? get _flaxSuperGet_kind {
+  api3.PointerDeviceKind? get _flaxSuperGet_kind {
     return super.kind;
   }
 }
@@ -22900,8 +22896,8 @@ final class _LongPressEndDetailsProxy extends api.LongPressEndDetails
   bool _flaxCalledSuper = false;
   _LongPressEndDetailsProxy(
     this._flaxPeer, {
-    api4.Offset super.globalPosition,
-    api4.Offset? super.localPosition,
+    api3.Offset super.globalPosition,
+    api3.Offset? super.localPosition,
     api.Velocity super.velocity,
   });
   @override
@@ -22974,21 +22970,21 @@ final class _LongPressEndDetailsProxy extends api.LongPressEndDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
@@ -23017,7 +23013,7 @@ final class _LongPressGestureRecognizerProxy
     this._flaxPeer, {
     api2.Duration? super.duration,
     double? super.postAcceptSlopTolerance,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     Object? super.debugOwner,
     bool Function(int buttons)? super.allowedButtonsFilter,
   });
@@ -23267,7 +23263,7 @@ final class _LongPressGestureRecognizerProxy
     final _flaxHas1 = !identical(transform, _flaxOmitted);
     flaxInvokeWithDefaults(
       super.startTrackingPointer,
-      <Object?>[pointer, (_flaxHas1 ? transform as api5.Matrix4? : null)],
+      <Object?>[pointer, (_flaxHas1 ? transform as api4.Matrix4? : null)],
       <int>[1 | (_flaxHas1 ? 2 : 0)],
       const <String>["", ""],
     );
@@ -23363,11 +23359,11 @@ final class _LongPressGestureRecognizerProxy
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 22, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -23978,9 +23974,9 @@ final class _LongPressGestureRecognizerProxy
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 62);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -24323,9 +24319,9 @@ final class _LongPressGestureRecognizerProxy
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 87, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -24442,10 +24438,10 @@ final class _LongPressMoveUpdateDetailsProxy
   bool _flaxCalledSuper = false;
   _LongPressMoveUpdateDetailsProxy(
     this._flaxPeer, {
-    api4.Offset super.globalPosition,
-    api4.Offset? super.localPosition,
-    api4.Offset super.offsetFromOrigin,
-    api4.Offset? super.localOffsetFromOrigin,
+    api3.Offset super.globalPosition,
+    api3.Offset? super.localPosition,
+    api3.Offset super.offsetFromOrigin,
+    api3.Offset? super.localOffsetFromOrigin,
   });
   @override
   String toStringShort() {
@@ -24517,45 +24513,45 @@ final class _LongPressMoveUpdateDetailsProxy
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get offsetFromOrigin {
+  api3.Offset get offsetFromOrigin {
     final _flaxResult = _flaxPeer.call(6, const [], const {});
     if (!_flaxResult.$1) return super.offsetFromOrigin;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_offsetFromOrigin {
+  api3.Offset get _flaxSuperGet_offsetFromOrigin {
     return super.offsetFromOrigin;
   }
 
   @override
-  api4.Offset get localOffsetFromOrigin {
+  api3.Offset get localOffsetFromOrigin {
     final _flaxResult = _flaxPeer.call(7, const [], const {});
     if (!_flaxResult.$1) return super.localOffsetFromOrigin;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localOffsetFromOrigin {
+  api3.Offset get _flaxSuperGet_localOffsetFromOrigin {
     return super.localOffsetFromOrigin;
   }
 }
@@ -24569,8 +24565,8 @@ final class _LongPressStartDetailsProxy extends api.LongPressStartDetails
   bool _flaxCalledSuper = false;
   _LongPressStartDetailsProxy(
     this._flaxPeer, {
-    api4.Offset super.globalPosition,
-    api4.Offset? super.localPosition,
+    api3.Offset super.globalPosition,
+    api3.Offset? super.localPosition,
   });
   @override
   String toStringShort() {
@@ -24642,21 +24638,21 @@ final class _LongPressStartDetailsProxy extends api.LongPressStartDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 }
@@ -24670,14 +24666,14 @@ final class _MacOSScrollViewFlingVelocityTrackerProxy
   final FlaxProxyPeer _flaxPeer;
   _MacOSScrollViewFlingVelocityTrackerProxy(
     this._flaxPeer,
-    api4.PointerDeviceKind super.kind,
+    api3.PointerDeviceKind super.kind,
   );
   @override
-  void addPosition(api2.Duration time, api4.Offset position) {
+  void addPosition(api2.Duration time, api3.Offset position) {
     return _FlaxProxyDispatch27_call_addPosition(this, 0, time, position);
   }
 
-  void _flaxSuper_addPosition(api2.Duration time, api4.Offset position) {
+  void _flaxSuper_addPosition(api2.Duration time, api3.Offset position) {
     super.addPosition(time, position);
     return;
   }
@@ -24701,8 +24697,8 @@ final class _MacOSScrollViewFlingVelocityTrackerProxy
   }
 
   @override
-  api4.PointerDeviceKind get kind => _FlaxProxyDispatch29_get_kind(this, 3);
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get kind => _FlaxProxyDispatch29_get_kind(this, 3);
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 }
@@ -24718,7 +24714,7 @@ final class _MultiDragGestureRecognizerProxy
   _MultiDragGestureRecognizerProxy(
     this._flaxPeer, {
     required Object? super.debugOwner,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons)? super.allowedButtonsFilter,
   });
   @override
@@ -24806,11 +24802,11 @@ final class _MultiDragGestureRecognizerProxy
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 8, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -25098,15 +25094,15 @@ final class _MultiDragGestureRecognizerProxy
   }
 
   @override
-  api.Drag? Function(api4.Offset position)? get onStart {
+  api.Drag? Function(api3.Offset position)? get onStart {
     final _flaxResult = _flaxPeer.call(22, const [], const {});
     if (!_flaxResult.$1) return super.onStart;
     final _flaxConvertedResult =
-        _flaxResult.$2 as api.Drag? Function(api4.Offset position)?;
+        _flaxResult.$2 as api.Drag? Function(api3.Offset position)?;
     return _flaxConvertedResult;
   }
 
-  api.Drag? Function(api4.Offset position)? get _flaxSuperGet_onStart {
+  api.Drag? Function(api3.Offset position)? get _flaxSuperGet_onStart {
     return super.onStart;
   }
 
@@ -25124,9 +25120,9 @@ final class _MultiDragGestureRecognizerProxy
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 25);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -25145,7 +25141,7 @@ final class _MultiDragGestureRecognizerProxy
   }
 
   @override
-  set onStart(api.Drag? Function(api4.Offset position)? value) {
+  set onStart(api.Drag? Function(api3.Offset position)? value) {
     final result = _flaxPeer.call(28, [value], const {});
     if (!result.$1) {
       super.onStart = value;
@@ -25153,7 +25149,7 @@ final class _MultiDragGestureRecognizerProxy
     }
   }
 
-  void _flaxSuperSet_onStart(api.Drag? Function(api4.Offset position)? value) {
+  void _flaxSuperSet_onStart(api.Drag? Function(api3.Offset position)? value) {
     super.onStart = value;
   }
 
@@ -25165,9 +25161,9 @@ final class _MultiDragGestureRecognizerProxy
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 30, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -25283,8 +25279,8 @@ final class _MultiDragPointerStateProxy extends api.MultiDragPointerState
   bool _flaxCalledSuper = false;
   _MultiDragPointerStateProxy(
     this._flaxPeer,
-    api4.Offset super.initialPosition,
-    api4.PointerDeviceKind super.kind,
+    api3.Offset super.initialPosition,
+    api3.PointerDeviceKind super.kind,
     api.DeviceGestureSettings? super.gestureSettings,
   );
   @override
@@ -25334,7 +25330,7 @@ final class _MultiDragPointerStateProxy extends api.MultiDragPointerState
   }
 
   @override
-  void accepted(api.Drag? Function(api4.Offset position) starter) {
+  void accepted(api.Drag? Function(api3.Offset position) starter) {
     final _flaxResult = _flaxPeer.call(2, <Object?>[
       starter,
     ], <String, Object?>{});
@@ -25393,32 +25389,32 @@ final class _MultiDragPointerStateProxy extends api.MultiDragPointerState
   }
 
   @override
-  api4.Offset get initialPosition {
+  api3.Offset get initialPosition {
     final _flaxResult = _flaxPeer.call(6, const [], const {});
     if (!_flaxResult.$1) return super.initialPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_initialPosition {
+  api3.Offset get _flaxSuperGet_initialPosition {
     return super.initialPosition;
   }
 
   @override
-  api4.PointerDeviceKind get kind => _FlaxProxyDispatch29_get_kind(this, 7);
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get kind => _FlaxProxyDispatch29_get_kind(this, 7);
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
   @override
-  api4.Offset? get pendingDelta {
+  api3.Offset? get pendingDelta {
     final _flaxResult = _flaxPeer.call(8, const [], const {});
     if (!_flaxResult.$1) return super.pendingDelta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset?;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset?;
     return _flaxConvertedResult;
   }
 
-  api4.Offset? get _flaxSuperGet_pendingDelta {
+  api3.Offset? get _flaxSuperGet_pendingDelta {
     return super.pendingDelta;
   }
 }
@@ -25435,7 +25431,7 @@ final class _MultiTapGestureRecognizerProxy
     this._flaxPeer, {
     api2.Duration super.longTapDelay,
     Object? super.debugOwner,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons) super.allowedButtonsFilter,
   });
   @override
@@ -25523,11 +25519,11 @@ final class _MultiTapGestureRecognizerProxy
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 8, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -25908,9 +25904,9 @@ final class _MultiTapGestureRecognizerProxy
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 30);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -26015,9 +26011,9 @@ final class _MultiTapGestureRecognizerProxy
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 39, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -26129,8 +26125,8 @@ final class _OffsetPairProxy extends api.OffsetPair
   final FlaxProxyPeer _flaxPeer;
   _OffsetPairProxy(
     this._flaxPeer, {
-    required api4.Offset super.local,
-    required api4.Offset super.global,
+    required api3.Offset super.local,
+    required api3.Offset super.global,
   });
   _OffsetPairProxy.fromEventPosition(
     this._flaxPeer,
@@ -26180,26 +26176,26 @@ final class _OffsetPairProxy extends api.OffsetPair
   }
 
   @override
-  api4.Offset get local {
+  api3.Offset get local {
     final _flaxResult = _flaxPeer.call(3, const [], const {});
     if (!_flaxResult.$1) return super.local;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_local {
+  api3.Offset get _flaxSuperGet_local {
     return super.local;
   }
 
   @override
-  api4.Offset get global {
+  api3.Offset get global {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.global;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_global {
+  api3.Offset get _flaxSuperGet_global {
     return super.global;
   }
 }
@@ -26215,7 +26211,7 @@ final class _OneSequenceGestureRecognizerProxy
   _OneSequenceGestureRecognizerProxy(
     this._flaxPeer, {
     Object? super.debugOwner,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons) super.allowedButtonsFilter,
   });
   @override
@@ -26303,11 +26299,11 @@ final class _OneSequenceGestureRecognizerProxy
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 8, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -26689,7 +26685,7 @@ final class _OneSequenceGestureRecognizerProxy
     final _flaxHas1 = !identical(transform, _flaxOmitted);
     flaxInvokeWithDefaults(
       super.startTrackingPointer,
-      <Object?>[pointer, (_flaxHas1 ? transform as api5.Matrix4? : null)],
+      <Object?>[pointer, (_flaxHas1 ? transform as api4.Matrix4? : null)],
       <int>[1 | (_flaxHas1 ? 2 : 0)],
       const <String>["", ""],
     );
@@ -26745,9 +26741,9 @@ final class _OneSequenceGestureRecognizerProxy
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 31);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -26780,9 +26776,9 @@ final class _OneSequenceGestureRecognizerProxy
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 36, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -26901,9 +26897,9 @@ final class _PointerAddedEventProxy extends api.PointerAddedEvent
     int super.viewId,
     api2.Duration super.timeStamp,
     int super.pointer,
-    api4.PointerDeviceKind super.kind,
+    api3.PointerDeviceKind super.kind,
     int super.device,
-    api4.Offset super.position,
+    api3.Offset super.position,
     bool super.obscured,
     double super.pressureMin,
     double super.pressureMax,
@@ -26916,7 +26912,7 @@ final class _PointerAddedEventProxy extends api.PointerAddedEvent
     int super.embedderId,
   });
   @override
-  api.PointerAddedEvent transformed(api5.Matrix4? transform) {
+  api.PointerAddedEvent transformed(api4.Matrix4? transform) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -26927,7 +26923,7 @@ final class _PointerAddedEventProxy extends api.PointerAddedEvent
     return _flaxConvertedResult;
   }
 
-  api.PointerAddedEvent _flaxSuper_transformed(api5.Matrix4? transform) {
+  api.PointerAddedEvent _flaxSuper_transformed(api4.Matrix4? transform) {
     return super.transformed(transform);
   }
 
@@ -27067,10 +27063,10 @@ final class _PointerAddedEventProxy extends api.PointerAddedEvent
         (_flaxHas0 ? viewId as int? : null),
         (_flaxHas1 ? timeStamp as api2.Duration? : null),
         (_flaxHas2 ? pointer as int? : null),
-        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas3 ? kind as api3.PointerDeviceKind? : null),
         (_flaxHas4 ? device as int? : null),
-        (_flaxHas5 ? position as api4.Offset? : null),
-        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas5 ? position as api3.Offset? : null),
+        (_flaxHas6 ? delta as api3.Offset? : null),
         (_flaxHas7 ? buttons as int? : null),
         (_flaxHas8 ? obscured as bool? : null),
         (_flaxHas9 ? pressure as double? : null),
@@ -27249,14 +27245,14 @@ final class _PointerAddedEventProxy extends api.PointerAddedEvent
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(11, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -27267,38 +27263,38 @@ final class _PointerAddedEventProxy extends api.PointerAddedEvent
   }
 
   @override
-  api4.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
-  api4.Offset get _flaxSuperGet_position {
+  api3.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
+  api3.Offset get _flaxSuperGet_position {
     return super.position;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(14, const [], const {});
     if (!_flaxResult.$1) return super.localPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(15, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
   @override
-  api4.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
-  api4.Offset get _flaxSuperGet_localDelta {
+  api3.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
+  api3.Offset get _flaxSuperGet_localDelta {
     return super.localDelta;
   }
 
@@ -27423,14 +27419,14 @@ final class _PointerAddedEventProxy extends api.PointerAddedEvent
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(35, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 
@@ -27453,9 +27449,9 @@ final class _PointerCancelEventProxy extends api.PointerCancelEvent
     int super.viewId,
     api2.Duration super.timeStamp,
     int super.pointer,
-    api4.PointerDeviceKind super.kind,
+    api3.PointerDeviceKind super.kind,
     int super.device,
-    api4.Offset super.position,
+    api3.Offset super.position,
     int super.buttons,
     bool super.obscured,
     double super.pressureMin,
@@ -27472,7 +27468,7 @@ final class _PointerCancelEventProxy extends api.PointerCancelEvent
     int super.embedderId,
   });
   @override
-  api.PointerCancelEvent transformed(api5.Matrix4? transform) {
+  api.PointerCancelEvent transformed(api4.Matrix4? transform) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -27483,7 +27479,7 @@ final class _PointerCancelEventProxy extends api.PointerCancelEvent
     return _flaxConvertedResult;
   }
 
-  api.PointerCancelEvent _flaxSuper_transformed(api5.Matrix4? transform) {
+  api.PointerCancelEvent _flaxSuper_transformed(api4.Matrix4? transform) {
     return super.transformed(transform);
   }
 
@@ -27623,10 +27619,10 @@ final class _PointerCancelEventProxy extends api.PointerCancelEvent
         (_flaxHas0 ? viewId as int? : null),
         (_flaxHas1 ? timeStamp as api2.Duration? : null),
         (_flaxHas2 ? pointer as int? : null),
-        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas3 ? kind as api3.PointerDeviceKind? : null),
         (_flaxHas4 ? device as int? : null),
-        (_flaxHas5 ? position as api4.Offset? : null),
-        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas5 ? position as api3.Offset? : null),
+        (_flaxHas6 ? delta as api3.Offset? : null),
         (_flaxHas7 ? buttons as int? : null),
         (_flaxHas8 ? obscured as bool? : null),
         (_flaxHas9 ? pressure as double? : null),
@@ -27805,14 +27801,14 @@ final class _PointerCancelEventProxy extends api.PointerCancelEvent
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(11, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -27823,38 +27819,38 @@ final class _PointerCancelEventProxy extends api.PointerCancelEvent
   }
 
   @override
-  api4.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
-  api4.Offset get _flaxSuperGet_position {
+  api3.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
+  api3.Offset get _flaxSuperGet_position {
     return super.position;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(14, const [], const {});
     if (!_flaxResult.$1) return super.localPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(15, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
   @override
-  api4.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
-  api4.Offset get _flaxSuperGet_localDelta {
+  api3.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
+  api3.Offset get _flaxSuperGet_localDelta {
     return super.localDelta;
   }
 
@@ -27979,14 +27975,14 @@ final class _PointerCancelEventProxy extends api.PointerCancelEvent
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(35, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 
@@ -28009,9 +28005,9 @@ final class _PointerDownEventProxy extends api.PointerDownEvent
     int super.viewId,
     api2.Duration super.timeStamp,
     int super.pointer,
-    api4.PointerDeviceKind super.kind,
+    api3.PointerDeviceKind super.kind,
     int super.device,
-    api4.Offset super.position,
+    api3.Offset super.position,
     int super.buttons,
     bool super.obscured,
     double super.pressure,
@@ -28028,7 +28024,7 @@ final class _PointerDownEventProxy extends api.PointerDownEvent
     int super.embedderId,
   });
   @override
-  api.PointerDownEvent transformed(api5.Matrix4? transform) {
+  api.PointerDownEvent transformed(api4.Matrix4? transform) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -28039,7 +28035,7 @@ final class _PointerDownEventProxy extends api.PointerDownEvent
     return _flaxConvertedResult;
   }
 
-  api.PointerDownEvent _flaxSuper_transformed(api5.Matrix4? transform) {
+  api.PointerDownEvent _flaxSuper_transformed(api4.Matrix4? transform) {
     return super.transformed(transform);
   }
 
@@ -28179,10 +28175,10 @@ final class _PointerDownEventProxy extends api.PointerDownEvent
         (_flaxHas0 ? viewId as int? : null),
         (_flaxHas1 ? timeStamp as api2.Duration? : null),
         (_flaxHas2 ? pointer as int? : null),
-        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas3 ? kind as api3.PointerDeviceKind? : null),
         (_flaxHas4 ? device as int? : null),
-        (_flaxHas5 ? position as api4.Offset? : null),
-        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas5 ? position as api3.Offset? : null),
+        (_flaxHas6 ? delta as api3.Offset? : null),
         (_flaxHas7 ? buttons as int? : null),
         (_flaxHas8 ? obscured as bool? : null),
         (_flaxHas9 ? pressure as double? : null),
@@ -28361,14 +28357,14 @@ final class _PointerDownEventProxy extends api.PointerDownEvent
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(11, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -28379,38 +28375,38 @@ final class _PointerDownEventProxy extends api.PointerDownEvent
   }
 
   @override
-  api4.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
-  api4.Offset get _flaxSuperGet_position {
+  api3.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
+  api3.Offset get _flaxSuperGet_position {
     return super.position;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(14, const [], const {});
     if (!_flaxResult.$1) return super.localPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(15, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
   @override
-  api4.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
-  api4.Offset get _flaxSuperGet_localDelta {
+  api3.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
+  api3.Offset get _flaxSuperGet_localDelta {
     return super.localDelta;
   }
 
@@ -28535,14 +28531,14 @@ final class _PointerDownEventProxy extends api.PointerDownEvent
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(35, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 
@@ -28565,10 +28561,10 @@ final class _PointerEnterEventProxy extends api.PointerEnterEvent
     int super.viewId,
     api2.Duration super.timeStamp,
     int super.pointer,
-    api4.PointerDeviceKind super.kind,
+    api3.PointerDeviceKind super.kind,
     int super.device,
-    api4.Offset super.position,
-    api4.Offset super.delta,
+    api3.Offset super.position,
+    api3.Offset super.delta,
     int super.buttons,
     bool super.obscured,
     double super.pressureMin,
@@ -28587,7 +28583,7 @@ final class _PointerEnterEventProxy extends api.PointerEnterEvent
     int super.embedderId,
   });
   @override
-  api.PointerEnterEvent transformed(api5.Matrix4? transform) {
+  api.PointerEnterEvent transformed(api4.Matrix4? transform) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -28598,7 +28594,7 @@ final class _PointerEnterEventProxy extends api.PointerEnterEvent
     return _flaxConvertedResult;
   }
 
-  api.PointerEnterEvent _flaxSuper_transformed(api5.Matrix4? transform) {
+  api.PointerEnterEvent _flaxSuper_transformed(api4.Matrix4? transform) {
     return super.transformed(transform);
   }
 
@@ -28738,10 +28734,10 @@ final class _PointerEnterEventProxy extends api.PointerEnterEvent
         (_flaxHas0 ? viewId as int? : null),
         (_flaxHas1 ? timeStamp as api2.Duration? : null),
         (_flaxHas2 ? pointer as int? : null),
-        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas3 ? kind as api3.PointerDeviceKind? : null),
         (_flaxHas4 ? device as int? : null),
-        (_flaxHas5 ? position as api4.Offset? : null),
-        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas5 ? position as api3.Offset? : null),
+        (_flaxHas6 ? delta as api3.Offset? : null),
         (_flaxHas7 ? buttons as int? : null),
         (_flaxHas8 ? obscured as bool? : null),
         (_flaxHas9 ? pressure as double? : null),
@@ -28920,14 +28916,14 @@ final class _PointerEnterEventProxy extends api.PointerEnterEvent
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(11, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -28938,38 +28934,38 @@ final class _PointerEnterEventProxy extends api.PointerEnterEvent
   }
 
   @override
-  api4.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
-  api4.Offset get _flaxSuperGet_position {
+  api3.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
+  api3.Offset get _flaxSuperGet_position {
     return super.position;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(14, const [], const {});
     if (!_flaxResult.$1) return super.localPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(15, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
   @override
-  api4.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
-  api4.Offset get _flaxSuperGet_localDelta {
+  api3.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
+  api3.Offset get _flaxSuperGet_localDelta {
     return super.localDelta;
   }
 
@@ -29094,14 +29090,14 @@ final class _PointerEnterEventProxy extends api.PointerEnterEvent
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(35, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 
@@ -29224,11 +29220,11 @@ final class _PointerExitEventProxy extends api.PointerExitEvent
     this._flaxPeer, {
     int super.viewId,
     api2.Duration super.timeStamp,
-    api4.PointerDeviceKind super.kind,
+    api3.PointerDeviceKind super.kind,
     int super.pointer,
     int super.device,
-    api4.Offset super.position,
-    api4.Offset super.delta,
+    api3.Offset super.position,
+    api3.Offset super.delta,
     int super.buttons,
     bool super.obscured,
     double super.pressureMin,
@@ -29247,7 +29243,7 @@ final class _PointerExitEventProxy extends api.PointerExitEvent
     int super.embedderId,
   });
   @override
-  api.PointerExitEvent transformed(api5.Matrix4? transform) {
+  api.PointerExitEvent transformed(api4.Matrix4? transform) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -29258,7 +29254,7 @@ final class _PointerExitEventProxy extends api.PointerExitEvent
     return _flaxConvertedResult;
   }
 
-  api.PointerExitEvent _flaxSuper_transformed(api5.Matrix4? transform) {
+  api.PointerExitEvent _flaxSuper_transformed(api4.Matrix4? transform) {
     return super.transformed(transform);
   }
 
@@ -29398,10 +29394,10 @@ final class _PointerExitEventProxy extends api.PointerExitEvent
         (_flaxHas0 ? viewId as int? : null),
         (_flaxHas1 ? timeStamp as api2.Duration? : null),
         (_flaxHas2 ? pointer as int? : null),
-        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas3 ? kind as api3.PointerDeviceKind? : null),
         (_flaxHas4 ? device as int? : null),
-        (_flaxHas5 ? position as api4.Offset? : null),
-        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas5 ? position as api3.Offset? : null),
+        (_flaxHas6 ? delta as api3.Offset? : null),
         (_flaxHas7 ? buttons as int? : null),
         (_flaxHas8 ? obscured as bool? : null),
         (_flaxHas9 ? pressure as double? : null),
@@ -29580,14 +29576,14 @@ final class _PointerExitEventProxy extends api.PointerExitEvent
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(11, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -29598,38 +29594,38 @@ final class _PointerExitEventProxy extends api.PointerExitEvent
   }
 
   @override
-  api4.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
-  api4.Offset get _flaxSuperGet_position {
+  api3.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
+  api3.Offset get _flaxSuperGet_position {
     return super.position;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(14, const [], const {});
     if (!_flaxResult.$1) return super.localPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(15, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
   @override
-  api4.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
-  api4.Offset get _flaxSuperGet_localDelta {
+  api3.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
+  api3.Offset get _flaxSuperGet_localDelta {
     return super.localDelta;
   }
 
@@ -29754,14 +29750,14 @@ final class _PointerExitEventProxy extends api.PointerExitEvent
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(35, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 
@@ -29783,11 +29779,11 @@ final class _PointerHoverEventProxy extends api.PointerHoverEvent
     this._flaxPeer, {
     int super.viewId,
     api2.Duration super.timeStamp,
-    api4.PointerDeviceKind super.kind,
+    api3.PointerDeviceKind super.kind,
     int super.pointer,
     int super.device,
-    api4.Offset super.position,
-    api4.Offset super.delta,
+    api3.Offset super.position,
+    api3.Offset super.delta,
     int super.buttons,
     bool super.obscured,
     double super.pressureMin,
@@ -29805,7 +29801,7 @@ final class _PointerHoverEventProxy extends api.PointerHoverEvent
     int super.embedderId,
   });
   @override
-  api.PointerHoverEvent transformed(api5.Matrix4? transform) {
+  api.PointerHoverEvent transformed(api4.Matrix4? transform) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -29816,7 +29812,7 @@ final class _PointerHoverEventProxy extends api.PointerHoverEvent
     return _flaxConvertedResult;
   }
 
-  api.PointerHoverEvent _flaxSuper_transformed(api5.Matrix4? transform) {
+  api.PointerHoverEvent _flaxSuper_transformed(api4.Matrix4? transform) {
     return super.transformed(transform);
   }
 
@@ -29956,10 +29952,10 @@ final class _PointerHoverEventProxy extends api.PointerHoverEvent
         (_flaxHas0 ? viewId as int? : null),
         (_flaxHas1 ? timeStamp as api2.Duration? : null),
         (_flaxHas2 ? pointer as int? : null),
-        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas3 ? kind as api3.PointerDeviceKind? : null),
         (_flaxHas4 ? device as int? : null),
-        (_flaxHas5 ? position as api4.Offset? : null),
-        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas5 ? position as api3.Offset? : null),
+        (_flaxHas6 ? delta as api3.Offset? : null),
         (_flaxHas7 ? buttons as int? : null),
         (_flaxHas8 ? obscured as bool? : null),
         (_flaxHas9 ? pressure as double? : null),
@@ -30138,14 +30134,14 @@ final class _PointerHoverEventProxy extends api.PointerHoverEvent
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(11, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -30156,38 +30152,38 @@ final class _PointerHoverEventProxy extends api.PointerHoverEvent
   }
 
   @override
-  api4.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
-  api4.Offset get _flaxSuperGet_position {
+  api3.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
+  api3.Offset get _flaxSuperGet_position {
     return super.position;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(14, const [], const {});
     if (!_flaxResult.$1) return super.localPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(15, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
   @override
-  api4.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
-  api4.Offset get _flaxSuperGet_localDelta {
+  api3.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
+  api3.Offset get _flaxSuperGet_localDelta {
     return super.localDelta;
   }
 
@@ -30312,14 +30308,14 @@ final class _PointerHoverEventProxy extends api.PointerHoverEvent
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(35, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 
@@ -30342,10 +30338,10 @@ final class _PointerMoveEventProxy extends api.PointerMoveEvent
     int super.viewId,
     api2.Duration super.timeStamp,
     int super.pointer,
-    api4.PointerDeviceKind super.kind,
+    api3.PointerDeviceKind super.kind,
     int super.device,
-    api4.Offset super.position,
-    api4.Offset super.delta,
+    api3.Offset super.position,
+    api3.Offset super.delta,
     int super.buttons,
     bool super.obscured,
     double super.pressure,
@@ -30364,7 +30360,7 @@ final class _PointerMoveEventProxy extends api.PointerMoveEvent
     int super.embedderId,
   });
   @override
-  api.PointerMoveEvent transformed(api5.Matrix4? transform) {
+  api.PointerMoveEvent transformed(api4.Matrix4? transform) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -30375,7 +30371,7 @@ final class _PointerMoveEventProxy extends api.PointerMoveEvent
     return _flaxConvertedResult;
   }
 
-  api.PointerMoveEvent _flaxSuper_transformed(api5.Matrix4? transform) {
+  api.PointerMoveEvent _flaxSuper_transformed(api4.Matrix4? transform) {
     return super.transformed(transform);
   }
 
@@ -30515,10 +30511,10 @@ final class _PointerMoveEventProxy extends api.PointerMoveEvent
         (_flaxHas0 ? viewId as int? : null),
         (_flaxHas1 ? timeStamp as api2.Duration? : null),
         (_flaxHas2 ? pointer as int? : null),
-        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas3 ? kind as api3.PointerDeviceKind? : null),
         (_flaxHas4 ? device as int? : null),
-        (_flaxHas5 ? position as api4.Offset? : null),
-        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas5 ? position as api3.Offset? : null),
+        (_flaxHas6 ? delta as api3.Offset? : null),
         (_flaxHas7 ? buttons as int? : null),
         (_flaxHas8 ? obscured as bool? : null),
         (_flaxHas9 ? pressure as double? : null),
@@ -30697,14 +30693,14 @@ final class _PointerMoveEventProxy extends api.PointerMoveEvent
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(11, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -30715,38 +30711,38 @@ final class _PointerMoveEventProxy extends api.PointerMoveEvent
   }
 
   @override
-  api4.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
-  api4.Offset get _flaxSuperGet_position {
+  api3.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
+  api3.Offset get _flaxSuperGet_position {
     return super.position;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(14, const [], const {});
     if (!_flaxResult.$1) return super.localPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(15, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
   @override
-  api4.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
-  api4.Offset get _flaxSuperGet_localDelta {
+  api3.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
+  api3.Offset get _flaxSuperGet_localDelta {
     return super.localDelta;
   }
 
@@ -30871,14 +30867,14 @@ final class _PointerMoveEventProxy extends api.PointerMoveEvent
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(35, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 
@@ -30902,12 +30898,12 @@ final class _PointerPanZoomEndEventProxy extends api.PointerPanZoomEndEvent
     api2.Duration super.timeStamp,
     int super.device,
     int super.pointer,
-    api4.Offset super.position,
+    api3.Offset super.position,
     int super.embedderId,
     bool super.synthesized,
   });
   @override
-  api.PointerPanZoomEndEvent transformed(api5.Matrix4? transform) {
+  api.PointerPanZoomEndEvent transformed(api4.Matrix4? transform) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -30918,7 +30914,7 @@ final class _PointerPanZoomEndEventProxy extends api.PointerPanZoomEndEvent
     return _flaxConvertedResult;
   }
 
-  api.PointerPanZoomEndEvent _flaxSuper_transformed(api5.Matrix4? transform) {
+  api.PointerPanZoomEndEvent _flaxSuper_transformed(api4.Matrix4? transform) {
     return super.transformed(transform);
   }
 
@@ -31058,10 +31054,10 @@ final class _PointerPanZoomEndEventProxy extends api.PointerPanZoomEndEvent
         (_flaxHas0 ? viewId as int? : null),
         (_flaxHas1 ? timeStamp as api2.Duration? : null),
         (_flaxHas2 ? pointer as int? : null),
-        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas3 ? kind as api3.PointerDeviceKind? : null),
         (_flaxHas4 ? device as int? : null),
-        (_flaxHas5 ? position as api4.Offset? : null),
-        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas5 ? position as api3.Offset? : null),
+        (_flaxHas6 ? delta as api3.Offset? : null),
         (_flaxHas7 ? buttons as int? : null),
         (_flaxHas8 ? obscured as bool? : null),
         (_flaxHas9 ? pressure as double? : null),
@@ -31240,14 +31236,14 @@ final class _PointerPanZoomEndEventProxy extends api.PointerPanZoomEndEvent
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(11, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -31258,38 +31254,38 @@ final class _PointerPanZoomEndEventProxy extends api.PointerPanZoomEndEvent
   }
 
   @override
-  api4.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
-  api4.Offset get _flaxSuperGet_position {
+  api3.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
+  api3.Offset get _flaxSuperGet_position {
     return super.position;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(14, const [], const {});
     if (!_flaxResult.$1) return super.localPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(15, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
   @override
-  api4.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
-  api4.Offset get _flaxSuperGet_localDelta {
+  api3.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
+  api3.Offset get _flaxSuperGet_localDelta {
     return super.localDelta;
   }
 
@@ -31414,14 +31410,14 @@ final class _PointerPanZoomEndEventProxy extends api.PointerPanZoomEndEvent
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(35, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 
@@ -31445,12 +31441,12 @@ final class _PointerPanZoomStartEventProxy extends api.PointerPanZoomStartEvent
     api2.Duration super.timeStamp,
     int super.device,
     int super.pointer,
-    api4.Offset super.position,
+    api3.Offset super.position,
     int super.embedderId,
     bool super.synthesized,
   });
   @override
-  api.PointerPanZoomStartEvent transformed(api5.Matrix4? transform) {
+  api.PointerPanZoomStartEvent transformed(api4.Matrix4? transform) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -31461,7 +31457,7 @@ final class _PointerPanZoomStartEventProxy extends api.PointerPanZoomStartEvent
     return _flaxConvertedResult;
   }
 
-  api.PointerPanZoomStartEvent _flaxSuper_transformed(api5.Matrix4? transform) {
+  api.PointerPanZoomStartEvent _flaxSuper_transformed(api4.Matrix4? transform) {
     return super.transformed(transform);
   }
 
@@ -31601,10 +31597,10 @@ final class _PointerPanZoomStartEventProxy extends api.PointerPanZoomStartEvent
         (_flaxHas0 ? viewId as int? : null),
         (_flaxHas1 ? timeStamp as api2.Duration? : null),
         (_flaxHas2 ? pointer as int? : null),
-        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas3 ? kind as api3.PointerDeviceKind? : null),
         (_flaxHas4 ? device as int? : null),
-        (_flaxHas5 ? position as api4.Offset? : null),
-        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas5 ? position as api3.Offset? : null),
+        (_flaxHas6 ? delta as api3.Offset? : null),
         (_flaxHas7 ? buttons as int? : null),
         (_flaxHas8 ? obscured as bool? : null),
         (_flaxHas9 ? pressure as double? : null),
@@ -31783,14 +31779,14 @@ final class _PointerPanZoomStartEventProxy extends api.PointerPanZoomStartEvent
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(11, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -31801,38 +31797,38 @@ final class _PointerPanZoomStartEventProxy extends api.PointerPanZoomStartEvent
   }
 
   @override
-  api4.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
-  api4.Offset get _flaxSuperGet_position {
+  api3.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
+  api3.Offset get _flaxSuperGet_position {
     return super.position;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(14, const [], const {});
     if (!_flaxResult.$1) return super.localPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(15, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
   @override
-  api4.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
-  api4.Offset get _flaxSuperGet_localDelta {
+  api3.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
+  api3.Offset get _flaxSuperGet_localDelta {
     return super.localDelta;
   }
 
@@ -31957,14 +31953,14 @@ final class _PointerPanZoomStartEventProxy extends api.PointerPanZoomStartEvent
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(35, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 
@@ -31989,16 +31985,16 @@ final class _PointerPanZoomUpdateEventProxy
     api2.Duration super.timeStamp,
     int super.device,
     int super.pointer,
-    api4.Offset super.position,
+    api3.Offset super.position,
     int super.embedderId,
-    api4.Offset super.pan,
-    api4.Offset super.panDelta,
+    api3.Offset super.pan,
+    api3.Offset super.panDelta,
     double super.scale,
     double super.rotation,
     bool super.synthesized,
   });
   @override
-  api.PointerPanZoomUpdateEvent transformed(api5.Matrix4? transform) {
+  api.PointerPanZoomUpdateEvent transformed(api4.Matrix4? transform) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -32011,7 +32007,7 @@ final class _PointerPanZoomUpdateEventProxy
   }
 
   api.PointerPanZoomUpdateEvent _flaxSuper_transformed(
-    api5.Matrix4? transform,
+    api4.Matrix4? transform,
   ) {
     return super.transformed(transform);
   }
@@ -32184,10 +32180,10 @@ final class _PointerPanZoomUpdateEventProxy
         (_flaxHas0 ? viewId as int? : null),
         (_flaxHas1 ? timeStamp as api2.Duration? : null),
         (_flaxHas2 ? pointer as int? : null),
-        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas3 ? kind as api3.PointerDeviceKind? : null),
         (_flaxHas4 ? device as int? : null),
-        (_flaxHas5 ? position as api4.Offset? : null),
-        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas5 ? position as api3.Offset? : null),
+        (_flaxHas6 ? delta as api3.Offset? : null),
         (_flaxHas7 ? buttons as int? : null),
         (_flaxHas8 ? obscured as bool? : null),
         (_flaxHas9 ? pressure as double? : null),
@@ -32204,10 +32200,10 @@ final class _PointerPanZoomUpdateEventProxy
         (_flaxHas20 ? tilt as double? : null),
         (_flaxHas21 ? synthesized as bool? : null),
         (_flaxHas22 ? embedderId as int? : null),
-        (_flaxHas23 ? pan as api4.Offset? : null),
-        (_flaxHas24 ? localPan as api4.Offset? : null),
-        (_flaxHas25 ? panDelta as api4.Offset? : null),
-        (_flaxHas26 ? localPanDelta as api4.Offset? : null),
+        (_flaxHas23 ? pan as api3.Offset? : null),
+        (_flaxHas24 ? localPan as api3.Offset? : null),
+        (_flaxHas25 ? panDelta as api3.Offset? : null),
+        (_flaxHas26 ? localPanDelta as api3.Offset? : null),
         (_flaxHas27 ? scale as double? : null),
         (_flaxHas28 ? rotation as double? : null),
       ],
@@ -32360,50 +32356,50 @@ final class _PointerPanZoomUpdateEventProxy
   }
 
   @override
-  api4.Offset get pan {
+  api3.Offset get pan {
     final _flaxResult = _flaxPeer.call(7, const [], const {});
     if (!_flaxResult.$1) return super.pan;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_pan {
+  api3.Offset get _flaxSuperGet_pan {
     return super.pan;
   }
 
   @override
-  api4.Offset get localPan {
+  api3.Offset get localPan {
     final _flaxResult = _flaxPeer.call(8, const [], const {});
     if (!_flaxResult.$1) return super.localPan;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPan {
+  api3.Offset get _flaxSuperGet_localPan {
     return super.localPan;
   }
 
   @override
-  api4.Offset get panDelta {
+  api3.Offset get panDelta {
     final _flaxResult = _flaxPeer.call(9, const [], const {});
     if (!_flaxResult.$1) return super.panDelta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_panDelta {
+  api3.Offset get _flaxSuperGet_panDelta {
     return super.panDelta;
   }
 
   @override
-  api4.Offset get localPanDelta {
+  api3.Offset get localPanDelta {
     final _flaxResult = _flaxPeer.call(10, const [], const {});
     if (!_flaxResult.$1) return super.localPanDelta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPanDelta {
+  api3.Offset get _flaxSuperGet_localPanDelta {
     return super.localPanDelta;
   }
 
@@ -32456,14 +32452,14 @@ final class _PointerPanZoomUpdateEventProxy
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(17, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -32474,38 +32470,38 @@ final class _PointerPanZoomUpdateEventProxy
   }
 
   @override
-  api4.Offset get position => _FlaxProxyDispatch32_get_position(this, 19);
-  api4.Offset get _flaxSuperGet_position {
+  api3.Offset get position => _FlaxProxyDispatch32_get_position(this, 19);
+  api3.Offset get _flaxSuperGet_position {
     return super.position;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(20, const [], const {});
     if (!_flaxResult.$1) return super.localPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(21, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
   @override
-  api4.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 22);
-  api4.Offset get _flaxSuperGet_localDelta {
+  api3.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 22);
+  api3.Offset get _flaxSuperGet_localDelta {
     return super.localDelta;
   }
 
@@ -32630,14 +32626,14 @@ final class _PointerPanZoomUpdateEventProxy
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(41, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 
@@ -32660,9 +32656,9 @@ final class _PointerRemovedEventProxy extends api.PointerRemovedEvent
     int super.viewId,
     api2.Duration super.timeStamp,
     int super.pointer,
-    api4.PointerDeviceKind super.kind,
+    api3.PointerDeviceKind super.kind,
     int super.device,
-    api4.Offset super.position,
+    api3.Offset super.position,
     bool super.obscured,
     double super.pressureMin,
     double super.pressureMax,
@@ -32673,7 +32669,7 @@ final class _PointerRemovedEventProxy extends api.PointerRemovedEvent
     int super.embedderId,
   });
   @override
-  api.PointerRemovedEvent transformed(api5.Matrix4? transform) {
+  api.PointerRemovedEvent transformed(api4.Matrix4? transform) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -32684,7 +32680,7 @@ final class _PointerRemovedEventProxy extends api.PointerRemovedEvent
     return _flaxConvertedResult;
   }
 
-  api.PointerRemovedEvent _flaxSuper_transformed(api5.Matrix4? transform) {
+  api.PointerRemovedEvent _flaxSuper_transformed(api4.Matrix4? transform) {
     return super.transformed(transform);
   }
 
@@ -32824,10 +32820,10 @@ final class _PointerRemovedEventProxy extends api.PointerRemovedEvent
         (_flaxHas0 ? viewId as int? : null),
         (_flaxHas1 ? timeStamp as api2.Duration? : null),
         (_flaxHas2 ? pointer as int? : null),
-        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas3 ? kind as api3.PointerDeviceKind? : null),
         (_flaxHas4 ? device as int? : null),
-        (_flaxHas5 ? position as api4.Offset? : null),
-        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas5 ? position as api3.Offset? : null),
+        (_flaxHas6 ? delta as api3.Offset? : null),
         (_flaxHas7 ? buttons as int? : null),
         (_flaxHas8 ? obscured as bool? : null),
         (_flaxHas9 ? pressure as double? : null),
@@ -33006,14 +33002,14 @@ final class _PointerRemovedEventProxy extends api.PointerRemovedEvent
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(11, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -33024,38 +33020,38 @@ final class _PointerRemovedEventProxy extends api.PointerRemovedEvent
   }
 
   @override
-  api4.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
-  api4.Offset get _flaxSuperGet_position {
+  api3.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
+  api3.Offset get _flaxSuperGet_position {
     return super.position;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(14, const [], const {});
     if (!_flaxResult.$1) return super.localPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(15, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
   @override
-  api4.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
-  api4.Offset get _flaxSuperGet_localDelta {
+  api3.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
+  api3.Offset get _flaxSuperGet_localDelta {
     return super.localDelta;
   }
 
@@ -33180,14 +33176,14 @@ final class _PointerRemovedEventProxy extends api.PointerRemovedEvent
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(35, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 
@@ -33230,7 +33226,7 @@ final class _PointerRouterProxy extends api.PointerRouter {
       <Object?>[
         pointer,
         route,
-        (_flaxHas2 ? transform as api5.Matrix4? : null),
+        (_flaxHas2 ? transform as api4.Matrix4? : null),
       ],
       <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
       const <String>["", "", ""],
@@ -33282,7 +33278,7 @@ final class _PointerRouterProxy extends api.PointerRouter {
     final _flaxHas1 = !identical(transform, _flaxOmitted);
     flaxInvokeWithDefaults(
       super.addGlobalRoute,
-      <Object?>[route, (_flaxHas1 ? transform as api5.Matrix4? : null)],
+      <Object?>[route, (_flaxHas1 ? transform as api4.Matrix4? : null)],
       <int>[1 | (_flaxHas1 ? 2 : 0)],
       const <String>["", ""],
     );
@@ -33349,14 +33345,14 @@ final class _PointerScaleEventProxy extends api.PointerScaleEvent
     this._flaxPeer, {
     int super.viewId,
     api2.Duration super.timeStamp,
-    api4.PointerDeviceKind super.kind,
+    api3.PointerDeviceKind super.kind,
     int super.device,
-    api4.Offset super.position,
+    api3.Offset super.position,
     int super.embedderId,
     double super.scale,
   });
   @override
-  api.PointerScaleEvent transformed(api5.Matrix4? transform) {
+  api.PointerScaleEvent transformed(api4.Matrix4? transform) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -33367,7 +33363,7 @@ final class _PointerScaleEventProxy extends api.PointerScaleEvent
     return _flaxConvertedResult;
   }
 
-  api.PointerScaleEvent _flaxSuper_transformed(api5.Matrix4? transform) {
+  api.PointerScaleEvent _flaxSuper_transformed(api4.Matrix4? transform) {
     return super.transformed(transform);
   }
 
@@ -33512,10 +33508,10 @@ final class _PointerScaleEventProxy extends api.PointerScaleEvent
         (_flaxHas0 ? viewId as int? : null),
         (_flaxHas1 ? timeStamp as api2.Duration? : null),
         (_flaxHas2 ? pointer as int? : null),
-        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas3 ? kind as api3.PointerDeviceKind? : null),
         (_flaxHas4 ? device as int? : null),
-        (_flaxHas5 ? position as api4.Offset? : null),
-        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas5 ? position as api3.Offset? : null),
+        (_flaxHas6 ? delta as api3.Offset? : null),
         (_flaxHas7 ? buttons as int? : null),
         (_flaxHas8 ? obscured as bool? : null),
         (_flaxHas9 ? pressure as double? : null),
@@ -33726,14 +33722,14 @@ final class _PointerScaleEventProxy extends api.PointerScaleEvent
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(13, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -33744,38 +33740,38 @@ final class _PointerScaleEventProxy extends api.PointerScaleEvent
   }
 
   @override
-  api4.Offset get position => _FlaxProxyDispatch32_get_position(this, 15);
-  api4.Offset get _flaxSuperGet_position {
+  api3.Offset get position => _FlaxProxyDispatch32_get_position(this, 15);
+  api3.Offset get _flaxSuperGet_position {
     return super.position;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(16, const [], const {});
     if (!_flaxResult.$1) return super.localPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(17, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
   @override
-  api4.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 18);
-  api4.Offset get _flaxSuperGet_localDelta {
+  api3.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 18);
+  api3.Offset get _flaxSuperGet_localDelta {
     return super.localDelta;
   }
 
@@ -33900,14 +33896,14 @@ final class _PointerScaleEventProxy extends api.PointerScaleEvent
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(37, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 
@@ -33930,13 +33926,13 @@ final class _PointerScrollInertiaCancelEventProxy
     this._flaxPeer, {
     int super.viewId,
     api2.Duration super.timeStamp,
-    api4.PointerDeviceKind super.kind,
+    api3.PointerDeviceKind super.kind,
     int super.device,
-    api4.Offset super.position,
+    api3.Offset super.position,
     int super.embedderId,
   });
   @override
-  api.PointerScrollInertiaCancelEvent transformed(api5.Matrix4? transform) {
+  api.PointerScrollInertiaCancelEvent transformed(api4.Matrix4? transform) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -33949,7 +33945,7 @@ final class _PointerScrollInertiaCancelEventProxy
   }
 
   api.PointerScrollInertiaCancelEvent _flaxSuper_transformed(
-    api5.Matrix4? transform,
+    api4.Matrix4? transform,
   ) {
     return super.transformed(transform);
   }
@@ -34091,10 +34087,10 @@ final class _PointerScrollInertiaCancelEventProxy
         (_flaxHas0 ? viewId as int? : null),
         (_flaxHas1 ? timeStamp as api2.Duration? : null),
         (_flaxHas2 ? pointer as int? : null),
-        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas3 ? kind as api3.PointerDeviceKind? : null),
         (_flaxHas4 ? device as int? : null),
-        (_flaxHas5 ? position as api4.Offset? : null),
-        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas5 ? position as api3.Offset? : null),
+        (_flaxHas6 ? delta as api3.Offset? : null),
         (_flaxHas7 ? buttons as int? : null),
         (_flaxHas8 ? obscured as bool? : null),
         (_flaxHas9 ? pressure as double? : null),
@@ -34290,14 +34286,14 @@ final class _PointerScrollInertiaCancelEventProxy
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(12, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -34308,38 +34304,38 @@ final class _PointerScrollInertiaCancelEventProxy
   }
 
   @override
-  api4.Offset get position => _FlaxProxyDispatch32_get_position(this, 14);
-  api4.Offset get _flaxSuperGet_position {
+  api3.Offset get position => _FlaxProxyDispatch32_get_position(this, 14);
+  api3.Offset get _flaxSuperGet_position {
     return super.position;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(15, const [], const {});
     if (!_flaxResult.$1) return super.localPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(16, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
   @override
-  api4.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 17);
-  api4.Offset get _flaxSuperGet_localDelta {
+  api3.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 17);
+  api3.Offset get _flaxSuperGet_localDelta {
     return super.localDelta;
   }
 
@@ -34464,14 +34460,14 @@ final class _PointerScrollInertiaCancelEventProxy
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(36, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 
@@ -34494,13 +34490,13 @@ final class _PointerSignalEventProxy extends api.PointerSignalEvent
     int super.viewId,
     api2.Duration super.timeStamp,
     int super.pointer,
-    api4.PointerDeviceKind super.kind,
+    api3.PointerDeviceKind super.kind,
     int super.device,
-    api4.Offset super.position,
+    api3.Offset super.position,
     int super.embedderId,
   });
   @override
-  api.PointerEvent transformed(api5.Matrix4? transform) {
+  api.PointerEvent transformed(api4.Matrix4? transform) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -34680,14 +34676,14 @@ final class _PointerSignalEventProxy extends api.PointerSignalEvent
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(11, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -34698,38 +34694,38 @@ final class _PointerSignalEventProxy extends api.PointerSignalEvent
   }
 
   @override
-  api4.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
-  api4.Offset get _flaxSuperGet_position {
+  api3.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
+  api3.Offset get _flaxSuperGet_position {
     return super.position;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(14, const [], const {});
     if (!_flaxResult.$1) return super.localPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(15, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
   @override
-  api4.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
-  api4.Offset get _flaxSuperGet_localDelta {
+  api3.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
+  api3.Offset get _flaxSuperGet_localDelta {
     return super.localDelta;
   }
 
@@ -34854,14 +34850,14 @@ final class _PointerSignalEventProxy extends api.PointerSignalEvent
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(35, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 
@@ -34929,9 +34925,9 @@ final class _PointerUpEventProxy extends api.PointerUpEvent
     int super.viewId,
     api2.Duration super.timeStamp,
     int super.pointer,
-    api4.PointerDeviceKind super.kind,
+    api3.PointerDeviceKind super.kind,
     int super.device,
-    api4.Offset super.position,
+    api3.Offset super.position,
     int super.buttons,
     bool super.obscured,
     double super.pressure,
@@ -34949,7 +34945,7 @@ final class _PointerUpEventProxy extends api.PointerUpEvent
     int super.embedderId,
   });
   @override
-  api.PointerUpEvent transformed(api5.Matrix4? transform) {
+  api.PointerUpEvent transformed(api4.Matrix4? transform) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -34960,7 +34956,7 @@ final class _PointerUpEventProxy extends api.PointerUpEvent
     return _flaxConvertedResult;
   }
 
-  api.PointerUpEvent _flaxSuper_transformed(api5.Matrix4? transform) {
+  api.PointerUpEvent _flaxSuper_transformed(api4.Matrix4? transform) {
     return super.transformed(transform);
   }
 
@@ -35106,11 +35102,11 @@ final class _PointerUpEventProxy extends api.PointerUpEvent
         (_flaxHas0 ? viewId as int? : null),
         (_flaxHas1 ? timeStamp as api2.Duration? : null),
         (_flaxHas2 ? pointer as int? : null),
-        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas3 ? kind as api3.PointerDeviceKind? : null),
         (_flaxHas4 ? device as int? : null),
-        (_flaxHas5 ? position as api4.Offset? : null),
-        (_flaxHas6 ? localPosition as api4.Offset? : null),
-        (_flaxHas7 ? delta as api4.Offset? : null),
+        (_flaxHas5 ? position as api3.Offset? : null),
+        (_flaxHas6 ? localPosition as api3.Offset? : null),
+        (_flaxHas7 ? delta as api3.Offset? : null),
         (_flaxHas8 ? buttons as int? : null),
         (_flaxHas9 ? obscured as bool? : null),
         (_flaxHas10 ? pressure as double? : null),
@@ -35291,14 +35287,14 @@ final class _PointerUpEventProxy extends api.PointerUpEvent
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(11, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -35309,38 +35305,38 @@ final class _PointerUpEventProxy extends api.PointerUpEvent
   }
 
   @override
-  api4.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
-  api4.Offset get _flaxSuperGet_position {
+  api3.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
+  api3.Offset get _flaxSuperGet_position {
     return super.position;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(14, const [], const {});
     if (!_flaxResult.$1) return super.localPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(15, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
   @override
-  api4.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
-  api4.Offset get _flaxSuperGet_localDelta {
+  api3.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
+  api3.Offset get _flaxSuperGet_localDelta {
     return super.localDelta;
   }
 
@@ -35465,14 +35461,14 @@ final class _PointerUpEventProxy extends api.PointerUpEvent
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(35, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 
@@ -35533,16 +35529,16 @@ final class _PositionedGestureDetailsProxy
   final FlaxProxyPeer _flaxPeer;
   _PositionedGestureDetailsProxy(this._flaxPeer);
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(0, const [], const {});
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(1, const [], const {});
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 }
@@ -35561,7 +35557,7 @@ final class _PrimaryPointerGestureRecognizerProxy
     double? super.preAcceptSlopTolerance,
     double? super.postAcceptSlopTolerance,
     Object? super.debugOwner,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons) super.allowedButtonsFilter,
   });
   @override
@@ -35749,7 +35745,7 @@ final class _PrimaryPointerGestureRecognizerProxy
     final _flaxHas1 = !identical(transform, _flaxOmitted);
     flaxInvokeWithDefaults(
       super.startTrackingPointer,
-      <Object?>[pointer, (_flaxHas1 ? transform as api5.Matrix4? : null)],
+      <Object?>[pointer, (_flaxHas1 ? transform as api4.Matrix4? : null)],
       <int>[1 | (_flaxHas1 ? 2 : 0)],
       const <String>["", ""],
     );
@@ -35845,11 +35841,11 @@ final class _PrimaryPointerGestureRecognizerProxy
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 18, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -36222,9 +36218,9 @@ final class _PrimaryPointerGestureRecognizerProxy
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 40);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -36257,9 +36253,9 @@ final class _PrimaryPointerGestureRecognizerProxy
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 45, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -36527,11 +36523,11 @@ final class _ScaleGestureRecognizerProxy extends api.ScaleGestureRecognizer
   _ScaleGestureRecognizerProxy(
     this._flaxPeer, {
     Object? super.debugOwner,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons) super.allowedButtonsFilter,
     api.DragStartBehavior super.dragStartBehavior,
     bool super.trackpadScrollCausesScale,
-    api4.Offset super.trackpadScrollToScaleFactor,
+    api3.Offset super.trackpadScrollToScaleFactor,
   });
   @override
   void addAllowedPointer(api.PointerDownEvent event) {
@@ -36718,7 +36714,7 @@ final class _ScaleGestureRecognizerProxy extends api.ScaleGestureRecognizer
     final _flaxHas1 = !identical(transform, _flaxOmitted);
     flaxInvokeWithDefaults(
       super.startTrackingPointer,
-      <Object?>[pointer, (_flaxHas1 ? transform as api5.Matrix4? : null)],
+      <Object?>[pointer, (_flaxHas1 ? transform as api4.Matrix4? : null)],
       <int>[1 | (_flaxHas1 ? 2 : 0)],
       const <String>["", ""],
     );
@@ -36814,11 +36810,11 @@ final class _ScaleGestureRecognizerProxy extends api.ScaleGestureRecognizer
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 18, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -37111,14 +37107,14 @@ final class _ScaleGestureRecognizerProxy extends api.ScaleGestureRecognizer
   }
 
   @override
-  api4.Offset get trackpadScrollToScaleFactor {
+  api3.Offset get trackpadScrollToScaleFactor {
     final _flaxResult = _flaxPeer.call(33, const [], const {});
     if (!_flaxResult.$1) return super.trackpadScrollToScaleFactor;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_trackpadScrollToScaleFactor {
+  api3.Offset get _flaxSuperGet_trackpadScrollToScaleFactor {
     return super.trackpadScrollToScaleFactor;
   }
 
@@ -37171,9 +37167,9 @@ final class _ScaleGestureRecognizerProxy extends api.ScaleGestureRecognizer
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 39);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -37254,7 +37250,7 @@ final class _ScaleGestureRecognizerProxy extends api.ScaleGestureRecognizer
   }
 
   @override
-  set trackpadScrollToScaleFactor(api4.Offset value) {
+  set trackpadScrollToScaleFactor(api3.Offset value) {
     final result = _flaxPeer.call(46, [value], const {});
     if (!result.$1) {
       super.trackpadScrollToScaleFactor = value;
@@ -37262,7 +37258,7 @@ final class _ScaleGestureRecognizerProxy extends api.ScaleGestureRecognizer
     }
   }
 
-  void _flaxSuperSet_trackpadScrollToScaleFactor(api4.Offset value) {
+  void _flaxSuperSet_trackpadScrollToScaleFactor(api3.Offset value) {
     super.trackpadScrollToScaleFactor = value;
   }
 
@@ -37281,9 +37277,9 @@ final class _ScaleGestureRecognizerProxy extends api.ScaleGestureRecognizer
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 49, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -37398,11 +37394,11 @@ final class _ScaleStartDetailsProxy extends api.ScaleStartDetails
   bool _flaxCalledSuper = false;
   _ScaleStartDetailsProxy(
     this._flaxPeer, {
-    api4.Offset super.focalPoint,
-    api4.Offset? super.localFocalPoint,
+    api3.Offset super.focalPoint,
+    api3.Offset? super.localFocalPoint,
     int super.pointerCount,
     api2.Duration? super.sourceTimeStamp,
-    api4.PointerDeviceKind? super.kind,
+    api3.PointerDeviceKind? super.kind,
   });
   @override
   String toStringShort() {
@@ -37474,26 +37470,26 @@ final class _ScaleStartDetailsProxy extends api.ScaleStartDetails
   }
 
   @override
-  api4.Offset get focalPoint {
+  api3.Offset get focalPoint {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.focalPoint;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_focalPoint {
+  api3.Offset get _flaxSuperGet_focalPoint {
     return super.focalPoint;
   }
 
   @override
-  api4.Offset get localFocalPoint {
+  api3.Offset get localFocalPoint {
     final _flaxResult = _flaxPeer.call(5, const [], const {});
     if (!_flaxResult.$1) return super.localFocalPoint;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localFocalPoint {
+  api3.Offset get _flaxSuperGet_localFocalPoint {
     return super.localFocalPoint;
   }
 
@@ -37517,14 +37513,14 @@ final class _ScaleStartDetailsProxy extends api.ScaleStartDetails
   }
 
   @override
-  api4.PointerDeviceKind? get kind {
+  api3.PointerDeviceKind? get kind {
     final _flaxResult = _flaxPeer.call(8, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind?;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind?;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind? get _flaxSuperGet_kind {
+  api3.PointerDeviceKind? get _flaxSuperGet_kind {
     return super.kind;
   }
 }
@@ -37538,14 +37534,14 @@ final class _ScaleUpdateDetailsProxy extends api.ScaleUpdateDetails
   bool _flaxCalledSuper = false;
   _ScaleUpdateDetailsProxy(
     this._flaxPeer, {
-    api4.Offset super.focalPoint,
-    api4.Offset? super.localFocalPoint,
+    api3.Offset super.focalPoint,
+    api3.Offset? super.localFocalPoint,
     double super.scale,
     double super.horizontalScale,
     double super.verticalScale,
     double super.rotation,
     int super.pointerCount,
-    api4.Offset super.focalPointDelta,
+    api3.Offset super.focalPointDelta,
     api2.Duration? super.sourceTimeStamp,
   });
   @override
@@ -37618,38 +37614,38 @@ final class _ScaleUpdateDetailsProxy extends api.ScaleUpdateDetails
   }
 
   @override
-  api4.Offset get focalPointDelta {
+  api3.Offset get focalPointDelta {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.focalPointDelta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_focalPointDelta {
+  api3.Offset get _flaxSuperGet_focalPointDelta {
     return super.focalPointDelta;
   }
 
   @override
-  api4.Offset get focalPoint {
+  api3.Offset get focalPoint {
     final _flaxResult = _flaxPeer.call(5, const [], const {});
     if (!_flaxResult.$1) return super.focalPoint;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_focalPoint {
+  api3.Offset get _flaxSuperGet_focalPoint {
     return super.focalPoint;
   }
 
   @override
-  api4.Offset get localFocalPoint {
+  api3.Offset get localFocalPoint {
     final _flaxResult = _flaxPeer.call(6, const [], const {});
     if (!_flaxResult.$1) return super.localFocalPoint;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localFocalPoint {
+  api3.Offset get _flaxSuperGet_localFocalPoint {
     return super.localFocalPoint;
   }
 
@@ -37820,9 +37816,9 @@ final class _SerialTapDownDetailsProxy extends api.SerialTapDownDetails
   bool _flaxCalledSuper = false;
   _SerialTapDownDetailsProxy(
     this._flaxPeer, {
-    api4.Offset super.globalPosition,
-    api4.Offset? super.localPosition,
-    required api4.PointerDeviceKind super.kind,
+    api3.Offset super.globalPosition,
+    api3.Offset? super.localPosition,
+    required api3.PointerDeviceKind super.kind,
     int super.buttons,
     int super.count,
   });
@@ -37896,33 +37892,33 @@ final class _SerialTapDownDetailsProxy extends api.SerialTapDownDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(6, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -37962,7 +37958,7 @@ final class _SerialTapGestureRecognizerProxy
   _SerialTapGestureRecognizerProxy(
     this._flaxPeer, {
     Object? super.debugOwner,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons) super.allowedButtonsFilter,
   });
   @override
@@ -38050,11 +38046,11 @@ final class _SerialTapGestureRecognizerProxy
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 8, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -38409,9 +38405,9 @@ final class _SerialTapGestureRecognizerProxy
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 28);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -38477,9 +38473,9 @@ final class _SerialTapGestureRecognizerProxy
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 34, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -38595,9 +38591,9 @@ final class _SerialTapUpDetailsProxy extends api.SerialTapUpDetails
   bool _flaxCalledSuper = false;
   _SerialTapUpDetailsProxy(
     this._flaxPeer, {
-    api4.Offset super.globalPosition,
-    api4.Offset? super.localPosition,
-    api4.PointerDeviceKind? super.kind,
+    api3.Offset super.globalPosition,
+    api3.Offset? super.localPosition,
+    api3.PointerDeviceKind? super.kind,
     int super.count,
   });
   @override
@@ -38670,33 +38666,33 @@ final class _SerialTapUpDetailsProxy extends api.SerialTapUpDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.PointerDeviceKind? get kind {
+  api3.PointerDeviceKind? get kind {
     final _flaxResult = _flaxPeer.call(6, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind?;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind?;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind? get _flaxSuperGet_kind {
+  api3.PointerDeviceKind? get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -38722,9 +38718,9 @@ final class _TapDownDetailsProxy extends api.TapDownDetails
   bool _flaxCalledSuper = false;
   _TapDownDetailsProxy(
     this._flaxPeer, {
-    api4.Offset super.globalPosition,
-    api4.Offset? super.localPosition,
-    api4.PointerDeviceKind? super.kind,
+    api3.Offset super.globalPosition,
+    api3.Offset? super.localPosition,
+    api3.PointerDeviceKind? super.kind,
   });
   @override
   String toStringShort() {
@@ -38796,33 +38792,33 @@ final class _TapDownDetailsProxy extends api.TapDownDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.PointerDeviceKind? get kind {
+  api3.PointerDeviceKind? get kind {
     final _flaxResult = _flaxPeer.call(6, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind?;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind?;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind? get _flaxSuperGet_kind {
+  api3.PointerDeviceKind? get _flaxSuperGet_kind {
     return super.kind;
   }
 }
@@ -38836,9 +38832,9 @@ final class _TapDragDownDetailsProxy extends api.TapDragDownDetails
   bool _flaxCalledSuper = false;
   _TapDragDownDetailsProxy(
     this._flaxPeer, {
-    required api4.Offset super.globalPosition,
-    required api4.Offset super.localPosition,
-    api4.PointerDeviceKind? super.kind,
+    required api3.Offset super.globalPosition,
+    required api3.Offset super.localPosition,
+    api3.PointerDeviceKind? super.kind,
     required int super.consecutiveTapCount,
   });
   @override
@@ -38911,33 +38907,33 @@ final class _TapDragDownDetailsProxy extends api.TapDragDownDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.PointerDeviceKind? get kind {
+  api3.PointerDeviceKind? get kind {
     final _flaxResult = _flaxPeer.call(6, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind?;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind?;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind? get _flaxSuperGet_kind {
+  api3.PointerDeviceKind? get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -38963,8 +38959,8 @@ final class _TapDragEndDetailsProxy extends api.TapDragEndDetails
   bool _flaxCalledSuper = false;
   _TapDragEndDetailsProxy(
     this._flaxPeer, {
-    api4.Offset super.globalPosition,
-    api4.Offset? super.localPosition,
+    api3.Offset super.globalPosition,
+    api3.Offset? super.localPosition,
     api.Velocity super.velocity,
     double? super.primaryVelocity,
     required int super.consecutiveTapCount,
@@ -39039,21 +39035,21 @@ final class _TapDragEndDetailsProxy extends api.TapDragEndDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
@@ -39103,10 +39099,10 @@ final class _TapDragStartDetailsProxy extends api.TapDragStartDetails
   bool _flaxCalledSuper = false;
   _TapDragStartDetailsProxy(
     this._flaxPeer, {
-    required api4.Offset super.globalPosition,
-    required api4.Offset super.localPosition,
+    required api3.Offset super.globalPosition,
+    required api3.Offset super.localPosition,
     api2.Duration? super.sourceTimeStamp,
-    api4.PointerDeviceKind? super.kind,
+    api3.PointerDeviceKind? super.kind,
     required int super.consecutiveTapCount,
   });
   @override
@@ -39179,21 +39175,21 @@ final class _TapDragStartDetailsProxy extends api.TapDragStartDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
@@ -39210,14 +39206,14 @@ final class _TapDragStartDetailsProxy extends api.TapDragStartDetails
   }
 
   @override
-  api4.PointerDeviceKind? get kind {
+  api3.PointerDeviceKind? get kind {
     final _flaxResult = _flaxPeer.call(7, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind?;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind?;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind? get _flaxSuperGet_kind {
+  api3.PointerDeviceKind? get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -39243,9 +39239,9 @@ final class _TapDragUpDetailsProxy extends api.TapDragUpDetails
   bool _flaxCalledSuper = false;
   _TapDragUpDetailsProxy(
     this._flaxPeer, {
-    required api4.Offset super.globalPosition,
-    required api4.Offset super.localPosition,
-    required api4.PointerDeviceKind super.kind,
+    required api3.Offset super.globalPosition,
+    required api3.Offset super.localPosition,
+    required api3.PointerDeviceKind super.kind,
     required int super.consecutiveTapCount,
   });
   @override
@@ -39318,33 +39314,33 @@ final class _TapDragUpDetailsProxy extends api.TapDragUpDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(6, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -39370,14 +39366,14 @@ final class _TapDragUpdateDetailsProxy extends api.TapDragUpdateDetails
   bool _flaxCalledSuper = false;
   _TapDragUpdateDetailsProxy(
     this._flaxPeer, {
-    required api4.Offset super.globalPosition,
-    required api4.Offset super.localPosition,
+    required api3.Offset super.globalPosition,
+    required api3.Offset super.localPosition,
     api2.Duration? super.sourceTimeStamp,
-    api4.Offset super.delta,
+    api3.Offset super.delta,
     double? super.primaryDelta,
-    api4.PointerDeviceKind? super.kind,
-    required api4.Offset super.offsetFromOrigin,
-    required api4.Offset super.localOffsetFromOrigin,
+    api3.PointerDeviceKind? super.kind,
+    required api3.Offset super.offsetFromOrigin,
+    required api3.Offset super.localOffsetFromOrigin,
     required int super.consecutiveTapCount,
   });
   @override
@@ -39450,21 +39446,21 @@ final class _TapDragUpdateDetailsProxy extends api.TapDragUpdateDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
@@ -39481,14 +39477,14 @@ final class _TapDragUpdateDetailsProxy extends api.TapDragUpdateDetails
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(7, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
@@ -39505,38 +39501,38 @@ final class _TapDragUpdateDetailsProxy extends api.TapDragUpdateDetails
   }
 
   @override
-  api4.PointerDeviceKind? get kind {
+  api3.PointerDeviceKind? get kind {
     final _flaxResult = _flaxPeer.call(9, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind?;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind?;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind? get _flaxSuperGet_kind {
+  api3.PointerDeviceKind? get _flaxSuperGet_kind {
     return super.kind;
   }
 
   @override
-  api4.Offset get offsetFromOrigin {
+  api3.Offset get offsetFromOrigin {
     final _flaxResult = _flaxPeer.call(10, const [], const {});
     if (!_flaxResult.$1) return super.offsetFromOrigin;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_offsetFromOrigin {
+  api3.Offset get _flaxSuperGet_offsetFromOrigin {
     return super.offsetFromOrigin;
   }
 
   @override
-  api4.Offset get localOffsetFromOrigin {
+  api3.Offset get localOffsetFromOrigin {
     final _flaxResult = _flaxPeer.call(11, const [], const {});
     if (!_flaxResult.$1) return super.localOffsetFromOrigin;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localOffsetFromOrigin {
+  api3.Offset get _flaxSuperGet_localOffsetFromOrigin {
     return super.localOffsetFromOrigin;
   }
 
@@ -39563,7 +39559,7 @@ final class _TapGestureRecognizerProxy extends api.TapGestureRecognizer
   _TapGestureRecognizerProxy(
     this._flaxPeer, {
     Object? super.debugOwner,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons) super.allowedButtonsFilter,
     double? super.preAcceptSlopTolerance,
     double? super.postAcceptSlopTolerance,
@@ -39690,7 +39686,7 @@ final class _TapGestureRecognizerProxy extends api.TapGestureRecognizer
     final _flaxHas1 = !identical(transform, _flaxOmitted);
     flaxInvokeWithDefaults(
       super.startTrackingPointer,
-      <Object?>[pointer, (_flaxHas1 ? transform as api5.Matrix4? : null)],
+      <Object?>[pointer, (_flaxHas1 ? transform as api4.Matrix4? : null)],
       <int>[1 | (_flaxHas1 ? 2 : 0)],
       const <String>["", ""],
     );
@@ -40005,11 +40001,11 @@ final class _TapGestureRecognizerProxy extends api.TapGestureRecognizer
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 26, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -40488,9 +40484,9 @@ final class _TapGestureRecognizerProxy extends api.TapGestureRecognizer
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 57);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -40684,9 +40680,9 @@ final class _TapGestureRecognizerProxy extends api.TapGestureRecognizer
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 73, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -40797,45 +40793,45 @@ final class _TapMoveDetailsProxy extends api.TapMoveDetails
   final FlaxProxyPeer _flaxPeer;
   _TapMoveDetailsProxy(
     this._flaxPeer, {
-    required api4.PointerDeviceKind super.kind,
-    api4.Offset super.globalPosition,
-    api4.Offset super.delta,
-    api4.Offset? super.localPosition,
+    required api3.PointerDeviceKind super.kind,
+    api3.Offset super.globalPosition,
+    api3.Offset super.delta,
+    api3.Offset? super.localPosition,
   });
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(0, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 1);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.PointerDeviceKind get kind => _FlaxProxyDispatch29_get_kind(this, 2);
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get kind => _FlaxProxyDispatch29_get_kind(this, 2);
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(3, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 }
@@ -40849,9 +40845,9 @@ final class _TapUpDetailsProxy extends api.TapUpDetails
   bool _flaxCalledSuper = false;
   _TapUpDetailsProxy(
     this._flaxPeer, {
-    api4.Offset super.globalPosition,
-    api4.Offset? super.localPosition,
-    required api4.PointerDeviceKind super.kind,
+    api3.Offset super.globalPosition,
+    api3.Offset? super.localPosition,
+    required api3.PointerDeviceKind super.kind,
   });
   @override
   String toStringShort() {
@@ -40923,33 +40919,33 @@ final class _TapUpDetailsProxy extends api.TapUpDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(6, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 }
@@ -40957,7 +40953,7 @@ final class _TapUpDetailsProxy extends api.TapUpDetails
 final class _VelocityProxy extends api.Velocity
     implements _FlaxProxyDispatch13, _FlaxProxyDispatch42 {
   final FlaxProxyPeer _flaxPeer;
-  _VelocityProxy(this._flaxPeer, {required api4.Offset super.pixelsPerSecond});
+  _VelocityProxy(this._flaxPeer, {required api3.Offset super.pixelsPerSecond});
   @override
   api.Velocity clampMagnitude(double minValue, double maxValue) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
@@ -41031,9 +41027,9 @@ final class _VelocityProxy extends api.Velocity
   }
 
   @override
-  api4.Offset get pixelsPerSecond =>
+  api3.Offset get pixelsPerSecond =>
       _FlaxProxyDispatch42_get_pixelsPerSecond(this, 5);
-  api4.Offset get _flaxSuperGet_pixelsPerSecond {
+  api3.Offset get _flaxSuperGet_pixelsPerSecond {
     return super.pixelsPerSecond;
   }
 }
@@ -41046,10 +41042,10 @@ final class _VelocityEstimateProxy extends api.VelocityEstimate
   final FlaxProxyPeer _flaxPeer;
   _VelocityEstimateProxy(
     this._flaxPeer, {
-    required api4.Offset super.pixelsPerSecond,
+    required api3.Offset super.pixelsPerSecond,
     required double super.confidence,
     required api2.Duration super.duration,
-    required api4.Offset super.offset,
+    required api3.Offset super.offset,
   });
   @override
   String toString() {
@@ -41061,9 +41057,9 @@ final class _VelocityEstimateProxy extends api.VelocityEstimate
   }
 
   @override
-  api4.Offset get pixelsPerSecond =>
+  api3.Offset get pixelsPerSecond =>
       _FlaxProxyDispatch42_get_pixelsPerSecond(this, 1);
-  api4.Offset get _flaxSuperGet_pixelsPerSecond {
+  api3.Offset get _flaxSuperGet_pixelsPerSecond {
     return super.pixelsPerSecond;
   }
 
@@ -41086,14 +41082,14 @@ final class _VelocityEstimateProxy extends api.VelocityEstimate
   }
 
   @override
-  api4.Offset get offset {
+  api3.Offset get offset {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.offset;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_offset {
+  api3.Offset get _flaxSuperGet_offset {
     return super.offset;
   }
 }
@@ -41103,14 +41099,14 @@ final class _VelocityTrackerProxy extends api.VelocityTracker
   final FlaxProxyPeer _flaxPeer;
   _VelocityTrackerProxy.withKind(
     this._flaxPeer,
-    api4.PointerDeviceKind super.kind,
+    api3.PointerDeviceKind super.kind,
   ) : super.withKind();
   @override
-  void addPosition(api2.Duration time, api4.Offset position) {
+  void addPosition(api2.Duration time, api3.Offset position) {
     return _FlaxProxyDispatch27_call_addPosition(this, 0, time, position);
   }
 
-  void _flaxSuper_addPosition(api2.Duration time, api4.Offset position) {
+  void _flaxSuper_addPosition(api2.Duration time, api3.Offset position) {
     super.addPosition(time, position);
     return;
   }
@@ -41139,8 +41135,8 @@ final class _VelocityTrackerProxy extends api.VelocityTracker
   }
 
   @override
-  api4.PointerDeviceKind get kind => _FlaxProxyDispatch29_get_kind(this, 3);
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get kind => _FlaxProxyDispatch29_get_kind(this, 3);
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 }
@@ -41156,7 +41152,7 @@ final class _VerticalMultiDragGestureRecognizerProxy
   _VerticalMultiDragGestureRecognizerProxy(
     this._flaxPeer, {
     Object? super.debugOwner,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons)? super.allowedButtonsFilter,
   });
   @override
@@ -41308,11 +41304,11 @@ final class _VerticalMultiDragGestureRecognizerProxy
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 12, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -41558,15 +41554,15 @@ final class _VerticalMultiDragGestureRecognizerProxy
   }
 
   @override
-  api.Drag? Function(api4.Offset position)? get onStart {
+  api.Drag? Function(api3.Offset position)? get onStart {
     final _flaxResult = _flaxPeer.call(23, const [], const {});
     if (!_flaxResult.$1) return super.onStart;
     final _flaxConvertedResult =
-        _flaxResult.$2 as api.Drag? Function(api4.Offset position)?;
+        _flaxResult.$2 as api.Drag? Function(api3.Offset position)?;
     return _flaxConvertedResult;
   }
 
-  api.Drag? Function(api4.Offset position)? get _flaxSuperGet_onStart {
+  api.Drag? Function(api3.Offset position)? get _flaxSuperGet_onStart {
     return super.onStart;
   }
 
@@ -41584,9 +41580,9 @@ final class _VerticalMultiDragGestureRecognizerProxy
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 26);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -41598,7 +41594,7 @@ final class _VerticalMultiDragGestureRecognizerProxy
   }
 
   @override
-  set onStart(api.Drag? Function(api4.Offset position)? value) {
+  set onStart(api.Drag? Function(api3.Offset position)? value) {
     final result = _flaxPeer.call(28, [value], const {});
     if (!result.$1) {
       super.onStart = value;
@@ -41606,7 +41602,7 @@ final class _VerticalMultiDragGestureRecognizerProxy
     }
   }
 
-  void _flaxSuperSet_onStart(api.Drag? Function(api4.Offset position)? value) {
+  void _flaxSuperSet_onStart(api.Drag? Function(api3.Offset position)? value) {
     super.onStart = value;
   }
 
@@ -41618,9 +41614,9 @@ final class _VerticalMultiDragGestureRecognizerProxy
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 30, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -42547,11 +42543,7 @@ Function _flaxClass_HitTestEntry<
           flaxStringType,
           _HitTestEntry_toString,
         ),
-        "@super:toString": FlaxInstanceMethod.plain(
-          _flaxBinding494,
-          flaxStringType,
-          _FlaxProxyDispatch13_super_call_toString,
-        ),
+        "@super:toString": _flaxBinding1929,
         "@super:get:target": FlaxInstanceMethod.plain(
           _flaxBinding494,
           types.ref<_Owner0>(),
@@ -42608,7 +42600,7 @@ Function _flaxClass_HitTestEntry<
             [],
             _flaxBinding101,
             id:
-                types.key<api5.Matrix4? Function()>() +
+                types.key<api4.Matrix4? Function()>() +
                 ":callback:<>()->object?:flax.core/sdk_rendering#type:Matrix4",
           ),
           hasSuper: true,
@@ -44343,20 +44335,6 @@ Object? _callback0Invoke(
   );
 }
 
-Object _callback1(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback1Matches(Object value) => value is Object? Function();
-Object? _callback1Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
 FlaxCallbackBinding _callback2Types<_Callback0 extends Object?>(
   FlaxDartTypes types,
 ) {
@@ -44513,20 +44491,6 @@ Object? _callback2Invoke(
     positional[1] as Object? Function(),
     debugReport: named["debugReport"] as String Function()?,
   );
-}
-
-Object _callback3(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback3Matches(Object value) => value is Object? Function();
-Object? _callback3Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
 }
 
 FlaxCallbackBinding _callback4Types<_Callback0 extends Object?>(
@@ -44687,34 +44651,6 @@ Object? _callback4Invoke(
   );
 }
 
-Object _callback5(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback5Matches(Object value) => value is Object? Function();
-Object? _callback5Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
-Object _callback6(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback6Matches(Object value) => value is Object? Function();
-Object? _callback6Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
 FlaxCallbackBinding _callback7Types<_Callback0 extends Object?>(
   FlaxDartTypes types,
 ) {
@@ -44871,20 +44807,6 @@ Object? _callback7Invoke(
     positional[1] as Object? Function(),
     debugReport: named["debugReport"] as String Function()?,
   );
-}
-
-Object _callback8(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback8Matches(Object value) => value is Object? Function();
-Object? _callback8Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
 }
 
 FlaxCallbackBinding _callback9Types<_Callback0 extends Object?>(
@@ -45045,20 +44967,6 @@ Object? _callback9Invoke(
   );
 }
 
-Object _callback10(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback10Matches(Object value) => value is Object? Function();
-Object? _callback10Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
 FlaxCallbackBinding _callback11Types<_Callback0 extends Object?>(
   FlaxDartTypes types,
 ) {
@@ -45215,20 +45123,6 @@ Object? _callback11Invoke(
     positional[1] as Object? Function(),
     debugReport: named["debugReport"] as String Function()?,
   );
-}
-
-Object _callback12(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback12Matches(Object value) => value is Object? Function();
-Object? _callback12Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
 }
 
 FlaxCallbackBinding _callback13Types<_Callback0 extends Object?>(
@@ -45389,20 +45283,6 @@ Object? _callback13Invoke(
   );
 }
 
-Object _callback14(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback14Matches(Object value) => value is Object? Function();
-Object? _callback14Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
 FlaxCallbackBinding _callback15Types<_Callback0 extends Object?>(
   FlaxDartTypes types,
 ) {
@@ -45559,34 +45439,6 @@ Object? _callback15Invoke(
     positional[1] as Object? Function(),
     debugReport: named["debugReport"] as String Function()?,
   );
-}
-
-Object _callback16(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback16Matches(Object value) => value is Object? Function();
-Object? _callback16Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
-Object _callback17(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback17Matches(Object value) => value is Object? Function();
-Object? _callback17Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
 }
 
 FlaxCallbackBinding _callback18Types<_Callback0 extends Object?>(
@@ -45747,20 +45599,6 @@ Object? _callback18Invoke(
   );
 }
 
-Object _callback19(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback19Matches(Object value) => value is Object? Function();
-Object? _callback19Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
 FlaxCallbackBinding _callback20Types<_Callback0 extends Object?>(
   FlaxDartTypes types,
 ) {
@@ -45917,173 +45755,6 @@ Object? _callback20Invoke(
     positional[1] as Object? Function(),
     debugReport: named["debugReport"] as String Function()?,
   );
-}
-
-Object _callback21(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
-      .then<void>((value) => null);
-};
-bool _callback21Matches(Object value) => value is Future<void> Function();
-Object? _callback21Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Future<void> Function())();
-}
-
-Object _callback22(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
-      .then<bool>((value) => value as bool);
-};
-bool _callback22Matches(Object value) => value is Future<bool> Function();
-Object? _callback22Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Future<bool> Function())();
-}
-
-Object _callback23(FlaxCallback _flaxBridgeCallback) => (bool p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
-      .then<void>((value) => null);
-};
-bool _callback23Matches(Object value) =>
-    value is Future<void> Function(bool value);
-Object? _callback23Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Future<void> Function(bool value))(positional[0] as bool);
-}
-
-Object _callback24(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
-      .then<double>((value) => value as double);
-};
-bool _callback24Matches(Object value) => value is Future<double> Function();
-Object? _callback24Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Future<double> Function())();
-}
-
-Object _callback25(FlaxCallback _flaxBridgeCallback) => (double p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
-      .then<void>((value) => null);
-};
-bool _callback25Matches(Object value) =>
-    value is Future<void> Function(double value);
-Object? _callback25Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Future<void> Function(double value))(
-    positional[0] as double,
-  );
-}
-
-Object _callback26(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
-      .then<String>((value) => value as String);
-};
-bool _callback26Matches(Object value) => value is Future<String> Function();
-Object? _callback26Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Future<String> Function())();
-}
-
-Object _callback27(FlaxCallback _flaxBridgeCallback) => (String p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
-      .then<void>((value) => null);
-};
-bool _callback27Matches(Object value) =>
-    value is Future<void> Function(String value);
-Object? _callback27Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Future<void> Function(String value))(
-    positional[0] as String,
-  );
-}
-
-Object _callback28(FlaxCallback _flaxBridgeCallback) =>
-    (Map<String, String> p0) {
-      final positional = <Object?>[];
-      final named = <String, Object?>{};
-      positional.add(p0);
-      return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
-          .then<Map<String, Object?>>((value) => value as Map<String, Object?>);
-    };
-bool _callback28Matches(Object value) =>
-    value
-        is Future<Map<String, Object?>> Function(
-          Map<String, String> parameters,
-        );
-Object? _callback28Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function
-      as Future<Map<String, Object?>> Function(Map<String, String> parameters))(
-    positional[0] as Map<String, String>,
-  );
-}
-
-Object _callback29(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback29Matches(Object value) => value is Object? Function();
-Object? _callback29Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
-Object _callback30(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback30Matches(Object value) => value is Object? Function();
-Object? _callback30Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
 }
 
 FlaxCallbackBinding _callback31Types<_Callback0 extends Object?>(
@@ -46244,20 +45915,6 @@ Object? _callback31Invoke(
   );
 }
 
-Object _callback32(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback32Matches(Object value) => value is Object? Function();
-Object? _callback32Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
 FlaxCallbackBinding _callback33Types<_Callback0 extends Object?>(
   FlaxDartTypes types,
 ) {
@@ -46414,20 +46071,6 @@ Object? _callback33Invoke(
     positional[1] as Object? Function(),
     debugReport: named["debugReport"] as String Function()?,
   );
-}
-
-Object _callback34(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback34Matches(Object value) => value is Object? Function();
-Object? _callback34Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
 }
 
 FlaxCallbackBinding _callback35Types<_Callback0 extends Object?>(
@@ -46588,20 +46231,6 @@ Object? _callback35Invoke(
   );
 }
 
-Object _callback36(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback36Matches(Object value) => value is Object? Function();
-Object? _callback36Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
 FlaxCallbackBinding _callback37Types<_Callback0 extends Object?>(
   FlaxDartTypes types,
 ) {
@@ -46758,34 +46387,6 @@ Object? _callback37Invoke(
     positional[1] as Object? Function(),
     debugReport: named["debugReport"] as String Function()?,
   );
-}
-
-Object _callback38(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback38Matches(Object value) => value is Object? Function();
-Object? _callback38Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
-Object _callback39(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback39Matches(Object value) => value is Object? Function();
-Object? _callback39Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
 }
 
 FlaxCallbackBinding _callback40Types<_Callback0 extends Object?>(
@@ -46946,20 +46547,6 @@ Object? _callback40Invoke(
   );
 }
 
-Object _callback41(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback41Matches(Object value) => value is Object? Function();
-Object? _callback41Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
 FlaxCallbackBinding _callback42Types<_Callback0 extends Object?>(
   FlaxDartTypes types,
 ) {
@@ -47116,62 +46703,6 @@ Object? _callback42Invoke(
     positional[1] as Object? Function(),
     debugReport: named["debugReport"] as String Function()?,
   );
-}
-
-Object _callback43(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback43Matches(Object value) => value is Object? Function();
-Object? _callback43Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
-Object _callback44(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback44Matches(Object value) => value is Object? Function();
-Object? _callback44Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
-Object _callback45(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback45Matches(Object value) => value is Object? Function();
-Object? _callback45Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
-Object _callback46(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback46Matches(Object value) => value is Object? Function();
-Object? _callback46Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
 }
 
 FlaxCallbackBinding _callback47Types<_Callback0 extends Object?>(
@@ -47332,34 +46863,6 @@ Object? _callback47Invoke(
   );
 }
 
-Object _callback48(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback48Matches(Object value) => value is Object? Function();
-Object? _callback48Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
-Object _callback49(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named);
-};
-bool _callback49Matches(Object value) => value is Object? Function();
-Object? _callback49Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Object? Function())();
-}
-
 FlaxCallbackBinding _callback50Types<_Callback0 extends Object?>(
   FlaxDartTypes types,
 ) {
@@ -47518,57 +47021,11 @@ Object? _callback50Invoke(
   );
 }
 
-Object _collection0Create() => <api1.DiagnosticsNode>[];
-bool _collection0Matches(Object value) => value is List<api1.DiagnosticsNode>;
-Object _collection1Create() => <api1.DiagnosticsNode>[];
-Object _collection1Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api1.DiagnosticsNode>();
-bool _collection1Matches(Object value) =>
-    value is Iterable<api1.DiagnosticsNode>;
-Object _collection2Create() => <api4.PointerDeviceKind>{};
-bool _collection2Matches(Object value) => value is Set<api4.PointerDeviceKind>;
-Object _collection3Create() => <api4.PointerDeviceKind>[];
-Object _collection3Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api4.PointerDeviceKind>();
-bool _collection3Matches(Object value) =>
-    value is Iterable<api4.PointerDeviceKind>;
-Object _collection4Create() => <String>[];
-Object _collection4Restore(Object value) =>
-    (value as Iterable<Object?>).cast<String>();
-bool _collection4Matches(Object value) => value is Iterable<String>;
-Object _collection5Create() => <api.HitTestEntry<api.HitTestTarget>>[];
-Object _collection5Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api.HitTestEntry<api.HitTestTarget>>();
-bool _collection5Matches(Object value) =>
-    value is Iterable<api.HitTestEntry<api.HitTestTarget>>;
-Object _collection6Create() => <double>[];
-bool _collection6Matches(Object value) => value is List<double>;
-Object _collection7Create() => <double>[];
-Object _collection7Restore(Object value) =>
-    (value as Iterable<Object?>).cast<double>();
-bool _collection7Matches(Object value) => value is Iterable<double>;
-Object _collection8Create() => <String, Object?>{};
-bool _collection8Matches(Object value) => value is Map<String, Object?>;
-Object _collection9Create() => <String, String>{};
-bool _collection9Matches(Object value) => value is Map<String, String>;
-Object _collection10Create() => <api4.PointerData>[];
-Object _collection10Restore(Object value) =>
-    (value as Iterable<Object?>).cast<api4.PointerData>();
-bool _collection10Matches(Object value) => value is Iterable<api4.PointerData>;
 Object _collection11Create() => <api.PointerEvent>[];
 Object _collection11Restore(Object value) =>
     (value as Iterable<Object?>).cast<api.PointerEvent>();
 bool _collection11Matches(Object value) => value is Iterable<api.PointerEvent>;
-Future<Object?> _future0Adapt(Future<Object?> value) =>
-    value.then<void>((_) {});
-Future<Object?> _future1Adapt(Future<Object?> value) =>
-    value.then<bool>((value) => value as bool);
-Future<Object?> _future2Adapt(Future<Object?> value) =>
-    value.then<double>((value) => value as double);
-Future<Object?> _future3Adapt(Future<Object?> value) =>
-    value.then<String>((value) => value as String);
-Future<Object?> _future4Adapt(Future<Object?> value) =>
-    value.then<Map<String, Object?>>((value) => value as Map<String, Object?>);
+
 T _genericCallbackResult<T>(Object? value) {
   // Test assignability to cover both nullable and non-nullable numeric T.
   // Broad bounds keep their decoded representation; only the Dart use site
@@ -47587,6 +47044,2138 @@ T _genericCallbackResult<T>(Object? value) {
   return value as T;
 }
 
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapAndDragGestureRecognizer_7c_get_3a_team =
+    _OneSequenceGestureRecognizer_team;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapAndDragGestureRecognizer_7c_get_3a_debugOwner =
+    _GestureRecognizer_debugOwner;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapAndDragGestureRecognizer_7c_get_3a_gestureSettings =
+    _GestureRecognizer_gestureSettings;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapAndDragGestureRecognizer_7c_get_3a_supportedDevices =
+    _GestureRecognizer_supportedDevices;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapAndDragGestureRecognizer_7c_get_3a_allowedButtonsFilter =
+    _GestureRecognizer_allowedButtonsFilter;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapAndDragGestureRecognizer_7c_get_3a_debugDescription =
+    _GestureRecognizer_debugDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapAndDragGestureRecognizer_7c_get_3a_dragStartBehavior =
+    _BaseTapAndDragGestureRecognizer_dragStartBehavior;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapAndDragGestureRecognizer_7c_get_3a_dragUpdateThrottleFrequency =
+    _BaseTapAndDragGestureRecognizer_dragUpdateThrottleFrequency;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapAndDragGestureRecognizer_7c_get_3a_maxConsecutiveTap =
+    _BaseTapAndDragGestureRecognizer_maxConsecutiveTap;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapAndDragGestureRecognizer_7c_get_3a_eagerVictoryOnDrag =
+    _BaseTapAndDragGestureRecognizer_eagerVictoryOnDrag;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapAndDragGestureRecognizer_7c_get_3a_onTapDown =
+    _BaseTapAndDragGestureRecognizer_onTapDown;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapAndDragGestureRecognizer_7c_get_3a_onTapUp =
+    _BaseTapAndDragGestureRecognizer_onTapUp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapAndDragGestureRecognizer_7c_get_3a_onDragStart =
+    _BaseTapAndDragGestureRecognizer_onDragStart;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapAndDragGestureRecognizer_7c_get_3a_onDragUpdate =
+    _BaseTapAndDragGestureRecognizer_onDragUpdate;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapAndDragGestureRecognizer_7c_get_3a_onDragEnd =
+    _BaseTapAndDragGestureRecognizer_onDragEnd;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapAndDragGestureRecognizer_7c_get_3a_onCancel =
+    _BaseTapAndDragGestureRecognizer_onCancel;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapAndDragGestureRecognizer_7c_get_3a_currentDown =
+    _BaseTapAndDragGestureRecognizer_currentDown;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapAndDragGestureRecognizer_7c_get_3a_currentUp =
+    _BaseTapAndDragGestureRecognizer_currentUp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapAndDragGestureRecognizer_7c_get_3a_consecutiveTapCount =
+    _BaseTapAndDragGestureRecognizer_consecutiveTapCount;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapAndDragGestureRecognizer_7c_get_3a_onTapTrackStart =
+    _BaseTapAndDragGestureRecognizer_onTapTrackStart;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapAndDragGestureRecognizer_7c_get_3a_onTapTrackReset =
+    _BaseTapAndDragGestureRecognizer_onTapTrackReset;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapAndDragGestureRecognizer_7c_call_3a_toStringShort =
+    _GestureRecognizer_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapAndDragGestureRecognizer_7c_call_3a_debugDescribeChildren =
+    _GestureRecognizer_debugDescribeChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapGestureRecognizer_7c_get_3a_deadline =
+    _PrimaryPointerGestureRecognizer_deadline;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapGestureRecognizer_7c_get_3a_preAcceptSlopTolerance =
+    _PrimaryPointerGestureRecognizer_preAcceptSlopTolerance;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapGestureRecognizer_7c_get_3a_postAcceptSlopTolerance =
+    _PrimaryPointerGestureRecognizer_postAcceptSlopTolerance;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapGestureRecognizer_7c_get_3a_state =
+    _PrimaryPointerGestureRecognizer_state;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapGestureRecognizer_7c_get_3a_primaryPointer =
+    _PrimaryPointerGestureRecognizer_primaryPointer;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapGestureRecognizer_7c_get_3a_initialPosition =
+    _PrimaryPointerGestureRecognizer_initialPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapGestureRecognizer_7c_get_3a_team =
+    _OneSequenceGestureRecognizer_team;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapGestureRecognizer_7c_get_3a_debugOwner =
+    _GestureRecognizer_debugOwner;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapGestureRecognizer_7c_get_3a_gestureSettings =
+    _GestureRecognizer_gestureSettings;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapGestureRecognizer_7c_get_3a_supportedDevices =
+    _GestureRecognizer_supportedDevices;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapGestureRecognizer_7c_get_3a_allowedButtonsFilter =
+    _GestureRecognizer_allowedButtonsFilter;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapGestureRecognizer_7c_get_3a_debugDescription =
+    _GestureRecognizer_debugDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapGestureRecognizer_7c_call_3a_toStringShort =
+    _GestureRecognizer_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_BaseTapGestureRecognizer_7c_call_3a_debugDescribeChildren =
+    _GestureRecognizer_debugDescribeChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DelayedMultiDragGestureRecognizer_7c_get_3a_onStart =
+    _MultiDragGestureRecognizer_onStart;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DelayedMultiDragGestureRecognizer_7c_get_3a_debugOwner =
+    _GestureRecognizer_debugOwner;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DelayedMultiDragGestureRecognizer_7c_get_3a_gestureSettings =
+    _GestureRecognizer_gestureSettings;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DelayedMultiDragGestureRecognizer_7c_get_3a_supportedDevices =
+    _GestureRecognizer_supportedDevices;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DelayedMultiDragGestureRecognizer_7c_get_3a_allowedButtonsFilter =
+    _GestureRecognizer_allowedButtonsFilter;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DelayedMultiDragGestureRecognizer_7c_get_3a_debugDescription =
+    _GestureRecognizer_debugDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DelayedMultiDragGestureRecognizer_7c_get_3a_delay =
+    _DelayedMultiDragGestureRecognizer_delay;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DelayedMultiDragGestureRecognizer_7c_call_3a_toStringShort =
+    _GestureRecognizer_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DelayedMultiDragGestureRecognizer_7c_call_3a_debugDescribeChildren =
+    _GestureRecognizer_debugDescribeChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DeviceGestureSettings_7c_get_3a_touchSlop =
+    _DeviceGestureSettings_touchSlop;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DeviceGestureSettings_7c_get_3a_panSlop =
+    _DeviceGestureSettings_panSlop;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DeviceGestureSettings_7c_call_3a_toString =
+    _DeviceGestureSettings_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DoubleTapGestureRecognizer_7c_get_3a_debugOwner =
+    _GestureRecognizer_debugOwner;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DoubleTapGestureRecognizer_7c_get_3a_gestureSettings =
+    _GestureRecognizer_gestureSettings;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DoubleTapGestureRecognizer_7c_get_3a_supportedDevices =
+    _GestureRecognizer_supportedDevices;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DoubleTapGestureRecognizer_7c_get_3a_allowedButtonsFilter =
+    _GestureRecognizer_allowedButtonsFilter;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DoubleTapGestureRecognizer_7c_get_3a_debugDescription =
+    _GestureRecognizer_debugDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DoubleTapGestureRecognizer_7c_get_3a_onDoubleTapDown =
+    _DoubleTapGestureRecognizer_onDoubleTapDown;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DoubleTapGestureRecognizer_7c_get_3a_onDoubleTap =
+    _DoubleTapGestureRecognizer_onDoubleTap;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DoubleTapGestureRecognizer_7c_get_3a_onDoubleTapCancel =
+    _DoubleTapGestureRecognizer_onDoubleTapCancel;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DoubleTapGestureRecognizer_7c_call_3a_toStringShort =
+    _GestureRecognizer_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DoubleTapGestureRecognizer_7c_call_3a_debugDescribeChildren =
+    _GestureRecognizer_debugDescribeChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragDownDetails_7c_get_3a_globalPosition =
+    _PositionedGestureDetails_globalPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragDownDetails_7c_get_3a_localPosition =
+    _PositionedGestureDetails_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragDownDetails_7c_call_3a_toStringShort =
+    _DragDownDetails_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragEndDetails_7c_get_3a_globalPosition =
+    _PositionedGestureDetails_globalPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragEndDetails_7c_get_3a_localPosition =
+    _PositionedGestureDetails_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragEndDetails_7c_get_3a_velocity =
+    _DragEndDetails_velocity;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragEndDetails_7c_get_3a_primaryVelocity =
+    _DragEndDetails_primaryVelocity;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragEndDetails_7c_call_3a_toStringShort =
+    _DragEndDetails_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragGestureRecognizer_7c_get_3a_team =
+    _OneSequenceGestureRecognizer_team;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragGestureRecognizer_7c_get_3a_debugOwner =
+    _GestureRecognizer_debugOwner;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragGestureRecognizer_7c_get_3a_gestureSettings =
+    _GestureRecognizer_gestureSettings;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragGestureRecognizer_7c_get_3a_supportedDevices =
+    _GestureRecognizer_supportedDevices;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragGestureRecognizer_7c_get_3a_allowedButtonsFilter =
+    _GestureRecognizer_allowedButtonsFilter;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragGestureRecognizer_7c_get_3a_debugDescription =
+    _GestureRecognizer_debugDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragGestureRecognizer_7c_get_3a_dragStartBehavior =
+    _DragGestureRecognizer_dragStartBehavior;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragGestureRecognizer_7c_get_3a_multitouchDragStrategy =
+    _DragGestureRecognizer_multitouchDragStrategy;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragGestureRecognizer_7c_get_3a_onDown =
+    _DragGestureRecognizer_onDown;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragGestureRecognizer_7c_get_3a_onStart =
+    _DragGestureRecognizer_onStart;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragGestureRecognizer_7c_get_3a_onUpdate =
+    _DragGestureRecognizer_onUpdate;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragGestureRecognizer_7c_get_3a_onEnd =
+    _DragGestureRecognizer_onEnd;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragGestureRecognizer_7c_get_3a_onCancel =
+    _DragGestureRecognizer_onCancel;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragGestureRecognizer_7c_get_3a_minFlingDistance =
+    _DragGestureRecognizer_minFlingDistance;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragGestureRecognizer_7c_get_3a_minFlingVelocity =
+    _DragGestureRecognizer_minFlingVelocity;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragGestureRecognizer_7c_get_3a_maxFlingVelocity =
+    _DragGestureRecognizer_maxFlingVelocity;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragGestureRecognizer_7c_get_3a_onlyAcceptDragOnThreshold =
+    _DragGestureRecognizer_onlyAcceptDragOnThreshold;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragGestureRecognizer_7c_get_3a_velocityTrackerBuilder =
+    _DragGestureRecognizer_velocityTrackerBuilder;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragGestureRecognizer_7c_get_3a_lastPosition =
+    _DragGestureRecognizer_lastPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragGestureRecognizer_7c_get_3a_globalDistanceMoved =
+    _DragGestureRecognizer_globalDistanceMoved;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragGestureRecognizer_7c_call_3a_toStringShort =
+    _GestureRecognizer_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragGestureRecognizer_7c_call_3a_debugDescribeChildren =
+    _GestureRecognizer_debugDescribeChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragStartDetails_7c_get_3a_globalPosition =
+    _PositionedGestureDetails_globalPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragStartDetails_7c_get_3a_localPosition =
+    _PositionedGestureDetails_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragStartDetails_7c_get_3a_sourceTimeStamp =
+    _DragStartDetails_sourceTimeStamp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragStartDetails_7c_get_3a_kind =
+    _DragStartDetails_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragStartDetails_7c_call_3a_toStringShort =
+    _DragStartDetails_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragUpdateDetails_7c_get_3a_globalPosition =
+    _PositionedGestureDetails_globalPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragUpdateDetails_7c_get_3a_localPosition =
+    _PositionedGestureDetails_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragUpdateDetails_7c_get_3a_sourceTimeStamp =
+    _DragUpdateDetails_sourceTimeStamp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragUpdateDetails_7c_get_3a_delta =
+    _DragUpdateDetails_delta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragUpdateDetails_7c_get_3a_primaryDelta =
+    _DragUpdateDetails_primaryDelta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragUpdateDetails_7c_get_3a_kind =
+    _DragUpdateDetails_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_DragUpdateDetails_7c_call_3a_toStringShort =
+    _DragUpdateDetails_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_EagerGestureRecognizer_7c_get_3a_team =
+    _OneSequenceGestureRecognizer_team;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_EagerGestureRecognizer_7c_get_3a_debugOwner =
+    _GestureRecognizer_debugOwner;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_EagerGestureRecognizer_7c_get_3a_gestureSettings =
+    _GestureRecognizer_gestureSettings;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_EagerGestureRecognizer_7c_get_3a_supportedDevices =
+    _GestureRecognizer_supportedDevices;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_EagerGestureRecognizer_7c_get_3a_allowedButtonsFilter =
+    _GestureRecognizer_allowedButtonsFilter;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_EagerGestureRecognizer_7c_get_3a_debugDescription =
+    _GestureRecognizer_debugDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_EagerGestureRecognizer_7c_call_3a_toStringShort =
+    _GestureRecognizer_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_EagerGestureRecognizer_7c_call_3a_debugDescribeChildren =
+    _GestureRecognizer_debugDescribeChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_FlutterErrorDetailsForPointerEventDispatcher_7c_get_3a_exception =
+    _FlutterErrorDetailsForPointerEventDispatcher_exception;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_FlutterErrorDetailsForPointerEventDispatcher_7c_get_3a_stack =
+    _FlutterErrorDetailsForPointerEventDispatcher_stack;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_FlutterErrorDetailsForPointerEventDispatcher_7c_get_3a_library =
+    _FlutterErrorDetailsForPointerEventDispatcher_library;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_FlutterErrorDetailsForPointerEventDispatcher_7c_get_3a_context =
+    _FlutterErrorDetailsForPointerEventDispatcher_context;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_FlutterErrorDetailsForPointerEventDispatcher_7c_get_3a_stackFilter =
+    _FlutterErrorDetailsForPointerEventDispatcher_stackFilter;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_FlutterErrorDetailsForPointerEventDispatcher_7c_get_3a_informationCollector =
+    _FlutterErrorDetailsForPointerEventDispatcher_informationCollector;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_FlutterErrorDetailsForPointerEventDispatcher_7c_get_3a_silent =
+    _FlutterErrorDetailsForPointerEventDispatcher_silent;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_FlutterErrorDetailsForPointerEventDispatcher_7c_get_3a_summary =
+    _FlutterErrorDetailsForPointerEventDispatcher_summary;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_FlutterErrorDetailsForPointerEventDispatcher_7c_get_3a_event =
+    _FlutterErrorDetailsForPointerEventDispatcher_event;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_FlutterErrorDetailsForPointerEventDispatcher_7c_get_3a_hitTestEntry =
+    _FlutterErrorDetailsForPointerEventDispatcher_hitTestEntry;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_FlutterErrorDetailsForPointerEventDispatcher_7c_call_3a_exceptionAsString =
+    _FlutterErrorDetailsForPointerEventDispatcher_exceptionAsString;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_FlutterErrorDetailsForPointerEventDispatcher_7c_call_3a_toStringShort =
+    _FlutterErrorDetailsForPointerEventDispatcher_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ForcePressDetails_7c_get_3a_globalPosition =
+    _PositionedGestureDetails_globalPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ForcePressDetails_7c_get_3a_localPosition =
+    _PositionedGestureDetails_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ForcePressDetails_7c_get_3a_pressure =
+    _ForcePressDetails_pressure;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ForcePressDetails_7c_call_3a_toStringShort =
+    _ForcePressDetails_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ForcePressGestureRecognizer_7c_get_3a_team =
+    _OneSequenceGestureRecognizer_team;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ForcePressGestureRecognizer_7c_get_3a_debugOwner =
+    _GestureRecognizer_debugOwner;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ForcePressGestureRecognizer_7c_get_3a_gestureSettings =
+    _GestureRecognizer_gestureSettings;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ForcePressGestureRecognizer_7c_get_3a_supportedDevices =
+    _GestureRecognizer_supportedDevices;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ForcePressGestureRecognizer_7c_get_3a_allowedButtonsFilter =
+    _GestureRecognizer_allowedButtonsFilter;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ForcePressGestureRecognizer_7c_get_3a_debugDescription =
+    _GestureRecognizer_debugDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ForcePressGestureRecognizer_7c_get_3a_onStart =
+    _ForcePressGestureRecognizer_onStart;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ForcePressGestureRecognizer_7c_get_3a_onUpdate =
+    _ForcePressGestureRecognizer_onUpdate;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ForcePressGestureRecognizer_7c_get_3a_onPeak =
+    _ForcePressGestureRecognizer_onPeak;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ForcePressGestureRecognizer_7c_get_3a_onEnd =
+    _ForcePressGestureRecognizer_onEnd;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ForcePressGestureRecognizer_7c_get_3a_startPressure =
+    _ForcePressGestureRecognizer_startPressure;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ForcePressGestureRecognizer_7c_get_3a_peakPressure =
+    _ForcePressGestureRecognizer_peakPressure;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ForcePressGestureRecognizer_7c_get_3a_interpolation =
+    _ForcePressGestureRecognizer_interpolation;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ForcePressGestureRecognizer_7c_call_3a_toStringShort =
+    _GestureRecognizer_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ForcePressGestureRecognizer_7c_call_3a_debugDescribeChildren =
+    _GestureRecognizer_debugDescribeChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_GestureArenaTeam_7c_get_3a_captain =
+    _GestureArenaTeam_captain;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_GestureBinding_7c_get_3a_locked =
+    _GestureBinding_locked;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_GestureBinding_7c_get_3a_pointerRouter =
+    _GestureBinding_pointerRouter;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_GestureBinding_7c_get_3a_gestureArena =
+    _GestureBinding_gestureArena;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_GestureBinding_7c_get_3a_pointerSignalResolver =
+    _GestureBinding_pointerSignalResolver;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_GestureBinding_7c_get_3a_debugSamplingClock =
+    _GestureBinding_debugSamplingClock;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_GestureBinding_7c_get_3a_samplingClock =
+    _GestureBinding_samplingClock;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_GestureBinding_7c_get_3a_resamplingEnabled =
+    _GestureBinding_resamplingEnabled;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_GestureBinding_7c_get_3a_samplingOffset =
+    _GestureBinding_samplingOffset;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_GestureBinding_7c_call_3a_reassembleApplication =
+    _GestureBinding_reassembleApplication;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_GestureBinding_7c_call_3a_performReassemble =
+    _GestureBinding_performReassemble;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_GestureBinding_7c_call_3a_toString =
+    _GestureBinding_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_GestureRecognizer_7c_get_3a_debugOwner =
+    _GestureRecognizer_debugOwner;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_GestureRecognizer_7c_get_3a_gestureSettings =
+    _GestureRecognizer_gestureSettings;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_GestureRecognizer_7c_get_3a_supportedDevices =
+    _GestureRecognizer_supportedDevices;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_GestureRecognizer_7c_get_3a_allowedButtonsFilter =
+    _GestureRecognizer_allowedButtonsFilter;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_GestureRecognizer_7c_get_3a_debugDescription =
+    _GestureRecognizer_debugDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_GestureRecognizer_7c_call_3a_toStringShort =
+    _GestureRecognizer_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_GestureRecognizer_7c_call_3a_debugDescribeChildren =
+    _GestureRecognizer_debugDescribeChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HitTestResult_7c_get_3a_path =
+    _HitTestResult_path;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HitTestResult_7c_call_3a_toString =
+    _HitTestResult_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HorizontalDragGestureRecognizer_7c_get_3a_dragStartBehavior =
+    _DragGestureRecognizer_dragStartBehavior;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HorizontalDragGestureRecognizer_7c_get_3a_multitouchDragStrategy =
+    _DragGestureRecognizer_multitouchDragStrategy;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HorizontalDragGestureRecognizer_7c_get_3a_onDown =
+    _DragGestureRecognizer_onDown;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HorizontalDragGestureRecognizer_7c_get_3a_onStart =
+    _DragGestureRecognizer_onStart;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HorizontalDragGestureRecognizer_7c_get_3a_onUpdate =
+    _DragGestureRecognizer_onUpdate;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HorizontalDragGestureRecognizer_7c_get_3a_onEnd =
+    _DragGestureRecognizer_onEnd;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HorizontalDragGestureRecognizer_7c_get_3a_onCancel =
+    _DragGestureRecognizer_onCancel;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HorizontalDragGestureRecognizer_7c_get_3a_minFlingDistance =
+    _DragGestureRecognizer_minFlingDistance;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HorizontalDragGestureRecognizer_7c_get_3a_minFlingVelocity =
+    _DragGestureRecognizer_minFlingVelocity;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HorizontalDragGestureRecognizer_7c_get_3a_maxFlingVelocity =
+    _DragGestureRecognizer_maxFlingVelocity;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HorizontalDragGestureRecognizer_7c_get_3a_onlyAcceptDragOnThreshold =
+    _DragGestureRecognizer_onlyAcceptDragOnThreshold;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HorizontalDragGestureRecognizer_7c_get_3a_velocityTrackerBuilder =
+    _DragGestureRecognizer_velocityTrackerBuilder;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HorizontalDragGestureRecognizer_7c_get_3a_lastPosition =
+    _DragGestureRecognizer_lastPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HorizontalDragGestureRecognizer_7c_get_3a_globalDistanceMoved =
+    _DragGestureRecognizer_globalDistanceMoved;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HorizontalDragGestureRecognizer_7c_get_3a_team =
+    _OneSequenceGestureRecognizer_team;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HorizontalDragGestureRecognizer_7c_get_3a_debugOwner =
+    _GestureRecognizer_debugOwner;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HorizontalDragGestureRecognizer_7c_get_3a_gestureSettings =
+    _GestureRecognizer_gestureSettings;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HorizontalDragGestureRecognizer_7c_get_3a_supportedDevices =
+    _GestureRecognizer_supportedDevices;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HorizontalDragGestureRecognizer_7c_get_3a_allowedButtonsFilter =
+    _GestureRecognizer_allowedButtonsFilter;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HorizontalDragGestureRecognizer_7c_get_3a_debugDescription =
+    _GestureRecognizer_debugDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HorizontalDragGestureRecognizer_7c_call_3a_toStringShort =
+    _GestureRecognizer_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HorizontalDragGestureRecognizer_7c_call_3a_debugDescribeChildren =
+    _GestureRecognizer_debugDescribeChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HorizontalMultiDragGestureRecognizer_7c_get_3a_onStart =
+    _MultiDragGestureRecognizer_onStart;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HorizontalMultiDragGestureRecognizer_7c_get_3a_debugOwner =
+    _GestureRecognizer_debugOwner;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HorizontalMultiDragGestureRecognizer_7c_get_3a_gestureSettings =
+    _GestureRecognizer_gestureSettings;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HorizontalMultiDragGestureRecognizer_7c_get_3a_supportedDevices =
+    _GestureRecognizer_supportedDevices;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HorizontalMultiDragGestureRecognizer_7c_get_3a_allowedButtonsFilter =
+    _GestureRecognizer_allowedButtonsFilter;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HorizontalMultiDragGestureRecognizer_7c_get_3a_debugDescription =
+    _GestureRecognizer_debugDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HorizontalMultiDragGestureRecognizer_7c_call_3a_toStringShort =
+    _GestureRecognizer_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_HorizontalMultiDragGestureRecognizer_7c_call_3a_debugDescribeChildren =
+    _GestureRecognizer_debugDescribeChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_IOSScrollViewFlingVelocityTracker_7c_get_3a_kind =
+    _VelocityTracker_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_IOSScrollViewFlingVelocityTracker_7c_call_3a_getVelocityEstimate =
+    _IOSScrollViewFlingVelocityTracker_getVelocityEstimate;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_IOSScrollViewFlingVelocityTracker_7c_call_3a_getVelocity =
+    _VelocityTracker_getVelocity;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ImmediateMultiDragGestureRecognizer_7c_get_3a_onStart =
+    _MultiDragGestureRecognizer_onStart;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ImmediateMultiDragGestureRecognizer_7c_get_3a_debugOwner =
+    _GestureRecognizer_debugOwner;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ImmediateMultiDragGestureRecognizer_7c_get_3a_gestureSettings =
+    _GestureRecognizer_gestureSettings;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ImmediateMultiDragGestureRecognizer_7c_get_3a_supportedDevices =
+    _GestureRecognizer_supportedDevices;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ImmediateMultiDragGestureRecognizer_7c_get_3a_allowedButtonsFilter =
+    _GestureRecognizer_allowedButtonsFilter;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ImmediateMultiDragGestureRecognizer_7c_get_3a_debugDescription =
+    _GestureRecognizer_debugDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ImmediateMultiDragGestureRecognizer_7c_call_3a_toStringShort =
+    _GestureRecognizer_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ImmediateMultiDragGestureRecognizer_7c_call_3a_debugDescribeChildren =
+    _GestureRecognizer_debugDescribeChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LeastSquaresSolver_7c_get_3a_x =
+    _LeastSquaresSolver_x;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LeastSquaresSolver_7c_get_3a_y =
+    _LeastSquaresSolver_y;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LeastSquaresSolver_7c_get_3a_w =
+    _LeastSquaresSolver_w;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressDownDetails_7c_get_3a_globalPosition =
+    _PositionedGestureDetails_globalPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressDownDetails_7c_get_3a_localPosition =
+    _PositionedGestureDetails_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressDownDetails_7c_get_3a_kind =
+    _LongPressDownDetails_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressDownDetails_7c_call_3a_toStringShort =
+    _LongPressDownDetails_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressEndDetails_7c_get_3a_globalPosition =
+    _PositionedGestureDetails_globalPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressEndDetails_7c_get_3a_localPosition =
+    _PositionedGestureDetails_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressEndDetails_7c_get_3a_velocity =
+    _LongPressEndDetails_velocity;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressEndDetails_7c_call_3a_toStringShort =
+    _LongPressEndDetails_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_deadline =
+    _PrimaryPointerGestureRecognizer_deadline;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_preAcceptSlopTolerance =
+    _PrimaryPointerGestureRecognizer_preAcceptSlopTolerance;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_postAcceptSlopTolerance =
+    _PrimaryPointerGestureRecognizer_postAcceptSlopTolerance;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_state =
+    _PrimaryPointerGestureRecognizer_state;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_primaryPointer =
+    _PrimaryPointerGestureRecognizer_primaryPointer;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_initialPosition =
+    _PrimaryPointerGestureRecognizer_initialPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_team =
+    _OneSequenceGestureRecognizer_team;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_debugOwner =
+    _GestureRecognizer_debugOwner;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_gestureSettings =
+    _GestureRecognizer_gestureSettings;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_supportedDevices =
+    _GestureRecognizer_supportedDevices;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_allowedButtonsFilter =
+    _GestureRecognizer_allowedButtonsFilter;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_debugDescription =
+    _GestureRecognizer_debugDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_onLongPressDown =
+    _LongPressGestureRecognizer_onLongPressDown;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_onLongPressCancel =
+    _LongPressGestureRecognizer_onLongPressCancel;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_onLongPress =
+    _LongPressGestureRecognizer_onLongPress;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_onLongPressStart =
+    _LongPressGestureRecognizer_onLongPressStart;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_onLongPressMoveUpdate =
+    _LongPressGestureRecognizer_onLongPressMoveUpdate;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_onLongPressUp =
+    _LongPressGestureRecognizer_onLongPressUp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_onLongPressEnd =
+    _LongPressGestureRecognizer_onLongPressEnd;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_onSecondaryLongPressDown =
+    _LongPressGestureRecognizer_onSecondaryLongPressDown;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_onSecondaryLongPressCancel =
+    _LongPressGestureRecognizer_onSecondaryLongPressCancel;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_onSecondaryLongPress =
+    _LongPressGestureRecognizer_onSecondaryLongPress;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_onSecondaryLongPressStart =
+    _LongPressGestureRecognizer_onSecondaryLongPressStart;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_onSecondaryLongPressMoveUpdate =
+    _LongPressGestureRecognizer_onSecondaryLongPressMoveUpdate;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_onSecondaryLongPressUp =
+    _LongPressGestureRecognizer_onSecondaryLongPressUp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_onSecondaryLongPressEnd =
+    _LongPressGestureRecognizer_onSecondaryLongPressEnd;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_onTertiaryLongPressDown =
+    _LongPressGestureRecognizer_onTertiaryLongPressDown;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_onTertiaryLongPressCancel =
+    _LongPressGestureRecognizer_onTertiaryLongPressCancel;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_onTertiaryLongPress =
+    _LongPressGestureRecognizer_onTertiaryLongPress;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_onTertiaryLongPressStart =
+    _LongPressGestureRecognizer_onTertiaryLongPressStart;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_onTertiaryLongPressMoveUpdate =
+    _LongPressGestureRecognizer_onTertiaryLongPressMoveUpdate;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_onTertiaryLongPressUp =
+    _LongPressGestureRecognizer_onTertiaryLongPressUp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_get_3a_onTertiaryLongPressEnd =
+    _LongPressGestureRecognizer_onTertiaryLongPressEnd;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_call_3a_toStringShort =
+    _GestureRecognizer_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressGestureRecognizer_7c_call_3a_debugDescribeChildren =
+    _GestureRecognizer_debugDescribeChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressMoveUpdateDetails_7c_get_3a_globalPosition =
+    _PositionedGestureDetails_globalPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressMoveUpdateDetails_7c_get_3a_localPosition =
+    _PositionedGestureDetails_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressMoveUpdateDetails_7c_get_3a_offsetFromOrigin =
+    _LongPressMoveUpdateDetails_offsetFromOrigin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressMoveUpdateDetails_7c_get_3a_localOffsetFromOrigin =
+    _LongPressMoveUpdateDetails_localOffsetFromOrigin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressMoveUpdateDetails_7c_call_3a_toStringShort =
+    _LongPressMoveUpdateDetails_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressStartDetails_7c_get_3a_globalPosition =
+    _PositionedGestureDetails_globalPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressStartDetails_7c_get_3a_localPosition =
+    _PositionedGestureDetails_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_LongPressStartDetails_7c_call_3a_toStringShort =
+    _LongPressStartDetails_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_MacOSScrollViewFlingVelocityTracker_7c_get_3a_kind =
+    _VelocityTracker_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_MacOSScrollViewFlingVelocityTracker_7c_call_3a_getVelocityEstimate =
+    _IOSScrollViewFlingVelocityTracker_getVelocityEstimate;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_MacOSScrollViewFlingVelocityTracker_7c_call_3a_getVelocity =
+    _VelocityTracker_getVelocity;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_MultiDragGestureRecognizer_7c_get_3a_debugOwner =
+    _GestureRecognizer_debugOwner;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_MultiDragGestureRecognizer_7c_get_3a_gestureSettings =
+    _GestureRecognizer_gestureSettings;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_MultiDragGestureRecognizer_7c_get_3a_supportedDevices =
+    _GestureRecognizer_supportedDevices;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_MultiDragGestureRecognizer_7c_get_3a_allowedButtonsFilter =
+    _GestureRecognizer_allowedButtonsFilter;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_MultiDragGestureRecognizer_7c_get_3a_debugDescription =
+    _GestureRecognizer_debugDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_MultiDragGestureRecognizer_7c_get_3a_onStart =
+    _MultiDragGestureRecognizer_onStart;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_MultiDragGestureRecognizer_7c_call_3a_toStringShort =
+    _GestureRecognizer_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_MultiDragGestureRecognizer_7c_call_3a_debugDescribeChildren =
+    _GestureRecognizer_debugDescribeChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_MultiDragPointerState_7c_get_3a_gestureSettings =
+    _MultiDragPointerState_gestureSettings;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_MultiDragPointerState_7c_get_3a_initialPosition =
+    _MultiDragPointerState_initialPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_MultiDragPointerState_7c_get_3a_kind =
+    _MultiDragPointerState_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_MultiDragPointerState_7c_get_3a_pendingDelta =
+    _MultiDragPointerState_pendingDelta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_MultiTapGestureRecognizer_7c_get_3a_debugOwner =
+    _GestureRecognizer_debugOwner;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_MultiTapGestureRecognizer_7c_get_3a_gestureSettings =
+    _GestureRecognizer_gestureSettings;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_MultiTapGestureRecognizer_7c_get_3a_supportedDevices =
+    _GestureRecognizer_supportedDevices;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_MultiTapGestureRecognizer_7c_get_3a_allowedButtonsFilter =
+    _GestureRecognizer_allowedButtonsFilter;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_MultiTapGestureRecognizer_7c_get_3a_debugDescription =
+    _GestureRecognizer_debugDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_MultiTapGestureRecognizer_7c_get_3a_onTapDown =
+    _MultiTapGestureRecognizer_onTapDown;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_MultiTapGestureRecognizer_7c_get_3a_onTapUp =
+    _MultiTapGestureRecognizer_onTapUp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_MultiTapGestureRecognizer_7c_get_3a_onTap =
+    _MultiTapGestureRecognizer_onTap;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_MultiTapGestureRecognizer_7c_get_3a_onTapCancel =
+    _MultiTapGestureRecognizer_onTapCancel;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_MultiTapGestureRecognizer_7c_get_3a_longTapDelay =
+    _MultiTapGestureRecognizer_longTapDelay;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_MultiTapGestureRecognizer_7c_get_3a_onLongTapDown =
+    _MultiTapGestureRecognizer_onLongTapDown;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_MultiTapGestureRecognizer_7c_call_3a_toStringShort =
+    _GestureRecognizer_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_MultiTapGestureRecognizer_7c_call_3a_debugDescribeChildren =
+    _GestureRecognizer_debugDescribeChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_OffsetPair_7c_get_3a_local =
+    _OffsetPair_local;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_OffsetPair_7c_get_3a_global =
+    _OffsetPair_global;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_OffsetPair_7c_call_3a_toString =
+    _OffsetPair_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_OneSequenceGestureRecognizer_7c_get_3a_debugOwner =
+    _GestureRecognizer_debugOwner;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_OneSequenceGestureRecognizer_7c_get_3a_gestureSettings =
+    _GestureRecognizer_gestureSettings;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_OneSequenceGestureRecognizer_7c_get_3a_supportedDevices =
+    _GestureRecognizer_supportedDevices;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_OneSequenceGestureRecognizer_7c_get_3a_allowedButtonsFilter =
+    _GestureRecognizer_allowedButtonsFilter;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_OneSequenceGestureRecognizer_7c_get_3a_debugDescription =
+    _GestureRecognizer_debugDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_OneSequenceGestureRecognizer_7c_get_3a_team =
+    _OneSequenceGestureRecognizer_team;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_OneSequenceGestureRecognizer_7c_call_3a_toStringShort =
+    _GestureRecognizer_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_OneSequenceGestureRecognizer_7c_call_3a_debugDescribeChildren =
+    _GestureRecognizer_debugDescribeChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PanGestureRecognizer_7c_get_3a_dragStartBehavior =
+    _DragGestureRecognizer_dragStartBehavior;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PanGestureRecognizer_7c_get_3a_multitouchDragStrategy =
+    _DragGestureRecognizer_multitouchDragStrategy;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PanGestureRecognizer_7c_get_3a_onDown =
+    _DragGestureRecognizer_onDown;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PanGestureRecognizer_7c_get_3a_onStart =
+    _DragGestureRecognizer_onStart;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PanGestureRecognizer_7c_get_3a_onUpdate =
+    _DragGestureRecognizer_onUpdate;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PanGestureRecognizer_7c_get_3a_onEnd =
+    _DragGestureRecognizer_onEnd;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PanGestureRecognizer_7c_get_3a_onCancel =
+    _DragGestureRecognizer_onCancel;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PanGestureRecognizer_7c_get_3a_minFlingDistance =
+    _DragGestureRecognizer_minFlingDistance;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PanGestureRecognizer_7c_get_3a_minFlingVelocity =
+    _DragGestureRecognizer_minFlingVelocity;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PanGestureRecognizer_7c_get_3a_maxFlingVelocity =
+    _DragGestureRecognizer_maxFlingVelocity;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PanGestureRecognizer_7c_get_3a_onlyAcceptDragOnThreshold =
+    _DragGestureRecognizer_onlyAcceptDragOnThreshold;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PanGestureRecognizer_7c_get_3a_velocityTrackerBuilder =
+    _DragGestureRecognizer_velocityTrackerBuilder;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PanGestureRecognizer_7c_get_3a_lastPosition =
+    _DragGestureRecognizer_lastPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PanGestureRecognizer_7c_get_3a_globalDistanceMoved =
+    _DragGestureRecognizer_globalDistanceMoved;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PanGestureRecognizer_7c_get_3a_team =
+    _OneSequenceGestureRecognizer_team;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PanGestureRecognizer_7c_get_3a_debugOwner =
+    _GestureRecognizer_debugOwner;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PanGestureRecognizer_7c_get_3a_gestureSettings =
+    _GestureRecognizer_gestureSettings;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PanGestureRecognizer_7c_get_3a_supportedDevices =
+    _GestureRecognizer_supportedDevices;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PanGestureRecognizer_7c_get_3a_allowedButtonsFilter =
+    _GestureRecognizer_allowedButtonsFilter;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PanGestureRecognizer_7c_get_3a_debugDescription =
+    _GestureRecognizer_debugDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PanGestureRecognizer_7c_call_3a_toStringShort =
+    _GestureRecognizer_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PanGestureRecognizer_7c_call_3a_debugDescribeChildren =
+    _GestureRecognizer_debugDescribeChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_get_3a_viewId =
+    _PointerAddedEvent_viewId;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_get_3a_embedderId =
+    _PointerAddedEvent_embedderId;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_get_3a_timeStamp =
+    _PointerAddedEvent_timeStamp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_get_3a_pointer =
+    _PointerAddedEvent_pointer;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_get_3a_kind =
+    _PointerAddedEvent_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_get_3a_device =
+    _PointerAddedEvent_device;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_get_3a_position =
+    _PointerAddedEvent_position;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_get_3a_localPosition =
+    _PointerAddedEvent_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_get_3a_delta =
+    _PointerAddedEvent_delta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_get_3a_localDelta =
+    _PointerAddedEvent_localDelta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_get_3a_buttons =
+    _PointerAddedEvent_buttons;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_get_3a_down =
+    _PointerAddedEvent_down;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_get_3a_obscured =
+    _PointerAddedEvent_obscured;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_get_3a_pressure =
+    _PointerAddedEvent_pressure;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_get_3a_pressureMin =
+    _PointerAddedEvent_pressureMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_get_3a_pressureMax =
+    _PointerAddedEvent_pressureMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_get_3a_distance =
+    _PointerAddedEvent_distance;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_get_3a_distanceMin =
+    _PointerAddedEvent_distanceMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_get_3a_distanceMax =
+    _PointerAddedEvent_distanceMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_get_3a_size =
+    _PointerAddedEvent_size;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_get_3a_radiusMajor =
+    _PointerAddedEvent_radiusMajor;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_get_3a_radiusMinor =
+    _PointerAddedEvent_radiusMinor;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_get_3a_radiusMin =
+    _PointerAddedEvent_radiusMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_get_3a_radiusMax =
+    _PointerAddedEvent_radiusMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_get_3a_orientation =
+    _PointerAddedEvent_orientation;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_get_3a_tilt =
+    _PointerAddedEvent_tilt;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_get_3a_platformData =
+    _PointerAddedEvent_platformData;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_get_3a_synthesized =
+    _PointerAddedEvent_synthesized;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_get_3a_transform =
+    _PointerAddedEvent_transform;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_get_3a_original =
+    _PointerAddedEvent_original;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_call_3a_toStringShort =
+    _PointerAddedEvent_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerAddedEvent_7c_call_3a_toStringFull =
+    _PointerAddedEvent_toStringFull;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_get_3a_viewId =
+    _PointerCancelEvent_viewId;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_get_3a_embedderId =
+    _PointerCancelEvent_embedderId;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_get_3a_timeStamp =
+    _PointerCancelEvent_timeStamp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_get_3a_pointer =
+    _PointerCancelEvent_pointer;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_get_3a_kind =
+    _PointerCancelEvent_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_get_3a_device =
+    _PointerCancelEvent_device;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_get_3a_position =
+    _PointerCancelEvent_position;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_get_3a_localPosition =
+    _PointerCancelEvent_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_get_3a_delta =
+    _PointerCancelEvent_delta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_get_3a_localDelta =
+    _PointerCancelEvent_localDelta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_get_3a_buttons =
+    _PointerCancelEvent_buttons;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_get_3a_down =
+    _PointerCancelEvent_down;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_get_3a_obscured =
+    _PointerCancelEvent_obscured;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_get_3a_pressure =
+    _PointerCancelEvent_pressure;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_get_3a_pressureMin =
+    _PointerCancelEvent_pressureMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_get_3a_pressureMax =
+    _PointerCancelEvent_pressureMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_get_3a_distance =
+    _PointerCancelEvent_distance;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_get_3a_distanceMin =
+    _PointerCancelEvent_distanceMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_get_3a_distanceMax =
+    _PointerCancelEvent_distanceMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_get_3a_size =
+    _PointerCancelEvent_size;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_get_3a_radiusMajor =
+    _PointerCancelEvent_radiusMajor;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_get_3a_radiusMinor =
+    _PointerCancelEvent_radiusMinor;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_get_3a_radiusMin =
+    _PointerCancelEvent_radiusMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_get_3a_radiusMax =
+    _PointerCancelEvent_radiusMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_get_3a_orientation =
+    _PointerCancelEvent_orientation;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_get_3a_tilt =
+    _PointerCancelEvent_tilt;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_get_3a_platformData =
+    _PointerCancelEvent_platformData;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_get_3a_synthesized =
+    _PointerCancelEvent_synthesized;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_get_3a_transform =
+    _PointerCancelEvent_transform;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_get_3a_original =
+    _PointerCancelEvent_original;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_call_3a_toStringShort =
+    _PointerCancelEvent_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerCancelEvent_7c_call_3a_toStringFull =
+    _PointerCancelEvent_toStringFull;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_get_3a_viewId =
+    _PointerDownEvent_viewId;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_get_3a_embedderId =
+    _PointerDownEvent_embedderId;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_get_3a_timeStamp =
+    _PointerDownEvent_timeStamp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_get_3a_pointer =
+    _PointerDownEvent_pointer;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_get_3a_kind =
+    _PointerDownEvent_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_get_3a_device =
+    _PointerDownEvent_device;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_get_3a_position =
+    _PointerDownEvent_position;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_get_3a_localPosition =
+    _PointerDownEvent_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_get_3a_delta =
+    _PointerDownEvent_delta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_get_3a_localDelta =
+    _PointerDownEvent_localDelta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_get_3a_buttons =
+    _PointerDownEvent_buttons;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_get_3a_down =
+    _PointerDownEvent_down;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_get_3a_obscured =
+    _PointerDownEvent_obscured;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_get_3a_pressure =
+    _PointerDownEvent_pressure;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_get_3a_pressureMin =
+    _PointerDownEvent_pressureMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_get_3a_pressureMax =
+    _PointerDownEvent_pressureMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_get_3a_distance =
+    _PointerDownEvent_distance;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_get_3a_distanceMin =
+    _PointerDownEvent_distanceMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_get_3a_distanceMax =
+    _PointerDownEvent_distanceMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_get_3a_size =
+    _PointerDownEvent_size;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_get_3a_radiusMajor =
+    _PointerDownEvent_radiusMajor;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_get_3a_radiusMinor =
+    _PointerDownEvent_radiusMinor;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_get_3a_radiusMin =
+    _PointerDownEvent_radiusMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_get_3a_radiusMax =
+    _PointerDownEvent_radiusMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_get_3a_orientation =
+    _PointerDownEvent_orientation;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_get_3a_tilt =
+    _PointerDownEvent_tilt;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_get_3a_platformData =
+    _PointerDownEvent_platformData;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_get_3a_synthesized =
+    _PointerDownEvent_synthesized;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_get_3a_transform =
+    _PointerDownEvent_transform;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_get_3a_original =
+    _PointerDownEvent_original;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_call_3a_toStringShort =
+    _PointerDownEvent_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerDownEvent_7c_call_3a_toStringFull =
+    _PointerDownEvent_toStringFull;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_get_3a_viewId =
+    _PointerEnterEvent_viewId;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_get_3a_embedderId =
+    _PointerEnterEvent_embedderId;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_get_3a_timeStamp =
+    _PointerEnterEvent_timeStamp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_get_3a_pointer =
+    _PointerEnterEvent_pointer;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_get_3a_kind =
+    _PointerEnterEvent_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_get_3a_device =
+    _PointerEnterEvent_device;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_get_3a_position =
+    _PointerEnterEvent_position;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_get_3a_localPosition =
+    _PointerEnterEvent_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_get_3a_delta =
+    _PointerEnterEvent_delta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_get_3a_localDelta =
+    _PointerEnterEvent_localDelta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_get_3a_buttons =
+    _PointerEnterEvent_buttons;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_get_3a_down =
+    _PointerEnterEvent_down;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_get_3a_obscured =
+    _PointerEnterEvent_obscured;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_get_3a_pressure =
+    _PointerEnterEvent_pressure;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_get_3a_pressureMin =
+    _PointerEnterEvent_pressureMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_get_3a_pressureMax =
+    _PointerEnterEvent_pressureMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_get_3a_distance =
+    _PointerEnterEvent_distance;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_get_3a_distanceMin =
+    _PointerEnterEvent_distanceMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_get_3a_distanceMax =
+    _PointerEnterEvent_distanceMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_get_3a_size =
+    _PointerEnterEvent_size;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_get_3a_radiusMajor =
+    _PointerEnterEvent_radiusMajor;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_get_3a_radiusMinor =
+    _PointerEnterEvent_radiusMinor;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_get_3a_radiusMin =
+    _PointerEnterEvent_radiusMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_get_3a_radiusMax =
+    _PointerEnterEvent_radiusMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_get_3a_orientation =
+    _PointerEnterEvent_orientation;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_get_3a_tilt =
+    _PointerEnterEvent_tilt;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_get_3a_platformData =
+    _PointerEnterEvent_platformData;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_get_3a_synthesized =
+    _PointerEnterEvent_synthesized;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_get_3a_transform =
+    _PointerEnterEvent_transform;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_get_3a_original =
+    _PointerEnterEvent_original;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_call_3a_toStringShort =
+    _PointerEnterEvent_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEnterEvent_7c_call_3a_toStringFull =
+    _PointerEnterEvent_toStringFull;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEventResampler_7c_get_3a_hasPendingEvents =
+    _PointerEventResampler_hasPendingEvents;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEventResampler_7c_get_3a_isTracked =
+    _PointerEventResampler_isTracked;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerEventResampler_7c_get_3a_isDown =
+    _PointerEventResampler_isDown;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_get_3a_viewId =
+    _PointerExitEvent_viewId;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_get_3a_embedderId =
+    _PointerExitEvent_embedderId;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_get_3a_timeStamp =
+    _PointerExitEvent_timeStamp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_get_3a_pointer =
+    _PointerExitEvent_pointer;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_get_3a_kind =
+    _PointerExitEvent_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_get_3a_device =
+    _PointerExitEvent_device;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_get_3a_position =
+    _PointerExitEvent_position;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_get_3a_localPosition =
+    _PointerExitEvent_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_get_3a_delta =
+    _PointerExitEvent_delta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_get_3a_localDelta =
+    _PointerExitEvent_localDelta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_get_3a_buttons =
+    _PointerExitEvent_buttons;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_get_3a_down =
+    _PointerExitEvent_down;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_get_3a_obscured =
+    _PointerExitEvent_obscured;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_get_3a_pressure =
+    _PointerExitEvent_pressure;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_get_3a_pressureMin =
+    _PointerExitEvent_pressureMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_get_3a_pressureMax =
+    _PointerExitEvent_pressureMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_get_3a_distance =
+    _PointerExitEvent_distance;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_get_3a_distanceMin =
+    _PointerExitEvent_distanceMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_get_3a_distanceMax =
+    _PointerExitEvent_distanceMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_get_3a_size =
+    _PointerExitEvent_size;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_get_3a_radiusMajor =
+    _PointerExitEvent_radiusMajor;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_get_3a_radiusMinor =
+    _PointerExitEvent_radiusMinor;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_get_3a_radiusMin =
+    _PointerExitEvent_radiusMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_get_3a_radiusMax =
+    _PointerExitEvent_radiusMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_get_3a_orientation =
+    _PointerExitEvent_orientation;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_get_3a_tilt =
+    _PointerExitEvent_tilt;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_get_3a_platformData =
+    _PointerExitEvent_platformData;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_get_3a_synthesized =
+    _PointerExitEvent_synthesized;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_get_3a_transform =
+    _PointerExitEvent_transform;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_get_3a_original =
+    _PointerExitEvent_original;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_call_3a_toStringShort =
+    _PointerExitEvent_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerExitEvent_7c_call_3a_toStringFull =
+    _PointerExitEvent_toStringFull;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_get_3a_viewId =
+    _PointerHoverEvent_viewId;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_get_3a_embedderId =
+    _PointerHoverEvent_embedderId;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_get_3a_timeStamp =
+    _PointerHoverEvent_timeStamp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_get_3a_pointer =
+    _PointerHoverEvent_pointer;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_get_3a_kind =
+    _PointerHoverEvent_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_get_3a_device =
+    _PointerHoverEvent_device;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_get_3a_position =
+    _PointerHoverEvent_position;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_get_3a_localPosition =
+    _PointerHoverEvent_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_get_3a_delta =
+    _PointerHoverEvent_delta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_get_3a_localDelta =
+    _PointerHoverEvent_localDelta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_get_3a_buttons =
+    _PointerHoverEvent_buttons;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_get_3a_down =
+    _PointerHoverEvent_down;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_get_3a_obscured =
+    _PointerHoverEvent_obscured;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_get_3a_pressure =
+    _PointerHoverEvent_pressure;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_get_3a_pressureMin =
+    _PointerHoverEvent_pressureMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_get_3a_pressureMax =
+    _PointerHoverEvent_pressureMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_get_3a_distance =
+    _PointerHoverEvent_distance;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_get_3a_distanceMin =
+    _PointerHoverEvent_distanceMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_get_3a_distanceMax =
+    _PointerHoverEvent_distanceMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_get_3a_size =
+    _PointerHoverEvent_size;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_get_3a_radiusMajor =
+    _PointerHoverEvent_radiusMajor;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_get_3a_radiusMinor =
+    _PointerHoverEvent_radiusMinor;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_get_3a_radiusMin =
+    _PointerHoverEvent_radiusMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_get_3a_radiusMax =
+    _PointerHoverEvent_radiusMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_get_3a_orientation =
+    _PointerHoverEvent_orientation;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_get_3a_tilt =
+    _PointerHoverEvent_tilt;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_get_3a_platformData =
+    _PointerHoverEvent_platformData;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_get_3a_synthesized =
+    _PointerHoverEvent_synthesized;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_get_3a_transform =
+    _PointerHoverEvent_transform;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_get_3a_original =
+    _PointerHoverEvent_original;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_call_3a_toStringShort =
+    _PointerHoverEvent_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerHoverEvent_7c_call_3a_toStringFull =
+    _PointerHoverEvent_toStringFull;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_get_3a_viewId =
+    _PointerMoveEvent_viewId;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_get_3a_embedderId =
+    _PointerMoveEvent_embedderId;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_get_3a_timeStamp =
+    _PointerMoveEvent_timeStamp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_get_3a_pointer =
+    _PointerMoveEvent_pointer;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_get_3a_kind =
+    _PointerMoveEvent_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_get_3a_device =
+    _PointerMoveEvent_device;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_get_3a_position =
+    _PointerMoveEvent_position;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_get_3a_localPosition =
+    _PointerMoveEvent_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_get_3a_delta =
+    _PointerMoveEvent_delta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_get_3a_localDelta =
+    _PointerMoveEvent_localDelta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_get_3a_buttons =
+    _PointerMoveEvent_buttons;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_get_3a_down =
+    _PointerMoveEvent_down;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_get_3a_obscured =
+    _PointerMoveEvent_obscured;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_get_3a_pressure =
+    _PointerMoveEvent_pressure;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_get_3a_pressureMin =
+    _PointerMoveEvent_pressureMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_get_3a_pressureMax =
+    _PointerMoveEvent_pressureMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_get_3a_distance =
+    _PointerMoveEvent_distance;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_get_3a_distanceMin =
+    _PointerMoveEvent_distanceMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_get_3a_distanceMax =
+    _PointerMoveEvent_distanceMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_get_3a_size =
+    _PointerMoveEvent_size;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_get_3a_radiusMajor =
+    _PointerMoveEvent_radiusMajor;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_get_3a_radiusMinor =
+    _PointerMoveEvent_radiusMinor;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_get_3a_radiusMin =
+    _PointerMoveEvent_radiusMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_get_3a_radiusMax =
+    _PointerMoveEvent_radiusMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_get_3a_orientation =
+    _PointerMoveEvent_orientation;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_get_3a_tilt =
+    _PointerMoveEvent_tilt;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_get_3a_platformData =
+    _PointerMoveEvent_platformData;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_get_3a_synthesized =
+    _PointerMoveEvent_synthesized;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_get_3a_transform =
+    _PointerMoveEvent_transform;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_get_3a_original =
+    _PointerMoveEvent_original;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_call_3a_toStringShort =
+    _PointerMoveEvent_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerMoveEvent_7c_call_3a_toStringFull =
+    _PointerMoveEvent_toStringFull;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_get_3a_viewId =
+    _PointerPanZoomEndEvent_viewId;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_get_3a_embedderId =
+    _PointerPanZoomEndEvent_embedderId;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_get_3a_timeStamp =
+    _PointerPanZoomEndEvent_timeStamp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_get_3a_pointer =
+    _PointerPanZoomEndEvent_pointer;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_get_3a_kind =
+    _PointerPanZoomEndEvent_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_get_3a_device =
+    _PointerPanZoomEndEvent_device;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_get_3a_position =
+    _PointerPanZoomEndEvent_position;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_get_3a_localPosition =
+    _PointerPanZoomEndEvent_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_get_3a_delta =
+    _PointerPanZoomEndEvent_delta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_get_3a_localDelta =
+    _PointerPanZoomEndEvent_localDelta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_get_3a_buttons =
+    _PointerPanZoomEndEvent_buttons;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_get_3a_down =
+    _PointerPanZoomEndEvent_down;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_get_3a_obscured =
+    _PointerPanZoomEndEvent_obscured;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_get_3a_pressure =
+    _PointerPanZoomEndEvent_pressure;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_get_3a_pressureMin =
+    _PointerPanZoomEndEvent_pressureMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_get_3a_pressureMax =
+    _PointerPanZoomEndEvent_pressureMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_get_3a_distance =
+    _PointerPanZoomEndEvent_distance;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_get_3a_distanceMin =
+    _PointerPanZoomEndEvent_distanceMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_get_3a_distanceMax =
+    _PointerPanZoomEndEvent_distanceMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_get_3a_size =
+    _PointerPanZoomEndEvent_size;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_get_3a_radiusMajor =
+    _PointerPanZoomEndEvent_radiusMajor;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_get_3a_radiusMinor =
+    _PointerPanZoomEndEvent_radiusMinor;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_get_3a_radiusMin =
+    _PointerPanZoomEndEvent_radiusMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_get_3a_radiusMax =
+    _PointerPanZoomEndEvent_radiusMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_get_3a_orientation =
+    _PointerPanZoomEndEvent_orientation;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_get_3a_tilt =
+    _PointerPanZoomEndEvent_tilt;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_get_3a_platformData =
+    _PointerPanZoomEndEvent_platformData;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_get_3a_synthesized =
+    _PointerPanZoomEndEvent_synthesized;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_get_3a_transform =
+    _PointerPanZoomEndEvent_transform;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_get_3a_original =
+    _PointerPanZoomEndEvent_original;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_call_3a_toStringShort =
+    _PointerPanZoomEndEvent_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomEndEvent_7c_call_3a_toStringFull =
+    _PointerPanZoomEndEvent_toStringFull;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_get_3a_viewId =
+    _PointerPanZoomStartEvent_viewId;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_get_3a_embedderId =
+    _PointerPanZoomStartEvent_embedderId;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_get_3a_timeStamp =
+    _PointerPanZoomStartEvent_timeStamp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_get_3a_pointer =
+    _PointerPanZoomStartEvent_pointer;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_get_3a_kind =
+    _PointerPanZoomStartEvent_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_get_3a_device =
+    _PointerPanZoomStartEvent_device;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_get_3a_position =
+    _PointerPanZoomStartEvent_position;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_get_3a_localPosition =
+    _PointerPanZoomStartEvent_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_get_3a_delta =
+    _PointerPanZoomStartEvent_delta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_get_3a_localDelta =
+    _PointerPanZoomStartEvent_localDelta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_get_3a_buttons =
+    _PointerPanZoomStartEvent_buttons;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_get_3a_down =
+    _PointerPanZoomStartEvent_down;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_get_3a_obscured =
+    _PointerPanZoomStartEvent_obscured;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_get_3a_pressure =
+    _PointerPanZoomStartEvent_pressure;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_get_3a_pressureMin =
+    _PointerPanZoomStartEvent_pressureMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_get_3a_pressureMax =
+    _PointerPanZoomStartEvent_pressureMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_get_3a_distance =
+    _PointerPanZoomStartEvent_distance;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_get_3a_distanceMin =
+    _PointerPanZoomStartEvent_distanceMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_get_3a_distanceMax =
+    _PointerPanZoomStartEvent_distanceMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_get_3a_size =
+    _PointerPanZoomStartEvent_size;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_get_3a_radiusMajor =
+    _PointerPanZoomStartEvent_radiusMajor;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_get_3a_radiusMinor =
+    _PointerPanZoomStartEvent_radiusMinor;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_get_3a_radiusMin =
+    _PointerPanZoomStartEvent_radiusMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_get_3a_radiusMax =
+    _PointerPanZoomStartEvent_radiusMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_get_3a_orientation =
+    _PointerPanZoomStartEvent_orientation;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_get_3a_tilt =
+    _PointerPanZoomStartEvent_tilt;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_get_3a_platformData =
+    _PointerPanZoomStartEvent_platformData;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_get_3a_synthesized =
+    _PointerPanZoomStartEvent_synthesized;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_get_3a_transform =
+    _PointerPanZoomStartEvent_transform;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_get_3a_original =
+    _PointerPanZoomStartEvent_original;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_call_3a_toStringShort =
+    _PointerPanZoomStartEvent_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomStartEvent_7c_call_3a_toStringFull =
+    _PointerPanZoomStartEvent_toStringFull;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_viewId =
+    _PointerPanZoomUpdateEvent_viewId;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_embedderId =
+    _PointerPanZoomUpdateEvent_embedderId;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_timeStamp =
+    _PointerPanZoomUpdateEvent_timeStamp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_pointer =
+    _PointerPanZoomUpdateEvent_pointer;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_kind =
+    _PointerPanZoomUpdateEvent_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_device =
+    _PointerPanZoomUpdateEvent_device;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_position =
+    _PointerPanZoomUpdateEvent_position;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_localPosition =
+    _PointerPanZoomUpdateEvent_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_delta =
+    _PointerPanZoomUpdateEvent_delta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_localDelta =
+    _PointerPanZoomUpdateEvent_localDelta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_buttons =
+    _PointerPanZoomUpdateEvent_buttons;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_down =
+    _PointerPanZoomUpdateEvent_down;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_obscured =
+    _PointerPanZoomUpdateEvent_obscured;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_pressure =
+    _PointerPanZoomUpdateEvent_pressure;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_pressureMin =
+    _PointerPanZoomUpdateEvent_pressureMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_pressureMax =
+    _PointerPanZoomUpdateEvent_pressureMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_distance =
+    _PointerPanZoomUpdateEvent_distance;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_distanceMin =
+    _PointerPanZoomUpdateEvent_distanceMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_distanceMax =
+    _PointerPanZoomUpdateEvent_distanceMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_size =
+    _PointerPanZoomUpdateEvent_size;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_radiusMajor =
+    _PointerPanZoomUpdateEvent_radiusMajor;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_radiusMinor =
+    _PointerPanZoomUpdateEvent_radiusMinor;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_radiusMin =
+    _PointerPanZoomUpdateEvent_radiusMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_radiusMax =
+    _PointerPanZoomUpdateEvent_radiusMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_orientation =
+    _PointerPanZoomUpdateEvent_orientation;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_tilt =
+    _PointerPanZoomUpdateEvent_tilt;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_platformData =
+    _PointerPanZoomUpdateEvent_platformData;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_synthesized =
+    _PointerPanZoomUpdateEvent_synthesized;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_transform =
+    _PointerPanZoomUpdateEvent_transform;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_original =
+    _PointerPanZoomUpdateEvent_original;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_pan =
+    _PointerPanZoomUpdateEvent_pan;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_localPan =
+    _PointerPanZoomUpdateEvent_localPan;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_panDelta =
+    _PointerPanZoomUpdateEvent_panDelta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_localPanDelta =
+    _PointerPanZoomUpdateEvent_localPanDelta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_scale =
+    _PointerPanZoomUpdateEvent_scale;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_get_3a_rotation =
+    _PointerPanZoomUpdateEvent_rotation;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_call_3a_toStringShort =
+    _PointerPanZoomUpdateEvent_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerPanZoomUpdateEvent_7c_call_3a_toStringFull =
+    _PointerPanZoomUpdateEvent_toStringFull;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_get_3a_viewId =
+    _PointerRemovedEvent_viewId;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_get_3a_embedderId =
+    _PointerRemovedEvent_embedderId;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_get_3a_timeStamp =
+    _PointerRemovedEvent_timeStamp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_get_3a_pointer =
+    _PointerRemovedEvent_pointer;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_get_3a_kind =
+    _PointerRemovedEvent_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_get_3a_device =
+    _PointerRemovedEvent_device;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_get_3a_position =
+    _PointerRemovedEvent_position;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_get_3a_localPosition =
+    _PointerRemovedEvent_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_get_3a_delta =
+    _PointerRemovedEvent_delta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_get_3a_localDelta =
+    _PointerRemovedEvent_localDelta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_get_3a_buttons =
+    _PointerRemovedEvent_buttons;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_get_3a_down =
+    _PointerRemovedEvent_down;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_get_3a_obscured =
+    _PointerRemovedEvent_obscured;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_get_3a_pressure =
+    _PointerRemovedEvent_pressure;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_get_3a_pressureMin =
+    _PointerRemovedEvent_pressureMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_get_3a_pressureMax =
+    _PointerRemovedEvent_pressureMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_get_3a_distance =
+    _PointerRemovedEvent_distance;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_get_3a_distanceMin =
+    _PointerRemovedEvent_distanceMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_get_3a_distanceMax =
+    _PointerRemovedEvent_distanceMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_get_3a_size =
+    _PointerRemovedEvent_size;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_get_3a_radiusMajor =
+    _PointerRemovedEvent_radiusMajor;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_get_3a_radiusMinor =
+    _PointerRemovedEvent_radiusMinor;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_get_3a_radiusMin =
+    _PointerRemovedEvent_radiusMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_get_3a_radiusMax =
+    _PointerRemovedEvent_radiusMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_get_3a_orientation =
+    _PointerRemovedEvent_orientation;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_get_3a_tilt =
+    _PointerRemovedEvent_tilt;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_get_3a_platformData =
+    _PointerRemovedEvent_platformData;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_get_3a_synthesized =
+    _PointerRemovedEvent_synthesized;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_get_3a_transform =
+    _PointerRemovedEvent_transform;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_get_3a_original =
+    _PointerRemovedEvent_original;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_call_3a_toStringShort =
+    _PointerRemovedEvent_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRemovedEvent_7c_call_3a_toStringFull =
+    _PointerRemovedEvent_toStringFull;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerRouter_7c_get_3a_debugGlobalRouteCount =
+    _PointerRouter_debugGlobalRouteCount;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_get_3a_viewId =
+    _PointerSignalEvent_viewId;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_get_3a_embedderId =
+    _PointerSignalEvent_embedderId;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_get_3a_timeStamp =
+    _PointerSignalEvent_timeStamp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_get_3a_pointer =
+    _PointerSignalEvent_pointer;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_get_3a_kind =
+    _PointerSignalEvent_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_get_3a_device =
+    _PointerSignalEvent_device;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_get_3a_position =
+    _PointerSignalEvent_position;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_get_3a_localPosition =
+    _PointerSignalEvent_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_get_3a_delta =
+    _PointerSignalEvent_delta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_get_3a_localDelta =
+    _PointerSignalEvent_localDelta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_get_3a_buttons =
+    _PointerSignalEvent_buttons;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_get_3a_down =
+    _PointerSignalEvent_down;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_get_3a_obscured =
+    _PointerSignalEvent_obscured;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_get_3a_pressure =
+    _PointerSignalEvent_pressure;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_get_3a_pressureMin =
+    _PointerSignalEvent_pressureMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_get_3a_pressureMax =
+    _PointerSignalEvent_pressureMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_get_3a_distance =
+    _PointerSignalEvent_distance;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_get_3a_distanceMin =
+    _PointerSignalEvent_distanceMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_get_3a_distanceMax =
+    _PointerSignalEvent_distanceMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_get_3a_size =
+    _PointerSignalEvent_size;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_get_3a_radiusMajor =
+    _PointerSignalEvent_radiusMajor;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_get_3a_radiusMinor =
+    _PointerSignalEvent_radiusMinor;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_get_3a_radiusMin =
+    _PointerSignalEvent_radiusMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_get_3a_radiusMax =
+    _PointerSignalEvent_radiusMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_get_3a_orientation =
+    _PointerSignalEvent_orientation;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_get_3a_tilt =
+    _PointerSignalEvent_tilt;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_get_3a_platformData =
+    _PointerSignalEvent_platformData;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_get_3a_synthesized =
+    _PointerSignalEvent_synthesized;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_get_3a_transform =
+    _PointerSignalEvent_transform;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_get_3a_original =
+    _PointerSignalEvent_original;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_get_3a_scale =
+    _PointerScaleEvent_scale;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_call_3a_toStringShort =
+    _PointerSignalEvent_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScaleEvent_7c_call_3a_toStringFull =
+    _PointerScaleEvent_toStringFull;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_get_3a_viewId =
+    _PointerSignalEvent_viewId;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_get_3a_embedderId =
+    _PointerSignalEvent_embedderId;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_get_3a_timeStamp =
+    _PointerSignalEvent_timeStamp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_get_3a_pointer =
+    _PointerSignalEvent_pointer;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_get_3a_kind =
+    _PointerSignalEvent_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_get_3a_device =
+    _PointerSignalEvent_device;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_get_3a_position =
+    _PointerSignalEvent_position;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_get_3a_localPosition =
+    _PointerSignalEvent_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_get_3a_delta =
+    _PointerSignalEvent_delta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_get_3a_localDelta =
+    _PointerSignalEvent_localDelta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_get_3a_buttons =
+    _PointerSignalEvent_buttons;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_get_3a_down =
+    _PointerSignalEvent_down;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_get_3a_obscured =
+    _PointerSignalEvent_obscured;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_get_3a_pressure =
+    _PointerSignalEvent_pressure;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_get_3a_pressureMin =
+    _PointerSignalEvent_pressureMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_get_3a_pressureMax =
+    _PointerSignalEvent_pressureMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_get_3a_distance =
+    _PointerSignalEvent_distance;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_get_3a_distanceMin =
+    _PointerSignalEvent_distanceMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_get_3a_distanceMax =
+    _PointerSignalEvent_distanceMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_get_3a_size =
+    _PointerSignalEvent_size;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_get_3a_radiusMajor =
+    _PointerSignalEvent_radiusMajor;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_get_3a_radiusMinor =
+    _PointerSignalEvent_radiusMinor;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_get_3a_radiusMin =
+    _PointerSignalEvent_radiusMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_get_3a_radiusMax =
+    _PointerSignalEvent_radiusMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_get_3a_orientation =
+    _PointerSignalEvent_orientation;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_get_3a_tilt =
+    _PointerSignalEvent_tilt;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_get_3a_platformData =
+    _PointerSignalEvent_platformData;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_get_3a_synthesized =
+    _PointerSignalEvent_synthesized;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_get_3a_transform =
+    _PointerSignalEvent_transform;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_get_3a_original =
+    _PointerSignalEvent_original;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_call_3a_toStringShort =
+    _PointerSignalEvent_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerScrollInertiaCancelEvent_7c_call_3a_toStringFull =
+    _PointerScrollInertiaCancelEvent_toStringFull;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerSignalEvent_7c_get_3a_viewId =
+    _PointerSignalEvent_viewId;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerSignalEvent_7c_get_3a_embedderId =
+    _PointerSignalEvent_embedderId;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerSignalEvent_7c_get_3a_timeStamp =
+    _PointerSignalEvent_timeStamp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerSignalEvent_7c_get_3a_pointer =
+    _PointerSignalEvent_pointer;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerSignalEvent_7c_get_3a_kind =
+    _PointerSignalEvent_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerSignalEvent_7c_get_3a_device =
+    _PointerSignalEvent_device;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerSignalEvent_7c_get_3a_position =
+    _PointerSignalEvent_position;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerSignalEvent_7c_get_3a_localPosition =
+    _PointerSignalEvent_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerSignalEvent_7c_get_3a_delta =
+    _PointerSignalEvent_delta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerSignalEvent_7c_get_3a_localDelta =
+    _PointerSignalEvent_localDelta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerSignalEvent_7c_get_3a_buttons =
+    _PointerSignalEvent_buttons;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerSignalEvent_7c_get_3a_down =
+    _PointerSignalEvent_down;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerSignalEvent_7c_get_3a_obscured =
+    _PointerSignalEvent_obscured;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerSignalEvent_7c_get_3a_pressure =
+    _PointerSignalEvent_pressure;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerSignalEvent_7c_get_3a_pressureMin =
+    _PointerSignalEvent_pressureMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerSignalEvent_7c_get_3a_pressureMax =
+    _PointerSignalEvent_pressureMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerSignalEvent_7c_get_3a_distance =
+    _PointerSignalEvent_distance;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerSignalEvent_7c_get_3a_distanceMin =
+    _PointerSignalEvent_distanceMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerSignalEvent_7c_get_3a_distanceMax =
+    _PointerSignalEvent_distanceMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerSignalEvent_7c_get_3a_size =
+    _PointerSignalEvent_size;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerSignalEvent_7c_get_3a_radiusMajor =
+    _PointerSignalEvent_radiusMajor;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerSignalEvent_7c_get_3a_radiusMinor =
+    _PointerSignalEvent_radiusMinor;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerSignalEvent_7c_get_3a_radiusMin =
+    _PointerSignalEvent_radiusMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerSignalEvent_7c_get_3a_radiusMax =
+    _PointerSignalEvent_radiusMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerSignalEvent_7c_get_3a_orientation =
+    _PointerSignalEvent_orientation;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerSignalEvent_7c_get_3a_tilt =
+    _PointerSignalEvent_tilt;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerSignalEvent_7c_get_3a_platformData =
+    _PointerSignalEvent_platformData;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerSignalEvent_7c_get_3a_synthesized =
+    _PointerSignalEvent_synthesized;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerSignalEvent_7c_get_3a_transform =
+    _PointerSignalEvent_transform;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerSignalEvent_7c_get_3a_original =
+    _PointerSignalEvent_original;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerSignalEvent_7c_call_3a_toStringShort =
+    _PointerSignalEvent_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_get_3a_viewId =
+    _PointerUpEvent_viewId;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_get_3a_embedderId =
+    _PointerUpEvent_embedderId;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_get_3a_timeStamp =
+    _PointerUpEvent_timeStamp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_get_3a_pointer =
+    _PointerUpEvent_pointer;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_get_3a_kind =
+    _PointerUpEvent_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_get_3a_device =
+    _PointerUpEvent_device;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_get_3a_position =
+    _PointerUpEvent_position;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_get_3a_localPosition =
+    _PointerUpEvent_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_get_3a_delta =
+    _PointerUpEvent_delta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_get_3a_localDelta =
+    _PointerUpEvent_localDelta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_get_3a_buttons =
+    _PointerUpEvent_buttons;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_get_3a_down =
+    _PointerUpEvent_down;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_get_3a_obscured =
+    _PointerUpEvent_obscured;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_get_3a_pressure =
+    _PointerUpEvent_pressure;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_get_3a_pressureMin =
+    _PointerUpEvent_pressureMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_get_3a_pressureMax =
+    _PointerUpEvent_pressureMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_get_3a_distance =
+    _PointerUpEvent_distance;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_get_3a_distanceMin =
+    _PointerUpEvent_distanceMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_get_3a_distanceMax =
+    _PointerUpEvent_distanceMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_get_3a_size =
+    _PointerUpEvent_size;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_get_3a_radiusMajor =
+    _PointerUpEvent_radiusMajor;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_get_3a_radiusMinor =
+    _PointerUpEvent_radiusMinor;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_get_3a_radiusMin =
+    _PointerUpEvent_radiusMin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_get_3a_radiusMax =
+    _PointerUpEvent_radiusMax;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_get_3a_orientation =
+    _PointerUpEvent_orientation;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_get_3a_tilt =
+    _PointerUpEvent_tilt;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_get_3a_platformData =
+    _PointerUpEvent_platformData;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_get_3a_synthesized =
+    _PointerUpEvent_synthesized;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_get_3a_transform =
+    _PointerUpEvent_transform;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_get_3a_original =
+    _PointerUpEvent_original;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_call_3a_toStringShort =
+    _PointerUpEvent_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PointerUpEvent_7c_call_3a_toStringFull =
+    _PointerUpEvent_toStringFull;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PolynomialFit_7c_get_3a_coefficients =
+    _PolynomialFit_coefficients;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PolynomialFit_7c_get_3a_confidence =
+    _PolynomialFit_confidence;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PolynomialFit_7c_call_3a_toString =
+    _PolynomialFit_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PositionedGestureDetails_7c_get_3a_globalPosition =
+    _PositionedGestureDetails_globalPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PositionedGestureDetails_7c_get_3a_localPosition =
+    _PositionedGestureDetails_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PrimaryPointerGestureRecognizer_7c_get_3a_team =
+    _OneSequenceGestureRecognizer_team;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PrimaryPointerGestureRecognizer_7c_get_3a_debugOwner =
+    _GestureRecognizer_debugOwner;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PrimaryPointerGestureRecognizer_7c_get_3a_gestureSettings =
+    _GestureRecognizer_gestureSettings;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PrimaryPointerGestureRecognizer_7c_get_3a_supportedDevices =
+    _GestureRecognizer_supportedDevices;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PrimaryPointerGestureRecognizer_7c_get_3a_allowedButtonsFilter =
+    _GestureRecognizer_allowedButtonsFilter;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PrimaryPointerGestureRecognizer_7c_get_3a_debugDescription =
+    _GestureRecognizer_debugDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PrimaryPointerGestureRecognizer_7c_get_3a_deadline =
+    _PrimaryPointerGestureRecognizer_deadline;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PrimaryPointerGestureRecognizer_7c_get_3a_preAcceptSlopTolerance =
+    _PrimaryPointerGestureRecognizer_preAcceptSlopTolerance;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PrimaryPointerGestureRecognizer_7c_get_3a_postAcceptSlopTolerance =
+    _PrimaryPointerGestureRecognizer_postAcceptSlopTolerance;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PrimaryPointerGestureRecognizer_7c_get_3a_state =
+    _PrimaryPointerGestureRecognizer_state;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PrimaryPointerGestureRecognizer_7c_get_3a_primaryPointer =
+    _PrimaryPointerGestureRecognizer_primaryPointer;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PrimaryPointerGestureRecognizer_7c_get_3a_initialPosition =
+    _PrimaryPointerGestureRecognizer_initialPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PrimaryPointerGestureRecognizer_7c_call_3a_toStringShort =
+    _GestureRecognizer_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_PrimaryPointerGestureRecognizer_7c_call_3a_debugDescribeChildren =
+    _GestureRecognizer_debugDescribeChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_SamplingClock_7c_call_3a_now =
+    _SamplingClock_now;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_SamplingClock_7c_call_3a_stopwatch =
+    _SamplingClock_stopwatch;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleEndDetails_7c_get_3a_velocity =
+    _ScaleEndDetails_velocity;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleEndDetails_7c_get_3a_scaleVelocity =
+    _ScaleEndDetails_scaleVelocity;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleEndDetails_7c_get_3a_pointerCount =
+    _ScaleEndDetails_pointerCount;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleEndDetails_7c_call_3a_toStringShort =
+    _ScaleEndDetails_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleGestureRecognizer_7c_get_3a_team =
+    _OneSequenceGestureRecognizer_team;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleGestureRecognizer_7c_get_3a_debugOwner =
+    _GestureRecognizer_debugOwner;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleGestureRecognizer_7c_get_3a_gestureSettings =
+    _GestureRecognizer_gestureSettings;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleGestureRecognizer_7c_get_3a_supportedDevices =
+    _GestureRecognizer_supportedDevices;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleGestureRecognizer_7c_get_3a_allowedButtonsFilter =
+    _GestureRecognizer_allowedButtonsFilter;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleGestureRecognizer_7c_get_3a_debugDescription =
+    _GestureRecognizer_debugDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleGestureRecognizer_7c_get_3a_dragStartBehavior =
+    _ScaleGestureRecognizer_dragStartBehavior;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleGestureRecognizer_7c_get_3a_onStart =
+    _ScaleGestureRecognizer_onStart;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleGestureRecognizer_7c_get_3a_onUpdate =
+    _ScaleGestureRecognizer_onUpdate;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleGestureRecognizer_7c_get_3a_onEnd =
+    _ScaleGestureRecognizer_onEnd;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleGestureRecognizer_7c_get_3a_trackpadScrollCausesScale =
+    _ScaleGestureRecognizer_trackpadScrollCausesScale;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleGestureRecognizer_7c_get_3a_trackpadScrollToScaleFactor =
+    _ScaleGestureRecognizer_trackpadScrollToScaleFactor;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleGestureRecognizer_7c_get_3a_pointerCount =
+    _ScaleGestureRecognizer_pointerCount;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleGestureRecognizer_7c_call_3a_toStringShort =
+    _GestureRecognizer_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleGestureRecognizer_7c_call_3a_debugDescribeChildren =
+    _GestureRecognizer_debugDescribeChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleStartDetails_7c_get_3a_focalPoint =
+    _ScaleStartDetails_focalPoint;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleStartDetails_7c_get_3a_localFocalPoint =
+    _ScaleStartDetails_localFocalPoint;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleStartDetails_7c_get_3a_pointerCount =
+    _ScaleStartDetails_pointerCount;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleStartDetails_7c_get_3a_sourceTimeStamp =
+    _ScaleStartDetails_sourceTimeStamp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleStartDetails_7c_get_3a_kind =
+    _ScaleStartDetails_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleStartDetails_7c_call_3a_toStringShort =
+    _ScaleStartDetails_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleUpdateDetails_7c_get_3a_focalPointDelta =
+    _ScaleUpdateDetails_focalPointDelta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleUpdateDetails_7c_get_3a_focalPoint =
+    _ScaleUpdateDetails_focalPoint;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleUpdateDetails_7c_get_3a_localFocalPoint =
+    _ScaleUpdateDetails_localFocalPoint;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleUpdateDetails_7c_get_3a_scale =
+    _ScaleUpdateDetails_scale;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleUpdateDetails_7c_get_3a_horizontalScale =
+    _ScaleUpdateDetails_horizontalScale;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleUpdateDetails_7c_get_3a_verticalScale =
+    _ScaleUpdateDetails_verticalScale;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleUpdateDetails_7c_get_3a_rotation =
+    _ScaleUpdateDetails_rotation;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleUpdateDetails_7c_get_3a_pointerCount =
+    _ScaleUpdateDetails_pointerCount;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleUpdateDetails_7c_get_3a_sourceTimeStamp =
+    _ScaleUpdateDetails_sourceTimeStamp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_ScaleUpdateDetails_7c_call_3a_toStringShort =
+    _ScaleUpdateDetails_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_SerialTapCancelDetails_7c_get_3a_count =
+    _SerialTapCancelDetails_count;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_SerialTapCancelDetails_7c_call_3a_toStringShort =
+    _SerialTapCancelDetails_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_SerialTapDownDetails_7c_get_3a_globalPosition =
+    _PositionedGestureDetails_globalPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_SerialTapDownDetails_7c_get_3a_localPosition =
+    _PositionedGestureDetails_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_SerialTapDownDetails_7c_get_3a_kind =
+    _SerialTapDownDetails_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_SerialTapDownDetails_7c_get_3a_buttons =
+    _SerialTapDownDetails_buttons;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_SerialTapDownDetails_7c_get_3a_count =
+    _SerialTapDownDetails_count;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_SerialTapDownDetails_7c_call_3a_toStringShort =
+    _SerialTapDownDetails_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_SerialTapGestureRecognizer_7c_get_3a_debugOwner =
+    _GestureRecognizer_debugOwner;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_SerialTapGestureRecognizer_7c_get_3a_gestureSettings =
+    _GestureRecognizer_gestureSettings;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_SerialTapGestureRecognizer_7c_get_3a_supportedDevices =
+    _GestureRecognizer_supportedDevices;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_SerialTapGestureRecognizer_7c_get_3a_allowedButtonsFilter =
+    _GestureRecognizer_allowedButtonsFilter;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_SerialTapGestureRecognizer_7c_get_3a_debugDescription =
+    _GestureRecognizer_debugDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_SerialTapGestureRecognizer_7c_get_3a_onSerialTapDown =
+    _SerialTapGestureRecognizer_onSerialTapDown;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_SerialTapGestureRecognizer_7c_get_3a_onSerialTapCancel =
+    _SerialTapGestureRecognizer_onSerialTapCancel;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_SerialTapGestureRecognizer_7c_get_3a_onSerialTapUp =
+    _SerialTapGestureRecognizer_onSerialTapUp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_SerialTapGestureRecognizer_7c_get_3a_isTrackingPointer =
+    _SerialTapGestureRecognizer_isTrackingPointer;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_SerialTapGestureRecognizer_7c_call_3a_toStringShort =
+    _GestureRecognizer_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_SerialTapGestureRecognizer_7c_call_3a_debugDescribeChildren =
+    _GestureRecognizer_debugDescribeChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_SerialTapUpDetails_7c_get_3a_globalPosition =
+    _PositionedGestureDetails_globalPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_SerialTapUpDetails_7c_get_3a_localPosition =
+    _PositionedGestureDetails_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_SerialTapUpDetails_7c_get_3a_kind =
+    _SerialTapUpDetails_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_SerialTapUpDetails_7c_get_3a_count =
+    _SerialTapUpDetails_count;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_SerialTapUpDetails_7c_call_3a_toStringShort =
+    _SerialTapUpDetails_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndDragGestureRecognizer_7c_get_3a_dragStartBehavior =
+    _BaseTapAndDragGestureRecognizer_dragStartBehavior;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndDragGestureRecognizer_7c_get_3a_dragUpdateThrottleFrequency =
+    _BaseTapAndDragGestureRecognizer_dragUpdateThrottleFrequency;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndDragGestureRecognizer_7c_get_3a_maxConsecutiveTap =
+    _BaseTapAndDragGestureRecognizer_maxConsecutiveTap;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndDragGestureRecognizer_7c_get_3a_eagerVictoryOnDrag =
+    _BaseTapAndDragGestureRecognizer_eagerVictoryOnDrag;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndDragGestureRecognizer_7c_get_3a_onTapDown =
+    _BaseTapAndDragGestureRecognizer_onTapDown;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndDragGestureRecognizer_7c_get_3a_onTapUp =
+    _BaseTapAndDragGestureRecognizer_onTapUp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndDragGestureRecognizer_7c_get_3a_onDragStart =
+    _BaseTapAndDragGestureRecognizer_onDragStart;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndDragGestureRecognizer_7c_get_3a_onDragUpdate =
+    _BaseTapAndDragGestureRecognizer_onDragUpdate;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndDragGestureRecognizer_7c_get_3a_onDragEnd =
+    _BaseTapAndDragGestureRecognizer_onDragEnd;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndDragGestureRecognizer_7c_get_3a_onCancel =
+    _BaseTapAndDragGestureRecognizer_onCancel;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndDragGestureRecognizer_7c_get_3a_debugDescription =
+    _GestureRecognizer_debugDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndDragGestureRecognizer_7c_get_3a_team =
+    _OneSequenceGestureRecognizer_team;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndDragGestureRecognizer_7c_get_3a_debugOwner =
+    _GestureRecognizer_debugOwner;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndDragGestureRecognizer_7c_get_3a_gestureSettings =
+    _GestureRecognizer_gestureSettings;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndDragGestureRecognizer_7c_get_3a_supportedDevices =
+    _GestureRecognizer_supportedDevices;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndDragGestureRecognizer_7c_get_3a_allowedButtonsFilter =
+    _GestureRecognizer_allowedButtonsFilter;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndDragGestureRecognizer_7c_get_3a_currentDown =
+    _BaseTapAndDragGestureRecognizer_currentDown;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndDragGestureRecognizer_7c_get_3a_currentUp =
+    _BaseTapAndDragGestureRecognizer_currentUp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndDragGestureRecognizer_7c_get_3a_consecutiveTapCount =
+    _BaseTapAndDragGestureRecognizer_consecutiveTapCount;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndDragGestureRecognizer_7c_get_3a_onTapTrackStart =
+    _BaseTapAndDragGestureRecognizer_onTapTrackStart;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndDragGestureRecognizer_7c_get_3a_onTapTrackReset =
+    _BaseTapAndDragGestureRecognizer_onTapTrackReset;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndDragGestureRecognizer_7c_call_3a_toStringShort =
+    _GestureRecognizer_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndDragGestureRecognizer_7c_call_3a_debugDescribeChildren =
+    _GestureRecognizer_debugDescribeChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndHorizontalDragGestureRecognizer_7c_get_3a_dragStartBehavior =
+    _BaseTapAndDragGestureRecognizer_dragStartBehavior;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndHorizontalDragGestureRecognizer_7c_get_3a_dragUpdateThrottleFrequency =
+    _BaseTapAndDragGestureRecognizer_dragUpdateThrottleFrequency;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndHorizontalDragGestureRecognizer_7c_get_3a_maxConsecutiveTap =
+    _BaseTapAndDragGestureRecognizer_maxConsecutiveTap;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndHorizontalDragGestureRecognizer_7c_get_3a_eagerVictoryOnDrag =
+    _BaseTapAndDragGestureRecognizer_eagerVictoryOnDrag;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndHorizontalDragGestureRecognizer_7c_get_3a_onTapDown =
+    _BaseTapAndDragGestureRecognizer_onTapDown;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndHorizontalDragGestureRecognizer_7c_get_3a_onTapUp =
+    _BaseTapAndDragGestureRecognizer_onTapUp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndHorizontalDragGestureRecognizer_7c_get_3a_onDragStart =
+    _BaseTapAndDragGestureRecognizer_onDragStart;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndHorizontalDragGestureRecognizer_7c_get_3a_onDragUpdate =
+    _BaseTapAndDragGestureRecognizer_onDragUpdate;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndHorizontalDragGestureRecognizer_7c_get_3a_onDragEnd =
+    _BaseTapAndDragGestureRecognizer_onDragEnd;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndHorizontalDragGestureRecognizer_7c_get_3a_onCancel =
+    _BaseTapAndDragGestureRecognizer_onCancel;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndHorizontalDragGestureRecognizer_7c_get_3a_debugDescription =
+    _GestureRecognizer_debugDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndHorizontalDragGestureRecognizer_7c_get_3a_team =
+    _OneSequenceGestureRecognizer_team;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndHorizontalDragGestureRecognizer_7c_get_3a_debugOwner =
+    _GestureRecognizer_debugOwner;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndHorizontalDragGestureRecognizer_7c_get_3a_gestureSettings =
+    _GestureRecognizer_gestureSettings;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndHorizontalDragGestureRecognizer_7c_get_3a_supportedDevices =
+    _GestureRecognizer_supportedDevices;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndHorizontalDragGestureRecognizer_7c_get_3a_allowedButtonsFilter =
+    _GestureRecognizer_allowedButtonsFilter;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndHorizontalDragGestureRecognizer_7c_get_3a_currentDown =
+    _BaseTapAndDragGestureRecognizer_currentDown;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndHorizontalDragGestureRecognizer_7c_get_3a_currentUp =
+    _BaseTapAndDragGestureRecognizer_currentUp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndHorizontalDragGestureRecognizer_7c_get_3a_consecutiveTapCount =
+    _BaseTapAndDragGestureRecognizer_consecutiveTapCount;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndHorizontalDragGestureRecognizer_7c_get_3a_onTapTrackStart =
+    _BaseTapAndDragGestureRecognizer_onTapTrackStart;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndHorizontalDragGestureRecognizer_7c_get_3a_onTapTrackReset =
+    _BaseTapAndDragGestureRecognizer_onTapTrackReset;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndHorizontalDragGestureRecognizer_7c_call_3a_toStringShort =
+    _GestureRecognizer_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndHorizontalDragGestureRecognizer_7c_call_3a_debugDescribeChildren =
+    _GestureRecognizer_debugDescribeChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndPanGestureRecognizer_7c_get_3a_dragStartBehavior =
+    _BaseTapAndDragGestureRecognizer_dragStartBehavior;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndPanGestureRecognizer_7c_get_3a_dragUpdateThrottleFrequency =
+    _BaseTapAndDragGestureRecognizer_dragUpdateThrottleFrequency;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndPanGestureRecognizer_7c_get_3a_maxConsecutiveTap =
+    _BaseTapAndDragGestureRecognizer_maxConsecutiveTap;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndPanGestureRecognizer_7c_get_3a_eagerVictoryOnDrag =
+    _BaseTapAndDragGestureRecognizer_eagerVictoryOnDrag;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndPanGestureRecognizer_7c_get_3a_onTapDown =
+    _BaseTapAndDragGestureRecognizer_onTapDown;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndPanGestureRecognizer_7c_get_3a_onTapUp =
+    _BaseTapAndDragGestureRecognizer_onTapUp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndPanGestureRecognizer_7c_get_3a_onDragStart =
+    _BaseTapAndDragGestureRecognizer_onDragStart;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndPanGestureRecognizer_7c_get_3a_onDragUpdate =
+    _BaseTapAndDragGestureRecognizer_onDragUpdate;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndPanGestureRecognizer_7c_get_3a_onDragEnd =
+    _BaseTapAndDragGestureRecognizer_onDragEnd;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndPanGestureRecognizer_7c_get_3a_onCancel =
+    _BaseTapAndDragGestureRecognizer_onCancel;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndPanGestureRecognizer_7c_get_3a_debugDescription =
+    _GestureRecognizer_debugDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndPanGestureRecognizer_7c_get_3a_team =
+    _OneSequenceGestureRecognizer_team;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndPanGestureRecognizer_7c_get_3a_debugOwner =
+    _GestureRecognizer_debugOwner;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndPanGestureRecognizer_7c_get_3a_gestureSettings =
+    _GestureRecognizer_gestureSettings;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndPanGestureRecognizer_7c_get_3a_supportedDevices =
+    _GestureRecognizer_supportedDevices;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndPanGestureRecognizer_7c_get_3a_allowedButtonsFilter =
+    _GestureRecognizer_allowedButtonsFilter;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndPanGestureRecognizer_7c_get_3a_currentDown =
+    _BaseTapAndDragGestureRecognizer_currentDown;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndPanGestureRecognizer_7c_get_3a_currentUp =
+    _BaseTapAndDragGestureRecognizer_currentUp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndPanGestureRecognizer_7c_get_3a_consecutiveTapCount =
+    _BaseTapAndDragGestureRecognizer_consecutiveTapCount;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndPanGestureRecognizer_7c_get_3a_onTapTrackStart =
+    _BaseTapAndDragGestureRecognizer_onTapTrackStart;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndPanGestureRecognizer_7c_get_3a_onTapTrackReset =
+    _BaseTapAndDragGestureRecognizer_onTapTrackReset;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndPanGestureRecognizer_7c_call_3a_toStringShort =
+    _GestureRecognizer_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapAndPanGestureRecognizer_7c_call_3a_debugDescribeChildren =
+    _GestureRecognizer_debugDescribeChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDownDetails_7c_get_3a_globalPosition =
+    _PositionedGestureDetails_globalPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDownDetails_7c_get_3a_localPosition =
+    _PositionedGestureDetails_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDownDetails_7c_get_3a_kind =
+    _TapDownDetails_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDownDetails_7c_call_3a_toStringShort =
+    _TapDownDetails_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragDownDetails_7c_get_3a_globalPosition =
+    _PositionedGestureDetails_globalPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragDownDetails_7c_get_3a_localPosition =
+    _PositionedGestureDetails_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragDownDetails_7c_get_3a_kind =
+    _TapDragDownDetails_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragDownDetails_7c_get_3a_consecutiveTapCount =
+    _TapDragDownDetails_consecutiveTapCount;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragDownDetails_7c_call_3a_toStringShort =
+    _TapDragDownDetails_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragEndDetails_7c_get_3a_globalPosition =
+    _PositionedGestureDetails_globalPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragEndDetails_7c_get_3a_localPosition =
+    _PositionedGestureDetails_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragEndDetails_7c_get_3a_velocity =
+    _TapDragEndDetails_velocity;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragEndDetails_7c_get_3a_primaryVelocity =
+    _TapDragEndDetails_primaryVelocity;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragEndDetails_7c_get_3a_consecutiveTapCount =
+    _TapDragEndDetails_consecutiveTapCount;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragEndDetails_7c_call_3a_toStringShort =
+    _TapDragEndDetails_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragStartDetails_7c_get_3a_globalPosition =
+    _PositionedGestureDetails_globalPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragStartDetails_7c_get_3a_localPosition =
+    _PositionedGestureDetails_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragStartDetails_7c_get_3a_sourceTimeStamp =
+    _TapDragStartDetails_sourceTimeStamp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragStartDetails_7c_get_3a_kind =
+    _TapDragStartDetails_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragStartDetails_7c_get_3a_consecutiveTapCount =
+    _TapDragStartDetails_consecutiveTapCount;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragStartDetails_7c_call_3a_toStringShort =
+    _TapDragStartDetails_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragUpDetails_7c_get_3a_globalPosition =
+    _PositionedGestureDetails_globalPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragUpDetails_7c_get_3a_localPosition =
+    _PositionedGestureDetails_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragUpDetails_7c_get_3a_kind =
+    _TapDragUpDetails_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragUpDetails_7c_get_3a_consecutiveTapCount =
+    _TapDragUpDetails_consecutiveTapCount;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragUpDetails_7c_call_3a_toStringShort =
+    _TapDragUpDetails_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragUpdateDetails_7c_get_3a_globalPosition =
+    _PositionedGestureDetails_globalPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragUpdateDetails_7c_get_3a_localPosition =
+    _PositionedGestureDetails_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragUpdateDetails_7c_get_3a_sourceTimeStamp =
+    _TapDragUpdateDetails_sourceTimeStamp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragUpdateDetails_7c_get_3a_delta =
+    _TapDragUpdateDetails_delta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragUpdateDetails_7c_get_3a_primaryDelta =
+    _TapDragUpdateDetails_primaryDelta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragUpdateDetails_7c_get_3a_kind =
+    _TapDragUpdateDetails_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragUpdateDetails_7c_get_3a_offsetFromOrigin =
+    _TapDragUpdateDetails_offsetFromOrigin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragUpdateDetails_7c_get_3a_localOffsetFromOrigin =
+    _TapDragUpdateDetails_localOffsetFromOrigin;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragUpdateDetails_7c_get_3a_consecutiveTapCount =
+    _TapDragUpdateDetails_consecutiveTapCount;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapDragUpdateDetails_7c_call_3a_toStringShort =
+    _TapDragUpdateDetails_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapGestureRecognizer_7c_get_3a_debugDescription =
+    _GestureRecognizer_debugDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapGestureRecognizer_7c_get_3a_deadline =
+    _PrimaryPointerGestureRecognizer_deadline;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapGestureRecognizer_7c_get_3a_preAcceptSlopTolerance =
+    _PrimaryPointerGestureRecognizer_preAcceptSlopTolerance;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapGestureRecognizer_7c_get_3a_postAcceptSlopTolerance =
+    _PrimaryPointerGestureRecognizer_postAcceptSlopTolerance;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapGestureRecognizer_7c_get_3a_state =
+    _PrimaryPointerGestureRecognizer_state;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapGestureRecognizer_7c_get_3a_primaryPointer =
+    _PrimaryPointerGestureRecognizer_primaryPointer;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapGestureRecognizer_7c_get_3a_initialPosition =
+    _PrimaryPointerGestureRecognizer_initialPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapGestureRecognizer_7c_get_3a_team =
+    _OneSequenceGestureRecognizer_team;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapGestureRecognizer_7c_get_3a_debugOwner =
+    _GestureRecognizer_debugOwner;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapGestureRecognizer_7c_get_3a_gestureSettings =
+    _GestureRecognizer_gestureSettings;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapGestureRecognizer_7c_get_3a_supportedDevices =
+    _GestureRecognizer_supportedDevices;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapGestureRecognizer_7c_get_3a_allowedButtonsFilter =
+    _GestureRecognizer_allowedButtonsFilter;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapGestureRecognizer_7c_get_3a_onTapDown =
+    _TapGestureRecognizer_onTapDown;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapGestureRecognizer_7c_get_3a_onTapUp =
+    _TapGestureRecognizer_onTapUp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapGestureRecognizer_7c_get_3a_onTap =
+    _TapGestureRecognizer_onTap;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapGestureRecognizer_7c_get_3a_onTapMove =
+    _TapGestureRecognizer_onTapMove;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapGestureRecognizer_7c_get_3a_onTapCancel =
+    _TapGestureRecognizer_onTapCancel;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapGestureRecognizer_7c_get_3a_onSecondaryTap =
+    _TapGestureRecognizer_onSecondaryTap;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapGestureRecognizer_7c_get_3a_onSecondaryTapDown =
+    _TapGestureRecognizer_onSecondaryTapDown;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapGestureRecognizer_7c_get_3a_onSecondaryTapUp =
+    _TapGestureRecognizer_onSecondaryTapUp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapGestureRecognizer_7c_get_3a_onSecondaryTapCancel =
+    _TapGestureRecognizer_onSecondaryTapCancel;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapGestureRecognizer_7c_get_3a_onTertiaryTapDown =
+    _TapGestureRecognizer_onTertiaryTapDown;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapGestureRecognizer_7c_get_3a_onTertiaryTapUp =
+    _TapGestureRecognizer_onTertiaryTapUp;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapGestureRecognizer_7c_get_3a_onTertiaryTapCancel =
+    _TapGestureRecognizer_onTertiaryTapCancel;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapGestureRecognizer_7c_call_3a_toStringShort =
+    _GestureRecognizer_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapGestureRecognizer_7c_call_3a_debugDescribeChildren =
+    _GestureRecognizer_debugDescribeChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapMoveDetails_7c_get_3a_globalPosition =
+    _TapMoveDetails_globalPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapMoveDetails_7c_get_3a_localPosition =
+    _TapMoveDetails_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapMoveDetails_7c_get_3a_kind =
+    _TapMoveDetails_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapMoveDetails_7c_get_3a_delta =
+    _TapMoveDetails_delta;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapUpDetails_7c_get_3a_globalPosition =
+    _PositionedGestureDetails_globalPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapUpDetails_7c_get_3a_localPosition =
+    _PositionedGestureDetails_localPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapUpDetails_7c_get_3a_kind =
+    _TapUpDetails_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_TapUpDetails_7c_call_3a_toStringShort =
+    _TapUpDetails_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_Velocity_7c_get_3a_pixelsPerSecond =
+    _Velocity_pixelsPerSecond;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_Velocity_7c_call_3a_toString =
+    _Velocity_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VelocityEstimate_7c_get_3a_pixelsPerSecond =
+    _VelocityEstimate_pixelsPerSecond;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VelocityEstimate_7c_get_3a_confidence =
+    _VelocityEstimate_confidence;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VelocityEstimate_7c_get_3a_duration =
+    _VelocityEstimate_duration;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VelocityEstimate_7c_get_3a_offset =
+    _VelocityEstimate_offset;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VelocityEstimate_7c_call_3a_toString =
+    _VelocityEstimate_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VelocityTracker_7c_get_3a_kind =
+    _VelocityTracker_kind;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VelocityTracker_7c_call_3a_getVelocityEstimate =
+    _VelocityTracker_getVelocityEstimate;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VelocityTracker_7c_call_3a_getVelocity =
+    _VelocityTracker_getVelocity;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VerticalDragGestureRecognizer_7c_get_3a_dragStartBehavior =
+    _DragGestureRecognizer_dragStartBehavior;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VerticalDragGestureRecognizer_7c_get_3a_multitouchDragStrategy =
+    _DragGestureRecognizer_multitouchDragStrategy;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VerticalDragGestureRecognizer_7c_get_3a_onDown =
+    _DragGestureRecognizer_onDown;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VerticalDragGestureRecognizer_7c_get_3a_onStart =
+    _DragGestureRecognizer_onStart;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VerticalDragGestureRecognizer_7c_get_3a_onUpdate =
+    _DragGestureRecognizer_onUpdate;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VerticalDragGestureRecognizer_7c_get_3a_onEnd =
+    _DragGestureRecognizer_onEnd;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VerticalDragGestureRecognizer_7c_get_3a_onCancel =
+    _DragGestureRecognizer_onCancel;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VerticalDragGestureRecognizer_7c_get_3a_minFlingDistance =
+    _DragGestureRecognizer_minFlingDistance;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VerticalDragGestureRecognizer_7c_get_3a_minFlingVelocity =
+    _DragGestureRecognizer_minFlingVelocity;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VerticalDragGestureRecognizer_7c_get_3a_maxFlingVelocity =
+    _DragGestureRecognizer_maxFlingVelocity;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VerticalDragGestureRecognizer_7c_get_3a_onlyAcceptDragOnThreshold =
+    _DragGestureRecognizer_onlyAcceptDragOnThreshold;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VerticalDragGestureRecognizer_7c_get_3a_velocityTrackerBuilder =
+    _DragGestureRecognizer_velocityTrackerBuilder;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VerticalDragGestureRecognizer_7c_get_3a_lastPosition =
+    _DragGestureRecognizer_lastPosition;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VerticalDragGestureRecognizer_7c_get_3a_globalDistanceMoved =
+    _DragGestureRecognizer_globalDistanceMoved;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VerticalDragGestureRecognizer_7c_get_3a_team =
+    _OneSequenceGestureRecognizer_team;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VerticalDragGestureRecognizer_7c_get_3a_debugOwner =
+    _GestureRecognizer_debugOwner;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VerticalDragGestureRecognizer_7c_get_3a_gestureSettings =
+    _GestureRecognizer_gestureSettings;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VerticalDragGestureRecognizer_7c_get_3a_supportedDevices =
+    _GestureRecognizer_supportedDevices;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VerticalDragGestureRecognizer_7c_get_3a_allowedButtonsFilter =
+    _GestureRecognizer_allowedButtonsFilter;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VerticalDragGestureRecognizer_7c_get_3a_debugDescription =
+    _GestureRecognizer_debugDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VerticalDragGestureRecognizer_7c_call_3a_toStringShort =
+    _GestureRecognizer_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VerticalDragGestureRecognizer_7c_call_3a_debugDescribeChildren =
+    _GestureRecognizer_debugDescribeChildren;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VerticalMultiDragGestureRecognizer_7c_get_3a_onStart =
+    _MultiDragGestureRecognizer_onStart;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VerticalMultiDragGestureRecognizer_7c_get_3a_debugOwner =
+    _GestureRecognizer_debugOwner;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VerticalMultiDragGestureRecognizer_7c_get_3a_gestureSettings =
+    _GestureRecognizer_gestureSettings;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VerticalMultiDragGestureRecognizer_7c_get_3a_supportedDevices =
+    _GestureRecognizer_supportedDevices;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VerticalMultiDragGestureRecognizer_7c_get_3a_allowedButtonsFilter =
+    _GestureRecognizer_allowedButtonsFilter;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VerticalMultiDragGestureRecognizer_7c_get_3a_debugDescription =
+    _GestureRecognizer_debugDescription;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VerticalMultiDragGestureRecognizer_7c_call_3a_toStringShort =
+    _GestureRecognizer_toStringShort;
+const flaxMemberflax_2e_core_2f_sdk_5f_gestures_23_type_3a_VerticalMultiDragGestureRecognizer_7c_call_3a_debugDescribeChildren =
+    _GestureRecognizer_debugDescribeChildren;
 const _flaxBinding0 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_gestures#type:PointerDownEvent",
@@ -47678,9 +49267,9 @@ const _flaxBinding18 = FlaxTypeRef(
   item: _flaxBinding17,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-    _collection1Create,
-    _collection1Matches,
-    restore: _collection1Restore,
+    _flaxAdapters.flaxAdapter84Create,
+    _flaxAdapters.flaxAdapter84Matches,
+    restore: _flaxAdapters.flaxAdapter84Restore,
   ),
 );
 const _flaxBinding19 = FlaxTypeRef(
@@ -47688,8 +49277,8 @@ const _flaxBinding19 = FlaxTypeRef(
   item: _flaxBinding17,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_foundation#type:DiagnosticsNode]",
-    _collection0Create,
-    _collection0Matches,
+    _flaxAdapters.flaxAdapter85Create,
+    _flaxAdapters.flaxAdapter85Matches,
   ),
   iterable: _flaxBinding18,
 );
@@ -47778,9 +49367,9 @@ const _flaxBinding36 = FlaxTypeRef(
   item: _flaxBinding14,
   collection: FlaxCollectionBinding(
     "iterable:[enum:flax.core/sdk_dart_ui#type:PointerDeviceKind]",
-    _collection3Create,
-    _collection3Matches,
-    restore: _collection3Restore,
+    _flaxAdapters.flaxAdapter70Create,
+    _flaxAdapters.flaxAdapter70Matches,
+    restore: _flaxAdapters.flaxAdapter70Restore,
   ),
 );
 const _flaxBinding37 = FlaxTypeRef(
@@ -47789,8 +49378,8 @@ const _flaxBinding37 = FlaxTypeRef(
   item: _flaxBinding14,
   collection: FlaxCollectionBinding(
     "set:[enum:flax.core/sdk_dart_ui#type:PointerDeviceKind]",
-    _collection2Create,
-    _collection2Matches,
+    _flaxAdapters.flaxAdapter71Create,
+    _flaxAdapters.flaxAdapter71Matches,
   ),
   iterable: _flaxBinding36,
 );
@@ -47850,10 +49439,10 @@ const _flaxBinding48 = FlaxTypeRef(
 const _flaxBinding49 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("position", flaxOffsetType)],
   _flaxBinding48,
-  FlaxCallbackAdapters.wrap1<api4.Offset, api.Drag?>,
+  FlaxCallbackAdapters.wrap1<api3.Offset, api.Drag?>,
   id: "callback:<>(p:r:position:object:flax.core/flutter#type:Offset)->object?:flax.core/sdk_gestures#type:Drag",
-  invoke: FlaxCallbackAdapters.invoke1<api4.Offset, api.Drag?>,
-  matches: FlaxCallbackAdapters.matches1<api4.Offset, api.Drag?>,
+  invoke: FlaxCallbackAdapters.invoke1<api3.Offset, api.Drag?>,
+  matches: FlaxCallbackAdapters.matches1<api3.Offset, api.Drag?>,
 );
 const _flaxBinding50 = FlaxTypeRef(
   "callback",
@@ -47995,9 +49584,9 @@ const _flaxBinding77 = FlaxTypeRef(
   item: flaxStringType,
   collection: FlaxCollectionBinding(
     "iterable:[String:]",
-    _collection4Create,
-    _collection4Matches,
-    restore: _collection4Restore,
+    _flaxAdapters.flaxAdapter47Create,
+    _flaxAdapters.flaxAdapter47Matches,
+    restore: _flaxAdapters.flaxAdapter47Restore,
   ),
 );
 const _flaxBinding78 = FlaxCallbackBinding(
@@ -48164,9 +49753,9 @@ const _flaxBinding107 = FlaxTypeRef(
   item: _flaxBinding103,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_gestures#type:HitTestEntry<object:flax.core/sdk_gestures#type:HitTestTarget>]",
-    _collection5Create,
-    _collection5Matches,
-    restore: _collection5Restore,
+    _flaxAdapters.flaxAdapter86Create,
+    _flaxAdapters.flaxAdapter86Matches,
+    restore: _flaxAdapters.flaxAdapter86Restore,
   ),
 );
 const _flaxBinding108 = FlaxCallbackBinding.signature(
@@ -48236,9 +49825,9 @@ const _flaxBinding118 = FlaxTypeRef(
   item: flaxDoubleType,
   collection: FlaxCollectionBinding(
     "iterable:[double:]",
-    _collection7Create,
-    _collection7Matches,
-    restore: _collection7Restore,
+    _flaxAdapters.flaxAdapter123Create,
+    _flaxAdapters.flaxAdapter123Matches,
+    restore: _flaxAdapters.flaxAdapter123Restore,
   ),
 );
 const _flaxBinding119 = FlaxTypeRef(
@@ -48246,8 +49835,8 @@ const _flaxBinding119 = FlaxTypeRef(
   item: flaxDoubleType,
   collection: FlaxCollectionBinding(
     "list:[double:]",
-    _collection6Create,
-    _collection6Matches,
+    _flaxAdapters.flaxAdapter124Create,
+    _flaxAdapters.flaxAdapter124Matches,
   ),
   iterable: _flaxBinding118,
 );
@@ -48991,7 +50580,7 @@ const _flaxBinding260 = <FlaxParameter>[
     "minLevel",
     _flaxBinding259,
     required: false,
-    defaultValue: api3.DiagnosticLevel.info,
+    defaultValue: api1.DiagnosticLevel.info,
   ),
 ];
 const _flaxBinding261 = FlaxInstanceMethod.plain(
@@ -49005,7 +50594,7 @@ const _flaxBinding262 = <FlaxParameter>[
     "minLevel",
     _flaxBinding259,
     required: false,
-    defaultValue: api3.DiagnosticLevel.debug,
+    defaultValue: api1.DiagnosticLevel.debug,
   ),
 ];
 const _flaxBinding263 = FlaxInstanceMethod.plain(
@@ -49018,7 +50607,7 @@ const _flaxBinding264 = <FlaxParameter>[
     "minLevel",
     _flaxBinding259,
     required: false,
-    defaultValue: api3.DiagnosticLevel.debug,
+    defaultValue: api1.DiagnosticLevel.debug,
   ),
   FlaxParameter(
     "prefixLineOne",
@@ -49481,10 +51070,10 @@ const _flaxBinding339 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback1,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback1Invoke,
-              matches: _callback1Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -49527,10 +51116,10 @@ const _flaxBinding339 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback1,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback1Invoke,
-              matches: _callback1Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -49769,10 +51358,10 @@ const _flaxBinding368 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback3,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback3Invoke,
-              matches: _callback3Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -49818,10 +51407,10 @@ const _flaxBinding368 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback3,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback3Invoke,
-              matches: _callback3Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -50218,10 +51807,10 @@ const _flaxBinding415 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback5,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback5Invoke,
-              matches: _callback5Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -50419,10 +52008,10 @@ const _flaxBinding437 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback6,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback6Invoke,
-              matches: _callback6Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -50489,10 +52078,10 @@ const _flaxBinding437 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback6,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback6Invoke,
-              matches: _callback6Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -50744,10 +52333,10 @@ const _flaxBinding452 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback8,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback8Invoke,
-              matches: _callback8Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -50827,10 +52416,10 @@ const _flaxBinding452 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback8,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback8Invoke,
-              matches: _callback8Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -51043,10 +52632,10 @@ const _flaxBinding461 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback10,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback10Invoke,
-              matches: _callback10Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -51083,10 +52672,10 @@ const _flaxBinding461 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback10,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback10Invoke,
-              matches: _callback10Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -51246,10 +52835,10 @@ const _flaxBinding466 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback12,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback12Invoke,
-              matches: _callback12Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -51298,10 +52887,10 @@ const _flaxBinding466 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback12,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback12Invoke,
-              matches: _callback12Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -51573,10 +53162,10 @@ const _flaxBinding490 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback14,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback14Invoke,
-              matches: _callback14Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -51612,10 +53201,10 @@ const _flaxBinding490 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback14,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback14Invoke,
-              matches: _callback14Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -52269,10 +53858,10 @@ const _flaxBinding568 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback16,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback16Invoke,
-              matches: _callback16Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -52561,10 +54150,10 @@ const _flaxBinding592 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback17,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback17Invoke,
-              matches: _callback17Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -52627,10 +54216,10 @@ const _flaxBinding592 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback17,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback17Invoke,
-              matches: _callback17Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -53320,10 +54909,10 @@ const _flaxBinding657 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback19,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback19Invoke,
-              matches: _callback19Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -53386,10 +54975,10 @@ const _flaxBinding657 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback19,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback19Invoke,
-              matches: _callback19Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -53841,15 +55430,15 @@ const _flaxBinding701 = FlaxInstanceMethod.shared(
 const _flaxBinding702 = FlaxTypeRef(
   "future",
   item: flaxVoidType,
-  future: FlaxFutureBinding("void:", _future0Adapt),
+  future: FlaxFutureBinding("void:", _flaxAdapters.flaxAdapter14Adapt),
 );
 const _flaxBinding703 = FlaxCallbackBinding(
   [],
   _flaxBinding702,
-  _callback21,
+  _flaxAdapters.flaxAdapter19,
   id: "callback:<>()->future:[void:]",
-  invoke: _callback21Invoke,
-  matches: _callback21Matches,
+  invoke: _flaxAdapters.flaxAdapter19Invoke,
+  matches: _flaxAdapters.flaxAdapter19Matches,
 );
 const _flaxBinding704 = FlaxTypeRef("callback", callback: _flaxBinding703);
 const _flaxBinding705 = <FlaxParameter>[
@@ -53886,24 +55475,24 @@ const _flaxBinding711 = FlaxInstanceMethod.plain(
 const _flaxBinding712 = FlaxTypeRef(
   "future",
   item: flaxBoolType,
-  future: FlaxFutureBinding("bool:", _future1Adapt),
+  future: FlaxFutureBinding("bool:", _flaxAdapters.flaxAdapter11Adapt),
 );
 const _flaxBinding713 = FlaxCallbackBinding(
   [],
   _flaxBinding712,
-  _callback22,
+  _flaxAdapters.flaxAdapter17,
   id: "callback:<>()->future:[bool:]",
-  invoke: _callback22Invoke,
-  matches: _callback22Matches,
+  invoke: _flaxAdapters.flaxAdapter17Invoke,
+  matches: _flaxAdapters.flaxAdapter17Matches,
 );
 const _flaxBinding714 = FlaxTypeRef("callback", callback: _flaxBinding713);
 const _flaxBinding715 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("value", flaxBoolType)],
   _flaxBinding702,
-  _callback23,
+  _flaxAdapters.flaxAdapter36,
   id: "callback:<>(p:r:value:bool:)->future:[void:]",
-  invoke: _callback23Invoke,
-  matches: _callback23Matches,
+  invoke: _flaxAdapters.flaxAdapter36Invoke,
+  matches: _flaxAdapters.flaxAdapter36Matches,
 );
 const _flaxBinding716 = FlaxTypeRef("callback", callback: _flaxBinding715);
 const _flaxBinding717 = <FlaxParameter>[
@@ -53919,24 +55508,24 @@ const _flaxBinding718 = FlaxInstanceMethod.plain(
 const _flaxBinding719 = FlaxTypeRef(
   "future",
   item: flaxDoubleType,
-  future: FlaxFutureBinding("double:", _future2Adapt),
+  future: FlaxFutureBinding("double:", _flaxAdapters.flaxAdapter12Adapt),
 );
 const _flaxBinding720 = FlaxCallbackBinding(
   [],
   _flaxBinding719,
-  _callback24,
+  _flaxAdapters.flaxAdapter18,
   id: "callback:<>()->future:[double:]",
-  invoke: _callback24Invoke,
-  matches: _callback24Matches,
+  invoke: _flaxAdapters.flaxAdapter18Invoke,
+  matches: _flaxAdapters.flaxAdapter18Matches,
 );
 const _flaxBinding721 = FlaxTypeRef("callback", callback: _flaxBinding720);
 const _flaxBinding722 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("value", flaxDoubleType)],
   _flaxBinding702,
-  _callback25,
+  _flaxAdapters.flaxAdapter37,
   id: "callback:<>(p:r:value:double:)->future:[void:]",
-  invoke: _callback25Invoke,
-  matches: _callback25Matches,
+  invoke: _flaxAdapters.flaxAdapter37Invoke,
+  matches: _flaxAdapters.flaxAdapter37Matches,
 );
 const _flaxBinding723 = FlaxTypeRef("callback", callback: _flaxBinding722);
 const _flaxBinding724 = <FlaxParameter>[
@@ -53955,8 +55544,8 @@ const _flaxBinding726 = FlaxTypeRef(
   key: flaxStringType,
   collection: FlaxCollectionBinding(
     "map:[any?:][String:]",
-    _collection8Create,
-    _collection8Matches,
+    _flaxAdapters.flaxAdapter45Create,
+    _flaxAdapters.flaxAdapter45Matches,
   ),
 );
 const _flaxBinding727 = <FlaxParameter>[
@@ -53971,24 +55560,24 @@ const _flaxBinding728 = FlaxInstanceMethod.plain(
 const _flaxBinding729 = FlaxTypeRef(
   "future",
   item: flaxStringType,
-  future: FlaxFutureBinding("String:", _future3Adapt),
+  future: FlaxFutureBinding("String:", _flaxAdapters.flaxAdapter2Adapt),
 );
 const _flaxBinding730 = FlaxCallbackBinding(
   [],
   _flaxBinding729,
-  _callback26,
+  _flaxAdapters.flaxAdapter16,
   id: "callback:<>()->future:[String:]",
-  invoke: _callback26Invoke,
-  matches: _callback26Matches,
+  invoke: _flaxAdapters.flaxAdapter16Invoke,
+  matches: _flaxAdapters.flaxAdapter16Matches,
 );
 const _flaxBinding731 = FlaxTypeRef("callback", callback: _flaxBinding730);
 const _flaxBinding732 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("value", flaxStringType)],
   _flaxBinding702,
-  _callback27,
+  _flaxAdapters.flaxAdapter31,
   id: "callback:<>(p:r:value:String:)->future:[void:]",
-  invoke: _callback27Invoke,
-  matches: _callback27Matches,
+  invoke: _flaxAdapters.flaxAdapter31Invoke,
+  matches: _flaxAdapters.flaxAdapter31Matches,
 );
 const _flaxBinding733 = FlaxTypeRef("callback", callback: _flaxBinding732);
 const _flaxBinding734 = <FlaxParameter>[
@@ -54007,22 +55596,25 @@ const _flaxBinding736 = FlaxTypeRef(
   key: flaxStringType,
   collection: FlaxCollectionBinding(
     "map:[String:][String:]",
-    _collection9Create,
-    _collection9Matches,
+    _flaxAdapters.flaxAdapter46Create,
+    _flaxAdapters.flaxAdapter46Matches,
   ),
 );
 const _flaxBinding737 = FlaxTypeRef(
   "future",
   item: _flaxBinding726,
-  future: FlaxFutureBinding("map:[any?:][String:]", _future4Adapt),
+  future: FlaxFutureBinding(
+    "map:[any?:][String:]",
+    _flaxAdapters.flaxAdapter0Adapt,
+  ),
 );
 const _flaxBinding738 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("parameters", _flaxBinding736)],
   _flaxBinding737,
-  _callback28,
+  _flaxAdapters.flaxAdapter23,
   id: "callback:<>(p:r:parameters:map:[String:][String:])->future:[map:[any?:][String:]]",
-  invoke: _callback28Invoke,
-  matches: _callback28Matches,
+  invoke: _flaxAdapters.flaxAdapter23Invoke,
+  matches: _flaxAdapters.flaxAdapter23Matches,
 );
 const _flaxBinding739 = FlaxTypeRef("callback", callback: _flaxBinding738);
 const _flaxBinding740 = <FlaxParameter>[
@@ -54146,86 +55738,90 @@ const _flaxBinding756 = FlaxGetter.plain(
   _flaxBinding101,
   _HitTestEntry_transform,
 );
-const _flaxBinding757 = FlaxTypeRef(
+const _flaxBinding757 = FlaxInstanceMethod.shared(
+  flaxStringCall,
+  _HitTestEntry_toString,
+);
+const _flaxBinding758 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_gestures#type:HitTestTarget",
 );
-const _flaxBinding758 = <FlaxParameter>[
-  FlaxParameter.required("target", _flaxBinding757),
+const _flaxBinding759 = <FlaxParameter>[
+  FlaxParameter.required("target", _flaxBinding758),
 ];
-const _flaxBinding759 = FlaxProxyMember(
+const _flaxBinding760 = FlaxProxyMember(
   "transform",
   1,
   _flaxBinding102,
   hasSuper: true,
 );
-const _flaxBinding760 = FlaxGetter.plain(
+const _flaxBinding761 = FlaxGetter.plain(
   "path",
   _flaxBinding107,
   _HitTestResult_path,
 );
-const _flaxBinding761 = FlaxInstanceMethod.shared(
+const _flaxBinding762 = FlaxInstanceMethod.shared(
   _flaxBinding104,
   _HitTestResult_add,
 );
-const _flaxBinding762 = FlaxInstanceMethod.shared(
+const _flaxBinding763 = FlaxInstanceMethod.shared(
   _flaxBinding105,
   _HitTestResult_pushTransform,
 );
-const _flaxBinding763 = FlaxInstanceMethod.shared(
+const _flaxBinding764 = FlaxInstanceMethod.shared(
   _flaxBinding106,
   _HitTestResult_pushOffset,
 );
-const _flaxBinding764 = FlaxInstanceMethod.shared(
+const _flaxBinding765 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _HitTestResult_popTransform,
 );
-const _flaxBinding765 = FlaxInstanceMethod.shared(
+const _flaxBinding766 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _HitTestResult_toString,
 );
-const _flaxBinding766 = <FlaxParameter>[
+const _flaxBinding767 = <FlaxParameter>[
   FlaxParameter.required("result", _flaxBinding99),
 ];
-const _flaxBinding767 = FlaxProxyMember(
+const _flaxBinding768 = FlaxProxyMember(
   "add",
   0,
   _flaxBinding104,
   hasSuper: true,
 );
-const _flaxBinding768 = FlaxProxyMember(
+const _flaxBinding769 = FlaxProxyMember(
   "pushTransform",
   0,
   _flaxBinding105,
   hasSuper: true,
 );
-const _flaxBinding769 = FlaxProxyMember(
+const _flaxBinding770 = FlaxProxyMember(
   "pushOffset",
   0,
   _flaxBinding106,
   hasSuper: true,
 );
-const _flaxBinding770 = FlaxProxyMember(
+const _flaxBinding771 = FlaxProxyMember(
   "popTransform",
   0,
   flaxVoidCall,
   hasSuper: true,
 );
-const _flaxBinding771 = FlaxProxyMember(
+const _flaxBinding772 = FlaxProxyMember(
   "path",
   1,
   _flaxBinding108,
   hasSuper: true,
 );
-const _flaxBinding772 = FlaxObjectBinding(
+const _flaxBinding773 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:HitTestResult",
-  [_flaxBinding760],
+  [_flaxBinding761],
   {
-    "add": _flaxBinding761,
-    "pushTransform": _flaxBinding762,
-    "pushOffset": _flaxBinding763,
-    "popTransform": _flaxBinding764,
-    "toString": _flaxBinding765,
+    "add": _flaxBinding762,
+    "pushTransform": _flaxBinding763,
+    "pushOffset": _flaxBinding764,
+    "popTransform": _flaxBinding765,
+    "toString": _flaxBinding766,
     "@super:add": FlaxInstanceMethod.shared(
       _flaxBinding104,
       _HitTestResult_super_add,
@@ -54250,25 +55846,25 @@ const _flaxBinding772 = FlaxObjectBinding(
   },
   constructors: {
     "": _flaxBinding494,
-    "wrap": _flaxBinding766,
+    "wrap": _flaxBinding767,
     "@implementation": _flaxBinding494,
-    "@implementation:wrap": _flaxBinding766,
+    "@implementation:wrap": _flaxBinding767,
   },
   create: _createHitTestResult,
   matches: _isHitTestResult,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding767,
     _flaxBinding768,
     _flaxBinding769,
     _flaxBinding770,
-    _flaxBinding474,
     _flaxBinding771,
+    _flaxBinding474,
+    _flaxBinding772,
   ]),
 );
-const _flaxBinding773 = FlaxProxyMember("handleEvent", 0, _flaxBinding109);
-const _flaxBinding774 = FlaxObjectBinding(
+const _flaxBinding774 = FlaxProxyMember("handleEvent", 0, _flaxBinding109);
+const _flaxBinding775 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:HitTestTarget",
   [],
   {"handleEvent": _flaxBinding748},
@@ -54277,11 +55873,11 @@ const _flaxBinding774 = FlaxObjectBinding(
   matches: _isHitTestTarget,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding773]),
+  proxy: FlaxProxyBinding([_flaxBinding774]),
 );
-const _flaxBinding775 = FlaxProxyMember("hitTest", 0, _flaxBinding110);
-const _flaxBinding776 = FlaxProxyMember("hitTestInView", 0, _flaxBinding111);
-const _flaxBinding777 = FlaxObjectBinding(
+const _flaxBinding776 = FlaxProxyMember("hitTest", 0, _flaxBinding110);
+const _flaxBinding777 = FlaxProxyMember("hitTestInView", 0, _flaxBinding111);
+const _flaxBinding778 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:HitTestable",
   [],
   {"hitTest": _flaxBinding743, "hitTestInView": _flaxBinding744},
@@ -54290,9 +55886,9 @@ const _flaxBinding777 = FlaxObjectBinding(
   matches: _isHitTestable,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding775, _flaxBinding776]),
+  proxy: FlaxProxyBinding([_flaxBinding776, _flaxBinding777]),
 );
-const _flaxBinding778 = FlaxObjectBinding(
+const _flaxBinding779 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:HorizontalDragGestureRecognizer",
   [],
   {
@@ -54306,10 +55902,10 @@ const _flaxBinding778 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback29,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback29Invoke,
-              matches: _callback29Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -54343,12 +55939,12 @@ const _flaxBinding778 = FlaxObjectBinding(
   parent: _flaxBinding568,
   disposeMethod: "dispose",
 );
-const _flaxBinding779 = <FlaxParameter>[
+const _flaxBinding780 = <FlaxParameter>[
   FlaxParameter("debugOwner", flaxNullableAnyType, required: false),
   FlaxParameter("supportedDevices", _flaxBinding37, required: false),
   FlaxParameter("allowedButtonsFilter", _flaxBinding456, required: false),
 ];
-const _flaxBinding780 = FlaxObjectBinding(
+const _flaxBinding781 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:HorizontalMultiDragGestureRecognizer",
   [],
   {
@@ -54362,10 +55958,10 @@ const _flaxBinding780 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback30,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback30Invoke,
-              matches: _callback30Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -54414,10 +56010,10 @@ const _flaxBinding780 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback30,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback30Invoke,
-              matches: _callback30Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -54460,7 +56056,7 @@ const _flaxBinding780 = FlaxObjectBinding(
     "@super:set:gestureSettings": _flaxBinding305,
     "@super:set:supportedDevices": _flaxBinding306,
   },
-  constructors: {"": _flaxBinding779, "@implementation": _flaxBinding779},
+  constructors: {"": _flaxBinding780, "@implementation": _flaxBinding780},
   create: _createHorizontalMultiDragGestureRecognizer,
   matches: _isHorizontalMultiDragGestureRecognizer,
   setters: [],
@@ -54532,118 +56128,118 @@ const _flaxBinding780 = FlaxObjectBinding(
     _flaxBinding338,
   ]),
 );
-const _flaxBinding781 = FlaxGetter.plain(
+const _flaxBinding782 = FlaxGetter.plain(
   "kind",
   _flaxBinding14,
   _VelocityTracker_kind,
 );
-const _flaxBinding782 = FlaxInstanceMethod.shared(
+const _flaxBinding783 = FlaxInstanceMethod.shared(
   _flaxBinding112,
   _VelocityTracker_addPosition,
 );
-const _flaxBinding783 = FlaxInstanceMethod.shared(
+const _flaxBinding784 = FlaxInstanceMethod.shared(
   _flaxBinding249,
   _VelocityTracker_getVelocityEstimate,
 );
-const _flaxBinding784 = FlaxInstanceMethod.shared(
+const _flaxBinding785 = FlaxInstanceMethod.shared(
   _flaxBinding66,
   _VelocityTracker_getVelocity,
 );
-const _flaxBinding785 = FlaxInstanceMethod.shared(
+const _flaxBinding786 = FlaxInstanceMethod.shared(
   _flaxBinding112,
   _FlaxProxyDispatch27_super_call_addPosition,
 );
-const _flaxBinding786 = FlaxInstanceMethod.shared(
+const _flaxBinding787 = FlaxInstanceMethod.shared(
   _flaxBinding66,
   _FlaxProxyDispatch27_super_call_getVelocity,
 );
-const _flaxBinding787 = FlaxInstanceMethod.shared(
+const _flaxBinding788 = FlaxInstanceMethod.shared(
   _flaxBinding115,
   _FlaxProxyDispatch29_super_get_kind,
 );
-const _flaxBinding788 = <FlaxParameter>[
+const _flaxBinding789 = <FlaxParameter>[
   FlaxParameter.required("kind", _flaxBinding14),
 ];
-const _flaxBinding789 = FlaxProxyMember(
+const _flaxBinding790 = FlaxProxyMember(
   "addPosition",
   0,
   _flaxBinding112,
   hasSuper: true,
 );
-const _flaxBinding790 = FlaxProxyMember(
+const _flaxBinding791 = FlaxProxyMember(
   "getVelocityEstimate",
   0,
   _flaxBinding249,
   hasSuper: true,
 );
-const _flaxBinding791 = FlaxProxyMember(
+const _flaxBinding792 = FlaxProxyMember(
   "getVelocity",
   0,
   _flaxBinding66,
   hasSuper: true,
 );
-const _flaxBinding792 = FlaxProxyMember(
+const _flaxBinding793 = FlaxProxyMember(
   "kind",
   1,
   _flaxBinding115,
   hasSuper: true,
 );
-const _flaxBinding793 = FlaxObjectBinding(
+const _flaxBinding794 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:VelocityTracker",
-  [_flaxBinding781],
+  [_flaxBinding782],
   {
-    "addPosition": _flaxBinding782,
-    "getVelocityEstimate": _flaxBinding783,
-    "getVelocity": _flaxBinding784,
-    "@super:addPosition": _flaxBinding785,
+    "addPosition": _flaxBinding783,
+    "getVelocityEstimate": _flaxBinding784,
+    "getVelocity": _flaxBinding785,
+    "@super:addPosition": _flaxBinding786,
     "@super:getVelocityEstimate": FlaxInstanceMethod.shared(
       _flaxBinding249,
       _VelocityTracker_super_getVelocityEstimate,
     ),
-    "@super:getVelocity": _flaxBinding786,
-    "@super:get:kind": _flaxBinding787,
+    "@super:getVelocity": _flaxBinding787,
+    "@super:get:kind": _flaxBinding788,
   },
   constructors: {
-    "withKind": _flaxBinding788,
-    "@implementation": _flaxBinding788,
-    "@implementation:withKind": _flaxBinding788,
+    "withKind": _flaxBinding789,
+    "@implementation": _flaxBinding789,
+    "@implementation:withKind": _flaxBinding789,
   },
   create: _createVelocityTracker,
   matches: _isVelocityTracker,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding789,
     _flaxBinding790,
     _flaxBinding791,
     _flaxBinding792,
+    _flaxBinding793,
   ]),
-);
-const _flaxBinding794 = FlaxInstanceMethod.shared(
-  _flaxBinding114,
-  _IOSScrollViewFlingVelocityTracker_getVelocityEstimate,
 );
 const _flaxBinding795 = FlaxInstanceMethod.shared(
   _flaxBinding114,
+  _IOSScrollViewFlingVelocityTracker_getVelocityEstimate,
+);
+const _flaxBinding796 = FlaxInstanceMethod.shared(
+  _flaxBinding114,
   _FlaxProxyDispatch28_super_call_getVelocityEstimate,
 );
-const _flaxBinding796 = FlaxProxyMember(
+const _flaxBinding797 = FlaxProxyMember(
   "getVelocityEstimate",
   0,
   _flaxBinding114,
   hasSuper: true,
 );
-const _flaxBinding797 = FlaxObjectBinding(
+const _flaxBinding798 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:IOSScrollViewFlingVelocityTracker",
   [],
   {
-    "getVelocityEstimate": _flaxBinding794,
-    "@super:addPosition": _flaxBinding785,
-    "@super:getVelocityEstimate": _flaxBinding795,
-    "@super:getVelocity": _flaxBinding786,
-    "@super:get:kind": _flaxBinding787,
+    "getVelocityEstimate": _flaxBinding795,
+    "@super:addPosition": _flaxBinding786,
+    "@super:getVelocityEstimate": _flaxBinding796,
+    "@super:getVelocity": _flaxBinding787,
+    "@super:get:kind": _flaxBinding788,
   },
-  constructors: {"": _flaxBinding788, "@implementation": _flaxBinding788},
+  constructors: {"": _flaxBinding789, "@implementation": _flaxBinding789},
   create: _createIOSScrollViewFlingVelocityTracker,
   matches: _isIOSScrollViewFlingVelocityTracker,
   setters: [],
@@ -54651,15 +56247,15 @@ const _flaxBinding797 = FlaxObjectBinding(
     "flax.core/sdk_gestures#type:VelocityTracker",
     "dart:core::Object",
   ],
-  parent: _flaxBinding793,
+  parent: _flaxBinding794,
   proxy: FlaxProxyBinding([
-    _flaxBinding789,
-    _flaxBinding796,
-    _flaxBinding791,
+    _flaxBinding790,
+    _flaxBinding797,
     _flaxBinding792,
+    _flaxBinding793,
   ]),
 );
-const _flaxBinding798 = FlaxObjectBinding(
+const _flaxBinding799 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:ImmediateMultiDragGestureRecognizer",
   [],
   {
@@ -54673,10 +56269,10 @@ const _flaxBinding798 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback32,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback32Invoke,
-              matches: _callback32Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -54725,10 +56321,10 @@ const _flaxBinding798 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback32,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback32Invoke,
-              matches: _callback32Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -54771,7 +56367,7 @@ const _flaxBinding798 = FlaxObjectBinding(
     "@super:set:gestureSettings": _flaxBinding305,
     "@super:set:supportedDevices": _flaxBinding306,
   },
-  constructors: {"": _flaxBinding779, "@implementation": _flaxBinding779},
+  constructors: {"": _flaxBinding780, "@implementation": _flaxBinding780},
   create: _createImmediateMultiDragGestureRecognizer,
   matches: _isImmediateMultiDragGestureRecognizer,
   setters: [],
@@ -54843,59 +56439,59 @@ const _flaxBinding798 = FlaxObjectBinding(
     _flaxBinding338,
   ]),
 );
-const _flaxBinding799 = FlaxGetter.plain(
+const _flaxBinding800 = FlaxGetter.plain(
   "x",
   _flaxBinding119,
   _LeastSquaresSolver_x,
 );
-const _flaxBinding800 = FlaxGetter.plain(
+const _flaxBinding801 = FlaxGetter.plain(
   "y",
   _flaxBinding119,
   _LeastSquaresSolver_y,
 );
-const _flaxBinding801 = FlaxGetter.plain(
+const _flaxBinding802 = FlaxGetter.plain(
   "w",
   _flaxBinding119,
   _LeastSquaresSolver_w,
 );
-const _flaxBinding802 = FlaxInstanceMethod.shared(
+const _flaxBinding803 = FlaxInstanceMethod.shared(
   _flaxBinding117,
   _LeastSquaresSolver_solve,
 );
-const _flaxBinding803 = <FlaxParameter>[
+const _flaxBinding804 = <FlaxParameter>[
   FlaxParameter.required("x", _flaxBinding119),
   FlaxParameter.required("y", _flaxBinding119),
   FlaxParameter.required("w", _flaxBinding119),
 ];
-const _flaxBinding804 = FlaxProxyMember(
+const _flaxBinding805 = FlaxProxyMember(
   "solve",
   0,
   _flaxBinding117,
   hasSuper: true,
 );
-const _flaxBinding805 = FlaxProxyMember(
+const _flaxBinding806 = FlaxProxyMember(
   "x",
   1,
   _flaxBinding120,
   hasSuper: true,
 );
-const _flaxBinding806 = FlaxProxyMember(
+const _flaxBinding807 = FlaxProxyMember(
   "y",
   1,
   _flaxBinding120,
   hasSuper: true,
 );
-const _flaxBinding807 = FlaxProxyMember(
+const _flaxBinding808 = FlaxProxyMember(
   "w",
   1,
   _flaxBinding120,
   hasSuper: true,
 );
-const _flaxBinding808 = FlaxObjectBinding(
+const _flaxBinding809 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:LeastSquaresSolver",
-  [_flaxBinding799, _flaxBinding800, _flaxBinding801],
+  [_flaxBinding800, _flaxBinding801, _flaxBinding802],
   {
-    "solve": _flaxBinding802,
+    "solve": _flaxBinding803,
     "@super:solve": FlaxInstanceMethod.shared(
       _flaxBinding117,
       _LeastSquaresSolver_super_solve,
@@ -54913,42 +56509,42 @@ const _flaxBinding808 = FlaxObjectBinding(
       _LeastSquaresSolver_super_get_w,
     ),
   },
-  constructors: {"": _flaxBinding803, "@implementation": _flaxBinding803},
+  constructors: {"": _flaxBinding804, "@implementation": _flaxBinding804},
   create: _createLeastSquaresSolver,
   matches: _isLeastSquaresSolver,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding804,
     _flaxBinding805,
     _flaxBinding806,
     _flaxBinding807,
+    _flaxBinding808,
   ]),
 );
-const _flaxBinding809 = FlaxGetter.plain(
+const _flaxBinding810 = FlaxGetter.plain(
   "kind",
   _flaxBinding67,
   _LongPressDownDetails_kind,
 );
-const _flaxBinding810 = FlaxInstanceMethod.shared(
+const _flaxBinding811 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _LongPressDownDetails_toStringShort,
 );
-const _flaxBinding811 = FlaxInstanceMethod.plain(
+const _flaxBinding812 = FlaxInstanceMethod.plain(
   _flaxBinding260,
   flaxStringType,
   _LongPressDownDetails_toString,
 );
-const _flaxBinding812 = FlaxInstanceMethod.plain(
+const _flaxBinding813 = FlaxInstanceMethod.plain(
   _flaxBinding268,
   _flaxBinding17,
   _LongPressDownDetails_toDiagnosticsNode,
 );
-const _flaxBinding813 = FlaxInstanceMethod.shared(
+const _flaxBinding814 = FlaxInstanceMethod.shared(
   _flaxBinding6,
   _LongPressDownDetails_debugFillProperties,
 );
-const _flaxBinding814 = <FlaxParameter>[
+const _flaxBinding815 = <FlaxParameter>[
   FlaxParameter(
     "globalPosition",
     flaxOffsetType,
@@ -54958,14 +56554,14 @@ const _flaxBinding814 = <FlaxParameter>[
   FlaxParameter("localPosition", _flaxBinding143, required: false),
   FlaxParameter("kind", _flaxBinding67, required: false),
 ];
-const _flaxBinding815 = FlaxObjectBinding(
+const _flaxBinding816 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:LongPressDownDetails",
-  [_flaxBinding499, _flaxBinding500, _flaxBinding809],
+  [_flaxBinding499, _flaxBinding500, _flaxBinding810],
   {
-    "toStringShort": _flaxBinding810,
-    "toString": _flaxBinding811,
-    "toDiagnosticsNode": _flaxBinding812,
-    "debugFillProperties": _flaxBinding813,
+    "toStringShort": _flaxBinding811,
+    "toString": _flaxBinding812,
+    "toDiagnosticsNode": _flaxBinding813,
+    "debugFillProperties": _flaxBinding814,
     "@super:toStringShort": _flaxBinding286,
     "@super:toString": _flaxBinding283,
     "@super:toDiagnosticsNode": _flaxBinding287,
@@ -54980,7 +56576,7 @@ const _flaxBinding815 = FlaxObjectBinding(
       _LongPressDownDetails_super_get_kind,
     ),
   },
-  constructors: {"": _flaxBinding814, "@implementation": _flaxBinding814},
+  constructors: {"": _flaxBinding815, "@implementation": _flaxBinding815},
   create: _createLongPressDownDetails,
   matches: _isLongPressDownDetails,
   setters: [],
@@ -54999,30 +56595,30 @@ const _flaxBinding815 = FlaxObjectBinding(
     _flaxBinding577,
   ]),
 );
-const _flaxBinding816 = FlaxGetter.plain(
+const _flaxBinding817 = FlaxGetter.plain(
   "velocity",
   _flaxBinding65,
   _LongPressEndDetails_velocity,
 );
-const _flaxBinding817 = FlaxInstanceMethod.shared(
+const _flaxBinding818 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _LongPressEndDetails_toStringShort,
 );
-const _flaxBinding818 = FlaxInstanceMethod.plain(
+const _flaxBinding819 = FlaxInstanceMethod.plain(
   _flaxBinding260,
   flaxStringType,
   _LongPressEndDetails_toString,
 );
-const _flaxBinding819 = FlaxInstanceMethod.plain(
+const _flaxBinding820 = FlaxInstanceMethod.plain(
   _flaxBinding268,
   _flaxBinding17,
   _LongPressEndDetails_toDiagnosticsNode,
 );
-const _flaxBinding820 = FlaxInstanceMethod.shared(
+const _flaxBinding821 = FlaxInstanceMethod.shared(
   _flaxBinding6,
   _LongPressEndDetails_debugFillProperties,
 );
-const _flaxBinding821 = <FlaxParameter>[
+const _flaxBinding822 = <FlaxParameter>[
   FlaxParameter(
     "globalPosition",
     flaxOffsetType,
@@ -55037,14 +56633,14 @@ const _flaxBinding821 = <FlaxParameter>[
     omitWhenAbsent: true,
   ),
 ];
-const _flaxBinding822 = FlaxObjectBinding(
+const _flaxBinding823 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:LongPressEndDetails",
-  [_flaxBinding499, _flaxBinding500, _flaxBinding816],
+  [_flaxBinding499, _flaxBinding500, _flaxBinding817],
   {
-    "toStringShort": _flaxBinding817,
-    "toString": _flaxBinding818,
-    "toDiagnosticsNode": _flaxBinding819,
-    "debugFillProperties": _flaxBinding820,
+    "toStringShort": _flaxBinding818,
+    "toString": _flaxBinding819,
+    "toDiagnosticsNode": _flaxBinding820,
+    "debugFillProperties": _flaxBinding821,
     "@super:toStringShort": _flaxBinding286,
     "@super:toString": _flaxBinding283,
     "@super:toDiagnosticsNode": _flaxBinding287,
@@ -55059,7 +56655,7 @@ const _flaxBinding822 = FlaxObjectBinding(
       _LongPressEndDetails_super_get_velocity,
     ),
   },
-  constructors: {"": _flaxBinding821, "@implementation": _flaxBinding821},
+  constructors: {"": _flaxBinding822, "@implementation": _flaxBinding822},
   create: _createLongPressEndDetails,
   matches: _isLongPressEndDetails,
   setters: [],
@@ -55078,217 +56674,217 @@ const _flaxBinding822 = FlaxObjectBinding(
     _flaxBinding518,
   ]),
 );
-const _flaxBinding823 = FlaxGetter.plain(
+const _flaxBinding824 = FlaxGetter.plain(
   "onLongPressDown",
   _flaxBinding123,
   _LongPressGestureRecognizer_onLongPressDown,
 );
-const _flaxBinding824 = FlaxGetter.plain(
+const _flaxBinding825 = FlaxGetter.plain(
   "onLongPressCancel",
   flaxVoidNullableCallbackType,
   _LongPressGestureRecognizer_onLongPressCancel,
 );
-const _flaxBinding825 = FlaxGetter.plain(
+const _flaxBinding826 = FlaxGetter.plain(
   "onLongPress",
   flaxVoidNullableCallbackType,
   _LongPressGestureRecognizer_onLongPress,
 );
-const _flaxBinding826 = FlaxGetter.plain(
+const _flaxBinding827 = FlaxGetter.plain(
   "onLongPressStart",
   _flaxBinding127,
   _LongPressGestureRecognizer_onLongPressStart,
 );
-const _flaxBinding827 = FlaxGetter.plain(
+const _flaxBinding828 = FlaxGetter.plain(
   "onLongPressMoveUpdate",
   _flaxBinding131,
   _LongPressGestureRecognizer_onLongPressMoveUpdate,
 );
-const _flaxBinding828 = FlaxGetter.plain(
+const _flaxBinding829 = FlaxGetter.plain(
   "onLongPressUp",
   flaxVoidNullableCallbackType,
   _LongPressGestureRecognizer_onLongPressUp,
 );
-const _flaxBinding829 = FlaxGetter.plain(
+const _flaxBinding830 = FlaxGetter.plain(
   "onLongPressEnd",
   _flaxBinding135,
   _LongPressGestureRecognizer_onLongPressEnd,
 );
-const _flaxBinding830 = FlaxGetter.plain(
+const _flaxBinding831 = FlaxGetter.plain(
   "onSecondaryLongPressDown",
   _flaxBinding123,
   _LongPressGestureRecognizer_onSecondaryLongPressDown,
 );
-const _flaxBinding831 = FlaxGetter.plain(
+const _flaxBinding832 = FlaxGetter.plain(
   "onSecondaryLongPressCancel",
   flaxVoidNullableCallbackType,
   _LongPressGestureRecognizer_onSecondaryLongPressCancel,
 );
-const _flaxBinding832 = FlaxGetter.plain(
+const _flaxBinding833 = FlaxGetter.plain(
   "onSecondaryLongPress",
   flaxVoidNullableCallbackType,
   _LongPressGestureRecognizer_onSecondaryLongPress,
 );
-const _flaxBinding833 = FlaxGetter.plain(
+const _flaxBinding834 = FlaxGetter.plain(
   "onSecondaryLongPressStart",
   _flaxBinding127,
   _LongPressGestureRecognizer_onSecondaryLongPressStart,
 );
-const _flaxBinding834 = FlaxGetter.plain(
+const _flaxBinding835 = FlaxGetter.plain(
   "onSecondaryLongPressMoveUpdate",
   _flaxBinding131,
   _LongPressGestureRecognizer_onSecondaryLongPressMoveUpdate,
 );
-const _flaxBinding835 = FlaxGetter.plain(
+const _flaxBinding836 = FlaxGetter.plain(
   "onSecondaryLongPressUp",
   flaxVoidNullableCallbackType,
   _LongPressGestureRecognizer_onSecondaryLongPressUp,
 );
-const _flaxBinding836 = FlaxGetter.plain(
+const _flaxBinding837 = FlaxGetter.plain(
   "onSecondaryLongPressEnd",
   _flaxBinding135,
   _LongPressGestureRecognizer_onSecondaryLongPressEnd,
 );
-const _flaxBinding837 = FlaxGetter.plain(
+const _flaxBinding838 = FlaxGetter.plain(
   "onTertiaryLongPressDown",
   _flaxBinding123,
   _LongPressGestureRecognizer_onTertiaryLongPressDown,
 );
-const _flaxBinding838 = FlaxGetter.plain(
+const _flaxBinding839 = FlaxGetter.plain(
   "onTertiaryLongPressCancel",
   flaxVoidNullableCallbackType,
   _LongPressGestureRecognizer_onTertiaryLongPressCancel,
 );
-const _flaxBinding839 = FlaxGetter.plain(
+const _flaxBinding840 = FlaxGetter.plain(
   "onTertiaryLongPress",
   flaxVoidNullableCallbackType,
   _LongPressGestureRecognizer_onTertiaryLongPress,
 );
-const _flaxBinding840 = FlaxGetter.plain(
+const _flaxBinding841 = FlaxGetter.plain(
   "onTertiaryLongPressStart",
   _flaxBinding127,
   _LongPressGestureRecognizer_onTertiaryLongPressStart,
 );
-const _flaxBinding841 = FlaxGetter.plain(
+const _flaxBinding842 = FlaxGetter.plain(
   "onTertiaryLongPressMoveUpdate",
   _flaxBinding131,
   _LongPressGestureRecognizer_onTertiaryLongPressMoveUpdate,
 );
-const _flaxBinding842 = FlaxGetter.plain(
+const _flaxBinding843 = FlaxGetter.plain(
   "onTertiaryLongPressUp",
   flaxVoidNullableCallbackType,
   _LongPressGestureRecognizer_onTertiaryLongPressUp,
 );
-const _flaxBinding843 = FlaxGetter.plain(
+const _flaxBinding844 = FlaxGetter.plain(
   "onTertiaryLongPressEnd",
   _flaxBinding135,
   _LongPressGestureRecognizer_onTertiaryLongPressEnd,
 );
-const _flaxBinding844 = FlaxSetter(
+const _flaxBinding845 = FlaxSetter(
   "onLongPressDown",
   _flaxBinding123,
   _LongPressGestureRecognizer_set_onLongPressDown,
 );
-const _flaxBinding845 = FlaxSetter(
+const _flaxBinding846 = FlaxSetter(
   "onLongPressCancel",
   flaxVoidNullableCallbackType,
   _LongPressGestureRecognizer_set_onLongPressCancel,
 );
-const _flaxBinding846 = FlaxSetter(
+const _flaxBinding847 = FlaxSetter(
   "onLongPress",
   flaxVoidNullableCallbackType,
   _LongPressGestureRecognizer_set_onLongPress,
 );
-const _flaxBinding847 = FlaxSetter(
+const _flaxBinding848 = FlaxSetter(
   "onLongPressStart",
   _flaxBinding127,
   _LongPressGestureRecognizer_set_onLongPressStart,
 );
-const _flaxBinding848 = FlaxSetter(
+const _flaxBinding849 = FlaxSetter(
   "onLongPressMoveUpdate",
   _flaxBinding131,
   _LongPressGestureRecognizer_set_onLongPressMoveUpdate,
 );
-const _flaxBinding849 = FlaxSetter(
+const _flaxBinding850 = FlaxSetter(
   "onLongPressUp",
   flaxVoidNullableCallbackType,
   _LongPressGestureRecognizer_set_onLongPressUp,
 );
-const _flaxBinding850 = FlaxSetter(
+const _flaxBinding851 = FlaxSetter(
   "onLongPressEnd",
   _flaxBinding135,
   _LongPressGestureRecognizer_set_onLongPressEnd,
 );
-const _flaxBinding851 = FlaxSetter(
+const _flaxBinding852 = FlaxSetter(
   "onSecondaryLongPressDown",
   _flaxBinding123,
   _LongPressGestureRecognizer_set_onSecondaryLongPressDown,
 );
-const _flaxBinding852 = FlaxSetter(
+const _flaxBinding853 = FlaxSetter(
   "onSecondaryLongPressCancel",
   flaxVoidNullableCallbackType,
   _LongPressGestureRecognizer_set_onSecondaryLongPressCancel,
 );
-const _flaxBinding853 = FlaxSetter(
+const _flaxBinding854 = FlaxSetter(
   "onSecondaryLongPress",
   flaxVoidNullableCallbackType,
   _LongPressGestureRecognizer_set_onSecondaryLongPress,
 );
-const _flaxBinding854 = FlaxSetter(
+const _flaxBinding855 = FlaxSetter(
   "onSecondaryLongPressStart",
   _flaxBinding127,
   _LongPressGestureRecognizer_set_onSecondaryLongPressStart,
 );
-const _flaxBinding855 = FlaxSetter(
+const _flaxBinding856 = FlaxSetter(
   "onSecondaryLongPressMoveUpdate",
   _flaxBinding131,
   _LongPressGestureRecognizer_set_onSecondaryLongPressMoveUpdate,
 );
-const _flaxBinding856 = FlaxSetter(
+const _flaxBinding857 = FlaxSetter(
   "onSecondaryLongPressUp",
   flaxVoidNullableCallbackType,
   _LongPressGestureRecognizer_set_onSecondaryLongPressUp,
 );
-const _flaxBinding857 = FlaxSetter(
+const _flaxBinding858 = FlaxSetter(
   "onSecondaryLongPressEnd",
   _flaxBinding135,
   _LongPressGestureRecognizer_set_onSecondaryLongPressEnd,
 );
-const _flaxBinding858 = FlaxSetter(
+const _flaxBinding859 = FlaxSetter(
   "onTertiaryLongPressDown",
   _flaxBinding123,
   _LongPressGestureRecognizer_set_onTertiaryLongPressDown,
 );
-const _flaxBinding859 = FlaxSetter(
+const _flaxBinding860 = FlaxSetter(
   "onTertiaryLongPressCancel",
   flaxVoidNullableCallbackType,
   _LongPressGestureRecognizer_set_onTertiaryLongPressCancel,
 );
-const _flaxBinding860 = FlaxSetter(
+const _flaxBinding861 = FlaxSetter(
   "onTertiaryLongPress",
   flaxVoidNullableCallbackType,
   _LongPressGestureRecognizer_set_onTertiaryLongPress,
 );
-const _flaxBinding861 = FlaxSetter(
+const _flaxBinding862 = FlaxSetter(
   "onTertiaryLongPressStart",
   _flaxBinding127,
   _LongPressGestureRecognizer_set_onTertiaryLongPressStart,
 );
-const _flaxBinding862 = FlaxSetter(
+const _flaxBinding863 = FlaxSetter(
   "onTertiaryLongPressMoveUpdate",
   _flaxBinding131,
   _LongPressGestureRecognizer_set_onTertiaryLongPressMoveUpdate,
 );
-const _flaxBinding863 = FlaxSetter(
+const _flaxBinding864 = FlaxSetter(
   "onTertiaryLongPressUp",
   flaxVoidNullableCallbackType,
   _LongPressGestureRecognizer_set_onTertiaryLongPressUp,
 );
-const _flaxBinding864 = FlaxSetter(
+const _flaxBinding865 = FlaxSetter(
   "onTertiaryLongPressEnd",
   _flaxBinding135,
   _LongPressGestureRecognizer_set_onTertiaryLongPressEnd,
 );
-const _flaxBinding865 = <FlaxParameter>[
+const _flaxBinding866 = <FlaxParameter>[
   FlaxParameter("duration", _flaxBinding26, required: false),
   FlaxParameter(
     "postAcceptSlopTolerance",
@@ -55299,262 +56895,261 @@ const _flaxBinding865 = <FlaxParameter>[
   FlaxParameter("debugOwner", flaxNullableAnyType, required: false),
   FlaxParameter("allowedButtonsFilter", _flaxBinding456, required: false),
 ];
-const _flaxBinding866 = FlaxProxyMember(
+const _flaxBinding867 = FlaxProxyMember(
   "onLongPressDown",
   1,
   _flaxBinding124,
   hasSuper: true,
 );
-const _flaxBinding867 = FlaxProxyMember(
-  "onLongPressCancel",
-  1,
-  _flaxBinding57,
-  hasSuper: true,
-);
 const _flaxBinding868 = FlaxProxyMember(
-  "onLongPress",
+  "onLongPressCancel",
   1,
   _flaxBinding57,
   hasSuper: true,
 );
 const _flaxBinding869 = FlaxProxyMember(
+  "onLongPress",
+  1,
+  _flaxBinding57,
+  hasSuper: true,
+);
+const _flaxBinding870 = FlaxProxyMember(
   "onLongPressStart",
   1,
   _flaxBinding128,
   hasSuper: true,
 );
-const _flaxBinding870 = FlaxProxyMember(
+const _flaxBinding871 = FlaxProxyMember(
   "onLongPressMoveUpdate",
   1,
   _flaxBinding132,
   hasSuper: true,
 );
-const _flaxBinding871 = FlaxProxyMember(
+const _flaxBinding872 = FlaxProxyMember(
   "onLongPressUp",
   1,
   _flaxBinding57,
   hasSuper: true,
 );
-const _flaxBinding872 = FlaxProxyMember(
+const _flaxBinding873 = FlaxProxyMember(
   "onLongPressEnd",
   1,
   _flaxBinding136,
   hasSuper: true,
 );
-const _flaxBinding873 = FlaxProxyMember(
+const _flaxBinding874 = FlaxProxyMember(
   "onSecondaryLongPressDown",
   1,
   _flaxBinding124,
   hasSuper: true,
 );
-const _flaxBinding874 = FlaxProxyMember(
-  "onSecondaryLongPressCancel",
-  1,
-  _flaxBinding57,
-  hasSuper: true,
-);
 const _flaxBinding875 = FlaxProxyMember(
-  "onSecondaryLongPress",
+  "onSecondaryLongPressCancel",
   1,
   _flaxBinding57,
   hasSuper: true,
 );
 const _flaxBinding876 = FlaxProxyMember(
+  "onSecondaryLongPress",
+  1,
+  _flaxBinding57,
+  hasSuper: true,
+);
+const _flaxBinding877 = FlaxProxyMember(
   "onSecondaryLongPressStart",
   1,
   _flaxBinding128,
   hasSuper: true,
 );
-const _flaxBinding877 = FlaxProxyMember(
+const _flaxBinding878 = FlaxProxyMember(
   "onSecondaryLongPressMoveUpdate",
   1,
   _flaxBinding132,
   hasSuper: true,
 );
-const _flaxBinding878 = FlaxProxyMember(
+const _flaxBinding879 = FlaxProxyMember(
   "onSecondaryLongPressUp",
   1,
   _flaxBinding57,
   hasSuper: true,
 );
-const _flaxBinding879 = FlaxProxyMember(
+const _flaxBinding880 = FlaxProxyMember(
   "onSecondaryLongPressEnd",
   1,
   _flaxBinding136,
   hasSuper: true,
 );
-const _flaxBinding880 = FlaxProxyMember(
+const _flaxBinding881 = FlaxProxyMember(
   "onTertiaryLongPressDown",
   1,
   _flaxBinding124,
   hasSuper: true,
 );
-const _flaxBinding881 = FlaxProxyMember(
-  "onTertiaryLongPressCancel",
-  1,
-  _flaxBinding57,
-  hasSuper: true,
-);
 const _flaxBinding882 = FlaxProxyMember(
-  "onTertiaryLongPress",
+  "onTertiaryLongPressCancel",
   1,
   _flaxBinding57,
   hasSuper: true,
 );
 const _flaxBinding883 = FlaxProxyMember(
+  "onTertiaryLongPress",
+  1,
+  _flaxBinding57,
+  hasSuper: true,
+);
+const _flaxBinding884 = FlaxProxyMember(
   "onTertiaryLongPressStart",
   1,
   _flaxBinding128,
   hasSuper: true,
 );
-const _flaxBinding884 = FlaxProxyMember(
+const _flaxBinding885 = FlaxProxyMember(
   "onTertiaryLongPressMoveUpdate",
   1,
   _flaxBinding132,
   hasSuper: true,
 );
-const _flaxBinding885 = FlaxProxyMember(
+const _flaxBinding886 = FlaxProxyMember(
   "onTertiaryLongPressUp",
   1,
   _flaxBinding57,
   hasSuper: true,
 );
-const _flaxBinding886 = FlaxProxyMember(
+const _flaxBinding887 = FlaxProxyMember(
   "onTertiaryLongPressEnd",
   1,
   _flaxBinding136,
   hasSuper: true,
 );
-const _flaxBinding887 = FlaxProxyMember(
+const _flaxBinding888 = FlaxProxyMember(
   "onLongPressDown",
   2,
   _flaxBinding137,
   hasSuper: true,
 );
-const _flaxBinding888 = FlaxProxyMember(
+const _flaxBinding889 = FlaxProxyMember(
   "onLongPressCancel",
   2,
   _flaxBinding59,
   hasSuper: true,
 );
-const _flaxBinding889 = FlaxProxyMember(
+const _flaxBinding890 = FlaxProxyMember(
   "onLongPress",
   2,
   _flaxBinding59,
   hasSuper: true,
 );
-const _flaxBinding890 = FlaxProxyMember(
+const _flaxBinding891 = FlaxProxyMember(
   "onLongPressStart",
   2,
   _flaxBinding138,
   hasSuper: true,
 );
-const _flaxBinding891 = FlaxProxyMember(
+const _flaxBinding892 = FlaxProxyMember(
   "onLongPressMoveUpdate",
   2,
   _flaxBinding139,
   hasSuper: true,
 );
-const _flaxBinding892 = FlaxProxyMember(
+const _flaxBinding893 = FlaxProxyMember(
   "onLongPressUp",
   2,
   _flaxBinding59,
   hasSuper: true,
 );
-const _flaxBinding893 = FlaxProxyMember(
+const _flaxBinding894 = FlaxProxyMember(
   "onLongPressEnd",
   2,
   _flaxBinding140,
   hasSuper: true,
 );
-const _flaxBinding894 = FlaxProxyMember(
+const _flaxBinding895 = FlaxProxyMember(
   "onSecondaryLongPressDown",
   2,
   _flaxBinding137,
   hasSuper: true,
 );
-const _flaxBinding895 = FlaxProxyMember(
+const _flaxBinding896 = FlaxProxyMember(
   "onSecondaryLongPressCancel",
   2,
   _flaxBinding59,
   hasSuper: true,
 );
-const _flaxBinding896 = FlaxProxyMember(
+const _flaxBinding897 = FlaxProxyMember(
   "onSecondaryLongPress",
   2,
   _flaxBinding59,
   hasSuper: true,
 );
-const _flaxBinding897 = FlaxProxyMember(
+const _flaxBinding898 = FlaxProxyMember(
   "onSecondaryLongPressStart",
   2,
   _flaxBinding138,
   hasSuper: true,
 );
-const _flaxBinding898 = FlaxProxyMember(
+const _flaxBinding899 = FlaxProxyMember(
   "onSecondaryLongPressMoveUpdate",
   2,
   _flaxBinding139,
   hasSuper: true,
 );
-const _flaxBinding899 = FlaxProxyMember(
+const _flaxBinding900 = FlaxProxyMember(
   "onSecondaryLongPressUp",
   2,
   _flaxBinding59,
   hasSuper: true,
 );
-const _flaxBinding900 = FlaxProxyMember(
+const _flaxBinding901 = FlaxProxyMember(
   "onSecondaryLongPressEnd",
   2,
   _flaxBinding140,
   hasSuper: true,
 );
-const _flaxBinding901 = FlaxProxyMember(
+const _flaxBinding902 = FlaxProxyMember(
   "onTertiaryLongPressDown",
   2,
   _flaxBinding137,
   hasSuper: true,
 );
-const _flaxBinding902 = FlaxProxyMember(
+const _flaxBinding903 = FlaxProxyMember(
   "onTertiaryLongPressCancel",
   2,
   _flaxBinding59,
   hasSuper: true,
 );
-const _flaxBinding903 = FlaxProxyMember(
+const _flaxBinding904 = FlaxProxyMember(
   "onTertiaryLongPress",
   2,
   _flaxBinding59,
   hasSuper: true,
 );
-const _flaxBinding904 = FlaxProxyMember(
+const _flaxBinding905 = FlaxProxyMember(
   "onTertiaryLongPressStart",
   2,
   _flaxBinding138,
   hasSuper: true,
 );
-const _flaxBinding905 = FlaxProxyMember(
+const _flaxBinding906 = FlaxProxyMember(
   "onTertiaryLongPressMoveUpdate",
   2,
   _flaxBinding139,
   hasSuper: true,
 );
-const _flaxBinding906 = FlaxProxyMember(
+const _flaxBinding907 = FlaxProxyMember(
   "onTertiaryLongPressUp",
   2,
   _flaxBinding59,
   hasSuper: true,
 );
-const _flaxBinding907 = FlaxProxyMember(
+const _flaxBinding908 = FlaxProxyMember(
   "onTertiaryLongPressEnd",
   2,
   _flaxBinding140,
   hasSuper: true,
 );
-const _flaxBinding908 = FlaxObjectBinding(
+const _flaxBinding909 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:LongPressGestureRecognizer",
   [
-    _flaxBinding823,
     _flaxBinding824,
     _flaxBinding825,
     _flaxBinding826,
@@ -55575,6 +57170,7 @@ const _flaxBinding908 = FlaxObjectBinding(
     _flaxBinding841,
     _flaxBinding842,
     _flaxBinding843,
+    _flaxBinding844,
   ],
   {
     "invokeCallback": FlaxInstanceMethod(
@@ -55587,10 +57183,10 @@ const _flaxBinding908 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback34,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback34Invoke,
-              matches: _callback34Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -55666,10 +57262,10 @@ const _flaxBinding908 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback34,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback34Invoke,
-              matches: _callback34Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -55920,11 +57516,10 @@ const _flaxBinding908 = FlaxObjectBinding(
     "@super:set:gestureSettings": _flaxBinding305,
     "@super:set:supportedDevices": _flaxBinding306,
   },
-  constructors: {"": _flaxBinding865, "@implementation": _flaxBinding865},
+  constructors: {"": _flaxBinding866, "@implementation": _flaxBinding866},
   create: _createLongPressGestureRecognizer,
   matches: _isLongPressGestureRecognizer,
   setters: [
-    _flaxBinding844,
     _flaxBinding845,
     _flaxBinding846,
     _flaxBinding847,
@@ -55945,6 +57540,7 @@ const _flaxBinding908 = FlaxObjectBinding(
     _flaxBinding862,
     _flaxBinding863,
     _flaxBinding864,
+    _flaxBinding865,
   ],
   supertypes: [
     "flax.core/sdk_gestures#type:PrimaryPointerGestureRecognizer",
@@ -56013,7 +57609,6 @@ const _flaxBinding908 = FlaxObjectBinding(
     _flaxBinding318,
     _flaxBinding319,
     _flaxBinding311,
-    _flaxBinding866,
     _flaxBinding867,
     _flaxBinding868,
     _flaxBinding869,
@@ -56034,6 +57629,7 @@ const _flaxBinding908 = FlaxObjectBinding(
     _flaxBinding884,
     _flaxBinding885,
     _flaxBinding886,
+    _flaxBinding887,
     _flaxBinding451,
     _flaxBinding431,
     _flaxBinding432,
@@ -56046,7 +57642,6 @@ const _flaxBinding908 = FlaxObjectBinding(
     _flaxBinding333,
     _flaxBinding334,
     _flaxBinding335,
-    _flaxBinding887,
     _flaxBinding888,
     _flaxBinding889,
     _flaxBinding890,
@@ -56067,40 +57662,41 @@ const _flaxBinding908 = FlaxObjectBinding(
     _flaxBinding905,
     _flaxBinding906,
     _flaxBinding907,
+    _flaxBinding908,
     _flaxBinding367,
     _flaxBinding337,
     _flaxBinding338,
   ]),
 );
-const _flaxBinding909 = FlaxGetter.plain(
+const _flaxBinding910 = FlaxGetter.plain(
   "offsetFromOrigin",
   flaxOffsetType,
   _LongPressMoveUpdateDetails_offsetFromOrigin,
 );
-const _flaxBinding910 = FlaxGetter.plain(
+const _flaxBinding911 = FlaxGetter.plain(
   "localOffsetFromOrigin",
   flaxOffsetType,
   _LongPressMoveUpdateDetails_localOffsetFromOrigin,
 );
-const _flaxBinding911 = FlaxInstanceMethod.shared(
+const _flaxBinding912 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _LongPressMoveUpdateDetails_toStringShort,
 );
-const _flaxBinding912 = FlaxInstanceMethod.plain(
+const _flaxBinding913 = FlaxInstanceMethod.plain(
   _flaxBinding260,
   flaxStringType,
   _LongPressMoveUpdateDetails_toString,
 );
-const _flaxBinding913 = FlaxInstanceMethod.plain(
+const _flaxBinding914 = FlaxInstanceMethod.plain(
   _flaxBinding268,
   _flaxBinding17,
   _LongPressMoveUpdateDetails_toDiagnosticsNode,
 );
-const _flaxBinding914 = FlaxInstanceMethod.shared(
+const _flaxBinding915 = FlaxInstanceMethod.shared(
   _flaxBinding6,
   _LongPressMoveUpdateDetails_debugFillProperties,
 );
-const _flaxBinding915 = <FlaxParameter>[
+const _flaxBinding916 = <FlaxParameter>[
   FlaxParameter(
     "globalPosition",
     flaxOffsetType,
@@ -56116,26 +57712,26 @@ const _flaxBinding915 = <FlaxParameter>[
   ),
   FlaxParameter("localOffsetFromOrigin", _flaxBinding143, required: false),
 ];
-const _flaxBinding916 = FlaxProxyMember(
+const _flaxBinding917 = FlaxProxyMember(
   "offsetFromOrigin",
   1,
   _flaxBinding64,
   hasSuper: true,
 );
-const _flaxBinding917 = FlaxProxyMember(
+const _flaxBinding918 = FlaxProxyMember(
   "localOffsetFromOrigin",
   1,
   _flaxBinding64,
   hasSuper: true,
 );
-const _flaxBinding918 = FlaxObjectBinding(
+const _flaxBinding919 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:LongPressMoveUpdateDetails",
-  [_flaxBinding499, _flaxBinding500, _flaxBinding909, _flaxBinding910],
+  [_flaxBinding499, _flaxBinding500, _flaxBinding910, _flaxBinding911],
   {
-    "toStringShort": _flaxBinding911,
-    "toString": _flaxBinding912,
-    "toDiagnosticsNode": _flaxBinding913,
-    "debugFillProperties": _flaxBinding914,
+    "toStringShort": _flaxBinding912,
+    "toString": _flaxBinding913,
+    "toDiagnosticsNode": _flaxBinding914,
+    "debugFillProperties": _flaxBinding915,
     "@super:toStringShort": _flaxBinding286,
     "@super:toString": _flaxBinding283,
     "@super:toDiagnosticsNode": _flaxBinding287,
@@ -56154,7 +57750,7 @@ const _flaxBinding918 = FlaxObjectBinding(
       _LongPressMoveUpdateDetails_super_get_localOffsetFromOrigin,
     ),
   },
-  constructors: {"": _flaxBinding915, "@implementation": _flaxBinding915},
+  constructors: {"": _flaxBinding916, "@implementation": _flaxBinding916},
   create: _createLongPressMoveUpdateDetails,
   matches: _isLongPressMoveUpdateDetails,
   setters: [],
@@ -56170,36 +57766,36 @@ const _flaxBinding918 = FlaxObjectBinding(
     _flaxBinding320,
     _flaxBinding508,
     _flaxBinding509,
-    _flaxBinding916,
     _flaxBinding917,
+    _flaxBinding918,
   ]),
 );
-const _flaxBinding919 = FlaxInstanceMethod.shared(
+const _flaxBinding920 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _LongPressStartDetails_toStringShort,
 );
-const _flaxBinding920 = FlaxInstanceMethod.plain(
+const _flaxBinding921 = FlaxInstanceMethod.plain(
   _flaxBinding260,
   flaxStringType,
   _LongPressStartDetails_toString,
 );
-const _flaxBinding921 = FlaxInstanceMethod.plain(
+const _flaxBinding922 = FlaxInstanceMethod.plain(
   _flaxBinding268,
   _flaxBinding17,
   _LongPressStartDetails_toDiagnosticsNode,
 );
-const _flaxBinding922 = FlaxInstanceMethod.shared(
+const _flaxBinding923 = FlaxInstanceMethod.shared(
   _flaxBinding6,
   _LongPressStartDetails_debugFillProperties,
 );
-const _flaxBinding923 = FlaxObjectBinding(
+const _flaxBinding924 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:LongPressStartDetails",
   [_flaxBinding499, _flaxBinding500],
   {
-    "toStringShort": _flaxBinding919,
-    "toString": _flaxBinding920,
-    "toDiagnosticsNode": _flaxBinding921,
-    "debugFillProperties": _flaxBinding922,
+    "toStringShort": _flaxBinding920,
+    "toString": _flaxBinding921,
+    "toDiagnosticsNode": _flaxBinding922,
+    "debugFillProperties": _flaxBinding923,
     "@super:toStringShort": _flaxBinding286,
     "@super:toString": _flaxBinding283,
     "@super:toDiagnosticsNode": _flaxBinding287,
@@ -56228,16 +57824,16 @@ const _flaxBinding923 = FlaxObjectBinding(
     _flaxBinding509,
   ]),
 );
-const _flaxBinding924 = FlaxObjectBinding(
+const _flaxBinding925 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:MacOSScrollViewFlingVelocityTracker",
   [],
   {
-    "@super:addPosition": _flaxBinding785,
-    "@super:getVelocityEstimate": _flaxBinding795,
-    "@super:getVelocity": _flaxBinding786,
-    "@super:get:kind": _flaxBinding787,
+    "@super:addPosition": _flaxBinding786,
+    "@super:getVelocityEstimate": _flaxBinding796,
+    "@super:getVelocity": _flaxBinding787,
+    "@super:get:kind": _flaxBinding788,
   },
-  constructors: {"": _flaxBinding788, "@implementation": _flaxBinding788},
+  constructors: {"": _flaxBinding789, "@implementation": _flaxBinding789},
   create: _createMacOSScrollViewFlingVelocityTracker,
   matches: _isMacOSScrollViewFlingVelocityTracker,
   setters: [],
@@ -56246,93 +57842,93 @@ const _flaxBinding924 = FlaxObjectBinding(
     "flax.core/sdk_gestures#type:VelocityTracker",
     "dart:core::Object",
   ],
-  parent: _flaxBinding797,
+  parent: _flaxBinding798,
   proxy: FlaxProxyBinding([
-    _flaxBinding789,
-    _flaxBinding796,
-    _flaxBinding791,
+    _flaxBinding790,
+    _flaxBinding797,
     _flaxBinding792,
+    _flaxBinding793,
   ]),
 );
-const _flaxBinding925 = FlaxGetter.plain(
+const _flaxBinding926 = FlaxGetter.plain(
   "gestureSettings",
   _flaxBinding34,
   _MultiDragPointerState_gestureSettings,
 );
-const _flaxBinding926 = FlaxGetter.plain(
+const _flaxBinding927 = FlaxGetter.plain(
   "initialPosition",
   flaxOffsetType,
   _MultiDragPointerState_initialPosition,
 );
-const _flaxBinding927 = FlaxGetter.plain(
+const _flaxBinding928 = FlaxGetter.plain(
   "kind",
   _flaxBinding14,
   _MultiDragPointerState_kind,
 );
-const _flaxBinding928 = FlaxGetter.plain(
+const _flaxBinding929 = FlaxGetter.plain(
   "pendingDelta",
   _flaxBinding143,
   _MultiDragPointerState_pendingDelta,
 );
-const _flaxBinding929 = FlaxInstanceMethod.shared(
+const _flaxBinding930 = FlaxInstanceMethod.shared(
   _flaxBinding8,
   _MultiDragPointerState_resolve,
 );
-const _flaxBinding930 = FlaxInstanceMethod.shared(
+const _flaxBinding931 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _MultiDragPointerState_checkForResolutionAfterMove,
 );
-const _flaxBinding931 = FlaxInstanceMethod.shared(
+const _flaxBinding932 = FlaxInstanceMethod.shared(
   _flaxBinding142,
   _MultiDragPointerState_accepted,
 );
-const _flaxBinding932 = FlaxInstanceMethod.shared(
+const _flaxBinding933 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _MultiDragPointerState_rejected,
 );
-const _flaxBinding933 = FlaxInstanceMethod.shared(
+const _flaxBinding934 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _MultiDragPointerState_dispose,
 );
-const _flaxBinding934 = <FlaxParameter>[
+const _flaxBinding935 = <FlaxParameter>[
   FlaxParameter.required("initialPosition", flaxOffsetType),
   FlaxParameter.required("kind", _flaxBinding14),
   FlaxParameter.required("gestureSettings", _flaxBinding34),
 ];
-const _flaxBinding935 = FlaxProxyMember(
+const _flaxBinding936 = FlaxProxyMember(
   "checkForResolutionAfterMove",
   0,
   flaxVoidCall,
   hasSuper: true,
 );
-const _flaxBinding936 = FlaxProxyMember("accepted", 0, _flaxBinding142);
-const _flaxBinding937 = FlaxProxyMember(
+const _flaxBinding937 = FlaxProxyMember("accepted", 0, _flaxBinding142);
+const _flaxBinding938 = FlaxProxyMember(
   "rejected",
   0,
   flaxVoidCall,
   hasSuper: true,
 );
-const _flaxBinding938 = FlaxProxyMember(
+const _flaxBinding939 = FlaxProxyMember(
   "initialPosition",
   1,
   _flaxBinding64,
   hasSuper: true,
 );
-const _flaxBinding939 = FlaxProxyMember(
+const _flaxBinding940 = FlaxProxyMember(
   "pendingDelta",
   1,
   _flaxBinding144,
   hasSuper: true,
 );
-const _flaxBinding940 = FlaxObjectBinding(
+const _flaxBinding941 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:MultiDragPointerState",
-  [_flaxBinding925, _flaxBinding926, _flaxBinding927, _flaxBinding928],
+  [_flaxBinding926, _flaxBinding927, _flaxBinding928, _flaxBinding929],
   {
-    "resolve": _flaxBinding929,
-    "checkForResolutionAfterMove": _flaxBinding930,
-    "accepted": _flaxBinding931,
-    "rejected": _flaxBinding932,
-    "dispose": _flaxBinding933,
+    "resolve": _flaxBinding930,
+    "checkForResolutionAfterMove": _flaxBinding931,
+    "accepted": _flaxBinding932,
+    "rejected": _flaxBinding933,
+    "dispose": _flaxBinding934,
     "@super:resolve": FlaxInstanceMethod.shared(
       _flaxBinding8,
       _MultiDragPointerState_super_resolve,
@@ -56351,13 +57947,13 @@ const _flaxBinding940 = FlaxObjectBinding(
       _flaxBinding64,
       _MultiDragPointerState_super_get_initialPosition,
     ),
-    "@super:get:kind": _flaxBinding787,
+    "@super:get:kind": _flaxBinding788,
     "@super:get:pendingDelta": FlaxInstanceMethod.shared(
       _flaxBinding144,
       _MultiDragPointerState_super_get_pendingDelta,
     ),
   },
-  constructors: {"@implementation": _flaxBinding934},
+  constructors: {"@implementation": _flaxBinding935},
   create: _createMultiDragPointerState,
   matches: _isMultiDragPointerState,
   setters: [],
@@ -56365,77 +57961,77 @@ const _flaxBinding940 = FlaxObjectBinding(
   disposeMethod: "dispose",
   proxy: FlaxProxyBinding([
     _flaxBinding360,
-    _flaxBinding935,
     _flaxBinding936,
     _flaxBinding937,
+    _flaxBinding938,
     _flaxBinding331,
     _flaxBinding333,
-    _flaxBinding938,
-    _flaxBinding792,
     _flaxBinding939,
+    _flaxBinding793,
+    _flaxBinding940,
   ]),
 );
-const _flaxBinding941 = FlaxGetter.plain(
+const _flaxBinding942 = FlaxGetter.plain(
   "onTapDown",
   _flaxBinding146,
   _MultiTapGestureRecognizer_onTapDown,
 );
-const _flaxBinding942 = FlaxGetter.plain(
+const _flaxBinding943 = FlaxGetter.plain(
   "onTapUp",
   _flaxBinding150,
   _MultiTapGestureRecognizer_onTapUp,
 );
-const _flaxBinding943 = FlaxGetter.plain(
+const _flaxBinding944 = FlaxGetter.plain(
   "onTap",
   _flaxBinding153,
   _MultiTapGestureRecognizer_onTap,
 );
-const _flaxBinding944 = FlaxGetter.plain(
+const _flaxBinding945 = FlaxGetter.plain(
   "onTapCancel",
   _flaxBinding153,
   _MultiTapGestureRecognizer_onTapCancel,
 );
-const _flaxBinding945 = FlaxGetter.plain(
+const _flaxBinding946 = FlaxGetter.plain(
   "longTapDelay",
   flaxDurationType,
   _MultiTapGestureRecognizer_longTapDelay,
 );
-const _flaxBinding946 = FlaxGetter.plain(
+const _flaxBinding947 = FlaxGetter.plain(
   "onLongTapDown",
   _flaxBinding146,
   _MultiTapGestureRecognizer_onLongTapDown,
 );
-const _flaxBinding947 = FlaxSetter(
+const _flaxBinding948 = FlaxSetter(
   "onTapDown",
   _flaxBinding146,
   _MultiTapGestureRecognizer_set_onTapDown,
 );
-const _flaxBinding948 = FlaxSetter(
+const _flaxBinding949 = FlaxSetter(
   "onTapUp",
   _flaxBinding150,
   _MultiTapGestureRecognizer_set_onTapUp,
 );
-const _flaxBinding949 = FlaxSetter(
+const _flaxBinding950 = FlaxSetter(
   "onTap",
   _flaxBinding153,
   _MultiTapGestureRecognizer_set_onTap,
 );
-const _flaxBinding950 = FlaxSetter(
+const _flaxBinding951 = FlaxSetter(
   "onTapCancel",
   _flaxBinding153,
   _MultiTapGestureRecognizer_set_onTapCancel,
 );
-const _flaxBinding951 = FlaxSetter(
+const _flaxBinding952 = FlaxSetter(
   "longTapDelay",
   flaxDurationType,
   _MultiTapGestureRecognizer_set_longTapDelay,
 );
-const _flaxBinding952 = FlaxSetter(
+const _flaxBinding953 = FlaxSetter(
   "onLongTapDown",
   _flaxBinding146,
   _MultiTapGestureRecognizer_set_onLongTapDown,
 );
-const _flaxBinding953 = <FlaxParameter>[
+const _flaxBinding954 = <FlaxParameter>[
   FlaxParameter(
     "longTapDelay",
     flaxDurationType,
@@ -56451,87 +58047,87 @@ const _flaxBinding953 = <FlaxParameter>[
     omitWhenAbsent: true,
   ),
 ];
-const _flaxBinding954 = FlaxProxyMember(
+const _flaxBinding955 = FlaxProxyMember(
   "onTapDown",
   1,
   _flaxBinding147,
   hasSuper: true,
 );
-const _flaxBinding955 = FlaxProxyMember(
+const _flaxBinding956 = FlaxProxyMember(
   "onTapUp",
   1,
   _flaxBinding151,
   hasSuper: true,
 );
-const _flaxBinding956 = FlaxProxyMember(
-  "onTap",
-  1,
-  _flaxBinding154,
-  hasSuper: true,
-);
 const _flaxBinding957 = FlaxProxyMember(
-  "onTapCancel",
+  "onTap",
   1,
   _flaxBinding154,
   hasSuper: true,
 );
 const _flaxBinding958 = FlaxProxyMember(
+  "onTapCancel",
+  1,
+  _flaxBinding154,
+  hasSuper: true,
+);
+const _flaxBinding959 = FlaxProxyMember(
   "longTapDelay",
   1,
   _flaxBinding47,
   hasSuper: true,
 );
-const _flaxBinding959 = FlaxProxyMember(
+const _flaxBinding960 = FlaxProxyMember(
   "onLongTapDown",
   1,
   _flaxBinding147,
   hasSuper: true,
 );
-const _flaxBinding960 = FlaxProxyMember(
+const _flaxBinding961 = FlaxProxyMember(
   "onTapDown",
   2,
   _flaxBinding155,
   hasSuper: true,
 );
-const _flaxBinding961 = FlaxProxyMember(
+const _flaxBinding962 = FlaxProxyMember(
   "onTapUp",
   2,
   _flaxBinding156,
   hasSuper: true,
 );
-const _flaxBinding962 = FlaxProxyMember(
+const _flaxBinding963 = FlaxProxyMember(
   "onTap",
   2,
   _flaxBinding157,
   hasSuper: true,
 );
-const _flaxBinding963 = FlaxProxyMember(
+const _flaxBinding964 = FlaxProxyMember(
   "onTapCancel",
   2,
   _flaxBinding157,
   hasSuper: true,
 );
-const _flaxBinding964 = FlaxProxyMember(
+const _flaxBinding965 = FlaxProxyMember(
   "longTapDelay",
   2,
   _flaxBinding158,
   hasSuper: true,
 );
-const _flaxBinding965 = FlaxProxyMember(
+const _flaxBinding966 = FlaxProxyMember(
   "onLongTapDown",
   2,
   _flaxBinding155,
   hasSuper: true,
 );
-const _flaxBinding966 = FlaxObjectBinding(
+const _flaxBinding967 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:MultiTapGestureRecognizer",
   [
-    _flaxBinding941,
     _flaxBinding942,
     _flaxBinding943,
     _flaxBinding944,
     _flaxBinding945,
     _flaxBinding946,
+    _flaxBinding947,
   ],
   {
     "invokeCallback": FlaxInstanceMethod(
@@ -56544,10 +58140,10 @@ const _flaxBinding966 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback36,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback36Invoke,
-              matches: _callback36Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -56583,10 +58179,10 @@ const _flaxBinding966 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback36,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback36Invoke,
-              matches: _callback36Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -56682,16 +58278,16 @@ const _flaxBinding966 = FlaxObjectBinding(
     "@super:set:gestureSettings": _flaxBinding305,
     "@super:set:supportedDevices": _flaxBinding306,
   },
-  constructors: {"": _flaxBinding953, "@implementation": _flaxBinding953},
+  constructors: {"": _flaxBinding954, "@implementation": _flaxBinding954},
   create: _createMultiTapGestureRecognizer,
   matches: _isMultiTapGestureRecognizer,
   setters: [
-    _flaxBinding947,
     _flaxBinding948,
     _flaxBinding949,
     _flaxBinding950,
     _flaxBinding951,
     _flaxBinding952,
+    _flaxBinding953,
   ],
   supertypes: [
     "flax.core/sdk_gestures#type:GestureRecognizer",
@@ -56748,28 +58344,28 @@ const _flaxBinding966 = FlaxObjectBinding(
     _flaxBinding318,
     _flaxBinding319,
     _flaxBinding311,
-    _flaxBinding954,
     _flaxBinding955,
     _flaxBinding956,
     _flaxBinding957,
     _flaxBinding958,
     _flaxBinding959,
+    _flaxBinding960,
     _flaxBinding451,
     _flaxBinding332,
     _flaxBinding333,
     _flaxBinding334,
     _flaxBinding335,
-    _flaxBinding960,
     _flaxBinding961,
     _flaxBinding962,
     _flaxBinding963,
     _flaxBinding964,
     _flaxBinding965,
+    _flaxBinding966,
     _flaxBinding337,
     _flaxBinding338,
   ]),
 );
-const _flaxBinding967 = FlaxObjectBinding(
+const _flaxBinding968 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:NativeHitTestTarget",
   [],
   {},
@@ -56779,63 +58375,63 @@ const _flaxBinding967 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding968 = FlaxGetter.plain(
+const _flaxBinding969 = FlaxGetter.plain(
   "local",
   flaxOffsetType,
   _OffsetPair_local,
 );
-const _flaxBinding969 = FlaxGetter.plain(
+const _flaxBinding970 = FlaxGetter.plain(
   "global",
   flaxOffsetType,
   _OffsetPair_global,
 );
-const _flaxBinding970 = FlaxInstanceMethod.shared(
+const _flaxBinding971 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _OffsetPair_toString,
 );
-const _flaxBinding971 = FlaxInstanceMethod.shared(
+const _flaxBinding972 = FlaxInstanceMethod.shared(
   _flaxBinding160,
   _OffsetPair_operatorAdd,
 );
-const _flaxBinding972 = FlaxInstanceMethod.shared(
+const _flaxBinding973 = FlaxInstanceMethod.shared(
   _flaxBinding160,
   _OffsetPair_operatorSubtract,
 );
-const _flaxBinding973 = <FlaxParameter>[
+const _flaxBinding974 = <FlaxParameter>[
   FlaxParameter.required("local", flaxOffsetType),
   FlaxParameter.required("global", flaxOffsetType),
 ];
-const _flaxBinding974 = FlaxProxyMember(
+const _flaxBinding975 = FlaxProxyMember(
   "operatorAdd",
   0,
   _flaxBinding160,
   hasSuper: true,
 );
-const _flaxBinding975 = FlaxProxyMember(
+const _flaxBinding976 = FlaxProxyMember(
   "operatorSubtract",
   0,
   _flaxBinding160,
   hasSuper: true,
 );
-const _flaxBinding976 = FlaxProxyMember(
+const _flaxBinding977 = FlaxProxyMember(
   "local",
   1,
   _flaxBinding64,
   hasSuper: true,
 );
-const _flaxBinding977 = FlaxProxyMember(
+const _flaxBinding978 = FlaxProxyMember(
   "global",
   1,
   _flaxBinding64,
   hasSuper: true,
 );
-const _flaxBinding978 = FlaxObjectBinding(
+const _flaxBinding979 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:OffsetPair",
-  [_flaxBinding968, _flaxBinding969],
+  [_flaxBinding969, _flaxBinding970],
   {
-    "toString": _flaxBinding970,
-    "operatorAdd": _flaxBinding971,
-    "operatorSubtract": _flaxBinding972,
+    "toString": _flaxBinding971,
+    "operatorAdd": _flaxBinding972,
+    "operatorSubtract": _flaxBinding973,
     "@super:toString": _flaxBinding470,
     "@super:operatorAdd": FlaxInstanceMethod.shared(
       _flaxBinding160,
@@ -56855,10 +58451,10 @@ const _flaxBinding978 = FlaxObjectBinding(
     ),
   },
   constructors: {
-    "": _flaxBinding973,
+    "": _flaxBinding974,
     "fromEventPosition": _flaxBinding413,
     "fromEventDelta": _flaxBinding413,
-    "@implementation": _flaxBinding973,
+    "@implementation": _flaxBinding974,
     "@implementation:fromEventPosition": _flaxBinding413,
     "@implementation:fromEventDelta": _flaxBinding413,
   },
@@ -56868,13 +58464,13 @@ const _flaxBinding978 = FlaxObjectBinding(
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
     _flaxBinding474,
-    _flaxBinding974,
     _flaxBinding975,
     _flaxBinding976,
     _flaxBinding977,
+    _flaxBinding978,
   ]),
 );
-const _flaxBinding979 = FlaxObjectBinding(
+const _flaxBinding980 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:PanGestureRecognizer",
   [],
   {
@@ -56888,10 +58484,10 @@ const _flaxBinding979 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback38,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback38Invoke,
-              matches: _callback38Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -56924,161 +58520,161 @@ const _flaxBinding979 = FlaxObjectBinding(
   parent: _flaxBinding568,
   disposeMethod: "dispose",
 );
-const _flaxBinding980 = FlaxGetter.plain(
+const _flaxBinding981 = FlaxGetter.plain(
   "viewId",
   flaxIntType,
   _PointerAddedEvent_viewId,
 );
-const _flaxBinding981 = FlaxGetter.plain(
+const _flaxBinding982 = FlaxGetter.plain(
   "embedderId",
   flaxIntType,
   _PointerAddedEvent_embedderId,
 );
-const _flaxBinding982 = FlaxGetter.plain(
+const _flaxBinding983 = FlaxGetter.plain(
   "timeStamp",
   flaxDurationType,
   _PointerAddedEvent_timeStamp,
 );
-const _flaxBinding983 = FlaxGetter.plain(
+const _flaxBinding984 = FlaxGetter.plain(
   "pointer",
   flaxIntType,
   _PointerAddedEvent_pointer,
 );
-const _flaxBinding984 = FlaxGetter.plain(
+const _flaxBinding985 = FlaxGetter.plain(
   "kind",
   _flaxBinding14,
   _PointerAddedEvent_kind,
 );
-const _flaxBinding985 = FlaxGetter.plain(
+const _flaxBinding986 = FlaxGetter.plain(
   "device",
   flaxIntType,
   _PointerAddedEvent_device,
 );
-const _flaxBinding986 = FlaxGetter.plain(
+const _flaxBinding987 = FlaxGetter.plain(
   "position",
   flaxOffsetType,
   _PointerAddedEvent_position,
 );
-const _flaxBinding987 = FlaxGetter.plain(
+const _flaxBinding988 = FlaxGetter.plain(
   "localPosition",
   flaxOffsetType,
   _PointerAddedEvent_localPosition,
 );
-const _flaxBinding988 = FlaxGetter.plain(
+const _flaxBinding989 = FlaxGetter.plain(
   "delta",
   flaxOffsetType,
   _PointerAddedEvent_delta,
 );
-const _flaxBinding989 = FlaxGetter.plain(
+const _flaxBinding990 = FlaxGetter.plain(
   "localDelta",
   flaxOffsetType,
   _PointerAddedEvent_localDelta,
 );
-const _flaxBinding990 = FlaxGetter.plain(
+const _flaxBinding991 = FlaxGetter.plain(
   "buttons",
   flaxIntType,
   _PointerAddedEvent_buttons,
 );
-const _flaxBinding991 = FlaxGetter.plain(
+const _flaxBinding992 = FlaxGetter.plain(
   "down",
   flaxBoolType,
   _PointerAddedEvent_down,
 );
-const _flaxBinding992 = FlaxGetter.plain(
+const _flaxBinding993 = FlaxGetter.plain(
   "obscured",
   flaxBoolType,
   _PointerAddedEvent_obscured,
 );
-const _flaxBinding993 = FlaxGetter.plain(
+const _flaxBinding994 = FlaxGetter.plain(
   "pressure",
   flaxDoubleType,
   _PointerAddedEvent_pressure,
 );
-const _flaxBinding994 = FlaxGetter.plain(
+const _flaxBinding995 = FlaxGetter.plain(
   "pressureMin",
   flaxDoubleType,
   _PointerAddedEvent_pressureMin,
 );
-const _flaxBinding995 = FlaxGetter.plain(
+const _flaxBinding996 = FlaxGetter.plain(
   "pressureMax",
   flaxDoubleType,
   _PointerAddedEvent_pressureMax,
 );
-const _flaxBinding996 = FlaxGetter.plain(
+const _flaxBinding997 = FlaxGetter.plain(
   "distance",
   flaxDoubleType,
   _PointerAddedEvent_distance,
 );
-const _flaxBinding997 = FlaxGetter.plain(
+const _flaxBinding998 = FlaxGetter.plain(
   "distanceMin",
   flaxDoubleType,
   _PointerAddedEvent_distanceMin,
 );
-const _flaxBinding998 = FlaxGetter.plain(
+const _flaxBinding999 = FlaxGetter.plain(
   "distanceMax",
   flaxDoubleType,
   _PointerAddedEvent_distanceMax,
 );
-const _flaxBinding999 = FlaxGetter.plain(
+const _flaxBinding1000 = FlaxGetter.plain(
   "size",
   flaxDoubleType,
   _PointerAddedEvent_size,
 );
-const _flaxBinding1000 = FlaxGetter.plain(
+const _flaxBinding1001 = FlaxGetter.plain(
   "radiusMajor",
   flaxDoubleType,
   _PointerAddedEvent_radiusMajor,
 );
-const _flaxBinding1001 = FlaxGetter.plain(
+const _flaxBinding1002 = FlaxGetter.plain(
   "radiusMinor",
   flaxDoubleType,
   _PointerAddedEvent_radiusMinor,
 );
-const _flaxBinding1002 = FlaxGetter.plain(
+const _flaxBinding1003 = FlaxGetter.plain(
   "radiusMin",
   flaxDoubleType,
   _PointerAddedEvent_radiusMin,
 );
-const _flaxBinding1003 = FlaxGetter.plain(
+const _flaxBinding1004 = FlaxGetter.plain(
   "radiusMax",
   flaxDoubleType,
   _PointerAddedEvent_radiusMax,
 );
-const _flaxBinding1004 = FlaxGetter.plain(
+const _flaxBinding1005 = FlaxGetter.plain(
   "orientation",
   flaxDoubleType,
   _PointerAddedEvent_orientation,
 );
-const _flaxBinding1005 = FlaxGetter.plain(
+const _flaxBinding1006 = FlaxGetter.plain(
   "tilt",
   flaxDoubleType,
   _PointerAddedEvent_tilt,
 );
-const _flaxBinding1006 = FlaxGetter.plain(
+const _flaxBinding1007 = FlaxGetter.plain(
   "platformData",
   flaxIntType,
   _PointerAddedEvent_platformData,
 );
-const _flaxBinding1007 = FlaxGetter.plain(
+const _flaxBinding1008 = FlaxGetter.plain(
   "synthesized",
   flaxBoolType,
   _PointerAddedEvent_synthesized,
 );
-const _flaxBinding1008 = FlaxGetter.plain(
+const _flaxBinding1009 = FlaxGetter.plain(
   "transform",
   _flaxBinding101,
   _PointerAddedEvent_transform,
 );
-const _flaxBinding1009 = FlaxGetter.plain(
+const _flaxBinding1010 = FlaxGetter.plain(
   "original",
   _flaxBinding69,
   _PointerAddedEvent_original,
 );
-const _flaxBinding1010 = FlaxInstanceMethod.shared(
+const _flaxBinding1011 = FlaxInstanceMethod.shared(
   _flaxBinding162,
   _PointerAddedEvent_transformed,
 );
-const _flaxBinding1011 = <FlaxParameter>[
+const _flaxBinding1012 = <FlaxParameter>[
   FlaxParameter("buttons", flaxNullableIntType, required: false),
   FlaxParameter("delta", _flaxBinding143, required: false),
   FlaxParameter("device", flaxNullableIntType, required: false),
@@ -57103,130 +58699,130 @@ const _flaxBinding1011 = <FlaxParameter>[
   FlaxParameter("timeStamp", _flaxBinding26, required: false),
   FlaxParameter("viewId", flaxNullableIntType, required: false),
 ];
-const _flaxBinding1012 = FlaxInstanceMethod.plain(
-  _flaxBinding1011,
+const _flaxBinding1013 = FlaxInstanceMethod.plain(
+  _flaxBinding1012,
   _flaxBinding161,
   _PointerAddedEvent_copyWith,
 );
-const _flaxBinding1013 = FlaxInstanceMethod.shared(
+const _flaxBinding1014 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _PointerAddedEvent_toStringShort,
 );
-const _flaxBinding1014 = FlaxInstanceMethod.plain(
+const _flaxBinding1015 = FlaxInstanceMethod.plain(
   _flaxBinding268,
   _flaxBinding17,
   _PointerAddedEvent_toDiagnosticsNode,
 );
-const _flaxBinding1015 = FlaxInstanceMethod.shared(
+const _flaxBinding1016 = FlaxInstanceMethod.shared(
   _flaxBinding6,
   _PointerAddedEvent_debugFillProperties,
 );
-const _flaxBinding1016 = FlaxInstanceMethod.plain(
+const _flaxBinding1017 = FlaxInstanceMethod.plain(
   _flaxBinding260,
   flaxStringType,
   _PointerAddedEvent_toString,
 );
-const _flaxBinding1017 = FlaxInstanceMethod.shared(
+const _flaxBinding1018 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _PointerAddedEvent_toStringFull,
 );
-const _flaxBinding1018 = FlaxInstanceMethod.shared(
+const _flaxBinding1019 = FlaxInstanceMethod.shared(
   flaxIntCall,
   _FlaxProxyDispatch32_super_get_viewId,
 );
-const _flaxBinding1019 = FlaxInstanceMethod.shared(
+const _flaxBinding1020 = FlaxInstanceMethod.shared(
   flaxIntCall,
   _FlaxProxyDispatch32_super_get_embedderId,
 );
-const _flaxBinding1020 = FlaxInstanceMethod.shared(
+const _flaxBinding1021 = FlaxInstanceMethod.shared(
   _flaxBinding47,
   _FlaxProxyDispatch32_super_get_timeStamp,
 );
-const _flaxBinding1021 = FlaxInstanceMethod.shared(
+const _flaxBinding1022 = FlaxInstanceMethod.shared(
   flaxIntCall,
   _FlaxProxyDispatch32_super_get_pointer,
 );
-const _flaxBinding1022 = FlaxInstanceMethod.shared(
+const _flaxBinding1023 = FlaxInstanceMethod.shared(
   flaxIntCall,
   _FlaxProxyDispatch32_super_get_device,
 );
-const _flaxBinding1023 = FlaxInstanceMethod.shared(
+const _flaxBinding1024 = FlaxInstanceMethod.shared(
   _flaxBinding64,
   _FlaxProxyDispatch32_super_get_position,
 );
-const _flaxBinding1024 = FlaxInstanceMethod.shared(
+const _flaxBinding1025 = FlaxInstanceMethod.shared(
   _flaxBinding64,
   _FlaxProxyDispatch32_super_get_localDelta,
 );
-const _flaxBinding1025 = FlaxInstanceMethod.shared(
+const _flaxBinding1026 = FlaxInstanceMethod.shared(
   flaxBoolCall,
   _FlaxProxyDispatch32_super_get_down,
 );
-const _flaxBinding1026 = FlaxInstanceMethod.shared(
+const _flaxBinding1027 = FlaxInstanceMethod.shared(
   flaxBoolCall,
   _FlaxProxyDispatch32_super_get_obscured,
 );
-const _flaxBinding1027 = FlaxInstanceMethod.shared(
+const _flaxBinding1028 = FlaxInstanceMethod.shared(
   flaxDoubleCall,
   _FlaxProxyDispatch32_super_get_pressureMin,
 );
-const _flaxBinding1028 = FlaxInstanceMethod.shared(
+const _flaxBinding1029 = FlaxInstanceMethod.shared(
   flaxDoubleCall,
   _FlaxProxyDispatch32_super_get_pressureMax,
 );
-const _flaxBinding1029 = FlaxInstanceMethod.shared(
+const _flaxBinding1030 = FlaxInstanceMethod.shared(
   flaxDoubleCall,
   _FlaxProxyDispatch32_super_get_distance,
 );
-const _flaxBinding1030 = FlaxInstanceMethod.shared(
+const _flaxBinding1031 = FlaxInstanceMethod.shared(
   flaxDoubleCall,
   _FlaxProxyDispatch32_super_get_distanceMin,
 );
-const _flaxBinding1031 = FlaxInstanceMethod.shared(
+const _flaxBinding1032 = FlaxInstanceMethod.shared(
   flaxDoubleCall,
   _FlaxProxyDispatch32_super_get_distanceMax,
 );
-const _flaxBinding1032 = FlaxInstanceMethod.shared(
+const _flaxBinding1033 = FlaxInstanceMethod.shared(
   flaxDoubleCall,
   _FlaxProxyDispatch32_super_get_size,
 );
-const _flaxBinding1033 = FlaxInstanceMethod.shared(
+const _flaxBinding1034 = FlaxInstanceMethod.shared(
   flaxDoubleCall,
   _FlaxProxyDispatch32_super_get_radiusMajor,
 );
-const _flaxBinding1034 = FlaxInstanceMethod.shared(
+const _flaxBinding1035 = FlaxInstanceMethod.shared(
   flaxDoubleCall,
   _FlaxProxyDispatch32_super_get_radiusMinor,
 );
-const _flaxBinding1035 = FlaxInstanceMethod.shared(
+const _flaxBinding1036 = FlaxInstanceMethod.shared(
   flaxDoubleCall,
   _FlaxProxyDispatch32_super_get_radiusMin,
 );
-const _flaxBinding1036 = FlaxInstanceMethod.shared(
+const _flaxBinding1037 = FlaxInstanceMethod.shared(
   flaxDoubleCall,
   _FlaxProxyDispatch32_super_get_radiusMax,
 );
-const _flaxBinding1037 = FlaxInstanceMethod.shared(
+const _flaxBinding1038 = FlaxInstanceMethod.shared(
   flaxDoubleCall,
   _FlaxProxyDispatch32_super_get_orientation,
 );
-const _flaxBinding1038 = FlaxInstanceMethod.shared(
+const _flaxBinding1039 = FlaxInstanceMethod.shared(
   flaxDoubleCall,
   _FlaxProxyDispatch32_super_get_tilt,
 );
-const _flaxBinding1039 = FlaxInstanceMethod.shared(
+const _flaxBinding1040 = FlaxInstanceMethod.shared(
   flaxIntCall,
   _FlaxProxyDispatch32_super_get_platformData,
 );
-const _flaxBinding1040 = FlaxInstanceMethod.shared(
+const _flaxBinding1041 = FlaxInstanceMethod.shared(
   flaxBoolCall,
   _FlaxProxyDispatch32_super_get_synthesized,
 );
-const _flaxBinding1041 = FlaxInstanceMethod.shared(
+const _flaxBinding1042 = FlaxInstanceMethod.shared(
   _flaxBinding70,
   _FlaxProxyDispatch32_super_get_original,
 );
-const _flaxBinding1042 = <FlaxParameter>[
+const _flaxBinding1043 = <FlaxParameter>[
   FlaxParameter("viewId", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
     "timeStamp",
@@ -57239,7 +58835,7 @@ const _flaxBinding1042 = <FlaxParameter>[
     "kind",
     _flaxBinding14,
     required: false,
-    defaultValue: api4.PointerDeviceKind.touch,
+    defaultValue: api3.PointerDeviceKind.touch,
   ),
   FlaxParameter("device", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
@@ -57289,13 +58885,13 @@ const _flaxBinding1042 = <FlaxParameter>[
   FlaxParameter("tilt", flaxDoubleType, required: false, defaultValue: 0.0),
   FlaxParameter("embedderId", flaxIntType, required: false, defaultValue: 0),
 ];
-const _flaxBinding1043 = FlaxProxyMember(
+const _flaxBinding1044 = FlaxProxyMember(
   "transformed",
   0,
   _flaxBinding162,
   hasSuper: true,
 );
-const _flaxBinding1044 = FlaxCallbackBinding.signature(
+const _flaxBinding1045 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "viewId",
@@ -57439,172 +59035,171 @@ const _flaxBinding1044 = FlaxCallbackBinding.signature(
   _flaxBinding161,
   id: "callback:<>(n:o:viewId:int?:,n:o:timeStamp:object?:flax.core/flutter#type:Duration,n:o:pointer:int?:,n:o:kind:enum?:flax.core/sdk_dart_ui#type:PointerDeviceKind,n:o:device:int?:,n:o:position:object?:flax.core/flutter#type:Offset,n:o:delta:object?:flax.core/flutter#type:Offset,n:o:buttons:int?:,n:o:obscured:bool?:,n:o:pressure:double?:,n:o:pressureMin:double?:,n:o:pressureMax:double?:,n:o:distance:double?:,n:o:distanceMax:double?:,n:o:size:double?:,n:o:radiusMajor:double?:,n:o:radiusMinor:double?:,n:o:radiusMin:double?:,n:o:radiusMax:double?:,n:o:orientation:double?:,n:o:tilt:double?:,n:o:synthesized:bool?:,n:o:embedderId:int?:)->object:flax.core/sdk_gestures#type:PointerAddedEvent",
 );
-const _flaxBinding1045 = FlaxProxyMember(
+const _flaxBinding1046 = FlaxProxyMember(
   "copyWith",
   0,
-  _flaxBinding1044,
+  _flaxBinding1045,
   hasSuper: true,
 );
-const _flaxBinding1046 = FlaxProxyMember(
+const _flaxBinding1047 = FlaxProxyMember(
   "toStringFull",
   0,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding1047 = FlaxProxyMember(
+const _flaxBinding1048 = FlaxProxyMember(
   "viewId",
   1,
   flaxIntCall,
   hasSuper: true,
 );
-const _flaxBinding1048 = FlaxProxyMember(
+const _flaxBinding1049 = FlaxProxyMember(
   "embedderId",
   1,
   flaxIntCall,
   hasSuper: true,
 );
-const _flaxBinding1049 = FlaxProxyMember(
+const _flaxBinding1050 = FlaxProxyMember(
   "timeStamp",
   1,
   _flaxBinding47,
   hasSuper: true,
 );
-const _flaxBinding1050 = FlaxProxyMember(
+const _flaxBinding1051 = FlaxProxyMember(
   "pointer",
   1,
   flaxIntCall,
   hasSuper: true,
 );
-const _flaxBinding1051 = FlaxProxyMember(
+const _flaxBinding1052 = FlaxProxyMember(
   "device",
   1,
   flaxIntCall,
   hasSuper: true,
 );
-const _flaxBinding1052 = FlaxProxyMember(
+const _flaxBinding1053 = FlaxProxyMember(
   "position",
   1,
   _flaxBinding64,
   hasSuper: true,
 );
-const _flaxBinding1053 = FlaxProxyMember(
+const _flaxBinding1054 = FlaxProxyMember(
   "localDelta",
   1,
   _flaxBinding64,
   hasSuper: true,
 );
-const _flaxBinding1054 = FlaxProxyMember(
+const _flaxBinding1055 = FlaxProxyMember(
   "buttons",
   1,
   flaxIntCall,
   hasSuper: true,
 );
-const _flaxBinding1055 = FlaxProxyMember(
+const _flaxBinding1056 = FlaxProxyMember(
   "down",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding1056 = FlaxProxyMember(
+const _flaxBinding1057 = FlaxProxyMember(
   "obscured",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding1057 = FlaxProxyMember(
+const _flaxBinding1058 = FlaxProxyMember(
   "pressureMin",
   1,
   flaxDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding1058 = FlaxProxyMember(
+const _flaxBinding1059 = FlaxProxyMember(
   "pressureMax",
   1,
   flaxDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding1059 = FlaxProxyMember(
+const _flaxBinding1060 = FlaxProxyMember(
   "distance",
   1,
   flaxDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding1060 = FlaxProxyMember(
+const _flaxBinding1061 = FlaxProxyMember(
   "distanceMin",
   1,
   flaxDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding1061 = FlaxProxyMember(
+const _flaxBinding1062 = FlaxProxyMember(
   "distanceMax",
   1,
   flaxDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding1062 = FlaxProxyMember(
+const _flaxBinding1063 = FlaxProxyMember(
   "size",
   1,
   flaxDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding1063 = FlaxProxyMember(
+const _flaxBinding1064 = FlaxProxyMember(
   "radiusMajor",
   1,
   flaxDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding1064 = FlaxProxyMember(
+const _flaxBinding1065 = FlaxProxyMember(
   "radiusMinor",
   1,
   flaxDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding1065 = FlaxProxyMember(
+const _flaxBinding1066 = FlaxProxyMember(
   "radiusMin",
   1,
   flaxDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding1066 = FlaxProxyMember(
+const _flaxBinding1067 = FlaxProxyMember(
   "radiusMax",
   1,
   flaxDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding1067 = FlaxProxyMember(
+const _flaxBinding1068 = FlaxProxyMember(
   "orientation",
   1,
   flaxDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding1068 = FlaxProxyMember(
+const _flaxBinding1069 = FlaxProxyMember(
   "tilt",
   1,
   flaxDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding1069 = FlaxProxyMember(
+const _flaxBinding1070 = FlaxProxyMember(
   "platformData",
   1,
   flaxIntCall,
   hasSuper: true,
 );
-const _flaxBinding1070 = FlaxProxyMember(
+const _flaxBinding1071 = FlaxProxyMember(
   "synthesized",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding1071 = FlaxProxyMember(
+const _flaxBinding1072 = FlaxProxyMember(
   "original",
   1,
   _flaxBinding70,
   hasSuper: true,
 );
-const _flaxBinding1072 = FlaxObjectBinding(
+const _flaxBinding1073 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:PointerAddedEvent",
   [
-    _flaxBinding980,
     _flaxBinding981,
     _flaxBinding982,
     _flaxBinding983,
@@ -57634,21 +59229,22 @@ const _flaxBinding1072 = FlaxObjectBinding(
     _flaxBinding1007,
     _flaxBinding1008,
     _flaxBinding1009,
+    _flaxBinding1010,
   ],
   {
-    "transformed": _flaxBinding1010,
-    "copyWith": _flaxBinding1012,
-    "toStringShort": _flaxBinding1013,
-    "toDiagnosticsNode": _flaxBinding1014,
-    "debugFillProperties": _flaxBinding1015,
-    "toString": _flaxBinding1016,
-    "toStringFull": _flaxBinding1017,
+    "transformed": _flaxBinding1011,
+    "copyWith": _flaxBinding1013,
+    "toStringShort": _flaxBinding1014,
+    "toDiagnosticsNode": _flaxBinding1015,
+    "debugFillProperties": _flaxBinding1016,
+    "toString": _flaxBinding1017,
+    "toStringFull": _flaxBinding1018,
     "@super:transformed": FlaxInstanceMethod.shared(
       _flaxBinding162,
       _PointerAddedEvent_super_transformed,
     ),
     "@super:copyWith": FlaxInstanceMethod.plain(
-      _flaxBinding1011,
+      _flaxBinding1012,
       _flaxBinding161,
       _PointerAddedEvent_super_copyWith,
     ),
@@ -57660,16 +59256,16 @@ const _flaxBinding1072 = FlaxObjectBinding(
       flaxStringCall,
       _PointerAddedEvent_super_toStringFull,
     ),
-    "@super:get:viewId": _flaxBinding1018,
-    "@super:get:embedderId": _flaxBinding1019,
-    "@super:get:timeStamp": _flaxBinding1020,
-    "@super:get:pointer": _flaxBinding1021,
+    "@super:get:viewId": _flaxBinding1019,
+    "@super:get:embedderId": _flaxBinding1020,
+    "@super:get:timeStamp": _flaxBinding1021,
+    "@super:get:pointer": _flaxBinding1022,
     "@super:get:kind": FlaxInstanceMethod.shared(
       _flaxBinding115,
       _PointerAddedEvent_super_get_kind,
     ),
-    "@super:get:device": _flaxBinding1022,
-    "@super:get:position": _flaxBinding1023,
+    "@super:get:device": _flaxBinding1023,
+    "@super:get:position": _flaxBinding1024,
     "@super:get:localPosition": FlaxInstanceMethod.shared(
       _flaxBinding64,
       _PointerAddedEvent_super_get_localPosition,
@@ -57678,38 +59274,38 @@ const _flaxBinding1072 = FlaxObjectBinding(
       _flaxBinding64,
       _PointerAddedEvent_super_get_delta,
     ),
-    "@super:get:localDelta": _flaxBinding1024,
+    "@super:get:localDelta": _flaxBinding1025,
     "@super:get:buttons": FlaxInstanceMethod.shared(
       flaxIntCall,
       _PointerAddedEvent_super_get_buttons,
     ),
-    "@super:get:down": _flaxBinding1025,
-    "@super:get:obscured": _flaxBinding1026,
+    "@super:get:down": _flaxBinding1026,
+    "@super:get:obscured": _flaxBinding1027,
     "@super:get:pressure": FlaxInstanceMethod.shared(
       flaxDoubleCall,
       _PointerAddedEvent_super_get_pressure,
     ),
-    "@super:get:pressureMin": _flaxBinding1027,
-    "@super:get:pressureMax": _flaxBinding1028,
-    "@super:get:distance": _flaxBinding1029,
-    "@super:get:distanceMin": _flaxBinding1030,
-    "@super:get:distanceMax": _flaxBinding1031,
-    "@super:get:size": _flaxBinding1032,
-    "@super:get:radiusMajor": _flaxBinding1033,
-    "@super:get:radiusMinor": _flaxBinding1034,
-    "@super:get:radiusMin": _flaxBinding1035,
-    "@super:get:radiusMax": _flaxBinding1036,
-    "@super:get:orientation": _flaxBinding1037,
-    "@super:get:tilt": _flaxBinding1038,
-    "@super:get:platformData": _flaxBinding1039,
-    "@super:get:synthesized": _flaxBinding1040,
+    "@super:get:pressureMin": _flaxBinding1028,
+    "@super:get:pressureMax": _flaxBinding1029,
+    "@super:get:distance": _flaxBinding1030,
+    "@super:get:distanceMin": _flaxBinding1031,
+    "@super:get:distanceMax": _flaxBinding1032,
+    "@super:get:size": _flaxBinding1033,
+    "@super:get:radiusMajor": _flaxBinding1034,
+    "@super:get:radiusMinor": _flaxBinding1035,
+    "@super:get:radiusMin": _flaxBinding1036,
+    "@super:get:radiusMax": _flaxBinding1037,
+    "@super:get:orientation": _flaxBinding1038,
+    "@super:get:tilt": _flaxBinding1039,
+    "@super:get:platformData": _flaxBinding1040,
+    "@super:get:synthesized": _flaxBinding1041,
     "@super:get:transform": FlaxInstanceMethod.shared(
       _flaxBinding102,
       _PointerAddedEvent_super_get_transform,
     ),
-    "@super:get:original": _flaxBinding1041,
+    "@super:get:original": _flaxBinding1042,
   },
-  constructors: {"": _flaxBinding1042, "@implementation": _flaxBinding1042},
+  constructors: {"": _flaxBinding1043, "@implementation": _flaxBinding1043},
   create: _createPointerAddedEvent,
   matches: _isPointerAddedEvent,
   setters: [],
@@ -57721,28 +59317,27 @@ const _flaxBinding1072 = FlaxObjectBinding(
     "package:flutter/src/gestures/events.dart::_CopyPointerAddedEvent",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding1043,
-    _flaxBinding1045,
+    _flaxBinding1044,
+    _flaxBinding1046,
     _flaxBinding316,
     _flaxBinding318,
     _flaxBinding320,
     _flaxBinding311,
-    _flaxBinding1046,
     _flaxBinding1047,
     _flaxBinding1048,
     _flaxBinding1049,
     _flaxBinding1050,
-    _flaxBinding792,
     _flaxBinding1051,
+    _flaxBinding793,
     _flaxBinding1052,
+    _flaxBinding1053,
     _flaxBinding509,
     _flaxBinding588,
-    _flaxBinding1053,
     _flaxBinding1054,
     _flaxBinding1055,
     _flaxBinding1056,
-    _flaxBinding632,
     _flaxBinding1057,
+    _flaxBinding632,
     _flaxBinding1058,
     _flaxBinding1059,
     _flaxBinding1060,
@@ -57756,192 +59351,193 @@ const _flaxBinding1072 = FlaxObjectBinding(
     _flaxBinding1068,
     _flaxBinding1069,
     _flaxBinding1070,
-    _flaxBinding759,
     _flaxBinding1071,
+    _flaxBinding760,
+    _flaxBinding1072,
   ]),
 );
-const _flaxBinding1073 = FlaxGetter.plain(
+const _flaxBinding1074 = FlaxGetter.plain(
   "viewId",
   flaxIntType,
   _PointerCancelEvent_viewId,
 );
-const _flaxBinding1074 = FlaxGetter.plain(
+const _flaxBinding1075 = FlaxGetter.plain(
   "embedderId",
   flaxIntType,
   _PointerCancelEvent_embedderId,
 );
-const _flaxBinding1075 = FlaxGetter.plain(
+const _flaxBinding1076 = FlaxGetter.plain(
   "timeStamp",
   flaxDurationType,
   _PointerCancelEvent_timeStamp,
 );
-const _flaxBinding1076 = FlaxGetter.plain(
+const _flaxBinding1077 = FlaxGetter.plain(
   "pointer",
   flaxIntType,
   _PointerCancelEvent_pointer,
 );
-const _flaxBinding1077 = FlaxGetter.plain(
+const _flaxBinding1078 = FlaxGetter.plain(
   "kind",
   _flaxBinding14,
   _PointerCancelEvent_kind,
 );
-const _flaxBinding1078 = FlaxGetter.plain(
+const _flaxBinding1079 = FlaxGetter.plain(
   "device",
   flaxIntType,
   _PointerCancelEvent_device,
 );
-const _flaxBinding1079 = FlaxGetter.plain(
+const _flaxBinding1080 = FlaxGetter.plain(
   "position",
   flaxOffsetType,
   _PointerCancelEvent_position,
 );
-const _flaxBinding1080 = FlaxGetter.plain(
+const _flaxBinding1081 = FlaxGetter.plain(
   "localPosition",
   flaxOffsetType,
   _PointerCancelEvent_localPosition,
 );
-const _flaxBinding1081 = FlaxGetter.plain(
+const _flaxBinding1082 = FlaxGetter.plain(
   "delta",
   flaxOffsetType,
   _PointerCancelEvent_delta,
 );
-const _flaxBinding1082 = FlaxGetter.plain(
+const _flaxBinding1083 = FlaxGetter.plain(
   "localDelta",
   flaxOffsetType,
   _PointerCancelEvent_localDelta,
 );
-const _flaxBinding1083 = FlaxGetter.plain(
+const _flaxBinding1084 = FlaxGetter.plain(
   "buttons",
   flaxIntType,
   _PointerCancelEvent_buttons,
 );
-const _flaxBinding1084 = FlaxGetter.plain(
+const _flaxBinding1085 = FlaxGetter.plain(
   "down",
   flaxBoolType,
   _PointerCancelEvent_down,
 );
-const _flaxBinding1085 = FlaxGetter.plain(
+const _flaxBinding1086 = FlaxGetter.plain(
   "obscured",
   flaxBoolType,
   _PointerCancelEvent_obscured,
 );
-const _flaxBinding1086 = FlaxGetter.plain(
+const _flaxBinding1087 = FlaxGetter.plain(
   "pressure",
   flaxDoubleType,
   _PointerCancelEvent_pressure,
 );
-const _flaxBinding1087 = FlaxGetter.plain(
+const _flaxBinding1088 = FlaxGetter.plain(
   "pressureMin",
   flaxDoubleType,
   _PointerCancelEvent_pressureMin,
 );
-const _flaxBinding1088 = FlaxGetter.plain(
+const _flaxBinding1089 = FlaxGetter.plain(
   "pressureMax",
   flaxDoubleType,
   _PointerCancelEvent_pressureMax,
 );
-const _flaxBinding1089 = FlaxGetter.plain(
+const _flaxBinding1090 = FlaxGetter.plain(
   "distance",
   flaxDoubleType,
   _PointerCancelEvent_distance,
 );
-const _flaxBinding1090 = FlaxGetter.plain(
+const _flaxBinding1091 = FlaxGetter.plain(
   "distanceMin",
   flaxDoubleType,
   _PointerCancelEvent_distanceMin,
 );
-const _flaxBinding1091 = FlaxGetter.plain(
+const _flaxBinding1092 = FlaxGetter.plain(
   "distanceMax",
   flaxDoubleType,
   _PointerCancelEvent_distanceMax,
 );
-const _flaxBinding1092 = FlaxGetter.plain(
+const _flaxBinding1093 = FlaxGetter.plain(
   "size",
   flaxDoubleType,
   _PointerCancelEvent_size,
 );
-const _flaxBinding1093 = FlaxGetter.plain(
+const _flaxBinding1094 = FlaxGetter.plain(
   "radiusMajor",
   flaxDoubleType,
   _PointerCancelEvent_radiusMajor,
 );
-const _flaxBinding1094 = FlaxGetter.plain(
+const _flaxBinding1095 = FlaxGetter.plain(
   "radiusMinor",
   flaxDoubleType,
   _PointerCancelEvent_radiusMinor,
 );
-const _flaxBinding1095 = FlaxGetter.plain(
+const _flaxBinding1096 = FlaxGetter.plain(
   "radiusMin",
   flaxDoubleType,
   _PointerCancelEvent_radiusMin,
 );
-const _flaxBinding1096 = FlaxGetter.plain(
+const _flaxBinding1097 = FlaxGetter.plain(
   "radiusMax",
   flaxDoubleType,
   _PointerCancelEvent_radiusMax,
 );
-const _flaxBinding1097 = FlaxGetter.plain(
+const _flaxBinding1098 = FlaxGetter.plain(
   "orientation",
   flaxDoubleType,
   _PointerCancelEvent_orientation,
 );
-const _flaxBinding1098 = FlaxGetter.plain(
+const _flaxBinding1099 = FlaxGetter.plain(
   "tilt",
   flaxDoubleType,
   _PointerCancelEvent_tilt,
 );
-const _flaxBinding1099 = FlaxGetter.plain(
+const _flaxBinding1100 = FlaxGetter.plain(
   "platformData",
   flaxIntType,
   _PointerCancelEvent_platformData,
 );
-const _flaxBinding1100 = FlaxGetter.plain(
+const _flaxBinding1101 = FlaxGetter.plain(
   "synthesized",
   flaxBoolType,
   _PointerCancelEvent_synthesized,
 );
-const _flaxBinding1101 = FlaxGetter.plain(
+const _flaxBinding1102 = FlaxGetter.plain(
   "transform",
   _flaxBinding101,
   _PointerCancelEvent_transform,
 );
-const _flaxBinding1102 = FlaxGetter.plain(
+const _flaxBinding1103 = FlaxGetter.plain(
   "original",
   _flaxBinding69,
   _PointerCancelEvent_original,
 );
-const _flaxBinding1103 = FlaxInstanceMethod.shared(
+const _flaxBinding1104 = FlaxInstanceMethod.shared(
   _flaxBinding164,
   _PointerCancelEvent_transformed,
 );
-const _flaxBinding1104 = FlaxInstanceMethod.plain(
-  _flaxBinding1011,
+const _flaxBinding1105 = FlaxInstanceMethod.plain(
+  _flaxBinding1012,
   _flaxBinding163,
   _PointerCancelEvent_copyWith,
 );
-const _flaxBinding1105 = FlaxInstanceMethod.shared(
+const _flaxBinding1106 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _PointerCancelEvent_toStringShort,
 );
-const _flaxBinding1106 = FlaxInstanceMethod.plain(
+const _flaxBinding1107 = FlaxInstanceMethod.plain(
   _flaxBinding268,
   _flaxBinding17,
   _PointerCancelEvent_toDiagnosticsNode,
 );
-const _flaxBinding1107 = FlaxInstanceMethod.shared(
+const _flaxBinding1108 = FlaxInstanceMethod.shared(
   _flaxBinding6,
   _PointerCancelEvent_debugFillProperties,
 );
-const _flaxBinding1108 = FlaxInstanceMethod.plain(
+const _flaxBinding1109 = FlaxInstanceMethod.plain(
   _flaxBinding260,
   flaxStringType,
   _PointerCancelEvent_toString,
 );
-const _flaxBinding1109 = FlaxInstanceMethod.shared(
+const _flaxBinding1110 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _PointerCancelEvent_toStringFull,
 );
-const _flaxBinding1110 = <FlaxParameter>[
+const _flaxBinding1111 = <FlaxParameter>[
   FlaxParameter("viewId", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
     "timeStamp",
@@ -57954,7 +59550,7 @@ const _flaxBinding1110 = <FlaxParameter>[
     "kind",
     _flaxBinding14,
     required: false,
-    defaultValue: api4.PointerDeviceKind.touch,
+    defaultValue: api3.PointerDeviceKind.touch,
   ),
   FlaxParameter("device", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
@@ -58018,13 +59614,13 @@ const _flaxBinding1110 = <FlaxParameter>[
   FlaxParameter("tilt", flaxDoubleType, required: false, defaultValue: 0.0),
   FlaxParameter("embedderId", flaxIntType, required: false, defaultValue: 0),
 ];
-const _flaxBinding1111 = FlaxProxyMember(
+const _flaxBinding1112 = FlaxProxyMember(
   "transformed",
   0,
   _flaxBinding164,
   hasSuper: true,
 );
-const _flaxBinding1112 = FlaxCallbackBinding.signature(
+const _flaxBinding1113 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "viewId",
@@ -58168,16 +59764,15 @@ const _flaxBinding1112 = FlaxCallbackBinding.signature(
   _flaxBinding163,
   id: "callback:<>(n:o:viewId:int?:,n:o:timeStamp:object?:flax.core/flutter#type:Duration,n:o:pointer:int?:,n:o:kind:enum?:flax.core/sdk_dart_ui#type:PointerDeviceKind,n:o:device:int?:,n:o:position:object?:flax.core/flutter#type:Offset,n:o:delta:object?:flax.core/flutter#type:Offset,n:o:buttons:int?:,n:o:obscured:bool?:,n:o:pressure:double?:,n:o:pressureMin:double?:,n:o:pressureMax:double?:,n:o:distance:double?:,n:o:distanceMax:double?:,n:o:size:double?:,n:o:radiusMajor:double?:,n:o:radiusMinor:double?:,n:o:radiusMin:double?:,n:o:radiusMax:double?:,n:o:orientation:double?:,n:o:tilt:double?:,n:o:synthesized:bool?:,n:o:embedderId:int?:)->object:flax.core/sdk_gestures#type:PointerCancelEvent",
 );
-const _flaxBinding1113 = FlaxProxyMember(
+const _flaxBinding1114 = FlaxProxyMember(
   "copyWith",
   0,
-  _flaxBinding1112,
+  _flaxBinding1113,
   hasSuper: true,
 );
-const _flaxBinding1114 = FlaxObjectBinding(
+const _flaxBinding1115 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:PointerCancelEvent",
   [
-    _flaxBinding1073,
     _flaxBinding1074,
     _flaxBinding1075,
     _flaxBinding1076,
@@ -58207,21 +59802,22 @@ const _flaxBinding1114 = FlaxObjectBinding(
     _flaxBinding1100,
     _flaxBinding1101,
     _flaxBinding1102,
+    _flaxBinding1103,
   ],
   {
-    "transformed": _flaxBinding1103,
-    "copyWith": _flaxBinding1104,
-    "toStringShort": _flaxBinding1105,
-    "toDiagnosticsNode": _flaxBinding1106,
-    "debugFillProperties": _flaxBinding1107,
-    "toString": _flaxBinding1108,
-    "toStringFull": _flaxBinding1109,
+    "transformed": _flaxBinding1104,
+    "copyWith": _flaxBinding1105,
+    "toStringShort": _flaxBinding1106,
+    "toDiagnosticsNode": _flaxBinding1107,
+    "debugFillProperties": _flaxBinding1108,
+    "toString": _flaxBinding1109,
+    "toStringFull": _flaxBinding1110,
     "@super:transformed": FlaxInstanceMethod.shared(
       _flaxBinding164,
       _PointerCancelEvent_super_transformed,
     ),
     "@super:copyWith": FlaxInstanceMethod.plain(
-      _flaxBinding1011,
+      _flaxBinding1012,
       _flaxBinding163,
       _PointerCancelEvent_super_copyWith,
     ),
@@ -58233,16 +59829,16 @@ const _flaxBinding1114 = FlaxObjectBinding(
       flaxStringCall,
       _PointerCancelEvent_super_toStringFull,
     ),
-    "@super:get:viewId": _flaxBinding1018,
-    "@super:get:embedderId": _flaxBinding1019,
-    "@super:get:timeStamp": _flaxBinding1020,
-    "@super:get:pointer": _flaxBinding1021,
+    "@super:get:viewId": _flaxBinding1019,
+    "@super:get:embedderId": _flaxBinding1020,
+    "@super:get:timeStamp": _flaxBinding1021,
+    "@super:get:pointer": _flaxBinding1022,
     "@super:get:kind": FlaxInstanceMethod.shared(
       _flaxBinding115,
       _PointerCancelEvent_super_get_kind,
     ),
-    "@super:get:device": _flaxBinding1022,
-    "@super:get:position": _flaxBinding1023,
+    "@super:get:device": _flaxBinding1023,
+    "@super:get:position": _flaxBinding1024,
     "@super:get:localPosition": FlaxInstanceMethod.shared(
       _flaxBinding64,
       _PointerCancelEvent_super_get_localPosition,
@@ -58251,38 +59847,38 @@ const _flaxBinding1114 = FlaxObjectBinding(
       _flaxBinding64,
       _PointerCancelEvent_super_get_delta,
     ),
-    "@super:get:localDelta": _flaxBinding1024,
+    "@super:get:localDelta": _flaxBinding1025,
     "@super:get:buttons": FlaxInstanceMethod.shared(
       flaxIntCall,
       _PointerCancelEvent_super_get_buttons,
     ),
-    "@super:get:down": _flaxBinding1025,
-    "@super:get:obscured": _flaxBinding1026,
+    "@super:get:down": _flaxBinding1026,
+    "@super:get:obscured": _flaxBinding1027,
     "@super:get:pressure": FlaxInstanceMethod.shared(
       flaxDoubleCall,
       _PointerCancelEvent_super_get_pressure,
     ),
-    "@super:get:pressureMin": _flaxBinding1027,
-    "@super:get:pressureMax": _flaxBinding1028,
-    "@super:get:distance": _flaxBinding1029,
-    "@super:get:distanceMin": _flaxBinding1030,
-    "@super:get:distanceMax": _flaxBinding1031,
-    "@super:get:size": _flaxBinding1032,
-    "@super:get:radiusMajor": _flaxBinding1033,
-    "@super:get:radiusMinor": _flaxBinding1034,
-    "@super:get:radiusMin": _flaxBinding1035,
-    "@super:get:radiusMax": _flaxBinding1036,
-    "@super:get:orientation": _flaxBinding1037,
-    "@super:get:tilt": _flaxBinding1038,
-    "@super:get:platformData": _flaxBinding1039,
-    "@super:get:synthesized": _flaxBinding1040,
+    "@super:get:pressureMin": _flaxBinding1028,
+    "@super:get:pressureMax": _flaxBinding1029,
+    "@super:get:distance": _flaxBinding1030,
+    "@super:get:distanceMin": _flaxBinding1031,
+    "@super:get:distanceMax": _flaxBinding1032,
+    "@super:get:size": _flaxBinding1033,
+    "@super:get:radiusMajor": _flaxBinding1034,
+    "@super:get:radiusMinor": _flaxBinding1035,
+    "@super:get:radiusMin": _flaxBinding1036,
+    "@super:get:radiusMax": _flaxBinding1037,
+    "@super:get:orientation": _flaxBinding1038,
+    "@super:get:tilt": _flaxBinding1039,
+    "@super:get:platformData": _flaxBinding1040,
+    "@super:get:synthesized": _flaxBinding1041,
     "@super:get:transform": FlaxInstanceMethod.shared(
       _flaxBinding102,
       _PointerCancelEvent_super_get_transform,
     ),
-    "@super:get:original": _flaxBinding1041,
+    "@super:get:original": _flaxBinding1042,
   },
-  constructors: {"": _flaxBinding1110, "@implementation": _flaxBinding1110},
+  constructors: {"": _flaxBinding1111, "@implementation": _flaxBinding1111},
   create: _createPointerCancelEvent,
   matches: _isPointerCancelEvent,
   setters: [],
@@ -58294,28 +59890,27 @@ const _flaxBinding1114 = FlaxObjectBinding(
     "package:flutter/src/gestures/events.dart::_CopyPointerCancelEvent",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding1111,
-    _flaxBinding1113,
+    _flaxBinding1112,
+    _flaxBinding1114,
     _flaxBinding316,
     _flaxBinding318,
     _flaxBinding320,
     _flaxBinding311,
-    _flaxBinding1046,
     _flaxBinding1047,
     _flaxBinding1048,
     _flaxBinding1049,
     _flaxBinding1050,
-    _flaxBinding792,
     _flaxBinding1051,
+    _flaxBinding793,
     _flaxBinding1052,
+    _flaxBinding1053,
     _flaxBinding509,
     _flaxBinding588,
-    _flaxBinding1053,
     _flaxBinding1054,
     _flaxBinding1055,
     _flaxBinding1056,
-    _flaxBinding632,
     _flaxBinding1057,
+    _flaxBinding632,
     _flaxBinding1058,
     _flaxBinding1059,
     _flaxBinding1060,
@@ -58329,192 +59924,193 @@ const _flaxBinding1114 = FlaxObjectBinding(
     _flaxBinding1068,
     _flaxBinding1069,
     _flaxBinding1070,
-    _flaxBinding759,
     _flaxBinding1071,
+    _flaxBinding760,
+    _flaxBinding1072,
   ]),
 );
-const _flaxBinding1115 = FlaxGetter.plain(
+const _flaxBinding1116 = FlaxGetter.plain(
   "viewId",
   flaxIntType,
   _PointerDownEvent_viewId,
 );
-const _flaxBinding1116 = FlaxGetter.plain(
+const _flaxBinding1117 = FlaxGetter.plain(
   "embedderId",
   flaxIntType,
   _PointerDownEvent_embedderId,
 );
-const _flaxBinding1117 = FlaxGetter.plain(
+const _flaxBinding1118 = FlaxGetter.plain(
   "timeStamp",
   flaxDurationType,
   _PointerDownEvent_timeStamp,
 );
-const _flaxBinding1118 = FlaxGetter.plain(
+const _flaxBinding1119 = FlaxGetter.plain(
   "pointer",
   flaxIntType,
   _PointerDownEvent_pointer,
 );
-const _flaxBinding1119 = FlaxGetter.plain(
+const _flaxBinding1120 = FlaxGetter.plain(
   "kind",
   _flaxBinding14,
   _PointerDownEvent_kind,
 );
-const _flaxBinding1120 = FlaxGetter.plain(
+const _flaxBinding1121 = FlaxGetter.plain(
   "device",
   flaxIntType,
   _PointerDownEvent_device,
 );
-const _flaxBinding1121 = FlaxGetter.plain(
+const _flaxBinding1122 = FlaxGetter.plain(
   "position",
   flaxOffsetType,
   _PointerDownEvent_position,
 );
-const _flaxBinding1122 = FlaxGetter.plain(
+const _flaxBinding1123 = FlaxGetter.plain(
   "localPosition",
   flaxOffsetType,
   _PointerDownEvent_localPosition,
 );
-const _flaxBinding1123 = FlaxGetter.plain(
+const _flaxBinding1124 = FlaxGetter.plain(
   "delta",
   flaxOffsetType,
   _PointerDownEvent_delta,
 );
-const _flaxBinding1124 = FlaxGetter.plain(
+const _flaxBinding1125 = FlaxGetter.plain(
   "localDelta",
   flaxOffsetType,
   _PointerDownEvent_localDelta,
 );
-const _flaxBinding1125 = FlaxGetter.plain(
+const _flaxBinding1126 = FlaxGetter.plain(
   "buttons",
   flaxIntType,
   _PointerDownEvent_buttons,
 );
-const _flaxBinding1126 = FlaxGetter.plain(
+const _flaxBinding1127 = FlaxGetter.plain(
   "down",
   flaxBoolType,
   _PointerDownEvent_down,
 );
-const _flaxBinding1127 = FlaxGetter.plain(
+const _flaxBinding1128 = FlaxGetter.plain(
   "obscured",
   flaxBoolType,
   _PointerDownEvent_obscured,
 );
-const _flaxBinding1128 = FlaxGetter.plain(
+const _flaxBinding1129 = FlaxGetter.plain(
   "pressure",
   flaxDoubleType,
   _PointerDownEvent_pressure,
 );
-const _flaxBinding1129 = FlaxGetter.plain(
+const _flaxBinding1130 = FlaxGetter.plain(
   "pressureMin",
   flaxDoubleType,
   _PointerDownEvent_pressureMin,
 );
-const _flaxBinding1130 = FlaxGetter.plain(
+const _flaxBinding1131 = FlaxGetter.plain(
   "pressureMax",
   flaxDoubleType,
   _PointerDownEvent_pressureMax,
 );
-const _flaxBinding1131 = FlaxGetter.plain(
+const _flaxBinding1132 = FlaxGetter.plain(
   "distance",
   flaxDoubleType,
   _PointerDownEvent_distance,
 );
-const _flaxBinding1132 = FlaxGetter.plain(
+const _flaxBinding1133 = FlaxGetter.plain(
   "distanceMin",
   flaxDoubleType,
   _PointerDownEvent_distanceMin,
 );
-const _flaxBinding1133 = FlaxGetter.plain(
+const _flaxBinding1134 = FlaxGetter.plain(
   "distanceMax",
   flaxDoubleType,
   _PointerDownEvent_distanceMax,
 );
-const _flaxBinding1134 = FlaxGetter.plain(
+const _flaxBinding1135 = FlaxGetter.plain(
   "size",
   flaxDoubleType,
   _PointerDownEvent_size,
 );
-const _flaxBinding1135 = FlaxGetter.plain(
+const _flaxBinding1136 = FlaxGetter.plain(
   "radiusMajor",
   flaxDoubleType,
   _PointerDownEvent_radiusMajor,
 );
-const _flaxBinding1136 = FlaxGetter.plain(
+const _flaxBinding1137 = FlaxGetter.plain(
   "radiusMinor",
   flaxDoubleType,
   _PointerDownEvent_radiusMinor,
 );
-const _flaxBinding1137 = FlaxGetter.plain(
+const _flaxBinding1138 = FlaxGetter.plain(
   "radiusMin",
   flaxDoubleType,
   _PointerDownEvent_radiusMin,
 );
-const _flaxBinding1138 = FlaxGetter.plain(
+const _flaxBinding1139 = FlaxGetter.plain(
   "radiusMax",
   flaxDoubleType,
   _PointerDownEvent_radiusMax,
 );
-const _flaxBinding1139 = FlaxGetter.plain(
+const _flaxBinding1140 = FlaxGetter.plain(
   "orientation",
   flaxDoubleType,
   _PointerDownEvent_orientation,
 );
-const _flaxBinding1140 = FlaxGetter.plain(
+const _flaxBinding1141 = FlaxGetter.plain(
   "tilt",
   flaxDoubleType,
   _PointerDownEvent_tilt,
 );
-const _flaxBinding1141 = FlaxGetter.plain(
+const _flaxBinding1142 = FlaxGetter.plain(
   "platformData",
   flaxIntType,
   _PointerDownEvent_platformData,
 );
-const _flaxBinding1142 = FlaxGetter.plain(
+const _flaxBinding1143 = FlaxGetter.plain(
   "synthesized",
   flaxBoolType,
   _PointerDownEvent_synthesized,
 );
-const _flaxBinding1143 = FlaxGetter.plain(
+const _flaxBinding1144 = FlaxGetter.plain(
   "transform",
   _flaxBinding101,
   _PointerDownEvent_transform,
 );
-const _flaxBinding1144 = FlaxGetter.plain(
+const _flaxBinding1145 = FlaxGetter.plain(
   "original",
   _flaxBinding69,
   _PointerDownEvent_original,
 );
-const _flaxBinding1145 = FlaxInstanceMethod.shared(
+const _flaxBinding1146 = FlaxInstanceMethod.shared(
   _flaxBinding165,
   _PointerDownEvent_transformed,
 );
-const _flaxBinding1146 = FlaxInstanceMethod.plain(
-  _flaxBinding1011,
+const _flaxBinding1147 = FlaxInstanceMethod.plain(
+  _flaxBinding1012,
   _flaxBinding0,
   _PointerDownEvent_copyWith,
 );
-const _flaxBinding1147 = FlaxInstanceMethod.shared(
+const _flaxBinding1148 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _PointerDownEvent_toStringShort,
 );
-const _flaxBinding1148 = FlaxInstanceMethod.plain(
+const _flaxBinding1149 = FlaxInstanceMethod.plain(
   _flaxBinding268,
   _flaxBinding17,
   _PointerDownEvent_toDiagnosticsNode,
 );
-const _flaxBinding1149 = FlaxInstanceMethod.shared(
+const _flaxBinding1150 = FlaxInstanceMethod.shared(
   _flaxBinding6,
   _PointerDownEvent_debugFillProperties,
 );
-const _flaxBinding1150 = FlaxInstanceMethod.plain(
+const _flaxBinding1151 = FlaxInstanceMethod.plain(
   _flaxBinding260,
   flaxStringType,
   _PointerDownEvent_toString,
 );
-const _flaxBinding1151 = FlaxInstanceMethod.shared(
+const _flaxBinding1152 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _PointerDownEvent_toStringFull,
 );
-const _flaxBinding1152 = <FlaxParameter>[
+const _flaxBinding1153 = <FlaxParameter>[
   FlaxParameter("viewId", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
     "timeStamp",
@@ -58527,7 +60123,7 @@ const _flaxBinding1152 = <FlaxParameter>[
     "kind",
     _flaxBinding14,
     required: false,
-    defaultValue: api4.PointerDeviceKind.touch,
+    defaultValue: api3.PointerDeviceKind.touch,
   ),
   FlaxParameter("device", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
@@ -58591,13 +60187,13 @@ const _flaxBinding1152 = <FlaxParameter>[
   FlaxParameter("tilt", flaxDoubleType, required: false, defaultValue: 0.0),
   FlaxParameter("embedderId", flaxIntType, required: false, defaultValue: 0),
 ];
-const _flaxBinding1153 = FlaxProxyMember(
+const _flaxBinding1154 = FlaxProxyMember(
   "transformed",
   0,
   _flaxBinding165,
   hasSuper: true,
 );
-const _flaxBinding1154 = FlaxCallbackBinding.signature(
+const _flaxBinding1155 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "viewId",
@@ -58741,16 +60337,15 @@ const _flaxBinding1154 = FlaxCallbackBinding.signature(
   _flaxBinding0,
   id: "callback:<>(n:o:viewId:int?:,n:o:timeStamp:object?:flax.core/flutter#type:Duration,n:o:pointer:int?:,n:o:kind:enum?:flax.core/sdk_dart_ui#type:PointerDeviceKind,n:o:device:int?:,n:o:position:object?:flax.core/flutter#type:Offset,n:o:delta:object?:flax.core/flutter#type:Offset,n:o:buttons:int?:,n:o:obscured:bool?:,n:o:pressure:double?:,n:o:pressureMin:double?:,n:o:pressureMax:double?:,n:o:distance:double?:,n:o:distanceMax:double?:,n:o:size:double?:,n:o:radiusMajor:double?:,n:o:radiusMinor:double?:,n:o:radiusMin:double?:,n:o:radiusMax:double?:,n:o:orientation:double?:,n:o:tilt:double?:,n:o:synthesized:bool?:,n:o:embedderId:int?:)->object:flax.core/sdk_gestures#type:PointerDownEvent",
 );
-const _flaxBinding1155 = FlaxProxyMember(
+const _flaxBinding1156 = FlaxProxyMember(
   "copyWith",
   0,
-  _flaxBinding1154,
+  _flaxBinding1155,
   hasSuper: true,
 );
-const _flaxBinding1156 = FlaxObjectBinding(
+const _flaxBinding1157 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:PointerDownEvent",
   [
-    _flaxBinding1115,
     _flaxBinding1116,
     _flaxBinding1117,
     _flaxBinding1118,
@@ -58780,21 +60375,22 @@ const _flaxBinding1156 = FlaxObjectBinding(
     _flaxBinding1142,
     _flaxBinding1143,
     _flaxBinding1144,
+    _flaxBinding1145,
   ],
   {
-    "transformed": _flaxBinding1145,
-    "copyWith": _flaxBinding1146,
-    "toStringShort": _flaxBinding1147,
-    "toDiagnosticsNode": _flaxBinding1148,
-    "debugFillProperties": _flaxBinding1149,
-    "toString": _flaxBinding1150,
-    "toStringFull": _flaxBinding1151,
+    "transformed": _flaxBinding1146,
+    "copyWith": _flaxBinding1147,
+    "toStringShort": _flaxBinding1148,
+    "toDiagnosticsNode": _flaxBinding1149,
+    "debugFillProperties": _flaxBinding1150,
+    "toString": _flaxBinding1151,
+    "toStringFull": _flaxBinding1152,
     "@super:transformed": FlaxInstanceMethod.shared(
       _flaxBinding165,
       _PointerDownEvent_super_transformed,
     ),
     "@super:copyWith": FlaxInstanceMethod.plain(
-      _flaxBinding1011,
+      _flaxBinding1012,
       _flaxBinding0,
       _PointerDownEvent_super_copyWith,
     ),
@@ -58806,16 +60402,16 @@ const _flaxBinding1156 = FlaxObjectBinding(
       flaxStringCall,
       _PointerDownEvent_super_toStringFull,
     ),
-    "@super:get:viewId": _flaxBinding1018,
-    "@super:get:embedderId": _flaxBinding1019,
-    "@super:get:timeStamp": _flaxBinding1020,
-    "@super:get:pointer": _flaxBinding1021,
+    "@super:get:viewId": _flaxBinding1019,
+    "@super:get:embedderId": _flaxBinding1020,
+    "@super:get:timeStamp": _flaxBinding1021,
+    "@super:get:pointer": _flaxBinding1022,
     "@super:get:kind": FlaxInstanceMethod.shared(
       _flaxBinding115,
       _PointerDownEvent_super_get_kind,
     ),
-    "@super:get:device": _flaxBinding1022,
-    "@super:get:position": _flaxBinding1023,
+    "@super:get:device": _flaxBinding1023,
+    "@super:get:position": _flaxBinding1024,
     "@super:get:localPosition": FlaxInstanceMethod.shared(
       _flaxBinding64,
       _PointerDownEvent_super_get_localPosition,
@@ -58824,38 +60420,38 @@ const _flaxBinding1156 = FlaxObjectBinding(
       _flaxBinding64,
       _PointerDownEvent_super_get_delta,
     ),
-    "@super:get:localDelta": _flaxBinding1024,
+    "@super:get:localDelta": _flaxBinding1025,
     "@super:get:buttons": FlaxInstanceMethod.shared(
       flaxIntCall,
       _PointerDownEvent_super_get_buttons,
     ),
-    "@super:get:down": _flaxBinding1025,
-    "@super:get:obscured": _flaxBinding1026,
+    "@super:get:down": _flaxBinding1026,
+    "@super:get:obscured": _flaxBinding1027,
     "@super:get:pressure": FlaxInstanceMethod.shared(
       flaxDoubleCall,
       _PointerDownEvent_super_get_pressure,
     ),
-    "@super:get:pressureMin": _flaxBinding1027,
-    "@super:get:pressureMax": _flaxBinding1028,
-    "@super:get:distance": _flaxBinding1029,
-    "@super:get:distanceMin": _flaxBinding1030,
-    "@super:get:distanceMax": _flaxBinding1031,
-    "@super:get:size": _flaxBinding1032,
-    "@super:get:radiusMajor": _flaxBinding1033,
-    "@super:get:radiusMinor": _flaxBinding1034,
-    "@super:get:radiusMin": _flaxBinding1035,
-    "@super:get:radiusMax": _flaxBinding1036,
-    "@super:get:orientation": _flaxBinding1037,
-    "@super:get:tilt": _flaxBinding1038,
-    "@super:get:platformData": _flaxBinding1039,
-    "@super:get:synthesized": _flaxBinding1040,
+    "@super:get:pressureMin": _flaxBinding1028,
+    "@super:get:pressureMax": _flaxBinding1029,
+    "@super:get:distance": _flaxBinding1030,
+    "@super:get:distanceMin": _flaxBinding1031,
+    "@super:get:distanceMax": _flaxBinding1032,
+    "@super:get:size": _flaxBinding1033,
+    "@super:get:radiusMajor": _flaxBinding1034,
+    "@super:get:radiusMinor": _flaxBinding1035,
+    "@super:get:radiusMin": _flaxBinding1036,
+    "@super:get:radiusMax": _flaxBinding1037,
+    "@super:get:orientation": _flaxBinding1038,
+    "@super:get:tilt": _flaxBinding1039,
+    "@super:get:platformData": _flaxBinding1040,
+    "@super:get:synthesized": _flaxBinding1041,
     "@super:get:transform": FlaxInstanceMethod.shared(
       _flaxBinding102,
       _PointerDownEvent_super_get_transform,
     ),
-    "@super:get:original": _flaxBinding1041,
+    "@super:get:original": _flaxBinding1042,
   },
-  constructors: {"": _flaxBinding1152, "@implementation": _flaxBinding1152},
+  constructors: {"": _flaxBinding1153, "@implementation": _flaxBinding1153},
   create: _createPointerDownEvent,
   matches: _isPointerDownEvent,
   setters: [],
@@ -58867,28 +60463,27 @@ const _flaxBinding1156 = FlaxObjectBinding(
     "package:flutter/src/gestures/events.dart::_CopyPointerDownEvent",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding1153,
-    _flaxBinding1155,
+    _flaxBinding1154,
+    _flaxBinding1156,
     _flaxBinding316,
     _flaxBinding318,
     _flaxBinding320,
     _flaxBinding311,
-    _flaxBinding1046,
     _flaxBinding1047,
     _flaxBinding1048,
     _flaxBinding1049,
     _flaxBinding1050,
-    _flaxBinding792,
     _flaxBinding1051,
+    _flaxBinding793,
     _flaxBinding1052,
+    _flaxBinding1053,
     _flaxBinding509,
     _flaxBinding588,
-    _flaxBinding1053,
     _flaxBinding1054,
     _flaxBinding1055,
     _flaxBinding1056,
-    _flaxBinding632,
     _flaxBinding1057,
+    _flaxBinding632,
     _flaxBinding1058,
     _flaxBinding1059,
     _flaxBinding1060,
@@ -58902,192 +60497,193 @@ const _flaxBinding1156 = FlaxObjectBinding(
     _flaxBinding1068,
     _flaxBinding1069,
     _flaxBinding1070,
-    _flaxBinding759,
     _flaxBinding1071,
+    _flaxBinding760,
+    _flaxBinding1072,
   ]),
 );
-const _flaxBinding1157 = FlaxGetter.plain(
+const _flaxBinding1158 = FlaxGetter.plain(
   "viewId",
   flaxIntType,
   _PointerEnterEvent_viewId,
 );
-const _flaxBinding1158 = FlaxGetter.plain(
+const _flaxBinding1159 = FlaxGetter.plain(
   "embedderId",
   flaxIntType,
   _PointerEnterEvent_embedderId,
 );
-const _flaxBinding1159 = FlaxGetter.plain(
+const _flaxBinding1160 = FlaxGetter.plain(
   "timeStamp",
   flaxDurationType,
   _PointerEnterEvent_timeStamp,
 );
-const _flaxBinding1160 = FlaxGetter.plain(
+const _flaxBinding1161 = FlaxGetter.plain(
   "pointer",
   flaxIntType,
   _PointerEnterEvent_pointer,
 );
-const _flaxBinding1161 = FlaxGetter.plain(
+const _flaxBinding1162 = FlaxGetter.plain(
   "kind",
   _flaxBinding14,
   _PointerEnterEvent_kind,
 );
-const _flaxBinding1162 = FlaxGetter.plain(
+const _flaxBinding1163 = FlaxGetter.plain(
   "device",
   flaxIntType,
   _PointerEnterEvent_device,
 );
-const _flaxBinding1163 = FlaxGetter.plain(
+const _flaxBinding1164 = FlaxGetter.plain(
   "position",
   flaxOffsetType,
   _PointerEnterEvent_position,
 );
-const _flaxBinding1164 = FlaxGetter.plain(
+const _flaxBinding1165 = FlaxGetter.plain(
   "localPosition",
   flaxOffsetType,
   _PointerEnterEvent_localPosition,
 );
-const _flaxBinding1165 = FlaxGetter.plain(
+const _flaxBinding1166 = FlaxGetter.plain(
   "delta",
   flaxOffsetType,
   _PointerEnterEvent_delta,
 );
-const _flaxBinding1166 = FlaxGetter.plain(
+const _flaxBinding1167 = FlaxGetter.plain(
   "localDelta",
   flaxOffsetType,
   _PointerEnterEvent_localDelta,
 );
-const _flaxBinding1167 = FlaxGetter.plain(
+const _flaxBinding1168 = FlaxGetter.plain(
   "buttons",
   flaxIntType,
   _PointerEnterEvent_buttons,
 );
-const _flaxBinding1168 = FlaxGetter.plain(
+const _flaxBinding1169 = FlaxGetter.plain(
   "down",
   flaxBoolType,
   _PointerEnterEvent_down,
 );
-const _flaxBinding1169 = FlaxGetter.plain(
+const _flaxBinding1170 = FlaxGetter.plain(
   "obscured",
   flaxBoolType,
   _PointerEnterEvent_obscured,
 );
-const _flaxBinding1170 = FlaxGetter.plain(
+const _flaxBinding1171 = FlaxGetter.plain(
   "pressure",
   flaxDoubleType,
   _PointerEnterEvent_pressure,
 );
-const _flaxBinding1171 = FlaxGetter.plain(
+const _flaxBinding1172 = FlaxGetter.plain(
   "pressureMin",
   flaxDoubleType,
   _PointerEnterEvent_pressureMin,
 );
-const _flaxBinding1172 = FlaxGetter.plain(
+const _flaxBinding1173 = FlaxGetter.plain(
   "pressureMax",
   flaxDoubleType,
   _PointerEnterEvent_pressureMax,
 );
-const _flaxBinding1173 = FlaxGetter.plain(
+const _flaxBinding1174 = FlaxGetter.plain(
   "distance",
   flaxDoubleType,
   _PointerEnterEvent_distance,
 );
-const _flaxBinding1174 = FlaxGetter.plain(
+const _flaxBinding1175 = FlaxGetter.plain(
   "distanceMin",
   flaxDoubleType,
   _PointerEnterEvent_distanceMin,
 );
-const _flaxBinding1175 = FlaxGetter.plain(
+const _flaxBinding1176 = FlaxGetter.plain(
   "distanceMax",
   flaxDoubleType,
   _PointerEnterEvent_distanceMax,
 );
-const _flaxBinding1176 = FlaxGetter.plain(
+const _flaxBinding1177 = FlaxGetter.plain(
   "size",
   flaxDoubleType,
   _PointerEnterEvent_size,
 );
-const _flaxBinding1177 = FlaxGetter.plain(
+const _flaxBinding1178 = FlaxGetter.plain(
   "radiusMajor",
   flaxDoubleType,
   _PointerEnterEvent_radiusMajor,
 );
-const _flaxBinding1178 = FlaxGetter.plain(
+const _flaxBinding1179 = FlaxGetter.plain(
   "radiusMinor",
   flaxDoubleType,
   _PointerEnterEvent_radiusMinor,
 );
-const _flaxBinding1179 = FlaxGetter.plain(
+const _flaxBinding1180 = FlaxGetter.plain(
   "radiusMin",
   flaxDoubleType,
   _PointerEnterEvent_radiusMin,
 );
-const _flaxBinding1180 = FlaxGetter.plain(
+const _flaxBinding1181 = FlaxGetter.plain(
   "radiusMax",
   flaxDoubleType,
   _PointerEnterEvent_radiusMax,
 );
-const _flaxBinding1181 = FlaxGetter.plain(
+const _flaxBinding1182 = FlaxGetter.plain(
   "orientation",
   flaxDoubleType,
   _PointerEnterEvent_orientation,
 );
-const _flaxBinding1182 = FlaxGetter.plain(
+const _flaxBinding1183 = FlaxGetter.plain(
   "tilt",
   flaxDoubleType,
   _PointerEnterEvent_tilt,
 );
-const _flaxBinding1183 = FlaxGetter.plain(
+const _flaxBinding1184 = FlaxGetter.plain(
   "platformData",
   flaxIntType,
   _PointerEnterEvent_platformData,
 );
-const _flaxBinding1184 = FlaxGetter.plain(
+const _flaxBinding1185 = FlaxGetter.plain(
   "synthesized",
   flaxBoolType,
   _PointerEnterEvent_synthesized,
 );
-const _flaxBinding1185 = FlaxGetter.plain(
+const _flaxBinding1186 = FlaxGetter.plain(
   "transform",
   _flaxBinding101,
   _PointerEnterEvent_transform,
 );
-const _flaxBinding1186 = FlaxGetter.plain(
+const _flaxBinding1187 = FlaxGetter.plain(
   "original",
   _flaxBinding69,
   _PointerEnterEvent_original,
 );
-const _flaxBinding1187 = FlaxInstanceMethod.shared(
+const _flaxBinding1188 = FlaxInstanceMethod.shared(
   _flaxBinding167,
   _PointerEnterEvent_transformed,
 );
-const _flaxBinding1188 = FlaxInstanceMethod.plain(
-  _flaxBinding1011,
+const _flaxBinding1189 = FlaxInstanceMethod.plain(
+  _flaxBinding1012,
   _flaxBinding166,
   _PointerEnterEvent_copyWith,
 );
-const _flaxBinding1189 = FlaxInstanceMethod.shared(
+const _flaxBinding1190 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _PointerEnterEvent_toStringShort,
 );
-const _flaxBinding1190 = FlaxInstanceMethod.plain(
+const _flaxBinding1191 = FlaxInstanceMethod.plain(
   _flaxBinding268,
   _flaxBinding17,
   _PointerEnterEvent_toDiagnosticsNode,
 );
-const _flaxBinding1191 = FlaxInstanceMethod.shared(
+const _flaxBinding1192 = FlaxInstanceMethod.shared(
   _flaxBinding6,
   _PointerEnterEvent_debugFillProperties,
 );
-const _flaxBinding1192 = FlaxInstanceMethod.plain(
+const _flaxBinding1193 = FlaxInstanceMethod.plain(
   _flaxBinding260,
   flaxStringType,
   _PointerEnterEvent_toString,
 );
-const _flaxBinding1193 = FlaxInstanceMethod.shared(
+const _flaxBinding1194 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _PointerEnterEvent_toStringFull,
 );
-const _flaxBinding1194 = <FlaxParameter>[
+const _flaxBinding1195 = <FlaxParameter>[
   FlaxParameter("viewId", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
     "timeStamp",
@@ -59100,7 +60696,7 @@ const _flaxBinding1194 = <FlaxParameter>[
     "kind",
     _flaxBinding14,
     required: false,
-    defaultValue: api4.PointerDeviceKind.touch,
+    defaultValue: api3.PointerDeviceKind.touch,
   ),
   FlaxParameter("device", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
@@ -59172,13 +60768,13 @@ const _flaxBinding1194 = <FlaxParameter>[
   ),
   FlaxParameter("embedderId", flaxIntType, required: false, defaultValue: 0),
 ];
-const _flaxBinding1195 = FlaxProxyMember(
+const _flaxBinding1196 = FlaxProxyMember(
   "transformed",
   0,
   _flaxBinding167,
   hasSuper: true,
 );
-const _flaxBinding1196 = FlaxCallbackBinding.signature(
+const _flaxBinding1197 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "viewId",
@@ -59322,16 +60918,15 @@ const _flaxBinding1196 = FlaxCallbackBinding.signature(
   _flaxBinding166,
   id: "callback:<>(n:o:viewId:int?:,n:o:timeStamp:object?:flax.core/flutter#type:Duration,n:o:pointer:int?:,n:o:kind:enum?:flax.core/sdk_dart_ui#type:PointerDeviceKind,n:o:device:int?:,n:o:position:object?:flax.core/flutter#type:Offset,n:o:delta:object?:flax.core/flutter#type:Offset,n:o:buttons:int?:,n:o:obscured:bool?:,n:o:pressure:double?:,n:o:pressureMin:double?:,n:o:pressureMax:double?:,n:o:distance:double?:,n:o:distanceMax:double?:,n:o:size:double?:,n:o:radiusMajor:double?:,n:o:radiusMinor:double?:,n:o:radiusMin:double?:,n:o:radiusMax:double?:,n:o:orientation:double?:,n:o:tilt:double?:,n:o:synthesized:bool?:,n:o:embedderId:int?:)->object:flax.core/sdk_gestures#type:PointerEnterEvent",
 );
-const _flaxBinding1197 = FlaxProxyMember(
+const _flaxBinding1198 = FlaxProxyMember(
   "copyWith",
   0,
-  _flaxBinding1196,
+  _flaxBinding1197,
   hasSuper: true,
 );
-const _flaxBinding1198 = FlaxObjectBinding(
+const _flaxBinding1199 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:PointerEnterEvent",
   [
-    _flaxBinding1157,
     _flaxBinding1158,
     _flaxBinding1159,
     _flaxBinding1160,
@@ -59361,21 +60956,22 @@ const _flaxBinding1198 = FlaxObjectBinding(
     _flaxBinding1184,
     _flaxBinding1185,
     _flaxBinding1186,
+    _flaxBinding1187,
   ],
   {
-    "transformed": _flaxBinding1187,
-    "copyWith": _flaxBinding1188,
-    "toStringShort": _flaxBinding1189,
-    "toDiagnosticsNode": _flaxBinding1190,
-    "debugFillProperties": _flaxBinding1191,
-    "toString": _flaxBinding1192,
-    "toStringFull": _flaxBinding1193,
+    "transformed": _flaxBinding1188,
+    "copyWith": _flaxBinding1189,
+    "toStringShort": _flaxBinding1190,
+    "toDiagnosticsNode": _flaxBinding1191,
+    "debugFillProperties": _flaxBinding1192,
+    "toString": _flaxBinding1193,
+    "toStringFull": _flaxBinding1194,
     "@super:transformed": FlaxInstanceMethod.shared(
       _flaxBinding167,
       _PointerEnterEvent_super_transformed,
     ),
     "@super:copyWith": FlaxInstanceMethod.plain(
-      _flaxBinding1011,
+      _flaxBinding1012,
       _flaxBinding166,
       _PointerEnterEvent_super_copyWith,
     ),
@@ -59387,16 +60983,16 @@ const _flaxBinding1198 = FlaxObjectBinding(
       flaxStringCall,
       _PointerEnterEvent_super_toStringFull,
     ),
-    "@super:get:viewId": _flaxBinding1018,
-    "@super:get:embedderId": _flaxBinding1019,
-    "@super:get:timeStamp": _flaxBinding1020,
-    "@super:get:pointer": _flaxBinding1021,
+    "@super:get:viewId": _flaxBinding1019,
+    "@super:get:embedderId": _flaxBinding1020,
+    "@super:get:timeStamp": _flaxBinding1021,
+    "@super:get:pointer": _flaxBinding1022,
     "@super:get:kind": FlaxInstanceMethod.shared(
       _flaxBinding115,
       _PointerEnterEvent_super_get_kind,
     ),
-    "@super:get:device": _flaxBinding1022,
-    "@super:get:position": _flaxBinding1023,
+    "@super:get:device": _flaxBinding1023,
+    "@super:get:position": _flaxBinding1024,
     "@super:get:localPosition": FlaxInstanceMethod.shared(
       _flaxBinding64,
       _PointerEnterEvent_super_get_localPosition,
@@ -59405,41 +61001,41 @@ const _flaxBinding1198 = FlaxObjectBinding(
       _flaxBinding64,
       _PointerEnterEvent_super_get_delta,
     ),
-    "@super:get:localDelta": _flaxBinding1024,
+    "@super:get:localDelta": _flaxBinding1025,
     "@super:get:buttons": FlaxInstanceMethod.shared(
       flaxIntCall,
       _PointerEnterEvent_super_get_buttons,
     ),
-    "@super:get:down": _flaxBinding1025,
-    "@super:get:obscured": _flaxBinding1026,
+    "@super:get:down": _flaxBinding1026,
+    "@super:get:obscured": _flaxBinding1027,
     "@super:get:pressure": FlaxInstanceMethod.shared(
       flaxDoubleCall,
       _PointerEnterEvent_super_get_pressure,
     ),
-    "@super:get:pressureMin": _flaxBinding1027,
-    "@super:get:pressureMax": _flaxBinding1028,
-    "@super:get:distance": _flaxBinding1029,
-    "@super:get:distanceMin": _flaxBinding1030,
-    "@super:get:distanceMax": _flaxBinding1031,
-    "@super:get:size": _flaxBinding1032,
-    "@super:get:radiusMajor": _flaxBinding1033,
-    "@super:get:radiusMinor": _flaxBinding1034,
-    "@super:get:radiusMin": _flaxBinding1035,
-    "@super:get:radiusMax": _flaxBinding1036,
-    "@super:get:orientation": _flaxBinding1037,
-    "@super:get:tilt": _flaxBinding1038,
-    "@super:get:platformData": _flaxBinding1039,
-    "@super:get:synthesized": _flaxBinding1040,
+    "@super:get:pressureMin": _flaxBinding1028,
+    "@super:get:pressureMax": _flaxBinding1029,
+    "@super:get:distance": _flaxBinding1030,
+    "@super:get:distanceMin": _flaxBinding1031,
+    "@super:get:distanceMax": _flaxBinding1032,
+    "@super:get:size": _flaxBinding1033,
+    "@super:get:radiusMajor": _flaxBinding1034,
+    "@super:get:radiusMinor": _flaxBinding1035,
+    "@super:get:radiusMin": _flaxBinding1036,
+    "@super:get:radiusMax": _flaxBinding1037,
+    "@super:get:orientation": _flaxBinding1038,
+    "@super:get:tilt": _flaxBinding1039,
+    "@super:get:platformData": _flaxBinding1040,
+    "@super:get:synthesized": _flaxBinding1041,
     "@super:get:transform": FlaxInstanceMethod.shared(
       _flaxBinding102,
       _PointerEnterEvent_super_get_transform,
     ),
-    "@super:get:original": _flaxBinding1041,
+    "@super:get:original": _flaxBinding1042,
   },
   constructors: {
-    "": _flaxBinding1194,
+    "": _flaxBinding1195,
     "fromMouseEvent": _flaxBinding413,
-    "@implementation": _flaxBinding1194,
+    "@implementation": _flaxBinding1195,
   },
   create: _createPointerEnterEvent,
   matches: _isPointerEnterEvent,
@@ -59452,28 +61048,27 @@ const _flaxBinding1198 = FlaxObjectBinding(
     "package:flutter/src/gestures/events.dart::_CopyPointerEnterEvent",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding1195,
-    _flaxBinding1197,
+    _flaxBinding1196,
+    _flaxBinding1198,
     _flaxBinding316,
     _flaxBinding318,
     _flaxBinding320,
     _flaxBinding311,
-    _flaxBinding1046,
     _flaxBinding1047,
     _flaxBinding1048,
     _flaxBinding1049,
     _flaxBinding1050,
-    _flaxBinding792,
     _flaxBinding1051,
+    _flaxBinding793,
     _flaxBinding1052,
+    _flaxBinding1053,
     _flaxBinding509,
     _flaxBinding588,
-    _flaxBinding1053,
     _flaxBinding1054,
     _flaxBinding1055,
     _flaxBinding1056,
-    _flaxBinding632,
     _flaxBinding1057,
+    _flaxBinding632,
     _flaxBinding1058,
     _flaxBinding1059,
     _flaxBinding1060,
@@ -59487,11 +61082,12 @@ const _flaxBinding1198 = FlaxObjectBinding(
     _flaxBinding1068,
     _flaxBinding1069,
     _flaxBinding1070,
-    _flaxBinding759,
     _flaxBinding1071,
+    _flaxBinding760,
+    _flaxBinding1072,
   ]),
 );
-const _flaxBinding1199 = FlaxObjectBinding(
+const _flaxBinding1200 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:PointerEventConverter",
   [],
   {},
@@ -59501,76 +61097,76 @@ const _flaxBinding1199 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding1200 = FlaxGetter.plain(
+const _flaxBinding1201 = FlaxGetter.plain(
   "hasPendingEvents",
   flaxBoolType,
   _PointerEventResampler_hasPendingEvents,
 );
-const _flaxBinding1201 = FlaxGetter.plain(
+const _flaxBinding1202 = FlaxGetter.plain(
   "isTracked",
   flaxBoolType,
   _PointerEventResampler_isTracked,
 );
-const _flaxBinding1202 = FlaxGetter.plain(
+const _flaxBinding1203 = FlaxGetter.plain(
   "isDown",
   flaxBoolType,
   _PointerEventResampler_isDown,
 );
-const _flaxBinding1203 = FlaxInstanceMethod.shared(
+const _flaxBinding1204 = FlaxInstanceMethod.shared(
   _flaxBinding3,
   _PointerEventResampler_addEvent,
 );
-const _flaxBinding1204 = FlaxInstanceMethod.shared(
+const _flaxBinding1205 = FlaxInstanceMethod.shared(
   _flaxBinding170,
   _PointerEventResampler_sample,
 );
-const _flaxBinding1205 = FlaxInstanceMethod.shared(
+const _flaxBinding1206 = FlaxInstanceMethod.shared(
   _flaxBinding171,
   _PointerEventResampler_stop,
 );
-const _flaxBinding1206 = FlaxProxyMember(
+const _flaxBinding1207 = FlaxProxyMember(
   "addEvent",
   0,
   _flaxBinding3,
   hasSuper: true,
 );
-const _flaxBinding1207 = FlaxProxyMember(
+const _flaxBinding1208 = FlaxProxyMember(
   "sample",
   0,
   _flaxBinding170,
   hasSuper: true,
 );
-const _flaxBinding1208 = FlaxProxyMember(
+const _flaxBinding1209 = FlaxProxyMember(
   "stop",
   0,
   _flaxBinding171,
   hasSuper: true,
 );
-const _flaxBinding1209 = FlaxProxyMember(
+const _flaxBinding1210 = FlaxProxyMember(
   "hasPendingEvents",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding1210 = FlaxProxyMember(
+const _flaxBinding1211 = FlaxProxyMember(
   "isTracked",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding1211 = FlaxProxyMember(
+const _flaxBinding1212 = FlaxProxyMember(
   "isDown",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding1212 = FlaxObjectBinding(
+const _flaxBinding1213 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:PointerEventResampler",
-  [_flaxBinding1200, _flaxBinding1201, _flaxBinding1202],
+  [_flaxBinding1201, _flaxBinding1202, _flaxBinding1203],
   {
-    "addEvent": _flaxBinding1203,
-    "sample": _flaxBinding1204,
-    "stop": _flaxBinding1205,
+    "addEvent": _flaxBinding1204,
+    "sample": _flaxBinding1205,
+    "stop": _flaxBinding1206,
     "@super:addEvent": FlaxInstanceMethod.shared(
       _flaxBinding3,
       _PointerEventResampler_super_addEvent,
@@ -59602,196 +61198,196 @@ const _flaxBinding1212 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding1206,
     _flaxBinding1207,
     _flaxBinding1208,
     _flaxBinding1209,
     _flaxBinding1210,
     _flaxBinding1211,
+    _flaxBinding1212,
   ]),
 );
-const _flaxBinding1213 = FlaxGetter.plain(
+const _flaxBinding1214 = FlaxGetter.plain(
   "viewId",
   flaxIntType,
   _PointerExitEvent_viewId,
 );
-const _flaxBinding1214 = FlaxGetter.plain(
+const _flaxBinding1215 = FlaxGetter.plain(
   "embedderId",
   flaxIntType,
   _PointerExitEvent_embedderId,
 );
-const _flaxBinding1215 = FlaxGetter.plain(
+const _flaxBinding1216 = FlaxGetter.plain(
   "timeStamp",
   flaxDurationType,
   _PointerExitEvent_timeStamp,
 );
-const _flaxBinding1216 = FlaxGetter.plain(
+const _flaxBinding1217 = FlaxGetter.plain(
   "pointer",
   flaxIntType,
   _PointerExitEvent_pointer,
 );
-const _flaxBinding1217 = FlaxGetter.plain(
+const _flaxBinding1218 = FlaxGetter.plain(
   "kind",
   _flaxBinding14,
   _PointerExitEvent_kind,
 );
-const _flaxBinding1218 = FlaxGetter.plain(
+const _flaxBinding1219 = FlaxGetter.plain(
   "device",
   flaxIntType,
   _PointerExitEvent_device,
 );
-const _flaxBinding1219 = FlaxGetter.plain(
+const _flaxBinding1220 = FlaxGetter.plain(
   "position",
   flaxOffsetType,
   _PointerExitEvent_position,
 );
-const _flaxBinding1220 = FlaxGetter.plain(
+const _flaxBinding1221 = FlaxGetter.plain(
   "localPosition",
   flaxOffsetType,
   _PointerExitEvent_localPosition,
 );
-const _flaxBinding1221 = FlaxGetter.plain(
+const _flaxBinding1222 = FlaxGetter.plain(
   "delta",
   flaxOffsetType,
   _PointerExitEvent_delta,
 );
-const _flaxBinding1222 = FlaxGetter.plain(
+const _flaxBinding1223 = FlaxGetter.plain(
   "localDelta",
   flaxOffsetType,
   _PointerExitEvent_localDelta,
 );
-const _flaxBinding1223 = FlaxGetter.plain(
+const _flaxBinding1224 = FlaxGetter.plain(
   "buttons",
   flaxIntType,
   _PointerExitEvent_buttons,
 );
-const _flaxBinding1224 = FlaxGetter.plain(
+const _flaxBinding1225 = FlaxGetter.plain(
   "down",
   flaxBoolType,
   _PointerExitEvent_down,
 );
-const _flaxBinding1225 = FlaxGetter.plain(
+const _flaxBinding1226 = FlaxGetter.plain(
   "obscured",
   flaxBoolType,
   _PointerExitEvent_obscured,
 );
-const _flaxBinding1226 = FlaxGetter.plain(
+const _flaxBinding1227 = FlaxGetter.plain(
   "pressure",
   flaxDoubleType,
   _PointerExitEvent_pressure,
 );
-const _flaxBinding1227 = FlaxGetter.plain(
+const _flaxBinding1228 = FlaxGetter.plain(
   "pressureMin",
   flaxDoubleType,
   _PointerExitEvent_pressureMin,
 );
-const _flaxBinding1228 = FlaxGetter.plain(
+const _flaxBinding1229 = FlaxGetter.plain(
   "pressureMax",
   flaxDoubleType,
   _PointerExitEvent_pressureMax,
 );
-const _flaxBinding1229 = FlaxGetter.plain(
+const _flaxBinding1230 = FlaxGetter.plain(
   "distance",
   flaxDoubleType,
   _PointerExitEvent_distance,
 );
-const _flaxBinding1230 = FlaxGetter.plain(
+const _flaxBinding1231 = FlaxGetter.plain(
   "distanceMin",
   flaxDoubleType,
   _PointerExitEvent_distanceMin,
 );
-const _flaxBinding1231 = FlaxGetter.plain(
+const _flaxBinding1232 = FlaxGetter.plain(
   "distanceMax",
   flaxDoubleType,
   _PointerExitEvent_distanceMax,
 );
-const _flaxBinding1232 = FlaxGetter.plain(
+const _flaxBinding1233 = FlaxGetter.plain(
   "size",
   flaxDoubleType,
   _PointerExitEvent_size,
 );
-const _flaxBinding1233 = FlaxGetter.plain(
+const _flaxBinding1234 = FlaxGetter.plain(
   "radiusMajor",
   flaxDoubleType,
   _PointerExitEvent_radiusMajor,
 );
-const _flaxBinding1234 = FlaxGetter.plain(
+const _flaxBinding1235 = FlaxGetter.plain(
   "radiusMinor",
   flaxDoubleType,
   _PointerExitEvent_radiusMinor,
 );
-const _flaxBinding1235 = FlaxGetter.plain(
+const _flaxBinding1236 = FlaxGetter.plain(
   "radiusMin",
   flaxDoubleType,
   _PointerExitEvent_radiusMin,
 );
-const _flaxBinding1236 = FlaxGetter.plain(
+const _flaxBinding1237 = FlaxGetter.plain(
   "radiusMax",
   flaxDoubleType,
   _PointerExitEvent_radiusMax,
 );
-const _flaxBinding1237 = FlaxGetter.plain(
+const _flaxBinding1238 = FlaxGetter.plain(
   "orientation",
   flaxDoubleType,
   _PointerExitEvent_orientation,
 );
-const _flaxBinding1238 = FlaxGetter.plain(
+const _flaxBinding1239 = FlaxGetter.plain(
   "tilt",
   flaxDoubleType,
   _PointerExitEvent_tilt,
 );
-const _flaxBinding1239 = FlaxGetter.plain(
+const _flaxBinding1240 = FlaxGetter.plain(
   "platformData",
   flaxIntType,
   _PointerExitEvent_platformData,
 );
-const _flaxBinding1240 = FlaxGetter.plain(
+const _flaxBinding1241 = FlaxGetter.plain(
   "synthesized",
   flaxBoolType,
   _PointerExitEvent_synthesized,
 );
-const _flaxBinding1241 = FlaxGetter.plain(
+const _flaxBinding1242 = FlaxGetter.plain(
   "transform",
   _flaxBinding101,
   _PointerExitEvent_transform,
 );
-const _flaxBinding1242 = FlaxGetter.plain(
+const _flaxBinding1243 = FlaxGetter.plain(
   "original",
   _flaxBinding69,
   _PointerExitEvent_original,
 );
-const _flaxBinding1243 = FlaxInstanceMethod.shared(
+const _flaxBinding1244 = FlaxInstanceMethod.shared(
   _flaxBinding173,
   _PointerExitEvent_transformed,
 );
-const _flaxBinding1244 = FlaxInstanceMethod.plain(
-  _flaxBinding1011,
+const _flaxBinding1245 = FlaxInstanceMethod.plain(
+  _flaxBinding1012,
   _flaxBinding172,
   _PointerExitEvent_copyWith,
 );
-const _flaxBinding1245 = FlaxInstanceMethod.shared(
+const _flaxBinding1246 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _PointerExitEvent_toStringShort,
 );
-const _flaxBinding1246 = FlaxInstanceMethod.plain(
+const _flaxBinding1247 = FlaxInstanceMethod.plain(
   _flaxBinding268,
   _flaxBinding17,
   _PointerExitEvent_toDiagnosticsNode,
 );
-const _flaxBinding1247 = FlaxInstanceMethod.shared(
+const _flaxBinding1248 = FlaxInstanceMethod.shared(
   _flaxBinding6,
   _PointerExitEvent_debugFillProperties,
 );
-const _flaxBinding1248 = FlaxInstanceMethod.plain(
+const _flaxBinding1249 = FlaxInstanceMethod.plain(
   _flaxBinding260,
   flaxStringType,
   _PointerExitEvent_toString,
 );
-const _flaxBinding1249 = FlaxInstanceMethod.shared(
+const _flaxBinding1250 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _PointerExitEvent_toStringFull,
 );
-const _flaxBinding1250 = <FlaxParameter>[
+const _flaxBinding1251 = <FlaxParameter>[
   FlaxParameter("viewId", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
     "timeStamp",
@@ -59803,7 +61399,7 @@ const _flaxBinding1250 = <FlaxParameter>[
     "kind",
     _flaxBinding14,
     required: false,
-    defaultValue: api4.PointerDeviceKind.touch,
+    defaultValue: api3.PointerDeviceKind.touch,
   ),
   FlaxParameter("pointer", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter("device", flaxIntType, required: false, defaultValue: 0),
@@ -59876,13 +61472,13 @@ const _flaxBinding1250 = <FlaxParameter>[
   ),
   FlaxParameter("embedderId", flaxIntType, required: false, defaultValue: 0),
 ];
-const _flaxBinding1251 = FlaxProxyMember(
+const _flaxBinding1252 = FlaxProxyMember(
   "transformed",
   0,
   _flaxBinding173,
   hasSuper: true,
 );
-const _flaxBinding1252 = FlaxCallbackBinding.signature(
+const _flaxBinding1253 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "viewId",
@@ -60026,16 +61622,15 @@ const _flaxBinding1252 = FlaxCallbackBinding.signature(
   _flaxBinding172,
   id: "callback:<>(n:o:viewId:int?:,n:o:timeStamp:object?:flax.core/flutter#type:Duration,n:o:pointer:int?:,n:o:kind:enum?:flax.core/sdk_dart_ui#type:PointerDeviceKind,n:o:device:int?:,n:o:position:object?:flax.core/flutter#type:Offset,n:o:delta:object?:flax.core/flutter#type:Offset,n:o:buttons:int?:,n:o:obscured:bool?:,n:o:pressure:double?:,n:o:pressureMin:double?:,n:o:pressureMax:double?:,n:o:distance:double?:,n:o:distanceMax:double?:,n:o:size:double?:,n:o:radiusMajor:double?:,n:o:radiusMinor:double?:,n:o:radiusMin:double?:,n:o:radiusMax:double?:,n:o:orientation:double?:,n:o:tilt:double?:,n:o:synthesized:bool?:,n:o:embedderId:int?:)->object:flax.core/sdk_gestures#type:PointerExitEvent",
 );
-const _flaxBinding1253 = FlaxProxyMember(
+const _flaxBinding1254 = FlaxProxyMember(
   "copyWith",
   0,
-  _flaxBinding1252,
+  _flaxBinding1253,
   hasSuper: true,
 );
-const _flaxBinding1254 = FlaxObjectBinding(
+const _flaxBinding1255 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:PointerExitEvent",
   [
-    _flaxBinding1213,
     _flaxBinding1214,
     _flaxBinding1215,
     _flaxBinding1216,
@@ -60065,21 +61660,22 @@ const _flaxBinding1254 = FlaxObjectBinding(
     _flaxBinding1240,
     _flaxBinding1241,
     _flaxBinding1242,
+    _flaxBinding1243,
   ],
   {
-    "transformed": _flaxBinding1243,
-    "copyWith": _flaxBinding1244,
-    "toStringShort": _flaxBinding1245,
-    "toDiagnosticsNode": _flaxBinding1246,
-    "debugFillProperties": _flaxBinding1247,
-    "toString": _flaxBinding1248,
-    "toStringFull": _flaxBinding1249,
+    "transformed": _flaxBinding1244,
+    "copyWith": _flaxBinding1245,
+    "toStringShort": _flaxBinding1246,
+    "toDiagnosticsNode": _flaxBinding1247,
+    "debugFillProperties": _flaxBinding1248,
+    "toString": _flaxBinding1249,
+    "toStringFull": _flaxBinding1250,
     "@super:transformed": FlaxInstanceMethod.shared(
       _flaxBinding173,
       _PointerExitEvent_super_transformed,
     ),
     "@super:copyWith": FlaxInstanceMethod.plain(
-      _flaxBinding1011,
+      _flaxBinding1012,
       _flaxBinding172,
       _PointerExitEvent_super_copyWith,
     ),
@@ -60091,16 +61687,16 @@ const _flaxBinding1254 = FlaxObjectBinding(
       flaxStringCall,
       _PointerExitEvent_super_toStringFull,
     ),
-    "@super:get:viewId": _flaxBinding1018,
-    "@super:get:embedderId": _flaxBinding1019,
-    "@super:get:timeStamp": _flaxBinding1020,
-    "@super:get:pointer": _flaxBinding1021,
+    "@super:get:viewId": _flaxBinding1019,
+    "@super:get:embedderId": _flaxBinding1020,
+    "@super:get:timeStamp": _flaxBinding1021,
+    "@super:get:pointer": _flaxBinding1022,
     "@super:get:kind": FlaxInstanceMethod.shared(
       _flaxBinding115,
       _PointerExitEvent_super_get_kind,
     ),
-    "@super:get:device": _flaxBinding1022,
-    "@super:get:position": _flaxBinding1023,
+    "@super:get:device": _flaxBinding1023,
+    "@super:get:position": _flaxBinding1024,
     "@super:get:localPosition": FlaxInstanceMethod.shared(
       _flaxBinding64,
       _PointerExitEvent_super_get_localPosition,
@@ -60109,41 +61705,41 @@ const _flaxBinding1254 = FlaxObjectBinding(
       _flaxBinding64,
       _PointerExitEvent_super_get_delta,
     ),
-    "@super:get:localDelta": _flaxBinding1024,
+    "@super:get:localDelta": _flaxBinding1025,
     "@super:get:buttons": FlaxInstanceMethod.shared(
       flaxIntCall,
       _PointerExitEvent_super_get_buttons,
     ),
-    "@super:get:down": _flaxBinding1025,
-    "@super:get:obscured": _flaxBinding1026,
+    "@super:get:down": _flaxBinding1026,
+    "@super:get:obscured": _flaxBinding1027,
     "@super:get:pressure": FlaxInstanceMethod.shared(
       flaxDoubleCall,
       _PointerExitEvent_super_get_pressure,
     ),
-    "@super:get:pressureMin": _flaxBinding1027,
-    "@super:get:pressureMax": _flaxBinding1028,
-    "@super:get:distance": _flaxBinding1029,
-    "@super:get:distanceMin": _flaxBinding1030,
-    "@super:get:distanceMax": _flaxBinding1031,
-    "@super:get:size": _flaxBinding1032,
-    "@super:get:radiusMajor": _flaxBinding1033,
-    "@super:get:radiusMinor": _flaxBinding1034,
-    "@super:get:radiusMin": _flaxBinding1035,
-    "@super:get:radiusMax": _flaxBinding1036,
-    "@super:get:orientation": _flaxBinding1037,
-    "@super:get:tilt": _flaxBinding1038,
-    "@super:get:platformData": _flaxBinding1039,
-    "@super:get:synthesized": _flaxBinding1040,
+    "@super:get:pressureMin": _flaxBinding1028,
+    "@super:get:pressureMax": _flaxBinding1029,
+    "@super:get:distance": _flaxBinding1030,
+    "@super:get:distanceMin": _flaxBinding1031,
+    "@super:get:distanceMax": _flaxBinding1032,
+    "@super:get:size": _flaxBinding1033,
+    "@super:get:radiusMajor": _flaxBinding1034,
+    "@super:get:radiusMinor": _flaxBinding1035,
+    "@super:get:radiusMin": _flaxBinding1036,
+    "@super:get:radiusMax": _flaxBinding1037,
+    "@super:get:orientation": _flaxBinding1038,
+    "@super:get:tilt": _flaxBinding1039,
+    "@super:get:platformData": _flaxBinding1040,
+    "@super:get:synthesized": _flaxBinding1041,
     "@super:get:transform": FlaxInstanceMethod.shared(
       _flaxBinding102,
       _PointerExitEvent_super_get_transform,
     ),
-    "@super:get:original": _flaxBinding1041,
+    "@super:get:original": _flaxBinding1042,
   },
   constructors: {
-    "": _flaxBinding1250,
+    "": _flaxBinding1251,
     "fromMouseEvent": _flaxBinding413,
-    "@implementation": _flaxBinding1250,
+    "@implementation": _flaxBinding1251,
   },
   create: _createPointerExitEvent,
   matches: _isPointerExitEvent,
@@ -60156,28 +61752,27 @@ const _flaxBinding1254 = FlaxObjectBinding(
     "package:flutter/src/gestures/events.dart::_CopyPointerExitEvent",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding1251,
-    _flaxBinding1253,
+    _flaxBinding1252,
+    _flaxBinding1254,
     _flaxBinding316,
     _flaxBinding318,
     _flaxBinding320,
     _flaxBinding311,
-    _flaxBinding1046,
     _flaxBinding1047,
     _flaxBinding1048,
     _flaxBinding1049,
     _flaxBinding1050,
-    _flaxBinding792,
     _flaxBinding1051,
+    _flaxBinding793,
     _flaxBinding1052,
+    _flaxBinding1053,
     _flaxBinding509,
     _flaxBinding588,
-    _flaxBinding1053,
     _flaxBinding1054,
     _flaxBinding1055,
     _flaxBinding1056,
-    _flaxBinding632,
     _flaxBinding1057,
+    _flaxBinding632,
     _flaxBinding1058,
     _flaxBinding1059,
     _flaxBinding1060,
@@ -60191,192 +61786,193 @@ const _flaxBinding1254 = FlaxObjectBinding(
     _flaxBinding1068,
     _flaxBinding1069,
     _flaxBinding1070,
-    _flaxBinding759,
     _flaxBinding1071,
+    _flaxBinding760,
+    _flaxBinding1072,
   ]),
 );
-const _flaxBinding1255 = FlaxGetter.plain(
+const _flaxBinding1256 = FlaxGetter.plain(
   "viewId",
   flaxIntType,
   _PointerHoverEvent_viewId,
 );
-const _flaxBinding1256 = FlaxGetter.plain(
+const _flaxBinding1257 = FlaxGetter.plain(
   "embedderId",
   flaxIntType,
   _PointerHoverEvent_embedderId,
 );
-const _flaxBinding1257 = FlaxGetter.plain(
+const _flaxBinding1258 = FlaxGetter.plain(
   "timeStamp",
   flaxDurationType,
   _PointerHoverEvent_timeStamp,
 );
-const _flaxBinding1258 = FlaxGetter.plain(
+const _flaxBinding1259 = FlaxGetter.plain(
   "pointer",
   flaxIntType,
   _PointerHoverEvent_pointer,
 );
-const _flaxBinding1259 = FlaxGetter.plain(
+const _flaxBinding1260 = FlaxGetter.plain(
   "kind",
   _flaxBinding14,
   _PointerHoverEvent_kind,
 );
-const _flaxBinding1260 = FlaxGetter.plain(
+const _flaxBinding1261 = FlaxGetter.plain(
   "device",
   flaxIntType,
   _PointerHoverEvent_device,
 );
-const _flaxBinding1261 = FlaxGetter.plain(
+const _flaxBinding1262 = FlaxGetter.plain(
   "position",
   flaxOffsetType,
   _PointerHoverEvent_position,
 );
-const _flaxBinding1262 = FlaxGetter.plain(
+const _flaxBinding1263 = FlaxGetter.plain(
   "localPosition",
   flaxOffsetType,
   _PointerHoverEvent_localPosition,
 );
-const _flaxBinding1263 = FlaxGetter.plain(
+const _flaxBinding1264 = FlaxGetter.plain(
   "delta",
   flaxOffsetType,
   _PointerHoverEvent_delta,
 );
-const _flaxBinding1264 = FlaxGetter.plain(
+const _flaxBinding1265 = FlaxGetter.plain(
   "localDelta",
   flaxOffsetType,
   _PointerHoverEvent_localDelta,
 );
-const _flaxBinding1265 = FlaxGetter.plain(
+const _flaxBinding1266 = FlaxGetter.plain(
   "buttons",
   flaxIntType,
   _PointerHoverEvent_buttons,
 );
-const _flaxBinding1266 = FlaxGetter.plain(
+const _flaxBinding1267 = FlaxGetter.plain(
   "down",
   flaxBoolType,
   _PointerHoverEvent_down,
 );
-const _flaxBinding1267 = FlaxGetter.plain(
+const _flaxBinding1268 = FlaxGetter.plain(
   "obscured",
   flaxBoolType,
   _PointerHoverEvent_obscured,
 );
-const _flaxBinding1268 = FlaxGetter.plain(
+const _flaxBinding1269 = FlaxGetter.plain(
   "pressure",
   flaxDoubleType,
   _PointerHoverEvent_pressure,
 );
-const _flaxBinding1269 = FlaxGetter.plain(
+const _flaxBinding1270 = FlaxGetter.plain(
   "pressureMin",
   flaxDoubleType,
   _PointerHoverEvent_pressureMin,
 );
-const _flaxBinding1270 = FlaxGetter.plain(
+const _flaxBinding1271 = FlaxGetter.plain(
   "pressureMax",
   flaxDoubleType,
   _PointerHoverEvent_pressureMax,
 );
-const _flaxBinding1271 = FlaxGetter.plain(
+const _flaxBinding1272 = FlaxGetter.plain(
   "distance",
   flaxDoubleType,
   _PointerHoverEvent_distance,
 );
-const _flaxBinding1272 = FlaxGetter.plain(
+const _flaxBinding1273 = FlaxGetter.plain(
   "distanceMin",
   flaxDoubleType,
   _PointerHoverEvent_distanceMin,
 );
-const _flaxBinding1273 = FlaxGetter.plain(
+const _flaxBinding1274 = FlaxGetter.plain(
   "distanceMax",
   flaxDoubleType,
   _PointerHoverEvent_distanceMax,
 );
-const _flaxBinding1274 = FlaxGetter.plain(
+const _flaxBinding1275 = FlaxGetter.plain(
   "size",
   flaxDoubleType,
   _PointerHoverEvent_size,
 );
-const _flaxBinding1275 = FlaxGetter.plain(
+const _flaxBinding1276 = FlaxGetter.plain(
   "radiusMajor",
   flaxDoubleType,
   _PointerHoverEvent_radiusMajor,
 );
-const _flaxBinding1276 = FlaxGetter.plain(
+const _flaxBinding1277 = FlaxGetter.plain(
   "radiusMinor",
   flaxDoubleType,
   _PointerHoverEvent_radiusMinor,
 );
-const _flaxBinding1277 = FlaxGetter.plain(
+const _flaxBinding1278 = FlaxGetter.plain(
   "radiusMin",
   flaxDoubleType,
   _PointerHoverEvent_radiusMin,
 );
-const _flaxBinding1278 = FlaxGetter.plain(
+const _flaxBinding1279 = FlaxGetter.plain(
   "radiusMax",
   flaxDoubleType,
   _PointerHoverEvent_radiusMax,
 );
-const _flaxBinding1279 = FlaxGetter.plain(
+const _flaxBinding1280 = FlaxGetter.plain(
   "orientation",
   flaxDoubleType,
   _PointerHoverEvent_orientation,
 );
-const _flaxBinding1280 = FlaxGetter.plain(
+const _flaxBinding1281 = FlaxGetter.plain(
   "tilt",
   flaxDoubleType,
   _PointerHoverEvent_tilt,
 );
-const _flaxBinding1281 = FlaxGetter.plain(
+const _flaxBinding1282 = FlaxGetter.plain(
   "platformData",
   flaxIntType,
   _PointerHoverEvent_platformData,
 );
-const _flaxBinding1282 = FlaxGetter.plain(
+const _flaxBinding1283 = FlaxGetter.plain(
   "synthesized",
   flaxBoolType,
   _PointerHoverEvent_synthesized,
 );
-const _flaxBinding1283 = FlaxGetter.plain(
+const _flaxBinding1284 = FlaxGetter.plain(
   "transform",
   _flaxBinding101,
   _PointerHoverEvent_transform,
 );
-const _flaxBinding1284 = FlaxGetter.plain(
+const _flaxBinding1285 = FlaxGetter.plain(
   "original",
   _flaxBinding69,
   _PointerHoverEvent_original,
 );
-const _flaxBinding1285 = FlaxInstanceMethod.shared(
+const _flaxBinding1286 = FlaxInstanceMethod.shared(
   _flaxBinding175,
   _PointerHoverEvent_transformed,
 );
-const _flaxBinding1286 = FlaxInstanceMethod.plain(
-  _flaxBinding1011,
+const _flaxBinding1287 = FlaxInstanceMethod.plain(
+  _flaxBinding1012,
   _flaxBinding174,
   _PointerHoverEvent_copyWith,
 );
-const _flaxBinding1287 = FlaxInstanceMethod.shared(
+const _flaxBinding1288 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _PointerHoverEvent_toStringShort,
 );
-const _flaxBinding1288 = FlaxInstanceMethod.plain(
+const _flaxBinding1289 = FlaxInstanceMethod.plain(
   _flaxBinding268,
   _flaxBinding17,
   _PointerHoverEvent_toDiagnosticsNode,
 );
-const _flaxBinding1289 = FlaxInstanceMethod.shared(
+const _flaxBinding1290 = FlaxInstanceMethod.shared(
   _flaxBinding6,
   _PointerHoverEvent_debugFillProperties,
 );
-const _flaxBinding1290 = FlaxInstanceMethod.plain(
+const _flaxBinding1291 = FlaxInstanceMethod.plain(
   _flaxBinding260,
   flaxStringType,
   _PointerHoverEvent_toString,
 );
-const _flaxBinding1291 = FlaxInstanceMethod.shared(
+const _flaxBinding1292 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _PointerHoverEvent_toStringFull,
 );
-const _flaxBinding1292 = <FlaxParameter>[
+const _flaxBinding1293 = <FlaxParameter>[
   FlaxParameter("viewId", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
     "timeStamp",
@@ -60388,7 +61984,7 @@ const _flaxBinding1292 = <FlaxParameter>[
     "kind",
     _flaxBinding14,
     required: false,
-    defaultValue: api4.PointerDeviceKind.touch,
+    defaultValue: api3.PointerDeviceKind.touch,
   ),
   FlaxParameter("pointer", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter("device", flaxIntType, required: false, defaultValue: 0),
@@ -60460,13 +62056,13 @@ const _flaxBinding1292 = <FlaxParameter>[
   ),
   FlaxParameter("embedderId", flaxIntType, required: false, defaultValue: 0),
 ];
-const _flaxBinding1293 = FlaxProxyMember(
+const _flaxBinding1294 = FlaxProxyMember(
   "transformed",
   0,
   _flaxBinding175,
   hasSuper: true,
 );
-const _flaxBinding1294 = FlaxCallbackBinding.signature(
+const _flaxBinding1295 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "viewId",
@@ -60610,16 +62206,15 @@ const _flaxBinding1294 = FlaxCallbackBinding.signature(
   _flaxBinding174,
   id: "callback:<>(n:o:viewId:int?:,n:o:timeStamp:object?:flax.core/flutter#type:Duration,n:o:pointer:int?:,n:o:kind:enum?:flax.core/sdk_dart_ui#type:PointerDeviceKind,n:o:device:int?:,n:o:position:object?:flax.core/flutter#type:Offset,n:o:delta:object?:flax.core/flutter#type:Offset,n:o:buttons:int?:,n:o:obscured:bool?:,n:o:pressure:double?:,n:o:pressureMin:double?:,n:o:pressureMax:double?:,n:o:distance:double?:,n:o:distanceMax:double?:,n:o:size:double?:,n:o:radiusMajor:double?:,n:o:radiusMinor:double?:,n:o:radiusMin:double?:,n:o:radiusMax:double?:,n:o:orientation:double?:,n:o:tilt:double?:,n:o:synthesized:bool?:,n:o:embedderId:int?:)->object:flax.core/sdk_gestures#type:PointerHoverEvent",
 );
-const _flaxBinding1295 = FlaxProxyMember(
+const _flaxBinding1296 = FlaxProxyMember(
   "copyWith",
   0,
-  _flaxBinding1294,
+  _flaxBinding1295,
   hasSuper: true,
 );
-const _flaxBinding1296 = FlaxObjectBinding(
+const _flaxBinding1297 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:PointerHoverEvent",
   [
-    _flaxBinding1255,
     _flaxBinding1256,
     _flaxBinding1257,
     _flaxBinding1258,
@@ -60649,21 +62244,22 @@ const _flaxBinding1296 = FlaxObjectBinding(
     _flaxBinding1282,
     _flaxBinding1283,
     _flaxBinding1284,
+    _flaxBinding1285,
   ],
   {
-    "transformed": _flaxBinding1285,
-    "copyWith": _flaxBinding1286,
-    "toStringShort": _flaxBinding1287,
-    "toDiagnosticsNode": _flaxBinding1288,
-    "debugFillProperties": _flaxBinding1289,
-    "toString": _flaxBinding1290,
-    "toStringFull": _flaxBinding1291,
+    "transformed": _flaxBinding1286,
+    "copyWith": _flaxBinding1287,
+    "toStringShort": _flaxBinding1288,
+    "toDiagnosticsNode": _flaxBinding1289,
+    "debugFillProperties": _flaxBinding1290,
+    "toString": _flaxBinding1291,
+    "toStringFull": _flaxBinding1292,
     "@super:transformed": FlaxInstanceMethod.shared(
       _flaxBinding175,
       _PointerHoverEvent_super_transformed,
     ),
     "@super:copyWith": FlaxInstanceMethod.plain(
-      _flaxBinding1011,
+      _flaxBinding1012,
       _flaxBinding174,
       _PointerHoverEvent_super_copyWith,
     ),
@@ -60675,16 +62271,16 @@ const _flaxBinding1296 = FlaxObjectBinding(
       flaxStringCall,
       _PointerHoverEvent_super_toStringFull,
     ),
-    "@super:get:viewId": _flaxBinding1018,
-    "@super:get:embedderId": _flaxBinding1019,
-    "@super:get:timeStamp": _flaxBinding1020,
-    "@super:get:pointer": _flaxBinding1021,
+    "@super:get:viewId": _flaxBinding1019,
+    "@super:get:embedderId": _flaxBinding1020,
+    "@super:get:timeStamp": _flaxBinding1021,
+    "@super:get:pointer": _flaxBinding1022,
     "@super:get:kind": FlaxInstanceMethod.shared(
       _flaxBinding115,
       _PointerHoverEvent_super_get_kind,
     ),
-    "@super:get:device": _flaxBinding1022,
-    "@super:get:position": _flaxBinding1023,
+    "@super:get:device": _flaxBinding1023,
+    "@super:get:position": _flaxBinding1024,
     "@super:get:localPosition": FlaxInstanceMethod.shared(
       _flaxBinding64,
       _PointerHoverEvent_super_get_localPosition,
@@ -60693,38 +62289,38 @@ const _flaxBinding1296 = FlaxObjectBinding(
       _flaxBinding64,
       _PointerHoverEvent_super_get_delta,
     ),
-    "@super:get:localDelta": _flaxBinding1024,
+    "@super:get:localDelta": _flaxBinding1025,
     "@super:get:buttons": FlaxInstanceMethod.shared(
       flaxIntCall,
       _PointerHoverEvent_super_get_buttons,
     ),
-    "@super:get:down": _flaxBinding1025,
-    "@super:get:obscured": _flaxBinding1026,
+    "@super:get:down": _flaxBinding1026,
+    "@super:get:obscured": _flaxBinding1027,
     "@super:get:pressure": FlaxInstanceMethod.shared(
       flaxDoubleCall,
       _PointerHoverEvent_super_get_pressure,
     ),
-    "@super:get:pressureMin": _flaxBinding1027,
-    "@super:get:pressureMax": _flaxBinding1028,
-    "@super:get:distance": _flaxBinding1029,
-    "@super:get:distanceMin": _flaxBinding1030,
-    "@super:get:distanceMax": _flaxBinding1031,
-    "@super:get:size": _flaxBinding1032,
-    "@super:get:radiusMajor": _flaxBinding1033,
-    "@super:get:radiusMinor": _flaxBinding1034,
-    "@super:get:radiusMin": _flaxBinding1035,
-    "@super:get:radiusMax": _flaxBinding1036,
-    "@super:get:orientation": _flaxBinding1037,
-    "@super:get:tilt": _flaxBinding1038,
-    "@super:get:platformData": _flaxBinding1039,
-    "@super:get:synthesized": _flaxBinding1040,
+    "@super:get:pressureMin": _flaxBinding1028,
+    "@super:get:pressureMax": _flaxBinding1029,
+    "@super:get:distance": _flaxBinding1030,
+    "@super:get:distanceMin": _flaxBinding1031,
+    "@super:get:distanceMax": _flaxBinding1032,
+    "@super:get:size": _flaxBinding1033,
+    "@super:get:radiusMajor": _flaxBinding1034,
+    "@super:get:radiusMinor": _flaxBinding1035,
+    "@super:get:radiusMin": _flaxBinding1036,
+    "@super:get:radiusMax": _flaxBinding1037,
+    "@super:get:orientation": _flaxBinding1038,
+    "@super:get:tilt": _flaxBinding1039,
+    "@super:get:platformData": _flaxBinding1040,
+    "@super:get:synthesized": _flaxBinding1041,
     "@super:get:transform": FlaxInstanceMethod.shared(
       _flaxBinding102,
       _PointerHoverEvent_super_get_transform,
     ),
-    "@super:get:original": _flaxBinding1041,
+    "@super:get:original": _flaxBinding1042,
   },
-  constructors: {"": _flaxBinding1292, "@implementation": _flaxBinding1292},
+  constructors: {"": _flaxBinding1293, "@implementation": _flaxBinding1293},
   create: _createPointerHoverEvent,
   matches: _isPointerHoverEvent,
   setters: [],
@@ -60736,28 +62332,27 @@ const _flaxBinding1296 = FlaxObjectBinding(
     "package:flutter/src/gestures/events.dart::_CopyPointerHoverEvent",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding1293,
-    _flaxBinding1295,
+    _flaxBinding1294,
+    _flaxBinding1296,
     _flaxBinding316,
     _flaxBinding318,
     _flaxBinding320,
     _flaxBinding311,
-    _flaxBinding1046,
     _flaxBinding1047,
     _flaxBinding1048,
     _flaxBinding1049,
     _flaxBinding1050,
-    _flaxBinding792,
     _flaxBinding1051,
+    _flaxBinding793,
     _flaxBinding1052,
+    _flaxBinding1053,
     _flaxBinding509,
     _flaxBinding588,
-    _flaxBinding1053,
     _flaxBinding1054,
     _flaxBinding1055,
     _flaxBinding1056,
-    _flaxBinding632,
     _flaxBinding1057,
+    _flaxBinding632,
     _flaxBinding1058,
     _flaxBinding1059,
     _flaxBinding1060,
@@ -60771,192 +62366,193 @@ const _flaxBinding1296 = FlaxObjectBinding(
     _flaxBinding1068,
     _flaxBinding1069,
     _flaxBinding1070,
-    _flaxBinding759,
     _flaxBinding1071,
+    _flaxBinding760,
+    _flaxBinding1072,
   ]),
 );
-const _flaxBinding1297 = FlaxGetter.plain(
+const _flaxBinding1298 = FlaxGetter.plain(
   "viewId",
   flaxIntType,
   _PointerMoveEvent_viewId,
 );
-const _flaxBinding1298 = FlaxGetter.plain(
+const _flaxBinding1299 = FlaxGetter.plain(
   "embedderId",
   flaxIntType,
   _PointerMoveEvent_embedderId,
 );
-const _flaxBinding1299 = FlaxGetter.plain(
+const _flaxBinding1300 = FlaxGetter.plain(
   "timeStamp",
   flaxDurationType,
   _PointerMoveEvent_timeStamp,
 );
-const _flaxBinding1300 = FlaxGetter.plain(
+const _flaxBinding1301 = FlaxGetter.plain(
   "pointer",
   flaxIntType,
   _PointerMoveEvent_pointer,
 );
-const _flaxBinding1301 = FlaxGetter.plain(
+const _flaxBinding1302 = FlaxGetter.plain(
   "kind",
   _flaxBinding14,
   _PointerMoveEvent_kind,
 );
-const _flaxBinding1302 = FlaxGetter.plain(
+const _flaxBinding1303 = FlaxGetter.plain(
   "device",
   flaxIntType,
   _PointerMoveEvent_device,
 );
-const _flaxBinding1303 = FlaxGetter.plain(
+const _flaxBinding1304 = FlaxGetter.plain(
   "position",
   flaxOffsetType,
   _PointerMoveEvent_position,
 );
-const _flaxBinding1304 = FlaxGetter.plain(
+const _flaxBinding1305 = FlaxGetter.plain(
   "localPosition",
   flaxOffsetType,
   _PointerMoveEvent_localPosition,
 );
-const _flaxBinding1305 = FlaxGetter.plain(
+const _flaxBinding1306 = FlaxGetter.plain(
   "delta",
   flaxOffsetType,
   _PointerMoveEvent_delta,
 );
-const _flaxBinding1306 = FlaxGetter.plain(
+const _flaxBinding1307 = FlaxGetter.plain(
   "localDelta",
   flaxOffsetType,
   _PointerMoveEvent_localDelta,
 );
-const _flaxBinding1307 = FlaxGetter.plain(
+const _flaxBinding1308 = FlaxGetter.plain(
   "buttons",
   flaxIntType,
   _PointerMoveEvent_buttons,
 );
-const _flaxBinding1308 = FlaxGetter.plain(
+const _flaxBinding1309 = FlaxGetter.plain(
   "down",
   flaxBoolType,
   _PointerMoveEvent_down,
 );
-const _flaxBinding1309 = FlaxGetter.plain(
+const _flaxBinding1310 = FlaxGetter.plain(
   "obscured",
   flaxBoolType,
   _PointerMoveEvent_obscured,
 );
-const _flaxBinding1310 = FlaxGetter.plain(
+const _flaxBinding1311 = FlaxGetter.plain(
   "pressure",
   flaxDoubleType,
   _PointerMoveEvent_pressure,
 );
-const _flaxBinding1311 = FlaxGetter.plain(
+const _flaxBinding1312 = FlaxGetter.plain(
   "pressureMin",
   flaxDoubleType,
   _PointerMoveEvent_pressureMin,
 );
-const _flaxBinding1312 = FlaxGetter.plain(
+const _flaxBinding1313 = FlaxGetter.plain(
   "pressureMax",
   flaxDoubleType,
   _PointerMoveEvent_pressureMax,
 );
-const _flaxBinding1313 = FlaxGetter.plain(
+const _flaxBinding1314 = FlaxGetter.plain(
   "distance",
   flaxDoubleType,
   _PointerMoveEvent_distance,
 );
-const _flaxBinding1314 = FlaxGetter.plain(
+const _flaxBinding1315 = FlaxGetter.plain(
   "distanceMin",
   flaxDoubleType,
   _PointerMoveEvent_distanceMin,
 );
-const _flaxBinding1315 = FlaxGetter.plain(
+const _flaxBinding1316 = FlaxGetter.plain(
   "distanceMax",
   flaxDoubleType,
   _PointerMoveEvent_distanceMax,
 );
-const _flaxBinding1316 = FlaxGetter.plain(
+const _flaxBinding1317 = FlaxGetter.plain(
   "size",
   flaxDoubleType,
   _PointerMoveEvent_size,
 );
-const _flaxBinding1317 = FlaxGetter.plain(
+const _flaxBinding1318 = FlaxGetter.plain(
   "radiusMajor",
   flaxDoubleType,
   _PointerMoveEvent_radiusMajor,
 );
-const _flaxBinding1318 = FlaxGetter.plain(
+const _flaxBinding1319 = FlaxGetter.plain(
   "radiusMinor",
   flaxDoubleType,
   _PointerMoveEvent_radiusMinor,
 );
-const _flaxBinding1319 = FlaxGetter.plain(
+const _flaxBinding1320 = FlaxGetter.plain(
   "radiusMin",
   flaxDoubleType,
   _PointerMoveEvent_radiusMin,
 );
-const _flaxBinding1320 = FlaxGetter.plain(
+const _flaxBinding1321 = FlaxGetter.plain(
   "radiusMax",
   flaxDoubleType,
   _PointerMoveEvent_radiusMax,
 );
-const _flaxBinding1321 = FlaxGetter.plain(
+const _flaxBinding1322 = FlaxGetter.plain(
   "orientation",
   flaxDoubleType,
   _PointerMoveEvent_orientation,
 );
-const _flaxBinding1322 = FlaxGetter.plain(
+const _flaxBinding1323 = FlaxGetter.plain(
   "tilt",
   flaxDoubleType,
   _PointerMoveEvent_tilt,
 );
-const _flaxBinding1323 = FlaxGetter.plain(
+const _flaxBinding1324 = FlaxGetter.plain(
   "platformData",
   flaxIntType,
   _PointerMoveEvent_platformData,
 );
-const _flaxBinding1324 = FlaxGetter.plain(
+const _flaxBinding1325 = FlaxGetter.plain(
   "synthesized",
   flaxBoolType,
   _PointerMoveEvent_synthesized,
 );
-const _flaxBinding1325 = FlaxGetter.plain(
+const _flaxBinding1326 = FlaxGetter.plain(
   "transform",
   _flaxBinding101,
   _PointerMoveEvent_transform,
 );
-const _flaxBinding1326 = FlaxGetter.plain(
+const _flaxBinding1327 = FlaxGetter.plain(
   "original",
   _flaxBinding69,
   _PointerMoveEvent_original,
 );
-const _flaxBinding1327 = FlaxInstanceMethod.shared(
+const _flaxBinding1328 = FlaxInstanceMethod.shared(
   _flaxBinding176,
   _PointerMoveEvent_transformed,
 );
-const _flaxBinding1328 = FlaxInstanceMethod.plain(
-  _flaxBinding1011,
+const _flaxBinding1329 = FlaxInstanceMethod.plain(
+  _flaxBinding1012,
   _flaxBinding24,
   _PointerMoveEvent_copyWith,
 );
-const _flaxBinding1329 = FlaxInstanceMethod.shared(
+const _flaxBinding1330 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _PointerMoveEvent_toStringShort,
 );
-const _flaxBinding1330 = FlaxInstanceMethod.plain(
+const _flaxBinding1331 = FlaxInstanceMethod.plain(
   _flaxBinding268,
   _flaxBinding17,
   _PointerMoveEvent_toDiagnosticsNode,
 );
-const _flaxBinding1331 = FlaxInstanceMethod.shared(
+const _flaxBinding1332 = FlaxInstanceMethod.shared(
   _flaxBinding6,
   _PointerMoveEvent_debugFillProperties,
 );
-const _flaxBinding1332 = FlaxInstanceMethod.plain(
+const _flaxBinding1333 = FlaxInstanceMethod.plain(
   _flaxBinding260,
   flaxStringType,
   _PointerMoveEvent_toString,
 );
-const _flaxBinding1333 = FlaxInstanceMethod.shared(
+const _flaxBinding1334 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _PointerMoveEvent_toStringFull,
 );
-const _flaxBinding1334 = <FlaxParameter>[
+const _flaxBinding1335 = <FlaxParameter>[
   FlaxParameter("viewId", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
     "timeStamp",
@@ -60969,7 +62565,7 @@ const _flaxBinding1334 = <FlaxParameter>[
     "kind",
     _flaxBinding14,
     required: false,
-    defaultValue: api4.PointerDeviceKind.touch,
+    defaultValue: api3.PointerDeviceKind.touch,
   ),
   FlaxParameter("device", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
@@ -61041,13 +62637,13 @@ const _flaxBinding1334 = <FlaxParameter>[
   ),
   FlaxParameter("embedderId", flaxIntType, required: false, defaultValue: 0),
 ];
-const _flaxBinding1335 = FlaxProxyMember(
+const _flaxBinding1336 = FlaxProxyMember(
   "transformed",
   0,
   _flaxBinding176,
   hasSuper: true,
 );
-const _flaxBinding1336 = FlaxCallbackBinding.signature(
+const _flaxBinding1337 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "viewId",
@@ -61191,16 +62787,15 @@ const _flaxBinding1336 = FlaxCallbackBinding.signature(
   _flaxBinding24,
   id: "callback:<>(n:o:viewId:int?:,n:o:timeStamp:object?:flax.core/flutter#type:Duration,n:o:pointer:int?:,n:o:kind:enum?:flax.core/sdk_dart_ui#type:PointerDeviceKind,n:o:device:int?:,n:o:position:object?:flax.core/flutter#type:Offset,n:o:delta:object?:flax.core/flutter#type:Offset,n:o:buttons:int?:,n:o:obscured:bool?:,n:o:pressure:double?:,n:o:pressureMin:double?:,n:o:pressureMax:double?:,n:o:distance:double?:,n:o:distanceMax:double?:,n:o:size:double?:,n:o:radiusMajor:double?:,n:o:radiusMinor:double?:,n:o:radiusMin:double?:,n:o:radiusMax:double?:,n:o:orientation:double?:,n:o:tilt:double?:,n:o:synthesized:bool?:,n:o:embedderId:int?:)->object:flax.core/sdk_gestures#type:PointerMoveEvent",
 );
-const _flaxBinding1337 = FlaxProxyMember(
+const _flaxBinding1338 = FlaxProxyMember(
   "copyWith",
   0,
-  _flaxBinding1336,
+  _flaxBinding1337,
   hasSuper: true,
 );
-const _flaxBinding1338 = FlaxObjectBinding(
+const _flaxBinding1339 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:PointerMoveEvent",
   [
-    _flaxBinding1297,
     _flaxBinding1298,
     _flaxBinding1299,
     _flaxBinding1300,
@@ -61230,21 +62825,22 @@ const _flaxBinding1338 = FlaxObjectBinding(
     _flaxBinding1324,
     _flaxBinding1325,
     _flaxBinding1326,
+    _flaxBinding1327,
   ],
   {
-    "transformed": _flaxBinding1327,
-    "copyWith": _flaxBinding1328,
-    "toStringShort": _flaxBinding1329,
-    "toDiagnosticsNode": _flaxBinding1330,
-    "debugFillProperties": _flaxBinding1331,
-    "toString": _flaxBinding1332,
-    "toStringFull": _flaxBinding1333,
+    "transformed": _flaxBinding1328,
+    "copyWith": _flaxBinding1329,
+    "toStringShort": _flaxBinding1330,
+    "toDiagnosticsNode": _flaxBinding1331,
+    "debugFillProperties": _flaxBinding1332,
+    "toString": _flaxBinding1333,
+    "toStringFull": _flaxBinding1334,
     "@super:transformed": FlaxInstanceMethod.shared(
       _flaxBinding176,
       _PointerMoveEvent_super_transformed,
     ),
     "@super:copyWith": FlaxInstanceMethod.plain(
-      _flaxBinding1011,
+      _flaxBinding1012,
       _flaxBinding24,
       _PointerMoveEvent_super_copyWith,
     ),
@@ -61256,16 +62852,16 @@ const _flaxBinding1338 = FlaxObjectBinding(
       flaxStringCall,
       _PointerMoveEvent_super_toStringFull,
     ),
-    "@super:get:viewId": _flaxBinding1018,
-    "@super:get:embedderId": _flaxBinding1019,
-    "@super:get:timeStamp": _flaxBinding1020,
-    "@super:get:pointer": _flaxBinding1021,
+    "@super:get:viewId": _flaxBinding1019,
+    "@super:get:embedderId": _flaxBinding1020,
+    "@super:get:timeStamp": _flaxBinding1021,
+    "@super:get:pointer": _flaxBinding1022,
     "@super:get:kind": FlaxInstanceMethod.shared(
       _flaxBinding115,
       _PointerMoveEvent_super_get_kind,
     ),
-    "@super:get:device": _flaxBinding1022,
-    "@super:get:position": _flaxBinding1023,
+    "@super:get:device": _flaxBinding1023,
+    "@super:get:position": _flaxBinding1024,
     "@super:get:localPosition": FlaxInstanceMethod.shared(
       _flaxBinding64,
       _PointerMoveEvent_super_get_localPosition,
@@ -61274,38 +62870,38 @@ const _flaxBinding1338 = FlaxObjectBinding(
       _flaxBinding64,
       _PointerMoveEvent_super_get_delta,
     ),
-    "@super:get:localDelta": _flaxBinding1024,
+    "@super:get:localDelta": _flaxBinding1025,
     "@super:get:buttons": FlaxInstanceMethod.shared(
       flaxIntCall,
       _PointerMoveEvent_super_get_buttons,
     ),
-    "@super:get:down": _flaxBinding1025,
-    "@super:get:obscured": _flaxBinding1026,
+    "@super:get:down": _flaxBinding1026,
+    "@super:get:obscured": _flaxBinding1027,
     "@super:get:pressure": FlaxInstanceMethod.shared(
       flaxDoubleCall,
       _PointerMoveEvent_super_get_pressure,
     ),
-    "@super:get:pressureMin": _flaxBinding1027,
-    "@super:get:pressureMax": _flaxBinding1028,
-    "@super:get:distance": _flaxBinding1029,
-    "@super:get:distanceMin": _flaxBinding1030,
-    "@super:get:distanceMax": _flaxBinding1031,
-    "@super:get:size": _flaxBinding1032,
-    "@super:get:radiusMajor": _flaxBinding1033,
-    "@super:get:radiusMinor": _flaxBinding1034,
-    "@super:get:radiusMin": _flaxBinding1035,
-    "@super:get:radiusMax": _flaxBinding1036,
-    "@super:get:orientation": _flaxBinding1037,
-    "@super:get:tilt": _flaxBinding1038,
-    "@super:get:platformData": _flaxBinding1039,
-    "@super:get:synthesized": _flaxBinding1040,
+    "@super:get:pressureMin": _flaxBinding1028,
+    "@super:get:pressureMax": _flaxBinding1029,
+    "@super:get:distance": _flaxBinding1030,
+    "@super:get:distanceMin": _flaxBinding1031,
+    "@super:get:distanceMax": _flaxBinding1032,
+    "@super:get:size": _flaxBinding1033,
+    "@super:get:radiusMajor": _flaxBinding1034,
+    "@super:get:radiusMinor": _flaxBinding1035,
+    "@super:get:radiusMin": _flaxBinding1036,
+    "@super:get:radiusMax": _flaxBinding1037,
+    "@super:get:orientation": _flaxBinding1038,
+    "@super:get:tilt": _flaxBinding1039,
+    "@super:get:platformData": _flaxBinding1040,
+    "@super:get:synthesized": _flaxBinding1041,
     "@super:get:transform": FlaxInstanceMethod.shared(
       _flaxBinding102,
       _PointerMoveEvent_super_get_transform,
     ),
-    "@super:get:original": _flaxBinding1041,
+    "@super:get:original": _flaxBinding1042,
   },
-  constructors: {"": _flaxBinding1334, "@implementation": _flaxBinding1334},
+  constructors: {"": _flaxBinding1335, "@implementation": _flaxBinding1335},
   create: _createPointerMoveEvent,
   matches: _isPointerMoveEvent,
   setters: [],
@@ -61317,28 +62913,27 @@ const _flaxBinding1338 = FlaxObjectBinding(
     "package:flutter/src/gestures/events.dart::_CopyPointerMoveEvent",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding1335,
-    _flaxBinding1337,
+    _flaxBinding1336,
+    _flaxBinding1338,
     _flaxBinding316,
     _flaxBinding318,
     _flaxBinding320,
     _flaxBinding311,
-    _flaxBinding1046,
     _flaxBinding1047,
     _flaxBinding1048,
     _flaxBinding1049,
     _flaxBinding1050,
-    _flaxBinding792,
     _flaxBinding1051,
+    _flaxBinding793,
     _flaxBinding1052,
+    _flaxBinding1053,
     _flaxBinding509,
     _flaxBinding588,
-    _flaxBinding1053,
     _flaxBinding1054,
     _flaxBinding1055,
     _flaxBinding1056,
-    _flaxBinding632,
     _flaxBinding1057,
+    _flaxBinding632,
     _flaxBinding1058,
     _flaxBinding1059,
     _flaxBinding1060,
@@ -61352,192 +62947,193 @@ const _flaxBinding1338 = FlaxObjectBinding(
     _flaxBinding1068,
     _flaxBinding1069,
     _flaxBinding1070,
-    _flaxBinding759,
     _flaxBinding1071,
+    _flaxBinding760,
+    _flaxBinding1072,
   ]),
 );
-const _flaxBinding1339 = FlaxGetter.plain(
+const _flaxBinding1340 = FlaxGetter.plain(
   "viewId",
   flaxIntType,
   _PointerPanZoomEndEvent_viewId,
 );
-const _flaxBinding1340 = FlaxGetter.plain(
+const _flaxBinding1341 = FlaxGetter.plain(
   "embedderId",
   flaxIntType,
   _PointerPanZoomEndEvent_embedderId,
 );
-const _flaxBinding1341 = FlaxGetter.plain(
+const _flaxBinding1342 = FlaxGetter.plain(
   "timeStamp",
   flaxDurationType,
   _PointerPanZoomEndEvent_timeStamp,
 );
-const _flaxBinding1342 = FlaxGetter.plain(
+const _flaxBinding1343 = FlaxGetter.plain(
   "pointer",
   flaxIntType,
   _PointerPanZoomEndEvent_pointer,
 );
-const _flaxBinding1343 = FlaxGetter.plain(
+const _flaxBinding1344 = FlaxGetter.plain(
   "kind",
   _flaxBinding14,
   _PointerPanZoomEndEvent_kind,
 );
-const _flaxBinding1344 = FlaxGetter.plain(
+const _flaxBinding1345 = FlaxGetter.plain(
   "device",
   flaxIntType,
   _PointerPanZoomEndEvent_device,
 );
-const _flaxBinding1345 = FlaxGetter.plain(
+const _flaxBinding1346 = FlaxGetter.plain(
   "position",
   flaxOffsetType,
   _PointerPanZoomEndEvent_position,
 );
-const _flaxBinding1346 = FlaxGetter.plain(
+const _flaxBinding1347 = FlaxGetter.plain(
   "localPosition",
   flaxOffsetType,
   _PointerPanZoomEndEvent_localPosition,
 );
-const _flaxBinding1347 = FlaxGetter.plain(
+const _flaxBinding1348 = FlaxGetter.plain(
   "delta",
   flaxOffsetType,
   _PointerPanZoomEndEvent_delta,
 );
-const _flaxBinding1348 = FlaxGetter.plain(
+const _flaxBinding1349 = FlaxGetter.plain(
   "localDelta",
   flaxOffsetType,
   _PointerPanZoomEndEvent_localDelta,
 );
-const _flaxBinding1349 = FlaxGetter.plain(
+const _flaxBinding1350 = FlaxGetter.plain(
   "buttons",
   flaxIntType,
   _PointerPanZoomEndEvent_buttons,
 );
-const _flaxBinding1350 = FlaxGetter.plain(
+const _flaxBinding1351 = FlaxGetter.plain(
   "down",
   flaxBoolType,
   _PointerPanZoomEndEvent_down,
 );
-const _flaxBinding1351 = FlaxGetter.plain(
+const _flaxBinding1352 = FlaxGetter.plain(
   "obscured",
   flaxBoolType,
   _PointerPanZoomEndEvent_obscured,
 );
-const _flaxBinding1352 = FlaxGetter.plain(
+const _flaxBinding1353 = FlaxGetter.plain(
   "pressure",
   flaxDoubleType,
   _PointerPanZoomEndEvent_pressure,
 );
-const _flaxBinding1353 = FlaxGetter.plain(
+const _flaxBinding1354 = FlaxGetter.plain(
   "pressureMin",
   flaxDoubleType,
   _PointerPanZoomEndEvent_pressureMin,
 );
-const _flaxBinding1354 = FlaxGetter.plain(
+const _flaxBinding1355 = FlaxGetter.plain(
   "pressureMax",
   flaxDoubleType,
   _PointerPanZoomEndEvent_pressureMax,
 );
-const _flaxBinding1355 = FlaxGetter.plain(
+const _flaxBinding1356 = FlaxGetter.plain(
   "distance",
   flaxDoubleType,
   _PointerPanZoomEndEvent_distance,
 );
-const _flaxBinding1356 = FlaxGetter.plain(
+const _flaxBinding1357 = FlaxGetter.plain(
   "distanceMin",
   flaxDoubleType,
   _PointerPanZoomEndEvent_distanceMin,
 );
-const _flaxBinding1357 = FlaxGetter.plain(
+const _flaxBinding1358 = FlaxGetter.plain(
   "distanceMax",
   flaxDoubleType,
   _PointerPanZoomEndEvent_distanceMax,
 );
-const _flaxBinding1358 = FlaxGetter.plain(
+const _flaxBinding1359 = FlaxGetter.plain(
   "size",
   flaxDoubleType,
   _PointerPanZoomEndEvent_size,
 );
-const _flaxBinding1359 = FlaxGetter.plain(
+const _flaxBinding1360 = FlaxGetter.plain(
   "radiusMajor",
   flaxDoubleType,
   _PointerPanZoomEndEvent_radiusMajor,
 );
-const _flaxBinding1360 = FlaxGetter.plain(
+const _flaxBinding1361 = FlaxGetter.plain(
   "radiusMinor",
   flaxDoubleType,
   _PointerPanZoomEndEvent_radiusMinor,
 );
-const _flaxBinding1361 = FlaxGetter.plain(
+const _flaxBinding1362 = FlaxGetter.plain(
   "radiusMin",
   flaxDoubleType,
   _PointerPanZoomEndEvent_radiusMin,
 );
-const _flaxBinding1362 = FlaxGetter.plain(
+const _flaxBinding1363 = FlaxGetter.plain(
   "radiusMax",
   flaxDoubleType,
   _PointerPanZoomEndEvent_radiusMax,
 );
-const _flaxBinding1363 = FlaxGetter.plain(
+const _flaxBinding1364 = FlaxGetter.plain(
   "orientation",
   flaxDoubleType,
   _PointerPanZoomEndEvent_orientation,
 );
-const _flaxBinding1364 = FlaxGetter.plain(
+const _flaxBinding1365 = FlaxGetter.plain(
   "tilt",
   flaxDoubleType,
   _PointerPanZoomEndEvent_tilt,
 );
-const _flaxBinding1365 = FlaxGetter.plain(
+const _flaxBinding1366 = FlaxGetter.plain(
   "platformData",
   flaxIntType,
   _PointerPanZoomEndEvent_platformData,
 );
-const _flaxBinding1366 = FlaxGetter.plain(
+const _flaxBinding1367 = FlaxGetter.plain(
   "synthesized",
   flaxBoolType,
   _PointerPanZoomEndEvent_synthesized,
 );
-const _flaxBinding1367 = FlaxGetter.plain(
+const _flaxBinding1368 = FlaxGetter.plain(
   "transform",
   _flaxBinding101,
   _PointerPanZoomEndEvent_transform,
 );
-const _flaxBinding1368 = FlaxGetter.plain(
+const _flaxBinding1369 = FlaxGetter.plain(
   "original",
   _flaxBinding69,
   _PointerPanZoomEndEvent_original,
 );
-const _flaxBinding1369 = FlaxInstanceMethod.shared(
+const _flaxBinding1370 = FlaxInstanceMethod.shared(
   _flaxBinding178,
   _PointerPanZoomEndEvent_transformed,
 );
-const _flaxBinding1370 = FlaxInstanceMethod.plain(
-  _flaxBinding1011,
+const _flaxBinding1371 = FlaxInstanceMethod.plain(
+  _flaxBinding1012,
   _flaxBinding177,
   _PointerPanZoomEndEvent_copyWith,
 );
-const _flaxBinding1371 = FlaxInstanceMethod.shared(
+const _flaxBinding1372 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _PointerPanZoomEndEvent_toStringShort,
 );
-const _flaxBinding1372 = FlaxInstanceMethod.plain(
+const _flaxBinding1373 = FlaxInstanceMethod.plain(
   _flaxBinding268,
   _flaxBinding17,
   _PointerPanZoomEndEvent_toDiagnosticsNode,
 );
-const _flaxBinding1373 = FlaxInstanceMethod.shared(
+const _flaxBinding1374 = FlaxInstanceMethod.shared(
   _flaxBinding6,
   _PointerPanZoomEndEvent_debugFillProperties,
 );
-const _flaxBinding1374 = FlaxInstanceMethod.plain(
+const _flaxBinding1375 = FlaxInstanceMethod.plain(
   _flaxBinding260,
   flaxStringType,
   _PointerPanZoomEndEvent_toString,
 );
-const _flaxBinding1375 = FlaxInstanceMethod.shared(
+const _flaxBinding1376 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _PointerPanZoomEndEvent_toStringFull,
 );
-const _flaxBinding1376 = <FlaxParameter>[
+const _flaxBinding1377 = <FlaxParameter>[
   FlaxParameter("viewId", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
     "timeStamp",
@@ -61561,13 +63157,13 @@ const _flaxBinding1376 = <FlaxParameter>[
     defaultValue: false,
   ),
 ];
-const _flaxBinding1377 = FlaxProxyMember(
+const _flaxBinding1378 = FlaxProxyMember(
   "transformed",
   0,
   _flaxBinding178,
   hasSuper: true,
 );
-const _flaxBinding1378 = FlaxCallbackBinding.signature(
+const _flaxBinding1379 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "viewId",
@@ -61711,16 +63307,15 @@ const _flaxBinding1378 = FlaxCallbackBinding.signature(
   _flaxBinding177,
   id: "callback:<>(n:o:viewId:int?:,n:o:timeStamp:object?:flax.core/flutter#type:Duration,n:o:pointer:int?:,n:o:kind:enum?:flax.core/sdk_dart_ui#type:PointerDeviceKind,n:o:device:int?:,n:o:position:object?:flax.core/flutter#type:Offset,n:o:delta:object?:flax.core/flutter#type:Offset,n:o:buttons:int?:,n:o:obscured:bool?:,n:o:pressure:double?:,n:o:pressureMin:double?:,n:o:pressureMax:double?:,n:o:distance:double?:,n:o:distanceMax:double?:,n:o:size:double?:,n:o:radiusMajor:double?:,n:o:radiusMinor:double?:,n:o:radiusMin:double?:,n:o:radiusMax:double?:,n:o:orientation:double?:,n:o:tilt:double?:,n:o:synthesized:bool?:,n:o:embedderId:int?:)->object:flax.core/sdk_gestures#type:PointerPanZoomEndEvent",
 );
-const _flaxBinding1379 = FlaxProxyMember(
+const _flaxBinding1380 = FlaxProxyMember(
   "copyWith",
   0,
-  _flaxBinding1378,
+  _flaxBinding1379,
   hasSuper: true,
 );
-const _flaxBinding1380 = FlaxObjectBinding(
+const _flaxBinding1381 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:PointerPanZoomEndEvent",
   [
-    _flaxBinding1339,
     _flaxBinding1340,
     _flaxBinding1341,
     _flaxBinding1342,
@@ -61750,21 +63345,22 @@ const _flaxBinding1380 = FlaxObjectBinding(
     _flaxBinding1366,
     _flaxBinding1367,
     _flaxBinding1368,
+    _flaxBinding1369,
   ],
   {
-    "transformed": _flaxBinding1369,
-    "copyWith": _flaxBinding1370,
-    "toStringShort": _flaxBinding1371,
-    "toDiagnosticsNode": _flaxBinding1372,
-    "debugFillProperties": _flaxBinding1373,
-    "toString": _flaxBinding1374,
-    "toStringFull": _flaxBinding1375,
+    "transformed": _flaxBinding1370,
+    "copyWith": _flaxBinding1371,
+    "toStringShort": _flaxBinding1372,
+    "toDiagnosticsNode": _flaxBinding1373,
+    "debugFillProperties": _flaxBinding1374,
+    "toString": _flaxBinding1375,
+    "toStringFull": _flaxBinding1376,
     "@super:transformed": FlaxInstanceMethod.shared(
       _flaxBinding178,
       _PointerPanZoomEndEvent_super_transformed,
     ),
     "@super:copyWith": FlaxInstanceMethod.plain(
-      _flaxBinding1011,
+      _flaxBinding1012,
       _flaxBinding177,
       _PointerPanZoomEndEvent_super_copyWith,
     ),
@@ -61776,16 +63372,16 @@ const _flaxBinding1380 = FlaxObjectBinding(
       flaxStringCall,
       _PointerPanZoomEndEvent_super_toStringFull,
     ),
-    "@super:get:viewId": _flaxBinding1018,
-    "@super:get:embedderId": _flaxBinding1019,
-    "@super:get:timeStamp": _flaxBinding1020,
-    "@super:get:pointer": _flaxBinding1021,
+    "@super:get:viewId": _flaxBinding1019,
+    "@super:get:embedderId": _flaxBinding1020,
+    "@super:get:timeStamp": _flaxBinding1021,
+    "@super:get:pointer": _flaxBinding1022,
     "@super:get:kind": FlaxInstanceMethod.shared(
       _flaxBinding115,
       _PointerPanZoomEndEvent_super_get_kind,
     ),
-    "@super:get:device": _flaxBinding1022,
-    "@super:get:position": _flaxBinding1023,
+    "@super:get:device": _flaxBinding1023,
+    "@super:get:position": _flaxBinding1024,
     "@super:get:localPosition": FlaxInstanceMethod.shared(
       _flaxBinding64,
       _PointerPanZoomEndEvent_super_get_localPosition,
@@ -61794,38 +63390,38 @@ const _flaxBinding1380 = FlaxObjectBinding(
       _flaxBinding64,
       _PointerPanZoomEndEvent_super_get_delta,
     ),
-    "@super:get:localDelta": _flaxBinding1024,
+    "@super:get:localDelta": _flaxBinding1025,
     "@super:get:buttons": FlaxInstanceMethod.shared(
       flaxIntCall,
       _PointerPanZoomEndEvent_super_get_buttons,
     ),
-    "@super:get:down": _flaxBinding1025,
-    "@super:get:obscured": _flaxBinding1026,
+    "@super:get:down": _flaxBinding1026,
+    "@super:get:obscured": _flaxBinding1027,
     "@super:get:pressure": FlaxInstanceMethod.shared(
       flaxDoubleCall,
       _PointerPanZoomEndEvent_super_get_pressure,
     ),
-    "@super:get:pressureMin": _flaxBinding1027,
-    "@super:get:pressureMax": _flaxBinding1028,
-    "@super:get:distance": _flaxBinding1029,
-    "@super:get:distanceMin": _flaxBinding1030,
-    "@super:get:distanceMax": _flaxBinding1031,
-    "@super:get:size": _flaxBinding1032,
-    "@super:get:radiusMajor": _flaxBinding1033,
-    "@super:get:radiusMinor": _flaxBinding1034,
-    "@super:get:radiusMin": _flaxBinding1035,
-    "@super:get:radiusMax": _flaxBinding1036,
-    "@super:get:orientation": _flaxBinding1037,
-    "@super:get:tilt": _flaxBinding1038,
-    "@super:get:platformData": _flaxBinding1039,
-    "@super:get:synthesized": _flaxBinding1040,
+    "@super:get:pressureMin": _flaxBinding1028,
+    "@super:get:pressureMax": _flaxBinding1029,
+    "@super:get:distance": _flaxBinding1030,
+    "@super:get:distanceMin": _flaxBinding1031,
+    "@super:get:distanceMax": _flaxBinding1032,
+    "@super:get:size": _flaxBinding1033,
+    "@super:get:radiusMajor": _flaxBinding1034,
+    "@super:get:radiusMinor": _flaxBinding1035,
+    "@super:get:radiusMin": _flaxBinding1036,
+    "@super:get:radiusMax": _flaxBinding1037,
+    "@super:get:orientation": _flaxBinding1038,
+    "@super:get:tilt": _flaxBinding1039,
+    "@super:get:platformData": _flaxBinding1040,
+    "@super:get:synthesized": _flaxBinding1041,
     "@super:get:transform": FlaxInstanceMethod.shared(
       _flaxBinding102,
       _PointerPanZoomEndEvent_super_get_transform,
     ),
-    "@super:get:original": _flaxBinding1041,
+    "@super:get:original": _flaxBinding1042,
   },
-  constructors: {"": _flaxBinding1376, "@implementation": _flaxBinding1376},
+  constructors: {"": _flaxBinding1377, "@implementation": _flaxBinding1377},
   create: _createPointerPanZoomEndEvent,
   matches: _isPointerPanZoomEndEvent,
   setters: [],
@@ -61837,28 +63433,27 @@ const _flaxBinding1380 = FlaxObjectBinding(
     "package:flutter/src/gestures/events.dart::_CopyPointerPanZoomEndEvent",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding1377,
-    _flaxBinding1379,
+    _flaxBinding1378,
+    _flaxBinding1380,
     _flaxBinding316,
     _flaxBinding318,
     _flaxBinding320,
     _flaxBinding311,
-    _flaxBinding1046,
     _flaxBinding1047,
     _flaxBinding1048,
     _flaxBinding1049,
     _flaxBinding1050,
-    _flaxBinding792,
     _flaxBinding1051,
+    _flaxBinding793,
     _flaxBinding1052,
+    _flaxBinding1053,
     _flaxBinding509,
     _flaxBinding588,
-    _flaxBinding1053,
     _flaxBinding1054,
     _flaxBinding1055,
     _flaxBinding1056,
-    _flaxBinding632,
     _flaxBinding1057,
+    _flaxBinding632,
     _flaxBinding1058,
     _flaxBinding1059,
     _flaxBinding1060,
@@ -61872,198 +63467,199 @@ const _flaxBinding1380 = FlaxObjectBinding(
     _flaxBinding1068,
     _flaxBinding1069,
     _flaxBinding1070,
-    _flaxBinding759,
     _flaxBinding1071,
+    _flaxBinding760,
+    _flaxBinding1072,
   ]),
 );
-const _flaxBinding1381 = FlaxGetter.plain(
+const _flaxBinding1382 = FlaxGetter.plain(
   "viewId",
   flaxIntType,
   _PointerPanZoomStartEvent_viewId,
 );
-const _flaxBinding1382 = FlaxGetter.plain(
+const _flaxBinding1383 = FlaxGetter.plain(
   "embedderId",
   flaxIntType,
   _PointerPanZoomStartEvent_embedderId,
 );
-const _flaxBinding1383 = FlaxGetter.plain(
+const _flaxBinding1384 = FlaxGetter.plain(
   "timeStamp",
   flaxDurationType,
   _PointerPanZoomStartEvent_timeStamp,
 );
-const _flaxBinding1384 = FlaxGetter.plain(
+const _flaxBinding1385 = FlaxGetter.plain(
   "pointer",
   flaxIntType,
   _PointerPanZoomStartEvent_pointer,
 );
-const _flaxBinding1385 = FlaxGetter.plain(
+const _flaxBinding1386 = FlaxGetter.plain(
   "kind",
   _flaxBinding14,
   _PointerPanZoomStartEvent_kind,
 );
-const _flaxBinding1386 = FlaxGetter.plain(
+const _flaxBinding1387 = FlaxGetter.plain(
   "device",
   flaxIntType,
   _PointerPanZoomStartEvent_device,
 );
-const _flaxBinding1387 = FlaxGetter.plain(
+const _flaxBinding1388 = FlaxGetter.plain(
   "position",
   flaxOffsetType,
   _PointerPanZoomStartEvent_position,
 );
-const _flaxBinding1388 = FlaxGetter.plain(
+const _flaxBinding1389 = FlaxGetter.plain(
   "localPosition",
   flaxOffsetType,
   _PointerPanZoomStartEvent_localPosition,
 );
-const _flaxBinding1389 = FlaxGetter.plain(
+const _flaxBinding1390 = FlaxGetter.plain(
   "delta",
   flaxOffsetType,
   _PointerPanZoomStartEvent_delta,
 );
-const _flaxBinding1390 = FlaxGetter.plain(
+const _flaxBinding1391 = FlaxGetter.plain(
   "localDelta",
   flaxOffsetType,
   _PointerPanZoomStartEvent_localDelta,
 );
-const _flaxBinding1391 = FlaxGetter.plain(
+const _flaxBinding1392 = FlaxGetter.plain(
   "buttons",
   flaxIntType,
   _PointerPanZoomStartEvent_buttons,
 );
-const _flaxBinding1392 = FlaxGetter.plain(
+const _flaxBinding1393 = FlaxGetter.plain(
   "down",
   flaxBoolType,
   _PointerPanZoomStartEvent_down,
 );
-const _flaxBinding1393 = FlaxGetter.plain(
+const _flaxBinding1394 = FlaxGetter.plain(
   "obscured",
   flaxBoolType,
   _PointerPanZoomStartEvent_obscured,
 );
-const _flaxBinding1394 = FlaxGetter.plain(
+const _flaxBinding1395 = FlaxGetter.plain(
   "pressure",
   flaxDoubleType,
   _PointerPanZoomStartEvent_pressure,
 );
-const _flaxBinding1395 = FlaxGetter.plain(
+const _flaxBinding1396 = FlaxGetter.plain(
   "pressureMin",
   flaxDoubleType,
   _PointerPanZoomStartEvent_pressureMin,
 );
-const _flaxBinding1396 = FlaxGetter.plain(
+const _flaxBinding1397 = FlaxGetter.plain(
   "pressureMax",
   flaxDoubleType,
   _PointerPanZoomStartEvent_pressureMax,
 );
-const _flaxBinding1397 = FlaxGetter.plain(
+const _flaxBinding1398 = FlaxGetter.plain(
   "distance",
   flaxDoubleType,
   _PointerPanZoomStartEvent_distance,
 );
-const _flaxBinding1398 = FlaxGetter.plain(
+const _flaxBinding1399 = FlaxGetter.plain(
   "distanceMin",
   flaxDoubleType,
   _PointerPanZoomStartEvent_distanceMin,
 );
-const _flaxBinding1399 = FlaxGetter.plain(
+const _flaxBinding1400 = FlaxGetter.plain(
   "distanceMax",
   flaxDoubleType,
   _PointerPanZoomStartEvent_distanceMax,
 );
-const _flaxBinding1400 = FlaxGetter.plain(
+const _flaxBinding1401 = FlaxGetter.plain(
   "size",
   flaxDoubleType,
   _PointerPanZoomStartEvent_size,
 );
-const _flaxBinding1401 = FlaxGetter.plain(
+const _flaxBinding1402 = FlaxGetter.plain(
   "radiusMajor",
   flaxDoubleType,
   _PointerPanZoomStartEvent_radiusMajor,
 );
-const _flaxBinding1402 = FlaxGetter.plain(
+const _flaxBinding1403 = FlaxGetter.plain(
   "radiusMinor",
   flaxDoubleType,
   _PointerPanZoomStartEvent_radiusMinor,
 );
-const _flaxBinding1403 = FlaxGetter.plain(
+const _flaxBinding1404 = FlaxGetter.plain(
   "radiusMin",
   flaxDoubleType,
   _PointerPanZoomStartEvent_radiusMin,
 );
-const _flaxBinding1404 = FlaxGetter.plain(
+const _flaxBinding1405 = FlaxGetter.plain(
   "radiusMax",
   flaxDoubleType,
   _PointerPanZoomStartEvent_radiusMax,
 );
-const _flaxBinding1405 = FlaxGetter.plain(
+const _flaxBinding1406 = FlaxGetter.plain(
   "orientation",
   flaxDoubleType,
   _PointerPanZoomStartEvent_orientation,
 );
-const _flaxBinding1406 = FlaxGetter.plain(
+const _flaxBinding1407 = FlaxGetter.plain(
   "tilt",
   flaxDoubleType,
   _PointerPanZoomStartEvent_tilt,
 );
-const _flaxBinding1407 = FlaxGetter.plain(
+const _flaxBinding1408 = FlaxGetter.plain(
   "platformData",
   flaxIntType,
   _PointerPanZoomStartEvent_platformData,
 );
-const _flaxBinding1408 = FlaxGetter.plain(
+const _flaxBinding1409 = FlaxGetter.plain(
   "synthesized",
   flaxBoolType,
   _PointerPanZoomStartEvent_synthesized,
 );
-const _flaxBinding1409 = FlaxGetter.plain(
+const _flaxBinding1410 = FlaxGetter.plain(
   "transform",
   _flaxBinding101,
   _PointerPanZoomStartEvent_transform,
 );
-const _flaxBinding1410 = FlaxGetter.plain(
+const _flaxBinding1411 = FlaxGetter.plain(
   "original",
   _flaxBinding69,
   _PointerPanZoomStartEvent_original,
 );
-const _flaxBinding1411 = FlaxInstanceMethod.shared(
+const _flaxBinding1412 = FlaxInstanceMethod.shared(
   _flaxBinding179,
   _PointerPanZoomStartEvent_transformed,
 );
-const _flaxBinding1412 = FlaxInstanceMethod.plain(
-  _flaxBinding1011,
+const _flaxBinding1413 = FlaxInstanceMethod.plain(
+  _flaxBinding1012,
   _flaxBinding10,
   _PointerPanZoomStartEvent_copyWith,
 );
-const _flaxBinding1413 = FlaxInstanceMethod.shared(
+const _flaxBinding1414 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _PointerPanZoomStartEvent_toStringShort,
 );
-const _flaxBinding1414 = FlaxInstanceMethod.plain(
+const _flaxBinding1415 = FlaxInstanceMethod.plain(
   _flaxBinding268,
   _flaxBinding17,
   _PointerPanZoomStartEvent_toDiagnosticsNode,
 );
-const _flaxBinding1415 = FlaxInstanceMethod.shared(
+const _flaxBinding1416 = FlaxInstanceMethod.shared(
   _flaxBinding6,
   _PointerPanZoomStartEvent_debugFillProperties,
 );
-const _flaxBinding1416 = FlaxInstanceMethod.plain(
+const _flaxBinding1417 = FlaxInstanceMethod.plain(
   _flaxBinding260,
   flaxStringType,
   _PointerPanZoomStartEvent_toString,
 );
-const _flaxBinding1417 = FlaxInstanceMethod.shared(
+const _flaxBinding1418 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _PointerPanZoomStartEvent_toStringFull,
 );
-const _flaxBinding1418 = FlaxProxyMember(
+const _flaxBinding1419 = FlaxProxyMember(
   "transformed",
   0,
   _flaxBinding179,
   hasSuper: true,
 );
-const _flaxBinding1419 = FlaxCallbackBinding.signature(
+const _flaxBinding1420 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "viewId",
@@ -62207,16 +63803,15 @@ const _flaxBinding1419 = FlaxCallbackBinding.signature(
   _flaxBinding10,
   id: "callback:<>(n:o:viewId:int?:,n:o:timeStamp:object?:flax.core/flutter#type:Duration,n:o:pointer:int?:,n:o:kind:enum?:flax.core/sdk_dart_ui#type:PointerDeviceKind,n:o:device:int?:,n:o:position:object?:flax.core/flutter#type:Offset,n:o:delta:object?:flax.core/flutter#type:Offset,n:o:buttons:int?:,n:o:obscured:bool?:,n:o:pressure:double?:,n:o:pressureMin:double?:,n:o:pressureMax:double?:,n:o:distance:double?:,n:o:distanceMax:double?:,n:o:size:double?:,n:o:radiusMajor:double?:,n:o:radiusMinor:double?:,n:o:radiusMin:double?:,n:o:radiusMax:double?:,n:o:orientation:double?:,n:o:tilt:double?:,n:o:synthesized:bool?:,n:o:embedderId:int?:)->object:flax.core/sdk_gestures#type:PointerPanZoomStartEvent",
 );
-const _flaxBinding1420 = FlaxProxyMember(
+const _flaxBinding1421 = FlaxProxyMember(
   "copyWith",
   0,
-  _flaxBinding1419,
+  _flaxBinding1420,
   hasSuper: true,
 );
-const _flaxBinding1421 = FlaxObjectBinding(
+const _flaxBinding1422 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:PointerPanZoomStartEvent",
   [
-    _flaxBinding1381,
     _flaxBinding1382,
     _flaxBinding1383,
     _flaxBinding1384,
@@ -62246,21 +63841,22 @@ const _flaxBinding1421 = FlaxObjectBinding(
     _flaxBinding1408,
     _flaxBinding1409,
     _flaxBinding1410,
+    _flaxBinding1411,
   ],
   {
-    "transformed": _flaxBinding1411,
-    "copyWith": _flaxBinding1412,
-    "toStringShort": _flaxBinding1413,
-    "toDiagnosticsNode": _flaxBinding1414,
-    "debugFillProperties": _flaxBinding1415,
-    "toString": _flaxBinding1416,
-    "toStringFull": _flaxBinding1417,
+    "transformed": _flaxBinding1412,
+    "copyWith": _flaxBinding1413,
+    "toStringShort": _flaxBinding1414,
+    "toDiagnosticsNode": _flaxBinding1415,
+    "debugFillProperties": _flaxBinding1416,
+    "toString": _flaxBinding1417,
+    "toStringFull": _flaxBinding1418,
     "@super:transformed": FlaxInstanceMethod.shared(
       _flaxBinding179,
       _PointerPanZoomStartEvent_super_transformed,
     ),
     "@super:copyWith": FlaxInstanceMethod.plain(
-      _flaxBinding1011,
+      _flaxBinding1012,
       _flaxBinding10,
       _PointerPanZoomStartEvent_super_copyWith,
     ),
@@ -62272,16 +63868,16 @@ const _flaxBinding1421 = FlaxObjectBinding(
       flaxStringCall,
       _PointerPanZoomStartEvent_super_toStringFull,
     ),
-    "@super:get:viewId": _flaxBinding1018,
-    "@super:get:embedderId": _flaxBinding1019,
-    "@super:get:timeStamp": _flaxBinding1020,
-    "@super:get:pointer": _flaxBinding1021,
+    "@super:get:viewId": _flaxBinding1019,
+    "@super:get:embedderId": _flaxBinding1020,
+    "@super:get:timeStamp": _flaxBinding1021,
+    "@super:get:pointer": _flaxBinding1022,
     "@super:get:kind": FlaxInstanceMethod.shared(
       _flaxBinding115,
       _PointerPanZoomStartEvent_super_get_kind,
     ),
-    "@super:get:device": _flaxBinding1022,
-    "@super:get:position": _flaxBinding1023,
+    "@super:get:device": _flaxBinding1023,
+    "@super:get:position": _flaxBinding1024,
     "@super:get:localPosition": FlaxInstanceMethod.shared(
       _flaxBinding64,
       _PointerPanZoomStartEvent_super_get_localPosition,
@@ -62290,38 +63886,38 @@ const _flaxBinding1421 = FlaxObjectBinding(
       _flaxBinding64,
       _PointerPanZoomStartEvent_super_get_delta,
     ),
-    "@super:get:localDelta": _flaxBinding1024,
+    "@super:get:localDelta": _flaxBinding1025,
     "@super:get:buttons": FlaxInstanceMethod.shared(
       flaxIntCall,
       _PointerPanZoomStartEvent_super_get_buttons,
     ),
-    "@super:get:down": _flaxBinding1025,
-    "@super:get:obscured": _flaxBinding1026,
+    "@super:get:down": _flaxBinding1026,
+    "@super:get:obscured": _flaxBinding1027,
     "@super:get:pressure": FlaxInstanceMethod.shared(
       flaxDoubleCall,
       _PointerPanZoomStartEvent_super_get_pressure,
     ),
-    "@super:get:pressureMin": _flaxBinding1027,
-    "@super:get:pressureMax": _flaxBinding1028,
-    "@super:get:distance": _flaxBinding1029,
-    "@super:get:distanceMin": _flaxBinding1030,
-    "@super:get:distanceMax": _flaxBinding1031,
-    "@super:get:size": _flaxBinding1032,
-    "@super:get:radiusMajor": _flaxBinding1033,
-    "@super:get:radiusMinor": _flaxBinding1034,
-    "@super:get:radiusMin": _flaxBinding1035,
-    "@super:get:radiusMax": _flaxBinding1036,
-    "@super:get:orientation": _flaxBinding1037,
-    "@super:get:tilt": _flaxBinding1038,
-    "@super:get:platformData": _flaxBinding1039,
-    "@super:get:synthesized": _flaxBinding1040,
+    "@super:get:pressureMin": _flaxBinding1028,
+    "@super:get:pressureMax": _flaxBinding1029,
+    "@super:get:distance": _flaxBinding1030,
+    "@super:get:distanceMin": _flaxBinding1031,
+    "@super:get:distanceMax": _flaxBinding1032,
+    "@super:get:size": _flaxBinding1033,
+    "@super:get:radiusMajor": _flaxBinding1034,
+    "@super:get:radiusMinor": _flaxBinding1035,
+    "@super:get:radiusMin": _flaxBinding1036,
+    "@super:get:radiusMax": _flaxBinding1037,
+    "@super:get:orientation": _flaxBinding1038,
+    "@super:get:tilt": _flaxBinding1039,
+    "@super:get:platformData": _flaxBinding1040,
+    "@super:get:synthesized": _flaxBinding1041,
     "@super:get:transform": FlaxInstanceMethod.shared(
       _flaxBinding102,
       _PointerPanZoomStartEvent_super_get_transform,
     ),
-    "@super:get:original": _flaxBinding1041,
+    "@super:get:original": _flaxBinding1042,
   },
-  constructors: {"": _flaxBinding1376, "@implementation": _flaxBinding1376},
+  constructors: {"": _flaxBinding1377, "@implementation": _flaxBinding1377},
   create: _createPointerPanZoomStartEvent,
   matches: _isPointerPanZoomStartEvent,
   setters: [],
@@ -62333,28 +63929,27 @@ const _flaxBinding1421 = FlaxObjectBinding(
     "package:flutter/src/gestures/events.dart::_CopyPointerPanZoomStartEvent",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding1418,
-    _flaxBinding1420,
+    _flaxBinding1419,
+    _flaxBinding1421,
     _flaxBinding316,
     _flaxBinding318,
     _flaxBinding320,
     _flaxBinding311,
-    _flaxBinding1046,
     _flaxBinding1047,
     _flaxBinding1048,
     _flaxBinding1049,
     _flaxBinding1050,
-    _flaxBinding792,
     _flaxBinding1051,
+    _flaxBinding793,
     _flaxBinding1052,
+    _flaxBinding1053,
     _flaxBinding509,
     _flaxBinding588,
-    _flaxBinding1053,
     _flaxBinding1054,
     _flaxBinding1055,
     _flaxBinding1056,
-    _flaxBinding632,
     _flaxBinding1057,
+    _flaxBinding632,
     _flaxBinding1058,
     _flaxBinding1059,
     _flaxBinding1060,
@@ -62368,195 +63963,196 @@ const _flaxBinding1421 = FlaxObjectBinding(
     _flaxBinding1068,
     _flaxBinding1069,
     _flaxBinding1070,
-    _flaxBinding759,
     _flaxBinding1071,
+    _flaxBinding760,
+    _flaxBinding1072,
   ]),
 );
-const _flaxBinding1422 = FlaxGetter.plain(
+const _flaxBinding1423 = FlaxGetter.plain(
   "viewId",
   flaxIntType,
   _PointerPanZoomUpdateEvent_viewId,
 );
-const _flaxBinding1423 = FlaxGetter.plain(
+const _flaxBinding1424 = FlaxGetter.plain(
   "embedderId",
   flaxIntType,
   _PointerPanZoomUpdateEvent_embedderId,
 );
-const _flaxBinding1424 = FlaxGetter.plain(
+const _flaxBinding1425 = FlaxGetter.plain(
   "timeStamp",
   flaxDurationType,
   _PointerPanZoomUpdateEvent_timeStamp,
 );
-const _flaxBinding1425 = FlaxGetter.plain(
+const _flaxBinding1426 = FlaxGetter.plain(
   "pointer",
   flaxIntType,
   _PointerPanZoomUpdateEvent_pointer,
 );
-const _flaxBinding1426 = FlaxGetter.plain(
+const _flaxBinding1427 = FlaxGetter.plain(
   "kind",
   _flaxBinding14,
   _PointerPanZoomUpdateEvent_kind,
 );
-const _flaxBinding1427 = FlaxGetter.plain(
+const _flaxBinding1428 = FlaxGetter.plain(
   "device",
   flaxIntType,
   _PointerPanZoomUpdateEvent_device,
 );
-const _flaxBinding1428 = FlaxGetter.plain(
+const _flaxBinding1429 = FlaxGetter.plain(
   "position",
   flaxOffsetType,
   _PointerPanZoomUpdateEvent_position,
 );
-const _flaxBinding1429 = FlaxGetter.plain(
+const _flaxBinding1430 = FlaxGetter.plain(
   "localPosition",
   flaxOffsetType,
   _PointerPanZoomUpdateEvent_localPosition,
 );
-const _flaxBinding1430 = FlaxGetter.plain(
+const _flaxBinding1431 = FlaxGetter.plain(
   "delta",
   flaxOffsetType,
   _PointerPanZoomUpdateEvent_delta,
 );
-const _flaxBinding1431 = FlaxGetter.plain(
+const _flaxBinding1432 = FlaxGetter.plain(
   "localDelta",
   flaxOffsetType,
   _PointerPanZoomUpdateEvent_localDelta,
 );
-const _flaxBinding1432 = FlaxGetter.plain(
+const _flaxBinding1433 = FlaxGetter.plain(
   "buttons",
   flaxIntType,
   _PointerPanZoomUpdateEvent_buttons,
 );
-const _flaxBinding1433 = FlaxGetter.plain(
+const _flaxBinding1434 = FlaxGetter.plain(
   "down",
   flaxBoolType,
   _PointerPanZoomUpdateEvent_down,
 );
-const _flaxBinding1434 = FlaxGetter.plain(
+const _flaxBinding1435 = FlaxGetter.plain(
   "obscured",
   flaxBoolType,
   _PointerPanZoomUpdateEvent_obscured,
 );
-const _flaxBinding1435 = FlaxGetter.plain(
+const _flaxBinding1436 = FlaxGetter.plain(
   "pressure",
   flaxDoubleType,
   _PointerPanZoomUpdateEvent_pressure,
 );
-const _flaxBinding1436 = FlaxGetter.plain(
+const _flaxBinding1437 = FlaxGetter.plain(
   "pressureMin",
   flaxDoubleType,
   _PointerPanZoomUpdateEvent_pressureMin,
 );
-const _flaxBinding1437 = FlaxGetter.plain(
+const _flaxBinding1438 = FlaxGetter.plain(
   "pressureMax",
   flaxDoubleType,
   _PointerPanZoomUpdateEvent_pressureMax,
 );
-const _flaxBinding1438 = FlaxGetter.plain(
+const _flaxBinding1439 = FlaxGetter.plain(
   "distance",
   flaxDoubleType,
   _PointerPanZoomUpdateEvent_distance,
 );
-const _flaxBinding1439 = FlaxGetter.plain(
+const _flaxBinding1440 = FlaxGetter.plain(
   "distanceMin",
   flaxDoubleType,
   _PointerPanZoomUpdateEvent_distanceMin,
 );
-const _flaxBinding1440 = FlaxGetter.plain(
+const _flaxBinding1441 = FlaxGetter.plain(
   "distanceMax",
   flaxDoubleType,
   _PointerPanZoomUpdateEvent_distanceMax,
 );
-const _flaxBinding1441 = FlaxGetter.plain(
+const _flaxBinding1442 = FlaxGetter.plain(
   "size",
   flaxDoubleType,
   _PointerPanZoomUpdateEvent_size,
 );
-const _flaxBinding1442 = FlaxGetter.plain(
+const _flaxBinding1443 = FlaxGetter.plain(
   "radiusMajor",
   flaxDoubleType,
   _PointerPanZoomUpdateEvent_radiusMajor,
 );
-const _flaxBinding1443 = FlaxGetter.plain(
+const _flaxBinding1444 = FlaxGetter.plain(
   "radiusMinor",
   flaxDoubleType,
   _PointerPanZoomUpdateEvent_radiusMinor,
 );
-const _flaxBinding1444 = FlaxGetter.plain(
+const _flaxBinding1445 = FlaxGetter.plain(
   "radiusMin",
   flaxDoubleType,
   _PointerPanZoomUpdateEvent_radiusMin,
 );
-const _flaxBinding1445 = FlaxGetter.plain(
+const _flaxBinding1446 = FlaxGetter.plain(
   "radiusMax",
   flaxDoubleType,
   _PointerPanZoomUpdateEvent_radiusMax,
 );
-const _flaxBinding1446 = FlaxGetter.plain(
+const _flaxBinding1447 = FlaxGetter.plain(
   "orientation",
   flaxDoubleType,
   _PointerPanZoomUpdateEvent_orientation,
 );
-const _flaxBinding1447 = FlaxGetter.plain(
+const _flaxBinding1448 = FlaxGetter.plain(
   "tilt",
   flaxDoubleType,
   _PointerPanZoomUpdateEvent_tilt,
 );
-const _flaxBinding1448 = FlaxGetter.plain(
+const _flaxBinding1449 = FlaxGetter.plain(
   "platformData",
   flaxIntType,
   _PointerPanZoomUpdateEvent_platformData,
 );
-const _flaxBinding1449 = FlaxGetter.plain(
+const _flaxBinding1450 = FlaxGetter.plain(
   "synthesized",
   flaxBoolType,
   _PointerPanZoomUpdateEvent_synthesized,
 );
-const _flaxBinding1450 = FlaxGetter.plain(
+const _flaxBinding1451 = FlaxGetter.plain(
   "transform",
   _flaxBinding101,
   _PointerPanZoomUpdateEvent_transform,
 );
-const _flaxBinding1451 = FlaxGetter.plain(
+const _flaxBinding1452 = FlaxGetter.plain(
   "original",
   _flaxBinding69,
   _PointerPanZoomUpdateEvent_original,
 );
-const _flaxBinding1452 = FlaxGetter.plain(
+const _flaxBinding1453 = FlaxGetter.plain(
   "pan",
   flaxOffsetType,
   _PointerPanZoomUpdateEvent_pan,
 );
-const _flaxBinding1453 = FlaxGetter.plain(
+const _flaxBinding1454 = FlaxGetter.plain(
   "localPan",
   flaxOffsetType,
   _PointerPanZoomUpdateEvent_localPan,
 );
-const _flaxBinding1454 = FlaxGetter.plain(
+const _flaxBinding1455 = FlaxGetter.plain(
   "panDelta",
   flaxOffsetType,
   _PointerPanZoomUpdateEvent_panDelta,
 );
-const _flaxBinding1455 = FlaxGetter.plain(
+const _flaxBinding1456 = FlaxGetter.plain(
   "localPanDelta",
   flaxOffsetType,
   _PointerPanZoomUpdateEvent_localPanDelta,
 );
-const _flaxBinding1456 = FlaxGetter.plain(
+const _flaxBinding1457 = FlaxGetter.plain(
   "scale",
   flaxDoubleType,
   _PointerPanZoomUpdateEvent_scale,
 );
-const _flaxBinding1457 = FlaxGetter.plain(
+const _flaxBinding1458 = FlaxGetter.plain(
   "rotation",
   flaxDoubleType,
   _PointerPanZoomUpdateEvent_rotation,
 );
-const _flaxBinding1458 = FlaxInstanceMethod.shared(
+const _flaxBinding1459 = FlaxInstanceMethod.shared(
   _flaxBinding181,
   _PointerPanZoomUpdateEvent_transformed,
 );
-const _flaxBinding1459 = <FlaxParameter>[
+const _flaxBinding1460 = <FlaxParameter>[
   FlaxParameter("buttons", flaxNullableIntType, required: false),
   FlaxParameter("delta", _flaxBinding143, required: false),
   FlaxParameter("device", flaxNullableIntType, required: false),
@@ -62587,34 +64183,34 @@ const _flaxBinding1459 = <FlaxParameter>[
   FlaxParameter("timeStamp", _flaxBinding26, required: false),
   FlaxParameter("viewId", flaxNullableIntType, required: false),
 ];
-const _flaxBinding1460 = FlaxInstanceMethod.plain(
-  _flaxBinding1459,
+const _flaxBinding1461 = FlaxInstanceMethod.plain(
+  _flaxBinding1460,
   _flaxBinding180,
   _PointerPanZoomUpdateEvent_copyWith,
 );
-const _flaxBinding1461 = FlaxInstanceMethod.shared(
+const _flaxBinding1462 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _PointerPanZoomUpdateEvent_toStringShort,
 );
-const _flaxBinding1462 = FlaxInstanceMethod.plain(
+const _flaxBinding1463 = FlaxInstanceMethod.plain(
   _flaxBinding268,
   _flaxBinding17,
   _PointerPanZoomUpdateEvent_toDiagnosticsNode,
 );
-const _flaxBinding1463 = FlaxInstanceMethod.shared(
+const _flaxBinding1464 = FlaxInstanceMethod.shared(
   _flaxBinding6,
   _PointerPanZoomUpdateEvent_debugFillProperties,
 );
-const _flaxBinding1464 = FlaxInstanceMethod.plain(
+const _flaxBinding1465 = FlaxInstanceMethod.plain(
   _flaxBinding260,
   flaxStringType,
   _PointerPanZoomUpdateEvent_toString,
 );
-const _flaxBinding1465 = FlaxInstanceMethod.shared(
+const _flaxBinding1466 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _PointerPanZoomUpdateEvent_toStringFull,
 );
-const _flaxBinding1466 = <FlaxParameter>[
+const _flaxBinding1467 = <FlaxParameter>[
   FlaxParameter("viewId", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
     "timeStamp",
@@ -62647,13 +64243,13 @@ const _flaxBinding1466 = <FlaxParameter>[
     defaultValue: false,
   ),
 ];
-const _flaxBinding1467 = FlaxProxyMember(
+const _flaxBinding1468 = FlaxProxyMember(
   "transformed",
   0,
   _flaxBinding181,
   hasSuper: true,
 );
-const _flaxBinding1468 = FlaxCallbackBinding.signature(
+const _flaxBinding1469 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "viewId",
@@ -62833,52 +64429,51 @@ const _flaxBinding1468 = FlaxCallbackBinding.signature(
   _flaxBinding180,
   id: "callback:<>(n:o:viewId:int?:,n:o:timeStamp:object?:flax.core/flutter#type:Duration,n:o:pointer:int?:,n:o:kind:enum?:flax.core/sdk_dart_ui#type:PointerDeviceKind,n:o:device:int?:,n:o:position:object?:flax.core/flutter#type:Offset,n:o:delta:object?:flax.core/flutter#type:Offset,n:o:buttons:int?:,n:o:obscured:bool?:,n:o:pressure:double?:,n:o:pressureMin:double?:,n:o:pressureMax:double?:,n:o:distance:double?:,n:o:distanceMax:double?:,n:o:size:double?:,n:o:radiusMajor:double?:,n:o:radiusMinor:double?:,n:o:radiusMin:double?:,n:o:radiusMax:double?:,n:o:orientation:double?:,n:o:tilt:double?:,n:o:synthesized:bool?:,n:o:embedderId:int?:,n:o:pan:object?:flax.core/flutter#type:Offset,n:o:localPan:object?:flax.core/flutter#type:Offset,n:o:panDelta:object?:flax.core/flutter#type:Offset,n:o:localPanDelta:object?:flax.core/flutter#type:Offset,n:o:scale:double?:,n:o:rotation:double?:)->object:flax.core/sdk_gestures#type:PointerPanZoomUpdateEvent",
 );
-const _flaxBinding1469 = FlaxProxyMember(
+const _flaxBinding1470 = FlaxProxyMember(
   "copyWith",
   0,
-  _flaxBinding1468,
+  _flaxBinding1469,
   hasSuper: true,
 );
-const _flaxBinding1470 = FlaxProxyMember(
+const _flaxBinding1471 = FlaxProxyMember(
   "pan",
   1,
   _flaxBinding64,
   hasSuper: true,
 );
-const _flaxBinding1471 = FlaxProxyMember(
+const _flaxBinding1472 = FlaxProxyMember(
   "localPan",
   1,
   _flaxBinding64,
   hasSuper: true,
 );
-const _flaxBinding1472 = FlaxProxyMember(
+const _flaxBinding1473 = FlaxProxyMember(
   "panDelta",
   1,
   _flaxBinding64,
   hasSuper: true,
 );
-const _flaxBinding1473 = FlaxProxyMember(
+const _flaxBinding1474 = FlaxProxyMember(
   "localPanDelta",
   1,
   _flaxBinding64,
   hasSuper: true,
 );
-const _flaxBinding1474 = FlaxProxyMember(
+const _flaxBinding1475 = FlaxProxyMember(
   "scale",
   1,
   flaxDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding1475 = FlaxProxyMember(
+const _flaxBinding1476 = FlaxProxyMember(
   "rotation",
   1,
   flaxDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding1476 = FlaxObjectBinding(
+const _flaxBinding1477 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:PointerPanZoomUpdateEvent",
   [
-    _flaxBinding1422,
     _flaxBinding1423,
     _flaxBinding1424,
     _flaxBinding1425,
@@ -62914,21 +64509,22 @@ const _flaxBinding1476 = FlaxObjectBinding(
     _flaxBinding1455,
     _flaxBinding1456,
     _flaxBinding1457,
+    _flaxBinding1458,
   ],
   {
-    "transformed": _flaxBinding1458,
-    "copyWith": _flaxBinding1460,
-    "toStringShort": _flaxBinding1461,
-    "toDiagnosticsNode": _flaxBinding1462,
-    "debugFillProperties": _flaxBinding1463,
-    "toString": _flaxBinding1464,
-    "toStringFull": _flaxBinding1465,
+    "transformed": _flaxBinding1459,
+    "copyWith": _flaxBinding1461,
+    "toStringShort": _flaxBinding1462,
+    "toDiagnosticsNode": _flaxBinding1463,
+    "debugFillProperties": _flaxBinding1464,
+    "toString": _flaxBinding1465,
+    "toStringFull": _flaxBinding1466,
     "@super:transformed": FlaxInstanceMethod.shared(
       _flaxBinding181,
       _PointerPanZoomUpdateEvent_super_transformed,
     ),
     "@super:copyWith": FlaxInstanceMethod.plain(
-      _flaxBinding1459,
+      _flaxBinding1460,
       _flaxBinding180,
       _PointerPanZoomUpdateEvent_super_copyWith,
     ),
@@ -62964,16 +64560,16 @@ const _flaxBinding1476 = FlaxObjectBinding(
       flaxDoubleCall,
       _PointerPanZoomUpdateEvent_super_get_rotation,
     ),
-    "@super:get:viewId": _flaxBinding1018,
-    "@super:get:embedderId": _flaxBinding1019,
-    "@super:get:timeStamp": _flaxBinding1020,
-    "@super:get:pointer": _flaxBinding1021,
+    "@super:get:viewId": _flaxBinding1019,
+    "@super:get:embedderId": _flaxBinding1020,
+    "@super:get:timeStamp": _flaxBinding1021,
+    "@super:get:pointer": _flaxBinding1022,
     "@super:get:kind": FlaxInstanceMethod.shared(
       _flaxBinding115,
       _PointerPanZoomUpdateEvent_super_get_kind,
     ),
-    "@super:get:device": _flaxBinding1022,
-    "@super:get:position": _flaxBinding1023,
+    "@super:get:device": _flaxBinding1023,
+    "@super:get:position": _flaxBinding1024,
     "@super:get:localPosition": FlaxInstanceMethod.shared(
       _flaxBinding64,
       _PointerPanZoomUpdateEvent_super_get_localPosition,
@@ -62982,38 +64578,38 @@ const _flaxBinding1476 = FlaxObjectBinding(
       _flaxBinding64,
       _PointerPanZoomUpdateEvent_super_get_delta,
     ),
-    "@super:get:localDelta": _flaxBinding1024,
+    "@super:get:localDelta": _flaxBinding1025,
     "@super:get:buttons": FlaxInstanceMethod.shared(
       flaxIntCall,
       _PointerPanZoomUpdateEvent_super_get_buttons,
     ),
-    "@super:get:down": _flaxBinding1025,
-    "@super:get:obscured": _flaxBinding1026,
+    "@super:get:down": _flaxBinding1026,
+    "@super:get:obscured": _flaxBinding1027,
     "@super:get:pressure": FlaxInstanceMethod.shared(
       flaxDoubleCall,
       _PointerPanZoomUpdateEvent_super_get_pressure,
     ),
-    "@super:get:pressureMin": _flaxBinding1027,
-    "@super:get:pressureMax": _flaxBinding1028,
-    "@super:get:distance": _flaxBinding1029,
-    "@super:get:distanceMin": _flaxBinding1030,
-    "@super:get:distanceMax": _flaxBinding1031,
-    "@super:get:size": _flaxBinding1032,
-    "@super:get:radiusMajor": _flaxBinding1033,
-    "@super:get:radiusMinor": _flaxBinding1034,
-    "@super:get:radiusMin": _flaxBinding1035,
-    "@super:get:radiusMax": _flaxBinding1036,
-    "@super:get:orientation": _flaxBinding1037,
-    "@super:get:tilt": _flaxBinding1038,
-    "@super:get:platformData": _flaxBinding1039,
-    "@super:get:synthesized": _flaxBinding1040,
+    "@super:get:pressureMin": _flaxBinding1028,
+    "@super:get:pressureMax": _flaxBinding1029,
+    "@super:get:distance": _flaxBinding1030,
+    "@super:get:distanceMin": _flaxBinding1031,
+    "@super:get:distanceMax": _flaxBinding1032,
+    "@super:get:size": _flaxBinding1033,
+    "@super:get:radiusMajor": _flaxBinding1034,
+    "@super:get:radiusMinor": _flaxBinding1035,
+    "@super:get:radiusMin": _flaxBinding1036,
+    "@super:get:radiusMax": _flaxBinding1037,
+    "@super:get:orientation": _flaxBinding1038,
+    "@super:get:tilt": _flaxBinding1039,
+    "@super:get:platformData": _flaxBinding1040,
+    "@super:get:synthesized": _flaxBinding1041,
     "@super:get:transform": FlaxInstanceMethod.shared(
       _flaxBinding102,
       _PointerPanZoomUpdateEvent_super_get_transform,
     ),
-    "@super:get:original": _flaxBinding1041,
+    "@super:get:original": _flaxBinding1042,
   },
-  constructors: {"": _flaxBinding1466, "@implementation": _flaxBinding1466},
+  constructors: {"": _flaxBinding1467, "@implementation": _flaxBinding1467},
   create: _createPointerPanZoomUpdateEvent,
   matches: _isPointerPanZoomUpdateEvent,
   setters: [],
@@ -63025,34 +64621,33 @@ const _flaxBinding1476 = FlaxObjectBinding(
     "package:flutter/src/gestures/events.dart::_CopyPointerPanZoomUpdateEvent",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding1467,
-    _flaxBinding1469,
+    _flaxBinding1468,
+    _flaxBinding1470,
     _flaxBinding316,
     _flaxBinding318,
     _flaxBinding320,
     _flaxBinding311,
-    _flaxBinding1046,
-    _flaxBinding1470,
+    _flaxBinding1047,
     _flaxBinding1471,
     _flaxBinding1472,
     _flaxBinding1473,
     _flaxBinding1474,
     _flaxBinding1475,
-    _flaxBinding1047,
+    _flaxBinding1476,
     _flaxBinding1048,
     _flaxBinding1049,
     _flaxBinding1050,
-    _flaxBinding792,
     _flaxBinding1051,
+    _flaxBinding793,
     _flaxBinding1052,
+    _flaxBinding1053,
     _flaxBinding509,
     _flaxBinding588,
-    _flaxBinding1053,
     _flaxBinding1054,
     _flaxBinding1055,
     _flaxBinding1056,
-    _flaxBinding632,
     _flaxBinding1057,
+    _flaxBinding632,
     _flaxBinding1058,
     _flaxBinding1059,
     _flaxBinding1060,
@@ -63066,197 +64661,198 @@ const _flaxBinding1476 = FlaxObjectBinding(
     _flaxBinding1068,
     _flaxBinding1069,
     _flaxBinding1070,
-    _flaxBinding759,
     _flaxBinding1071,
+    _flaxBinding760,
+    _flaxBinding1072,
   ]),
 );
-const _flaxBinding1477 = FlaxGetter.plain(
+const _flaxBinding1478 = FlaxGetter.plain(
   "viewId",
   flaxIntType,
   _PointerRemovedEvent_viewId,
 );
-const _flaxBinding1478 = FlaxGetter.plain(
+const _flaxBinding1479 = FlaxGetter.plain(
   "embedderId",
   flaxIntType,
   _PointerRemovedEvent_embedderId,
 );
-const _flaxBinding1479 = FlaxGetter.plain(
+const _flaxBinding1480 = FlaxGetter.plain(
   "timeStamp",
   flaxDurationType,
   _PointerRemovedEvent_timeStamp,
 );
-const _flaxBinding1480 = FlaxGetter.plain(
+const _flaxBinding1481 = FlaxGetter.plain(
   "pointer",
   flaxIntType,
   _PointerRemovedEvent_pointer,
 );
-const _flaxBinding1481 = FlaxGetter.plain(
+const _flaxBinding1482 = FlaxGetter.plain(
   "kind",
   _flaxBinding14,
   _PointerRemovedEvent_kind,
 );
-const _flaxBinding1482 = FlaxGetter.plain(
+const _flaxBinding1483 = FlaxGetter.plain(
   "device",
   flaxIntType,
   _PointerRemovedEvent_device,
 );
-const _flaxBinding1483 = FlaxGetter.plain(
+const _flaxBinding1484 = FlaxGetter.plain(
   "position",
   flaxOffsetType,
   _PointerRemovedEvent_position,
 );
-const _flaxBinding1484 = FlaxGetter.plain(
+const _flaxBinding1485 = FlaxGetter.plain(
   "localPosition",
   flaxOffsetType,
   _PointerRemovedEvent_localPosition,
 );
-const _flaxBinding1485 = FlaxGetter.plain(
+const _flaxBinding1486 = FlaxGetter.plain(
   "delta",
   flaxOffsetType,
   _PointerRemovedEvent_delta,
 );
-const _flaxBinding1486 = FlaxGetter.plain(
+const _flaxBinding1487 = FlaxGetter.plain(
   "localDelta",
   flaxOffsetType,
   _PointerRemovedEvent_localDelta,
 );
-const _flaxBinding1487 = FlaxGetter.plain(
+const _flaxBinding1488 = FlaxGetter.plain(
   "buttons",
   flaxIntType,
   _PointerRemovedEvent_buttons,
 );
-const _flaxBinding1488 = FlaxGetter.plain(
+const _flaxBinding1489 = FlaxGetter.plain(
   "down",
   flaxBoolType,
   _PointerRemovedEvent_down,
 );
-const _flaxBinding1489 = FlaxGetter.plain(
+const _flaxBinding1490 = FlaxGetter.plain(
   "obscured",
   flaxBoolType,
   _PointerRemovedEvent_obscured,
 );
-const _flaxBinding1490 = FlaxGetter.plain(
+const _flaxBinding1491 = FlaxGetter.plain(
   "pressure",
   flaxDoubleType,
   _PointerRemovedEvent_pressure,
 );
-const _flaxBinding1491 = FlaxGetter.plain(
+const _flaxBinding1492 = FlaxGetter.plain(
   "pressureMin",
   flaxDoubleType,
   _PointerRemovedEvent_pressureMin,
 );
-const _flaxBinding1492 = FlaxGetter.plain(
+const _flaxBinding1493 = FlaxGetter.plain(
   "pressureMax",
   flaxDoubleType,
   _PointerRemovedEvent_pressureMax,
 );
-const _flaxBinding1493 = FlaxGetter.plain(
+const _flaxBinding1494 = FlaxGetter.plain(
   "distance",
   flaxDoubleType,
   _PointerRemovedEvent_distance,
 );
-const _flaxBinding1494 = FlaxGetter.plain(
+const _flaxBinding1495 = FlaxGetter.plain(
   "distanceMin",
   flaxDoubleType,
   _PointerRemovedEvent_distanceMin,
 );
-const _flaxBinding1495 = FlaxGetter.plain(
+const _flaxBinding1496 = FlaxGetter.plain(
   "distanceMax",
   flaxDoubleType,
   _PointerRemovedEvent_distanceMax,
 );
-const _flaxBinding1496 = FlaxGetter.plain(
+const _flaxBinding1497 = FlaxGetter.plain(
   "size",
   flaxDoubleType,
   _PointerRemovedEvent_size,
 );
-const _flaxBinding1497 = FlaxGetter.plain(
+const _flaxBinding1498 = FlaxGetter.plain(
   "radiusMajor",
   flaxDoubleType,
   _PointerRemovedEvent_radiusMajor,
 );
-const _flaxBinding1498 = FlaxGetter.plain(
+const _flaxBinding1499 = FlaxGetter.plain(
   "radiusMinor",
   flaxDoubleType,
   _PointerRemovedEvent_radiusMinor,
 );
-const _flaxBinding1499 = FlaxGetter.plain(
+const _flaxBinding1500 = FlaxGetter.plain(
   "radiusMin",
   flaxDoubleType,
   _PointerRemovedEvent_radiusMin,
 );
-const _flaxBinding1500 = FlaxGetter.plain(
+const _flaxBinding1501 = FlaxGetter.plain(
   "radiusMax",
   flaxDoubleType,
   _PointerRemovedEvent_radiusMax,
 );
-const _flaxBinding1501 = FlaxGetter.plain(
+const _flaxBinding1502 = FlaxGetter.plain(
   "orientation",
   flaxDoubleType,
   _PointerRemovedEvent_orientation,
 );
-const _flaxBinding1502 = FlaxGetter.plain(
+const _flaxBinding1503 = FlaxGetter.plain(
   "tilt",
   flaxDoubleType,
   _PointerRemovedEvent_tilt,
 );
-const _flaxBinding1503 = FlaxGetter.plain(
+const _flaxBinding1504 = FlaxGetter.plain(
   "platformData",
   flaxIntType,
   _PointerRemovedEvent_platformData,
 );
-const _flaxBinding1504 = FlaxGetter.plain(
+const _flaxBinding1505 = FlaxGetter.plain(
   "synthesized",
   flaxBoolType,
   _PointerRemovedEvent_synthesized,
 );
-const _flaxBinding1505 = FlaxGetter.plain(
+const _flaxBinding1506 = FlaxGetter.plain(
   "transform",
   _flaxBinding101,
   _PointerRemovedEvent_transform,
 );
-const _flaxBinding1506 = FlaxGetter.plain(
+const _flaxBinding1507 = FlaxGetter.plain(
   "original",
   _flaxBinding69,
   _PointerRemovedEvent_original,
 );
-const _flaxBinding1507 = FlaxInstanceMethod.shared(
+const _flaxBinding1508 = FlaxInstanceMethod.shared(
   _flaxBinding183,
   _PointerRemovedEvent_transformed,
 );
-const _flaxBinding1508 = FlaxInstanceMethod.plain(
-  _flaxBinding1011,
+const _flaxBinding1509 = FlaxInstanceMethod.plain(
+  _flaxBinding1012,
   _flaxBinding182,
   _PointerRemovedEvent_copyWith,
 );
-const _flaxBinding1509 = FlaxInstanceMethod.shared(
+const _flaxBinding1510 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _PointerRemovedEvent_toStringShort,
 );
-const _flaxBinding1510 = FlaxInstanceMethod.plain(
+const _flaxBinding1511 = FlaxInstanceMethod.plain(
   _flaxBinding268,
   _flaxBinding17,
   _PointerRemovedEvent_toDiagnosticsNode,
 );
-const _flaxBinding1511 = FlaxInstanceMethod.shared(
+const _flaxBinding1512 = FlaxInstanceMethod.shared(
   _flaxBinding6,
   _PointerRemovedEvent_debugFillProperties,
 );
-const _flaxBinding1512 = FlaxInstanceMethod.plain(
+const _flaxBinding1513 = FlaxInstanceMethod.plain(
   _flaxBinding260,
   flaxStringType,
   _PointerRemovedEvent_toString,
 );
-const _flaxBinding1513 = FlaxInstanceMethod.shared(
+const _flaxBinding1514 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _PointerRemovedEvent_toStringFull,
 );
-const _flaxBinding1514 = FlaxTypeRef(
+const _flaxBinding1515 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_gestures#type:PointerRemovedEvent",
   nullable: true,
 );
-const _flaxBinding1515 = <FlaxParameter>[
+const _flaxBinding1516 = <FlaxParameter>[
   FlaxParameter("viewId", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
     "timeStamp",
@@ -63269,7 +64865,7 @@ const _flaxBinding1515 = <FlaxParameter>[
     "kind",
     _flaxBinding14,
     required: false,
-    defaultValue: api4.PointerDeviceKind.touch,
+    defaultValue: api3.PointerDeviceKind.touch,
   ),
   FlaxParameter("device", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
@@ -63309,16 +64905,16 @@ const _flaxBinding1515 = <FlaxParameter>[
     required: false,
     defaultValue: 0.0,
   ),
-  FlaxParameter("original", _flaxBinding1514, required: false),
+  FlaxParameter("original", _flaxBinding1515, required: false),
   FlaxParameter("embedderId", flaxIntType, required: false, defaultValue: 0),
 ];
-const _flaxBinding1516 = FlaxProxyMember(
+const _flaxBinding1517 = FlaxProxyMember(
   "transformed",
   0,
   _flaxBinding183,
   hasSuper: true,
 );
-const _flaxBinding1517 = FlaxCallbackBinding.signature(
+const _flaxBinding1518 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "viewId",
@@ -63462,16 +65058,15 @@ const _flaxBinding1517 = FlaxCallbackBinding.signature(
   _flaxBinding182,
   id: "callback:<>(n:o:viewId:int?:,n:o:timeStamp:object?:flax.core/flutter#type:Duration,n:o:pointer:int?:,n:o:kind:enum?:flax.core/sdk_dart_ui#type:PointerDeviceKind,n:o:device:int?:,n:o:position:object?:flax.core/flutter#type:Offset,n:o:delta:object?:flax.core/flutter#type:Offset,n:o:buttons:int?:,n:o:obscured:bool?:,n:o:pressure:double?:,n:o:pressureMin:double?:,n:o:pressureMax:double?:,n:o:distance:double?:,n:o:distanceMax:double?:,n:o:size:double?:,n:o:radiusMajor:double?:,n:o:radiusMinor:double?:,n:o:radiusMin:double?:,n:o:radiusMax:double?:,n:o:orientation:double?:,n:o:tilt:double?:,n:o:synthesized:bool?:,n:o:embedderId:int?:)->object:flax.core/sdk_gestures#type:PointerRemovedEvent",
 );
-const _flaxBinding1518 = FlaxProxyMember(
+const _flaxBinding1519 = FlaxProxyMember(
   "copyWith",
   0,
-  _flaxBinding1517,
+  _flaxBinding1518,
   hasSuper: true,
 );
-const _flaxBinding1519 = FlaxObjectBinding(
+const _flaxBinding1520 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:PointerRemovedEvent",
   [
-    _flaxBinding1477,
     _flaxBinding1478,
     _flaxBinding1479,
     _flaxBinding1480,
@@ -63501,21 +65096,22 @@ const _flaxBinding1519 = FlaxObjectBinding(
     _flaxBinding1504,
     _flaxBinding1505,
     _flaxBinding1506,
+    _flaxBinding1507,
   ],
   {
-    "transformed": _flaxBinding1507,
-    "copyWith": _flaxBinding1508,
-    "toStringShort": _flaxBinding1509,
-    "toDiagnosticsNode": _flaxBinding1510,
-    "debugFillProperties": _flaxBinding1511,
-    "toString": _flaxBinding1512,
-    "toStringFull": _flaxBinding1513,
+    "transformed": _flaxBinding1508,
+    "copyWith": _flaxBinding1509,
+    "toStringShort": _flaxBinding1510,
+    "toDiagnosticsNode": _flaxBinding1511,
+    "debugFillProperties": _flaxBinding1512,
+    "toString": _flaxBinding1513,
+    "toStringFull": _flaxBinding1514,
     "@super:transformed": FlaxInstanceMethod.shared(
       _flaxBinding183,
       _PointerRemovedEvent_super_transformed,
     ),
     "@super:copyWith": FlaxInstanceMethod.plain(
-      _flaxBinding1011,
+      _flaxBinding1012,
       _flaxBinding182,
       _PointerRemovedEvent_super_copyWith,
     ),
@@ -63527,16 +65123,16 @@ const _flaxBinding1519 = FlaxObjectBinding(
       flaxStringCall,
       _PointerRemovedEvent_super_toStringFull,
     ),
-    "@super:get:viewId": _flaxBinding1018,
-    "@super:get:embedderId": _flaxBinding1019,
-    "@super:get:timeStamp": _flaxBinding1020,
-    "@super:get:pointer": _flaxBinding1021,
+    "@super:get:viewId": _flaxBinding1019,
+    "@super:get:embedderId": _flaxBinding1020,
+    "@super:get:timeStamp": _flaxBinding1021,
+    "@super:get:pointer": _flaxBinding1022,
     "@super:get:kind": FlaxInstanceMethod.shared(
       _flaxBinding115,
       _PointerRemovedEvent_super_get_kind,
     ),
-    "@super:get:device": _flaxBinding1022,
-    "@super:get:position": _flaxBinding1023,
+    "@super:get:device": _flaxBinding1023,
+    "@super:get:position": _flaxBinding1024,
     "@super:get:localPosition": FlaxInstanceMethod.shared(
       _flaxBinding64,
       _PointerRemovedEvent_super_get_localPosition,
@@ -63545,38 +65141,38 @@ const _flaxBinding1519 = FlaxObjectBinding(
       _flaxBinding64,
       _PointerRemovedEvent_super_get_delta,
     ),
-    "@super:get:localDelta": _flaxBinding1024,
+    "@super:get:localDelta": _flaxBinding1025,
     "@super:get:buttons": FlaxInstanceMethod.shared(
       flaxIntCall,
       _PointerRemovedEvent_super_get_buttons,
     ),
-    "@super:get:down": _flaxBinding1025,
-    "@super:get:obscured": _flaxBinding1026,
+    "@super:get:down": _flaxBinding1026,
+    "@super:get:obscured": _flaxBinding1027,
     "@super:get:pressure": FlaxInstanceMethod.shared(
       flaxDoubleCall,
       _PointerRemovedEvent_super_get_pressure,
     ),
-    "@super:get:pressureMin": _flaxBinding1027,
-    "@super:get:pressureMax": _flaxBinding1028,
-    "@super:get:distance": _flaxBinding1029,
-    "@super:get:distanceMin": _flaxBinding1030,
-    "@super:get:distanceMax": _flaxBinding1031,
-    "@super:get:size": _flaxBinding1032,
-    "@super:get:radiusMajor": _flaxBinding1033,
-    "@super:get:radiusMinor": _flaxBinding1034,
-    "@super:get:radiusMin": _flaxBinding1035,
-    "@super:get:radiusMax": _flaxBinding1036,
-    "@super:get:orientation": _flaxBinding1037,
-    "@super:get:tilt": _flaxBinding1038,
-    "@super:get:platformData": _flaxBinding1039,
-    "@super:get:synthesized": _flaxBinding1040,
+    "@super:get:pressureMin": _flaxBinding1028,
+    "@super:get:pressureMax": _flaxBinding1029,
+    "@super:get:distance": _flaxBinding1030,
+    "@super:get:distanceMin": _flaxBinding1031,
+    "@super:get:distanceMax": _flaxBinding1032,
+    "@super:get:size": _flaxBinding1033,
+    "@super:get:radiusMajor": _flaxBinding1034,
+    "@super:get:radiusMinor": _flaxBinding1035,
+    "@super:get:radiusMin": _flaxBinding1036,
+    "@super:get:radiusMax": _flaxBinding1037,
+    "@super:get:orientation": _flaxBinding1038,
+    "@super:get:tilt": _flaxBinding1039,
+    "@super:get:platformData": _flaxBinding1040,
+    "@super:get:synthesized": _flaxBinding1041,
     "@super:get:transform": FlaxInstanceMethod.shared(
       _flaxBinding102,
       _PointerRemovedEvent_super_get_transform,
     ),
-    "@super:get:original": _flaxBinding1041,
+    "@super:get:original": _flaxBinding1042,
   },
-  constructors: {"": _flaxBinding1515, "@implementation": _flaxBinding1515},
+  constructors: {"": _flaxBinding1516, "@implementation": _flaxBinding1516},
   create: _createPointerRemovedEvent,
   matches: _isPointerRemovedEvent,
   setters: [],
@@ -63588,28 +65184,27 @@ const _flaxBinding1519 = FlaxObjectBinding(
     "package:flutter/src/gestures/events.dart::_CopyPointerRemovedEvent",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding1516,
-    _flaxBinding1518,
+    _flaxBinding1517,
+    _flaxBinding1519,
     _flaxBinding316,
     _flaxBinding318,
     _flaxBinding320,
     _flaxBinding311,
-    _flaxBinding1046,
     _flaxBinding1047,
     _flaxBinding1048,
     _flaxBinding1049,
     _flaxBinding1050,
-    _flaxBinding792,
     _flaxBinding1051,
+    _flaxBinding793,
     _flaxBinding1052,
+    _flaxBinding1053,
     _flaxBinding509,
     _flaxBinding588,
-    _flaxBinding1053,
     _flaxBinding1054,
     _flaxBinding1055,
     _flaxBinding1056,
-    _flaxBinding632,
     _flaxBinding1057,
+    _flaxBinding632,
     _flaxBinding1058,
     _flaxBinding1059,
     _flaxBinding1060,
@@ -63623,47 +65218,48 @@ const _flaxBinding1519 = FlaxObjectBinding(
     _flaxBinding1068,
     _flaxBinding1069,
     _flaxBinding1070,
-    _flaxBinding759,
     _flaxBinding1071,
+    _flaxBinding760,
+    _flaxBinding1072,
   ]),
 );
-const _flaxBinding1520 = FlaxGetter.plain(
+const _flaxBinding1521 = FlaxGetter.plain(
   "debugGlobalRouteCount",
   flaxIntType,
   _PointerRouter_debugGlobalRouteCount,
 );
-const _flaxBinding1521 = <FlaxParameter>[
+const _flaxBinding1522 = <FlaxParameter>[
   FlaxParameter.required("pointer", flaxIntType),
   FlaxParameter.required("route", _flaxBinding169),
   FlaxParameter("transform", _flaxBinding101, required: false),
 ];
-const _flaxBinding1522 = FlaxInstanceMethod.plain(
-  _flaxBinding1521,
+const _flaxBinding1523 = FlaxInstanceMethod.plain(
+  _flaxBinding1522,
   flaxVoidType,
   _PointerRouter_addRoute,
 );
-const _flaxBinding1523 = FlaxInstanceMethod.shared(
+const _flaxBinding1524 = FlaxInstanceMethod.shared(
   _flaxBinding184,
   _PointerRouter_removeRoute,
 );
-const _flaxBinding1524 = <FlaxParameter>[
+const _flaxBinding1525 = <FlaxParameter>[
   FlaxParameter.required("route", _flaxBinding169),
   FlaxParameter("transform", _flaxBinding101, required: false),
 ];
-const _flaxBinding1525 = FlaxInstanceMethod.plain(
-  _flaxBinding1524,
+const _flaxBinding1526 = FlaxInstanceMethod.plain(
+  _flaxBinding1525,
   flaxVoidType,
   _PointerRouter_addGlobalRoute,
 );
-const _flaxBinding1526 = FlaxInstanceMethod.shared(
+const _flaxBinding1527 = FlaxInstanceMethod.shared(
   _flaxBinding185,
   _PointerRouter_removeGlobalRoute,
 );
-const _flaxBinding1527 = FlaxInstanceMethod.shared(
+const _flaxBinding1528 = FlaxInstanceMethod.shared(
   _flaxBinding3,
   _PointerRouter_route,
 );
-const _flaxBinding1528 = FlaxCallbackBinding.signature(
+const _flaxBinding1529 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain("pointer", flaxIntType),
     FlaxCallbackParameter.plain("route", _flaxBinding169),
@@ -63672,19 +65268,19 @@ const _flaxBinding1528 = FlaxCallbackBinding.signature(
   flaxVoidType,
   id: "callback:<>(p:r:pointer:int:,p:r:route:callback:<>(p:r:event:object:flax.core/flutter#type:PointerEvent)->void:,p:o:transform:object?:flax.core/sdk_rendering#type:Matrix4)->void:",
 );
-const _flaxBinding1529 = FlaxProxyMember(
+const _flaxBinding1530 = FlaxProxyMember(
   "addRoute",
   0,
-  _flaxBinding1528,
+  _flaxBinding1529,
   hasSuper: true,
 );
-const _flaxBinding1530 = FlaxProxyMember(
+const _flaxBinding1531 = FlaxProxyMember(
   "removeRoute",
   0,
   _flaxBinding184,
   hasSuper: true,
 );
-const _flaxBinding1531 = FlaxCallbackBinding.signature(
+const _flaxBinding1532 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain("route", _flaxBinding169),
     FlaxCallbackParameter.plain("transform", _flaxBinding101, required: false),
@@ -63692,41 +65288,41 @@ const _flaxBinding1531 = FlaxCallbackBinding.signature(
   flaxVoidType,
   id: "callback:<>(p:r:route:callback:<>(p:r:event:object:flax.core/flutter#type:PointerEvent)->void:,p:o:transform:object?:flax.core/sdk_rendering#type:Matrix4)->void:",
 );
-const _flaxBinding1532 = FlaxProxyMember(
+const _flaxBinding1533 = FlaxProxyMember(
   "addGlobalRoute",
   0,
-  _flaxBinding1531,
+  _flaxBinding1532,
   hasSuper: true,
 );
-const _flaxBinding1533 = FlaxProxyMember(
+const _flaxBinding1534 = FlaxProxyMember(
   "removeGlobalRoute",
   0,
   _flaxBinding185,
   hasSuper: true,
 );
-const _flaxBinding1534 = FlaxProxyMember(
+const _flaxBinding1535 = FlaxProxyMember(
   "route",
   0,
   _flaxBinding3,
   hasSuper: true,
 );
-const _flaxBinding1535 = FlaxProxyMember(
+const _flaxBinding1536 = FlaxProxyMember(
   "debugGlobalRouteCount",
   1,
   flaxIntCall,
   hasSuper: true,
 );
-const _flaxBinding1536 = FlaxObjectBinding(
+const _flaxBinding1537 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:PointerRouter",
-  [_flaxBinding1520],
+  [_flaxBinding1521],
   {
-    "addRoute": _flaxBinding1522,
-    "removeRoute": _flaxBinding1523,
-    "addGlobalRoute": _flaxBinding1525,
-    "removeGlobalRoute": _flaxBinding1526,
-    "route": _flaxBinding1527,
+    "addRoute": _flaxBinding1523,
+    "removeRoute": _flaxBinding1524,
+    "addGlobalRoute": _flaxBinding1526,
+    "removeGlobalRoute": _flaxBinding1527,
+    "route": _flaxBinding1528,
     "@super:addRoute": FlaxInstanceMethod.plain(
-      _flaxBinding1521,
+      _flaxBinding1522,
       flaxVoidType,
       _PointerRouter_super_addRoute,
     ),
@@ -63735,7 +65331,7 @@ const _flaxBinding1536 = FlaxObjectBinding(
       _PointerRouter_super_removeRoute,
     ),
     "@super:addGlobalRoute": FlaxInstanceMethod.plain(
-      _flaxBinding1524,
+      _flaxBinding1525,
       flaxVoidType,
       _PointerRouter_super_addGlobalRoute,
     ),
@@ -63758,196 +65354,196 @@ const _flaxBinding1536 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding1529,
     _flaxBinding1530,
-    _flaxBinding1532,
+    _flaxBinding1531,
     _flaxBinding1533,
     _flaxBinding1534,
     _flaxBinding1535,
+    _flaxBinding1536,
   ]),
 );
-const _flaxBinding1537 = FlaxGetter.plain(
+const _flaxBinding1538 = FlaxGetter.plain(
   "viewId",
   flaxIntType,
   _PointerSignalEvent_viewId,
 );
-const _flaxBinding1538 = FlaxGetter.plain(
+const _flaxBinding1539 = FlaxGetter.plain(
   "embedderId",
   flaxIntType,
   _PointerSignalEvent_embedderId,
 );
-const _flaxBinding1539 = FlaxGetter.plain(
+const _flaxBinding1540 = FlaxGetter.plain(
   "timeStamp",
   flaxDurationType,
   _PointerSignalEvent_timeStamp,
 );
-const _flaxBinding1540 = FlaxGetter.plain(
+const _flaxBinding1541 = FlaxGetter.plain(
   "pointer",
   flaxIntType,
   _PointerSignalEvent_pointer,
 );
-const _flaxBinding1541 = FlaxGetter.plain(
+const _flaxBinding1542 = FlaxGetter.plain(
   "kind",
   _flaxBinding14,
   _PointerSignalEvent_kind,
 );
-const _flaxBinding1542 = FlaxGetter.plain(
+const _flaxBinding1543 = FlaxGetter.plain(
   "device",
   flaxIntType,
   _PointerSignalEvent_device,
 );
-const _flaxBinding1543 = FlaxGetter.plain(
+const _flaxBinding1544 = FlaxGetter.plain(
   "position",
   flaxOffsetType,
   _PointerSignalEvent_position,
 );
-const _flaxBinding1544 = FlaxGetter.plain(
+const _flaxBinding1545 = FlaxGetter.plain(
   "localPosition",
   flaxOffsetType,
   _PointerSignalEvent_localPosition,
 );
-const _flaxBinding1545 = FlaxGetter.plain(
+const _flaxBinding1546 = FlaxGetter.plain(
   "delta",
   flaxOffsetType,
   _PointerSignalEvent_delta,
 );
-const _flaxBinding1546 = FlaxGetter.plain(
+const _flaxBinding1547 = FlaxGetter.plain(
   "localDelta",
   flaxOffsetType,
   _PointerSignalEvent_localDelta,
 );
-const _flaxBinding1547 = FlaxGetter.plain(
+const _flaxBinding1548 = FlaxGetter.plain(
   "buttons",
   flaxIntType,
   _PointerSignalEvent_buttons,
 );
-const _flaxBinding1548 = FlaxGetter.plain(
+const _flaxBinding1549 = FlaxGetter.plain(
   "down",
   flaxBoolType,
   _PointerSignalEvent_down,
 );
-const _flaxBinding1549 = FlaxGetter.plain(
+const _flaxBinding1550 = FlaxGetter.plain(
   "obscured",
   flaxBoolType,
   _PointerSignalEvent_obscured,
 );
-const _flaxBinding1550 = FlaxGetter.plain(
+const _flaxBinding1551 = FlaxGetter.plain(
   "pressure",
   flaxDoubleType,
   _PointerSignalEvent_pressure,
 );
-const _flaxBinding1551 = FlaxGetter.plain(
+const _flaxBinding1552 = FlaxGetter.plain(
   "pressureMin",
   flaxDoubleType,
   _PointerSignalEvent_pressureMin,
 );
-const _flaxBinding1552 = FlaxGetter.plain(
+const _flaxBinding1553 = FlaxGetter.plain(
   "pressureMax",
   flaxDoubleType,
   _PointerSignalEvent_pressureMax,
 );
-const _flaxBinding1553 = FlaxGetter.plain(
+const _flaxBinding1554 = FlaxGetter.plain(
   "distance",
   flaxDoubleType,
   _PointerSignalEvent_distance,
 );
-const _flaxBinding1554 = FlaxGetter.plain(
+const _flaxBinding1555 = FlaxGetter.plain(
   "distanceMin",
   flaxDoubleType,
   _PointerSignalEvent_distanceMin,
 );
-const _flaxBinding1555 = FlaxGetter.plain(
+const _flaxBinding1556 = FlaxGetter.plain(
   "distanceMax",
   flaxDoubleType,
   _PointerSignalEvent_distanceMax,
 );
-const _flaxBinding1556 = FlaxGetter.plain(
+const _flaxBinding1557 = FlaxGetter.plain(
   "size",
   flaxDoubleType,
   _PointerSignalEvent_size,
 );
-const _flaxBinding1557 = FlaxGetter.plain(
+const _flaxBinding1558 = FlaxGetter.plain(
   "radiusMajor",
   flaxDoubleType,
   _PointerSignalEvent_radiusMajor,
 );
-const _flaxBinding1558 = FlaxGetter.plain(
+const _flaxBinding1559 = FlaxGetter.plain(
   "radiusMinor",
   flaxDoubleType,
   _PointerSignalEvent_radiusMinor,
 );
-const _flaxBinding1559 = FlaxGetter.plain(
+const _flaxBinding1560 = FlaxGetter.plain(
   "radiusMin",
   flaxDoubleType,
   _PointerSignalEvent_radiusMin,
 );
-const _flaxBinding1560 = FlaxGetter.plain(
+const _flaxBinding1561 = FlaxGetter.plain(
   "radiusMax",
   flaxDoubleType,
   _PointerSignalEvent_radiusMax,
 );
-const _flaxBinding1561 = FlaxGetter.plain(
+const _flaxBinding1562 = FlaxGetter.plain(
   "orientation",
   flaxDoubleType,
   _PointerSignalEvent_orientation,
 );
-const _flaxBinding1562 = FlaxGetter.plain(
+const _flaxBinding1563 = FlaxGetter.plain(
   "tilt",
   flaxDoubleType,
   _PointerSignalEvent_tilt,
 );
-const _flaxBinding1563 = FlaxGetter.plain(
+const _flaxBinding1564 = FlaxGetter.plain(
   "platformData",
   flaxIntType,
   _PointerSignalEvent_platformData,
 );
-const _flaxBinding1564 = FlaxGetter.plain(
+const _flaxBinding1565 = FlaxGetter.plain(
   "synthesized",
   flaxBoolType,
   _PointerSignalEvent_synthesized,
 );
-const _flaxBinding1565 = FlaxGetter.plain(
+const _flaxBinding1566 = FlaxGetter.plain(
   "transform",
   _flaxBinding101,
   _PointerSignalEvent_transform,
 );
-const _flaxBinding1566 = FlaxGetter.plain(
+const _flaxBinding1567 = FlaxGetter.plain(
   "original",
   _flaxBinding69,
   _PointerSignalEvent_original,
 );
-const _flaxBinding1567 = FlaxInstanceMethod.shared(
+const _flaxBinding1568 = FlaxInstanceMethod.shared(
   _flaxBinding191,
   _PointerSignalEvent_transformed,
 );
-const _flaxBinding1568 = FlaxInstanceMethod.plain(
-  _flaxBinding1011,
+const _flaxBinding1569 = FlaxInstanceMethod.plain(
+  _flaxBinding1012,
   _flaxBinding2,
   _PointerSignalEvent_copyWith,
 );
-const _flaxBinding1569 = FlaxInstanceMethod.shared(
+const _flaxBinding1570 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _PointerSignalEvent_toStringShort,
 );
-const _flaxBinding1570 = FlaxInstanceMethod.plain(
+const _flaxBinding1571 = FlaxInstanceMethod.plain(
   _flaxBinding268,
   _flaxBinding17,
   _PointerSignalEvent_toDiagnosticsNode,
 );
-const _flaxBinding1571 = FlaxInstanceMethod.shared(
+const _flaxBinding1572 = FlaxInstanceMethod.shared(
   _flaxBinding6,
   _PointerSignalEvent_debugFillProperties,
 );
-const _flaxBinding1572 = FlaxInstanceMethod.plain(
+const _flaxBinding1573 = FlaxInstanceMethod.plain(
   _flaxBinding260,
   flaxStringType,
   _PointerSignalEvent_toString,
 );
-const _flaxBinding1573 = FlaxInstanceMethod.shared(
+const _flaxBinding1574 = FlaxInstanceMethod.shared(
   _flaxBinding188,
   _PointerSignalEvent_respond,
 );
-const _flaxBinding1574 = <FlaxParameter>[
+const _flaxBinding1575 = <FlaxParameter>[
   FlaxParameter("viewId", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
     "timeStamp",
@@ -63960,7 +65556,7 @@ const _flaxBinding1574 = <FlaxParameter>[
     "kind",
     _flaxBinding14,
     required: false,
-    defaultValue: api4.PointerDeviceKind.mouse,
+    defaultValue: api3.PointerDeviceKind.mouse,
   ),
   FlaxParameter("device", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
@@ -63971,8 +65567,8 @@ const _flaxBinding1574 = <FlaxParameter>[
   ),
   FlaxParameter("embedderId", flaxIntType, required: false, defaultValue: 0),
 ];
-const _flaxBinding1575 = FlaxProxyMember("transformed", 0, _flaxBinding191);
-const _flaxBinding1576 = FlaxCallbackBinding.signature(
+const _flaxBinding1576 = FlaxProxyMember("transformed", 0, _flaxBinding191);
+const _flaxBinding1577 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "viewId",
@@ -64116,17 +65712,16 @@ const _flaxBinding1576 = FlaxCallbackBinding.signature(
   _flaxBinding2,
   id: "callback:<>(n:o:viewId:int?:,n:o:timeStamp:object?:flax.core/flutter#type:Duration,n:o:pointer:int?:,n:o:kind:enum?:flax.core/sdk_dart_ui#type:PointerDeviceKind,n:o:device:int?:,n:o:position:object?:flax.core/flutter#type:Offset,n:o:delta:object?:flax.core/flutter#type:Offset,n:o:buttons:int?:,n:o:obscured:bool?:,n:o:pressure:double?:,n:o:pressureMin:double?:,n:o:pressureMax:double?:,n:o:distance:double?:,n:o:distanceMax:double?:,n:o:size:double?:,n:o:radiusMajor:double?:,n:o:radiusMinor:double?:,n:o:radiusMin:double?:,n:o:radiusMax:double?:,n:o:orientation:double?:,n:o:tilt:double?:,n:o:synthesized:bool?:,n:o:embedderId:int?:)->object:flax.core/flutter#type:PointerEvent",
 );
-const _flaxBinding1577 = FlaxProxyMember("copyWith", 0, _flaxBinding1576);
-const _flaxBinding1578 = FlaxProxyMember(
+const _flaxBinding1578 = FlaxProxyMember("copyWith", 0, _flaxBinding1577);
+const _flaxBinding1579 = FlaxProxyMember(
   "respond",
   0,
   _flaxBinding188,
   hasSuper: true,
 );
-const _flaxBinding1579 = FlaxObjectBinding(
+const _flaxBinding1580 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:PointerSignalEvent",
   [
-    _flaxBinding1537,
     _flaxBinding1538,
     _flaxBinding1539,
     _flaxBinding1540,
@@ -64156,15 +65751,16 @@ const _flaxBinding1579 = FlaxObjectBinding(
     _flaxBinding1564,
     _flaxBinding1565,
     _flaxBinding1566,
+    _flaxBinding1567,
   ],
   {
-    "transformed": _flaxBinding1567,
-    "copyWith": _flaxBinding1568,
-    "toStringShort": _flaxBinding1569,
-    "toDiagnosticsNode": _flaxBinding1570,
-    "debugFillProperties": _flaxBinding1571,
-    "toString": _flaxBinding1572,
-    "respond": _flaxBinding1573,
+    "transformed": _flaxBinding1568,
+    "copyWith": _flaxBinding1569,
+    "toStringShort": _flaxBinding1570,
+    "toDiagnosticsNode": _flaxBinding1571,
+    "debugFillProperties": _flaxBinding1572,
+    "toString": _flaxBinding1573,
+    "respond": _flaxBinding1574,
     "@super:toStringShort": _flaxBinding286,
     "@super:toDiagnosticsNode": _flaxBinding287,
     "@super:debugFillProperties": _flaxBinding505,
@@ -64173,16 +65769,16 @@ const _flaxBinding1579 = FlaxObjectBinding(
       _flaxBinding188,
       _PointerSignalEvent_super_respond,
     ),
-    "@super:get:viewId": _flaxBinding1018,
-    "@super:get:embedderId": _flaxBinding1019,
-    "@super:get:timeStamp": _flaxBinding1020,
-    "@super:get:pointer": _flaxBinding1021,
+    "@super:get:viewId": _flaxBinding1019,
+    "@super:get:embedderId": _flaxBinding1020,
+    "@super:get:timeStamp": _flaxBinding1021,
+    "@super:get:pointer": _flaxBinding1022,
     "@super:get:kind": FlaxInstanceMethod.shared(
       _flaxBinding115,
       _PointerSignalEvent_super_get_kind,
     ),
-    "@super:get:device": _flaxBinding1022,
-    "@super:get:position": _flaxBinding1023,
+    "@super:get:device": _flaxBinding1023,
+    "@super:get:position": _flaxBinding1024,
     "@super:get:localPosition": FlaxInstanceMethod.shared(
       _flaxBinding64,
       _PointerSignalEvent_super_get_localPosition,
@@ -64191,38 +65787,38 @@ const _flaxBinding1579 = FlaxObjectBinding(
       _flaxBinding64,
       _PointerSignalEvent_super_get_delta,
     ),
-    "@super:get:localDelta": _flaxBinding1024,
+    "@super:get:localDelta": _flaxBinding1025,
     "@super:get:buttons": FlaxInstanceMethod.shared(
       flaxIntCall,
       _PointerSignalEvent_super_get_buttons,
     ),
-    "@super:get:down": _flaxBinding1025,
-    "@super:get:obscured": _flaxBinding1026,
+    "@super:get:down": _flaxBinding1026,
+    "@super:get:obscured": _flaxBinding1027,
     "@super:get:pressure": FlaxInstanceMethod.shared(
       flaxDoubleCall,
       _PointerSignalEvent_super_get_pressure,
     ),
-    "@super:get:pressureMin": _flaxBinding1027,
-    "@super:get:pressureMax": _flaxBinding1028,
-    "@super:get:distance": _flaxBinding1029,
-    "@super:get:distanceMin": _flaxBinding1030,
-    "@super:get:distanceMax": _flaxBinding1031,
-    "@super:get:size": _flaxBinding1032,
-    "@super:get:radiusMajor": _flaxBinding1033,
-    "@super:get:radiusMinor": _flaxBinding1034,
-    "@super:get:radiusMin": _flaxBinding1035,
-    "@super:get:radiusMax": _flaxBinding1036,
-    "@super:get:orientation": _flaxBinding1037,
-    "@super:get:tilt": _flaxBinding1038,
-    "@super:get:platformData": _flaxBinding1039,
-    "@super:get:synthesized": _flaxBinding1040,
+    "@super:get:pressureMin": _flaxBinding1028,
+    "@super:get:pressureMax": _flaxBinding1029,
+    "@super:get:distance": _flaxBinding1030,
+    "@super:get:distanceMin": _flaxBinding1031,
+    "@super:get:distanceMax": _flaxBinding1032,
+    "@super:get:size": _flaxBinding1033,
+    "@super:get:radiusMajor": _flaxBinding1034,
+    "@super:get:radiusMinor": _flaxBinding1035,
+    "@super:get:radiusMin": _flaxBinding1036,
+    "@super:get:radiusMax": _flaxBinding1037,
+    "@super:get:orientation": _flaxBinding1038,
+    "@super:get:tilt": _flaxBinding1039,
+    "@super:get:platformData": _flaxBinding1040,
+    "@super:get:synthesized": _flaxBinding1041,
     "@super:get:transform": FlaxInstanceMethod.shared(
       _flaxBinding102,
       _PointerSignalEvent_super_get_transform,
     ),
-    "@super:get:original": _flaxBinding1041,
+    "@super:get:original": _flaxBinding1042,
   },
-  constructors: {"@implementation": _flaxBinding1574},
+  constructors: {"@implementation": _flaxBinding1575},
   create: _createPointerSignalEvent,
   matches: _isPointerSignalEvent,
   setters: [],
@@ -64233,28 +65829,27 @@ const _flaxBinding1579 = FlaxObjectBinding(
     "package:flutter/src/gestures/events.dart::_RespondablePointerEvent",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding1575,
-    _flaxBinding1577,
+    _flaxBinding1576,
+    _flaxBinding1578,
     _flaxBinding316,
     _flaxBinding318,
     _flaxBinding320,
     _flaxBinding311,
-    _flaxBinding1578,
-    _flaxBinding1047,
+    _flaxBinding1579,
     _flaxBinding1048,
     _flaxBinding1049,
     _flaxBinding1050,
-    _flaxBinding792,
     _flaxBinding1051,
+    _flaxBinding793,
     _flaxBinding1052,
+    _flaxBinding1053,
     _flaxBinding509,
     _flaxBinding588,
-    _flaxBinding1053,
     _flaxBinding1054,
     _flaxBinding1055,
     _flaxBinding1056,
-    _flaxBinding632,
     _flaxBinding1057,
+    _flaxBinding632,
     _flaxBinding1058,
     _flaxBinding1059,
     _flaxBinding1060,
@@ -64268,20 +65863,21 @@ const _flaxBinding1579 = FlaxObjectBinding(
     _flaxBinding1068,
     _flaxBinding1069,
     _flaxBinding1070,
-    _flaxBinding759,
     _flaxBinding1071,
+    _flaxBinding760,
+    _flaxBinding1072,
   ]),
 );
-const _flaxBinding1580 = FlaxGetter.plain(
+const _flaxBinding1581 = FlaxGetter.plain(
   "scale",
   flaxDoubleType,
   _PointerScaleEvent_scale,
 );
-const _flaxBinding1581 = FlaxInstanceMethod.shared(
+const _flaxBinding1582 = FlaxInstanceMethod.shared(
   _flaxBinding187,
   _PointerScaleEvent_transformed,
 );
-const _flaxBinding1582 = <FlaxParameter>[
+const _flaxBinding1583 = <FlaxParameter>[
   FlaxParameter("buttons", flaxNullableIntType, required: false),
   FlaxParameter("delta", _flaxBinding143, required: false),
   FlaxParameter("device", flaxNullableIntType, required: false),
@@ -64307,16 +65903,16 @@ const _flaxBinding1582 = <FlaxParameter>[
   FlaxParameter("timeStamp", _flaxBinding26, required: false),
   FlaxParameter("viewId", flaxNullableIntType, required: false),
 ];
-const _flaxBinding1583 = FlaxInstanceMethod.plain(
-  _flaxBinding1582,
+const _flaxBinding1584 = FlaxInstanceMethod.plain(
+  _flaxBinding1583,
   _flaxBinding186,
   _PointerScaleEvent_copyWith,
 );
-const _flaxBinding1584 = FlaxInstanceMethod.shared(
+const _flaxBinding1585 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _PointerScaleEvent_toStringFull,
 );
-const _flaxBinding1585 = <FlaxParameter>[
+const _flaxBinding1586 = <FlaxParameter>[
   FlaxParameter("viewId", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
     "timeStamp",
@@ -64328,7 +65924,7 @@ const _flaxBinding1585 = <FlaxParameter>[
     "kind",
     _flaxBinding14,
     required: false,
-    defaultValue: api4.PointerDeviceKind.mouse,
+    defaultValue: api3.PointerDeviceKind.mouse,
   ),
   FlaxParameter("device", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
@@ -64340,13 +65936,13 @@ const _flaxBinding1585 = <FlaxParameter>[
   FlaxParameter("embedderId", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter("scale", flaxDoubleType, required: false, defaultValue: 1.0),
 ];
-const _flaxBinding1586 = FlaxProxyMember(
+const _flaxBinding1587 = FlaxProxyMember(
   "transformed",
   0,
   _flaxBinding187,
   hasSuper: true,
 );
-const _flaxBinding1587 = FlaxCallbackBinding.signature(
+const _flaxBinding1588 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "viewId",
@@ -64496,25 +66092,25 @@ const _flaxBinding1587 = FlaxCallbackBinding.signature(
   _flaxBinding186,
   id: "callback:<>(n:o:viewId:int?:,n:o:timeStamp:object?:flax.core/flutter#type:Duration,n:o:pointer:int?:,n:o:kind:enum?:flax.core/sdk_dart_ui#type:PointerDeviceKind,n:o:device:int?:,n:o:position:object?:flax.core/flutter#type:Offset,n:o:delta:object?:flax.core/flutter#type:Offset,n:o:buttons:int?:,n:o:obscured:bool?:,n:o:pressure:double?:,n:o:pressureMin:double?:,n:o:pressureMax:double?:,n:o:distance:double?:,n:o:distanceMax:double?:,n:o:size:double?:,n:o:radiusMajor:double?:,n:o:radiusMinor:double?:,n:o:radiusMin:double?:,n:o:radiusMax:double?:,n:o:orientation:double?:,n:o:tilt:double?:,n:o:synthesized:bool?:,n:o:embedderId:int?:,n:o:scale:double?:)->object:flax.core/sdk_gestures#type:PointerScaleEvent",
 );
-const _flaxBinding1588 = FlaxProxyMember(
+const _flaxBinding1589 = FlaxProxyMember(
   "copyWith",
   0,
-  _flaxBinding1587,
+  _flaxBinding1588,
   hasSuper: true,
 );
-const _flaxBinding1589 = FlaxObjectBinding(
+const _flaxBinding1590 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:PointerScaleEvent",
-  [_flaxBinding1580],
+  [_flaxBinding1581],
   {
-    "transformed": _flaxBinding1581,
-    "copyWith": _flaxBinding1583,
-    "toStringFull": _flaxBinding1584,
+    "transformed": _flaxBinding1582,
+    "copyWith": _flaxBinding1584,
+    "toStringFull": _flaxBinding1585,
     "@super:transformed": FlaxInstanceMethod.shared(
       _flaxBinding187,
       _PointerScaleEvent_super_transformed,
     ),
     "@super:copyWith": FlaxInstanceMethod.plain(
-      _flaxBinding1582,
+      _flaxBinding1583,
       _flaxBinding186,
       _PointerScaleEvent_super_copyWith,
     ),
@@ -64534,16 +66130,16 @@ const _flaxBinding1589 = FlaxObjectBinding(
       flaxDoubleCall,
       _PointerScaleEvent_super_get_scale,
     ),
-    "@super:get:viewId": _flaxBinding1018,
-    "@super:get:embedderId": _flaxBinding1019,
-    "@super:get:timeStamp": _flaxBinding1020,
-    "@super:get:pointer": _flaxBinding1021,
+    "@super:get:viewId": _flaxBinding1019,
+    "@super:get:embedderId": _flaxBinding1020,
+    "@super:get:timeStamp": _flaxBinding1021,
+    "@super:get:pointer": _flaxBinding1022,
     "@super:get:kind": FlaxInstanceMethod.shared(
       _flaxBinding115,
       _PointerScaleEvent_super_get_kind,
     ),
-    "@super:get:device": _flaxBinding1022,
-    "@super:get:position": _flaxBinding1023,
+    "@super:get:device": _flaxBinding1023,
+    "@super:get:position": _flaxBinding1024,
     "@super:get:localPosition": FlaxInstanceMethod.shared(
       _flaxBinding64,
       _PointerScaleEvent_super_get_localPosition,
@@ -64552,38 +66148,38 @@ const _flaxBinding1589 = FlaxObjectBinding(
       _flaxBinding64,
       _PointerScaleEvent_super_get_delta,
     ),
-    "@super:get:localDelta": _flaxBinding1024,
+    "@super:get:localDelta": _flaxBinding1025,
     "@super:get:buttons": FlaxInstanceMethod.shared(
       flaxIntCall,
       _PointerScaleEvent_super_get_buttons,
     ),
-    "@super:get:down": _flaxBinding1025,
-    "@super:get:obscured": _flaxBinding1026,
+    "@super:get:down": _flaxBinding1026,
+    "@super:get:obscured": _flaxBinding1027,
     "@super:get:pressure": FlaxInstanceMethod.shared(
       flaxDoubleCall,
       _PointerScaleEvent_super_get_pressure,
     ),
-    "@super:get:pressureMin": _flaxBinding1027,
-    "@super:get:pressureMax": _flaxBinding1028,
-    "@super:get:distance": _flaxBinding1029,
-    "@super:get:distanceMin": _flaxBinding1030,
-    "@super:get:distanceMax": _flaxBinding1031,
-    "@super:get:size": _flaxBinding1032,
-    "@super:get:radiusMajor": _flaxBinding1033,
-    "@super:get:radiusMinor": _flaxBinding1034,
-    "@super:get:radiusMin": _flaxBinding1035,
-    "@super:get:radiusMax": _flaxBinding1036,
-    "@super:get:orientation": _flaxBinding1037,
-    "@super:get:tilt": _flaxBinding1038,
-    "@super:get:platformData": _flaxBinding1039,
-    "@super:get:synthesized": _flaxBinding1040,
+    "@super:get:pressureMin": _flaxBinding1028,
+    "@super:get:pressureMax": _flaxBinding1029,
+    "@super:get:distance": _flaxBinding1030,
+    "@super:get:distanceMin": _flaxBinding1031,
+    "@super:get:distanceMax": _flaxBinding1032,
+    "@super:get:size": _flaxBinding1033,
+    "@super:get:radiusMajor": _flaxBinding1034,
+    "@super:get:radiusMinor": _flaxBinding1035,
+    "@super:get:radiusMin": _flaxBinding1036,
+    "@super:get:radiusMax": _flaxBinding1037,
+    "@super:get:orientation": _flaxBinding1038,
+    "@super:get:tilt": _flaxBinding1039,
+    "@super:get:platformData": _flaxBinding1040,
+    "@super:get:synthesized": _flaxBinding1041,
     "@super:get:transform": FlaxInstanceMethod.shared(
       _flaxBinding102,
       _PointerScaleEvent_super_get_transform,
     ),
-    "@super:get:original": _flaxBinding1041,
+    "@super:get:original": _flaxBinding1042,
   },
-  constructors: {"": _flaxBinding1585, "@implementation": _flaxBinding1585},
+  constructors: {"": _flaxBinding1586, "@implementation": _flaxBinding1586},
   create: _createPointerScaleEvent,
   matches: _isPointerScaleEvent,
   setters: [],
@@ -64596,32 +66192,31 @@ const _flaxBinding1589 = FlaxObjectBinding(
     "package:flutter/src/gestures/events.dart::_PointerEventDescription",
     "package:flutter/src/gestures/events.dart::_CopyPointerScaleEvent",
   ],
-  parent: _flaxBinding1579,
+  parent: _flaxBinding1580,
   proxy: FlaxProxyBinding([
-    _flaxBinding1586,
-    _flaxBinding1588,
+    _flaxBinding1587,
+    _flaxBinding1589,
     _flaxBinding316,
     _flaxBinding318,
     _flaxBinding320,
-    _flaxBinding1578,
+    _flaxBinding1579,
     _flaxBinding311,
-    _flaxBinding1046,
-    _flaxBinding1474,
     _flaxBinding1047,
+    _flaxBinding1475,
     _flaxBinding1048,
     _flaxBinding1049,
     _flaxBinding1050,
-    _flaxBinding792,
     _flaxBinding1051,
+    _flaxBinding793,
     _flaxBinding1052,
+    _flaxBinding1053,
     _flaxBinding509,
     _flaxBinding588,
-    _flaxBinding1053,
     _flaxBinding1054,
     _flaxBinding1055,
     _flaxBinding1056,
-    _flaxBinding632,
     _flaxBinding1057,
+    _flaxBinding632,
     _flaxBinding1058,
     _flaxBinding1059,
     _flaxBinding1060,
@@ -64635,24 +66230,25 @@ const _flaxBinding1589 = FlaxObjectBinding(
     _flaxBinding1068,
     _flaxBinding1069,
     _flaxBinding1070,
-    _flaxBinding759,
     _flaxBinding1071,
+    _flaxBinding760,
+    _flaxBinding1072,
   ]),
 );
-const _flaxBinding1590 = FlaxInstanceMethod.shared(
+const _flaxBinding1591 = FlaxInstanceMethod.shared(
   _flaxBinding190,
   _PointerScrollInertiaCancelEvent_transformed,
 );
-const _flaxBinding1591 = FlaxInstanceMethod.plain(
-  _flaxBinding1011,
+const _flaxBinding1592 = FlaxInstanceMethod.plain(
+  _flaxBinding1012,
   _flaxBinding189,
   _PointerScrollInertiaCancelEvent_copyWith,
 );
-const _flaxBinding1592 = FlaxInstanceMethod.shared(
+const _flaxBinding1593 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _PointerScrollInertiaCancelEvent_toStringFull,
 );
-const _flaxBinding1593 = <FlaxParameter>[
+const _flaxBinding1594 = <FlaxParameter>[
   FlaxParameter("viewId", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
     "timeStamp",
@@ -64664,7 +66260,7 @@ const _flaxBinding1593 = <FlaxParameter>[
     "kind",
     _flaxBinding14,
     required: false,
-    defaultValue: api4.PointerDeviceKind.mouse,
+    defaultValue: api3.PointerDeviceKind.mouse,
   ),
   FlaxParameter("device", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
@@ -64675,13 +66271,13 @@ const _flaxBinding1593 = <FlaxParameter>[
   ),
   FlaxParameter("embedderId", flaxIntType, required: false, defaultValue: 0),
 ];
-const _flaxBinding1594 = FlaxProxyMember(
+const _flaxBinding1595 = FlaxProxyMember(
   "transformed",
   0,
   _flaxBinding190,
   hasSuper: true,
 );
-const _flaxBinding1595 = FlaxCallbackBinding.signature(
+const _flaxBinding1596 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "viewId",
@@ -64825,25 +66421,25 @@ const _flaxBinding1595 = FlaxCallbackBinding.signature(
   _flaxBinding189,
   id: "callback:<>(n:o:viewId:int?:,n:o:timeStamp:object?:flax.core/flutter#type:Duration,n:o:pointer:int?:,n:o:kind:enum?:flax.core/sdk_dart_ui#type:PointerDeviceKind,n:o:device:int?:,n:o:position:object?:flax.core/flutter#type:Offset,n:o:delta:object?:flax.core/flutter#type:Offset,n:o:buttons:int?:,n:o:obscured:bool?:,n:o:pressure:double?:,n:o:pressureMin:double?:,n:o:pressureMax:double?:,n:o:distance:double?:,n:o:distanceMax:double?:,n:o:size:double?:,n:o:radiusMajor:double?:,n:o:radiusMinor:double?:,n:o:radiusMin:double?:,n:o:radiusMax:double?:,n:o:orientation:double?:,n:o:tilt:double?:,n:o:synthesized:bool?:,n:o:embedderId:int?:)->object:flax.core/sdk_gestures#type:PointerScrollInertiaCancelEvent",
 );
-const _flaxBinding1596 = FlaxProxyMember(
+const _flaxBinding1597 = FlaxProxyMember(
   "copyWith",
   0,
-  _flaxBinding1595,
+  _flaxBinding1596,
   hasSuper: true,
 );
-const _flaxBinding1597 = FlaxObjectBinding(
+const _flaxBinding1598 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:PointerScrollInertiaCancelEvent",
   [],
   {
-    "transformed": _flaxBinding1590,
-    "copyWith": _flaxBinding1591,
-    "toStringFull": _flaxBinding1592,
+    "transformed": _flaxBinding1591,
+    "copyWith": _flaxBinding1592,
+    "toStringFull": _flaxBinding1593,
     "@super:transformed": FlaxInstanceMethod.shared(
       _flaxBinding190,
       _PointerScrollInertiaCancelEvent_super_transformed,
     ),
     "@super:copyWith": FlaxInstanceMethod.plain(
-      _flaxBinding1011,
+      _flaxBinding1012,
       _flaxBinding189,
       _PointerScrollInertiaCancelEvent_super_copyWith,
     ),
@@ -64859,16 +66455,16 @@ const _flaxBinding1597 = FlaxObjectBinding(
       flaxStringCall,
       _PointerScrollInertiaCancelEvent_super_toStringFull,
     ),
-    "@super:get:viewId": _flaxBinding1018,
-    "@super:get:embedderId": _flaxBinding1019,
-    "@super:get:timeStamp": _flaxBinding1020,
-    "@super:get:pointer": _flaxBinding1021,
+    "@super:get:viewId": _flaxBinding1019,
+    "@super:get:embedderId": _flaxBinding1020,
+    "@super:get:timeStamp": _flaxBinding1021,
+    "@super:get:pointer": _flaxBinding1022,
     "@super:get:kind": FlaxInstanceMethod.shared(
       _flaxBinding115,
       _PointerScrollInertiaCancelEvent_super_get_kind,
     ),
-    "@super:get:device": _flaxBinding1022,
-    "@super:get:position": _flaxBinding1023,
+    "@super:get:device": _flaxBinding1023,
+    "@super:get:position": _flaxBinding1024,
     "@super:get:localPosition": FlaxInstanceMethod.shared(
       _flaxBinding64,
       _PointerScrollInertiaCancelEvent_super_get_localPosition,
@@ -64877,38 +66473,38 @@ const _flaxBinding1597 = FlaxObjectBinding(
       _flaxBinding64,
       _PointerScrollInertiaCancelEvent_super_get_delta,
     ),
-    "@super:get:localDelta": _flaxBinding1024,
+    "@super:get:localDelta": _flaxBinding1025,
     "@super:get:buttons": FlaxInstanceMethod.shared(
       flaxIntCall,
       _PointerScrollInertiaCancelEvent_super_get_buttons,
     ),
-    "@super:get:down": _flaxBinding1025,
-    "@super:get:obscured": _flaxBinding1026,
+    "@super:get:down": _flaxBinding1026,
+    "@super:get:obscured": _flaxBinding1027,
     "@super:get:pressure": FlaxInstanceMethod.shared(
       flaxDoubleCall,
       _PointerScrollInertiaCancelEvent_super_get_pressure,
     ),
-    "@super:get:pressureMin": _flaxBinding1027,
-    "@super:get:pressureMax": _flaxBinding1028,
-    "@super:get:distance": _flaxBinding1029,
-    "@super:get:distanceMin": _flaxBinding1030,
-    "@super:get:distanceMax": _flaxBinding1031,
-    "@super:get:size": _flaxBinding1032,
-    "@super:get:radiusMajor": _flaxBinding1033,
-    "@super:get:radiusMinor": _flaxBinding1034,
-    "@super:get:radiusMin": _flaxBinding1035,
-    "@super:get:radiusMax": _flaxBinding1036,
-    "@super:get:orientation": _flaxBinding1037,
-    "@super:get:tilt": _flaxBinding1038,
-    "@super:get:platformData": _flaxBinding1039,
-    "@super:get:synthesized": _flaxBinding1040,
+    "@super:get:pressureMin": _flaxBinding1028,
+    "@super:get:pressureMax": _flaxBinding1029,
+    "@super:get:distance": _flaxBinding1030,
+    "@super:get:distanceMin": _flaxBinding1031,
+    "@super:get:distanceMax": _flaxBinding1032,
+    "@super:get:size": _flaxBinding1033,
+    "@super:get:radiusMajor": _flaxBinding1034,
+    "@super:get:radiusMinor": _flaxBinding1035,
+    "@super:get:radiusMin": _flaxBinding1036,
+    "@super:get:radiusMax": _flaxBinding1037,
+    "@super:get:orientation": _flaxBinding1038,
+    "@super:get:tilt": _flaxBinding1039,
+    "@super:get:platformData": _flaxBinding1040,
+    "@super:get:synthesized": _flaxBinding1041,
     "@super:get:transform": FlaxInstanceMethod.shared(
       _flaxBinding102,
       _PointerScrollInertiaCancelEvent_super_get_transform,
     ),
-    "@super:get:original": _flaxBinding1041,
+    "@super:get:original": _flaxBinding1042,
   },
-  constructors: {"": _flaxBinding1593, "@implementation": _flaxBinding1593},
+  constructors: {"": _flaxBinding1594, "@implementation": _flaxBinding1594},
   create: _createPointerScrollInertiaCancelEvent,
   matches: _isPointerScrollInertiaCancelEvent,
   setters: [],
@@ -64921,31 +66517,30 @@ const _flaxBinding1597 = FlaxObjectBinding(
     "package:flutter/src/gestures/events.dart::_PointerEventDescription",
     "package:flutter/src/gestures/events.dart::_CopyPointerScrollInertiaCancelEvent",
   ],
-  parent: _flaxBinding1579,
+  parent: _flaxBinding1580,
   proxy: FlaxProxyBinding([
-    _flaxBinding1594,
-    _flaxBinding1596,
+    _flaxBinding1595,
+    _flaxBinding1597,
     _flaxBinding316,
     _flaxBinding318,
     _flaxBinding320,
-    _flaxBinding1578,
+    _flaxBinding1579,
     _flaxBinding311,
-    _flaxBinding1046,
     _flaxBinding1047,
     _flaxBinding1048,
     _flaxBinding1049,
     _flaxBinding1050,
-    _flaxBinding792,
     _flaxBinding1051,
+    _flaxBinding793,
     _flaxBinding1052,
+    _flaxBinding1053,
     _flaxBinding509,
     _flaxBinding588,
-    _flaxBinding1053,
     _flaxBinding1054,
     _flaxBinding1055,
     _flaxBinding1056,
-    _flaxBinding632,
     _flaxBinding1057,
+    _flaxBinding632,
     _flaxBinding1058,
     _flaxBinding1059,
     _flaxBinding1060,
@@ -64959,36 +66554,37 @@ const _flaxBinding1597 = FlaxObjectBinding(
     _flaxBinding1068,
     _flaxBinding1069,
     _flaxBinding1070,
-    _flaxBinding759,
     _flaxBinding1071,
+    _flaxBinding760,
+    _flaxBinding1072,
   ]),
 );
-const _flaxBinding1598 = FlaxInstanceMethod.shared(
+const _flaxBinding1599 = FlaxInstanceMethod.shared(
   _flaxBinding195,
   _PointerSignalResolver_register,
 );
-const _flaxBinding1599 = FlaxInstanceMethod.shared(
+const _flaxBinding1600 = FlaxInstanceMethod.shared(
   _flaxBinding196,
   _PointerSignalResolver_resolve,
 );
-const _flaxBinding1600 = FlaxProxyMember(
+const _flaxBinding1601 = FlaxProxyMember(
   "register",
   0,
   _flaxBinding195,
   hasSuper: true,
 );
-const _flaxBinding1601 = FlaxProxyMember(
+const _flaxBinding1602 = FlaxProxyMember(
   "resolve",
   0,
   _flaxBinding196,
   hasSuper: true,
 );
-const _flaxBinding1602 = FlaxObjectBinding(
+const _flaxBinding1603 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:PointerSignalResolver",
   [],
   {
-    "register": _flaxBinding1598,
-    "resolve": _flaxBinding1599,
+    "register": _flaxBinding1599,
+    "resolve": _flaxBinding1600,
     "@super:register": FlaxInstanceMethod.shared(
       _flaxBinding195,
       _PointerSignalResolver_super_register,
@@ -65003,163 +66599,163 @@ const _flaxBinding1602 = FlaxObjectBinding(
   matches: _isPointerSignalResolver,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding1600, _flaxBinding1601]),
+  proxy: FlaxProxyBinding([_flaxBinding1601, _flaxBinding1602]),
 );
-const _flaxBinding1603 = FlaxGetter.plain(
+const _flaxBinding1604 = FlaxGetter.plain(
   "viewId",
   flaxIntType,
   _PointerUpEvent_viewId,
 );
-const _flaxBinding1604 = FlaxGetter.plain(
+const _flaxBinding1605 = FlaxGetter.plain(
   "embedderId",
   flaxIntType,
   _PointerUpEvent_embedderId,
 );
-const _flaxBinding1605 = FlaxGetter.plain(
+const _flaxBinding1606 = FlaxGetter.plain(
   "timeStamp",
   flaxDurationType,
   _PointerUpEvent_timeStamp,
 );
-const _flaxBinding1606 = FlaxGetter.plain(
+const _flaxBinding1607 = FlaxGetter.plain(
   "pointer",
   flaxIntType,
   _PointerUpEvent_pointer,
 );
-const _flaxBinding1607 = FlaxGetter.plain(
+const _flaxBinding1608 = FlaxGetter.plain(
   "kind",
   _flaxBinding14,
   _PointerUpEvent_kind,
 );
-const _flaxBinding1608 = FlaxGetter.plain(
+const _flaxBinding1609 = FlaxGetter.plain(
   "device",
   flaxIntType,
   _PointerUpEvent_device,
 );
-const _flaxBinding1609 = FlaxGetter.plain(
+const _flaxBinding1610 = FlaxGetter.plain(
   "position",
   flaxOffsetType,
   _PointerUpEvent_position,
 );
-const _flaxBinding1610 = FlaxGetter.plain(
+const _flaxBinding1611 = FlaxGetter.plain(
   "localPosition",
   flaxOffsetType,
   _PointerUpEvent_localPosition,
 );
-const _flaxBinding1611 = FlaxGetter.plain(
+const _flaxBinding1612 = FlaxGetter.plain(
   "delta",
   flaxOffsetType,
   _PointerUpEvent_delta,
 );
-const _flaxBinding1612 = FlaxGetter.plain(
+const _flaxBinding1613 = FlaxGetter.plain(
   "localDelta",
   flaxOffsetType,
   _PointerUpEvent_localDelta,
 );
-const _flaxBinding1613 = FlaxGetter.plain(
+const _flaxBinding1614 = FlaxGetter.plain(
   "buttons",
   flaxIntType,
   _PointerUpEvent_buttons,
 );
-const _flaxBinding1614 = FlaxGetter.plain(
+const _flaxBinding1615 = FlaxGetter.plain(
   "down",
   flaxBoolType,
   _PointerUpEvent_down,
 );
-const _flaxBinding1615 = FlaxGetter.plain(
+const _flaxBinding1616 = FlaxGetter.plain(
   "obscured",
   flaxBoolType,
   _PointerUpEvent_obscured,
 );
-const _flaxBinding1616 = FlaxGetter.plain(
+const _flaxBinding1617 = FlaxGetter.plain(
   "pressure",
   flaxDoubleType,
   _PointerUpEvent_pressure,
 );
-const _flaxBinding1617 = FlaxGetter.plain(
+const _flaxBinding1618 = FlaxGetter.plain(
   "pressureMin",
   flaxDoubleType,
   _PointerUpEvent_pressureMin,
 );
-const _flaxBinding1618 = FlaxGetter.plain(
+const _flaxBinding1619 = FlaxGetter.plain(
   "pressureMax",
   flaxDoubleType,
   _PointerUpEvent_pressureMax,
 );
-const _flaxBinding1619 = FlaxGetter.plain(
+const _flaxBinding1620 = FlaxGetter.plain(
   "distance",
   flaxDoubleType,
   _PointerUpEvent_distance,
 );
-const _flaxBinding1620 = FlaxGetter.plain(
+const _flaxBinding1621 = FlaxGetter.plain(
   "distanceMin",
   flaxDoubleType,
   _PointerUpEvent_distanceMin,
 );
-const _flaxBinding1621 = FlaxGetter.plain(
+const _flaxBinding1622 = FlaxGetter.plain(
   "distanceMax",
   flaxDoubleType,
   _PointerUpEvent_distanceMax,
 );
-const _flaxBinding1622 = FlaxGetter.plain(
+const _flaxBinding1623 = FlaxGetter.plain(
   "size",
   flaxDoubleType,
   _PointerUpEvent_size,
 );
-const _flaxBinding1623 = FlaxGetter.plain(
+const _flaxBinding1624 = FlaxGetter.plain(
   "radiusMajor",
   flaxDoubleType,
   _PointerUpEvent_radiusMajor,
 );
-const _flaxBinding1624 = FlaxGetter.plain(
+const _flaxBinding1625 = FlaxGetter.plain(
   "radiusMinor",
   flaxDoubleType,
   _PointerUpEvent_radiusMinor,
 );
-const _flaxBinding1625 = FlaxGetter.plain(
+const _flaxBinding1626 = FlaxGetter.plain(
   "radiusMin",
   flaxDoubleType,
   _PointerUpEvent_radiusMin,
 );
-const _flaxBinding1626 = FlaxGetter.plain(
+const _flaxBinding1627 = FlaxGetter.plain(
   "radiusMax",
   flaxDoubleType,
   _PointerUpEvent_radiusMax,
 );
-const _flaxBinding1627 = FlaxGetter.plain(
+const _flaxBinding1628 = FlaxGetter.plain(
   "orientation",
   flaxDoubleType,
   _PointerUpEvent_orientation,
 );
-const _flaxBinding1628 = FlaxGetter.plain(
+const _flaxBinding1629 = FlaxGetter.plain(
   "tilt",
   flaxDoubleType,
   _PointerUpEvent_tilt,
 );
-const _flaxBinding1629 = FlaxGetter.plain(
+const _flaxBinding1630 = FlaxGetter.plain(
   "platformData",
   flaxIntType,
   _PointerUpEvent_platformData,
 );
-const _flaxBinding1630 = FlaxGetter.plain(
+const _flaxBinding1631 = FlaxGetter.plain(
   "synthesized",
   flaxBoolType,
   _PointerUpEvent_synthesized,
 );
-const _flaxBinding1631 = FlaxGetter.plain(
+const _flaxBinding1632 = FlaxGetter.plain(
   "transform",
   _flaxBinding101,
   _PointerUpEvent_transform,
 );
-const _flaxBinding1632 = FlaxGetter.plain(
+const _flaxBinding1633 = FlaxGetter.plain(
   "original",
   _flaxBinding69,
   _PointerUpEvent_original,
 );
-const _flaxBinding1633 = FlaxInstanceMethod.shared(
+const _flaxBinding1634 = FlaxInstanceMethod.shared(
   _flaxBinding197,
   _PointerUpEvent_transformed,
 );
-const _flaxBinding1634 = <FlaxParameter>[
+const _flaxBinding1635 = <FlaxParameter>[
   FlaxParameter("buttons", flaxNullableIntType, required: false),
   FlaxParameter("delta", _flaxBinding143, required: false),
   FlaxParameter("device", flaxNullableIntType, required: false),
@@ -65185,34 +66781,34 @@ const _flaxBinding1634 = <FlaxParameter>[
   FlaxParameter("timeStamp", _flaxBinding26, required: false),
   FlaxParameter("viewId", flaxNullableIntType, required: false),
 ];
-const _flaxBinding1635 = FlaxInstanceMethod.plain(
-  _flaxBinding1634,
+const _flaxBinding1636 = FlaxInstanceMethod.plain(
+  _flaxBinding1635,
   _flaxBinding22,
   _PointerUpEvent_copyWith,
 );
-const _flaxBinding1636 = FlaxInstanceMethod.shared(
+const _flaxBinding1637 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _PointerUpEvent_toStringShort,
 );
-const _flaxBinding1637 = FlaxInstanceMethod.plain(
+const _flaxBinding1638 = FlaxInstanceMethod.plain(
   _flaxBinding268,
   _flaxBinding17,
   _PointerUpEvent_toDiagnosticsNode,
 );
-const _flaxBinding1638 = FlaxInstanceMethod.shared(
+const _flaxBinding1639 = FlaxInstanceMethod.shared(
   _flaxBinding6,
   _PointerUpEvent_debugFillProperties,
 );
-const _flaxBinding1639 = FlaxInstanceMethod.plain(
+const _flaxBinding1640 = FlaxInstanceMethod.plain(
   _flaxBinding260,
   flaxStringType,
   _PointerUpEvent_toString,
 );
-const _flaxBinding1640 = FlaxInstanceMethod.shared(
+const _flaxBinding1641 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _PointerUpEvent_toStringFull,
 );
-const _flaxBinding1641 = <FlaxParameter>[
+const _flaxBinding1642 = <FlaxParameter>[
   FlaxParameter("viewId", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
     "timeStamp",
@@ -65225,7 +66821,7 @@ const _flaxBinding1641 = <FlaxParameter>[
     "kind",
     _flaxBinding14,
     required: false,
-    defaultValue: api4.PointerDeviceKind.touch,
+    defaultValue: api3.PointerDeviceKind.touch,
   ),
   FlaxParameter("device", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
@@ -65290,13 +66886,13 @@ const _flaxBinding1641 = <FlaxParameter>[
   FlaxParameter("tilt", flaxDoubleType, required: false, defaultValue: 0.0),
   FlaxParameter("embedderId", flaxIntType, required: false, defaultValue: 0),
 ];
-const _flaxBinding1642 = FlaxProxyMember(
+const _flaxBinding1643 = FlaxProxyMember(
   "transformed",
   0,
   _flaxBinding197,
   hasSuper: true,
 );
-const _flaxBinding1643 = FlaxCallbackBinding.signature(
+const _flaxBinding1644 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "viewId",
@@ -65446,16 +67042,15 @@ const _flaxBinding1643 = FlaxCallbackBinding.signature(
   _flaxBinding22,
   id: "callback:<>(n:o:viewId:int?:,n:o:timeStamp:object?:flax.core/flutter#type:Duration,n:o:pointer:int?:,n:o:kind:enum?:flax.core/sdk_dart_ui#type:PointerDeviceKind,n:o:device:int?:,n:o:position:object?:flax.core/flutter#type:Offset,n:o:localPosition:object?:flax.core/flutter#type:Offset,n:o:delta:object?:flax.core/flutter#type:Offset,n:o:buttons:int?:,n:o:obscured:bool?:,n:o:pressure:double?:,n:o:pressureMin:double?:,n:o:pressureMax:double?:,n:o:distance:double?:,n:o:distanceMax:double?:,n:o:size:double?:,n:o:radiusMajor:double?:,n:o:radiusMinor:double?:,n:o:radiusMin:double?:,n:o:radiusMax:double?:,n:o:orientation:double?:,n:o:tilt:double?:,n:o:synthesized:bool?:,n:o:embedderId:int?:)->object:flax.core/sdk_gestures#type:PointerUpEvent",
 );
-const _flaxBinding1644 = FlaxProxyMember(
+const _flaxBinding1645 = FlaxProxyMember(
   "copyWith",
   0,
-  _flaxBinding1643,
+  _flaxBinding1644,
   hasSuper: true,
 );
-const _flaxBinding1645 = FlaxObjectBinding(
+const _flaxBinding1646 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:PointerUpEvent",
   [
-    _flaxBinding1603,
     _flaxBinding1604,
     _flaxBinding1605,
     _flaxBinding1606,
@@ -65485,21 +67080,22 @@ const _flaxBinding1645 = FlaxObjectBinding(
     _flaxBinding1630,
     _flaxBinding1631,
     _flaxBinding1632,
+    _flaxBinding1633,
   ],
   {
-    "transformed": _flaxBinding1633,
-    "copyWith": _flaxBinding1635,
-    "toStringShort": _flaxBinding1636,
-    "toDiagnosticsNode": _flaxBinding1637,
-    "debugFillProperties": _flaxBinding1638,
-    "toString": _flaxBinding1639,
-    "toStringFull": _flaxBinding1640,
+    "transformed": _flaxBinding1634,
+    "copyWith": _flaxBinding1636,
+    "toStringShort": _flaxBinding1637,
+    "toDiagnosticsNode": _flaxBinding1638,
+    "debugFillProperties": _flaxBinding1639,
+    "toString": _flaxBinding1640,
+    "toStringFull": _flaxBinding1641,
     "@super:transformed": FlaxInstanceMethod.shared(
       _flaxBinding197,
       _PointerUpEvent_super_transformed,
     ),
     "@super:copyWith": FlaxInstanceMethod.plain(
-      _flaxBinding1634,
+      _flaxBinding1635,
       _flaxBinding22,
       _PointerUpEvent_super_copyWith,
     ),
@@ -65511,16 +67107,16 @@ const _flaxBinding1645 = FlaxObjectBinding(
       flaxStringCall,
       _PointerUpEvent_super_toStringFull,
     ),
-    "@super:get:viewId": _flaxBinding1018,
-    "@super:get:embedderId": _flaxBinding1019,
-    "@super:get:timeStamp": _flaxBinding1020,
-    "@super:get:pointer": _flaxBinding1021,
+    "@super:get:viewId": _flaxBinding1019,
+    "@super:get:embedderId": _flaxBinding1020,
+    "@super:get:timeStamp": _flaxBinding1021,
+    "@super:get:pointer": _flaxBinding1022,
     "@super:get:kind": FlaxInstanceMethod.shared(
       _flaxBinding115,
       _PointerUpEvent_super_get_kind,
     ),
-    "@super:get:device": _flaxBinding1022,
-    "@super:get:position": _flaxBinding1023,
+    "@super:get:device": _flaxBinding1023,
+    "@super:get:position": _flaxBinding1024,
     "@super:get:localPosition": FlaxInstanceMethod.shared(
       _flaxBinding64,
       _PointerUpEvent_super_get_localPosition,
@@ -65529,38 +67125,38 @@ const _flaxBinding1645 = FlaxObjectBinding(
       _flaxBinding64,
       _PointerUpEvent_super_get_delta,
     ),
-    "@super:get:localDelta": _flaxBinding1024,
+    "@super:get:localDelta": _flaxBinding1025,
     "@super:get:buttons": FlaxInstanceMethod.shared(
       flaxIntCall,
       _PointerUpEvent_super_get_buttons,
     ),
-    "@super:get:down": _flaxBinding1025,
-    "@super:get:obscured": _flaxBinding1026,
+    "@super:get:down": _flaxBinding1026,
+    "@super:get:obscured": _flaxBinding1027,
     "@super:get:pressure": FlaxInstanceMethod.shared(
       flaxDoubleCall,
       _PointerUpEvent_super_get_pressure,
     ),
-    "@super:get:pressureMin": _flaxBinding1027,
-    "@super:get:pressureMax": _flaxBinding1028,
-    "@super:get:distance": _flaxBinding1029,
-    "@super:get:distanceMin": _flaxBinding1030,
-    "@super:get:distanceMax": _flaxBinding1031,
-    "@super:get:size": _flaxBinding1032,
-    "@super:get:radiusMajor": _flaxBinding1033,
-    "@super:get:radiusMinor": _flaxBinding1034,
-    "@super:get:radiusMin": _flaxBinding1035,
-    "@super:get:radiusMax": _flaxBinding1036,
-    "@super:get:orientation": _flaxBinding1037,
-    "@super:get:tilt": _flaxBinding1038,
-    "@super:get:platformData": _flaxBinding1039,
-    "@super:get:synthesized": _flaxBinding1040,
+    "@super:get:pressureMin": _flaxBinding1028,
+    "@super:get:pressureMax": _flaxBinding1029,
+    "@super:get:distance": _flaxBinding1030,
+    "@super:get:distanceMin": _flaxBinding1031,
+    "@super:get:distanceMax": _flaxBinding1032,
+    "@super:get:size": _flaxBinding1033,
+    "@super:get:radiusMajor": _flaxBinding1034,
+    "@super:get:radiusMinor": _flaxBinding1035,
+    "@super:get:radiusMin": _flaxBinding1036,
+    "@super:get:radiusMax": _flaxBinding1037,
+    "@super:get:orientation": _flaxBinding1038,
+    "@super:get:tilt": _flaxBinding1039,
+    "@super:get:platformData": _flaxBinding1040,
+    "@super:get:synthesized": _flaxBinding1041,
     "@super:get:transform": FlaxInstanceMethod.shared(
       _flaxBinding102,
       _PointerUpEvent_super_get_transform,
     ),
-    "@super:get:original": _flaxBinding1041,
+    "@super:get:original": _flaxBinding1042,
   },
-  constructors: {"": _flaxBinding1641, "@implementation": _flaxBinding1641},
+  constructors: {"": _flaxBinding1642, "@implementation": _flaxBinding1642},
   create: _createPointerUpEvent,
   matches: _isPointerUpEvent,
   setters: [],
@@ -65572,28 +67168,27 @@ const _flaxBinding1645 = FlaxObjectBinding(
     "package:flutter/src/gestures/events.dart::_CopyPointerUpEvent",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding1642,
-    _flaxBinding1644,
+    _flaxBinding1643,
+    _flaxBinding1645,
     _flaxBinding316,
     _flaxBinding318,
     _flaxBinding320,
     _flaxBinding311,
-    _flaxBinding1046,
     _flaxBinding1047,
     _flaxBinding1048,
     _flaxBinding1049,
     _flaxBinding1050,
-    _flaxBinding792,
     _flaxBinding1051,
+    _flaxBinding793,
     _flaxBinding1052,
+    _flaxBinding1053,
     _flaxBinding509,
     _flaxBinding588,
-    _flaxBinding1053,
     _flaxBinding1054,
     _flaxBinding1055,
     _flaxBinding1056,
-    _flaxBinding632,
     _flaxBinding1057,
+    _flaxBinding632,
     _flaxBinding1058,
     _flaxBinding1059,
     _flaxBinding1060,
@@ -65607,86 +67202,87 @@ const _flaxBinding1645 = FlaxObjectBinding(
     _flaxBinding1068,
     _flaxBinding1069,
     _flaxBinding1070,
-    _flaxBinding759,
     _flaxBinding1071,
+    _flaxBinding760,
+    _flaxBinding1072,
   ]),
 );
-const _flaxBinding1646 = FlaxGetter.plain(
+const _flaxBinding1647 = FlaxGetter.plain(
   "coefficients",
   _flaxBinding119,
   _PolynomialFit_coefficients,
 );
-const _flaxBinding1647 = FlaxGetter.plain(
+const _flaxBinding1648 = FlaxGetter.plain(
   "confidence",
   flaxDoubleType,
   _PolynomialFit_confidence,
 );
-const _flaxBinding1648 = FlaxSetter(
+const _flaxBinding1649 = FlaxSetter(
   "confidence",
   flaxDoubleType,
   _PolynomialFit_set_confidence,
 );
-const _flaxBinding1649 = FlaxInstanceMethod.shared(
+const _flaxBinding1650 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _PolynomialFit_toString,
 );
-const _flaxBinding1650 = FlaxInstanceMethod.shared(
+const _flaxBinding1651 = FlaxInstanceMethod.shared(
   flaxDoubleCall,
   _FlaxProxyDispatch37_super_get_confidence,
 );
-const _flaxBinding1651 = <FlaxParameter>[
+const _flaxBinding1652 = <FlaxParameter>[
   FlaxParameter.required("degree", flaxIntType),
 ];
-const _flaxBinding1652 = FlaxProxyMember(
+const _flaxBinding1653 = FlaxProxyMember(
   "coefficients",
   1,
   _flaxBinding120,
   hasSuper: true,
 );
-const _flaxBinding1653 = FlaxProxyMember(
+const _flaxBinding1654 = FlaxProxyMember(
   "confidence",
   1,
   flaxDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding1654 = FlaxProxyMember(
+const _flaxBinding1655 = FlaxProxyMember(
   "confidence",
   2,
   _flaxBinding198,
   hasSuper: true,
 );
-const _flaxBinding1655 = FlaxObjectBinding(
+const _flaxBinding1656 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:PolynomialFit",
-  [_flaxBinding1646, _flaxBinding1647],
+  [_flaxBinding1647, _flaxBinding1648],
   {
-    "toString": _flaxBinding1649,
+    "toString": _flaxBinding1650,
     "@super:toString": _flaxBinding470,
     "@super:get:coefficients": FlaxInstanceMethod.shared(
       _flaxBinding120,
       _PolynomialFit_super_get_coefficients,
     ),
-    "@super:get:confidence": _flaxBinding1650,
+    "@super:get:confidence": _flaxBinding1651,
     "@super:set:confidence": FlaxInstanceMethod.plain(
       [FlaxParameter.required("value", flaxDoubleType)],
       flaxVoidType,
       _PolynomialFit_super_set_confidence,
     ),
   },
-  constructors: {"": _flaxBinding1651, "@implementation": _flaxBinding1651},
+  constructors: {"": _flaxBinding1652, "@implementation": _flaxBinding1652},
   create: _createPolynomialFit,
   matches: _isPolynomialFit,
-  setters: [_flaxBinding1648],
+  setters: [_flaxBinding1649],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
     _flaxBinding474,
-    _flaxBinding1652,
     _flaxBinding1653,
     _flaxBinding1654,
+    _flaxBinding1655,
   ]),
 );
-const _flaxBinding1656 = FlaxProxyMember("globalPosition", 1, _flaxBinding64);
-const _flaxBinding1657 = FlaxProxyMember("localPosition", 1, _flaxBinding64);
-const _flaxBinding1658 = FlaxObjectBinding(
+const _flaxBinding1657 = FlaxProxyMember("globalPosition", 1, _flaxBinding64);
+const _flaxBinding1658 = FlaxProxyMember("localPosition", 1, _flaxBinding64);
+const _flaxBinding1659 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:PositionedGestureDetails",
   [_flaxBinding499, _flaxBinding500],
   {},
@@ -65695,34 +67291,34 @@ const _flaxBinding1658 = FlaxObjectBinding(
   matches: _isPositionedGestureDetails,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding1656, _flaxBinding1657]),
+  proxy: FlaxProxyBinding([_flaxBinding1657, _flaxBinding1658]),
 );
-const _flaxBinding1659 = FlaxInstanceMethod.shared(
+const _flaxBinding1660 = FlaxInstanceMethod.shared(
   _flaxBinding199,
   _SamplingClock_now,
 );
-const _flaxBinding1660 = FlaxInstanceMethod.shared(
+const _flaxBinding1661 = FlaxInstanceMethod.shared(
   _flaxBinding201,
   _SamplingClock_stopwatch,
 );
-const _flaxBinding1661 = FlaxProxyMember(
+const _flaxBinding1662 = FlaxProxyMember(
   "now",
   0,
   _flaxBinding199,
   hasSuper: true,
 );
-const _flaxBinding1662 = FlaxProxyMember(
+const _flaxBinding1663 = FlaxProxyMember(
   "stopwatch",
   0,
   _flaxBinding201,
   hasSuper: true,
 );
-const _flaxBinding1663 = FlaxObjectBinding(
+const _flaxBinding1664 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:SamplingClock",
   [],
   {
-    "now": _flaxBinding1659,
-    "stopwatch": _flaxBinding1660,
+    "now": _flaxBinding1660,
+    "stopwatch": _flaxBinding1661,
     "@super:now": FlaxInstanceMethod.shared(
       _flaxBinding199,
       _SamplingClock_super_now,
@@ -65737,42 +67333,42 @@ const _flaxBinding1663 = FlaxObjectBinding(
   matches: _isSamplingClock,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding1661, _flaxBinding1662]),
+  proxy: FlaxProxyBinding([_flaxBinding1662, _flaxBinding1663]),
 );
-const _flaxBinding1664 = FlaxGetter.plain(
+const _flaxBinding1665 = FlaxGetter.plain(
   "velocity",
   _flaxBinding65,
   _ScaleEndDetails_velocity,
 );
-const _flaxBinding1665 = FlaxGetter.plain(
+const _flaxBinding1666 = FlaxGetter.plain(
   "scaleVelocity",
   flaxDoubleType,
   _ScaleEndDetails_scaleVelocity,
 );
-const _flaxBinding1666 = FlaxGetter.plain(
+const _flaxBinding1667 = FlaxGetter.plain(
   "pointerCount",
   flaxIntType,
   _ScaleEndDetails_pointerCount,
 );
-const _flaxBinding1667 = FlaxInstanceMethod.shared(
+const _flaxBinding1668 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _ScaleEndDetails_toStringShort,
 );
-const _flaxBinding1668 = FlaxInstanceMethod.plain(
+const _flaxBinding1669 = FlaxInstanceMethod.plain(
   _flaxBinding260,
   flaxStringType,
   _ScaleEndDetails_toString,
 );
-const _flaxBinding1669 = FlaxInstanceMethod.plain(
+const _flaxBinding1670 = FlaxInstanceMethod.plain(
   _flaxBinding268,
   _flaxBinding17,
   _ScaleEndDetails_toDiagnosticsNode,
 );
-const _flaxBinding1670 = FlaxInstanceMethod.shared(
+const _flaxBinding1671 = FlaxInstanceMethod.shared(
   _flaxBinding6,
   _ScaleEndDetails_debugFillProperties,
 );
-const _flaxBinding1671 = <FlaxParameter>[
+const _flaxBinding1672 = <FlaxParameter>[
   FlaxParameter(
     "velocity",
     _flaxBinding65,
@@ -65787,26 +67383,26 @@ const _flaxBinding1671 = <FlaxParameter>[
   ),
   FlaxParameter("pointerCount", flaxIntType, required: false, defaultValue: 0),
 ];
-const _flaxBinding1672 = FlaxProxyMember(
+const _flaxBinding1673 = FlaxProxyMember(
   "scaleVelocity",
   1,
   flaxDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding1673 = FlaxProxyMember(
+const _flaxBinding1674 = FlaxProxyMember(
   "pointerCount",
   1,
   flaxIntCall,
   hasSuper: true,
 );
-const _flaxBinding1674 = FlaxObjectBinding(
+const _flaxBinding1675 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:ScaleEndDetails",
-  [_flaxBinding1664, _flaxBinding1665, _flaxBinding1666],
+  [_flaxBinding1665, _flaxBinding1666, _flaxBinding1667],
   {
-    "toStringShort": _flaxBinding1667,
-    "toString": _flaxBinding1668,
-    "toDiagnosticsNode": _flaxBinding1669,
-    "debugFillProperties": _flaxBinding1670,
+    "toStringShort": _flaxBinding1668,
+    "toString": _flaxBinding1669,
+    "toDiagnosticsNode": _flaxBinding1670,
+    "debugFillProperties": _flaxBinding1671,
     "@super:toStringShort": _flaxBinding286,
     "@super:toString": _flaxBinding283,
     "@super:toDiagnosticsNode": _flaxBinding287,
@@ -65824,7 +67420,7 @@ const _flaxBinding1674 = FlaxObjectBinding(
       _ScaleEndDetails_super_get_pointerCount,
     ),
   },
-  constructors: {"": _flaxBinding1671, "@implementation": _flaxBinding1671},
+  constructors: {"": _flaxBinding1672, "@implementation": _flaxBinding1672},
   create: _createScaleEndDetails,
   matches: _isScaleEndDetails,
   setters: [],
@@ -65838,76 +67434,76 @@ const _flaxBinding1674 = FlaxObjectBinding(
     _flaxBinding318,
     _flaxBinding320,
     _flaxBinding518,
-    _flaxBinding1672,
     _flaxBinding1673,
+    _flaxBinding1674,
   ]),
 );
-const _flaxBinding1675 = FlaxGetter.plain(
+const _flaxBinding1676 = FlaxGetter.plain(
   "dragStartBehavior",
   _flaxBinding202,
   _ScaleGestureRecognizer_dragStartBehavior,
 );
-const _flaxBinding1676 = FlaxGetter.plain(
+const _flaxBinding1677 = FlaxGetter.plain(
   "onStart",
   _flaxBinding206,
   _ScaleGestureRecognizer_onStart,
 );
-const _flaxBinding1677 = FlaxGetter.plain(
+const _flaxBinding1678 = FlaxGetter.plain(
   "onUpdate",
   _flaxBinding210,
   _ScaleGestureRecognizer_onUpdate,
 );
-const _flaxBinding1678 = FlaxGetter.plain(
+const _flaxBinding1679 = FlaxGetter.plain(
   "onEnd",
   _flaxBinding214,
   _ScaleGestureRecognizer_onEnd,
 );
-const _flaxBinding1679 = FlaxGetter.plain(
+const _flaxBinding1680 = FlaxGetter.plain(
   "trackpadScrollCausesScale",
   flaxBoolType,
   _ScaleGestureRecognizer_trackpadScrollCausesScale,
 );
-const _flaxBinding1680 = FlaxGetter.plain(
+const _flaxBinding1681 = FlaxGetter.plain(
   "trackpadScrollToScaleFactor",
   flaxOffsetType,
   _ScaleGestureRecognizer_trackpadScrollToScaleFactor,
 );
-const _flaxBinding1681 = FlaxGetter.plain(
+const _flaxBinding1682 = FlaxGetter.plain(
   "pointerCount",
   flaxIntType,
   _ScaleGestureRecognizer_pointerCount,
 );
-const _flaxBinding1682 = FlaxSetter(
+const _flaxBinding1683 = FlaxSetter(
   "dragStartBehavior",
   _flaxBinding202,
   _ScaleGestureRecognizer_set_dragStartBehavior,
 );
-const _flaxBinding1683 = FlaxSetter(
+const _flaxBinding1684 = FlaxSetter(
   "onStart",
   _flaxBinding206,
   _ScaleGestureRecognizer_set_onStart,
 );
-const _flaxBinding1684 = FlaxSetter(
+const _flaxBinding1685 = FlaxSetter(
   "onUpdate",
   _flaxBinding210,
   _ScaleGestureRecognizer_set_onUpdate,
 );
-const _flaxBinding1685 = FlaxSetter(
+const _flaxBinding1686 = FlaxSetter(
   "onEnd",
   _flaxBinding214,
   _ScaleGestureRecognizer_set_onEnd,
 );
-const _flaxBinding1686 = FlaxSetter(
+const _flaxBinding1687 = FlaxSetter(
   "trackpadScrollCausesScale",
   flaxBoolType,
   _ScaleGestureRecognizer_set_trackpadScrollCausesScale,
 );
-const _flaxBinding1687 = FlaxSetter(
+const _flaxBinding1688 = FlaxSetter(
   "trackpadScrollToScaleFactor",
   flaxOffsetType,
   _ScaleGestureRecognizer_set_trackpadScrollToScaleFactor,
 );
-const _flaxBinding1688 = <FlaxParameter>[
+const _flaxBinding1689 = <FlaxParameter>[
   FlaxParameter("debugOwner", flaxNullableAnyType, required: false),
   FlaxParameter("supportedDevices", _flaxBinding37, required: false),
   FlaxParameter(
@@ -65935,88 +67531,88 @@ const _flaxBinding1688 = <FlaxParameter>[
     omitWhenAbsent: true,
   ),
 ];
-const _flaxBinding1689 = FlaxProxyMember(
+const _flaxBinding1690 = FlaxProxyMember(
   "dragStartBehavior",
   1,
   _flaxBinding203,
   hasSuper: true,
 );
-const _flaxBinding1690 = FlaxProxyMember(
+const _flaxBinding1691 = FlaxProxyMember(
   "onStart",
   1,
   _flaxBinding207,
   hasSuper: true,
 );
-const _flaxBinding1691 = FlaxProxyMember(
+const _flaxBinding1692 = FlaxProxyMember(
   "onUpdate",
   1,
   _flaxBinding211,
   hasSuper: true,
 );
-const _flaxBinding1692 = FlaxProxyMember(
+const _flaxBinding1693 = FlaxProxyMember(
   "onEnd",
   1,
   _flaxBinding215,
   hasSuper: true,
 );
-const _flaxBinding1693 = FlaxProxyMember(
+const _flaxBinding1694 = FlaxProxyMember(
   "trackpadScrollCausesScale",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding1694 = FlaxProxyMember(
+const _flaxBinding1695 = FlaxProxyMember(
   "trackpadScrollToScaleFactor",
   1,
   _flaxBinding64,
   hasSuper: true,
 );
-const _flaxBinding1695 = FlaxProxyMember(
+const _flaxBinding1696 = FlaxProxyMember(
   "dragStartBehavior",
   2,
   _flaxBinding216,
   hasSuper: true,
 );
-const _flaxBinding1696 = FlaxProxyMember(
+const _flaxBinding1697 = FlaxProxyMember(
   "onStart",
   2,
   _flaxBinding217,
   hasSuper: true,
 );
-const _flaxBinding1697 = FlaxProxyMember(
+const _flaxBinding1698 = FlaxProxyMember(
   "onUpdate",
   2,
   _flaxBinding218,
   hasSuper: true,
 );
-const _flaxBinding1698 = FlaxProxyMember(
+const _flaxBinding1699 = FlaxProxyMember(
   "onEnd",
   2,
   _flaxBinding219,
   hasSuper: true,
 );
-const _flaxBinding1699 = FlaxProxyMember(
+const _flaxBinding1700 = FlaxProxyMember(
   "trackpadScrollCausesScale",
   2,
   _flaxBinding220,
   hasSuper: true,
 );
-const _flaxBinding1700 = FlaxProxyMember(
+const _flaxBinding1701 = FlaxProxyMember(
   "trackpadScrollToScaleFactor",
   2,
   _flaxBinding221,
   hasSuper: true,
 );
-const _flaxBinding1701 = FlaxObjectBinding(
+const _flaxBinding1702 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:ScaleGestureRecognizer",
   [
-    _flaxBinding1675,
     _flaxBinding1676,
     _flaxBinding1677,
     _flaxBinding1678,
     _flaxBinding1679,
     _flaxBinding1680,
     _flaxBinding1681,
+    _flaxBinding1682,
   ],
   {
     "invokeCallback": FlaxInstanceMethod(
@@ -66029,10 +67625,10 @@ const _flaxBinding1701 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback39,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback39Invoke,
-              matches: _callback39Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -66095,10 +67691,10 @@ const _flaxBinding1701 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback39,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback39Invoke,
-              matches: _callback39Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -66194,16 +67790,16 @@ const _flaxBinding1701 = FlaxObjectBinding(
     "@super:set:gestureSettings": _flaxBinding305,
     "@super:set:supportedDevices": _flaxBinding306,
   },
-  constructors: {"": _flaxBinding1688, "@implementation": _flaxBinding1688},
+  constructors: {"": _flaxBinding1689, "@implementation": _flaxBinding1689},
   create: _createScaleGestureRecognizer,
   matches: _isScaleGestureRecognizer,
   setters: [
-    _flaxBinding1682,
     _flaxBinding1683,
     _flaxBinding1684,
     _flaxBinding1685,
     _flaxBinding1686,
     _flaxBinding1687,
+    _flaxBinding1688,
   ],
   supertypes: [
     "flax.core/sdk_gestures#type:OneSequenceGestureRecognizer",
@@ -66268,78 +67864,78 @@ const _flaxBinding1701 = FlaxObjectBinding(
     _flaxBinding318,
     _flaxBinding319,
     _flaxBinding311,
-    _flaxBinding1689,
     _flaxBinding1690,
     _flaxBinding1691,
     _flaxBinding1692,
     _flaxBinding1693,
     _flaxBinding1694,
-    _flaxBinding1673,
+    _flaxBinding1695,
+    _flaxBinding1674,
     _flaxBinding451,
     _flaxBinding366,
     _flaxBinding332,
     _flaxBinding333,
     _flaxBinding334,
     _flaxBinding335,
-    _flaxBinding1695,
     _flaxBinding1696,
     _flaxBinding1697,
     _flaxBinding1698,
     _flaxBinding1699,
     _flaxBinding1700,
+    _flaxBinding1701,
     _flaxBinding367,
     _flaxBinding337,
     _flaxBinding338,
   ]),
 );
-const _flaxBinding1702 = FlaxGetter.plain(
+const _flaxBinding1703 = FlaxGetter.plain(
   "focalPoint",
   flaxOffsetType,
   _ScaleStartDetails_focalPoint,
 );
-const _flaxBinding1703 = FlaxGetter.plain(
+const _flaxBinding1704 = FlaxGetter.plain(
   "localFocalPoint",
   flaxOffsetType,
   _ScaleStartDetails_localFocalPoint,
 );
-const _flaxBinding1704 = FlaxGetter.plain(
+const _flaxBinding1705 = FlaxGetter.plain(
   "pointerCount",
   flaxIntType,
   _ScaleStartDetails_pointerCount,
 );
-const _flaxBinding1705 = FlaxGetter.plain(
+const _flaxBinding1706 = FlaxGetter.plain(
   "sourceTimeStamp",
   _flaxBinding26,
   _ScaleStartDetails_sourceTimeStamp,
 );
-const _flaxBinding1706 = FlaxGetter.plain(
+const _flaxBinding1707 = FlaxGetter.plain(
   "kind",
   _flaxBinding67,
   _ScaleStartDetails_kind,
 );
-const _flaxBinding1707 = FlaxInstanceMethod.shared(
+const _flaxBinding1708 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _ScaleStartDetails_toStringShort,
 );
-const _flaxBinding1708 = FlaxInstanceMethod.plain(
+const _flaxBinding1709 = FlaxInstanceMethod.plain(
   _flaxBinding260,
   flaxStringType,
   _ScaleStartDetails_toString,
 );
-const _flaxBinding1709 = FlaxInstanceMethod.plain(
+const _flaxBinding1710 = FlaxInstanceMethod.plain(
   _flaxBinding268,
   _flaxBinding17,
   _ScaleStartDetails_toDiagnosticsNode,
 );
-const _flaxBinding1710 = FlaxInstanceMethod.shared(
+const _flaxBinding1711 = FlaxInstanceMethod.shared(
   _flaxBinding6,
   _ScaleStartDetails_debugFillProperties,
 );
-const _flaxBinding1711 = FlaxInstanceMethod.shared(
+const _flaxBinding1712 = FlaxInstanceMethod.shared(
   _flaxBinding27,
   _FlaxProxyDispatch19_super_get_sourceTimeStamp,
 );
-const _flaxBinding1712 = <FlaxParameter>[
+const _flaxBinding1713 = <FlaxParameter>[
   FlaxParameter(
     "focalPoint",
     flaxOffsetType,
@@ -66351,32 +67947,32 @@ const _flaxBinding1712 = <FlaxParameter>[
   FlaxParameter("sourceTimeStamp", _flaxBinding26, required: false),
   FlaxParameter("kind", _flaxBinding67, required: false),
 ];
-const _flaxBinding1713 = FlaxProxyMember(
+const _flaxBinding1714 = FlaxProxyMember(
   "focalPoint",
   1,
   _flaxBinding64,
   hasSuper: true,
 );
-const _flaxBinding1714 = FlaxProxyMember(
+const _flaxBinding1715 = FlaxProxyMember(
   "localFocalPoint",
   1,
   _flaxBinding64,
   hasSuper: true,
 );
-const _flaxBinding1715 = FlaxObjectBinding(
+const _flaxBinding1716 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:ScaleStartDetails",
   [
-    _flaxBinding1702,
     _flaxBinding1703,
     _flaxBinding1704,
     _flaxBinding1705,
     _flaxBinding1706,
+    _flaxBinding1707,
   ],
   {
-    "toStringShort": _flaxBinding1707,
-    "toString": _flaxBinding1708,
-    "toDiagnosticsNode": _flaxBinding1709,
-    "debugFillProperties": _flaxBinding1710,
+    "toStringShort": _flaxBinding1708,
+    "toString": _flaxBinding1709,
+    "toDiagnosticsNode": _flaxBinding1710,
+    "debugFillProperties": _flaxBinding1711,
     "@super:toStringShort": _flaxBinding286,
     "@super:toString": _flaxBinding283,
     "@super:toDiagnosticsNode": _flaxBinding287,
@@ -66393,13 +67989,13 @@ const _flaxBinding1715 = FlaxObjectBinding(
       flaxIntCall,
       _ScaleStartDetails_super_get_pointerCount,
     ),
-    "@super:get:sourceTimeStamp": _flaxBinding1711,
+    "@super:get:sourceTimeStamp": _flaxBinding1712,
     "@super:get:kind": FlaxInstanceMethod.shared(
       _flaxBinding68,
       _ScaleStartDetails_super_get_kind,
     ),
   },
-  constructors: {"": _flaxBinding1712, "@implementation": _flaxBinding1712},
+  constructors: {"": _flaxBinding1713, "@implementation": _flaxBinding1713},
   create: _createScaleStartDetails,
   matches: _isScaleStartDetails,
   setters: [],
@@ -66412,77 +68008,77 @@ const _flaxBinding1715 = FlaxObjectBinding(
     _flaxBinding311,
     _flaxBinding318,
     _flaxBinding320,
-    _flaxBinding1713,
     _flaxBinding1714,
-    _flaxBinding1673,
+    _flaxBinding1715,
+    _flaxBinding1674,
     _flaxBinding576,
     _flaxBinding577,
   ]),
 );
-const _flaxBinding1716 = FlaxGetter.plain(
+const _flaxBinding1717 = FlaxGetter.plain(
   "focalPointDelta",
   flaxOffsetType,
   _ScaleUpdateDetails_focalPointDelta,
 );
-const _flaxBinding1717 = FlaxGetter.plain(
+const _flaxBinding1718 = FlaxGetter.plain(
   "focalPoint",
   flaxOffsetType,
   _ScaleUpdateDetails_focalPoint,
 );
-const _flaxBinding1718 = FlaxGetter.plain(
+const _flaxBinding1719 = FlaxGetter.plain(
   "localFocalPoint",
   flaxOffsetType,
   _ScaleUpdateDetails_localFocalPoint,
 );
-const _flaxBinding1719 = FlaxGetter.plain(
+const _flaxBinding1720 = FlaxGetter.plain(
   "scale",
   flaxDoubleType,
   _ScaleUpdateDetails_scale,
 );
-const _flaxBinding1720 = FlaxGetter.plain(
+const _flaxBinding1721 = FlaxGetter.plain(
   "horizontalScale",
   flaxDoubleType,
   _ScaleUpdateDetails_horizontalScale,
 );
-const _flaxBinding1721 = FlaxGetter.plain(
+const _flaxBinding1722 = FlaxGetter.plain(
   "verticalScale",
   flaxDoubleType,
   _ScaleUpdateDetails_verticalScale,
 );
-const _flaxBinding1722 = FlaxGetter.plain(
+const _flaxBinding1723 = FlaxGetter.plain(
   "rotation",
   flaxDoubleType,
   _ScaleUpdateDetails_rotation,
 );
-const _flaxBinding1723 = FlaxGetter.plain(
+const _flaxBinding1724 = FlaxGetter.plain(
   "pointerCount",
   flaxIntType,
   _ScaleUpdateDetails_pointerCount,
 );
-const _flaxBinding1724 = FlaxGetter.plain(
+const _flaxBinding1725 = FlaxGetter.plain(
   "sourceTimeStamp",
   _flaxBinding26,
   _ScaleUpdateDetails_sourceTimeStamp,
 );
-const _flaxBinding1725 = FlaxInstanceMethod.shared(
+const _flaxBinding1726 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _ScaleUpdateDetails_toStringShort,
 );
-const _flaxBinding1726 = FlaxInstanceMethod.plain(
+const _flaxBinding1727 = FlaxInstanceMethod.plain(
   _flaxBinding260,
   flaxStringType,
   _ScaleUpdateDetails_toString,
 );
-const _flaxBinding1727 = FlaxInstanceMethod.plain(
+const _flaxBinding1728 = FlaxInstanceMethod.plain(
   _flaxBinding268,
   _flaxBinding17,
   _ScaleUpdateDetails_toDiagnosticsNode,
 );
-const _flaxBinding1728 = FlaxInstanceMethod.shared(
+const _flaxBinding1729 = FlaxInstanceMethod.shared(
   _flaxBinding6,
   _ScaleUpdateDetails_debugFillProperties,
 );
-const _flaxBinding1729 = <FlaxParameter>[
+const _flaxBinding1730 = <FlaxParameter>[
   FlaxParameter(
     "focalPoint",
     flaxOffsetType,
@@ -66513,28 +68109,27 @@ const _flaxBinding1729 = <FlaxParameter>[
   ),
   FlaxParameter("sourceTimeStamp", _flaxBinding26, required: false),
 ];
-const _flaxBinding1730 = FlaxProxyMember(
+const _flaxBinding1731 = FlaxProxyMember(
   "focalPointDelta",
   1,
   _flaxBinding64,
   hasSuper: true,
 );
-const _flaxBinding1731 = FlaxProxyMember(
+const _flaxBinding1732 = FlaxProxyMember(
   "horizontalScale",
   1,
   flaxDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding1732 = FlaxProxyMember(
+const _flaxBinding1733 = FlaxProxyMember(
   "verticalScale",
   1,
   flaxDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding1733 = FlaxObjectBinding(
+const _flaxBinding1734 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:ScaleUpdateDetails",
   [
-    _flaxBinding1716,
     _flaxBinding1717,
     _flaxBinding1718,
     _flaxBinding1719,
@@ -66543,12 +68138,13 @@ const _flaxBinding1733 = FlaxObjectBinding(
     _flaxBinding1722,
     _flaxBinding1723,
     _flaxBinding1724,
+    _flaxBinding1725,
   ],
   {
-    "toStringShort": _flaxBinding1725,
-    "toString": _flaxBinding1726,
-    "toDiagnosticsNode": _flaxBinding1727,
-    "debugFillProperties": _flaxBinding1728,
+    "toStringShort": _flaxBinding1726,
+    "toString": _flaxBinding1727,
+    "toDiagnosticsNode": _flaxBinding1728,
+    "debugFillProperties": _flaxBinding1729,
     "@super:toStringShort": _flaxBinding286,
     "@super:toString": _flaxBinding283,
     "@super:toDiagnosticsNode": _flaxBinding287,
@@ -66585,9 +68181,9 @@ const _flaxBinding1733 = FlaxObjectBinding(
       flaxIntCall,
       _ScaleUpdateDetails_super_get_pointerCount,
     ),
-    "@super:get:sourceTimeStamp": _flaxBinding1711,
+    "@super:get:sourceTimeStamp": _flaxBinding1712,
   },
-  constructors: {"": _flaxBinding1729, "@implementation": _flaxBinding1729},
+  constructors: {"": _flaxBinding1730, "@implementation": _flaxBinding1730},
   create: _createScaleUpdateDetails,
   matches: _isScaleUpdateDetails,
   setters: [],
@@ -66600,57 +68196,57 @@ const _flaxBinding1733 = FlaxObjectBinding(
     _flaxBinding311,
     _flaxBinding318,
     _flaxBinding320,
-    _flaxBinding1730,
-    _flaxBinding1713,
-    _flaxBinding1714,
-    _flaxBinding1474,
     _flaxBinding1731,
-    _flaxBinding1732,
+    _flaxBinding1714,
+    _flaxBinding1715,
     _flaxBinding1475,
-    _flaxBinding1673,
+    _flaxBinding1732,
+    _flaxBinding1733,
+    _flaxBinding1476,
+    _flaxBinding1674,
     _flaxBinding576,
   ]),
 );
-const _flaxBinding1734 = FlaxGetter.plain(
+const _flaxBinding1735 = FlaxGetter.plain(
   "count",
   flaxIntType,
   _SerialTapCancelDetails_count,
 );
-const _flaxBinding1735 = FlaxInstanceMethod.shared(
+const _flaxBinding1736 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _SerialTapCancelDetails_toStringShort,
 );
-const _flaxBinding1736 = FlaxInstanceMethod.plain(
+const _flaxBinding1737 = FlaxInstanceMethod.plain(
   _flaxBinding260,
   flaxStringType,
   _SerialTapCancelDetails_toString,
 );
-const _flaxBinding1737 = FlaxInstanceMethod.plain(
+const _flaxBinding1738 = FlaxInstanceMethod.plain(
   _flaxBinding268,
   _flaxBinding17,
   _SerialTapCancelDetails_toDiagnosticsNode,
 );
-const _flaxBinding1738 = FlaxInstanceMethod.shared(
+const _flaxBinding1739 = FlaxInstanceMethod.shared(
   _flaxBinding6,
   _SerialTapCancelDetails_debugFillProperties,
 );
-const _flaxBinding1739 = <FlaxParameter>[
+const _flaxBinding1740 = <FlaxParameter>[
   FlaxParameter("count", flaxIntType, required: false, defaultValue: 1),
 ];
-const _flaxBinding1740 = FlaxProxyMember(
+const _flaxBinding1741 = FlaxProxyMember(
   "count",
   1,
   flaxIntCall,
   hasSuper: true,
 );
-const _flaxBinding1741 = FlaxObjectBinding(
+const _flaxBinding1742 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:SerialTapCancelDetails",
-  [_flaxBinding1734],
+  [_flaxBinding1735],
   {
-    "toStringShort": _flaxBinding1735,
-    "toString": _flaxBinding1736,
-    "toDiagnosticsNode": _flaxBinding1737,
-    "debugFillProperties": _flaxBinding1738,
+    "toStringShort": _flaxBinding1736,
+    "toString": _flaxBinding1737,
+    "toDiagnosticsNode": _flaxBinding1738,
+    "debugFillProperties": _flaxBinding1739,
     "@super:toStringShort": _flaxBinding286,
     "@super:toString": _flaxBinding283,
     "@super:toDiagnosticsNode": _flaxBinding287,
@@ -66660,7 +68256,7 @@ const _flaxBinding1741 = FlaxObjectBinding(
       _SerialTapCancelDetails_super_get_count,
     ),
   },
-  constructors: {"": _flaxBinding1739, "@implementation": _flaxBinding1739},
+  constructors: {"": _flaxBinding1740, "@implementation": _flaxBinding1740},
   create: _createSerialTapCancelDetails,
   matches: _isSerialTapCancelDetails,
   setters: [],
@@ -66673,43 +68269,43 @@ const _flaxBinding1741 = FlaxObjectBinding(
     _flaxBinding311,
     _flaxBinding318,
     _flaxBinding320,
-    _flaxBinding1740,
+    _flaxBinding1741,
   ]),
 );
-const _flaxBinding1742 = FlaxGetter.plain(
+const _flaxBinding1743 = FlaxGetter.plain(
   "kind",
   _flaxBinding14,
   _SerialTapDownDetails_kind,
 );
-const _flaxBinding1743 = FlaxGetter.plain(
+const _flaxBinding1744 = FlaxGetter.plain(
   "buttons",
   flaxIntType,
   _SerialTapDownDetails_buttons,
 );
-const _flaxBinding1744 = FlaxGetter.plain(
+const _flaxBinding1745 = FlaxGetter.plain(
   "count",
   flaxIntType,
   _SerialTapDownDetails_count,
 );
-const _flaxBinding1745 = FlaxInstanceMethod.shared(
+const _flaxBinding1746 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _SerialTapDownDetails_toStringShort,
 );
-const _flaxBinding1746 = FlaxInstanceMethod.plain(
+const _flaxBinding1747 = FlaxInstanceMethod.plain(
   _flaxBinding260,
   flaxStringType,
   _SerialTapDownDetails_toString,
 );
-const _flaxBinding1747 = FlaxInstanceMethod.plain(
+const _flaxBinding1748 = FlaxInstanceMethod.plain(
   _flaxBinding268,
   _flaxBinding17,
   _SerialTapDownDetails_toDiagnosticsNode,
 );
-const _flaxBinding1748 = FlaxInstanceMethod.shared(
+const _flaxBinding1749 = FlaxInstanceMethod.shared(
   _flaxBinding6,
   _SerialTapDownDetails_debugFillProperties,
 );
-const _flaxBinding1749 = <FlaxParameter>[
+const _flaxBinding1750 = <FlaxParameter>[
   FlaxParameter(
     "globalPosition",
     flaxOffsetType,
@@ -66721,20 +68317,20 @@ const _flaxBinding1749 = <FlaxParameter>[
   FlaxParameter("buttons", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter("count", flaxIntType, required: false, defaultValue: 1),
 ];
-const _flaxBinding1750 = FlaxObjectBinding(
+const _flaxBinding1751 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:SerialTapDownDetails",
   [
     _flaxBinding499,
     _flaxBinding500,
-    _flaxBinding1742,
     _flaxBinding1743,
     _flaxBinding1744,
+    _flaxBinding1745,
   ],
   {
-    "toStringShort": _flaxBinding1745,
-    "toString": _flaxBinding1746,
-    "toDiagnosticsNode": _flaxBinding1747,
-    "debugFillProperties": _flaxBinding1748,
+    "toStringShort": _flaxBinding1746,
+    "toString": _flaxBinding1747,
+    "toDiagnosticsNode": _flaxBinding1748,
+    "debugFillProperties": _flaxBinding1749,
     "@super:toStringShort": _flaxBinding286,
     "@super:toString": _flaxBinding283,
     "@super:toDiagnosticsNode": _flaxBinding287,
@@ -66757,7 +68353,7 @@ const _flaxBinding1750 = FlaxObjectBinding(
       _SerialTapDownDetails_super_get_count,
     ),
   },
-  constructors: {"": _flaxBinding1749, "@implementation": _flaxBinding1749},
+  constructors: {"": _flaxBinding1750, "@implementation": _flaxBinding1750},
   create: _createSerialTapDownDetails,
   matches: _isSerialTapDownDetails,
   setters: [],
@@ -66773,91 +68369,91 @@ const _flaxBinding1750 = FlaxObjectBinding(
     _flaxBinding320,
     _flaxBinding508,
     _flaxBinding509,
-    _flaxBinding792,
-    _flaxBinding1054,
-    _flaxBinding1740,
+    _flaxBinding793,
+    _flaxBinding1055,
+    _flaxBinding1741,
   ]),
 );
-const _flaxBinding1751 = FlaxGetter.plain(
+const _flaxBinding1752 = FlaxGetter.plain(
   "onSerialTapDown",
   _flaxBinding224,
   _SerialTapGestureRecognizer_onSerialTapDown,
 );
-const _flaxBinding1752 = FlaxGetter.plain(
+const _flaxBinding1753 = FlaxGetter.plain(
   "onSerialTapCancel",
   _flaxBinding228,
   _SerialTapGestureRecognizer_onSerialTapCancel,
 );
-const _flaxBinding1753 = FlaxGetter.plain(
+const _flaxBinding1754 = FlaxGetter.plain(
   "onSerialTapUp",
   _flaxBinding232,
   _SerialTapGestureRecognizer_onSerialTapUp,
 );
-const _flaxBinding1754 = FlaxGetter.plain(
+const _flaxBinding1755 = FlaxGetter.plain(
   "isTrackingPointer",
   flaxBoolType,
   _SerialTapGestureRecognizer_isTrackingPointer,
 );
-const _flaxBinding1755 = FlaxSetter(
+const _flaxBinding1756 = FlaxSetter(
   "onSerialTapDown",
   _flaxBinding224,
   _SerialTapGestureRecognizer_set_onSerialTapDown,
 );
-const _flaxBinding1756 = FlaxSetter(
+const _flaxBinding1757 = FlaxSetter(
   "onSerialTapCancel",
   _flaxBinding228,
   _SerialTapGestureRecognizer_set_onSerialTapCancel,
 );
-const _flaxBinding1757 = FlaxSetter(
+const _flaxBinding1758 = FlaxSetter(
   "onSerialTapUp",
   _flaxBinding232,
   _SerialTapGestureRecognizer_set_onSerialTapUp,
 );
-const _flaxBinding1758 = FlaxProxyMember(
+const _flaxBinding1759 = FlaxProxyMember(
   "onSerialTapDown",
   1,
   _flaxBinding225,
   hasSuper: true,
 );
-const _flaxBinding1759 = FlaxProxyMember(
+const _flaxBinding1760 = FlaxProxyMember(
   "onSerialTapCancel",
   1,
   _flaxBinding229,
   hasSuper: true,
 );
-const _flaxBinding1760 = FlaxProxyMember(
+const _flaxBinding1761 = FlaxProxyMember(
   "onSerialTapUp",
   1,
   _flaxBinding233,
   hasSuper: true,
 );
-const _flaxBinding1761 = FlaxProxyMember(
+const _flaxBinding1762 = FlaxProxyMember(
   "isTrackingPointer",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding1762 = FlaxProxyMember(
+const _flaxBinding1763 = FlaxProxyMember(
   "onSerialTapDown",
   2,
   _flaxBinding234,
   hasSuper: true,
 );
-const _flaxBinding1763 = FlaxProxyMember(
+const _flaxBinding1764 = FlaxProxyMember(
   "onSerialTapCancel",
   2,
   _flaxBinding235,
   hasSuper: true,
 );
-const _flaxBinding1764 = FlaxProxyMember(
+const _flaxBinding1765 = FlaxProxyMember(
   "onSerialTapUp",
   2,
   _flaxBinding236,
   hasSuper: true,
 );
-const _flaxBinding1765 = FlaxObjectBinding(
+const _flaxBinding1766 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:SerialTapGestureRecognizer",
-  [_flaxBinding1751, _flaxBinding1752, _flaxBinding1753, _flaxBinding1754],
+  [_flaxBinding1752, _flaxBinding1753, _flaxBinding1754, _flaxBinding1755],
   {
     "invokeCallback": FlaxInstanceMethod(
       <FlaxParameter>[
@@ -66869,10 +68465,10 @@ const _flaxBinding1765 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback41,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback41Invoke,
-              matches: _callback41Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -66908,10 +68504,10 @@ const _flaxBinding1765 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback41,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback41Invoke,
-              matches: _callback41Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -66987,7 +68583,7 @@ const _flaxBinding1765 = FlaxObjectBinding(
   constructors: {"": _flaxBinding307, "@implementation": _flaxBinding307},
   create: _createSerialTapGestureRecognizer,
   matches: _isSerialTapGestureRecognizer,
-  setters: [_flaxBinding1755, _flaxBinding1756, _flaxBinding1757],
+  setters: [_flaxBinding1756, _flaxBinding1757, _flaxBinding1758],
   supertypes: [
     "flax.core/sdk_gestures#type:GestureRecognizer",
     "flax.core/sdk_gestures#type:GestureArenaMember",
@@ -67043,51 +68639,51 @@ const _flaxBinding1765 = FlaxObjectBinding(
     _flaxBinding318,
     _flaxBinding319,
     _flaxBinding311,
-    _flaxBinding1758,
     _flaxBinding1759,
     _flaxBinding1760,
     _flaxBinding1761,
+    _flaxBinding1762,
     _flaxBinding451,
     _flaxBinding332,
     _flaxBinding333,
     _flaxBinding334,
     _flaxBinding335,
-    _flaxBinding1762,
     _flaxBinding1763,
     _flaxBinding1764,
+    _flaxBinding1765,
     _flaxBinding337,
     _flaxBinding338,
   ]),
 );
-const _flaxBinding1766 = FlaxGetter.plain(
+const _flaxBinding1767 = FlaxGetter.plain(
   "kind",
   _flaxBinding67,
   _SerialTapUpDetails_kind,
 );
-const _flaxBinding1767 = FlaxGetter.plain(
+const _flaxBinding1768 = FlaxGetter.plain(
   "count",
   flaxIntType,
   _SerialTapUpDetails_count,
 );
-const _flaxBinding1768 = FlaxInstanceMethod.shared(
+const _flaxBinding1769 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _SerialTapUpDetails_toStringShort,
 );
-const _flaxBinding1769 = FlaxInstanceMethod.plain(
+const _flaxBinding1770 = FlaxInstanceMethod.plain(
   _flaxBinding260,
   flaxStringType,
   _SerialTapUpDetails_toString,
 );
-const _flaxBinding1770 = FlaxInstanceMethod.plain(
+const _flaxBinding1771 = FlaxInstanceMethod.plain(
   _flaxBinding268,
   _flaxBinding17,
   _SerialTapUpDetails_toDiagnosticsNode,
 );
-const _flaxBinding1771 = FlaxInstanceMethod.shared(
+const _flaxBinding1772 = FlaxInstanceMethod.shared(
   _flaxBinding6,
   _SerialTapUpDetails_debugFillProperties,
 );
-const _flaxBinding1772 = <FlaxParameter>[
+const _flaxBinding1773 = <FlaxParameter>[
   FlaxParameter(
     "globalPosition",
     flaxOffsetType,
@@ -67098,14 +68694,14 @@ const _flaxBinding1772 = <FlaxParameter>[
   FlaxParameter("kind", _flaxBinding67, required: false),
   FlaxParameter("count", flaxIntType, required: false, defaultValue: 1),
 ];
-const _flaxBinding1773 = FlaxObjectBinding(
+const _flaxBinding1774 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:SerialTapUpDetails",
-  [_flaxBinding499, _flaxBinding500, _flaxBinding1766, _flaxBinding1767],
+  [_flaxBinding499, _flaxBinding500, _flaxBinding1767, _flaxBinding1768],
   {
-    "toStringShort": _flaxBinding1768,
-    "toString": _flaxBinding1769,
-    "toDiagnosticsNode": _flaxBinding1770,
-    "debugFillProperties": _flaxBinding1771,
+    "toStringShort": _flaxBinding1769,
+    "toString": _flaxBinding1770,
+    "toDiagnosticsNode": _flaxBinding1771,
+    "debugFillProperties": _flaxBinding1772,
     "@super:toStringShort": _flaxBinding286,
     "@super:toString": _flaxBinding283,
     "@super:toDiagnosticsNode": _flaxBinding287,
@@ -67124,7 +68720,7 @@ const _flaxBinding1773 = FlaxObjectBinding(
       _SerialTapUpDetails_super_get_count,
     ),
   },
-  constructors: {"": _flaxBinding1772, "@implementation": _flaxBinding1772},
+  constructors: {"": _flaxBinding1773, "@implementation": _flaxBinding1773},
   create: _createSerialTapUpDetails,
   matches: _isSerialTapUpDetails,
   setters: [],
@@ -67141,14 +68737,14 @@ const _flaxBinding1773 = FlaxObjectBinding(
     _flaxBinding508,
     _flaxBinding509,
     _flaxBinding577,
-    _flaxBinding1740,
+    _flaxBinding1741,
   ]),
 );
-const _flaxBinding1774 = <FlaxParameter>[
+const _flaxBinding1775 = <FlaxParameter>[
   FlaxParameter("debugOwner", flaxNullableAnyType, required: false),
   FlaxParameter("supportedDevices", _flaxBinding37, required: false),
 ];
-const _flaxBinding1775 = FlaxObjectBinding(
+const _flaxBinding1776 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:TapAndDragGestureRecognizer",
   [],
   {
@@ -67162,10 +68758,10 @@ const _flaxBinding1775 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback43,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback43Invoke,
-              matches: _callback43Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -67181,7 +68777,7 @@ const _flaxBinding1775 = FlaxObjectBinding(
       ownerTypes: [],
     ),
   },
-  constructors: {"": _flaxBinding1774},
+  constructors: {"": _flaxBinding1775},
   create: _createTapAndDragGestureRecognizer,
   matches: _isTapAndDragGestureRecognizer,
   setters: [],
@@ -67199,7 +68795,7 @@ const _flaxBinding1775 = FlaxObjectBinding(
   parent: _flaxBinding415,
   disposeMethod: "dispose",
 );
-const _flaxBinding1776 = FlaxObjectBinding(
+const _flaxBinding1777 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:TapAndHorizontalDragGestureRecognizer",
   [],
   {
@@ -67213,10 +68809,10 @@ const _flaxBinding1776 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback44,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback44Invoke,
-              matches: _callback44Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -67233,7 +68829,7 @@ const _flaxBinding1776 = FlaxObjectBinding(
       ownerTypes: [],
     ),
   },
-  constructors: {"": _flaxBinding1774},
+  constructors: {"": _flaxBinding1775},
   create: _createTapAndHorizontalDragGestureRecognizer,
   matches: _isTapAndHorizontalDragGestureRecognizer,
   setters: [],
@@ -67251,7 +68847,7 @@ const _flaxBinding1776 = FlaxObjectBinding(
   parent: _flaxBinding415,
   disposeMethod: "dispose",
 );
-const _flaxBinding1777 = FlaxObjectBinding(
+const _flaxBinding1778 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:TapAndPanGestureRecognizer",
   [],
   {
@@ -67265,10 +68861,10 @@ const _flaxBinding1777 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback45,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback45Invoke,
-              matches: _callback45Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -67284,7 +68880,7 @@ const _flaxBinding1777 = FlaxObjectBinding(
       ownerTypes: [],
     ),
   },
-  constructors: {"": _flaxBinding1774},
+  constructors: {"": _flaxBinding1775},
   create: _createTapAndPanGestureRecognizer,
   matches: _isTapAndPanGestureRecognizer,
   setters: [],
@@ -67302,37 +68898,37 @@ const _flaxBinding1777 = FlaxObjectBinding(
   parent: _flaxBinding415,
   disposeMethod: "dispose",
 );
-const _flaxBinding1778 = FlaxGetter.plain(
+const _flaxBinding1779 = FlaxGetter.plain(
   "kind",
   _flaxBinding67,
   _TapDownDetails_kind,
 );
-const _flaxBinding1779 = FlaxInstanceMethod.shared(
+const _flaxBinding1780 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _TapDownDetails_toStringShort,
 );
-const _flaxBinding1780 = FlaxInstanceMethod.plain(
+const _flaxBinding1781 = FlaxInstanceMethod.plain(
   _flaxBinding260,
   flaxStringType,
   _TapDownDetails_toString,
 );
-const _flaxBinding1781 = FlaxInstanceMethod.plain(
+const _flaxBinding1782 = FlaxInstanceMethod.plain(
   _flaxBinding268,
   _flaxBinding17,
   _TapDownDetails_toDiagnosticsNode,
 );
-const _flaxBinding1782 = FlaxInstanceMethod.shared(
+const _flaxBinding1783 = FlaxInstanceMethod.shared(
   _flaxBinding6,
   _TapDownDetails_debugFillProperties,
 );
-const _flaxBinding1783 = FlaxObjectBinding(
+const _flaxBinding1784 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:TapDownDetails",
-  [_flaxBinding499, _flaxBinding500, _flaxBinding1778],
+  [_flaxBinding499, _flaxBinding500, _flaxBinding1779],
   {
-    "toStringShort": _flaxBinding1779,
-    "toString": _flaxBinding1780,
-    "toDiagnosticsNode": _flaxBinding1781,
-    "debugFillProperties": _flaxBinding1782,
+    "toStringShort": _flaxBinding1780,
+    "toString": _flaxBinding1781,
+    "toDiagnosticsNode": _flaxBinding1782,
+    "debugFillProperties": _flaxBinding1783,
     "@super:toStringShort": _flaxBinding286,
     "@super:toString": _flaxBinding283,
     "@super:toDiagnosticsNode": _flaxBinding287,
@@ -67347,7 +68943,7 @@ const _flaxBinding1783 = FlaxObjectBinding(
       _TapDownDetails_super_get_kind,
     ),
   },
-  constructors: {"": _flaxBinding814, "@implementation": _flaxBinding814},
+  constructors: {"": _flaxBinding815, "@implementation": _flaxBinding815},
   create: _createTapDownDetails,
   matches: _isTapDownDetails,
   setters: [],
@@ -67366,54 +68962,54 @@ const _flaxBinding1783 = FlaxObjectBinding(
     _flaxBinding577,
   ]),
 );
-const _flaxBinding1784 = FlaxGetter.plain(
+const _flaxBinding1785 = FlaxGetter.plain(
   "kind",
   _flaxBinding67,
   _TapDragDownDetails_kind,
 );
-const _flaxBinding1785 = FlaxGetter.plain(
+const _flaxBinding1786 = FlaxGetter.plain(
   "consecutiveTapCount",
   flaxIntType,
   _TapDragDownDetails_consecutiveTapCount,
 );
-const _flaxBinding1786 = FlaxInstanceMethod.shared(
+const _flaxBinding1787 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _TapDragDownDetails_toStringShort,
 );
-const _flaxBinding1787 = FlaxInstanceMethod.plain(
+const _flaxBinding1788 = FlaxInstanceMethod.plain(
   _flaxBinding260,
   flaxStringType,
   _TapDragDownDetails_toString,
 );
-const _flaxBinding1788 = FlaxInstanceMethod.plain(
+const _flaxBinding1789 = FlaxInstanceMethod.plain(
   _flaxBinding268,
   _flaxBinding17,
   _TapDragDownDetails_toDiagnosticsNode,
 );
-const _flaxBinding1789 = FlaxInstanceMethod.shared(
+const _flaxBinding1790 = FlaxInstanceMethod.shared(
   _flaxBinding6,
   _TapDragDownDetails_debugFillProperties,
 );
-const _flaxBinding1790 = <FlaxParameter>[
+const _flaxBinding1791 = <FlaxParameter>[
   FlaxParameter.required("globalPosition", flaxOffsetType),
   FlaxParameter.required("localPosition", flaxOffsetType),
   FlaxParameter("kind", _flaxBinding67, required: false),
   FlaxParameter.required("consecutiveTapCount", flaxIntType),
 ];
-const _flaxBinding1791 = FlaxProxyMember(
+const _flaxBinding1792 = FlaxProxyMember(
   "consecutiveTapCount",
   1,
   flaxIntCall,
   hasSuper: true,
 );
-const _flaxBinding1792 = FlaxObjectBinding(
+const _flaxBinding1793 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:TapDragDownDetails",
-  [_flaxBinding499, _flaxBinding500, _flaxBinding1784, _flaxBinding1785],
+  [_flaxBinding499, _flaxBinding500, _flaxBinding1785, _flaxBinding1786],
   {
-    "toStringShort": _flaxBinding1786,
-    "toString": _flaxBinding1787,
-    "toDiagnosticsNode": _flaxBinding1788,
-    "debugFillProperties": _flaxBinding1789,
+    "toStringShort": _flaxBinding1787,
+    "toString": _flaxBinding1788,
+    "toDiagnosticsNode": _flaxBinding1789,
+    "debugFillProperties": _flaxBinding1790,
     "@super:toStringShort": _flaxBinding286,
     "@super:toString": _flaxBinding283,
     "@super:toDiagnosticsNode": _flaxBinding287,
@@ -67432,7 +69028,7 @@ const _flaxBinding1792 = FlaxObjectBinding(
       _TapDragDownDetails_super_get_consecutiveTapCount,
     ),
   },
-  constructors: {"": _flaxBinding1790, "@implementation": _flaxBinding1790},
+  constructors: {"": _flaxBinding1791, "@implementation": _flaxBinding1791},
   create: _createTapDragDownDetails,
   matches: _isTapDragDownDetails,
   setters: [],
@@ -67449,43 +69045,43 @@ const _flaxBinding1792 = FlaxObjectBinding(
     _flaxBinding508,
     _flaxBinding509,
     _flaxBinding577,
-    _flaxBinding1791,
+    _flaxBinding1792,
   ]),
 );
-const _flaxBinding1793 = FlaxGetter.plain(
+const _flaxBinding1794 = FlaxGetter.plain(
   "velocity",
   _flaxBinding65,
   _TapDragEndDetails_velocity,
 );
-const _flaxBinding1794 = FlaxGetter.plain(
+const _flaxBinding1795 = FlaxGetter.plain(
   "primaryVelocity",
   flaxNullableDoubleType,
   _TapDragEndDetails_primaryVelocity,
 );
-const _flaxBinding1795 = FlaxGetter.plain(
+const _flaxBinding1796 = FlaxGetter.plain(
   "consecutiveTapCount",
   flaxIntType,
   _TapDragEndDetails_consecutiveTapCount,
 );
-const _flaxBinding1796 = FlaxInstanceMethod.shared(
+const _flaxBinding1797 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _TapDragEndDetails_toStringShort,
 );
-const _flaxBinding1797 = FlaxInstanceMethod.plain(
+const _flaxBinding1798 = FlaxInstanceMethod.plain(
   _flaxBinding260,
   flaxStringType,
   _TapDragEndDetails_toString,
 );
-const _flaxBinding1798 = FlaxInstanceMethod.plain(
+const _flaxBinding1799 = FlaxInstanceMethod.plain(
   _flaxBinding268,
   _flaxBinding17,
   _TapDragEndDetails_toDiagnosticsNode,
 );
-const _flaxBinding1799 = FlaxInstanceMethod.shared(
+const _flaxBinding1800 = FlaxInstanceMethod.shared(
   _flaxBinding6,
   _TapDragEndDetails_debugFillProperties,
 );
-const _flaxBinding1800 = <FlaxParameter>[
+const _flaxBinding1801 = <FlaxParameter>[
   FlaxParameter(
     "globalPosition",
     flaxOffsetType,
@@ -67502,20 +69098,20 @@ const _flaxBinding1800 = <FlaxParameter>[
   FlaxParameter("primaryVelocity", flaxNullableDoubleType, required: false),
   FlaxParameter.required("consecutiveTapCount", flaxIntType),
 ];
-const _flaxBinding1801 = FlaxObjectBinding(
+const _flaxBinding1802 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:TapDragEndDetails",
   [
     _flaxBinding499,
     _flaxBinding500,
-    _flaxBinding1793,
     _flaxBinding1794,
     _flaxBinding1795,
+    _flaxBinding1796,
   ],
   {
-    "toStringShort": _flaxBinding1796,
-    "toString": _flaxBinding1797,
-    "toDiagnosticsNode": _flaxBinding1798,
-    "debugFillProperties": _flaxBinding1799,
+    "toStringShort": _flaxBinding1797,
+    "toString": _flaxBinding1798,
+    "toDiagnosticsNode": _flaxBinding1799,
+    "debugFillProperties": _flaxBinding1800,
     "@super:toStringShort": _flaxBinding286,
     "@super:toString": _flaxBinding283,
     "@super:toDiagnosticsNode": _flaxBinding287,
@@ -67538,7 +69134,7 @@ const _flaxBinding1801 = FlaxObjectBinding(
       _TapDragEndDetails_super_get_consecutiveTapCount,
     ),
   },
-  constructors: {"": _flaxBinding1800, "@implementation": _flaxBinding1800},
+  constructors: {"": _flaxBinding1801, "@implementation": _flaxBinding1801},
   create: _createTapDragEndDetails,
   matches: _isTapDragEndDetails,
   setters: [],
@@ -67556,63 +69152,63 @@ const _flaxBinding1801 = FlaxObjectBinding(
     _flaxBinding509,
     _flaxBinding518,
     _flaxBinding519,
-    _flaxBinding1791,
+    _flaxBinding1792,
   ]),
 );
-const _flaxBinding1802 = FlaxGetter.plain(
+const _flaxBinding1803 = FlaxGetter.plain(
   "sourceTimeStamp",
   _flaxBinding26,
   _TapDragStartDetails_sourceTimeStamp,
 );
-const _flaxBinding1803 = FlaxGetter.plain(
+const _flaxBinding1804 = FlaxGetter.plain(
   "kind",
   _flaxBinding67,
   _TapDragStartDetails_kind,
 );
-const _flaxBinding1804 = FlaxGetter.plain(
+const _flaxBinding1805 = FlaxGetter.plain(
   "consecutiveTapCount",
   flaxIntType,
   _TapDragStartDetails_consecutiveTapCount,
 );
-const _flaxBinding1805 = FlaxInstanceMethod.shared(
+const _flaxBinding1806 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _TapDragStartDetails_toStringShort,
 );
-const _flaxBinding1806 = FlaxInstanceMethod.plain(
+const _flaxBinding1807 = FlaxInstanceMethod.plain(
   _flaxBinding260,
   flaxStringType,
   _TapDragStartDetails_toString,
 );
-const _flaxBinding1807 = FlaxInstanceMethod.plain(
+const _flaxBinding1808 = FlaxInstanceMethod.plain(
   _flaxBinding268,
   _flaxBinding17,
   _TapDragStartDetails_toDiagnosticsNode,
 );
-const _flaxBinding1808 = FlaxInstanceMethod.shared(
+const _flaxBinding1809 = FlaxInstanceMethod.shared(
   _flaxBinding6,
   _TapDragStartDetails_debugFillProperties,
 );
-const _flaxBinding1809 = <FlaxParameter>[
+const _flaxBinding1810 = <FlaxParameter>[
   FlaxParameter.required("globalPosition", flaxOffsetType),
   FlaxParameter.required("localPosition", flaxOffsetType),
   FlaxParameter("sourceTimeStamp", _flaxBinding26, required: false),
   FlaxParameter("kind", _flaxBinding67, required: false),
   FlaxParameter.required("consecutiveTapCount", flaxIntType),
 ];
-const _flaxBinding1810 = FlaxObjectBinding(
+const _flaxBinding1811 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:TapDragStartDetails",
   [
     _flaxBinding499,
     _flaxBinding500,
-    _flaxBinding1802,
     _flaxBinding1803,
     _flaxBinding1804,
+    _flaxBinding1805,
   ],
   {
-    "toStringShort": _flaxBinding1805,
-    "toString": _flaxBinding1806,
-    "toDiagnosticsNode": _flaxBinding1807,
-    "debugFillProperties": _flaxBinding1808,
+    "toStringShort": _flaxBinding1806,
+    "toString": _flaxBinding1807,
+    "toDiagnosticsNode": _flaxBinding1808,
+    "debugFillProperties": _flaxBinding1809,
     "@super:toStringShort": _flaxBinding286,
     "@super:toString": _flaxBinding283,
     "@super:toDiagnosticsNode": _flaxBinding287,
@@ -67635,7 +69231,7 @@ const _flaxBinding1810 = FlaxObjectBinding(
       _TapDragStartDetails_super_get_consecutiveTapCount,
     ),
   },
-  constructors: {"": _flaxBinding1809, "@implementation": _flaxBinding1809},
+  constructors: {"": _flaxBinding1810, "@implementation": _flaxBinding1810},
   create: _createTapDragStartDetails,
   matches: _isTapDragStartDetails,
   setters: [],
@@ -67653,51 +69249,51 @@ const _flaxBinding1810 = FlaxObjectBinding(
     _flaxBinding509,
     _flaxBinding576,
     _flaxBinding577,
-    _flaxBinding1791,
+    _flaxBinding1792,
   ]),
 );
-const _flaxBinding1811 = FlaxGetter.plain(
+const _flaxBinding1812 = FlaxGetter.plain(
   "kind",
   _flaxBinding14,
   _TapDragUpDetails_kind,
 );
-const _flaxBinding1812 = FlaxGetter.plain(
+const _flaxBinding1813 = FlaxGetter.plain(
   "consecutiveTapCount",
   flaxIntType,
   _TapDragUpDetails_consecutiveTapCount,
 );
-const _flaxBinding1813 = FlaxInstanceMethod.shared(
+const _flaxBinding1814 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _TapDragUpDetails_toStringShort,
 );
-const _flaxBinding1814 = FlaxInstanceMethod.plain(
+const _flaxBinding1815 = FlaxInstanceMethod.plain(
   _flaxBinding260,
   flaxStringType,
   _TapDragUpDetails_toString,
 );
-const _flaxBinding1815 = FlaxInstanceMethod.plain(
+const _flaxBinding1816 = FlaxInstanceMethod.plain(
   _flaxBinding268,
   _flaxBinding17,
   _TapDragUpDetails_toDiagnosticsNode,
 );
-const _flaxBinding1816 = FlaxInstanceMethod.shared(
+const _flaxBinding1817 = FlaxInstanceMethod.shared(
   _flaxBinding6,
   _TapDragUpDetails_debugFillProperties,
 );
-const _flaxBinding1817 = <FlaxParameter>[
+const _flaxBinding1818 = <FlaxParameter>[
   FlaxParameter.required("globalPosition", flaxOffsetType),
   FlaxParameter.required("localPosition", flaxOffsetType),
   FlaxParameter.required("kind", _flaxBinding14),
   FlaxParameter.required("consecutiveTapCount", flaxIntType),
 ];
-const _flaxBinding1818 = FlaxObjectBinding(
+const _flaxBinding1819 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:TapDragUpDetails",
-  [_flaxBinding499, _flaxBinding500, _flaxBinding1811, _flaxBinding1812],
+  [_flaxBinding499, _flaxBinding500, _flaxBinding1812, _flaxBinding1813],
   {
-    "toStringShort": _flaxBinding1813,
-    "toString": _flaxBinding1814,
-    "toDiagnosticsNode": _flaxBinding1815,
-    "debugFillProperties": _flaxBinding1816,
+    "toStringShort": _flaxBinding1814,
+    "toString": _flaxBinding1815,
+    "toDiagnosticsNode": _flaxBinding1816,
+    "debugFillProperties": _flaxBinding1817,
     "@super:toStringShort": _flaxBinding286,
     "@super:toString": _flaxBinding283,
     "@super:toDiagnosticsNode": _flaxBinding287,
@@ -67716,7 +69312,7 @@ const _flaxBinding1818 = FlaxObjectBinding(
       _TapDragUpDetails_super_get_consecutiveTapCount,
     ),
   },
-  constructors: {"": _flaxBinding1817, "@implementation": _flaxBinding1817},
+  constructors: {"": _flaxBinding1818, "@implementation": _flaxBinding1818},
   create: _createTapDragUpDetails,
   matches: _isTapDragUpDetails,
   setters: [],
@@ -67732,64 +69328,64 @@ const _flaxBinding1818 = FlaxObjectBinding(
     _flaxBinding320,
     _flaxBinding508,
     _flaxBinding509,
-    _flaxBinding792,
-    _flaxBinding1791,
+    _flaxBinding793,
+    _flaxBinding1792,
   ]),
 );
-const _flaxBinding1819 = FlaxGetter.plain(
+const _flaxBinding1820 = FlaxGetter.plain(
   "sourceTimeStamp",
   _flaxBinding26,
   _TapDragUpdateDetails_sourceTimeStamp,
 );
-const _flaxBinding1820 = FlaxGetter.plain(
+const _flaxBinding1821 = FlaxGetter.plain(
   "delta",
   flaxOffsetType,
   _TapDragUpdateDetails_delta,
 );
-const _flaxBinding1821 = FlaxGetter.plain(
+const _flaxBinding1822 = FlaxGetter.plain(
   "primaryDelta",
   flaxNullableDoubleType,
   _TapDragUpdateDetails_primaryDelta,
 );
-const _flaxBinding1822 = FlaxGetter.plain(
+const _flaxBinding1823 = FlaxGetter.plain(
   "kind",
   _flaxBinding67,
   _TapDragUpdateDetails_kind,
 );
-const _flaxBinding1823 = FlaxGetter.plain(
+const _flaxBinding1824 = FlaxGetter.plain(
   "offsetFromOrigin",
   flaxOffsetType,
   _TapDragUpdateDetails_offsetFromOrigin,
 );
-const _flaxBinding1824 = FlaxGetter.plain(
+const _flaxBinding1825 = FlaxGetter.plain(
   "localOffsetFromOrigin",
   flaxOffsetType,
   _TapDragUpdateDetails_localOffsetFromOrigin,
 );
-const _flaxBinding1825 = FlaxGetter.plain(
+const _flaxBinding1826 = FlaxGetter.plain(
   "consecutiveTapCount",
   flaxIntType,
   _TapDragUpdateDetails_consecutiveTapCount,
 );
-const _flaxBinding1826 = FlaxInstanceMethod.shared(
+const _flaxBinding1827 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _TapDragUpdateDetails_toStringShort,
 );
-const _flaxBinding1827 = FlaxInstanceMethod.plain(
+const _flaxBinding1828 = FlaxInstanceMethod.plain(
   _flaxBinding260,
   flaxStringType,
   _TapDragUpdateDetails_toString,
 );
-const _flaxBinding1828 = FlaxInstanceMethod.plain(
+const _flaxBinding1829 = FlaxInstanceMethod.plain(
   _flaxBinding268,
   _flaxBinding17,
   _TapDragUpdateDetails_toDiagnosticsNode,
 );
-const _flaxBinding1829 = FlaxInstanceMethod.shared(
+const _flaxBinding1830 = FlaxInstanceMethod.shared(
   _flaxBinding6,
   _TapDragUpdateDetails_debugFillProperties,
 );
-const _flaxBinding1830 = <FlaxParameter>[
+const _flaxBinding1831 = <FlaxParameter>[
   FlaxParameter.required("globalPosition", flaxOffsetType),
   FlaxParameter.required("localPosition", flaxOffsetType),
   FlaxParameter("sourceTimeStamp", _flaxBinding26, required: false),
@@ -67800,24 +69396,24 @@ const _flaxBinding1830 = <FlaxParameter>[
   FlaxParameter.required("localOffsetFromOrigin", flaxOffsetType),
   FlaxParameter.required("consecutiveTapCount", flaxIntType),
 ];
-const _flaxBinding1831 = FlaxObjectBinding(
+const _flaxBinding1832 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:TapDragUpdateDetails",
   [
     _flaxBinding499,
     _flaxBinding500,
-    _flaxBinding1819,
     _flaxBinding1820,
     _flaxBinding1821,
     _flaxBinding1822,
     _flaxBinding1823,
     _flaxBinding1824,
     _flaxBinding1825,
+    _flaxBinding1826,
   ],
   {
-    "toStringShort": _flaxBinding1826,
-    "toString": _flaxBinding1827,
-    "toDiagnosticsNode": _flaxBinding1828,
-    "debugFillProperties": _flaxBinding1829,
+    "toStringShort": _flaxBinding1827,
+    "toString": _flaxBinding1828,
+    "toDiagnosticsNode": _flaxBinding1829,
+    "debugFillProperties": _flaxBinding1830,
     "@super:toStringShort": _flaxBinding286,
     "@super:toString": _flaxBinding283,
     "@super:toDiagnosticsNode": _flaxBinding287,
@@ -67856,7 +69452,7 @@ const _flaxBinding1831 = FlaxObjectBinding(
       _TapDragUpdateDetails_super_get_consecutiveTapCount,
     ),
   },
-  constructors: {"": _flaxBinding1830, "@implementation": _flaxBinding1830},
+  constructors: {"": _flaxBinding1831, "@implementation": _flaxBinding1831},
   create: _createTapDragUpdateDetails,
   matches: _isTapDragUpdateDetails,
   setters: [],
@@ -67876,297 +69472,296 @@ const _flaxBinding1831 = FlaxObjectBinding(
     _flaxBinding588,
     _flaxBinding589,
     _flaxBinding577,
-    _flaxBinding916,
     _flaxBinding917,
-    _flaxBinding1791,
+    _flaxBinding918,
+    _flaxBinding1792,
   ]),
 );
-const _flaxBinding1832 = FlaxGetter.plain(
+const _flaxBinding1833 = FlaxGetter.plain(
   "onTapDown",
   _flaxBinding55,
   _TapGestureRecognizer_onTapDown,
 );
-const _flaxBinding1833 = FlaxGetter.plain(
+const _flaxBinding1834 = FlaxGetter.plain(
   "onTapUp",
   _flaxBinding238,
   _TapGestureRecognizer_onTapUp,
 );
-const _flaxBinding1834 = FlaxGetter.plain(
+const _flaxBinding1835 = FlaxGetter.plain(
   "onTap",
   flaxVoidNullableCallbackType,
   _TapGestureRecognizer_onTap,
 );
-const _flaxBinding1835 = FlaxGetter.plain(
+const _flaxBinding1836 = FlaxGetter.plain(
   "onTapMove",
   _flaxBinding242,
   _TapGestureRecognizer_onTapMove,
 );
-const _flaxBinding1836 = FlaxGetter.plain(
+const _flaxBinding1837 = FlaxGetter.plain(
   "onTapCancel",
   flaxVoidNullableCallbackType,
   _TapGestureRecognizer_onTapCancel,
 );
-const _flaxBinding1837 = FlaxGetter.plain(
+const _flaxBinding1838 = FlaxGetter.plain(
   "onSecondaryTap",
   flaxVoidNullableCallbackType,
   _TapGestureRecognizer_onSecondaryTap,
 );
-const _flaxBinding1838 = FlaxGetter.plain(
+const _flaxBinding1839 = FlaxGetter.plain(
   "onSecondaryTapDown",
   _flaxBinding55,
   _TapGestureRecognizer_onSecondaryTapDown,
 );
-const _flaxBinding1839 = FlaxGetter.plain(
+const _flaxBinding1840 = FlaxGetter.plain(
   "onSecondaryTapUp",
   _flaxBinding238,
   _TapGestureRecognizer_onSecondaryTapUp,
 );
-const _flaxBinding1840 = FlaxGetter.plain(
+const _flaxBinding1841 = FlaxGetter.plain(
   "onSecondaryTapCancel",
   flaxVoidNullableCallbackType,
   _TapGestureRecognizer_onSecondaryTapCancel,
 );
-const _flaxBinding1841 = FlaxGetter.plain(
+const _flaxBinding1842 = FlaxGetter.plain(
   "onTertiaryTapDown",
   _flaxBinding55,
   _TapGestureRecognizer_onTertiaryTapDown,
 );
-const _flaxBinding1842 = FlaxGetter.plain(
+const _flaxBinding1843 = FlaxGetter.plain(
   "onTertiaryTapUp",
   _flaxBinding238,
   _TapGestureRecognizer_onTertiaryTapUp,
 );
-const _flaxBinding1843 = FlaxGetter.plain(
+const _flaxBinding1844 = FlaxGetter.plain(
   "onTertiaryTapCancel",
   flaxVoidNullableCallbackType,
   _TapGestureRecognizer_onTertiaryTapCancel,
 );
-const _flaxBinding1844 = FlaxSetter(
+const _flaxBinding1845 = FlaxSetter(
   "onTapDown",
   _flaxBinding55,
   _TapGestureRecognizer_set_onTapDown,
 );
-const _flaxBinding1845 = FlaxSetter(
+const _flaxBinding1846 = FlaxSetter(
   "onTapUp",
   _flaxBinding238,
   _TapGestureRecognizer_set_onTapUp,
 );
-const _flaxBinding1846 = FlaxSetter(
+const _flaxBinding1847 = FlaxSetter(
   "onTap",
   flaxVoidNullableCallbackType,
   _TapGestureRecognizer_set_onTap,
 );
-const _flaxBinding1847 = FlaxSetter(
+const _flaxBinding1848 = FlaxSetter(
   "onTapMove",
   _flaxBinding242,
   _TapGestureRecognizer_set_onTapMove,
 );
-const _flaxBinding1848 = FlaxSetter(
+const _flaxBinding1849 = FlaxSetter(
   "onTapCancel",
   flaxVoidNullableCallbackType,
   _TapGestureRecognizer_set_onTapCancel,
 );
-const _flaxBinding1849 = FlaxSetter(
+const _flaxBinding1850 = FlaxSetter(
   "onSecondaryTap",
   flaxVoidNullableCallbackType,
   _TapGestureRecognizer_set_onSecondaryTap,
 );
-const _flaxBinding1850 = FlaxSetter(
+const _flaxBinding1851 = FlaxSetter(
   "onSecondaryTapDown",
   _flaxBinding55,
   _TapGestureRecognizer_set_onSecondaryTapDown,
 );
-const _flaxBinding1851 = FlaxSetter(
+const _flaxBinding1852 = FlaxSetter(
   "onSecondaryTapUp",
   _flaxBinding238,
   _TapGestureRecognizer_set_onSecondaryTapUp,
 );
-const _flaxBinding1852 = FlaxSetter(
+const _flaxBinding1853 = FlaxSetter(
   "onSecondaryTapCancel",
   flaxVoidNullableCallbackType,
   _TapGestureRecognizer_set_onSecondaryTapCancel,
 );
-const _flaxBinding1853 = FlaxSetter(
+const _flaxBinding1854 = FlaxSetter(
   "onTertiaryTapDown",
   _flaxBinding55,
   _TapGestureRecognizer_set_onTertiaryTapDown,
 );
-const _flaxBinding1854 = FlaxSetter(
+const _flaxBinding1855 = FlaxSetter(
   "onTertiaryTapUp",
   _flaxBinding238,
   _TapGestureRecognizer_set_onTertiaryTapUp,
 );
-const _flaxBinding1855 = FlaxSetter(
+const _flaxBinding1856 = FlaxSetter(
   "onTertiaryTapCancel",
   flaxVoidNullableCallbackType,
   _TapGestureRecognizer_set_onTertiaryTapCancel,
 );
-const _flaxBinding1856 = FlaxProxyMember(
+const _flaxBinding1857 = FlaxProxyMember(
   "handleTapDown",
   0,
   _flaxBinding21,
   hasSuper: true,
 );
-const _flaxBinding1857 = FlaxProxyMember(
+const _flaxBinding1858 = FlaxProxyMember(
   "handleTapUp",
   0,
   _flaxBinding23,
   hasSuper: true,
 );
-const _flaxBinding1858 = FlaxProxyMember(
+const _flaxBinding1859 = FlaxProxyMember(
   "handleTapCancel",
   0,
   _flaxBinding449,
   hasSuper: true,
 );
-const _flaxBinding1859 = FlaxProxyMember(
+const _flaxBinding1860 = FlaxProxyMember(
   "onTapDown",
   1,
   _flaxBinding56,
   hasSuper: true,
 );
-const _flaxBinding1860 = FlaxProxyMember(
+const _flaxBinding1861 = FlaxProxyMember(
   "onTapUp",
   1,
   _flaxBinding239,
   hasSuper: true,
 );
-const _flaxBinding1861 = FlaxProxyMember(
+const _flaxBinding1862 = FlaxProxyMember(
   "onTap",
   1,
   _flaxBinding57,
   hasSuper: true,
 );
-const _flaxBinding1862 = FlaxProxyMember(
+const _flaxBinding1863 = FlaxProxyMember(
   "onTapMove",
   1,
   _flaxBinding243,
   hasSuper: true,
 );
-const _flaxBinding1863 = FlaxProxyMember(
-  "onTapCancel",
-  1,
-  _flaxBinding57,
-  hasSuper: true,
-);
 const _flaxBinding1864 = FlaxProxyMember(
-  "onSecondaryTap",
+  "onTapCancel",
   1,
   _flaxBinding57,
   hasSuper: true,
 );
 const _flaxBinding1865 = FlaxProxyMember(
+  "onSecondaryTap",
+  1,
+  _flaxBinding57,
+  hasSuper: true,
+);
+const _flaxBinding1866 = FlaxProxyMember(
   "onSecondaryTapDown",
   1,
   _flaxBinding56,
   hasSuper: true,
 );
-const _flaxBinding1866 = FlaxProxyMember(
+const _flaxBinding1867 = FlaxProxyMember(
   "onSecondaryTapUp",
   1,
   _flaxBinding239,
   hasSuper: true,
 );
-const _flaxBinding1867 = FlaxProxyMember(
+const _flaxBinding1868 = FlaxProxyMember(
   "onSecondaryTapCancel",
   1,
   _flaxBinding57,
   hasSuper: true,
 );
-const _flaxBinding1868 = FlaxProxyMember(
+const _flaxBinding1869 = FlaxProxyMember(
   "onTertiaryTapDown",
   1,
   _flaxBinding56,
   hasSuper: true,
 );
-const _flaxBinding1869 = FlaxProxyMember(
+const _flaxBinding1870 = FlaxProxyMember(
   "onTertiaryTapUp",
   1,
   _flaxBinding239,
   hasSuper: true,
 );
-const _flaxBinding1870 = FlaxProxyMember(
+const _flaxBinding1871 = FlaxProxyMember(
   "onTertiaryTapCancel",
   1,
   _flaxBinding57,
   hasSuper: true,
 );
-const _flaxBinding1871 = FlaxProxyMember(
+const _flaxBinding1872 = FlaxProxyMember(
   "onTapDown",
   2,
   _flaxBinding58,
   hasSuper: true,
 );
-const _flaxBinding1872 = FlaxProxyMember(
+const _flaxBinding1873 = FlaxProxyMember(
   "onTapUp",
   2,
   _flaxBinding244,
   hasSuper: true,
 );
-const _flaxBinding1873 = FlaxProxyMember(
+const _flaxBinding1874 = FlaxProxyMember(
   "onTap",
   2,
   _flaxBinding59,
   hasSuper: true,
 );
-const _flaxBinding1874 = FlaxProxyMember(
+const _flaxBinding1875 = FlaxProxyMember(
   "onTapMove",
   2,
   _flaxBinding245,
   hasSuper: true,
 );
-const _flaxBinding1875 = FlaxProxyMember(
+const _flaxBinding1876 = FlaxProxyMember(
   "onTapCancel",
   2,
   _flaxBinding59,
   hasSuper: true,
 );
-const _flaxBinding1876 = FlaxProxyMember(
+const _flaxBinding1877 = FlaxProxyMember(
   "onSecondaryTap",
   2,
   _flaxBinding59,
   hasSuper: true,
 );
-const _flaxBinding1877 = FlaxProxyMember(
+const _flaxBinding1878 = FlaxProxyMember(
   "onSecondaryTapDown",
   2,
   _flaxBinding58,
   hasSuper: true,
 );
-const _flaxBinding1878 = FlaxProxyMember(
+const _flaxBinding1879 = FlaxProxyMember(
   "onSecondaryTapUp",
   2,
   _flaxBinding244,
   hasSuper: true,
 );
-const _flaxBinding1879 = FlaxProxyMember(
+const _flaxBinding1880 = FlaxProxyMember(
   "onSecondaryTapCancel",
   2,
   _flaxBinding59,
   hasSuper: true,
 );
-const _flaxBinding1880 = FlaxProxyMember(
+const _flaxBinding1881 = FlaxProxyMember(
   "onTertiaryTapDown",
   2,
   _flaxBinding58,
   hasSuper: true,
 );
-const _flaxBinding1881 = FlaxProxyMember(
+const _flaxBinding1882 = FlaxProxyMember(
   "onTertiaryTapUp",
   2,
   _flaxBinding244,
   hasSuper: true,
 );
-const _flaxBinding1882 = FlaxProxyMember(
+const _flaxBinding1883 = FlaxProxyMember(
   "onTertiaryTapCancel",
   2,
   _flaxBinding59,
   hasSuper: true,
 );
-const _flaxBinding1883 = FlaxObjectBinding(
+const _flaxBinding1884 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:TapGestureRecognizer",
   [
-    _flaxBinding1832,
     _flaxBinding1833,
     _flaxBinding1834,
     _flaxBinding1835,
@@ -68178,6 +69773,7 @@ const _flaxBinding1883 = FlaxObjectBinding(
     _flaxBinding1841,
     _flaxBinding1842,
     _flaxBinding1843,
+    _flaxBinding1844,
   ],
   {
     "invokeCallback": FlaxInstanceMethod(
@@ -68190,10 +69786,10 @@ const _flaxBinding1883 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback46,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback46Invoke,
-              matches: _callback46Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -68286,10 +69882,10 @@ const _flaxBinding1883 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback46,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback46Invoke,
-              matches: _callback46Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -68462,7 +70058,6 @@ const _flaxBinding1883 = FlaxObjectBinding(
   create: _createTapGestureRecognizer,
   matches: _isTapGestureRecognizer,
   setters: [
-    _flaxBinding1844,
     _flaxBinding1845,
     _flaxBinding1846,
     _flaxBinding1847,
@@ -68474,6 +70069,7 @@ const _flaxBinding1883 = FlaxObjectBinding(
     _flaxBinding1853,
     _flaxBinding1854,
     _flaxBinding1855,
+    _flaxBinding1856,
   ],
   supertypes: [
     "flax.core/sdk_gestures#type:BaseTapGestureRecognizer",
@@ -68489,10 +70085,10 @@ const _flaxBinding1883 = FlaxObjectBinding(
   parent: _flaxBinding452,
   disposeMethod: "dispose",
   proxy: FlaxProxyBinding([
-    _flaxBinding1856,
     _flaxBinding1857,
-    _flaxBinding448,
     _flaxBinding1858,
+    _flaxBinding448,
+    _flaxBinding1859,
     _flaxBinding324,
     _flaxBinding363,
     _flaxBinding445,
@@ -68547,7 +70143,6 @@ const _flaxBinding1883 = FlaxObjectBinding(
     _flaxBinding318,
     _flaxBinding319,
     _flaxBinding311,
-    _flaxBinding1859,
     _flaxBinding1860,
     _flaxBinding1861,
     _flaxBinding1862,
@@ -68559,6 +70154,7 @@ const _flaxBinding1883 = FlaxObjectBinding(
     _flaxBinding1868,
     _flaxBinding1869,
     _flaxBinding1870,
+    _flaxBinding1871,
     _flaxBinding451,
     _flaxBinding431,
     _flaxBinding432,
@@ -68571,7 +70167,6 @@ const _flaxBinding1883 = FlaxObjectBinding(
     _flaxBinding333,
     _flaxBinding334,
     _flaxBinding335,
-    _flaxBinding1871,
     _flaxBinding1872,
     _flaxBinding1873,
     _flaxBinding1874,
@@ -68583,32 +70178,33 @@ const _flaxBinding1883 = FlaxObjectBinding(
     _flaxBinding1880,
     _flaxBinding1881,
     _flaxBinding1882,
+    _flaxBinding1883,
     _flaxBinding367,
     _flaxBinding337,
     _flaxBinding338,
   ]),
 );
-const _flaxBinding1884 = FlaxGetter.plain(
+const _flaxBinding1885 = FlaxGetter.plain(
   "globalPosition",
   flaxOffsetType,
   _TapMoveDetails_globalPosition,
 );
-const _flaxBinding1885 = FlaxGetter.plain(
+const _flaxBinding1886 = FlaxGetter.plain(
   "localPosition",
   flaxOffsetType,
   _TapMoveDetails_localPosition,
 );
-const _flaxBinding1886 = FlaxGetter.plain(
+const _flaxBinding1887 = FlaxGetter.plain(
   "kind",
   _flaxBinding14,
   _TapMoveDetails_kind,
 );
-const _flaxBinding1887 = FlaxGetter.plain(
+const _flaxBinding1888 = FlaxGetter.plain(
   "delta",
   flaxOffsetType,
   _TapMoveDetails_delta,
 );
-const _flaxBinding1888 = <FlaxParameter>[
+const _flaxBinding1889 = <FlaxParameter>[
   FlaxParameter.required("kind", _flaxBinding14),
   FlaxParameter(
     "globalPosition",
@@ -68619,22 +70215,22 @@ const _flaxBinding1888 = <FlaxParameter>[
   FlaxParameter("delta", flaxOffsetType, required: false, omitWhenAbsent: true),
   FlaxParameter("localPosition", _flaxBinding143, required: false),
 ];
-const _flaxBinding1889 = FlaxObjectBinding(
+const _flaxBinding1890 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:TapMoveDetails",
-  [_flaxBinding1884, _flaxBinding1885, _flaxBinding1886, _flaxBinding1887],
+  [_flaxBinding1885, _flaxBinding1886, _flaxBinding1887, _flaxBinding1888],
   {
     "@super:get:globalPosition": FlaxInstanceMethod.shared(
       _flaxBinding64,
       _TapMoveDetails_super_get_globalPosition,
     ),
     "@super:get:localPosition": _flaxBinding506,
-    "@super:get:kind": _flaxBinding787,
+    "@super:get:kind": _flaxBinding788,
     "@super:get:delta": FlaxInstanceMethod.shared(
       _flaxBinding64,
       _TapMoveDetails_super_get_delta,
     ),
   },
-  constructors: {"": _flaxBinding1888, "@implementation": _flaxBinding1888},
+  constructors: {"": _flaxBinding1889, "@implementation": _flaxBinding1889},
   create: _createTapMoveDetails,
   matches: _isTapMoveDetails,
   setters: [],
@@ -68642,34 +70238,34 @@ const _flaxBinding1889 = FlaxObjectBinding(
   proxy: FlaxProxyBinding([
     _flaxBinding508,
     _flaxBinding509,
-    _flaxBinding792,
+    _flaxBinding793,
     _flaxBinding588,
   ]),
 );
-const _flaxBinding1890 = FlaxGetter.plain(
+const _flaxBinding1891 = FlaxGetter.plain(
   "kind",
   _flaxBinding14,
   _TapUpDetails_kind,
 );
-const _flaxBinding1891 = FlaxInstanceMethod.shared(
+const _flaxBinding1892 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _TapUpDetails_toStringShort,
 );
-const _flaxBinding1892 = FlaxInstanceMethod.plain(
+const _flaxBinding1893 = FlaxInstanceMethod.plain(
   _flaxBinding260,
   flaxStringType,
   _TapUpDetails_toString,
 );
-const _flaxBinding1893 = FlaxInstanceMethod.plain(
+const _flaxBinding1894 = FlaxInstanceMethod.plain(
   _flaxBinding268,
   _flaxBinding17,
   _TapUpDetails_toDiagnosticsNode,
 );
-const _flaxBinding1894 = FlaxInstanceMethod.shared(
+const _flaxBinding1895 = FlaxInstanceMethod.shared(
   _flaxBinding6,
   _TapUpDetails_debugFillProperties,
 );
-const _flaxBinding1895 = <FlaxParameter>[
+const _flaxBinding1896 = <FlaxParameter>[
   FlaxParameter(
     "globalPosition",
     flaxOffsetType,
@@ -68679,14 +70275,14 @@ const _flaxBinding1895 = <FlaxParameter>[
   FlaxParameter("localPosition", _flaxBinding143, required: false),
   FlaxParameter.required("kind", _flaxBinding14),
 ];
-const _flaxBinding1896 = FlaxObjectBinding(
+const _flaxBinding1897 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:TapUpDetails",
-  [_flaxBinding499, _flaxBinding500, _flaxBinding1890],
+  [_flaxBinding499, _flaxBinding500, _flaxBinding1891],
   {
-    "toStringShort": _flaxBinding1891,
-    "toString": _flaxBinding1892,
-    "toDiagnosticsNode": _flaxBinding1893,
-    "debugFillProperties": _flaxBinding1894,
+    "toStringShort": _flaxBinding1892,
+    "toString": _flaxBinding1893,
+    "toDiagnosticsNode": _flaxBinding1894,
+    "debugFillProperties": _flaxBinding1895,
     "@super:toStringShort": _flaxBinding286,
     "@super:toString": _flaxBinding283,
     "@super:toDiagnosticsNode": _flaxBinding287,
@@ -68701,7 +70297,7 @@ const _flaxBinding1896 = FlaxObjectBinding(
       _TapUpDetails_super_get_kind,
     ),
   },
-  constructors: {"": _flaxBinding1895, "@implementation": _flaxBinding1895},
+  constructors: {"": _flaxBinding1896, "@implementation": _flaxBinding1896},
   create: _createTapUpDetails,
   matches: _isTapUpDetails,
   setters: [],
@@ -68717,80 +70313,80 @@ const _flaxBinding1896 = FlaxObjectBinding(
     _flaxBinding320,
     _flaxBinding508,
     _flaxBinding509,
-    _flaxBinding792,
+    _flaxBinding793,
   ]),
 );
-const _flaxBinding1897 = FlaxGetter.plain(
+const _flaxBinding1898 = FlaxGetter.plain(
   "pixelsPerSecond",
   flaxOffsetType,
   _Velocity_pixelsPerSecond,
 );
-const _flaxBinding1898 = FlaxInstanceMethod.shared(
+const _flaxBinding1899 = FlaxInstanceMethod.shared(
   _flaxBinding246,
   _Velocity_clampMagnitude,
 );
-const _flaxBinding1899 = FlaxInstanceMethod.shared(
+const _flaxBinding1900 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _Velocity_toString,
 );
-const _flaxBinding1900 = FlaxInstanceMethod.shared(
+const _flaxBinding1901 = FlaxInstanceMethod.shared(
   _flaxBinding247,
   _Velocity_operatorAdd,
 );
-const _flaxBinding1901 = FlaxInstanceMethod.shared(
+const _flaxBinding1902 = FlaxInstanceMethod.shared(
   _flaxBinding247,
   _Velocity_operatorSubtract,
 );
-const _flaxBinding1902 = FlaxInstanceMethod.shared(
+const _flaxBinding1903 = FlaxInstanceMethod.shared(
   _flaxBinding66,
   _Velocity_operatorNegate,
 );
-const _flaxBinding1903 = FlaxInstanceMethod.shared(
+const _flaxBinding1904 = FlaxInstanceMethod.shared(
   _flaxBinding64,
   _FlaxProxyDispatch42_super_get_pixelsPerSecond,
 );
-const _flaxBinding1904 = <FlaxParameter>[
+const _flaxBinding1905 = <FlaxParameter>[
   FlaxParameter.required("pixelsPerSecond", flaxOffsetType),
 ];
-const _flaxBinding1905 = FlaxProxyMember(
+const _flaxBinding1906 = FlaxProxyMember(
   "clampMagnitude",
   0,
   _flaxBinding246,
   hasSuper: true,
 );
-const _flaxBinding1906 = FlaxProxyMember(
+const _flaxBinding1907 = FlaxProxyMember(
   "operatorAdd",
   0,
   _flaxBinding247,
   hasSuper: true,
 );
-const _flaxBinding1907 = FlaxProxyMember(
+const _flaxBinding1908 = FlaxProxyMember(
   "operatorSubtract",
   0,
   _flaxBinding247,
   hasSuper: true,
 );
-const _flaxBinding1908 = FlaxProxyMember(
+const _flaxBinding1909 = FlaxProxyMember(
   "operatorNegate",
   0,
   _flaxBinding66,
   hasSuper: true,
 );
-const _flaxBinding1909 = FlaxProxyMember(
+const _flaxBinding1910 = FlaxProxyMember(
   "pixelsPerSecond",
   1,
   _flaxBinding64,
   hasSuper: true,
 );
-const _flaxBinding1910 = FlaxObjectBinding(
+const _flaxBinding1911 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:Velocity",
-  [_flaxBinding1897],
+  [_flaxBinding1898],
   {
-    "clampMagnitude": _flaxBinding1898,
-    "toString": _flaxBinding1899,
-    "operatorAdd": _flaxBinding1900,
-    "operatorSubtract": _flaxBinding1901,
-    "operatorNegate": _flaxBinding1902,
+    "clampMagnitude": _flaxBinding1899,
+    "toString": _flaxBinding1900,
+    "operatorAdd": _flaxBinding1901,
+    "operatorSubtract": _flaxBinding1902,
+    "operatorNegate": _flaxBinding1903,
     "@super:clampMagnitude": FlaxInstanceMethod.shared(
       _flaxBinding246,
       _Velocity_super_clampMagnitude,
@@ -68808,72 +70404,72 @@ const _flaxBinding1910 = FlaxObjectBinding(
       _flaxBinding66,
       _Velocity_super_operatorNegate,
     ),
-    "@super:get:pixelsPerSecond": _flaxBinding1903,
+    "@super:get:pixelsPerSecond": _flaxBinding1904,
   },
-  constructors: {"": _flaxBinding1904, "@implementation": _flaxBinding1904},
+  constructors: {"": _flaxBinding1905, "@implementation": _flaxBinding1905},
   create: _createVelocity,
   matches: _isVelocity,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding1905,
-    _flaxBinding474,
     _flaxBinding1906,
+    _flaxBinding474,
     _flaxBinding1907,
     _flaxBinding1908,
     _flaxBinding1909,
+    _flaxBinding1910,
   ]),
 );
-const _flaxBinding1911 = FlaxGetter.plain(
+const _flaxBinding1912 = FlaxGetter.plain(
   "pixelsPerSecond",
   flaxOffsetType,
   _VelocityEstimate_pixelsPerSecond,
 );
-const _flaxBinding1912 = FlaxGetter.plain(
+const _flaxBinding1913 = FlaxGetter.plain(
   "confidence",
   flaxDoubleType,
   _VelocityEstimate_confidence,
 );
-const _flaxBinding1913 = FlaxGetter.plain(
+const _flaxBinding1914 = FlaxGetter.plain(
   "duration",
   flaxDurationType,
   _VelocityEstimate_duration,
 );
-const _flaxBinding1914 = FlaxGetter.plain(
+const _flaxBinding1915 = FlaxGetter.plain(
   "offset",
   flaxOffsetType,
   _VelocityEstimate_offset,
 );
-const _flaxBinding1915 = FlaxInstanceMethod.shared(
+const _flaxBinding1916 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _VelocityEstimate_toString,
 );
-const _flaxBinding1916 = <FlaxParameter>[
+const _flaxBinding1917 = <FlaxParameter>[
   FlaxParameter.required("pixelsPerSecond", flaxOffsetType),
   FlaxParameter.required("confidence", flaxDoubleType),
   FlaxParameter.required("duration", flaxDurationType),
   FlaxParameter.required("offset", flaxOffsetType),
 ];
-const _flaxBinding1917 = FlaxProxyMember(
+const _flaxBinding1918 = FlaxProxyMember(
   "duration",
   1,
   _flaxBinding47,
   hasSuper: true,
 );
-const _flaxBinding1918 = FlaxProxyMember(
+const _flaxBinding1919 = FlaxProxyMember(
   "offset",
   1,
   _flaxBinding64,
   hasSuper: true,
 );
-const _flaxBinding1919 = FlaxObjectBinding(
+const _flaxBinding1920 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:VelocityEstimate",
-  [_flaxBinding1911, _flaxBinding1912, _flaxBinding1913, _flaxBinding1914],
+  [_flaxBinding1912, _flaxBinding1913, _flaxBinding1914, _flaxBinding1915],
   {
-    "toString": _flaxBinding1915,
+    "toString": _flaxBinding1916,
     "@super:toString": _flaxBinding470,
-    "@super:get:pixelsPerSecond": _flaxBinding1903,
-    "@super:get:confidence": _flaxBinding1650,
+    "@super:get:pixelsPerSecond": _flaxBinding1904,
+    "@super:get:confidence": _flaxBinding1651,
     "@super:get:duration": FlaxInstanceMethod.shared(
       _flaxBinding47,
       _VelocityEstimate_super_get_duration,
@@ -68883,20 +70479,20 @@ const _flaxBinding1919 = FlaxObjectBinding(
       _VelocityEstimate_super_get_offset,
     ),
   },
-  constructors: {"": _flaxBinding1916, "@implementation": _flaxBinding1916},
+  constructors: {"": _flaxBinding1917, "@implementation": _flaxBinding1917},
   create: _createVelocityEstimate,
   matches: _isVelocityEstimate,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
     _flaxBinding474,
-    _flaxBinding1909,
-    _flaxBinding1653,
-    _flaxBinding1917,
+    _flaxBinding1910,
+    _flaxBinding1654,
     _flaxBinding1918,
+    _flaxBinding1919,
   ]),
 );
-const _flaxBinding1920 = FlaxObjectBinding(
+const _flaxBinding1921 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:VerticalDragGestureRecognizer",
   [],
   {
@@ -68910,10 +70506,10 @@ const _flaxBinding1920 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback48,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback48Invoke,
-              matches: _callback48Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -68946,7 +70542,7 @@ const _flaxBinding1920 = FlaxObjectBinding(
   parent: _flaxBinding568,
   disposeMethod: "dispose",
 );
-const _flaxBinding1921 = FlaxObjectBinding(
+const _flaxBinding1922 = FlaxObjectBinding(
   "flax.core/sdk_gestures#type:VerticalMultiDragGestureRecognizer",
   [],
   {
@@ -68960,10 +70556,10 @@ const _flaxBinding1921 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback49,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback49Invoke,
-              matches: _callback49Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -69012,10 +70608,10 @@ const _flaxBinding1921 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [],
               flaxNullableAnyType,
-              _callback49,
+              _flaxAdapters.flaxAdapter20,
               id: "callback:<>()->any?:",
-              invoke: _callback49Invoke,
-              matches: _callback49Matches,
+              invoke: _flaxAdapters.flaxAdapter20Invoke,
+              matches: _flaxAdapters.flaxAdapter20Matches,
             ),
           ),
         ),
@@ -69058,7 +70654,7 @@ const _flaxBinding1921 = FlaxObjectBinding(
     "@super:set:gestureSettings": _flaxBinding305,
     "@super:set:supportedDevices": _flaxBinding306,
   },
-  constructors: {"": _flaxBinding779, "@implementation": _flaxBinding779},
+  constructors: {"": _flaxBinding780, "@implementation": _flaxBinding780},
   create: _createVerticalMultiDragGestureRecognizer,
   matches: _isVerticalMultiDragGestureRecognizer,
   setters: [],
@@ -69130,25 +70726,25 @@ const _flaxBinding1921 = FlaxObjectBinding(
     _flaxBinding338,
   ]),
 );
-const _flaxBinding1922 = FlaxTypeRef(
+const _flaxBinding1923 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_gestures#type:GestureBinding",
 );
-const _flaxBinding1923 = FlaxTypeRef(
+const _flaxBinding1924 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dart_ui#type:PointerData",
 );
-const _flaxBinding1924 = FlaxTypeRef(
+const _flaxBinding1925 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding1923,
+  item: _flaxBinding1924,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_dart_ui#type:PointerData]",
-    _collection10Create,
-    _collection10Matches,
-    restore: _collection10Restore,
+    _flaxAdapters.flaxAdapter69Create,
+    _flaxAdapters.flaxAdapter69Matches,
+    restore: _flaxAdapters.flaxAdapter69Restore,
   ),
 );
-const _flaxBinding1925 = FlaxCallbackBinding(
+const _flaxBinding1926 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("viewId", flaxIntType)],
   flaxNullableDoubleType,
   FlaxCallbackAdapters.wrap1<int, double?>,
@@ -69156,8 +70752,8 @@ const _flaxBinding1925 = FlaxCallbackBinding(
   invoke: FlaxCallbackAdapters.invoke1<int, double?>,
   matches: FlaxCallbackAdapters.matches1<int, double?>,
 );
-const _flaxBinding1926 = FlaxTypeRef("callback", callback: _flaxBinding1925);
-const _flaxBinding1927 = FlaxTypeRef(
+const _flaxBinding1927 = FlaxTypeRef("callback", callback: _flaxBinding1926);
+const _flaxBinding1928 = FlaxTypeRef(
   "iterable",
   item: _flaxBinding2,
   collection: FlaxCollectionBinding(
@@ -69166,4 +70762,9 @@ const _flaxBinding1927 = FlaxTypeRef(
     _collection11Matches,
     restore: _collection11Restore,
   ),
+);
+const _flaxBinding1929 = FlaxInstanceMethod.plain(
+  _flaxBinding494,
+  flaxStringType,
+  _FlaxProxyDispatch13_super_call_toString,
 );

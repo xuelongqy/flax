@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:ffi';
+import 'dart:io' show Platform;
 import 'dart:isolate';
 import 'dart:typed_data';
 
@@ -85,9 +86,9 @@ final class FlaxNativeJsRuntime
         gc.ref.register_host == nullptr ||
         gc.ref.cell_count == nullptr ||
         gc.ref.flutter_revision.cast<Utf8>().toDartString() !=
-            'c197ca5199e9ee5661e865596c9c07294dfab51c' ||
+            'ab2912035e160d9cad6306df307576da6128ebdb' ||
         gc.ref.dart_revision.cast<Utf8>().toDartString() !=
-            '416e33b0ffaef062a60ec966bb8c82ed2b83f128') {
+            'fa8c1270c374c1346931583a17c3b7f278d3822d') {
       throw UnsupportedError(
         'Incompatible Flax Flutter engine or GC extension',
       );
@@ -1095,6 +1096,48 @@ final class FlaxNativeJsRuntime
       _checked(
         arena,
         (error) => _bindPeer(_handle, object._id, target, origin, error),
+      );
+    });
+  }
+
+  // Older engine clients and sessions that never acquire a view need no lookup.
+  static final _ownedPeerCalls = FlaxBindings(
+    Platform.isAndroid
+        ? DynamicLibrary.open('libflutter.so')
+        : DynamicLibrary.process(),
+  );
+
+  void bindOwnedDartPeer(FlaxJsObject view, Object target) {
+    if (view is! _NativeObject) {
+      throw ArgumentError('Expected a native JS view');
+    }
+    view._check(this);
+    _entry((arena) {
+      _checked(
+        arena,
+        (error) => _ownedPeerCalls.flax_engine_bind_owned_peer(
+          _handle,
+          view._id,
+          target,
+          error,
+        ),
+      );
+    });
+  }
+
+  void unlinkOwnedDartPeer(FlaxJsObject view) {
+    if (view is! _NativeObject) {
+      throw ArgumentError('Expected a native JS view');
+    }
+    view._check(this);
+    _entry((arena) {
+      _checked(
+        arena,
+        (error) => _ownedPeerCalls.flax_engine_unlink_owned_peer(
+          _handle,
+          view._id,
+          error,
+        ),
       );
     });
   }

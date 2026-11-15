@@ -7,9 +7,100 @@ import 'package:flax_codegen/builder.dart';
 import 'package:flax_codegen/src/identity.dart';
 import 'package:flax_codegen/src/manifest.dart';
 import 'package:flax_codegen/src/ownership.dart';
+import 'package:flax_codegen/src/package_pipeline.dart';
+import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
+import 'support/public_carriers.dart';
+
 void main() {
+  test(
+    'CLI and Builder agree on deprecated, nearest and tied public carriers',
+    () async {
+      final sources = _sources()
+        ..removeWhere(
+          (key, _) =>
+              key.startsWith('shop|bindings/flax_') ||
+              key == 'shop|lib/api.dart',
+        );
+      sources['shop|flax_package.yaml'] = sources['shop|flax_package.yaml']!
+          .replaceAll('package:shop/api.dart', 'package:shop/main.dart');
+      for (final entry in publicCarrierLibraries.entries) {
+        sources['shop|lib/${entry.key}'] = entry.value;
+      }
+      for (final entry in publicCarrierConfigs('shop').entries) {
+        sources['shop|bindings/${entry.key}'] = entry.value;
+      }
+      final workspace = Directory.systemTemp.createTempSync(
+        'flax-carrier-parity-',
+      );
+      addTearDown(() => workspace.deleteSync(recursive: true));
+      for (final entry in sources.entries) {
+        final parts = entry.key.split('|');
+        final file = File(p.join(workspace.path, parts[0], parts[1]));
+        file.parent.createSync(recursive: true);
+        file.writeAsStringSync(entry.value);
+      }
+      for (final name in ['flax', 'flax_annotations']) {
+        File(p.join(workspace.path, name, 'pubspec.yaml'))
+            .writeAsStringSync('name: $name\n');
+      }
+      final packageConfig = File(
+        p.join(workspace.path, '.dart_tool/package_config.json'),
+      );
+      packageConfig.parent.createSync();
+      packageConfig.writeAsStringSync(
+        jsonEncode({
+          'configVersion': 2,
+          'packages': [
+            for (final name in ['shop', 'flax', 'flax_annotations'])
+              {'name': name, 'rootUri': '../$name/', 'packageUri': 'lib/'},
+          ],
+        }),
+      );
+      final cli = await FlaxCodegenPackagePipeline.validateConfig(
+        p.join(workspace.path, 'shop/bindings/flax_main.yaml'),
+      );
+      final result = await _testBuilders(
+        [
+          flaxCodegenBindingsBuilder(
+            BuilderOptions({
+              'outputs': cli.outputInventory
+                  .where(
+                    (path) => path.endsWith('.dart') || path.endsWith('.ts'),
+                  )
+                  .toList(),
+            }),
+          ),
+        ],
+        sources,
+        rootPackage: 'shop',
+      );
+      expect(result.succeeded, isTrue, reason: result.errors.join('\n'));
+      final built = jsonDecode(
+        result.readerWriter.testing.readString(
+          AssetId('shop', 'bindings/manifest.json'),
+        ),
+      );
+      expect(built, jsonDecode(cli.manifest.encode()));
+      final active = cli.localModels.singleWhere((m) => m.name == 'z_active');
+      expect(active.typeLibraries['CarrierType'], 'package:shop/z_active.dart');
+      expect(active.typeLibraries['NearType'], 'package:shop/z_active.dart');
+      expect(
+        cli.localModels
+            .singleWhere((m) => m.name == 'c_tie')
+            .typeLibraries['TiedType'],
+        'package:shop/c_tie.dart',
+      );
+      expect(
+        cli.localModels
+            .singleWhere((m) => m.name == 'declared')
+            .typeLibraries['Declared'],
+        'package:shop/declared.dart',
+      );
+    },
+  );
+
   test('Builder uses the SDK name for selected scopes and keeps internal defaults', () async {
     final sources = _sources()
       ..removeWhere((key, _) => key.startsWith('shop|bindings/flax_'));
@@ -94,6 +185,33 @@ import 'package:flax_annotations/flax_annotations.dart';
   ];
   Builder builder([List<String> paths = outputs]) =>
       flaxCodegenBindingsBuilder(BuilderOptions({'outputs': paths}));
+
+  test('builder tracks the optional shared adapter output without extra configuration', () async {
+    final sources = _sources();
+    sources['shop|lib/api.dart'] = '''
+import 'package:flax_annotations/flax_annotations.dart';
+@FlaxExport(scope: 'shop') List<String> cart(List<String> value) => value;
+@FlaxExport(scope: 'admin') List<String> admin(List<String> value) => value;
+''';
+    final result = await _testBuilders(
+      [builder()],
+      sources,
+      rootPackage: 'shop',
+      testingBuilderConfig: false,
+      flattenOutput: true,
+    );
+    expect(result.succeeded, isTrue, reason: result.errors.join('\n'));
+    expect(
+      result.outputs.map((id) => id.path),
+      contains('lib/src/generated/closed_adapters.g.dart'),
+    );
+    expect(
+      result.readerWriter.testing.readString(
+        AssetId('shop', 'lib/generated/shop.g.dart'),
+      ),
+      contains('_flaxAdapters.'),
+    );
+  });
 
   test(
     'builder uses the same config-free app conventions as the CLI',

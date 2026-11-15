@@ -15,32 +15,34 @@ import type * as upstream6 from '@flax/flutter/painting/_bindings/sdk_painting_T
 import '@flax/flutter/painting/_bindings/sdk_painting_TextWidthBasis';
 import type * as upstream7 from '@flax/dart/ui/_bindings/sdk_dart_ui_TextHeightBehavior';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_TextHeightBehavior';
-import type * as upstream8 from '@flax/dart/ui/_bindings/sdk_dart_ui_TextBox';
+import type * as upstream8 from '@flax/dart/ui/_bindings/sdk_dart_ui_Hyphens';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_Hyphens';
+import type * as upstream9 from '@flax/dart/ui/_bindings/sdk_dart_ui_TextBox';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_TextBox';
-import type * as upstream9 from '@flax/dart/ui/_bindings/flutter_Size';
+import type * as upstream10 from '@flax/dart/ui/_bindings/flutter_Size';
 import '@flax/dart/ui/_bindings/flutter_Size';
-import type * as upstream10 from '@flax/flutter/painting/_bindings/sdk_painting_WordBoundary';
+import type * as upstream11 from '@flax/flutter/painting/_bindings/sdk_painting_WordBoundary';
 import '@flax/flutter/painting/_bindings/sdk_painting_WordBoundary';
-import type * as upstream11 from '@flax/flutter/painting/_bindings/sdk_painting_PlaceholderDimensions';
+import type * as upstream12 from '@flax/flutter/painting/_bindings/sdk_painting_PlaceholderDimensions';
 import '@flax/flutter/painting/_bindings/sdk_painting_PlaceholderDimensions';
-import type * as upstream12 from '@flax/dart/ui/_bindings/flutter_TextBaseline';
+import type * as upstream13 from '@flax/dart/ui/_bindings/flutter_TextBaseline';
 import '@flax/dart/ui/_bindings/flutter_TextBaseline';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
-import type * as upstream14 from '@flax/dart/ui/_bindings/flutter_Offset';
+import type * as upstream15 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
-import type * as upstream15 from '@flax/dart/ui/_bindings/sdk_dart_ui_TextPosition';
+import type * as upstream16 from '@flax/dart/ui/_bindings/sdk_dart_ui_TextPosition';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_TextPosition';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import '@flax/flutter/services/_bindings/flutter_TextSelection';
-import type * as upstream18 from '@flax/dart/ui/_bindings/sdk_dart_ui_BoxHeightStyle';
+import type * as upstream19 from '@flax/dart/ui/_bindings/sdk_dart_ui_BoxHeightStyle';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_BoxHeightStyle';
-import type * as upstream19 from '@flax/dart/ui/_bindings/sdk_dart_ui_BoxWidthStyle';
+import type * as upstream20 from '@flax/dart/ui/_bindings/sdk_dart_ui_BoxWidthStyle';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_BoxWidthStyle';
-import type * as upstream20 from '@flax/dart/ui/_bindings/sdk_dart_ui_GlyphInfo';
+import type * as upstream21 from '@flax/dart/ui/_bindings/sdk_dart_ui_GlyphInfo';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_GlyphInfo';
-import type * as upstream21 from '@flax/dart/ui/_bindings/flutter_TextRange';
+import type * as upstream22 from '@flax/dart/ui/_bindings/flutter_TextRange';
 import '@flax/dart/ui/_bindings/flutter_TextRange';
-import type * as upstream22 from '@flax/dart/ui/_bindings/sdk_dart_ui_LineMetrics';
+import type * as upstream23 from '@flax/dart/ui/_bindings/sdk_dart_ui_LineMetrics';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_LineMetrics';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
 import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
@@ -61,22 +63,23 @@ export interface TextPainter extends Readonly<{
     get strutStyle(): upstream5.StrutStyle | null;
     get textWidthBasis(): upstream6.TextWidthBasis;
     get textHeightBehavior(): upstream7.TextHeightBehavior | null;
-    readonly inlinePlaceholderBoxes: DartList<upstream8.TextBox> | null;
+    get hyphens(): upstream8.Hyphens;
+    readonly inlinePlaceholderBoxes: DartList<upstream9.TextBox> | null;
     readonly preferredLineHeight: number;
     readonly minIntrinsicWidth: number;
     readonly maxIntrinsicWidth: number;
     readonly width: number;
     readonly height: number;
-    readonly size: upstream9.Size;
+    readonly size: upstream10.Size;
     readonly didExceedMaxLines: boolean;
     get debugPaintTextLayoutBoxes(): boolean;
-    readonly wordBoundaries: upstream10.WordBoundary;
+    readonly wordBoundaries: upstream11.WordBoundary;
     readonly debugDisposed: boolean;
     markNeedsLayout(): void;
-    setPlaceholderDimensions(value: DartListInput<upstream11.PlaceholderDimensions, Readonly<{
+    setPlaceholderDimensions(value: DartListInput<upstream12.PlaceholderDimensions, Readonly<{
         "__flaxBound:package:flutter/src/painting/text_painter.dart::PlaceholderDimensions": readonly [];
     }>> | null): void;
-    computeDistanceToActualBaseline(baseline: upstream12.TextBaseline): number;
+    computeDistanceToActualBaseline(baseline: upstream13.TextBaseline): number;
     layout(options?: {
         maxWidth?: number | undefined;
         minWidth?: number | undefined;
@@ -94,7 +97,7 @@ export interface TextPainter extends Readonly<{
         "__flaxBound:dart:ui::TextPosition": readonly [];
     }>, caretPrototype: Readonly<{
         "__flaxBound:dart:ui::Rect": readonly [];
-    }>): upstream14.Offset;
+    }>): upstream15.Offset;
     getFullHeightForCaret(position: Readonly<{
         "__flaxBound:dart:ui::TextPosition": readonly [];
     }>, caretPrototype: Readonly<{
@@ -105,26 +108,26 @@ export interface TextPainter extends Readonly<{
     }> & Readonly<{
         "__flaxBound:dart:ui::TextRange": readonly [];
     }>, options?: {
-        boxHeightStyle?: upstream18.BoxHeightStyle | undefined;
-        boxWidthStyle?: upstream19.BoxWidthStyle | undefined;
-    }): DartList<upstream8.TextBox>;
+        boxHeightStyle?: upstream19.BoxHeightStyle | undefined;
+        boxWidthStyle?: upstream20.BoxWidthStyle | undefined;
+    }): DartList<upstream9.TextBox>;
     getClosestGlyphForOffset(offset: Readonly<{
         "__flaxBound:dart:ui::Offset": readonly [];
     }> & Readonly<{
         "__flaxBound:dart:ui::OffsetBase": readonly [];
-    }>): upstream20.GlyphInfo | null;
+    }>): upstream21.GlyphInfo | null;
     getPositionForOffset(offset: Readonly<{
         "__flaxBound:dart:ui::Offset": readonly [];
     }> & Readonly<{
         "__flaxBound:dart:ui::OffsetBase": readonly [];
-    }>): upstream15.TextPosition;
+    }>): upstream16.TextPosition;
     getWordBoundary(position: Readonly<{
         "__flaxBound:dart:ui::TextPosition": readonly [];
-    }>): upstream21.TextRange;
+    }>): upstream22.TextRange;
     getLineBoundary(position: Readonly<{
         "__flaxBound:dart:ui::TextPosition": readonly [];
-    }>): upstream21.TextRange;
-    computeLineMetrics(): DartList<upstream22.LineMetrics>;
+    }>): upstream22.TextRange;
+    computeLineMetrics(): DartList<upstream23.LineMetrics>;
     dispose(): void;
     set text(value: (Readonly<{
         "__flaxBound:package:flutter/src/painting/inline_span.dart::InlineSpan": readonly [];
@@ -153,6 +156,7 @@ export interface TextPainter extends Readonly<{
     set textHeightBehavior(value: Readonly<{
         "__flaxBound:dart:ui::TextHeightBehavior": readonly [];
     }> | null);
+    set hyphens(value: upstream8.Hyphens);
     set debugPaintTextLayoutBoxes(value: boolean);
 }
 export declare function _TextPainterFactory(options?: {
@@ -183,14 +187,15 @@ export declare function _TextPainterFactory(options?: {
     textHeightBehavior?: Readonly<{
         "__flaxBound:dart:ui::TextHeightBehavior": readonly [];
     }> | null | undefined;
+    hyphens?: upstream8.Hyphens | undefined;
 }): TextPainter;
 export interface _TextPainterNative extends TextPainter {
     readonly [_flaxDartTypeValue]: _TextPainterNative;
     markNeedsLayout(): void;
-    setPlaceholderDimensions(value: DartListInput<upstream11.PlaceholderDimensions, Readonly<{
+    setPlaceholderDimensions(value: DartListInput<upstream12.PlaceholderDimensions, Readonly<{
         "__flaxBound:package:flutter/src/painting/text_painter.dart::PlaceholderDimensions": readonly [];
     }>> | null): void;
-    computeDistanceToActualBaseline(baseline: upstream12.TextBaseline): number;
+    computeDistanceToActualBaseline(baseline: upstream13.TextBaseline): number;
     layout(options?: {
         minWidth?: number | undefined;
         maxWidth?: number | undefined;
@@ -208,7 +213,7 @@ export interface _TextPainterNative extends TextPainter {
         "__flaxBound:dart:ui::TextPosition": readonly [];
     }>, caretPrototype: Readonly<{
         "__flaxBound:dart:ui::Rect": readonly [];
-    }>): upstream14.Offset;
+    }>): upstream15.Offset;
     getFullHeightForCaret(position: Readonly<{
         "__flaxBound:dart:ui::TextPosition": readonly [];
     }>, caretPrototype: Readonly<{
@@ -219,26 +224,26 @@ export interface _TextPainterNative extends TextPainter {
     }> & Readonly<{
         "__flaxBound:dart:ui::TextRange": readonly [];
     }>, options?: {
-        boxHeightStyle?: upstream18.BoxHeightStyle | undefined;
-        boxWidthStyle?: upstream19.BoxWidthStyle | undefined;
-    }): DartList<upstream8.TextBox>;
+        boxHeightStyle?: upstream19.BoxHeightStyle | undefined;
+        boxWidthStyle?: upstream20.BoxWidthStyle | undefined;
+    }): DartList<upstream9.TextBox>;
     getClosestGlyphForOffset(offset: Readonly<{
         "__flaxBound:dart:ui::Offset": readonly [];
     }> & Readonly<{
         "__flaxBound:dart:ui::OffsetBase": readonly [];
-    }>): upstream20.GlyphInfo | null;
+    }>): upstream21.GlyphInfo | null;
     getPositionForOffset(offset: Readonly<{
         "__flaxBound:dart:ui::Offset": readonly [];
     }> & Readonly<{
         "__flaxBound:dart:ui::OffsetBase": readonly [];
-    }>): upstream15.TextPosition;
+    }>): upstream16.TextPosition;
     getWordBoundary(position: Readonly<{
         "__flaxBound:dart:ui::TextPosition": readonly [];
-    }>): upstream21.TextRange;
+    }>): upstream22.TextRange;
     getLineBoundary(position: Readonly<{
         "__flaxBound:dart:ui::TextPosition": readonly [];
-    }>): upstream21.TextRange;
-    computeLineMetrics(): DartList<upstream22.LineMetrics>;
+    }>): upstream22.TextRange;
+    computeLineMetrics(): DartList<upstream23.LineMetrics>;
     dispose(): void;
     get text(): upstream0.InlineSpan | null;
     get plainText(): string;
@@ -252,16 +257,17 @@ export interface _TextPainterNative extends TextPainter {
     get strutStyle(): upstream5.StrutStyle | null;
     get textWidthBasis(): upstream6.TextWidthBasis;
     get textHeightBehavior(): upstream7.TextHeightBehavior | null;
-    get inlinePlaceholderBoxes(): DartList<upstream8.TextBox> | null;
+    get hyphens(): upstream8.Hyphens;
+    get inlinePlaceholderBoxes(): DartList<upstream9.TextBox> | null;
     get preferredLineHeight(): number;
     get minIntrinsicWidth(): number;
     get maxIntrinsicWidth(): number;
     get width(): number;
     get height(): number;
-    get size(): upstream9.Size;
+    get size(): upstream10.Size;
     get didExceedMaxLines(): boolean;
     get debugPaintTextLayoutBoxes(): boolean;
-    get wordBoundaries(): upstream10.WordBoundary;
+    get wordBoundaries(): upstream11.WordBoundary;
     get debugDisposed(): boolean;
     set text(value: (Readonly<{
         "__flaxBound:package:flutter/src/painting/inline_span.dart::InlineSpan": readonly [];
@@ -290,6 +296,7 @@ export interface _TextPainterNative extends TextPainter {
     set textHeightBehavior(value: Readonly<{
         "__flaxBound:dart:ui::TextHeightBehavior": readonly [];
     }> | null);
+    set hyphens(value: upstream8.Hyphens);
     set debugPaintTextLayoutBoxes(value: boolean);
 }
 export declare abstract class _TextPainterNative extends _FlaxProxyBase {
@@ -324,6 +331,7 @@ export declare abstract class _TextPainterNative extends _FlaxProxyBase {
         textHeightBehavior?: Readonly<{
             "__flaxBound:dart:ui::TextHeightBehavior": readonly [];
         }> | null | undefined;
+        hyphens?: upstream8.Hyphens | undefined;
     });
 }
 export declare namespace _TextPainterFactory {
@@ -355,6 +363,7 @@ export declare namespace _TextPainterFactory {
         textHeightBehavior?: Readonly<{
             "__flaxBound:dart:ui::TextHeightBehavior": readonly [];
         }> | null | undefined;
+        hyphens?: upstream8.Hyphens | undefined;
     }], implementation: {}): TextPainter;
 }
 declare const _TextPainterBinding: typeof _TextPainterFactory & (new (options?: {
@@ -385,10 +394,12 @@ declare const _TextPainterBinding: typeof _TextPainterFactory & (new (options?: 
     textHeightBehavior?: Readonly<{
         "__flaxBound:dart:ui::TextHeightBehavior": readonly [];
     }> | null | undefined;
+    hyphens?: upstream8.Hyphens | undefined;
 }) => _TextPainterNative);
 export declare namespace _TextPainterFactory {
     function computeWidth(options: {
         ellipsis?: string | null | undefined;
+        hyphens?: upstream8.Hyphens | undefined;
         locale?: Readonly<{
             "__flaxBound:dart:ui::Locale": readonly [];
         }> | null | undefined;
@@ -422,6 +433,7 @@ export declare namespace _TextPainterFactory {
 export declare namespace _TextPainterFactory {
     function computeMaxIntrinsicWidth(options: {
         ellipsis?: string | null | undefined;
+        hyphens?: upstream8.Hyphens | undefined;
         locale?: Readonly<{
             "__flaxBound:dart:ui::Locale": readonly [];
         }> | null | undefined;

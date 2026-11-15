@@ -4,6 +4,7 @@ import 'package:flax/flax.dart';
 import 'package:flax_test/flax_test.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:listen/listen.dart' as listen;
 
 import '../support/engine.dart';
 
@@ -24,7 +25,11 @@ FlaxOwnedTestHarness _harness(
 }) => FlaxOwnedTestHarness(
   createRuntime: createTestRuntime,
   bindings: FlaxBindingRegistry([flutterBindings]),
-  extra: [sdk_widgetsBindings, sdk_dependenciesBindings],
+  extra: [
+    sdk_foundationBindings,
+    sdk_widgetsBindings,
+    sdk_dependenciesBindings,
+  ],
   onCreate: onCreate,
   source:
       '''
@@ -39,6 +44,80 @@ FlaxOwnedTestHarness _harness(
 bool _alive(WeakReference<Object> peer) => peer.target != null;
 
 void main() {
+  testWidgets(
+    'listen identities stay Core-owned across foundation and widgets',
+    (tester) async {
+      final native = <listen.ValueNotifier<dynamic>>[];
+      final h = _harness(
+        '''
+      var F = ${_require('@flax/flutter/foundation')};
+      globalThis.sameListenTypes = F.ValueNotifier === W.ValueNotifier &&
+        F.Listenable === W.Listenable && F.ChangeNotifier === W.ChangeNotifier;
+      globalThis.notifier = F.ValueNotifier(1);
+      globalThis.valueView = B.asDart(notifier, F.ValueListenable);
+      globalThis.listenCalls = 0;
+      var merged = F.Listenable.merge([notifier]);
+      var changed = () => listenCalls++;
+      merged.addListener(changed);
+      notifier.value = 2;
+      merged.removeListener(changed);
+      notifier.value = 3;
+      W.registerPage('sdk', () => W.SizedBox());
+    ''',
+        onCreate: (_, value) {
+          if (value is listen.ValueNotifier) native.add(value);
+        },
+      );
+      try {
+        await tester.pumpWidget(h.page('sdk'));
+        expect(h.errors, isEmpty);
+        expect(h.boolean('sameListenTypes'), isTrue);
+        expect(h.number('listenCalls'), 1);
+        expect(h.number('valueView.value'), 3);
+        expect(native, hasLength(1));
+        expect(native.single.value, 3);
+        h.execute('notifier.dispose(); notifier = null;');
+      } finally {
+        await h.finish(tester);
+      }
+      expect(h.errors, isEmpty);
+    },
+  );
+
+  testWidgets(
+    'selected text constructors and static measurements accept Hyphens',
+    (tester) async {
+      final h = _harness('''
+      var U = ${_require('@flax/dart/ui')};
+      var R = ${_require('@flax/flutter/rendering')};
+      var span = P.TextSpan({text: 'hy\\u00adphen'});
+      var text = P.TextPainter({text: span, textDirection: U.TextDirection.ltr,
+        hyphens: U.Hyphens.hidden});
+      var defaults = P.TextPainter({text: span, textDirection: U.TextDirection.ltr});
+      var paragraph = R.RenderParagraph(span, {textDirection: U.TextDirection.ltr,
+        hyphens: U.Hyphens.hidden});
+      globalThis.textHyphens = text.hyphens === U.Hyphens.hidden &&
+        paragraph.hyphens === U.Hyphens.hidden && defaults.hyphens === U.Hyphens.manual;
+      globalThis.textWidth = P.TextPainter.computeWidth({text: span,
+        textDirection: U.TextDirection.ltr, hyphens: U.Hyphens.hidden});
+      globalThis.intrinsicWidth = P.TextPainter.computeMaxIntrinsicWidth({text: span,
+        textDirection: U.TextDirection.ltr, hyphens: U.Hyphens.hidden});
+      text.dispose(); defaults.dispose(); paragraph.dispose();
+      W.registerPage('sdk', () => W.SizedBox());
+    ''');
+      try {
+        await tester.pumpWidget(h.page('sdk'));
+        expect(h.errors, isEmpty);
+        expect(h.boolean('textHyphens'), isTrue);
+        expect(h.number('textWidth'), greaterThan(0));
+        expect(h.number('intrinsicWidth'), greaterThan(0));
+      } finally {
+        await h.finish(tester);
+      }
+      expect(h.errors, isEmpty);
+    },
+  );
+
   testWidgets(
     'native non-virtual calls retain JS overrides, super and joint collection',
     (tester) async {

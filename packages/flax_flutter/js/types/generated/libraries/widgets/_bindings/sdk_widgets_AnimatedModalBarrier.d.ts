@@ -84,22 +84,22 @@ export declare function _AnimatedModalBarrierFactory(options: {
     color: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [upstream4.Color | null];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream4.Color | null];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream4.Color | null];
     }>;
     dismissible?: boolean | undefined;
     semanticsLabel?: string | null | undefined;
     barrierSemanticsDismissible?: boolean | null | undefined;
     onDismiss?: (() => void) | null | undefined;
     clipDetailsNotifier?: (Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream6.EdgeInsets];
+        "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream6.EdgeInsets];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream6.EdgeInsets];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream6.EdgeInsets];
     }>) | null | undefined;
     semanticsOnTapHint?: string | null | undefined;
 }): AnimatedModalBarrier;

@@ -14,10 +14,21 @@ Future<void> main(List<String> arguments) => command(() async {
   if (arguments.isEmpty) {
     throw ArgumentError(
       'Usage: dart run tool/package.dart '
-      '<check|integration|bindings|tests> [package] [--check]',
+      '<analyze|check|integration|bindings|tests> [package] [--check]',
     );
   }
   final action = arguments.first;
+  if (action == 'analyze') {
+    if (arguments.length != 1) {
+      throw ArgumentError('Usage: dart run tool/package.dart analyze');
+    }
+    await run('flutter', [
+      'analyze',
+      '--no-pub',
+      '--fatal-infos',
+    ], directory: root);
+    return;
+  }
   if (action == 'bindings') {
     final check = arguments.skip(1).contains('--check');
     if (arguments.skip(1).any((argument) => argument != '--check')) {

@@ -7,6 +7,7 @@ import 'package:flax_example_support/flax_example_support.dart';
 import 'package:flax_local_storage/flax_local_storage.dart';
 import 'package:flax_material_ui/flax_material_ui.dart';
 import 'package:flax_sandbox_example/flax_sandbox_example.dart';
+import 'package:flax_survivors/showcase.dart';
 import 'package:flax_websocket/flax_websocket.dart';
 import 'package:flax_video_player/flax_video_player.dart';
 import 'package:flutter/services.dart';
@@ -15,12 +16,15 @@ import 'package:material_ui/material_ui.dart' show TextButton;
 
 final embeddedBindings = createEmbeddedBindings();
 
-FlaxBindingRegistry createEmbeddedBindings({String? sandboxDemoDirectory}) =>
-    FlaxBindingRegistry([
-      flutterBindings,
-      materialBindings,
-      createSandboxExampleBindings(demoDirectory: sandboxDemoDirectory),
-    ]);
+FlaxBindingRegistry createEmbeddedBindings({
+  String? sandboxDemoDirectory,
+  FlaxJsRuntime Function() createRuntime = createExampleRuntime,
+}) => FlaxBindingRegistry([
+  flutterBindings,
+  materialBindings,
+  createSandboxExampleBindings(demoDirectory: sandboxDemoDirectory),
+  createSurvivorsExampleBindings(createRuntime: createRuntime),
+]);
 
 final galleryPlugins = <FlaxPlugin>[
   const FlaxMaterialPlugin(),
@@ -84,11 +88,10 @@ class EmbeddedApp extends StatefulWidget {
 }
 
 class _EmbeddedAppState extends State<EmbeddedApp> {
-  late final _bindings = widget.sandboxDemoDirectory == null
-      ? embeddedBindings
-      : createEmbeddedBindings(
-          sandboxDemoDirectory: widget.sandboxDemoDirectory,
-        );
+  late final _bindings = createEmbeddedBindings(
+    sandboxDemoDirectory: widget.sandboxDemoDirectory,
+    createRuntime: widget.createRuntime ?? createExampleRuntime,
+  );
   bool _mounted = true;
   var _generation = 0;
 

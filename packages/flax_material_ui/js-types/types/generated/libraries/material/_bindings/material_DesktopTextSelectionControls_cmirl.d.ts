@@ -38,9 +38,9 @@ export interface DesktopTextSelectionControls extends Omit<upstream0.TextSelecti
     }>>, delegate: Readonly<{
         "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [];
     }>, clipboardStatus: (Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream8.ClipboardStatus];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream8.ClipboardStatus];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null, lastSecondaryTapDownPosition: (Readonly<{
         "__flaxBound:dart:ui::Offset": readonly [];
     }> & Readonly<{
@@ -88,9 +88,9 @@ export interface _DesktopTextSelectionControlsNative extends DesktopTextSelectio
     }>>, delegate: Readonly<{
         "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [];
     }>, clipboardStatus: (Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream8.ClipboardStatus];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream8.ClipboardStatus];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null, lastSecondaryTapDownPosition: (Readonly<{
         "__flaxBound:dart:ui::Offset": readonly [];
     }> & Readonly<{

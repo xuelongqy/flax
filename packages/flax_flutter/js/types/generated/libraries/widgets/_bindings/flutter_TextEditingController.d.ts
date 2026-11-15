@@ -20,13 +20,13 @@ import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDart
 export interface TextEditingController extends Omit<upstream0.ValueNotifier<upstream1.TextEditingValue>, _flaxOwnMembers0>, Omit<upstream2.ChangeNotifier, _flaxOwnMembers0 | keyof upstream0.ValueNotifier<upstream1.TextEditingValue>>, Omit<upstream3.Listenable, _flaxOwnMembers0 | keyof upstream0.ValueNotifier<upstream1.TextEditingValue> | keyof upstream2.ChangeNotifier>, Omit<upstream4.ValueListenable<upstream1.TextEditingValue>, _flaxOwnMembers0 | keyof upstream0.ValueNotifier<upstream1.TextEditingValue> | keyof upstream2.ChangeNotifier | keyof upstream3.Listenable>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/editable_text.dart::TextEditingController": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream1.TextEditingValue];
+    "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream1.TextEditingValue];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream1.TextEditingValue];
+    "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream1.TextEditingValue];
 }> {
     readonly __TextEditingController: unique symbol;
     readonly [_flaxDartTypeValue]: TextEditingController;
@@ -68,5 +68,5 @@ export declare namespace _TextEditingControllerFactory {
     }> | null): TextEditingController;
 }
 export declare const TextEditingController: typeof _TextEditingControllerFactory & _FlaxInstanceType<TextEditingController> & _FlaxDartType<TextEditingController, readonly ["class", "flax.core/flutter#type:TextEditingController", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "hasListeners" | "text" | "selection" | "toString" | "addListener" | "removeListener" | "dispose" | "buildTextSpan" | "clear" | "clearComposing" | "__flaxBound:package:flutter/src/widgets/editable_text.dart::TextEditingController" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "hasListeners" | "text" | "selection" | "toString" | "addListener" | "removeListener" | "dispose" | "buildTextSpan" | "clear" | "clearComposing" | "__flaxBound:package:flutter/src/widgets/editable_text.dart::TextEditingController" | "__flaxBound:package:listen/src/listen.dart::ValueNotifier" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable" | "__flaxBound:package:listen/src/listen.dart::ValueListenable";
 export {};

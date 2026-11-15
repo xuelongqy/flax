@@ -25,13 +25,13 @@ export interface SearchController extends Omit<upstream0.TextEditingController, 
 }>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/editable_text.dart::TextEditingController": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream2.TextEditingValue];
+    "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream2.TextEditingValue];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream2.TextEditingValue];
+    "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream2.TextEditingValue];
 }> {
     readonly __SearchController: unique symbol;
     readonly [_flaxDartTypeValue]: SearchController;
@@ -115,5 +115,5 @@ export declare namespace _SearchControllerFactory {
 }
 declare const _SearchControllerBinding: typeof _SearchControllerFactory & (new () => _SearchControllerNative);
 export declare const SearchController: typeof _SearchControllerBinding & _FlaxInstanceType<SearchController> & _FlaxDartType<SearchController, readonly ["class", "flax.material/material#type:SearchController", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "hasListeners" | "text" | "selection" | "isAttached" | "isOpen" | "toString" | "addListener" | "removeListener" | "dispose" | "buildTextSpan" | "clear" | "clearComposing" | "openView" | "closeView" | "__flaxBound:package:material_ui/src/search_anchor.dart::SearchController" | "__flaxBound:package:flutter/src/widgets/editable_text.dart::TextEditingController" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "hasListeners" | "text" | "selection" | "isAttached" | "isOpen" | "toString" | "addListener" | "removeListener" | "dispose" | "buildTextSpan" | "clear" | "clearComposing" | "openView" | "closeView" | "__flaxBound:package:material_ui/src/search_anchor.dart::SearchController" | "__flaxBound:package:flutter/src/widgets/editable_text.dart::TextEditingController" | "__flaxBound:package:listen/src/listen.dart::ValueNotifier" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable" | "__flaxBound:package:listen/src/listen.dart::ValueListenable";
 export {};

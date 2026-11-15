@@ -8,9 +8,9 @@ import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartType
 export interface SliverOverlapAbsorberHandle extends Omit<upstream0.ChangeNotifier, _flaxOwnMembers0>, Omit<upstream1.Listenable, _flaxOwnMembers0 | keyof upstream0.ChangeNotifier>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/nested_scroll_view.dart::SliverOverlapAbsorberHandle": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __SliverOverlapAbsorberHandle: unique symbol;
     readonly [_flaxDartTypeValue]: SliverOverlapAbsorberHandle;
@@ -44,5 +44,5 @@ export declare namespace _SliverOverlapAbsorberHandleFactory {
 }
 declare const _SliverOverlapAbsorberHandleBinding: typeof _SliverOverlapAbsorberHandleFactory & (new () => _SliverOverlapAbsorberHandleNative);
 export declare const SliverOverlapAbsorberHandle: typeof _SliverOverlapAbsorberHandleBinding & _FlaxInstanceType<SliverOverlapAbsorberHandle> & _FlaxDartType<SliverOverlapAbsorberHandle, readonly ["class", "flax.core/sdk_widgets#type:SliverOverlapAbsorberHandle", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "layoutExtent" | "scrollExtent" | "addListener" | "removeListener" | "dispose" | "toString" | "__flaxBound:package:flutter/src/widgets/nested_scroll_view.dart::SliverOverlapAbsorberHandle" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "layoutExtent" | "scrollExtent" | "addListener" | "removeListener" | "dispose" | "toString" | "__flaxBound:package:flutter/src/widgets/nested_scroll_view.dart::SliverOverlapAbsorberHandle" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 export {};

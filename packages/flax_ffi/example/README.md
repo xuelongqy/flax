@@ -18,7 +18,9 @@ export TMPDIR="$PWD/.local/tmp" TMP="$PWD/.local/tmp" TEMP="$PWD/.local/tmp"
 pnpm install --frozen-lockfile
 pnpm --filter @flax/example-ffi build
 cd packages/flax_ffi/example/app
-flutter pub get
+env -u FLUTTER_ENGINE flutter --local-engine-src-path="$FLAX_ENGINE_SOURCE" \
+  --local-engine=flax_mac_debug_arm64 --local-engine-host=flax_mac_debug_arm64 \
+  pub get
 flutter --local-engine-src-path="$FLAX_ENGINE_SOURCE" \
   --local-engine=flax_mac_debug_arm64 --local-engine-host=flax_mac_debug_arm64 \
   run -d macos
@@ -54,7 +56,8 @@ success. Normal `flutter run` leaves the example open for inspection.
 3. [main.ts](js/src/main.ts) passes a JS-owned Buffer directly to C, then contrasts a
    borrowed native view with a copy that survives explicit native release.
 4. [build.mjs](js/build.mjs) uses the public `@flax/build` adapter. It stages the
-   private Dart build package under `app/.flax/ffi_assets` before `flutter pub get`.
+   private Dart build package under `app/.flax/ffi_assets` before the explicit
+   host-context Pub command above.
 
 GC timing is nondeterministic. This UI does not force collection; exact-once
 finalization is asserted in the package's engine acceptance suite. Borrowed views never

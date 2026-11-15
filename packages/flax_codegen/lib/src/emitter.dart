@@ -144,6 +144,7 @@ class FlaxCodegenBindingEmitter {
     this.modules, {
     this.requireDeferredTargets = false,
     this.bindingEntrypoints = const {},
+    this.memberAdapterEntrypoints = const {},
     this.dartLibraries = const {},
   }) {
     final extensionOwners = <String>{};
@@ -244,6 +245,10 @@ class FlaxCodegenBindingEmitter {
   /// Module IDs mapped to Dart libraries exporting their `<name>Bindings` value.
   /// Unmapped modules (including implicit Core modules) keep ID-only dependencies.
   final Map<String, String> bindingEntrypoints;
+
+  /// Existing generated libraries for static native-member tearoffs. Unlike
+  /// [bindingEntrypoints], these do not add module initializer dependencies.
+  final Map<String, String> memberAdapterEntrypoints;
 
   /// Original declaring libraries for local adapters; manifests use public facades.
   final Map<String, ({String library, Map<String, String> types})>
@@ -346,6 +351,22 @@ class FlaxCodegenBindingEmitter {
   final _callbacks = <FlaxCodegenTypeRef, String>{};
   final _closedCallbacks = <String, FlaxCodegenTypeRef>{};
   final _sharedAdapters = <(String, String), String>{};
+  final _memberAdapterImports = <String, String>{};
+  late final _memberDependencies = {
+    for (final module in modules)
+      _literalModuleId(module): _dependencyModuleIds(module),
+  };
+  late final _closedMemberSignatures = () {
+    final result = <(String, String), List<FlaxCodegenClassModel>>{};
+    for (final module in modules) {
+      for (final owner in module.classes) {
+        for (final entry in _closedNativeMembers(module, owner).entries) {
+          (result[(entry.key, jsonEncode(entry.value))] ??= []).add(owner);
+        }
+      }
+    }
+    return result;
+  }();
   final _proxyDispatch = <_ProxyDispatch>[];
   final _classProxyDispatch = <String, List<_ProxyDispatch>>{};
   final _constants = <String, String>{};
@@ -395,7 +416,7 @@ class FlaxCodegenBindingEmitter {
     final name = operation.substring(operation.indexOf(':') + 1);
     final local =
         '_${owner.name}_${operation.startsWith('set:') ? 'set_' : ''}$name';
-    return _vmFactory ? local : _sharedAdapters[(owner.id, operation)] ?? local;
+    return _sharedAdapters[(owner.id, operation)] ?? local;
   }
 
   void _findSharedAdapters(FlaxCodegenModuleModel module) {
@@ -461,6 +482,108 @@ class FlaxCodegenBindingEmitter {
         _sharedAdapters[(owner.id, operation)] =
             '_${ancestor.name}_${operation.startsWith('set:') ? 'set_' : ''}$name';
       }
+    }
+    _findClosedMemberAdapters(module);
+  }
+
+  // These are compile-time aliases, not a dispatcher. Encode the complete wire
+  // identity so independent providers and re-exporting barrels agree on names.
+  String _memberAdapterName(FlaxCodegenClassModel owner, String operation) =>
+      'flaxMember${'${owner.id}|$operation'.replaceAllMapped(RegExp('[^a-zA-Z0-9]'), (m) => '_${m[0]!.codeUnitAt(0).toRadixString(16)}_')}';
+
+  Map<String, Object> _closedNativeMembers(
+    FlaxCodegenModuleModel module,
+    FlaxCodegenClassModel owner,
+  ) {
+    // The unspecialized binding must retain its requireArguments adapter.
+    if (owner.requiresTypeArguments ||
+        !(owner.kind == 'object' || _hasWidgetObjectView(owner))) {
+      return {};
+    }
+    bool guarded(String name) =>
+        module.sandboxRules.any((r) => r.owner == owner.id && r.name == name) ||
+        module.permissionRules.any(
+          (r) => r.owner == owner.id && r.name == name,
+        );
+    return {
+      for (final getter in owner.getters)
+        if (getter.type.kind != 'void' &&
+            _isClosedType(getter.type) &&
+            !guarded(getter.name))
+          'get:${getter.name}': FlaxCodegenManifestCodec.encodeGetter(getter),
+      for (final method in owner.methods)
+        if (method.instance &&
+            method.parameters.isEmpty &&
+            method.result.kind != 'void' &&
+            _isClosedType(method.result) &&
+            method.typeParameters.isEmpty &&
+            method.typeArguments.isEmpty &&
+            !method.deferredFactory &&
+            method.operatorName == null &&
+            !method.startsRoute &&
+            !guarded(method.name))
+          'call:${method.name}': FlaxCodegenManifestCodec.encodeMethod(method),
+    };
+  }
+
+  void _findClosedMemberAdapters(FlaxCodegenModuleModel module) {
+    bool dependsOn(String from, String target, Set<String> visited) =>
+        visited.add(from) &&
+        (_memberDependencies[from] ?? const <String>[]).any(
+          (id) => id == target || dependsOn(id, target, visited),
+        );
+    final selected = <(String, String), FlaxCodegenClassModel>{};
+    final moduleId = _literalModuleId(module);
+    for (final owner in module.classes) {
+      for (final entry in _closedNativeMembers(module, owner).entries) {
+        final candidates =
+            (_closedMemberSignatures[(entry.key, jsonEncode(entry.value))] ??
+                    [])
+                .where((parent) {
+                  if (!owner.supertypes.contains(parent.id) ||
+                      parent.typeParameters.isNotEmpty ||
+                      parent.typeArguments.isNotEmpty) {
+                    return false;
+                  }
+                  final source = _owners[parent.id]!;
+                  if (identical(source, module)) return true;
+                  final parentId = _literalModuleId(source);
+                  return memberAdapterEntrypoints.containsKey(parentId) &&
+                      memberAdapterEntrypoints[parentId] !=
+                          memberAdapterEntrypoints[moduleId] &&
+                      _memberDependencies[moduleId]!.contains(parentId) &&
+                      !dependsOn(parentId, moduleId, {});
+                })
+                .toList()
+              ..sort((a, b) {
+                final depth = a.supertypes.length.compareTo(
+                  b.supertypes.length,
+                );
+                return depth == 0 ? a.id.compareTo(b.id) : depth;
+              });
+        if (candidates.isEmpty) continue;
+        selected[(owner.id, entry.key)] = candidates.first;
+      }
+    }
+    String reference(FlaxCodegenClassModel parent, String operation) {
+      if (selected[(parent.id, operation)] case final ancestor?) {
+        return reference(ancestor, operation);
+      }
+      final source = _owners[parent.id]!;
+      if (identical(source, module)) {
+        return _adapter(parent, operation);
+      } else {
+        final uri = memberAdapterEntrypoints[_literalModuleId(source)]!;
+        final prefix = _memberAdapterImports.putIfAbsent(
+          uri,
+          () => '_flaxMembers${_memberAdapterImports.length}',
+        );
+        return '$prefix.${_memberAdapterName(parent, operation)}';
+      }
+    }
+
+    for (final entry in selected.entries) {
+      _sharedAdapters[entry.key] = reference(entry.value, entry.key.$2);
     }
   }
 
@@ -2370,6 +2493,7 @@ class FlaxCodegenBindingEmitter {
     _callbacks.clear();
     _closedCallbacks.clear();
     _sharedAdapters.clear();
+    _memberAdapterImports.clear();
     _constants.clear();
     _sharedCallSignatures.clear();
     _objectBindings.clear();
@@ -3207,6 +3331,17 @@ T _genericCallbackResult<T>(Object? value) {
 }
 ''');
     }
+    if (memberAdapterEntrypoints.containsKey(_literalModuleId(module))) {
+      for (final owner in module.classes.where(
+        (type) => type.typeParameters.isEmpty && type.typeArguments.isEmpty,
+      )) {
+        for (final operation in _closedNativeMembers(module, owner).keys) {
+          out.writeln(
+            'const ${_memberAdapterName(owner, operation)} = ${_adapter(owner, operation)};',
+          );
+        }
+      }
+    }
     for (final entry in _constants.entries) {
       out.writeln('const ${entry.value} = ${entry.key};');
     }
@@ -3258,6 +3393,9 @@ import 'package:flax/bindings.dart';
       imports.writeln("import '${entry.key}' as ${entry.value};");
     }
     for (final entry in bindingImports.entries) {
+      imports.writeln('import ${_quote(entry.key)} as ${entry.value};');
+    }
+    for (final entry in _memberAdapterImports.entries) {
       imports.writeln('import ${_quote(entry.key)} as ${entry.value};');
     }
     imports.writeln();
@@ -4078,7 +4216,9 @@ import 'package:flax/bindings.dart';
         'FlaxGetter${getter.encodeKind == null ? '.plain' : ''}(${_quote(getter.name)}, ${_ref(getter.type)}, '
         '${_adapter(owner, 'get:${getter.name}')}'
         '${getter.encodeKind == null ? '' : ', encode: ${_constant('FlaxTypeRef(${_quote(getter.encodeKind!)})')}'})';
-    return !_vmFactory && _isClosedType(getter.type)
+    return _canPoolType(getter.type) &&
+            (!_vmFactory ||
+                _sharedAdapters.containsKey((owner.id, 'get:${getter.name}')))
         ? _constant(expression)
         : expression;
   }
@@ -4090,7 +4230,9 @@ import 'package:flax/bindings.dart';
     final expression =
         'FlaxSetter(${_quote(setter.name)}, ${_ref(setter.type)}, '
         '${_adapter(owner, 'set:${setter.name}')})';
-    return !_vmFactory && _isClosedType(setter.type)
+    return _canPoolType(setter.type) &&
+            (!_vmFactory ||
+                _sharedAdapters.containsKey((owner.id, 'set:${setter.name}')))
         ? _constant(expression)
         : expression;
   }
@@ -4168,8 +4310,15 @@ import 'package:flax/bindings.dart';
   }) {
     final out = StringBuffer('{');
     // Reuse closed super rows without adding runtime table expansion or lookup.
-    String superDescriptor(String operation, String expression) =>
-        !_vmFactory && _superDispatch(type, operation) != null
+    String superDescriptor(
+      String operation,
+      String expression,
+      FlaxCodegenTypeRef result,
+      List<FlaxCodegenParameterModel> parameters,
+    ) =>
+        _superDispatch(type, operation) != null &&
+            _canPoolType(result) &&
+            parameters.every((p) => _canPoolType(p.type))
         ? _constant(expression)
         : expression;
     for (final method in (members ?? type.methods).where(
@@ -4212,12 +4361,12 @@ import 'package:flax/bindings.dart';
       );
       final expression = descriptor.toString();
       final shared =
-          !_vmFactory &&
+          (!_vmFactory ||
+              _sharedAdapters.containsKey((type.id, 'call:${method.name}'))) &&
           prefix == null &&
-          type.typeParameters.isEmpty &&
           method.typeParameters.isEmpty &&
-          _isClosedType(method.result) &&
-          method.parameters.every((p) => _isClosedType(p.type));
+          _canPoolType(method.result) &&
+          method.parameters.every((p) => _canPoolType(p.type));
       out.write(
         '${_quote(method.name)}: ${shared ? _constant(expression) : expression},',
       );
@@ -4243,7 +4392,7 @@ import 'package:flax/bindings.dart';
             '${_superAdapter(type, 'call:${method.name}')}${source.typeParameters.isEmpty ? '' : ', genericFactory: ${_vmMethodName(type, source, superCall: true)}, ownerTypes: [${type.typeArguments.indexed.map((e) => _vmFactory ? 'FlaxDartTypes.typeOf<${_dartTypeArgument(e.$2)}>()' : '_flaxDefault_${type.name}_${e.$1}').join(',')}]'})';
         out.write(
           '${_quote('@super:${method.name}')}: '
-          '${superDescriptor('call:${method.name}', expression)},',
+          '${superDescriptor('call:${method.name}', expression, surface.result, surface.parameters)},',
         );
       }
       for (final getter in proxy.getters.where(
@@ -4254,7 +4403,7 @@ import 'package:flax/bindings.dart';
             '${_superAdapter(type, 'get:${getter.name}')})';
         out.write(
           '${_quote('@super:get:${getter.name}')}: '
-          '${superDescriptor('get:${getter.name}', expression)},',
+          '${superDescriptor('get:${getter.name}', expression, getter.type, const [])},',
         );
       }
       for (final setter in proxy.setters.where(
@@ -4267,7 +4416,7 @@ import 'package:flax/bindings.dart';
             '${_superAdapter(type, 'set:${setter.name}')})';
         out.write(
           '${_quote('@super:set:${setter.name}')}: '
-          '${superDescriptor('set:${setter.name}', expression)},',
+          '${superDescriptor('set:${setter.name}', expression, const FlaxCodegenTypeRef('void'), [FlaxCodegenParameterModel(name: 'value', type: setter.type, required: true, positional: true, defaultCode: 'null')])},',
         );
       }
     }

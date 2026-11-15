@@ -24,6 +24,24 @@ test('aliases preserve identity and release together across typed views', () => 
   cache.release(1);
 });
 
+test('owned views share disposal without becoming cached aliases', () => {
+  const cache = new ReferenceCache();
+  const first = {};
+  const second = {};
+  const ordinary = {};
+  cache.trackUncached(first, 'object', 1);
+  cache.trackUncached(second, 'object', 1);
+  assert.equal(cache.get('object', 1), null);
+  cache.track(ordinary, 'object', 1);
+  cache.releaseUncached(first);
+  assert.equal(cache.handles.get(first).alive, false);
+  assert.equal(cache.handles.get(second).alive, true);
+  assert.equal(cache.get('object', 1), ordinary);
+  cache.release(1);
+  assert.equal(cache.handles.get(second).alive, false);
+  assert.equal(cache.handles.get(ordinary).alive, false);
+});
+
 function discarded(cache, id, type = 'object') {
   const value = {};
   cache.track(value, type, id);

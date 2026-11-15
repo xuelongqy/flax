@@ -131,6 +131,7 @@ export interface RenderImage extends Omit<upstream0.RenderBox, _flaxOwnMembers0>
     get opacity(): upstream8.Animation<number> | null;
     get filterQuality(): upstream15.FilterQuality;
     get colorBlendMode(): upstream9.BlendMode | null;
+    get blendMode(): upstream9.BlendMode;
     get fit(): upstream10.BoxFit | null;
     get alignment(): upstream11.AlignmentGeometry;
     get repeat(): upstream12.ImageRepeat;
@@ -594,12 +595,13 @@ export interface RenderImage extends Omit<upstream0.RenderBox, _flaxOwnMembers0>
     set opacity(value: (Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>) | null);
     set filterQuality(value: upstream15.FilterQuality);
     set colorBlendMode(value: upstream9.BlendMode | null);
+    set blendMode(value: upstream9.BlendMode);
     set fit(value: upstream10.BoxFit | null);
     set alignment(value: Readonly<{
         "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
@@ -627,9 +629,9 @@ export declare function _RenderImageFactory(options?: {
     opacity?: (Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>) | null | undefined;
     colorBlendMode?: upstream9.BlendMode | null | undefined;
     fit?: upstream10.BoxFit | null | undefined;
@@ -645,9 +647,11 @@ export declare function _RenderImageFactory(options?: {
     invertColors?: boolean | undefined;
     isAntiAlias?: boolean | undefined;
     filterQuality?: upstream15.FilterQuality | undefined;
+    blendMode?: upstream9.BlendMode | undefined;
 }): RenderImage;
 export interface _RenderImageNative extends RenderImage {
     readonly [_flaxDartTypeValue]: _RenderImageNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1082,6 +1086,7 @@ export interface _RenderImageNative extends RenderImage {
     get opacity(): upstream8.Animation<number> | null;
     get filterQuality(): upstream15.FilterQuality;
     get colorBlendMode(): upstream9.BlendMode | null;
+    get blendMode(): upstream9.BlendMode;
     get fit(): upstream10.BoxFit | null;
     get alignment(): upstream11.AlignmentGeometry;
     get repeat(): upstream12.ImageRepeat;
@@ -1105,7 +1110,6 @@ export interface _RenderImageNative extends RenderImage {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream1.RenderObject | null;
     get owner(): upstream19.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;
@@ -1132,12 +1136,13 @@ export interface _RenderImageNative extends RenderImage {
     set opacity(value: (Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>) | null);
     set filterQuality(value: upstream15.FilterQuality);
     set colorBlendMode(value: upstream9.BlendMode | null);
+    set blendMode(value: upstream9.BlendMode);
     set fit(value: upstream10.BoxFit | null);
     set alignment(value: Readonly<{
         "__flaxBound:package:flutter/src/painting/alignment.dart::AlignmentGeometry": readonly [];
@@ -1189,9 +1194,9 @@ export declare abstract class _RenderImageNative extends _FlaxProxyBase {
         opacity?: (Readonly<{
             "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
         }>) | null | undefined;
         colorBlendMode?: upstream9.BlendMode | null | undefined;
         fit?: upstream10.BoxFit | null | undefined;
@@ -1207,6 +1212,7 @@ export declare abstract class _RenderImageNative extends _FlaxProxyBase {
         invertColors?: boolean | undefined;
         isAntiAlias?: boolean | undefined;
         filterQuality?: upstream15.FilterQuality | undefined;
+        blendMode?: upstream9.BlendMode | undefined;
     });
 }
 export declare namespace _RenderImageFactory {
@@ -1224,9 +1230,9 @@ export declare namespace _RenderImageFactory {
         opacity?: (Readonly<{
             "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
         }>) | null | undefined;
         colorBlendMode?: upstream9.BlendMode | null | undefined;
         fit?: upstream10.BoxFit | null | undefined;
@@ -1242,6 +1248,7 @@ export declare namespace _RenderImageFactory {
         invertColors?: boolean | undefined;
         isAntiAlias?: boolean | undefined;
         filterQuality?: upstream15.FilterQuality | undefined;
+        blendMode?: upstream9.BlendMode | undefined;
     }], implementation: {}): RenderImage;
 }
 declare const _RenderImageBinding: typeof _RenderImageFactory & (new (options?: {
@@ -1258,9 +1265,9 @@ declare const _RenderImageBinding: typeof _RenderImageFactory & (new (options?: 
     opacity?: (Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>) | null | undefined;
     colorBlendMode?: upstream9.BlendMode | null | undefined;
     fit?: upstream10.BoxFit | null | undefined;
@@ -1276,9 +1283,10 @@ declare const _RenderImageBinding: typeof _RenderImageFactory & (new (options?: 
     invertColors?: boolean | undefined;
     isAntiAlias?: boolean | undefined;
     filterQuality?: upstream15.FilterQuality | undefined;
+    blendMode?: upstream9.BlendMode | undefined;
 }) => _RenderImageNative);
 export declare const RenderImage: typeof _RenderImageBinding & _FlaxInstanceType<RenderImage> & _FlaxDartType<RenderImage, readonly ["class", "flax.core/sdk_rendering#type:RenderImage", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasSize" | "size" | "semanticBounds" | "constraints" | "paintBounds" | "debugDisposed" | "parentData" | "depth" | "parent" | "debugCreator" | "debugDoingThisResize" | "debugDoingThisLayout" | "debugCanParentUseSize" | "debugLayoutParent" | "owner" | "attached" | "debugNeedsLayout" | "debugDoingThisLayoutWithCallback" | "sizedByParent" | "debugDoingThisPaint" | "isRepaintBoundary" | "alwaysNeedsCompositing" | "layer" | "debugLayer" | "needsCompositing" | "debugNeedsPaint" | "debugNeedsCompositedLayerUpdate" | "debugNeedsSemanticsUpdate" | "debugSemantics" | "image" | "debugImageLabel" | "width" | "height" | "scale" | "color" | "opacity" | "filterQuality" | "colorBlendMode" | "fit" | "alignment" | "repeat" | "centerSlice" | "invertColors" | "matchTextDirection" | "textDirection" | "isAntiAlias" | "setupParentData" | "getMinIntrinsicWidth" | "computeMinIntrinsicWidth" | "getMaxIntrinsicWidth" | "computeMaxIntrinsicWidth" | "getMinIntrinsicHeight" | "computeMinIntrinsicHeight" | "getMaxIntrinsicHeight" | "computeMaxIntrinsicHeight" | "getDryLayout" | "computeDryLayout" | "getDryBaseline" | "computeDryBaseline" | "debugCannotComputeDryLayout" | "debugAdoptSize" | "debugResetSize" | "getDistanceToBaseline" | "getDistanceToActualBaseline" | "computeDistanceToActualBaseline" | "debugAssertDoesMeetConstraints" | "markNeedsLayout" | "performResize" | "performLayout" | "hitTest" | "hitTestSelf" | "hitTestChildren" | "applyPaintTransform" | "globalToLocal" | "localToGlobal" | "handleEvent" | "debugHandleEvent" | "debugPaint" | "debugPaintBaselines" | "debugPaintPointers" | "debugFillProperties" | "reassemble" | "dispose" | "redepthChild" | "redepthChildren" | "adoptChild" | "dropChild" | "visitChildren" | "attach" | "detach" | "markParentNeedsLayout" | "markNeedsLayoutForSizedByParentChange" | "scheduleInitialLayout" | "layout" | "invokeLayoutCallback" | "debugRegisterRepaintBoundaryPaint" | "updateCompositedLayer" | "markNeedsCompositingBitsUpdate" | "markNeedsPaint" | "markNeedsCompositedLayerUpdate" | "scheduleInitialPaint" | "replaceRootLayer" | "paint" | "paintsChild" | "getTransformTo" | "describeApproximatePaintClip" | "describeSemanticsClip" | "scheduleInitialSemantics" | "describeSemanticsConfiguration" | "sendSemanticsEvent" | "clearSemantics" | "markNeedsSemanticsUpdate" | "visitChildrenForSemantics" | "assembleSemanticsNode" | "toStringShort" | "toStringDeep" | "toStringShallow" | "debugDescribeChildren" | "showOnScreen" | "describeForError" | "toDiagnosticsNode" | "toString" | "__flaxBound:package:flutter/src/rendering/image.dart::RenderImage" | "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox" | "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject" | "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasSize" | "size" | "semanticBounds" | "constraints" | "paintBounds" | "debugDisposed" | "parentData" | "depth" | "parent" | "debugCreator" | "debugDoingThisResize" | "debugDoingThisLayout" | "debugCanParentUseSize" | "debugLayoutParent" | "owner" | "attached" | "debugNeedsLayout" | "debugDoingThisLayoutWithCallback" | "sizedByParent" | "debugDoingThisPaint" | "isRepaintBoundary" | "alwaysNeedsCompositing" | "layer" | "debugLayer" | "needsCompositing" | "debugNeedsPaint" | "debugNeedsCompositedLayerUpdate" | "debugNeedsSemanticsUpdate" | "debugSemantics" | "image" | "debugImageLabel" | "width" | "height" | "scale" | "color" | "opacity" | "filterQuality" | "colorBlendMode" | "blendMode" | "fit" | "alignment" | "repeat" | "centerSlice" | "invertColors" | "matchTextDirection" | "textDirection" | "isAntiAlias" | "setupParentData" | "getMinIntrinsicWidth" | "computeMinIntrinsicWidth" | "getMaxIntrinsicWidth" | "computeMaxIntrinsicWidth" | "getMinIntrinsicHeight" | "computeMinIntrinsicHeight" | "getMaxIntrinsicHeight" | "computeMaxIntrinsicHeight" | "getDryLayout" | "computeDryLayout" | "getDryBaseline" | "computeDryBaseline" | "debugCannotComputeDryLayout" | "debugAdoptSize" | "debugResetSize" | "getDistanceToBaseline" | "getDistanceToActualBaseline" | "computeDistanceToActualBaseline" | "debugAssertDoesMeetConstraints" | "markNeedsLayout" | "performResize" | "performLayout" | "hitTest" | "hitTestSelf" | "hitTestChildren" | "applyPaintTransform" | "globalToLocal" | "localToGlobal" | "handleEvent" | "debugHandleEvent" | "debugPaint" | "debugPaintBaselines" | "debugPaintPointers" | "debugFillProperties" | "reassemble" | "dispose" | "redepthChild" | "redepthChildren" | "adoptChild" | "dropChild" | "visitChildren" | "attach" | "detach" | "markParentNeedsLayout" | "markNeedsLayoutForSizedByParentChange" | "scheduleInitialLayout" | "layout" | "invokeLayoutCallback" | "debugRegisterRepaintBoundaryPaint" | "updateCompositedLayer" | "markNeedsCompositingBitsUpdate" | "markNeedsPaint" | "markNeedsCompositedLayerUpdate" | "scheduleInitialPaint" | "replaceRootLayer" | "paint" | "paintsChild" | "getTransformTo" | "describeApproximatePaintClip" | "describeSemanticsClip" | "scheduleInitialSemantics" | "describeSemanticsConfiguration" | "sendSemanticsEvent" | "clearSemantics" | "markNeedsSemanticsUpdate" | "visitChildrenForSemantics" | "assembleSemanticsNode" | "toStringShort" | "toStringDeep" | "toStringShallow" | "debugDescribeChildren" | "showOnScreen" | "describeForError" | "toDiagnosticsNode" | "toString" | "__flaxBound:package:flutter/src/rendering/image.dart::RenderImage" | "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox" | "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject" | "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [upstream32.Constraints] ? (callback: ((constraints: _Selected0) => void)) => void : never : never;
 }

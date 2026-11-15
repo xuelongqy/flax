@@ -124,6 +124,174 @@ export 'package:values/src/context.dart' show Config, Focus, Route;
     },
   );
 
+  test('explicit additional source libraries retain reusable provider eligibility', () async {
+    final fixture = _Fixture();
+    fixture.package(
+      'values',
+      source: 'class Value { Value(); int get value => 7; }',
+    );
+    final provider = fixture.package(
+      'provider',
+      source: "export 'package:values/api.dart';\n",
+      dependencies: ['values'],
+    );
+    final config = File(p.join(provider.path, 'bindings/flax_bindings.yaml'));
+    config.writeAsStringSync(
+      '${config.readAsStringSync()}additionalLibraries: [package:values/api.dart]\n',
+    );
+    final consumer = fixture.package(
+      'consumer',
+      source: "import 'package:provider/api.dart';\nValue echo(Value value) => value;\n",
+      dependencies: ['provider'],
+      javascript: ['@test/provider'],
+    );
+    fixture.writePackageConfig();
+    final generated = await FlaxCodegenPackagePipeline.generateConfig(
+      config.path,
+    );
+    final owner = generated.manifest.modules
+        .expand((m) => m.model.identities)
+        .singleWhere((i) => i.owner && i.sourceIdentity.name == 'Value');
+    expect(owner.sourceIdentity.originatingUri, 'package:values/api.dart');
+    expect(owner.localDependency, isFalse);
+    expect(owner.providerEligible, isTrue);
+    final result = await FlaxCodegenPackagePipeline.validateConfig(
+      p.join(consumer.path, 'bindings/flax_bindings.yaml'),
+    );
+    final model = result.localModels.single;
+    expect(model.classes, isEmpty);
+    expect(model.functions.single.call.name, 'echo');
+    expect(model.functions.single.call.result.id, owner.wireId.value);
+    expect(
+      model.functions.single.call.parameters.single.type.id,
+      owner.wireId.value,
+    );
+    expect(
+      result.skips.where((s) => s.code == 'external_dependency_unbound'),
+      isEmpty,
+    );
+  });
+
+  test('sibling source consent preserves owners without merging conflicting callback aliases', () async {
+    for (final placement in ['none', 'same', 'sibling']) {
+      final fixture = _Fixture();
+      fixture.package(
+        'values',
+        source: '''
+typedef VoidCallback = void Function();
+class Value { Value(); void addListener(VoidCallback listener) {} }
+''',
+      );
+      final provider = fixture.package(
+        'provider',
+        source: '''
+export 'package:values/api.dart' show Value;
+typedef VoidCallback = void Function();
+''',
+        dependencies: ['values'],
+      );
+      final config = File(p.join(provider.path, 'bindings/flax_bindings.yaml'));
+      if (placement == 'same') {
+        config.writeAsStringSync(
+          '${config.readAsStringSync()}additionalLibraries: [package:values/api.dart]\n',
+        );
+      } else if (placement == 'sibling') {
+        File(p.join(provider.path, 'lib/source_helpers.dart'))
+            .writeAsStringSync('class SourceHelper { SourceHelper(); }\n');
+        File(p.join(provider.path, 'bindings/flax_sources.yaml'))
+            .writeAsStringSync('''
+format: 2
+name: sources
+library: package:provider/source_helpers.dart
+additionalLibraries: [package:values/api.dart]
+classes: [SourceHelper]
+jsPackage: '@test/provider/sources'
+dartOutput: lib/src/generated/sources.g.dart
+tsOutput: js/src/generated/sources.ts
+''');
+      }
+      final consumer = fixture.package(
+        'consumer',
+        source: "import 'package:provider/api.dart';\nValue echo(Value value) => value;\n",
+        dependencies: ['provider'],
+        javascript: ['@test/provider'],
+      );
+      fixture.writePackageConfig();
+      if (placement == 'same') {
+        await expectLater(
+          FlaxCodegenPackagePipeline.generateConfig(config.path),
+          throwsA(
+            isA<FlaxCodegenException>().having(
+              (error) => error.toString(),
+              'diagnostic',
+              contains('Conflicting public declaration: VoidCallback'),
+            ),
+          ),
+        );
+        continue;
+      }
+      final generated = await FlaxCodegenPackagePipeline.generateConfig(
+        config.path,
+      );
+      final owners = generated.manifest.modules
+          .expand((module) => module.model.identities)
+          .where(
+            (identity) =>
+                identity.owner && identity.sourceIdentity.name == 'Value',
+          );
+      if (placement == 'none') {
+        expect(owners, isEmpty);
+        expect(
+          generated.skips.any(
+            (skip) =>
+                skip.target == 'Value' &&
+                skip.code == 'external_dependency_unbound',
+          ),
+          isTrue,
+        );
+        continue;
+      }
+      final owner = owners.single;
+      expect(owner.sourceIdentity.originatingUri, 'package:values/api.dart');
+      expect(owner.wireId.value, 'example.provider/api#type:Value');
+      expect(owner.localDependency, isFalse);
+      expect(owner.providerEligible, isTrue);
+      expect(
+        generated.localModels
+            .expand((model) => model.typedefs)
+            .where((type) => type.originatingUri == 'package:values/api.dart'),
+        isEmpty,
+      );
+      final result = await FlaxCodegenPackagePipeline.validateConfig(
+        p.join(consumer.path, 'bindings/flax_bindings.yaml'),
+      );
+      expect(result.localModels.single.classes, isEmpty);
+      expect(
+        result.localModels.single.functions.single.call.result.id,
+        owner.wireId.value,
+      );
+      expect(
+        result
+            .localModels
+            .single
+            .functions
+            .single
+            .call
+            .parameters
+            .single
+            .type
+            .id,
+        owner.wireId.value,
+      );
+      expect(
+        result.skips.where(
+          (skip) => skip.code == 'external_dependency_unbound',
+        ),
+        isEmpty,
+      );
+    }
+  });
+
   test(
     'unprovided external signatures skip without losing local APIs',
     () async {

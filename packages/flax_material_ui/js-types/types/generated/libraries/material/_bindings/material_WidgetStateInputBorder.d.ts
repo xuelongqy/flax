@@ -21,7 +21,9 @@ import type * as upstream9 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
 import type * as upstream10 from '@flax/dart/ui/_bindings/sdk_dart_ui_Path';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Path';
-import type * as upstream11 from '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
+import type * as upstream11 from '@flax/dart/ui/_bindings/flutter_Offset';
+import '@flax/dart/ui/_bindings/flutter_Offset';
+import type * as upstream12 from '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
 import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface WidgetStateInputBorder extends Omit<upstream0.InputBorder, _flaxOwnMembers0>, Omit<upstream1.ShapeBorder, _flaxOwnMembers0 | keyof upstream0.InputBorder>, Omit<upstream2.WidgetStateProperty<upstream0.InputBorder>, _flaxOwnMembers0 | keyof upstream0.InputBorder | keyof upstream1.ShapeBorder>, Readonly<{
@@ -78,6 +80,15 @@ export interface WidgetStateInputBorder extends Omit<upstream0.InputBorder, _fla
     }>, options?: {
         textDirection?: upstream9.TextDirection | null | undefined;
     }): upstream10.Path;
+    hitTest(rect: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, position: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, options?: {
+        textDirection?: upstream9.TextDirection | null | undefined;
+    }): boolean;
     paintInterior(canvas: Readonly<{
         "__flaxBound:dart:ui::Canvas": readonly [];
     }>, rect: Readonly<{
@@ -148,7 +159,10 @@ export declare namespace _WidgetStateInputBorderFactory {
         }) => Readonly<{
             "__flaxBound:dart:ui::Path": readonly [];
         }>);
-        paintInterior: ((canvas: upstream7.Canvas, rect: upstream8.Rect, paint: upstream11.Paint, options?: {
+        hitTest: ((rect: upstream8.Rect, position: upstream11.Offset, options?: {
+            textDirection?: upstream9.TextDirection | null | undefined;
+        }) => boolean);
+        paintInterior: ((canvas: upstream7.Canvas, rect: upstream8.Rect, paint: upstream12.Paint, options?: {
             textDirection?: upstream9.TextDirection | null | undefined;
         }) => void);
         toString: (() => string);
@@ -173,5 +187,5 @@ export declare namespace _WidgetStateInputBorderFactory {
     }): WidgetStateInputBorder;
 }
 export declare const WidgetStateInputBorder: typeof _WidgetStateInputBorderFactory & _FlaxInstanceType<WidgetStateInputBorder> & _FlaxDartType<WidgetStateInputBorder, readonly ["class", "flax.material/material#type:WidgetStateInputBorder", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "borderSide" | "isOutline" | "dimensions" | "preferPaintInterior" | "copyWith" | "paint" | "add" | "scale" | "lerpFrom" | "lerpTo" | "getOuterPath" | "getInnerPath" | "paintInterior" | "toString" | "resolve" | "operatorAdd" | "__flaxBound:package:material_ui/src/material_state.dart::WidgetStateInputBorder" | "__flaxBound:package:material_ui/src/input_border.dart::InputBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder" | "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "borderSide" | "isOutline" | "dimensions" | "preferPaintInterior" | "copyWith" | "paint" | "add" | "scale" | "lerpFrom" | "lerpTo" | "getOuterPath" | "getInnerPath" | "hitTest" | "paintInterior" | "toString" | "resolve" | "operatorAdd" | "__flaxBound:package:material_ui/src/material_state.dart::WidgetStateInputBorder" | "__flaxBound:package:material_ui/src/input_border.dart::InputBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder" | "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty";
 export {};

@@ -10,9 +10,9 @@ import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartType
 export interface DataTableSource extends Omit<upstream0.ChangeNotifier, _flaxOwnMembers0>, Omit<upstream1.Listenable, _flaxOwnMembers0 | keyof upstream0.ChangeNotifier>, Readonly<{
     "__flaxBound:package:material_ui/src/data_table_source.dart::DataTableSource": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __DataTableSource: unique symbol;
     readonly [_flaxDartTypeValue]: DataTableSource;
@@ -44,5 +44,5 @@ export declare namespace DataTableSource {
         get selectedRowCount(): number;
     }): DataTableSource;
 }
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "rowCount" | "isRowCountApproximate" | "selectedRowCount" | "addListener" | "removeListener" | "dispose" | "getRow" | "__flaxBound:package:material_ui/src/data_table_source.dart::DataTableSource" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "rowCount" | "isRowCountApproximate" | "selectedRowCount" | "addListener" | "removeListener" | "dispose" | "getRow" | "__flaxBound:package:material_ui/src/data_table_source.dart::DataTableSource" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 export {};

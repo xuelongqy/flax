@@ -22,7 +22,7 @@ import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream9 from '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
-import { _flaxMemberParameters427, _flaxMemberParameters428, _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters428, _flaxMemberParameters429, _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -49,14 +49,14 @@ return constructObject("object", "flax.core/sdk_widgets#type:SharedAppData", "",
 export declare namespace _SharedAppDataFactory { const __flaxJsx: { readonly props: globalThis.Omit<(globalThis.NonNullable<globalThis.Parameters<typeof _SharedAppDataFactory>[0]>), "child"> & ({ "child": (globalThis.NonNullable<globalThis.Parameters<typeof _SharedAppDataFactory>[0]>)["child"]; children?: never } | { "child"?: never; children: (globalThis.NonNullable<globalThis.Parameters<typeof _SharedAppDataFactory>[0]>)["child"] }); readonly slot: "child"; readonly many: false; }; }
 export namespace _SharedAppDataFactory { function _flaxDefault_getValue<K extends {} = {}, V extends unknown | null = unknown | null>(context: upstream2.BuildContext, key: (K | _FlaxDartOutput<K>), init: (() => (V | _FlaxDartOutput<V>))): _FlaxDartOutput<V> {
 if (arguments.length > 3) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:SharedAppData.getValue", [contextHandle(context, "flax.core/flutter#type:BuildContext"), key, init], _flaxMemberParameters427);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:SharedAppData.getValue", [contextHandle(context, "flax.core/flutter#type:BuildContext"), key, init], _flaxMemberParameters428);
 return _flaxResult as _FlaxDartOutput<V>;
 }
 export const getValue = _flaxDefineDartCallTypes(_flaxDefault_getValue, {"id":"flax.core/sdk_widgets#function:SharedAppData.getValue","parameters":[{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"},{"name":"key","required":true,"positional":true},{"name":"init","required":true,"positional":true}]}) as _FlaxDartCallable<typeof _flaxDefault_getValue, _FlaxSignature0>;
 }
 export namespace _SharedAppDataFactory { function _flaxDefault_setValue<K extends {} = {}, V extends unknown | null = unknown | null>(context: upstream2.BuildContext, key: (K | _FlaxDartOutput<K>), value: (V | _FlaxDartOutput<V>)): void {
 if (arguments.length > 3) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:SharedAppData.setValue", [contextHandle(context, "flax.core/flutter#type:BuildContext"), key, value], _flaxMemberParameters428);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:SharedAppData.setValue", [contextHandle(context, "flax.core/flutter#type:BuildContext"), key, value], _flaxMemberParameters429);
 }
 export const setValue = _flaxDefineDartCallTypes(_flaxDefault_setValue, {"id":"flax.core/sdk_widgets#function:SharedAppData.setValue","parameters":[{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"},{"name":"key","required":true,"positional":true},{"name":"value","required":true,"positional":true}]}) as _FlaxDartCallable<typeof _flaxDefault_setValue, _FlaxSignature1>;
 }

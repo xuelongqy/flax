@@ -25,17 +25,19 @@ import type * as upstream11 from '@flax/flutter/painting/_bindings/flutter_Align
 import '@flax/flutter/painting/_bindings/flutter_AlignmentGeometry';
 import type * as upstream12 from '@flax/flutter/painting/_bindings/sdk_painting_ImageRepeat';
 import '@flax/flutter/painting/_bindings/sdk_painting_ImageRepeat';
+import type * as upstream13 from '@flax/flutter/widgets/_bindings/sdk_widgets_FadeInImageTransition';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_FadeInImageTransition';
 import '@flax/flutter/services/_bindings/sdk_services_AssetBundle';
-import type * as upstream14 from '@flax/flutter/widgets/_bindings/components_State';
+import type * as upstream15 from '@flax/flutter/widgets/_bindings/components_State';
 import '@flax/flutter/widgets/_bindings/components_State';
-import type * as upstream15 from '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
+import type * as upstream16 from '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-import type * as upstream17 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream18 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-import type * as upstream18 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream19 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
-import type * as upstream19 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream20 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
@@ -80,28 +82,29 @@ export interface FadeInImage extends _FlaxDartWidget, Omit<upstream0.StatefulWid
     readonly matchTextDirection: boolean;
     readonly excludeFromSemantics: boolean;
     readonly imageSemanticLabel: string | null;
+    readonly transition: upstream13.FadeInImageTransition;
     readonly key: upstream1.Key | null;
-    createState(): upstream14.State<FadeInImage>;
-    createElement(): upstream15.StatefulElement;
+    createState(): upstream15.State<FadeInImage>;
+    createElement(): upstream16.StatefulElement;
     toStringShort(): string;
     debugFillProperties(properties: Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
     }>): void;
     toStringShallow(options?: {
         joiner?: string | undefined;
-        minLevel?: upstream17.DiagnosticLevel | undefined;
+        minLevel?: upstream18.DiagnosticLevel | undefined;
     }): string;
     toStringDeep(options?: {
-        minLevel?: upstream17.DiagnosticLevel | undefined;
+        minLevel?: upstream18.DiagnosticLevel | undefined;
         prefixLineOne?: string | undefined;
         prefixOtherLines?: string | null | undefined;
         wrapWidth?: number | undefined;
     }): string;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
-        style?: upstream19.DiagnosticsTreeStyle | null | undefined;
-    }): upstream18.DiagnosticsNode;
-    debugDescribeChildren(): DartList<upstream18.DiagnosticsNode>;
+        style?: upstream20.DiagnosticsTreeStyle | null | undefined;
+    }): upstream19.DiagnosticsNode;
+    debugDescribeChildren(): DartList<upstream19.DiagnosticsNode>;
 }
 export declare function _FadeInImageFactory(options: {
     key?: Readonly<{
@@ -121,12 +124,12 @@ export declare function _FadeInImageFactory(options: {
         "__flaxBound:dart:core::Duration": readonly [];
     }> & Readonly<{
         "__flaxBound:dart:core::Comparable": readonly [upstream5.Duration];
-    }>) | undefined;
+    }>) | null | undefined;
     fadeOutCurve?: (Readonly<{
         "__flaxBound:package:flutter/src/animation/curves.dart::Curve": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/animation/curves.dart::ParametricCurve": readonly [number];
-    }>) | undefined;
+    }>) | null | undefined;
     fadeInDuration?: (Readonly<{
         "__flaxBound:dart:core::Duration": readonly [];
     }> & Readonly<{
@@ -156,6 +159,7 @@ export declare function _FadeInImageFactory(options: {
     }> | undefined;
     repeat?: upstream12.ImageRepeat | undefined;
     matchTextDirection?: boolean | undefined;
+    transition?: upstream13.FadeInImageTransition | undefined;
 }): FadeInImage;
 export declare namespace _FadeInImageFactory {
     const __flaxJsx: {
@@ -181,12 +185,12 @@ export declare namespace _FadeInImageFactory {
             "__flaxBound:dart:core::Duration": readonly [];
         }> & Readonly<{
             "__flaxBound:dart:core::Comparable": readonly [upstream5.Duration];
-        }>) | undefined;
+        }>) | null | undefined;
         fadeOutCurve?: (Readonly<{
             "__flaxBound:package:flutter/src/animation/curves.dart::Curve": readonly [];
         }> & Readonly<{
             "__flaxBound:package:flutter/src/animation/curves.dart::ParametricCurve": readonly [number];
-        }>) | undefined;
+        }>) | null | undefined;
         fadeInDuration?: (Readonly<{
             "__flaxBound:dart:core::Duration": readonly [];
         }> & Readonly<{
@@ -216,10 +220,12 @@ export declare namespace _FadeInImageFactory {
         }> | undefined;
         repeat?: upstream12.ImageRepeat | undefined;
         matchTextDirection?: boolean | undefined;
+        transition?: upstream13.FadeInImageTransition | undefined;
         placeholderCacheWidth?: number | null | undefined;
         placeholderCacheHeight?: number | null | undefined;
         imageCacheWidth?: number | null | undefined;
         imageCacheHeight?: number | null | undefined;
+        useLogicalCacheSize?: boolean | undefined;
     }): FadeInImage;
     namespace memoryNetwork {
         const __flaxJsx: {
@@ -249,12 +255,12 @@ export declare namespace _FadeInImageFactory {
             "__flaxBound:dart:core::Duration": readonly [];
         }> & Readonly<{
             "__flaxBound:dart:core::Comparable": readonly [upstream5.Duration];
-        }>) | undefined;
+        }>) | null | undefined;
         fadeOutCurve?: (Readonly<{
             "__flaxBound:package:flutter/src/animation/curves.dart::Curve": readonly [];
         }> & Readonly<{
             "__flaxBound:package:flutter/src/animation/curves.dart::ParametricCurve": readonly [number];
-        }>) | undefined;
+        }>) | null | undefined;
         fadeInDuration?: (Readonly<{
             "__flaxBound:dart:core::Duration": readonly [];
         }> & Readonly<{
@@ -284,10 +290,12 @@ export declare namespace _FadeInImageFactory {
         }> | undefined;
         repeat?: upstream12.ImageRepeat | undefined;
         matchTextDirection?: boolean | undefined;
+        transition?: upstream13.FadeInImageTransition | undefined;
         placeholderCacheWidth?: number | null | undefined;
         placeholderCacheHeight?: number | null | undefined;
         imageCacheWidth?: number | null | undefined;
         imageCacheHeight?: number | null | undefined;
+        useLogicalCacheSize?: boolean | undefined;
     }): FadeInImage;
     namespace assetNetwork {
         const __flaxJsx: {
@@ -298,5 +306,5 @@ export declare namespace _FadeInImageFactory {
     }
 }
 export declare const FadeInImage: typeof _FadeInImageFactory & _FlaxInstanceType<FadeInImage> & _FlaxDartType<FadeInImage, readonly ["class", "flax.core/sdk_widgets#type:FadeInImage", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "placeholder" | "placeholderErrorBuilder" | "image" | "imageErrorBuilder" | "fadeOutDuration" | "fadeOutCurve" | "fadeInDuration" | "fadeInCurve" | "width" | "color" | "colorBlendMode" | "placeholderColor" | "placeholderColorBlendMode" | "height" | "fit" | "placeholderFit" | "filterQuality" | "placeholderFilterQuality" | "alignment" | "repeat" | "matchTextDirection" | "excludeFromSemantics" | "imageSemanticLabel" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/fade_in_image.dart::FadeInImage" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "placeholder" | "placeholderErrorBuilder" | "image" | "imageErrorBuilder" | "fadeOutDuration" | "fadeOutCurve" | "fadeInDuration" | "fadeInCurve" | "width" | "color" | "colorBlendMode" | "placeholderColor" | "placeholderColorBlendMode" | "height" | "fit" | "placeholderFit" | "filterQuality" | "placeholderFilterQuality" | "alignment" | "repeat" | "matchTextDirection" | "excludeFromSemantics" | "imageSemanticLabel" | "transition" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/fade_in_image.dart::FadeInImage" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

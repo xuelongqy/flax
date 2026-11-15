@@ -98,8 +98,10 @@ def main():
     (app / 'pubspec.yaml').write_text('''name: flax_dawn_probe
 publish_to: none
 environment:
-  sdk: ^3.13.5
+  sdk: ^3.14.0
+  flutter: '>=3.50.0'
 dependencies:
+  material_ui: 1.11.0
   flutter:
     sdk: flutter
   flax:

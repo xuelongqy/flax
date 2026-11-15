@@ -6,6 +6,9 @@
 - [Standalone](standalone/README.md): a standalone JS application demonstrating
   application loading, assets, remote delivery and native navigation.
 
+- [Lumen Outpost](survivors/README.md): an offline Canvas survival game with Flutter
+  overlays, bundled sprites and audio, and local settings/results.
+
 - [Configured bindings](configured_bindings/README.md): a runnable host with public
   SDK/internal plugins, local binding runtimes and independent miniapp projects. Its
   Dart packages join the Pub workspace; it owns a separate pnpm workspace.
@@ -54,7 +57,8 @@ be entered manually.
 When opening multiple examples from one checkout, let one finish preparation before
 starting the next command: their JS dependency build outputs are shared.
 
-All examples require Flutter 3.47.6 from `flax/main` and its matching local engine. Only
-macOS platform projects are implemented here. The standalone engine GC target reuses
-package-owned assertions; see
+All examples require maintained Flutter 3.50.0 / Dart 3.14.0 and its matching local engine.
+Target support and runtime evidence are documented per example. Lumen Outpost stages
+macOS, Android and iOS platform projects through its launcher. The standalone engine GC
+target reuses package-owned assertions; see
 [runtime verification](../docs/architecture/runtime.md#verification).

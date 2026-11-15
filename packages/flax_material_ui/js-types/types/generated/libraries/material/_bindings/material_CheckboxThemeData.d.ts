@@ -15,11 +15,13 @@ import type * as upstream6 from '@flax/flutter/painting/_bindings/flutter_Outlin
 import '@flax/flutter/painting/_bindings/flutter_OutlinedBorder';
 import type * as upstream7 from '@flax/flutter/painting/_bindings/flutter_BorderSide';
 import '@flax/flutter/painting/_bindings/flutter_BorderSide';
-import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream8 from '@flax/flutter/painting/_bindings/flutter_EdgeInsets';
+import '@flax/flutter/painting/_bindings/flutter_EdgeInsets';
+import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream10 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
-import type * as upstream10 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream11 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
@@ -40,14 +42,15 @@ export interface CheckboxThemeData extends Omit<upstream0.Diagnosticable, _flaxO
     readonly visualDensity: upstream5.VisualDensity | null;
     readonly shape: upstream6.OutlinedBorder | null;
     readonly side: upstream7.BorderSide | null;
+    readonly markInsets: upstream8.EdgeInsets | null;
     toStringShort(): string;
     toString(options?: {
-        minLevel?: upstream8.DiagnosticLevel | undefined;
+        minLevel?: upstream9.DiagnosticLevel | undefined;
     }): string;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
-        style?: upstream10.DiagnosticsTreeStyle | null | undefined;
-    }): upstream9.DiagnosticsNode;
+        style?: upstream11.DiagnosticsTreeStyle | null | undefined;
+    }): upstream10.DiagnosticsNode;
     debugFillProperties(properties: Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
     }>): void;
@@ -58,6 +61,11 @@ export interface CheckboxThemeData extends Omit<upstream0.Diagnosticable, _flaxO
         fillColor?: Readonly<{
             "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream3.Color | null];
         }> | null | undefined;
+        markInsets?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }>) | null | undefined;
         materialTapTargetSize?: upstream4.MaterialTapTargetSize | null | undefined;
         mouseCursor?: Readonly<{
             "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream2.MouseCursor | null];
@@ -113,17 +121,22 @@ export declare function _CheckboxThemeDataFactory(options?: {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null | undefined;
+    markInsets?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }>) | null | undefined;
 }): CheckboxThemeData;
 export interface _CheckboxThemeDataNative extends CheckboxThemeData {
     readonly [_flaxDartTypeValue]: _CheckboxThemeDataNative;
     toStringShort(): string;
     toString(options?: {
-        minLevel?: upstream8.DiagnosticLevel | undefined;
+        minLevel?: upstream9.DiagnosticLevel | undefined;
     }): string;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
-        style?: upstream10.DiagnosticsTreeStyle | null | undefined;
-    }): upstream9.DiagnosticsNode;
+        style?: upstream11.DiagnosticsTreeStyle | null | undefined;
+    }): upstream10.DiagnosticsNode;
     debugFillProperties(properties: Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
     }>): void;
@@ -157,6 +170,11 @@ export interface _CheckboxThemeDataNative extends CheckboxThemeData {
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
+        markInsets?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }>) | null | undefined;
     }): CheckboxThemeData;
     get mouseCursor(): upstream1.WidgetStateProperty<upstream2.MouseCursor | null> | null;
     get fillColor(): upstream1.WidgetStateProperty<upstream3.Color | null> | null;
@@ -167,6 +185,7 @@ export interface _CheckboxThemeDataNative extends CheckboxThemeData {
     get visualDensity(): upstream5.VisualDensity | null;
     get shape(): upstream6.OutlinedBorder | null;
     get side(): upstream7.BorderSide | null;
+    get markInsets(): upstream8.EdgeInsets | null;
 }
 export declare abstract class _CheckboxThemeDataNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<CheckboxThemeData>[typeof globalThis.Symbol.hasInstance];
@@ -202,6 +221,11 @@ export declare abstract class _CheckboxThemeDataNative extends _FlaxProxyBase {
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
+        markInsets?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }>) | null | undefined;
     });
 }
 export declare namespace _CheckboxThemeDataFactory {
@@ -235,6 +259,11 @@ export declare namespace _CheckboxThemeDataFactory {
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
+        markInsets?: (Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }>) | null | undefined;
     }], implementation: {}): CheckboxThemeData;
 }
 declare const _CheckboxThemeDataBinding: typeof _CheckboxThemeDataFactory & (new (options?: {
@@ -267,6 +296,11 @@ declare const _CheckboxThemeDataBinding: typeof _CheckboxThemeDataFactory & (new
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null | undefined;
+    markInsets?: (Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }>) | null | undefined;
 }) => _CheckboxThemeDataNative);
 export declare namespace _CheckboxThemeDataFactory {
     function lerp(a: (Readonly<{
@@ -280,5 +314,5 @@ export declare namespace _CheckboxThemeDataFactory {
     }>) | null, t: number): CheckboxThemeData;
 }
 export declare const CheckboxThemeData: typeof _CheckboxThemeDataBinding & _FlaxInstanceType<CheckboxThemeData> & _FlaxDartType<CheckboxThemeData, readonly ["class", "flax.material/material#type:CheckboxThemeData", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "mouseCursor" | "fillColor" | "checkColor" | "overlayColor" | "splashRadius" | "materialTapTargetSize" | "visualDensity" | "shape" | "side" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "__flaxBound:package:material_ui/src/checkbox_theme.dart::CheckboxThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "mouseCursor" | "fillColor" | "checkColor" | "overlayColor" | "splashRadius" | "materialTapTargetSize" | "visualDensity" | "shape" | "side" | "markInsets" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "copyWith" | "__flaxBound:package:material_ui/src/checkbox_theme.dart::CheckboxThemeData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

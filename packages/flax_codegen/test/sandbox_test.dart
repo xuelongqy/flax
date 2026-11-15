@@ -148,6 +148,47 @@ void main() {
     );
   });
 
+  test(
+    'replacement handlers cannot drop new selected or nullable arguments',
+    () async {
+      final parser = FlaxCodegenBindingParser(root);
+      addTearDown(parser.dispose);
+      for (final entry in {
+        'incompleteReplacement': (
+          ['path', 'useLogicalSize'],
+          'Replacement handler must accept all selected arguments',
+        ),
+        'nullableReplacement': (
+          ['label'],
+          'Incompatible handler argument label',
+        ),
+      }.entries) {
+        await expectLater(
+          parser.parse(
+            FlaxCodegenBindingConfig(
+              'invalid',
+              library,
+              '@example/notes',
+              'unused.dart',
+              'unused.ts',
+              config().classes,
+              functions: {
+                entry.key: FlaxCodegenFunctionSelection(entry.value.$1),
+              },
+            ),
+          ),
+          throwsA(
+            isA<StateError>().having(
+              (e) => e.message,
+              'reason',
+              contains(entry.value.$2),
+            ),
+          ),
+        );
+      }
+    },
+  );
+
   test('invalid guard declarations fail at generation time', () async {
     final parser = FlaxCodegenBindingParser(root);
     addTearDown(parser.dispose);

@@ -173,6 +173,7 @@ export { Gradient } from "@flax/dart/ui/_bindings/sdk_dart_ui_Gradient";
 export type { HitTestCallback, HitTestCallbackInput } from "@flax/dart/ui/_bindings/sdk_dart_ui_HitTestCallback";
 export { HitTestRequest } from "@flax/dart/ui/_bindings/sdk_dart_ui_HitTestRequest";
 export { HitTestResponse } from "@flax/dart/ui/_bindings/sdk_dart_ui_HitTestResponse";
+export { Hyphens } from "@flax/dart/ui/_bindings/sdk_dart_ui_Hyphens";
 export { Image } from "@flax/dart/ui/_bindings/sdk_dart_ui_Image";
 export { ImageByteFormat } from "@flax/dart/ui/_bindings/sdk_dart_ui_ImageByteFormat";
 export type { ImageDecoderCallback, ImageDecoderCallbackInput } from "@flax/dart/ui/_bindings/sdk_dart_ui_ImageDecoderCallback";

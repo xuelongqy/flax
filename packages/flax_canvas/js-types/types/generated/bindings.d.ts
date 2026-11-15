@@ -46,9 +46,9 @@ import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDart
 export interface FlaxCanvasSurface extends Omit<upstream0.ChangeNotifier, _flaxOwnMembers0>, Omit<upstream1.Listenable, _flaxOwnMembers0 | keyof upstream0.ChangeNotifier>, Omit<upstream2.FlaxCanvasContent, _flaxOwnMembers0 | keyof upstream0.ChangeNotifier | keyof upstream1.Listenable>, Readonly<{
     "__flaxBound:package:flax_canvas/src/surface.dart::FlaxCanvasSurface": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }>, Readonly<{
     "__flaxBound:package:flax/bindings.dart::FlaxCanvasContent": readonly [];
 }> {
@@ -146,5 +146,5 @@ export declare namespace _FlaxCanvasSurfaceFactory {
     const commandBytesLimit: number;
 }
 export declare const FlaxCanvasSurface: typeof _FlaxCanvasSurfaceFactory & _FlaxInstanceType<FlaxCanvasSurface> & _FlaxDartType<FlaxCanvasSurface, readonly ["class", "flax.canvas/canvas#type:FlaxCanvasSurface", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "alpha" | "width" | "height" | "generation" | "sequence" | "decodedBytes" | "base" | "pictures" | "tail" | "compressing" | "compressGeneration" | "compressCount" | "compressBytes" | "closed" | "transferred" | "onError" | "debugRasterize" | "addListener" | "removeListener" | "dispose" | "paintTo" | "resize" | "clearHistory" | "addPicture" | "replaceWithClear" | "maybeCompress" | "rasterize" | "rasterizeSync" | "abandon" | "paint" | "__flaxBound:package:flax_canvas/src/surface.dart::FlaxCanvasSurface" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flax/bindings.dart::FlaxCanvasContent";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "alpha" | "width" | "height" | "generation" | "sequence" | "decodedBytes" | "base" | "pictures" | "tail" | "compressing" | "compressGeneration" | "compressCount" | "compressBytes" | "closed" | "transferred" | "onError" | "debugRasterize" | "addListener" | "removeListener" | "dispose" | "paintTo" | "resize" | "clearHistory" | "addPicture" | "replaceWithClear" | "maybeCompress" | "rasterize" | "rasterizeSync" | "abandon" | "paint" | "__flaxBound:package:flax_canvas/src/surface.dart::FlaxCanvasSurface" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable" | "__flaxBound:package:flax/bindings.dart::FlaxCanvasContent";
 export {};

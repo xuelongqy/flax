@@ -9,11 +9,13 @@ import type * as upstream2 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import type * as upstream3 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
-import type * as upstream4 from '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
+import type * as upstream4 from '@flax/dart/ui/_bindings/flutter_Offset';
+import '@flax/dart/ui/_bindings/flutter_Offset';
+import type * as upstream5 from '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
-import type * as upstream5 from '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
+import type * as upstream6 from '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
-import { _flaxMemberParameters0, _flaxMemberParameters9, _flaxMemberParameters10, _flaxMemberParameters26, _flaxMemberParameters27, _flaxMemberParameters184, _flaxMemberParameters185, _flaxMemberParameters186, _flaxMemberParameters4, _flaxMemberParameters1 } from "@flax/core/navigation/_bindings/flutter.__module";
+import { _flaxMemberParameters0, _flaxMemberParameters9, _flaxMemberParameters10, _flaxMemberParameters27, _flaxMemberParameters28, _flaxMemberParameters185, _flaxMemberParameters186, _flaxMemberParameters187, _flaxMemberParameters188, _flaxMemberParameters4, _flaxMemberParameters1 } from "@flax/core/navigation/_bindings/flutter.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface ShapeBorder extends Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [] }> { readonly __ShapeBorder: unique symbol;
@@ -27,12 +29,13 @@ lerpFrom(a: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::S
 lerpTo(b: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [] }> | null, t: number): ShapeBorder | null;
 getOuterPath(rect: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }>, options?: {textDirection?: upstream3.TextDirection | null | undefined}): upstream1.Path;
 getInnerPath(rect: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }>, options?: {textDirection?: upstream3.TextDirection | null | undefined}): upstream1.Path;
+hitTest(rect: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }>, position: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>, options?: {textDirection?: upstream3.TextDirection | null | undefined}): boolean;
 paintInterior(canvas: Readonly<{ "__flaxBound:dart:ui::Canvas": readonly [] }>, rect: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }>, paint: Readonly<{ "__flaxBound:dart:ui::Paint": readonly [] }>, options?: {textDirection?: upstream3.TextDirection | null | undefined}): void;
 paint(canvas: Readonly<{ "__flaxBound:dart:ui::Canvas": readonly [] }>, rect: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }>, options?: {textDirection?: upstream3.TextDirection | null | undefined}): void;
 toString(): string;
 operatorAdd(other: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [] }>): ShapeBorder;
 }
-defineObject("flax.core/flutter#type:ShapeBorder", ["dimensions","preferPaintInterior"], [], _flaxBindingMethods("flax.core/flutter#type:ShapeBorder", "object", {"add":_flaxMemberParameters9,"scale":_flaxMemberParameters10,"lerpFrom":_flaxMemberParameters26,"lerpTo":_flaxMemberParameters27,"getOuterPath":_flaxMemberParameters184,"getInnerPath":_flaxMemberParameters184,"paintInterior":_flaxMemberParameters185,"paint":_flaxMemberParameters186,"toString":_flaxMemberParameters4,"operatorAdd":_flaxMemberParameters1}, {}), []);
+defineObject("flax.core/flutter#type:ShapeBorder", ["dimensions","preferPaintInterior"], [], _flaxBindingMethods("flax.core/flutter#type:ShapeBorder", "object", {"add":_flaxMemberParameters9,"scale":_flaxMemberParameters10,"lerpFrom":_flaxMemberParameters27,"lerpTo":_flaxMemberParameters28,"getOuterPath":_flaxMemberParameters185,"getInnerPath":_flaxMemberParameters185,"hitTest":_flaxMemberParameters186,"paintInterior":_flaxMemberParameters187,"paint":_flaxMemberParameters188,"toString":_flaxMemberParameters4,"operatorAdd":_flaxMemberParameters1}, {}), []);
 export namespace _ShapeBorderFactory { export function lerp(a: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [] }> | null, b: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [] }> | null, t: number): ShapeBorder | null {
 if (arguments.length > 3) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.core/flutter#function:ShapeBorder.lerp", [a, b, t], _flaxMemberParameters0);

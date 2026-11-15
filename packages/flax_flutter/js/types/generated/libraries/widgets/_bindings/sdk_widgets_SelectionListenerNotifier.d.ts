@@ -9,9 +9,9 @@ import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDart
 export interface SelectionListenerNotifier extends Omit<upstream0.ChangeNotifier, _flaxOwnMembers0>, Omit<upstream1.Listenable, _flaxOwnMembers0 | keyof upstream0.ChangeNotifier>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/selectable_region.dart::SelectionListenerNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __SelectionListenerNotifier: unique symbol;
     readonly [_flaxDartTypeValue]: SelectionListenerNotifier;
@@ -24,5 +24,5 @@ export interface SelectionListenerNotifier extends Omit<upstream0.ChangeNotifier
 }
 export declare function _SelectionListenerNotifierFactory(): SelectionListenerNotifier;
 export declare const SelectionListenerNotifier: typeof _SelectionListenerNotifierFactory & _FlaxInstanceType<SelectionListenerNotifier> & _FlaxDartType<SelectionListenerNotifier, readonly ["class", "flax.core/sdk_widgets#type:SelectionListenerNotifier", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "selection" | "registered" | "addListener" | "removeListener" | "dispose" | "__flaxBound:package:flutter/src/widgets/selectable_region.dart::SelectionListenerNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "selection" | "registered" | "addListener" | "removeListener" | "dispose" | "__flaxBound:package:flutter/src/widgets/selectable_region.dart::SelectionListenerNotifier" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 export {};

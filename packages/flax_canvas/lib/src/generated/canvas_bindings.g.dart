@@ -14,6 +14,9 @@ import 'package:flutter/rendering.dart' as api4;
 
 import 'dart:core' as api5;
 
+import "package:flax/src/generated/sdk_foundation_bindings.g.dart"
+    as _flaxMembers0;
+
 // ignore: unused_element
 const _flaxOmitted = Object();
 const canvasBindings = FlaxBindingModule(
@@ -61,8 +64,6 @@ final canvasPlugin = FlaxBindingPlugin(
   jsModules: {"@flax/canvas"},
 );
 bool _isFlaxCanvasSurface(Object value) => value is api.FlaxCanvasSurface;
-Object? _FlaxCanvasSurface_hasListeners(Object value) =>
-    (value as api.FlaxCanvasSurface).hasListeners;
 Object? _FlaxCanvasSurface_alpha(Object value) =>
     (value as api.FlaxCanvasSurface).alpha;
 Object? _FlaxCanvasSurface_width(Object value) =>
@@ -483,10 +484,52 @@ Object _collection1Restore(Object value) =>
 bool _collection1Matches(Object value) => value is Iterable<api1.Picture>;
 Future<Object?> _future0Adapt(Future<Object?> value) =>
     value.then<api1.Image?>((value) => value as api1.Image?);
+const flaxMemberflax_2e_canvas_2f_canvas_23_type_3a_FlaxCanvasSurface_7c_get_3a_hasListeners =
+    _flaxMembers0
+        .flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ChangeNotifier_7c_get_3a_hasListeners;
+const flaxMemberflax_2e_canvas_2f_canvas_23_type_3a_FlaxCanvasSurface_7c_get_3a_alpha =
+    _FlaxCanvasSurface_alpha;
+const flaxMemberflax_2e_canvas_2f_canvas_23_type_3a_FlaxCanvasSurface_7c_get_3a_width =
+    _FlaxCanvasSurface_width;
+const flaxMemberflax_2e_canvas_2f_canvas_23_type_3a_FlaxCanvasSurface_7c_get_3a_height =
+    _FlaxCanvasSurface_height;
+const flaxMemberflax_2e_canvas_2f_canvas_23_type_3a_FlaxCanvasSurface_7c_get_3a_generation =
+    _FlaxCanvasSurface_generation;
+const flaxMemberflax_2e_canvas_2f_canvas_23_type_3a_FlaxCanvasSurface_7c_get_3a_sequence =
+    _FlaxCanvasSurface_sequence;
+const flaxMemberflax_2e_canvas_2f_canvas_23_type_3a_FlaxCanvasSurface_7c_get_3a_decodedBytes =
+    _FlaxCanvasSurface_decodedBytes;
+const flaxMemberflax_2e_canvas_2f_canvas_23_type_3a_FlaxCanvasSurface_7c_get_3a_base =
+    _FlaxCanvasSurface_base;
+const flaxMemberflax_2e_canvas_2f_canvas_23_type_3a_FlaxCanvasSurface_7c_get_3a_pictures =
+    _FlaxCanvasSurface_pictures;
+const flaxMemberflax_2e_canvas_2f_canvas_23_type_3a_FlaxCanvasSurface_7c_get_3a_tail =
+    _FlaxCanvasSurface_tail;
+const flaxMemberflax_2e_canvas_2f_canvas_23_type_3a_FlaxCanvasSurface_7c_get_3a_compressing =
+    _FlaxCanvasSurface_compressing;
+const flaxMemberflax_2e_canvas_2f_canvas_23_type_3a_FlaxCanvasSurface_7c_get_3a_compressGeneration =
+    _FlaxCanvasSurface_compressGeneration;
+const flaxMemberflax_2e_canvas_2f_canvas_23_type_3a_FlaxCanvasSurface_7c_get_3a_compressCount =
+    _FlaxCanvasSurface_compressCount;
+const flaxMemberflax_2e_canvas_2f_canvas_23_type_3a_FlaxCanvasSurface_7c_get_3a_compressBytes =
+    _FlaxCanvasSurface_compressBytes;
+const flaxMemberflax_2e_canvas_2f_canvas_23_type_3a_FlaxCanvasSurface_7c_get_3a_closed =
+    _FlaxCanvasSurface_closed;
+const flaxMemberflax_2e_canvas_2f_canvas_23_type_3a_FlaxCanvasSurface_7c_get_3a_transferred =
+    _FlaxCanvasSurface_transferred;
+const flaxMemberflax_2e_canvas_2f_canvas_23_type_3a_FlaxCanvasSurface_7c_get_3a_onError =
+    _FlaxCanvasSurface_onError;
+const flaxMemberflax_2e_canvas_2f_canvas_23_type_3a_FlaxCanvasSurface_7c_get_3a_debugRasterize =
+    _FlaxCanvasSurface_debugRasterize;
+const flaxMemberflax_2e_canvas_2f_canvas_23_type_3a_FlaxCanvasSurface_7c_call_3a_rasterize =
+    _FlaxCanvasSurface_rasterize;
+const flaxMemberflax_2e_canvas_2f_canvas_23_type_3a_FlaxCanvasSurface_7c_call_3a_rasterizeSync =
+    _FlaxCanvasSurface_rasterizeSync;
 const _flaxBinding0 = FlaxGetter.plain(
   "hasListeners",
   flaxBoolType,
-  _FlaxCanvasSurface_hasListeners,
+  _flaxMembers0
+      .flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ChangeNotifier_7c_get_3a_hasListeners,
 );
 const _flaxBinding1 = FlaxGetter.plain(
   "alpha",

@@ -965,16 +965,16 @@ export interface RenderEditable extends Omit<upstream0.RenderBox, _flaxOwnMember
     set foregroundPainter(value: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/editable.dart::RenderEditablePainter": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null);
     set painter(value: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/editable.dart::RenderEditablePainter": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null);
     set ignorePointer(value: boolean);
     set textHeightBehavior(value: Readonly<{
@@ -1013,13 +1013,13 @@ export interface RenderEditable extends Omit<upstream0.RenderBox, _flaxOwnMember
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null);
     set showCursor(value: Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [boolean];
+        "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [boolean];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [boolean];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [boolean];
     }>);
     set hasFocus(value: boolean);
     set forceLine(value: boolean);
@@ -1042,9 +1042,9 @@ export interface RenderEditable extends Omit<upstream0.RenderBox, _flaxOwnMember
     set offset(value: Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>);
     set cursorWidth(value: number);
     set cursorHeight(value: number | null);
@@ -1091,13 +1091,13 @@ export declare function _RenderEditableFactory(options: {
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null | undefined;
     showCursor?: (Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [boolean];
+        "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [boolean];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [boolean];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [boolean];
     }>) | null | undefined;
     hasFocus?: boolean | null | undefined;
     startHandleLayerLink: Readonly<{
@@ -1129,9 +1129,9 @@ export declare function _RenderEditableFactory(options: {
     offset: Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>;
     ignorePointer?: boolean | undefined;
     readOnly?: boolean | undefined;
@@ -1178,16 +1178,16 @@ export declare function _RenderEditableFactory(options: {
     painter?: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/editable.dart::RenderEditablePainter": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     foregroundPainter?: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/editable.dart::RenderEditablePainter": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     children?: DartListInput<upstream0.RenderBox, Readonly<{
         "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
@@ -1205,6 +1205,7 @@ export declare function _RenderEditableFactory(options: {
 }): RenderEditable;
 export interface _RenderEditableNative extends RenderEditable {
     readonly [_flaxDartTypeValue]: _RenderEditableNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1979,7 +1980,6 @@ export interface _RenderEditableNative extends RenderEditable {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream1.RenderObject | null;
     get owner(): upstream37.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;
@@ -1999,16 +1999,16 @@ export interface _RenderEditableNative extends RenderEditable {
     set foregroundPainter(value: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/editable.dart::RenderEditablePainter": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null);
     set painter(value: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/editable.dart::RenderEditablePainter": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null);
     set ignorePointer(value: boolean);
     set textHeightBehavior(value: Readonly<{
@@ -2047,13 +2047,13 @@ export interface _RenderEditableNative extends RenderEditable {
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null);
     set showCursor(value: Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [boolean];
+        "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [boolean];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [boolean];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [boolean];
     }>);
     set hasFocus(value: boolean);
     set forceLine(value: boolean);
@@ -2076,9 +2076,9 @@ export interface _RenderEditableNative extends RenderEditable {
     set offset(value: Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>);
     set cursorWidth(value: number);
     set cursorHeight(value: number | null);
@@ -2149,13 +2149,13 @@ export declare abstract class _RenderEditableNative extends _FlaxProxyBase {
             "__flaxBound:dart:ui::Color": readonly [];
         }> | null | undefined;
         showCursor?: (Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [boolean];
+            "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [boolean];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [boolean];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [boolean];
         }>) | null | undefined;
         hasFocus?: boolean | null | undefined;
         startHandleLayerLink: Readonly<{
@@ -2187,9 +2187,9 @@ export declare abstract class _RenderEditableNative extends _FlaxProxyBase {
         offset: Readonly<{
             "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>;
         ignorePointer?: boolean | undefined;
         readOnly?: boolean | undefined;
@@ -2236,16 +2236,16 @@ export declare abstract class _RenderEditableNative extends _FlaxProxyBase {
         painter?: (Readonly<{
             "__flaxBound:package:flutter/src/rendering/editable.dart::RenderEditablePainter": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
         foregroundPainter?: (Readonly<{
             "__flaxBound:package:flutter/src/rendering/editable.dart::RenderEditablePainter": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
         children?: DartListInput<upstream0.RenderBox, Readonly<{
             "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
@@ -2280,13 +2280,13 @@ export declare namespace _RenderEditableFactory {
             "__flaxBound:dart:ui::Color": readonly [];
         }> | null | undefined;
         showCursor?: (Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [boolean];
+            "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [boolean];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [boolean];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [boolean];
         }>) | null | undefined;
         hasFocus?: boolean | null | undefined;
         startHandleLayerLink: Readonly<{
@@ -2318,9 +2318,9 @@ export declare namespace _RenderEditableFactory {
         offset: Readonly<{
             "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>;
         ignorePointer?: boolean | undefined;
         readOnly?: boolean | undefined;
@@ -2367,16 +2367,16 @@ export declare namespace _RenderEditableFactory {
         painter?: (Readonly<{
             "__flaxBound:package:flutter/src/rendering/editable.dart::RenderEditablePainter": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
         foregroundPainter?: (Readonly<{
             "__flaxBound:package:flutter/src/rendering/editable.dart::RenderEditablePainter": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
         children?: DartListInput<upstream0.RenderBox, Readonly<{
             "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
@@ -2410,13 +2410,13 @@ declare const _RenderEditableBinding: typeof _RenderEditableFactory & (new (opti
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null | undefined;
     showCursor?: (Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [boolean];
+        "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [boolean];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [boolean];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [boolean];
     }>) | null | undefined;
     hasFocus?: boolean | null | undefined;
     startHandleLayerLink: Readonly<{
@@ -2448,9 +2448,9 @@ declare const _RenderEditableBinding: typeof _RenderEditableFactory & (new (opti
     offset: Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>;
     ignorePointer?: boolean | undefined;
     readOnly?: boolean | undefined;
@@ -2497,16 +2497,16 @@ declare const _RenderEditableBinding: typeof _RenderEditableFactory & (new (opti
     painter?: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/editable.dart::RenderEditablePainter": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     foregroundPainter?: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/editable.dart::RenderEditablePainter": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     children?: DartListInput<upstream0.RenderBox, Readonly<{
         "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];

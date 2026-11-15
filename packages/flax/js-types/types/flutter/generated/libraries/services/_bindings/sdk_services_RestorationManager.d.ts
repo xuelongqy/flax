@@ -10,9 +10,9 @@ import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartType
 export interface RestorationManager extends Omit<upstream0.ChangeNotifier, _flaxOwnMembers0>, Omit<upstream1.Listenable, _flaxOwnMembers0 | keyof upstream0.ChangeNotifier>, Readonly<{
     "__flaxBound:package:flutter/src/services/restoration.dart::RestorationManager": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __RestorationManager: unique symbol;
     readonly [_flaxDartTypeValue]: RestorationManager;
@@ -58,5 +58,5 @@ export declare namespace _RestorationManagerFactory {
 }
 declare const _RestorationManagerBinding: typeof _RestorationManagerFactory & (new () => _RestorationManagerNative);
 export declare const RestorationManager: typeof _RestorationManagerBinding & _FlaxInstanceType<RestorationManager> & _FlaxDartType<RestorationManager, readonly ["class", "flax.core/sdk_services#type:RestorationManager", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "rootBucket" | "isReplacing" | "addListener" | "removeListener" | "dispose" | "initChannels" | "handleRestorationUpdateFromEngine" | "sendToEngine" | "flushData" | "__flaxBound:package:flutter/src/services/restoration.dart::RestorationManager" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "rootBucket" | "isReplacing" | "addListener" | "removeListener" | "dispose" | "initChannels" | "handleRestorationUpdateFromEngine" | "sendToEngine" | "flushData" | "__flaxBound:package:flutter/src/services/restoration.dart::RestorationManager" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 export {};

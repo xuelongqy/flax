@@ -206,8 +206,8 @@ void main() {
             }
           });
           tester.binding.addPostFrameCallback((_) {
-            expect(harness.backendSettled, isTrue);
-            expect(
+            expectSync(harness.backendSettled, isTrue);
+            expectSync(
               (harness.runtime.getGlobal('delivered') as FlaxJsBoolean).value,
               isFalse,
             );
@@ -246,7 +246,7 @@ void main() {
             }
           });
           tester.binding.addPostFrameCallback((_) {
-            expect(
+            expectSync(
               (harness.runtime.getGlobal('delivered') as FlaxJsBoolean).value,
               isFalse,
             );
@@ -384,7 +384,7 @@ void main() {
       Future<void>? revocation;
       tester.binding.scheduleFrameCallback((_) => harness.events.close());
       tester.binding.addPostFrameCallback((_) {
-        expect(
+        expectSync(
           (harness.runtime.getGlobal('delivered') as FlaxJsBoolean).value,
           isFalse,
         );
@@ -425,7 +425,7 @@ void main() {
           ),
         );
         tester.binding.addPostFrameCallback((_) {
-          expect(
+          expectSync(
             (harness.runtime.getGlobal('delivered') as FlaxJsBoolean).value,
             isFalse,
           );

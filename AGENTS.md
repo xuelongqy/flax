@@ -58,15 +58,24 @@ subscriptions and AsyncIterable sources. See
 
 ## Commands
 
-From the root:
+From the root, after selecting the maintained Flutter checkout and building its matching
+macOS Debug artifacts as described in the [quick start](README.md#quick-start):
 
 ```sh
 mkdir -p "$PWD/.local/tmp"
 export TMPDIR="$PWD/.local/tmp" TMP="$PWD/.local/tmp" TEMP="$PWD/.local/tmp"
-flutter pub get --enforce-lockfile
+export FLUTTER_ENGINE="${FLUTTER_ROOT:?Select the maintained Flutter checkout}/engine/src"
+env -u FLUTTER_ENGINE flutter --local-engine-src-path="$FLUTTER_ENGINE" \
+  --local-engine=flax_mac_debug_arm64 --local-engine-host=flax_mac_debug_arm64 \
+  pub get --enforce-lockfile
 pnpm install --frozen-lockfile
 dart run melos run check
 ```
+
+Dependency/static Flutter commands also require official host-artifact context: bare
+Pub, analyze and create can replace the custom SDK cache. Workspace tools supply that
+context through the existing runner. It is separate from runtime platform/mode selection
+and does not enable unsupported iOS device Debug builds.
 
 Keep test workspaces, compiler temporaries and experimental copies on the workspace
 volume. Set the absolute repository-local temporary directory above before running Dart,

@@ -16,9 +16,9 @@ import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartType
 export interface RenderEditablePainter extends Omit<upstream0.ChangeNotifier, _flaxOwnMembers0>, Omit<upstream1.Listenable, _flaxOwnMembers0 | keyof upstream0.ChangeNotifier>, Readonly<{
     "__flaxBound:package:flutter/src/rendering/editable.dart::RenderEditablePainter": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __RenderEditablePainter: unique symbol;
     readonly [_flaxDartTypeValue]: RenderEditablePainter;
@@ -38,9 +38,9 @@ export declare abstract class RenderEditablePainter extends _FlaxProxyBase {
     abstract shouldRepaint(oldDelegate: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/editable.dart::RenderEditablePainter": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null): boolean;
     abstract paint(canvas: Readonly<{
         "__flaxBound:dart:ui::Canvas": readonly [];
@@ -78,5 +78,5 @@ export declare namespace RenderEditablePainter {
         paint: ((canvas: upstream2.Canvas, size: upstream3.Size, renderEditable: upstream4.RenderEditable) => void);
     }): RenderEditablePainter;
 }
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "addListener" | "removeListener" | "dispose" | "shouldRepaint" | "paint" | "__flaxBound:package:flutter/src/rendering/editable.dart::RenderEditablePainter" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "addListener" | "removeListener" | "dispose" | "shouldRepaint" | "paint" | "__flaxBound:package:flutter/src/rendering/editable.dart::RenderEditablePainter" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 export {};

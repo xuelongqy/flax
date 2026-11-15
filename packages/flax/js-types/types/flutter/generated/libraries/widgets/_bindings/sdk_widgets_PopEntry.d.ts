@@ -27,9 +27,9 @@ export declare abstract class PopEntry<T extends unknown | null = unknown | null
 export declare namespace PopEntry {
     function implement<T extends unknown | null = unknown | null>(args: [], implementation: {
         get canPopNotifier(): Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [boolean];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [boolean];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>;
     }): PopEntry<T>;
 }

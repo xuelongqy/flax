@@ -28,6 +28,7 @@ readonly maxFlingVelocity: number;
 readonly dragStartDistanceMotionThreshold: number | null;
 readonly allowImplicitScrolling: boolean;
 readonly allowUserScrolling: boolean;
+readonly allowSelectionEdgeScrolling: boolean;
 buildParent(ancestor: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [] }> | null): upstream0.ScrollPhysics | null;
 applyTo(ancestor: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [] }> | null): ClampingScrollPhysics;
 applyPhysicsToUserOffset(position: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [] }>, offset: number): number;
@@ -38,13 +39,14 @@ adjustPositionForNewDimensions(options: {isScrolling: boolean; newPosition: Read
 createBallisticSimulation(position: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [] }>, velocity: number): upstream5.Simulation | null;
 toleranceFor(metrics: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [] }>): upstream2.Tolerance;
 carriedMomentum(existingVelocity: number): number;
+shouldUpdate(old: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [] }>): boolean;
 toString(): string;
 }
-defineObject("flax.core/flutter#type:ClampingScrollPhysics", ["parent","spring","tolerance","minFlingDistance","minFlingVelocity","maxFlingVelocity","dragStartDistanceMotionThreshold","allowImplicitScrolling","allowUserScrolling"], [], _flaxBindingMethods("flax.core/flutter#type:ClampingScrollPhysics", "object", {"applyTo":_flaxMemberParameters6}, {}), [], undefined, "flax.core/flutter#type:ScrollPhysics");
+defineObject("flax.core/flutter#type:ClampingScrollPhysics", ["parent","spring","tolerance","minFlingDistance","minFlingVelocity","maxFlingVelocity","dragStartDistanceMotionThreshold","allowImplicitScrolling","allowUserScrolling","allowSelectionEdgeScrolling"], [], _flaxBindingMethods("flax.core/flutter#type:ClampingScrollPhysics", "object", {"applyTo":_flaxMemberParameters6}, {}), [], undefined, "flax.core/flutter#type:ScrollPhysics");
 export function _ClampingScrollPhysicsFactory(options: { parent?: Readonly<{ "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [] }> | null | undefined } = {}): ClampingScrollPhysics {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:ClampingScrollPhysics", "", [{"name":"parent"}], [], options) as ClampingScrollPhysics;
 }
 export const ClampingScrollPhysics: typeof _ClampingScrollPhysicsFactory & _FlaxInstanceType<ClampingScrollPhysics> & _FlaxDartType<ClampingScrollPhysics, readonly ["class", "flax.core/flutter#type:ClampingScrollPhysics", readonly [], false]> = _flaxBindInstanceType<ClampingScrollPhysics, typeof _ClampingScrollPhysicsFactory>(_ClampingScrollPhysicsFactory, "flax.core/flutter#type:ClampingScrollPhysics", ["flax.core/flutter#type:ScrollPhysics","dart:core::Object"]) as typeof _ClampingScrollPhysicsFactory & _FlaxInstanceType<ClampingScrollPhysics> & _FlaxDartType<ClampingScrollPhysics, readonly ["class", "flax.core/flutter#type:ClampingScrollPhysics", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "parent" | "spring" | "tolerance" | "minFlingDistance" | "minFlingVelocity" | "maxFlingVelocity" | "dragStartDistanceMotionThreshold" | "allowImplicitScrolling" | "allowUserScrolling" | "buildParent" | "applyTo" | "applyPhysicsToUserOffset" | "shouldAcceptUserOffset" | "recommendDeferredLoading" | "applyBoundaryConditions" | "adjustPositionForNewDimensions" | "createBallisticSimulation" | "toleranceFor" | "carriedMomentum" | "toString" | "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ClampingScrollPhysics" | "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "parent" | "spring" | "tolerance" | "minFlingDistance" | "minFlingVelocity" | "maxFlingVelocity" | "dragStartDistanceMotionThreshold" | "allowImplicitScrolling" | "allowUserScrolling" | "allowSelectionEdgeScrolling" | "buildParent" | "applyTo" | "applyPhysicsToUserOffset" | "shouldAcceptUserOffset" | "recommendDeferredLoading" | "applyBoundaryConditions" | "adjustPositionForNewDimensions" | "createBallisticSimulation" | "toleranceFor" | "carriedMomentum" | "shouldUpdate" | "toString" | "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ClampingScrollPhysics" | "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics";

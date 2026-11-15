@@ -37,9 +37,9 @@ export declare function _LinearProgressIndicatorFactory(options?: {
     valueColor?: Bindable<(Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [upstream1.Color | null];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream1.Color | null];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream1.Color | null];
     }>) | null> | undefined;
     minHeight?: Bindable<number | null> | undefined;
     semanticsLabel?: Bindable<string | null> | undefined;
@@ -58,9 +58,9 @@ export declare function _LinearProgressIndicatorFactory(options?: {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationEagerListenerMixin": readonly [];
     }> & Readonly<{

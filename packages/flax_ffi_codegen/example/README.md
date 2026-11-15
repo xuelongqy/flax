@@ -15,7 +15,9 @@ export TMPDIR="$PWD/.local/tmp" TMP="$PWD/.local/tmp" TEMP="$PWD/.local/tmp"
 pnpm install --frozen-lockfile
 pnpm --workspace-concurrency=1 --filter @flax/example-ffi-codegen... run build
 cd packages/flax_ffi_codegen/example/app
-flutter pub get
+env -u FLUTTER_ENGINE flutter --local-engine-src-path="$FLAX_ENGINE_SOURCE" \
+  --local-engine=flax_mac_debug_arm64 --local-engine-host=flax_mac_debug_arm64 \
+  pub get
 flutter --local-engine-src-path="$FLAX_ENGINE_SOURCE" \
   --local-engine=flax_mac_debug_arm64 --local-engine-host=flax_mac_debug_arm64 \
   run -d macos
@@ -38,7 +40,9 @@ matching V8 jitless engine:
 ```sh
 FLAX_TARGET=ios-arm64-simulator pnpm --filter @flax/example-ffi-codegen build
 cd packages/flax_ffi_codegen/example/app
-flutter pub get
+env -u FLUTTER_ENGINE flutter --local-engine-src-path="$FLAX_ENGINE_SOURCE" \
+  --local-engine=flax_mac_debug_arm64 --local-engine-host=flax_mac_debug_arm64 \
+  pub get
 flutter --local-engine-src-path="$FLAX_ENGINE_SOURCE" \
   --local-engine=flax_ios_debug_sim_arm64 --local-engine-host=flax_mac_debug_arm64 \
   run -d <simulator-id>
@@ -57,8 +61,8 @@ Flutter target fails before linking and asks for the correct JS rebuild. Do not 
 3. [main.ts](js/src/main.ts) opens the packaged code asset and uses the generated class.
    It supplies no Dart or native signature declarations.
 4. [build.mjs](js/build.mjs) prepares shared host modules and the private native build
-   package. Build JS before `flutter pub get`; rebuild Flutter when native inputs
-   change.
+   package. Build JS before the explicit host-context Pub command above; rebuild Flutter
+   when native inputs change.
 
 For exact-once GC checks and packaged external-consumer validation, see the
 [runtime acceptance runner](../test/runtime/README.md).

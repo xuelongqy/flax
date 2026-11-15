@@ -9,6 +9,8 @@
     ".git/**",
     "packages/flax/js/test/fetch/wpt/LICENSE.md",
     "packages/flax_websocket/js/test/wpt/LICENSE.md",
+    "examples/survivors/vendor/audioplayers_darwin/README.md",
+    "examples/survivors/vendor/audioplayers_darwin/CHANGELOG.md",
     ".dart_tool/**",
     ".fvm/**",
     "**/node_modules/**",

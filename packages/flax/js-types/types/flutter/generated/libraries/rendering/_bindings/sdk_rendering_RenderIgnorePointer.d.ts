@@ -118,7 +118,6 @@ export interface RenderIgnorePointer extends Omit<upstream0.RenderProxyBox, _fla
     readonly debugSemantics: upstream15.SemanticsNode | null;
     get child(): upstream1.RenderBox | null;
     get ignoring(): boolean;
-    get ignoringSemantics(): boolean | null;
     setupParentData(child: Readonly<{
         "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
     }> & Readonly<{
@@ -591,7 +590,6 @@ export interface RenderIgnorePointer extends Omit<upstream0.RenderProxyBox, _fla
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null);
     set ignoring(value: boolean);
-    set ignoringSemantics(value: boolean | null);
 }
 export declare function _RenderIgnorePointerFactory(options?: {
     child?: (Readonly<{
@@ -608,10 +606,10 @@ export declare function _RenderIgnorePointerFactory(options?: {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null | undefined;
     ignoring?: boolean | undefined;
-    ignoringSemantics?: boolean | null | undefined;
 }): RenderIgnorePointer;
 export interface _RenderIgnorePointerNative extends RenderIgnorePointer {
     readonly [_flaxDartTypeValue]: _RenderIgnorePointerNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1052,7 +1050,6 @@ export interface _RenderIgnorePointerNative extends RenderIgnorePointer {
         minLevel?: upstream30.DiagnosticLevel | undefined;
     }): string;
     get ignoring(): boolean;
-    get ignoringSemantics(): boolean | null;
     get hasSize(): boolean;
     get size(): upstream9.Size;
     get semanticBounds(): upstream10.Rect;
@@ -1068,7 +1065,6 @@ export interface _RenderIgnorePointerNative extends RenderIgnorePointer {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream13.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;
@@ -1084,7 +1080,6 @@ export interface _RenderIgnorePointerNative extends RenderIgnorePointer {
     get debugSemantics(): upstream15.SemanticsNode | null;
     get child(): upstream1.RenderBox | null;
     set ignoring(value: boolean);
-    set ignoringSemantics(value: boolean | null);
     set size(value: Readonly<{
         "__flaxBound:dart:ui::Size": readonly [];
     }> & Readonly<{
@@ -1138,7 +1133,6 @@ export declare abstract class _RenderIgnorePointerNative extends _FlaxProxyBase 
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
         ignoring?: boolean | undefined;
-        ignoringSemantics?: boolean | null | undefined;
     });
 }
 export declare namespace _RenderIgnorePointerFactory {
@@ -1157,7 +1151,6 @@ export declare namespace _RenderIgnorePointerFactory {
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
         ignoring?: boolean | undefined;
-        ignoringSemantics?: boolean | null | undefined;
     }], implementation: {}): RenderIgnorePointer;
 }
 declare const _RenderIgnorePointerBinding: typeof _RenderIgnorePointerFactory & (new (options?: {
@@ -1175,10 +1168,9 @@ declare const _RenderIgnorePointerBinding: typeof _RenderIgnorePointerFactory & 
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null | undefined;
     ignoring?: boolean | undefined;
-    ignoringSemantics?: boolean | null | undefined;
 }) => _RenderIgnorePointerNative);
 export declare const RenderIgnorePointer: typeof _RenderIgnorePointerBinding & _FlaxInstanceType<RenderIgnorePointer> & _FlaxDartType<RenderIgnorePointer, readonly ["class", "flax.core/sdk_rendering#type:RenderIgnorePointer", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasSize" | "size" | "semanticBounds" | "constraints" | "paintBounds" | "debugDisposed" | "parentData" | "depth" | "parent" | "debugCreator" | "debugDoingThisResize" | "debugDoingThisLayout" | "debugCanParentUseSize" | "debugLayoutParent" | "owner" | "attached" | "debugNeedsLayout" | "debugDoingThisLayoutWithCallback" | "sizedByParent" | "debugDoingThisPaint" | "isRepaintBoundary" | "alwaysNeedsCompositing" | "layer" | "debugLayer" | "needsCompositing" | "debugNeedsPaint" | "debugNeedsCompositedLayerUpdate" | "debugNeedsSemanticsUpdate" | "debugSemantics" | "child" | "ignoring" | "ignoringSemantics" | "setupParentData" | "getMinIntrinsicWidth" | "computeMinIntrinsicWidth" | "getMaxIntrinsicWidth" | "computeMaxIntrinsicWidth" | "getMinIntrinsicHeight" | "computeMinIntrinsicHeight" | "getMaxIntrinsicHeight" | "computeMaxIntrinsicHeight" | "getDryLayout" | "computeDryLayout" | "getDryBaseline" | "computeDryBaseline" | "debugCannotComputeDryLayout" | "debugAdoptSize" | "debugResetSize" | "getDistanceToBaseline" | "getDistanceToActualBaseline" | "computeDistanceToActualBaseline" | "debugAssertDoesMeetConstraints" | "markNeedsLayout" | "performResize" | "performLayout" | "hitTest" | "hitTestSelf" | "hitTestChildren" | "applyPaintTransform" | "globalToLocal" | "localToGlobal" | "handleEvent" | "debugHandleEvent" | "debugPaint" | "debugPaintBaselines" | "debugPaintPointers" | "debugFillProperties" | "reassemble" | "dispose" | "redepthChild" | "redepthChildren" | "adoptChild" | "dropChild" | "visitChildren" | "attach" | "detach" | "markParentNeedsLayout" | "markNeedsLayoutForSizedByParentChange" | "scheduleInitialLayout" | "layout" | "invokeLayoutCallback" | "debugRegisterRepaintBoundaryPaint" | "updateCompositedLayer" | "markNeedsCompositingBitsUpdate" | "markNeedsPaint" | "markNeedsCompositedLayerUpdate" | "scheduleInitialPaint" | "replaceRootLayer" | "paint" | "paintsChild" | "getTransformTo" | "describeApproximatePaintClip" | "describeSemanticsClip" | "scheduleInitialSemantics" | "describeSemanticsConfiguration" | "sendSemanticsEvent" | "clearSemantics" | "markNeedsSemanticsUpdate" | "visitChildrenForSemantics" | "assembleSemanticsNode" | "toStringShort" | "toStringDeep" | "toStringShallow" | "debugDescribeChildren" | "showOnScreen" | "describeForError" | "toDiagnosticsNode" | "debugValidateChild" | "computeSizeForNoChild" | "toString" | "__flaxBound:package:flutter/src/rendering/proxy_box.dart::RenderIgnorePointer" | "__flaxBound:package:flutter/src/rendering/proxy_box.dart::RenderProxyBox" | "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox" | "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject" | "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/rendering/object.dart::RenderObjectWithChildMixin" | "__flaxBound:package:flutter/src/rendering/proxy_box.dart::RenderProxyBoxMixin";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasSize" | "size" | "semanticBounds" | "constraints" | "paintBounds" | "debugDisposed" | "parentData" | "depth" | "parent" | "debugCreator" | "debugDoingThisResize" | "debugDoingThisLayout" | "debugCanParentUseSize" | "debugLayoutParent" | "owner" | "attached" | "debugNeedsLayout" | "debugDoingThisLayoutWithCallback" | "sizedByParent" | "debugDoingThisPaint" | "isRepaintBoundary" | "alwaysNeedsCompositing" | "layer" | "debugLayer" | "needsCompositing" | "debugNeedsPaint" | "debugNeedsCompositedLayerUpdate" | "debugNeedsSemanticsUpdate" | "debugSemantics" | "child" | "ignoring" | "setupParentData" | "getMinIntrinsicWidth" | "computeMinIntrinsicWidth" | "getMaxIntrinsicWidth" | "computeMaxIntrinsicWidth" | "getMinIntrinsicHeight" | "computeMinIntrinsicHeight" | "getMaxIntrinsicHeight" | "computeMaxIntrinsicHeight" | "getDryLayout" | "computeDryLayout" | "getDryBaseline" | "computeDryBaseline" | "debugCannotComputeDryLayout" | "debugAdoptSize" | "debugResetSize" | "getDistanceToBaseline" | "getDistanceToActualBaseline" | "computeDistanceToActualBaseline" | "debugAssertDoesMeetConstraints" | "markNeedsLayout" | "performResize" | "performLayout" | "hitTest" | "hitTestSelf" | "hitTestChildren" | "applyPaintTransform" | "globalToLocal" | "localToGlobal" | "handleEvent" | "debugHandleEvent" | "debugPaint" | "debugPaintBaselines" | "debugPaintPointers" | "debugFillProperties" | "reassemble" | "dispose" | "redepthChild" | "redepthChildren" | "adoptChild" | "dropChild" | "visitChildren" | "attach" | "detach" | "markParentNeedsLayout" | "markNeedsLayoutForSizedByParentChange" | "scheduleInitialLayout" | "layout" | "invokeLayoutCallback" | "debugRegisterRepaintBoundaryPaint" | "updateCompositedLayer" | "markNeedsCompositingBitsUpdate" | "markNeedsPaint" | "markNeedsCompositedLayerUpdate" | "scheduleInitialPaint" | "replaceRootLayer" | "paint" | "paintsChild" | "getTransformTo" | "describeApproximatePaintClip" | "describeSemanticsClip" | "scheduleInitialSemantics" | "describeSemanticsConfiguration" | "sendSemanticsEvent" | "clearSemantics" | "markNeedsSemanticsUpdate" | "visitChildrenForSemantics" | "assembleSemanticsNode" | "toStringShort" | "toStringDeep" | "toStringShallow" | "debugDescribeChildren" | "showOnScreen" | "describeForError" | "toDiagnosticsNode" | "debugValidateChild" | "computeSizeForNoChild" | "toString" | "__flaxBound:package:flutter/src/rendering/proxy_box.dart::RenderIgnorePointer" | "__flaxBound:package:flutter/src/rendering/proxy_box.dart::RenderProxyBox" | "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox" | "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject" | "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/rendering/object.dart::RenderObjectWithChildMixin" | "__flaxBound:package:flutter/src/rendering/proxy_box.dart::RenderProxyBoxMixin";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [upstream26.Constraints] ? (callback: ((constraints: _Selected0) => void)) => void : never : never;
 }

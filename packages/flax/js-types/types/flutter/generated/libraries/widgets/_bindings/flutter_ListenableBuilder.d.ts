@@ -24,7 +24,7 @@ export declare function _ListenableBuilderFactory(options: {
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
     listenable: Bindable<Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>>;
     builder: Bindable<((context: upstream2.BuildContext, child: Widget | null) => Widget)>;
     child?: Bindable<Widget | null> | undefined;

@@ -39,9 +39,9 @@ export interface SliverAnimatedList extends _FlaxDartWidget, Omit<upstream0.Stat
     readonly itemBuilder: ((context: upstream2.BuildContext, index: number, animation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>) => Widget);
     readonly findChildIndexCallback: ((key: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];

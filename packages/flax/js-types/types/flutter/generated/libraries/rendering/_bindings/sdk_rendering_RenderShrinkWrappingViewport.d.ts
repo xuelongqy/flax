@@ -864,9 +864,9 @@ export interface RenderShrinkWrappingViewport extends Omit<upstream0.RenderViewp
     set offset(value: Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>);
     set cacheExtent(value: number | null);
     set scrollCacheExtent(value: Readonly<{
@@ -902,9 +902,9 @@ export declare function _RenderShrinkWrappingViewportFactory(options: {
     offset: Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>;
     paintOrder?: upstream13.SliverPaintOrder | undefined;
     clipBehavior?: upstream14.Clip | undefined;
@@ -927,6 +927,7 @@ export declare function _RenderShrinkWrappingViewportFactory(options: {
 }): RenderShrinkWrappingViewport;
 export interface _RenderShrinkWrappingViewportNative extends RenderShrinkWrappingViewport {
     readonly [_flaxDartTypeValue]: _RenderShrinkWrappingViewportNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1661,7 +1662,6 @@ export interface _RenderShrinkWrappingViewportNative extends RenderShrinkWrappin
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream3.RenderObject | null;
     get owner(): upstream22.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;
@@ -1682,9 +1682,9 @@ export interface _RenderShrinkWrappingViewportNative extends RenderShrinkWrappin
     set offset(value: Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>);
     set cacheExtent(value: number | null);
     set scrollCacheExtent(value: Readonly<{
@@ -1724,9 +1724,9 @@ export declare abstract class _RenderShrinkWrappingViewportNative extends _FlaxP
         offset: Readonly<{
             "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>;
         paintOrder?: upstream13.SliverPaintOrder | undefined;
         clipBehavior?: upstream14.Clip | undefined;
@@ -1755,9 +1755,9 @@ export declare namespace _RenderShrinkWrappingViewportFactory {
         offset: Readonly<{
             "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>;
         paintOrder?: upstream13.SliverPaintOrder | undefined;
         clipBehavior?: upstream14.Clip | undefined;
@@ -1785,9 +1785,9 @@ declare const _RenderShrinkWrappingViewportBinding: typeof _RenderShrinkWrapping
     offset: Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>;
     paintOrder?: upstream13.SliverPaintOrder | undefined;
     clipBehavior?: upstream14.Clip | undefined;

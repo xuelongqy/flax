@@ -419,12 +419,14 @@ removed.
 
 `flax_sandbox_example/example/integration_test/app_test.dart` exercises native storage,
 owner cleanup, module dialogs, shared API access, revocation, reload and uninstall.
-Native acceptance is verified on iOS arm64 simulator and Android arm64 emulator; the
-mobile run also executes the existing rooted filesystem regression suite. macOS passes
-the three native scenarios with Data Protection Keychain in a signed/provisioned host
-with Keychain Sharing. The engine audit verifies real signing, hardened runtime and
-library validation. macOS file/UI checks use Flutter's CI host mode because the current
-descriptor-portal backend does not support macOS App Sandbox; the Flax data sandbox
-remains enabled. Native Keychain and module-consent checks also pass with the host App
-Sandbox enabled. Android acceptance uses a 16 KiB-page emulator. These checks do not
-claim physical-device, power-loss, multi-process or host widget-tree certification.
+Native acceptance receipts cover iOS arm64 simulator, Android arm64 emulator and signed
+macOS storage/module-consent scenarios, including Data Protection Keychain and Keychain
+Sharing. Results are scoped to their actual source, engine, mode and signing inputs;
+revised filesystem backends require matching acceptance. The engine audit verifies real
+signing, hardened runtime and library validation. Rooted and selected-local-file IO uses
+retained native descriptors rather than descriptor-path portals. An OS sandbox's permitted
+roots and picker/security-scope lifetimes remain trusted-host responsibilities. File/UI,
+Keychain and module-consent checks retain their separate host configurations. Historical
+Android acceptance includes a 16 KiB-page emulator. Those receipts do not establish
+physical-device, power-loss, multi-process or host widget-tree certification for a revised
+candidate.

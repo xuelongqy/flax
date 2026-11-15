@@ -324,7 +324,7 @@ Future<void> withExample(
     selected.removeWhere((name) => name.startsWith('flax_engine_'));
     selected.add('flax_engine_$engine');
     final packages = selected.toList()..sort();
-    copyDartPackages(
+    final overrides = copyDartPackages(
       Directory(root),
       Directory('${temporary.path}/packages'),
       packages,
@@ -364,6 +364,12 @@ Future<void> withExample(
     ) as Map<String, dynamic>;
     pubspec.remove('resolution');
     final dependencies = pubspec['dependencies'] as Map<String, dynamic>;
+    if (overrides.isNotEmpty) {
+      pubspec['dependency_overrides'] = {
+        ...overrides,
+        ...?pubspec['dependency_overrides'] as Map?,
+      };
+    }
     if (forApplication) {
       (pubspec['dev_dependencies'] as Map?)?.remove('integration_test');
     }
@@ -426,7 +432,7 @@ Future<void> withPackageExample(
       direct,
       replaceEngineWith: engine,
     ).toList()..sort();
-    copyDartPackages(
+    final overrides = copyDartPackages(
       Directory(root),
       Directory(p.join(temporary.path, 'packages')),
       packages,
@@ -436,6 +442,12 @@ Future<void> withPackageExample(
     final manifest = File(p.join(flutter.path, 'pubspec.yaml'));
     final pubspec = readYamlFile(manifest)..remove('resolution');
     final dependencies = pubspec['dependencies'] as Map<String, dynamic>;
+    if (overrides.isNotEmpty) {
+      pubspec['dependency_overrides'] = {
+        ...overrides,
+        ...?pubspec['dependency_overrides'] as Map?,
+      };
+    }
     if (forApplication) {
       (pubspec['dev_dependencies'] as Map?)?.remove('integration_test');
     }

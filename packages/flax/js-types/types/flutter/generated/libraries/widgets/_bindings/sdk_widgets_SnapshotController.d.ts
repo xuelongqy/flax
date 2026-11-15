@@ -8,9 +8,9 @@ import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartType
 export interface SnapshotController extends Omit<upstream0.ChangeNotifier, _flaxOwnMembers0>, Omit<upstream1.Listenable, _flaxOwnMembers0 | keyof upstream0.ChangeNotifier>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/snapshot_widget.dart::SnapshotController": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __SnapshotController: unique symbol;
     readonly [_flaxDartTypeValue]: SnapshotController;
@@ -52,5 +52,5 @@ declare const _SnapshotControllerBinding: typeof _SnapshotControllerFactory & (n
     allowSnapshotting?: boolean | undefined;
 }) => _SnapshotControllerNative);
 export declare const SnapshotController: typeof _SnapshotControllerBinding & _FlaxInstanceType<SnapshotController> & _FlaxDartType<SnapshotController, readonly ["class", "flax.core/sdk_widgets#type:SnapshotController", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "allowSnapshotting" | "addListener" | "removeListener" | "dispose" | "clear" | "__flaxBound:package:flutter/src/widgets/snapshot_widget.dart::SnapshotController" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "allowSnapshotting" | "addListener" | "removeListener" | "dispose" | "clear" | "__flaxBound:package:flutter/src/widgets/snapshot_widget.dart::SnapshotController" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 export {};

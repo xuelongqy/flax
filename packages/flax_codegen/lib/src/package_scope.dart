@@ -25,6 +25,46 @@ FlaxCodegenSourceIdentity? _declarationSource(Element element) {
   );
 }
 
+/// Rank carriers only after their public namespace matches the exact declaration.
+/// A public declaration carries itself; otherwise avoid deprecated umbrellas before
+/// comparing export distance and URI. Deprecated declarations remain selectable.
+int _comparePublicCarriers(
+  String originatingUri,
+  LibraryElement a,
+  LibraryElement b,
+  Map<LibraryElement, Map<String, int>> distances,
+) {
+  final aUri = a.uri.toString();
+  final bUri = b.uri.toString();
+  if ((aUri == originatingUri) != (bUri == originatingUri)) {
+    return aUri == originatingUri ? -1 : 1;
+  }
+  if (a.metadata.hasDeprecated != b.metadata.hasDeprecated) {
+    return a.metadata.hasDeprecated ? 1 : -1;
+  }
+  Map<String, int> exportedLibraries(LibraryElement root) =>
+      distances.putIfAbsent(root, () {
+        final result = <String, int>{root.uri.toString(): 0};
+        final queue = <LibraryElement>[root];
+        for (var next = 0; next < queue.length; next++) {
+          final library = queue[next];
+          final distance = result[library.uri.toString()]! + 1;
+          for (final export in library.firstFragment.libraryExports) {
+            final target = export.exportedLibrary;
+            if (target == null || result.containsKey(target.uri.toString())) {
+              continue;
+            }
+            result[target.uri.toString()] = distance;
+            queue.add(target);
+          }
+        }
+        return result;
+      });
+  final distance = (exportedLibraries(a)[originatingUri] ?? 0x7fffffff)
+      .compareTo(exportedLibraries(b)[originatingUri] ?? 0x7fffffff);
+  return distance != 0 ? distance : aUri.compareTo(bUri);
+}
+
 extension FlaxCodegenPackageScope on FlaxCodegenBindingParser {
   /// Plans sibling ownership with the same source identities used by Manifests.
   /// Explicit scopes win; automatic reexports share the nearest public carrier.
@@ -80,25 +120,6 @@ extension FlaxCodegenPackageScope on FlaxCodegenBindingParser {
     }
 
     final distances = <LibraryElement, Map<String, int>>{};
-    Map<String, int> exportedLibraries(LibraryElement root) =>
-        distances.putIfAbsent(root, () {
-          final result = <String, int>{root.uri.toString(): 0};
-          final queue = <LibraryElement>[root];
-          for (var next = 0; next < queue.length; next++) {
-            final library = queue[next];
-            final distance = result[library.uri.toString()]! + 1;
-            for (final export in library.firstFragment.libraryExports) {
-              final target = export.exportedLibrary;
-              if (target == null || result.containsKey(target.uri.toString())) {
-                continue;
-              }
-              result[target.uri.toString()] = distance;
-              queue.add(target);
-            }
-          }
-          return result;
-        });
-
     final routes = <String, LibraryElement>{};
     for (final uri in {
       for (final config in configs) ...config.publicLibraries.keys,
@@ -107,36 +128,32 @@ extension FlaxCodegenPackageScope on FlaxCodegenBindingParser {
       if (result is LibraryElementResult) routes[uri] = result.element;
     }
     for (final source in {...candidates.keys, ...explicit.keys}) {
-      final carriers =
-          routes.entries.where((route) {
-            final declaration =
-                route.value.exportNamespace.definedNames2[source.name];
-            return declaration != null &&
-                _declarationSource(declaration) == source;
-          }).toList()..sort((a, b) {
-            final distance =
-                (exportedLibraries(a.value)[source.originatingUri] ??
-                        0x7fffffff)
-                    .compareTo(
-                      exportedLibraries(b.value)[source.originatingUri] ??
-                          0x7fffffff,
-                    );
-            return distance != 0 ? distance : a.key.compareTo(b.key);
-          });
+      final carriers = routes.entries.where((route) {
+        final declaration =
+            route.value.exportNamespace.definedNames2[source.name];
+        return declaration != null && _declarationSource(declaration) == source;
+      }).toList();
+      carriers.sort(
+        (a, b) => _comparePublicCarriers(
+          source.originatingUri,
+          a.value,
+          b.value,
+          distances,
+        ),
+      );
       if (carriers.isNotEmpty) {
         _packagePublicCarriers[source] = carriers.first.key;
       }
       final owners = explicit[source] ?? candidates[source]!;
       owners.sort((left, right) {
-        final a =
-            exportedLibraries(libraries[left])[source.originatingUri] ??
-            0x7fffffff;
-        final b =
-            exportedLibraries(libraries[right])[source.originatingUri] ??
-            0x7fffffff;
-        final distance = a.compareTo(b);
-        return distance != 0
-            ? distance
+        final carrier = _comparePublicCarriers(
+          source.originatingUri,
+          libraries[left],
+          libraries[right],
+          distances,
+        );
+        return carrier != 0
+            ? carrier
             : configs[left].name.compareTo(configs[right].name);
       });
       _localDeclarationOwners[source] = configs[owners.first].name;

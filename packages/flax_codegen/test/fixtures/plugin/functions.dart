@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter/material.dart' show Brightness, Theme;
+import 'package:material_ui/material_ui.dart' show Theme;
 
 export 'package:flutter/widgets.dart' show BuildContext, Widget;
 

@@ -63,7 +63,7 @@ Future<void> main() => command(() async {
     Directory(artifacts).createSync(recursive: true);
     _json('$stage/vendor/pubspec.yaml', {
       'name': 'configured_delivery',
-      'environment': {'sdk': '^3.13.2'},
+      'environment': {'sdk': '^3.14.0'},
     });
     for (final name in ['provider', 'host', 'default_app']) {
       _json('$stage/$name/pubspec.yaml', {
@@ -74,10 +74,11 @@ Future<void> main() => command(() async {
         },
         'version': '0.0.0',
         'publish_to': 'none',
-        'environment': {'sdk': '^3.13.2', 'flutter': '>=3.47.9'},
+        'environment': {'sdk': '^3.14.0', 'flutter': '>=3.50.0'},
         'dependencies': {
           'flutter': {'sdk': 'flutter'},
           'flax': {'path': '../packages/flax'},
+          if (name != 'provider') 'material_ui': '1.11.0',
           if (name == 'default_app')
             'flax_annotations': {'path': '../packages/flax_annotations'},
           if (name == 'host') ...{
@@ -85,7 +86,6 @@ Future<void> main() => command(() async {
             'configured_prices': {'path': '../provider'},
             'configured_delivery': {'path': '../vendor'},
             'flax_material_ui': {'path': '../packages/flax_material_ui'},
-            'material_ui': '1.9.0',
           },
         },
         'dev_dependencies': {

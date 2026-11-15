@@ -32,6 +32,10 @@ packages/flax_websocket/js/test/wpt/
 # Preserve the pinned upstream Canvas license verbatim.
 packages/flax_canvas/test/wpt/LICENSE.md
 
+# Preserve the vendored audio backend's upstream documentation verbatim.
+examples/survivors/vendor/audioplayers_darwin/README.md
+examples/survivors/vendor/audioplayers_darwin/CHANGELOG.md
+
 # Prettier treats C++ include fragments as HTML.
 experiments/**/native/*.inc
 experiments/dedicated_workers/carrier/worker_probe.inc

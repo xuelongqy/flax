@@ -68,6 +68,7 @@ export { FilterQuality } from "@flax/dart/ui/_bindings/sdk_dart_ui_FilterQuality
 export { FontFeature } from "@flax/dart/ui/_bindings/sdk_dart_ui_FontFeature";
 export { FontVariation } from "@flax/dart/ui/_bindings/sdk_dart_ui_FontVariation";
 export { GlyphInfo } from "@flax/dart/ui/_bindings/sdk_dart_ui_GlyphInfo";
+export { Hyphens } from "@flax/dart/ui/_bindings/sdk_dart_ui_Hyphens";
 export { ImageShader } from "@flax/dart/ui/_bindings/sdk_dart_ui_ImageShader";
 export { LineMetrics } from "@flax/dart/ui/_bindings/sdk_dart_ui_LineMetrics";
 export { Locale } from "@flax/dart/ui/_bindings/sdk_dart_ui_Locale";
@@ -390,6 +391,8 @@ import "@flax/flutter/rendering/_bindings/sdk_rendering_RenderSizedOverflowBox";
 import "@flax/flutter/rendering/_bindings/sdk_rendering_RenderSliver";
 import "@flax/flutter/rendering/_bindings/sdk_rendering_RenderSliverAnimatedOpacity";
 import "@flax/flutter/rendering/_bindings/sdk_rendering_RenderSliverBoxChildManager";
+import "@flax/flutter/rendering/_bindings/sdk_rendering_RenderSliverClipRRect";
+import "@flax/flutter/rendering/_bindings/sdk_rendering_RenderSliverClipRect";
 import "@flax/flutter/rendering/_bindings/sdk_rendering_RenderSliverConstrainedCrossAxis";
 import "@flax/flutter/rendering/_bindings/sdk_rendering_RenderSliverCrossAxisGroup";
 import "@flax/flutter/rendering/_bindings/sdk_rendering_RenderSliverEdgeInsetsPadding";
@@ -500,6 +503,7 @@ export type { ChildBaselineGetter, ChildBaselineGetterInput } from "@flax/flutte
 export { ChildLayoutHelper } from "@flax/flutter/rendering/_bindings/sdk_rendering_ChildLayoutHelper";
 export type { ChildLayouter, ChildLayouterInput } from "@flax/flutter/rendering/_bindings/sdk_rendering_ChildLayouter";
 export { ClearSelectionEvent } from "@flax/flutter/rendering/_bindings/sdk_rendering_ClearSelectionEvent";
+export { ClipOverlapBehavior } from "@flax/flutter/rendering/_bindings/sdk_rendering_ClipOverlapBehavior";
 export { ClipPathLayer } from "@flax/flutter/rendering/_bindings/sdk_rendering_ClipPathLayer";
 export { ClipRRectLayer } from "@flax/flutter/rendering/_bindings/sdk_rendering_ClipRRectLayer";
 export { ClipRSuperellipseLayer } from "@flax/flutter/rendering/_bindings/sdk_rendering_ClipRSuperellipseLayer";
@@ -662,6 +666,8 @@ export { RenderSizedOverflowBox } from "@flax/flutter/rendering/_bindings/sdk_re
 export { RenderSliver } from "@flax/flutter/rendering/_bindings/sdk_rendering_RenderSliver";
 export { RenderSliverAnimatedOpacity } from "@flax/flutter/rendering/_bindings/sdk_rendering_RenderSliverAnimatedOpacity";
 export { RenderSliverBoxChildManager } from "@flax/flutter/rendering/_bindings/sdk_rendering_RenderSliverBoxChildManager";
+export { RenderSliverClipRRect } from "@flax/flutter/rendering/_bindings/sdk_rendering_RenderSliverClipRRect";
+export { RenderSliverClipRect } from "@flax/flutter/rendering/_bindings/sdk_rendering_RenderSliverClipRect";
 export { RenderSliverConstrainedCrossAxis } from "@flax/flutter/rendering/_bindings/sdk_rendering_RenderSliverConstrainedCrossAxis";
 export { RenderSliverCrossAxisGroup } from "@flax/flutter/rendering/_bindings/sdk_rendering_RenderSliverCrossAxisGroup";
 export { RenderSliverEdgeInsetsPadding } from "@flax/flutter/rendering/_bindings/sdk_rendering_RenderSliverEdgeInsetsPadding";

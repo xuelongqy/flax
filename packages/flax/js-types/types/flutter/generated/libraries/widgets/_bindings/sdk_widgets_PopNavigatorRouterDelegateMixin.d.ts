@@ -15,7 +15,7 @@ export interface PopNavigatorRouterDelegateMixin<T extends unknown | null = unkn
 }>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/router.dart::RouterDelegate": readonly [T];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __PopNavigatorRouterDelegateMixin: unique symbol;
     readonly [_flaxDartTypeValue]: PopNavigatorRouterDelegateMixin<T>;
@@ -30,7 +30,7 @@ export interface PopNavigatorRouterDelegateMixin<T extends unknown | null = unkn
     removeListener(listener: (() => void)): void;
 }
 export declare const PopNavigatorRouterDelegateMixin: object & _FlaxInstanceType<PopNavigatorRouterDelegateMixin<unknown | null>> & _FlaxDartType<PopNavigatorRouterDelegateMixin<unknown | null>, readonly ["class", "flax.core/sdk_widgets#type:PopNavigatorRouterDelegateMixin", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "currentConfiguration" | "navigatorKey" | "setInitialRoutePath" | "setRestoredRoutePath" | "setNewRoutePath" | "popRoute" | "build" | "addListener" | "removeListener" | "__flaxBound:package:flutter/src/widgets/router.dart::PopNavigatorRouterDelegateMixin" | "__flaxBound:package:flutter/src/widgets/router.dart::RouterDelegate" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "currentConfiguration" | "navigatorKey" | "setInitialRoutePath" | "setRestoredRoutePath" | "setNewRoutePath" | "popRoute" | "build" | "addListener" | "removeListener" | "__flaxBound:package:flutter/src/widgets/router.dart::PopNavigatorRouterDelegateMixin" | "__flaxBound:package:flutter/src/widgets/router.dart::RouterDelegate" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? {
         readonly prototype: PopNavigatorRouterDelegateMixin<_Selected0>;

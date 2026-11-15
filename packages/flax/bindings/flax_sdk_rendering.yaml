@@ -76,6 +76,7 @@ overrides:
             strutStyle,
             textWidthBasis,
             textHeightBehavior,
+            hyphens,
             children,
             selectionColor,
             registrar,

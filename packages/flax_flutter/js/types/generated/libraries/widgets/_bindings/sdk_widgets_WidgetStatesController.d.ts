@@ -14,13 +14,13 @@ import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartType
 export interface WidgetStatesController extends Omit<upstream0.ValueNotifier<DartSet<upstream1.WidgetState>>, _flaxOwnMembers0>, Omit<upstream2.ChangeNotifier, _flaxOwnMembers0 | keyof upstream0.ValueNotifier<DartSet<upstream1.WidgetState>>>, Omit<upstream3.Listenable, _flaxOwnMembers0 | keyof upstream0.ValueNotifier<DartSet<upstream1.WidgetState>> | keyof upstream2.ChangeNotifier>, Omit<upstream4.ValueListenable<DartSet<upstream1.WidgetState>>, _flaxOwnMembers0 | keyof upstream0.ValueNotifier<DartSet<upstream1.WidgetState>> | keyof upstream2.ChangeNotifier | keyof upstream3.Listenable>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesController": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [DartSet<upstream1.WidgetState>];
+    "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [DartSet<upstream1.WidgetState>];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [DartSet<upstream1.WidgetState>];
+    "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [DartSet<upstream1.WidgetState>];
 }> {
     readonly __WidgetStatesController: unique symbol;
     readonly [_flaxDartTypeValue]: WidgetStatesController;
@@ -56,5 +56,5 @@ export declare namespace _WidgetStatesControllerFactory {
 }
 declare const _WidgetStatesControllerBinding: typeof _WidgetStatesControllerFactory & (new (value?: DartSetInput<upstream1.WidgetState, upstream1.WidgetState> | null) => _WidgetStatesControllerNative);
 export declare const WidgetStatesController: typeof _WidgetStatesControllerBinding & _FlaxInstanceType<WidgetStatesController> & _FlaxDartType<WidgetStatesController, readonly ["class", "flax.core/sdk_widgets#type:WidgetStatesController", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "hasListeners" | "toString" | "addListener" | "removeListener" | "dispose" | "update" | "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesController" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "hasListeners" | "toString" | "addListener" | "removeListener" | "dispose" | "update" | "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesController" | "__flaxBound:package:listen/src/listen.dart::ValueNotifier" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable" | "__flaxBound:package:listen/src/listen.dart::ValueListenable";
 export {};

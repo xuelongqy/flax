@@ -643,6 +643,7 @@ export declare function _RenderBackdropFilterFactory(options?: {
 }): RenderBackdropFilter;
 export interface _RenderBackdropFilterNative extends RenderBackdropFilter {
     readonly [_flaxDartTypeValue]: _RenderBackdropFilterNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1104,7 +1105,6 @@ export interface _RenderBackdropFilterNative extends RenderBackdropFilter {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream17.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

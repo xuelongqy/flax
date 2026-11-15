@@ -10,11 +10,13 @@ import type * as upstream4 from '@flax/flutter/services/_bindings/sdk_services_R
 import '@flax/flutter/services/_bindings/sdk_services_RestorationBucket';
 import type * as upstream5 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
-import type * as upstream6 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream6 from '@flax/dart/ui/_bindings/sdk_dart_ui_SemanticsValidationResult';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_SemanticsValidationResult';
+import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
-import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_RestorableProperty';
@@ -41,14 +43,16 @@ export interface FormFieldState<T extends unknown | null = unknown | null> exten
     readonly hasError: boolean;
     readonly hasInteractedByUser: boolean;
     readonly isValid: boolean;
+    readonly semanticsValidationResult: upstream6.SemanticsValidationResult;
+    readonly focusIncludesSemantics: boolean;
     toStringShort(): string;
     toString(options?: {
-        minLevel?: upstream6.DiagnosticLevel | undefined;
+        minLevel?: upstream7.DiagnosticLevel | undefined;
     }): string;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
-        style?: upstream8.DiagnosticsTreeStyle | null | undefined;
-    }): upstream7.DiagnosticsNode;
+        style?: upstream9.DiagnosticsTreeStyle | null | undefined;
+    }): upstream8.DiagnosticsNode;
     debugFillProperties(properties: Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
     }>): void;
@@ -61,16 +65,16 @@ export interface FormFieldState<T extends unknown | null = unknown | null> exten
     registerForRestoration(property: Readonly<{
         "__flaxBound:package:flutter/src/widgets/restoration.dart::RestorableProperty": readonly [unknown | null];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>, restorationId: string): void;
     unregisterFromRestoration(property: Readonly<{
         "__flaxBound:package:flutter/src/widgets/restoration.dart::RestorableProperty": readonly [unknown | null];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): void;
     didUpdateRestorationId(): void;
     didUpdateWidget(oldWidget: upstream1.FormField<T>): void;
@@ -88,11 +92,13 @@ export interface FormFieldState<T extends unknown | null = unknown | null> exten
     validate(): boolean;
     didChange(value: (T | DartInput<T>) | null): void;
     setValue(value: (T | DartInput<T>) | null): void;
+    wrapWithSemantics(child: Widget): Widget;
+    wrapWithFocus(child: Widget): Widget;
 }
 export declare function _FormFieldStateFactory<T extends unknown | null = unknown | null>(): FormFieldState<T>;
 export declare function _FormFieldStateFactory(): FormFieldState<unknown | null>;
 export declare const FormFieldState: typeof _FormFieldStateFactory & _FlaxInstanceType<FormFieldState<unknown | null>> & _FlaxDartType<FormFieldState<unknown | null>, readonly ["class", "flax.core/sdk_widgets#type:FormFieldState", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "restorationId" | "bucket" | "restorePending" | "widget" | "context" | "mounted" | "value" | "errorText" | "hasError" | "hasInteractedByUser" | "isValid" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "restoreState" | "didToggleBucket" | "registerForRestoration" | "unregisterFromRestoration" | "didUpdateRestorationId" | "didUpdateWidget" | "didChangeDependencies" | "dispose" | "initState" | "reassemble" | "setState" | "deactivate" | "activate" | "build" | "save" | "reset" | "clearError" | "validate" | "didChange" | "setValue" | "__flaxBound:package:flutter/src/widgets/form.dart::FormFieldState" | "__flaxBound:package:flutter/src/widgets/framework.dart::State" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/widgets/restoration.dart::RestorationMixin";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "restorationId" | "bucket" | "restorePending" | "widget" | "context" | "mounted" | "value" | "errorText" | "hasError" | "hasInteractedByUser" | "isValid" | "semanticsValidationResult" | "focusIncludesSemantics" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "restoreState" | "didToggleBucket" | "registerForRestoration" | "unregisterFromRestoration" | "didUpdateRestorationId" | "didUpdateWidget" | "didChangeDependencies" | "dispose" | "initState" | "reassemble" | "setState" | "deactivate" | "activate" | "build" | "save" | "reset" | "clearError" | "validate" | "didChange" | "setValue" | "wrapWithSemantics" | "wrapWithFocus" | "__flaxBound:package:flutter/src/widgets/form.dart::FormFieldState" | "__flaxBound:package:flutter/src/widgets/framework.dart::State" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/widgets/restoration.dart::RestorationMixin";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? {
         (): FormFieldState<_Selected0>;

@@ -4738,6 +4738,218 @@ T _genericCallbackResult<T>(Object? value) {
   return value as T;
 }
 
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AssetSource_7c_get_3a_mimeType =
+    _Source_mimeType;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AssetSource_7c_get_3a_path =
+    _AssetSource_path;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AssetSource_7c_call_3a_toString =
+    _AssetSource_toString;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioCache_7c_get_3a_loadedFiles =
+    _AudioCache_loadedFiles;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioCache_7c_get_3a_prefix =
+    _AudioCache_prefix;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioCache_7c_get_3a_cacheId =
+    _AudioCache_cacheId;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioCache_7c_call_3a_clearAll =
+    _AudioCache_clearAll;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioContext_7c_get_3a_android =
+    _AudioContext_android;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioContext_7c_get_3a_iOS =
+    _AudioContext_iOS;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioContext_7c_call_3a_toJson =
+    _AudioContext_toJson;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioContext_7c_call_3a_toString =
+    _AudioContext_toString;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioContextAndroid_7c_get_3a_isSpeakerphoneOn =
+    _AudioContextAndroid_isSpeakerphoneOn;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioContextAndroid_7c_get_3a_audioMode =
+    _AudioContextAndroid_audioMode;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioContextAndroid_7c_get_3a_stayAwake =
+    _AudioContextAndroid_stayAwake;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioContextAndroid_7c_get_3a_contentType =
+    _AudioContextAndroid_contentType;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioContextAndroid_7c_get_3a_usageType =
+    _AudioContextAndroid_usageType;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioContextAndroid_7c_get_3a_audioFocus =
+    _AudioContextAndroid_audioFocus;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioContextAndroid_7c_call_3a_toJson =
+    _AudioContextAndroid_toJson;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioContextAndroid_7c_call_3a_toString =
+    _AudioContextAndroid_toString;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioContextConfig_7c_get_3a_route =
+    _AudioContextConfig_route;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioContextConfig_7c_get_3a_focus =
+    _AudioContextConfig_focus;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioContextConfig_7c_get_3a_respectSilence =
+    _AudioContextConfig_respectSilence;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioContextConfig_7c_get_3a_stayAwake =
+    _AudioContextConfig_stayAwake;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioContextConfig_7c_call_3a_build =
+    _AudioContextConfig_build;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioContextConfig_7c_call_3a_buildAndroid =
+    _AudioContextConfig_buildAndroid;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioContextConfig_7c_call_3a_buildIOS =
+    _AudioContextConfig_buildIOS;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioContextConfig_7c_call_3a_toString =
+    _AudioContextConfig_toString;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioContextIOS_7c_get_3a_category =
+    _AudioContextIOS_category;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioContextIOS_7c_get_3a_options =
+    _AudioContextIOS_options;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioContextIOS_7c_call_3a_toJson =
+    _AudioContextIOS_toJson;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioContextIOS_7c_call_3a_toString =
+    _AudioContextIOS_toString;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioEvent_7c_get_3a_eventType =
+    _AudioEvent_eventType;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioEvent_7c_get_3a_duration =
+    _AudioEvent_duration;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioEvent_7c_get_3a_logMessage =
+    _AudioEvent_logMessage;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioEvent_7c_get_3a_isPrepared =
+    _AudioEvent_isPrepared;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioEvent_7c_call_3a_toString =
+    _AudioEvent_toString;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPlayer_7c_get_3a_audioCache =
+    _AudioPlayer_audioCache;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPlayer_7c_get_3a_playerId =
+    _AudioPlayer_playerId;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPlayer_7c_get_3a_source =
+    _AudioPlayer_source;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPlayer_7c_get_3a_volume =
+    _AudioPlayer_volume;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPlayer_7c_get_3a_balance =
+    _AudioPlayer_balance;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPlayer_7c_get_3a_playbackRate =
+    _AudioPlayer_playbackRate;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPlayer_7c_get_3a_mode =
+    _AudioPlayer_mode;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPlayer_7c_get_3a_releaseMode =
+    _AudioPlayer_releaseMode;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPlayer_7c_get_3a_desiredState =
+    _AudioPlayer_desiredState;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPlayer_7c_get_3a_state =
+    _AudioPlayer_state;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPlayer_7c_get_3a_eventStream =
+    _AudioPlayer_eventStream;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPlayer_7c_get_3a_onPlayerStateChanged =
+    _AudioPlayer_onPlayerStateChanged;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPlayer_7c_get_3a_onPositionChanged =
+    _AudioPlayer_onPositionChanged;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPlayer_7c_get_3a_onDurationChanged =
+    _AudioPlayer_onDurationChanged;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPlayer_7c_get_3a_onPlayerComplete =
+    _AudioPlayer_onPlayerComplete;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPlayer_7c_get_3a_onSeekComplete =
+    _AudioPlayer_onSeekComplete;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPlayer_7c_get_3a_onLog =
+    _AudioPlayer_onLog;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPlayer_7c_call_3a_pause =
+    _AudioPlayer_pause;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPlayer_7c_call_3a_stop =
+    _AudioPlayer_stop;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPlayer_7c_call_3a_resume =
+    _AudioPlayer_resume;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPlayer_7c_call_3a_release =
+    _AudioPlayer_release;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPlayer_7c_call_3a_getDuration =
+    _AudioPlayer_getDuration;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPlayer_7c_call_3a_getCurrentPosition =
+    _AudioPlayer_getCurrentPosition;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPlayer_7c_call_3a_dispose =
+    _AudioPlayer_dispose;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPlayerException_7c_get_3a_cause =
+    _AudioPlayerException_cause;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPlayerException_7c_get_3a_player =
+    _AudioPlayerException_player;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPlayerException_7c_call_3a_toString =
+    _AudioPlayerException_toString;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPool_7c_get_3a_currentPlayers =
+    _AudioPool_currentPlayers;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPool_7c_get_3a_availablePlayers =
+    _AudioPool_availablePlayers;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPool_7c_get_3a_audioCache =
+    _AudioPool_audioCache;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPool_7c_get_3a_audioContext =
+    _AudioPool_audioContext;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPool_7c_get_3a_source =
+    _AudioPool_source;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPool_7c_get_3a_minPlayers =
+    _AudioPool_minPlayers;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPool_7c_get_3a_maxPlayers =
+    _AudioPool_maxPlayers;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPool_7c_get_3a_playerMode =
+    _AudioPool_playerMode;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPool_7c_get_3a_duration =
+    _AudioPool_duration;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPool_7c_call_3a_getDuration =
+    _AudioPool_getDuration;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_AudioPool_7c_call_3a_dispose =
+    _AudioPool_dispose;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_BytesSource_7c_get_3a_mimeType =
+    _Source_mimeType;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_BytesSource_7c_get_3a_bytes =
+    _BytesSource_bytes;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_BytesSource_7c_call_3a_toString =
+    _BytesSource_toString;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_DeviceFileSource_7c_get_3a_mimeType =
+    _Source_mimeType;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_DeviceFileSource_7c_get_3a_path =
+    _DeviceFileSource_path;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_DeviceFileSource_7c_call_3a_toString =
+    _DeviceFileSource_toString;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_FramePositionUpdater_7c_get_3a_getPosition =
+    _PositionUpdater_getPosition;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_FramePositionUpdater_7c_get_3a_positionStream =
+    _PositionUpdater_positionStream;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_FramePositionUpdater_7c_call_3a_update =
+    _PositionUpdater_update;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_FramePositionUpdater_7c_call_3a_stopAndUpdate =
+    _PositionUpdater_stopAndUpdate;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_FramePositionUpdater_7c_call_3a_dispose =
+    _PositionUpdater_dispose;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_GlobalAudioEvent_7c_get_3a_eventType =
+    _GlobalAudioEvent_eventType;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_GlobalAudioEvent_7c_get_3a_logMessage =
+    _GlobalAudioEvent_logMessage;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_GlobalAudioEvent_7c_call_3a_toString =
+    _GlobalAudioEvent_toString;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_GlobalAudioScope_7c_get_3a_eventStream =
+    _GlobalAudioScope_eventStream;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_GlobalAudioScope_7c_get_3a_onLog =
+    _GlobalAudioScope_onLog;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_GlobalAudioScope_7c_call_3a_ensureInitialized =
+    _GlobalAudioScope_ensureInitialized;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_PositionUpdater_7c_get_3a_getPosition =
+    _PositionUpdater_getPosition;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_PositionUpdater_7c_get_3a_positionStream =
+    _PositionUpdater_positionStream;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_PositionUpdater_7c_call_3a_update =
+    _PositionUpdater_update;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_PositionUpdater_7c_call_3a_stopAndUpdate =
+    _PositionUpdater_stopAndUpdate;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_PositionUpdater_7c_call_3a_dispose =
+    _PositionUpdater_dispose;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_Source_7c_get_3a_mimeType =
+    _Source_mimeType;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_TimerPositionUpdater_7c_get_3a_getPosition =
+    _PositionUpdater_getPosition;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_TimerPositionUpdater_7c_get_3a_positionStream =
+    _PositionUpdater_positionStream;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_TimerPositionUpdater_7c_get_3a_interval =
+    _TimerPositionUpdater_interval;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_TimerPositionUpdater_7c_call_3a_update =
+    _PositionUpdater_update;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_TimerPositionUpdater_7c_call_3a_stopAndUpdate =
+    _PositionUpdater_stopAndUpdate;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_TimerPositionUpdater_7c_call_3a_dispose =
+    _PositionUpdater_dispose;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_UrlSource_7c_get_3a_mimeType =
+    _Source_mimeType;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_UrlSource_7c_get_3a_url =
+    _UrlSource_url;
+const flaxMemberflax_2e_audio_2f_audio_23_type_3a_UrlSource_7c_call_3a_toString =
+    _UrlSource_toString;
 const _flaxBinding0 = FlaxTypeRef(
   "object",
   id: "flax.audio/audio#type:AudioPlayer",

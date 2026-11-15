@@ -10,6 +10,8 @@ import 'package:flutter/foundation.dart' as api1;
 import 'dart:core' as api2;
 import 'dart:async' as api3;
 
+import 'closed_adapters.g.dart' as _flaxAdapters;
+
 // ignore: unused_element
 const _flaxOmitted = Object();
 const sdk_schedulerBindings = FlaxBindingModule(
@@ -1378,55 +1380,6 @@ Function _flaxShape1<_Shape0, _Shape1>() =>
         withinCallback: withinCallback,
       );
     };
-Object _callback0(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as api3.FutureOr<Object?>;
-};
-bool _callback0Matches(Object value) =>
-    value is api3.FutureOr<Object?> Function(Object? value);
-Object? _callback0Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as api3.FutureOr<Object?> Function(Object? value))(
-    positional[0],
-  );
-}
-
-Object _callback1(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return _flaxBridgeCallback.call(positional, named) as api3.FutureOr<void>;
-};
-bool _callback1Matches(Object value) => value is api3.FutureOr<void> Function();
-Object? _callback1Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as api3.FutureOr<void> Function())();
-}
-
-Object _callback2(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  positional.add(p0);
-  return _flaxBridgeCallback.call(positional, named) as api3.FutureOr<Object?>;
-};
-bool _callback2Matches(Object value) =>
-    value is api3.FutureOr<Object?> Function(Object? value);
-Object? _callback2Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as api3.FutureOr<Object?> Function(Object? value))(
-    positional[0],
-  );
-}
 
 FlaxCallbackBinding _callback3Types<_Callback0 extends Object?>(
   FlaxDartTypes types,
@@ -1579,9 +1532,6 @@ Object? _callback3Invoke(
   );
 }
 
-Future<Object?> _future0Adapt(Future<Object?> value) =>
-    value.then<void>((_) {});
-Future<Object?> _future1Adapt(Future<Object?> value) => value;
 bool _stream0Matches(Object value) => value is api3.Stream<void>;
 api3.Stream<Object?> _stream0Adapt(Object value) =>
     (value is api3.Stream<void>
@@ -1608,6 +1558,34 @@ T _genericCallbackResult<T>(Object? value) {
   return value as T;
 }
 
+const flaxMemberflax_2e_core_2f_sdk_5f_scheduler_23_type_3a_Priority_7c_get_3a_value =
+    _Priority_value;
+const flaxMemberflax_2e_core_2f_sdk_5f_scheduler_23_type_3a_Ticker_7c_get_3a_forceFrames =
+    _Ticker_forceFrames;
+const flaxMemberflax_2e_core_2f_sdk_5f_scheduler_23_type_3a_Ticker_7c_get_3a_muted =
+    _Ticker_muted;
+const flaxMemberflax_2e_core_2f_sdk_5f_scheduler_23_type_3a_Ticker_7c_get_3a_isTicking =
+    _Ticker_isTicking;
+const flaxMemberflax_2e_core_2f_sdk_5f_scheduler_23_type_3a_Ticker_7c_get_3a_isActive =
+    _Ticker_isActive;
+const flaxMemberflax_2e_core_2f_sdk_5f_scheduler_23_type_3a_Ticker_7c_get_3a_scheduled =
+    _Ticker_scheduled;
+const flaxMemberflax_2e_core_2f_sdk_5f_scheduler_23_type_3a_Ticker_7c_get_3a_shouldScheduleTick =
+    _Ticker_shouldScheduleTick;
+const flaxMemberflax_2e_core_2f_sdk_5f_scheduler_23_type_3a_Ticker_7c_get_3a_debugLabel =
+    _Ticker_debugLabel;
+const flaxMemberflax_2e_core_2f_sdk_5f_scheduler_23_type_3a_Ticker_7c_call_3a_start =
+    _Ticker_start;
+const flaxMemberflax_2e_core_2f_sdk_5f_scheduler_23_type_3a_TickerCanceled_7c_get_3a_ticker =
+    _TickerCanceled_ticker;
+const flaxMemberflax_2e_core_2f_sdk_5f_scheduler_23_type_3a_TickerCanceled_7c_call_3a_toString =
+    _TickerCanceled_toString;
+const flaxMemberflax_2e_core_2f_sdk_5f_scheduler_23_type_3a_TickerFuture_7c_get_3a_orCancel =
+    _TickerFuture_orCancel;
+const flaxMemberflax_2e_core_2f_sdk_5f_scheduler_23_type_3a_TickerFuture_7c_call_3a_asStream =
+    _TickerFuture_asStream;
+const flaxMemberflax_2e_core_2f_sdk_5f_scheduler_23_type_3a_TickerFuture_7c_call_3a_toString =
+    _TickerFuture_toString;
 const _flaxBinding0 = FlaxCallbackBinding.signature(
   [],
   flaxTickerFutureType,
@@ -1670,7 +1648,7 @@ const _flaxBinding10 = FlaxCallbackBinding.signature(
 const _flaxBinding11 = FlaxTypeRef(
   "future",
   item: flaxVoidType,
-  future: FlaxFutureBinding("void:", _future0Adapt),
+  future: FlaxFutureBinding("void:", _flaxAdapters.flaxAdapter14Adapt),
 );
 const _flaxBinding12 = FlaxCallbackBinding.signature(
   [FlaxCallbackParameter.plain("action", flaxNullableAnyCallbackType)],
@@ -2165,21 +2143,21 @@ const _flaxBinding79 = FlaxInstanceMethod.plain(
 const _flaxBinding80 = FlaxTypeRef(
   "futureOr",
   item: flaxNullableAnyType,
-  future: FlaxFutureBinding("any?:", _future1Adapt),
+  future: FlaxFutureBinding("any?:", _flaxAdapters.flaxAdapter15Adapt),
 );
 const _flaxBinding81 = FlaxTypeRef("function", nullable: true);
 const _flaxBinding82 = FlaxTypeRef(
   "futureOr",
   item: flaxVoidType,
-  future: FlaxFutureBinding("void:", _future0Adapt),
+  future: FlaxFutureBinding("void:", _flaxAdapters.flaxAdapter14Adapt),
 );
 const _flaxBinding83 = FlaxCallbackBinding(
   [],
   _flaxBinding82,
-  _callback1,
+  _flaxAdapters.flaxAdapter22,
   id: "callback:<>()->futureOr:[void:]",
-  invoke: _callback1Invoke,
-  matches: _callback1Matches,
+  invoke: _flaxAdapters.flaxAdapter22Invoke,
+  matches: _flaxAdapters.flaxAdapter22Matches,
 );
 const _flaxBinding84 = FlaxTypeRef(
   "callback",
@@ -2238,16 +2216,16 @@ const _flaxBinding93 = FlaxProxyMember(
 const _flaxBinding94 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("value", flaxVoidType)],
   _flaxBinding80,
-  _callback2,
+  _flaxAdapters.flaxAdapter29,
   id: "callback:<>(p:r:value:void:)->futureOr:[any?:]",
-  invoke: _callback2Invoke,
-  matches: _callback2Matches,
+  invoke: _flaxAdapters.flaxAdapter29Invoke,
+  matches: _flaxAdapters.flaxAdapter29Matches,
 );
 const _flaxBinding95 = FlaxTypeRef("callback", callback: _flaxBinding94);
 const _flaxBinding96 = FlaxTypeRef(
   "future",
   item: flaxNullableAnyType,
-  future: FlaxFutureBinding("any?:", _future1Adapt),
+  future: FlaxFutureBinding("any?:", _flaxAdapters.flaxAdapter15Adapt),
 );
 const _flaxBinding97 = FlaxCallbackBinding.signature(
   [
@@ -2296,10 +2274,10 @@ const _flaxBinding101 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("value", flaxVoidType)],
               _flaxBinding80,
-              _callback0,
+              _flaxAdapters.flaxAdapter29,
               id: "callback:<>(p:r:value:void:)->futureOr:[any?:]",
-              invoke: _callback0Invoke,
-              matches: _callback0Matches,
+              invoke: _flaxAdapters.flaxAdapter29Invoke,
+              matches: _flaxAdapters.flaxAdapter29Matches,
             ),
           ),
         ),
@@ -2308,7 +2286,7 @@ const _flaxBinding101 = FlaxObjectBinding(
       FlaxTypeRef(
         "future",
         item: flaxNullableAnyType,
-        future: FlaxFutureBinding("any?:", _future1Adapt),
+        future: FlaxFutureBinding("any?:", _flaxAdapters.flaxAdapter15Adapt),
       ),
       _TickerFuture_then,
       genericFactory: _flaxGeneric_TickerFuture_then,
@@ -2339,10 +2317,10 @@ const _flaxBinding101 = FlaxObjectBinding(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("value", flaxVoidType)],
               _flaxBinding80,
-              _callback0,
+              _flaxAdapters.flaxAdapter29,
               id: "callback:<>(p:r:value:void:)->futureOr:[any?:]",
-              invoke: _callback0Invoke,
-              matches: _callback0Matches,
+              invoke: _flaxAdapters.flaxAdapter29Invoke,
+              matches: _flaxAdapters.flaxAdapter29Matches,
             ),
           ),
         ),
@@ -2351,7 +2329,7 @@ const _flaxBinding101 = FlaxObjectBinding(
       FlaxTypeRef(
         "future",
         item: flaxNullableAnyType,
-        future: FlaxFutureBinding("any?:", _future1Adapt),
+        future: FlaxFutureBinding("any?:", _flaxAdapters.flaxAdapter15Adapt),
       ),
       _TickerFuture_super_then,
       genericFactory: _flaxGeneric_TickerFuture_super_then,

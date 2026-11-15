@@ -544,6 +544,7 @@ export declare function _RenderDecoratedSliverFactory(options: {
 }): RenderDecoratedSliver;
 export interface _RenderDecoratedSliverNative extends RenderDecoratedSliver {
     readonly [_flaxDartTypeValue]: _RenderDecoratedSliverNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -931,7 +932,6 @@ export interface _RenderDecoratedSliverNative extends RenderDecoratedSliver {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream15.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

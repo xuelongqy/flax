@@ -39,13 +39,15 @@ import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBu
 import '@flax/flutter/painting/_bindings/sdk_painting_TextScaler';
 import type * as upstream20 from '@flax/dart/ui/_bindings/sdk_dart_ui_ParagraphStyle';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_ParagraphStyle';
+import type * as upstream21 from '@flax/dart/ui/_bindings/sdk_dart_ui_Hyphens';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_Hyphens';
 import '@flax/flutter/painting/_bindings/sdk_painting_StrutStyle';
-import type * as upstream22 from '@flax/dart/ui/_bindings/flutter_TextAlign';
+import type * as upstream23 from '@flax/dart/ui/_bindings/flutter_TextAlign';
 import '@flax/dart/ui/_bindings/flutter_TextAlign';
-import type * as upstream23 from '@flax/dart/ui/_bindings/flutter_TextDirection';
+import type * as upstream24 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_TextHeightBehavior';
-import type * as upstream25 from '@flax/flutter/painting/_bindings/sdk_painting_RenderComparison';
+import type * as upstream26 from '@flax/flutter/painting/_bindings/sdk_painting_RenderComparison';
 import '@flax/flutter/painting/_bindings/sdk_painting_RenderComparison';
 import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface TextStyle extends Omit<upstream1.Diagnosticable, _flaxOwnMembers0>, Readonly<{
@@ -208,6 +210,7 @@ export interface TextStyle extends Omit<upstream1.Diagnosticable, _flaxOwnMember
             "__flaxBound:dart:ui::FontWeight": readonly [];
         }> | null | undefined;
         height?: number | null | undefined;
+        hyphens?: upstream21.Hyphens | null | undefined;
         locale?: Readonly<{
             "__flaxBound:dart:ui::Locale": readonly [];
         }> | null | undefined;
@@ -217,8 +220,8 @@ export interface TextStyle extends Omit<upstream1.Diagnosticable, _flaxOwnMember
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
-        textAlign?: upstream22.TextAlign | null | undefined;
-        textDirection?: upstream23.TextDirection | null | undefined;
+        textAlign?: upstream23.TextAlign | null | undefined;
+        textDirection?: upstream24.TextDirection | null | undefined;
         textHeightBehavior?: Readonly<{
             "__flaxBound:dart:ui::TextHeightBehavior": readonly [];
         }> | null | undefined;
@@ -230,7 +233,7 @@ export interface TextStyle extends Omit<upstream1.Diagnosticable, _flaxOwnMember
         "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
-    }>): upstream25.RenderComparison;
+    }>): upstream26.RenderComparison;
 }
 export declare function _TextStyleFactory(options?: {
     inherit?: boolean | undefined;

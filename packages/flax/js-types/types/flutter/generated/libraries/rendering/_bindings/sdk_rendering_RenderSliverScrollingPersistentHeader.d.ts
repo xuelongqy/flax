@@ -93,6 +93,7 @@ export interface RenderSliverScrollingPersistentHeader extends Omit<upstream0.Re
 }
 export interface RenderSliverScrollingPersistentHeader {
     readonly [_flaxDartTypeValue]: RenderSliverScrollingPersistentHeader;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -521,7 +522,6 @@ export interface RenderSliverScrollingPersistentHeader {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream15.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

@@ -745,6 +745,7 @@ export declare function _RenderPointerListenerFactory(options?: {
 }): RenderPointerListener;
 export interface _RenderPointerListenerNative extends RenderPointerListener {
     readonly [_flaxDartTypeValue]: _RenderPointerListenerNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1297,7 +1298,6 @@ export interface _RenderPointerListenerNative extends RenderPointerListener {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream3.RenderObject | null;
     get owner(): upstream24.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

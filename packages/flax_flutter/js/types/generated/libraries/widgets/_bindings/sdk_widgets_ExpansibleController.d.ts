@@ -10,9 +10,9 @@ import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartType
 export interface ExpansibleController extends Omit<upstream0.ChangeNotifier, _flaxOwnMembers0>, Omit<upstream1.Listenable, _flaxOwnMembers0 | keyof upstream0.ChangeNotifier>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/expansible.dart::ExpansibleController": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __ExpansibleController: unique symbol;
     readonly [_flaxDartTypeValue]: ExpansibleController;
@@ -54,5 +54,5 @@ export declare namespace _ExpansibleControllerFactory {
     function maybeOf(context: upstream2.BuildContext): ExpansibleController | null;
 }
 export declare const ExpansibleController: typeof _ExpansibleControllerBinding & _FlaxInstanceType<ExpansibleController> & _FlaxDartType<ExpansibleController, readonly ["class", "flax.core/sdk_widgets#type:ExpansibleController", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "isExpanded" | "addListener" | "removeListener" | "dispose" | "expand" | "collapse" | "toggle" | "__flaxBound:package:flutter/src/widgets/expansible.dart::ExpansibleController" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "isExpanded" | "addListener" | "removeListener" | "dispose" | "expand" | "collapse" | "toggle" | "__flaxBound:package:flutter/src/widgets/expansible.dart::ExpansibleController" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 export {};

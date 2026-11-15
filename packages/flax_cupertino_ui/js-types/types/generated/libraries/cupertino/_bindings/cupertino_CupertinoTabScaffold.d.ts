@@ -75,9 +75,9 @@ export declare function _CupertinoTabScaffoldFactory(options: {
     controller?: (Readonly<{
         "__flaxBound:package:cupertino_ui/src/tab_scaffold.dart::CupertinoTabController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     backgroundColor?: Readonly<{
         "__flaxBound:dart:ui::Color": readonly [];

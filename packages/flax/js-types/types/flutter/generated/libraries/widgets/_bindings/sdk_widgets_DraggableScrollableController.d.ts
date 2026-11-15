@@ -11,9 +11,9 @@ import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartType
 export interface DraggableScrollableController extends Omit<upstream0.ChangeNotifier, _flaxOwnMembers0>, Omit<upstream1.Listenable, _flaxOwnMembers0 | keyof upstream0.ChangeNotifier>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/draggable_scrollable_sheet.dart::DraggableScrollableController": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __DraggableScrollableController: unique symbol;
     readonly [_flaxDartTypeValue]: DraggableScrollableController;
@@ -79,5 +79,5 @@ export declare namespace _DraggableScrollableControllerFactory {
 }
 declare const _DraggableScrollableControllerBinding: typeof _DraggableScrollableControllerFactory & (new () => _DraggableScrollableControllerNative);
 export declare const DraggableScrollableController: typeof _DraggableScrollableControllerBinding & _FlaxInstanceType<DraggableScrollableController> & _FlaxDartType<DraggableScrollableController, readonly ["class", "flax.core/sdk_widgets#type:DraggableScrollableController", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "size" | "pixels" | "isAttached" | "addListener" | "removeListener" | "dispose" | "sizeToPixels" | "pixelsToSize" | "animateTo" | "jumpTo" | "reset" | "__flaxBound:package:flutter/src/widgets/draggable_scrollable_sheet.dart::DraggableScrollableController" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "size" | "pixels" | "isAttached" | "addListener" | "removeListener" | "dispose" | "sizeToPixels" | "pixelsToSize" | "animateTo" | "jumpTo" | "reset" | "__flaxBound:package:flutter/src/widgets/draggable_scrollable_sheet.dart::DraggableScrollableController" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 export {};

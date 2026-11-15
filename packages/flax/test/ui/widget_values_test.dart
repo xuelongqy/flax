@@ -3,9 +3,6 @@ import 'dart:async';
 import 'package:flax/flax.dart';
 import 'package:flax_test/flax_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter/material.dart'
-    as flutter_material
-    show MaterialApp, Scaffold, SearchAnchor, SearchBar;
 import 'package:material_ui/material_ui.dart';
 
 import '../../.dart_tool/flax/ui/repeated_bindings.dart';
@@ -483,11 +480,11 @@ void main() {
         for (final mode in ['set', 'async']) {
           values.context = null;
           await t.pumpWidget(
-            flutter_material.MaterialApp(
-              home: flutter_material.Scaffold(
-                body: flutter_material.SearchAnchor(
+            MaterialApp(
+              home: Scaffold(
+                body: SearchAnchor(
                   builder: (context, controller) =>
-                      flutter_material.SearchBar(onTap: controller.openView),
+                      SearchBar(onTap: controller.openView),
                   suggestionsBuilder: (context, controller) =>
                       values.suggestions(context, mode),
                 ),
@@ -495,7 +492,7 @@ void main() {
             ),
           );
           await t.pumpAndSettle();
-          await t.tap(find.byType(flutter_material.SearchBar));
+          await t.tap(find.byType(SearchBar));
           await _pump(t);
           await t.pumpAndSettle();
           expect(find.text('aggregate subclass'), findsOneWidget, reason: mode);

@@ -1,6 +1,23 @@
 import type {} from '../../src/host/index.js';
-import { action, computed, effect, signal, untracked } from '@flax/core';
+import {
+  action,
+  addJointListener,
+  computed,
+  effect,
+  ownJointObject,
+  signal,
+  unlinkJoint,
+  untracked,
+} from '@flax/core';
+import { TextEditingController } from '@flax/flutter/widgets';
 import type { DartIterableInput } from '../../src/runtime/bindings.js';
+
+const controller = TextEditingController();
+const ownedController: TextEditingController = ownJointObject(controller);
+const listener = addJointListener(ownedController, () => {});
+const removed: boolean = unlinkJoint(listener);
+void removed;
+
 const reader: FileReader = new FileReader();
 reader.readAsArrayBuffer(new Blob(['data']));
 reader.onloadend = (event) => {

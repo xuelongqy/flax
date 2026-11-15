@@ -19,16 +19,20 @@ import type * as upstream8 from '@flax/flutter/widgets/_bindings/sdk_widgets_Scr
 import '@flax/flutter/widgets/_bindings/sdk_widgets_ScrollbarOrientation';
 import type * as upstream9 from '@flax/flutter/painting/_bindings/flutter_EdgeInsetsGeometry';
 import '@flax/flutter/painting/_bindings/flutter_EdgeInsetsGeometry';
-import type * as upstream10 from '@flax/flutter/widgets/_bindings/sdk_widgets_RawScrollbarState';
+import type * as upstream10 from '@flax/flutter/widgets/_bindings/flutter_WidgetStateProperty';
+import '@flax/flutter/widgets/_bindings/flutter_WidgetStateProperty';
+import type * as upstream11 from '@flax/flutter/services/_bindings/flutter_MouseCursor';
+import '@flax/flutter/services/_bindings/flutter_MouseCursor';
+import type * as upstream12 from '@flax/flutter/widgets/_bindings/sdk_widgets_RawScrollbarState';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_RawScrollbarState';
-import type * as upstream11 from '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
+import type * as upstream13 from '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_StatefulElement';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-import type * as upstream13 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream15 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-import type * as upstream14 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream16 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
-import type * as upstream15 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream17 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
@@ -76,28 +80,29 @@ export interface RawScrollbar extends _FlaxDartWidget, Omit<upstream0.StatefulWi
     readonly mainAxisMargin: number;
     readonly crossAxisMargin: number;
     readonly padding: upstream9.EdgeInsetsGeometry | null;
+    readonly mouseCursor: upstream10.WidgetStateProperty<upstream11.MouseCursor | null> | null;
     readonly key: upstream1.Key | null;
-    createState(): upstream10.RawScrollbarState<RawScrollbar>;
-    createElement(): upstream11.StatefulElement;
+    createState(): upstream12.RawScrollbarState<RawScrollbar>;
+    createElement(): upstream13.StatefulElement;
     toStringShort(): string;
     debugFillProperties(properties: Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
     }>): void;
     toStringShallow(options?: {
         joiner?: string | undefined;
-        minLevel?: upstream13.DiagnosticLevel | undefined;
+        minLevel?: upstream15.DiagnosticLevel | undefined;
     }): string;
     toStringDeep(options?: {
-        minLevel?: upstream13.DiagnosticLevel | undefined;
+        minLevel?: upstream15.DiagnosticLevel | undefined;
         prefixLineOne?: string | undefined;
         prefixOtherLines?: string | null | undefined;
         wrapWidth?: number | undefined;
     }): string;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
-        style?: upstream15.DiagnosticsTreeStyle | null | undefined;
-    }): upstream14.DiagnosticsNode;
-    debugDescribeChildren(): DartList<upstream14.DiagnosticsNode>;
+        style?: upstream17.DiagnosticsTreeStyle | null | undefined;
+    }): upstream16.DiagnosticsNode;
+    debugDescribeChildren(): DartList<upstream16.DiagnosticsNode>;
 }
 export declare function _RawScrollbarFactory(options: {
     key?: Readonly<{
@@ -107,9 +112,9 @@ export declare function _RawScrollbarFactory(options: {
     controller?: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     thumbVisibility?: boolean | null | undefined;
     shape?: (Readonly<{
@@ -159,6 +164,9 @@ export declare function _RawScrollbarFactory(options: {
     padding?: Readonly<{
         "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
     }> | null | undefined;
+    mouseCursor?: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty": readonly [upstream11.MouseCursor | null];
+    }> | null | undefined;
 }): RawScrollbar;
 export declare namespace _RawScrollbarFactory {
     const __flaxJsx: {
@@ -174,5 +182,5 @@ export declare namespace _RawScrollbarFactory {
     };
 }
 export declare const RawScrollbar: typeof _RawScrollbarFactory & _FlaxInstanceType<RawScrollbar> & _FlaxDartType<RawScrollbar, readonly ["class", "flax.core/sdk_widgets#type:RawScrollbar", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "child" | "controller" | "thumbVisibility" | "shape" | "radius" | "thickness" | "thumbColor" | "minThumbLength" | "minOverscrollLength" | "trackVisibility" | "trackRadius" | "trackColor" | "trackBorderColor" | "fadeDuration" | "timeToFade" | "pressDuration" | "notificationPredicate" | "interactive" | "scrollbarOrientation" | "mainAxisMargin" | "crossAxisMargin" | "padding" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/scrollbar.dart::RawScrollbar" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "child" | "controller" | "thumbVisibility" | "shape" | "radius" | "thickness" | "thumbColor" | "minThumbLength" | "minOverscrollLength" | "trackVisibility" | "trackRadius" | "trackColor" | "trackBorderColor" | "fadeDuration" | "timeToFade" | "pressDuration" | "notificationPredicate" | "interactive" | "scrollbarOrientation" | "mainAxisMargin" | "crossAxisMargin" | "padding" | "mouseCursor" | "key" | "createState" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/scrollbar.dart::RawScrollbar" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

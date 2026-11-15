@@ -31,7 +31,13 @@ import type {
 export type Call = (operation: string, ...args: unknown[]) => unknown;
 const surfaceKey = Symbol.for('flaxCanvasSurface');
 function isOffscreenCanvas(value: unknown): value is OffscreenCanvas {
-  if (value === null || typeof value !== 'object') return false;
+  if (
+    value === null ||
+    typeof value !== 'object' ||
+    value instanceof ImageBitmap ||
+    value instanceof ImageData
+  )
+    return false;
   try {
     return canvasHost(value).isCanvas(value);
   } catch {
@@ -1675,6 +1681,7 @@ export class Canvas2DBackend implements CanvasBackend {
   private context: OffscreenCanvasRenderingContext2D | null = null;
   private queued = false;
   private borrowed: number[] = [];
+  private readonly borrowedBitmaps = new Set<number>();
   private generation = 0;
   private sequence = 0;
   attributes = {
@@ -1753,6 +1760,14 @@ export class Canvas2DBackend implements CanvasBackend {
   borrowImage(id: number): void {
     if (id > 0) this.borrowed.push(id);
   }
+  borrowBitmap(id: number): void {
+    if (this.borrowedBitmaps.has(id)) return;
+    this.call('retainImage', id);
+    if (id > 0) {
+      this.borrowedBitmaps.add(id);
+      this.borrowImage(id);
+    }
+  }
   flush(): void {
     this.queued = false;
     sweepHidden(this.call);
@@ -1777,8 +1792,19 @@ export class Canvas2DBackend implements CanvasBackend {
     }
   }
   private releaseBorrowed(): void {
-    for (const id of this.borrowed) this.call('closeImage', id);
+    let failed = false;
+    let failure: unknown;
+    for (const id of this.borrowed) {
+      try {
+        this.call('closeImage', id);
+      } catch (error) {
+        if (!failed) failure = error;
+        failed = true;
+      }
+    }
     this.borrowed.length = 0;
+    this.borrowedBitmaps.clear();
+    if (failed) throw failure;
   }
   mark(): void {
     if (this.recovering || this.queued) return;
@@ -1953,8 +1979,11 @@ function imageId(image: object, call: Call, borrow?: Canvas2DBackend): number | 
   const id = sharedImageId(image, call) ?? readImageId(image);
   if (id == null) return null;
   if (closedId(id)) throw invalidState('The ImageBitmap is closed.');
-  call('retainImage', id);
-  borrow?.borrowImage(id);
+  if (image instanceof ImageBitmap && borrow) borrow.borrowBitmap(id);
+  else {
+    call('retainImage', id);
+    borrow?.borrowImage(id);
+  }
   return id;
 }
 

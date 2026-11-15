@@ -22,9 +22,9 @@ export declare function _ValueListenableBuilderFactory<T extends unknown | null 
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
     valueListenable: Bindable<Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [T];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [T];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>>;
     builder: Bindable<((context: upstream2.BuildContext, value: T, child: Widget | null) => Widget)>;
     child?: Bindable<Widget | null> | undefined;
@@ -37,9 +37,9 @@ interface _FlaxSignature0 extends _FlaxDartSignature {
                 "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
             }> | null | undefined;
             valueListenable: Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [_Selected0];
+                "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [_Selected0];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+                "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
             }>;
             builder: ((context: upstream2.BuildContext, value: _Selected0, child: Widget | null) => Widget);
             child?: Widget | null | undefined;

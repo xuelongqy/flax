@@ -769,6 +769,7 @@ export declare function _RenderSliverFixedExtentListFactory(options: {
 }): RenderSliverFixedExtentList;
 export interface _RenderSliverFixedExtentListNative extends RenderSliverFixedExtentList {
     readonly [_flaxDartTypeValue]: _RenderSliverFixedExtentListNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1388,7 +1389,6 @@ export interface _RenderSliverFixedExtentListNative extends RenderSliverFixedExt
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream3.RenderObject | null;
     get owner(): upstream19.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

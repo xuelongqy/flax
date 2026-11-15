@@ -44,5 +44,6 @@ export declare const SemanticsRole: Readonly<{
     main: SemanticsRole;
     navigation: SemanticsRole;
     region: SemanticsRole;
+    slider: SemanticsRole;
     values: readonly SemanticsRole[];
 } & _FlaxInstanceType<SemanticsRole> & _FlaxDartType<SemanticsRole, readonly ["class", "flax.core/sdk_dart_ui#type:SemanticsRole", readonly [], false]>>;

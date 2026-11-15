@@ -6,6 +6,7 @@ import 'package:path/path.dart' as p;
 import 'package:yaml/yaml.dart';
 
 import 'config.dart';
+import 'closed_adapters.dart';
 import 'bindability.dart';
 import 'diagnostic.dart';
 import 'emitter.dart';
@@ -51,6 +52,7 @@ final class FlaxCodegenPackageValidation {
     Map<String, String> sourceExports = const {},
     Map<String, ({String library, Map<String, String> types})> dartLibraries =
         const {},
+    Map<String, String> dartTypeIdentities = const {},
     List<FlaxCodegenSkip> skips = const [],
     List<FlaxCodegenNotice> notices = const [],
   }) : configPaths = List.unmodifiable(configPaths),
@@ -58,7 +60,8 @@ final class FlaxCodegenPackageValidation {
        _localModels = List.unmodifiable(localModels),
        _sourceExports = Map.unmodifiable(sourceExports),
        _dartLibraries = Map.unmodifiable(dartLibraries),
-       outputInventory = List.unmodifiable(outputInventory),
+       _dartTypeIdentities = Map.unmodifiable(dartTypeIdentities),
+       _outputInventory = List.unmodifiable(outputInventory),
        skips = List.unmodifiable(skips),
        notices = List.unmodifiable(notices);
 
@@ -76,6 +79,7 @@ final class FlaxCodegenPackageValidation {
   final Map<String, String> _sourceExports;
   final Map<String, ({String library, Map<String, String> types})>
   _dartLibraries;
+  final Map<String, String> _dartTypeIdentities;
 
   /// Fresh frozen local-module snapshots with wireIds, in canonical config-path
   /// order. Mutating a returned module collection cannot affect later reads,
@@ -86,7 +90,24 @@ final class FlaxCodegenPackageValidation {
   final FlaxCodegenResolvedPackage resolvedPackage;
   final FlaxCodegenManifest manifest;
   final FlaxCodegenManifestProjection projection;
-  final List<String> outputInventory;
+  final List<String> _outputInventory;
+  late final List<String> outputInventory = List.unmodifiable([
+    ..._outputInventory,
+    if (_localModels.map((m) => m.dartOutput).toSet().length > 1 &&
+        _packageDartSources(
+          _localModels,
+          packageRoot,
+          FlaxCodegenBindingEmitter(
+            _orderedModules([
+              ..._localModels,
+              ..._flattenedDependencyModules(directDependencies),
+            ]),
+            dartLibraries: _dartLibraries,
+          ),
+          _dartTypeIdentities,
+        ).containsKey(flaxCodegenClosedAdaptersOutput))
+      flaxCodegenClosedAdaptersOutput,
+  ]);
   final List<FlaxCodegenSkip> skips;
   final List<FlaxCodegenNotice> notices;
 }
@@ -487,6 +508,7 @@ final class FlaxCodegenPackagePipeline {
       defaultLayout: useDefaults,
       sourceExports: sourceExports,
       dartLibraries: dartLibraries,
+      dartTypeIdentities: _closedAdapterTypeIdentities(parsedModels),
       resolvedPackage: resolved,
       manifest: manifest,
       projection: projection,
@@ -684,6 +706,7 @@ final class FlaxCodegenPackagePipeline {
       metadata: metadata,
       directDependencies: directDependencies,
       localModels: frozenModels,
+      dartTypeIdentities: _closedAdapterTypeIdentities(parsedModels),
       resolvedPackage: resolved,
       manifest: manifest,
       projection: projection,
@@ -746,6 +769,7 @@ final class FlaxCodegenPackagePipeline {
       embedScopeSources: validation.defaultLayout,
       sourceExports: validation._sourceExports,
       dartLibraries: validation._dartLibraries,
+      dartTypeIdentities: validation._dartTypeIdentities,
       processRunner: runner,
     );
     final diagnostics = <FlaxCodegenDiagnostic>[];
@@ -851,6 +875,7 @@ final class FlaxCodegenPackagePipeline {
     embedScopeSources: validation.defaultLayout,
     sourceExports: validation._sourceExports,
     dartLibraries: validation._dartLibraries,
+    dartTypeIdentities: validation._dartTypeIdentities,
     processRunner: (_, _) =>
         throw StateError('Build emission cannot spawn processes.'),
     formatDart: formatDart,
@@ -893,6 +918,7 @@ final class FlaxCodegenPackagePipeline {
       embedScopeSources: validation.defaultLayout,
       sourceExports: validation._sourceExports,
       dartLibraries: validation._dartLibraries,
+      dartTypeIdentities: validation._dartTypeIdentities,
       processRunner: runner,
     );
 
@@ -920,6 +946,17 @@ final class FlaxCodegenPackagePipeline {
           _outputDiagnostic(
             absolute,
             'Generated output is not a regular file.',
+          ),
+        );
+        continue;
+      }
+      if (entry.key == flaxCodegenClosedAdaptersOutput &&
+          type == FileSystemEntityType.file &&
+          !_hasOwnedGeneratedHeader(File(absolute))) {
+        diagnostics.add(
+          _outputDiagnostic(
+            absolute,
+            'Refusing to replace a non-generated shared adapter output.',
           ),
         );
         continue;
@@ -979,16 +1016,44 @@ final class FlaxCodegenPackagePipeline {
     List<FlaxCodegenModuleModel> modules, {
     List<FlaxCodegenModuleModel> additionalEmitterModules = const [],
     Map<String, String> bindingEntrypoints = const {},
+    Map<String, String> memberAdapterEntrypoints = const {},
     String Function(String)? formatDart,
     Map<String, String> additionalDartSources = const {},
     Map<String, ({String library, Map<String, String> types})> dartLibraries =
         const {},
+  }) => _emit(
+    modules,
+    additionalEmitterModules: additionalEmitterModules,
+    bindingEntrypoints: bindingEntrypoints,
+    memberAdapterEntrypoints: memberAdapterEntrypoints,
+    formatDart: formatDart,
+    additionalDartSources: additionalDartSources,
+    dartLibraries: dartLibraries,
+  );
+
+  Future<Map<String, List<int>>> _emit(
+    List<FlaxCodegenModuleModel> modules, {
+    List<FlaxCodegenModuleModel> additionalEmitterModules = const [],
+    Map<String, String> bindingEntrypoints = const {},
+    Map<String, String> memberAdapterEntrypoints = const {},
+    String Function(String)? formatDart,
+    Map<String, String> additionalDartSources = const {},
+    Map<String, ({String library, Map<String, String> types})> dartLibraries =
+        const {},
+    Map<String, String> dartTypeIdentities = const {},
   }) async {
     final planned = _planOutputs(modules, packageRoot);
     final emitter = FlaxCodegenBindingEmitter(
       _orderedModules([...modules, ...additionalEmitterModules]),
       bindingEntrypoints: bindingEntrypoints,
+      memberAdapterEntrypoints: memberAdapterEntrypoints,
       dartLibraries: dartLibraries,
+    );
+    final dartSources = _packageDartSources(
+      modules,
+      packageRoot,
+      emitter,
+      dartTypeIdentities,
     );
     final typescript = {
       for (final module in modules)
@@ -1034,22 +1099,9 @@ final class FlaxCodegenPackagePipeline {
         }
       }
 
-      final aggregated = <String>{};
       for (final entry in planned) {
         final module = entry.module;
-        if (entry.isDart) {
-          if (entry.path == flaxCodegenAggregateDart) {
-            if (!aggregated.add(entry.path)) continue;
-            await emitDart(
-              entry.path,
-              emitter.dartAggregate(
-                modules.where((m) => m.dartOutput == entry.path).toList(),
-              ),
-            );
-          } else {
-            await emitDart(entry.path, emitter.dart(module));
-          }
-        } else {
+        if (!entry.isDart) {
           var source = typescript[module]![entry.path]!;
           if (outputs[entry.path] case final previous?) {
             final lines = {
@@ -1060,6 +1112,9 @@ final class FlaxCodegenPackagePipeline {
           }
           outputs[entry.path] = List<int>.unmodifiable(utf8.encode(source));
         }
+      }
+      for (final entry in dartSources.entries) {
+        await emitDart(entry.key, entry.value);
       }
       for (final entry in additionalDartSources.entries) {
         await emitDart(entry.key, entry.value);
@@ -3261,16 +3316,18 @@ Future<Map<String, List<int>>> _planExpectedPackageOutputs({
   Map<String, String> sourceExports = const {},
   Map<String, ({String library, Map<String, String> types})> dartLibraries =
       const {},
+  Map<String, String> dartTypeIdentities = const {},
 }) async {
   final pipeline = FlaxCodegenPackagePipeline(
     packageRoot: packageRoot,
     processRunner: processRunner,
   );
-  final emitted = await pipeline.emit(
+  final emitted = await pipeline._emit(
     modules,
     formatDart: formatDart,
     additionalDartSources: sourceExports,
     dartLibraries: dartLibraries,
+    dartTypeIdentities: dartTypeIdentities,
     additionalEmitterModules: _flattenedDependencyModules(directDependencies),
     bindingEntrypoints: _bindingEntrypoints(
       packageRoot,
@@ -3286,6 +3343,17 @@ Future<Map<String, List<int>>> _planExpectedPackageOutputs({
             module.moduleId.value,
       },
     ),
+    memberAdapterEntrypoints: {
+      for (final module in modules)
+        if (module.moduleId != null)
+          module.moduleId!:
+              'package:${manifest.package}/${p.posix.joinAll(p.split(module.dartOutput).skip(1))}',
+      for (final projection in directDependencies.values)
+        for (final provider in projection.packageManifests)
+          for (final module in provider.modules)
+            if (module.dartLibrary != null)
+              module.moduleId.value: module.dartLibrary!,
+    },
   );
   final embedded = <String, String>{
     if (embedScopeSources)
@@ -4036,4 +4104,35 @@ String _normalizePackageRelativeOutput(String value, String packageRoot) {
     );
   }
   return normalized;
+}
+
+// The parser has already resolved re-exports to their actual declarations.
+Map<String, String> _closedAdapterTypeIdentities(
+  List<FlaxCodegenModuleModel> modules,
+) => {
+  for (final module in modules)
+    for (final type in module.types)
+      if (type.id.contains('::'))
+        '${module.typeLibraries[type.name] ?? module.library}::${type.name}':
+            type.id,
+};
+
+Map<String, String> _packageDartSources(
+  List<FlaxCodegenModuleModel> modules,
+  String packageRoot,
+  FlaxCodegenBindingEmitter emitter,
+  Map<String, String> identities,
+) {
+  final sources = <String, String>{};
+  for (final entry in _planOutputs(modules, packageRoot)) {
+    if (!entry.isDart || sources.containsKey(entry.path)) continue;
+    sources[entry.path] = entry.path == flaxCodegenAggregateDart
+        ? emitter.dartAggregate(
+            modules.where((m) => m.dartOutput == entry.path).toList(),
+          )
+        : emitter.dart(entry.module);
+  }
+  // Aggregate and direct/single-module emission retain their existing adapters.
+  if (sources.length < 2) return sources;
+  return flaxCodegenShareClosedAdapters(sources, identities);
 }

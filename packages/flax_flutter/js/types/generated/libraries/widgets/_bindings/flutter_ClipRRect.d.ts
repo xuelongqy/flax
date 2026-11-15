@@ -32,7 +32,7 @@ export declare function _ClipRRectFactory(options?: {
     clipper?: Bindable<(Readonly<{
         "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream3.RRect];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null> | undefined;
     clipBehavior?: Bindable<upstream4.Clip> | undefined;
     child?: Bindable<Widget | null> | undefined;

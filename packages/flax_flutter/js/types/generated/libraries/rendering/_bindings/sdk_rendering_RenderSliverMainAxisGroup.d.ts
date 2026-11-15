@@ -627,6 +627,7 @@ export interface RenderSliverMainAxisGroup extends Omit<upstream0.RenderSliver, 
 export declare function _RenderSliverMainAxisGroupFactory(): RenderSliverMainAxisGroup;
 export interface _RenderSliverMainAxisGroupNative extends RenderSliverMainAxisGroup {
     readonly [_flaxDartTypeValue]: _RenderSliverMainAxisGroupNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1135,7 +1136,6 @@ export interface _RenderSliverMainAxisGroupNative extends RenderSliverMainAxisGr
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream1.RenderObject | null;
     get owner(): upstream12.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

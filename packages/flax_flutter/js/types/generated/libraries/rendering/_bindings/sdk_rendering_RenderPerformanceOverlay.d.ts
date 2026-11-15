@@ -554,6 +554,7 @@ export declare function _RenderPerformanceOverlayFactory(options?: {
 }): RenderPerformanceOverlay;
 export interface _RenderPerformanceOverlayNative extends RenderPerformanceOverlay {
     readonly [_flaxDartTypeValue]: _RenderPerformanceOverlayNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -997,7 +998,6 @@ export interface _RenderPerformanceOverlayNative extends RenderPerformanceOverla
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream1.RenderObject | null;
     get owner(): upstream10.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get debugDoingThisPaint(): boolean;

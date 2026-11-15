@@ -9,13 +9,13 @@ import type * as upstream3 from '@flax/flutter/services/_bindings/flutter_TextEd
 export type AutocompleteFieldViewBuilder = ((context: upstream0.BuildContext, textEditingController: Readonly<{
     "__flaxBound:package:flutter/src/widgets/editable_text.dart::TextEditingController": readonly [];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream3.TextEditingValue];
+    "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream3.TextEditingValue];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream3.TextEditingValue];
+    "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream3.TextEditingValue];
 }>, focusNode: Readonly<{
     "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
 }> & Readonly<{
@@ -25,8 +25,8 @@ export type AutocompleteFieldViewBuilder = ((context: upstream0.BuildContext, te
 }> & Readonly<{
     "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }>, onFieldSubmitted: (() => void)) => Widget);
 export type AutocompleteFieldViewBuilderInput = ((context: upstream0.BuildContext, textEditingController: upstream1.TextEditingController, focusNode: upstream2.FocusNode, onFieldSubmitted: (() => void)) => Widget);

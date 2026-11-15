@@ -60,6 +60,7 @@ export interface RenderObject extends Omit<upstream0.HitTestTarget, _flaxOwnMemb
 }
 export interface RenderObject {
     readonly [_flaxDartTypeValue]: RenderObject;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -350,7 +351,6 @@ export interface RenderObject {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): RenderObject | null;
     get owner(): upstream5.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get constraints(): upstream6.Constraints;

@@ -757,6 +757,7 @@ export declare function _RenderSliverGridFactory(options: {
 }): RenderSliverGrid;
 export interface _RenderSliverGridNative extends RenderSliverGrid {
     readonly [_flaxDartTypeValue]: _RenderSliverGridNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1364,7 +1365,6 @@ export interface _RenderSliverGridNative extends RenderSliverGrid {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream18.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

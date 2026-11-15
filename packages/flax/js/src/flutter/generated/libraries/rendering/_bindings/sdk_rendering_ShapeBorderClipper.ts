@@ -15,11 +15,11 @@ import type * as upstream5 from '@flax/dart/ui/_bindings/flutter_Size';
 import '@flax/dart/ui/_bindings/flutter_Size';
 import type * as upstream6 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
-import { _flaxMemberParameters55, _flaxMemberParameters56, _flaxMemberParameters1, _flaxMemberParameters347, _flaxMemberParameters54 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
+import { _flaxMemberParameters55, _flaxMemberParameters56, _flaxMemberParameters1, _flaxMemberParameters351, _flaxMemberParameters54 } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/rendering/_bindings/sdk_rendering.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
-export interface ShapeBorderClipper extends Omit<upstream0.CustomClipper<upstream1.Path>, _flaxOwnMembers0>, Omit<upstream2.Listenable, _flaxOwnMembers0 | keyof upstream0.CustomClipper<upstream1.Path>>, Readonly<{ "__flaxBound:package:flutter/src/rendering/proxy_box.dart::ShapeBorderClipper": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream1.Path] }>, Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> { readonly __ShapeBorderClipper: unique symbol;
+export interface ShapeBorderClipper extends Omit<upstream0.CustomClipper<upstream1.Path>, _flaxOwnMembers0>, Omit<upstream2.Listenable, _flaxOwnMembers0 | keyof upstream0.CustomClipper<upstream1.Path>>, Readonly<{ "__flaxBound:package:flutter/src/rendering/proxy_box.dart::ShapeBorderClipper": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream1.Path] }>, Readonly<{ "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [] }> { readonly __ShapeBorderClipper: unique symbol;
 readonly [_flaxDartTypeValue]: ShapeBorderClipper;
 
 readonly shape: upstream3.ShapeBorder;
@@ -28,7 +28,7 @@ addListener(listener: (() => void)): void;
 removeListener(listener: (() => void)): void;
 getClip(size: Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>): upstream1.Path;
 getApproximateClipRect(size: Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>): upstream6.Rect;
-shouldReclip(oldClipper: Readonly<{ "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream1.Path] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }>): boolean;
+shouldReclip(oldClipper: Readonly<{ "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream1.Path] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [] }>): boolean;
 toString(): string;
 }
 defineObject("flax.core/sdk_rendering#type:ShapeBorderClipper", ["shape","textDirection"], [], _flaxBindingMethods("flax.core/sdk_rendering#type:ShapeBorderClipper", "object", {"getClip":_flaxMemberParameters55,"getApproximateClipRect":_flaxMemberParameters55,"shouldReclip":_flaxMemberParameters56,"toString":_flaxMemberParameters1}, {}), ["removeListener"], undefined, "flax.core/flutter#type:Listenable");
@@ -37,7 +37,7 @@ if (new.target) throw new TypeError('Use the Dart factory call; this binding is 
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_rendering#type:ShapeBorderClipper", "", [{"name":"shape","required":true},{"name":"textDirection"}], [], options) as ShapeBorderClipper;
 }
-const _ShapeBorderClipperProxy = {type: "flax.core/sdk_rendering#type:ShapeBorderClipper", parameters: _flaxMemberParameters347, constructors: {"": _flaxMemberParameters347}, methods: {"addListener":_flaxMemberParameters54,"removeListener":_flaxMemberParameters54,"getClip":_flaxMemberParameters55,"getApproximateClipRect":_flaxMemberParameters55,"shouldReclip":_flaxMemberParameters56,"toString":_flaxMemberParameters1}, getters: ["shape","textDirection"], setters: [], contextMembers: [], superMembers: ["get:shape","get:textDirection","addListener","removeListener","getClip","getApproximateClipRect","shouldReclip","toString"]} as const;
+const _ShapeBorderClipperProxy = {type: "flax.core/sdk_rendering#type:ShapeBorderClipper", parameters: _flaxMemberParameters351, constructors: {"": _flaxMemberParameters351}, methods: {"addListener":_flaxMemberParameters54,"removeListener":_flaxMemberParameters54,"getClip":_flaxMemberParameters55,"getApproximateClipRect":_flaxMemberParameters55,"shouldReclip":_flaxMemberParameters56,"toString":_flaxMemberParameters1}, getters: ["shape","textDirection"], setters: [], contextMembers: [], superMembers: ["get:shape","get:textDirection","addListener","removeListener","getClip","getApproximateClipRect","shouldReclip","toString"]} as const;
 export interface _ShapeBorderClipperNative extends ShapeBorderClipper {
 readonly [_flaxDartTypeValue]: _ShapeBorderClipperNative;
 
@@ -45,7 +45,7 @@ addListener(listener: (() => void)): void;
 removeListener(listener: (() => void)): void;
 getClip(size: Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>): upstream1.Path;
 getApproximateClipRect(size: Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>): upstream6.Rect;
-shouldReclip(oldClipper: Readonly<{ "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream1.Path] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }>): boolean;
+shouldReclip(oldClipper: Readonly<{ "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream1.Path] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [] }>): boolean;
 toString(): string;
 get shape(): upstream3.ShapeBorder;
 get textDirection(): upstream4.TextDirection | null;
@@ -61,4 +61,4 @@ export namespace _ShapeBorderClipperFactory { export function implement(args: [o
 return constructProxy(_ShapeBorderClipperProxy, args, implementation) as ShapeBorderClipper; } }
 const _ShapeBorderClipperBinding = _flaxProxyFactory(_ShapeBorderClipperFactory, _ShapeBorderClipperNative) as unknown as typeof _ShapeBorderClipperFactory & (new(options: {shape: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [] }>; textDirection?: upstream4.TextDirection | null | undefined}) => _ShapeBorderClipperNative);
 export const ShapeBorderClipper: typeof _ShapeBorderClipperBinding & _FlaxInstanceType<ShapeBorderClipper> & _FlaxDartType<ShapeBorderClipper, readonly ["class", "flax.core/sdk_rendering#type:ShapeBorderClipper", readonly [], false]> = _flaxBindInstanceType<ShapeBorderClipper, typeof _ShapeBorderClipperBinding>(_ShapeBorderClipperBinding, "flax.core/sdk_rendering#type:ShapeBorderClipper", ["flax.core/sdk_rendering#type:CustomClipper","flax.core/flutter#type:Listenable","dart:core::Object"]) as typeof _ShapeBorderClipperBinding & _FlaxInstanceType<ShapeBorderClipper> & _FlaxDartType<ShapeBorderClipper, readonly ["class", "flax.core/sdk_rendering#type:ShapeBorderClipper", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "shape" | "textDirection" | "addListener" | "removeListener" | "getClip" | "getApproximateClipRect" | "shouldReclip" | "toString" | "__flaxBound:package:flutter/src/rendering/proxy_box.dart::ShapeBorderClipper" | "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "shape" | "textDirection" | "addListener" | "removeListener" | "getClip" | "getApproximateClipRect" | "shouldReclip" | "toString" | "__flaxBound:package:flutter/src/rendering/proxy_box.dart::ShapeBorderClipper" | "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper" | "__flaxBound:package:listen/src/listen.dart::Listenable";

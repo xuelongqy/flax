@@ -618,6 +618,7 @@ export declare function _RenderMetaDataFactory(options?: {
 }): RenderMetaData;
 export interface _RenderMetaDataNative extends RenderMetaData {
     readonly [_flaxDartTypeValue]: _RenderMetaDataNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1074,7 +1075,6 @@ export interface _RenderMetaDataNative extends RenderMetaData {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream3.RenderObject | null;
     get owner(): upstream15.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

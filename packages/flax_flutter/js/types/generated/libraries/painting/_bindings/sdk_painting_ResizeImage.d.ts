@@ -34,6 +34,7 @@ export interface ResizeImage extends Omit<upstream0.ImageProvider<upstream1.Resi
     readonly height: number | null;
     readonly policy: upstream2.ResizeImagePolicy;
     readonly allowUpscaling: boolean;
+    readonly useLogicalSize: boolean;
     resolve(configuration: Readonly<{
         "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageConfiguration": readonly [];
     }>): upstream3.ImageStream;
@@ -91,6 +92,7 @@ export declare function _ResizeImageFactory(imageProvider: Readonly<{
     height?: number | null | undefined;
     policy?: upstream2.ResizeImagePolicy | undefined;
     allowUpscaling?: boolean | undefined;
+    useLogicalSize?: boolean | undefined;
 }): ResizeImage;
 export interface _ResizeImageNative extends ResizeImage {
     readonly [_flaxDartTypeValue]: _ResizeImageNative;
@@ -148,6 +150,7 @@ export interface _ResizeImageNative extends ResizeImage {
     get height(): number | null;
     get policy(): upstream2.ResizeImagePolicy;
     get allowUpscaling(): boolean;
+    get useLogicalSize(): boolean;
 }
 export declare abstract class _ResizeImageNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<ResizeImage>[typeof globalThis.Symbol.hasInstance];
@@ -160,6 +163,7 @@ export declare abstract class _ResizeImageNative extends _FlaxProxyBase {
         height?: number | null | undefined;
         policy?: upstream2.ResizeImagePolicy | undefined;
         allowUpscaling?: boolean | undefined;
+        useLogicalSize?: boolean | undefined;
     });
 }
 export declare namespace _ResizeImageFactory {
@@ -170,6 +174,7 @@ export declare namespace _ResizeImageFactory {
         height?: number | null | undefined;
         policy?: upstream2.ResizeImagePolicy | undefined;
         allowUpscaling?: boolean | undefined;
+        useLogicalSize?: boolean | undefined;
     }], implementation: {}): ResizeImage;
 }
 declare const _ResizeImageBinding: typeof _ResizeImageFactory & (new (imageProvider: Readonly<{
@@ -179,12 +184,15 @@ declare const _ResizeImageBinding: typeof _ResizeImageFactory & (new (imageProvi
     height?: number | null | undefined;
     policy?: upstream2.ResizeImagePolicy | undefined;
     allowUpscaling?: boolean | undefined;
+    useLogicalSize?: boolean | undefined;
 }) => _ResizeImageNative);
 export declare namespace _ResizeImageFactory {
     function resizeIfNeeded(cacheWidth: number | null, cacheHeight: number | null, provider: Readonly<{
         "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider": readonly [{}];
-    }>): upstream0.ImageProvider<any>;
+    }>, options?: {
+        useLogicalSize?: boolean | undefined;
+    }): upstream0.ImageProvider<any>;
 }
 export declare const ResizeImage: typeof _ResizeImageBinding & _FlaxInstanceType<ResizeImage> & _FlaxDartType<ResizeImage, readonly ["class", "flax.core/sdk_painting#type:ResizeImage", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "imageProvider" | "width" | "height" | "policy" | "allowUpscaling" | "resolve" | "createStream" | "obtainCacheStatus" | "resolveStreamForKey" | "evict" | "obtainKey" | "loadBuffer" | "loadImage" | "toString" | "__flaxBound:package:flutter/src/painting/image_provider.dart::ResizeImage" | "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "imageProvider" | "width" | "height" | "policy" | "allowUpscaling" | "useLogicalSize" | "resolve" | "createStream" | "obtainCacheStatus" | "resolveStreamForKey" | "evict" | "obtainKey" | "loadBuffer" | "loadImage" | "toString" | "__flaxBound:package:flutter/src/painting/image_provider.dart::ResizeImage" | "__flaxBound:package:flutter/src/painting/image_provider.dart::ImageProvider";
 export {};

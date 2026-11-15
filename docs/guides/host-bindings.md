@@ -192,11 +192,19 @@ entry, lib/flax_bindings.dart.
 
 For optional project scaffolding, add flax_cli as a dev dependency and run once:
 
+Select the maintained checkout and built macOS Debug artifacts using the
+[quick start](../../README.md#quick-start), keeping `FLUTTER_ROOT` and PATH set:
+
 ```sh
 dart run flax_cli:flax init
-flutter pub get
+env -u FLUTTER_ENGINE flutter --local-engine-src-path="$FLUTTER_ROOT/engine/src" \
+  --local-engine=flax_mac_debug_arm64 --local-engine-host=flax_mac_debug_arm64 \
+  pub get
 pnpm --dir js install
 ```
+
+The host-artifact context protects the custom SDK cache; runtime builds still select
+their actual supported platform and mode.
 
 Flax CLI adds missing dependencies/assets and JS build/page templates. Existing host
 source, pages, selectors and custom JS configuration remain unchanged. A custom build

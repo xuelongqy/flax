@@ -795,6 +795,7 @@ export declare function _RenderFlexFactory(options?: {
 }): RenderFlex;
 export interface _RenderFlexNative extends RenderFlex {
     readonly [_flaxDartTypeValue]: _RenderFlexNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1415,7 +1416,6 @@ export interface _RenderFlexNative extends RenderFlex {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream1.RenderObject | null;
     get owner(): upstream22.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

@@ -15,6 +15,11 @@ import 'package:flutter/painting.dart' as api5;
 
 import 'dart:io' as api6;
 
+import "package:flax/src/generated/sdk_widgets_bindings.g.dart"
+    as _flaxMembers0;
+import "package:flax/src/generated/sdk_foundation_bindings.g.dart"
+    as _flaxMembers1;
+
 // ignore: unused_element
 const _flaxOmitted = Object();
 const videoBindings = FlaxBindingModule(
@@ -54,17 +59,17 @@ const videoBindings = FlaxBindingModule(
     _flaxBinding74,
     _flaxBinding80,
     _flaxBinding104,
-    _flaxBinding119,
-    _flaxBinding189,
-    _flaxBinding202,
-    _flaxBinding247,
-    _flaxBinding257,
-    _flaxBinding270,
-    _flaxBinding278,
-    _flaxBinding295,
-    _flaxBinding309,
-    _flaxBinding323,
-    _flaxBinding324,
+    _flaxBinding116,
+    _flaxBinding186,
+    _flaxBinding199,
+    _flaxBinding244,
+    _flaxBinding254,
+    _flaxBinding267,
+    _flaxBinding275,
+    _flaxBinding289,
+    _flaxBinding300,
+    _flaxBinding314,
+    _flaxBinding315,
   ],
   functions: [],
   constants: [
@@ -262,25 +267,10 @@ bool _isClosedCaption(Object value) => value is api.ClosedCaption;
 Object? _ClosedCaption_text(Object value) => (value as api.ClosedCaption).text;
 Object? _ClosedCaption_textStyle(Object value) =>
     (value as api.ClosedCaption).textStyle;
-Object? _ClosedCaption_key(Object value) => (value as api.ClosedCaption).key;
 Object? _ClosedCaption_build(Object receiver, Map<String, Object?> values) {
   return (receiver as api.ClosedCaption).build(
     values["context"] as api1.BuildContext,
   );
-}
-
-Object? _ClosedCaption_createElement(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as api.ClosedCaption).createElement();
-}
-
-Object? _ClosedCaption_toStringShort(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as api.ClosedCaption).toStringShort();
 }
 
 Object? _ClosedCaption_debugFillProperties(
@@ -323,13 +313,6 @@ Object? _ClosedCaption_toDiagnosticsNode(
     name: values["name"] as String?,
     style: values["style"] as api2.DiagnosticsTreeStyle?,
   );
-}
-
-Object? _ClosedCaption_debugDescribeChildren(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as api.ClosedCaption).debugDescribeChildren();
 }
 
 api1.Widget _createClosedCaption(String ctor, Map<String, Object?> values) {
@@ -532,7 +515,6 @@ Object _createVideoAudioTrack(String ctor, Map<String, Object?> values) {
 bool _isVideoPlayer(Object value) => value is api.VideoPlayer;
 Object? _VideoPlayer_controller(Object value) =>
     (value as api.VideoPlayer).controller;
-Object? _VideoPlayer_key(Object value) => (value as api.VideoPlayer).key;
 Object? _VideoPlayer_createState(Object receiver, Map<String, Object?> values) {
   return (receiver as api.VideoPlayer).createState();
 }
@@ -542,13 +524,6 @@ Object? _VideoPlayer_createElement(
   Map<String, Object?> values,
 ) {
   return (receiver as api.VideoPlayer).createElement();
-}
-
-Object? _VideoPlayer_toStringShort(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as api.VideoPlayer).toStringShort();
 }
 
 Object? _VideoPlayer_debugFillProperties(
@@ -593,13 +568,6 @@ Object? _VideoPlayer_toDiagnosticsNode(
   );
 }
 
-Object? _VideoPlayer_debugDescribeChildren(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as api.VideoPlayer).debugDescribeChildren();
-}
-
 api1.Widget _createVideoPlayer(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
@@ -614,8 +582,6 @@ api1.Widget _createVideoPlayer(String ctor, Map<String, Object?> values) {
 
 bool _isVideoPlayerController(Object value) =>
     value is api.VideoPlayerController;
-Object? _VideoPlayerController_hasListeners(Object value) =>
-    (value as api.VideoPlayerController).hasListeners;
 Object? _VideoPlayerController_value(Object value) =>
     (value as api.VideoPlayerController).value;
 Object? _VideoPlayerController_dataSource(Object value) =>
@@ -1441,8 +1407,6 @@ Object? _VideoProgressIndicator_allowScrubbing(Object value) =>
     (value as api.VideoProgressIndicator).allowScrubbing;
 Object? _VideoProgressIndicator_padding(Object value) =>
     (value as api.VideoProgressIndicator).padding;
-Object? _VideoProgressIndicator_key(Object value) =>
-    (value as api.VideoProgressIndicator).key;
 Object? _VideoProgressIndicator_createState(
   Object receiver,
   Map<String, Object?> values,
@@ -1455,13 +1419,6 @@ Object? _VideoProgressIndicator_createElement(
   Map<String, Object?> values,
 ) {
   return (receiver as api.VideoProgressIndicator).createElement();
-}
-
-Object? _VideoProgressIndicator_toStringShort(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as api.VideoProgressIndicator).toStringShort();
 }
 
 Object? _VideoProgressIndicator_debugFillProperties(
@@ -1506,13 +1463,6 @@ Object? _VideoProgressIndicator_toDiagnosticsNode(
   );
 }
 
-Object? _VideoProgressIndicator_debugDescribeChildren(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as api.VideoProgressIndicator).debugDescribeChildren();
-}
-
 api1.Widget _createVideoProgressIndicator(
   String ctor,
   Map<String, Object?> values,
@@ -1543,7 +1493,6 @@ Object? _VideoScrubber_child(Object value) =>
     (value as api.VideoScrubber).child;
 Object? _VideoScrubber_controller(Object value) =>
     (value as api.VideoScrubber).controller;
-Object? _VideoScrubber_key(Object value) => (value as api.VideoScrubber).key;
 Object? _VideoScrubber_createState(
   Object receiver,
   Map<String, Object?> values,
@@ -1556,13 +1505,6 @@ Object? _VideoScrubber_createElement(
   Map<String, Object?> values,
 ) {
   return (receiver as api.VideoScrubber).createElement();
-}
-
-Object? _VideoScrubber_toStringShort(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as api.VideoScrubber).toStringShort();
 }
 
 Object? _VideoScrubber_debugFillProperties(
@@ -1605,13 +1547,6 @@ Object? _VideoScrubber_toDiagnosticsNode(
     name: values["name"] as String?,
     style: values["style"] as api2.DiagnosticsTreeStyle?,
   );
-}
-
-Object? _VideoScrubber_debugDescribeChildren(
-  Object receiver,
-  Map<String, Object?> values,
-) {
-  return (receiver as api.VideoScrubber).debugDescribeChildren();
 }
 
 api1.Widget _createVideoScrubber(String ctor, Map<String, Object?> values) {
@@ -2912,6 +2847,250 @@ Future<Object?> _future3Adapt(Future<Object?> value) =>
     );
 Future<Object?> _future4Adapt(Future<Object?> value) =>
     value.then<List<api.VideoTrack>>((value) => value as List<api.VideoTrack>);
+const flaxMemberflax_2e_video_2f_video_23_type_3a_Caption_7c_get_3a_number =
+    _Caption_number;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_Caption_7c_get_3a_start =
+    _Caption_start;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_Caption_7c_get_3a_end =
+    _Caption_end;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_Caption_7c_get_3a_text =
+    _Caption_text;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_Caption_7c_call_3a_toString =
+    _Caption_toString;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_ClosedCaption_7c_get_3a_text =
+    _ClosedCaption_text;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_ClosedCaption_7c_get_3a_textStyle =
+    _ClosedCaption_textStyle;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_ClosedCaption_7c_get_3a_key =
+    _flaxMembers0
+        .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_Widget_7c_get_3a_key;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_ClosedCaption_7c_call_3a_createElement =
+    _flaxMembers0
+        .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_StatelessWidget_7c_call_3a_createElement;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_ClosedCaption_7c_call_3a_toStringShort =
+    _flaxMembers1
+        .flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_Diagnosticable_7c_call_3a_toStringShort;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_ClosedCaption_7c_call_3a_debugDescribeChildren =
+    _flaxMembers1
+        .flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticableTree_7c_call_3a_debugDescribeChildren;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_ClosedCaptionFile_7c_get_3a_captions =
+    _ClosedCaptionFile_captions;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_DurationRange_7c_get_3a_start =
+    _DurationRange_start;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_DurationRange_7c_get_3a_end =
+    _DurationRange_end;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_DurationRange_7c_call_3a_toString =
+    _DurationRange_toString;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_SubRipCaptionFile_7c_get_3a_captions =
+    _ClosedCaptionFile_captions;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_SubRipCaptionFile_7c_get_3a_fileContents =
+    _SubRipCaptionFile_fileContents;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoAudioTrack_7c_get_3a_id =
+    _VideoAudioTrack_id;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoAudioTrack_7c_get_3a_label =
+    _VideoAudioTrack_label;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoAudioTrack_7c_get_3a_language =
+    _VideoAudioTrack_language;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoAudioTrack_7c_get_3a_isSelected =
+    _VideoAudioTrack_isSelected;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoAudioTrack_7c_get_3a_bitrate =
+    _VideoAudioTrack_bitrate;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoAudioTrack_7c_get_3a_sampleRate =
+    _VideoAudioTrack_sampleRate;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoAudioTrack_7c_get_3a_channelCount =
+    _VideoAudioTrack_channelCount;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoAudioTrack_7c_get_3a_codec =
+    _VideoAudioTrack_codec;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoAudioTrack_7c_call_3a_toString =
+    _VideoAudioTrack_toString;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayer_7c_get_3a_controller =
+    _VideoPlayer_controller;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayer_7c_get_3a_key =
+    _flaxMembers0
+        .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_Widget_7c_get_3a_key;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayer_7c_call_3a_createState =
+    _VideoPlayer_createState;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayer_7c_call_3a_createElement =
+    _VideoPlayer_createElement;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayer_7c_call_3a_toStringShort =
+    _flaxMembers1
+        .flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_Diagnosticable_7c_call_3a_toStringShort;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayer_7c_call_3a_debugDescribeChildren =
+    _flaxMembers1
+        .flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticableTree_7c_call_3a_debugDescribeChildren;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerController_7c_get_3a_hasListeners =
+    _flaxMembers1
+        .flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ChangeNotifier_7c_get_3a_hasListeners;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerController_7c_get_3a_value =
+    _VideoPlayerController_value;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerController_7c_get_3a_dataSource =
+    _VideoPlayerController_dataSource;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerController_7c_get_3a_httpHeaders =
+    _VideoPlayerController_httpHeaders;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerController_7c_get_3a_formatHint =
+    _VideoPlayerController_formatHint;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerController_7c_get_3a_dataSourceType =
+    _VideoPlayerController_dataSourceType;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerController_7c_get_3a_videoPlayerOptions =
+    _VideoPlayerController_videoPlayerOptions;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerController_7c_get_3a_package =
+    _VideoPlayerController_package;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerController_7c_get_3a_viewType =
+    _VideoPlayerController_viewType;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerController_7c_get_3a_position =
+    _VideoPlayerController_position;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerController_7c_get_3a_closedCaptionFile =
+    _VideoPlayerController_closedCaptionFile;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerController_7c_call_3a_dispose =
+    _VideoPlayerController_dispose;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerController_7c_call_3a_toString =
+    _VideoPlayerController_toString;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerController_7c_call_3a_initialize =
+    _VideoPlayerController_initialize;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerController_7c_call_3a_play =
+    _VideoPlayerController_play;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerController_7c_call_3a_pause =
+    _VideoPlayerController_pause;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerController_7c_call_3a_getAudioTracks =
+    _VideoPlayerController_getAudioTracks;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerController_7c_call_3a_isAudioTrackSupportAvailable =
+    _VideoPlayerController_isAudioTrackSupportAvailable;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerController_7c_call_3a_getVideoTracks =
+    _VideoPlayerController_getVideoTracks;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerController_7c_call_3a_isVideoTrackSupportAvailable =
+    _VideoPlayerController_isVideoTrackSupportAvailable;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerOptions_7c_get_3a_allowBackgroundPlayback =
+    _VideoPlayerOptions_allowBackgroundPlayback;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerOptions_7c_get_3a_mixWithOthers =
+    _VideoPlayerOptions_mixWithOthers;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerOptions_7c_get_3a_preventsDisplaySleepDuringVideoPlayback =
+    _VideoPlayerOptions_preventsDisplaySleepDuringVideoPlayback;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerOptions_7c_get_3a_webOptions =
+    _VideoPlayerOptions_webOptions;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerOptions_7c_get_3a_backBufferDurationMs =
+    _VideoPlayerOptions_backBufferDurationMs;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerValue_7c_get_3a_duration =
+    _VideoPlayerValue_duration;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerValue_7c_get_3a_position =
+    _VideoPlayerValue_position;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerValue_7c_get_3a_caption =
+    _VideoPlayerValue_caption;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerValue_7c_get_3a_captionOffset =
+    _VideoPlayerValue_captionOffset;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerValue_7c_get_3a_buffered =
+    _VideoPlayerValue_buffered;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerValue_7c_get_3a_isPlaying =
+    _VideoPlayerValue_isPlaying;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerValue_7c_get_3a_isLooping =
+    _VideoPlayerValue_isLooping;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerValue_7c_get_3a_isBuffering =
+    _VideoPlayerValue_isBuffering;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerValue_7c_get_3a_volume =
+    _VideoPlayerValue_volume;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerValue_7c_get_3a_playbackSpeed =
+    _VideoPlayerValue_playbackSpeed;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerValue_7c_get_3a_errorDescription =
+    _VideoPlayerValue_errorDescription;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerValue_7c_get_3a_isCompleted =
+    _VideoPlayerValue_isCompleted;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerValue_7c_get_3a_preventsDisplaySleepDuringVideoPlayback =
+    _VideoPlayerValue_preventsDisplaySleepDuringVideoPlayback;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerValue_7c_get_3a_size =
+    _VideoPlayerValue_size;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerValue_7c_get_3a_rotationCorrection =
+    _VideoPlayerValue_rotationCorrection;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerValue_7c_get_3a_isInitialized =
+    _VideoPlayerValue_isInitialized;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerValue_7c_get_3a_hasError =
+    _VideoPlayerValue_hasError;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerValue_7c_get_3a_aspectRatio =
+    _VideoPlayerValue_aspectRatio;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerValue_7c_call_3a_toString =
+    _VideoPlayerValue_toString;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerWebOptions_7c_get_3a_controls =
+    _VideoPlayerWebOptions_controls;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerWebOptions_7c_get_3a_allowContextMenu =
+    _VideoPlayerWebOptions_allowContextMenu;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerWebOptions_7c_get_3a_allowRemotePlayback =
+    _VideoPlayerWebOptions_allowRemotePlayback;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerWebOptions_7c_get_3a_poster =
+    _VideoPlayerWebOptions_poster;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerWebOptionsControls_7c_get_3a_enabled =
+    _VideoPlayerWebOptionsControls_enabled;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerWebOptionsControls_7c_get_3a_allowDownload =
+    _VideoPlayerWebOptionsControls_allowDownload;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerWebOptionsControls_7c_get_3a_allowFullscreen =
+    _VideoPlayerWebOptionsControls_allowFullscreen;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerWebOptionsControls_7c_get_3a_allowPlaybackRate =
+    _VideoPlayerWebOptionsControls_allowPlaybackRate;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerWebOptionsControls_7c_get_3a_allowPictureInPicture =
+    _VideoPlayerWebOptionsControls_allowPictureInPicture;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoPlayerWebOptionsControls_7c_get_3a_controlsList =
+    _VideoPlayerWebOptionsControls_controlsList;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoProgressColors_7c_get_3a_playedColor =
+    _VideoProgressColors_playedColor;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoProgressColors_7c_get_3a_bufferedColor =
+    _VideoProgressColors_bufferedColor;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoProgressColors_7c_get_3a_backgroundColor =
+    _VideoProgressColors_backgroundColor;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoProgressIndicator_7c_get_3a_controller =
+    _VideoProgressIndicator_controller;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoProgressIndicator_7c_get_3a_colors =
+    _VideoProgressIndicator_colors;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoProgressIndicator_7c_get_3a_allowScrubbing =
+    _VideoProgressIndicator_allowScrubbing;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoProgressIndicator_7c_get_3a_padding =
+    _VideoProgressIndicator_padding;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoProgressIndicator_7c_get_3a_key =
+    _flaxMembers0
+        .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_Widget_7c_get_3a_key;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoProgressIndicator_7c_call_3a_createState =
+    _VideoProgressIndicator_createState;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoProgressIndicator_7c_call_3a_createElement =
+    _VideoProgressIndicator_createElement;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoProgressIndicator_7c_call_3a_toStringShort =
+    _flaxMembers1
+        .flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_Diagnosticable_7c_call_3a_toStringShort;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoProgressIndicator_7c_call_3a_debugDescribeChildren =
+    _flaxMembers1
+        .flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticableTree_7c_call_3a_debugDescribeChildren;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoScrubber_7c_get_3a_child =
+    _VideoScrubber_child;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoScrubber_7c_get_3a_controller =
+    _VideoScrubber_controller;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoScrubber_7c_get_3a_key =
+    _flaxMembers0
+        .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_Widget_7c_get_3a_key;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoScrubber_7c_call_3a_createState =
+    _VideoScrubber_createState;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoScrubber_7c_call_3a_createElement =
+    _VideoScrubber_createElement;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoScrubber_7c_call_3a_toStringShort =
+    _flaxMembers1
+        .flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_Diagnosticable_7c_call_3a_toStringShort;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoScrubber_7c_call_3a_debugDescribeChildren =
+    _flaxMembers1
+        .flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticableTree_7c_call_3a_debugDescribeChildren;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoTrack_7c_get_3a_id =
+    _VideoTrack_id;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoTrack_7c_get_3a_isSelected =
+    _VideoTrack_isSelected;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoTrack_7c_get_3a_label =
+    _VideoTrack_label;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoTrack_7c_get_3a_bitrate =
+    _VideoTrack_bitrate;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoTrack_7c_get_3a_width =
+    _VideoTrack_width;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoTrack_7c_get_3a_height =
+    _VideoTrack_height;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoTrack_7c_get_3a_frameRate =
+    _VideoTrack_frameRate;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoTrack_7c_get_3a_codec =
+    _VideoTrack_codec;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_VideoTrack_7c_call_3a_toString =
+    _VideoTrack_toString;
+const flaxMemberflax_2e_video_2f_video_23_type_3a_WebVTTCaptionFile_7c_get_3a_captions =
+    _ClosedCaptionFile_captions;
 const _flaxBinding0 = FlaxCallbackBinding.signature(
   [],
   flaxDurationType,
@@ -3132,7 +3311,8 @@ const _flaxBinding37 = FlaxTypeRef(
 const _flaxBinding38 = FlaxGetter.plain(
   "key",
   _flaxBinding37,
-  _ClosedCaption_key,
+  _flaxMembers0
+      .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_Widget_7c_get_3a_key,
 );
 const _flaxBinding39 = FlaxTypeRef(
   "context",
@@ -3154,11 +3334,13 @@ const _flaxBinding43 = <FlaxParameter>[];
 const _flaxBinding44 = FlaxInstanceMethod.plain(
   _flaxBinding43,
   _flaxBinding42,
-  _ClosedCaption_createElement,
+  _flaxMembers0
+      .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_StatelessWidget_7c_call_3a_createElement,
 );
 const _flaxBinding45 = FlaxInstanceMethod.shared(
   flaxStringCall,
-  _ClosedCaption_toStringShort,
+  _flaxMembers1
+      .flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_Diagnosticable_7c_call_3a_toStringShort,
 );
 const _flaxBinding46 = FlaxTypeRef(
   "object",
@@ -3252,7 +3434,8 @@ const _flaxBinding59 = FlaxTypeRef(
 const _flaxBinding60 = FlaxInstanceMethod.plain(
   _flaxBinding43,
   _flaxBinding59,
-  _ClosedCaption_debugDescribeChildren,
+  _flaxMembers1
+      .flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_DiagnosticableTree_7c_call_3a_debugDescribeChildren,
 );
 const _flaxBinding61 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding37, required: false),
@@ -3589,77 +3772,63 @@ const _flaxBinding106 = FlaxGetter.plain(
   _flaxBinding105,
   _VideoPlayer_controller,
 );
-const _flaxBinding107 = FlaxGetter.plain(
-  "key",
-  _flaxBinding37,
-  _VideoPlayer_key,
-);
-const _flaxBinding108 = FlaxTypeRef(
+const _flaxBinding107 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
   dartType: FlaxDartTypes.typeOf<api1.State<api.VideoPlayer>>,
 );
-const _flaxBinding109 = FlaxInstanceMethod.plain(
+const _flaxBinding108 = FlaxInstanceMethod.plain(
   _flaxBinding43,
-  _flaxBinding108,
+  _flaxBinding107,
   _VideoPlayer_createState,
 );
-const _flaxBinding110 = FlaxTypeRef(
+const _flaxBinding109 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:StatefulElement",
 );
-const _flaxBinding111 = FlaxInstanceMethod.plain(
+const _flaxBinding110 = FlaxInstanceMethod.plain(
   _flaxBinding43,
-  _flaxBinding110,
+  _flaxBinding109,
   _VideoPlayer_createElement,
 );
-const _flaxBinding112 = FlaxInstanceMethod.shared(
-  flaxStringCall,
-  _VideoPlayer_toStringShort,
-);
-const _flaxBinding113 = FlaxInstanceMethod.plain(
+const _flaxBinding111 = FlaxInstanceMethod.plain(
   _flaxBinding47,
   flaxVoidType,
   _VideoPlayer_debugFillProperties,
 );
-const _flaxBinding114 = FlaxInstanceMethod.plain(
+const _flaxBinding112 = FlaxInstanceMethod.plain(
   _flaxBinding50,
   flaxStringType,
   _VideoPlayer_toStringShallow,
 );
-const _flaxBinding115 = FlaxInstanceMethod.plain(
+const _flaxBinding113 = FlaxInstanceMethod.plain(
   _flaxBinding52,
   flaxStringType,
   _VideoPlayer_toStringDeep,
 );
-const _flaxBinding116 = FlaxInstanceMethod.plain(
+const _flaxBinding114 = FlaxInstanceMethod.plain(
   _flaxBinding55,
   _flaxBinding56,
   _VideoPlayer_toDiagnosticsNode,
 );
-const _flaxBinding117 = FlaxInstanceMethod.plain(
-  _flaxBinding43,
-  _flaxBinding59,
-  _VideoPlayer_debugDescribeChildren,
-);
-const _flaxBinding118 = <FlaxParameter>[
+const _flaxBinding115 = <FlaxParameter>[
   FlaxParameter.required("controller", _flaxBinding105),
   FlaxParameter("key", _flaxBinding37, required: false),
 ];
-const _flaxBinding119 = FlaxObjectBinding(
+const _flaxBinding116 = FlaxObjectBinding(
   "flax.video/video#type:VideoPlayer",
-  [_flaxBinding106, _flaxBinding107],
+  [_flaxBinding106, _flaxBinding38],
   {
-    "createState": _flaxBinding109,
-    "createElement": _flaxBinding111,
-    "toStringShort": _flaxBinding112,
-    "debugFillProperties": _flaxBinding113,
-    "toStringShallow": _flaxBinding114,
-    "toStringDeep": _flaxBinding115,
-    "toDiagnosticsNode": _flaxBinding116,
-    "debugDescribeChildren": _flaxBinding117,
+    "createState": _flaxBinding108,
+    "createElement": _flaxBinding110,
+    "toStringShort": _flaxBinding45,
+    "debugFillProperties": _flaxBinding111,
+    "toStringShallow": _flaxBinding112,
+    "toStringDeep": _flaxBinding113,
+    "toDiagnosticsNode": _flaxBinding114,
+    "debugDescribeChildren": _flaxBinding60,
   },
-  constructors: {"": _flaxBinding118},
+  constructors: {"": _flaxBinding115},
   create: _createVideoPlayer,
   matches: _isVideoPlayer,
   setters: [],
@@ -3671,26 +3840,27 @@ const _flaxBinding119 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding120 = FlaxGetter.plain(
+const _flaxBinding117 = FlaxGetter.plain(
   "hasListeners",
   flaxBoolType,
-  _VideoPlayerController_hasListeners,
+  _flaxMembers1
+      .flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ChangeNotifier_7c_get_3a_hasListeners,
 );
-const _flaxBinding121 = FlaxTypeRef(
+const _flaxBinding118 = FlaxTypeRef(
   "object",
   id: "flax.video/video#type:VideoPlayerValue",
 );
-const _flaxBinding122 = FlaxGetter.plain(
+const _flaxBinding119 = FlaxGetter.plain(
   "value",
-  _flaxBinding121,
+  _flaxBinding118,
   _VideoPlayerController_value,
 );
-const _flaxBinding123 = FlaxGetter.plain(
+const _flaxBinding120 = FlaxGetter.plain(
   "dataSource",
   flaxStringType,
   _VideoPlayerController_dataSource,
 );
-const _flaxBinding124 = FlaxTypeRef(
+const _flaxBinding121 = FlaxTypeRef(
   "map",
   item: flaxStringType,
   key: flaxStringType,
@@ -3700,203 +3870,203 @@ const _flaxBinding124 = FlaxTypeRef(
     _collection6Matches,
   ),
 );
-const _flaxBinding125 = FlaxGetter.plain(
+const _flaxBinding122 = FlaxGetter.plain(
   "httpHeaders",
-  _flaxBinding124,
+  _flaxBinding121,
   _VideoPlayerController_httpHeaders,
 );
-const _flaxBinding126 = FlaxTypeRef(
+const _flaxBinding123 = FlaxTypeRef(
   "enum",
   id: "flax.video/video#type:VideoFormat",
   nullable: true,
 );
-const _flaxBinding127 = FlaxGetter.plain(
+const _flaxBinding124 = FlaxGetter.plain(
   "formatHint",
-  _flaxBinding126,
+  _flaxBinding123,
   _VideoPlayerController_formatHint,
 );
-const _flaxBinding128 = FlaxTypeRef(
+const _flaxBinding125 = FlaxTypeRef(
   "enum",
   id: "flax.video/video#type:DataSourceType",
 );
-const _flaxBinding129 = FlaxGetter.plain(
+const _flaxBinding126 = FlaxGetter.plain(
   "dataSourceType",
-  _flaxBinding128,
+  _flaxBinding125,
   _VideoPlayerController_dataSourceType,
 );
-const _flaxBinding130 = FlaxTypeRef(
+const _flaxBinding127 = FlaxTypeRef(
   "object",
   id: "flax.video/video#type:VideoPlayerOptions",
   nullable: true,
 );
-const _flaxBinding131 = FlaxGetter.plain(
+const _flaxBinding128 = FlaxGetter.plain(
   "videoPlayerOptions",
-  _flaxBinding130,
+  _flaxBinding127,
   _VideoPlayerController_videoPlayerOptions,
 );
-const _flaxBinding132 = FlaxGetter.plain(
+const _flaxBinding129 = FlaxGetter.plain(
   "package",
   flaxNullableStringType,
   _VideoPlayerController_package,
 );
-const _flaxBinding133 = FlaxTypeRef(
+const _flaxBinding130 = FlaxTypeRef(
   "enum",
   id: "flax.video/video#type:VideoViewType",
 );
-const _flaxBinding134 = FlaxGetter.plain(
+const _flaxBinding131 = FlaxGetter.plain(
   "viewType",
-  _flaxBinding133,
+  _flaxBinding130,
   _VideoPlayerController_viewType,
 );
-const _flaxBinding135 = FlaxTypeRef(
+const _flaxBinding132 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:Duration",
   nullable: true,
 );
-const _flaxBinding136 = FlaxTypeRef(
+const _flaxBinding133 = FlaxTypeRef(
   "future",
-  item: _flaxBinding135,
+  item: _flaxBinding132,
   future: FlaxFutureBinding(
     "object?:flax.core/flutter#type:Duration",
     _future0Adapt,
   ),
 );
-const _flaxBinding137 = FlaxGetter.plain(
+const _flaxBinding134 = FlaxGetter.plain(
   "position",
-  _flaxBinding136,
+  _flaxBinding133,
   _VideoPlayerController_position,
 );
-const _flaxBinding138 = FlaxTypeRef(
+const _flaxBinding135 = FlaxTypeRef(
   "object",
   id: "flax.video/video#type:ClosedCaptionFile",
 );
-const _flaxBinding139 = FlaxTypeRef(
+const _flaxBinding136 = FlaxTypeRef(
   "future",
   nullable: true,
-  item: _flaxBinding138,
+  item: _flaxBinding135,
   future: FlaxFutureBinding(
     "object:flax.video/video#type:ClosedCaptionFile",
     _future1Adapt,
   ),
 );
-const _flaxBinding140 = FlaxGetter.plain(
+const _flaxBinding137 = FlaxGetter.plain(
   "closedCaptionFile",
-  _flaxBinding139,
+  _flaxBinding136,
   _VideoPlayerController_closedCaptionFile,
 );
-const _flaxBinding141 = FlaxSetter(
+const _flaxBinding138 = FlaxSetter(
   "value",
-  _flaxBinding121,
+  _flaxBinding118,
   _VideoPlayerController_set_value,
 );
-const _flaxBinding142 = <FlaxParameter>[
+const _flaxBinding139 = <FlaxParameter>[
   FlaxParameter.required("listener", flaxVoidCallbackType),
 ];
-const _flaxBinding143 = FlaxInstanceMethod.plain(
-  _flaxBinding142,
+const _flaxBinding140 = FlaxInstanceMethod.plain(
+  _flaxBinding139,
   flaxVoidType,
   _VideoPlayerController_addListener,
 );
-const _flaxBinding144 = FlaxInstanceMethod.plain(
-  _flaxBinding142,
+const _flaxBinding141 = FlaxInstanceMethod.plain(
+  _flaxBinding139,
   flaxVoidType,
   _VideoPlayerController_removeListener,
 );
-const _flaxBinding145 = FlaxTypeRef(
+const _flaxBinding142 = FlaxTypeRef(
   "future",
   item: flaxVoidType,
   future: FlaxFutureBinding("void:", _future2Adapt),
 );
-const _flaxBinding146 = FlaxInstanceMethod.plain(
+const _flaxBinding143 = FlaxInstanceMethod.plain(
   _flaxBinding43,
-  _flaxBinding145,
+  _flaxBinding142,
   _VideoPlayerController_dispose,
 );
-const _flaxBinding147 = FlaxInstanceMethod.shared(
+const _flaxBinding144 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _VideoPlayerController_toString,
 );
-const _flaxBinding148 = FlaxInstanceMethod.plain(
+const _flaxBinding145 = FlaxInstanceMethod.plain(
   _flaxBinding43,
-  _flaxBinding145,
+  _flaxBinding142,
   _VideoPlayerController_initialize,
 );
-const _flaxBinding149 = FlaxInstanceMethod.plain(
+const _flaxBinding146 = FlaxInstanceMethod.plain(
   _flaxBinding43,
-  _flaxBinding145,
+  _flaxBinding142,
   _VideoPlayerController_play,
 );
-const _flaxBinding150 = <FlaxParameter>[
+const _flaxBinding147 = <FlaxParameter>[
   FlaxParameter.required("looping", flaxBoolType),
 ];
-const _flaxBinding151 = FlaxInstanceMethod.plain(
-  _flaxBinding150,
-  _flaxBinding145,
+const _flaxBinding148 = FlaxInstanceMethod.plain(
+  _flaxBinding147,
+  _flaxBinding142,
   _VideoPlayerController_setLooping,
 );
-const _flaxBinding152 = <FlaxParameter>[
+const _flaxBinding149 = <FlaxParameter>[
   FlaxParameter.required(
     "preventsDisplaySleepDuringVideoPlayback",
     flaxBoolType,
   ),
 ];
-const _flaxBinding153 = FlaxInstanceMethod.plain(
-  _flaxBinding152,
-  _flaxBinding145,
+const _flaxBinding150 = FlaxInstanceMethod.plain(
+  _flaxBinding149,
+  _flaxBinding142,
   _VideoPlayerController_setPreventsDisplaySleepDuringVideoPlayback,
 );
-const _flaxBinding154 = FlaxInstanceMethod.plain(
+const _flaxBinding151 = FlaxInstanceMethod.plain(
   _flaxBinding43,
-  _flaxBinding145,
+  _flaxBinding142,
   _VideoPlayerController_pause,
 );
-const _flaxBinding155 = <FlaxParameter>[
+const _flaxBinding152 = <FlaxParameter>[
   FlaxParameter.required("position", flaxDurationType),
 ];
-const _flaxBinding156 = FlaxInstanceMethod.plain(
-  _flaxBinding155,
-  _flaxBinding145,
+const _flaxBinding153 = FlaxInstanceMethod.plain(
+  _flaxBinding152,
+  _flaxBinding142,
   _VideoPlayerController_seekTo,
 );
-const _flaxBinding157 = <FlaxParameter>[
+const _flaxBinding154 = <FlaxParameter>[
   FlaxParameter.required("volume", flaxDoubleType),
 ];
-const _flaxBinding158 = FlaxInstanceMethod.plain(
-  _flaxBinding157,
-  _flaxBinding145,
+const _flaxBinding155 = FlaxInstanceMethod.plain(
+  _flaxBinding154,
+  _flaxBinding142,
   _VideoPlayerController_setVolume,
 );
-const _flaxBinding159 = <FlaxParameter>[
+const _flaxBinding156 = <FlaxParameter>[
   FlaxParameter.required("speed", flaxDoubleType),
 ];
-const _flaxBinding160 = FlaxInstanceMethod.plain(
-  _flaxBinding159,
-  _flaxBinding145,
+const _flaxBinding157 = FlaxInstanceMethod.plain(
+  _flaxBinding156,
+  _flaxBinding142,
   _VideoPlayerController_setPlaybackSpeed,
 );
-const _flaxBinding161 = <FlaxParameter>[
+const _flaxBinding158 = <FlaxParameter>[
   FlaxParameter.required("offset", flaxDurationType),
 ];
-const _flaxBinding162 = FlaxInstanceMethod.plain(
-  _flaxBinding161,
+const _flaxBinding159 = FlaxInstanceMethod.plain(
+  _flaxBinding158,
   flaxVoidType,
   _VideoPlayerController_setCaptionOffset,
 );
-const _flaxBinding163 = <FlaxParameter>[
-  FlaxParameter.required("closedCaptionFile", _flaxBinding139),
+const _flaxBinding160 = <FlaxParameter>[
+  FlaxParameter.required("closedCaptionFile", _flaxBinding136),
 ];
-const _flaxBinding164 = FlaxInstanceMethod.plain(
-  _flaxBinding163,
-  _flaxBinding145,
+const _flaxBinding161 = FlaxInstanceMethod.plain(
+  _flaxBinding160,
+  _flaxBinding142,
   _VideoPlayerController_setClosedCaptionFile,
 );
-const _flaxBinding165 = FlaxTypeRef(
+const _flaxBinding162 = FlaxTypeRef(
   "object",
   id: "flax.video/video#type:VideoAudioTrack",
 );
-const _flaxBinding166 = FlaxTypeRef(
+const _flaxBinding163 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding165,
+  item: _flaxBinding162,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.video/video#type:VideoAudioTrack]",
     _collection8Create,
@@ -3904,48 +4074,48 @@ const _flaxBinding166 = FlaxTypeRef(
     restore: _collection8Restore,
   ),
 );
-const _flaxBinding167 = FlaxTypeRef(
+const _flaxBinding164 = FlaxTypeRef(
   "list",
-  item: _flaxBinding165,
+  item: _flaxBinding162,
   collection: FlaxCollectionBinding(
     "list:[object:flax.video/video#type:VideoAudioTrack]",
     _collection7Create,
     _collection7Matches,
   ),
-  iterable: _flaxBinding166,
+  iterable: _flaxBinding163,
 );
-const _flaxBinding168 = FlaxTypeRef(
+const _flaxBinding165 = FlaxTypeRef(
   "future",
-  item: _flaxBinding167,
+  item: _flaxBinding164,
   future: FlaxFutureBinding(
     "list:[object:flax.video/video#type:VideoAudioTrack]",
     _future3Adapt,
   ),
 );
-const _flaxBinding169 = FlaxInstanceMethod.plain(
+const _flaxBinding166 = FlaxInstanceMethod.plain(
   _flaxBinding43,
-  _flaxBinding168,
+  _flaxBinding165,
   _VideoPlayerController_getAudioTracks,
 );
-const _flaxBinding170 = <FlaxParameter>[
+const _flaxBinding167 = <FlaxParameter>[
   FlaxParameter.required("trackId", flaxStringType),
 ];
-const _flaxBinding171 = FlaxInstanceMethod.plain(
-  _flaxBinding170,
-  _flaxBinding145,
+const _flaxBinding168 = FlaxInstanceMethod.plain(
+  _flaxBinding167,
+  _flaxBinding142,
   _VideoPlayerController_selectAudioTrack,
 );
-const _flaxBinding172 = FlaxInstanceMethod.shared(
+const _flaxBinding169 = FlaxInstanceMethod.shared(
   flaxBoolCall,
   _VideoPlayerController_isAudioTrackSupportAvailable,
 );
-const _flaxBinding173 = FlaxTypeRef(
+const _flaxBinding170 = FlaxTypeRef(
   "object",
   id: "flax.video/video#type:VideoTrack",
 );
-const _flaxBinding174 = FlaxTypeRef(
+const _flaxBinding171 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding173,
+  item: _flaxBinding170,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.video/video#type:VideoTrack]",
     _collection10Create,
@@ -3953,174 +4123,174 @@ const _flaxBinding174 = FlaxTypeRef(
     restore: _collection10Restore,
   ),
 );
-const _flaxBinding175 = FlaxTypeRef(
+const _flaxBinding172 = FlaxTypeRef(
   "list",
-  item: _flaxBinding173,
+  item: _flaxBinding170,
   collection: FlaxCollectionBinding(
     "list:[object:flax.video/video#type:VideoTrack]",
     _collection9Create,
     _collection9Matches,
   ),
-  iterable: _flaxBinding174,
+  iterable: _flaxBinding171,
 );
-const _flaxBinding176 = FlaxTypeRef(
+const _flaxBinding173 = FlaxTypeRef(
   "future",
-  item: _flaxBinding175,
+  item: _flaxBinding172,
   future: FlaxFutureBinding(
     "list:[object:flax.video/video#type:VideoTrack]",
     _future4Adapt,
   ),
 );
-const _flaxBinding177 = FlaxInstanceMethod.plain(
+const _flaxBinding174 = FlaxInstanceMethod.plain(
   _flaxBinding43,
-  _flaxBinding176,
+  _flaxBinding173,
   _VideoPlayerController_getVideoTracks,
 );
-const _flaxBinding178 = FlaxTypeRef(
+const _flaxBinding175 = FlaxTypeRef(
   "object",
   id: "flax.video/video#type:VideoTrack",
   nullable: true,
 );
-const _flaxBinding179 = <FlaxParameter>[
-  FlaxParameter.required("track", _flaxBinding178),
+const _flaxBinding176 = <FlaxParameter>[
+  FlaxParameter.required("track", _flaxBinding175),
 ];
-const _flaxBinding180 = FlaxInstanceMethod.plain(
-  _flaxBinding179,
-  _flaxBinding145,
+const _flaxBinding177 = FlaxInstanceMethod.plain(
+  _flaxBinding176,
+  _flaxBinding142,
   _VideoPlayerController_selectVideoTrack,
 );
-const _flaxBinding181 = FlaxInstanceMethod.shared(
+const _flaxBinding178 = FlaxInstanceMethod.shared(
   flaxBoolCall,
   _VideoPlayerController_isVideoTrackSupportAvailable,
 );
-const _flaxBinding182 = <FlaxParameter>[
+const _flaxBinding179 = <FlaxParameter>[
   FlaxParameter.required("dataSource", flaxStringType),
   FlaxParameter("package", flaxNullableStringType, required: false),
-  FlaxParameter("closedCaptionFile", _flaxBinding139, required: false),
-  FlaxParameter("videoPlayerOptions", _flaxBinding130, required: false),
+  FlaxParameter("closedCaptionFile", _flaxBinding136, required: false),
+  FlaxParameter("videoPlayerOptions", _flaxBinding127, required: false),
   FlaxParameter(
     "viewType",
-    _flaxBinding133,
+    _flaxBinding130,
     required: false,
     defaultValue: api.VideoViewType.textureView,
   ),
 ];
-const _flaxBinding183 = <FlaxParameter>[
+const _flaxBinding180 = <FlaxParameter>[
   FlaxParameter.required("dataSource", flaxStringType),
-  FlaxParameter("formatHint", _flaxBinding126, required: false),
-  FlaxParameter("closedCaptionFile", _flaxBinding139, required: false),
-  FlaxParameter("videoPlayerOptions", _flaxBinding130, required: false),
+  FlaxParameter("formatHint", _flaxBinding123, required: false),
+  FlaxParameter("closedCaptionFile", _flaxBinding136, required: false),
+  FlaxParameter("videoPlayerOptions", _flaxBinding127, required: false),
   FlaxParameter(
     "httpHeaders",
-    _flaxBinding124,
+    _flaxBinding121,
     required: false,
     omitWhenAbsent: true,
   ),
   FlaxParameter(
     "viewType",
-    _flaxBinding133,
+    _flaxBinding130,
     required: false,
     defaultValue: api.VideoViewType.textureView,
   ),
 ];
-const _flaxBinding184 = FlaxTypeRef("object", id: "flax.core/flutter#type:Uri");
-const _flaxBinding185 = <FlaxParameter>[
-  FlaxParameter.required("url", _flaxBinding184),
-  FlaxParameter("formatHint", _flaxBinding126, required: false),
-  FlaxParameter("closedCaptionFile", _flaxBinding139, required: false),
-  FlaxParameter("videoPlayerOptions", _flaxBinding130, required: false),
+const _flaxBinding181 = FlaxTypeRef("object", id: "flax.core/flutter#type:Uri");
+const _flaxBinding182 = <FlaxParameter>[
+  FlaxParameter.required("url", _flaxBinding181),
+  FlaxParameter("formatHint", _flaxBinding123, required: false),
+  FlaxParameter("closedCaptionFile", _flaxBinding136, required: false),
+  FlaxParameter("videoPlayerOptions", _flaxBinding127, required: false),
   FlaxParameter(
     "httpHeaders",
-    _flaxBinding124,
+    _flaxBinding121,
     required: false,
     omitWhenAbsent: true,
   ),
   FlaxParameter(
     "viewType",
-    _flaxBinding133,
+    _flaxBinding130,
     required: false,
     defaultValue: api.VideoViewType.textureView,
   ),
 ];
-const _flaxBinding186 = FlaxTypeRef(
+const _flaxBinding183 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_dependencies#type:File",
 );
-const _flaxBinding187 = <FlaxParameter>[
-  FlaxParameter.required("file", _flaxBinding186),
-  FlaxParameter("closedCaptionFile", _flaxBinding139, required: false),
-  FlaxParameter("videoPlayerOptions", _flaxBinding130, required: false),
+const _flaxBinding184 = <FlaxParameter>[
+  FlaxParameter.required("file", _flaxBinding183),
+  FlaxParameter("closedCaptionFile", _flaxBinding136, required: false),
+  FlaxParameter("videoPlayerOptions", _flaxBinding127, required: false),
   FlaxParameter(
     "httpHeaders",
-    _flaxBinding124,
+    _flaxBinding121,
     required: false,
     omitWhenAbsent: true,
   ),
   FlaxParameter(
     "viewType",
-    _flaxBinding133,
+    _flaxBinding130,
     required: false,
     defaultValue: api.VideoViewType.textureView,
   ),
 ];
-const _flaxBinding188 = <FlaxParameter>[
-  FlaxParameter.required("contentUri", _flaxBinding184),
-  FlaxParameter("closedCaptionFile", _flaxBinding139, required: false),
-  FlaxParameter("videoPlayerOptions", _flaxBinding130, required: false),
+const _flaxBinding185 = <FlaxParameter>[
+  FlaxParameter.required("contentUri", _flaxBinding181),
+  FlaxParameter("closedCaptionFile", _flaxBinding136, required: false),
+  FlaxParameter("videoPlayerOptions", _flaxBinding127, required: false),
   FlaxParameter(
     "viewType",
-    _flaxBinding133,
+    _flaxBinding130,
     required: false,
     defaultValue: api.VideoViewType.textureView,
   ),
 ];
-const _flaxBinding189 = FlaxObjectBinding(
+const _flaxBinding186 = FlaxObjectBinding(
   "flax.video/video#type:VideoPlayerController",
   [
+    _flaxBinding117,
+    _flaxBinding119,
     _flaxBinding120,
     _flaxBinding122,
-    _flaxBinding123,
-    _flaxBinding125,
-    _flaxBinding127,
+    _flaxBinding124,
+    _flaxBinding126,
+    _flaxBinding128,
     _flaxBinding129,
     _flaxBinding131,
-    _flaxBinding132,
     _flaxBinding134,
     _flaxBinding137,
-    _flaxBinding140,
   ],
   {
-    "addListener": _flaxBinding143,
-    "removeListener": _flaxBinding144,
-    "dispose": _flaxBinding146,
-    "toString": _flaxBinding147,
-    "initialize": _flaxBinding148,
-    "play": _flaxBinding149,
-    "setLooping": _flaxBinding151,
-    "setPreventsDisplaySleepDuringVideoPlayback": _flaxBinding153,
-    "pause": _flaxBinding154,
-    "seekTo": _flaxBinding156,
-    "setVolume": _flaxBinding158,
-    "setPlaybackSpeed": _flaxBinding160,
-    "setCaptionOffset": _flaxBinding162,
-    "setClosedCaptionFile": _flaxBinding164,
-    "getAudioTracks": _flaxBinding169,
-    "selectAudioTrack": _flaxBinding171,
-    "isAudioTrackSupportAvailable": _flaxBinding172,
-    "getVideoTracks": _flaxBinding177,
-    "selectVideoTrack": _flaxBinding180,
-    "isVideoTrackSupportAvailable": _flaxBinding181,
+    "addListener": _flaxBinding140,
+    "removeListener": _flaxBinding141,
+    "dispose": _flaxBinding143,
+    "toString": _flaxBinding144,
+    "initialize": _flaxBinding145,
+    "play": _flaxBinding146,
+    "setLooping": _flaxBinding148,
+    "setPreventsDisplaySleepDuringVideoPlayback": _flaxBinding150,
+    "pause": _flaxBinding151,
+    "seekTo": _flaxBinding153,
+    "setVolume": _flaxBinding155,
+    "setPlaybackSpeed": _flaxBinding157,
+    "setCaptionOffset": _flaxBinding159,
+    "setClosedCaptionFile": _flaxBinding161,
+    "getAudioTracks": _flaxBinding166,
+    "selectAudioTrack": _flaxBinding168,
+    "isAudioTrackSupportAvailable": _flaxBinding169,
+    "getVideoTracks": _flaxBinding174,
+    "selectVideoTrack": _flaxBinding177,
+    "isVideoTrackSupportAvailable": _flaxBinding178,
   },
   constructors: {
-    "asset": _flaxBinding182,
-    "network": _flaxBinding183,
-    "networkUrl": _flaxBinding185,
-    "file": _flaxBinding187,
-    "contentUri": _flaxBinding188,
+    "asset": _flaxBinding179,
+    "network": _flaxBinding180,
+    "networkUrl": _flaxBinding182,
+    "file": _flaxBinding184,
+    "contentUri": _flaxBinding185,
   },
   create: _createVideoPlayerController,
   matches: _isVideoPlayerController,
-  setters: [_flaxBinding141],
+  setters: [_flaxBinding138],
   supertypes: [
     "flax.core/sdk_foundation#type:ValueNotifier",
     "flax.core/sdk_foundation#type:ChangeNotifier",
@@ -4130,36 +4300,36 @@ const _flaxBinding189 = FlaxObjectBinding(
   ],
   listenerPairs: {"addListener": "removeListener"},
 );
-const _flaxBinding190 = FlaxGetter.plain(
+const _flaxBinding187 = FlaxGetter.plain(
   "allowBackgroundPlayback",
   flaxBoolType,
   _VideoPlayerOptions_allowBackgroundPlayback,
 );
-const _flaxBinding191 = FlaxGetter.plain(
+const _flaxBinding188 = FlaxGetter.plain(
   "mixWithOthers",
   flaxBoolType,
   _VideoPlayerOptions_mixWithOthers,
 );
-const _flaxBinding192 = FlaxGetter.plain(
+const _flaxBinding189 = FlaxGetter.plain(
   "preventsDisplaySleepDuringVideoPlayback",
   flaxBoolType,
   _VideoPlayerOptions_preventsDisplaySleepDuringVideoPlayback,
 );
-const _flaxBinding193 = FlaxGetter.plain(
+const _flaxBinding190 = FlaxGetter.plain(
   "webOptions",
   _flaxBinding6,
   _VideoPlayerOptions_webOptions,
 );
-const _flaxBinding194 = FlaxGetter.plain(
+const _flaxBinding191 = FlaxGetter.plain(
   "backBufferDurationMs",
   flaxNullableIntType,
   _VideoPlayerOptions_backBufferDurationMs,
 );
-const _flaxBinding195 = FlaxInstanceMethod.shared(
+const _flaxBinding192 = FlaxInstanceMethod.shared(
   flaxBoolCall,
   _FlaxProxyDispatch4_super_get_preventsDisplaySleepDuringVideoPlayback,
 );
-const _flaxBinding196 = <FlaxParameter>[
+const _flaxBinding193 = <FlaxParameter>[
   FlaxParameter(
     "mixWithOthers",
     flaxBoolType,
@@ -4181,44 +4351,44 @@ const _flaxBinding196 = <FlaxParameter>[
   FlaxParameter("webOptions", _flaxBinding6, required: false),
   FlaxParameter("backBufferDurationMs", flaxNullableIntType, required: false),
 ];
-const _flaxBinding197 = FlaxProxyMember(
+const _flaxBinding194 = FlaxProxyMember(
   "allowBackgroundPlayback",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding198 = FlaxProxyMember(
+const _flaxBinding195 = FlaxProxyMember(
   "mixWithOthers",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding199 = FlaxProxyMember(
+const _flaxBinding196 = FlaxProxyMember(
   "preventsDisplaySleepDuringVideoPlayback",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding200 = FlaxProxyMember(
+const _flaxBinding197 = FlaxProxyMember(
   "webOptions",
   1,
   _flaxBinding7,
   hasSuper: true,
 );
-const _flaxBinding201 = FlaxProxyMember(
+const _flaxBinding198 = FlaxProxyMember(
   "backBufferDurationMs",
   1,
   flaxNullableIntCall,
   hasSuper: true,
 );
-const _flaxBinding202 = FlaxObjectBinding(
+const _flaxBinding199 = FlaxObjectBinding(
   "flax.video/video#type:VideoPlayerOptions",
   [
+    _flaxBinding187,
+    _flaxBinding188,
+    _flaxBinding189,
     _flaxBinding190,
     _flaxBinding191,
-    _flaxBinding192,
-    _flaxBinding193,
-    _flaxBinding194,
   ],
   {
     "@super:get:allowBackgroundPlayback": FlaxInstanceMethod.shared(
@@ -4229,7 +4399,7 @@ const _flaxBinding202 = FlaxObjectBinding(
       flaxBoolCall,
       _VideoPlayerOptions_super_get_mixWithOthers,
     ),
-    "@super:get:preventsDisplaySleepDuringVideoPlayback": _flaxBinding195,
+    "@super:get:preventsDisplaySleepDuringVideoPlayback": _flaxBinding192,
     "@super:get:webOptions": FlaxInstanceMethod.shared(
       _flaxBinding7,
       _VideoPlayerOptions_super_get_webOptions,
@@ -4239,110 +4409,110 @@ const _flaxBinding202 = FlaxObjectBinding(
       _VideoPlayerOptions_super_get_backBufferDurationMs,
     ),
   },
-  constructors: {"": _flaxBinding196, "@implementation": _flaxBinding196},
+  constructors: {"": _flaxBinding193, "@implementation": _flaxBinding193},
   create: _createVideoPlayerOptions,
   matches: _isVideoPlayerOptions,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
+    _flaxBinding194,
+    _flaxBinding195,
+    _flaxBinding196,
     _flaxBinding197,
     _flaxBinding198,
-    _flaxBinding199,
-    _flaxBinding200,
-    _flaxBinding201,
   ]),
 );
-const _flaxBinding203 = FlaxGetter.plain(
+const _flaxBinding200 = FlaxGetter.plain(
   "duration",
   flaxDurationType,
   _VideoPlayerValue_duration,
 );
-const _flaxBinding204 = FlaxGetter.plain(
+const _flaxBinding201 = FlaxGetter.plain(
   "position",
   flaxDurationType,
   _VideoPlayerValue_position,
 );
-const _flaxBinding205 = FlaxGetter.plain(
+const _flaxBinding202 = FlaxGetter.plain(
   "caption",
   _flaxBinding1,
   _VideoPlayerValue_caption,
 );
-const _flaxBinding206 = FlaxGetter.plain(
+const _flaxBinding203 = FlaxGetter.plain(
   "captionOffset",
   flaxDurationType,
   _VideoPlayerValue_captionOffset,
 );
-const _flaxBinding207 = FlaxGetter.plain(
+const _flaxBinding204 = FlaxGetter.plain(
   "buffered",
   _flaxBinding11,
   _VideoPlayerValue_buffered,
 );
-const _flaxBinding208 = FlaxGetter.plain(
+const _flaxBinding205 = FlaxGetter.plain(
   "isPlaying",
   flaxBoolType,
   _VideoPlayerValue_isPlaying,
 );
-const _flaxBinding209 = FlaxGetter.plain(
+const _flaxBinding206 = FlaxGetter.plain(
   "isLooping",
   flaxBoolType,
   _VideoPlayerValue_isLooping,
 );
-const _flaxBinding210 = FlaxGetter.plain(
+const _flaxBinding207 = FlaxGetter.plain(
   "isBuffering",
   flaxBoolType,
   _VideoPlayerValue_isBuffering,
 );
-const _flaxBinding211 = FlaxGetter.plain(
+const _flaxBinding208 = FlaxGetter.plain(
   "volume",
   flaxDoubleType,
   _VideoPlayerValue_volume,
 );
-const _flaxBinding212 = FlaxGetter.plain(
+const _flaxBinding209 = FlaxGetter.plain(
   "playbackSpeed",
   flaxDoubleType,
   _VideoPlayerValue_playbackSpeed,
 );
-const _flaxBinding213 = FlaxGetter.plain(
+const _flaxBinding210 = FlaxGetter.plain(
   "errorDescription",
   flaxNullableStringType,
   _VideoPlayerValue_errorDescription,
 );
-const _flaxBinding214 = FlaxGetter.plain(
+const _flaxBinding211 = FlaxGetter.plain(
   "isCompleted",
   flaxBoolType,
   _VideoPlayerValue_isCompleted,
 );
-const _flaxBinding215 = FlaxGetter.plain(
+const _flaxBinding212 = FlaxGetter.plain(
   "preventsDisplaySleepDuringVideoPlayback",
   flaxBoolType,
   _VideoPlayerValue_preventsDisplaySleepDuringVideoPlayback,
 );
-const _flaxBinding216 = FlaxGetter.plain(
+const _flaxBinding213 = FlaxGetter.plain(
   "size",
   flaxSizeType,
   _VideoPlayerValue_size,
 );
-const _flaxBinding217 = FlaxGetter.plain(
+const _flaxBinding214 = FlaxGetter.plain(
   "rotationCorrection",
   flaxIntType,
   _VideoPlayerValue_rotationCorrection,
 );
-const _flaxBinding218 = FlaxGetter.plain(
+const _flaxBinding215 = FlaxGetter.plain(
   "isInitialized",
   flaxBoolType,
   _VideoPlayerValue_isInitialized,
 );
-const _flaxBinding219 = FlaxGetter.plain(
+const _flaxBinding216 = FlaxGetter.plain(
   "hasError",
   flaxBoolType,
   _VideoPlayerValue_hasError,
 );
-const _flaxBinding220 = FlaxGetter.plain(
+const _flaxBinding217 = FlaxGetter.plain(
   "aspectRatio",
   flaxDoubleType,
   _VideoPlayerValue_aspectRatio,
 );
-const _flaxBinding221 = FlaxTypeRef(
+const _flaxBinding218 = FlaxTypeRef(
   "list",
   nullable: true,
   item: _flaxBinding9,
@@ -4353,16 +4523,16 @@ const _flaxBinding221 = FlaxTypeRef(
   ),
   iterable: _flaxBinding10,
 );
-const _flaxBinding222 = FlaxTypeRef(
+const _flaxBinding219 = FlaxTypeRef(
   "object",
   id: "flax.video/video#type:Caption",
   nullable: true,
 );
-const _flaxBinding223 = <FlaxParameter>[
-  FlaxParameter("buffered", _flaxBinding221, required: false),
-  FlaxParameter("caption", _flaxBinding222, required: false),
-  FlaxParameter("captionOffset", _flaxBinding135, required: false),
-  FlaxParameter("duration", _flaxBinding135, required: false),
+const _flaxBinding220 = <FlaxParameter>[
+  FlaxParameter("buffered", _flaxBinding218, required: false),
+  FlaxParameter("caption", _flaxBinding219, required: false),
+  FlaxParameter("captionOffset", _flaxBinding132, required: false),
+  FlaxParameter("duration", _flaxBinding132, required: false),
   FlaxParameter(
     "errorDescription",
     flaxNullableStringType,
@@ -4375,7 +4545,7 @@ const _flaxBinding223 = <FlaxParameter>[
   FlaxParameter("isLooping", flaxNullableBoolType, required: false),
   FlaxParameter("isPlaying", flaxNullableBoolType, required: false),
   FlaxParameter("playbackSpeed", flaxNullableDoubleType, required: false),
-  FlaxParameter("position", _flaxBinding135, required: false),
+  FlaxParameter("position", _flaxBinding132, required: false),
   FlaxParameter(
     "preventsDisplaySleepDuringVideoPlayback",
     flaxNullableBoolType,
@@ -4385,16 +4555,16 @@ const _flaxBinding223 = <FlaxParameter>[
   FlaxParameter("size", flaxNullableSizeType, required: false),
   FlaxParameter("volume", flaxNullableDoubleType, required: false),
 ];
-const _flaxBinding224 = FlaxInstanceMethod.plain(
-  _flaxBinding223,
-  _flaxBinding121,
+const _flaxBinding221 = FlaxInstanceMethod.plain(
+  _flaxBinding220,
+  _flaxBinding118,
   _VideoPlayerValue_copyWith,
 );
-const _flaxBinding225 = FlaxInstanceMethod.shared(
+const _flaxBinding222 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _VideoPlayerValue_toString,
 );
-const _flaxBinding226 = <FlaxParameter>[
+const _flaxBinding223 = <FlaxParameter>[
   FlaxParameter.required("duration", flaxDurationType),
   FlaxParameter("size", flaxSizeType, required: false, omitWhenAbsent: true),
   FlaxParameter(
@@ -4472,14 +4642,14 @@ const _flaxBinding226 = <FlaxParameter>[
     defaultValue: true,
   ),
 ];
-const _flaxBinding227 = <FlaxParameter>[
+const _flaxBinding224 = <FlaxParameter>[
   FlaxParameter.required("errorDescription", flaxStringType),
 ];
-const _flaxBinding228 = FlaxCallbackBinding.signature(
+const _flaxBinding225 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "duration",
-      _flaxBinding135,
+      _flaxBinding132,
       required: false,
       positional: false,
     ),
@@ -4491,25 +4661,25 @@ const _flaxBinding228 = FlaxCallbackBinding.signature(
     ),
     FlaxCallbackParameter.plain(
       "position",
-      _flaxBinding135,
+      _flaxBinding132,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter.plain(
       "caption",
-      _flaxBinding222,
+      _flaxBinding219,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter.plain(
       "captionOffset",
-      _flaxBinding135,
+      _flaxBinding132,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter.plain(
       "buffered",
-      _flaxBinding221,
+      _flaxBinding218,
       required: false,
       positional: false,
     ),
@@ -4574,120 +4744,123 @@ const _flaxBinding228 = FlaxCallbackBinding.signature(
       positional: false,
     ),
   ],
-  _flaxBinding121,
+  _flaxBinding118,
   id: "callback:<>(n:o:duration:object?:flax.core/flutter#type:Duration,n:o:size:object?:flax.core/flutter#type:Size,n:o:position:object?:flax.core/flutter#type:Duration,n:o:caption:object?:flax.video/video#type:Caption,n:o:captionOffset:object?:flax.core/flutter#type:Duration,n:o:buffered:list?:[object:flax.video/video#type:DurationRange],n:o:isInitialized:bool?:,n:o:isPlaying:bool?:,n:o:isLooping:bool?:,n:o:isBuffering:bool?:,n:o:volume:double?:,n:o:playbackSpeed:double?:,n:o:rotationCorrection:int?:,n:o:errorDescription:String?:,n:o:isCompleted:bool?:,n:o:preventsDisplaySleepDuringVideoPlayback:bool?:)->object:flax.video/video#type:VideoPlayerValue",
 );
-const _flaxBinding229 = FlaxProxyMember(
+const _flaxBinding226 = FlaxProxyMember(
   "copyWith",
   0,
-  _flaxBinding228,
+  _flaxBinding225,
   hasSuper: true,
 );
-const _flaxBinding230 = FlaxProxyMember(
+const _flaxBinding227 = FlaxProxyMember(
   "duration",
   1,
   _flaxBinding0,
   hasSuper: true,
 );
-const _flaxBinding231 = FlaxProxyMember(
+const _flaxBinding228 = FlaxProxyMember(
   "position",
   1,
   _flaxBinding0,
   hasSuper: true,
 );
-const _flaxBinding232 = FlaxProxyMember(
+const _flaxBinding229 = FlaxProxyMember(
   "caption",
   1,
   _flaxBinding8,
   hasSuper: true,
 );
-const _flaxBinding233 = FlaxProxyMember(
+const _flaxBinding230 = FlaxProxyMember(
   "captionOffset",
   1,
   _flaxBinding0,
   hasSuper: true,
 );
-const _flaxBinding234 = FlaxProxyMember(
+const _flaxBinding231 = FlaxProxyMember(
   "buffered",
   1,
   _flaxBinding12,
   hasSuper: true,
 );
-const _flaxBinding235 = FlaxProxyMember(
+const _flaxBinding232 = FlaxProxyMember(
   "isPlaying",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding236 = FlaxProxyMember(
+const _flaxBinding233 = FlaxProxyMember(
   "isLooping",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding237 = FlaxProxyMember(
+const _flaxBinding234 = FlaxProxyMember(
   "isBuffering",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding238 = FlaxProxyMember(
+const _flaxBinding235 = FlaxProxyMember(
   "volume",
   1,
   flaxDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding239 = FlaxProxyMember(
+const _flaxBinding236 = FlaxProxyMember(
   "playbackSpeed",
   1,
   flaxDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding240 = FlaxProxyMember(
+const _flaxBinding237 = FlaxProxyMember(
   "errorDescription",
   1,
   flaxNullableStringCall,
   hasSuper: true,
 );
-const _flaxBinding241 = FlaxProxyMember(
+const _flaxBinding238 = FlaxProxyMember(
   "isCompleted",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding242 = FlaxProxyMember(
+const _flaxBinding239 = FlaxProxyMember(
   "size",
   1,
   _flaxBinding13,
   hasSuper: true,
 );
-const _flaxBinding243 = FlaxProxyMember(
+const _flaxBinding240 = FlaxProxyMember(
   "rotationCorrection",
   1,
   flaxIntCall,
   hasSuper: true,
 );
-const _flaxBinding244 = FlaxProxyMember(
+const _flaxBinding241 = FlaxProxyMember(
   "isInitialized",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding245 = FlaxProxyMember(
+const _flaxBinding242 = FlaxProxyMember(
   "hasError",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding246 = FlaxProxyMember(
+const _flaxBinding243 = FlaxProxyMember(
   "aspectRatio",
   1,
   flaxDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding247 = FlaxObjectBinding(
+const _flaxBinding244 = FlaxObjectBinding(
   "flax.video/video#type:VideoPlayerValue",
   [
+    _flaxBinding200,
+    _flaxBinding201,
+    _flaxBinding202,
     _flaxBinding203,
     _flaxBinding204,
     _flaxBinding205,
@@ -4703,16 +4876,13 @@ const _flaxBinding247 = FlaxObjectBinding(
     _flaxBinding215,
     _flaxBinding216,
     _flaxBinding217,
-    _flaxBinding218,
-    _flaxBinding219,
-    _flaxBinding220,
   ],
   {
-    "copyWith": _flaxBinding224,
-    "toString": _flaxBinding225,
+    "copyWith": _flaxBinding221,
+    "toString": _flaxBinding222,
     "@super:copyWith": FlaxInstanceMethod.plain(
-      _flaxBinding223,
-      _flaxBinding121,
+      _flaxBinding220,
+      _flaxBinding118,
       _VideoPlayerValue_super_copyWith,
     ),
     "@super:toString": _flaxBinding24,
@@ -4764,7 +4934,7 @@ const _flaxBinding247 = FlaxObjectBinding(
       flaxBoolCall,
       _VideoPlayerValue_super_get_isCompleted,
     ),
-    "@super:get:preventsDisplaySleepDuringVideoPlayback": _flaxBinding195,
+    "@super:get:preventsDisplaySleepDuringVideoPlayback": _flaxBinding192,
     "@super:get:size": FlaxInstanceMethod.shared(
       _flaxBinding13,
       _VideoPlayerValue_super_get_size,
@@ -4787,20 +4957,23 @@ const _flaxBinding247 = FlaxObjectBinding(
     ),
   },
   constructors: {
-    "": _flaxBinding226,
+    "": _flaxBinding223,
     "uninitialized": _flaxBinding43,
-    "erroneous": _flaxBinding227,
-    "@implementation": _flaxBinding226,
+    "erroneous": _flaxBinding224,
+    "@implementation": _flaxBinding223,
     "@implementation:uninitialized": _flaxBinding43,
-    "@implementation:erroneous": _flaxBinding227,
+    "@implementation:erroneous": _flaxBinding224,
   },
   create: _createVideoPlayerValue,
   matches: _isVideoPlayerValue,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding229,
+    _flaxBinding226,
     _flaxBinding28,
+    _flaxBinding227,
+    _flaxBinding228,
+    _flaxBinding229,
     _flaxBinding230,
     _flaxBinding231,
     _flaxBinding232,
@@ -4810,38 +4983,35 @@ const _flaxBinding247 = FlaxObjectBinding(
     _flaxBinding236,
     _flaxBinding237,
     _flaxBinding238,
+    _flaxBinding196,
     _flaxBinding239,
     _flaxBinding240,
     _flaxBinding241,
-    _flaxBinding199,
     _flaxBinding242,
     _flaxBinding243,
-    _flaxBinding244,
-    _flaxBinding245,
-    _flaxBinding246,
   ]),
 );
-const _flaxBinding248 = FlaxGetter.plain(
+const _flaxBinding245 = FlaxGetter.plain(
   "controls",
   _flaxBinding14,
   _VideoPlayerWebOptions_controls,
 );
-const _flaxBinding249 = FlaxGetter.plain(
+const _flaxBinding246 = FlaxGetter.plain(
   "allowContextMenu",
   flaxBoolType,
   _VideoPlayerWebOptions_allowContextMenu,
 );
-const _flaxBinding250 = FlaxGetter.plain(
+const _flaxBinding247 = FlaxGetter.plain(
   "allowRemotePlayback",
   flaxBoolType,
   _VideoPlayerWebOptions_allowRemotePlayback,
 );
-const _flaxBinding251 = FlaxGetter.plain(
+const _flaxBinding248 = FlaxGetter.plain(
   "poster",
   _flaxBinding16,
   _VideoPlayerWebOptions_poster,
 );
-const _flaxBinding252 = <FlaxParameter>[
+const _flaxBinding249 = <FlaxParameter>[
   FlaxParameter(
     "controls",
     _flaxBinding14,
@@ -4862,33 +5032,33 @@ const _flaxBinding252 = <FlaxParameter>[
   ),
   FlaxParameter("poster", _flaxBinding16, required: false),
 ];
-const _flaxBinding253 = FlaxProxyMember(
+const _flaxBinding250 = FlaxProxyMember(
   "controls",
   1,
   _flaxBinding15,
   hasSuper: true,
 );
-const _flaxBinding254 = FlaxProxyMember(
+const _flaxBinding251 = FlaxProxyMember(
   "allowContextMenu",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding255 = FlaxProxyMember(
+const _flaxBinding252 = FlaxProxyMember(
   "allowRemotePlayback",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding256 = FlaxProxyMember(
+const _flaxBinding253 = FlaxProxyMember(
   "poster",
   1,
   _flaxBinding17,
   hasSuper: true,
 );
-const _flaxBinding257 = FlaxObjectBinding(
+const _flaxBinding254 = FlaxObjectBinding(
   "flax.video/video#type:VideoPlayerWebOptions",
-  [_flaxBinding248, _flaxBinding249, _flaxBinding250, _flaxBinding251],
+  [_flaxBinding245, _flaxBinding246, _flaxBinding247, _flaxBinding248],
   {
     "@super:get:controls": FlaxInstanceMethod.shared(
       _flaxBinding15,
@@ -4907,67 +5077,67 @@ const _flaxBinding257 = FlaxObjectBinding(
       _VideoPlayerWebOptions_super_get_poster,
     ),
   },
-  constructors: {"": _flaxBinding252, "@implementation": _flaxBinding252},
+  constructors: {"": _flaxBinding249, "@implementation": _flaxBinding249},
   create: _createVideoPlayerWebOptions,
   matches: _isVideoPlayerWebOptions,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
+    _flaxBinding250,
+    _flaxBinding251,
+    _flaxBinding252,
     _flaxBinding253,
-    _flaxBinding254,
-    _flaxBinding255,
-    _flaxBinding256,
   ]),
 );
-const _flaxBinding258 = FlaxGetter.plain(
+const _flaxBinding255 = FlaxGetter.plain(
   "enabled",
   flaxBoolType,
   _VideoPlayerWebOptionsControls_enabled,
 );
-const _flaxBinding259 = FlaxGetter.plain(
+const _flaxBinding256 = FlaxGetter.plain(
   "allowDownload",
   flaxBoolType,
   _VideoPlayerWebOptionsControls_allowDownload,
 );
-const _flaxBinding260 = FlaxGetter.plain(
+const _flaxBinding257 = FlaxGetter.plain(
   "allowFullscreen",
   flaxBoolType,
   _VideoPlayerWebOptionsControls_allowFullscreen,
 );
-const _flaxBinding261 = FlaxGetter.plain(
+const _flaxBinding258 = FlaxGetter.plain(
   "allowPlaybackRate",
   flaxBoolType,
   _VideoPlayerWebOptionsControls_allowPlaybackRate,
 );
-const _flaxBinding262 = FlaxGetter.plain(
+const _flaxBinding259 = FlaxGetter.plain(
   "allowPictureInPicture",
   flaxBoolType,
   _VideoPlayerWebOptionsControls_allowPictureInPicture,
 );
-const _flaxBinding263 = FlaxGetter.plain(
+const _flaxBinding260 = FlaxGetter.plain(
   "controlsList",
   flaxStringType,
   _VideoPlayerWebOptionsControls_controlsList,
 );
-const _flaxBinding264 = FlaxProxyMember("enabled", 1, flaxBoolCall);
-const _flaxBinding265 = FlaxProxyMember("allowDownload", 1, flaxBoolCall);
-const _flaxBinding266 = FlaxProxyMember("allowFullscreen", 1, flaxBoolCall);
-const _flaxBinding267 = FlaxProxyMember("allowPlaybackRate", 1, flaxBoolCall);
-const _flaxBinding268 = FlaxProxyMember(
+const _flaxBinding261 = FlaxProxyMember("enabled", 1, flaxBoolCall);
+const _flaxBinding262 = FlaxProxyMember("allowDownload", 1, flaxBoolCall);
+const _flaxBinding263 = FlaxProxyMember("allowFullscreen", 1, flaxBoolCall);
+const _flaxBinding264 = FlaxProxyMember("allowPlaybackRate", 1, flaxBoolCall);
+const _flaxBinding265 = FlaxProxyMember(
   "allowPictureInPicture",
   1,
   flaxBoolCall,
 );
-const _flaxBinding269 = FlaxProxyMember("controlsList", 1, flaxStringCall);
-const _flaxBinding270 = FlaxObjectBinding(
+const _flaxBinding266 = FlaxProxyMember("controlsList", 1, flaxStringCall);
+const _flaxBinding267 = FlaxObjectBinding(
   "flax.video/video#type:VideoPlayerWebOptionsControls",
   [
+    _flaxBinding255,
+    _flaxBinding256,
+    _flaxBinding257,
     _flaxBinding258,
     _flaxBinding259,
     _flaxBinding260,
-    _flaxBinding261,
-    _flaxBinding262,
-    _flaxBinding263,
   ],
   {},
   constructors: {"@implementation": _flaxBinding43},
@@ -4976,30 +5146,30 @@ const _flaxBinding270 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
+    _flaxBinding261,
+    _flaxBinding262,
+    _flaxBinding263,
     _flaxBinding264,
     _flaxBinding265,
     _flaxBinding266,
-    _flaxBinding267,
-    _flaxBinding268,
-    _flaxBinding269,
   ]),
 );
-const _flaxBinding271 = FlaxGetter.plain(
+const _flaxBinding268 = FlaxGetter.plain(
   "playedColor",
   flaxColorType,
   _VideoProgressColors_playedColor,
 );
-const _flaxBinding272 = FlaxGetter.plain(
+const _flaxBinding269 = FlaxGetter.plain(
   "bufferedColor",
   flaxColorType,
   _VideoProgressColors_bufferedColor,
 );
-const _flaxBinding273 = FlaxGetter.plain(
+const _flaxBinding270 = FlaxGetter.plain(
   "backgroundColor",
   flaxColorType,
   _VideoProgressColors_backgroundColor,
 );
-const _flaxBinding274 = <FlaxParameter>[
+const _flaxBinding271 = <FlaxParameter>[
   FlaxParameter(
     "playedColor",
     flaxColorType,
@@ -5019,27 +5189,27 @@ const _flaxBinding274 = <FlaxParameter>[
     omitWhenAbsent: true,
   ),
 ];
-const _flaxBinding275 = FlaxProxyMember(
+const _flaxBinding272 = FlaxProxyMember(
   "playedColor",
   1,
   _flaxBinding18,
   hasSuper: true,
 );
-const _flaxBinding276 = FlaxProxyMember(
+const _flaxBinding273 = FlaxProxyMember(
   "bufferedColor",
   1,
   _flaxBinding18,
   hasSuper: true,
 );
-const _flaxBinding277 = FlaxProxyMember(
+const _flaxBinding274 = FlaxProxyMember(
   "backgroundColor",
   1,
   _flaxBinding18,
   hasSuper: true,
 );
-const _flaxBinding278 = FlaxObjectBinding(
+const _flaxBinding275 = FlaxObjectBinding(
   "flax.video/video#type:VideoProgressColors",
-  [_flaxBinding271, _flaxBinding272, _flaxBinding273],
+  [_flaxBinding268, _flaxBinding269, _flaxBinding270],
   {
     "@super:get:playedColor": FlaxInstanceMethod.shared(
       _flaxBinding18,
@@ -5054,92 +5224,78 @@ const _flaxBinding278 = FlaxObjectBinding(
       _VideoProgressColors_super_get_backgroundColor,
     ),
   },
-  constructors: {"": _flaxBinding274, "@implementation": _flaxBinding274},
+  constructors: {"": _flaxBinding271, "@implementation": _flaxBinding271},
   create: _createVideoProgressColors,
   matches: _isVideoProgressColors,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding275, _flaxBinding276, _flaxBinding277]),
+  proxy: FlaxProxyBinding([_flaxBinding272, _flaxBinding273, _flaxBinding274]),
 );
-const _flaxBinding279 = FlaxGetter.plain(
+const _flaxBinding276 = FlaxGetter.plain(
   "controller",
   _flaxBinding105,
   _VideoProgressIndicator_controller,
 );
-const _flaxBinding280 = FlaxTypeRef(
+const _flaxBinding277 = FlaxTypeRef(
   "object",
   id: "flax.video/video#type:VideoProgressColors",
 );
-const _flaxBinding281 = FlaxGetter.plain(
+const _flaxBinding278 = FlaxGetter.plain(
   "colors",
-  _flaxBinding280,
+  _flaxBinding277,
   _VideoProgressIndicator_colors,
 );
-const _flaxBinding282 = FlaxGetter.plain(
+const _flaxBinding279 = FlaxGetter.plain(
   "allowScrubbing",
   flaxBoolType,
   _VideoProgressIndicator_allowScrubbing,
 );
-const _flaxBinding283 = FlaxGetter.plain(
+const _flaxBinding280 = FlaxGetter.plain(
   "padding",
   flaxEdgeInsetsType,
   _VideoProgressIndicator_padding,
 );
-const _flaxBinding284 = FlaxGetter.plain(
-  "key",
-  _flaxBinding37,
-  _VideoProgressIndicator_key,
-);
-const _flaxBinding285 = FlaxTypeRef(
+const _flaxBinding281 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
   dartType: FlaxDartTypes.typeOf<api1.State<api.VideoProgressIndicator>>,
 );
-const _flaxBinding286 = FlaxInstanceMethod.plain(
+const _flaxBinding282 = FlaxInstanceMethod.plain(
   _flaxBinding43,
-  _flaxBinding285,
+  _flaxBinding281,
   _VideoProgressIndicator_createState,
 );
-const _flaxBinding287 = FlaxInstanceMethod.plain(
+const _flaxBinding283 = FlaxInstanceMethod.plain(
   _flaxBinding43,
-  _flaxBinding110,
+  _flaxBinding109,
   _VideoProgressIndicator_createElement,
 );
-const _flaxBinding288 = FlaxInstanceMethod.shared(
-  flaxStringCall,
-  _VideoProgressIndicator_toStringShort,
-);
-const _flaxBinding289 = FlaxInstanceMethod.plain(
+const _flaxBinding284 = FlaxInstanceMethod.plain(
   _flaxBinding47,
   flaxVoidType,
   _VideoProgressIndicator_debugFillProperties,
 );
-const _flaxBinding290 = FlaxInstanceMethod.plain(
+const _flaxBinding285 = FlaxInstanceMethod.plain(
   _flaxBinding50,
   flaxStringType,
   _VideoProgressIndicator_toStringShallow,
 );
-const _flaxBinding291 = FlaxInstanceMethod.plain(
+const _flaxBinding286 = FlaxInstanceMethod.plain(
   _flaxBinding52,
   flaxStringType,
   _VideoProgressIndicator_toStringDeep,
 );
-const _flaxBinding292 = FlaxInstanceMethod.plain(
+const _flaxBinding287 = FlaxInstanceMethod.plain(
   _flaxBinding55,
   _flaxBinding56,
   _VideoProgressIndicator_toDiagnosticsNode,
 );
-const _flaxBinding293 = FlaxInstanceMethod.plain(
-  _flaxBinding43,
-  _flaxBinding59,
-  _VideoProgressIndicator_debugDescribeChildren,
-);
-const _flaxBinding294 = <FlaxParameter>[
+const _flaxBinding288 = <FlaxParameter>[
   FlaxParameter.required("controller", _flaxBinding105),
   FlaxParameter("key", _flaxBinding37, required: false),
   FlaxParameter(
     "colors",
-    _flaxBinding280,
+    _flaxBinding277,
     required: false,
     omitWhenAbsent: true,
   ),
@@ -5151,26 +5307,26 @@ const _flaxBinding294 = <FlaxParameter>[
     omitWhenAbsent: true,
   ),
 ];
-const _flaxBinding295 = FlaxObjectBinding(
+const _flaxBinding289 = FlaxObjectBinding(
   "flax.video/video#type:VideoProgressIndicator",
   [
+    _flaxBinding276,
+    _flaxBinding278,
     _flaxBinding279,
-    _flaxBinding281,
-    _flaxBinding282,
-    _flaxBinding283,
-    _flaxBinding284,
+    _flaxBinding280,
+    _flaxBinding38,
   ],
   {
-    "createState": _flaxBinding286,
-    "createElement": _flaxBinding287,
-    "toStringShort": _flaxBinding288,
-    "debugFillProperties": _flaxBinding289,
-    "toStringShallow": _flaxBinding290,
-    "toStringDeep": _flaxBinding291,
-    "toDiagnosticsNode": _flaxBinding292,
-    "debugDescribeChildren": _flaxBinding293,
+    "createState": _flaxBinding282,
+    "createElement": _flaxBinding283,
+    "toStringShort": _flaxBinding45,
+    "debugFillProperties": _flaxBinding284,
+    "toStringShallow": _flaxBinding285,
+    "toStringDeep": _flaxBinding286,
+    "toDiagnosticsNode": _flaxBinding287,
+    "debugDescribeChildren": _flaxBinding60,
   },
-  constructors: {"": _flaxBinding294},
+  constructors: {"": _flaxBinding288},
   create: _createVideoProgressIndicator,
   matches: _isVideoProgressIndicator,
   setters: [],
@@ -5182,84 +5338,70 @@ const _flaxBinding295 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding296 = FlaxGetter.plain(
+const _flaxBinding290 = FlaxGetter.plain(
   "child",
   flaxWidgetType,
   _VideoScrubber_child,
 );
-const _flaxBinding297 = FlaxGetter.plain(
+const _flaxBinding291 = FlaxGetter.plain(
   "controller",
   _flaxBinding105,
   _VideoScrubber_controller,
 );
-const _flaxBinding298 = FlaxGetter.plain(
-  "key",
-  _flaxBinding37,
-  _VideoScrubber_key,
-);
-const _flaxBinding299 = FlaxTypeRef(
+const _flaxBinding292 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
   dartType: FlaxDartTypes.typeOf<api1.State<api.VideoScrubber>>,
 );
-const _flaxBinding300 = FlaxInstanceMethod.plain(
+const _flaxBinding293 = FlaxInstanceMethod.plain(
   _flaxBinding43,
-  _flaxBinding299,
+  _flaxBinding292,
   _VideoScrubber_createState,
 );
-const _flaxBinding301 = FlaxInstanceMethod.plain(
+const _flaxBinding294 = FlaxInstanceMethod.plain(
   _flaxBinding43,
-  _flaxBinding110,
+  _flaxBinding109,
   _VideoScrubber_createElement,
 );
-const _flaxBinding302 = FlaxInstanceMethod.shared(
-  flaxStringCall,
-  _VideoScrubber_toStringShort,
-);
-const _flaxBinding303 = FlaxInstanceMethod.plain(
+const _flaxBinding295 = FlaxInstanceMethod.plain(
   _flaxBinding47,
   flaxVoidType,
   _VideoScrubber_debugFillProperties,
 );
-const _flaxBinding304 = FlaxInstanceMethod.plain(
+const _flaxBinding296 = FlaxInstanceMethod.plain(
   _flaxBinding50,
   flaxStringType,
   _VideoScrubber_toStringShallow,
 );
-const _flaxBinding305 = FlaxInstanceMethod.plain(
+const _flaxBinding297 = FlaxInstanceMethod.plain(
   _flaxBinding52,
   flaxStringType,
   _VideoScrubber_toStringDeep,
 );
-const _flaxBinding306 = FlaxInstanceMethod.plain(
+const _flaxBinding298 = FlaxInstanceMethod.plain(
   _flaxBinding55,
   _flaxBinding56,
   _VideoScrubber_toDiagnosticsNode,
 );
-const _flaxBinding307 = FlaxInstanceMethod.plain(
-  _flaxBinding43,
-  _flaxBinding59,
-  _VideoScrubber_debugDescribeChildren,
-);
-const _flaxBinding308 = <FlaxParameter>[
+const _flaxBinding299 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding37, required: false),
   FlaxParameter.required("child", flaxWidgetType),
   FlaxParameter.required("controller", _flaxBinding105),
 ];
-const _flaxBinding309 = FlaxObjectBinding(
+const _flaxBinding300 = FlaxObjectBinding(
   "flax.video/video#type:VideoScrubber",
-  [_flaxBinding296, _flaxBinding297, _flaxBinding298],
+  [_flaxBinding290, _flaxBinding291, _flaxBinding38],
   {
-    "createState": _flaxBinding300,
-    "createElement": _flaxBinding301,
-    "toStringShort": _flaxBinding302,
-    "debugFillProperties": _flaxBinding303,
-    "toStringShallow": _flaxBinding304,
-    "toStringDeep": _flaxBinding305,
-    "toDiagnosticsNode": _flaxBinding306,
-    "debugDescribeChildren": _flaxBinding307,
+    "createState": _flaxBinding293,
+    "createElement": _flaxBinding294,
+    "toStringShort": _flaxBinding45,
+    "debugFillProperties": _flaxBinding295,
+    "toStringShallow": _flaxBinding296,
+    "toStringDeep": _flaxBinding297,
+    "toDiagnosticsNode": _flaxBinding298,
+    "debugDescribeChildren": _flaxBinding60,
   },
-  constructors: {"": _flaxBinding308},
+  constructors: {"": _flaxBinding299},
   create: _createVideoScrubber,
   matches: _isVideoScrubber,
   setters: [],
@@ -5271,47 +5413,47 @@ const _flaxBinding309 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding310 = FlaxGetter.plain("id", flaxStringType, _VideoTrack_id);
-const _flaxBinding311 = FlaxGetter.plain(
+const _flaxBinding301 = FlaxGetter.plain("id", flaxStringType, _VideoTrack_id);
+const _flaxBinding302 = FlaxGetter.plain(
   "isSelected",
   flaxBoolType,
   _VideoTrack_isSelected,
 );
-const _flaxBinding312 = FlaxGetter.plain(
+const _flaxBinding303 = FlaxGetter.plain(
   "label",
   flaxNullableStringType,
   _VideoTrack_label,
 );
-const _flaxBinding313 = FlaxGetter.plain(
+const _flaxBinding304 = FlaxGetter.plain(
   "bitrate",
   flaxNullableIntType,
   _VideoTrack_bitrate,
 );
-const _flaxBinding314 = FlaxGetter.plain(
+const _flaxBinding305 = FlaxGetter.plain(
   "width",
   flaxNullableIntType,
   _VideoTrack_width,
 );
-const _flaxBinding315 = FlaxGetter.plain(
+const _flaxBinding306 = FlaxGetter.plain(
   "height",
   flaxNullableIntType,
   _VideoTrack_height,
 );
-const _flaxBinding316 = FlaxGetter.plain(
+const _flaxBinding307 = FlaxGetter.plain(
   "frameRate",
   flaxNullableDoubleType,
   _VideoTrack_frameRate,
 );
-const _flaxBinding317 = FlaxGetter.plain(
+const _flaxBinding308 = FlaxGetter.plain(
   "codec",
   flaxNullableStringType,
   _VideoTrack_codec,
 );
-const _flaxBinding318 = FlaxInstanceMethod.shared(
+const _flaxBinding309 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _VideoTrack_toString,
 );
-const _flaxBinding319 = <FlaxParameter>[
+const _flaxBinding310 = <FlaxParameter>[
   FlaxParameter.required("id", flaxStringType),
   FlaxParameter.required("isSelected", flaxBoolType),
   FlaxParameter("label", flaxNullableStringType, required: false),
@@ -5321,38 +5463,38 @@ const _flaxBinding319 = <FlaxParameter>[
   FlaxParameter("frameRate", flaxNullableDoubleType, required: false),
   FlaxParameter("codec", flaxNullableStringType, required: false),
 ];
-const _flaxBinding320 = FlaxProxyMember(
+const _flaxBinding311 = FlaxProxyMember(
   "width",
   1,
   flaxNullableIntCall,
   hasSuper: true,
 );
-const _flaxBinding321 = FlaxProxyMember(
+const _flaxBinding312 = FlaxProxyMember(
   "height",
   1,
   flaxNullableIntCall,
   hasSuper: true,
 );
-const _flaxBinding322 = FlaxProxyMember(
+const _flaxBinding313 = FlaxProxyMember(
   "frameRate",
   1,
   flaxNullableDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding323 = FlaxObjectBinding(
+const _flaxBinding314 = FlaxObjectBinding(
   "flax.video/video#type:VideoTrack",
   [
-    _flaxBinding310,
-    _flaxBinding311,
-    _flaxBinding312,
-    _flaxBinding313,
-    _flaxBinding314,
-    _flaxBinding315,
-    _flaxBinding316,
-    _flaxBinding317,
+    _flaxBinding301,
+    _flaxBinding302,
+    _flaxBinding303,
+    _flaxBinding304,
+    _flaxBinding305,
+    _flaxBinding306,
+    _flaxBinding307,
+    _flaxBinding308,
   ],
   {
-    "toString": _flaxBinding318,
+    "toString": _flaxBinding309,
     "@super:toString": _flaxBinding24,
     "@super:get:id": _flaxBinding90,
     "@super:get:isSelected": _flaxBinding92,
@@ -5372,7 +5514,7 @@ const _flaxBinding323 = FlaxObjectBinding(
     ),
     "@super:get:codec": _flaxBinding94,
   },
-  constructors: {"": _flaxBinding319, "@implementation": _flaxBinding319},
+  constructors: {"": _flaxBinding310, "@implementation": _flaxBinding310},
   create: _createVideoTrack,
   matches: _isVideoTrack,
   setters: [],
@@ -5383,13 +5525,13 @@ const _flaxBinding323 = FlaxObjectBinding(
     _flaxBinding99,
     _flaxBinding97,
     _flaxBinding100,
-    _flaxBinding320,
-    _flaxBinding321,
-    _flaxBinding322,
+    _flaxBinding311,
+    _flaxBinding312,
+    _flaxBinding313,
     _flaxBinding103,
   ]),
 );
-const _flaxBinding324 = FlaxObjectBinding(
+const _flaxBinding315 = FlaxObjectBinding(
   "flax.video/video#type:WebVTTCaptionFile",
   [],
   {"@super:get:captions": _flaxBinding76},

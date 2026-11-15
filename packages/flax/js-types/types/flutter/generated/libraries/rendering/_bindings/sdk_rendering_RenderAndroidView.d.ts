@@ -618,6 +618,7 @@ export declare function _RenderAndroidViewFactory(options: {
 }): RenderAndroidView;
 export interface _RenderAndroidViewNative extends RenderAndroidView {
     readonly [_flaxDartTypeValue]: _RenderAndroidViewNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1064,7 +1065,6 @@ export interface _RenderAndroidViewNative extends RenderAndroidView {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream17.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get debugDoingThisPaint(): boolean;

@@ -37,67 +37,69 @@ import type * as upstream17 from '@flax/flutter/painting/_bindings/sdk_painting_
 import '@flax/flutter/painting/_bindings/sdk_painting_TextWidthBasis';
 import type * as upstream18 from '@flax/dart/ui/_bindings/sdk_dart_ui_TextHeightBehavior';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_TextHeightBehavior';
-import type * as upstream19 from '@flax/dart/ui/_bindings/flutter_Color';
+import type * as upstream19 from '@flax/dart/ui/_bindings/sdk_dart_ui_Hyphens';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_Hyphens';
+import type * as upstream20 from '@flax/dart/ui/_bindings/flutter_Color';
 import '@flax/dart/ui/_bindings/flutter_Color';
-import type * as upstream20 from '@flax/flutter/rendering/_bindings/sdk_rendering_SelectionRegistrar';
+import type * as upstream21 from '@flax/flutter/rendering/_bindings/sdk_rendering_SelectionRegistrar';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_SelectionRegistrar';
-import type * as upstream21 from '@flax/dart/ui/_bindings/flutter_Size';
+import type * as upstream22 from '@flax/dart/ui/_bindings/flutter_Size';
 import '@flax/dart/ui/_bindings/flutter_Size';
-import type * as upstream22 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
+import type * as upstream23 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
-import type * as upstream23 from '@flax/flutter/rendering/_bindings/flutter_BoxConstraints';
+import type * as upstream24 from '@flax/flutter/rendering/_bindings/flutter_BoxConstraints';
 import '@flax/flutter/rendering/_bindings/flutter_BoxConstraints';
-import type * as upstream24 from '@flax/flutter/rendering/_bindings/sdk_rendering_ParentData';
+import type * as upstream25 from '@flax/flutter/rendering/_bindings/sdk_rendering_ParentData';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_ParentData';
-import type * as upstream25 from '@flax/flutter/rendering/_bindings/sdk_rendering_PipelineOwner';
+import type * as upstream26 from '@flax/flutter/rendering/_bindings/sdk_rendering_PipelineOwner';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_PipelineOwner';
-import type * as upstream26 from '@flax/flutter/rendering/_bindings/sdk_rendering_ContainerLayer';
+import type * as upstream27 from '@flax/flutter/rendering/_bindings/sdk_rendering_ContainerLayer';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_ContainerLayer';
-import type * as upstream27 from '@flax/flutter/semantics/_bindings/sdk_semantics_SemanticsNode';
+import type * as upstream28 from '@flax/flutter/semantics/_bindings/sdk_semantics_SemanticsNode';
 import '@flax/flutter/semantics/_bindings/sdk_semantics_SemanticsNode';
-import type * as upstream28 from '@flax/dart/ui/_bindings/flutter_TextBaseline';
+import type * as upstream29 from '@flax/dart/ui/_bindings/flutter_TextBaseline';
 import '@flax/dart/ui/_bindings/flutter_TextBaseline';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_FlutterError';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_BoxHitTestResult';
-import type * as upstream31 from '@flax/dart/ui/_bindings/flutter_Offset';
+import type * as upstream32 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
-import type * as upstream32 from '@flax/flutter/rendering/_bindings/sdk_rendering_Matrix4';
+import type * as upstream33 from '@flax/flutter/rendering/_bindings/sdk_rendering_Matrix4';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_Matrix4';
 import '@flax/flutter/gestures/_bindings/flutter_PointerEvent';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_BoxHitTestEntry';
 import '@flax/flutter/gestures/_bindings/sdk_gestures_HitTestEntry';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_PaintingContext';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-import type * as upstream38 from '@flax/flutter/rendering/_bindings/sdk_rendering_Constraints';
+import type * as upstream39 from '@flax/flutter/rendering/_bindings/sdk_rendering_Constraints';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_Constraints';
-import type * as upstream39 from '@flax/flutter/rendering/_bindings/sdk_rendering_OffsetLayer';
+import type * as upstream40 from '@flax/flutter/rendering/_bindings/sdk_rendering_OffsetLayer';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_OffsetLayer';
 import '@flax/flutter/semantics/_bindings/sdk_semantics_SemanticsConfiguration';
 import '@flax/flutter/semantics/_bindings/sdk_semantics_SemanticsEvent';
-import type * as upstream42 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream43 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-import type * as upstream43 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream44 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import '@flax/flutter/animation/_bindings/flutter_Curve';
-import type * as upstream45 from '@flax/dart/core/_bindings/flutter_Duration';
+import type * as upstream46 from '@flax/dart/core/_bindings/flutter_Duration';
 import '@flax/dart/core/_bindings/flutter_Duration';
-import type * as upstream46 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream47 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
-import type * as upstream47 from '@flax/flutter/painting/_bindings/sdk_painting_PlaceholderDimensions';
+import type * as upstream48 from '@flax/flutter/painting/_bindings/sdk_painting_PlaceholderDimensions';
 import '@flax/flutter/painting/_bindings/sdk_painting_PlaceholderDimensions';
-import type * as upstream48 from '@flax/dart/ui/_bindings/sdk_dart_ui_TextBox';
+import type * as upstream49 from '@flax/dart/ui/_bindings/sdk_dart_ui_TextBox';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_TextBox';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_Selectable';
-import type * as upstream50 from '@flax/dart/ui/_bindings/sdk_dart_ui_TextPosition';
+import type * as upstream51 from '@flax/dart/ui/_bindings/sdk_dart_ui_TextPosition';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_TextPosition';
 import '@flax/flutter/services/_bindings/flutter_TextSelection';
-import type * as upstream52 from '@flax/dart/ui/_bindings/sdk_dart_ui_BoxHeightStyle';
+import type * as upstream53 from '@flax/dart/ui/_bindings/sdk_dart_ui_BoxHeightStyle';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_BoxHeightStyle';
-import type * as upstream53 from '@flax/dart/ui/_bindings/sdk_dart_ui_BoxWidthStyle';
+import type * as upstream54 from '@flax/dart/ui/_bindings/sdk_dart_ui_BoxWidthStyle';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_BoxWidthStyle';
-import type * as upstream54 from '@flax/dart/ui/_bindings/flutter_TextRange';
+import type * as upstream55 from '@flax/dart/ui/_bindings/flutter_TextRange';
 import '@flax/dart/ui/_bindings/flutter_TextRange';
-import type * as upstream55 from '@flax/flutter/rendering/_bindings/sdk_rendering_SelectionGeometry';
+import type * as upstream56 from '@flax/flutter/rendering/_bindings/sdk_rendering_SelectionGeometry';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
 import { flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface RenderParagraph extends Omit<upstream0.RenderBox, _flaxOwnMembers0>, Omit<upstream1.RenderObject, _flaxOwnMembers0 | keyof upstream0.RenderBox>, Omit<upstream2.HitTestTarget, _flaxOwnMembers0 | keyof upstream0.RenderBox | keyof upstream1.RenderObject>, Omit<upstream3.DiagnosticableTreeMixin, _flaxOwnMembers0 | keyof upstream0.RenderBox | keyof upstream1.RenderObject | keyof upstream2.HitTestTarget>, Omit<upstream4.DiagnosticableTree, _flaxOwnMembers0 | keyof upstream0.RenderBox | keyof upstream1.RenderObject | keyof upstream2.HitTestTarget | keyof upstream3.DiagnosticableTreeMixin>, Omit<upstream5.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.RenderBox | keyof upstream1.RenderObject | keyof upstream2.HitTestTarget | keyof upstream3.DiagnosticableTreeMixin | keyof upstream4.DiagnosticableTree>, Omit<upstream6.ContainerRenderObjectMixin<upstream0.RenderBox, upstream7.TextParentData>, _flaxOwnMembers0 | keyof upstream0.RenderBox | keyof upstream1.RenderObject | keyof upstream2.HitTestTarget | keyof upstream3.DiagnosticableTreeMixin | keyof upstream4.DiagnosticableTree | keyof upstream5.Diagnosticable>, Omit<upstream8.RenderInlineChildrenContainerDefaults, _flaxOwnMembers0 | keyof upstream0.RenderBox | keyof upstream1.RenderObject | keyof upstream2.HitTestTarget | keyof upstream3.DiagnosticableTreeMixin | keyof upstream4.DiagnosticableTree | keyof upstream5.Diagnosticable | keyof upstream6.ContainerRenderObjectMixin<upstream0.RenderBox, upstream7.TextParentData>>, Omit<upstream9.RelayoutWhenSystemFontsChangeMixin, _flaxOwnMembers0 | keyof upstream0.RenderBox | keyof upstream1.RenderObject | keyof upstream2.HitTestTarget | keyof upstream3.DiagnosticableTreeMixin | keyof upstream4.DiagnosticableTree | keyof upstream5.Diagnosticable | keyof upstream6.ContainerRenderObjectMixin<upstream0.RenderBox, upstream7.TextParentData> | keyof upstream8.RenderInlineChildrenContainerDefaults>, Readonly<{
@@ -127,12 +129,12 @@ export interface RenderParagraph extends Omit<upstream0.RenderBox, _flaxOwnMembe
         invokeLayoutCallback: _FlaxSignature0;
     };
     readonly hasSize: boolean;
-    get size(): upstream21.Size;
-    readonly semanticBounds: upstream22.Rect;
-    readonly constraints: upstream23.BoxConstraints;
-    readonly paintBounds: upstream22.Rect;
+    get size(): upstream22.Size;
+    readonly semanticBounds: upstream23.Rect;
+    readonly constraints: upstream24.BoxConstraints;
+    readonly paintBounds: upstream23.Rect;
     readonly debugDisposed: boolean | null;
-    get parentData(): upstream24.ParentData | null;
+    get parentData(): upstream25.ParentData | null;
     readonly depth: number;
     readonly parent: upstream1.RenderObject | null;
     get debugCreator(): unknown | null;
@@ -140,7 +142,7 @@ export interface RenderParagraph extends Omit<upstream0.RenderBox, _flaxOwnMembe
     readonly debugDoingThisLayout: boolean;
     readonly debugCanParentUseSize: boolean;
     readonly debugLayoutParent: upstream1.RenderObject | null;
-    readonly owner: upstream25.PipelineOwner | null;
+    readonly owner: upstream26.PipelineOwner | null;
     readonly attached: boolean;
     readonly debugNeedsLayout: boolean;
     readonly debugDoingThisLayoutWithCallback: boolean;
@@ -148,18 +150,18 @@ export interface RenderParagraph extends Omit<upstream0.RenderBox, _flaxOwnMembe
     readonly debugDoingThisPaint: boolean;
     readonly isRepaintBoundary: boolean;
     readonly alwaysNeedsCompositing: boolean;
-    get layer(): upstream26.ContainerLayer | null;
-    readonly debugLayer: upstream26.ContainerLayer | null;
+    get layer(): upstream27.ContainerLayer | null;
+    readonly debugLayer: upstream27.ContainerLayer | null;
     readonly needsCompositing: boolean;
     readonly debugNeedsPaint: boolean;
     readonly debugNeedsCompositedLayerUpdate: boolean;
     readonly debugNeedsSemanticsUpdate: boolean;
-    readonly debugSemantics: upstream27.SemanticsNode | null;
+    readonly debugSemantics: upstream28.SemanticsNode | null;
     readonly childCount: number;
     readonly firstChild: upstream0.RenderBox | null;
     readonly lastChild: upstream0.RenderBox | null;
     get text(): upstream10.InlineSpan;
-    get registrar(): upstream20.SelectionRegistrar | null;
+    get registrar(): upstream21.SelectionRegistrar | null;
     get textAlign(): upstream11.TextAlign;
     get textDirection(): upstream12.TextDirection;
     get softWrap(): boolean;
@@ -172,8 +174,9 @@ export interface RenderParagraph extends Omit<upstream0.RenderBox, _flaxOwnMembe
     get strutStyle(): upstream16.StrutStyle | null;
     get textWidthBasis(): upstream17.TextWidthBasis;
     get textHeightBehavior(): upstream18.TextHeightBehavior | null;
-    get selectionColor(): upstream19.Color | null;
-    readonly textSize: upstream21.Size;
+    get hyphens(): upstream19.Hyphens;
+    get selectionColor(): upstream20.Color | null;
+    readonly textSize: upstream22.Size;
     readonly didExceedMaxLines: boolean;
     setupParentData(child: Readonly<{
         "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
@@ -200,22 +203,22 @@ export interface RenderParagraph extends Omit<upstream0.RenderBox, _flaxOwnMembe
         "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
-    }>): upstream21.Size;
+    }>): upstream22.Size;
     computeDryLayout(constraints: Readonly<{
         "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
-    }>): upstream21.Size;
+    }>): upstream22.Size;
     getDryBaseline(constraints: Readonly<{
         "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
-    }>, baseline: upstream28.TextBaseline): number | null;
+    }>, baseline: upstream29.TextBaseline): number | null;
     computeDryBaseline(constraints: Readonly<{
         "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
-    }>, baseline: upstream28.TextBaseline): number;
+    }>, baseline: upstream29.TextBaseline): number;
     debugCannotComputeDryLayout(options?: {
         error?: (Readonly<{
             "__flaxBound:package:flutter/src/foundation/assertions.dart::FlutterError": readonly [];
@@ -236,13 +239,13 @@ export interface RenderParagraph extends Omit<upstream0.RenderBox, _flaxOwnMembe
         "__flaxBound:dart:ui::Size": readonly [];
     }> & Readonly<{
         "__flaxBound:dart:ui::OffsetBase": readonly [];
-    }>): upstream21.Size;
+    }>): upstream22.Size;
     debugResetSize(): void;
-    getDistanceToBaseline(baseline: upstream28.TextBaseline, options?: {
+    getDistanceToBaseline(baseline: upstream29.TextBaseline, options?: {
         onlyReal?: boolean | undefined;
     }): number | null;
-    getDistanceToActualBaseline(baseline: upstream28.TextBaseline): number | null;
-    computeDistanceToActualBaseline(baseline: upstream28.TextBaseline): number;
+    getDistanceToActualBaseline(baseline: upstream29.TextBaseline): number | null;
+    computeDistanceToActualBaseline(baseline: upstream29.TextBaseline): number;
     debugAssertDoesMeetConstraints(): void;
     markNeedsLayout(): void;
     performResize(): void;
@@ -305,7 +308,7 @@ export interface RenderParagraph extends Omit<upstream0.RenderBox, _flaxOwnMembe
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
-    }): upstream31.Offset;
+    }): upstream32.Offset;
     localToGlobal(point: Readonly<{
         "__flaxBound:dart:ui::Offset": readonly [];
     }> & Readonly<{
@@ -322,7 +325,7 @@ export interface RenderParagraph extends Omit<upstream0.RenderBox, _flaxOwnMembe
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
-    }): upstream31.Offset;
+    }): upstream32.Offset;
     handleEvent(event: Readonly<{
         "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
     }> & Readonly<{
@@ -424,7 +427,7 @@ export interface RenderParagraph extends Omit<upstream0.RenderBox, _flaxOwnMembe
     }>, options?: {
         parentUsesSize?: boolean | undefined;
     }): void;
-    invokeLayoutCallback<T extends upstream38.Constraints = upstream38.Constraints>(callback: ((constraints: T) => void)): void;
+    invokeLayoutCallback<T extends upstream39.Constraints = upstream39.Constraints>(callback: ((constraints: T) => void)): void;
     debugRegisterRepaintBoundaryPaint(options?: {
         includedChild?: boolean | undefined;
         includedParent?: boolean | undefined;
@@ -443,7 +446,7 @@ export interface RenderParagraph extends Omit<upstream0.RenderBox, _flaxOwnMembe
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null;
-    }): upstream39.OffsetLayer;
+    }): upstream40.OffsetLayer;
     markNeedsCompositingBitsUpdate(): void;
     markNeedsPaint(): void;
     markNeedsCompositedLayerUpdate(): void;
@@ -501,7 +504,7 @@ export interface RenderParagraph extends Omit<upstream0.RenderBox, _flaxOwnMembe
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
-    }>) | null): upstream32.Matrix4;
+    }>) | null): upstream33.Matrix4;
     describeApproximatePaintClip(child: Readonly<{
         "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
     }> & Readonly<{
@@ -512,7 +515,7 @@ export interface RenderParagraph extends Omit<upstream0.RenderBox, _flaxOwnMembe
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
-    }>): upstream22.Rect | null;
+    }>): upstream23.Rect | null;
     describeSemanticsClip(child: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
     }> & Readonly<{
@@ -523,7 +526,7 @@ export interface RenderParagraph extends Omit<upstream0.RenderBox, _flaxOwnMembe
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
-    }>) | null): upstream22.Rect | null;
+    }>) | null): upstream23.Rect | null;
     scheduleInitialSemantics(): void;
     describeSemanticsConfiguration(config: Readonly<{
         "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsConfiguration": readonly [];
@@ -544,7 +547,7 @@ export interface RenderParagraph extends Omit<upstream0.RenderBox, _flaxOwnMembe
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>, config: Readonly<{
         "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsConfiguration": readonly [];
-    }>, children: DartIterableInput<upstream27.SemanticsNode, Readonly<{
+    }>, children: DartIterableInput<upstream28.SemanticsNode, Readonly<{
         "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsNode": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
@@ -555,16 +558,16 @@ export interface RenderParagraph extends Omit<upstream0.RenderBox, _flaxOwnMembe
     }>>): void;
     toStringShort(): string;
     toStringDeep(options?: {
-        minLevel?: upstream42.DiagnosticLevel | undefined;
+        minLevel?: upstream43.DiagnosticLevel | undefined;
         prefixLineOne?: string | undefined;
         prefixOtherLines?: string | null | undefined;
         wrapWidth?: number | undefined;
     }): string;
     toStringShallow(options?: {
         joiner?: string | undefined;
-        minLevel?: upstream42.DiagnosticLevel | undefined;
+        minLevel?: upstream43.DiagnosticLevel | undefined;
     }): string;
-    debugDescribeChildren(): DartList<upstream43.DiagnosticsNode>;
+    debugDescribeChildren(): DartList<upstream44.DiagnosticsNode>;
     showOnScreen(options?: {
         curve?: (Readonly<{
             "__flaxBound:package:flutter/src/animation/curves.dart::Curve": readonly [];
@@ -585,21 +588,21 @@ export interface RenderParagraph extends Omit<upstream0.RenderBox, _flaxOwnMembe
         duration?: (Readonly<{
             "__flaxBound:dart:core::Duration": readonly [];
         }> & Readonly<{
-            "__flaxBound:dart:core::Comparable": readonly [upstream45.Duration];
+            "__flaxBound:dart:core::Comparable": readonly [upstream46.Duration];
         }>) | undefined;
         rect?: Readonly<{
             "__flaxBound:dart:ui::Rect": readonly [];
         }> | null | undefined;
     }): void;
     describeForError(name: string, options?: {
-        style?: upstream46.DiagnosticsTreeStyle | undefined;
-    }): upstream43.DiagnosticsNode;
+        style?: upstream47.DiagnosticsTreeStyle | undefined;
+    }): upstream44.DiagnosticsNode;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
-        style?: upstream46.DiagnosticsTreeStyle | null | undefined;
-    }): upstream43.DiagnosticsNode;
+        style?: upstream47.DiagnosticsTreeStyle | null | undefined;
+    }): upstream44.DiagnosticsNode;
     toString(options?: {
-        minLevel?: upstream42.DiagnosticLevel | undefined;
+        minLevel?: upstream43.DiagnosticLevel | undefined;
     }): string;
     debugValidateChild(child: Readonly<{
         "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
@@ -732,12 +735,12 @@ export interface RenderParagraph extends Omit<upstream0.RenderBox, _flaxOwnMembe
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>): upstream0.RenderBox | null;
-    layoutInlineChildren(maxWidth: number, layoutChild: ((child: upstream0.RenderBox, constraints: upstream23.BoxConstraints) => Readonly<{
+    layoutInlineChildren(maxWidth: number, layoutChild: ((child: upstream0.RenderBox, constraints: upstream24.BoxConstraints) => Readonly<{
         "__flaxBound:dart:ui::Size": readonly [];
     }> & Readonly<{
         "__flaxBound:dart:ui::OffsetBase": readonly [];
-    }>), getChildBaseline: ((child: upstream0.RenderBox, constraints: upstream23.BoxConstraints, baseline: upstream28.TextBaseline) => number | null)): DartList<upstream47.PlaceholderDimensions>;
-    positionInlineChildren(boxes: DartListInput<upstream48.TextBox, Readonly<{
+    }>), getChildBaseline: ((child: upstream0.RenderBox, constraints: upstream24.BoxConstraints, baseline: upstream29.TextBaseline) => number | null)): DartList<upstream48.PlaceholderDimensions>;
+    positionInlineChildren(boxes: DartListInput<upstream49.TextBox, Readonly<{
         "__flaxBound:dart:ui::TextBox": readonly [];
     }>>): void;
     defaultApplyPaintTransform(child: Readonly<{
@@ -779,15 +782,15 @@ export interface RenderParagraph extends Omit<upstream0.RenderBox, _flaxOwnMembe
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream55.SelectionGeometry];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream56.SelectionGeometry];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): boolean;
     getOffsetForCaret(position: Readonly<{
         "__flaxBound:dart:ui::TextPosition": readonly [];
     }>, caretPrototype: Readonly<{
         "__flaxBound:dart:ui::Rect": readonly [];
-    }>): upstream31.Offset;
+    }>): upstream32.Offset;
     getFullHeightForCaret(position: Readonly<{
         "__flaxBound:dart:ui::TextPosition": readonly [];
     }>): number;
@@ -796,17 +799,17 @@ export interface RenderParagraph extends Omit<upstream0.RenderBox, _flaxOwnMembe
     }> & Readonly<{
         "__flaxBound:dart:ui::TextRange": readonly [];
     }>, options?: {
-        boxHeightStyle?: upstream52.BoxHeightStyle | undefined;
-        boxWidthStyle?: upstream53.BoxWidthStyle | undefined;
-    }): DartList<upstream48.TextBox>;
+        boxHeightStyle?: upstream53.BoxHeightStyle | undefined;
+        boxWidthStyle?: upstream54.BoxWidthStyle | undefined;
+    }): DartList<upstream49.TextBox>;
     getPositionForOffset(offset: Readonly<{
         "__flaxBound:dart:ui::Offset": readonly [];
     }> & Readonly<{
         "__flaxBound:dart:ui::OffsetBase": readonly [];
-    }>): upstream50.TextPosition;
+    }>): upstream51.TextPosition;
     getWordBoundary(position: Readonly<{
         "__flaxBound:dart:ui::TextPosition": readonly [];
-    }>): upstream54.TextRange;
+    }>): upstream55.TextRange;
     set size(value: Readonly<{
         "__flaxBound:dart:ui::Size": readonly [];
     }> & Readonly<{
@@ -859,6 +862,7 @@ export interface RenderParagraph extends Omit<upstream0.RenderBox, _flaxOwnMembe
     set textHeightBehavior(value: Readonly<{
         "__flaxBound:dart:ui::TextHeightBehavior": readonly [];
     }> | null);
+    set hyphens(value: upstream19.Hyphens);
     set selectionColor(value: Readonly<{
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null);
@@ -891,6 +895,7 @@ export declare function _RenderParagraphFactory(text: Readonly<{
     textHeightBehavior?: Readonly<{
         "__flaxBound:dart:ui::TextHeightBehavior": readonly [];
     }> | null | undefined;
+    hyphens?: upstream19.Hyphens | undefined;
     children?: DartListInput<upstream0.RenderBox, Readonly<{
         "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
     }> & Readonly<{
@@ -914,6 +919,7 @@ export declare function _RenderParagraphFactory(text: Readonly<{
 }): RenderParagraph;
 export interface _RenderParagraphNative extends RenderParagraph {
     readonly [_flaxDartTypeValue]: _RenderParagraphNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -940,22 +946,22 @@ export interface _RenderParagraphNative extends RenderParagraph {
         "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
-    }>): upstream21.Size;
+    }>): upstream22.Size;
     computeDryLayout(constraints: Readonly<{
         "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
-    }>): upstream21.Size;
+    }>): upstream22.Size;
     getDryBaseline(constraints: Readonly<{
         "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
-    }>, baseline: upstream28.TextBaseline): number | null;
+    }>, baseline: upstream29.TextBaseline): number | null;
     computeDryBaseline(constraints: Readonly<{
         "__flaxBound:package:flutter/src/rendering/box.dart::BoxConstraints": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/object.dart::Constraints": readonly [];
-    }>, baseline: upstream28.TextBaseline): number;
+    }>, baseline: upstream29.TextBaseline): number;
     debugCannotComputeDryLayout(options?: {
         reason?: string | null | undefined;
         error?: (Readonly<{
@@ -976,13 +982,13 @@ export interface _RenderParagraphNative extends RenderParagraph {
         "__flaxBound:dart:ui::Size": readonly [];
     }> & Readonly<{
         "__flaxBound:dart:ui::OffsetBase": readonly [];
-    }>): upstream21.Size;
+    }>): upstream22.Size;
     debugResetSize(): void;
-    getDistanceToBaseline(baseline: upstream28.TextBaseline, options?: {
+    getDistanceToBaseline(baseline: upstream29.TextBaseline, options?: {
         onlyReal?: boolean | undefined;
     }): number | null;
-    getDistanceToActualBaseline(baseline: upstream28.TextBaseline): number | null;
-    computeDistanceToActualBaseline(baseline: upstream28.TextBaseline): number;
+    getDistanceToActualBaseline(baseline: upstream29.TextBaseline): number | null;
+    computeDistanceToActualBaseline(baseline: upstream29.TextBaseline): number;
     debugAssertDoesMeetConstraints(): void;
     markNeedsLayout(): void;
     performResize(): void;
@@ -1045,7 +1051,7 @@ export interface _RenderParagraphNative extends RenderParagraph {
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
-    }): upstream31.Offset;
+    }): upstream32.Offset;
     localToGlobal(point: Readonly<{
         "__flaxBound:dart:ui::Offset": readonly [];
     }> & Readonly<{
@@ -1062,7 +1068,7 @@ export interface _RenderParagraphNative extends RenderParagraph {
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
-    }): upstream31.Offset;
+    }): upstream32.Offset;
     handleEvent(event: Readonly<{
         "__flaxBound:package:flutter/src/gestures/events.dart::PointerEvent": readonly [];
     }> & Readonly<{
@@ -1162,7 +1168,7 @@ export interface _RenderParagraphNative extends RenderParagraph {
     }>, options?: {
         parentUsesSize?: boolean | undefined;
     }): void;
-    invokeLayoutCallback<T extends upstream38.Constraints = upstream38.Constraints>(callback: ((constraints: T) => void)): void;
+    invokeLayoutCallback<T extends upstream39.Constraints = upstream39.Constraints>(callback: ((constraints: T) => void)): void;
     debugRegisterRepaintBoundaryPaint(options?: {
         includedParent?: boolean | undefined;
         includedChild?: boolean | undefined;
@@ -1181,7 +1187,7 @@ export interface _RenderParagraphNative extends RenderParagraph {
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null;
-    }): upstream39.OffsetLayer;
+    }): upstream40.OffsetLayer;
     markNeedsCompositingBitsUpdate(): void;
     markNeedsPaint(): void;
     markNeedsCompositedLayerUpdate(): void;
@@ -1239,7 +1245,7 @@ export interface _RenderParagraphNative extends RenderParagraph {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
-    }>) | null): upstream32.Matrix4;
+    }>) | null): upstream33.Matrix4;
     describeApproximatePaintClip(child: Readonly<{
         "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
     }> & Readonly<{
@@ -1250,7 +1256,7 @@ export interface _RenderParagraphNative extends RenderParagraph {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
-    }>): upstream22.Rect | null;
+    }>): upstream23.Rect | null;
     describeSemanticsClip(child: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
     }> & Readonly<{
@@ -1261,7 +1267,7 @@ export interface _RenderParagraphNative extends RenderParagraph {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
-    }>) | null): upstream22.Rect | null;
+    }>) | null): upstream23.Rect | null;
     scheduleInitialSemantics(): void;
     describeSemanticsConfiguration(config: Readonly<{
         "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsConfiguration": readonly [];
@@ -1282,7 +1288,7 @@ export interface _RenderParagraphNative extends RenderParagraph {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>, config: Readonly<{
         "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsConfiguration": readonly [];
-    }>, children: DartIterableInput<upstream27.SemanticsNode, Readonly<{
+    }>, children: DartIterableInput<upstream28.SemanticsNode, Readonly<{
         "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsNode": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin": readonly [];
@@ -1295,14 +1301,14 @@ export interface _RenderParagraphNative extends RenderParagraph {
     toStringDeep(options?: {
         prefixLineOne?: string | undefined;
         prefixOtherLines?: string | null | undefined;
-        minLevel?: upstream42.DiagnosticLevel | undefined;
+        minLevel?: upstream43.DiagnosticLevel | undefined;
         wrapWidth?: number | undefined;
     }): string;
     toStringShallow(options?: {
         joiner?: string | undefined;
-        minLevel?: upstream42.DiagnosticLevel | undefined;
+        minLevel?: upstream43.DiagnosticLevel | undefined;
     }): string;
-    debugDescribeChildren(): DartList<upstream43.DiagnosticsNode>;
+    debugDescribeChildren(): DartList<upstream44.DiagnosticsNode>;
     showOnScreen(options?: {
         descendant?: (Readonly<{
             "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
@@ -1321,7 +1327,7 @@ export interface _RenderParagraphNative extends RenderParagraph {
         duration?: (Readonly<{
             "__flaxBound:dart:core::Duration": readonly [];
         }> & Readonly<{
-            "__flaxBound:dart:core::Comparable": readonly [upstream45.Duration];
+            "__flaxBound:dart:core::Comparable": readonly [upstream46.Duration];
         }>) | undefined;
         curve?: (Readonly<{
             "__flaxBound:package:flutter/src/animation/curves.dart::Curve": readonly [];
@@ -1330,14 +1336,14 @@ export interface _RenderParagraphNative extends RenderParagraph {
         }>) | undefined;
     }): void;
     describeForError(name: string, options?: {
-        style?: upstream46.DiagnosticsTreeStyle | undefined;
-    }): upstream43.DiagnosticsNode;
+        style?: upstream47.DiagnosticsTreeStyle | undefined;
+    }): upstream44.DiagnosticsNode;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
-        style?: upstream46.DiagnosticsTreeStyle | null | undefined;
-    }): upstream43.DiagnosticsNode;
+        style?: upstream47.DiagnosticsTreeStyle | null | undefined;
+    }): upstream44.DiagnosticsNode;
     toString(options?: {
-        minLevel?: upstream42.DiagnosticLevel | undefined;
+        minLevel?: upstream43.DiagnosticLevel | undefined;
     }): string;
     debugValidateChild(child: Readonly<{
         "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
@@ -1470,12 +1476,12 @@ export interface _RenderParagraphNative extends RenderParagraph {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>): upstream0.RenderBox | null;
-    layoutInlineChildren(maxWidth: number, layoutChild: ((child: upstream0.RenderBox, constraints: upstream23.BoxConstraints) => Readonly<{
+    layoutInlineChildren(maxWidth: number, layoutChild: ((child: upstream0.RenderBox, constraints: upstream24.BoxConstraints) => Readonly<{
         "__flaxBound:dart:ui::Size": readonly [];
     }> & Readonly<{
         "__flaxBound:dart:ui::OffsetBase": readonly [];
-    }>), getChildBaseline: ((child: upstream0.RenderBox, constraints: upstream23.BoxConstraints, baseline: upstream28.TextBaseline) => number | null)): DartList<upstream47.PlaceholderDimensions>;
-    positionInlineChildren(boxes: DartListInput<upstream48.TextBox, Readonly<{
+    }>), getChildBaseline: ((child: upstream0.RenderBox, constraints: upstream24.BoxConstraints, baseline: upstream29.TextBaseline) => number | null)): DartList<upstream48.PlaceholderDimensions>;
+    positionInlineChildren(boxes: DartListInput<upstream49.TextBox, Readonly<{
         "__flaxBound:dart:ui::TextBox": readonly [];
     }>>): void;
     defaultApplyPaintTransform(child: Readonly<{
@@ -1517,15 +1523,15 @@ export interface _RenderParagraphNative extends RenderParagraph {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream55.SelectionGeometry];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream56.SelectionGeometry];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): boolean;
     getOffsetForCaret(position: Readonly<{
         "__flaxBound:dart:ui::TextPosition": readonly [];
     }>, caretPrototype: Readonly<{
         "__flaxBound:dart:ui::Rect": readonly [];
-    }>): upstream31.Offset;
+    }>): upstream32.Offset;
     getFullHeightForCaret(position: Readonly<{
         "__flaxBound:dart:ui::TextPosition": readonly [];
     }>): number;
@@ -1534,19 +1540,19 @@ export interface _RenderParagraphNative extends RenderParagraph {
     }> & Readonly<{
         "__flaxBound:dart:ui::TextRange": readonly [];
     }>, options?: {
-        boxHeightStyle?: upstream52.BoxHeightStyle | undefined;
-        boxWidthStyle?: upstream53.BoxWidthStyle | undefined;
-    }): DartList<upstream48.TextBox>;
+        boxHeightStyle?: upstream53.BoxHeightStyle | undefined;
+        boxWidthStyle?: upstream54.BoxWidthStyle | undefined;
+    }): DartList<upstream49.TextBox>;
     getPositionForOffset(offset: Readonly<{
         "__flaxBound:dart:ui::Offset": readonly [];
     }> & Readonly<{
         "__flaxBound:dart:ui::OffsetBase": readonly [];
-    }>): upstream50.TextPosition;
+    }>): upstream51.TextPosition;
     getWordBoundary(position: Readonly<{
         "__flaxBound:dart:ui::TextPosition": readonly [];
-    }>): upstream54.TextRange;
+    }>): upstream55.TextRange;
     get text(): upstream10.InlineSpan;
-    get registrar(): upstream20.SelectionRegistrar | null;
+    get registrar(): upstream21.SelectionRegistrar | null;
     get alwaysNeedsCompositing(): boolean;
     get textAlign(): upstream11.TextAlign;
     get textDirection(): upstream12.TextDirection;
@@ -1560,16 +1566,17 @@ export interface _RenderParagraphNative extends RenderParagraph {
     get strutStyle(): upstream16.StrutStyle | null;
     get textWidthBasis(): upstream17.TextWidthBasis;
     get textHeightBehavior(): upstream18.TextHeightBehavior | null;
-    get selectionColor(): upstream19.Color | null;
-    get textSize(): upstream21.Size;
+    get hyphens(): upstream19.Hyphens;
+    get selectionColor(): upstream20.Color | null;
+    get textSize(): upstream22.Size;
     get didExceedMaxLines(): boolean;
     get hasSize(): boolean;
-    get size(): upstream21.Size;
-    get semanticBounds(): upstream22.Rect;
-    get constraints(): upstream23.BoxConstraints;
-    get paintBounds(): upstream22.Rect;
+    get size(): upstream22.Size;
+    get semanticBounds(): upstream23.Rect;
+    get constraints(): upstream24.BoxConstraints;
+    get paintBounds(): upstream23.Rect;
     get debugDisposed(): boolean | null;
-    get parentData(): upstream24.ParentData | null;
+    get parentData(): upstream25.ParentData | null;
     get depth(): number;
     get parent(): upstream1.RenderObject | null;
     get debugCreator(): unknown | null;
@@ -1577,20 +1584,19 @@ export interface _RenderParagraphNative extends RenderParagraph {
     get debugDoingThisLayout(): boolean;
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream1.RenderObject | null;
-    get owner(): upstream25.PipelineOwner | null;
-    get attached(): boolean;
+    get owner(): upstream26.PipelineOwner | null;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;
     get debugDoingThisPaint(): boolean;
     get isRepaintBoundary(): boolean;
-    get layer(): upstream26.ContainerLayer | null;
-    get debugLayer(): upstream26.ContainerLayer | null;
+    get layer(): upstream27.ContainerLayer | null;
+    get debugLayer(): upstream27.ContainerLayer | null;
     get needsCompositing(): boolean;
     get debugNeedsPaint(): boolean;
     get debugNeedsCompositedLayerUpdate(): boolean;
     get debugNeedsSemanticsUpdate(): boolean;
-    get debugSemantics(): upstream27.SemanticsNode | null;
+    get debugSemantics(): upstream28.SemanticsNode | null;
     get childCount(): number;
     get firstChild(): upstream0.RenderBox | null;
     get lastChild(): upstream0.RenderBox | null;
@@ -1626,6 +1632,7 @@ export interface _RenderParagraphNative extends RenderParagraph {
     set textHeightBehavior(value: Readonly<{
         "__flaxBound:dart:ui::TextHeightBehavior": readonly [];
     }> | null);
+    set hyphens(value: upstream19.Hyphens);
     set selectionColor(value: Readonly<{
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null);
@@ -1682,6 +1689,7 @@ export declare abstract class _RenderParagraphNative extends _FlaxProxyBase {
         textHeightBehavior?: Readonly<{
             "__flaxBound:dart:ui::TextHeightBehavior": readonly [];
         }> | null | undefined;
+        hyphens?: upstream19.Hyphens | undefined;
         children?: DartListInput<upstream0.RenderBox, Readonly<{
             "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
         }> & Readonly<{
@@ -1733,6 +1741,7 @@ export declare namespace _RenderParagraphFactory {
         textHeightBehavior?: Readonly<{
             "__flaxBound:dart:ui::TextHeightBehavior": readonly [];
         }> | null | undefined;
+        hyphens?: upstream19.Hyphens | undefined;
         children?: DartListInput<upstream0.RenderBox, Readonly<{
             "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
         }> & Readonly<{
@@ -1783,6 +1792,7 @@ declare const _RenderParagraphBinding: typeof _RenderParagraphFactory & (new (te
     textHeightBehavior?: Readonly<{
         "__flaxBound:dart:ui::TextHeightBehavior": readonly [];
     }> | null | undefined;
+    hyphens?: upstream19.Hyphens | undefined;
     children?: DartListInput<upstream0.RenderBox, Readonly<{
         "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
     }> & Readonly<{
@@ -1805,11 +1815,11 @@ declare const _RenderParagraphBinding: typeof _RenderParagraphFactory & (new (te
     devicePixelRatio?: number | undefined;
 }) => _RenderParagraphNative);
 export declare const RenderParagraph: typeof _RenderParagraphBinding & _FlaxInstanceType<RenderParagraph> & _FlaxDartType<RenderParagraph, readonly ["class", "flax.core/sdk_rendering#type:RenderParagraph", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasSize" | "size" | "semanticBounds" | "constraints" | "paintBounds" | "debugDisposed" | "parentData" | "depth" | "parent" | "debugCreator" | "debugDoingThisResize" | "debugDoingThisLayout" | "debugCanParentUseSize" | "debugLayoutParent" | "owner" | "attached" | "debugNeedsLayout" | "debugDoingThisLayoutWithCallback" | "sizedByParent" | "debugDoingThisPaint" | "isRepaintBoundary" | "alwaysNeedsCompositing" | "layer" | "debugLayer" | "needsCompositing" | "debugNeedsPaint" | "debugNeedsCompositedLayerUpdate" | "debugNeedsSemanticsUpdate" | "debugSemantics" | "childCount" | "firstChild" | "lastChild" | "text" | "registrar" | "textAlign" | "textDirection" | "softWrap" | "overflow" | "textScaleFactor" | "textScaler" | "devicePixelRatio" | "maxLines" | "locale" | "strutStyle" | "textWidthBasis" | "textHeightBehavior" | "selectionColor" | "textSize" | "didExceedMaxLines" | "setupParentData" | "getMinIntrinsicWidth" | "computeMinIntrinsicWidth" | "getMaxIntrinsicWidth" | "computeMaxIntrinsicWidth" | "getMinIntrinsicHeight" | "computeMinIntrinsicHeight" | "getMaxIntrinsicHeight" | "computeMaxIntrinsicHeight" | "getDryLayout" | "computeDryLayout" | "getDryBaseline" | "computeDryBaseline" | "debugCannotComputeDryLayout" | "debugAdoptSize" | "debugResetSize" | "getDistanceToBaseline" | "getDistanceToActualBaseline" | "computeDistanceToActualBaseline" | "debugAssertDoesMeetConstraints" | "markNeedsLayout" | "performResize" | "performLayout" | "hitTest" | "hitTestSelf" | "hitTestChildren" | "applyPaintTransform" | "globalToLocal" | "localToGlobal" | "handleEvent" | "debugHandleEvent" | "debugPaint" | "debugPaintBaselines" | "debugPaintPointers" | "debugFillProperties" | "reassemble" | "dispose" | "redepthChild" | "redepthChildren" | "adoptChild" | "dropChild" | "visitChildren" | "attach" | "detach" | "markParentNeedsLayout" | "markNeedsLayoutForSizedByParentChange" | "scheduleInitialLayout" | "layout" | "invokeLayoutCallback" | "debugRegisterRepaintBoundaryPaint" | "updateCompositedLayer" | "markNeedsCompositingBitsUpdate" | "markNeedsPaint" | "markNeedsCompositedLayerUpdate" | "scheduleInitialPaint" | "replaceRootLayer" | "paint" | "paintsChild" | "getTransformTo" | "describeApproximatePaintClip" | "describeSemanticsClip" | "scheduleInitialSemantics" | "describeSemanticsConfiguration" | "sendSemanticsEvent" | "clearSemantics" | "markNeedsSemanticsUpdate" | "visitChildrenForSemantics" | "assembleSemanticsNode" | "toStringShort" | "toStringDeep" | "toStringShallow" | "debugDescribeChildren" | "showOnScreen" | "describeForError" | "toDiagnosticsNode" | "toString" | "debugValidateChild" | "insert" | "add" | "addAll" | "remove" | "removeAll" | "move" | "childBefore" | "childAfter" | "layoutInlineChildren" | "positionInlineChildren" | "defaultApplyPaintTransform" | "paintInlineChildren" | "hitTestInlineChildren" | "systemFontsDidChange" | "selectableBelongsToParagraph" | "getOffsetForCaret" | "getFullHeightForCaret" | "getBoxesForSelection" | "getPositionForOffset" | "getWordBoundary" | "__flaxBound:package:flutter/src/rendering/paragraph.dart::RenderParagraph" | "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox" | "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject" | "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/rendering/object.dart::ContainerRenderObjectMixin" | "__flaxBound:package:flutter/src/rendering/paragraph.dart::RenderInlineChildrenContainerDefaults" | "__flaxBound:package:flutter/src/rendering/object.dart::RelayoutWhenSystemFontsChangeMixin";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasSize" | "size" | "semanticBounds" | "constraints" | "paintBounds" | "debugDisposed" | "parentData" | "depth" | "parent" | "debugCreator" | "debugDoingThisResize" | "debugDoingThisLayout" | "debugCanParentUseSize" | "debugLayoutParent" | "owner" | "attached" | "debugNeedsLayout" | "debugDoingThisLayoutWithCallback" | "sizedByParent" | "debugDoingThisPaint" | "isRepaintBoundary" | "alwaysNeedsCompositing" | "layer" | "debugLayer" | "needsCompositing" | "debugNeedsPaint" | "debugNeedsCompositedLayerUpdate" | "debugNeedsSemanticsUpdate" | "debugSemantics" | "childCount" | "firstChild" | "lastChild" | "text" | "registrar" | "textAlign" | "textDirection" | "softWrap" | "overflow" | "textScaleFactor" | "textScaler" | "devicePixelRatio" | "maxLines" | "locale" | "strutStyle" | "textWidthBasis" | "textHeightBehavior" | "hyphens" | "selectionColor" | "textSize" | "didExceedMaxLines" | "setupParentData" | "getMinIntrinsicWidth" | "computeMinIntrinsicWidth" | "getMaxIntrinsicWidth" | "computeMaxIntrinsicWidth" | "getMinIntrinsicHeight" | "computeMinIntrinsicHeight" | "getMaxIntrinsicHeight" | "computeMaxIntrinsicHeight" | "getDryLayout" | "computeDryLayout" | "getDryBaseline" | "computeDryBaseline" | "debugCannotComputeDryLayout" | "debugAdoptSize" | "debugResetSize" | "getDistanceToBaseline" | "getDistanceToActualBaseline" | "computeDistanceToActualBaseline" | "debugAssertDoesMeetConstraints" | "markNeedsLayout" | "performResize" | "performLayout" | "hitTest" | "hitTestSelf" | "hitTestChildren" | "applyPaintTransform" | "globalToLocal" | "localToGlobal" | "handleEvent" | "debugHandleEvent" | "debugPaint" | "debugPaintBaselines" | "debugPaintPointers" | "debugFillProperties" | "reassemble" | "dispose" | "redepthChild" | "redepthChildren" | "adoptChild" | "dropChild" | "visitChildren" | "attach" | "detach" | "markParentNeedsLayout" | "markNeedsLayoutForSizedByParentChange" | "scheduleInitialLayout" | "layout" | "invokeLayoutCallback" | "debugRegisterRepaintBoundaryPaint" | "updateCompositedLayer" | "markNeedsCompositingBitsUpdate" | "markNeedsPaint" | "markNeedsCompositedLayerUpdate" | "scheduleInitialPaint" | "replaceRootLayer" | "paint" | "paintsChild" | "getTransformTo" | "describeApproximatePaintClip" | "describeSemanticsClip" | "scheduleInitialSemantics" | "describeSemanticsConfiguration" | "sendSemanticsEvent" | "clearSemantics" | "markNeedsSemanticsUpdate" | "visitChildrenForSemantics" | "assembleSemanticsNode" | "toStringShort" | "toStringDeep" | "toStringShallow" | "debugDescribeChildren" | "showOnScreen" | "describeForError" | "toDiagnosticsNode" | "toString" | "debugValidateChild" | "insert" | "add" | "addAll" | "remove" | "removeAll" | "move" | "childBefore" | "childAfter" | "layoutInlineChildren" | "positionInlineChildren" | "defaultApplyPaintTransform" | "paintInlineChildren" | "hitTestInlineChildren" | "systemFontsDidChange" | "selectableBelongsToParagraph" | "getOffsetForCaret" | "getFullHeightForCaret" | "getBoxesForSelection" | "getPositionForOffset" | "getWordBoundary" | "__flaxBound:package:flutter/src/rendering/paragraph.dart::RenderParagraph" | "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox" | "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject" | "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/rendering/object.dart::ContainerRenderObjectMixin" | "__flaxBound:package:flutter/src/rendering/paragraph.dart::RenderInlineChildrenContainerDefaults" | "__flaxBound:package:flutter/src/rendering/object.dart::RelayoutWhenSystemFontsChangeMixin";
 interface _FlaxSignature0 extends _FlaxDartSignature {
-    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [upstream38.Constraints] ? (callback: ((constraints: _Selected0) => void)) => void : never : never;
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [upstream39.Constraints] ? (callback: ((constraints: _Selected0) => void)) => void : never : never;
 }
 interface _FlaxSignature1 extends _FlaxDartSignature {
-    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [upstream38.Constraints] ? (callback: ((constraints: _Selected0) => void)) => void : never : never;
+    readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [upstream39.Constraints] ? (callback: ((constraints: _Selected0) => void)) => void : never : never;
 }
 export {};

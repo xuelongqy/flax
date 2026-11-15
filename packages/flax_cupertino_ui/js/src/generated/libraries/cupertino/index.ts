@@ -255,6 +255,7 @@ export type { ReorderDragBoundaryProvider, ReorderDragBoundaryProviderInput } fr
 export type { ReorderItemProxyDecorator, ReorderItemProxyDecoratorInput } from "@flax/cupertino-ui/_bindings/cupertino_ReorderItemProxyDecorator";
 export { RestorableCupertinoTabController } from "@flax/cupertino-ui/_bindings/cupertino_RestorableCupertinoTabController";
 export type { RestorableRouteBuilder, RestorableRouteBuilderInput } from "@flax/cupertino-ui/_bindings/cupertino_RestorableRouteBuilder";
+export type { RouteBarrierBuilder, RouteBarrierBuilderInput } from "@flax/cupertino-ui/_bindings/cupertino_RouteBarrierBuilder";
 export type { RouteCompletionCallback, RouteCompletionCallbackInput } from "@flax/cupertino-ui/_bindings/cupertino_RouteCompletionCallback";
 export type { RouteFactory, RouteFactoryInput } from "@flax/cupertino-ui/_bindings/cupertino_RouteFactory";
 export type { RouteListFactory, RouteListFactoryInput } from "@flax/cupertino-ui/_bindings/cupertino_RouteListFactory";

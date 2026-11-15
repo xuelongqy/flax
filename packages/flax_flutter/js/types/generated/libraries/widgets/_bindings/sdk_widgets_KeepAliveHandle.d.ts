@@ -8,9 +8,9 @@ import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartType
 export interface KeepAliveHandle extends Omit<upstream0.ChangeNotifier, _flaxOwnMembers0>, Omit<upstream1.Listenable, _flaxOwnMembers0 | keyof upstream0.ChangeNotifier>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/automatic_keep_alive.dart::KeepAliveHandle": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __KeepAliveHandle: unique symbol;
     readonly [_flaxDartTypeValue]: KeepAliveHandle;
@@ -38,5 +38,5 @@ export declare namespace _KeepAliveHandleFactory {
 }
 declare const _KeepAliveHandleBinding: typeof _KeepAliveHandleFactory & (new () => _KeepAliveHandleNative);
 export declare const KeepAliveHandle: typeof _KeepAliveHandleBinding & _FlaxInstanceType<KeepAliveHandle> & _FlaxDartType<KeepAliveHandle, readonly ["class", "flax.core/sdk_widgets#type:KeepAliveHandle", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "addListener" | "removeListener" | "dispose" | "__flaxBound:package:flutter/src/widgets/automatic_keep_alive.dart::KeepAliveHandle" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "addListener" | "removeListener" | "dispose" | "__flaxBound:package:flutter/src/widgets/automatic_keep_alive.dart::KeepAliveHandle" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 export {};

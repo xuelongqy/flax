@@ -772,6 +772,7 @@ export declare function _RenderWrapFactory(options?: {
 }): RenderWrap;
 export interface _RenderWrapNative extends RenderWrap {
     readonly [_flaxDartTypeValue]: _RenderWrapNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1375,7 +1376,6 @@ export interface _RenderWrapNative extends RenderWrap {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream1.RenderObject | null;
     get owner(): upstream19.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

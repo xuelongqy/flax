@@ -5,8 +5,10 @@ import {
   withBindingSnapshots,
   readBindingSnapshot,
   type Binding,
+  type FlaxJointListener,
   type ReadonlySignal,
 } from './index.js';
+import type { TextEditingController } from '@flax/flutter/widgets';
 import { ReferenceCache } from './references.js';
 import {
   dartTypeDescription,
@@ -3020,6 +3022,75 @@ function scopedObjectWrapper(type: string, id: number, base?: string): object {
   return value;
 }
 
+const jointControllerType = 'flax.core/flutter#type:TextEditingController';
+const jointUnlinking = Symbol();
+let pendingJointViews: WeakMap<object, object> | undefined;
+let jointReleases:
+  WeakMap<object, (() => void) | typeof jointUnlinking | null> | undefined;
+
+function jointObjectReference(source: object) {
+  const ref = objectHandles.get(source);
+  if (!ref?.alive || !objectTypes.has(objectViewTypes.get(ref.type) ?? ref.type))
+    throw new TypeError('Expected a live local Dart object');
+  return ref;
+}
+
+function ownJointObject<T extends object>(source: T): T {
+  const ref = jointObjectReference(source);
+  const view = Object.freeze(createObjectWrapper(ref.type)) as T;
+  const pending = (pendingJointViews ??= new WeakMap());
+  pending.set(view, source);
+  try {
+    if (invokeOperation('joint', '', 0, 'own', '', [source, view]) !== true)
+      throw new TypeError('Expected a live ordinary Dart object');
+  } finally {
+    pending.delete(view);
+  }
+  references.trackUncached(view, ref.type, ref.id);
+  (jointReleases ??= new WeakMap()).set(view, () => {
+    invokeOperation('joint', '', 0, 'unlink', '', [view]);
+    references.releaseUncached(view);
+  });
+  return view;
+}
+
+function addJointListener(
+  owner: TextEditingController,
+  callback: () => void,
+): FlaxJointListener {
+  jointObjectReference(owner);
+  if (typeof callback !== 'function') throw new TypeError('Expected a listener');
+  const receiver = invokeOperation('joint', '', 0, 'listen', '', [
+    owner,
+  ]) as TextEditingController | null;
+  if (receiver === null) throw new TypeError('Expected a live TextEditingController');
+  const { addListener, removeListener } = objectPrototype(
+    jointControllerType,
+  ) as TextEditingController;
+  const forward = Function.prototype.bind.call(callback, undefined) as () => void;
+  const token = Object.freeze(Object.create(null)) as FlaxJointListener;
+  addListener.call(receiver, forward);
+  (jointReleases ??= new WeakMap()).set(token, () => {
+    if (objectHandles.get(receiver)?.alive) removeListener.call(receiver, forward);
+  });
+  return token;
+}
+
+function unlinkJoint(ref: object): boolean {
+  const release = jointReleases?.get(ref);
+  if (release === undefined) throw new TypeError('Expected a local joint capability');
+  if (typeof release !== 'function') return false;
+  jointReleases!.set(ref, jointUnlinking);
+  try {
+    release();
+  } catch (error) {
+    jointReleases!.set(ref, release);
+    throw error;
+  }
+  jointReleases!.set(ref, null);
+  return true;
+}
+
 /** A plain-data snapshot, without invoking getters or serializing through JSON. */
 export function copyNavigationData(
   value: unknown,
@@ -3751,6 +3822,15 @@ Object.assign(globalThis, {
       return objectWrapper(type, id);
     },
     scopedObject: scopedObjectWrapper,
+    ownJointObject,
+    addJointListener,
+    unlinkJoint,
+    jointAcquirePending(source: object, view: object): boolean {
+      return pendingJointViews?.get(view) === source;
+    },
+    jointUnlinkPending(view: object): boolean {
+      return jointReleases?.get(view) === jointUnlinking;
+    },
     streamObject: streamWrapper,
     asyncIterableNext,
     asyncIterableReturn,

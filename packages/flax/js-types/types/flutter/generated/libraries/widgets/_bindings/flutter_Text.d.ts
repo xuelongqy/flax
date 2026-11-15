@@ -19,20 +19,22 @@ import type * as upstream8 from '@flax/flutter/painting/_bindings/sdk_painting_T
 import '@flax/flutter/painting/_bindings/sdk_painting_TextWidthBasis';
 import type * as upstream9 from '@flax/dart/ui/_bindings/sdk_dart_ui_TextHeightBehavior';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_TextHeightBehavior';
-import type * as upstream10 from '@flax/dart/ui/_bindings/flutter_Color';
+import type * as upstream10 from '@flax/dart/ui/_bindings/sdk_dart_ui_Hyphens';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_Hyphens';
+import type * as upstream11 from '@flax/dart/ui/_bindings/flutter_Color';
 import '@flax/dart/ui/_bindings/flutter_Color';
-import type * as upstream11 from '@flax/flutter/painting/_bindings/sdk_painting_InlineSpan';
+import type * as upstream12 from '@flax/flutter/painting/_bindings/sdk_painting_InlineSpan';
 import '@flax/flutter/painting/_bindings/sdk_painting_InlineSpan';
-import type * as upstream12 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import type * as upstream13 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-import type * as upstream14 from '@flax/flutter/widgets/_bindings/sdk_widgets_StatelessElement';
+import type * as upstream15 from '@flax/flutter/widgets/_bindings/sdk_widgets_StatelessElement';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_StatelessElement';
-import type * as upstream15 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream16 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-import type * as upstream16 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream17 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
-import type * as upstream17 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream18 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_StatelessWidget';
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
@@ -76,6 +78,7 @@ export interface _TextNative extends _FlaxDartWidget {
             textHeightBehavior?: Readonly<{
                 "__flaxBound:dart:ui::TextHeightBehavior": readonly [];
             }> | null | undefined;
+            hyphens?: upstream10.Hyphens | null | undefined;
             selectionColor?: Readonly<{
                 "__flaxBound:dart:ui::Color": readonly [];
             }> | null | undefined;
@@ -118,34 +121,35 @@ export interface _TextNative extends _FlaxDartWidget {
             textHeightBehavior?: Readonly<{
                 "__flaxBound:dart:ui::TextHeightBehavior": readonly [];
             }> | null | undefined;
+            hyphens?: upstream10.Hyphens | null | undefined;
             selectionColor?: Readonly<{
                 "__flaxBound:dart:ui::Color": readonly [];
             }> | null | undefined;
         }) => void;
     };
-    build(context: upstream12.BuildContext): Widget;
+    build(context: upstream13.BuildContext): Widget;
     debugFillProperties(properties: Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
     }>): void;
-    createElement(): upstream14.StatelessElement;
+    createElement(): upstream15.StatelessElement;
     toStringShort(): string;
     toStringShallow(options?: {
         joiner?: string | undefined;
-        minLevel?: upstream15.DiagnosticLevel | undefined;
+        minLevel?: upstream16.DiagnosticLevel | undefined;
     }): string;
     toStringDeep(options?: {
         prefixLineOne?: string | undefined;
         prefixOtherLines?: string | null | undefined;
-        minLevel?: upstream15.DiagnosticLevel | undefined;
+        minLevel?: upstream16.DiagnosticLevel | undefined;
         wrapWidth?: number | undefined;
     }): string;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
-        style?: upstream17.DiagnosticsTreeStyle | null | undefined;
-    }): upstream16.DiagnosticsNode;
-    debugDescribeChildren(): DartList<upstream16.DiagnosticsNode>;
+        style?: upstream18.DiagnosticsTreeStyle | null | undefined;
+    }): upstream17.DiagnosticsNode;
+    debugDescribeChildren(): DartList<upstream17.DiagnosticsNode>;
     get data(): string | null;
-    get textSpan(): upstream11.InlineSpan | null;
+    get textSpan(): upstream12.InlineSpan | null;
     get style(): upstream1.TextStyle | null;
     get strutStyle(): upstream2.StrutStyle | null;
     get textAlign(): upstream3.TextAlign | null;
@@ -160,7 +164,8 @@ export interface _TextNative extends _FlaxDartWidget {
     get semanticsIdentifier(): string | null;
     get textWidthBasis(): upstream8.TextWidthBasis | null;
     get textHeightBehavior(): upstream9.TextHeightBehavior | null;
-    get selectionColor(): upstream10.Color | null;
+    get hyphens(): upstream10.Hyphens | null;
+    get selectionColor(): upstream11.Color | null;
     get key(): upstream0.Key | null;
 }
 export declare abstract class _TextNative extends _FlaxProxyBase {
@@ -199,6 +204,7 @@ export declare abstract class _TextNative extends _FlaxProxyBase {
         textHeightBehavior?: Readonly<{
             "__flaxBound:dart:ui::TextHeightBehavior": readonly [];
         }> | null | undefined;
+        hyphens?: upstream10.Hyphens | null | undefined;
         selectionColor?: Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];
         }> | null | undefined;
@@ -237,6 +243,7 @@ export declare function _TextFactory(data: Bindable<string>, options?: {
     textHeightBehavior?: Bindable<Readonly<{
         "__flaxBound:dart:ui::TextHeightBehavior": readonly [];
     }> | null> | undefined;
+    hyphens?: Bindable<upstream10.Hyphens | null> | undefined;
     selectionColor?: Bindable<Readonly<{
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null> | undefined;
@@ -289,6 +296,7 @@ export declare namespace _TextFactory {
         textHeightBehavior?: Bindable<Readonly<{
             "__flaxBound:dart:ui::TextHeightBehavior": readonly [];
         }> | null> | undefined;
+        hyphens?: Bindable<upstream10.Hyphens | null> | undefined;
         selectionColor?: Bindable<Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];
         }> | null> | undefined;
@@ -335,6 +343,7 @@ declare const _TextBinding: typeof _TextFactory & (new (data: string, options?: 
     textHeightBehavior?: Readonly<{
         "__flaxBound:dart:ui::TextHeightBehavior": readonly [];
     }> | null | undefined;
+    hyphens?: upstream10.Hyphens | null | undefined;
     selectionColor?: Readonly<{
         "__flaxBound:dart:ui::Color": readonly [];
     }> | null | undefined;
