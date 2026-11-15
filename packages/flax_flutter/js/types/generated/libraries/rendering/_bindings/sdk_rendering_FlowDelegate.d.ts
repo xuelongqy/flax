@@ -37,7 +37,7 @@ export declare abstract class FlowDelegate extends _FlaxProxyBase {
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_rendering#type:FlowDelegate", readonly [], false];
     constructor(options?: {
         repaint?: Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> | null | undefined;
     });
     abstract paintChildren(context: Readonly<{
@@ -50,7 +50,7 @@ export declare abstract class FlowDelegate extends _FlaxProxyBase {
 export declare namespace FlowDelegate {
     function implement(args: [options?: {
         repaint?: Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> | null | undefined;
     }], implementation: {
         paintChildren: ((context: upstream3.FlowPaintingContext) => void);

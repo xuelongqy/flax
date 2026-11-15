@@ -41,7 +41,7 @@ export interface RawTooltip extends _FlaxDartWidget, Omit<upstream0.StatefulWidg
 readonly [_flaxDartTypeValue]: RawTooltip;
 
 readonly semanticsTooltip: string | null;
-readonly tooltipBuilder: ((context: upstream2.BuildContext, animation: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number] }>) => Widget);
+readonly tooltipBuilder: ((context: upstream2.BuildContext, animation: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number] }>) => Widget);
 readonly hoverDelay: upstream4.Duration;
 readonly touchDelay: upstream4.Duration;
 readonly dismissDelay: upstream4.Duration;

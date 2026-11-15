@@ -591,6 +591,7 @@ export declare function _RenderSliverFillRemainingAndOverscrollFactory(options?:
 }): RenderSliverFillRemainingAndOverscroll;
 export interface _RenderSliverFillRemainingAndOverscrollNative extends RenderSliverFillRemainingAndOverscroll {
     readonly [_flaxDartTypeValue]: _RenderSliverFillRemainingAndOverscrollNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1029,7 +1030,6 @@ export interface _RenderSliverFillRemainingAndOverscrollNative extends RenderSli
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream14.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

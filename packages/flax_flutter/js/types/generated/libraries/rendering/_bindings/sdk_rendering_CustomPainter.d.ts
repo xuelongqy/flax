@@ -13,7 +13,7 @@ import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartType
 export interface CustomPainter extends Omit<upstream0.Listenable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __CustomPainter: unique symbol;
     readonly [_flaxDartTypeValue]: CustomPainter;
@@ -25,7 +25,7 @@ export interface CustomPainter {
     shouldRebuildSemantics(oldDelegate: Readonly<{
         "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): boolean;
     hitTest(position: Readonly<{
         "__flaxBound:dart:ui::Offset": readonly [];
@@ -45,7 +45,7 @@ export declare abstract class CustomPainter extends _FlaxProxyBase {
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_rendering#type:CustomPainter", readonly [], false];
     constructor(options?: {
         repaint?: Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> | null | undefined;
     });
     abstract paint(canvas: Readonly<{
@@ -58,18 +58,18 @@ export declare abstract class CustomPainter extends _FlaxProxyBase {
     abstract shouldRepaint(oldDelegate: Readonly<{
         "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): boolean;
 }
 export declare namespace CustomPainter {
     function implement(args: [options?: {
         repaint?: Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> | null | undefined;
     }], implementation: {
         paint: ((canvas: upstream3.Canvas, size: upstream2.Size) => void);
         shouldRepaint: ((oldDelegate: CustomPainter) => boolean);
     }): CustomPainter;
 }
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "semanticsBuilder" | "addListener" | "removeListener" | "paint" | "shouldRebuildSemantics" | "shouldRepaint" | "hitTest" | "toString" | "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "semanticsBuilder" | "addListener" | "removeListener" | "paint" | "shouldRebuildSemantics" | "shouldRepaint" | "hitTest" | "toString" | "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 export {};

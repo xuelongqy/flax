@@ -8,7 +8,7 @@ import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartType
 export interface OverlayEntry extends Omit<upstream0.Listenable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/overlay.dart::OverlayEntry": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __OverlayEntry: unique symbol;
     readonly [_flaxDartTypeValue]: OverlayEntry;
@@ -74,5 +74,5 @@ declare const _OverlayEntryBinding: typeof _OverlayEntryFactory & (new (options:
     canSizeOverlay?: boolean | undefined;
 }) => _OverlayEntryNative);
 export declare const OverlayEntry: typeof _OverlayEntryBinding & _FlaxInstanceType<OverlayEntry> & _FlaxDartType<OverlayEntry, readonly ["class", "flax.core/sdk_widgets#type:OverlayEntry", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "builder" | "opaque" | "maintainState" | "canSizeOverlay" | "mounted" | "addListener" | "removeListener" | "remove" | "markNeedsBuild" | "dispose" | "toString" | "__flaxBound:package:flutter/src/widgets/overlay.dart::OverlayEntry" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "builder" | "opaque" | "maintainState" | "canSizeOverlay" | "mounted" | "addListener" | "removeListener" | "remove" | "markNeedsBuild" | "dispose" | "toString" | "__flaxBound:package:flutter/src/widgets/overlay.dart::OverlayEntry" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 export {};

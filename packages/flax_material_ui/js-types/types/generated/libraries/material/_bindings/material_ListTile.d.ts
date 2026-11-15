@@ -103,9 +103,9 @@ export declare function _ListTileFactory(options?: {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null> | undefined;
     autofocus?: Bindable<boolean> | undefined;
     tileColor?: Bindable<Readonly<{
@@ -124,13 +124,13 @@ export declare function _ListTileFactory(options?: {
     statesController?: Bindable<(Readonly<{
         "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [DartSet<upstream12.WidgetState>];
+        "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [DartSet<upstream12.WidgetState>];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [DartSet<upstream12.WidgetState>];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [DartSet<upstream12.WidgetState>];
     }>) | null> | undefined;
 }): ListTile;
 export declare namespace _ListTileFactory {

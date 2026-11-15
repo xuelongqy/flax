@@ -22,6 +22,7 @@ import type * as upstream10 from '@flax/dart/ui/_bindings/flutter_TextDirection'
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
+import '@flax/dart/ui/_bindings/flutter_Offset';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
 import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface MaterialStateOutlineInputBorder extends Omit<upstream0.OutlineInputBorder, _flaxOwnMembers0>, Omit<upstream1.InputBorder, _flaxOwnMembers0 | keyof upstream0.OutlineInputBorder>, Omit<upstream2.ShapeBorder, _flaxOwnMembers0 | keyof upstream0.OutlineInputBorder | keyof upstream1.InputBorder>, Omit<upstream3.WidgetStateProperty<upstream1.InputBorder>, _flaxOwnMembers0 | keyof upstream0.OutlineInputBorder | keyof upstream1.InputBorder | keyof upstream2.ShapeBorder>, Readonly<{
@@ -97,6 +98,15 @@ export interface MaterialStateOutlineInputBorder extends Omit<upstream0.OutlineI
     }>, options?: {
         reversed?: boolean | undefined;
     }): upstream2.ShapeBorder | null;
+    hitTest(rect: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, position: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, options?: {
+        textDirection?: upstream10.TextDirection | null | undefined;
+    }): boolean;
     toString(): string;
     resolve(states: DartSetInput<upstream4.WidgetState, upstream4.WidgetState>): upstream1.InputBorder;
     operatorAdd(other: Readonly<{
@@ -166,6 +176,15 @@ export interface _MaterialStateOutlineInputBorderNative extends MaterialStateOut
     }>, options?: {
         reversed?: boolean | undefined;
     }): upstream2.ShapeBorder | null;
+    hitTest(rect: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, position: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, options?: {
+        textDirection?: upstream10.TextDirection | null | undefined;
+    }): boolean;
     toString(): string;
     operatorAdd(other: Readonly<{
         "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
@@ -195,5 +214,5 @@ export declare namespace _MaterialStateOutlineInputBorderFactory {
 }
 declare const _MaterialStateOutlineInputBorderBinding: typeof _MaterialStateOutlineInputBorderFactory & (abstract new () => _MaterialStateOutlineInputBorderNative);
 export declare const MaterialStateOutlineInputBorder: typeof _MaterialStateOutlineInputBorderBinding & _FlaxInstanceType<MaterialStateOutlineInputBorder> & _FlaxDartType<MaterialStateOutlineInputBorder, readonly ["class", "flax.material/material#type:MaterialStateOutlineInputBorder", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "gapPadding" | "borderRadius" | "isOutline" | "dimensions" | "preferPaintInterior" | "borderSide" | "copyWith" | "scale" | "lerpFrom" | "lerpTo" | "getInnerPath" | "getOuterPath" | "paintInterior" | "paint" | "add" | "toString" | "resolve" | "operatorAdd" | "__flaxBound:package:material_ui/src/material_state.dart::MaterialStateOutlineInputBorder" | "__flaxBound:package:material_ui/src/input_border.dart::OutlineInputBorder" | "__flaxBound:package:material_ui/src/input_border.dart::InputBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder" | "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "gapPadding" | "borderRadius" | "isOutline" | "dimensions" | "preferPaintInterior" | "borderSide" | "copyWith" | "scale" | "lerpFrom" | "lerpTo" | "getInnerPath" | "getOuterPath" | "paintInterior" | "paint" | "add" | "hitTest" | "toString" | "resolve" | "operatorAdd" | "__flaxBound:package:material_ui/src/material_state.dart::MaterialStateOutlineInputBorder" | "__flaxBound:package:material_ui/src/input_border.dart::OutlineInputBorder" | "__flaxBound:package:material_ui/src/input_border.dart::InputBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder" | "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty";
 export {};

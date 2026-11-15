@@ -26,9 +26,9 @@ export interface RestorableIntN extends Omit<upstream0.RestorableNumN<number | n
 }>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/restoration.dart::RestorableProperty": readonly [number | null];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __RestorableIntN: unique symbol;
     readonly [_flaxDartTypeValue]: RestorableIntN;
@@ -76,5 +76,5 @@ export declare namespace _RestorableIntNFactory {
 }
 declare const _RestorableIntNBinding: typeof _RestorableIntNFactory & (new (defaultValue: number | null) => _RestorableIntNNative);
 export declare const RestorableIntN: typeof _RestorableIntNBinding & _FlaxInstanceType<RestorableIntN> & _FlaxDartType<RestorableIntN, readonly ["class", "flax.core/sdk_widgets#type:RestorableIntN", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "enabled" | "state" | "isRegistered" | "hasListeners" | "createDefaultValue" | "didUpdateValue" | "fromPrimitives" | "toPrimitives" | "initWithValue" | "dispose" | "addListener" | "removeListener" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableIntN" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableNumN" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::_RestorablePrimitiveValueN" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableValue" | "__flaxBound:package:flutter/src/widgets/restoration.dart::RestorableProperty" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "enabled" | "state" | "isRegistered" | "hasListeners" | "createDefaultValue" | "didUpdateValue" | "fromPrimitives" | "toPrimitives" | "initWithValue" | "dispose" | "addListener" | "removeListener" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableIntN" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableNumN" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::_RestorablePrimitiveValueN" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableValue" | "__flaxBound:package:flutter/src/widgets/restoration.dart::RestorableProperty" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 export {};

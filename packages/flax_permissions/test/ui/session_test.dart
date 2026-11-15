@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flax/flax.dart';
 import 'package:flax_permissions/flax_permissions.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -38,7 +37,10 @@ class _Capture extends FlaxPlugin implements FlaxPluginInstance {
 }
 
 class _Native implements FlaxNativePermissionRequester {
-  static const adapter = FlaxPermissionHandlerAdapter(requestOnDemand: true);
+  static const adapter = FlaxPermissionHandlerAdapter(
+    requestOnDemand: true,
+    platform: TargetPlatform.iOS,
+  );
   final tokens = <FlaxNativePermissionRequest>[];
   var settled = 0;
   @override
@@ -113,7 +115,6 @@ void main() {
   Completer<int>? heldQuery;
   var status = 0, nativeCalls = 0, queries = 0;
   setUp(() {
-    debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
     binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
     physical = Completer<Map<int, int>>();
     status = 0;
@@ -136,7 +137,6 @@ void main() {
         });
   });
   tearDown(() {
-    debugDefaultTargetPlatformOverride = null;
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMethodCallHandler(channel, null);
     binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);

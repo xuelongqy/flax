@@ -45,7 +45,7 @@ toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream1
 debugDescribeChildren(): DartList<upstream9.DiagnosticsNode>;
 }
 defineObject("flax.core/sdk_widgets#type:AnimatedBuilder", ["animation","listenable","builder","child","key"], [], _flaxBindingMethods("flax.core/sdk_widgets#type:AnimatedBuilder", "object", {}, {}), [], undefined, "flax.core/sdk_widgets#type:AnimatedWidget");
-export function _AnimatedBuilderFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; animation: Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }>; builder: ((context: upstream4.BuildContext, child: Widget | null) => Widget); child?: Widget | null | undefined }): AnimatedBuilder {
+export function _AnimatedBuilderFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; animation: Readonly<{ "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [] }>; builder: ((context: upstream4.BuildContext, child: Widget | null) => Widget); child?: Widget | null | undefined }): AnimatedBuilder {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/sdk_widgets#type:AnimatedBuilder", "", [{"name":"key"},{"name":"animation","required":true},{"name":"builder","required":true},{"name":"child"}], [], options) as AnimatedBuilder;

@@ -18,8 +18,8 @@ export interface Animatable<T extends unknown | null = unknown | null> extends R
 readonly [_flaxDartTypeValue]: Animatable<T>;
 
 transform(t: number): T;
-evaluate(animation: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number] }>): T;
-animate(parent: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number] }>): upstream3.Animation<T>;
+evaluate(animation: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number] }>): T;
+animate(parent: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number] }>): upstream3.Animation<T>;
 chain(parent: Readonly<{ "__flaxBound:package:flutter/src/animation/tween.dart::Animatable": readonly [number] }>): Animatable<T>;
 }
 defineObject("flax.core/sdk_animation#type:Animatable", [], [], _flaxBindingMethods("flax.core/sdk_animation#type:Animatable", "object", {"transform":_flaxMemberParameters4,"evaluate":_flaxMemberParameters5,"animate":_flaxMemberParameters6,"chain":_flaxMemberParameters6}, {}), []);
@@ -36,8 +36,8 @@ const _AnimatableProxy = {type: "flax.core/sdk_animation#type:Animatable", param
 export interface _AnimatableNative<T extends unknown | null = unknown | null> extends Animatable<T> {
 readonly [_flaxDartTypeValue]: _AnimatableNative<T>;
 
-evaluate(animation: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number] }>): T;
-animate(parent: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number] }>): upstream3.Animation<T>;
+evaluate(animation: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number] }>): T;
+animate(parent: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number] }>): upstream3.Animation<T>;
 chain(parent: Readonly<{ "__flaxBound:package:flutter/src/animation/tween.dart::Animatable": readonly [number] }>): Animatable<T>;
 }
 export abstract class _AnimatableNative<T extends unknown | null = unknown | null> extends _FlaxProxyBase {

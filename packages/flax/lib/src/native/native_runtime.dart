@@ -86,9 +86,9 @@ final class FlaxNativeJsRuntime
         gc.ref.register_host == nullptr ||
         gc.ref.cell_count == nullptr ||
         gc.ref.flutter_revision.cast<Utf8>().toDartString() !=
-            'c197ca5199e9ee5661e865596c9c07294dfab51c' ||
+            'ab2912035e160d9cad6306df307576da6128ebdb' ||
         gc.ref.dart_revision.cast<Utf8>().toDartString() !=
-            '416e33b0ffaef062a60ec966bb8c82ed2b83f128') {
+            'fa8c1270c374c1346931583a17c3b7f278d3822d') {
       throw UnsupportedError(
         'Incompatible Flax Flutter engine or GC extension',
       );

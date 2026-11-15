@@ -96,6 +96,7 @@ final class _FlaxSelectedResizeImage extends ResizeImage {
     super.height,
     super.policy,
     super.allowUpscaling,
+    super.useLogicalSize,
   });
   void _check(Object key) {
     for (final file in _selectedImageFiles(imageProvider)) {
@@ -213,6 +214,8 @@ final class _SelectedImageCompleter extends ImageStreamCompleter {
         setImage(image);
       },
       onChunk: reportImageChunkEvent,
+      // Forward active errors here; detached decodes must not also report globally.
+      reportErrors: false,
       onError: (Object error, StackTrace? stack) {
         if (generation == _generation) {
           reportError(exception: error, stack: stack, silent: true);
@@ -228,7 +231,6 @@ final class _SelectedImageCompleter extends ImageStreamCompleter {
     _source = null;
     _listener = null;
     if (source != null && listener != null) {
-      source.addEphemeralErrorListener((_, _) {});
       source.removeListener(listener);
     }
   }
@@ -271,6 +273,7 @@ Image sandboxImageFile(
   FilterQuality filterQuality = FilterQuality.medium,
   int? cacheWidth,
   int? cacheHeight,
+  bool useLogicalCacheSize = false,
 }) {
   p.requireFile(c.scope, file);
   ImageProvider provider = file is FlaxSelectedFile
@@ -282,8 +285,14 @@ Image sandboxImageFile(
             provider,
             width: cacheWidth,
             height: cacheHeight,
+            useLogicalSize: useLogicalCacheSize,
           )
-        : ResizeImage(provider, width: cacheWidth, height: cacheHeight);
+        : ResizeImage(
+            provider,
+            width: cacheWidth,
+            height: cacheHeight,
+            useLogicalSize: useLogicalCacheSize,
+          );
   }
   return Image(
     image: provider,

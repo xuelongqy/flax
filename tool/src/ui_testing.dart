@@ -178,7 +178,7 @@ Future<void> _runIsolated(
       'name': 'flax_ui_$engine',
       'version': '0.0.0',
       'publish_to': 'none',
-      'environment': {'sdk': '^3.13.2', 'flutter': '>=3.47.9'},
+      'environment': {'sdk': '^3.14.0', 'flutter': '>=3.50.0'},
       'workspace': ['packages/*'],
       'dependencies': {
         'flutter': {'sdk': 'flutter'},

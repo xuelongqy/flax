@@ -25,15 +25,15 @@ export interface PredictiveBackFullscreenPageTransitionsBuilder extends Omit<ups
     readonly delegatedTransition: ((context: upstream2.BuildContext, animation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>, secondaryAnimation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>, allowSnapshotting: boolean, child: Widget | null) => Widget | null) | null;
     readonly transitionDuration: upstream4.Duration;
     readonly reverseTransitionDuration: upstream4.Duration;
@@ -57,15 +57,15 @@ export interface PredictiveBackFullscreenPageTransitionsBuilder extends Omit<ups
     }>, context: upstream2.BuildContext, animation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>, secondaryAnimation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>, child: Widget): Widget;
 }
 export declare function _PredictiveBackFullscreenPageTransitionsBuilderFactory(options?: {
@@ -97,29 +97,29 @@ export interface _PredictiveBackFullscreenPageTransitionsBuilderNative extends P
     }>, context: upstream2.BuildContext, animation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>, secondaryAnimation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>, child: Widget): Widget;
     get fallbackColor(): upstream1.Color | null;
     get delegatedTransition(): ((context: upstream2.BuildContext, animation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>, secondaryAnimation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>, allowSnapshotting: boolean, child: Widget | null) => Widget | null) | null;
     get transitionDuration(): upstream4.Duration;
     get reverseTransitionDuration(): upstream4.Duration;
@@ -168,15 +168,15 @@ interface _FlaxSignature0 extends _FlaxDartSignature {
     }>, context: upstream2.BuildContext, animation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>, secondaryAnimation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>, child: Widget) => Widget : never : never;
 }
 interface _FlaxSignature1 extends _FlaxDartSignature {
@@ -199,15 +199,15 @@ interface _FlaxSignature1 extends _FlaxDartSignature {
     }>, context: upstream2.BuildContext, animation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>, secondaryAnimation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>, child: Widget) => Widget : never : never;
 }
 export {};

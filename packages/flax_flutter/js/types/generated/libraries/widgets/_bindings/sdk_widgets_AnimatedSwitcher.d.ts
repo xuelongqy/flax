@@ -44,9 +44,9 @@ export interface AnimatedSwitcher extends _FlaxDartWidget, Omit<upstream0.Statef
     readonly transitionBuilder: ((child: Widget, animation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>) => Widget);
     readonly layoutBuilder: ((currentChild: Widget | null, previousChildren: DartListInput<Widget, Widget>) => Widget);
     readonly key: upstream1.Key | null;
@@ -117,9 +117,9 @@ export declare namespace _AnimatedSwitcherFactory {
     function defaultTransitionBuilder(child: Widget, animation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>): Widget;
 }
 export declare namespace _AnimatedSwitcherFactory {

@@ -143,9 +143,9 @@ export declare function _DropdownButtonFactory<T extends unknown | null = unknow
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     autofocus?: boolean | undefined;
     dropdownColor?: Readonly<{
@@ -218,9 +218,9 @@ export declare function _DropdownButtonFactory(options: {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     autofocus?: boolean | undefined;
     dropdownColor?: Readonly<{
@@ -297,9 +297,9 @@ interface _FlaxSignature0 extends _FlaxDartSignature {
             }> & Readonly<{
                 "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+                "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+                "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
             }>) | null | undefined;
             autofocus?: boolean | undefined;
             dropdownColor?: Readonly<{

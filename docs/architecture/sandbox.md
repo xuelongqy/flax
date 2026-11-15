@@ -221,8 +221,19 @@ Android/Linux arm64 differs from Linux x86_64. Both endpoints of copy/rename are
 checked. Root deletion/rename is rejected. Symlinks are unsupported, including directory
 enumeration and trees moved by directory rename. Raw byte paths, Link, RandomAccessFile,
 raw open/openSync/openWrite and watchers are unavailable through the sandbox backend.
-FileStat and FileSystemEntity path queries use the same rooted implementation. TLS
-certificate/key path APIs read restricted bytes before invoking their byte counterparts.
+FileStat and FileSystemEntity path queries use the same rooted implementation. Metadata
+uses verified native stat layouts; reads/writes, truncation, flush and timestamps operate
+on the retained descriptor. Successful FileStat timestamps follow the SDK's local-time
+semantics; missing snapshots retain its UTC epoch. TLS certificate/key path APIs read
+restricted bytes before invoking their byte counterparts.
+
+Asynchronous descriptor IO shares one lazy worker per owning isolate. Active operations,
+queued selected-document work and streams hold leases; idle policies/documents retain
+their descriptors without retaining a worker. The final release drains acknowledged
+requests and waits for worker exit before a replacement starts. Descriptor owners wait
+for native acknowledgement or confirmed exit before closing/reusing handles. Synchronous
+variants remain synchronous. Worker exit does not itself prove immediate VM isolate-count
+restoration or collector admission.
 
 Future<File>, parent/absolute/URI conversions and Directory.list results preserve the
 restricted implementation. Lazy reads recheck lifetime on subscription. Session close
@@ -300,17 +311,19 @@ try {
 }
 ```
 
-This is a host API boundary inside one process, not an OS process sandbox. Rooted
-backends use POSIX and require a working file-descriptor portal; unavailable descriptor
-IO fails closed without a fallback to path checks. Acceptance covers maintained macOS
-arm64, iOS arm64 simulator and Android arm64 emulator execution. Physical devices need
-separate acceptance. macOS App Sandbox denies reopening `/dev/fd`, so the current
-filesystem backend does not support that host configuration. macOS file/UI acceptance
-uses Flutter's CI host mode, with the OS App Sandbox disabled and Flax's own data
-sandbox enabled. This does not disable signed-host Keychain access control, hardened
-runtime or library validation; Data Protection Keychain itself also works in a signed
-App Sandbox host. Supporting both filesystem sandboxes together requires a backend that
-operates directly on retained descriptors, not a fallback to ordinary file paths.
+This is a host API boundary inside one process, not an OS process sandbox. Rooted and
+selected-local backends use verified POSIX descriptor operations. They do not reopen
+Darwin `/dev/fd` aliases or fall back to ordinary host paths; unsupported descriptor IO
+fails closed. An OS sandbox remains an additional authority boundary: the trusted host
+must supply permitted roots and retain picker/security-scope access for its backend's
+lifetime. A retained descriptor does not grant access to other paths. Native URI and
+security-scope providers retain their own FlaxDocumentBackend cleanup contract.
+
+Acceptance is specific to the actual source, platform, mode and signing configuration.
+Physical-device and host App Sandbox filesystem checks remain separate from the Flax
+data sandbox. Signed-host Keychain access control, hardened runtime and library
+validation retain their existing checks; native capability probes alone do not certify
+complete application or asynchronous-IO behavior.
 [Module permissions](permissions.md) supply declaration approval, consent,
 network/module origins and Wasm controls. Quotas and complete native Flutter
 navigation/ancestor isolation remain deferred. See the Chinese

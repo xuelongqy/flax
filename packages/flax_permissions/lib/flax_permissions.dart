@@ -15,10 +15,17 @@ export 'src/dialog.dart';
 /// Rich native scopes need a capability-specific adapter that can prove the range.
 final class FlaxPermissionHandlerAdapter
     implements FlaxNativePermissionRequester {
-  const FlaxPermissionHandlerAdapter({this.requestOnDemand = false});
+  /// Uses [defaultTargetPlatform] unless the trusted host supplies [platform].
+  const FlaxPermissionHandlerAdapter({
+    this.requestOnDemand = false,
+    this._platform,
+  });
 
   final bool requestOnDemand;
+  final TargetPlatform? _platform;
   static Future<void> _queue = Future<void>.value();
+
+  TargetPlatform get _effectivePlatform => _platform ?? defaultTargetPlatform;
 
   static Permission? _permission(String permission, TargetPlatform platform) {
     final apple = platform == TargetPlatform.iOS;
@@ -57,7 +64,7 @@ final class FlaxPermissionHandlerAdapter
     String permission,
     Object scope,
   ) async {
-    final platform = defaultTargetPlatform;
+    final platform = _effectivePlatform;
     if (kIsWeb ||
         platform != TargetPlatform.android && platform != TargetPlatform.iOS) {
       return const FlaxNativePermissionStatus(
@@ -143,10 +150,7 @@ final class FlaxPermissionHandlerAdapter
           continue;
         }
         if (status.canRequest) {
-          final native = _permission(
-            request.permission,
-            defaultTargetPlatform,
-          )!;
+          final native = _permission(request.permission, _effectivePlatform)!;
           // Keep the queue occupied until the actual platform Future has settled.
           await [native].request();
         } else if (status.state != FlaxPermissionState.granted) {

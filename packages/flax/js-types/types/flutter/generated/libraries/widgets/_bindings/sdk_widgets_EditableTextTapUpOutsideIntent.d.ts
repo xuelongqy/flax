@@ -49,9 +49,9 @@ export declare function _EditableTextTapUpOutsideIntentFactory(options: {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>;
     pointerUpEvent: Readonly<{
         "__flaxBound:package:flutter/src/gestures/events.dart::PointerUpEvent": readonly [];
@@ -95,9 +95,9 @@ export declare abstract class _EditableTextTapUpOutsideIntentNative extends _Fla
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>;
         pointerUpEvent: Readonly<{
             "__flaxBound:package:flutter/src/gestures/events.dart::PointerUpEvent": readonly [];
@@ -123,9 +123,9 @@ export declare namespace _EditableTextTapUpOutsideIntentFactory {
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>;
         pointerUpEvent: Readonly<{
             "__flaxBound:package:flutter/src/gestures/events.dart::PointerUpEvent": readonly [];
@@ -150,9 +150,9 @@ declare const _EditableTextTapUpOutsideIntentBinding: typeof _EditableTextTapUpO
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>;
     pointerUpEvent: Readonly<{
         "__flaxBound:package:flutter/src/gestures/events.dart::PointerUpEvent": readonly [];

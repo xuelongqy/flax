@@ -594,6 +594,7 @@ export declare function _RenderSliverSemanticsAnnotationsFactory(options: {
 }): RenderSliverSemanticsAnnotations;
 export interface _RenderSliverSemanticsAnnotationsNative extends RenderSliverSemanticsAnnotations {
     readonly [_flaxDartTypeValue]: _RenderSliverSemanticsAnnotationsNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -995,7 +996,6 @@ export interface _RenderSliverSemanticsAnnotationsNative extends RenderSliverSem
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream16.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

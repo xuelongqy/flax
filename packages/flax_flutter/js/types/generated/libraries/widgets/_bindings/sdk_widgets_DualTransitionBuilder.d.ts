@@ -38,16 +38,16 @@ export interface DualTransitionBuilder extends _FlaxDartWidget, Omit<upstream0.S
     readonly forwardBuilder: ((context: upstream3.BuildContext, animation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>, child: Widget | null) => Widget);
     readonly reverseBuilder: ((context: upstream3.BuildContext, animation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>, child: Widget | null) => Widget);
     readonly child: Widget | null;
     readonly key: upstream1.Key | null;
@@ -80,9 +80,9 @@ export declare function _DualTransitionBuilderFactory(options: {
     animation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>;
     forwardBuilder: ((context: upstream3.BuildContext, animation: upstream2.Animation<number>, child: Widget | null) => Widget);
     reverseBuilder: ((context: upstream3.BuildContext, animation: upstream2.Animation<number>, child: Widget | null) => Widget);

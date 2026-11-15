@@ -22,9 +22,9 @@ import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartType
 export interface ToggleablePainter extends Omit<upstream0.ChangeNotifier, _flaxOwnMembers0>, Omit<upstream1.Listenable, _flaxOwnMembers0 | keyof upstream0.ChangeNotifier>, Omit<upstream2.CustomPainter, _flaxOwnMembers0 | keyof upstream0.ChangeNotifier | keyof upstream1.Listenable>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/toggleable.dart::ToggleablePainter": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }>, Readonly<{
     "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
 }> {
@@ -39,12 +39,12 @@ export interface ToggleablePainter {
     shouldRebuildSemantics(oldDelegate: Readonly<{
         "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): boolean;
     shouldRepaint(oldDelegate: Readonly<{
         "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): boolean;
     hitTest(position: Readonly<{
         "__flaxBound:dart:ui::Offset": readonly [];
@@ -91,30 +91,30 @@ export interface ToggleablePainter {
     set position(value: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>);
     set reaction(value: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>);
     set reactionFocusFade(value: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>);
     set reactionHoverFade(value: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>);
     set activeColor(value: Readonly<{
         "__flaxBound:dart:ui::Color": readonly [];
@@ -162,5 +162,5 @@ export declare namespace ToggleablePainter {
         paint: ((canvas: upstream8.Canvas, size: upstream4.Size) => void);
     }): ToggleablePainter;
 }
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "semanticsBuilder" | "position" | "reaction" | "reactionFocusFade" | "reactionHoverFade" | "activeColor" | "inactiveColor" | "inactiveReactionColor" | "reactionColor" | "hoverColor" | "focusColor" | "splashRadius" | "downPosition" | "isFocused" | "isHovered" | "isActive" | "addListener" | "removeListener" | "dispose" | "paint" | "shouldRebuildSemantics" | "shouldRepaint" | "hitTest" | "toString" | "paintRadialReaction" | "__flaxBound:package:flutter/src/widgets/toggleable.dart::ToggleablePainter" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "semanticsBuilder" | "position" | "reaction" | "reactionFocusFade" | "reactionHoverFade" | "activeColor" | "inactiveColor" | "inactiveReactionColor" | "reactionColor" | "hoverColor" | "focusColor" | "splashRadius" | "downPosition" | "isFocused" | "isHovered" | "isActive" | "addListener" | "removeListener" | "dispose" | "paint" | "shouldRebuildSemantics" | "shouldRepaint" | "hitTest" | "toString" | "paintRadialReaction" | "__flaxBound:package:flutter/src/widgets/toggleable.dart::ToggleablePainter" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable" | "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter";
 export {};

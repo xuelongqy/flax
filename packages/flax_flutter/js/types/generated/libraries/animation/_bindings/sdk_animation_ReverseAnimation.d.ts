@@ -20,9 +20,9 @@ export interface ReverseAnimation extends Omit<upstream0.Animation<number>, _fla
 }>, Readonly<{
     "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
 }>, Readonly<{
     "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLazyListenerMixin": readonly [];
 }>, Readonly<{
@@ -60,9 +60,9 @@ export interface ReverseAnimation extends Omit<upstream0.Animation<number>, _fla
 export declare function _ReverseAnimationFactory(parent: Readonly<{
     "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
 }>): ReverseAnimation;
 export interface _ReverseAnimationNative extends ReverseAnimation {
     readonly [_flaxDartTypeValue]: _ReverseAnimationNative;
@@ -100,29 +100,29 @@ export declare abstract class _ReverseAnimationNative extends _FlaxProxyBase {
     constructor(parent: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>);
 }
 export declare namespace _ReverseAnimationFactory {
     function implement(args: [parent: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>], implementation: {}): ReverseAnimation;
 }
 declare const _ReverseAnimationBinding: typeof _ReverseAnimationFactory & (new (parent: Readonly<{
     "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
 }>) => _ReverseAnimationNative);
 export declare const ReverseAnimation: typeof _ReverseAnimationBinding & _FlaxInstanceType<ReverseAnimation> & _FlaxDartType<ReverseAnimation, readonly ["class", "flax.core/sdk_animation#type:ReverseAnimation", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "status" | "value" | "isDismissed" | "isCompleted" | "isAnimating" | "isForwardOrCompleted" | "isListening" | "parent" | "addListener" | "removeListener" | "addStatusListener" | "removeStatusListener" | "drive" | "toString" | "toStringDetails" | "didRegisterListener" | "didUnregisterListener" | "didStartListening" | "didStopListening" | "clearStatusListeners" | "notifyStatusListeners" | "__flaxBound:package:flutter/src/animation/animations.dart::ReverseAnimation" | "__flaxBound:package:flutter/src/animation/animation.dart::Animation" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable" | "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLazyListenerMixin" | "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLocalStatusListenersMixin";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "status" | "value" | "isDismissed" | "isCompleted" | "isAnimating" | "isForwardOrCompleted" | "isListening" | "parent" | "addListener" | "removeListener" | "addStatusListener" | "removeStatusListener" | "drive" | "toString" | "toStringDetails" | "didRegisterListener" | "didUnregisterListener" | "didStartListening" | "didStopListening" | "clearStatusListeners" | "notifyStatusListeners" | "__flaxBound:package:flutter/src/animation/animations.dart::ReverseAnimation" | "__flaxBound:package:flutter/src/animation/animation.dart::Animation" | "__flaxBound:package:listen/src/listen.dart::Listenable" | "__flaxBound:package:listen/src/listen.dart::ValueListenable" | "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLazyListenerMixin" | "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLocalStatusListenersMixin";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (child: Readonly<{
         "__flaxBound:package:flutter/src/animation/tween.dart::Animatable": readonly [_Selected0];

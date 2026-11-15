@@ -620,6 +620,7 @@ export declare function _RenderPaddingFactory(options: {
 }): RenderPadding;
 export interface _RenderPaddingNative extends RenderPadding {
     readonly [_flaxDartTypeValue]: _RenderPaddingNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1080,7 +1081,6 @@ export interface _RenderPaddingNative extends RenderPadding {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream14.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

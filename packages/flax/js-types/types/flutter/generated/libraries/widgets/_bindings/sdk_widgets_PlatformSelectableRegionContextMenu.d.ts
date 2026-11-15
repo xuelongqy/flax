@@ -89,9 +89,9 @@ export declare namespace _PlatformSelectableRegionContextMenuFactory {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream9.SelectionGeometry];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream9.SelectionGeometry];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionRegistrar": readonly [];
     }>): void;
@@ -102,9 +102,9 @@ export declare namespace _PlatformSelectableRegionContextMenuFactory {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream9.SelectionGeometry];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream9.SelectionGeometry];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionRegistrar": readonly [];
     }>): void;

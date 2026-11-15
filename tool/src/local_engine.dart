@@ -18,13 +18,20 @@ String flutterEngineSource() =>
     Platform.environment['FLUTTER_ENGINE'] ??
     p.join(flutterSdkRoot(), 'engine', 'src');
 
-/// Use Flutter's official local-engine flags for commands that load an engine.
+/// Use official local artifacts for runtime and dependency/static commands.
 List<String> localEngineArguments(
   List<String> arguments, {
   String? source,
   FlaxNativeTarget? target,
 }) {
-  if (arguments.isEmpty ||
+  if (arguments.isEmpty) return arguments;
+  final staticCommand = {
+    'pub',
+    'packages',
+    'analyze',
+    'create',
+  }.contains(arguments.first);
+  if (!staticCommand &&
       !{'test', 'run', 'drive', 'build'}.contains(arguments.first)) {
     return arguments;
   }
@@ -32,6 +39,26 @@ List<String> localEngineArguments(
     throw ArgumentError('The workspace selects its matching local engine');
   }
   source ??= flutterEngineSource();
+  if (staticCommand) {
+    // These commands update universal SDK artifacts but do not run a device.
+    // Keep their cache context independent of runtime target and build mode.
+    const host = 'flax_mac_debug_arm64';
+    final output = p.join(source, 'out', host);
+    if (!File(p.join(output, 'FlutterMacOS.framework/Versions/A/FlutterMacOS'))
+        .existsSync()) {
+      throw StateError(
+        'Missing Flax host Debug artifacts: $output. '
+        'Build them with flutter/flax/tools/build_engine.py '
+        '--target macos-arm64 --mode debug.',
+      );
+    }
+    return [
+      '--local-engine-src-path=$source',
+      '--local-engine=$host',
+      '--local-engine-host=$host',
+      ...arguments,
+    ];
+  }
   final mode = arguments.contains('--profile')
       ? 'profile'
       : arguments.contains('--release') ||

@@ -92,6 +92,7 @@ export interface RenderAligningShiftedBox extends Omit<upstream0.RenderShiftedBo
 }
 export interface RenderAligningShiftedBox {
     readonly [_flaxDartTypeValue]: RenderAligningShiftedBox;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -545,7 +546,6 @@ export interface RenderAligningShiftedBox {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream14.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

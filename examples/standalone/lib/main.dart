@@ -7,7 +7,7 @@ import 'package:flax_websocket/flax_websocket.dart';
 import 'package:flax_canvas/flax_canvas.dart';
 import 'package:flax_standalone/engine.dart';
 import 'package:flax_material_ui/flax_material_ui.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 

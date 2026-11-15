@@ -109,13 +109,13 @@ export declare function _TextSelectionOverlayFactory(options: {
     clipboardStatus?: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/text_selection.dart::ClipboardStatusNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream12.ClipboardStatus];
+        "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream12.ClipboardStatus];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream12.ClipboardStatus];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream12.ClipboardStatus];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/binding.dart::WidgetsBindingObserver": readonly [];
     }>) | null | undefined;
@@ -215,13 +215,13 @@ export declare abstract class _TextSelectionOverlayNative extends _FlaxProxyBase
         clipboardStatus?: (Readonly<{
             "__flaxBound:package:flutter/src/widgets/text_selection.dart::ClipboardStatusNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream12.ClipboardStatus];
+            "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream12.ClipboardStatus];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream12.ClipboardStatus];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream12.ClipboardStatus];
         }> & Readonly<{
             "__flaxBound:package:flutter/src/widgets/binding.dart::WidgetsBindingObserver": readonly [];
         }>) | null | undefined;
@@ -282,13 +282,13 @@ export declare namespace _TextSelectionOverlayFactory {
         clipboardStatus?: (Readonly<{
             "__flaxBound:package:flutter/src/widgets/text_selection.dart::ClipboardStatusNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream12.ClipboardStatus];
+            "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream12.ClipboardStatus];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream12.ClipboardStatus];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream12.ClipboardStatus];
         }> & Readonly<{
             "__flaxBound:package:flutter/src/widgets/binding.dart::WidgetsBindingObserver": readonly [];
         }>) | null | undefined;
@@ -348,13 +348,13 @@ declare const _TextSelectionOverlayBinding: typeof _TextSelectionOverlayFactory 
     clipboardStatus?: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/text_selection.dart::ClipboardStatusNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream12.ClipboardStatus];
+        "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream12.ClipboardStatus];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream12.ClipboardStatus];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream12.ClipboardStatus];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/binding.dart::WidgetsBindingObserver": readonly [];
     }>) | null | undefined;

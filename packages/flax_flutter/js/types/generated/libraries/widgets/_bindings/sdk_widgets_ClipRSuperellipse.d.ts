@@ -115,7 +115,7 @@ export declare function _ClipRSuperellipseFactory(options?: {
     clipper?: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream5.RSuperellipse];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     clipBehavior?: upstream6.Clip | undefined;
     child?: Widget | null | undefined;

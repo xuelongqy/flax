@@ -64,55 +64,55 @@ export interface OverlayState extends Omit<upstream0.State<upstream1.Overlay>, _
     insert(entry: Readonly<{
         "__flaxBound:package:flutter/src/widgets/overlay.dart::OverlayEntry": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>, options?: {
         above?: (Readonly<{
             "__flaxBound:package:flutter/src/widgets/overlay.dart::OverlayEntry": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
         below?: (Readonly<{
             "__flaxBound:package:flutter/src/widgets/overlay.dart::OverlayEntry": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
     }): void;
     insertAll(entries: DartIterableInput<upstream12.OverlayEntry, Readonly<{
         "__flaxBound:package:flutter/src/widgets/overlay.dart::OverlayEntry": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>>, options?: {
         above?: (Readonly<{
             "__flaxBound:package:flutter/src/widgets/overlay.dart::OverlayEntry": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
         below?: (Readonly<{
             "__flaxBound:package:flutter/src/widgets/overlay.dart::OverlayEntry": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
     }): void;
     rearrange(newEntries: DartIterableInput<upstream12.OverlayEntry, Readonly<{
         "__flaxBound:package:flutter/src/widgets/overlay.dart::OverlayEntry": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>>, options?: {
         above?: (Readonly<{
             "__flaxBound:package:flutter/src/widgets/overlay.dart::OverlayEntry": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
         below?: (Readonly<{
             "__flaxBound:package:flutter/src/widgets/overlay.dart::OverlayEntry": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
     }): void;
     debugIsVisible(entry: Readonly<{
         "__flaxBound:package:flutter/src/widgets/overlay.dart::OverlayEntry": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): boolean;
 }
 export declare function _OverlayStateFactory(): OverlayState;

@@ -22,9 +22,9 @@ export interface RestorableTimeOfDay extends Omit<upstream0.RestorableValue<upst
 }>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/restoration.dart::RestorableProperty": readonly [upstream1.TimeOfDay];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __RestorableTimeOfDay: unique symbol;
     readonly [_flaxDartTypeValue]: RestorableTimeOfDay;
@@ -112,5 +112,5 @@ declare const _RestorableTimeOfDayBinding: typeof _RestorableTimeOfDayFactory & 
     "__flaxBound:dart:core::Comparable": readonly [upstream1.TimeOfDay];
 }>) => _RestorableTimeOfDayNative);
 export declare const RestorableTimeOfDay: typeof _RestorableTimeOfDayBinding & _FlaxInstanceType<RestorableTimeOfDay> & _FlaxDartType<RestorableTimeOfDay, readonly ["class", "flax.material/material#type:RestorableTimeOfDay", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "enabled" | "state" | "isRegistered" | "hasListeners" | "value" | "createDefaultValue" | "fromPrimitives" | "initWithValue" | "toPrimitives" | "dispose" | "addListener" | "removeListener" | "didUpdateValue" | "__flaxBound:package:material_ui/src/time.dart::RestorableTimeOfDay" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableValue" | "__flaxBound:package:flutter/src/widgets/restoration.dart::RestorableProperty" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "enabled" | "state" | "isRegistered" | "hasListeners" | "value" | "createDefaultValue" | "fromPrimitives" | "initWithValue" | "toPrimitives" | "dispose" | "addListener" | "removeListener" | "didUpdateValue" | "__flaxBound:package:material_ui/src/time.dart::RestorableTimeOfDay" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableValue" | "__flaxBound:package:flutter/src/widgets/restoration.dart::RestorableProperty" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 export {};

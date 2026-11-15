@@ -10,6 +10,7 @@ import '@flax/dart/ui/_bindings/sdk_dart_ui_Path';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import type * as upstream5 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
+import '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
 import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
@@ -45,6 +46,15 @@ export interface OutlinedBorder extends Omit<upstream0.ShapeBorder, _flaxOwnMemb
     }>, options?: {
         textDirection?: upstream5.TextDirection | null | undefined;
     }): upstream3.Path;
+    hitTest(rect: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, position: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, options?: {
+        textDirection?: upstream5.TextDirection | null | undefined;
+    }): boolean;
     paintInterior(canvas: Readonly<{
         "__flaxBound:dart:ui::Canvas": readonly [];
     }>, rect: Readonly<{
@@ -85,5 +95,5 @@ export declare namespace _OutlinedBorderFactory {
     }>) | null, t: number): OutlinedBorder | null;
 }
 export declare const OutlinedBorder: typeof _OutlinedBorderFactory & _FlaxInstanceType<OutlinedBorder> & _FlaxDartType<OutlinedBorder, readonly ["class", "flax.core/flutter#type:OutlinedBorder", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "dimensions" | "preferPaintInterior" | "side" | "add" | "scale" | "lerpFrom" | "lerpTo" | "getOuterPath" | "getInnerPath" | "paintInterior" | "paint" | "toString" | "copyWith" | "operatorAdd" | "__flaxBound:package:flutter/src/painting/borders.dart::OutlinedBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "dimensions" | "preferPaintInterior" | "side" | "add" | "scale" | "lerpFrom" | "lerpTo" | "getOuterPath" | "getInnerPath" | "hitTest" | "paintInterior" | "paint" | "toString" | "copyWith" | "operatorAdd" | "__flaxBound:package:flutter/src/painting/borders.dart::OutlinedBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder";
 export {};

@@ -38,7 +38,7 @@ export declare abstract class MultiChildLayoutDelegate extends _FlaxProxyBase {
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_rendering#type:MultiChildLayoutDelegate", readonly [], false];
     constructor(options?: {
         relayout?: Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> | null | undefined;
     });
     abstract performLayout(size: Readonly<{
@@ -53,7 +53,7 @@ export declare abstract class MultiChildLayoutDelegate extends _FlaxProxyBase {
 export declare namespace MultiChildLayoutDelegate {
     function implement(args: [options?: {
         relayout?: Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> | null | undefined;
     }], implementation: {
         performLayout: ((size: upstream1.Size) => void);

@@ -113,7 +113,6 @@ export interface RenderSliverIgnorePointer extends Omit<upstream0.RenderProxySli
     readonly debugSemantics: upstream14.SemanticsNode | null;
     get child(): upstream1.RenderSliver | null;
     get ignoring(): boolean;
-    get ignoringSemantics(): boolean | null;
     setupParentData(child: Readonly<{
         "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
     }> & Readonly<{
@@ -515,7 +514,6 @@ export interface RenderSliverIgnorePointer extends Omit<upstream0.RenderProxySli
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null);
     set ignoring(value: boolean);
-    set ignoringSemantics(value: boolean | null);
 }
 export declare function _RenderSliverIgnorePointerFactory(options?: {
     sliver?: (Readonly<{
@@ -532,10 +530,10 @@ export declare function _RenderSliverIgnorePointerFactory(options?: {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null | undefined;
     ignoring?: boolean | undefined;
-    ignoringSemantics?: boolean | null | undefined;
 }): RenderSliverIgnorePointer;
 export interface _RenderSliverIgnorePointerNative extends RenderSliverIgnorePointer {
     readonly [_flaxDartTypeValue]: _RenderSliverIgnorePointerNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -905,7 +903,6 @@ export interface _RenderSliverIgnorePointerNative extends RenderSliverIgnorePoin
         minLevel?: upstream27.DiagnosticLevel | undefined;
     }): string;
     get ignoring(): boolean;
-    get ignoringSemantics(): boolean | null;
     get semanticBounds(): upstream8.Rect;
     get ensureSemantics(): boolean;
     get constraints(): upstream9.SliverConstraints;
@@ -922,7 +919,6 @@ export interface _RenderSliverIgnorePointerNative extends RenderSliverIgnorePoin
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream12.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;
@@ -938,7 +934,6 @@ export interface _RenderSliverIgnorePointerNative extends RenderSliverIgnorePoin
     get debugSemantics(): upstream14.SemanticsNode | null;
     get child(): upstream1.RenderSliver | null;
     set ignoring(value: boolean);
-    set ignoringSemantics(value: boolean | null);
     set geometry(value: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/sliver.dart::SliverGeometry": readonly [];
     }> & Readonly<{
@@ -992,7 +987,6 @@ export declare abstract class _RenderSliverIgnorePointerNative extends _FlaxProx
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
         ignoring?: boolean | undefined;
-        ignoringSemantics?: boolean | null | undefined;
     });
 }
 export declare namespace _RenderSliverIgnorePointerFactory {
@@ -1011,7 +1005,6 @@ export declare namespace _RenderSliverIgnorePointerFactory {
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
         ignoring?: boolean | undefined;
-        ignoringSemantics?: boolean | null | undefined;
     }], implementation: {}): RenderSliverIgnorePointer;
 }
 declare const _RenderSliverIgnorePointerBinding: typeof _RenderSliverIgnorePointerFactory & (new (options?: {
@@ -1029,10 +1022,9 @@ declare const _RenderSliverIgnorePointerBinding: typeof _RenderSliverIgnorePoint
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>) | null | undefined;
     ignoring?: boolean | undefined;
-    ignoringSemantics?: boolean | null | undefined;
 }) => _RenderSliverIgnorePointerNative);
 export declare const RenderSliverIgnorePointer: typeof _RenderSliverIgnorePointerBinding & _FlaxInstanceType<RenderSliverIgnorePointer> & _FlaxDartType<RenderSliverIgnorePointer, readonly ["class", "flax.core/sdk_rendering#type:RenderSliverIgnorePointer", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "semanticBounds" | "ensureSemantics" | "constraints" | "geometry" | "paintBounds" | "centerOffsetAdjustment" | "debugDisposed" | "parentData" | "depth" | "parent" | "debugCreator" | "debugDoingThisResize" | "debugDoingThisLayout" | "debugCanParentUseSize" | "debugLayoutParent" | "owner" | "attached" | "debugNeedsLayout" | "debugDoingThisLayoutWithCallback" | "sizedByParent" | "debugDoingThisPaint" | "isRepaintBoundary" | "alwaysNeedsCompositing" | "layer" | "debugLayer" | "needsCompositing" | "debugNeedsPaint" | "debugNeedsCompositedLayerUpdate" | "debugNeedsSemanticsUpdate" | "debugSemantics" | "child" | "ignoring" | "ignoringSemantics" | "setupParentData" | "performLayout" | "paint" | "hitTestChildren" | "childMainAxisPosition" | "applyPaintTransform" | "debugResetSize" | "debugAssertDoesMeetConstraints" | "performResize" | "hitTest" | "hitTestSelf" | "calculatePaintOffset" | "calculateCacheOffset" | "childCrossAxisPosition" | "childScrollOffset" | "getAbsoluteSizeRelativeToOrigin" | "getAbsoluteSize" | "getMaxPaintRect" | "debugPaint" | "handleEvent" | "debugFillProperties" | "reassemble" | "dispose" | "redepthChild" | "redepthChildren" | "adoptChild" | "dropChild" | "visitChildren" | "attach" | "detach" | "markNeedsLayout" | "markParentNeedsLayout" | "markNeedsLayoutForSizedByParentChange" | "scheduleInitialLayout" | "layout" | "invokeLayoutCallback" | "debugRegisterRepaintBoundaryPaint" | "updateCompositedLayer" | "markNeedsCompositingBitsUpdate" | "markNeedsPaint" | "markNeedsCompositedLayerUpdate" | "scheduleInitialPaint" | "replaceRootLayer" | "paintsChild" | "getTransformTo" | "describeApproximatePaintClip" | "describeSemanticsClip" | "scheduleInitialSemantics" | "describeSemanticsConfiguration" | "sendSemanticsEvent" | "clearSemantics" | "markNeedsSemanticsUpdate" | "visitChildrenForSemantics" | "assembleSemanticsNode" | "toStringShort" | "toStringDeep" | "toStringShallow" | "debugDescribeChildren" | "showOnScreen" | "describeForError" | "toDiagnosticsNode" | "debugValidateChild" | "toString" | "__flaxBound:package:flutter/src/rendering/proxy_sliver.dart::RenderSliverIgnorePointer" | "__flaxBound:package:flutter/src/rendering/proxy_sliver.dart::RenderProxySliver" | "__flaxBound:package:flutter/src/rendering/sliver.dart::RenderSliver" | "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject" | "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/rendering/object.dart::RenderObjectWithChildMixin";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "semanticBounds" | "ensureSemantics" | "constraints" | "geometry" | "paintBounds" | "centerOffsetAdjustment" | "debugDisposed" | "parentData" | "depth" | "parent" | "debugCreator" | "debugDoingThisResize" | "debugDoingThisLayout" | "debugCanParentUseSize" | "debugLayoutParent" | "owner" | "attached" | "debugNeedsLayout" | "debugDoingThisLayoutWithCallback" | "sizedByParent" | "debugDoingThisPaint" | "isRepaintBoundary" | "alwaysNeedsCompositing" | "layer" | "debugLayer" | "needsCompositing" | "debugNeedsPaint" | "debugNeedsCompositedLayerUpdate" | "debugNeedsSemanticsUpdate" | "debugSemantics" | "child" | "ignoring" | "setupParentData" | "performLayout" | "paint" | "hitTestChildren" | "childMainAxisPosition" | "applyPaintTransform" | "debugResetSize" | "debugAssertDoesMeetConstraints" | "performResize" | "hitTest" | "hitTestSelf" | "calculatePaintOffset" | "calculateCacheOffset" | "childCrossAxisPosition" | "childScrollOffset" | "getAbsoluteSizeRelativeToOrigin" | "getAbsoluteSize" | "getMaxPaintRect" | "debugPaint" | "handleEvent" | "debugFillProperties" | "reassemble" | "dispose" | "redepthChild" | "redepthChildren" | "adoptChild" | "dropChild" | "visitChildren" | "attach" | "detach" | "markNeedsLayout" | "markParentNeedsLayout" | "markNeedsLayoutForSizedByParentChange" | "scheduleInitialLayout" | "layout" | "invokeLayoutCallback" | "debugRegisterRepaintBoundaryPaint" | "updateCompositedLayer" | "markNeedsCompositingBitsUpdate" | "markNeedsPaint" | "markNeedsCompositedLayerUpdate" | "scheduleInitialPaint" | "replaceRootLayer" | "paintsChild" | "getTransformTo" | "describeApproximatePaintClip" | "describeSemanticsClip" | "scheduleInitialSemantics" | "describeSemanticsConfiguration" | "sendSemanticsEvent" | "clearSemantics" | "markNeedsSemanticsUpdate" | "visitChildrenForSemantics" | "assembleSemanticsNode" | "toStringShort" | "toStringDeep" | "toStringShallow" | "debugDescribeChildren" | "showOnScreen" | "describeForError" | "toDiagnosticsNode" | "debugValidateChild" | "toString" | "__flaxBound:package:flutter/src/rendering/proxy_sliver.dart::RenderSliverIgnorePointer" | "__flaxBound:package:flutter/src/rendering/proxy_sliver.dart::RenderProxySliver" | "__flaxBound:package:flutter/src/rendering/sliver.dart::RenderSliver" | "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject" | "__flaxBound:package:flutter/src/gestures/hit_test.dart::HitTestTarget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/rendering/object.dart::RenderObjectWithChildMixin";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [upstream23.Constraints] ? (callback: ((constraints: _Selected0) => void)) => void : never : never;
 }

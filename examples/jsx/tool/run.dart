@@ -16,7 +16,7 @@ Future<void> main() => command(() async {
     entry.writeAsStringSync('''
 import 'package:flax/flax.dart';
 import 'package:flax_websocket/flax_websocket.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 
 Future<void> main() async {

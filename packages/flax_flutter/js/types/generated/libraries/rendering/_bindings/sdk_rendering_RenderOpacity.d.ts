@@ -617,6 +617,7 @@ export declare function _RenderOpacityFactory(options?: {
 }): RenderOpacity;
 export interface _RenderOpacityNative extends RenderOpacity {
     readonly [_flaxDartTypeValue]: _RenderOpacityNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1079,7 +1080,6 @@ export interface _RenderOpacityNative extends RenderOpacity {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream13.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

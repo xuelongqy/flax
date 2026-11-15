@@ -132,13 +132,13 @@ export declare function _CupertinoTextFormFieldRowFactory(options?: {
     controller?: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/editable_text.dart::TextEditingController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream37.TextEditingValue];
+        "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream37.TextEditingValue];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream37.TextEditingValue];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream37.TextEditingValue];
     }>) | null | undefined;
     initialValue?: string | null | undefined;
     focusNode?: (Readonly<{
@@ -150,9 +150,9 @@ export declare function _CupertinoTextFormFieldRowFactory(options?: {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     decoration?: (Readonly<{
         "__flaxBound:package:flutter/src/painting/box_decoration.dart::BoxDecoration": readonly [];

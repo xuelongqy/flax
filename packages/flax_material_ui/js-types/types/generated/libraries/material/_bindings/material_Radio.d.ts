@@ -134,9 +134,9 @@ export declare function _RadioFactory<T extends unknown | null = unknown | null>
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     autofocus?: boolean | undefined;
     enabled?: boolean | null | undefined;
@@ -199,9 +199,9 @@ export declare function _RadioFactory(options: {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     autofocus?: boolean | undefined;
     enabled?: boolean | null | undefined;
@@ -265,9 +265,9 @@ export declare namespace _RadioFactory {
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
         autofocus?: boolean | undefined;
         useCupertinoCheckmarkStyle?: boolean | undefined;
@@ -331,9 +331,9 @@ export declare namespace _RadioFactory {
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
         autofocus?: boolean | undefined;
         useCupertinoCheckmarkStyle?: boolean | undefined;
@@ -402,9 +402,9 @@ interface _FlaxSignature0 extends _FlaxDartSignature {
             }> & Readonly<{
                 "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+                "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+                "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
             }>) | null | undefined;
             autofocus?: boolean | undefined;
             enabled?: boolean | null | undefined;
@@ -467,9 +467,9 @@ interface _FlaxSignature0 extends _FlaxDartSignature {
             }> & Readonly<{
                 "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+                "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+                "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
             }>) | null | undefined;
             autofocus?: boolean | undefined;
             useCupertinoCheckmarkStyle?: boolean | undefined;

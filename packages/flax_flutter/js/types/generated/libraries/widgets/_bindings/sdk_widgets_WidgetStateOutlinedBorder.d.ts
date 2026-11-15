@@ -19,7 +19,8 @@ import type * as upstream8 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import type * as upstream9 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
-import type * as upstream10 from '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
+import '@flax/dart/ui/_bindings/flutter_Offset';
+import type * as upstream11 from '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
@@ -67,6 +68,15 @@ export interface WidgetStateOutlinedBorder extends Omit<upstream0.OutlinedBorder
     }>, options?: {
         textDirection?: upstream9.TextDirection | null | undefined;
     }): upstream7.Path;
+    hitTest(rect: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, position: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, options?: {
+        textDirection?: upstream9.TextDirection | null | undefined;
+    }): boolean;
     paintInterior(canvas: Readonly<{
         "__flaxBound:dart:ui::Canvas": readonly [];
     }>, rect: Readonly<{
@@ -118,6 +128,15 @@ export interface _WidgetStateOutlinedBorderNative extends WidgetStateOutlinedBor
     }>, options?: {
         reversed?: boolean | undefined;
     }): upstream1.ShapeBorder | null;
+    hitTest(rect: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, position: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, options?: {
+        textDirection?: upstream9.TextDirection | null | undefined;
+    }): boolean;
     paintInterior(canvas: Readonly<{
         "__flaxBound:dart:ui::Canvas": readonly [];
     }>, rect: Readonly<{
@@ -189,7 +208,7 @@ export declare namespace _WidgetStateOutlinedBorderFactory {
         }) => Readonly<{
             "__flaxBound:dart:ui::Path": readonly [];
         }>);
-        paint: ((canvas: upstream10.Canvas, rect: upstream8.Rect, options?: {
+        paint: ((canvas: upstream11.Canvas, rect: upstream8.Rect, options?: {
             textDirection?: upstream9.TextDirection | null | undefined;
         }) => void);
         resolve: ((states: DartSet<upstream3.WidgetState>) => (Readonly<{
@@ -201,5 +220,5 @@ export declare namespace _WidgetStateOutlinedBorderFactory {
 }
 declare const _WidgetStateOutlinedBorderBinding: typeof _WidgetStateOutlinedBorderFactory & (abstract new () => _WidgetStateOutlinedBorderNative);
 export declare const WidgetStateOutlinedBorder: typeof _WidgetStateOutlinedBorderBinding & _FlaxInstanceType<WidgetStateOutlinedBorder> & _FlaxDartType<WidgetStateOutlinedBorder, readonly ["class", "flax.core/sdk_widgets#type:WidgetStateOutlinedBorder", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "dimensions" | "side" | "preferPaintInterior" | "copyWith" | "scale" | "lerpFrom" | "lerpTo" | "add" | "getOuterPath" | "getInnerPath" | "paintInterior" | "paint" | "toString" | "resolve" | "operatorAdd" | "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateOutlinedBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::OutlinedBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder" | "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "dimensions" | "side" | "preferPaintInterior" | "copyWith" | "scale" | "lerpFrom" | "lerpTo" | "add" | "getOuterPath" | "getInnerPath" | "hitTest" | "paintInterior" | "paint" | "toString" | "resolve" | "operatorAdd" | "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateOutlinedBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::OutlinedBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder" | "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStateProperty";
 export {};

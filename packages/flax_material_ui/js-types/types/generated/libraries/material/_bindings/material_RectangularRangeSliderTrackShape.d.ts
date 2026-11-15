@@ -63,9 +63,9 @@ export interface RectangularRangeSliderTrackShape extends Omit<upstream0.RangeSl
         enableAnimation: (Readonly<{
             "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
         }>) | null;
         endThumbCenter: Readonly<{
             "__flaxBound:dart:ui::Offset": readonly [];
@@ -160,9 +160,9 @@ export interface _RectangularRangeSliderTrackShapeNative extends RectangularRang
         enableAnimation: (Readonly<{
             "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
         }>) | null;
         startThumbCenter: Readonly<{
             "__flaxBound:dart:ui::Offset": readonly [];

@@ -4,8 +4,8 @@ version: 0.0.0
 publish_to: none
 
 environment:
-  sdk: ^3.13.2
-  flutter: '>=3.47.9'
+  sdk: ^3.14.0
+  flutter: '>=3.50.0'
 
 workspace:
   - packages/*
@@ -29,7 +29,7 @@ dev_dependencies:
   flutter_lints: 6.0.0
   melos: 8.10.0
   path: 1.9.1
-  test: 1.31.1
+  test: 1.32.0
   yaml: 3.1.4
 
 melos:
@@ -51,7 +51,7 @@ melos:
     analyze:
       description:
         Analyze the Dart and Flutter workspace without resolving dependencies.
-      run: flutter analyze --no-pub --fatal-infos
+      run: dart run tool/package.dart analyze
     format:check:
       description: Check Dart, JavaScript, configuration, and documentation formatting.
       steps:

@@ -78,9 +78,9 @@ export declare function _RelativePositionedTransitionFactory(options: {
     rect: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [upstream4.Rect | null];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream4.Rect | null];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream4.Rect | null];
     }>;
     size: Readonly<{
         "__flaxBound:dart:ui::Size": readonly [];

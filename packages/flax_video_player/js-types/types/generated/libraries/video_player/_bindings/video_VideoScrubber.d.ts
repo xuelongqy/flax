@@ -66,13 +66,13 @@ export declare function _VideoScrubberFactory(options: {
     controller: Readonly<{
         "__flaxBound:package:video_player/video_player.dart::VideoPlayerController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream10.VideoPlayerValue];
+        "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream10.VideoPlayerValue];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream10.VideoPlayerValue];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream10.VideoPlayerValue];
     }>;
 }): VideoScrubber;
 export declare namespace _VideoScrubberFactory {

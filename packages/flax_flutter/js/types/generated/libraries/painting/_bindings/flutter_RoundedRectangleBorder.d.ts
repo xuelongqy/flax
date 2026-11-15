@@ -14,6 +14,7 @@ import '@flax/dart/ui/_bindings/sdk_dart_ui_Path';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import type * as upstream7 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
+import '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
 import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
@@ -64,6 +65,15 @@ export interface RoundedRectangleBorder extends Omit<upstream0.OutlinedBorder, _
     }>, options?: {
         textDirection?: upstream7.TextDirection | null | undefined;
     }): upstream5.Path;
+    hitTest(rect: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, position: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, options?: {
+        textDirection?: upstream7.TextDirection | null | undefined;
+    }): boolean;
     paintInterior(canvas: Readonly<{
         "__flaxBound:dart:ui::Canvas": readonly [];
     }>, rect: Readonly<{
@@ -96,5 +106,5 @@ export declare function _RoundedRectangleBorderFactory(options?: {
     }> | undefined;
 }): RoundedRectangleBorder;
 export declare const RoundedRectangleBorder: typeof _RoundedRectangleBorderFactory & _FlaxInstanceType<RoundedRectangleBorder> & _FlaxDartType<RoundedRectangleBorder, readonly ["class", "flax.core/flutter#type:RoundedRectangleBorder", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "dimensions" | "side" | "preferPaintInterior" | "borderRadius" | "copyWith" | "scale" | "lerpFrom" | "lerpTo" | "add" | "getOuterPath" | "getInnerPath" | "paintInterior" | "paint" | "toString" | "operatorAdd" | "__flaxBound:package:flutter/src/painting/rounded_rectangle_border.dart::RoundedRectangleBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::OutlinedBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder" | "__flaxBound:package:flutter/src/painting/rounded_rectangle_border.dart::_RRectLikeBorder";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "dimensions" | "side" | "preferPaintInterior" | "borderRadius" | "copyWith" | "scale" | "lerpFrom" | "lerpTo" | "add" | "getOuterPath" | "getInnerPath" | "hitTest" | "paintInterior" | "paint" | "toString" | "operatorAdd" | "__flaxBound:package:flutter/src/painting/rounded_rectangle_border.dart::RoundedRectangleBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::OutlinedBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder" | "__flaxBound:package:flutter/src/painting/rounded_rectangle_border.dart::_RRectLikeBorder";
 export {};

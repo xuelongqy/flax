@@ -634,6 +634,7 @@ export declare function _RenderPositionedBoxFactory(options?: {
 }): RenderPositionedBox;
 export interface _RenderPositionedBoxNative extends RenderPositionedBox {
     readonly [_flaxDartTypeValue]: _RenderPositionedBoxNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1098,7 +1099,6 @@ export interface _RenderPositionedBoxNative extends RenderPositionedBox {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream3.RenderObject | null;
     get owner(): upstream16.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

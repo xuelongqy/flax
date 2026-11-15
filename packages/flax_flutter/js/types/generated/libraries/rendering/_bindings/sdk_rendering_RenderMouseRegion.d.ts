@@ -681,6 +681,7 @@ export declare function _RenderMouseRegionFactory(options?: {
 }): RenderMouseRegion;
 export interface _RenderMouseRegionNative extends RenderMouseRegion {
     readonly [_flaxDartTypeValue]: _RenderMouseRegionNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1173,7 +1174,6 @@ export interface _RenderMouseRegionNative extends RenderMouseRegion {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream3.RenderObject | null;
     get owner(): upstream20.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

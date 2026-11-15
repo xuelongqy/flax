@@ -82,7 +82,7 @@ Future<void> _until(bool Function() condition) async {
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   const channel = MethodChannel('flutter.baseflow.com/permissions/methods');
-  const adapter = FlaxPermissionHandlerAdapter();
+  const adapter = FlaxPermissionHandlerAdapter(platform: TargetPlatform.iOS);
   var status = 0;
   var service = 1;
   final calls = <String>[];
@@ -91,7 +91,6 @@ void main() {
   Future<Map<int, int>> Function(List<int>)? requestAnswer;
   void Function(int)? onStatusQuery;
   setUp(() {
-    debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
     status = 0;
     service = 1;
     statuses.clear();
@@ -124,10 +123,31 @@ void main() {
         });
   });
   tearDown(() {
-    debugDefaultTargetPlatformOverride = null;
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMethodCallHandler(channel, null);
   });
+  test(
+    'default constructor follows the current platform without requesting',
+    () async {
+      const defaultAdapter = FlaxPermissionHandlerAdapter();
+      final result = await defaultAdapter.query('flax.camera', const {});
+      switch (defaultTargetPlatform) {
+        case TargetPlatform.iOS || TargetPlatform.android:
+          expect(result.state, FlaxPermissionState.denied);
+          expect(result.reason, 'hostPermissionRequired');
+          expect(calls, ['checkPermissionStatus']);
+        case TargetPlatform.macOS ||
+            TargetPlatform.linux ||
+            TargetPlatform.windows ||
+            TargetPlatform.fuchsia:
+          expect(result.state, FlaxPermissionState.unavailable);
+          expect(result.reason, 'nativePlatformUnsupported');
+          expect(calls, isEmpty);
+      }
+      expect(result.canRequest, isFalse);
+      expect(requests, isEmpty);
+    },
+  );
   test(
     'query-only mapping distinguishes denied, granted, limited and restricted',
     () async {
@@ -160,22 +180,26 @@ void main() {
       (await adapter.query('example.business', const {})).state,
       FlaxPermissionState.unavailable,
     );
-    debugDefaultTargetPlatformOverride = TargetPlatform.android;
+    const android = FlaxPermissionHandlerAdapter(
+      platform: TargetPlatform.android,
+    );
     calls.clear();
     expect(
-      (await adapter.query('flax.photos.add', const {})).state,
+      (await android.query('flax.photos.add', const {})).state,
       FlaxPermissionState.unavailable,
     );
     expect(calls, isEmpty);
     status = 0;
     expect(
-      (await adapter.query('flax.speech.recognition', const {})).state,
+      (await android.query('flax.speech.recognition', const {})).state,
       FlaxPermissionState.denied,
     );
     expect(calls, ['checkPermissionStatus']);
-    debugDefaultTargetPlatformOverride = TargetPlatform.macOS;
+    const unsupported = FlaxPermissionHandlerAdapter(
+      platform: TargetPlatform.macOS,
+    );
     expect(
-      (await adapter.query('flax.camera', const {})).state,
+      (await unsupported.query('flax.camera', const {})).state,
       FlaxPermissionState.unavailable,
     );
   });
@@ -187,10 +211,12 @@ void main() {
       expect(unsupported.state, FlaxPermissionState.unavailable);
       expect(unsupported.reason, 'nativeCapabilityUnsupported');
       expect(calls, isEmpty);
-      debugDefaultTargetPlatformOverride = TargetPlatform.android;
+      const android = FlaxPermissionHandlerAdapter(
+        platform: TargetPlatform.android,
+      );
       status = 1;
       expect(
-        (await adapter.query('flax.network.local', const {})).state,
+        (await android.query('flax.network.local', const {})).state,
         FlaxPermissionState.granted,
       );
       expect(calls, ['checkPermissionStatus']);
@@ -200,7 +226,10 @@ void main() {
   test(
     'requestability is opt-in and excludes unsafe or ambiguous statuses',
     () async {
-      const enabled = FlaxPermissionHandlerAdapter(requestOnDemand: true);
+      const enabled = FlaxPermissionHandlerAdapter(
+        requestOnDemand: true,
+        platform: TargetPlatform.iOS,
+      );
       expect(
         (await adapter.query('flax.camera', const {})).canRequest,
         isFalse,
@@ -230,10 +259,13 @@ void main() {
         (await enabled.query('flax.network.local', const {})).canRequest,
         isFalse,
       );
-      debugDefaultTargetPlatformOverride = TargetPlatform.android;
-      expect((await enabled.query('flax.camera', const {})).canRequest, isTrue);
+      const android = FlaxPermissionHandlerAdapter(
+        requestOnDemand: true,
+        platform: TargetPlatform.android,
+      );
+      expect((await android.query('flax.camera', const {})).canRequest, isTrue);
       expect(
-        (await enabled.query('flax.photos.add', const {})).canRequest,
+        (await android.query('flax.photos.add', const {})).canRequest,
         isFalse,
       );
       expect(requests, isEmpty);
@@ -245,7 +277,10 @@ void main() {
     Permission.camera.onGrantedCallback(() => foreignCallbacks++);
     addTearDown(() => Permission.camera.onGrantedCallback(null));
     final probe = _Probe(
-      const FlaxPermissionHandlerAdapter(requestOnDemand: true),
+      const FlaxPermissionHandlerAdapter(
+        requestOnDemand: true,
+        platform: TargetPlatform.iOS,
+      ),
     );
     final context = await _context(
       probe,
@@ -266,14 +301,24 @@ void main() {
 
   test('direct adapter requests recheck opt-out, restricted and background eligibility', () async {
     for (final (nativeAdapter, permission, nativeStatus) in [
-      (const FlaxPermissionHandlerAdapter(), 'flax.camera', 0),
       (
-        const FlaxPermissionHandlerAdapter(requestOnDemand: true),
+        const FlaxPermissionHandlerAdapter(platform: TargetPlatform.iOS),
+        'flax.camera',
+        0,
+      ),
+      (
+        const FlaxPermissionHandlerAdapter(
+          requestOnDemand: true,
+          platform: TargetPlatform.iOS,
+        ),
         'flax.camera',
         2,
       ),
       (
-        const FlaxPermissionHandlerAdapter(requestOnDemand: true),
+        const FlaxPermissionHandlerAdapter(
+          requestOnDemand: true,
+          platform: TargetPlatform.iOS,
+        ),
         'flax.location.background',
         0,
       ),
@@ -295,10 +340,16 @@ void main() {
           ? firstPhysical.future
           : Future.value({for (final id in ids) id: 1});
       final leftProbe = _Probe(
-        const FlaxPermissionHandlerAdapter(requestOnDemand: true),
+        const FlaxPermissionHandlerAdapter(
+          requestOnDemand: true,
+          platform: TargetPlatform.iOS,
+        ),
       );
       final rightProbe = _Probe(
-        const FlaxPermissionHandlerAdapter(requestOnDemand: true),
+        const FlaxPermissionHandlerAdapter(
+          requestOnDemand: true,
+          platform: TargetPlatform.iOS,
+        ),
       );
       final left = await _context(leftProbe);
       final right = await _context(rightProbe, permission: 'flax.microphone');
@@ -325,13 +376,22 @@ void main() {
     final physical = Completer<Map<int, int>>();
     requestAnswer = (_) => physical.future;
     final firstProbe = _Probe(
-      const FlaxPermissionHandlerAdapter(requestOnDemand: true),
+      const FlaxPermissionHandlerAdapter(
+        requestOnDemand: true,
+        platform: TargetPlatform.iOS,
+      ),
     );
     final cancelledProbe = _Probe(
-      const FlaxPermissionHandlerAdapter(requestOnDemand: true),
+      const FlaxPermissionHandlerAdapter(
+        requestOnDemand: true,
+        platform: TargetPlatform.iOS,
+      ),
     );
     final grantedProbe = _Probe(
-      const FlaxPermissionHandlerAdapter(requestOnDemand: true),
+      const FlaxPermissionHandlerAdapter(
+        requestOnDemand: true,
+        platform: TargetPlatform.iOS,
+      ),
     );
     final first = await _context(firstProbe);
     final cancelled = await _context(
@@ -371,10 +431,16 @@ void main() {
           ? physical.future
           : Future.value({for (final id in ids) id: 1});
       final firstProbe = _Probe(
-        const FlaxPermissionHandlerAdapter(requestOnDemand: true),
+        const FlaxPermissionHandlerAdapter(
+          requestOnDemand: true,
+          platform: TargetPlatform.iOS,
+        ),
       );
       final queuedProbe = _Probe(
-        const FlaxPermissionHandlerAdapter(requestOnDemand: true),
+        const FlaxPermissionHandlerAdapter(
+          requestOnDemand: true,
+          platform: TargetPlatform.iOS,
+        ),
       );
       final first = await _context(firstProbe);
       final queued = await _context(queuedProbe, permission: 'flax.microphone');
@@ -433,7 +499,10 @@ void main() {
         }
       };
       final probe = _Probe(
-        const FlaxPermissionHandlerAdapter(requestOnDemand: true),
+        const FlaxPermissionHandlerAdapter(
+          requestOnDemand: true,
+          platform: TargetPlatform.iOS,
+        ),
       );
       final context = await _context(probe);
       final pending = context
@@ -460,7 +529,10 @@ void main() {
       final physical = Completer<Map<int, int>>();
       requestAnswer = (_) => physical.future;
       final probe = _Probe(
-        const FlaxPermissionHandlerAdapter(requestOnDemand: true),
+        const FlaxPermissionHandlerAdapter(
+          requestOnDemand: true,
+          platform: TargetPlatform.iOS,
+        ),
       );
       final context = await _context(probe);
       final pending = context.request('flax.camera');
@@ -478,7 +550,12 @@ void main() {
       requestAnswer = (_) async =>
           throw PlatformException(code: 'REQUEST_FAILED');
       final failing = await _context(
-        _Probe(const FlaxPermissionHandlerAdapter(requestOnDemand: true)),
+        _Probe(
+          const FlaxPermissionHandlerAdapter(
+            requestOnDemand: true,
+            platform: TargetPlatform.iOS,
+          ),
+        ),
       );
       await expectLater(
         failing.request('flax.camera'),
@@ -486,7 +563,12 @@ void main() {
       );
       requestAnswer = null;
       final next = await _context(
-        _Probe(const FlaxPermissionHandlerAdapter(requestOnDemand: true)),
+        _Probe(
+          const FlaxPermissionHandlerAdapter(
+            requestOnDemand: true,
+            platform: TargetPlatform.iOS,
+          ),
+        ),
       );
       expect(
         (await next.request('flax.camera')).state,

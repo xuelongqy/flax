@@ -11,15 +11,17 @@ import type * as upstream4 from '@flax/material-ui/_bindings/material_ElevatedBu
 import '@flax/material-ui/_bindings/material_ElevatedButtonThemeData';
 import type * as upstream5 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
-import type * as upstream6 from '@flax/flutter/widgets/_bindings/sdk_widgets_InheritedElement';
+import type * as upstream6 from '@flax/material-ui/_bindings/material_StyleVariant';
+import '@flax/material-ui/_bindings/material_StyleVariant';
+import type * as upstream7 from '@flax/flutter/widgets/_bindings/sdk_widgets_InheritedElement';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_InheritedElement';
-import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
+import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream10 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
-import type * as upstream10 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream11 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import { _flaxMemberParameters0, _flaxMemberParameters1 } from "@flax/material-ui/_bindings/material.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
@@ -33,13 +35,13 @@ readonly child: Widget;
 readonly key: upstream3.Key | null;
 wrap(context: upstream5.BuildContext, child: Widget): Widget;
 updateShouldNotify(oldWidget: ElevatedButtonTheme): boolean;
-createElement(): upstream6.InheritedElement;
+createElement(): upstream7.InheritedElement;
 toStringShort(): string;
 debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
-toStringShallow(options?: {joiner?: string | undefined; minLevel?: upstream8.DiagnosticLevel | undefined}): string;
-toStringDeep(options?: {minLevel?: upstream8.DiagnosticLevel | undefined; prefixLineOne?: string | undefined; prefixOtherLines?: string | null | undefined; wrapWidth?: number | undefined}): string;
-toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream10.DiagnosticsTreeStyle | null | undefined}): upstream9.DiagnosticsNode;
-debugDescribeChildren(): DartList<upstream9.DiagnosticsNode>;
+toStringShallow(options?: {joiner?: string | undefined; minLevel?: upstream9.DiagnosticLevel | undefined}): string;
+toStringDeep(options?: {minLevel?: upstream9.DiagnosticLevel | undefined; prefixLineOne?: string | undefined; prefixOtherLines?: string | null | undefined; wrapWidth?: number | undefined}): string;
+toDiagnosticsNode(options?: {name?: string | null | undefined; style?: upstream11.DiagnosticsTreeStyle | null | undefined}): upstream10.DiagnosticsNode;
+debugDescribeChildren(): DartList<upstream10.DiagnosticsNode>;
 }
 defineObject("flax.material/material#type:ElevatedButtonTheme", ["data","child","key"], [], _flaxBindingMethods("flax.material/material#type:ElevatedButtonTheme", "object", {"updateShouldNotify":_flaxMemberParameters1}, {}), [], undefined, "flax.core/sdk_widgets#type:InheritedTheme");
 export function _ElevatedButtonThemeFactory(options: { key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined; data: Readonly<{ "__flaxBound:package:material_ui/src/elevated_button_theme.dart::ElevatedButtonThemeData": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }>; child: Widget }): ElevatedButtonTheme {
@@ -52,6 +54,11 @@ export namespace _ElevatedButtonThemeFactory { export function of(context: upstr
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 const _flaxResult = invokeTopLevel("flax.material/material#function:ElevatedButtonTheme.of", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
 return _flaxResult as upstream4.ElevatedButtonThemeData;
+} }
+export namespace _ElevatedButtonThemeFactory { export function variantOf(context: upstream5.BuildContext): upstream6.StyleVariant {
+if (arguments.length > 1) throw new TypeError('Too many method arguments');
+const _flaxResult = invokeTopLevel("flax.material/material#function:ElevatedButtonTheme.variantOf", [contextHandle(context, "flax.core/flutter#type:BuildContext")], _flaxMemberParameters0);
+return _flaxResult as upstream6.StyleVariant;
 } }
 export const ElevatedButtonTheme: typeof _ElevatedButtonThemeFactory & _FlaxInstanceType<ElevatedButtonTheme> & _FlaxDartType<ElevatedButtonTheme, readonly ["class", "flax.material/material#type:ElevatedButtonTheme", readonly [], false]> = _flaxBindInstanceType<ElevatedButtonTheme, typeof _ElevatedButtonThemeFactory>(_ElevatedButtonThemeFactory, "flax.material/material#type:ElevatedButtonTheme", ["flax.core/sdk_widgets#type:InheritedTheme","flax.core/sdk_widgets#type:InheritedWidget","flax.core/sdk_widgets#type:ProxyWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _ElevatedButtonThemeFactory & _FlaxInstanceType<ElevatedButtonTheme> & _FlaxDartType<ElevatedButtonTheme, readonly ["class", "flax.material/material#type:ElevatedButtonTheme", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "data" | "child" | "key" | "wrap" | "updateShouldNotify" | "createElement" | "toStringShort" | "debugFillProperties" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/elevated_button_theme.dart::ElevatedButtonTheme" | "__flaxBound:package:flutter/src/widgets/inherited_theme.dart::InheritedTheme" | "__flaxBound:package:flutter/src/widgets/framework.dart::InheritedWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::ProxyWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";

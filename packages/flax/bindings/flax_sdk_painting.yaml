@@ -27,6 +27,7 @@ overrides:
             strutStyle,
             textWidthBasis,
             textHeightBehavior,
+            hyphens,
           ]
       methods:
         computeWidth:
@@ -41,6 +42,7 @@ overrides:
             textAlign,
             textDirection,
             textHeightBehavior,
+            hyphens,
             textScaleFactor,
             textScaler,
             textWidthBasis,
@@ -57,6 +59,7 @@ overrides:
             textAlign,
             textDirection,
             textHeightBehavior,
+            hyphens,
             textScaleFactor,
             textScaler,
             textWidthBasis,
@@ -208,7 +211,7 @@ sandbox:
       'constructors':
         '':
           'policyType': 'package:flax/sandbox_ui.dart#FlaxAssetBundlePolicy'
-          'handler': 'package:flax/sandbox_ui.dart#checkSandboxImageInput'
+          'handler': 'package:flax/sandbox_ui.dart#checkSandboxDecorationImages'
     'ImageProvider':
       'instanceMethods':
         'resolve':

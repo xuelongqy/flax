@@ -51,16 +51,16 @@ export interface AnimatedList extends _FlaxDartWidget, Omit<upstream0.StatefulWi
     readonly itemBuilder: ((context: upstream2.BuildContext, index: number, animation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>) => Widget);
     readonly removedSeparatorBuilder: ((context: upstream2.BuildContext, index: number, animation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>) => Widget) | null;
     readonly initialItemCount: number;
     readonly scrollDirection: upstream4.Axis;
@@ -106,9 +106,9 @@ export declare function _AnimatedListFactory(options: {
     controller?: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     primary?: boolean | null | undefined;
     physics?: Readonly<{
@@ -144,9 +144,9 @@ export declare namespace _AnimatedListFactory {
         controller?: (Readonly<{
             "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
         primary?: boolean | null | undefined;
         physics?: Readonly<{

@@ -75,9 +75,9 @@ export declare function _SelectionContainerFactory(options: {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream12.SelectionGeometry];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream12.SelectionGeometry];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionRegistrar": readonly [];
     }>;

@@ -562,6 +562,7 @@ export declare function _TextureBoxFactory(options: {
 }): TextureBox;
 export interface _TextureBoxNative extends TextureBox {
     readonly [_flaxDartTypeValue]: _TextureBoxNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1008,7 +1009,6 @@ export interface _TextureBoxNative extends TextureBox {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream1.RenderObject | null;
     get owner(): upstream11.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get debugDoingThisPaint(): boolean;

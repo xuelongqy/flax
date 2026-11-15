@@ -251,9 +251,18 @@ native operation once, preserving side effects, errors and native reference iden
 properties remain non-enumerable, non-configurable and readonly. Enum objects retain
 their existing descriptors. The additive `shared-static-readers` capability rejects
 older runtimes before use. Icons use this same mechanism: dynamic names, aliases and
-platform-adaptive icons remain available. Their native Dart constants are preserved;
-constructing `IconData` from runtime code points would introduce non-constant instances
-that Flutter's release font tree shaker rejects.
+platform-adaptive icons remain available, preserving their native Dart constants.
+
+The maintained Flutter 3.50 compiler uses recorded-use icon analysis. A runtime
+`IconData` construction leaf can opt into the narrowly scoped `flax:runtime-icon-data`
+exemption; shared default-call helpers and ordinary Dart icon construction retain
+upstream analysis. The current Core selection still reports the `IconData` constructor
+as unavailable, so it emits no marked creation leaf or new construction API. The
+exemption does not retain font bytes or add unknown glyphs to a subset. Session-private
+business fonts use the existing [module-font assets](fonts.md); host icon fonts retain
+Flutter's ordinary static subsetting. Real font/glyph and Release acceptance are
+separate gates in the [upgrade task](../tasks/flutter-3-50-upgrade.md), not consequences
+of compiler success.
 
 The `FlaxCodegen*Model` graph produced by parsing is the semantic IR between analyzer
 resolution and emission. It carries resolved types, generics, inheritance, Widget and

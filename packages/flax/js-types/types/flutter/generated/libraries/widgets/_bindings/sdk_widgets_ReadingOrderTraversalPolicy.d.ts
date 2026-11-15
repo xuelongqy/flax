@@ -45,9 +45,9 @@ export interface ReadingOrderTraversalPolicy extends Omit<upstream0.FocusTravers
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>, options?: {
         alignment?: number | null | undefined;
         alignmentPolicy?: upstream4.ScrollPositionAlignmentPolicy | null | undefined;
@@ -71,9 +71,9 @@ export interface ReadingOrderTraversalPolicy extends Omit<upstream0.FocusTravers
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>, options?: {
         ignoreCurrentFocus?: boolean | undefined;
     }): upstream3.FocusNode | null;
@@ -86,9 +86,9 @@ export interface ReadingOrderTraversalPolicy extends Omit<upstream0.FocusTravers
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>, options?: {
         ignoreCurrentFocus?: boolean | undefined;
     }): upstream3.FocusNode;
@@ -101,9 +101,9 @@ export interface ReadingOrderTraversalPolicy extends Omit<upstream0.FocusTravers
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>, direction: upstream7.TraversalDirection): upstream3.FocusNode | null;
     invalidateScopeData(node: Readonly<{
         "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusScopeNode": readonly [];
@@ -116,9 +116,9 @@ export interface ReadingOrderTraversalPolicy extends Omit<upstream0.FocusTravers
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): void;
     changedScope(options?: {
         node?: (Readonly<{
@@ -130,9 +130,9 @@ export interface ReadingOrderTraversalPolicy extends Omit<upstream0.FocusTravers
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
         oldScope?: (Readonly<{
             "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusScopeNode": readonly [];
@@ -145,9 +145,9 @@ export interface ReadingOrderTraversalPolicy extends Omit<upstream0.FocusTravers
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
     }): void;
     next(currentNode: Readonly<{
@@ -159,9 +159,9 @@ export interface ReadingOrderTraversalPolicy extends Omit<upstream0.FocusTravers
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): boolean;
     previous(currentNode: Readonly<{
         "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
@@ -172,9 +172,9 @@ export interface ReadingOrderTraversalPolicy extends Omit<upstream0.FocusTravers
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): boolean;
     inDirection(currentNode: Readonly<{
         "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
@@ -185,9 +185,9 @@ export interface ReadingOrderTraversalPolicy extends Omit<upstream0.FocusTravers
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>, direction: upstream7.TraversalDirection): boolean;
     sortDescendants(descendants: DartIterableInput<upstream3.FocusNode, Readonly<{
         "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
@@ -198,9 +198,9 @@ export interface ReadingOrderTraversalPolicy extends Omit<upstream0.FocusTravers
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>>, currentNode: Readonly<{
         "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
     }> & Readonly<{
@@ -210,9 +210,9 @@ export interface ReadingOrderTraversalPolicy extends Omit<upstream0.FocusTravers
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): DartIterable<upstream3.FocusNode>;
     toStringShort(): string;
     toDiagnosticsNode(options?: {
@@ -245,9 +245,9 @@ export interface _ReadingOrderTraversalPolicyNative extends ReadingOrderTraversa
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>, options?: {
         ignoreCurrentFocus?: boolean | undefined;
     }): upstream3.FocusNode | null;
@@ -260,9 +260,9 @@ export interface _ReadingOrderTraversalPolicyNative extends ReadingOrderTraversa
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>, options?: {
         ignoreCurrentFocus?: boolean | undefined;
     }): upstream3.FocusNode;
@@ -275,9 +275,9 @@ export interface _ReadingOrderTraversalPolicyNative extends ReadingOrderTraversa
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>, direction: upstream7.TraversalDirection): upstream3.FocusNode | null;
     invalidateScopeData(node: Readonly<{
         "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusScopeNode": readonly [];
@@ -290,9 +290,9 @@ export interface _ReadingOrderTraversalPolicyNative extends ReadingOrderTraversa
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): void;
     changedScope(options?: {
         node?: (Readonly<{
@@ -304,9 +304,9 @@ export interface _ReadingOrderTraversalPolicyNative extends ReadingOrderTraversa
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
         oldScope?: (Readonly<{
             "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusScopeNode": readonly [];
@@ -319,9 +319,9 @@ export interface _ReadingOrderTraversalPolicyNative extends ReadingOrderTraversa
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
     }): void;
     next(currentNode: Readonly<{
@@ -333,9 +333,9 @@ export interface _ReadingOrderTraversalPolicyNative extends ReadingOrderTraversa
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): boolean;
     previous(currentNode: Readonly<{
         "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
@@ -346,9 +346,9 @@ export interface _ReadingOrderTraversalPolicyNative extends ReadingOrderTraversa
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): boolean;
     inDirection(currentNode: Readonly<{
         "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
@@ -359,9 +359,9 @@ export interface _ReadingOrderTraversalPolicyNative extends ReadingOrderTraversa
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>, direction: upstream7.TraversalDirection): boolean;
     sortDescendants(descendants: DartIterableInput<upstream3.FocusNode, Readonly<{
         "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
@@ -372,9 +372,9 @@ export interface _ReadingOrderTraversalPolicyNative extends ReadingOrderTraversa
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>>, currentNode: Readonly<{
         "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
     }> & Readonly<{
@@ -384,9 +384,9 @@ export interface _ReadingOrderTraversalPolicyNative extends ReadingOrderTraversa
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): DartIterable<upstream3.FocusNode>;
     toStringShort(): string;
     toDiagnosticsNode(options?: {
@@ -408,9 +408,9 @@ export interface _ReadingOrderTraversalPolicyNative extends ReadingOrderTraversa
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>, options?: {
         alignment?: number | null | undefined;
         alignmentPolicy?: upstream4.ScrollPositionAlignmentPolicy | null | undefined;
@@ -467,9 +467,9 @@ export declare namespace _ReadingOrderTraversalPolicyFactory {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>>): DartIterable<upstream3.FocusNode>;
 }
 export declare const ReadingOrderTraversalPolicy: typeof _ReadingOrderTraversalPolicyBinding & _FlaxInstanceType<ReadingOrderTraversalPolicy> & _FlaxDartType<ReadingOrderTraversalPolicy, readonly ["class", "flax.core/sdk_widgets#type:ReadingOrderTraversalPolicy", readonly [], false]>;

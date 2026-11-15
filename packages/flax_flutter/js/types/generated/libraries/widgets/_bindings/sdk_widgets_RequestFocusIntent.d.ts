@@ -38,9 +38,9 @@ export interface RequestFocusIntent extends Omit<upstream0.Intent, _flaxOwnMembe
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>, options?: {
         alignment?: number | null | undefined;
         alignmentPolicy?: upstream3.ScrollPositionAlignmentPolicy | null | undefined;
@@ -77,9 +77,9 @@ export declare function _RequestFocusIntentFactory(focusNode: Readonly<{
 }> & Readonly<{
     "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }>, options?: {
     requestFocusCallback?: ((node: upstream2.FocusNode, options?: {
         alignment?: number | null | undefined;
@@ -110,9 +110,9 @@ export interface _RequestFocusIntentNative extends RequestFocusIntent {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>, options?: {
         alignment?: number | null | undefined;
         alignmentPolicy?: upstream3.ScrollPositionAlignmentPolicy | null | undefined;
@@ -142,9 +142,9 @@ export declare abstract class _RequestFocusIntentNative extends _FlaxProxyBase {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>, options?: {
         requestFocusCallback?: ((node: upstream2.FocusNode, options?: {
             alignment?: number | null | undefined;
@@ -164,9 +164,9 @@ export declare namespace _RequestFocusIntentFactory {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>, options?: {
         requestFocusCallback?: ((node: upstream2.FocusNode, options?: {
             alignment?: number | null | undefined;
@@ -185,9 +185,9 @@ declare const _RequestFocusIntentBinding: typeof _RequestFocusIntentFactory & (n
 }> & Readonly<{
     "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }>, options?: {
     requestFocusCallback?: ((node: upstream2.FocusNode, options?: {
         alignment?: number | null | undefined;

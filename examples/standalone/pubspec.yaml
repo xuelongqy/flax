@@ -5,8 +5,8 @@ publish_to: none
 resolution: workspace
 
 environment:
-  sdk: ^3.13.2
-  flutter: '>=3.47.9'
+  sdk: ^3.14.0
+  flutter: '>=3.50.0'
 
 dependencies:
   flax_example_support: 0.0.0
@@ -16,6 +16,7 @@ dependencies:
   flax_canvas: 0.0.0
   flax_material_ui: 0.0.0
   path_provider: 2.1.6
+  material_ui: 1.11.0
   flutter:
     sdk: flutter
 
@@ -30,7 +31,6 @@ dev_dependencies:
     sdk: flutter
   integration_test:
     sdk: flutter
-  material_ui: 1.9.0
 
 flutter:
   uses-material-design: true

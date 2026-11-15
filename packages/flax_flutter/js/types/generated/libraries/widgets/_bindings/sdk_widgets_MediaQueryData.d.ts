@@ -41,6 +41,7 @@ export interface MediaQueryData extends Readonly<{
     readonly highContrast: boolean;
     readonly onOffSwitchLabels: boolean;
     readonly disableAnimations: boolean;
+    readonly reduceMotion: boolean;
     readonly boldText: boolean;
     readonly supportsAnnounce: boolean;
     readonly navigationMode: upstream4.NavigationMode;
@@ -75,6 +76,7 @@ export interface MediaQueryData extends Readonly<{
             "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
         }>) | null | undefined;
         platformBrightness?: upstream2.Brightness | null | undefined;
+        reduceMotion?: boolean | null | undefined;
         size?: (Readonly<{
             "__flaxBound:dart:ui::Size": readonly [];
         }> & Readonly<{
@@ -174,6 +176,7 @@ export declare function _MediaQueryDataFactory(options?: {
     highContrast?: boolean | undefined;
     onOffSwitchLabels?: boolean | undefined;
     disableAnimations?: boolean | undefined;
+    reduceMotion?: boolean | undefined;
     boldText?: boolean | undefined;
     supportsAnnounce?: boolean | undefined;
     navigationMode?: upstream4.NavigationMode | undefined;
@@ -249,6 +252,7 @@ export interface _MediaQueryDataNative extends MediaQueryData {
             highContrast?: boolean | undefined;
             onOffSwitchLabels?: boolean | undefined;
             disableAnimations?: boolean | undefined;
+            reduceMotion?: boolean | undefined;
             boldText?: boolean | undefined;
             supportsAnnounce?: boolean | undefined;
             navigationMode?: upstream4.NavigationMode | undefined;
@@ -313,6 +317,7 @@ export interface _MediaQueryDataNative extends MediaQueryData {
         highContrast?: boolean | null | undefined;
         onOffSwitchLabels?: boolean | null | undefined;
         disableAnimations?: boolean | null | undefined;
+        reduceMotion?: boolean | null | undefined;
         invertColors?: boolean | null | undefined;
         accessibleNavigation?: boolean | null | undefined;
         boldText?: boolean | null | undefined;
@@ -374,6 +379,7 @@ export interface _MediaQueryDataNative extends MediaQueryData {
     get highContrast(): boolean;
     get onOffSwitchLabels(): boolean;
     get disableAnimations(): boolean;
+    get reduceMotion(): boolean;
     get boldText(): boolean;
     get supportsAnnounce(): boolean;
     get navigationMode(): upstream4.NavigationMode;
@@ -429,6 +435,7 @@ export declare abstract class _MediaQueryDataNative extends _FlaxProxyBase {
         highContrast?: boolean | undefined;
         onOffSwitchLabels?: boolean | undefined;
         disableAnimations?: boolean | undefined;
+        reduceMotion?: boolean | undefined;
         boldText?: boolean | undefined;
         supportsAnnounce?: boolean | undefined;
         navigationMode?: upstream4.NavigationMode | undefined;
@@ -490,6 +497,7 @@ export declare namespace _MediaQueryDataFactory {
         highContrast?: boolean | undefined;
         onOffSwitchLabels?: boolean | undefined;
         disableAnimations?: boolean | undefined;
+        reduceMotion?: boolean | undefined;
         boldText?: boolean | undefined;
         supportsAnnounce?: boolean | undefined;
         navigationMode?: upstream4.NavigationMode | undefined;
@@ -549,6 +557,7 @@ declare const _MediaQueryDataBinding: typeof _MediaQueryDataFactory & (new (opti
     highContrast?: boolean | undefined;
     onOffSwitchLabels?: boolean | undefined;
     disableAnimations?: boolean | undefined;
+    reduceMotion?: boolean | undefined;
     boldText?: boolean | undefined;
     supportsAnnounce?: boolean | undefined;
     navigationMode?: upstream4.NavigationMode | undefined;

@@ -10,6 +10,7 @@ import '@flax/material-ui/_bindings/material_VisualDensity';
 import '@flax/flutter/widgets/_bindings/flutter_FocusNode';
 import '@flax/flutter/painting/_bindings/flutter_OutlinedBorder';
 import '@flax/flutter/painting/_bindings/flutter_BorderSide';
+import '@flax/flutter/painting/_bindings/flutter_EdgeInsets';
 import { type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface Checkbox extends WidgetDescription, Omit<Readonly<{
     "__flaxBound:package:material_ui/src/checkbox.dart::Checkbox": readonly [];
@@ -70,9 +71,9 @@ export declare function _CheckboxFactory(options: {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null> | undefined;
     autofocus?: Bindable<boolean> | undefined;
     shape?: Bindable<(Readonly<{
@@ -87,6 +88,11 @@ export declare function _CheckboxFactory(options: {
     }>) | null> | undefined;
     isError?: Bindable<boolean> | undefined;
     semanticLabel?: Bindable<string | null> | undefined;
+    markInsets?: Bindable<(Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+    }>) | null> | undefined;
 }): Checkbox;
 export declare namespace _CheckboxFactory {
     const __flaxJsx: {
@@ -142,9 +148,9 @@ export declare namespace _CheckboxFactory {
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null> | undefined;
         autofocus?: Bindable<boolean> | undefined;
         shape?: Bindable<(Readonly<{
@@ -159,6 +165,11 @@ export declare namespace _CheckboxFactory {
         }>) | null> | undefined;
         isError?: Bindable<boolean> | undefined;
         semanticLabel?: Bindable<string | null> | undefined;
+        markInsets?: Bindable<(Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsets": readonly [];
+        }> & Readonly<{
+            "__flaxBound:package:flutter/src/painting/edge_insets.dart::EdgeInsetsGeometry": readonly [];
+        }>) | null> | undefined;
     }): Checkbox;
     namespace adaptive {
         const __flaxJsx: {

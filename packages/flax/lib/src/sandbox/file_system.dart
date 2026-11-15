@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:ffi';
 import 'dart:io';
+import 'dart:isolate';
 import 'dart:math';
 import 'dart:typed_data';
 
@@ -13,6 +14,7 @@ import 'sandbox.dart';
 import '../../permissions.dart';
 
 part 'selected_file.dart';
+part 'descriptor_io.dart';
 
 /// Session-owned rooted filesystem. No untrusted absolute path reaches Dart IO.
 final class FlaxFilePolicy {
@@ -40,8 +42,7 @@ final class FlaxFilePolicy {
       if (!p.equals(actual, homePath)) {
         _deny('sandbox.open', 'Sandbox root changed');
       }
-      if (File(_fdPath(_root)).statSync().type !=
-          FileSystemEntityType.directory) {
+      if (_posix.stat(_root).type != FileSystemEntityType.directory) {
         throw UnsupportedError(
           'The platform does not provide rooted file descriptor IO',
         );
@@ -119,55 +120,93 @@ final class FlaxFilePolicy {
   }();
 
   Stream<List<int>> _readStream(String path, int? start, int? end) {
-    StreamSubscription<List<int>>? source;
-    int? descriptor;
-    Future<void>? stopping;
+    final offset = start ?? 0;
+    final limit = end ?? _descriptorMaxOffset;
+    if (end != null && end < offset) throw RangeError('Invalid read interval');
+    _checkDescriptorRange(offset, end == null ? 0 : end - offset);
+    final done = Completer<void>();
+    Completer<void>? resumed;
+    var stopped = false;
     late StreamController<List<int>> controller;
-    late Future<void> Function() stop;
-    stop = () => stopping ??= () async {
-      _streams.remove(stop);
-      await source?.cancel();
-      if (descriptor case final fd?) {
-        _posix.close(fd);
-        descriptor = null;
+    Future<void> stop() async {
+      stopped = true;
+      final waiting = resumed;
+      resumed = null;
+      waiting?.complete();
+      await done.future;
+    }
+
+    void check() {
+      scope.requireActive();
+      if (_closing != null) throw StateError('Closed sandbox filesystem');
+    }
+
+    Future<void> read() async {
+      int? descriptor;
+      _DescriptorIoLease? io;
+      try {
+        descriptor = _open(path, 0);
+        if (_posix.stat(descriptor).type != FileSystemEntityType.file) {
+          _deny('File.openRead', 'Expected a regular file');
+        }
+        if (offset < limit) io = await _descriptorIo.acquire();
+        var position = offset;
+        while (!stopped && position < limit) {
+          if (resumed case final waiting?) await waiting.future;
+          if (stopped) break;
+          check();
+          final count = min(_descriptorChunkSize, limit - position);
+          final bytes = await io!.read(descriptor, position, count);
+          if (stopped) break;
+          // A pause can occur while native IO is outstanding. Hold this single
+          // chunk until resume, and check authority again before delivery.
+          if (resumed case final waiting?) await waiting.future;
+          if (stopped) break;
+          check();
+          if (bytes.isEmpty) break;
+          position += bytes.length;
+          controller.add(bytes);
+        }
+      } catch (error, stack) {
+        if (!stopped) controller.addError(error, stack);
+      } finally {
+        if (descriptor != null) _posix.close(descriptor);
+        try {
+          await io?.release();
+        } finally {
+          _streams.remove(stop);
+          if (!controller.isClosed) unawaited(controller.close());
+          done.complete();
+        }
       }
-      if (!controller.isClosed) unawaited(controller.close());
-    }();
+    }
+
     controller = StreamController<List<int>>(
       onListen: () {
-        try {
-          descriptor = _open(path, 0);
-          if (File(_fdPath(descriptor!)).statSync().type !=
-              FileSystemEntityType.file) {
-            _deny('File.openRead', 'Expected a regular file');
-          }
-          _streams.add(stop);
-          source = File(_fdPath(descriptor!))
-              .openRead(start, end)
-              .listen(
-                (bytes) {
-                  if (scope.isActive && _closing == null) {
-                    controller.add(bytes);
-                  } else {
-                    unawaited(stop());
-                  }
-                },
-                onError: (Object error, StackTrace stack) {
-                  controller.addError(error, stack);
-                  unawaited(stop());
-                },
-                onDone: () => unawaited(stop()),
-              );
-        } catch (error, stack) {
-          controller.addError(error, stack);
-          unawaited(stop());
-        }
+        _streams.add(stop);
+        unawaited(read());
       },
-      onPause: () => source?.pause(),
-      onResume: () => source?.resume(),
+      onPause: () {
+        // A downstream pause may arrive after stop while native IO drains.
+        if (!stopped) resumed ??= Completer<void>();
+      },
+      onResume: () {
+        final waiting = resumed;
+        resumed = null;
+        waiting?.complete();
+      },
       onCancel: stop,
     );
-    return controller.stream;
+    return controller.stream
+        .map((bytes) {
+          // Recheck buffered events after a downstream pause as well.
+          check();
+          return bytes;
+        })
+        .handleError((Object error, StackTrace stack) {
+          check();
+          Error.throwWithStackTrace(error, stack);
+        });
   }
 
   List<String> _parts(String path) {
@@ -228,12 +267,12 @@ final class FlaxFilePolicy {
   T _fileSync<T>(
     String path,
     int flags,
-    T Function(File) action, {
+    T Function(_DescriptorFile) action, {
     bool directory = false,
   }) {
     final fd = _open(path, flags);
     try {
-      final file = File(_fdPath(fd));
+      final file = _DescriptorFile(fd);
       final type = file.statSync().type;
       if (type != FileSystemEntityType.file &&
           !(directory && type == FileSystemEntityType.directory)) {
@@ -248,14 +287,14 @@ final class FlaxFilePolicy {
   Future<T> _fileAsync<T>(
     String path,
     int flags,
-    Future<T> Function(File) action, {
+    Future<T> Function(_DescriptorFile) action, {
     bool directory = false,
   }) {
     try {
       final fd = _open(path, flags);
       late final Future<T> work;
       try {
-        final file = File(_fdPath(fd));
+        final file = _DescriptorFile(fd);
         final type = file.statSync().type;
         if (type != FileSystemEntityType.file &&
             !(directory && type == FileSystemEntityType.directory)) {
@@ -289,13 +328,22 @@ final class FlaxFilePolicy {
       return _fileSync(path, 0, (file) => file.statSync(), directory: true);
     } on FileSystemException catch (error) {
       if (error.osError?.errorCode == 2 || error.osError?.errorCode == 20) {
-        return FileStat.statSync(_fdPath(-1));
+        return _DescriptorStat.notFound();
       }
       rethrow;
     }
   }
 
-  Future<FileStat> stat(String path) => Future.sync(() => statSync(path));
+  Future<FileStat> stat(String path) async {
+    try {
+      return await _fileAsync(path, 0, (file) => file.stat(), directory: true);
+    } on FileSystemException catch (error) {
+      if (error.osError?.errorCode == 2 || error.osError?.errorCode == 20) {
+        return _DescriptorStat.notFound();
+      }
+      rethrow;
+    }
+  }
 
   FileSystemEntityType typeSync(String path, {bool followLinks = true}) {
     final parts = _parts(path);
@@ -311,7 +359,7 @@ final class FlaxFilePolicy {
         }
         final fd = _posix.openAt(parent, leaf, 0);
         try {
-          return File(_fdPath(fd)).statSync().type;
+          return _posix.stat(fd).type;
         } finally {
           _posix.close(fd);
         }
@@ -357,7 +405,7 @@ final class FlaxFilePolicy {
       recursive: recursive,
     );
     try {
-      if (File(_fdPath(fd)).statSync().type != FileSystemEntityType.file) {
+      if (_posix.stat(fd).type != FileSystemEntityType.file) {
         throw FileSystemException('Not a regular application file', path);
       }
     } finally {
@@ -418,7 +466,7 @@ final class FlaxFilePolicy {
       final fd = _posix.openAt(directory, name, 0);
       try {
         final isDirectory =
-            File(_fdPath(fd)).statSync().type == FileSystemEntityType.directory;
+            _posix.stat(fd).type == FileSystemEntityType.directory;
         if (isDirectory) _deleteChildren(fd);
         _posix.unlink(directory, name, isDirectory);
       } finally {
@@ -511,7 +559,7 @@ final class FlaxFilePolicy {
     try {
       var count = 0;
       while (true) {
-        // Darwin cannot enumerate directories through /dev/fd; bound POSIX work per turn.
+        // Bound native enumeration work per event-loop turn.
         if (count++ % 32 == 0) await Future<void>.delayed(Duration.zero);
         if (closed) return;
         scope.requireActive();
@@ -535,8 +583,6 @@ final class FlaxFilePolicy {
 }
 
 final _posix = _SandboxPosix();
-String _fdPath(int fd) =>
-    Platform.isMacOS || Platform.isIOS ? '/dev/fd/$fd' : '/proc/self/fd/$fd';
 String _randomName() => List.generate(
   16,
   (_) => Random.secure().nextInt(256).toRadixString(16).padLeft(2, '0'),
@@ -549,6 +595,10 @@ final class _SandboxPosix {
   bool get _darwin => Platform.isMacOS || Platform.isIOS;
   bool get _arm64Linux =>
       Abi.current() == Abi.androidArm64 || Abi.current() == Abi.linuxArm64;
+  // The current macOS x64 SDK selects these suffixed 64-bit-inode symbols;
+  // current iOS (including x64 simulator) and Darwin arm64 use plain names.
+  String _inodeSymbol(String name) =>
+      Abi.current() == Abi.macosX64 ? '$name\$INODE64' : name;
   // AArch64 uses different directory/no-follow bits from Linux x86_64.
   int get directoryFlags => _darwin
       ? 0x100000
@@ -573,7 +623,7 @@ final class _SandboxPosix {
       .lookupFunction<
         Int32 Function(Int32, Pointer<Uint8>),
         int Function(int, Pointer<Uint8>)
-      >('fstat');
+      >(_inodeSymbol('fstat'));
   late final _close = _lib
       .lookupFunction<Int32 Function(Int32), int Function(int)>('close');
   late final _mkdir = _lib
@@ -613,12 +663,12 @@ final class _SandboxPosix {
       .lookupFunction<
         Pointer<Void> Function(Int32),
         Pointer<Void> Function(int)
-      >('fdopendir');
+      >(_inodeSymbol('fdopendir'));
   late final _readdir = _lib
       .lookupFunction<
         Pointer<Void> Function(Pointer<Void>),
         Pointer<Void> Function(Pointer<Void>)
-      >('readdir');
+      >(_inodeSymbol('readdir'));
   late final _closedir = _lib
       .lookupFunction<
         Int32 Function(Pointer<Void>),
@@ -626,7 +676,9 @@ final class _SandboxPosix {
       >('closedir');
 
   String pathOf(int fd) {
-    if (!_darwin) return Directory(_fdPath(fd)).resolveSymbolicLinksSync();
+    if (!_darwin) {
+      return Directory('/proc/self/fd/$fd').resolveSymbolicLinksSync();
+    }
     return using((arena) {
       final buffer = arena<Uint8>(4096).cast<Utf8>();
       _check(_fcntlPath(fd, 50, buffer), 'fcntl(F_GETPATH)');
@@ -634,16 +686,7 @@ final class _SandboxPosix {
     });
   }
 
-  (int, int) identity(int fd) => using((arena) {
-    // Maintained 64-bit POSIX ABIs put inode at 8; Darwin has a 32-bit device.
-    final buffer = arena<Uint8>(256);
-    _check(_fstat(fd, buffer), 'fstat');
-    final data = ByteData.sublistView(buffer.asTypedList(16));
-    return (
-      _darwin ? data.getUint32(0, Endian.host) : data.getUint64(0, Endian.host),
-      data.getUint64(8, Endian.host),
-    );
-  });
+  (int, int) identity(int fd) => stat(fd).identity;
 
   bool isSameFile(int fd, String path) {
     final other = open(path, 0);
@@ -737,6 +780,13 @@ final class _SandboxPosix {
           : 0x20000) |
       (_darwin ? 0x1000000 : 0x80000) |
       (_darwin ? 4 : 0x800);
+  int _retryInterrupted(int Function() action) {
+    while (true) {
+      final result = action();
+      if (result >= 0 || _errno().value != 4) return result;
+    }
+  }
+
   int _check(int result, String operation, [String? path]) {
     if (result >= 0) return result;
     final error = _errno().value;
@@ -750,19 +800,18 @@ final class _SandboxPosix {
     );
   }
 
-  int open(String path, int flags) => using(
-    (arena) => _check(
-      _open(path.toNativeUtf8(allocator: arena), _flags(flags), 0x1b6),
+  int open(String path, int flags) => using((arena) {
+    final encoded = path.toNativeUtf8(allocator: arena);
+    return _check(
+      _retryInterrupted(() => _open(encoded, _flags(flags), 0x1b6)),
       'open',
       path,
-    ),
-  );
+    );
+  });
   int openAt(int fd, String name, int flags) => using((arena) {
-    final result = _openAt(
-      fd,
-      name.toNativeUtf8(allocator: arena),
-      _flags(flags),
-      0x1b6,
+    final encoded = name.toNativeUtf8(allocator: arena);
+    final result = _retryInterrupted(
+      () => _openAt(fd, encoded, _flags(flags), 0x1b6),
     );
     if (result < 0) {
       final error = _errno().value;
@@ -780,7 +829,7 @@ final class _SandboxPosix {
     }
     return result;
   });
-  int dup(int fd) => _check(_dup(fd), 'dup');
+  int dup(int fd) => _check(_retryInterrupted(() => _dup(fd)), 'dup');
   void close(int fd) {
     _close(fd);
   }
@@ -1006,9 +1055,8 @@ int _writeFlags(FileMode mode) {
       mode == FileMode.writeOnly || mode == FileMode.writeOnlyAppend;
   return (writeOnly ? 1 : 2) |
       _posix.createFlag |
-      (append
-          ? (Platform.isMacOS || Platform.isIOS ? 8 : 0x400)
-          : (Platform.isMacOS || Platform.isIOS ? 0x400 : 0x200));
+      // Truncate only after the descriptor passes the regular-file check.
+      (append ? (Platform.isMacOS || Platform.isIOS ? 8 : 0x400) : 0);
 }
 
 final class FlaxSandboxDirectory implements Directory {

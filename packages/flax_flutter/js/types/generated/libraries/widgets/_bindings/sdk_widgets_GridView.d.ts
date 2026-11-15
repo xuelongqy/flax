@@ -95,9 +95,9 @@ export interface GridView extends _FlaxDartWidget, Omit<upstream0.BoxScrollView,
     buildViewport(context: upstream14.BuildContext, offset: Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>, axisDirection: upstream19.AxisDirection, slivers: DartListInput<Widget, Widget>): Widget;
     build(context: upstream14.BuildContext): Widget;
     createElement(): upstream21.StatelessElement;
@@ -127,9 +127,9 @@ export declare function _GridViewFactory(options: {
     controller?: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     primary?: boolean | null | undefined;
     physics?: Readonly<{
@@ -176,9 +176,9 @@ export declare namespace _GridViewFactory {
         controller?: (Readonly<{
             "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
         primary?: boolean | null | undefined;
         physics?: Readonly<{
@@ -226,9 +226,9 @@ export declare namespace _GridViewFactory {
         controller?: (Readonly<{
             "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
         primary?: boolean | null | undefined;
         physics?: Readonly<{
@@ -273,9 +273,9 @@ export declare namespace _GridViewFactory {
         controller?: (Readonly<{
             "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
         primary?: boolean | null | undefined;
         physics?: Readonly<{
@@ -325,9 +325,9 @@ export declare namespace _GridViewFactory {
         controller?: (Readonly<{
             "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
         primary?: boolean | null | undefined;
         physics?: Readonly<{

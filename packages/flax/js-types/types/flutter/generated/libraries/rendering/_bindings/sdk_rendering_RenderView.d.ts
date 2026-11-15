@@ -475,6 +475,7 @@ export declare function _RenderViewFactory(options: {
 }): RenderView;
 export interface _RenderViewNative extends RenderView {
     readonly [_flaxDartTypeValue]: _RenderViewNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -804,7 +805,6 @@ export interface _RenderViewNative extends RenderView {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream0.RenderObject | null;
     get owner(): upstream10.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

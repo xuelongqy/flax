@@ -10,12 +10,12 @@ import '@flax/flutter/widgets/_bindings/sdk_widgets_MagnifierInfo';
 export type MagnifierBuilder = ((context: upstream0.BuildContext, controller: Readonly<{
     "__flaxBound:package:flutter/src/widgets/magnifier.dart::MagnifierController": readonly [];
 }>, magnifierInfo: Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream3.MagnifierInfo];
+    "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream3.MagnifierInfo];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream3.MagnifierInfo];
+    "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream3.MagnifierInfo];
 }>) => Widget | null);
 export type MagnifierBuilderInput = ((context: upstream0.BuildContext, controller: upstream1.MagnifierController, magnifierInfo: upstream2.ValueNotifier<upstream3.MagnifierInfo>) => Widget | null);

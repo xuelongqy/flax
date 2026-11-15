@@ -600,6 +600,7 @@ export declare function _RenderProxyBoxFactory(child?: (Readonly<{
 }>) | null): RenderProxyBox;
 export interface _RenderProxyBoxNative extends RenderProxyBox {
     readonly [_flaxDartTypeValue]: _RenderProxyBoxNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1054,7 +1055,6 @@ export interface _RenderProxyBoxNative extends RenderProxyBox {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream1.RenderObject | null;
     get owner(): upstream12.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

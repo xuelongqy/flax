@@ -8,11 +8,11 @@ import 'package:flax/bindings.dart';
 
 import 'dart:ui' as api1;
 
-import 'package:flutter/cupertino.dart' as api2;
-import 'package:flutter/foundation.dart' as api3;
+import 'package:flutter/foundation.dart' as api2;
 
-import 'dart:core' as api4;
+import 'dart:core' as api3;
 
+import 'package:flutter/widgets.dart' as api4;
 import 'package:flutter/physics.dart' as api5;
 import 'package:flutter/scheduler.dart' as api6;
 
@@ -2616,7 +2616,7 @@ Object _createAnimation(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "fromValueListenable":
       return api.Animation<Object?>.fromValueListenable(
-        values["listenable"] as api3.ValueListenable<Object?>,
+        values["listenable"] as api2.ValueListenable<Object?>,
         transformer: values["transformer"] as Object? Function(Object? p0)?,
       );
     case '@implementation':
@@ -2658,12 +2658,12 @@ Object? _AnimationController_velocity(Object value) =>
 Object? _AnimationController_lastElapsedDuration(Object value) =>
     (value as api.AnimationController).lastElapsedDuration;
 void _AnimationController_set_duration(Object receiver, Object? value) {
-  (receiver as api.AnimationController).duration = value as api4.Duration?;
+  (receiver as api.AnimationController).duration = value as api3.Duration?;
 }
 
 void _AnimationController_set_reverseDuration(Object receiver, Object? value) {
   (receiver as api.AnimationController).reverseDuration =
-      value as api4.Duration?;
+      value as api3.Duration?;
 }
 
 void _AnimationController_set_value(Object receiver, Object? value) {
@@ -2748,7 +2748,7 @@ Object? _AnimationController_animateTo(
     <Object?>[
       values["target"] as double,
       (_flaxHas1 ? values["curve"] as api.Curve : null),
-      values["duration"] as api4.Duration?,
+      values["duration"] as api3.Duration?,
     ],
     <int>[1 | (_flaxHas1 ? 2 : 0) | 4],
     const <String>["", "curve", "duration"],
@@ -2765,7 +2765,7 @@ Object? _AnimationController_animateBack(
     <Object?>[
       values["target"] as double,
       (_flaxHas1 ? values["curve"] as api.Curve : null),
-      values["duration"] as api4.Duration?,
+      values["duration"] as api3.Duration?,
     ],
     <int>[1 | (_flaxHas1 ? 2 : 0) | 4],
     const <String>["", "curve", "duration"],
@@ -2780,7 +2780,7 @@ Object? _AnimationController_repeat(
     count: values["count"] as int?,
     max: values["max"] as double?,
     min: values["min"] as double?,
-    period: values["period"] as api4.Duration?,
+    period: values["period"] as api3.Duration?,
     reverse: values["reverse"] as bool,
   );
 }
@@ -2946,7 +2946,7 @@ Object? _AnimationController_super_animateTo(
     <Object?>[
       values["target"] as double,
       (_flaxHas1 ? values["curve"] as api.Curve : null),
-      values["duration"] as api4.Duration?,
+      values["duration"] as api3.Duration?,
     ],
     <int>[1 | (_flaxHas1 ? 2 : 0) | 4],
     const <String>["", "curve", "duration"],
@@ -2963,7 +2963,7 @@ Object? _AnimationController_super_animateBack(
     <Object?>[
       values["target"] as double,
       (_flaxHas1 ? values["curve"] as api.Curve : null),
-      values["duration"] as api4.Duration?,
+      values["duration"] as api3.Duration?,
     ],
     <int>[1 | (_flaxHas1 ? 2 : 0) | 4],
     const <String>["", "curve", "duration"],
@@ -2978,7 +2978,7 @@ Object? _AnimationController_super_repeat(
     count: values["count"] as int?,
     max: values["max"] as double?,
     min: values["min"] as double?,
-    period: values["period"] as api4.Duration?,
+    period: values["period"] as api3.Duration?,
     reverse: values["reverse"] as bool,
   );
 }
@@ -3067,7 +3067,7 @@ Object? _AnimationController_super_set_duration(
   Map<String, Object?> values,
 ) {
   (receiver as _AnimationControllerProxy)._flaxSuperSet_duration(
-    values["value"] as api4.Duration?,
+    values["value"] as api3.Duration?,
   );
   return null;
 }
@@ -3077,7 +3077,7 @@ Object? _AnimationController_super_set_reverseDuration(
   Map<String, Object?> values,
 ) {
   (receiver as _AnimationControllerProxy)._flaxSuperSet_reverseDuration(
-    values["value"] as api4.Duration?,
+    values["value"] as api3.Duration?,
   );
   return null;
 }
@@ -3097,8 +3097,8 @@ Object _createAnimationController(String ctor, Map<String, Object?> values) {
     case "":
       return api.AnimationController(
         value: values["value"] as double?,
-        duration: values["duration"] as api4.Duration?,
-        reverseDuration: values["reverseDuration"] as api4.Duration?,
+        duration: values["duration"] as api3.Duration?,
+        reverseDuration: values["reverseDuration"] as api3.Duration?,
         debugLabel: values["debugLabel"] as String?,
         lowerBound: values["lowerBound"] as double,
         upperBound: values["upperBound"] as double,
@@ -3108,8 +3108,8 @@ Object _createAnimationController(String ctor, Map<String, Object?> values) {
     case "unbounded":
       return api.AnimationController.unbounded(
         value: values["value"] as double,
-        duration: values["duration"] as api4.Duration?,
-        reverseDuration: values["reverseDuration"] as api4.Duration?,
+        duration: values["duration"] as api3.Duration?,
+        reverseDuration: values["reverseDuration"] as api3.Duration?,
         debugLabel: values["debugLabel"] as String?,
         vsync: values["vsync"] as api6.TickerProvider,
         animationBehavior: values["animationBehavior"] as api.AnimationBehavior,
@@ -3118,8 +3118,8 @@ Object _createAnimationController(String ctor, Map<String, Object?> values) {
       return _AnimationControllerProxy(
         values['@peer'] as FlaxProxyPeer,
         value: values["value"] as double?,
-        duration: values["duration"] as api4.Duration?,
-        reverseDuration: values["reverseDuration"] as api4.Duration?,
+        duration: values["duration"] as api3.Duration?,
+        reverseDuration: values["reverseDuration"] as api3.Duration?,
         debugLabel: values["debugLabel"] as String?,
         lowerBound: values["lowerBound"] as double,
         upperBound: values["upperBound"] as double,
@@ -3130,8 +3130,8 @@ Object _createAnimationController(String ctor, Map<String, Object?> values) {
       return _AnimationControllerProxy.unbounded(
         values['@peer'] as FlaxProxyPeer,
         value: values["value"] as double,
-        duration: values["duration"] as api4.Duration?,
-        reverseDuration: values["reverseDuration"] as api4.Duration?,
+        duration: values["duration"] as api3.Duration?,
+        reverseDuration: values["reverseDuration"] as api3.Duration?,
         debugLabel: values["debugLabel"] as String?,
         vsync: values["vsync"] as api6.TickerProvider,
         animationBehavior: values["animationBehavior"] as api.AnimationBehavior,
@@ -4004,7 +4004,7 @@ Object? _AnimationStyle_toStringShort(
 
 Object? _AnimationStyle_toString(Object receiver, Map<String, Object?> values) {
   return (receiver as api.AnimationStyle).toString(
-    minLevel: values["minLevel"] as api3.DiagnosticLevel,
+    minLevel: values["minLevel"] as api2.DiagnosticLevel,
   );
 }
 
@@ -4014,7 +4014,7 @@ Object? _AnimationStyle_toDiagnosticsNode(
 ) {
   return (receiver as api.AnimationStyle).toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api3.DiagnosticsTreeStyle?,
+    style: values["style"] as api2.DiagnosticsTreeStyle?,
   );
 }
 
@@ -4023,7 +4023,7 @@ Object? _AnimationStyle_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as api.AnimationStyle).debugFillProperties(
-    values["properties"] as api3.DiagnosticPropertiesBuilder,
+    values["properties"] as api2.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -4031,9 +4031,9 @@ Object? _AnimationStyle_debugFillProperties(
 Object? _AnimationStyle_copyWith(Object receiver, Map<String, Object?> values) {
   return (receiver as api.AnimationStyle).copyWith(
     curve: values["curve"] as api.Curve?,
-    duration: values["duration"] as api4.Duration?,
+    duration: values["duration"] as api3.Duration?,
     reverseCurve: values["reverseCurve"] as api.Curve?,
-    reverseDuration: values["reverseDuration"] as api4.Duration?,
+    reverseDuration: values["reverseDuration"] as api3.Duration?,
   );
 }
 
@@ -4055,7 +4055,7 @@ Object? _AnimationStyle_super_toString(
   Map<String, Object?> values,
 ) {
   return (receiver as _AnimationStyleProxy)._flaxSuper_toString(
-    minLevel: values["minLevel"] as api3.DiagnosticLevel,
+    minLevel: values["minLevel"] as api2.DiagnosticLevel,
   );
 }
 
@@ -4065,7 +4065,7 @@ Object? _AnimationStyle_super_toDiagnosticsNode(
 ) {
   return (receiver as _AnimationStyleProxy)._flaxSuper_toDiagnosticsNode(
     name: values["name"] as String?,
-    style: values["style"] as api3.DiagnosticsTreeStyle?,
+    style: values["style"] as api2.DiagnosticsTreeStyle?,
   );
 }
 
@@ -4074,7 +4074,7 @@ Object? _AnimationStyle_super_debugFillProperties(
   Map<String, Object?> values,
 ) {
   (receiver as _AnimationStyleProxy)._flaxSuper_debugFillProperties(
-    values["properties"] as api3.DiagnosticPropertiesBuilder,
+    values["properties"] as api2.DiagnosticPropertiesBuilder,
   );
   return null;
 }
@@ -4085,9 +4085,9 @@ Object? _AnimationStyle_super_copyWith(
 ) {
   return (receiver as _AnimationStyleProxy)._flaxSuper_copyWith(
     curve: values["curve"] as api.Curve?,
-    duration: values["duration"] as api4.Duration?,
+    duration: values["duration"] as api3.Duration?,
     reverseCurve: values["reverseCurve"] as api.Curve?,
-    reverseDuration: values["reverseDuration"] as api4.Duration?,
+    reverseDuration: values["reverseDuration"] as api3.Duration?,
   );
 }
 
@@ -4121,17 +4121,17 @@ Object _createAnimationStyle(String ctor, Map<String, Object?> values) {
     case "":
       return api.AnimationStyle(
         curve: values["curve"] as api.Curve?,
-        duration: values["duration"] as api4.Duration?,
+        duration: values["duration"] as api3.Duration?,
         reverseCurve: values["reverseCurve"] as api.Curve?,
-        reverseDuration: values["reverseDuration"] as api4.Duration?,
+        reverseDuration: values["reverseDuration"] as api3.Duration?,
       );
     case '@implementation':
       return _AnimationStyleProxy(
         values['@peer'] as FlaxProxyPeer,
         curve: values["curve"] as api.Curve?,
-        duration: values["duration"] as api4.Duration?,
+        duration: values["duration"] as api3.Duration?,
         reverseCurve: values["reverseCurve"] as api.Curve?,
-        reverseDuration: values["reverseDuration"] as api4.Duration?,
+        reverseDuration: values["reverseDuration"] as api3.Duration?,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -7912,8 +7912,8 @@ final class _AnimationControllerProxy extends api.AnimationController
   _AnimationControllerProxy(
     this._flaxPeer, {
     double? super.value,
-    api4.Duration? super.duration,
-    api4.Duration? super.reverseDuration,
+    api3.Duration? super.duration,
+    api3.Duration? super.reverseDuration,
     String? super.debugLabel,
     double super.lowerBound,
     double super.upperBound,
@@ -7923,8 +7923,8 @@ final class _AnimationControllerProxy extends api.AnimationController
   _AnimationControllerProxy.unbounded(
     this._flaxPeer, {
     double super.value,
-    api4.Duration? super.duration,
-    api4.Duration? super.reverseDuration,
+    api3.Duration? super.duration,
+    api3.Duration? super.reverseDuration,
     String? super.debugLabel,
     required api6.TickerProvider super.vsync,
     api.AnimationBehavior super.animationBehavior,
@@ -8277,7 +8277,7 @@ final class _AnimationControllerProxy extends api.AnimationController
       super.animateTo,
       <Object?>[
         target,
-        (_flaxHas1 ? duration as api4.Duration? : null),
+        (_flaxHas1 ? duration as api3.Duration? : null),
         (_flaxHas2 ? curve as api.Curve : null),
       ],
       <int>[1 | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0)],
@@ -8317,7 +8317,7 @@ final class _AnimationControllerProxy extends api.AnimationController
       super.animateBack,
       <Object?>[
         target,
-        (_flaxHas1 ? duration as api4.Duration? : null),
+        (_flaxHas1 ? duration as api3.Duration? : null),
         (_flaxHas2 ? curve as api.Curve : null),
       ],
       <int>[1 | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0)],
@@ -8371,7 +8371,7 @@ final class _AnimationControllerProxy extends api.AnimationController
         (_flaxHas0 ? min as double? : null),
         (_flaxHas1 ? max as double? : null),
         (_flaxHas2 ? reverse as bool : null),
-        (_flaxHas3 ? period as api4.Duration? : null),
+        (_flaxHas3 ? period as api3.Duration? : null),
         (_flaxHas4 ? count as int? : null),
       ],
       <int>[
@@ -8545,26 +8545,26 @@ final class _AnimationControllerProxy extends api.AnimationController
   }
 
   @override
-  api4.Duration? get duration {
+  api3.Duration? get duration {
     final _flaxResult = _flaxPeer.call(31, const [], const {});
     if (!_flaxResult.$1) return super.duration;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Duration?;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Duration?;
     return _flaxConvertedResult;
   }
 
-  api4.Duration? get _flaxSuperGet_duration {
+  api3.Duration? get _flaxSuperGet_duration {
     return super.duration;
   }
 
   @override
-  api4.Duration? get reverseDuration {
+  api3.Duration? get reverseDuration {
     final _flaxResult = _flaxPeer.call(32, const [], const {});
     if (!_flaxResult.$1) return super.reverseDuration;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Duration?;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Duration?;
     return _flaxConvertedResult;
   }
 
-  api4.Duration? get _flaxSuperGet_reverseDuration {
+  api3.Duration? get _flaxSuperGet_reverseDuration {
     return super.reverseDuration;
   }
 
@@ -8593,14 +8593,14 @@ final class _AnimationControllerProxy extends api.AnimationController
   }
 
   @override
-  api4.Duration? get lastElapsedDuration {
+  api3.Duration? get lastElapsedDuration {
     final _flaxResult = _flaxPeer.call(35, const [], const {});
     if (!_flaxResult.$1) return super.lastElapsedDuration;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Duration?;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Duration?;
     return _flaxConvertedResult;
   }
 
-  api4.Duration? get _flaxSuperGet_lastElapsedDuration {
+  api3.Duration? get _flaxSuperGet_lastElapsedDuration {
     return super.lastElapsedDuration;
   }
 
@@ -8636,7 +8636,7 @@ final class _AnimationControllerProxy extends api.AnimationController
   }
 
   @override
-  set duration(api4.Duration? value) {
+  set duration(api3.Duration? value) {
     final result = _flaxPeer.call(41, [value], const {});
     if (!result.$1) {
       super.duration = value;
@@ -8644,12 +8644,12 @@ final class _AnimationControllerProxy extends api.AnimationController
     }
   }
 
-  void _flaxSuperSet_duration(api4.Duration? value) {
+  void _flaxSuperSet_duration(api3.Duration? value) {
     super.duration = value;
   }
 
   @override
-  set reverseDuration(api4.Duration? value) {
+  set reverseDuration(api3.Duration? value) {
     final result = _flaxPeer.call(42, [value], const {});
     if (!result.$1) {
       super.reverseDuration = value;
@@ -8657,7 +8657,7 @@ final class _AnimationControllerProxy extends api.AnimationController
     }
   }
 
-  void _flaxSuperSet_reverseDuration(api4.Duration? value) {
+  void _flaxSuperSet_reverseDuration(api3.Duration? value) {
     super.reverseDuration = value;
   }
 
@@ -9681,9 +9681,9 @@ final class _AnimationStyleProxy extends api.AnimationStyle {
   _AnimationStyleProxy(
     this._flaxPeer, {
     api.Curve? super.curve,
-    api4.Duration? super.duration,
+    api3.Duration? super.duration,
     api.Curve? super.reverseCurve,
-    api4.Duration? super.reverseDuration,
+    api3.Duration? super.reverseDuration,
   });
   @override
   String toStringShort() {
@@ -9715,14 +9715,14 @@ final class _AnimationStyleProxy extends api.AnimationStyle {
     final _flaxHas0 = !identical(minLevel, _flaxOmitted);
     return (flaxInvokeWithDefaults(
       super.toString,
-      <Object?>[(_flaxHas0 ? minLevel as api3.DiagnosticLevel : null)],
+      <Object?>[(_flaxHas0 ? minLevel as api2.DiagnosticLevel : null)],
       <int>[(_flaxHas0 ? 1 : 0)],
       const <String>["minLevel"],
     ) as String);
   }
 
   @override
-  api3.DiagnosticsNode toDiagnosticsNode({
+  api2.DiagnosticsNode toDiagnosticsNode({
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
@@ -9733,11 +9733,11 @@ final class _AnimationStyleProxy extends api.AnimationStyle {
     if (!_flaxResult.$1) {
       return _flaxSuper_toDiagnosticsNode(name: name, style: style);
     }
-    final _flaxConvertedResult = _flaxResult.$2 as api3.DiagnosticsNode;
+    final _flaxConvertedResult = _flaxResult.$2 as api2.DiagnosticsNode;
     return _flaxConvertedResult;
   }
 
-  api3.DiagnosticsNode _flaxSuper_toDiagnosticsNode({
+  api2.DiagnosticsNode _flaxSuper_toDiagnosticsNode({
     Object? name = _flaxOmitted,
     Object? style = _flaxOmitted,
   }) {
@@ -9747,16 +9747,16 @@ final class _AnimationStyleProxy extends api.AnimationStyle {
       super.toDiagnosticsNode,
       <Object?>[
         (_flaxHas0 ? name as String? : null),
-        (_flaxHas1 ? style as api3.DiagnosticsTreeStyle? : null),
+        (_flaxHas1 ? style as api2.DiagnosticsTreeStyle? : null),
       ],
       <int>[(_flaxHas0 ? 1 : 0) | (_flaxHas1 ? 2 : 0)],
       const <String>["name", "style"],
-    ) as api3.DiagnosticsNode);
+    ) as api2.DiagnosticsNode);
   }
 
   @override
   // ignore: must_call_super
-  void debugFillProperties(api3.DiagnosticPropertiesBuilder properties) {
+  void debugFillProperties(api2.DiagnosticPropertiesBuilder properties) {
     if (!_flaxPeer.active) return;
     final _flaxPreviousSuperMember = _flaxActiveSuperMember;
     final _flaxPreviousCalledSuper = _flaxCalledSuper;
@@ -9782,7 +9782,7 @@ final class _AnimationStyleProxy extends api.AnimationStyle {
   }
 
   void _flaxSuper_debugFillProperties(
-    api3.DiagnosticPropertiesBuilder properties,
+    api2.DiagnosticPropertiesBuilder properties,
   ) {
     if (_flaxActiveSuperMember == "debugFillProperties")
       _flaxCalledSuper = true;
@@ -9830,9 +9830,9 @@ final class _AnimationStyleProxy extends api.AnimationStyle {
       super.copyWith,
       <Object?>[
         (_flaxHas0 ? curve as api.Curve? : null),
-        (_flaxHas1 ? duration as api4.Duration? : null),
+        (_flaxHas1 ? duration as api3.Duration? : null),
         (_flaxHas2 ? reverseCurve as api.Curve? : null),
-        (_flaxHas3 ? reverseDuration as api4.Duration? : null),
+        (_flaxHas3 ? reverseDuration as api3.Duration? : null),
       ],
       <int>[
         (_flaxHas0 ? 1 : 0) |
@@ -9873,14 +9873,14 @@ final class _AnimationStyleProxy extends api.AnimationStyle {
   }
 
   @override
-  api4.Duration? get duration {
+  api3.Duration? get duration {
     final _flaxResult = _flaxPeer.call(7, const [], const {});
     if (!_flaxResult.$1) return super.duration;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Duration?;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Duration?;
     return _flaxConvertedResult;
   }
 
-  api4.Duration? get _flaxSuperGet_duration {
+  api3.Duration? get _flaxSuperGet_duration {
     return super.duration;
   }
 
@@ -9897,14 +9897,14 @@ final class _AnimationStyleProxy extends api.AnimationStyle {
   }
 
   @override
-  api4.Duration? get reverseDuration {
+  api3.Duration? get reverseDuration {
     final _flaxResult = _flaxPeer.call(9, const [], const {});
     if (!_flaxResult.$1) return super.reverseDuration;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Duration?;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Duration?;
     return _flaxConvertedResult;
   }
 
-  api4.Duration? get _flaxSuperGet_reverseDuration {
+  api3.Duration? get _flaxSuperGet_reverseDuration {
     return super.reverseDuration;
   }
 }
@@ -14634,7 +14634,7 @@ Function _flaxClass_Animation<
     switch (ctor) {
       case "fromValueListenable":
         return api.Animation<_Owner0>.fromValueListenable(
-          values["listenable"] as api3.ValueListenable<_Owner0>,
+          values["listenable"] as api2.ValueListenable<_Owner0>,
           transformer: values["transformer"] as _Owner0 Function(_Owner0 p0)?,
         );
       case "@implementation":
@@ -14831,7 +14831,7 @@ Function _flaxClass_Animation<
         "fromValueListenable": <FlaxParameter>[
           FlaxParameter.required(
             "listenable",
-            types.ref<api3.ValueListenable<_Owner0>>(),
+            types.ref<api2.ValueListenable<_Owner0>>(),
           ),
           FlaxParameter(
             "transformer",
@@ -21942,7 +21942,7 @@ const _flaxBinding133 = FlaxInstanceMethod.shared(
 const _flaxBinding134 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:ValueListenable",
-  dartType: FlaxDartTypes.typeOf<api3.ValueListenable<Object?>>,
+  dartType: FlaxDartTypes.typeOf<api2.ValueListenable<Object?>>,
 );
 const _flaxBinding135 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("p0", flaxNullableAnyType)],

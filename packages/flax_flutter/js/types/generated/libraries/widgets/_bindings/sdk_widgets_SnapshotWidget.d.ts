@@ -98,17 +98,17 @@ export declare function _SnapshotWidgetFactory(options: {
     painter?: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/snapshot_widget.dart::SnapshotPainter": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | undefined;
     autoresize?: boolean | undefined;
     controller: Readonly<{
         "__flaxBound:package:flutter/src/widgets/snapshot_widget.dart::SnapshotController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>;
     child: Widget | null;
 }): SnapshotWidget;

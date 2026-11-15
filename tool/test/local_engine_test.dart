@@ -157,7 +157,6 @@ void main() {
           ]);
           expect(args.skip(3), command);
         }
-        expect(localEngineArguments(['pub', 'get']), ['pub', 'get']);
         expect(
           () => localEngineArguments(
             ['test'],
@@ -175,6 +174,75 @@ void main() {
       }
     },
   );
+
+  test('dependency/static commands use host artifacts independently of runtime targets', () {
+    final source = Directory.systemTemp.createTempSync(
+      'flax-static-artifacts-',
+    );
+    addTearDown(() => source.deleteSync(recursive: true));
+    const name = 'flax_mac_debug_arm64';
+    final artifact = File(
+      '${source.path}/out/$name/FlutterMacOS.framework/Versions/A/FlutterMacOS',
+    );
+    final commands = [
+      ['pub', 'get'],
+      ['packages', 'get', '--enforce-lockfile'],
+      ['pub', 'publish', '--dry-run', '--ignore-warnings'],
+      ['analyze', '--no-pub', '--fatal-infos'],
+      ['create', '--empty', '--no-pub', '--platforms=ios', '.'],
+    ];
+    for (final command in commands) {
+      expect(
+        () => localEngineArguments(command, source: source.path),
+        throwsStateError,
+      );
+    }
+    artifact.parent.createSync(recursive: true);
+    artifact.writeAsStringSync('');
+    for (final target in [
+      FlaxNativeTarget('macos-arm64'),
+      FlaxNativeTarget('android-arm64'),
+      FlaxNativeTarget('ios-device-arm64'),
+      FlaxNativeTarget('ios-simulator-arm64'),
+    ]) {
+      for (final command in commands) {
+        expect(
+          localEngineArguments(command, source: source.path, target: target),
+          [
+            '--local-engine-src-path=${source.path}',
+            '--local-engine=$name',
+            '--local-engine-host=$name',
+            ...command,
+          ],
+        );
+        expect(
+          () => localEngineArguments(
+            [...command, '--local-engine=other'],
+            source: source.path,
+            target: target,
+          ),
+          throwsArgumentError,
+        );
+      }
+    }
+    // Pub can regenerate host-context settings; a later supported build must
+    // select its real device/AOT context rather than inheriting those settings.
+    File('${source.path}/out/flax_ios_release_arm64/Flutter.framework/Flutter')
+      ..parent.createSync(recursive: true)
+      ..writeAsStringSync('');
+    expect(
+      localEngineArguments(
+        ['build', 'ios', '--release'],
+        source: source.path,
+        target: FlaxNativeTarget('ios-device-arm64'),
+      ).take(3),
+      [
+        '--local-engine-src-path=${source.path}',
+        '--local-engine=flax_ios_release_arm64',
+        '--local-engine-host=flax_mac_release_arm64',
+      ],
+    );
+  });
 
   test('Android uses its engine and the matching macOS host tools', () {
     final source = Directory.systemTemp.createTempSync('flax-android-engine-');

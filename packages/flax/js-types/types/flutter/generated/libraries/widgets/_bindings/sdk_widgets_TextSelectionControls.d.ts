@@ -70,9 +70,9 @@ export declare abstract class TextSelectionControls extends _FlaxProxyBase {
     }>>, delegate: Readonly<{
         "__flaxBound:package:flutter/src/services/text_input.dart::TextSelectionDelegate": readonly [];
     }>, clipboardStatus: (Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream7.ClipboardStatus];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream7.ClipboardStatus];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null, lastSecondaryTapDownPosition: (Readonly<{
         "__flaxBound:dart:ui::Offset": readonly [];
     }> & Readonly<{

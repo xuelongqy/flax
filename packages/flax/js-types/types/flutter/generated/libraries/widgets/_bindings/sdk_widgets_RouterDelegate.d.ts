@@ -8,7 +8,7 @@ import { type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxD
 export interface RouterDelegate<T extends unknown | null = unknown | null> extends Omit<upstream0.Listenable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/router.dart::RouterDelegate": readonly [T];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __RouterDelegate: unique symbol;
     readonly [_flaxDartTypeValue]: RouterDelegate<T>;
@@ -41,7 +41,7 @@ export declare namespace RouterDelegate {
         build: ((context: upstream1.BuildContext) => Widget);
     }): RouterDelegate<T>;
 }
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "currentConfiguration" | "addListener" | "removeListener" | "setInitialRoutePath" | "setRestoredRoutePath" | "setNewRoutePath" | "popRoute" | "build" | "__flaxBound:package:flutter/src/widgets/router.dart::RouterDelegate" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "currentConfiguration" | "addListener" | "removeListener" | "setInitialRoutePath" | "setRestoredRoutePath" | "setNewRoutePath" | "popRoute" | "build" | "__flaxBound:package:flutter/src/widgets/router.dart::RouterDelegate" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 interface _FlaxSignature1 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (abstract new () => RouterDelegate<_Selected0>) & {
         readonly prototype: RouterDelegate<_Selected0>;

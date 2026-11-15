@@ -9,6 +9,8 @@ import type * as upstream4 from '@flax/dart/ui/_bindings/flutter_FontStyle';
 import '@flax/dart/ui/_bindings/flutter_FontStyle';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_StrutStyle';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Locale';
+import type * as upstream7 from '@flax/dart/ui/_bindings/sdk_dart_ui_Hyphens';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_Hyphens';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
 import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface ParagraphStyle extends Readonly<{
@@ -39,6 +41,7 @@ export declare function _ParagraphStyleFactory(options?: {
     locale?: Readonly<{
         "__flaxBound:dart:ui::Locale": readonly [];
     }> | null | undefined;
+    hyphens?: upstream7.Hyphens | null | undefined;
 }): ParagraphStyle;
 export interface _ParagraphStyleNative extends ParagraphStyle {
     readonly [_flaxDartTypeValue]: _ParagraphStyleNative;
@@ -69,6 +72,7 @@ export declare abstract class _ParagraphStyleNative extends _FlaxProxyBase {
         locale?: Readonly<{
             "__flaxBound:dart:ui::Locale": readonly [];
         }> | null | undefined;
+        hyphens?: upstream7.Hyphens | null | undefined;
     });
 }
 export declare namespace _ParagraphStyleFactory {
@@ -93,6 +97,7 @@ export declare namespace _ParagraphStyleFactory {
         locale?: Readonly<{
             "__flaxBound:dart:ui::Locale": readonly [];
         }> | null | undefined;
+        hyphens?: upstream7.Hyphens | null | undefined;
     }], implementation: {}): ParagraphStyle;
 }
 declare const _ParagraphStyleBinding: typeof _ParagraphStyleFactory & (new (options?: {
@@ -116,6 +121,7 @@ declare const _ParagraphStyleBinding: typeof _ParagraphStyleFactory & (new (opti
     locale?: Readonly<{
         "__flaxBound:dart:ui::Locale": readonly [];
     }> | null | undefined;
+    hyphens?: upstream7.Hyphens | null | undefined;
 }) => _ParagraphStyleNative);
 export declare const ParagraphStyle: typeof _ParagraphStyleBinding & _FlaxInstanceType<ParagraphStyle> & _FlaxDartType<ParagraphStyle, readonly ["class", "flax.core/sdk_dart_ui#type:ParagraphStyle", readonly [], false]>;
 export {};

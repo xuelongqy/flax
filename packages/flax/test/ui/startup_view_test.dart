@@ -282,7 +282,10 @@ void main() {
           onError: (error, _) => errors.add(error),
         ),
       );
-      await _until(tester, () => errors.isNotEmpty);
+      await _until(
+        tester,
+        () => find.byType(ErrorWidget).evaluate().isNotEmpty,
+      );
       expect(errors, hasLength(1));
       expect(errors.single.toString(), contains('business failure'));
       expect(find.byType(ErrorWidget), findsOneWidget);

@@ -29,6 +29,7 @@ export interface BouncingScrollPhysics extends Omit<upstream0.ScrollPhysics, _fl
     readonly dragStartDistanceMotionThreshold: number;
     readonly allowImplicitScrolling: boolean;
     readonly allowUserScrolling: boolean;
+    readonly allowSelectionEdgeScrolling: boolean;
     readonly decelerationRate: upstream1.ScrollDecelerationRate;
     buildParent(ancestor: Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [];
@@ -65,6 +66,11 @@ export interface BouncingScrollPhysics extends Omit<upstream0.ScrollPhysics, _fl
         "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
     }>): upstream3.Tolerance;
     carriedMomentum(existingVelocity: number): number;
+    shouldUpdate(old: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::BouncingScrollPhysics": readonly [];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [];
+    }>): boolean;
     toString(): string;
     frictionFactor(overscrollFraction: number): number;
 }
@@ -74,6 +80,9 @@ export declare function _BouncingScrollPhysicsFactory(options?: {
         "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [];
     }> | null | undefined;
 }): BouncingScrollPhysics;
+export declare namespace _BouncingScrollPhysicsFactory {
+    const rubberBandSpring: upstream2.SpringDescription;
+}
 export declare const BouncingScrollPhysics: typeof _BouncingScrollPhysicsFactory & _FlaxInstanceType<BouncingScrollPhysics> & _FlaxDartType<BouncingScrollPhysics, readonly ["class", "flax.core/flutter#type:BouncingScrollPhysics", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "parent" | "spring" | "tolerance" | "minFlingDistance" | "minFlingVelocity" | "maxFlingVelocity" | "dragStartDistanceMotionThreshold" | "allowImplicitScrolling" | "allowUserScrolling" | "decelerationRate" | "buildParent" | "applyTo" | "applyPhysicsToUserOffset" | "shouldAcceptUserOffset" | "recommendDeferredLoading" | "applyBoundaryConditions" | "adjustPositionForNewDimensions" | "createBallisticSimulation" | "toleranceFor" | "carriedMomentum" | "toString" | "frictionFactor" | "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::BouncingScrollPhysics" | "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "parent" | "spring" | "tolerance" | "minFlingDistance" | "minFlingVelocity" | "maxFlingVelocity" | "dragStartDistanceMotionThreshold" | "allowImplicitScrolling" | "allowUserScrolling" | "allowSelectionEdgeScrolling" | "decelerationRate" | "buildParent" | "applyTo" | "applyPhysicsToUserOffset" | "shouldAcceptUserOffset" | "recommendDeferredLoading" | "applyBoundaryConditions" | "adjustPositionForNewDimensions" | "createBallisticSimulation" | "toleranceFor" | "carriedMomentum" | "shouldUpdate" | "toString" | "frictionFactor" | "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::BouncingScrollPhysics" | "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics";
 export {};

@@ -111,6 +111,7 @@ export interface PlatformDispatcher extends Readonly<{
         state: upstream16.ViewFocusState;
         viewId: number;
     }): void;
+    resetInternalState(): void;
     sendPlatformMessage(name: string, data: globalThis.DataView | null, callback: ((data: globalThis.DataView | null) => void) | null): void;
     sendPortPlatformMessage(name: string, data: globalThis.DataView | null, identifier: number, port: Readonly<{
         "__flaxBound:dart:isolate::SendPort": readonly [];

@@ -96,9 +96,9 @@ export declare function _InkWellFactory(options?: {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null> | undefined;
     canRequestFocus?: Bindable<boolean> | undefined;
     onFocusChange?: Bindable<((value: boolean) => void) | null> | undefined;
@@ -106,13 +106,13 @@ export declare function _InkWellFactory(options?: {
     statesController?: Bindable<(Readonly<{
         "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [DartSet<upstream12.WidgetState>];
+        "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [DartSet<upstream12.WidgetState>];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [DartSet<upstream12.WidgetState>];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [DartSet<upstream12.WidgetState>];
     }>) | null> | undefined;
     hoverDuration?: Bindable<(Readonly<{
         "__flaxBound:dart:core::Duration": readonly [];

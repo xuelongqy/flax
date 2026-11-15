@@ -603,6 +603,7 @@ export declare function _RenderBaselineFactory(options: {
 }): RenderBaseline;
 export interface _RenderBaselineNative extends RenderBaseline {
     readonly [_flaxDartTypeValue]: _RenderBaselineNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1054,7 +1055,6 @@ export interface _RenderBaselineNative extends RenderBaseline {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream13.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

@@ -9,7 +9,7 @@ import 'package:flax/src/native/native_runtime.dart';
 import 'package:flax_canvas/flax_canvas.dart';
 import 'package:flax_example_support/flax_example_support.dart';
 import 'package:flax_webgpu/flax_webgpu.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 

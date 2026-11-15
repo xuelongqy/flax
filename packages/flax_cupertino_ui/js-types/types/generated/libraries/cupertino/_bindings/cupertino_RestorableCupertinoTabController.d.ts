@@ -26,9 +26,9 @@ export interface RestorableCupertinoTabController extends Omit<upstream0.Restora
 }>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/restoration.dart::RestorableProperty": readonly [upstream1.CupertinoTabController];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __RestorableCupertinoTabController: unique symbol;
     readonly [_flaxDartTypeValue]: RestorableCupertinoTabController;
@@ -40,9 +40,9 @@ export interface RestorableCupertinoTabController extends Omit<upstream0.Restora
     initWithValue(value: Readonly<{
         "__flaxBound:package:cupertino_ui/src/tab_scaffold.dart::CupertinoTabController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): void;
     dispose(): void;
     createDefaultValue(): upstream1.CupertinoTabController;
@@ -59,9 +59,9 @@ export interface _RestorableCupertinoTabControllerNative extends RestorableCuper
     initWithValue(value: Readonly<{
         "__flaxBound:package:cupertino_ui/src/tab_scaffold.dart::CupertinoTabController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): void;
     dispose(): void;
     createDefaultValue(): upstream1.CupertinoTabController;
@@ -92,5 +92,5 @@ declare const _RestorableCupertinoTabControllerBinding: typeof _RestorableCupert
     initialIndex?: number | undefined;
 }) => _RestorableCupertinoTabControllerNative);
 export declare const RestorableCupertinoTabController: typeof _RestorableCupertinoTabControllerBinding & _FlaxInstanceType<RestorableCupertinoTabController> & _FlaxDartType<RestorableCupertinoTabController, readonly ["class", "flax.cupertino/cupertino#type:RestorableCupertinoTabController", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "enabled" | "state" | "isRegistered" | "hasListeners" | "initWithValue" | "dispose" | "createDefaultValue" | "fromPrimitives" | "toPrimitives" | "addListener" | "removeListener" | "__flaxBound:package:cupertino_ui/src/tab_scaffold.dart::RestorableCupertinoTabController" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableChangeNotifier" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableListenable" | "__flaxBound:package:flutter/src/widgets/restoration.dart::RestorableProperty" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "enabled" | "state" | "isRegistered" | "hasListeners" | "initWithValue" | "dispose" | "createDefaultValue" | "fromPrimitives" | "toPrimitives" | "addListener" | "removeListener" | "__flaxBound:package:cupertino_ui/src/tab_scaffold.dart::RestorableCupertinoTabController" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableChangeNotifier" | "__flaxBound:package:flutter/src/widgets/restoration_properties.dart::RestorableListenable" | "__flaxBound:package:flutter/src/widgets/restoration.dart::RestorableProperty" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 export {};

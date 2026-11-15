@@ -348,6 +348,12 @@ export declare namespace _MediaQueryFactory {
     function maybeDisableAnimationsOf(context: upstream4.BuildContext): boolean | null;
 }
 export declare namespace _MediaQueryFactory {
+    function reduceMotionOf(context: upstream4.BuildContext): boolean;
+}
+export declare namespace _MediaQueryFactory {
+    function maybeReduceMotionOf(context: upstream4.BuildContext): boolean | null;
+}
+export declare namespace _MediaQueryFactory {
     function boldTextOf(context: upstream4.BuildContext): boolean;
 }
 export declare namespace _MediaQueryFactory {

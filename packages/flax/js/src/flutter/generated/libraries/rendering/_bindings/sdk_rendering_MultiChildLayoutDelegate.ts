@@ -32,11 +32,11 @@ export abstract class MultiChildLayoutDelegate extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<MultiChildLayoutDelegate>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: MultiChildLayoutDelegate;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_rendering#type:MultiChildLayoutDelegate", readonly [], false];
-constructor(options?: {relayout?: Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> | null | undefined}) { super(_MultiChildLayoutDelegateProxy, Array.from(arguments)); }
+constructor(options?: {relayout?: Readonly<{ "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [] }> | null | undefined}) { super(_MultiChildLayoutDelegateProxy, Array.from(arguments)); }
 abstract performLayout(size: Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>): void;
 abstract shouldRelayout(oldDelegate: Readonly<{ "__flaxBound:package:flutter/src/rendering/custom_layout.dart::MultiChildLayoutDelegate": readonly [] }>): boolean;
 }
 _flaxDefineProxyBase(MultiChildLayoutDelegate.prototype, _MultiChildLayoutDelegateProxy);
-export namespace MultiChildLayoutDelegate { export function implement(args: [options?: {relayout?: Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> | null | undefined}], implementation: {performLayout: ((size: upstream1.Size) => void); shouldRelayout: ((oldDelegate: MultiChildLayoutDelegate) => boolean)}): MultiChildLayoutDelegate {
+export namespace MultiChildLayoutDelegate { export function implement(args: [options?: {relayout?: Readonly<{ "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [] }> | null | undefined}], implementation: {performLayout: ((size: upstream1.Size) => void); shouldRelayout: ((oldDelegate: MultiChildLayoutDelegate) => boolean)}): MultiChildLayoutDelegate {
 return constructProxy(_MultiChildLayoutDelegateProxy, args, implementation) as MultiChildLayoutDelegate; } }
 _flaxBindInstanceType<MultiChildLayoutDelegate, typeof MultiChildLayoutDelegate>(MultiChildLayoutDelegate, "flax.core/sdk_rendering#type:MultiChildLayoutDelegate", ["dart:core::Object"]);

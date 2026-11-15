@@ -32,9 +32,9 @@ export interface AnimationController extends Omit<upstream0.Animation<number>, _
 }>, Readonly<{
     "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+    "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
 }>, Readonly<{
     "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationEagerListenerMixin": readonly [];
 }>, Readonly<{
@@ -415,7 +415,7 @@ declare const _AnimationControllerBinding: typeof _AnimationControllerFactory & 
     }>;
 }) => _AnimationControllerNative) & (new (call: _FlaxProxySuper<_AnimationControllerNative>) => _AnimationControllerNative);
 export declare const AnimationController: typeof _AnimationControllerBinding & _FlaxInstanceType<AnimationController> & _FlaxDartType<AnimationController, readonly ["class", "flax.core/sdk_animation#type:AnimationController", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "status" | "value" | "isDismissed" | "isCompleted" | "isAnimating" | "isForwardOrCompleted" | "lowerBound" | "upperBound" | "debugLabel" | "animationBehavior" | "view" | "duration" | "reverseDuration" | "velocity" | "lastElapsedDuration" | "addListener" | "removeListener" | "addStatusListener" | "removeStatusListener" | "drive" | "toString" | "toStringDetails" | "didRegisterListener" | "didUnregisterListener" | "dispose" | "clearListeners" | "notifyListeners" | "clearStatusListeners" | "notifyStatusListeners" | "resync" | "reset" | "forward" | "reverse" | "toggle" | "animateTo" | "animateBack" | "repeat" | "fling" | "animateWith" | "animateBackWith" | "stop" | "__flaxBound:package:flutter/src/animation/animation_controller.dart::AnimationController" | "__flaxBound:package:flutter/src/animation/animation.dart::Animation" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable" | "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationEagerListenerMixin" | "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLocalListenersMixin" | "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLocalStatusListenersMixin";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "status" | "value" | "isDismissed" | "isCompleted" | "isAnimating" | "isForwardOrCompleted" | "lowerBound" | "upperBound" | "debugLabel" | "animationBehavior" | "view" | "duration" | "reverseDuration" | "velocity" | "lastElapsedDuration" | "addListener" | "removeListener" | "addStatusListener" | "removeStatusListener" | "drive" | "toString" | "toStringDetails" | "didRegisterListener" | "didUnregisterListener" | "dispose" | "clearListeners" | "notifyListeners" | "clearStatusListeners" | "notifyStatusListeners" | "resync" | "reset" | "forward" | "reverse" | "toggle" | "animateTo" | "animateBack" | "repeat" | "fling" | "animateWith" | "animateBackWith" | "stop" | "__flaxBound:package:flutter/src/animation/animation_controller.dart::AnimationController" | "__flaxBound:package:flutter/src/animation/animation.dart::Animation" | "__flaxBound:package:listen/src/listen.dart::Listenable" | "__flaxBound:package:listen/src/listen.dart::ValueListenable" | "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationEagerListenerMixin" | "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLocalListenersMixin" | "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLocalStatusListenersMixin";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (child: Readonly<{
         "__flaxBound:package:flutter/src/animation/tween.dart::Animatable": readonly [_Selected0];

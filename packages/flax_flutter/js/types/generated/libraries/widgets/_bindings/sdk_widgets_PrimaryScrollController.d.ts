@@ -72,9 +72,9 @@ export declare function _PrimaryScrollControllerFactory(options: {
     controller: Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>;
     automaticallyInheritForPlatforms?: DartSetInput<upstream4.TargetPlatform, upstream4.TargetPlatform> | undefined;
     scrollDirection?: upstream5.Axis | null | undefined;

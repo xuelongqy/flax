@@ -14,9 +14,9 @@ import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartType
 export interface TabController extends Omit<upstream0.ChangeNotifier, _flaxOwnMembers0>, Omit<upstream1.Listenable, _flaxOwnMembers0 | keyof upstream0.ChangeNotifier>, Readonly<{
     "__flaxBound:package:material_ui/src/tab_controller.dart::TabController": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __TabController: unique symbol;
     readonly [_flaxDartTypeValue]: TabController;
@@ -130,5 +130,5 @@ declare const _TabControllerBinding: typeof _TabControllerFactory & (new (option
     }>;
 }) => _TabControllerNative);
 export declare const TabController: typeof _TabControllerBinding & _FlaxInstanceType<TabController> & _FlaxDartType<TabController, readonly ["class", "flax.material/material#type:TabController", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "animation" | "animationDuration" | "length" | "index" | "previousIndex" | "indexIsChanging" | "offset" | "addListener" | "removeListener" | "dispose" | "animateTo" | "__flaxBound:package:material_ui/src/tab_controller.dart::TabController" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "animation" | "animationDuration" | "length" | "index" | "previousIndex" | "indexIsChanging" | "offset" | "addListener" | "removeListener" | "dispose" | "animateTo" | "__flaxBound:package:material_ui/src/tab_controller.dart::TabController" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 export {};

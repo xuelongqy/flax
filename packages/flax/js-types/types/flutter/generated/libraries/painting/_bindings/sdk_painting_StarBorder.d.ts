@@ -12,6 +12,7 @@ import '@flax/dart/ui/_bindings/sdk_dart_ui_Path';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import type * as upstream6 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
+import '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
@@ -69,6 +70,15 @@ export interface StarBorder extends Omit<upstream0.OutlinedBorder, _flaxOwnMembe
     }>, options?: {
         textDirection?: upstream6.TextDirection | null | undefined;
     }): upstream4.Path;
+    hitTest(rect: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, position: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, options?: {
+        textDirection?: upstream6.TextDirection | null | undefined;
+    }): boolean;
     paintInterior(canvas: Readonly<{
         "__flaxBound:dart:ui::Canvas": readonly [];
     }>, rect: Readonly<{
@@ -179,6 +189,15 @@ export interface _StarBorderNative extends StarBorder {
     }>, options?: {
         textDirection?: upstream6.TextDirection | null | undefined;
     }): upstream4.Path;
+    hitTest(rect: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, position: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, options?: {
+        textDirection?: upstream6.TextDirection | null | undefined;
+    }): boolean;
     paintInterior(canvas: Readonly<{
         "__flaxBound:dart:ui::Canvas": readonly [];
     }>, rect: Readonly<{
@@ -257,5 +276,5 @@ declare const _StarBorderBinding: typeof _StarBorderFactory & (new (options?: {
     squash?: number | undefined;
 }) => _StarBorderNative) & (new (call: _FlaxProxySuper<_StarBorderNative>) => _StarBorderNative);
 export declare const StarBorder: typeof _StarBorderBinding & _FlaxInstanceType<StarBorder> & _FlaxDartType<StarBorder, readonly ["class", "flax.core/sdk_painting#type:StarBorder", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "dimensions" | "side" | "preferPaintInterior" | "points" | "innerRadiusRatio" | "pointRounding" | "valleyRounding" | "rotation" | "squash" | "copyWith" | "scale" | "lerpFrom" | "lerpTo" | "add" | "getOuterPath" | "getInnerPath" | "paintInterior" | "paint" | "toString" | "operatorAdd" | "__flaxBound:package:flutter/src/painting/star_border.dart::StarBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::OutlinedBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "dimensions" | "side" | "preferPaintInterior" | "points" | "innerRadiusRatio" | "pointRounding" | "valleyRounding" | "rotation" | "squash" | "copyWith" | "scale" | "lerpFrom" | "lerpTo" | "add" | "getOuterPath" | "getInnerPath" | "hitTest" | "paintInterior" | "paint" | "toString" | "operatorAdd" | "__flaxBound:package:flutter/src/painting/star_border.dart::StarBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::OutlinedBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder";
 export {};

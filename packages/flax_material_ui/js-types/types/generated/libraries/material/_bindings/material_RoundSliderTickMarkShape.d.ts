@@ -40,9 +40,9 @@ export interface RoundSliderTickMarkShape extends Omit<upstream0.SliderTickMarkS
         enableAnimation: Readonly<{
             "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
         }>;
         isEnabled: boolean;
         parentBox: Readonly<{
@@ -114,9 +114,9 @@ export interface _RoundSliderTickMarkShapeNative extends RoundSliderTickMarkShap
         enableAnimation: Readonly<{
             "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
         }>;
         textDirection: upstream7.TextDirection;
         thumbCenter: Readonly<{

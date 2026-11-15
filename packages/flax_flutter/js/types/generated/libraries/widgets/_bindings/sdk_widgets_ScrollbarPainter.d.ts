@@ -34,9 +34,9 @@ import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartType
 export interface ScrollbarPainter extends Omit<upstream0.ChangeNotifier, _flaxOwnMembers0>, Omit<upstream1.Listenable, _flaxOwnMembers0 | keyof upstream0.ChangeNotifier>, Omit<upstream2.CustomPainter, _flaxOwnMembers0 | keyof upstream0.ChangeNotifier | keyof upstream1.Listenable>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/scrollbar.dart::ScrollbarPainter": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }>, Readonly<{
     "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
 }> {
@@ -77,14 +77,14 @@ export interface ScrollbarPainter extends Omit<upstream0.ChangeNotifier, _flaxOw
     shouldRebuildSemantics(oldDelegate: Readonly<{
         "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): boolean;
     shouldRepaint(oldDelegate: Readonly<{
         "__flaxBound:package:flutter/src/widgets/scrollbar.dart::ScrollbarPainter": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
     }>): boolean;
@@ -153,9 +153,9 @@ export declare function _ScrollbarPainterFactory(options: {
     fadeoutOpacityAnimation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>;
     trackColor?: Readonly<{
         "__flaxBound:dart:ui::Color": readonly [];
@@ -201,14 +201,14 @@ export interface _ScrollbarPainterNative extends ScrollbarPainter {
     shouldRebuildSemantics(oldDelegate: Readonly<{
         "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): boolean;
     shouldRepaint(oldDelegate: Readonly<{
         "__flaxBound:package:flutter/src/widgets/scrollbar.dart::ScrollbarPainter": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
     }>): boolean;
@@ -303,9 +303,9 @@ export declare abstract class _ScrollbarPainterNative extends _FlaxProxyBase {
         fadeoutOpacityAnimation: Readonly<{
             "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
         }>;
         trackColor?: Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];
@@ -345,9 +345,9 @@ export declare namespace _ScrollbarPainterFactory {
         fadeoutOpacityAnimation: Readonly<{
             "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
         }>;
         trackColor?: Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];
@@ -386,9 +386,9 @@ declare const _ScrollbarPainterBinding: typeof _ScrollbarPainterFactory & (new (
     fadeoutOpacityAnimation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>;
     trackColor?: Readonly<{
         "__flaxBound:dart:ui::Color": readonly [];
@@ -420,5 +420,5 @@ declare const _ScrollbarPainterBinding: typeof _ScrollbarPainterFactory & (new (
     ignorePointer?: boolean | undefined;
 }) => _ScrollbarPainterNative);
 export declare const ScrollbarPainter: typeof _ScrollbarPainterBinding & _FlaxInstanceType<ScrollbarPainter> & _FlaxDartType<ScrollbarPainter, readonly ["class", "flax.core/sdk_widgets#type:ScrollbarPainter", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "semanticsBuilder" | "color" | "trackColor" | "trackBorderColor" | "trackRadius" | "textDirection" | "thickness" | "fadeoutOpacityAnimation" | "mainAxisMargin" | "crossAxisMargin" | "radius" | "shape" | "padding" | "minLength" | "minOverscrollLength" | "scrollbarOrientation" | "ignorePointer" | "addListener" | "removeListener" | "dispose" | "paint" | "shouldRebuildSemantics" | "shouldRepaint" | "hitTest" | "toString" | "update" | "updateThickness" | "getTrackToScroll" | "getThumbScrollOffset" | "hitTestInteractive" | "hitTestOnlyThumbInteractive" | "__flaxBound:package:flutter/src/widgets/scrollbar.dart::ScrollbarPainter" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "semanticsBuilder" | "color" | "trackColor" | "trackBorderColor" | "trackRadius" | "textDirection" | "thickness" | "fadeoutOpacityAnimation" | "mainAxisMargin" | "crossAxisMargin" | "radius" | "shape" | "padding" | "minLength" | "minOverscrollLength" | "scrollbarOrientation" | "ignorePointer" | "addListener" | "removeListener" | "dispose" | "paint" | "shouldRebuildSemantics" | "shouldRepaint" | "hitTest" | "toString" | "update" | "updateThickness" | "getTrackToScroll" | "getThumbScrollOffset" | "hitTestInteractive" | "hitTestOnlyThumbInteractive" | "__flaxBound:package:flutter/src/widgets/scrollbar.dart::ScrollbarPainter" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable" | "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter";
 export {};

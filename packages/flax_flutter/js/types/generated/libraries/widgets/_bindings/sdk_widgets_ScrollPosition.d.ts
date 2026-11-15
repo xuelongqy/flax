@@ -42,9 +42,9 @@ export interface ScrollPosition extends Omit<upstream0.ViewportOffset, _flaxOwnM
 }>, Readonly<{
     "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
 }> {
@@ -87,9 +87,9 @@ export interface ScrollPosition {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
     }>): void;
@@ -197,9 +197,9 @@ export declare abstract class ScrollPosition extends _FlaxProxyBase {
         }> & Readonly<{
             "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
             "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
         }>) | null | undefined;
@@ -245,9 +245,9 @@ export declare namespace ScrollPosition {
         }> & Readonly<{
             "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
             "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
         }>) | null | undefined;
@@ -270,5 +270,5 @@ export declare namespace ScrollPosition {
         get axisDirection(): upstream7.AxisDirection;
     }): ScrollPosition;
 }
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "pixels" | "hasPixels" | "userScrollDirection" | "allowImplicitScrolling" | "hasListeners" | "minScrollExtent" | "maxScrollExtent" | "hasContentDimensions" | "viewportDimension" | "hasViewportDimension" | "axisDirection" | "axis" | "outOfRange" | "atEdge" | "extentBefore" | "extentInside" | "extentAfter" | "extentTotal" | "devicePixelRatio" | "physics" | "context" | "keepScrollOffset" | "debugLabel" | "haveDimensions" | "shouldIgnorePointer" | "isScrollingNotifier" | "applyViewportDimension" | "applyContentDimensions" | "correctBy" | "jumpTo" | "animateTo" | "moveTo" | "toString" | "debugFillDescription" | "addListener" | "removeListener" | "dispose" | "copyWith" | "absorb" | "setPixels" | "correctPixels" | "forcePixels" | "saveScrollOffset" | "restoreScrollOffset" | "restoreOffset" | "saveOffset" | "applyBoundaryConditions" | "correctForNewDimensions" | "applyNewDimensions" | "ensureVisible" | "pointerScroll" | "jumpToWithoutSettling" | "hold" | "drag" | "beginActivity" | "didStartScroll" | "didUpdateScrollPositionBy" | "didEndScroll" | "didOverscrollBy" | "didUpdateScrollDirection" | "didUpdateScrollMetrics" | "recommendDeferredLoading" | "notifyListeners" | "__flaxBound:package:flutter/src/widgets/scroll_position.dart::ScrollPosition" | "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "pixels" | "hasPixels" | "userScrollDirection" | "allowImplicitScrolling" | "hasListeners" | "minScrollExtent" | "maxScrollExtent" | "hasContentDimensions" | "viewportDimension" | "hasViewportDimension" | "axisDirection" | "axis" | "outOfRange" | "atEdge" | "extentBefore" | "extentInside" | "extentAfter" | "extentTotal" | "devicePixelRatio" | "physics" | "context" | "keepScrollOffset" | "debugLabel" | "haveDimensions" | "shouldIgnorePointer" | "isScrollingNotifier" | "applyViewportDimension" | "applyContentDimensions" | "correctBy" | "jumpTo" | "animateTo" | "moveTo" | "toString" | "debugFillDescription" | "addListener" | "removeListener" | "dispose" | "copyWith" | "absorb" | "setPixels" | "correctPixels" | "forcePixels" | "saveScrollOffset" | "restoreScrollOffset" | "restoreOffset" | "saveOffset" | "applyBoundaryConditions" | "correctForNewDimensions" | "applyNewDimensions" | "ensureVisible" | "pointerScroll" | "jumpToWithoutSettling" | "hold" | "drag" | "beginActivity" | "didStartScroll" | "didUpdateScrollPositionBy" | "didEndScroll" | "didOverscrollBy" | "didUpdateScrollDirection" | "didUpdateScrollMetrics" | "recommendDeferredLoading" | "notifyListeners" | "__flaxBound:package:flutter/src/widgets/scroll_position.dart::ScrollPosition" | "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable" | "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics";
 export {};

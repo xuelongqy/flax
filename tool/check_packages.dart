@@ -5,6 +5,7 @@ import 'package:path/path.dart' as p;
 
 import 'src/archive_packing.dart';
 import 'src/package_discovery.dart';
+import 'src/local_engine.dart';
 import 'src/process.dart';
 import 'src/prepared_checks.dart';
 
@@ -53,7 +54,7 @@ Future<void> main(List<String> arguments) => command(() async {
     for (final package in packages) {
       final copy = dartCopies[package.name]!;
       _rejectRepositoryPaths(copy, root);
-      await _checkDartPackage(package, copy);
+      await checkDartPackage(package, copy);
     }
     for (final package in npmDeliverables) {
       final archive = await _checkNpmPackage(
@@ -235,23 +236,31 @@ Map<String, Directory> _prepareDartPackages(
   return copies;
 }
 
-Future<void> _checkDartPackage(
+Future<void> checkDartPackage(
   FlaxWorkspacePackage package,
   Directory copy,
 ) async {
   _rejectNoticeArtifacts(copy);
-  final result = await Process.run('flutter', [
+  final flutter = '${flutterSdkRoot()}/bin/flutter';
+  final arguments = localEngineArguments([
     'pub',
     'publish',
     '--dry-run',
     '--ignore-warnings',
-  ], workingDirectory: copy.path);
+  ]);
+  final result = await Process.run(
+    flutter,
+    arguments,
+    workingDirectory: copy.path,
+    environment: {...Platform.environment}..remove('FLUTTER_ENGINE'),
+    includeParentEnvironment: false,
+  );
   stdout.write(result.stdout);
   stderr.write(result.stderr);
   if (result.exitCode != 0) {
     throw ProcessException(
-      'flutter',
-      const ['pub', 'publish', '--dry-run', '--ignore-warnings'],
+      flutter,
+      arguments,
       'Command failed',
       result.exitCode,
     );
@@ -617,7 +626,7 @@ Future<void> _checkDartConsumers(
       '${const JsonEncoder.withIndent('  ').convert({
         'name': '${package.name}_archive_consumer',
         'publish_to': 'none',
-        'environment': {'sdk': '^3.13.2'},
+        'environment': {'sdk': '^3.14.0'},
         'dependencies': {
           package.name: {'path': copies[package.name]!.path},
         },

@@ -8,12 +8,9 @@ import 'package:flax/bindings.dart';
 import 'package:flutter/foundation.dart' as api1;
 
 import 'dart:core' as api2;
+import 'dart:ui' as api3;
 
-import 'package:flutter/cupertino.dart' as api3;
-
-import 'dart:ui' as api4;
-
-import 'package:vector_math/vector_math_64.dart' as api5;
+import 'package:vector_math/vector_math_64.dart' as api4;
 
 import 'closed_adapters.g.dart' as _flaxAdapters;
 
@@ -1066,20 +1063,20 @@ final sdk_gesturesPlugin = FlaxBindingPlugin(
 );
 Object? _function_computeHitSlop(Map<String, Object?> values) {
   return api.computeHitSlop(
-    values["kind"] as api4.PointerDeviceKind,
+    values["kind"] as api3.PointerDeviceKind,
     values["settings"] as api.DeviceGestureSettings?,
   );
 }
 
 Object? _function_computePanSlop(Map<String, Object?> values) {
   return api.computePanSlop(
-    values["kind"] as api4.PointerDeviceKind,
+    values["kind"] as api3.PointerDeviceKind,
     values["settings"] as api.DeviceGestureSettings?,
   );
 }
 
 Object? _function_computeScaleSlop(Map<String, Object?> values) {
-  return api.computeScaleSlop(values["kind"] as api4.PointerDeviceKind);
+  return api.computeScaleSlop(values["kind"] as api3.PointerDeviceKind);
 }
 
 Object? _function_debugAssertAllGesturesVarsUnset(Map<String, Object?> values) {
@@ -1541,7 +1538,7 @@ Object? _FlaxProxyDispatch7_super_call_startTrackingPointer(
 ) {
   (receiver as _FlaxProxyDispatch7)._flaxSuper_startTrackingPointer(
     values["pointer"] as int,
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
   return null;
 }
@@ -1796,7 +1793,7 @@ Object? _FlaxProxyDispatch0_super_set_supportedDevices(
   Map<String, Object?> values,
 ) {
   (receiver as _FlaxProxyDispatch0)._flaxSuperSet_supportedDevices(
-    values["value"] as Set<api4.PointerDeviceKind>?,
+    values["value"] as Set<api3.PointerDeviceKind>?,
   );
   return null;
 }
@@ -1813,7 +1810,7 @@ Object _createBaseTapGestureRecognizer(
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas3
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -1922,7 +1919,7 @@ Object? _DelayedMultiDragGestureRecognizer_super_set_onStart(
   Map<String, Object?> values,
 ) {
   (receiver as _DelayedMultiDragGestureRecognizerProxy)._flaxSuperSet_onStart(
-    values["value"] as api.Drag? Function(api4.Offset position)?,
+    values["value"] as api.Drag? Function(api3.Offset position)?,
   );
   return null;
 }
@@ -1939,7 +1936,7 @@ Object _createDelayedMultiDragGestureRecognizer(
         <Object?>[
           (_flaxHas0 ? values["delay"] as api2.Duration : null),
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           values["allowedButtonsFilter"] as bool Function(int buttons)?,
         ],
         <int>[(_flaxHas0 ? 1 : 0) | 2 | 4 | 8],
@@ -1958,7 +1955,7 @@ Object _createDelayedMultiDragGestureRecognizer(
           values['@peer'] as FlaxProxyPeer,
           (_flaxHas1 ? values["delay"] as api2.Duration : null),
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           values["allowedButtonsFilter"] as bool Function(int buttons)?,
         ],
         <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | 16],
@@ -2011,7 +2008,7 @@ Object _createDeviceGestureSettings(String ctor, Map<String, Object?> values) {
       );
     case "fromView":
       return api.DeviceGestureSettings.fromView(
-        values["view"] as api4.FlutterView,
+        values["view"] as api3.FlutterView,
       );
     case '@implementation':
       return _DeviceGestureSettingsProxy(
@@ -2157,7 +2154,7 @@ Object _createDoubleTapGestureRecognizer(
         api.DoubleTapGestureRecognizer.new,
         <Object?>[
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas2
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -2176,7 +2173,7 @@ Object _createDoubleTapGestureRecognizer(
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas3
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -2300,8 +2297,8 @@ Object _createDragDownDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.DragDownDetails.new,
         <Object?>[
-          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
+          (_flaxHas0 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
         ],
         <int>[(_flaxHas0 ? 1 : 0) | 2],
         const <String>["globalPosition", "localPosition"],
@@ -2312,8 +2309,8 @@ Object _createDragDownDetails(String ctor, Map<String, Object?> values) {
         _DragDownDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
+          (_flaxHas1 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
         ],
         <int>[1 | (_flaxHas1 ? 2 : 0) | 4],
         const <String>["", "globalPosition", "localPosition"],
@@ -2381,8 +2378,8 @@ Object _createDragEndDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.DragEndDetails.new,
         <Object?>[
-          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
+          (_flaxHas0 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
           (_flaxHas2 ? values["velocity"] as api.Velocity : null),
           values["primaryVelocity"] as double?,
         ],
@@ -2401,8 +2398,8 @@ Object _createDragEndDetails(String ctor, Map<String, Object?> values) {
         _DragEndDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
+          (_flaxHas1 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
           (_flaxHas3 ? values["velocity"] as api.Velocity : null),
           values["primaryVelocity"] as double?,
         ],
@@ -2553,7 +2550,7 @@ Object? _DragGestureRecognizer_isFlingGesture(
 ) {
   return (receiver as api.DragGestureRecognizer).isFlingGesture(
     values["estimate"] as api.VelocityEstimate,
-    values["kind"] as api4.PointerDeviceKind,
+    values["kind"] as api3.PointerDeviceKind,
   );
 }
 
@@ -2563,7 +2560,7 @@ Object? _DragGestureRecognizer_considerFling(
 ) {
   return (receiver as api.DragGestureRecognizer).considerFling(
     values["estimate"] as api.VelocityEstimate,
-    values["kind"] as api4.PointerDeviceKind,
+    values["kind"] as api3.PointerDeviceKind,
   );
 }
 
@@ -2573,7 +2570,7 @@ Object? _DragGestureRecognizer_hasSufficientGlobalDistanceToAccept(
 ) {
   return (receiver as api.DragGestureRecognizer)
       .hasSufficientGlobalDistanceToAccept(
-        values["pointerDeviceKind"] as api4.PointerDeviceKind,
+        values["pointerDeviceKind"] as api3.PointerDeviceKind,
         values["deviceTouchSlop"] as double?,
       );
 }
@@ -2640,10 +2637,10 @@ Object _createDragStartDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.DragStartDetails.new,
         <Object?>[
-          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
+          (_flaxHas0 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
           values["sourceTimeStamp"] as api2.Duration?,
-          values["kind"] as api4.PointerDeviceKind?,
+          values["kind"] as api3.PointerDeviceKind?,
         ],
         <int>[(_flaxHas0 ? 1 : 0) | 2 | 4 | 8],
         const <String>[
@@ -2659,10 +2656,10 @@ Object _createDragStartDetails(String ctor, Map<String, Object?> values) {
         _DragStartDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
+          (_flaxHas1 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
           values["sourceTimeStamp"] as api2.Duration?,
-          values["kind"] as api4.PointerDeviceKind?,
+          values["kind"] as api3.PointerDeviceKind?,
         ],
         <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | 16],
         const <String>[
@@ -2750,12 +2747,12 @@ Object _createDragUpdateDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.DragUpdateDetails.new,
         <Object?>[
-          values["globalPosition"] as api4.Offset,
-          values["localPosition"] as api4.Offset?,
+          values["globalPosition"] as api3.Offset,
+          values["localPosition"] as api3.Offset?,
           values["sourceTimeStamp"] as api2.Duration?,
-          (_flaxHas3 ? values["delta"] as api4.Offset : null),
+          (_flaxHas3 ? values["delta"] as api3.Offset : null),
           values["primaryDelta"] as double?,
-          values["kind"] as api4.PointerDeviceKind?,
+          values["kind"] as api3.PointerDeviceKind?,
         ],
         <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0) | 16 | 32],
         const <String>[
@@ -2773,12 +2770,12 @@ Object _createDragUpdateDetails(String ctor, Map<String, Object?> values) {
         _DragUpdateDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          values["globalPosition"] as api4.Offset,
-          values["localPosition"] as api4.Offset?,
+          values["globalPosition"] as api3.Offset,
+          values["localPosition"] as api3.Offset?,
           values["sourceTimeStamp"] as api2.Duration?,
-          (_flaxHas4 ? values["delta"] as api4.Offset : null),
+          (_flaxHas4 ? values["delta"] as api3.Offset : null),
           values["primaryDelta"] as double?,
-          values["kind"] as api4.PointerDeviceKind?,
+          values["kind"] as api3.PointerDeviceKind?,
         ],
         <int>[1 | 2 | 4 | 8 | (_flaxHas4 ? 16 : 0) | 32 | 64],
         const <String>[
@@ -2893,7 +2890,7 @@ Object _createEagerGestureRecognizer(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.EagerGestureRecognizer.new,
         <Object?>[
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas1
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -2907,7 +2904,7 @@ Object _createEagerGestureRecognizer(String ctor, Map<String, Object?> values) {
         _EagerGestureRecognizerProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas2
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -3181,15 +3178,15 @@ Object _createForcePressDetails(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.ForcePressDetails(
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
+        globalPosition: values["globalPosition"] as api3.Offset,
+        localPosition: values["localPosition"] as api3.Offset?,
         pressure: values["pressure"] as double,
       );
     case '@implementation':
       return _ForcePressDetailsProxy(
         values['@peer'] as FlaxProxyPeer,
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset?,
+        globalPosition: values["globalPosition"] as api3.Offset,
+        localPosition: values["localPosition"] as api3.Offset?,
         pressure: values["pressure"] as double,
       );
     default:
@@ -3415,7 +3412,7 @@ Object _createForcePressGestureRecognizer(
                     )
               : null),
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas5
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -3448,7 +3445,7 @@ Object _createForcePressGestureRecognizer(
                     )
               : null),
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas6
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -3866,7 +3863,7 @@ void _GestureRecognizer_set_gestureSettings(Object receiver, Object? value) {
 
 void _GestureRecognizer_set_supportedDevices(Object receiver, Object? value) {
   (receiver as api.GestureRecognizer).supportedDevices =
-      value as Set<api4.PointerDeviceKind>?;
+      value as Set<api3.PointerDeviceKind>?;
 }
 
 Object? _GestureRecognizer_toString(
@@ -4070,7 +4067,7 @@ Object _createGestureRecognizer(String ctor, Map<String, Object?> values) {
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas3
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -4157,7 +4154,7 @@ Object? _HitTestResult_pushTransform(
   Map<String, Object?> values,
 ) {
   (receiver as api.HitTestResult).pushTransform(
-    values["transform"] as api5.Matrix4,
+    values["transform"] as api4.Matrix4,
   );
   return null;
 }
@@ -4166,7 +4163,7 @@ Object? _HitTestResult_pushOffset(
   Object receiver,
   Map<String, Object?> values,
 ) {
-  (receiver as api.HitTestResult).pushOffset(values["offset"] as api4.Offset);
+  (receiver as api.HitTestResult).pushOffset(values["offset"] as api3.Offset);
   return null;
 }
 
@@ -4194,7 +4191,7 @@ Object? _HitTestResult_super_pushTransform(
   Map<String, Object?> values,
 ) {
   (receiver as _HitTestResultProxy)._flaxSuper_pushTransform(
-    values["transform"] as api5.Matrix4,
+    values["transform"] as api4.Matrix4,
   );
   return null;
 }
@@ -4204,7 +4201,7 @@ Object? _HitTestResult_super_pushOffset(
   Map<String, Object?> values,
 ) {
   (receiver as _HitTestResultProxy)._flaxSuper_pushOffset(
-    values["offset"] as api4.Offset,
+    values["offset"] as api3.Offset,
   );
   return null;
 }
@@ -4264,7 +4261,7 @@ bool _isHitTestable(Object value) => value is api.HitTestable;
 Object? _HitTestable_hitTest(Object receiver, Map<String, Object?> values) {
   (receiver as api.HitTestable).hitTest(
     values["result"] as api.HitTestResult,
-    values["position"] as api4.Offset,
+    values["position"] as api3.Offset,
   );
   return null;
 }
@@ -4275,7 +4272,7 @@ Object? _HitTestable_hitTestInView(
 ) {
   (receiver as api.HitTestable).hitTestInView(
     values["result"] as api.HitTestResult,
-    values["position"] as api4.Offset,
+    values["position"] as api3.Offset,
     values["viewId"] as int,
   );
   return null;
@@ -4315,7 +4312,7 @@ Object _createHorizontalDragGestureRecognizer(
         api.HorizontalDragGestureRecognizer.new,
         <Object?>[
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas2
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -4402,7 +4399,7 @@ Object? _HorizontalMultiDragGestureRecognizer_super_set_onStart(
 ) {
   (receiver as _HorizontalMultiDragGestureRecognizerProxy)
       ._flaxSuperSet_onStart(
-        values["value"] as api.Drag? Function(api4.Offset position)?,
+        values["value"] as api.Drag? Function(api3.Offset position)?,
       );
   return null;
 }
@@ -4416,7 +4413,7 @@ Object _createHorizontalMultiDragGestureRecognizer(
       return api.HorizontalMultiDragGestureRecognizer(
         debugOwner: values["debugOwner"],
         supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+            values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
         allowedButtonsFilter:
             values["allowedButtonsFilter"] as bool Function(int buttons)?,
       );
@@ -4425,7 +4422,7 @@ Object _createHorizontalMultiDragGestureRecognizer(
         values['@peer'] as FlaxProxyPeer,
         debugOwner: values["debugOwner"],
         supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+            values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
         allowedButtonsFilter:
             values["allowedButtonsFilter"] as bool Function(int buttons)?,
       );
@@ -4450,7 +4447,7 @@ Object? _FlaxProxyDispatch27_super_call_addPosition(
 ) {
   (receiver as _FlaxProxyDispatch27)._flaxSuper_addPosition(
     values["time"] as api2.Duration,
-    values["position"] as api4.Offset,
+    values["position"] as api3.Offset,
   );
   return null;
 }
@@ -4480,12 +4477,12 @@ Object _createIOSScrollViewFlingVelocityTracker(
   switch (ctor) {
     case "":
       return api.IOSScrollViewFlingVelocityTracker(
-        values["kind"] as api4.PointerDeviceKind,
+        values["kind"] as api3.PointerDeviceKind,
       );
     case '@implementation':
       return _IOSScrollViewFlingVelocityTrackerProxy(
         values['@peer'] as FlaxProxyPeer,
-        values["kind"] as api4.PointerDeviceKind,
+        values["kind"] as api3.PointerDeviceKind,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -4561,7 +4558,7 @@ Object? _ImmediateMultiDragGestureRecognizer_super_set_onStart(
   Map<String, Object?> values,
 ) {
   (receiver as _ImmediateMultiDragGestureRecognizerProxy)._flaxSuperSet_onStart(
-    values["value"] as api.Drag? Function(api4.Offset position)?,
+    values["value"] as api.Drag? Function(api3.Offset position)?,
   );
   return null;
 }
@@ -4575,7 +4572,7 @@ Object _createImmediateMultiDragGestureRecognizer(
       return api.ImmediateMultiDragGestureRecognizer(
         debugOwner: values["debugOwner"],
         supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+            values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
         allowedButtonsFilter:
             values["allowedButtonsFilter"] as bool Function(int buttons)?,
       );
@@ -4584,7 +4581,7 @@ Object _createImmediateMultiDragGestureRecognizer(
         values['@peer'] as FlaxProxyPeer,
         debugOwner: values["debugOwner"],
         supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+            values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
         allowedButtonsFilter:
             values["allowedButtonsFilter"] as bool Function(int buttons)?,
       );
@@ -4702,9 +4699,9 @@ Object _createLongPressDownDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.LongPressDownDetails.new,
         <Object?>[
-          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
-          values["kind"] as api4.PointerDeviceKind?,
+          (_flaxHas0 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
+          values["kind"] as api3.PointerDeviceKind?,
         ],
         <int>[(_flaxHas0 ? 1 : 0) | 2 | 4],
         const <String>["globalPosition", "localPosition", "kind"],
@@ -4715,9 +4712,9 @@ Object _createLongPressDownDetails(String ctor, Map<String, Object?> values) {
         _LongPressDownDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
-          values["kind"] as api4.PointerDeviceKind?,
+          (_flaxHas1 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
+          values["kind"] as api3.PointerDeviceKind?,
         ],
         <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8],
         const <String>["", "globalPosition", "localPosition", "kind"],
@@ -4782,8 +4779,8 @@ Object _createLongPressEndDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.LongPressEndDetails.new,
         <Object?>[
-          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
+          (_flaxHas0 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
           (_flaxHas2 ? values["velocity"] as api.Velocity : null),
         ],
         <int>[(_flaxHas0 ? 1 : 0) | 2 | (_flaxHas2 ? 4 : 0)],
@@ -4796,8 +4793,8 @@ Object _createLongPressEndDetails(String ctor, Map<String, Object?> values) {
         _LongPressEndDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
+          (_flaxHas1 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
           (_flaxHas3 ? values["velocity"] as api.Velocity : null),
         ],
         <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | (_flaxHas3 ? 8 : 0)],
@@ -5502,7 +5499,7 @@ Object _createLongPressGestureRecognizer(
         duration: values["duration"] as api2.Duration?,
         postAcceptSlopTolerance: values["postAcceptSlopTolerance"] as double?,
         supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+            values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
         debugOwner: values["debugOwner"],
         allowedButtonsFilter:
             values["allowedButtonsFilter"] as bool Function(int buttons)?,
@@ -5513,7 +5510,7 @@ Object _createLongPressGestureRecognizer(
         duration: values["duration"] as api2.Duration?,
         postAcceptSlopTolerance: values["postAcceptSlopTolerance"] as double?,
         supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+            values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
         debugOwner: values["debugOwner"],
         allowedButtonsFilter:
             values["allowedButtonsFilter"] as bool Function(int buttons)?,
@@ -5591,10 +5588,10 @@ Object _createLongPressMoveUpdateDetails(
       return flaxInvokeWithDefaults(
         api.LongPressMoveUpdateDetails.new,
         <Object?>[
-          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
-          (_flaxHas2 ? values["offsetFromOrigin"] as api4.Offset : null),
-          values["localOffsetFromOrigin"] as api4.Offset?,
+          (_flaxHas0 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
+          (_flaxHas2 ? values["offsetFromOrigin"] as api3.Offset : null),
+          values["localOffsetFromOrigin"] as api3.Offset?,
         ],
         <int>[(_flaxHas0 ? 1 : 0) | 2 | (_flaxHas2 ? 4 : 0) | 8],
         const <String>[
@@ -5611,10 +5608,10 @@ Object _createLongPressMoveUpdateDetails(
         _LongPressMoveUpdateDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
-          (_flaxHas3 ? values["offsetFromOrigin"] as api4.Offset : null),
-          values["localOffsetFromOrigin"] as api4.Offset?,
+          (_flaxHas1 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
+          (_flaxHas3 ? values["offsetFromOrigin"] as api3.Offset : null),
+          values["localOffsetFromOrigin"] as api3.Offset?,
         ],
         <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | (_flaxHas3 ? 8 : 0) | 16],
         const <String>[
@@ -5679,8 +5676,8 @@ Object _createLongPressStartDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.LongPressStartDetails.new,
         <Object?>[
-          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
+          (_flaxHas0 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
         ],
         <int>[(_flaxHas0 ? 1 : 0) | 2],
         const <String>["globalPosition", "localPosition"],
@@ -5691,8 +5688,8 @@ Object _createLongPressStartDetails(String ctor, Map<String, Object?> values) {
         _LongPressStartDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
+          (_flaxHas1 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
         ],
         <int>[1 | (_flaxHas1 ? 2 : 0) | 4],
         const <String>["", "globalPosition", "localPosition"],
@@ -5711,12 +5708,12 @@ Object _createMacOSScrollViewFlingVelocityTracker(
   switch (ctor) {
     case "":
       return api.MacOSScrollViewFlingVelocityTracker(
-        values["kind"] as api4.PointerDeviceKind,
+        values["kind"] as api3.PointerDeviceKind,
       );
     case '@implementation':
       return _MacOSScrollViewFlingVelocityTrackerProxy(
         values['@peer'] as FlaxProxyPeer,
-        values["kind"] as api4.PointerDeviceKind,
+        values["kind"] as api3.PointerDeviceKind,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -5729,7 +5726,7 @@ Object? _MultiDragGestureRecognizer_onStart(Object value) =>
     (value as api.MultiDragGestureRecognizer).onStart;
 void _MultiDragGestureRecognizer_set_onStart(Object receiver, Object? value) {
   (receiver as api.MultiDragGestureRecognizer).onStart =
-      value as api.Drag? Function(api4.Offset position)?;
+      value as api.Drag? Function(api3.Offset position)?;
 }
 
 Object? _MultiDragGestureRecognizer_invokeCallback(
@@ -5793,7 +5790,7 @@ Object? _MultiDragGestureRecognizer_super_set_onStart(
   Map<String, Object?> values,
 ) {
   (receiver as _MultiDragGestureRecognizerProxy)._flaxSuperSet_onStart(
-    values["value"] as api.Drag? Function(api4.Offset position)?,
+    values["value"] as api.Drag? Function(api3.Offset position)?,
   );
   return null;
 }
@@ -5808,7 +5805,7 @@ Object _createMultiDragGestureRecognizer(
         values['@peer'] as FlaxProxyPeer,
         debugOwner: values["debugOwner"],
         supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+            values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
         allowedButtonsFilter:
             values["allowedButtonsFilter"] as bool Function(int buttons)?,
       );
@@ -5850,7 +5847,7 @@ Object? _MultiDragPointerState_accepted(
   Map<String, Object?> values,
 ) {
   (receiver as api.MultiDragPointerState).accepted(
-    values["starter"] as api.Drag? Function(api4.Offset position),
+    values["starter"] as api.Drag? Function(api3.Offset position),
   );
   return null;
 }
@@ -5911,8 +5908,8 @@ Object _createMultiDragPointerState(String ctor, Map<String, Object?> values) {
     case '@implementation':
       return _MultiDragPointerStateProxy(
         values['@peer'] as FlaxProxyPeer,
-        values["initialPosition"] as api4.Offset,
-        values["kind"] as api4.PointerDeviceKind,
+        values["initialPosition"] as api3.Offset,
+        values["kind"] as api3.PointerDeviceKind,
         values["gestureSettings"] as api.DeviceGestureSettings?,
       );
     default:
@@ -6118,7 +6115,7 @@ Object _createMultiTapGestureRecognizer(
         <Object?>[
           (_flaxHas0 ? values["longTapDelay"] as api2.Duration : null),
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas3
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -6140,7 +6137,7 @@ Object _createMultiTapGestureRecognizer(
           values['@peer'] as FlaxProxyPeer,
           (_flaxHas1 ? values["longTapDelay"] as api2.Duration : null),
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas4
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -6210,8 +6207,8 @@ Object _createOffsetPair(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.OffsetPair(
-        local: values["local"] as api4.Offset,
-        global: values["global"] as api4.Offset,
+        local: values["local"] as api3.Offset,
+        global: values["global"] as api3.Offset,
       );
     case "fromEventPosition":
       return api.OffsetPair.fromEventPosition(
@@ -6222,8 +6219,8 @@ Object _createOffsetPair(String ctor, Map<String, Object?> values) {
     case '@implementation':
       return _OffsetPairProxy(
         values['@peer'] as FlaxProxyPeer,
-        local: values["local"] as api4.Offset,
-        global: values["global"] as api4.Offset,
+        local: values["local"] as api3.Offset,
+        global: values["global"] as api3.Offset,
       );
     case "@implementation:fromEventPosition":
       return _OffsetPairProxy.fromEventPosition(
@@ -6307,7 +6304,7 @@ Object? _OneSequenceGestureRecognizer_startTrackingPointer(
 ) {
   (receiver as api.OneSequenceGestureRecognizer).startTrackingPointer(
     values["pointer"] as int,
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
   return null;
 }
@@ -6398,7 +6395,7 @@ Object _createOneSequenceGestureRecognizer(
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas3
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -6436,7 +6433,7 @@ Object _createPanGestureRecognizer(String ctor, Map<String, Object?> values) {
         api.PanGestureRecognizer.new,
         <Object?>[
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas2
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -6519,7 +6516,7 @@ Object? _PointerAddedEvent_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as api.PointerAddedEvent).transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -6529,16 +6526,16 @@ Object? _PointerAddedEvent_copyWith(
 ) {
   return (receiver as api.PointerAddedEvent).copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -6602,7 +6599,7 @@ Object? _PointerAddedEvent_super_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as _PointerAddedEventProxy)._flaxSuper_transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -6612,16 +6609,16 @@ Object? _PointerAddedEvent_super_copyWith(
 ) {
   return (receiver as _PointerAddedEventProxy)._flaxSuper_copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -6775,9 +6772,9 @@ Object _createPointerAddedEvent(String ctor, Map<String, Object?> values) {
           values["viewId"] as int,
           (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
           values["pointer"] as int,
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          (_flaxHas5 ? values["position"] as api3.Offset : null),
           values["obscured"] as bool,
           values["pressureMin"] as double,
           values["pressureMax"] as double,
@@ -6836,9 +6833,9 @@ Object _createPointerAddedEvent(String ctor, Map<String, Object?> values) {
           values["viewId"] as int,
           (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
           values["pointer"] as int,
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas6 ? values["position"] as api4.Offset : null),
+          (_flaxHas6 ? values["position"] as api3.Offset : null),
           values["obscured"] as bool,
           values["pressureMin"] as double,
           values["pressureMax"] as double,
@@ -6960,7 +6957,7 @@ Object? _PointerCancelEvent_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as api.PointerCancelEvent).transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -6970,16 +6967,16 @@ Object? _PointerCancelEvent_copyWith(
 ) {
   return (receiver as api.PointerCancelEvent).copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -7043,7 +7040,7 @@ Object? _PointerCancelEvent_super_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as _PointerCancelEventProxy)._flaxSuper_transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -7053,16 +7050,16 @@ Object? _PointerCancelEvent_super_copyWith(
 ) {
   return (receiver as _PointerCancelEventProxy)._flaxSuper_copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -7120,9 +7117,9 @@ Object _createPointerCancelEvent(String ctor, Map<String, Object?> values) {
           values["viewId"] as int,
           (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
           values["pointer"] as int,
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          (_flaxHas5 ? values["position"] as api3.Offset : null),
           values["buttons"] as int,
           values["obscured"] as bool,
           values["pressureMin"] as double,
@@ -7193,9 +7190,9 @@ Object _createPointerCancelEvent(String ctor, Map<String, Object?> values) {
           values["viewId"] as int,
           (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
           values["pointer"] as int,
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas6 ? values["position"] as api4.Offset : null),
+          (_flaxHas6 ? values["position"] as api3.Offset : null),
           values["buttons"] as int,
           values["obscured"] as bool,
           values["pressureMin"] as double,
@@ -7329,7 +7326,7 @@ Object? _PointerDownEvent_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as api.PointerDownEvent).transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -7339,16 +7336,16 @@ Object? _PointerDownEvent_copyWith(
 ) {
   return (receiver as api.PointerDownEvent).copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -7412,7 +7409,7 @@ Object? _PointerDownEvent_super_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as _PointerDownEventProxy)._flaxSuper_transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -7422,16 +7419,16 @@ Object? _PointerDownEvent_super_copyWith(
 ) {
   return (receiver as _PointerDownEventProxy)._flaxSuper_copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -7489,9 +7486,9 @@ Object _createPointerDownEvent(String ctor, Map<String, Object?> values) {
           values["viewId"] as int,
           (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
           values["pointer"] as int,
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          (_flaxHas5 ? values["position"] as api3.Offset : null),
           values["buttons"] as int,
           values["obscured"] as bool,
           values["pressure"] as double,
@@ -7562,9 +7559,9 @@ Object _createPointerDownEvent(String ctor, Map<String, Object?> values) {
           values["viewId"] as int,
           (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
           values["pointer"] as int,
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas6 ? values["position"] as api4.Offset : null),
+          (_flaxHas6 ? values["position"] as api3.Offset : null),
           values["buttons"] as int,
           values["obscured"] as bool,
           values["pressure"] as double,
@@ -7698,7 +7695,7 @@ Object? _PointerEnterEvent_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as api.PointerEnterEvent).transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -7708,16 +7705,16 @@ Object? _PointerEnterEvent_copyWith(
 ) {
   return (receiver as api.PointerEnterEvent).copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -7781,7 +7778,7 @@ Object? _PointerEnterEvent_super_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as _PointerEnterEventProxy)._flaxSuper_transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -7791,16 +7788,16 @@ Object? _PointerEnterEvent_super_copyWith(
 ) {
   return (receiver as _PointerEnterEventProxy)._flaxSuper_copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -7859,10 +7856,10 @@ Object _createPointerEnterEvent(String ctor, Map<String, Object?> values) {
           values["viewId"] as int,
           (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
           values["pointer"] as int,
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas5 ? values["position"] as api4.Offset : null),
-          (_flaxHas6 ? values["delta"] as api4.Offset : null),
+          (_flaxHas5 ? values["position"] as api3.Offset : null),
+          (_flaxHas6 ? values["delta"] as api3.Offset : null),
           values["buttons"] as int,
           values["obscured"] as bool,
           values["pressureMin"] as double,
@@ -7946,10 +7943,10 @@ Object _createPointerEnterEvent(String ctor, Map<String, Object?> values) {
           values["viewId"] as int,
           (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
           values["pointer"] as int,
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas6 ? values["position"] as api4.Offset : null),
-          (_flaxHas7 ? values["delta"] as api4.Offset : null),
+          (_flaxHas6 ? values["position"] as api3.Offset : null),
+          (_flaxHas7 ? values["delta"] as api3.Offset : null),
           values["buttons"] as int,
           values["obscured"] as bool,
           values["pressureMin"] as double,
@@ -8029,7 +8026,7 @@ bool _isPointerEventConverter(Object value) =>
     value is api.PointerEventConverter;
 Object? _PointerEventConverter_expand(Map<String, Object?> values) {
   return api.PointerEventConverter.expand(
-    values["data"] as Iterable<api4.PointerData>,
+    values["data"] as Iterable<api3.PointerData>,
     values["devicePixelRatioForView"] as double? Function(int viewId),
   );
 }
@@ -8197,7 +8194,7 @@ Object? _PointerExitEvent_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as api.PointerExitEvent).transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -8207,16 +8204,16 @@ Object? _PointerExitEvent_copyWith(
 ) {
   return (receiver as api.PointerExitEvent).copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -8280,7 +8277,7 @@ Object? _PointerExitEvent_super_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as _PointerExitEventProxy)._flaxSuper_transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -8290,16 +8287,16 @@ Object? _PointerExitEvent_super_copyWith(
 ) {
   return (receiver as _PointerExitEventProxy)._flaxSuper_copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -8357,11 +8354,11 @@ Object _createPointerExitEvent(String ctor, Map<String, Object?> values) {
         <Object?>[
           values["viewId"] as int,
           (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["pointer"] as int,
           values["device"] as int,
-          (_flaxHas5 ? values["position"] as api4.Offset : null),
-          (_flaxHas6 ? values["delta"] as api4.Offset : null),
+          (_flaxHas5 ? values["position"] as api3.Offset : null),
+          (_flaxHas6 ? values["delta"] as api3.Offset : null),
           values["buttons"] as int,
           values["obscured"] as bool,
           values["pressureMin"] as double,
@@ -8444,11 +8441,11 @@ Object _createPointerExitEvent(String ctor, Map<String, Object?> values) {
           values['@peer'] as FlaxProxyPeer,
           values["viewId"] as int,
           (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["pointer"] as int,
           values["device"] as int,
-          (_flaxHas6 ? values["position"] as api4.Offset : null),
-          (_flaxHas7 ? values["delta"] as api4.Offset : null),
+          (_flaxHas6 ? values["position"] as api3.Offset : null),
+          (_flaxHas7 ? values["delta"] as api3.Offset : null),
           values["buttons"] as int,
           values["obscured"] as bool,
           values["pressureMin"] as double,
@@ -8590,7 +8587,7 @@ Object? _PointerHoverEvent_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as api.PointerHoverEvent).transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -8600,16 +8597,16 @@ Object? _PointerHoverEvent_copyWith(
 ) {
   return (receiver as api.PointerHoverEvent).copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -8673,7 +8670,7 @@ Object? _PointerHoverEvent_super_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as _PointerHoverEventProxy)._flaxSuper_transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -8683,16 +8680,16 @@ Object? _PointerHoverEvent_super_copyWith(
 ) {
   return (receiver as _PointerHoverEventProxy)._flaxSuper_copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -8750,11 +8747,11 @@ Object _createPointerHoverEvent(String ctor, Map<String, Object?> values) {
         <Object?>[
           values["viewId"] as int,
           (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["pointer"] as int,
           values["device"] as int,
-          (_flaxHas5 ? values["position"] as api4.Offset : null),
-          (_flaxHas6 ? values["delta"] as api4.Offset : null),
+          (_flaxHas5 ? values["position"] as api3.Offset : null),
+          (_flaxHas6 ? values["delta"] as api3.Offset : null),
           values["buttons"] as int,
           values["obscured"] as bool,
           values["pressureMin"] as double,
@@ -8830,11 +8827,11 @@ Object _createPointerHoverEvent(String ctor, Map<String, Object?> values) {
           values['@peer'] as FlaxProxyPeer,
           values["viewId"] as int,
           (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["pointer"] as int,
           values["device"] as int,
-          (_flaxHas6 ? values["position"] as api4.Offset : null),
-          (_flaxHas7 ? values["delta"] as api4.Offset : null),
+          (_flaxHas6 ? values["position"] as api3.Offset : null),
+          (_flaxHas7 ? values["delta"] as api3.Offset : null),
           values["buttons"] as int,
           values["obscured"] as bool,
           values["pressureMin"] as double,
@@ -8973,7 +8970,7 @@ Object? _PointerMoveEvent_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as api.PointerMoveEvent).transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -8983,16 +8980,16 @@ Object? _PointerMoveEvent_copyWith(
 ) {
   return (receiver as api.PointerMoveEvent).copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -9056,7 +9053,7 @@ Object? _PointerMoveEvent_super_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as _PointerMoveEventProxy)._flaxSuper_transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -9066,16 +9063,16 @@ Object? _PointerMoveEvent_super_copyWith(
 ) {
   return (receiver as _PointerMoveEventProxy)._flaxSuper_copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -9134,10 +9131,10 @@ Object _createPointerMoveEvent(String ctor, Map<String, Object?> values) {
           values["viewId"] as int,
           (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
           values["pointer"] as int,
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas5 ? values["position"] as api4.Offset : null),
-          (_flaxHas6 ? values["delta"] as api4.Offset : null),
+          (_flaxHas5 ? values["position"] as api3.Offset : null),
+          (_flaxHas6 ? values["delta"] as api3.Offset : null),
           values["buttons"] as int,
           values["obscured"] as bool,
           values["pressure"] as double,
@@ -9217,10 +9214,10 @@ Object _createPointerMoveEvent(String ctor, Map<String, Object?> values) {
           values["viewId"] as int,
           (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
           values["pointer"] as int,
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas6 ? values["position"] as api4.Offset : null),
-          (_flaxHas7 ? values["delta"] as api4.Offset : null),
+          (_flaxHas6 ? values["position"] as api3.Offset : null),
+          (_flaxHas7 ? values["delta"] as api3.Offset : null),
           values["buttons"] as int,
           values["obscured"] as bool,
           values["pressure"] as double,
@@ -9363,7 +9360,7 @@ Object? _PointerPanZoomEndEvent_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as api.PointerPanZoomEndEvent).transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -9373,16 +9370,16 @@ Object? _PointerPanZoomEndEvent_copyWith(
 ) {
   return (receiver as api.PointerPanZoomEndEvent).copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -9446,7 +9443,7 @@ Object? _PointerPanZoomEndEvent_super_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as _PointerPanZoomEndEventProxy)._flaxSuper_transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -9456,16 +9453,16 @@ Object? _PointerPanZoomEndEvent_super_copyWith(
 ) {
   return (receiver as _PointerPanZoomEndEventProxy)._flaxSuper_copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -9524,7 +9521,7 @@ Object _createPointerPanZoomEndEvent(String ctor, Map<String, Object?> values) {
           (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
           values["device"] as int,
           values["pointer"] as int,
-          (_flaxHas4 ? values["position"] as api4.Offset : null),
+          (_flaxHas4 ? values["position"] as api3.Offset : null),
           values["embedderId"] as int,
           values["synthesized"] as bool,
         ],
@@ -9550,7 +9547,7 @@ Object _createPointerPanZoomEndEvent(String ctor, Map<String, Object?> values) {
           (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
           values["device"] as int,
           values["pointer"] as int,
-          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          (_flaxHas5 ? values["position"] as api3.Offset : null),
           values["embedderId"] as int,
           values["synthesized"] as bool,
         ],
@@ -9647,7 +9644,7 @@ Object? _PointerPanZoomStartEvent_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as api.PointerPanZoomStartEvent).transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -9657,16 +9654,16 @@ Object? _PointerPanZoomStartEvent_copyWith(
 ) {
   return (receiver as api.PointerPanZoomStartEvent).copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -9730,7 +9727,7 @@ Object? _PointerPanZoomStartEvent_super_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as _PointerPanZoomStartEventProxy)._flaxSuper_transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -9740,16 +9737,16 @@ Object? _PointerPanZoomStartEvent_super_copyWith(
 ) {
   return (receiver as _PointerPanZoomStartEventProxy)._flaxSuper_copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -9811,7 +9808,7 @@ Object _createPointerPanZoomStartEvent(
           (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
           values["device"] as int,
           values["pointer"] as int,
-          (_flaxHas4 ? values["position"] as api4.Offset : null),
+          (_flaxHas4 ? values["position"] as api3.Offset : null),
           values["embedderId"] as int,
           values["synthesized"] as bool,
         ],
@@ -9837,7 +9834,7 @@ Object _createPointerPanZoomStartEvent(
           (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
           values["device"] as int,
           values["pointer"] as int,
-          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          (_flaxHas5 ? values["position"] as api3.Offset : null),
           values["embedderId"] as int,
           values["synthesized"] as bool,
         ],
@@ -9946,7 +9943,7 @@ Object? _PointerPanZoomUpdateEvent_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as api.PointerPanZoomUpdateEvent).transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -9956,20 +9953,20 @@ Object? _PointerPanZoomUpdateEvent_copyWith(
 ) {
   return (receiver as api.PointerPanZoomUpdateEvent).copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
-    localPan: values["localPan"] as api4.Offset?,
-    localPanDelta: values["localPanDelta"] as api4.Offset?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
+    localPan: values["localPan"] as api3.Offset?,
+    localPanDelta: values["localPanDelta"] as api3.Offset?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
-    pan: values["pan"] as api4.Offset?,
-    panDelta: values["panDelta"] as api4.Offset?,
+    pan: values["pan"] as api3.Offset?,
+    panDelta: values["panDelta"] as api3.Offset?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -10035,7 +10032,7 @@ Object? _PointerPanZoomUpdateEvent_super_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as _PointerPanZoomUpdateEventProxy)._flaxSuper_transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -10045,20 +10042,20 @@ Object? _PointerPanZoomUpdateEvent_super_copyWith(
 ) {
   return (receiver as _PointerPanZoomUpdateEventProxy)._flaxSuper_copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
-    localPan: values["localPan"] as api4.Offset?,
-    localPanDelta: values["localPanDelta"] as api4.Offset?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
+    localPan: values["localPan"] as api3.Offset?,
+    localPanDelta: values["localPanDelta"] as api3.Offset?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
-    pan: values["pan"] as api4.Offset?,
-    panDelta: values["panDelta"] as api4.Offset?,
+    pan: values["pan"] as api3.Offset?,
+    panDelta: values["panDelta"] as api3.Offset?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -10149,10 +10146,10 @@ Object _createPointerPanZoomUpdateEvent(
           (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
           values["device"] as int,
           values["pointer"] as int,
-          (_flaxHas4 ? values["position"] as api4.Offset : null),
+          (_flaxHas4 ? values["position"] as api3.Offset : null),
           values["embedderId"] as int,
-          (_flaxHas6 ? values["pan"] as api4.Offset : null),
-          (_flaxHas7 ? values["panDelta"] as api4.Offset : null),
+          (_flaxHas6 ? values["pan"] as api3.Offset : null),
+          (_flaxHas7 ? values["panDelta"] as api3.Offset : null),
           values["scale"] as double,
           values["rotation"] as double,
           values["synthesized"] as bool,
@@ -10197,10 +10194,10 @@ Object _createPointerPanZoomUpdateEvent(
           (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
           values["device"] as int,
           values["pointer"] as int,
-          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          (_flaxHas5 ? values["position"] as api3.Offset : null),
           values["embedderId"] as int,
-          (_flaxHas7 ? values["pan"] as api4.Offset : null),
-          (_flaxHas8 ? values["panDelta"] as api4.Offset : null),
+          (_flaxHas7 ? values["pan"] as api3.Offset : null),
+          (_flaxHas8 ? values["panDelta"] as api3.Offset : null),
           values["scale"] as double,
           values["rotation"] as double,
           values["synthesized"] as bool,
@@ -10305,7 +10302,7 @@ Object? _PointerRemovedEvent_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as api.PointerRemovedEvent).transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -10315,16 +10312,16 @@ Object? _PointerRemovedEvent_copyWith(
 ) {
   return (receiver as api.PointerRemovedEvent).copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -10388,7 +10385,7 @@ Object? _PointerRemovedEvent_super_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as _PointerRemovedEventProxy)._flaxSuper_transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -10398,16 +10395,16 @@ Object? _PointerRemovedEvent_super_copyWith(
 ) {
   return (receiver as _PointerRemovedEventProxy)._flaxSuper_copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -10465,9 +10462,9 @@ Object _createPointerRemovedEvent(String ctor, Map<String, Object?> values) {
           values["viewId"] as int,
           (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
           values["pointer"] as int,
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          (_flaxHas5 ? values["position"] as api3.Offset : null),
           values["obscured"] as bool,
           values["pressureMin"] as double,
           values["pressureMax"] as double,
@@ -10520,9 +10517,9 @@ Object _createPointerRemovedEvent(String ctor, Map<String, Object?> values) {
           values["viewId"] as int,
           (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
           values["pointer"] as int,
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas6 ? values["position"] as api4.Offset : null),
+          (_flaxHas6 ? values["position"] as api3.Offset : null),
           values["obscured"] as bool,
           values["pressureMin"] as double,
           values["pressureMax"] as double,
@@ -10579,7 +10576,7 @@ Object? _PointerRouter_addRoute(Object receiver, Map<String, Object?> values) {
   (receiver as api.PointerRouter).addRoute(
     values["pointer"] as int,
     values["route"] as void Function(api.PointerEvent event),
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
   return null;
 }
@@ -10601,7 +10598,7 @@ Object? _PointerRouter_addGlobalRoute(
 ) {
   (receiver as api.PointerRouter).addGlobalRoute(
     values["route"] as void Function(api.PointerEvent event),
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
   return null;
 }
@@ -10628,7 +10625,7 @@ Object? _PointerRouter_super_addRoute(
   (receiver as _PointerRouterProxy)._flaxSuper_addRoute(
     values["pointer"] as int,
     values["route"] as void Function(api.PointerEvent event),
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
   return null;
 }
@@ -10650,7 +10647,7 @@ Object? _PointerRouter_super_addGlobalRoute(
 ) {
   (receiver as _PointerRouterProxy)._flaxSuper_addGlobalRoute(
     values["route"] as void Function(api.PointerEvent event),
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
   return null;
 }
@@ -10698,7 +10695,7 @@ Object? _PointerScaleEvent_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as api.PointerScaleEvent).transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -10708,16 +10705,16 @@ Object? _PointerScaleEvent_copyWith(
 ) {
   return (receiver as api.PointerScaleEvent).copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -10746,7 +10743,7 @@ Object? _PointerScaleEvent_super_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as _PointerScaleEventProxy)._flaxSuper_transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -10756,16 +10753,16 @@ Object? _PointerScaleEvent_super_copyWith(
 ) {
   return (receiver as _PointerScaleEventProxy)._flaxSuper_copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -10837,9 +10834,9 @@ Object _createPointerScaleEvent(String ctor, Map<String, Object?> values) {
         <Object?>[
           values["viewId"] as int,
           (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas4 ? values["position"] as api4.Offset : null),
+          (_flaxHas4 ? values["position"] as api3.Offset : null),
           values["embedderId"] as int,
           values["scale"] as double,
         ],
@@ -10863,9 +10860,9 @@ Object _createPointerScaleEvent(String ctor, Map<String, Object?> values) {
           values['@peer'] as FlaxProxyPeer,
           values["viewId"] as int,
           (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          (_flaxHas5 ? values["position"] as api3.Offset : null),
           values["embedderId"] as int,
           values["scale"] as double,
         ],
@@ -10902,7 +10899,7 @@ Object? _PointerScrollInertiaCancelEvent_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as api.PointerScrollInertiaCancelEvent).transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -10912,16 +10909,16 @@ Object? _PointerScrollInertiaCancelEvent_copyWith(
 ) {
   return (receiver as api.PointerScrollInertiaCancelEvent).copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -10949,7 +10946,7 @@ Object? _PointerScrollInertiaCancelEvent_super_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as _PointerScrollInertiaCancelEventProxy)
-      ._flaxSuper_transformed(values["transform"] as api5.Matrix4?);
+      ._flaxSuper_transformed(values["transform"] as api4.Matrix4?);
 }
 
 Object? _PointerScrollInertiaCancelEvent_super_copyWith(
@@ -10959,16 +10956,16 @@ Object? _PointerScrollInertiaCancelEvent_super_copyWith(
   return (receiver as _PointerScrollInertiaCancelEventProxy)
       ._flaxSuper_copyWith(
         buttons: values["buttons"] as int?,
-        delta: values["delta"] as api4.Offset?,
+        delta: values["delta"] as api3.Offset?,
         device: values["device"] as int?,
         distance: values["distance"] as double?,
         distanceMax: values["distanceMax"] as double?,
         embedderId: values["embedderId"] as int?,
-        kind: values["kind"] as api4.PointerDeviceKind?,
+        kind: values["kind"] as api3.PointerDeviceKind?,
         obscured: values["obscured"] as bool?,
         orientation: values["orientation"] as double?,
         pointer: values["pointer"] as int?,
-        position: values["position"] as api4.Offset?,
+        position: values["position"] as api3.Offset?,
         pressure: values["pressure"] as double?,
         pressureMax: values["pressureMax"] as double?,
         pressureMin: values["pressureMin"] as double?,
@@ -11041,9 +11038,9 @@ Object _createPointerScrollInertiaCancelEvent(
         <Object?>[
           values["viewId"] as int,
           (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas4 ? values["position"] as api4.Offset : null),
+          (_flaxHas4 ? values["position"] as api3.Offset : null),
           values["embedderId"] as int,
         ],
         <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | (_flaxHas4 ? 16 : 0) | 32],
@@ -11065,9 +11062,9 @@ Object _createPointerScrollInertiaCancelEvent(
           values['@peer'] as FlaxProxyPeer,
           values["viewId"] as int,
           (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          (_flaxHas5 ? values["position"] as api3.Offset : null),
           values["embedderId"] as int,
         ],
         <int>[1 | 2 | (_flaxHas2 ? 4 : 0) | 8 | 16 | (_flaxHas5 ? 32 : 0) | 64],
@@ -11152,7 +11149,7 @@ Object? _PointerSignalEvent_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as api.PointerSignalEvent).transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -11162,16 +11159,16 @@ Object? _PointerSignalEvent_copyWith(
 ) {
   return (receiver as api.PointerSignalEvent).copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -11279,9 +11276,9 @@ Object _createPointerSignalEvent(String ctor, Map<String, Object?> values) {
           values["viewId"] as int,
           (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
           values["pointer"] as int,
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas6 ? values["position"] as api4.Offset : null),
+          (_flaxHas6 ? values["position"] as api3.Offset : null),
           values["embedderId"] as int,
         ],
         <int>[
@@ -11431,24 +11428,24 @@ Object? _PointerUpEvent_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as api.PointerUpEvent).transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
 Object? _PointerUpEvent_copyWith(Object receiver, Map<String, Object?> values) {
   return (receiver as api.PointerUpEvent).copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
-    localPosition: values["localPosition"] as api4.Offset?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
+    localPosition: values["localPosition"] as api3.Offset?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -11509,7 +11506,7 @@ Object? _PointerUpEvent_super_transformed(
   Map<String, Object?> values,
 ) {
   return (receiver as _PointerUpEventProxy)._flaxSuper_transformed(
-    values["transform"] as api5.Matrix4?,
+    values["transform"] as api4.Matrix4?,
   );
 }
 
@@ -11519,17 +11516,17 @@ Object? _PointerUpEvent_super_copyWith(
 ) {
   return (receiver as _PointerUpEventProxy)._flaxSuper_copyWith(
     buttons: values["buttons"] as int?,
-    delta: values["delta"] as api4.Offset?,
+    delta: values["delta"] as api3.Offset?,
     device: values["device"] as int?,
     distance: values["distance"] as double?,
     distanceMax: values["distanceMax"] as double?,
     embedderId: values["embedderId"] as int?,
-    kind: values["kind"] as api4.PointerDeviceKind?,
-    localPosition: values["localPosition"] as api4.Offset?,
+    kind: values["kind"] as api3.PointerDeviceKind?,
+    localPosition: values["localPosition"] as api3.Offset?,
     obscured: values["obscured"] as bool?,
     orientation: values["orientation"] as double?,
     pointer: values["pointer"] as int?,
-    position: values["position"] as api4.Offset?,
+    position: values["position"] as api3.Offset?,
     pressure: values["pressure"] as double?,
     pressureMax: values["pressureMax"] as double?,
     pressureMin: values["pressureMin"] as double?,
@@ -11587,9 +11584,9 @@ Object _createPointerUpEvent(String ctor, Map<String, Object?> values) {
           values["viewId"] as int,
           (_flaxHas1 ? values["timeStamp"] as api2.Duration : null),
           values["pointer"] as int,
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas5 ? values["position"] as api4.Offset : null),
+          (_flaxHas5 ? values["position"] as api3.Offset : null),
           values["buttons"] as int,
           values["obscured"] as bool,
           values["pressure"] as double,
@@ -11663,9 +11660,9 @@ Object _createPointerUpEvent(String ctor, Map<String, Object?> values) {
           values["viewId"] as int,
           (_flaxHas2 ? values["timeStamp"] as api2.Duration : null),
           values["pointer"] as int,
-          values["kind"] as api4.PointerDeviceKind,
+          values["kind"] as api3.PointerDeviceKind,
           values["device"] as int,
-          (_flaxHas6 ? values["position"] as api4.Offset : null),
+          (_flaxHas6 ? values["position"] as api3.Offset : null),
           values["buttons"] as int,
           values["obscured"] as bool,
           values["pressure"] as double,
@@ -11991,7 +11988,7 @@ Object _createPrimaryPointerGestureRecognizer(
           values["preAcceptSlopTolerance"] as double?,
           values["postAcceptSlopTolerance"] as double?,
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas6
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -12182,7 +12179,7 @@ void _ScaleGestureRecognizer_set_trackpadScrollToScaleFactor(
   Object? value,
 ) {
   (receiver as api.ScaleGestureRecognizer).trackpadScrollToScaleFactor =
-      value as api4.Offset;
+      value as api3.Offset;
 }
 
 Object? _ScaleGestureRecognizer_invokeCallback(
@@ -12358,7 +12355,7 @@ Object? _ScaleGestureRecognizer_super_set_trackpadScrollToScaleFactor(
 ) {
   (receiver as _ScaleGestureRecognizerProxy)
       ._flaxSuperSet_trackpadScrollToScaleFactor(
-        values["value"] as api4.Offset,
+        values["value"] as api3.Offset,
       );
   return null;
 }
@@ -12372,14 +12369,14 @@ Object _createScaleGestureRecognizer(String ctor, Map<String, Object?> values) {
         api.ScaleGestureRecognizer.new,
         <Object?>[
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas2
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
           values["dragStartBehavior"] as api.DragStartBehavior,
           values["trackpadScrollCausesScale"] as bool,
           (_flaxHas5
-              ? values["trackpadScrollToScaleFactor"] as api4.Offset
+              ? values["trackpadScrollToScaleFactor"] as api3.Offset
               : null),
         ],
         <int>[1 | 2 | (_flaxHas2 ? 4 : 0) | 8 | 16 | (_flaxHas5 ? 32 : 0)],
@@ -12400,14 +12397,14 @@ Object _createScaleGestureRecognizer(String ctor, Map<String, Object?> values) {
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas3
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
           values["dragStartBehavior"] as api.DragStartBehavior,
           values["trackpadScrollCausesScale"] as bool,
           (_flaxHas6
-              ? values["trackpadScrollToScaleFactor"] as api4.Offset
+              ? values["trackpadScrollToScaleFactor"] as api3.Offset
               : null),
         ],
         <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0) | 16 | 32 | (_flaxHas6 ? 64 : 0)],
@@ -12500,11 +12497,11 @@ Object _createScaleStartDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.ScaleStartDetails.new,
         <Object?>[
-          (_flaxHas0 ? values["focalPoint"] as api4.Offset : null),
-          values["localFocalPoint"] as api4.Offset?,
+          (_flaxHas0 ? values["focalPoint"] as api3.Offset : null),
+          values["localFocalPoint"] as api3.Offset?,
           values["pointerCount"] as int,
           values["sourceTimeStamp"] as api2.Duration?,
-          values["kind"] as api4.PointerDeviceKind?,
+          values["kind"] as api3.PointerDeviceKind?,
         ],
         <int>[(_flaxHas0 ? 1 : 0) | 2 | 4 | 8 | 16],
         const <String>[
@@ -12521,11 +12518,11 @@ Object _createScaleStartDetails(String ctor, Map<String, Object?> values) {
         _ScaleStartDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          (_flaxHas1 ? values["focalPoint"] as api4.Offset : null),
-          values["localFocalPoint"] as api4.Offset?,
+          (_flaxHas1 ? values["focalPoint"] as api3.Offset : null),
+          values["localFocalPoint"] as api3.Offset?,
           values["pointerCount"] as int,
           values["sourceTimeStamp"] as api2.Duration?,
-          values["kind"] as api4.PointerDeviceKind?,
+          values["kind"] as api3.PointerDeviceKind?,
         ],
         <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | 16 | 32],
         const <String>[
@@ -12637,14 +12634,14 @@ Object _createScaleUpdateDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.ScaleUpdateDetails.new,
         <Object?>[
-          (_flaxHas0 ? values["focalPoint"] as api4.Offset : null),
-          values["localFocalPoint"] as api4.Offset?,
+          (_flaxHas0 ? values["focalPoint"] as api3.Offset : null),
+          values["localFocalPoint"] as api3.Offset?,
           values["scale"] as double,
           values["horizontalScale"] as double,
           values["verticalScale"] as double,
           values["rotation"] as double,
           values["pointerCount"] as int,
-          (_flaxHas7 ? values["focalPointDelta"] as api4.Offset : null),
+          (_flaxHas7 ? values["focalPointDelta"] as api3.Offset : null),
           values["sourceTimeStamp"] as api2.Duration?,
         ],
         <int>[
@@ -12677,14 +12674,14 @@ Object _createScaleUpdateDetails(String ctor, Map<String, Object?> values) {
         _ScaleUpdateDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          (_flaxHas1 ? values["focalPoint"] as api4.Offset : null),
-          values["localFocalPoint"] as api4.Offset?,
+          (_flaxHas1 ? values["focalPoint"] as api3.Offset : null),
+          values["localFocalPoint"] as api3.Offset?,
           values["scale"] as double,
           values["horizontalScale"] as double,
           values["verticalScale"] as double,
           values["rotation"] as double,
           values["pointerCount"] as int,
-          (_flaxHas8 ? values["focalPointDelta"] as api4.Offset : null),
+          (_flaxHas8 ? values["focalPointDelta"] as api3.Offset : null),
           values["sourceTimeStamp"] as api2.Duration?,
         ],
         <int>[
@@ -12841,9 +12838,9 @@ Object _createSerialTapDownDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.SerialTapDownDetails.new,
         <Object?>[
-          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
-          values["kind"] as api4.PointerDeviceKind,
+          (_flaxHas0 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
+          values["kind"] as api3.PointerDeviceKind,
           values["buttons"] as int,
           values["count"] as int,
         ],
@@ -12862,9 +12859,9 @@ Object _createSerialTapDownDetails(String ctor, Map<String, Object?> values) {
         _SerialTapDownDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
-          values["kind"] as api4.PointerDeviceKind,
+          (_flaxHas1 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
+          values["kind"] as api3.PointerDeviceKind,
           values["buttons"] as int,
           values["count"] as int,
         ],
@@ -13026,7 +13023,7 @@ Object _createSerialTapGestureRecognizer(
         api.SerialTapGestureRecognizer.new,
         <Object?>[
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas2
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -13045,7 +13042,7 @@ Object _createSerialTapGestureRecognizer(
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas3
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -13123,9 +13120,9 @@ Object _createSerialTapUpDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.SerialTapUpDetails.new,
         <Object?>[
-          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
-          values["kind"] as api4.PointerDeviceKind?,
+          (_flaxHas0 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
+          values["kind"] as api3.PointerDeviceKind?,
           values["count"] as int,
         ],
         <int>[(_flaxHas0 ? 1 : 0) | 2 | 4 | 8],
@@ -13137,9 +13134,9 @@ Object _createSerialTapUpDetails(String ctor, Map<String, Object?> values) {
         _SerialTapUpDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
-          values["kind"] as api4.PointerDeviceKind?,
+          (_flaxHas1 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
+          values["kind"] as api3.PointerDeviceKind?,
           values["count"] as int,
         ],
         <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8 | 16],
@@ -13172,7 +13169,7 @@ Object _createTapAndDragGestureRecognizer(
       return api.TapAndDragGestureRecognizer(
         debugOwner: values["debugOwner"],
         supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+            values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -13202,7 +13199,7 @@ Object _createTapAndHorizontalDragGestureRecognizer(
       return api.TapAndHorizontalDragGestureRecognizer(
         debugOwner: values["debugOwner"],
         supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+            values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -13231,7 +13228,7 @@ Object _createTapAndPanGestureRecognizer(
       return api.TapAndPanGestureRecognizer(
         debugOwner: values["debugOwner"],
         supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+            values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -13289,9 +13286,9 @@ Object _createTapDownDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.TapDownDetails.new,
         <Object?>[
-          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
-          values["kind"] as api4.PointerDeviceKind?,
+          (_flaxHas0 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
+          values["kind"] as api3.PointerDeviceKind?,
         ],
         <int>[(_flaxHas0 ? 1 : 0) | 2 | 4],
         const <String>["globalPosition", "localPosition", "kind"],
@@ -13302,9 +13299,9 @@ Object _createTapDownDetails(String ctor, Map<String, Object?> values) {
         _TapDownDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
-          values["kind"] as api4.PointerDeviceKind?,
+          (_flaxHas1 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
+          values["kind"] as api3.PointerDeviceKind?,
         ],
         <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8],
         const <String>["", "globalPosition", "localPosition", "kind"],
@@ -13371,17 +13368,17 @@ Object _createTapDragDownDetails(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.TapDragDownDetails(
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset,
-        kind: values["kind"] as api4.PointerDeviceKind?,
+        globalPosition: values["globalPosition"] as api3.Offset,
+        localPosition: values["localPosition"] as api3.Offset,
+        kind: values["kind"] as api3.PointerDeviceKind?,
         consecutiveTapCount: values["consecutiveTapCount"] as int,
       );
     case '@implementation':
       return _TapDragDownDetailsProxy(
         values['@peer'] as FlaxProxyPeer,
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset,
-        kind: values["kind"] as api4.PointerDeviceKind?,
+        globalPosition: values["globalPosition"] as api3.Offset,
+        localPosition: values["localPosition"] as api3.Offset,
+        kind: values["kind"] as api3.PointerDeviceKind?,
         consecutiveTapCount: values["consecutiveTapCount"] as int,
       );
     default:
@@ -13456,8 +13453,8 @@ Object _createTapDragEndDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.TapDragEndDetails.new,
         <Object?>[
-          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
+          (_flaxHas0 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
           (_flaxHas2 ? values["velocity"] as api.Velocity : null),
           values["primaryVelocity"] as double?,
           values["consecutiveTapCount"] as int,
@@ -13478,8 +13475,8 @@ Object _createTapDragEndDetails(String ctor, Map<String, Object?> values) {
         _TapDragEndDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
+          (_flaxHas1 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
           (_flaxHas3 ? values["velocity"] as api.Velocity : null),
           values["primaryVelocity"] as double?,
           values["consecutiveTapCount"] as int,
@@ -13562,19 +13559,19 @@ Object _createTapDragStartDetails(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.TapDragStartDetails(
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset,
+        globalPosition: values["globalPosition"] as api3.Offset,
+        localPosition: values["localPosition"] as api3.Offset,
         sourceTimeStamp: values["sourceTimeStamp"] as api2.Duration?,
-        kind: values["kind"] as api4.PointerDeviceKind?,
+        kind: values["kind"] as api3.PointerDeviceKind?,
         consecutiveTapCount: values["consecutiveTapCount"] as int,
       );
     case '@implementation':
       return _TapDragStartDetailsProxy(
         values['@peer'] as FlaxProxyPeer,
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset,
+        globalPosition: values["globalPosition"] as api3.Offset,
+        localPosition: values["localPosition"] as api3.Offset,
         sourceTimeStamp: values["sourceTimeStamp"] as api2.Duration?,
-        kind: values["kind"] as api4.PointerDeviceKind?,
+        kind: values["kind"] as api3.PointerDeviceKind?,
         consecutiveTapCount: values["consecutiveTapCount"] as int,
       );
     default:
@@ -13639,17 +13636,17 @@ Object _createTapDragUpDetails(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.TapDragUpDetails(
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset,
-        kind: values["kind"] as api4.PointerDeviceKind,
+        globalPosition: values["globalPosition"] as api3.Offset,
+        localPosition: values["localPosition"] as api3.Offset,
+        kind: values["kind"] as api3.PointerDeviceKind,
         consecutiveTapCount: values["consecutiveTapCount"] as int,
       );
     case '@implementation':
       return _TapDragUpDetailsProxy(
         values['@peer'] as FlaxProxyPeer,
-        globalPosition: values["globalPosition"] as api4.Offset,
-        localPosition: values["localPosition"] as api4.Offset,
-        kind: values["kind"] as api4.PointerDeviceKind,
+        globalPosition: values["globalPosition"] as api3.Offset,
+        localPosition: values["localPosition"] as api3.Offset,
+        kind: values["kind"] as api3.PointerDeviceKind,
         consecutiveTapCount: values["consecutiveTapCount"] as int,
       );
     default:
@@ -13748,14 +13745,14 @@ Object _createTapDragUpdateDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.TapDragUpdateDetails.new,
         <Object?>[
-          values["globalPosition"] as api4.Offset,
-          values["localPosition"] as api4.Offset,
+          values["globalPosition"] as api3.Offset,
+          values["localPosition"] as api3.Offset,
           values["sourceTimeStamp"] as api2.Duration?,
-          (_flaxHas3 ? values["delta"] as api4.Offset : null),
+          (_flaxHas3 ? values["delta"] as api3.Offset : null),
           values["primaryDelta"] as double?,
-          values["kind"] as api4.PointerDeviceKind?,
-          values["offsetFromOrigin"] as api4.Offset,
-          values["localOffsetFromOrigin"] as api4.Offset,
+          values["kind"] as api3.PointerDeviceKind?,
+          values["offsetFromOrigin"] as api3.Offset,
+          values["localOffsetFromOrigin"] as api3.Offset,
           values["consecutiveTapCount"] as int,
         ],
         <int>[1 | 2 | 4 | (_flaxHas3 ? 8 : 0) | 16 | 32 | 64 | 128 | 256],
@@ -13777,14 +13774,14 @@ Object _createTapDragUpdateDetails(String ctor, Map<String, Object?> values) {
         _TapDragUpdateDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          values["globalPosition"] as api4.Offset,
-          values["localPosition"] as api4.Offset,
+          values["globalPosition"] as api3.Offset,
+          values["localPosition"] as api3.Offset,
           values["sourceTimeStamp"] as api2.Duration?,
-          (_flaxHas4 ? values["delta"] as api4.Offset : null),
+          (_flaxHas4 ? values["delta"] as api3.Offset : null),
           values["primaryDelta"] as double?,
-          values["kind"] as api4.PointerDeviceKind?,
-          values["offsetFromOrigin"] as api4.Offset,
-          values["localOffsetFromOrigin"] as api4.Offset,
+          values["kind"] as api3.PointerDeviceKind?,
+          values["offsetFromOrigin"] as api3.Offset,
+          values["localOffsetFromOrigin"] as api3.Offset,
           values["consecutiveTapCount"] as int,
         ],
         <int>[1 | 2 | 4 | 8 | (_flaxHas4 ? 16 : 0) | 32 | 64 | 128 | 256 | 512],
@@ -14268,7 +14265,7 @@ Object _createTapGestureRecognizer(String ctor, Map<String, Object?> values) {
         api.TapGestureRecognizer.new,
         <Object?>[
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas2
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -14291,7 +14288,7 @@ Object _createTapGestureRecognizer(String ctor, Map<String, Object?> values) {
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas3
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -14338,10 +14335,10 @@ Object _createTapMoveDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.TapMoveDetails.new,
         <Object?>[
-          values["kind"] as api4.PointerDeviceKind,
-          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
-          (_flaxHas2 ? values["delta"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
+          values["kind"] as api3.PointerDeviceKind,
+          (_flaxHas1 ? values["globalPosition"] as api3.Offset : null),
+          (_flaxHas2 ? values["delta"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
         ],
         <int>[1 | (_flaxHas1 ? 2 : 0) | (_flaxHas2 ? 4 : 0) | 8],
         const <String>["kind", "globalPosition", "delta", "localPosition"],
@@ -14353,10 +14350,10 @@ Object _createTapMoveDetails(String ctor, Map<String, Object?> values) {
         _TapMoveDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          values["kind"] as api4.PointerDeviceKind,
-          (_flaxHas2 ? values["globalPosition"] as api4.Offset : null),
-          (_flaxHas3 ? values["delta"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
+          values["kind"] as api3.PointerDeviceKind,
+          (_flaxHas2 ? values["globalPosition"] as api3.Offset : null),
+          (_flaxHas3 ? values["delta"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
         ],
         <int>[1 | 2 | (_flaxHas2 ? 4 : 0) | (_flaxHas3 ? 8 : 0) | 16],
         const <String>["", "kind", "globalPosition", "delta", "localPosition"],
@@ -14416,9 +14413,9 @@ Object _createTapUpDetails(String ctor, Map<String, Object?> values) {
       return flaxInvokeWithDefaults(
         api.TapUpDetails.new,
         <Object?>[
-          (_flaxHas0 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
-          values["kind"] as api4.PointerDeviceKind,
+          (_flaxHas0 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
+          values["kind"] as api3.PointerDeviceKind,
         ],
         <int>[(_flaxHas0 ? 1 : 0) | 2 | 4],
         const <String>["globalPosition", "localPosition", "kind"],
@@ -14429,9 +14426,9 @@ Object _createTapUpDetails(String ctor, Map<String, Object?> values) {
         _TapUpDetailsProxy.new,
         <Object?>[
           values['@peer'] as FlaxProxyPeer,
-          (_flaxHas1 ? values["globalPosition"] as api4.Offset : null),
-          values["localPosition"] as api4.Offset?,
-          values["kind"] as api4.PointerDeviceKind,
+          (_flaxHas1 ? values["globalPosition"] as api3.Offset : null),
+          values["localPosition"] as api3.Offset?,
+          values["kind"] as api3.PointerDeviceKind,
         ],
         <int>[1 | (_flaxHas1 ? 2 : 0) | 4 | 8],
         const <String>["", "globalPosition", "localPosition", "kind"],
@@ -14513,12 +14510,12 @@ Object _createVelocity(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.Velocity(
-        pixelsPerSecond: values["pixelsPerSecond"] as api4.Offset,
+        pixelsPerSecond: values["pixelsPerSecond"] as api3.Offset,
       );
     case '@implementation':
       return _VelocityProxy(
         values['@peer'] as FlaxProxyPeer,
-        pixelsPerSecond: values["pixelsPerSecond"] as api4.Offset,
+        pixelsPerSecond: values["pixelsPerSecond"] as api3.Offset,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -14553,18 +14550,18 @@ Object _createVelocityEstimate(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "":
       return api.VelocityEstimate(
-        pixelsPerSecond: values["pixelsPerSecond"] as api4.Offset,
+        pixelsPerSecond: values["pixelsPerSecond"] as api3.Offset,
         confidence: values["confidence"] as double,
         duration: values["duration"] as api2.Duration,
-        offset: values["offset"] as api4.Offset,
+        offset: values["offset"] as api3.Offset,
       );
     case '@implementation':
       return _VelocityEstimateProxy(
         values['@peer'] as FlaxProxyPeer,
-        pixelsPerSecond: values["pixelsPerSecond"] as api4.Offset,
+        pixelsPerSecond: values["pixelsPerSecond"] as api3.Offset,
         confidence: values["confidence"] as double,
         duration: values["duration"] as api2.Duration,
-        offset: values["offset"] as api4.Offset,
+        offset: values["offset"] as api3.Offset,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -14580,7 +14577,7 @@ Object? _VelocityTracker_addPosition(
 ) {
   (receiver as api.VelocityTracker).addPosition(
     values["time"] as api2.Duration,
-    values["position"] as api4.Offset,
+    values["position"] as api3.Offset,
   );
   return null;
 }
@@ -14610,17 +14607,17 @@ Object _createVelocityTracker(String ctor, Map<String, Object?> values) {
   switch (ctor) {
     case "withKind":
       return api.VelocityTracker.withKind(
-        values["kind"] as api4.PointerDeviceKind,
+        values["kind"] as api3.PointerDeviceKind,
       );
     case '@implementation':
       return _VelocityTrackerProxy.withKind(
         values['@peer'] as FlaxProxyPeer,
-        values["kind"] as api4.PointerDeviceKind,
+        values["kind"] as api3.PointerDeviceKind,
       );
     case "@implementation:withKind":
       return _VelocityTrackerProxy.withKind(
         values['@peer'] as FlaxProxyPeer,
-        values["kind"] as api4.PointerDeviceKind,
+        values["kind"] as api3.PointerDeviceKind,
       );
     default:
       throw ArgumentError('Unknown generated constructor');
@@ -14652,7 +14649,7 @@ Object _createVerticalDragGestureRecognizer(
         api.VerticalDragGestureRecognizer.new,
         <Object?>[
           values["debugOwner"],
-          values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+          values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
           (_flaxHas2
               ? values["allowedButtonsFilter"] as bool Function(int buttons)
               : null),
@@ -14738,7 +14735,7 @@ Object? _VerticalMultiDragGestureRecognizer_super_set_onStart(
   Map<String, Object?> values,
 ) {
   (receiver as _VerticalMultiDragGestureRecognizerProxy)._flaxSuperSet_onStart(
-    values["value"] as api.Drag? Function(api4.Offset position)?,
+    values["value"] as api.Drag? Function(api3.Offset position)?,
   );
   return null;
 }
@@ -14752,7 +14749,7 @@ Object _createVerticalMultiDragGestureRecognizer(
       return api.VerticalMultiDragGestureRecognizer(
         debugOwner: values["debugOwner"],
         supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+            values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
         allowedButtonsFilter:
             values["allowedButtonsFilter"] as bool Function(int buttons)?,
       );
@@ -14761,7 +14758,7 @@ Object _createVerticalMultiDragGestureRecognizer(
         values['@peer'] as FlaxProxyPeer,
         debugOwner: values["debugOwner"],
         supportedDevices:
-            values["supportedDevices"] as Set<api4.PointerDeviceKind>?,
+            values["supportedDevices"] as Set<api3.PointerDeviceKind>?,
         allowedButtonsFilter:
             values["allowedButtonsFilter"] as bool Function(int buttons)?,
       );
@@ -14777,8 +14774,8 @@ abstract interface class _FlaxProxyDispatch32 {
   api2.Duration get _flaxSuperGet_timeStamp;
   int get _flaxSuperGet_pointer;
   int get _flaxSuperGet_device;
-  api4.Offset get _flaxSuperGet_position;
-  api4.Offset get _flaxSuperGet_localDelta;
+  api3.Offset get _flaxSuperGet_position;
+  api3.Offset get _flaxSuperGet_localDelta;
   bool get _flaxSuperGet_down;
   bool get _flaxSuperGet_obscured;
   double get _flaxSuperGet_pressureMin;
@@ -14868,7 +14865,7 @@ int _FlaxProxyDispatch32_get_device(
   return _flaxConvertedResult;
 }
 
-api4.Offset _FlaxProxyDispatch32_get_position(
+api3.Offset _FlaxProxyDispatch32_get_position(
   _FlaxProxyDispatch32 _flaxReceiver,
   int _flaxMember,
 ) {
@@ -14878,11 +14875,11 @@ api4.Offset _FlaxProxyDispatch32_get_position(
     const {},
   );
   if (!_flaxResult.$1) return _flaxReceiver._flaxSuperGet_position;
-  final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+  final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
   return _flaxConvertedResult;
 }
 
-api4.Offset _FlaxProxyDispatch32_get_localDelta(
+api3.Offset _FlaxProxyDispatch32_get_localDelta(
   _FlaxProxyDispatch32 _flaxReceiver,
   int _flaxMember,
 ) {
@@ -14892,7 +14889,7 @@ api4.Offset _FlaxProxyDispatch32_get_localDelta(
     const {},
   );
   if (!_flaxResult.$1) return _flaxReceiver._flaxSuperGet_localDelta;
-  final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+  final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
   return _flaxConvertedResult;
 }
 
@@ -15149,7 +15146,7 @@ abstract interface class _FlaxProxyDispatch0 {
     api.PointerPanZoomStartEvent event,
   );
   bool _flaxSuper_isPointerPanZoomAllowed(api.PointerPanZoomStartEvent event);
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer);
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer);
   int _flaxSuper_getButtonsForPointer(int pointer);
   String _flaxSuper_toStringShallow({
     Object? joiner = _flaxOmitted,
@@ -15163,10 +15160,10 @@ abstract interface class _FlaxProxyDispatch0 {
   });
   List<api1.DiagnosticsNode> _flaxSuper_debugDescribeChildren();
   Object? get _flaxSuperGet_debugOwner;
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices;
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices;
   bool Function(int buttons) get _flaxSuperGet_allowedButtonsFilter;
   void _flaxSuperSet_gestureSettings(api.DeviceGestureSettings? value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value);
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value);
 }
 
 void _FlaxProxyDispatch0_call_addAllowedPointer(
@@ -15304,7 +15301,7 @@ bool _FlaxProxyDispatch0_call_isPointerPanZoomAllowed(
   return _flaxConvertedResult;
 }
 
-api4.PointerDeviceKind _FlaxProxyDispatch0_call_getKindForPointer(
+api3.PointerDeviceKind _FlaxProxyDispatch0_call_getKindForPointer(
   _FlaxProxyDispatch0 _flaxReceiver,
   int _flaxMember,
   int pointer,
@@ -15315,7 +15312,7 @@ api4.PointerDeviceKind _FlaxProxyDispatch0_call_getKindForPointer(
   if (!_flaxResult.$1) {
     return _flaxReceiver._flaxSuper_getKindForPointer(pointer);
   }
-  final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+  final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
   return _flaxConvertedResult;
 }
 
@@ -15420,7 +15417,7 @@ Object? _FlaxProxyDispatch0_get_debugOwner(
   return _flaxConvertedResult;
 }
 
-Set<api4.PointerDeviceKind>? _FlaxProxyDispatch0_get_supportedDevices(
+Set<api3.PointerDeviceKind>? _FlaxProxyDispatch0_get_supportedDevices(
   _FlaxProxyDispatch0 _flaxReceiver,
   int _flaxMember,
 ) {
@@ -15430,7 +15427,7 @@ Set<api4.PointerDeviceKind>? _FlaxProxyDispatch0_get_supportedDevices(
     const {},
   );
   if (!_flaxResult.$1) return _flaxReceiver._flaxSuperGet_supportedDevices;
-  final _flaxConvertedResult = _flaxResult.$2 as Set<api4.PointerDeviceKind>?;
+  final _flaxConvertedResult = _flaxResult.$2 as Set<api3.PointerDeviceKind>?;
   return _flaxConvertedResult;
 }
 
@@ -15463,7 +15460,7 @@ void _FlaxProxyDispatch0_set_gestureSettings(
 void _FlaxProxyDispatch0_set_supportedDevices(
   _FlaxProxyDispatch0 _flaxReceiver,
   int _flaxMember,
-  Set<api4.PointerDeviceKind>? value,
+  Set<api3.PointerDeviceKind>? value,
 ) {
   final result = _flaxReceiver._flaxPeer.call(_flaxMember, [value], const {});
   if (!result.$1) {
@@ -15757,10 +15754,10 @@ api.DeviceGestureSettings? _FlaxProxyDispatch5_get_gestureSettings(
 
 abstract interface class _FlaxProxyDispatch16 {
   FlaxProxyPeer get _flaxPeer;
-  api4.Offset get _flaxSuperGet_localPosition;
+  api3.Offset get _flaxSuperGet_localPosition;
 }
 
-api4.Offset _FlaxProxyDispatch16_get_localPosition(
+api3.Offset _FlaxProxyDispatch16_get_localPosition(
   _FlaxProxyDispatch16 _flaxReceiver,
   int _flaxMember,
 ) {
@@ -15770,16 +15767,16 @@ api4.Offset _FlaxProxyDispatch16_get_localPosition(
     const {},
   );
   if (!_flaxResult.$1) return _flaxReceiver._flaxSuperGet_localPosition;
-  final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+  final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
   return _flaxConvertedResult;
 }
 
 abstract interface class _FlaxProxyDispatch29 {
   FlaxProxyPeer get _flaxPeer;
-  api4.PointerDeviceKind get _flaxSuperGet_kind;
+  api3.PointerDeviceKind get _flaxSuperGet_kind;
 }
 
-api4.PointerDeviceKind _FlaxProxyDispatch29_get_kind(
+api3.PointerDeviceKind _FlaxProxyDispatch29_get_kind(
   _FlaxProxyDispatch29 _flaxReceiver,
   int _flaxMember,
 ) {
@@ -15789,7 +15786,7 @@ api4.PointerDeviceKind _FlaxProxyDispatch29_get_kind(
     const {},
   );
   if (!_flaxResult.$1) return _flaxReceiver._flaxSuperGet_kind;
-  final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+  final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
   return _flaxConvertedResult;
 }
 
@@ -15835,7 +15832,7 @@ api2.Duration? _FlaxProxyDispatch19_get_sourceTimeStamp(
 
 abstract interface class _FlaxProxyDispatch27 {
   FlaxProxyPeer get _flaxPeer;
-  void _flaxSuper_addPosition(api2.Duration time, api4.Offset position);
+  void _flaxSuper_addPosition(api2.Duration time, api3.Offset position);
   api.Velocity _flaxSuper_getVelocity();
 }
 
@@ -15843,7 +15840,7 @@ void _FlaxProxyDispatch27_call_addPosition(
   _FlaxProxyDispatch27 _flaxReceiver,
   int _flaxMember,
   api2.Duration time,
-  api4.Offset position,
+  api3.Offset position,
 ) {
   final _flaxResult = _flaxReceiver._flaxPeer.call(_flaxMember, <Object?>[
     time,
@@ -15939,10 +15936,10 @@ double _FlaxProxyDispatch37_get_confidence(
 
 abstract interface class _FlaxProxyDispatch42 {
   FlaxProxyPeer get _flaxPeer;
-  api4.Offset get _flaxSuperGet_pixelsPerSecond;
+  api3.Offset get _flaxSuperGet_pixelsPerSecond;
 }
 
-api4.Offset _FlaxProxyDispatch42_get_pixelsPerSecond(
+api3.Offset _FlaxProxyDispatch42_get_pixelsPerSecond(
   _FlaxProxyDispatch42 _flaxReceiver,
   int _flaxMember,
 ) {
@@ -15952,7 +15949,7 @@ api4.Offset _FlaxProxyDispatch42_get_pixelsPerSecond(
     const {},
   );
   if (!_flaxResult.$1) return _flaxReceiver._flaxSuperGet_pixelsPerSecond;
-  final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+  final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
   return _flaxConvertedResult;
 }
 
@@ -15966,7 +15963,7 @@ final class _BaseTapGestureRecognizerProxy extends api.BaseTapGestureRecognizer
   _BaseTapGestureRecognizerProxy(
     this._flaxPeer, {
     Object? super.debugOwner,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons) super.allowedButtonsFilter,
     double? super.preAcceptSlopTolerance,
     double? super.postAcceptSlopTolerance,
@@ -16217,7 +16214,7 @@ final class _BaseTapGestureRecognizerProxy extends api.BaseTapGestureRecognizer
     final _flaxHas1 = !identical(transform, _flaxOmitted);
     flaxInvokeWithDefaults(
       super.startTrackingPointer,
-      <Object?>[pointer, (_flaxHas1 ? transform as api5.Matrix4? : null)],
+      <Object?>[pointer, (_flaxHas1 ? transform as api4.Matrix4? : null)],
       <int>[1 | (_flaxHas1 ? 2 : 0)],
       const <String>["", ""],
     );
@@ -16313,11 +16310,11 @@ final class _BaseTapGestureRecognizerProxy extends api.BaseTapGestureRecognizer
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 22, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -16703,9 +16700,9 @@ final class _BaseTapGestureRecognizerProxy extends api.BaseTapGestureRecognizer
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 45);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -16731,9 +16728,9 @@ final class _BaseTapGestureRecognizerProxy extends api.BaseTapGestureRecognizer
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 49, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -16851,7 +16848,7 @@ final class _DelayedMultiDragGestureRecognizerProxy
     this._flaxPeer, {
     api2.Duration super.delay,
     Object? super.debugOwner,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons)? super.allowedButtonsFilter,
   });
   @override
@@ -17003,11 +17000,11 @@ final class _DelayedMultiDragGestureRecognizerProxy
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 12, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -17265,15 +17262,15 @@ final class _DelayedMultiDragGestureRecognizerProxy
   }
 
   @override
-  api.Drag? Function(api4.Offset position)? get onStart {
+  api.Drag? Function(api3.Offset position)? get onStart {
     final _flaxResult = _flaxPeer.call(24, const [], const {});
     if (!_flaxResult.$1) return super.onStart;
     final _flaxConvertedResult =
-        _flaxResult.$2 as api.Drag? Function(api4.Offset position)?;
+        _flaxResult.$2 as api.Drag? Function(api3.Offset position)?;
     return _flaxConvertedResult;
   }
 
-  api.Drag? Function(api4.Offset position)? get _flaxSuperGet_onStart {
+  api.Drag? Function(api3.Offset position)? get _flaxSuperGet_onStart {
     return super.onStart;
   }
 
@@ -17291,9 +17288,9 @@ final class _DelayedMultiDragGestureRecognizerProxy
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 27);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -17305,7 +17302,7 @@ final class _DelayedMultiDragGestureRecognizerProxy
   }
 
   @override
-  set onStart(api.Drag? Function(api4.Offset position)? value) {
+  set onStart(api.Drag? Function(api3.Offset position)? value) {
     final result = _flaxPeer.call(29, [value], const {});
     if (!result.$1) {
       super.onStart = value;
@@ -17313,7 +17310,7 @@ final class _DelayedMultiDragGestureRecognizerProxy
     }
   }
 
-  void _flaxSuperSet_onStart(api.Drag? Function(api4.Offset position)? value) {
+  void _flaxSuperSet_onStart(api.Drag? Function(api3.Offset position)? value) {
     super.onStart = value;
   }
 
@@ -17325,9 +17322,9 @@ final class _DelayedMultiDragGestureRecognizerProxy
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 31, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -17483,7 +17480,7 @@ final class _DoubleTapGestureRecognizerProxy
   _DoubleTapGestureRecognizerProxy(
     this._flaxPeer, {
     Object? super.debugOwner,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons) super.allowedButtonsFilter,
   });
   @override
@@ -17571,11 +17568,11 @@ final class _DoubleTapGestureRecognizerProxy
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 8, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -17913,9 +17910,9 @@ final class _DoubleTapGestureRecognizerProxy
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 27);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -17975,9 +17972,9 @@ final class _DoubleTapGestureRecognizerProxy
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 33, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -18146,8 +18143,8 @@ final class _DragDownDetailsProxy extends api.DragDownDetails
   bool _flaxCalledSuper = false;
   _DragDownDetailsProxy(
     this._flaxPeer, {
-    api4.Offset super.globalPosition,
-    api4.Offset? super.localPosition,
+    api3.Offset super.globalPosition,
+    api3.Offset? super.localPosition,
   });
   @override
   String toStringShort() {
@@ -18219,21 +18216,21 @@ final class _DragDownDetailsProxy extends api.DragDownDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 }
@@ -18247,8 +18244,8 @@ final class _DragEndDetailsProxy extends api.DragEndDetails
   bool _flaxCalledSuper = false;
   _DragEndDetailsProxy(
     this._flaxPeer, {
-    api4.Offset super.globalPosition,
-    api4.Offset? super.localPosition,
+    api3.Offset super.globalPosition,
+    api3.Offset? super.localPosition,
     api.Velocity super.velocity,
     double? super.primaryVelocity,
   });
@@ -18322,21 +18319,21 @@ final class _DragEndDetailsProxy extends api.DragEndDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
@@ -18374,10 +18371,10 @@ final class _DragStartDetailsProxy extends api.DragStartDetails
   bool _flaxCalledSuper = false;
   _DragStartDetailsProxy(
     this._flaxPeer, {
-    api4.Offset super.globalPosition,
-    api4.Offset? super.localPosition,
+    api3.Offset super.globalPosition,
+    api3.Offset? super.localPosition,
     api2.Duration? super.sourceTimeStamp,
-    api4.PointerDeviceKind? super.kind,
+    api3.PointerDeviceKind? super.kind,
   });
   @override
   String toStringShort() {
@@ -18449,21 +18446,21 @@ final class _DragStartDetailsProxy extends api.DragStartDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
@@ -18480,14 +18477,14 @@ final class _DragStartDetailsProxy extends api.DragStartDetails
   }
 
   @override
-  api4.PointerDeviceKind? get kind {
+  api3.PointerDeviceKind? get kind {
     final _flaxResult = _flaxPeer.call(7, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind?;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind?;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind? get _flaxSuperGet_kind {
+  api3.PointerDeviceKind? get _flaxSuperGet_kind {
     return super.kind;
   }
 }
@@ -18501,12 +18498,12 @@ final class _DragUpdateDetailsProxy extends api.DragUpdateDetails
   bool _flaxCalledSuper = false;
   _DragUpdateDetailsProxy(
     this._flaxPeer, {
-    required api4.Offset super.globalPosition,
-    api4.Offset? super.localPosition,
+    required api3.Offset super.globalPosition,
+    api3.Offset? super.localPosition,
     api2.Duration? super.sourceTimeStamp,
-    api4.Offset super.delta,
+    api3.Offset super.delta,
     double? super.primaryDelta,
-    api4.PointerDeviceKind? super.kind,
+    api3.PointerDeviceKind? super.kind,
   });
   @override
   String toStringShort() {
@@ -18578,21 +18575,21 @@ final class _DragUpdateDetailsProxy extends api.DragUpdateDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
@@ -18609,14 +18606,14 @@ final class _DragUpdateDetailsProxy extends api.DragUpdateDetails
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(7, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
@@ -18633,14 +18630,14 @@ final class _DragUpdateDetailsProxy extends api.DragUpdateDetails
   }
 
   @override
-  api4.PointerDeviceKind? get kind {
+  api3.PointerDeviceKind? get kind {
     final _flaxResult = _flaxPeer.call(9, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind?;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind?;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind? get _flaxSuperGet_kind {
+  api3.PointerDeviceKind? get _flaxSuperGet_kind {
     return super.kind;
   }
 }
@@ -18654,7 +18651,7 @@ final class _EagerGestureRecognizerProxy extends api.EagerGestureRecognizer
   bool _flaxCalledSuper = false;
   _EagerGestureRecognizerProxy(
     this._flaxPeer, {
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons) super.allowedButtonsFilter,
   });
   @override
@@ -18842,7 +18839,7 @@ final class _EagerGestureRecognizerProxy extends api.EagerGestureRecognizer
     final _flaxHas1 = !identical(transform, _flaxOmitted);
     flaxInvokeWithDefaults(
       super.startTrackingPointer,
-      <Object?>[pointer, (_flaxHas1 ? transform as api5.Matrix4? : null)],
+      <Object?>[pointer, (_flaxHas1 ? transform as api4.Matrix4? : null)],
       <int>[1 | (_flaxHas1 ? 2 : 0)],
       const <String>["", ""],
     );
@@ -18938,11 +18935,11 @@ final class _EagerGestureRecognizerProxy extends api.EagerGestureRecognizer
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 18, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -19208,9 +19205,9 @@ final class _EagerGestureRecognizerProxy extends api.EagerGestureRecognizer
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 32);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -19236,9 +19233,9 @@ final class _EagerGestureRecognizerProxy extends api.EagerGestureRecognizer
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 36, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -19668,8 +19665,8 @@ final class _ForcePressDetailsProxy extends api.ForcePressDetails
   bool _flaxCalledSuper = false;
   _ForcePressDetailsProxy(
     this._flaxPeer, {
-    required api4.Offset super.globalPosition,
-    api4.Offset? super.localPosition,
+    required api3.Offset super.globalPosition,
+    api3.Offset? super.localPosition,
     required double super.pressure,
   });
   @override
@@ -19742,21 +19739,21 @@ final class _ForcePressDetailsProxy extends api.ForcePressDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
@@ -19788,7 +19785,7 @@ final class _ForcePressGestureRecognizerProxy
     double Function(double pressureMin, double pressureMax, double pressure)
     super.interpolation,
     Object? super.debugOwner,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons) super.allowedButtonsFilter,
   });
   @override
@@ -19976,7 +19973,7 @@ final class _ForcePressGestureRecognizerProxy
     final _flaxHas1 = !identical(transform, _flaxOmitted);
     flaxInvokeWithDefaults(
       super.startTrackingPointer,
-      <Object?>[pointer, (_flaxHas1 ? transform as api5.Matrix4? : null)],
+      <Object?>[pointer, (_flaxHas1 ? transform as api4.Matrix4? : null)],
       <int>[1 | (_flaxHas1 ? 2 : 0)],
       const <String>["", ""],
     );
@@ -20072,11 +20069,11 @@ final class _ForcePressGestureRecognizerProxy
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 18, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -20438,9 +20435,9 @@ final class _ForcePressGestureRecognizerProxy
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 39);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -20526,9 +20523,9 @@ final class _ForcePressGestureRecognizerProxy
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 47, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -20798,7 +20795,7 @@ final class _GestureRecognizerProxy extends api.GestureRecognizer
   _GestureRecognizerProxy(
     this._flaxPeer, {
     Object? super.debugOwner,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons) super.allowedButtonsFilter,
   });
   @override
@@ -21063,11 +21060,11 @@ final class _GestureRecognizerProxy extends api.GestureRecognizer
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 17, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -21167,9 +21164,9 @@ final class _GestureRecognizerProxy extends api.GestureRecognizer
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 23);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -21195,9 +21192,9 @@ final class _GestureRecognizerProxy extends api.GestureRecognizer
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 27, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -21346,14 +21343,14 @@ final class _HitTestEntryProxy<_Owner0 extends api.HitTestTarget>
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(2, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 }
@@ -21382,7 +21379,7 @@ final class _HitTestResultProxy extends api.HitTestResult
   }
 
   @override
-  void pushTransform(api5.Matrix4 transform) {
+  void pushTransform(api4.Matrix4 transform) {
     final _flaxResult = _flaxPeer.call(1, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -21393,13 +21390,13 @@ final class _HitTestResultProxy extends api.HitTestResult
     return;
   }
 
-  void _flaxSuper_pushTransform(api5.Matrix4 transform) {
+  void _flaxSuper_pushTransform(api4.Matrix4 transform) {
     super.pushTransform(transform);
     return;
   }
 
   @override
-  void pushOffset(api4.Offset offset) {
+  void pushOffset(api3.Offset offset) {
     final _flaxResult = _flaxPeer.call(2, <Object?>[
       offset,
     ], <String, Object?>{});
@@ -21410,7 +21407,7 @@ final class _HitTestResultProxy extends api.HitTestResult
     return;
   }
 
-  void _flaxSuper_pushOffset(api4.Offset offset) {
+  void _flaxSuper_pushOffset(api3.Offset offset) {
     super.pushOffset(offset);
     return;
   }
@@ -21476,7 +21473,7 @@ final class _HitTestableProxy implements api.HitTestable {
   final FlaxProxyPeer _flaxPeer;
   _HitTestableProxy(this._flaxPeer);
   @override
-  void hitTest(api.HitTestResult result, api4.Offset position) {
+  void hitTest(api.HitTestResult result, api3.Offset position) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       result,
       position,
@@ -21490,7 +21487,7 @@ final class _HitTestableProxy implements api.HitTestable {
   @override
   void hitTestInView(
     api.HitTestResult result,
-    api4.Offset position,
+    api3.Offset position,
     int viewId,
   ) {
     final _flaxResult = _flaxPeer.call(1, <Object?>[
@@ -21516,7 +21513,7 @@ final class _HorizontalMultiDragGestureRecognizerProxy
   _HorizontalMultiDragGestureRecognizerProxy(
     this._flaxPeer, {
     Object? super.debugOwner,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons)? super.allowedButtonsFilter,
   });
   @override
@@ -21668,11 +21665,11 @@ final class _HorizontalMultiDragGestureRecognizerProxy
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 12, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -21918,15 +21915,15 @@ final class _HorizontalMultiDragGestureRecognizerProxy
   }
 
   @override
-  api.Drag? Function(api4.Offset position)? get onStart {
+  api.Drag? Function(api3.Offset position)? get onStart {
     final _flaxResult = _flaxPeer.call(23, const [], const {});
     if (!_flaxResult.$1) return super.onStart;
     final _flaxConvertedResult =
-        _flaxResult.$2 as api.Drag? Function(api4.Offset position)?;
+        _flaxResult.$2 as api.Drag? Function(api3.Offset position)?;
     return _flaxConvertedResult;
   }
 
-  api.Drag? Function(api4.Offset position)? get _flaxSuperGet_onStart {
+  api.Drag? Function(api3.Offset position)? get _flaxSuperGet_onStart {
     return super.onStart;
   }
 
@@ -21944,9 +21941,9 @@ final class _HorizontalMultiDragGestureRecognizerProxy
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 26);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -21958,7 +21955,7 @@ final class _HorizontalMultiDragGestureRecognizerProxy
   }
 
   @override
-  set onStart(api.Drag? Function(api4.Offset position)? value) {
+  set onStart(api.Drag? Function(api3.Offset position)? value) {
     final result = _flaxPeer.call(28, [value], const {});
     if (!result.$1) {
       super.onStart = value;
@@ -21966,7 +21963,7 @@ final class _HorizontalMultiDragGestureRecognizerProxy
     }
   }
 
-  void _flaxSuperSet_onStart(api.Drag? Function(api4.Offset position)? value) {
+  void _flaxSuperSet_onStart(api.Drag? Function(api3.Offset position)? value) {
     super.onStart = value;
   }
 
@@ -21978,9 +21975,9 @@ final class _HorizontalMultiDragGestureRecognizerProxy
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 30, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -22096,14 +22093,14 @@ final class _IOSScrollViewFlingVelocityTrackerProxy
   final FlaxProxyPeer _flaxPeer;
   _IOSScrollViewFlingVelocityTrackerProxy(
     this._flaxPeer,
-    api4.PointerDeviceKind super.kind,
+    api3.PointerDeviceKind super.kind,
   );
   @override
-  void addPosition(api2.Duration time, api4.Offset position) {
+  void addPosition(api2.Duration time, api3.Offset position) {
     return _FlaxProxyDispatch27_call_addPosition(this, 0, time, position);
   }
 
-  void _flaxSuper_addPosition(api2.Duration time, api4.Offset position) {
+  void _flaxSuper_addPosition(api2.Duration time, api3.Offset position) {
     super.addPosition(time, position);
     return;
   }
@@ -22127,8 +22124,8 @@ final class _IOSScrollViewFlingVelocityTrackerProxy
   }
 
   @override
-  api4.PointerDeviceKind get kind => _FlaxProxyDispatch29_get_kind(this, 3);
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get kind => _FlaxProxyDispatch29_get_kind(this, 3);
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 }
@@ -22144,7 +22141,7 @@ final class _ImmediateMultiDragGestureRecognizerProxy
   _ImmediateMultiDragGestureRecognizerProxy(
     this._flaxPeer, {
     Object? super.debugOwner,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons)? super.allowedButtonsFilter,
   });
   @override
@@ -22296,11 +22293,11 @@ final class _ImmediateMultiDragGestureRecognizerProxy
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 12, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -22546,15 +22543,15 @@ final class _ImmediateMultiDragGestureRecognizerProxy
   }
 
   @override
-  api.Drag? Function(api4.Offset position)? get onStart {
+  api.Drag? Function(api3.Offset position)? get onStart {
     final _flaxResult = _flaxPeer.call(23, const [], const {});
     if (!_flaxResult.$1) return super.onStart;
     final _flaxConvertedResult =
-        _flaxResult.$2 as api.Drag? Function(api4.Offset position)?;
+        _flaxResult.$2 as api.Drag? Function(api3.Offset position)?;
     return _flaxConvertedResult;
   }
 
-  api.Drag? Function(api4.Offset position)? get _flaxSuperGet_onStart {
+  api.Drag? Function(api3.Offset position)? get _flaxSuperGet_onStart {
     return super.onStart;
   }
 
@@ -22572,9 +22569,9 @@ final class _ImmediateMultiDragGestureRecognizerProxy
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 26);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -22586,7 +22583,7 @@ final class _ImmediateMultiDragGestureRecognizerProxy
   }
 
   @override
-  set onStart(api.Drag? Function(api4.Offset position)? value) {
+  set onStart(api.Drag? Function(api3.Offset position)? value) {
     final result = _flaxPeer.call(28, [value], const {});
     if (!result.$1) {
       super.onStart = value;
@@ -22594,7 +22591,7 @@ final class _ImmediateMultiDragGestureRecognizerProxy
     }
   }
 
-  void _flaxSuperSet_onStart(api.Drag? Function(api4.Offset position)? value) {
+  void _flaxSuperSet_onStart(api.Drag? Function(api3.Offset position)? value) {
     super.onStart = value;
   }
 
@@ -22606,9 +22603,9 @@ final class _ImmediateMultiDragGestureRecognizerProxy
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 30, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -22785,9 +22782,9 @@ final class _LongPressDownDetailsProxy extends api.LongPressDownDetails
   bool _flaxCalledSuper = false;
   _LongPressDownDetailsProxy(
     this._flaxPeer, {
-    api4.Offset super.globalPosition,
-    api4.Offset? super.localPosition,
-    api4.PointerDeviceKind? super.kind,
+    api3.Offset super.globalPosition,
+    api3.Offset? super.localPosition,
+    api3.PointerDeviceKind? super.kind,
   });
   @override
   String toStringShort() {
@@ -22859,33 +22856,33 @@ final class _LongPressDownDetailsProxy extends api.LongPressDownDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.PointerDeviceKind? get kind {
+  api3.PointerDeviceKind? get kind {
     final _flaxResult = _flaxPeer.call(6, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind?;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind?;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind? get _flaxSuperGet_kind {
+  api3.PointerDeviceKind? get _flaxSuperGet_kind {
     return super.kind;
   }
 }
@@ -22899,8 +22896,8 @@ final class _LongPressEndDetailsProxy extends api.LongPressEndDetails
   bool _flaxCalledSuper = false;
   _LongPressEndDetailsProxy(
     this._flaxPeer, {
-    api4.Offset super.globalPosition,
-    api4.Offset? super.localPosition,
+    api3.Offset super.globalPosition,
+    api3.Offset? super.localPosition,
     api.Velocity super.velocity,
   });
   @override
@@ -22973,21 +22970,21 @@ final class _LongPressEndDetailsProxy extends api.LongPressEndDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
@@ -23016,7 +23013,7 @@ final class _LongPressGestureRecognizerProxy
     this._flaxPeer, {
     api2.Duration? super.duration,
     double? super.postAcceptSlopTolerance,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     Object? super.debugOwner,
     bool Function(int buttons)? super.allowedButtonsFilter,
   });
@@ -23266,7 +23263,7 @@ final class _LongPressGestureRecognizerProxy
     final _flaxHas1 = !identical(transform, _flaxOmitted);
     flaxInvokeWithDefaults(
       super.startTrackingPointer,
-      <Object?>[pointer, (_flaxHas1 ? transform as api5.Matrix4? : null)],
+      <Object?>[pointer, (_flaxHas1 ? transform as api4.Matrix4? : null)],
       <int>[1 | (_flaxHas1 ? 2 : 0)],
       const <String>["", ""],
     );
@@ -23362,11 +23359,11 @@ final class _LongPressGestureRecognizerProxy
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 22, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -23977,9 +23974,9 @@ final class _LongPressGestureRecognizerProxy
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 62);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -24322,9 +24319,9 @@ final class _LongPressGestureRecognizerProxy
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 87, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -24441,10 +24438,10 @@ final class _LongPressMoveUpdateDetailsProxy
   bool _flaxCalledSuper = false;
   _LongPressMoveUpdateDetailsProxy(
     this._flaxPeer, {
-    api4.Offset super.globalPosition,
-    api4.Offset? super.localPosition,
-    api4.Offset super.offsetFromOrigin,
-    api4.Offset? super.localOffsetFromOrigin,
+    api3.Offset super.globalPosition,
+    api3.Offset? super.localPosition,
+    api3.Offset super.offsetFromOrigin,
+    api3.Offset? super.localOffsetFromOrigin,
   });
   @override
   String toStringShort() {
@@ -24516,45 +24513,45 @@ final class _LongPressMoveUpdateDetailsProxy
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get offsetFromOrigin {
+  api3.Offset get offsetFromOrigin {
     final _flaxResult = _flaxPeer.call(6, const [], const {});
     if (!_flaxResult.$1) return super.offsetFromOrigin;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_offsetFromOrigin {
+  api3.Offset get _flaxSuperGet_offsetFromOrigin {
     return super.offsetFromOrigin;
   }
 
   @override
-  api4.Offset get localOffsetFromOrigin {
+  api3.Offset get localOffsetFromOrigin {
     final _flaxResult = _flaxPeer.call(7, const [], const {});
     if (!_flaxResult.$1) return super.localOffsetFromOrigin;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localOffsetFromOrigin {
+  api3.Offset get _flaxSuperGet_localOffsetFromOrigin {
     return super.localOffsetFromOrigin;
   }
 }
@@ -24568,8 +24565,8 @@ final class _LongPressStartDetailsProxy extends api.LongPressStartDetails
   bool _flaxCalledSuper = false;
   _LongPressStartDetailsProxy(
     this._flaxPeer, {
-    api4.Offset super.globalPosition,
-    api4.Offset? super.localPosition,
+    api3.Offset super.globalPosition,
+    api3.Offset? super.localPosition,
   });
   @override
   String toStringShort() {
@@ -24641,21 +24638,21 @@ final class _LongPressStartDetailsProxy extends api.LongPressStartDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 }
@@ -24669,14 +24666,14 @@ final class _MacOSScrollViewFlingVelocityTrackerProxy
   final FlaxProxyPeer _flaxPeer;
   _MacOSScrollViewFlingVelocityTrackerProxy(
     this._flaxPeer,
-    api4.PointerDeviceKind super.kind,
+    api3.PointerDeviceKind super.kind,
   );
   @override
-  void addPosition(api2.Duration time, api4.Offset position) {
+  void addPosition(api2.Duration time, api3.Offset position) {
     return _FlaxProxyDispatch27_call_addPosition(this, 0, time, position);
   }
 
-  void _flaxSuper_addPosition(api2.Duration time, api4.Offset position) {
+  void _flaxSuper_addPosition(api2.Duration time, api3.Offset position) {
     super.addPosition(time, position);
     return;
   }
@@ -24700,8 +24697,8 @@ final class _MacOSScrollViewFlingVelocityTrackerProxy
   }
 
   @override
-  api4.PointerDeviceKind get kind => _FlaxProxyDispatch29_get_kind(this, 3);
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get kind => _FlaxProxyDispatch29_get_kind(this, 3);
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 }
@@ -24717,7 +24714,7 @@ final class _MultiDragGestureRecognizerProxy
   _MultiDragGestureRecognizerProxy(
     this._flaxPeer, {
     required Object? super.debugOwner,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons)? super.allowedButtonsFilter,
   });
   @override
@@ -24805,11 +24802,11 @@ final class _MultiDragGestureRecognizerProxy
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 8, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -25097,15 +25094,15 @@ final class _MultiDragGestureRecognizerProxy
   }
 
   @override
-  api.Drag? Function(api4.Offset position)? get onStart {
+  api.Drag? Function(api3.Offset position)? get onStart {
     final _flaxResult = _flaxPeer.call(22, const [], const {});
     if (!_flaxResult.$1) return super.onStart;
     final _flaxConvertedResult =
-        _flaxResult.$2 as api.Drag? Function(api4.Offset position)?;
+        _flaxResult.$2 as api.Drag? Function(api3.Offset position)?;
     return _flaxConvertedResult;
   }
 
-  api.Drag? Function(api4.Offset position)? get _flaxSuperGet_onStart {
+  api.Drag? Function(api3.Offset position)? get _flaxSuperGet_onStart {
     return super.onStart;
   }
 
@@ -25123,9 +25120,9 @@ final class _MultiDragGestureRecognizerProxy
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 25);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -25144,7 +25141,7 @@ final class _MultiDragGestureRecognizerProxy
   }
 
   @override
-  set onStart(api.Drag? Function(api4.Offset position)? value) {
+  set onStart(api.Drag? Function(api3.Offset position)? value) {
     final result = _flaxPeer.call(28, [value], const {});
     if (!result.$1) {
       super.onStart = value;
@@ -25152,7 +25149,7 @@ final class _MultiDragGestureRecognizerProxy
     }
   }
 
-  void _flaxSuperSet_onStart(api.Drag? Function(api4.Offset position)? value) {
+  void _flaxSuperSet_onStart(api.Drag? Function(api3.Offset position)? value) {
     super.onStart = value;
   }
 
@@ -25164,9 +25161,9 @@ final class _MultiDragGestureRecognizerProxy
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 30, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -25282,8 +25279,8 @@ final class _MultiDragPointerStateProxy extends api.MultiDragPointerState
   bool _flaxCalledSuper = false;
   _MultiDragPointerStateProxy(
     this._flaxPeer,
-    api4.Offset super.initialPosition,
-    api4.PointerDeviceKind super.kind,
+    api3.Offset super.initialPosition,
+    api3.PointerDeviceKind super.kind,
     api.DeviceGestureSettings? super.gestureSettings,
   );
   @override
@@ -25333,7 +25330,7 @@ final class _MultiDragPointerStateProxy extends api.MultiDragPointerState
   }
 
   @override
-  void accepted(api.Drag? Function(api4.Offset position) starter) {
+  void accepted(api.Drag? Function(api3.Offset position) starter) {
     final _flaxResult = _flaxPeer.call(2, <Object?>[
       starter,
     ], <String, Object?>{});
@@ -25392,32 +25389,32 @@ final class _MultiDragPointerStateProxy extends api.MultiDragPointerState
   }
 
   @override
-  api4.Offset get initialPosition {
+  api3.Offset get initialPosition {
     final _flaxResult = _flaxPeer.call(6, const [], const {});
     if (!_flaxResult.$1) return super.initialPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_initialPosition {
+  api3.Offset get _flaxSuperGet_initialPosition {
     return super.initialPosition;
   }
 
   @override
-  api4.PointerDeviceKind get kind => _FlaxProxyDispatch29_get_kind(this, 7);
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get kind => _FlaxProxyDispatch29_get_kind(this, 7);
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
   @override
-  api4.Offset? get pendingDelta {
+  api3.Offset? get pendingDelta {
     final _flaxResult = _flaxPeer.call(8, const [], const {});
     if (!_flaxResult.$1) return super.pendingDelta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset?;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset?;
     return _flaxConvertedResult;
   }
 
-  api4.Offset? get _flaxSuperGet_pendingDelta {
+  api3.Offset? get _flaxSuperGet_pendingDelta {
     return super.pendingDelta;
   }
 }
@@ -25434,7 +25431,7 @@ final class _MultiTapGestureRecognizerProxy
     this._flaxPeer, {
     api2.Duration super.longTapDelay,
     Object? super.debugOwner,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons) super.allowedButtonsFilter,
   });
   @override
@@ -25522,11 +25519,11 @@ final class _MultiTapGestureRecognizerProxy
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 8, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -25907,9 +25904,9 @@ final class _MultiTapGestureRecognizerProxy
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 30);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -26014,9 +26011,9 @@ final class _MultiTapGestureRecognizerProxy
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 39, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -26128,8 +26125,8 @@ final class _OffsetPairProxy extends api.OffsetPair
   final FlaxProxyPeer _flaxPeer;
   _OffsetPairProxy(
     this._flaxPeer, {
-    required api4.Offset super.local,
-    required api4.Offset super.global,
+    required api3.Offset super.local,
+    required api3.Offset super.global,
   });
   _OffsetPairProxy.fromEventPosition(
     this._flaxPeer,
@@ -26179,26 +26176,26 @@ final class _OffsetPairProxy extends api.OffsetPair
   }
 
   @override
-  api4.Offset get local {
+  api3.Offset get local {
     final _flaxResult = _flaxPeer.call(3, const [], const {});
     if (!_flaxResult.$1) return super.local;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_local {
+  api3.Offset get _flaxSuperGet_local {
     return super.local;
   }
 
   @override
-  api4.Offset get global {
+  api3.Offset get global {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.global;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_global {
+  api3.Offset get _flaxSuperGet_global {
     return super.global;
   }
 }
@@ -26214,7 +26211,7 @@ final class _OneSequenceGestureRecognizerProxy
   _OneSequenceGestureRecognizerProxy(
     this._flaxPeer, {
     Object? super.debugOwner,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons) super.allowedButtonsFilter,
   });
   @override
@@ -26302,11 +26299,11 @@ final class _OneSequenceGestureRecognizerProxy
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 8, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -26688,7 +26685,7 @@ final class _OneSequenceGestureRecognizerProxy
     final _flaxHas1 = !identical(transform, _flaxOmitted);
     flaxInvokeWithDefaults(
       super.startTrackingPointer,
-      <Object?>[pointer, (_flaxHas1 ? transform as api5.Matrix4? : null)],
+      <Object?>[pointer, (_flaxHas1 ? transform as api4.Matrix4? : null)],
       <int>[1 | (_flaxHas1 ? 2 : 0)],
       const <String>["", ""],
     );
@@ -26744,9 +26741,9 @@ final class _OneSequenceGestureRecognizerProxy
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 31);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -26779,9 +26776,9 @@ final class _OneSequenceGestureRecognizerProxy
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 36, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -26900,9 +26897,9 @@ final class _PointerAddedEventProxy extends api.PointerAddedEvent
     int super.viewId,
     api2.Duration super.timeStamp,
     int super.pointer,
-    api4.PointerDeviceKind super.kind,
+    api3.PointerDeviceKind super.kind,
     int super.device,
-    api4.Offset super.position,
+    api3.Offset super.position,
     bool super.obscured,
     double super.pressureMin,
     double super.pressureMax,
@@ -26915,7 +26912,7 @@ final class _PointerAddedEventProxy extends api.PointerAddedEvent
     int super.embedderId,
   });
   @override
-  api.PointerAddedEvent transformed(api5.Matrix4? transform) {
+  api.PointerAddedEvent transformed(api4.Matrix4? transform) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -26926,7 +26923,7 @@ final class _PointerAddedEventProxy extends api.PointerAddedEvent
     return _flaxConvertedResult;
   }
 
-  api.PointerAddedEvent _flaxSuper_transformed(api5.Matrix4? transform) {
+  api.PointerAddedEvent _flaxSuper_transformed(api4.Matrix4? transform) {
     return super.transformed(transform);
   }
 
@@ -27066,10 +27063,10 @@ final class _PointerAddedEventProxy extends api.PointerAddedEvent
         (_flaxHas0 ? viewId as int? : null),
         (_flaxHas1 ? timeStamp as api2.Duration? : null),
         (_flaxHas2 ? pointer as int? : null),
-        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas3 ? kind as api3.PointerDeviceKind? : null),
         (_flaxHas4 ? device as int? : null),
-        (_flaxHas5 ? position as api4.Offset? : null),
-        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas5 ? position as api3.Offset? : null),
+        (_flaxHas6 ? delta as api3.Offset? : null),
         (_flaxHas7 ? buttons as int? : null),
         (_flaxHas8 ? obscured as bool? : null),
         (_flaxHas9 ? pressure as double? : null),
@@ -27248,14 +27245,14 @@ final class _PointerAddedEventProxy extends api.PointerAddedEvent
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(11, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -27266,38 +27263,38 @@ final class _PointerAddedEventProxy extends api.PointerAddedEvent
   }
 
   @override
-  api4.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
-  api4.Offset get _flaxSuperGet_position {
+  api3.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
+  api3.Offset get _flaxSuperGet_position {
     return super.position;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(14, const [], const {});
     if (!_flaxResult.$1) return super.localPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(15, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
   @override
-  api4.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
-  api4.Offset get _flaxSuperGet_localDelta {
+  api3.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
+  api3.Offset get _flaxSuperGet_localDelta {
     return super.localDelta;
   }
 
@@ -27422,14 +27419,14 @@ final class _PointerAddedEventProxy extends api.PointerAddedEvent
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(35, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 
@@ -27452,9 +27449,9 @@ final class _PointerCancelEventProxy extends api.PointerCancelEvent
     int super.viewId,
     api2.Duration super.timeStamp,
     int super.pointer,
-    api4.PointerDeviceKind super.kind,
+    api3.PointerDeviceKind super.kind,
     int super.device,
-    api4.Offset super.position,
+    api3.Offset super.position,
     int super.buttons,
     bool super.obscured,
     double super.pressureMin,
@@ -27471,7 +27468,7 @@ final class _PointerCancelEventProxy extends api.PointerCancelEvent
     int super.embedderId,
   });
   @override
-  api.PointerCancelEvent transformed(api5.Matrix4? transform) {
+  api.PointerCancelEvent transformed(api4.Matrix4? transform) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -27482,7 +27479,7 @@ final class _PointerCancelEventProxy extends api.PointerCancelEvent
     return _flaxConvertedResult;
   }
 
-  api.PointerCancelEvent _flaxSuper_transformed(api5.Matrix4? transform) {
+  api.PointerCancelEvent _flaxSuper_transformed(api4.Matrix4? transform) {
     return super.transformed(transform);
   }
 
@@ -27622,10 +27619,10 @@ final class _PointerCancelEventProxy extends api.PointerCancelEvent
         (_flaxHas0 ? viewId as int? : null),
         (_flaxHas1 ? timeStamp as api2.Duration? : null),
         (_flaxHas2 ? pointer as int? : null),
-        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas3 ? kind as api3.PointerDeviceKind? : null),
         (_flaxHas4 ? device as int? : null),
-        (_flaxHas5 ? position as api4.Offset? : null),
-        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas5 ? position as api3.Offset? : null),
+        (_flaxHas6 ? delta as api3.Offset? : null),
         (_flaxHas7 ? buttons as int? : null),
         (_flaxHas8 ? obscured as bool? : null),
         (_flaxHas9 ? pressure as double? : null),
@@ -27804,14 +27801,14 @@ final class _PointerCancelEventProxy extends api.PointerCancelEvent
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(11, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -27822,38 +27819,38 @@ final class _PointerCancelEventProxy extends api.PointerCancelEvent
   }
 
   @override
-  api4.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
-  api4.Offset get _flaxSuperGet_position {
+  api3.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
+  api3.Offset get _flaxSuperGet_position {
     return super.position;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(14, const [], const {});
     if (!_flaxResult.$1) return super.localPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(15, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
   @override
-  api4.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
-  api4.Offset get _flaxSuperGet_localDelta {
+  api3.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
+  api3.Offset get _flaxSuperGet_localDelta {
     return super.localDelta;
   }
 
@@ -27978,14 +27975,14 @@ final class _PointerCancelEventProxy extends api.PointerCancelEvent
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(35, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 
@@ -28008,9 +28005,9 @@ final class _PointerDownEventProxy extends api.PointerDownEvent
     int super.viewId,
     api2.Duration super.timeStamp,
     int super.pointer,
-    api4.PointerDeviceKind super.kind,
+    api3.PointerDeviceKind super.kind,
     int super.device,
-    api4.Offset super.position,
+    api3.Offset super.position,
     int super.buttons,
     bool super.obscured,
     double super.pressure,
@@ -28027,7 +28024,7 @@ final class _PointerDownEventProxy extends api.PointerDownEvent
     int super.embedderId,
   });
   @override
-  api.PointerDownEvent transformed(api5.Matrix4? transform) {
+  api.PointerDownEvent transformed(api4.Matrix4? transform) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -28038,7 +28035,7 @@ final class _PointerDownEventProxy extends api.PointerDownEvent
     return _flaxConvertedResult;
   }
 
-  api.PointerDownEvent _flaxSuper_transformed(api5.Matrix4? transform) {
+  api.PointerDownEvent _flaxSuper_transformed(api4.Matrix4? transform) {
     return super.transformed(transform);
   }
 
@@ -28178,10 +28175,10 @@ final class _PointerDownEventProxy extends api.PointerDownEvent
         (_flaxHas0 ? viewId as int? : null),
         (_flaxHas1 ? timeStamp as api2.Duration? : null),
         (_flaxHas2 ? pointer as int? : null),
-        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas3 ? kind as api3.PointerDeviceKind? : null),
         (_flaxHas4 ? device as int? : null),
-        (_flaxHas5 ? position as api4.Offset? : null),
-        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas5 ? position as api3.Offset? : null),
+        (_flaxHas6 ? delta as api3.Offset? : null),
         (_flaxHas7 ? buttons as int? : null),
         (_flaxHas8 ? obscured as bool? : null),
         (_flaxHas9 ? pressure as double? : null),
@@ -28360,14 +28357,14 @@ final class _PointerDownEventProxy extends api.PointerDownEvent
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(11, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -28378,38 +28375,38 @@ final class _PointerDownEventProxy extends api.PointerDownEvent
   }
 
   @override
-  api4.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
-  api4.Offset get _flaxSuperGet_position {
+  api3.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
+  api3.Offset get _flaxSuperGet_position {
     return super.position;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(14, const [], const {});
     if (!_flaxResult.$1) return super.localPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(15, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
   @override
-  api4.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
-  api4.Offset get _flaxSuperGet_localDelta {
+  api3.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
+  api3.Offset get _flaxSuperGet_localDelta {
     return super.localDelta;
   }
 
@@ -28534,14 +28531,14 @@ final class _PointerDownEventProxy extends api.PointerDownEvent
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(35, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 
@@ -28564,10 +28561,10 @@ final class _PointerEnterEventProxy extends api.PointerEnterEvent
     int super.viewId,
     api2.Duration super.timeStamp,
     int super.pointer,
-    api4.PointerDeviceKind super.kind,
+    api3.PointerDeviceKind super.kind,
     int super.device,
-    api4.Offset super.position,
-    api4.Offset super.delta,
+    api3.Offset super.position,
+    api3.Offset super.delta,
     int super.buttons,
     bool super.obscured,
     double super.pressureMin,
@@ -28586,7 +28583,7 @@ final class _PointerEnterEventProxy extends api.PointerEnterEvent
     int super.embedderId,
   });
   @override
-  api.PointerEnterEvent transformed(api5.Matrix4? transform) {
+  api.PointerEnterEvent transformed(api4.Matrix4? transform) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -28597,7 +28594,7 @@ final class _PointerEnterEventProxy extends api.PointerEnterEvent
     return _flaxConvertedResult;
   }
 
-  api.PointerEnterEvent _flaxSuper_transformed(api5.Matrix4? transform) {
+  api.PointerEnterEvent _flaxSuper_transformed(api4.Matrix4? transform) {
     return super.transformed(transform);
   }
 
@@ -28737,10 +28734,10 @@ final class _PointerEnterEventProxy extends api.PointerEnterEvent
         (_flaxHas0 ? viewId as int? : null),
         (_flaxHas1 ? timeStamp as api2.Duration? : null),
         (_flaxHas2 ? pointer as int? : null),
-        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas3 ? kind as api3.PointerDeviceKind? : null),
         (_flaxHas4 ? device as int? : null),
-        (_flaxHas5 ? position as api4.Offset? : null),
-        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas5 ? position as api3.Offset? : null),
+        (_flaxHas6 ? delta as api3.Offset? : null),
         (_flaxHas7 ? buttons as int? : null),
         (_flaxHas8 ? obscured as bool? : null),
         (_flaxHas9 ? pressure as double? : null),
@@ -28919,14 +28916,14 @@ final class _PointerEnterEventProxy extends api.PointerEnterEvent
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(11, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -28937,38 +28934,38 @@ final class _PointerEnterEventProxy extends api.PointerEnterEvent
   }
 
   @override
-  api4.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
-  api4.Offset get _flaxSuperGet_position {
+  api3.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
+  api3.Offset get _flaxSuperGet_position {
     return super.position;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(14, const [], const {});
     if (!_flaxResult.$1) return super.localPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(15, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
   @override
-  api4.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
-  api4.Offset get _flaxSuperGet_localDelta {
+  api3.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
+  api3.Offset get _flaxSuperGet_localDelta {
     return super.localDelta;
   }
 
@@ -29093,14 +29090,14 @@ final class _PointerEnterEventProxy extends api.PointerEnterEvent
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(35, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 
@@ -29223,11 +29220,11 @@ final class _PointerExitEventProxy extends api.PointerExitEvent
     this._flaxPeer, {
     int super.viewId,
     api2.Duration super.timeStamp,
-    api4.PointerDeviceKind super.kind,
+    api3.PointerDeviceKind super.kind,
     int super.pointer,
     int super.device,
-    api4.Offset super.position,
-    api4.Offset super.delta,
+    api3.Offset super.position,
+    api3.Offset super.delta,
     int super.buttons,
     bool super.obscured,
     double super.pressureMin,
@@ -29246,7 +29243,7 @@ final class _PointerExitEventProxy extends api.PointerExitEvent
     int super.embedderId,
   });
   @override
-  api.PointerExitEvent transformed(api5.Matrix4? transform) {
+  api.PointerExitEvent transformed(api4.Matrix4? transform) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -29257,7 +29254,7 @@ final class _PointerExitEventProxy extends api.PointerExitEvent
     return _flaxConvertedResult;
   }
 
-  api.PointerExitEvent _flaxSuper_transformed(api5.Matrix4? transform) {
+  api.PointerExitEvent _flaxSuper_transformed(api4.Matrix4? transform) {
     return super.transformed(transform);
   }
 
@@ -29397,10 +29394,10 @@ final class _PointerExitEventProxy extends api.PointerExitEvent
         (_flaxHas0 ? viewId as int? : null),
         (_flaxHas1 ? timeStamp as api2.Duration? : null),
         (_flaxHas2 ? pointer as int? : null),
-        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas3 ? kind as api3.PointerDeviceKind? : null),
         (_flaxHas4 ? device as int? : null),
-        (_flaxHas5 ? position as api4.Offset? : null),
-        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas5 ? position as api3.Offset? : null),
+        (_flaxHas6 ? delta as api3.Offset? : null),
         (_flaxHas7 ? buttons as int? : null),
         (_flaxHas8 ? obscured as bool? : null),
         (_flaxHas9 ? pressure as double? : null),
@@ -29579,14 +29576,14 @@ final class _PointerExitEventProxy extends api.PointerExitEvent
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(11, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -29597,38 +29594,38 @@ final class _PointerExitEventProxy extends api.PointerExitEvent
   }
 
   @override
-  api4.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
-  api4.Offset get _flaxSuperGet_position {
+  api3.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
+  api3.Offset get _flaxSuperGet_position {
     return super.position;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(14, const [], const {});
     if (!_flaxResult.$1) return super.localPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(15, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
   @override
-  api4.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
-  api4.Offset get _flaxSuperGet_localDelta {
+  api3.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
+  api3.Offset get _flaxSuperGet_localDelta {
     return super.localDelta;
   }
 
@@ -29753,14 +29750,14 @@ final class _PointerExitEventProxy extends api.PointerExitEvent
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(35, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 
@@ -29782,11 +29779,11 @@ final class _PointerHoverEventProxy extends api.PointerHoverEvent
     this._flaxPeer, {
     int super.viewId,
     api2.Duration super.timeStamp,
-    api4.PointerDeviceKind super.kind,
+    api3.PointerDeviceKind super.kind,
     int super.pointer,
     int super.device,
-    api4.Offset super.position,
-    api4.Offset super.delta,
+    api3.Offset super.position,
+    api3.Offset super.delta,
     int super.buttons,
     bool super.obscured,
     double super.pressureMin,
@@ -29804,7 +29801,7 @@ final class _PointerHoverEventProxy extends api.PointerHoverEvent
     int super.embedderId,
   });
   @override
-  api.PointerHoverEvent transformed(api5.Matrix4? transform) {
+  api.PointerHoverEvent transformed(api4.Matrix4? transform) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -29815,7 +29812,7 @@ final class _PointerHoverEventProxy extends api.PointerHoverEvent
     return _flaxConvertedResult;
   }
 
-  api.PointerHoverEvent _flaxSuper_transformed(api5.Matrix4? transform) {
+  api.PointerHoverEvent _flaxSuper_transformed(api4.Matrix4? transform) {
     return super.transformed(transform);
   }
 
@@ -29955,10 +29952,10 @@ final class _PointerHoverEventProxy extends api.PointerHoverEvent
         (_flaxHas0 ? viewId as int? : null),
         (_flaxHas1 ? timeStamp as api2.Duration? : null),
         (_flaxHas2 ? pointer as int? : null),
-        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas3 ? kind as api3.PointerDeviceKind? : null),
         (_flaxHas4 ? device as int? : null),
-        (_flaxHas5 ? position as api4.Offset? : null),
-        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas5 ? position as api3.Offset? : null),
+        (_flaxHas6 ? delta as api3.Offset? : null),
         (_flaxHas7 ? buttons as int? : null),
         (_flaxHas8 ? obscured as bool? : null),
         (_flaxHas9 ? pressure as double? : null),
@@ -30137,14 +30134,14 @@ final class _PointerHoverEventProxy extends api.PointerHoverEvent
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(11, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -30155,38 +30152,38 @@ final class _PointerHoverEventProxy extends api.PointerHoverEvent
   }
 
   @override
-  api4.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
-  api4.Offset get _flaxSuperGet_position {
+  api3.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
+  api3.Offset get _flaxSuperGet_position {
     return super.position;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(14, const [], const {});
     if (!_flaxResult.$1) return super.localPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(15, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
   @override
-  api4.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
-  api4.Offset get _flaxSuperGet_localDelta {
+  api3.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
+  api3.Offset get _flaxSuperGet_localDelta {
     return super.localDelta;
   }
 
@@ -30311,14 +30308,14 @@ final class _PointerHoverEventProxy extends api.PointerHoverEvent
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(35, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 
@@ -30341,10 +30338,10 @@ final class _PointerMoveEventProxy extends api.PointerMoveEvent
     int super.viewId,
     api2.Duration super.timeStamp,
     int super.pointer,
-    api4.PointerDeviceKind super.kind,
+    api3.PointerDeviceKind super.kind,
     int super.device,
-    api4.Offset super.position,
-    api4.Offset super.delta,
+    api3.Offset super.position,
+    api3.Offset super.delta,
     int super.buttons,
     bool super.obscured,
     double super.pressure,
@@ -30363,7 +30360,7 @@ final class _PointerMoveEventProxy extends api.PointerMoveEvent
     int super.embedderId,
   });
   @override
-  api.PointerMoveEvent transformed(api5.Matrix4? transform) {
+  api.PointerMoveEvent transformed(api4.Matrix4? transform) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -30374,7 +30371,7 @@ final class _PointerMoveEventProxy extends api.PointerMoveEvent
     return _flaxConvertedResult;
   }
 
-  api.PointerMoveEvent _flaxSuper_transformed(api5.Matrix4? transform) {
+  api.PointerMoveEvent _flaxSuper_transformed(api4.Matrix4? transform) {
     return super.transformed(transform);
   }
 
@@ -30514,10 +30511,10 @@ final class _PointerMoveEventProxy extends api.PointerMoveEvent
         (_flaxHas0 ? viewId as int? : null),
         (_flaxHas1 ? timeStamp as api2.Duration? : null),
         (_flaxHas2 ? pointer as int? : null),
-        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas3 ? kind as api3.PointerDeviceKind? : null),
         (_flaxHas4 ? device as int? : null),
-        (_flaxHas5 ? position as api4.Offset? : null),
-        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas5 ? position as api3.Offset? : null),
+        (_flaxHas6 ? delta as api3.Offset? : null),
         (_flaxHas7 ? buttons as int? : null),
         (_flaxHas8 ? obscured as bool? : null),
         (_flaxHas9 ? pressure as double? : null),
@@ -30696,14 +30693,14 @@ final class _PointerMoveEventProxy extends api.PointerMoveEvent
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(11, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -30714,38 +30711,38 @@ final class _PointerMoveEventProxy extends api.PointerMoveEvent
   }
 
   @override
-  api4.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
-  api4.Offset get _flaxSuperGet_position {
+  api3.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
+  api3.Offset get _flaxSuperGet_position {
     return super.position;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(14, const [], const {});
     if (!_flaxResult.$1) return super.localPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(15, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
   @override
-  api4.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
-  api4.Offset get _flaxSuperGet_localDelta {
+  api3.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
+  api3.Offset get _flaxSuperGet_localDelta {
     return super.localDelta;
   }
 
@@ -30870,14 +30867,14 @@ final class _PointerMoveEventProxy extends api.PointerMoveEvent
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(35, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 
@@ -30901,12 +30898,12 @@ final class _PointerPanZoomEndEventProxy extends api.PointerPanZoomEndEvent
     api2.Duration super.timeStamp,
     int super.device,
     int super.pointer,
-    api4.Offset super.position,
+    api3.Offset super.position,
     int super.embedderId,
     bool super.synthesized,
   });
   @override
-  api.PointerPanZoomEndEvent transformed(api5.Matrix4? transform) {
+  api.PointerPanZoomEndEvent transformed(api4.Matrix4? transform) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -30917,7 +30914,7 @@ final class _PointerPanZoomEndEventProxy extends api.PointerPanZoomEndEvent
     return _flaxConvertedResult;
   }
 
-  api.PointerPanZoomEndEvent _flaxSuper_transformed(api5.Matrix4? transform) {
+  api.PointerPanZoomEndEvent _flaxSuper_transformed(api4.Matrix4? transform) {
     return super.transformed(transform);
   }
 
@@ -31057,10 +31054,10 @@ final class _PointerPanZoomEndEventProxy extends api.PointerPanZoomEndEvent
         (_flaxHas0 ? viewId as int? : null),
         (_flaxHas1 ? timeStamp as api2.Duration? : null),
         (_flaxHas2 ? pointer as int? : null),
-        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas3 ? kind as api3.PointerDeviceKind? : null),
         (_flaxHas4 ? device as int? : null),
-        (_flaxHas5 ? position as api4.Offset? : null),
-        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas5 ? position as api3.Offset? : null),
+        (_flaxHas6 ? delta as api3.Offset? : null),
         (_flaxHas7 ? buttons as int? : null),
         (_flaxHas8 ? obscured as bool? : null),
         (_flaxHas9 ? pressure as double? : null),
@@ -31239,14 +31236,14 @@ final class _PointerPanZoomEndEventProxy extends api.PointerPanZoomEndEvent
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(11, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -31257,38 +31254,38 @@ final class _PointerPanZoomEndEventProxy extends api.PointerPanZoomEndEvent
   }
 
   @override
-  api4.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
-  api4.Offset get _flaxSuperGet_position {
+  api3.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
+  api3.Offset get _flaxSuperGet_position {
     return super.position;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(14, const [], const {});
     if (!_flaxResult.$1) return super.localPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(15, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
   @override
-  api4.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
-  api4.Offset get _flaxSuperGet_localDelta {
+  api3.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
+  api3.Offset get _flaxSuperGet_localDelta {
     return super.localDelta;
   }
 
@@ -31413,14 +31410,14 @@ final class _PointerPanZoomEndEventProxy extends api.PointerPanZoomEndEvent
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(35, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 
@@ -31444,12 +31441,12 @@ final class _PointerPanZoomStartEventProxy extends api.PointerPanZoomStartEvent
     api2.Duration super.timeStamp,
     int super.device,
     int super.pointer,
-    api4.Offset super.position,
+    api3.Offset super.position,
     int super.embedderId,
     bool super.synthesized,
   });
   @override
-  api.PointerPanZoomStartEvent transformed(api5.Matrix4? transform) {
+  api.PointerPanZoomStartEvent transformed(api4.Matrix4? transform) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -31460,7 +31457,7 @@ final class _PointerPanZoomStartEventProxy extends api.PointerPanZoomStartEvent
     return _flaxConvertedResult;
   }
 
-  api.PointerPanZoomStartEvent _flaxSuper_transformed(api5.Matrix4? transform) {
+  api.PointerPanZoomStartEvent _flaxSuper_transformed(api4.Matrix4? transform) {
     return super.transformed(transform);
   }
 
@@ -31600,10 +31597,10 @@ final class _PointerPanZoomStartEventProxy extends api.PointerPanZoomStartEvent
         (_flaxHas0 ? viewId as int? : null),
         (_flaxHas1 ? timeStamp as api2.Duration? : null),
         (_flaxHas2 ? pointer as int? : null),
-        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas3 ? kind as api3.PointerDeviceKind? : null),
         (_flaxHas4 ? device as int? : null),
-        (_flaxHas5 ? position as api4.Offset? : null),
-        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas5 ? position as api3.Offset? : null),
+        (_flaxHas6 ? delta as api3.Offset? : null),
         (_flaxHas7 ? buttons as int? : null),
         (_flaxHas8 ? obscured as bool? : null),
         (_flaxHas9 ? pressure as double? : null),
@@ -31782,14 +31779,14 @@ final class _PointerPanZoomStartEventProxy extends api.PointerPanZoomStartEvent
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(11, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -31800,38 +31797,38 @@ final class _PointerPanZoomStartEventProxy extends api.PointerPanZoomStartEvent
   }
 
   @override
-  api4.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
-  api4.Offset get _flaxSuperGet_position {
+  api3.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
+  api3.Offset get _flaxSuperGet_position {
     return super.position;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(14, const [], const {});
     if (!_flaxResult.$1) return super.localPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(15, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
   @override
-  api4.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
-  api4.Offset get _flaxSuperGet_localDelta {
+  api3.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
+  api3.Offset get _flaxSuperGet_localDelta {
     return super.localDelta;
   }
 
@@ -31956,14 +31953,14 @@ final class _PointerPanZoomStartEventProxy extends api.PointerPanZoomStartEvent
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(35, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 
@@ -31988,16 +31985,16 @@ final class _PointerPanZoomUpdateEventProxy
     api2.Duration super.timeStamp,
     int super.device,
     int super.pointer,
-    api4.Offset super.position,
+    api3.Offset super.position,
     int super.embedderId,
-    api4.Offset super.pan,
-    api4.Offset super.panDelta,
+    api3.Offset super.pan,
+    api3.Offset super.panDelta,
     double super.scale,
     double super.rotation,
     bool super.synthesized,
   });
   @override
-  api.PointerPanZoomUpdateEvent transformed(api5.Matrix4? transform) {
+  api.PointerPanZoomUpdateEvent transformed(api4.Matrix4? transform) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -32010,7 +32007,7 @@ final class _PointerPanZoomUpdateEventProxy
   }
 
   api.PointerPanZoomUpdateEvent _flaxSuper_transformed(
-    api5.Matrix4? transform,
+    api4.Matrix4? transform,
   ) {
     return super.transformed(transform);
   }
@@ -32183,10 +32180,10 @@ final class _PointerPanZoomUpdateEventProxy
         (_flaxHas0 ? viewId as int? : null),
         (_flaxHas1 ? timeStamp as api2.Duration? : null),
         (_flaxHas2 ? pointer as int? : null),
-        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas3 ? kind as api3.PointerDeviceKind? : null),
         (_flaxHas4 ? device as int? : null),
-        (_flaxHas5 ? position as api4.Offset? : null),
-        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas5 ? position as api3.Offset? : null),
+        (_flaxHas6 ? delta as api3.Offset? : null),
         (_flaxHas7 ? buttons as int? : null),
         (_flaxHas8 ? obscured as bool? : null),
         (_flaxHas9 ? pressure as double? : null),
@@ -32203,10 +32200,10 @@ final class _PointerPanZoomUpdateEventProxy
         (_flaxHas20 ? tilt as double? : null),
         (_flaxHas21 ? synthesized as bool? : null),
         (_flaxHas22 ? embedderId as int? : null),
-        (_flaxHas23 ? pan as api4.Offset? : null),
-        (_flaxHas24 ? localPan as api4.Offset? : null),
-        (_flaxHas25 ? panDelta as api4.Offset? : null),
-        (_flaxHas26 ? localPanDelta as api4.Offset? : null),
+        (_flaxHas23 ? pan as api3.Offset? : null),
+        (_flaxHas24 ? localPan as api3.Offset? : null),
+        (_flaxHas25 ? panDelta as api3.Offset? : null),
+        (_flaxHas26 ? localPanDelta as api3.Offset? : null),
         (_flaxHas27 ? scale as double? : null),
         (_flaxHas28 ? rotation as double? : null),
       ],
@@ -32359,50 +32356,50 @@ final class _PointerPanZoomUpdateEventProxy
   }
 
   @override
-  api4.Offset get pan {
+  api3.Offset get pan {
     final _flaxResult = _flaxPeer.call(7, const [], const {});
     if (!_flaxResult.$1) return super.pan;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_pan {
+  api3.Offset get _flaxSuperGet_pan {
     return super.pan;
   }
 
   @override
-  api4.Offset get localPan {
+  api3.Offset get localPan {
     final _flaxResult = _flaxPeer.call(8, const [], const {});
     if (!_flaxResult.$1) return super.localPan;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPan {
+  api3.Offset get _flaxSuperGet_localPan {
     return super.localPan;
   }
 
   @override
-  api4.Offset get panDelta {
+  api3.Offset get panDelta {
     final _flaxResult = _flaxPeer.call(9, const [], const {});
     if (!_flaxResult.$1) return super.panDelta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_panDelta {
+  api3.Offset get _flaxSuperGet_panDelta {
     return super.panDelta;
   }
 
   @override
-  api4.Offset get localPanDelta {
+  api3.Offset get localPanDelta {
     final _flaxResult = _flaxPeer.call(10, const [], const {});
     if (!_flaxResult.$1) return super.localPanDelta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPanDelta {
+  api3.Offset get _flaxSuperGet_localPanDelta {
     return super.localPanDelta;
   }
 
@@ -32455,14 +32452,14 @@ final class _PointerPanZoomUpdateEventProxy
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(17, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -32473,38 +32470,38 @@ final class _PointerPanZoomUpdateEventProxy
   }
 
   @override
-  api4.Offset get position => _FlaxProxyDispatch32_get_position(this, 19);
-  api4.Offset get _flaxSuperGet_position {
+  api3.Offset get position => _FlaxProxyDispatch32_get_position(this, 19);
+  api3.Offset get _flaxSuperGet_position {
     return super.position;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(20, const [], const {});
     if (!_flaxResult.$1) return super.localPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(21, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
   @override
-  api4.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 22);
-  api4.Offset get _flaxSuperGet_localDelta {
+  api3.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 22);
+  api3.Offset get _flaxSuperGet_localDelta {
     return super.localDelta;
   }
 
@@ -32629,14 +32626,14 @@ final class _PointerPanZoomUpdateEventProxy
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(41, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 
@@ -32659,9 +32656,9 @@ final class _PointerRemovedEventProxy extends api.PointerRemovedEvent
     int super.viewId,
     api2.Duration super.timeStamp,
     int super.pointer,
-    api4.PointerDeviceKind super.kind,
+    api3.PointerDeviceKind super.kind,
     int super.device,
-    api4.Offset super.position,
+    api3.Offset super.position,
     bool super.obscured,
     double super.pressureMin,
     double super.pressureMax,
@@ -32672,7 +32669,7 @@ final class _PointerRemovedEventProxy extends api.PointerRemovedEvent
     int super.embedderId,
   });
   @override
-  api.PointerRemovedEvent transformed(api5.Matrix4? transform) {
+  api.PointerRemovedEvent transformed(api4.Matrix4? transform) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -32683,7 +32680,7 @@ final class _PointerRemovedEventProxy extends api.PointerRemovedEvent
     return _flaxConvertedResult;
   }
 
-  api.PointerRemovedEvent _flaxSuper_transformed(api5.Matrix4? transform) {
+  api.PointerRemovedEvent _flaxSuper_transformed(api4.Matrix4? transform) {
     return super.transformed(transform);
   }
 
@@ -32823,10 +32820,10 @@ final class _PointerRemovedEventProxy extends api.PointerRemovedEvent
         (_flaxHas0 ? viewId as int? : null),
         (_flaxHas1 ? timeStamp as api2.Duration? : null),
         (_flaxHas2 ? pointer as int? : null),
-        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas3 ? kind as api3.PointerDeviceKind? : null),
         (_flaxHas4 ? device as int? : null),
-        (_flaxHas5 ? position as api4.Offset? : null),
-        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas5 ? position as api3.Offset? : null),
+        (_flaxHas6 ? delta as api3.Offset? : null),
         (_flaxHas7 ? buttons as int? : null),
         (_flaxHas8 ? obscured as bool? : null),
         (_flaxHas9 ? pressure as double? : null),
@@ -33005,14 +33002,14 @@ final class _PointerRemovedEventProxy extends api.PointerRemovedEvent
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(11, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -33023,38 +33020,38 @@ final class _PointerRemovedEventProxy extends api.PointerRemovedEvent
   }
 
   @override
-  api4.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
-  api4.Offset get _flaxSuperGet_position {
+  api3.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
+  api3.Offset get _flaxSuperGet_position {
     return super.position;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(14, const [], const {});
     if (!_flaxResult.$1) return super.localPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(15, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
   @override
-  api4.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
-  api4.Offset get _flaxSuperGet_localDelta {
+  api3.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
+  api3.Offset get _flaxSuperGet_localDelta {
     return super.localDelta;
   }
 
@@ -33179,14 +33176,14 @@ final class _PointerRemovedEventProxy extends api.PointerRemovedEvent
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(35, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 
@@ -33229,7 +33226,7 @@ final class _PointerRouterProxy extends api.PointerRouter {
       <Object?>[
         pointer,
         route,
-        (_flaxHas2 ? transform as api5.Matrix4? : null),
+        (_flaxHas2 ? transform as api4.Matrix4? : null),
       ],
       <int>[1 | 2 | (_flaxHas2 ? 4 : 0)],
       const <String>["", "", ""],
@@ -33281,7 +33278,7 @@ final class _PointerRouterProxy extends api.PointerRouter {
     final _flaxHas1 = !identical(transform, _flaxOmitted);
     flaxInvokeWithDefaults(
       super.addGlobalRoute,
-      <Object?>[route, (_flaxHas1 ? transform as api5.Matrix4? : null)],
+      <Object?>[route, (_flaxHas1 ? transform as api4.Matrix4? : null)],
       <int>[1 | (_flaxHas1 ? 2 : 0)],
       const <String>["", ""],
     );
@@ -33348,14 +33345,14 @@ final class _PointerScaleEventProxy extends api.PointerScaleEvent
     this._flaxPeer, {
     int super.viewId,
     api2.Duration super.timeStamp,
-    api4.PointerDeviceKind super.kind,
+    api3.PointerDeviceKind super.kind,
     int super.device,
-    api4.Offset super.position,
+    api3.Offset super.position,
     int super.embedderId,
     double super.scale,
   });
   @override
-  api.PointerScaleEvent transformed(api5.Matrix4? transform) {
+  api.PointerScaleEvent transformed(api4.Matrix4? transform) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -33366,7 +33363,7 @@ final class _PointerScaleEventProxy extends api.PointerScaleEvent
     return _flaxConvertedResult;
   }
 
-  api.PointerScaleEvent _flaxSuper_transformed(api5.Matrix4? transform) {
+  api.PointerScaleEvent _flaxSuper_transformed(api4.Matrix4? transform) {
     return super.transformed(transform);
   }
 
@@ -33511,10 +33508,10 @@ final class _PointerScaleEventProxy extends api.PointerScaleEvent
         (_flaxHas0 ? viewId as int? : null),
         (_flaxHas1 ? timeStamp as api2.Duration? : null),
         (_flaxHas2 ? pointer as int? : null),
-        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas3 ? kind as api3.PointerDeviceKind? : null),
         (_flaxHas4 ? device as int? : null),
-        (_flaxHas5 ? position as api4.Offset? : null),
-        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas5 ? position as api3.Offset? : null),
+        (_flaxHas6 ? delta as api3.Offset? : null),
         (_flaxHas7 ? buttons as int? : null),
         (_flaxHas8 ? obscured as bool? : null),
         (_flaxHas9 ? pressure as double? : null),
@@ -33725,14 +33722,14 @@ final class _PointerScaleEventProxy extends api.PointerScaleEvent
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(13, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -33743,38 +33740,38 @@ final class _PointerScaleEventProxy extends api.PointerScaleEvent
   }
 
   @override
-  api4.Offset get position => _FlaxProxyDispatch32_get_position(this, 15);
-  api4.Offset get _flaxSuperGet_position {
+  api3.Offset get position => _FlaxProxyDispatch32_get_position(this, 15);
+  api3.Offset get _flaxSuperGet_position {
     return super.position;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(16, const [], const {});
     if (!_flaxResult.$1) return super.localPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(17, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
   @override
-  api4.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 18);
-  api4.Offset get _flaxSuperGet_localDelta {
+  api3.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 18);
+  api3.Offset get _flaxSuperGet_localDelta {
     return super.localDelta;
   }
 
@@ -33899,14 +33896,14 @@ final class _PointerScaleEventProxy extends api.PointerScaleEvent
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(37, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 
@@ -33929,13 +33926,13 @@ final class _PointerScrollInertiaCancelEventProxy
     this._flaxPeer, {
     int super.viewId,
     api2.Duration super.timeStamp,
-    api4.PointerDeviceKind super.kind,
+    api3.PointerDeviceKind super.kind,
     int super.device,
-    api4.Offset super.position,
+    api3.Offset super.position,
     int super.embedderId,
   });
   @override
-  api.PointerScrollInertiaCancelEvent transformed(api5.Matrix4? transform) {
+  api.PointerScrollInertiaCancelEvent transformed(api4.Matrix4? transform) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -33948,7 +33945,7 @@ final class _PointerScrollInertiaCancelEventProxy
   }
 
   api.PointerScrollInertiaCancelEvent _flaxSuper_transformed(
-    api5.Matrix4? transform,
+    api4.Matrix4? transform,
   ) {
     return super.transformed(transform);
   }
@@ -34090,10 +34087,10 @@ final class _PointerScrollInertiaCancelEventProxy
         (_flaxHas0 ? viewId as int? : null),
         (_flaxHas1 ? timeStamp as api2.Duration? : null),
         (_flaxHas2 ? pointer as int? : null),
-        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas3 ? kind as api3.PointerDeviceKind? : null),
         (_flaxHas4 ? device as int? : null),
-        (_flaxHas5 ? position as api4.Offset? : null),
-        (_flaxHas6 ? delta as api4.Offset? : null),
+        (_flaxHas5 ? position as api3.Offset? : null),
+        (_flaxHas6 ? delta as api3.Offset? : null),
         (_flaxHas7 ? buttons as int? : null),
         (_flaxHas8 ? obscured as bool? : null),
         (_flaxHas9 ? pressure as double? : null),
@@ -34289,14 +34286,14 @@ final class _PointerScrollInertiaCancelEventProxy
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(12, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -34307,38 +34304,38 @@ final class _PointerScrollInertiaCancelEventProxy
   }
 
   @override
-  api4.Offset get position => _FlaxProxyDispatch32_get_position(this, 14);
-  api4.Offset get _flaxSuperGet_position {
+  api3.Offset get position => _FlaxProxyDispatch32_get_position(this, 14);
+  api3.Offset get _flaxSuperGet_position {
     return super.position;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(15, const [], const {});
     if (!_flaxResult.$1) return super.localPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(16, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
   @override
-  api4.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 17);
-  api4.Offset get _flaxSuperGet_localDelta {
+  api3.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 17);
+  api3.Offset get _flaxSuperGet_localDelta {
     return super.localDelta;
   }
 
@@ -34463,14 +34460,14 @@ final class _PointerScrollInertiaCancelEventProxy
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(36, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 
@@ -34493,13 +34490,13 @@ final class _PointerSignalEventProxy extends api.PointerSignalEvent
     int super.viewId,
     api2.Duration super.timeStamp,
     int super.pointer,
-    api4.PointerDeviceKind super.kind,
+    api3.PointerDeviceKind super.kind,
     int super.device,
-    api4.Offset super.position,
+    api3.Offset super.position,
     int super.embedderId,
   });
   @override
-  api.PointerEvent transformed(api5.Matrix4? transform) {
+  api.PointerEvent transformed(api4.Matrix4? transform) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -34679,14 +34676,14 @@ final class _PointerSignalEventProxy extends api.PointerSignalEvent
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(11, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -34697,38 +34694,38 @@ final class _PointerSignalEventProxy extends api.PointerSignalEvent
   }
 
   @override
-  api4.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
-  api4.Offset get _flaxSuperGet_position {
+  api3.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
+  api3.Offset get _flaxSuperGet_position {
     return super.position;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(14, const [], const {});
     if (!_flaxResult.$1) return super.localPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(15, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
   @override
-  api4.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
-  api4.Offset get _flaxSuperGet_localDelta {
+  api3.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
+  api3.Offset get _flaxSuperGet_localDelta {
     return super.localDelta;
   }
 
@@ -34853,14 +34850,14 @@ final class _PointerSignalEventProxy extends api.PointerSignalEvent
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(35, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 
@@ -34928,9 +34925,9 @@ final class _PointerUpEventProxy extends api.PointerUpEvent
     int super.viewId,
     api2.Duration super.timeStamp,
     int super.pointer,
-    api4.PointerDeviceKind super.kind,
+    api3.PointerDeviceKind super.kind,
     int super.device,
-    api4.Offset super.position,
+    api3.Offset super.position,
     int super.buttons,
     bool super.obscured,
     double super.pressure,
@@ -34948,7 +34945,7 @@ final class _PointerUpEventProxy extends api.PointerUpEvent
     int super.embedderId,
   });
   @override
-  api.PointerUpEvent transformed(api5.Matrix4? transform) {
+  api.PointerUpEvent transformed(api4.Matrix4? transform) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
       transform,
     ], <String, Object?>{});
@@ -34959,7 +34956,7 @@ final class _PointerUpEventProxy extends api.PointerUpEvent
     return _flaxConvertedResult;
   }
 
-  api.PointerUpEvent _flaxSuper_transformed(api5.Matrix4? transform) {
+  api.PointerUpEvent _flaxSuper_transformed(api4.Matrix4? transform) {
     return super.transformed(transform);
   }
 
@@ -35105,11 +35102,11 @@ final class _PointerUpEventProxy extends api.PointerUpEvent
         (_flaxHas0 ? viewId as int? : null),
         (_flaxHas1 ? timeStamp as api2.Duration? : null),
         (_flaxHas2 ? pointer as int? : null),
-        (_flaxHas3 ? kind as api4.PointerDeviceKind? : null),
+        (_flaxHas3 ? kind as api3.PointerDeviceKind? : null),
         (_flaxHas4 ? device as int? : null),
-        (_flaxHas5 ? position as api4.Offset? : null),
-        (_flaxHas6 ? localPosition as api4.Offset? : null),
-        (_flaxHas7 ? delta as api4.Offset? : null),
+        (_flaxHas5 ? position as api3.Offset? : null),
+        (_flaxHas6 ? localPosition as api3.Offset? : null),
+        (_flaxHas7 ? delta as api3.Offset? : null),
         (_flaxHas8 ? buttons as int? : null),
         (_flaxHas9 ? obscured as bool? : null),
         (_flaxHas10 ? pressure as double? : null),
@@ -35290,14 +35287,14 @@ final class _PointerUpEventProxy extends api.PointerUpEvent
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(11, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -35308,38 +35305,38 @@ final class _PointerUpEventProxy extends api.PointerUpEvent
   }
 
   @override
-  api4.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
-  api4.Offset get _flaxSuperGet_position {
+  api3.Offset get position => _FlaxProxyDispatch32_get_position(this, 13);
+  api3.Offset get _flaxSuperGet_position {
     return super.position;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(14, const [], const {});
     if (!_flaxResult.$1) return super.localPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(15, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
   @override
-  api4.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
-  api4.Offset get _flaxSuperGet_localDelta {
+  api3.Offset get localDelta => _FlaxProxyDispatch32_get_localDelta(this, 16);
+  api3.Offset get _flaxSuperGet_localDelta {
     return super.localDelta;
   }
 
@@ -35464,14 +35461,14 @@ final class _PointerUpEventProxy extends api.PointerUpEvent
   }
 
   @override
-  api5.Matrix4? get transform {
+  api4.Matrix4? get transform {
     final _flaxResult = _flaxPeer.call(35, const [], const {});
     if (!_flaxResult.$1) return super.transform;
-    final _flaxConvertedResult = _flaxResult.$2 as api5.Matrix4?;
+    final _flaxConvertedResult = _flaxResult.$2 as api4.Matrix4?;
     return _flaxConvertedResult;
   }
 
-  api5.Matrix4? get _flaxSuperGet_transform {
+  api4.Matrix4? get _flaxSuperGet_transform {
     return super.transform;
   }
 
@@ -35532,16 +35529,16 @@ final class _PositionedGestureDetailsProxy
   final FlaxProxyPeer _flaxPeer;
   _PositionedGestureDetailsProxy(this._flaxPeer);
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(0, const [], const {});
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
   @override
-  api4.Offset get localPosition {
+  api3.Offset get localPosition {
     final _flaxResult = _flaxPeer.call(1, const [], const {});
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 }
@@ -35560,7 +35557,7 @@ final class _PrimaryPointerGestureRecognizerProxy
     double? super.preAcceptSlopTolerance,
     double? super.postAcceptSlopTolerance,
     Object? super.debugOwner,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons) super.allowedButtonsFilter,
   });
   @override
@@ -35748,7 +35745,7 @@ final class _PrimaryPointerGestureRecognizerProxy
     final _flaxHas1 = !identical(transform, _flaxOmitted);
     flaxInvokeWithDefaults(
       super.startTrackingPointer,
-      <Object?>[pointer, (_flaxHas1 ? transform as api5.Matrix4? : null)],
+      <Object?>[pointer, (_flaxHas1 ? transform as api4.Matrix4? : null)],
       <int>[1 | (_flaxHas1 ? 2 : 0)],
       const <String>["", ""],
     );
@@ -35844,11 +35841,11 @@ final class _PrimaryPointerGestureRecognizerProxy
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 18, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -36221,9 +36218,9 @@ final class _PrimaryPointerGestureRecognizerProxy
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 40);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -36256,9 +36253,9 @@ final class _PrimaryPointerGestureRecognizerProxy
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 45, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -36526,11 +36523,11 @@ final class _ScaleGestureRecognizerProxy extends api.ScaleGestureRecognizer
   _ScaleGestureRecognizerProxy(
     this._flaxPeer, {
     Object? super.debugOwner,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons) super.allowedButtonsFilter,
     api.DragStartBehavior super.dragStartBehavior,
     bool super.trackpadScrollCausesScale,
-    api4.Offset super.trackpadScrollToScaleFactor,
+    api3.Offset super.trackpadScrollToScaleFactor,
   });
   @override
   void addAllowedPointer(api.PointerDownEvent event) {
@@ -36717,7 +36714,7 @@ final class _ScaleGestureRecognizerProxy extends api.ScaleGestureRecognizer
     final _flaxHas1 = !identical(transform, _flaxOmitted);
     flaxInvokeWithDefaults(
       super.startTrackingPointer,
-      <Object?>[pointer, (_flaxHas1 ? transform as api5.Matrix4? : null)],
+      <Object?>[pointer, (_flaxHas1 ? transform as api4.Matrix4? : null)],
       <int>[1 | (_flaxHas1 ? 2 : 0)],
       const <String>["", ""],
     );
@@ -36813,11 +36810,11 @@ final class _ScaleGestureRecognizerProxy extends api.ScaleGestureRecognizer
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 18, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -37110,14 +37107,14 @@ final class _ScaleGestureRecognizerProxy extends api.ScaleGestureRecognizer
   }
 
   @override
-  api4.Offset get trackpadScrollToScaleFactor {
+  api3.Offset get trackpadScrollToScaleFactor {
     final _flaxResult = _flaxPeer.call(33, const [], const {});
     if (!_flaxResult.$1) return super.trackpadScrollToScaleFactor;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_trackpadScrollToScaleFactor {
+  api3.Offset get _flaxSuperGet_trackpadScrollToScaleFactor {
     return super.trackpadScrollToScaleFactor;
   }
 
@@ -37170,9 +37167,9 @@ final class _ScaleGestureRecognizerProxy extends api.ScaleGestureRecognizer
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 39);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -37253,7 +37250,7 @@ final class _ScaleGestureRecognizerProxy extends api.ScaleGestureRecognizer
   }
 
   @override
-  set trackpadScrollToScaleFactor(api4.Offset value) {
+  set trackpadScrollToScaleFactor(api3.Offset value) {
     final result = _flaxPeer.call(46, [value], const {});
     if (!result.$1) {
       super.trackpadScrollToScaleFactor = value;
@@ -37261,7 +37258,7 @@ final class _ScaleGestureRecognizerProxy extends api.ScaleGestureRecognizer
     }
   }
 
-  void _flaxSuperSet_trackpadScrollToScaleFactor(api4.Offset value) {
+  void _flaxSuperSet_trackpadScrollToScaleFactor(api3.Offset value) {
     super.trackpadScrollToScaleFactor = value;
   }
 
@@ -37280,9 +37277,9 @@ final class _ScaleGestureRecognizerProxy extends api.ScaleGestureRecognizer
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 49, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -37397,11 +37394,11 @@ final class _ScaleStartDetailsProxy extends api.ScaleStartDetails
   bool _flaxCalledSuper = false;
   _ScaleStartDetailsProxy(
     this._flaxPeer, {
-    api4.Offset super.focalPoint,
-    api4.Offset? super.localFocalPoint,
+    api3.Offset super.focalPoint,
+    api3.Offset? super.localFocalPoint,
     int super.pointerCount,
     api2.Duration? super.sourceTimeStamp,
-    api4.PointerDeviceKind? super.kind,
+    api3.PointerDeviceKind? super.kind,
   });
   @override
   String toStringShort() {
@@ -37473,26 +37470,26 @@ final class _ScaleStartDetailsProxy extends api.ScaleStartDetails
   }
 
   @override
-  api4.Offset get focalPoint {
+  api3.Offset get focalPoint {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.focalPoint;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_focalPoint {
+  api3.Offset get _flaxSuperGet_focalPoint {
     return super.focalPoint;
   }
 
   @override
-  api4.Offset get localFocalPoint {
+  api3.Offset get localFocalPoint {
     final _flaxResult = _flaxPeer.call(5, const [], const {});
     if (!_flaxResult.$1) return super.localFocalPoint;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localFocalPoint {
+  api3.Offset get _flaxSuperGet_localFocalPoint {
     return super.localFocalPoint;
   }
 
@@ -37516,14 +37513,14 @@ final class _ScaleStartDetailsProxy extends api.ScaleStartDetails
   }
 
   @override
-  api4.PointerDeviceKind? get kind {
+  api3.PointerDeviceKind? get kind {
     final _flaxResult = _flaxPeer.call(8, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind?;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind?;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind? get _flaxSuperGet_kind {
+  api3.PointerDeviceKind? get _flaxSuperGet_kind {
     return super.kind;
   }
 }
@@ -37537,14 +37534,14 @@ final class _ScaleUpdateDetailsProxy extends api.ScaleUpdateDetails
   bool _flaxCalledSuper = false;
   _ScaleUpdateDetailsProxy(
     this._flaxPeer, {
-    api4.Offset super.focalPoint,
-    api4.Offset? super.localFocalPoint,
+    api3.Offset super.focalPoint,
+    api3.Offset? super.localFocalPoint,
     double super.scale,
     double super.horizontalScale,
     double super.verticalScale,
     double super.rotation,
     int super.pointerCount,
-    api4.Offset super.focalPointDelta,
+    api3.Offset super.focalPointDelta,
     api2.Duration? super.sourceTimeStamp,
   });
   @override
@@ -37617,38 +37614,38 @@ final class _ScaleUpdateDetailsProxy extends api.ScaleUpdateDetails
   }
 
   @override
-  api4.Offset get focalPointDelta {
+  api3.Offset get focalPointDelta {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.focalPointDelta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_focalPointDelta {
+  api3.Offset get _flaxSuperGet_focalPointDelta {
     return super.focalPointDelta;
   }
 
   @override
-  api4.Offset get focalPoint {
+  api3.Offset get focalPoint {
     final _flaxResult = _flaxPeer.call(5, const [], const {});
     if (!_flaxResult.$1) return super.focalPoint;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_focalPoint {
+  api3.Offset get _flaxSuperGet_focalPoint {
     return super.focalPoint;
   }
 
   @override
-  api4.Offset get localFocalPoint {
+  api3.Offset get localFocalPoint {
     final _flaxResult = _flaxPeer.call(6, const [], const {});
     if (!_flaxResult.$1) return super.localFocalPoint;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localFocalPoint {
+  api3.Offset get _flaxSuperGet_localFocalPoint {
     return super.localFocalPoint;
   }
 
@@ -37819,9 +37816,9 @@ final class _SerialTapDownDetailsProxy extends api.SerialTapDownDetails
   bool _flaxCalledSuper = false;
   _SerialTapDownDetailsProxy(
     this._flaxPeer, {
-    api4.Offset super.globalPosition,
-    api4.Offset? super.localPosition,
-    required api4.PointerDeviceKind super.kind,
+    api3.Offset super.globalPosition,
+    api3.Offset? super.localPosition,
+    required api3.PointerDeviceKind super.kind,
     int super.buttons,
     int super.count,
   });
@@ -37895,33 +37892,33 @@ final class _SerialTapDownDetailsProxy extends api.SerialTapDownDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(6, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -37961,7 +37958,7 @@ final class _SerialTapGestureRecognizerProxy
   _SerialTapGestureRecognizerProxy(
     this._flaxPeer, {
     Object? super.debugOwner,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons) super.allowedButtonsFilter,
   });
   @override
@@ -38049,11 +38046,11 @@ final class _SerialTapGestureRecognizerProxy
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 8, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -38408,9 +38405,9 @@ final class _SerialTapGestureRecognizerProxy
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 28);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -38476,9 +38473,9 @@ final class _SerialTapGestureRecognizerProxy
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 34, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -38594,9 +38591,9 @@ final class _SerialTapUpDetailsProxy extends api.SerialTapUpDetails
   bool _flaxCalledSuper = false;
   _SerialTapUpDetailsProxy(
     this._flaxPeer, {
-    api4.Offset super.globalPosition,
-    api4.Offset? super.localPosition,
-    api4.PointerDeviceKind? super.kind,
+    api3.Offset super.globalPosition,
+    api3.Offset? super.localPosition,
+    api3.PointerDeviceKind? super.kind,
     int super.count,
   });
   @override
@@ -38669,33 +38666,33 @@ final class _SerialTapUpDetailsProxy extends api.SerialTapUpDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.PointerDeviceKind? get kind {
+  api3.PointerDeviceKind? get kind {
     final _flaxResult = _flaxPeer.call(6, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind?;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind?;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind? get _flaxSuperGet_kind {
+  api3.PointerDeviceKind? get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -38721,9 +38718,9 @@ final class _TapDownDetailsProxy extends api.TapDownDetails
   bool _flaxCalledSuper = false;
   _TapDownDetailsProxy(
     this._flaxPeer, {
-    api4.Offset super.globalPosition,
-    api4.Offset? super.localPosition,
-    api4.PointerDeviceKind? super.kind,
+    api3.Offset super.globalPosition,
+    api3.Offset? super.localPosition,
+    api3.PointerDeviceKind? super.kind,
   });
   @override
   String toStringShort() {
@@ -38795,33 +38792,33 @@ final class _TapDownDetailsProxy extends api.TapDownDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.PointerDeviceKind? get kind {
+  api3.PointerDeviceKind? get kind {
     final _flaxResult = _flaxPeer.call(6, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind?;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind?;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind? get _flaxSuperGet_kind {
+  api3.PointerDeviceKind? get _flaxSuperGet_kind {
     return super.kind;
   }
 }
@@ -38835,9 +38832,9 @@ final class _TapDragDownDetailsProxy extends api.TapDragDownDetails
   bool _flaxCalledSuper = false;
   _TapDragDownDetailsProxy(
     this._flaxPeer, {
-    required api4.Offset super.globalPosition,
-    required api4.Offset super.localPosition,
-    api4.PointerDeviceKind? super.kind,
+    required api3.Offset super.globalPosition,
+    required api3.Offset super.localPosition,
+    api3.PointerDeviceKind? super.kind,
     required int super.consecutiveTapCount,
   });
   @override
@@ -38910,33 +38907,33 @@ final class _TapDragDownDetailsProxy extends api.TapDragDownDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.PointerDeviceKind? get kind {
+  api3.PointerDeviceKind? get kind {
     final _flaxResult = _flaxPeer.call(6, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind?;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind?;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind? get _flaxSuperGet_kind {
+  api3.PointerDeviceKind? get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -38962,8 +38959,8 @@ final class _TapDragEndDetailsProxy extends api.TapDragEndDetails
   bool _flaxCalledSuper = false;
   _TapDragEndDetailsProxy(
     this._flaxPeer, {
-    api4.Offset super.globalPosition,
-    api4.Offset? super.localPosition,
+    api3.Offset super.globalPosition,
+    api3.Offset? super.localPosition,
     api.Velocity super.velocity,
     double? super.primaryVelocity,
     required int super.consecutiveTapCount,
@@ -39038,21 +39035,21 @@ final class _TapDragEndDetailsProxy extends api.TapDragEndDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
@@ -39102,10 +39099,10 @@ final class _TapDragStartDetailsProxy extends api.TapDragStartDetails
   bool _flaxCalledSuper = false;
   _TapDragStartDetailsProxy(
     this._flaxPeer, {
-    required api4.Offset super.globalPosition,
-    required api4.Offset super.localPosition,
+    required api3.Offset super.globalPosition,
+    required api3.Offset super.localPosition,
     api2.Duration? super.sourceTimeStamp,
-    api4.PointerDeviceKind? super.kind,
+    api3.PointerDeviceKind? super.kind,
     required int super.consecutiveTapCount,
   });
   @override
@@ -39178,21 +39175,21 @@ final class _TapDragStartDetailsProxy extends api.TapDragStartDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
@@ -39209,14 +39206,14 @@ final class _TapDragStartDetailsProxy extends api.TapDragStartDetails
   }
 
   @override
-  api4.PointerDeviceKind? get kind {
+  api3.PointerDeviceKind? get kind {
     final _flaxResult = _flaxPeer.call(7, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind?;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind?;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind? get _flaxSuperGet_kind {
+  api3.PointerDeviceKind? get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -39242,9 +39239,9 @@ final class _TapDragUpDetailsProxy extends api.TapDragUpDetails
   bool _flaxCalledSuper = false;
   _TapDragUpDetailsProxy(
     this._flaxPeer, {
-    required api4.Offset super.globalPosition,
-    required api4.Offset super.localPosition,
-    required api4.PointerDeviceKind super.kind,
+    required api3.Offset super.globalPosition,
+    required api3.Offset super.localPosition,
+    required api3.PointerDeviceKind super.kind,
     required int super.consecutiveTapCount,
   });
   @override
@@ -39317,33 +39314,33 @@ final class _TapDragUpDetailsProxy extends api.TapDragUpDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(6, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
@@ -39369,14 +39366,14 @@ final class _TapDragUpdateDetailsProxy extends api.TapDragUpdateDetails
   bool _flaxCalledSuper = false;
   _TapDragUpdateDetailsProxy(
     this._flaxPeer, {
-    required api4.Offset super.globalPosition,
-    required api4.Offset super.localPosition,
+    required api3.Offset super.globalPosition,
+    required api3.Offset super.localPosition,
     api2.Duration? super.sourceTimeStamp,
-    api4.Offset super.delta,
+    api3.Offset super.delta,
     double? super.primaryDelta,
-    api4.PointerDeviceKind? super.kind,
-    required api4.Offset super.offsetFromOrigin,
-    required api4.Offset super.localOffsetFromOrigin,
+    api3.PointerDeviceKind? super.kind,
+    required api3.Offset super.offsetFromOrigin,
+    required api3.Offset super.localOffsetFromOrigin,
     required int super.consecutiveTapCount,
   });
   @override
@@ -39449,21 +39446,21 @@ final class _TapDragUpdateDetailsProxy extends api.TapDragUpdateDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
@@ -39480,14 +39477,14 @@ final class _TapDragUpdateDetailsProxy extends api.TapDragUpdateDetails
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(7, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 
@@ -39504,38 +39501,38 @@ final class _TapDragUpdateDetailsProxy extends api.TapDragUpdateDetails
   }
 
   @override
-  api4.PointerDeviceKind? get kind {
+  api3.PointerDeviceKind? get kind {
     final _flaxResult = _flaxPeer.call(9, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind?;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind?;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind? get _flaxSuperGet_kind {
+  api3.PointerDeviceKind? get _flaxSuperGet_kind {
     return super.kind;
   }
 
   @override
-  api4.Offset get offsetFromOrigin {
+  api3.Offset get offsetFromOrigin {
     final _flaxResult = _flaxPeer.call(10, const [], const {});
     if (!_flaxResult.$1) return super.offsetFromOrigin;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_offsetFromOrigin {
+  api3.Offset get _flaxSuperGet_offsetFromOrigin {
     return super.offsetFromOrigin;
   }
 
   @override
-  api4.Offset get localOffsetFromOrigin {
+  api3.Offset get localOffsetFromOrigin {
     final _flaxResult = _flaxPeer.call(11, const [], const {});
     if (!_flaxResult.$1) return super.localOffsetFromOrigin;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_localOffsetFromOrigin {
+  api3.Offset get _flaxSuperGet_localOffsetFromOrigin {
     return super.localOffsetFromOrigin;
   }
 
@@ -39562,7 +39559,7 @@ final class _TapGestureRecognizerProxy extends api.TapGestureRecognizer
   _TapGestureRecognizerProxy(
     this._flaxPeer, {
     Object? super.debugOwner,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons) super.allowedButtonsFilter,
     double? super.preAcceptSlopTolerance,
     double? super.postAcceptSlopTolerance,
@@ -39689,7 +39686,7 @@ final class _TapGestureRecognizerProxy extends api.TapGestureRecognizer
     final _flaxHas1 = !identical(transform, _flaxOmitted);
     flaxInvokeWithDefaults(
       super.startTrackingPointer,
-      <Object?>[pointer, (_flaxHas1 ? transform as api5.Matrix4? : null)],
+      <Object?>[pointer, (_flaxHas1 ? transform as api4.Matrix4? : null)],
       <int>[1 | (_flaxHas1 ? 2 : 0)],
       const <String>["", ""],
     );
@@ -40004,11 +40001,11 @@ final class _TapGestureRecognizerProxy extends api.TapGestureRecognizer
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 26, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -40487,9 +40484,9 @@ final class _TapGestureRecognizerProxy extends api.TapGestureRecognizer
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 57);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -40683,9 +40680,9 @@ final class _TapGestureRecognizerProxy extends api.TapGestureRecognizer
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 73, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -40796,45 +40793,45 @@ final class _TapMoveDetailsProxy extends api.TapMoveDetails
   final FlaxProxyPeer _flaxPeer;
   _TapMoveDetailsProxy(
     this._flaxPeer, {
-    required api4.PointerDeviceKind super.kind,
-    api4.Offset super.globalPosition,
-    api4.Offset super.delta,
-    api4.Offset? super.localPosition,
+    required api3.PointerDeviceKind super.kind,
+    api3.Offset super.globalPosition,
+    api3.Offset super.delta,
+    api3.Offset? super.localPosition,
   });
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(0, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 1);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.PointerDeviceKind get kind => _FlaxProxyDispatch29_get_kind(this, 2);
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get kind => _FlaxProxyDispatch29_get_kind(this, 2);
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 
   @override
-  api4.Offset get delta {
+  api3.Offset get delta {
     final _flaxResult = _flaxPeer.call(3, const [], const {});
     if (!_flaxResult.$1) return super.delta;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_delta {
+  api3.Offset get _flaxSuperGet_delta {
     return super.delta;
   }
 }
@@ -40848,9 +40845,9 @@ final class _TapUpDetailsProxy extends api.TapUpDetails
   bool _flaxCalledSuper = false;
   _TapUpDetailsProxy(
     this._flaxPeer, {
-    api4.Offset super.globalPosition,
-    api4.Offset? super.localPosition,
-    required api4.PointerDeviceKind super.kind,
+    api3.Offset super.globalPosition,
+    api3.Offset? super.localPosition,
+    required api3.PointerDeviceKind super.kind,
   });
   @override
   String toStringShort() {
@@ -40922,33 +40919,33 @@ final class _TapUpDetailsProxy extends api.TapUpDetails
   }
 
   @override
-  api4.Offset get globalPosition {
+  api3.Offset get globalPosition {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.globalPosition;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_globalPosition {
+  api3.Offset get _flaxSuperGet_globalPosition {
     return super.globalPosition;
   }
 
   @override
-  api4.Offset get localPosition =>
+  api3.Offset get localPosition =>
       _FlaxProxyDispatch16_get_localPosition(this, 5);
-  api4.Offset get _flaxSuperGet_localPosition {
+  api3.Offset get _flaxSuperGet_localPosition {
     return super.localPosition;
   }
 
   @override
-  api4.PointerDeviceKind get kind {
+  api3.PointerDeviceKind get kind {
     final _flaxResult = _flaxPeer.call(6, const [], const {});
     if (!_flaxResult.$1) return super.kind;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.PointerDeviceKind;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.PointerDeviceKind;
     return _flaxConvertedResult;
   }
 
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 }
@@ -40956,7 +40953,7 @@ final class _TapUpDetailsProxy extends api.TapUpDetails
 final class _VelocityProxy extends api.Velocity
     implements _FlaxProxyDispatch13, _FlaxProxyDispatch42 {
   final FlaxProxyPeer _flaxPeer;
-  _VelocityProxy(this._flaxPeer, {required api4.Offset super.pixelsPerSecond});
+  _VelocityProxy(this._flaxPeer, {required api3.Offset super.pixelsPerSecond});
   @override
   api.Velocity clampMagnitude(double minValue, double maxValue) {
     final _flaxResult = _flaxPeer.call(0, <Object?>[
@@ -41030,9 +41027,9 @@ final class _VelocityProxy extends api.Velocity
   }
 
   @override
-  api4.Offset get pixelsPerSecond =>
+  api3.Offset get pixelsPerSecond =>
       _FlaxProxyDispatch42_get_pixelsPerSecond(this, 5);
-  api4.Offset get _flaxSuperGet_pixelsPerSecond {
+  api3.Offset get _flaxSuperGet_pixelsPerSecond {
     return super.pixelsPerSecond;
   }
 }
@@ -41045,10 +41042,10 @@ final class _VelocityEstimateProxy extends api.VelocityEstimate
   final FlaxProxyPeer _flaxPeer;
   _VelocityEstimateProxy(
     this._flaxPeer, {
-    required api4.Offset super.pixelsPerSecond,
+    required api3.Offset super.pixelsPerSecond,
     required double super.confidence,
     required api2.Duration super.duration,
-    required api4.Offset super.offset,
+    required api3.Offset super.offset,
   });
   @override
   String toString() {
@@ -41060,9 +41057,9 @@ final class _VelocityEstimateProxy extends api.VelocityEstimate
   }
 
   @override
-  api4.Offset get pixelsPerSecond =>
+  api3.Offset get pixelsPerSecond =>
       _FlaxProxyDispatch42_get_pixelsPerSecond(this, 1);
-  api4.Offset get _flaxSuperGet_pixelsPerSecond {
+  api3.Offset get _flaxSuperGet_pixelsPerSecond {
     return super.pixelsPerSecond;
   }
 
@@ -41085,14 +41082,14 @@ final class _VelocityEstimateProxy extends api.VelocityEstimate
   }
 
   @override
-  api4.Offset get offset {
+  api3.Offset get offset {
     final _flaxResult = _flaxPeer.call(4, const [], const {});
     if (!_flaxResult.$1) return super.offset;
-    final _flaxConvertedResult = _flaxResult.$2 as api4.Offset;
+    final _flaxConvertedResult = _flaxResult.$2 as api3.Offset;
     return _flaxConvertedResult;
   }
 
-  api4.Offset get _flaxSuperGet_offset {
+  api3.Offset get _flaxSuperGet_offset {
     return super.offset;
   }
 }
@@ -41102,14 +41099,14 @@ final class _VelocityTrackerProxy extends api.VelocityTracker
   final FlaxProxyPeer _flaxPeer;
   _VelocityTrackerProxy.withKind(
     this._flaxPeer,
-    api4.PointerDeviceKind super.kind,
+    api3.PointerDeviceKind super.kind,
   ) : super.withKind();
   @override
-  void addPosition(api2.Duration time, api4.Offset position) {
+  void addPosition(api2.Duration time, api3.Offset position) {
     return _FlaxProxyDispatch27_call_addPosition(this, 0, time, position);
   }
 
-  void _flaxSuper_addPosition(api2.Duration time, api4.Offset position) {
+  void _flaxSuper_addPosition(api2.Duration time, api3.Offset position) {
     super.addPosition(time, position);
     return;
   }
@@ -41138,8 +41135,8 @@ final class _VelocityTrackerProxy extends api.VelocityTracker
   }
 
   @override
-  api4.PointerDeviceKind get kind => _FlaxProxyDispatch29_get_kind(this, 3);
-  api4.PointerDeviceKind get _flaxSuperGet_kind {
+  api3.PointerDeviceKind get kind => _FlaxProxyDispatch29_get_kind(this, 3);
+  api3.PointerDeviceKind get _flaxSuperGet_kind {
     return super.kind;
   }
 }
@@ -41155,7 +41152,7 @@ final class _VerticalMultiDragGestureRecognizerProxy
   _VerticalMultiDragGestureRecognizerProxy(
     this._flaxPeer, {
     Object? super.debugOwner,
-    Set<api4.PointerDeviceKind>? super.supportedDevices,
+    Set<api3.PointerDeviceKind>? super.supportedDevices,
     bool Function(int buttons)? super.allowedButtonsFilter,
   });
   @override
@@ -41307,11 +41304,11 @@ final class _VerticalMultiDragGestureRecognizerProxy
   }
 
   @override
-  api4.PointerDeviceKind getKindForPointer(int pointer) {
+  api3.PointerDeviceKind getKindForPointer(int pointer) {
     return _FlaxProxyDispatch0_call_getKindForPointer(this, 12, pointer);
   }
 
-  api4.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
+  api3.PointerDeviceKind _flaxSuper_getKindForPointer(int pointer) {
     return super.getKindForPointer(pointer);
   }
 
@@ -41557,15 +41554,15 @@ final class _VerticalMultiDragGestureRecognizerProxy
   }
 
   @override
-  api.Drag? Function(api4.Offset position)? get onStart {
+  api.Drag? Function(api3.Offset position)? get onStart {
     final _flaxResult = _flaxPeer.call(23, const [], const {});
     if (!_flaxResult.$1) return super.onStart;
     final _flaxConvertedResult =
-        _flaxResult.$2 as api.Drag? Function(api4.Offset position)?;
+        _flaxResult.$2 as api.Drag? Function(api3.Offset position)?;
     return _flaxConvertedResult;
   }
 
-  api.Drag? Function(api4.Offset position)? get _flaxSuperGet_onStart {
+  api.Drag? Function(api3.Offset position)? get _flaxSuperGet_onStart {
     return super.onStart;
   }
 
@@ -41583,9 +41580,9 @@ final class _VerticalMultiDragGestureRecognizerProxy
   }
 
   @override
-  Set<api4.PointerDeviceKind>? get supportedDevices =>
+  Set<api3.PointerDeviceKind>? get supportedDevices =>
       _FlaxProxyDispatch0_get_supportedDevices(this, 26);
-  Set<api4.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
+  Set<api3.PointerDeviceKind>? get _flaxSuperGet_supportedDevices {
     return super.supportedDevices;
   }
 
@@ -41597,7 +41594,7 @@ final class _VerticalMultiDragGestureRecognizerProxy
   }
 
   @override
-  set onStart(api.Drag? Function(api4.Offset position)? value) {
+  set onStart(api.Drag? Function(api3.Offset position)? value) {
     final result = _flaxPeer.call(28, [value], const {});
     if (!result.$1) {
       super.onStart = value;
@@ -41605,7 +41602,7 @@ final class _VerticalMultiDragGestureRecognizerProxy
     }
   }
 
-  void _flaxSuperSet_onStart(api.Drag? Function(api4.Offset position)? value) {
+  void _flaxSuperSet_onStart(api.Drag? Function(api3.Offset position)? value) {
     super.onStart = value;
   }
 
@@ -41617,9 +41614,9 @@ final class _VerticalMultiDragGestureRecognizerProxy
   }
 
   @override
-  set supportedDevices(Set<api4.PointerDeviceKind>? value) =>
+  set supportedDevices(Set<api3.PointerDeviceKind>? value) =>
       _FlaxProxyDispatch0_set_supportedDevices(this, 30, value);
-  void _flaxSuperSet_supportedDevices(Set<api4.PointerDeviceKind>? value) {
+  void _flaxSuperSet_supportedDevices(Set<api3.PointerDeviceKind>? value) {
     super.supportedDevices = value;
   }
 }
@@ -42603,7 +42600,7 @@ Function _flaxClass_HitTestEntry<
             [],
             _flaxBinding101,
             id:
-                types.key<api5.Matrix4? Function()>() +
+                types.key<api4.Matrix4? Function()>() +
                 ":callback:<>()->object?:flax.core/sdk_rendering#type:Matrix4",
           ),
           hasSuper: true,
@@ -49442,10 +49439,10 @@ const _flaxBinding48 = FlaxTypeRef(
 const _flaxBinding49 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("position", flaxOffsetType)],
   _flaxBinding48,
-  FlaxCallbackAdapters.wrap1<api4.Offset, api.Drag?>,
+  FlaxCallbackAdapters.wrap1<api3.Offset, api.Drag?>,
   id: "callback:<>(p:r:position:object:flax.core/flutter#type:Offset)->object?:flax.core/sdk_gestures#type:Drag",
-  invoke: FlaxCallbackAdapters.invoke1<api4.Offset, api.Drag?>,
-  matches: FlaxCallbackAdapters.matches1<api4.Offset, api.Drag?>,
+  invoke: FlaxCallbackAdapters.invoke1<api3.Offset, api.Drag?>,
+  matches: FlaxCallbackAdapters.matches1<api3.Offset, api.Drag?>,
 );
 const _flaxBinding50 = FlaxTypeRef(
   "callback",
@@ -50583,7 +50580,7 @@ const _flaxBinding260 = <FlaxParameter>[
     "minLevel",
     _flaxBinding259,
     required: false,
-    defaultValue: api3.DiagnosticLevel.info,
+    defaultValue: api1.DiagnosticLevel.info,
   ),
 ];
 const _flaxBinding261 = FlaxInstanceMethod.plain(
@@ -50597,7 +50594,7 @@ const _flaxBinding262 = <FlaxParameter>[
     "minLevel",
     _flaxBinding259,
     required: false,
-    defaultValue: api3.DiagnosticLevel.debug,
+    defaultValue: api1.DiagnosticLevel.debug,
   ),
 ];
 const _flaxBinding263 = FlaxInstanceMethod.plain(
@@ -50610,7 +50607,7 @@ const _flaxBinding264 = <FlaxParameter>[
     "minLevel",
     _flaxBinding259,
     required: false,
-    defaultValue: api3.DiagnosticLevel.debug,
+    defaultValue: api1.DiagnosticLevel.debug,
   ),
   FlaxParameter(
     "prefixLineOne",
@@ -58838,7 +58835,7 @@ const _flaxBinding1043 = <FlaxParameter>[
     "kind",
     _flaxBinding14,
     required: false,
-    defaultValue: api4.PointerDeviceKind.touch,
+    defaultValue: api3.PointerDeviceKind.touch,
   ),
   FlaxParameter("device", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
@@ -59553,7 +59550,7 @@ const _flaxBinding1111 = <FlaxParameter>[
     "kind",
     _flaxBinding14,
     required: false,
-    defaultValue: api4.PointerDeviceKind.touch,
+    defaultValue: api3.PointerDeviceKind.touch,
   ),
   FlaxParameter("device", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
@@ -60126,7 +60123,7 @@ const _flaxBinding1153 = <FlaxParameter>[
     "kind",
     _flaxBinding14,
     required: false,
-    defaultValue: api4.PointerDeviceKind.touch,
+    defaultValue: api3.PointerDeviceKind.touch,
   ),
   FlaxParameter("device", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
@@ -60699,7 +60696,7 @@ const _flaxBinding1195 = <FlaxParameter>[
     "kind",
     _flaxBinding14,
     required: false,
-    defaultValue: api4.PointerDeviceKind.touch,
+    defaultValue: api3.PointerDeviceKind.touch,
   ),
   FlaxParameter("device", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
@@ -61402,7 +61399,7 @@ const _flaxBinding1251 = <FlaxParameter>[
     "kind",
     _flaxBinding14,
     required: false,
-    defaultValue: api4.PointerDeviceKind.touch,
+    defaultValue: api3.PointerDeviceKind.touch,
   ),
   FlaxParameter("pointer", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter("device", flaxIntType, required: false, defaultValue: 0),
@@ -61987,7 +61984,7 @@ const _flaxBinding1293 = <FlaxParameter>[
     "kind",
     _flaxBinding14,
     required: false,
-    defaultValue: api4.PointerDeviceKind.touch,
+    defaultValue: api3.PointerDeviceKind.touch,
   ),
   FlaxParameter("pointer", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter("device", flaxIntType, required: false, defaultValue: 0),
@@ -62568,7 +62565,7 @@ const _flaxBinding1335 = <FlaxParameter>[
     "kind",
     _flaxBinding14,
     required: false,
-    defaultValue: api4.PointerDeviceKind.touch,
+    defaultValue: api3.PointerDeviceKind.touch,
   ),
   FlaxParameter("device", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
@@ -64868,7 +64865,7 @@ const _flaxBinding1516 = <FlaxParameter>[
     "kind",
     _flaxBinding14,
     required: false,
-    defaultValue: api4.PointerDeviceKind.touch,
+    defaultValue: api3.PointerDeviceKind.touch,
   ),
   FlaxParameter("device", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
@@ -65559,7 +65556,7 @@ const _flaxBinding1575 = <FlaxParameter>[
     "kind",
     _flaxBinding14,
     required: false,
-    defaultValue: api4.PointerDeviceKind.mouse,
+    defaultValue: api3.PointerDeviceKind.mouse,
   ),
   FlaxParameter("device", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
@@ -65927,7 +65924,7 @@ const _flaxBinding1586 = <FlaxParameter>[
     "kind",
     _flaxBinding14,
     required: false,
-    defaultValue: api4.PointerDeviceKind.mouse,
+    defaultValue: api3.PointerDeviceKind.mouse,
   ),
   FlaxParameter("device", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
@@ -66263,7 +66260,7 @@ const _flaxBinding1594 = <FlaxParameter>[
     "kind",
     _flaxBinding14,
     required: false,
-    defaultValue: api4.PointerDeviceKind.mouse,
+    defaultValue: api3.PointerDeviceKind.mouse,
   ),
   FlaxParameter("device", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(
@@ -66824,7 +66821,7 @@ const _flaxBinding1642 = <FlaxParameter>[
     "kind",
     _flaxBinding14,
     required: false,
-    defaultValue: api4.PointerDeviceKind.touch,
+    defaultValue: api3.PointerDeviceKind.touch,
   ),
   FlaxParameter("device", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter(

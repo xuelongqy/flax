@@ -18,7 +18,7 @@ export interface FlaxCanvasView extends WidgetDescription, Omit<Readonly<{
 export declare function _FlaxCanvasViewFactory(canvas: Bindable<Readonly<{
     "__flaxBound:package:flax/bindings.dart::FlaxCanvasContent": readonly [];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }>>, options?: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];

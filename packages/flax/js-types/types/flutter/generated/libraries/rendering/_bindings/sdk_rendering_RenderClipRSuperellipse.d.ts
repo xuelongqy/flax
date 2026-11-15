@@ -620,7 +620,7 @@ export interface RenderClipRSuperellipse extends Omit<upstream0.RenderProxyBox, 
     set clipper(value: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream9.RSuperellipse];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null);
     set clipBehavior(value: upstream12.Clip);
 }
@@ -644,13 +644,14 @@ export declare function _RenderClipRSuperellipseFactory(options?: {
     clipper?: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream9.RSuperellipse];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     clipBehavior?: upstream12.Clip | undefined;
     textDirection?: upstream13.TextDirection | null | undefined;
 }): RenderClipRSuperellipse;
 export interface _RenderClipRSuperellipseNative extends RenderClipRSuperellipse {
     readonly [_flaxDartTypeValue]: _RenderClipRSuperellipseNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1118,7 +1119,6 @@ export interface _RenderClipRSuperellipseNative extends RenderClipRSuperellipse 
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream18.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;
@@ -1140,7 +1140,7 @@ export interface _RenderClipRSuperellipseNative extends RenderClipRSuperellipse 
     set clipper(value: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream9.RSuperellipse];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null);
     set clipBehavior(value: upstream12.Clip);
     set size(value: Readonly<{
@@ -1201,7 +1201,7 @@ export declare abstract class _RenderClipRSuperellipseNative extends _FlaxProxyB
         clipper?: (Readonly<{
             "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream9.RSuperellipse];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
         clipBehavior?: upstream12.Clip | undefined;
         textDirection?: upstream13.TextDirection | null | undefined;
@@ -1228,7 +1228,7 @@ export declare namespace _RenderClipRSuperellipseFactory {
         clipper?: (Readonly<{
             "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream9.RSuperellipse];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
         clipBehavior?: upstream12.Clip | undefined;
         textDirection?: upstream13.TextDirection | null | undefined;
@@ -1254,7 +1254,7 @@ declare const _RenderClipRSuperellipseBinding: typeof _RenderClipRSuperellipseFa
     clipper?: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream9.RSuperellipse];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     clipBehavior?: upstream12.Clip | undefined;
     textDirection?: upstream13.TextDirection | null | undefined;

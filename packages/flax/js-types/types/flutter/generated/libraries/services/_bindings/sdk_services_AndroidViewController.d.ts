@@ -46,6 +46,9 @@ export interface AndroidViewController extends Omit<upstream0.PlatformViewContro
     }): Promise<void>;
     dispose(): Promise<void>;
     clearFocus(): Promise<void>;
+    rejectGesture(options?: {
+        gestureId?: number | null | undefined;
+    }): Promise<void>;
     setSize(size: Readonly<{
         "__flaxBound:dart:ui::Size": readonly [];
     }> & Readonly<{
@@ -111,5 +114,5 @@ export declare namespace _AndroidViewControllerFactory {
     function pointerAction(pointerId: number, action: number): number;
 }
 export declare const AndroidViewController: typeof _AndroidViewControllerFactory & _FlaxInstanceType<AndroidViewController> & _FlaxDartType<AndroidViewController, readonly ["class", "flax.core/sdk_services#type:AndroidViewController", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "viewId" | "awaitingCreation" | "textureId" | "requiresViewComposition" | "pointTransformer" | "isCreated" | "dispatchPointerEvent" | "create" | "dispose" | "clearFocus" | "setSize" | "setOffset" | "sendMotionEvent" | "addOnPlatformViewCreatedListener" | "removeOnPlatformViewCreatedListener" | "setLayoutDirection" | "__flaxBound:package:flutter/src/services/platform_views.dart::AndroidViewController" | "__flaxBound:package:flutter/src/services/platform_views.dart::PlatformViewController";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "viewId" | "awaitingCreation" | "textureId" | "requiresViewComposition" | "pointTransformer" | "isCreated" | "dispatchPointerEvent" | "create" | "dispose" | "clearFocus" | "rejectGesture" | "setSize" | "setOffset" | "sendMotionEvent" | "addOnPlatformViewCreatedListener" | "removeOnPlatformViewCreatedListener" | "setLayoutDirection" | "__flaxBound:package:flutter/src/services/platform_views.dart::AndroidViewController" | "__flaxBound:package:flutter/src/services/platform_views.dart::PlatformViewController";
 export {};

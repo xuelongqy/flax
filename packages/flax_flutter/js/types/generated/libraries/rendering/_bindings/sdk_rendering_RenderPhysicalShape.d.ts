@@ -624,7 +624,7 @@ export interface RenderPhysicalShape extends Omit<upstream0.RenderProxyBox, _fla
     set clipper(value: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream9.Path];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null);
     set clipBehavior(value: upstream11.Clip);
 }
@@ -645,7 +645,7 @@ export declare function _RenderPhysicalShapeFactory(options: {
     clipper: Readonly<{
         "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream9.Path];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>;
     clipBehavior?: upstream11.Clip | undefined;
     elevation?: number | undefined;
@@ -658,6 +658,7 @@ export declare function _RenderPhysicalShapeFactory(options: {
 }): RenderPhysicalShape;
 export interface _RenderPhysicalShapeNative extends RenderPhysicalShape {
     readonly [_flaxDartTypeValue]: _RenderPhysicalShapeNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1126,7 +1127,6 @@ export interface _RenderPhysicalShapeNative extends RenderPhysicalShape {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream17.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;
@@ -1151,7 +1151,7 @@ export interface _RenderPhysicalShapeNative extends RenderPhysicalShape {
     set clipper(value: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream9.Path];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null);
     set clipBehavior(value: upstream11.Clip);
     set size(value: Readonly<{
@@ -1209,7 +1209,7 @@ export declare abstract class _RenderPhysicalShapeNative extends _FlaxProxyBase 
         clipper: Readonly<{
             "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream9.Path];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>;
         clipBehavior?: upstream11.Clip | undefined;
         elevation?: number | undefined;
@@ -1239,7 +1239,7 @@ export declare namespace _RenderPhysicalShapeFactory {
         clipper: Readonly<{
             "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream9.Path];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>;
         clipBehavior?: upstream11.Clip | undefined;
         elevation?: number | undefined;
@@ -1268,7 +1268,7 @@ declare const _RenderPhysicalShapeBinding: typeof _RenderPhysicalShapeFactory & 
     clipper: Readonly<{
         "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream9.Path];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>;
     clipBehavior?: upstream11.Clip | undefined;
     elevation?: number | undefined;

@@ -5,7 +5,7 @@ import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDart
 export interface PipelineManifold extends Omit<upstream0.Listenable, _flaxOwnMembers0>, Readonly<{
     "__flaxBound:package:flutter/src/rendering/object.dart::PipelineManifold": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __PipelineManifold: unique symbol;
     readonly [_flaxDartTypeValue]: PipelineManifold;
@@ -23,5 +23,5 @@ export declare namespace _PipelineManifoldFactory {
     }): PipelineManifold;
 }
 export declare const PipelineManifold: typeof _PipelineManifoldFactory & _FlaxInstanceType<PipelineManifold> & _FlaxDartType<PipelineManifold, readonly ["class", "flax.core/sdk_rendering#type:PipelineManifold", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "semanticsEnabled" | "addListener" | "removeListener" | "requestVisualUpdate" | "__flaxBound:package:flutter/src/rendering/object.dart::PipelineManifold" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "semanticsEnabled" | "addListener" | "removeListener" | "requestVisualUpdate" | "__flaxBound:package:flutter/src/rendering/object.dart::PipelineManifold" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 export {};

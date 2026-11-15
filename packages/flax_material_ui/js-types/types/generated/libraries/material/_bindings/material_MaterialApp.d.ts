@@ -197,9 +197,9 @@ export declare namespace _MaterialAppFactory {
         routeInformationProvider?: Bindable<(Readonly<{
             "__flaxBound:package:flutter/src/widgets/router.dart::RouteInformationProvider": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream28.RouteInformation];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream28.RouteInformation];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null> | undefined;
         routeInformationParser?: Bindable<Readonly<{
             "__flaxBound:package:flutter/src/widgets/router.dart::RouteInformationParser": readonly [{}];
@@ -207,7 +207,7 @@ export declare namespace _MaterialAppFactory {
         routerDelegate?: Bindable<(Readonly<{
             "__flaxBound:package:flutter/src/widgets/router.dart::RouterDelegate": readonly [{}];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null> | undefined;
         routerConfig?: Bindable<Readonly<{
             "__flaxBound:package:flutter/src/widgets/router.dart::RouterConfig": readonly [{}];

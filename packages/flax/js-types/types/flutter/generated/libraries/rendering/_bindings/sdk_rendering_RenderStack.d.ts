@@ -767,6 +767,7 @@ export declare function _RenderStackFactory(options?: {
 }): RenderStack;
 export interface _RenderStackNative extends RenderStack {
     readonly [_flaxDartTypeValue]: _RenderStackNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1374,7 +1375,6 @@ export interface _RenderStackNative extends RenderStack {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream1.RenderObject | null;
     get owner(): upstream17.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

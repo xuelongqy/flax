@@ -68,6 +68,7 @@ export interface RawImage extends _FlaxDartWidget, Omit<upstream0.LeafRenderObje
     readonly matchTextDirection: boolean;
     readonly invertColors: boolean;
     readonly isAntiAlias: boolean;
+    readonly blendMode: upstream6.BlendMode;
     readonly key: upstream2.Key | null;
     createRenderObject(context: upstream13.BuildContext): upstream12.RenderImage;
     updateRenderObject(context: upstream13.BuildContext, renderObject: Readonly<{
@@ -138,9 +139,9 @@ export declare function _RawImageFactory(options?: {
     opacity?: (Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>) | null | undefined;
     colorBlendMode?: upstream6.BlendMode | null | undefined;
     fit?: upstream7.BoxFit | null | undefined;
@@ -155,6 +156,7 @@ export declare function _RawImageFactory(options?: {
     invertColors?: boolean | undefined;
     filterQuality?: upstream11.FilterQuality | undefined;
     isAntiAlias?: boolean | undefined;
+    blendMode?: upstream6.BlendMode | undefined;
 }): RawImage;
 export declare namespace _RawImageFactory {
     const __flaxJsx: {
@@ -164,5 +166,5 @@ export declare namespace _RawImageFactory {
     };
 }
 export declare const RawImage: typeof _RawImageFactory & _FlaxInstanceType<RawImage> & _FlaxDartType<RawImage, readonly ["class", "flax.core/sdk_widgets#type:RawImage", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "image" | "debugImageLabel" | "width" | "height" | "scale" | "color" | "opacity" | "filterQuality" | "colorBlendMode" | "fit" | "alignment" | "repeat" | "centerSlice" | "matchTextDirection" | "invertColors" | "isAntiAlias" | "key" | "createRenderObject" | "updateRenderObject" | "didUnmountRenderObject" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/basic.dart::RawImage" | "__flaxBound:package:flutter/src/widgets/framework.dart::LeafRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "image" | "debugImageLabel" | "width" | "height" | "scale" | "color" | "opacity" | "filterQuality" | "colorBlendMode" | "fit" | "alignment" | "repeat" | "centerSlice" | "matchTextDirection" | "invertColors" | "isAntiAlias" | "blendMode" | "key" | "createRenderObject" | "updateRenderObject" | "didUnmountRenderObject" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/basic.dart::RawImage" | "__flaxBound:package:flutter/src/widgets/framework.dart::LeafRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

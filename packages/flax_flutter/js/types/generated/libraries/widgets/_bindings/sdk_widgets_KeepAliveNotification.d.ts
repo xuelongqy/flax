@@ -20,7 +20,7 @@ export interface KeepAliveNotification extends Omit<upstream0.Notification, _fla
     debugFillDescription(description: DartListInput<string, string>): void;
 }
 export declare function _KeepAliveNotificationFactory(handle: Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }>): KeepAliveNotification;
 export interface _KeepAliveNotificationNative extends KeepAliveNotification {
     readonly [_flaxDartTypeValue]: _KeepAliveNotificationNative;
@@ -34,16 +34,16 @@ export declare abstract class _KeepAliveNotificationNative extends _FlaxProxyBas
     static [_flaxDartTypeValue]: KeepAliveNotification;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:KeepAliveNotification", readonly [], false];
     constructor(handle: Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>);
 }
 export declare namespace _KeepAliveNotificationFactory {
     function implement(args: [handle: Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>], implementation: {}): KeepAliveNotification;
 }
 declare const _KeepAliveNotificationBinding: typeof _KeepAliveNotificationFactory & (new (handle: Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }>) => _KeepAliveNotificationNative);
 export declare const KeepAliveNotification: typeof _KeepAliveNotificationBinding & _FlaxInstanceType<KeepAliveNotification> & _FlaxDartType<KeepAliveNotification, readonly ["class", "flax.core/sdk_widgets#type:KeepAliveNotification", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "handle" | "dispatch" | "toString" | "debugFillDescription" | "__flaxBound:package:flutter/src/widgets/automatic_keep_alive.dart::KeepAliveNotification" | "__flaxBound:package:flutter/src/widgets/notification_listener.dart::Notification";

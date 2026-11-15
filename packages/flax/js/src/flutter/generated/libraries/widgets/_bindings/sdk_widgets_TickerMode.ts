@@ -25,7 +25,7 @@ import type * as upstream10 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import type * as upstream11 from '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_Widget';
-import { _flaxMemberParameters0, _flaxMemberParameters467, _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters0, _flaxMemberParameters468, _flaxMemberParameters2 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -75,7 +75,7 @@ return _flaxResult as upstream3.ValueListenable<upstream4.TickerModeData>;
 export namespace _TickerModeFactory { export function merge(options: { child: Widget; enabled?: boolean | null | undefined; forceFrames?: boolean | null | undefined; key?: Readonly<{ "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [] }> | null | undefined }): Widget {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["child","enabled","forceFrames","key"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:TickerMode.merge", [options.child, options.enabled, options.forceFrames, options.key], _flaxMemberParameters467);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:TickerMode.merge", [options.child, options.enabled, options.forceFrames, options.key], _flaxMemberParameters468);
 return _flaxResult as Widget;
 } }
 export const TickerMode: typeof _TickerModeFactory & _FlaxInstanceType<TickerMode> & _FlaxDartType<TickerMode, readonly ["class", "flax.core/sdk_widgets#type:TickerMode", readonly [], false]> = _flaxBindInstanceType<TickerMode, typeof _TickerModeFactory>(_TickerModeFactory, "flax.core/sdk_widgets#type:TickerMode", ["flax.core/components#type:StatefulWidget","flax.core/sdk_widgets#type:Widget","flax.core/sdk_foundation#type:DiagnosticableTree","dart:core::Object","flax.core/sdk_foundation#type:Diagnosticable"]) as typeof _TickerModeFactory & _FlaxInstanceType<TickerMode> & _FlaxDartType<TickerMode, readonly ["class", "flax.core/sdk_widgets#type:TickerMode", readonly [], false]>;

@@ -1,4 +1,4 @@
-import { type FlaxInstanceType as _FlaxInstanceType, type DartInput, type Widget } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartSet, type DartInput, type Widget } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/widgets/_bindings/sdk_widgets_RawScrollbar';
 import type * as upstream1 from '@flax/flutter/widgets/_bindings/components_State';
 import '@flax/flutter/widgets/_bindings/components_State';
@@ -12,23 +12,25 @@ import type * as upstream5 from '@flax/flutter/widgets/_bindings/flutter_BuildCo
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import type * as upstream6 from '@flax/flutter/widgets/_bindings/sdk_widgets_ScrollbarPainter';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_ScrollbarPainter';
-import type * as upstream7 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream7 from '@flax/flutter/widgets/_bindings/flutter_WidgetState';
+import '@flax/flutter/widgets/_bindings/flutter_WidgetState';
+import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-import type * as upstream8 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
-import type * as upstream9 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream10 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-import type * as upstream11 from '@flax/flutter/scheduler/_bindings/sdk_scheduler_Ticker';
+import type * as upstream12 from '@flax/flutter/scheduler/_bindings/sdk_scheduler_Ticker';
 import '@flax/flutter/scheduler/_bindings/sdk_scheduler_Ticker';
-import type * as upstream12 from '@flax/dart/core/_bindings/flutter_Duration';
+import type * as upstream13 from '@flax/dart/core/_bindings/flutter_Duration';
 import '@flax/dart/core/_bindings/flutter_Duration';
-import type * as upstream13 from '@flax/flutter/painting/_bindings/flutter_Axis';
+import type * as upstream14 from '@flax/flutter/painting/_bindings/flutter_Axis';
 import '@flax/flutter/painting/_bindings/flutter_Axis';
 import '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/flutter/gestures/_bindings/sdk_gestures_Velocity';
 import '@flax/flutter/gestures/_bindings/sdk_gestures_TapDownDetails';
-import type * as upstream17 from '@flax/dart/ui/_bindings/sdk_dart_ui_PointerDeviceKind';
+import type * as upstream18 from '@flax/dart/ui/_bindings/sdk_dart_ui_PointerDeviceKind';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_PointerDeviceKind';
 import '@flax/flutter/gestures/_bindings/sdk_gestures_PointerHoverEvent';
 import '@flax/flutter/gestures/_bindings/sdk_gestures_PointerExitEvent';
@@ -52,18 +54,19 @@ export interface RawScrollbarState<T extends upstream0.RawScrollbar = upstream0.
     get scrollbarPainter(): upstream6.ScrollbarPainter;
     readonly showScrollbar: boolean;
     readonly enableGestures: boolean;
+    readonly cursorStates: DartSet<upstream7.WidgetState>;
     toStringShort(): string;
     toString(options?: {
-        minLevel?: upstream7.DiagnosticLevel | undefined;
+        minLevel?: upstream8.DiagnosticLevel | undefined;
     }): string;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
-        style?: upstream9.DiagnosticsTreeStyle | null | undefined;
-    }): upstream8.DiagnosticsNode;
+        style?: upstream10.DiagnosticsTreeStyle | null | undefined;
+    }): upstream9.DiagnosticsNode;
     debugFillProperties(properties: Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
     }>): void;
-    createTicker(onTick: ((elapsed: upstream12.Duration) => void)): upstream11.Ticker;
+    createTicker(onTick: ((elapsed: upstream13.Duration) => void)): upstream12.Ticker;
     activate(): void;
     dispose(): void;
     initState(): void;
@@ -74,7 +77,7 @@ export interface RawScrollbarState<T extends upstream0.RawScrollbar = upstream0.
     build(context: upstream5.BuildContext): Widget;
     didChangeDependencies(): void;
     updateScrollbarPainter(): void;
-    getScrollbarDirection(): upstream13.Axis | null;
+    getScrollbarDirection(): upstream14.Axis | null;
     handleThumbPress(): void;
     handleThumbPressStart(localPosition: Readonly<{
         "__flaxBound:dart:ui::Offset": readonly [];
@@ -104,17 +107,17 @@ export interface RawScrollbarState<T extends upstream0.RawScrollbar = upstream0.
         "__flaxBound:dart:ui::Offset": readonly [];
     }> & Readonly<{
         "__flaxBound:dart:ui::OffsetBase": readonly [];
-    }>, kind: upstream17.PointerDeviceKind): boolean;
+    }>, kind: upstream18.PointerDeviceKind): boolean;
     isPointerOverThumb(position: Readonly<{
         "__flaxBound:dart:ui::Offset": readonly [];
     }> & Readonly<{
         "__flaxBound:dart:ui::OffsetBase": readonly [];
-    }>, kind: upstream17.PointerDeviceKind): boolean;
+    }>, kind: upstream18.PointerDeviceKind): boolean;
     isPointerOverScrollbar(position: Readonly<{
         "__flaxBound:dart:ui::Offset": readonly [];
     }> & Readonly<{
         "__flaxBound:dart:ui::OffsetBase": readonly [];
-    }>, kind: upstream17.PointerDeviceKind, options?: {
+    }>, kind: upstream18.PointerDeviceKind, options?: {
         forHover?: boolean | undefined;
     }): boolean;
     handleHover(event: Readonly<{
@@ -139,12 +142,13 @@ export interface RawScrollbarState<T extends upstream0.RawScrollbar = upstream0.
     }> & Readonly<{
         "__flaxBound:package:flutter/src/gestures/events.dart::_CopyPointerExitEvent": readonly [];
     }>): void;
+    updateMouseCursor(): void;
     set scrollbarPainter(value: Readonly<{
         "__flaxBound:package:flutter/src/widgets/scrollbar.dart::ScrollbarPainter": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
     }>);
@@ -152,7 +156,7 @@ export interface RawScrollbarState<T extends upstream0.RawScrollbar = upstream0.
 export declare function _RawScrollbarStateFactory<T extends upstream0.RawScrollbar = upstream0.RawScrollbar>(): RawScrollbarState<T>;
 export declare function _RawScrollbarStateFactory(): RawScrollbarState<upstream0.RawScrollbar>;
 export declare const RawScrollbarState: typeof _RawScrollbarStateFactory & _FlaxInstanceType<RawScrollbarState<upstream0.RawScrollbar>> & _FlaxDartType<RawScrollbarState<upstream0.RawScrollbar>, readonly ["class", "flax.core/sdk_widgets#type:RawScrollbarState", readonly [readonly ["class", "flax.core/sdk_widgets#type:RawScrollbar", readonly [], false]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "widget" | "context" | "mounted" | "scrollbarPainter" | "showScrollbar" | "enableGestures" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "createTicker" | "activate" | "dispose" | "initState" | "didUpdateWidget" | "reassemble" | "setState" | "deactivate" | "build" | "didChangeDependencies" | "updateScrollbarPainter" | "getScrollbarDirection" | "handleThumbPress" | "handleThumbPressStart" | "handleThumbPressUpdate" | "handleThumbPressEnd" | "handleTrackTapDown" | "isPointerOverTrack" | "isPointerOverThumb" | "isPointerOverScrollbar" | "handleHover" | "handleHoverExit" | "__flaxBound:package:flutter/src/widgets/scrollbar.dart::RawScrollbarState" | "__flaxBound:package:flutter/src/widgets/framework.dart::State" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/widgets/ticker_provider.dart::TickerProviderStateMixin" | "__flaxBound:package:flutter/src/scheduler/ticker.dart::TickerProvider";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "widget" | "context" | "mounted" | "scrollbarPainter" | "showScrollbar" | "enableGestures" | "cursorStates" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "createTicker" | "activate" | "dispose" | "initState" | "didUpdateWidget" | "reassemble" | "setState" | "deactivate" | "build" | "didChangeDependencies" | "updateScrollbarPainter" | "getScrollbarDirection" | "handleThumbPress" | "handleThumbPressStart" | "handleThumbPressUpdate" | "handleThumbPressEnd" | "handleTrackTapDown" | "isPointerOverTrack" | "isPointerOverThumb" | "isPointerOverScrollbar" | "handleHover" | "handleHoverExit" | "updateMouseCursor" | "__flaxBound:package:flutter/src/widgets/scrollbar.dart::RawScrollbarState" | "__flaxBound:package:flutter/src/widgets/framework.dart::State" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/widgets/ticker_provider.dart::TickerProviderStateMixin" | "__flaxBound:package:flutter/src/scheduler/ticker.dart::TickerProvider";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [upstream0.RawScrollbar] ? {
         (): RawScrollbarState<_Selected0>;

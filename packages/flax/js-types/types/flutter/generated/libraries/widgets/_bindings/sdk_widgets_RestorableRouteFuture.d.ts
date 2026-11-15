@@ -23,9 +23,9 @@ export interface RestorableRouteFuture<T extends unknown | null = unknown | null
 }>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/restoration.dart::RestorableProperty": readonly [string | null];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __RestorableRouteFuture: unique symbol;
     readonly [_flaxDartTypeValue]: RestorableRouteFuture<T>;
@@ -102,7 +102,7 @@ declare const _RestorableRouteFutureBinding: typeof _RestorableRouteFutureFactor
     onComplete?: ((result: unknown | null) => void) | null | undefined;
 }) => _RestorableRouteFutureNative<T>);
 export declare const RestorableRouteFuture: typeof _RestorableRouteFutureBinding & _FlaxInstanceType<RestorableRouteFuture<unknown | null>> & _FlaxDartType<RestorableRouteFuture<unknown | null>, readonly ["class", "flax.core/sdk_widgets#type:RestorableRouteFuture", readonly [readonly ["any", null, readonly [], true]], false]> & _FlaxDartTypeCases<_FlaxSignature0>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "enabled" | "state" | "isRegistered" | "hasListeners" | "navigatorFinder" | "onPresent" | "onComplete" | "isPresent" | "route" | "createDefaultValue" | "fromPrimitives" | "initWithValue" | "toPrimitives" | "dispose" | "addListener" | "removeListener" | "present" | "__flaxBound:package:flutter/src/widgets/navigator.dart::RestorableRouteFuture" | "__flaxBound:package:flutter/src/widgets/restoration.dart::RestorableProperty" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "enabled" | "state" | "isRegistered" | "hasListeners" | "navigatorFinder" | "onPresent" | "onComplete" | "isPresent" | "route" | "createDefaultValue" | "fromPrimitives" | "initWithValue" | "toPrimitives" | "dispose" | "addListener" | "removeListener" | "present" | "__flaxBound:package:flutter/src/widgets/navigator.dart::RestorableRouteFuture" | "__flaxBound:package:flutter/src/widgets/restoration.dart::RestorableProperty" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (new (options: {
         navigatorFinder?: ((context: upstream4.BuildContext) => upstream3.NavigatorState) | undefined;

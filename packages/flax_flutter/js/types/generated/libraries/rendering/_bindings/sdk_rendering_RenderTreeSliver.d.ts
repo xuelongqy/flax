@@ -819,6 +819,7 @@ export declare function _RenderTreeSliverFactory(options: {
 }): RenderTreeSliver;
 export interface _RenderTreeSliverNative extends RenderTreeSliver {
     readonly [_flaxDartTypeValue]: _RenderTreeSliverNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1449,7 +1450,6 @@ export interface _RenderTreeSliverNative extends RenderTreeSliver {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream4.RenderObject | null;
     get owner(): upstream21.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

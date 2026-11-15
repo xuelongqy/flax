@@ -43,9 +43,9 @@ export declare function _SingleChildScrollViewFactory(options?: {
     controller?: Bindable<(Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null> | undefined;
     child?: Bindable<Widget | null> | undefined;
     dragStartBehavior?: Bindable<upstream5.DragStartBehavior> | undefined;

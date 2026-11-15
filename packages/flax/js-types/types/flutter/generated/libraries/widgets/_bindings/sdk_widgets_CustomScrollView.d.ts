@@ -80,9 +80,9 @@ export interface CustomScrollView extends _FlaxDartWidget, Omit<upstream0.Scroll
     buildViewport(context: upstream13.BuildContext, offset: Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>, axisDirection: upstream14.AxisDirection, slivers: DartListInput<Widget, Widget>): Widget;
     build(context: upstream13.BuildContext): Widget;
     debugFillProperties(properties: Readonly<{
@@ -115,9 +115,9 @@ export declare function _CustomScrollViewFactory(options?: {
     controller?: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     primary?: boolean | null | undefined;
     physics?: Readonly<{

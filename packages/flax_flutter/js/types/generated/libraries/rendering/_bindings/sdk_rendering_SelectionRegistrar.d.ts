@@ -13,18 +13,18 @@ export interface SelectionRegistrar extends Readonly<{
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream1.SelectionGeometry];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream1.SelectionGeometry];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): void;
     remove(selectable: Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::Selectable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream1.SelectionGeometry];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream1.SelectionGeometry];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): void;
 }
 export declare namespace _SelectionRegistrarFactory {

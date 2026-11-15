@@ -16,9 +16,9 @@ export interface TwoDimensionalChildListDelegate extends Omit<upstream0.TwoDimen
 }>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/scroll_delegate.dart::TwoDimensionalChildDelegate": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __TwoDimensionalChildListDelegate: unique symbol;
     readonly [_flaxDartTypeValue]: TwoDimensionalChildListDelegate;
@@ -36,9 +36,9 @@ export interface TwoDimensionalChildListDelegate extends Omit<upstream0.TwoDimen
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_delegate.dart::TwoDimensionalChildDelegate": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): boolean;
     addListener(listener: (() => void)): void;
     removeListener(listener: (() => void)): void;
@@ -61,9 +61,9 @@ export interface _TwoDimensionalChildListDelegateNative extends TwoDimensionalCh
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_delegate.dart::TwoDimensionalChildDelegate": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): boolean;
     addListener(listener: (() => void)): void;
     removeListener(listener: (() => void)): void;
@@ -96,5 +96,5 @@ declare const _TwoDimensionalChildListDelegateBinding: typeof _TwoDimensionalChi
     children: DartListInput<DartList<Widget>, DartListInput<Widget, Widget>>;
 }) => _TwoDimensionalChildListDelegateNative);
 export declare const TwoDimensionalChildListDelegate: typeof _TwoDimensionalChildListDelegateBinding & _FlaxInstanceType<TwoDimensionalChildListDelegate> & _FlaxDartType<TwoDimensionalChildListDelegate, readonly ["class", "flax.core/sdk_widgets#type:TwoDimensionalChildListDelegate", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "children" | "addRepaintBoundaries" | "addAutomaticKeepAlives" | "build" | "shouldRebuild" | "addListener" | "removeListener" | "dispose" | "__flaxBound:package:flutter/src/widgets/scroll_delegate.dart::TwoDimensionalChildListDelegate" | "__flaxBound:package:flutter/src/widgets/scroll_delegate.dart::TwoDimensionalChildDelegate" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "children" | "addRepaintBoundaries" | "addAutomaticKeepAlives" | "build" | "shouldRebuild" | "addListener" | "removeListener" | "dispose" | "__flaxBound:package:flutter/src/widgets/scroll_delegate.dart::TwoDimensionalChildListDelegate" | "__flaxBound:package:flutter/src/widgets/scroll_delegate.dart::TwoDimensionalChildDelegate" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 export {};

@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:flax/permissions.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Shows trusted host consent for any module permission, with optional host UI.
-/// Defaults use SDK Material. Other UI hosts provide their builder and barrier label.
+/// Defaults use standalone Material. Other UI hosts provide their builder and barrier label.
 /// The host keeps these controls outside module reach; this is not UI isolation.
 Future<FlaxPermissionDecision> showFlaxPermissionDialog({
   required BuildContext context,

@@ -11,7 +11,7 @@ import type * as upstream4 from '@flax/flutter/foundation/_bindings/sdk_foundati
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
-import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue } from '@flax/core/bindings';
+import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface FocusOrder extends Omit<upstream0.Comparable<FocusOrder>, _flaxOwnMembers0>, Omit<upstream1.Diagnosticable, _flaxOwnMembers0 | keyof upstream0.Comparable<FocusOrder>>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::FocusOrder": readonly [];
 }>, Readonly<{
@@ -20,9 +20,6 @@ export interface FocusOrder extends Omit<upstream0.Comparable<FocusOrder>, _flax
     "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
 }> {
     readonly __FocusOrder: unique symbol;
-    readonly [_flaxDartTypeValue]: FocusOrder;
-}
-export interface FocusOrder {
     readonly [_flaxDartTypeValue]: FocusOrder;
     compareTo(other: Readonly<{
         "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::FocusOrder": readonly [];
@@ -42,8 +39,42 @@ export interface FocusOrder {
     debugFillProperties(properties: Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
     }>): void;
+    doCompare(other: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::FocusOrder": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [FocusOrder];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): number;
 }
-export declare abstract class FocusOrder extends _FlaxProxyBase {
+export declare namespace _FocusOrderFactory {
+    function lexical(order: string): FocusOrder;
+}
+export declare namespace _FocusOrderFactory {
+    function numeric(order: number): FocusOrder;
+}
+export interface _FocusOrderNative extends FocusOrder {
+    readonly [_flaxDartTypeValue]: _FocusOrderNative;
+    compareTo(other: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::FocusOrder": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:core::Comparable": readonly [FocusOrder];
+    }> & Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
+    }>): number;
+    toStringShort(): string;
+    toString(options?: {
+        minLevel?: upstream2.DiagnosticLevel | undefined;
+    }): string;
+    toDiagnosticsNode(options?: {
+        name?: string | null | undefined;
+        style?: upstream4.DiagnosticsTreeStyle | null | undefined;
+    }): upstream3.DiagnosticsNode;
+    debugFillProperties(properties: Readonly<{
+        "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
+    }>): void;
+}
+export declare abstract class _FocusOrderNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<FocusOrder>[typeof globalThis.Symbol.hasInstance];
     static [_flaxDartTypeValue]: FocusOrder;
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_widgets#type:FocusOrder", readonly [], false];
@@ -56,10 +87,12 @@ export declare abstract class FocusOrder extends _FlaxProxyBase {
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }>): number;
 }
-export declare namespace FocusOrder {
+export declare namespace _FocusOrderFactory {
     function implement(args: [], implementation: {
         doCompare: ((other: FocusOrder) => number);
     }): FocusOrder;
 }
+declare const _FocusOrderBinding: typeof _FocusOrderFactory & (abstract new () => _FocusOrderNative);
+export declare const FocusOrder: typeof _FocusOrderBinding & _FlaxInstanceType<FocusOrder> & _FlaxDartType<FocusOrder, readonly ["class", "flax.core/sdk_widgets#type:FocusOrder", readonly [], false]>;
 type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "compareTo" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "doCompare" | "__flaxBound:package:flutter/src/widgets/focus_traversal.dart::FocusOrder" | "__flaxBound:dart:core::Comparable" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

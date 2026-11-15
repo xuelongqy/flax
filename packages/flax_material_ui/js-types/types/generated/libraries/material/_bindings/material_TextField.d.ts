@@ -83,13 +83,13 @@ export declare function _TextFieldFactory(options?: {
     controller?: Bindable<(Readonly<{
         "__flaxBound:package:flutter/src/widgets/editable_text.dart::TextEditingController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream39.TextEditingValue];
+        "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream39.TextEditingValue];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream39.TextEditingValue];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream39.TextEditingValue];
     }>) | null> | undefined;
     focusNode?: Bindable<(Readonly<{
         "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
@@ -100,20 +100,20 @@ export declare function _TextFieldFactory(options?: {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null> | undefined;
     undoController?: Bindable<(Readonly<{
         "__flaxBound:package:flutter/src/widgets/undo_history.dart::UndoHistoryController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream40.UndoHistoryValue];
+        "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream40.UndoHistoryValue];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream40.UndoHistoryValue];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream40.UndoHistoryValue];
     }>) | null> | undefined;
     decoration?: Bindable<Readonly<{
         "__flaxBound:package:material_ui/src/input_decorator.dart::InputDecoration": readonly [];
@@ -147,13 +147,13 @@ export declare function _TextFieldFactory(options?: {
     statesController?: Bindable<(Readonly<{
         "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [DartSet<upstream41.WidgetState>];
+        "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [DartSet<upstream41.WidgetState>];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [DartSet<upstream41.WidgetState>];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [DartSet<upstream41.WidgetState>];
     }>) | null> | undefined;
     obscuringCharacter?: Bindable<string> | undefined;
     obscureText?: Bindable<boolean> | undefined;
@@ -218,9 +218,9 @@ export declare function _TextFieldFactory(options?: {
     scrollController?: Bindable<(Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null> | undefined;
     scrollPhysics?: Bindable<Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [];

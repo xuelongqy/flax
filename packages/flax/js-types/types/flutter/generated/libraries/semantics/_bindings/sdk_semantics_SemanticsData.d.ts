@@ -1,4 +1,4 @@
-import { type FlaxInstanceType as _FlaxInstanceType, type DartList, type DartListInput, type DartSet, type DartSetInput, type DartInput } from '@flax/core/bindings';
+import { type FlaxInstanceType as _FlaxInstanceType, type DartList, type DartListInput, type DartMap, type DartSet, type DartSetInput, type DartInput } from '@flax/core/bindings';
 import type * as upstream0 from '@flax/flutter/foundation/_bindings/sdk_foundation_Diagnosticable';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_Diagnosticable';
 import type * as upstream1 from '@flax/dart/ui/_bindings/sdk_dart_ui_SemanticsFlags';
@@ -103,6 +103,7 @@ export interface SemanticsData extends Omit<upstream0.Diagnosticable, _flaxOwnMe
     hasAction(action: Readonly<{
         "__flaxBound:dart:ui::SemanticsAction": readonly [];
     }>): boolean;
+    toJson(): DartMap<string, unknown | null>;
 }
 export declare function _SemanticsDataFactory(options: {
     flagsCollection: Readonly<{
@@ -186,6 +187,7 @@ export interface _SemanticsDataNative extends SemanticsData {
     hasAction(action: Readonly<{
         "__flaxBound:dart:ui::SemanticsAction": readonly [];
     }>): boolean;
+    toJson(): DartMap<string, unknown | null>;
     get flags(): number;
     get flagsCollection(): upstream1.SemanticsFlags;
     get actions(): number;
@@ -425,5 +427,5 @@ declare const _SemanticsDataBinding: typeof _SemanticsDataFactory & (new (option
     customSemanticsActionIds?: DartListInput<number, number> | null | undefined;
 }) => _SemanticsDataNative);
 export declare const SemanticsData: typeof _SemanticsDataBinding & _FlaxInstanceType<SemanticsData> & _FlaxDartType<SemanticsData, readonly ["class", "flax.core/sdk_semantics#type:SemanticsData", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "flags" | "flagsCollection" | "actions" | "identifier" | "traversalParentIdentifier" | "traversalChildIdentifier" | "label" | "attributedLabel" | "value" | "attributedValue" | "increasedValue" | "attributedIncreasedValue" | "decreasedValue" | "attributedDecreasedValue" | "hint" | "attributedHint" | "tooltip" | "headingLevel" | "textDirection" | "textSelection" | "scrollChildCount" | "scrollIndex" | "scrollPosition" | "scrollExtentMax" | "scrollExtentMin" | "platformViewId" | "maxValueLength" | "currentValueLength" | "linkUrl" | "rect" | "tags" | "transform" | "customSemanticsActionIds" | "role" | "controlsNodes" | "validationResult" | "hitTestBehavior" | "inputType" | "locale" | "maxValue" | "minValue" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "hasFlag" | "hasAction" | "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "flags" | "flagsCollection" | "actions" | "identifier" | "traversalParentIdentifier" | "traversalChildIdentifier" | "label" | "attributedLabel" | "value" | "attributedValue" | "increasedValue" | "attributedIncreasedValue" | "decreasedValue" | "attributedDecreasedValue" | "hint" | "attributedHint" | "tooltip" | "headingLevel" | "textDirection" | "textSelection" | "scrollChildCount" | "scrollIndex" | "scrollPosition" | "scrollExtentMax" | "scrollExtentMin" | "platformViewId" | "maxValueLength" | "currentValueLength" | "linkUrl" | "rect" | "tags" | "transform" | "customSemanticsActionIds" | "role" | "controlsNodes" | "validationResult" | "hitTestBehavior" | "inputType" | "locale" | "maxValue" | "minValue" | "toStringShort" | "toString" | "toDiagnosticsNode" | "debugFillProperties" | "hasFlag" | "hasAction" | "toJson" | "__flaxBound:package:flutter/src/semantics/semantics.dart::SemanticsData" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

@@ -31,11 +31,11 @@ export abstract class FlowDelegate extends _FlaxProxyBase {
 static declare [globalThis.Symbol.hasInstance]: _FlaxInstanceType<FlowDelegate>[typeof globalThis.Symbol.hasInstance];
 static declare [_flaxDartTypeValue]: FlowDelegate;
 static declare [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_rendering#type:FlowDelegate", readonly [], false];
-constructor(options?: {repaint?: Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> | null | undefined}) { super(_FlowDelegateProxy, Array.from(arguments)); }
+constructor(options?: {repaint?: Readonly<{ "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [] }> | null | undefined}) { super(_FlowDelegateProxy, Array.from(arguments)); }
 abstract paintChildren(context: Readonly<{ "__flaxBound:package:flutter/src/rendering/flow.dart::FlowPaintingContext": readonly [] }>): void;
 abstract shouldRepaint(oldDelegate: Readonly<{ "__flaxBound:package:flutter/src/rendering/flow.dart::FlowDelegate": readonly [] }>): boolean;
 }
 _flaxDefineProxyBase(FlowDelegate.prototype, _FlowDelegateProxy);
-export namespace FlowDelegate { export function implement(args: [options?: {repaint?: Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> | null | undefined}], implementation: {paintChildren: ((context: upstream3.FlowPaintingContext) => void); shouldRepaint: ((oldDelegate: FlowDelegate) => boolean)}): FlowDelegate {
+export namespace FlowDelegate { export function implement(args: [options?: {repaint?: Readonly<{ "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [] }> | null | undefined}], implementation: {paintChildren: ((context: upstream3.FlowPaintingContext) => void); shouldRepaint: ((oldDelegate: FlowDelegate) => boolean)}): FlowDelegate {
 return constructProxy(_FlowDelegateProxy, args, implementation) as FlowDelegate; } }
 _flaxBindInstanceType<FlowDelegate, typeof FlowDelegate>(FlowDelegate, "flax.core/sdk_rendering#type:FlowDelegate", ["dart:core::Object"]);

@@ -609,6 +609,7 @@ export declare function _RenderExcludeSemanticsFactory(options?: {
 }): RenderExcludeSemantics;
 export interface _RenderExcludeSemanticsNative extends RenderExcludeSemantics {
     readonly [_flaxDartTypeValue]: _RenderExcludeSemanticsNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1064,7 +1065,6 @@ export interface _RenderExcludeSemanticsNative extends RenderExcludeSemantics {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream13.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

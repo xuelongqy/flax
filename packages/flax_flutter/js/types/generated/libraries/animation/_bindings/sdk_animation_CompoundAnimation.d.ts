@@ -22,9 +22,9 @@ export interface CompoundAnimation<T extends unknown | null = unknown | null> ex
 }>, Readonly<{
     "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [T];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [T];
+    "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [T];
 }>, Readonly<{
     "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLazyListenerMixin": readonly [];
 }>, Readonly<{
@@ -79,16 +79,16 @@ export declare abstract class CompoundAnimation<T extends unknown | null = unkno
         first: Readonly<{
             "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [unknown | null];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [unknown | null];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [unknown | null];
         }>;
         next: Readonly<{
             "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [unknown | null];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [unknown | null];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [unknown | null];
         }>;
     });
     abstract get value(): T;
@@ -98,22 +98,22 @@ export declare namespace CompoundAnimation {
         first: Readonly<{
             "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [unknown | null];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [unknown | null];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [unknown | null];
         }>;
         next: Readonly<{
             "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [unknown | null];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [unknown | null];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [unknown | null];
         }>;
     }], implementation: {
         get value(): (T | DartInput<T>);
     }): CompoundAnimation<T>;
 }
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "status" | "value" | "isDismissed" | "isCompleted" | "isAnimating" | "isForwardOrCompleted" | "isListening" | "first" | "next" | "addListener" | "removeListener" | "addStatusListener" | "removeStatusListener" | "drive" | "toString" | "toStringDetails" | "didRegisterListener" | "didUnregisterListener" | "didStartListening" | "didStopListening" | "clearListeners" | "notifyListeners" | "clearStatusListeners" | "notifyStatusListeners" | "__flaxBound:package:flutter/src/animation/animations.dart::CompoundAnimation" | "__flaxBound:package:flutter/src/animation/animation.dart::Animation" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable" | "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLazyListenerMixin" | "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLocalListenersMixin" | "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLocalStatusListenersMixin";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "status" | "value" | "isDismissed" | "isCompleted" | "isAnimating" | "isForwardOrCompleted" | "isListening" | "first" | "next" | "addListener" | "removeListener" | "addStatusListener" | "removeStatusListener" | "drive" | "toString" | "toStringDetails" | "didRegisterListener" | "didUnregisterListener" | "didStartListening" | "didStopListening" | "clearListeners" | "notifyListeners" | "clearStatusListeners" | "notifyStatusListeners" | "__flaxBound:package:flutter/src/animation/animations.dart::CompoundAnimation" | "__flaxBound:package:flutter/src/animation/animation.dart::Animation" | "__flaxBound:package:listen/src/listen.dart::Listenable" | "__flaxBound:package:listen/src/listen.dart::ValueListenable" | "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLazyListenerMixin" | "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLocalListenersMixin" | "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationLocalStatusListenersMixin";
 interface _FlaxSignature1<_OwnerType0 extends unknown | null> extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (child: Readonly<{
         "__flaxBound:package:flutter/src/animation/tween.dart::Animatable": readonly [_Selected0];
@@ -129,16 +129,16 @@ interface _FlaxSignature3 extends _FlaxDartSignature {
         first: Readonly<{
             "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [unknown | null];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [unknown | null];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [unknown | null];
         }>;
         next: Readonly<{
             "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [unknown | null];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [unknown | null];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [unknown | null];
         }>;
     }) => CompoundAnimation<_Selected0>) & {
         readonly prototype: CompoundAnimation<_Selected0>;
@@ -146,16 +146,16 @@ interface _FlaxSignature3 extends _FlaxDartSignature {
             first: Readonly<{
                 "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [unknown | null];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+                "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [unknown | null];
+                "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [unknown | null];
             }>;
             next: Readonly<{
                 "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [unknown | null];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+                "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [unknown | null];
+                "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [unknown | null];
             }>;
         }], implementation: Partial<CompoundAnimation<_Selected0>>): CompoundAnimation<_Selected0>;
     } & _FlaxInstanceType<CompoundAnimation<_Selected0>> & _FlaxDartType<CompoundAnimation<_Selected0>> : never : never;

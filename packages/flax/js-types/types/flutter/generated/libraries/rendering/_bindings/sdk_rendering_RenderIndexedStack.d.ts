@@ -773,6 +773,7 @@ export declare function _RenderIndexedStackFactory(options?: {
 }): RenderIndexedStack;
 export interface _RenderIndexedStackNative extends RenderIndexedStack {
     readonly [_flaxDartTypeValue]: _RenderIndexedStackNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1381,7 +1382,6 @@ export interface _RenderIndexedStackNative extends RenderIndexedStack {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream18.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

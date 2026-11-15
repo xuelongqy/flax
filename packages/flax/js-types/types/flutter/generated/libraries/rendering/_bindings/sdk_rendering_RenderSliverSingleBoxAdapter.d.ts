@@ -87,6 +87,7 @@ export interface RenderSliverSingleBoxAdapter extends Omit<upstream0.RenderSlive
 }
 export interface RenderSliverSingleBoxAdapter {
     readonly [_flaxDartTypeValue]: RenderSliverSingleBoxAdapter;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -524,7 +525,6 @@ export interface RenderSliverSingleBoxAdapter {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream1.RenderObject | null;
     get owner(): upstream13.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

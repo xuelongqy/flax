@@ -6,15 +6,24 @@ to identify the owning layer.
 
 ## Setup
 
-Use Flutter 3.47.9 from the maintained `flax/main` fork and the remaining tool versions
-in the [toolchain table](README.md#toolchain). Build the matching local engine before
-engine-backed checks; see [setup](README.md). A C/C++ compiler and CMake 3.24 or newer
-are required for configuration checks.
+Use the maintained Flutter 3.50.0 / Dart 3.14.0 checkout prepared for this branch and
+the remaining versions in the [toolchain table](README.md#toolchain). Follow the
+[quick start](README.md#quick-start) to select `FLUTTER_ROOT` and PATH and build the
+matching macOS Debug artifacts before dependency/static commands, not only runtime
+checks. A C/C++ compiler and CMake 3.24 or newer are required for configuration checks.
 
 ```sh
-flutter pub get --enforce-lockfile
+export FLUTTER_ENGINE="${FLUTTER_ROOT:?Select the maintained Flutter checkout}/engine/src"
+env -u FLUTTER_ENGINE flutter --local-engine-src-path="$FLUTTER_ENGINE" \
+  --local-engine=flax_mac_debug_arm64 --local-engine-host=flax_mac_debug_arm64 \
+  pub get --enforce-lockfile
 pnpm install --frozen-lockfile
 ```
+
+Bare Pub, analyze and create can replace the maintained custom SDK cache. Workspace
+commands supply the official host-artifact context through the existing runner; manual
+Flutter invocations must preserve the equivalent explicit flags and remove the legacy
+`FLUTTER_ENGINE` hint from the child environment with `env -u FLUTTER_ENGINE`.
 
 The Pub workspace includes `packages/*`, package-local examples, and the two aggregate
 examples. The pnpm workspace discovers package-owned JS projects and every example JS
@@ -29,12 +38,10 @@ dart run melos list
 pnpm list --recursive --depth -1
 ```
 
-Melos is pinned in the root pubspec and is invoked with `dart run melos`. An explicit
-Melos bootstrap is also available after initial dependency installation:
-
-```sh
-dart run melos bootstrap --enforce-lockfile
-```
+Melos is pinned in the root pubspec and is invoked with `dart run melos`. The Pub
+workspace resolves through the single root command above; no separate Melos bootstrap is
+needed. Do not substitute `melos bootstrap` after building the custom SDK: its internal
+bare Flutter Pub invocation bypasses the workspace's explicit artifact context.
 
 ## Checks
 
@@ -169,7 +176,8 @@ Generated dependency lockfiles are excluded from Prettier.
 
 ## Dependencies and artifacts
 
-For intentional dependency changes, update the owning manifest, run `flutter pub get` or
+For intentional dependency changes, update the owning manifest, resolve Pub with the
+explicit host-artifact flags above (omitting only `--enforce-lockfile`), or run
 `pnpm install`, and review the root lockfile changes. Use frozen/enforced installation
 for verification and CI.
 
@@ -218,11 +226,14 @@ job then runs complete `melos check`, `check:runtime`, `ffi:check` and `release:
 Flutter. Hosted cleanup requires GitHub-hosted macOS arm64 and at least 50 GiB free; it
 is not a local development command.
 
-The fork source is based on Flutter 3.47.9/Dart 3.13.7; its full Git history may report
-a derived prerelease framework version. The CI source pin and engine source lock are the
-authority, not an edited version-cache file. No hosted run is claimed before the local
-fork and Flax commits are pushed. See the
-[integration task](docs/tasks/webgpu-js-api.md#latest-main-integration). The former SDK
+The current target is Flutter 3.50.0 / Dart 3.14.0. CI selects an immutable maintained-
+fork revision through `FLAX_FLUTTER_REVISION` in the workflow. The maintained port is
+based on the verified official 3.50.0 tag, which CI fetches explicitly for Flutter's
+Git-derived version detection. The port is
+locally source-snapshot verified; earlier Flutter 3.47 pins and hosted receipts do not
+certify this target. The source lock and actual matching artifacts are
+authoritative, not fabricated version-cache contents. No hosted run is claimed. See the
+[upgrade task](docs/tasks/flutter-3-50-upgrade.md) for current gates. The former SDK
 platform workflows remain removed; `check_platform.dart` retains historical `--list`
 plans but rejects execution before fetching or building SDKs. Other platforms and full
 application/UI acceptance require their own maintained engine and evidence.

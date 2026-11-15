@@ -50,7 +50,7 @@ selected native library; application code needs no SDK path or framework injecti
 ## Run on macOS
 
 Use macOS 26+ arm64, the repository's locked pnpm/Pub dependencies, CMake, Ninja,
-CocoaPods and Xcode. The maintained Flutter 3.47.9/Dart 3.13.7 checkout must have its
+CocoaPods and Xcode. The maintained Flutter 3.50.0/Dart 3.14.0 checkout must have its
 ordinary `flax_mac_debug_arm64` and `flax_mac_release_arm64` builds. Build them with
 `engine/src/flutter/flax/tools/build_engine.py --sdk /path/to/verified/v8-sdk --mode <debug|release>`.
 The V8 SDK is independent of Dawn. The engine retains its macOS 15 baseline; this

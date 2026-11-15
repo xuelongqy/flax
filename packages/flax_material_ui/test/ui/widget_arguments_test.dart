@@ -19,6 +19,66 @@ OwnedHarness _harness({void Function(FlaxObjectBinding, Object)? onCreate}) =>
     );
 
 void main() {
+  for (final scenario in <(String, Map<String, Object?>, bool)>[
+    ('omitted without callback', {'callback': false}, false),
+    ('null without callback', {'enabled': null, 'callback': false}, false),
+    ('true without callback', {'enabled': true, 'callback': false}, true),
+    ('false with callback', {'enabled': false, 'callback': true}, false),
+    ('omitted with callback', {'callback': true}, true),
+    ('null with callback', {'enabled': null, 'callback': true}, true),
+  ]) {
+    testWidgets('DropdownButtonFormField enabled ${scenario.$1}', (t) async {
+      final h = _harness();
+      try {
+        await t.pumpWidget(h.app('dropdown-enabled', arguments: scenario.$2));
+        await t.pumpAndSettle();
+        expect(h.errors, isEmpty);
+        final field = find.byWidgetPredicate(
+          (widget) => widget is DropdownButtonFormField<Object?>,
+        );
+        expect(field, findsOneWidget);
+        expect(
+          t.widget<DropdownButtonFormField<Object?>>(field).enabled,
+          scenario.$2['enabled'] != false,
+        );
+        final button = find.byWidgetPredicate(
+          (widget) => widget is DropdownButton<Object?>,
+        );
+        expect(
+          t.widget<DropdownButton<Object?>>(button).onChanged != null,
+          scenario.$3,
+        );
+        if (scenario.$3) {
+          final target = find.descendant(
+            of: button,
+            matching: find.byType(GestureDetector),
+          );
+          expect(target, findsOneWidget);
+          await t.tap(target);
+          await t.pumpAndSettle();
+          final choice = find.text('Second choice').hitTestable();
+          expect(choice, findsOneWidget);
+          await t.tap(choice);
+          await t.pumpAndSettle();
+          expect(t.state<FormFieldState<Object?>>(field).value, 'b');
+          expect(
+            h.number('dropdownEvents.changes'),
+            scenario.$2['callback'] == true ? 1 : 0,
+          );
+          if (scenario.$2['callback'] == true) {
+            expect(h.string('dropdownEvents.last'), 'b');
+          }
+        } else {
+          expect(t.state<FormFieldState<Object?>>(field).value, isNull);
+          expect(h.number('dropdownEvents.changes'), 0);
+        }
+        expect(h.errors, isEmpty);
+      } finally {
+        await h.finish(t);
+      }
+    });
+  }
+
   for (final fail in [false, true]) {
     testWidgets('Dart saves a Widget before returning or throwing ($fail)', (
       t,

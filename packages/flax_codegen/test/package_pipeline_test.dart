@@ -14,6 +14,7 @@ import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
 import 'support/core_package.dart';
+import 'support/public_carriers.dart';
 
 void main() {
   test('shared adapters follow generate/check, collision protection and orphan cleanup', () async {
@@ -83,6 +84,70 @@ functions: [$name]
   });
 
   group('FlaxCodegenPackagePipeline.validateConfig', () {
+    test('automatic siblings use active nearest carriers independently of config order', () async {
+      final configs = publicCarrierConfigs('scope_pkg');
+      final snapshots = <String>[];
+      for (final reversed in [false, true]) {
+        final entries = reversed
+            ? configs.entries.toList().reversed
+            : configs.entries;
+        final package = _tempPackage(
+          name: 'scope_pkg',
+          libraries: publicCarrierLibraries,
+          configs: {for (final entry in entries) entry.key: entry.value},
+        );
+        final result = await FlaxCodegenPackagePipeline.validateConfig(
+          package.configPath(
+            reversed ? 'flax_z_active.yaml' : 'flax_main.yaml',
+          ),
+        );
+        final active = result.localModels.singleWhere(
+          (m) => m.name == 'z_active',
+        );
+        expect(
+          active.classes.map((c) => c.name),
+          containsAll(['CarrierType', 'NearType', 'Mode', 'Retired']),
+        );
+        expect(
+          active.typeLibraries['CarrierType'],
+          'package:scope_pkg/z_active.dart',
+        );
+        expect(
+          active.typeLibraries['NearType'],
+          'package:scope_pkg/z_active.dart',
+        );
+        final tied = result.localModels.singleWhere((m) => m.name == 'c_tie');
+        expect(tied.classes.map((c) => c.name), ['TiedType']);
+        expect(tied.typeLibraries['TiedType'], 'package:scope_pkg/c_tie.dart');
+        final declared = result.localModels.singleWhere(
+          (m) => m.name == 'declared',
+        );
+        expect(declared.classes.map((c) => c.name), ['Declared']);
+        expect(
+          declared.typeLibraries['Declared'],
+          'package:scope_pkg/declared.dart',
+        );
+        expect(
+          result.localModels.singleWhere((m) => m.name == 'a_legacy').classes,
+          isEmpty,
+        );
+        final owners = result.manifest.modules
+            .expand((m) => m.model.identities)
+            .where((i) => i.owner);
+        final retired = owners.singleWhere(
+          (i) => i.sourceIdentity.name == 'Retired',
+        );
+        expect(
+          retired.sourceIdentity.originatingUri,
+          'package:scope_pkg/src/types.dart',
+        );
+        expect(retired.providerEligible, isTrue);
+        expect(result.notices.any((n) => n.target == 'Retired'), isTrue);
+        snapshots.add(result.manifest.encode());
+      }
+      expect(snapshots.last, snapshots.first);
+    });
+
     test('SDK build plan uses the canonical provider route instead of unrelated reexports', () async {
       final workspace = _tempWorkspace();
       final provider = _writeHostPackage(
@@ -5877,7 +5942,9 @@ bindingNamespace: example.host
   );
   final lib = Directory(p.join(root.path, 'lib'))..createSync();
   for (final entry in libraries.entries) {
-    File(p.join(lib.path, entry.key)).writeAsStringSync(entry.value);
+    final file = File(p.join(lib.path, entry.key));
+    file.parent.createSync(recursive: true);
+    file.writeAsStringSync(entry.value);
   }
   final bindings = Directory(p.join(root.path, 'bindings'))..createSync();
   for (final entry in configs.entries) {

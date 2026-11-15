@@ -66,6 +66,9 @@ export interface HybridAndroidViewController extends Omit<upstream0.AndroidViewC
     }>): Promise<void>;
     clearFocus(): Promise<void>;
     dispose(): Promise<void>;
+    rejectGesture(options?: {
+        gestureId?: number | null | undefined;
+    }): Promise<void>;
     set pointTransformer(value: ((position: upstream2.Offset) => Readonly<{
         "__flaxBound:dart:ui::Offset": readonly [];
     }> & Readonly<{
@@ -76,5 +79,5 @@ export declare namespace _HybridAndroidViewControllerFactory {
     function checkIfSupported(): Promise<boolean>;
 }
 export declare const HybridAndroidViewController: typeof _HybridAndroidViewControllerFactory & _FlaxInstanceType<HybridAndroidViewController> & _FlaxDartType<HybridAndroidViewController, readonly ["class", "flax.core/sdk_services#type:HybridAndroidViewController", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "viewId" | "awaitingCreation" | "textureId" | "requiresViewComposition" | "pointTransformer" | "isCreated" | "create" | "setSize" | "setOffset" | "sendMotionEvent" | "addOnPlatformViewCreatedListener" | "removeOnPlatformViewCreatedListener" | "setLayoutDirection" | "dispatchPointerEvent" | "clearFocus" | "dispose" | "__flaxBound:package:flutter/src/services/platform_views.dart::HybridAndroidViewController" | "__flaxBound:package:flutter/src/services/platform_views.dart::AndroidViewController" | "__flaxBound:package:flutter/src/services/platform_views.dart::PlatformViewController";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "viewId" | "awaitingCreation" | "textureId" | "requiresViewComposition" | "pointTransformer" | "isCreated" | "create" | "setSize" | "setOffset" | "sendMotionEvent" | "addOnPlatformViewCreatedListener" | "removeOnPlatformViewCreatedListener" | "setLayoutDirection" | "dispatchPointerEvent" | "clearFocus" | "dispose" | "rejectGesture" | "__flaxBound:package:flutter/src/services/platform_views.dart::HybridAndroidViewController" | "__flaxBound:package:flutter/src/services/platform_views.dart::AndroidViewController" | "__flaxBound:package:flutter/src/services/platform_views.dart::PlatformViewController";
 export {};

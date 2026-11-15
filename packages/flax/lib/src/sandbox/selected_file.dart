@@ -21,14 +21,8 @@ abstract class FlaxDocumentBackend {
 
 /// Pins a selected local file before issuing a grant. No later path lookup is used.
 final class FlaxLocalDocumentBackend extends FlaxDocumentBackend {
-  FlaxLocalDocumentBackend._(
-    this._descriptor,
-    this._file,
-    this.name,
-    this._writable,
-  );
+  FlaxLocalDocumentBackend._(this._descriptor, this.name, this._writable);
   final int _descriptor;
-  final RandomAccessFile _file;
   final bool _writable;
   @override
   final String name;
@@ -86,16 +80,13 @@ final class FlaxLocalDocumentBackend extends FlaxDocumentBackend {
           )) {
         _deny('documents.open', 'Host-managed records cannot be selected');
       }
-      final stat = File(_fdPath(descriptor)).statSync();
+      final stat = _posix.stat(descriptor);
       if (stat.type != FileSystemEntityType.file ||
           (stat.mode & 0xf000) != 0x8000) {
         _deny('documents.open', 'Select a regular file');
       }
-      final handle = await File(_fdPath(descriptor))
-          .open(mode: writable ? FileMode.append : FileMode.read);
       return FlaxLocalDocumentBackend._(
         descriptor,
-        handle,
         p.basename(actual),
         writable,
       );
@@ -105,29 +96,37 @@ final class FlaxLocalDocumentBackend extends FlaxDocumentBackend {
     }
   }
 
-  Future<T> _run<T>(Future<T> Function() action) {
+  Future<T> _run<T>(Future<T> Function(_DescriptorIoLease) action) {
     if (_closing != null) {
       return Future.error(StateError('Closed document backend'));
     }
-    final result = _queue.then((_) => action());
+    // Acquire at admission so a queued burst keeps one worker through its drain.
+    // An idle open document owns only its descriptor, never a worker lease.
+    final ready = Future.wait<Object?>([_queue, _descriptorIo.acquire()]);
+    final result = ready.then((values) async {
+      final io = values[1] as _DescriptorIoLease;
+      try {
+        return await action(io);
+      } finally {
+        await io.release();
+      }
+    });
     _queue = result.then<void>((_) {}, onError: (Object _) {});
     return result;
   }
 
   @override
-  Future<int> length() => _run(_file.length);
+  Future<int> length() => _run((io) async => (await io.stat(_descriptor)).size);
   @override
-  Future<bool> exists() => _run(() async {
-    await _file.length();
+  Future<bool> exists() => _run((io) async {
+    await io.stat(_descriptor);
     return true;
   });
   @override
-  Future<FileStat> stat() => _run(() => File(_fdPath(_descriptor)).stat());
+  Future<FileStat> stat() => _run((io) => io.stat(_descriptor));
   @override
-  Future<Uint8List> read(int offset, int count) => _run(() async {
-    await _file.setPosition(offset);
-    return _file.read(count);
-  });
+  Future<Uint8List> read(int offset, int count) =>
+      _run((io) => io.read(_descriptor, offset, count));
   @override
   Future<void> write(
     List<int> bytes, {
@@ -142,24 +141,23 @@ final class FlaxLocalDocumentBackend extends FlaxDocumentBackend {
         UnsupportedError('Document write mode is unsupported'),
       );
     }
-    return _run(() async {
-      if (mode == FileMode.write) await _file.truncate(0);
-      await _file.setPosition(
-        mode == FileMode.append ? await _file.length() : 0,
-      );
-      await _file.writeFrom(bytes);
-      if (flush) await _file.flush();
-    });
+    final snapshot = Uint8List.fromList(bytes);
+    return _run(
+      (io) => io.write(
+        _descriptor,
+        snapshot,
+        append: mode == FileMode.append,
+        flush: flush,
+      ),
+    );
   }
 
   @override
   Future<void> close() => _closing ??= () async {
+    // Result completion includes acknowledgement (or confirmed worker exit).
+    // Never close/reuse the integer while a queued native call can access it.
     await _queue;
-    try {
-      await _file.close();
-    } finally {
-      _posix.close(_descriptor);
-    }
+    _posix.close(_descriptor);
   }();
 }
 
@@ -277,9 +275,9 @@ final class FlaxSelectedFile implements File {
   @override
   Stream<List<int>> openRead([int? start, int? end]) {
     final offset = start ?? 0;
-    if (offset < 0 || end != null && end < offset) {
-      throw RangeError('Invalid read interval');
-    }
+    final limit = end ?? _descriptorMaxOffset;
+    if (end != null && end < offset) throw RangeError('Invalid read interval');
+    _checkDescriptorRange(offset, end == null ? 0 : end - offset);
     final done = Completer<void>();
     Completer<void>? resumed;
     var stopped = false;
@@ -296,14 +294,24 @@ final class FlaxSelectedFile implements File {
 
     Future<void> read() async {
       var position = offset;
+      _DescriptorIoLease? io;
       try {
-        while (!stopped && (end == null || position < end)) {
+        requireActive();
+        // Local streams retain the shared worker across their chunk requests,
+        // including pauses. Custom URI/security-scope providers keep their IO.
+        if (_source is FlaxLocalDocumentBackend && offset < limit) {
+          io = await _descriptorIo.acquire();
+        }
+        while (!stopped && position < limit) {
           if (resumed case final waiting?) await waiting.future;
           if (stopped) break;
           requireActive();
-          final count = end == null ? 65536 : min(65536, end - position);
+          final count = min(_descriptorChunkSize, limit - position);
           final bytes = await _work(() => _source.read(position, count));
           if (stopped) break;
+          if (resumed case final waiting?) await waiting.future;
+          if (stopped) break;
+          requireActive();
           if (bytes.length > count) {
             throw StateError('Document backend exceeded requested range');
           }
@@ -314,9 +322,13 @@ final class FlaxSelectedFile implements File {
       } catch (error, stack) {
         if (!stopped) controller.addError(error, stack);
       } finally {
-        _streams.remove(stop);
-        if (!controller.isClosed) unawaited(controller.close());
-        done.complete();
+        try {
+          await io?.release();
+        } finally {
+          _streams.remove(stop);
+          if (!controller.isClosed) unawaited(controller.close());
+          done.complete();
+        }
       }
     }
 
@@ -325,7 +337,10 @@ final class FlaxSelectedFile implements File {
         _streams.add(stop);
         unawaited(read());
       },
-      onPause: () => resumed ??= Completer<void>(),
+      onPause: () {
+        // A downstream pause may arrive after stop while native IO drains.
+        if (!stopped) resumed ??= Completer<void>();
+      },
       onResume: () {
         final waiting = resumed;
         resumed = null;
@@ -399,18 +414,11 @@ final class FlaxSelectedFile implements File {
     final destination = policy.file(newPath);
     await policy._fileAsync(destination.path, _writeFlags(FileMode.write), (
       file,
-    ) async {
-      final handle = await file.open(mode: FileMode.write);
-      try {
-        await for (final bytes in openRead()) {
-          policy.scope.requireActive();
-          requireActive();
-          await handle.writeFrom(bytes);
-        }
-        await handle.flush();
-      } finally {
-        await handle.close();
-      }
+    ) {
+      return file.writeStream(openRead(), () {
+        policy.scope.requireActive();
+        requireActive();
+      });
     });
     return destination;
   });

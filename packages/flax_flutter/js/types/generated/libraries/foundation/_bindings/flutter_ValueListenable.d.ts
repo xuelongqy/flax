@@ -14,9 +14,9 @@ import '@flax/flutter/widgets/_bindings/flutter_WidgetState';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
 import { type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface ValueListenable<T extends unknown | null = unknown | null> extends Omit<upstream0.Listenable, _flaxOwnMembers0>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [T];
+    "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [T];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __ValueListenable: unique symbol;
     readonly [_flaxDartTypeValue]: ValueListenable<T>;
@@ -42,7 +42,7 @@ export declare namespace ValueListenable {
         get value(): (T | DartInput<T>);
     }): ValueListenable<T>;
 }
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "addListener" | "removeListener" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "addListener" | "removeListener" | "__flaxBound:package:listen/src/listen.dart::ValueListenable" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 interface _FlaxSignature1 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (abstract new () => ValueListenable<_Selected0>) & {
         readonly prototype: ValueListenable<_Selected0>;

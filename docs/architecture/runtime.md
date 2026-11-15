@@ -2,14 +2,19 @@
 
 ## Implemented scope
 
-Flax uses its maintained Flutter 3.47.9 engine: V8 15.4.80.15 JIT on macOS and Android
-arm64, and V8 jitless on iOS arm64. `FlaxEngine.createRuntime()` is the common entry in
-`package:flax/runtime.dart`. It checks native ABI 2, internal GC extension 1, internal
-binding extension 8 and the exact Flutter/Dart revisions before allocation. Ordinary
-Flutter and incompatible engines fail explicitly. UI protocol 24 rejects earlier
-generated packages.
+Flax uses its maintained Flutter 3.50.0 / Dart 3.14.0 engine: V8 15.4.80.15 JIT on macOS
+and Android arm64, and V8 jitless on iOS arm64. `FlaxEngine.createRuntime()` is the
+common entry in `package:flax/runtime.dart`. It checks native ABI 2, internal GC
+extension 1, internal binding extension 8 and the exact Flutter/Dart revisions before
+allocation. Ordinary Flutter and incompatible engines fail explicitly. UI protocol 24
+rejects earlier generated packages.
 
 The Flutter fork owns the C++ bridge, platform adapters and revision-checked Dart patch.
+Dependency/static Flutter commands use the existing workspace runner's official macOS
+Debug host-artifact context so universal artifact updates cannot replace custom cached
+`dart:ui` declarations. That context does not select a runtime device or relax iOS build
+restrictions; test/run/drive/build select their actual supported target and mode.
+
 One UI isolate owns one V8 heap/C++ heap; each runtime uses an independent Context and
 microtask queue. Dart parallel marking and V8 conditional tracing reclaim rootless
 cross-language cycles. See [bridge references](references.md) and
@@ -41,23 +46,24 @@ remain enabled. Flutter isolates without Flax bridge cells and other platforms r
 their ordinary Dart idle path. Pressure collection can still interrupt animation.
 
 Platform policy is iOS V8 jitless and other native V8 JIT. macOS and Android arm64 are
-implemented; Android debug and release/AOT acceptance covers an arm64 emulator and a
-Pixel 4 running Android 13. The iOS producer supports simulator debug and
-physical-device release/AOT applications on iOS 16.3 or later. Device debug/profile and
-simulator profile/release are unsupported. Distribution acceptance remains pending. The
+implemented targets. The iOS producer supports simulator debug and physical-device
+release/AOT applications on iOS 16.3 or later. Device debug/profile and simulator
+profile/release are unsupported. Distribution acceptance remains pending. The
 `flax_engine_hermes` compatibility package is removed. Applications use
 `FlaxEngine.createRuntime()` or the delegating `FlaxV8Engine.createRuntime()` factory;
 engine selection is not a command-line option. These factories do not build native
-assets. Earlier SDK platform validation remains historical evidence, not acceptance of
-this implementation.
+assets. The [Flutter 3.50 upgrade task](../tasks/flutter-3-50-upgrade.md) records
+current per-platform gates; earlier SDK evidence does not certify the new engine.
 
-The iOS migration rebuilds the current binding-extension-8 engine and runs the
-package-owned UI contracts on the arm64 simulator, including generic Type handles and
-Widget interfaces. Historical Android acceptance predates these complete UI contracts;
-the expanded Android comparison retains four refresh/cleanup failures on Pixel 4 and
-eight failures on the emulator, all reproduced with the pre-migration engine. See the
+The earlier Flutter 3.47.9 migration rebuilt its binding-extension-8 engine and ran
+package-owned UI contracts on the arm64 iOS simulator, including generic Type handles
+and Widget interfaces. Its Android debug and release/AOT runtime acceptance covered an
+arm64 emulator and a Pixel 4 running Android 13, but predated these complete UI
+contracts. The expanded historical Android comparison retained four refresh/cleanup
+failures on Pixel 4 and eight on the emulator, all reproduced with the pre-migration
+engine. See the
 [migration acceptance](../../experiments/canvas_engines/migration-ios-results.md) for
-exact platform scope and remaining gates.
+that exact historical scope; those results are not fresh Flutter 3.50 passes.
 
 ## Source compilation
 

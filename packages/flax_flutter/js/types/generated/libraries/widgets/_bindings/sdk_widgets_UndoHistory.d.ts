@@ -73,13 +73,13 @@ export declare function _UndoHistoryFactory<T extends unknown | null = unknown |
     }> | null | undefined;
     shouldChangeUndoStack?: ((oldValue: _FlaxDartOutput<T> | null, newValue: _FlaxDartOutput<T>) => boolean) | null | undefined;
     value: Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [_FlaxDartOutput<T>];
+        "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [_FlaxDartOutput<T>];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [_FlaxDartOutput<T>];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [_FlaxDartOutput<T>];
     }>;
     onTriggered: ((value: _FlaxDartOutput<T>) => void);
     focusNode: Readonly<{
@@ -91,21 +91,21 @@ export declare function _UndoHistoryFactory<T extends unknown | null = unknown |
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>;
     undoStackModifier?: ((value: _FlaxDartOutput<T>) => (T | _FlaxDartOutput<T>)) | null | undefined;
     controller?: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/undo_history.dart::UndoHistoryController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream11.UndoHistoryValue];
+        "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream11.UndoHistoryValue];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream11.UndoHistoryValue];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream11.UndoHistoryValue];
     }>) | null | undefined;
     child: Widget;
 }): UndoHistory<T>;
@@ -115,13 +115,13 @@ export declare function _UndoHistoryFactory(options: {
     }> | null | undefined;
     shouldChangeUndoStack?: ((oldValue: unknown | null, newValue: unknown | null) => boolean) | null | undefined;
     value: Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [unknown | null];
+        "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [unknown | null];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [unknown | null];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [unknown | null];
     }>;
     onTriggered: ((value: unknown | null) => void);
     focusNode: Readonly<{
@@ -133,21 +133,21 @@ export declare function _UndoHistoryFactory(options: {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>;
     undoStackModifier?: ((value: unknown | null) => unknown | null) | null | undefined;
     controller?: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/undo_history.dart::UndoHistoryController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream11.UndoHistoryValue];
+        "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream11.UndoHistoryValue];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream11.UndoHistoryValue];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream11.UndoHistoryValue];
     }>) | null | undefined;
     child: Widget;
 }): UndoHistory<unknown | null>;
@@ -161,13 +161,13 @@ interface _FlaxSignature0 extends _FlaxDartSignature {
             }> | null | undefined;
             shouldChangeUndoStack?: ((oldValue: _Selected0 | null, newValue: _Selected0) => boolean) | null | undefined;
             value: Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [_Selected0];
+                "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [_Selected0];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+                "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+                "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [_Selected0];
+                "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [_Selected0];
             }>;
             onTriggered: ((value: _Selected0) => void);
             focusNode: Readonly<{
@@ -179,21 +179,21 @@ interface _FlaxSignature0 extends _FlaxDartSignature {
             }> & Readonly<{
                 "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+                "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+                "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
             }>;
             undoStackModifier?: ((value: _Selected0) => (_Selected0 | DartInput<_Selected0>)) | null | undefined;
             controller?: (Readonly<{
                 "__flaxBound:package:flutter/src/widgets/undo_history.dart::UndoHistoryController": readonly [];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream11.UndoHistoryValue];
+                "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream11.UndoHistoryValue];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+                "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+                "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream11.UndoHistoryValue];
+                "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream11.UndoHistoryValue];
             }>) | null | undefined;
             child: Widget;
         }): UndoHistory<_Selected0>;

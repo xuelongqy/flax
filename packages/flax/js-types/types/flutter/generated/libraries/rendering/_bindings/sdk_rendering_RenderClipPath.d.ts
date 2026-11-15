@@ -610,7 +610,7 @@ export interface RenderClipPath extends Omit<upstream0.RenderProxyBox, _flaxOwnM
     set clipper(value: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream9.Path];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null);
     set clipBehavior(value: upstream11.Clip);
 }
@@ -631,12 +631,13 @@ export declare function _RenderClipPathFactory(options?: {
     clipper?: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream9.Path];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     clipBehavior?: upstream11.Clip | undefined;
 }): RenderClipPath;
 export interface _RenderClipPathNative extends RenderClipPath {
     readonly [_flaxDartTypeValue]: _RenderClipPathNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1102,7 +1103,6 @@ export interface _RenderClipPathNative extends RenderClipPath {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream16.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;
@@ -1120,7 +1120,7 @@ export interface _RenderClipPathNative extends RenderClipPath {
     set clipper(value: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream9.Path];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null);
     set clipBehavior(value: upstream11.Clip);
     set size(value: Readonly<{
@@ -1178,7 +1178,7 @@ export declare abstract class _RenderClipPathNative extends _FlaxProxyBase {
         clipper?: (Readonly<{
             "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream9.Path];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
         clipBehavior?: upstream11.Clip | undefined;
     });
@@ -1201,7 +1201,7 @@ export declare namespace _RenderClipPathFactory {
         clipper?: (Readonly<{
             "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream9.Path];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
         clipBehavior?: upstream11.Clip | undefined;
     }], implementation: {}): RenderClipPath;
@@ -1223,7 +1223,7 @@ declare const _RenderClipPathBinding: typeof _RenderClipPathFactory & (new (opti
     clipper?: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream9.Path];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     clipBehavior?: upstream11.Clip | undefined;
 }) => _RenderClipPathNative);

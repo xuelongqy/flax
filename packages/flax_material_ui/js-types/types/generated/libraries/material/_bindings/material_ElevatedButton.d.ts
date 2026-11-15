@@ -20,9 +20,13 @@ import '@flax/flutter/services/_bindings/flutter_MouseCursor';
 import '@flax/dart/ui/_bindings/flutter_Size';
 import '@flax/flutter/painting/_bindings/flutter_EdgeInsetsGeometry';
 import '@flax/flutter/painting/_bindings/flutter_OutlinedBorder';
+import type * as upstream15 from '@flax/material-ui/_bindings/material_ButtonShapeVariant';
+import '@flax/material-ui/_bindings/material_ButtonShapeVariant';
 import '@flax/flutter/painting/_bindings/flutter_BorderSide';
+import type * as upstream17 from '@flax/material-ui/_bindings/material_ButtonSizeVariant';
+import '@flax/material-ui/_bindings/material_ButtonSizeVariant';
 import '@flax/material-ui/_bindings/material_InteractiveInkFeatureFactory';
-import type * as upstream17 from '@flax/material-ui/_bindings/material_MaterialTapTargetSize';
+import type * as upstream19 from '@flax/material-ui/_bindings/material_MaterialTapTargetSize';
 import '@flax/material-ui/_bindings/material_MaterialTapTargetSize';
 import '@flax/flutter/painting/_bindings/flutter_TextStyle';
 import '@flax/material-ui/_bindings/material_VisualDensity';
@@ -64,23 +68,24 @@ export declare function _ElevatedButtonFactory(options: {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null> | undefined;
     autofocus?: Bindable<boolean> | undefined;
     clipBehavior?: Bindable<upstream3.Clip | null> | undefined;
     statesController?: Bindable<(Readonly<{
         "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [DartSet<upstream9.WidgetState>];
+        "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [DartSet<upstream9.WidgetState>];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [DartSet<upstream9.WidgetState>];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [DartSet<upstream9.WidgetState>];
     }>) | null> | undefined;
+    isSelected?: Bindable<boolean | null> | undefined;
     child: Bindable<Widget | null>;
 }): ElevatedButton;
 export declare namespace _ElevatedButtonFactory {
@@ -119,23 +124,24 @@ export declare namespace _ElevatedButtonFactory {
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null> | undefined;
         autofocus?: Bindable<boolean> | undefined;
         clipBehavior?: Bindable<upstream3.Clip | null> | undefined;
         statesController?: Bindable<(Readonly<{
             "__flaxBound:package:flutter/src/widgets/widget_state.dart::WidgetStatesController": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [DartSet<upstream9.WidgetState>];
+            "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [DartSet<upstream9.WidgetState>];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [DartSet<upstream9.WidgetState>];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [DartSet<upstream9.WidgetState>];
         }>) | null> | undefined;
+        isSelected?: Bindable<boolean | null> | undefined;
         icon?: Bindable<Widget | null> | undefined;
         label: Bindable<Widget>;
         iconAlignment?: Bindable<upstream5.IconAlignment | null> | undefined;
@@ -221,18 +227,20 @@ export declare namespace _ElevatedButtonFactory {
         }> & Readonly<{
             "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [];
         }>) | null | undefined;
+        shapeVariant?: upstream15.ButtonShapeVariant | null | undefined;
         side?: (Readonly<{
             "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [];
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
+        sizeVariant?: upstream17.ButtonSizeVariant | null | undefined;
         splashFactory?: Readonly<{
             "__flaxBound:package:material_ui/src/ink_well.dart::InteractiveInkFeatureFactory": readonly [];
         }> | null | undefined;
         surfaceTintColor?: Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];
         }> | null | undefined;
-        tapTargetSize?: upstream17.MaterialTapTargetSize | null | undefined;
+        tapTargetSize?: upstream19.MaterialTapTargetSize | null | undefined;
         textStyle?: (Readonly<{
             "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
         }> & Readonly<{

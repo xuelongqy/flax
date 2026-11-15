@@ -27,7 +27,18 @@ Future<void> run(
     inheritEnvironment = false;
   }
   if (executable == 'flutter') {
-    if (useLocalEngine) arguments = localEngineArguments(arguments);
+    // Static Flutter commands must not replace the maintained SDK cache, even
+    // when the caller does not need to load an engine into a runtime process.
+    if (useLocalEngine ||
+        arguments.isNotEmpty &&
+            {
+              'pub',
+              'packages',
+              'analyze',
+              'create',
+            }.contains(arguments.first)) {
+      arguments = localEngineArguments(arguments);
+    }
     executable = '${flutterSdkRoot()}/bin/flutter';
   }
   final elapsed = Stopwatch()..start();

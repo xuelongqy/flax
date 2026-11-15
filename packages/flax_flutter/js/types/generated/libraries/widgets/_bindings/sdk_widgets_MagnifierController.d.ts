@@ -21,7 +21,7 @@ export interface MagnifierController extends Readonly<{
         below?: (Readonly<{
             "__flaxBound:package:flutter/src/widgets/overlay.dart::OverlayEntry": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
         builder: ((context: upstream3.BuildContext) => Widget);
         context: upstream3.BuildContext;
@@ -35,9 +35,9 @@ export interface MagnifierController extends Readonly<{
     }> & Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationEagerListenerMixin": readonly [];
     }> & Readonly<{
@@ -52,9 +52,9 @@ export declare function _MagnifierControllerFactory(options?: {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationEagerListenerMixin": readonly [];
     }> & Readonly<{
@@ -72,7 +72,7 @@ export interface _MagnifierControllerNative extends MagnifierController {
         below?: (Readonly<{
             "__flaxBound:package:flutter/src/widgets/overlay.dart::OverlayEntry": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
     }): Promise<void>;
     hide(options?: {
@@ -86,9 +86,9 @@ export interface _MagnifierControllerNative extends MagnifierController {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationEagerListenerMixin": readonly [];
     }> & Readonly<{
@@ -107,9 +107,9 @@ export declare abstract class _MagnifierControllerNative extends _FlaxProxyBase 
         }> & Readonly<{
             "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
         }> & Readonly<{
             "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationEagerListenerMixin": readonly [];
         }> & Readonly<{
@@ -126,9 +126,9 @@ export declare namespace _MagnifierControllerFactory {
         }> & Readonly<{
             "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
         }> & Readonly<{
             "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationEagerListenerMixin": readonly [];
         }> & Readonly<{
@@ -144,9 +144,9 @@ declare const _MagnifierControllerBinding: typeof _MagnifierControllerFactory & 
     }> & Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/animation/listener_helpers.dart::AnimationEagerListenerMixin": readonly [];
     }> & Readonly<{

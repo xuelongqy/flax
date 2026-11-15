@@ -60,13 +60,13 @@ export interface VideoPlayer extends _FlaxDartWidget, Omit<upstream0.StatefulWid
 export declare function _VideoPlayerFactory(controller: Readonly<{
     "__flaxBound:package:video_player/video_player.dart::VideoPlayerController": readonly [];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream10.VideoPlayerValue];
+    "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream10.VideoPlayerValue];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream10.VideoPlayerValue];
+    "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream10.VideoPlayerValue];
 }>, options?: {
     key?: Readonly<{
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];

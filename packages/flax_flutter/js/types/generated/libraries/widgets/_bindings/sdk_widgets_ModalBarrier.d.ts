@@ -77,13 +77,13 @@ export declare function _ModalBarrierFactory(options?: {
     semanticsLabel?: string | null | undefined;
     barrierSemanticsDismissible?: boolean | null | undefined;
     clipDetailsNotifier?: (Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream4.EdgeInsets];
+        "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream4.EdgeInsets];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream4.EdgeInsets];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream4.EdgeInsets];
     }>) | null | undefined;
     semanticsOnTapHint?: string | null | undefined;
 }): ModalBarrier;

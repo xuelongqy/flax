@@ -184,6 +184,7 @@ import "@flax/material-ui/_bindings/material_SliderTickMarkShape";
 import "@flax/material-ui/_bindings/material_SliderTrackShape";
 import "@flax/material-ui/_bindings/material_SnackBarThemeData";
 import "@flax/material-ui/_bindings/material_SpellCheckSuggestionsToolbarLayoutDelegate";
+import "@flax/material-ui/_bindings/material_Springs";
 import "@flax/material-ui/_bindings/material_StandardFabLocation";
 import "@flax/material-ui/_bindings/material_Step";
 import "@flax/material-ui/_bindings/material_StepStyle";
@@ -709,6 +710,7 @@ export { RoundedRectRangeSliderTrackShape } from "@flax/material-ui/_bindings/ma
 export { RoundedRectRangeSliderValueIndicatorShape } from "@flax/material-ui/_bindings/material_RoundedRectRangeSliderValueIndicatorShape";
 export { RoundedRectSliderTrackShape } from "@flax/material-ui/_bindings/material_RoundedRectSliderTrackShape";
 export { RoundedRectSliderValueIndicatorShape } from "@flax/material-ui/_bindings/material_RoundedRectSliderValueIndicatorShape";
+export type { RouteBarrierBuilder, RouteBarrierBuilderInput } from "@flax/material-ui/_bindings/material_RouteBarrierBuilder";
 export type { RouteCompletionCallback, RouteCompletionCallbackInput } from "@flax/material-ui/_bindings/material_RouteCompletionCallback";
 export type { RouteFactory, RouteFactoryInput } from "@flax/material-ui/_bindings/material_RouteFactory";
 export type { RouteListFactory, RouteListFactoryInput } from "@flax/material-ui/_bindings/material_RouteListFactory";
@@ -782,6 +784,7 @@ export { SnackBarTheme } from "@flax/material-ui/_bindings/material_SnackBarThem
 export { SnackBarThemeData } from "@flax/material-ui/_bindings/material_SnackBarThemeData";
 export { SpellCheckSuggestionsToolbar } from "@flax/material-ui/_bindings/material_SpellCheckSuggestionsToolbar";
 export { SpellCheckSuggestionsToolbarLayoutDelegate } from "@flax/material-ui/_bindings/material_SpellCheckSuggestionsToolbarLayoutDelegate";
+export { Springs } from "@flax/material-ui/_bindings/material_Springs";
 export { StandardFabLocation } from "@flax/material-ui/_bindings/material_StandardFabLocation";
 export type { StateSetter, StateSetterInput } from "@flax/material-ui/_bindings/material_StateSetter";
 export type { StatefulWidgetBuilder, StatefulWidgetBuilderInput } from "@flax/material-ui/_bindings/material_StatefulWidgetBuilder";

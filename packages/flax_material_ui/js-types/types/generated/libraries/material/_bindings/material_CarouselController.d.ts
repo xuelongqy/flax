@@ -19,9 +19,9 @@ export interface CarouselController extends Omit<upstream0.ScrollController, _fl
 }>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __CarouselController: unique symbol;
     readonly [_flaxDartTypeValue]: CarouselController;
@@ -33,9 +33,9 @@ export interface CarouselController extends Omit<upstream0.ScrollController, _fl
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
     }>) => void) | null;
@@ -44,9 +44,9 @@ export interface CarouselController extends Omit<upstream0.ScrollController, _fl
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
     }>) => void) | null;
@@ -78,9 +78,9 @@ export interface CarouselController extends Omit<upstream0.ScrollController, _fl
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
     }>): void;
@@ -89,9 +89,9 @@ export interface CarouselController extends Omit<upstream0.ScrollController, _fl
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
     }>): void;
@@ -104,9 +104,9 @@ export interface CarouselController extends Omit<upstream0.ScrollController, _fl
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
     }>) | null): upstream3.ScrollPosition;
@@ -151,9 +151,9 @@ export interface _CarouselControllerNative extends CarouselController {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
     }>): void;
@@ -162,9 +162,9 @@ export interface _CarouselControllerNative extends CarouselController {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
     }>): void;
@@ -177,9 +177,9 @@ export interface _CarouselControllerNative extends CarouselController {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
     }>) | null): upstream3.ScrollPosition;
@@ -206,9 +206,9 @@ export interface _CarouselControllerNative extends CarouselController {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
     }>) => void) | null;
@@ -217,9 +217,9 @@ export interface _CarouselControllerNative extends CarouselController {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
     }>) => void) | null;
@@ -247,5 +247,5 @@ declare const _CarouselControllerBinding: typeof _CarouselControllerFactory & (n
     initialItem?: number | undefined;
 }) => _CarouselControllerNative);
 export declare const CarouselController: typeof _CarouselControllerBinding & _FlaxInstanceType<CarouselController> & _FlaxDartType<CarouselController, readonly ["class", "flax.material/material#type:CarouselController", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "initialScrollOffset" | "keepScrollOffset" | "onAttach" | "onDetach" | "debugLabel" | "positions" | "hasClients" | "position" | "offset" | "initialItem" | "leadingItem" | "addListener" | "removeListener" | "dispose" | "animateTo" | "jumpTo" | "attach" | "detach" | "createScrollPosition" | "toString" | "debugFillDescription" | "animateToItem" | "__flaxBound:package:material_ui/src/carousel.dart::CarouselController" | "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "initialScrollOffset" | "keepScrollOffset" | "onAttach" | "onDetach" | "debugLabel" | "positions" | "hasClients" | "position" | "offset" | "initialItem" | "leadingItem" | "addListener" | "removeListener" | "dispose" | "animateTo" | "jumpTo" | "attach" | "detach" | "createScrollPosition" | "toString" | "debugFillDescription" | "animateToItem" | "__flaxBound:package:material_ui/src/carousel.dart::CarouselController" | "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 export {};

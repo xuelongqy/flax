@@ -64,9 +64,9 @@ export declare function _SelectionListenerFactory(options: {
     selectionNotifier: Readonly<{
         "__flaxBound:package:flutter/src/widgets/selectable_region.dart::SelectionListenerNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>;
     child: Widget;
 }): SelectionListener;

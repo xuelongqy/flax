@@ -130,6 +130,7 @@ Image sandboxImageAsset(
   FilterQuality filterQuality = FilterQuality.medium,
   int? cacheWidth,
   int? cacheHeight,
+  bool useLogicalCacheSize = false,
 }) => Image.asset(
   name,
   key: key,
@@ -155,6 +156,7 @@ Image sandboxImageAsset(
   filterQuality: filterQuality,
   cacheWidth: cacheWidth,
   cacheHeight: cacheHeight,
+  useLogicalCacheSize: useLogicalCacheSize,
 );
 
 void checkSandboxImageProvider(
@@ -210,6 +212,16 @@ void checkSandboxImageInput(
   ImageProvider? image,
 ) {
   if (image != null) checkSandboxImageProvider(c, p, image);
+}
+
+void checkSandboxDecorationImages(
+  FlaxSandboxContext c,
+  FlaxAssetBundlePolicy p, {
+  required ImageProvider image,
+  ImageProvider? placeholder,
+}) {
+  checkSandboxImageProvider(c, p, image);
+  checkSandboxImageInput(c, p, placeholder);
 }
 
 void checkSandboxAssetKeyBundle(
@@ -301,6 +313,7 @@ ResizeImage sandboxResizeImage(
   int? height,
   ResizeImagePolicy policy = ResizeImagePolicy.exact,
   bool allowUpscaling = false,
+  bool useLogicalSize = false,
 }) {
   checkSandboxImageProvider(c, p, imageProvider);
   return _selectedImageFiles(imageProvider).isNotEmpty
@@ -310,6 +323,7 @@ ResizeImage sandboxResizeImage(
           height: height,
           policy: policy,
           allowUpscaling: allowUpscaling,
+          useLogicalSize: useLogicalSize,
         )
       : ResizeImage(
           imageProvider,
@@ -317,6 +331,7 @@ ResizeImage sandboxResizeImage(
           height: height,
           policy: policy,
           allowUpscaling: allowUpscaling,
+          useLogicalSize: useLogicalSize,
         );
 }
 
@@ -325,8 +340,9 @@ ImageProvider sandboxResizeIfNeeded(
   FlaxAssetBundlePolicy p,
   int? cacheWidth,
   int? cacheHeight,
-  ImageProvider provider,
-) {
+  ImageProvider provider, {
+  bool useLogicalSize = false,
+}) {
   checkSandboxImageProvider(c, p, provider);
   if (cacheWidth == null && cacheHeight == null) return provider;
   return sandboxResizeImage(
@@ -335,6 +351,7 @@ ImageProvider sandboxResizeIfNeeded(
     provider,
     width: cacheWidth,
     height: cacheHeight,
+    useLogicalSize: useLogicalSize,
   );
 }
 
@@ -400,8 +417,8 @@ FadeInImage sandboxFadeAssetNetwork(
   double imageScale = 1.0,
   bool excludeFromSemantics = false,
   String? imageSemanticLabel,
-  Duration fadeOutDuration = const Duration(milliseconds: 300),
-  Curve fadeOutCurve = Curves.easeOut,
+  Duration? fadeOutDuration,
+  Curve? fadeOutCurve,
   Duration fadeInDuration = const Duration(milliseconds: 700),
   Curve fadeInCurve = Curves.easeIn,
   double? width,
@@ -417,10 +434,12 @@ FadeInImage sandboxFadeAssetNetwork(
   AlignmentGeometry alignment = Alignment.center,
   ImageRepeat repeat = ImageRepeat.noRepeat,
   bool matchTextDirection = false,
+  FadeInImageTransition transition = FadeInImageTransition.sequential,
   int? placeholderCacheWidth,
   int? placeholderCacheHeight,
   int? imageCacheWidth,
   int? imageCacheHeight,
+  bool useLogicalCacheSize = false,
 }) => FadeInImage.assetNetwork(
   key: key,
   placeholder: placeholder,
@@ -449,8 +468,10 @@ FadeInImage sandboxFadeAssetNetwork(
   alignment: alignment,
   repeat: repeat,
   matchTextDirection: matchTextDirection,
+  transition: transition,
   placeholderCacheWidth: placeholderCacheWidth,
   placeholderCacheHeight: placeholderCacheHeight,
   imageCacheWidth: imageCacheWidth,
   imageCacheHeight: imageCacheHeight,
+  useLogicalCacheSize: useLogicalCacheSize,
 );

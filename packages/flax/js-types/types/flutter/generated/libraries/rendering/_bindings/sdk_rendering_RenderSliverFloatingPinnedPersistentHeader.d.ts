@@ -105,6 +105,7 @@ export interface RenderSliverFloatingPinnedPersistentHeader extends Omit<upstrea
 }
 export interface RenderSliverFloatingPinnedPersistentHeader {
     readonly [_flaxDartTypeValue]: RenderSliverFloatingPinnedPersistentHeader;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -539,7 +540,6 @@ export interface RenderSliverFloatingPinnedPersistentHeader {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream3.RenderObject | null;
     get owner(): upstream19.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

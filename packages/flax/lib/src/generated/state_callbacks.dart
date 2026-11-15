@@ -7,7 +7,6 @@ import 'package:flutter/widgets.dart' as api;
 import 'package:flax/bindings.dart';
 import 'package:flutter/foundation.dart' as api1;
 import 'package:flutter/scheduler.dart' as api2;
-import 'package:flutter/cupertino.dart' as api3;
 
 import 'closed_adapters.g.dart' as _flaxAdapters;
 
@@ -84,7 +83,7 @@ const _stateVariant_KeepAliveState = FlaxStateVariantBinding(
 );
 
 abstract class _KeepAliveStateStateHostBase extends FlaxComponentStateBase
-    with api3.AutomaticKeepAliveClientMixin<api.StatefulWidget> {
+    with api.AutomaticKeepAliveClientMixin<api.StatefulWidget> {
   _KeepAliveStateStateHostBase(Object seed) : super(seed);
   @override
   bool get wantKeepAlive =>
@@ -127,7 +126,7 @@ const _stateVariant_SingleTickerProviderState = FlaxStateVariantBinding(
 
 abstract class _SingleTickerProviderStateStateHostBase
     extends FlaxComponentStateBase
-    with api3.SingleTickerProviderStateMixin<api.StatefulWidget> {
+    with api.SingleTickerProviderStateMixin<api.StatefulWidget> {
   _SingleTickerProviderStateStateHostBase(Object seed) : super(seed);
 }
 
@@ -148,7 +147,7 @@ const _stateVariant_TickerProviderState = FlaxStateVariantBinding(
 );
 
 abstract class _TickerProviderStateStateHostBase extends FlaxComponentStateBase
-    with api3.TickerProviderStateMixin<api.StatefulWidget> {
+    with api.TickerProviderStateMixin<api.StatefulWidget> {
   _TickerProviderStateStateHostBase(Object seed) : super(seed);
 }
 
@@ -175,8 +174,8 @@ const _stateVariant_KeepAliveTickerState = FlaxStateVariantBinding(
 
 abstract class _KeepAliveTickerStateStateHostBase extends FlaxComponentStateBase
     with
-        api3.AutomaticKeepAliveClientMixin<api.StatefulWidget>,
-        api3.TickerProviderStateMixin<api.StatefulWidget> {
+        api.AutomaticKeepAliveClientMixin<api.StatefulWidget>,
+        api.TickerProviderStateMixin<api.StatefulWidget> {
   _KeepAliveTickerStateStateHostBase(Object seed) : super(seed);
   @override
   bool get wantKeepAlive =>
@@ -225,8 +224,8 @@ const _stateVariant_KeepAliveSingleTickerState = FlaxStateVariantBinding(
 abstract class _KeepAliveSingleTickerStateStateHostBase
     extends FlaxComponentStateBase
     with
-        api3.AutomaticKeepAliveClientMixin<api.StatefulWidget>,
-        api3.SingleTickerProviderStateMixin<api.StatefulWidget> {
+        api.AutomaticKeepAliveClientMixin<api.StatefulWidget>,
+        api.SingleTickerProviderStateMixin<api.StatefulWidget> {
   _KeepAliveSingleTickerStateStateHostBase(Object seed) : super(seed);
   @override
   bool get wantKeepAlive =>

@@ -57,7 +57,7 @@ be entered manually.
 When opening multiple examples from one checkout, let one finish preparation before
 starting the next command: their JS dependency build outputs are shared.
 
-All examples require Flutter 3.47.9 from `flax/main` and its matching local engine.
+All examples require maintained Flutter 3.50.0 / Dart 3.14.0 and its matching local engine.
 Target support and runtime evidence are documented per example. Lumen Outpost stages
 macOS, Android and iOS platform projects through its launcher. The standalone engine GC
 target reuses package-owned assertions; see

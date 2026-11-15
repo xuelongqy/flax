@@ -26,7 +26,7 @@ import type * as upstream11 from '@flax/flutter/foundation/_bindings/sdk_foundat
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import type * as upstream12 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
-import { _flaxMemberParameters211, _flaxMemberParameters0, _flaxMemberParameters242 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
+import { _flaxMemberParameters212, _flaxMemberParameters0, _flaxMemberParameters242 } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/widgets/_bindings/sdk_widgets.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -54,7 +54,7 @@ export declare namespace _LookupBoundaryFactory { const __flaxJsx: { readonly pr
 export namespace _LookupBoundaryFactory { function _flaxDefault_dependOnInheritedWidgetOfExactType<T extends upstream0.InheritedWidget = upstream0.InheritedWidget>(context: upstream3.BuildContext, options: { aspect?: unknown | null | undefined } = {}): T | null {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["aspect"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:LookupBoundary.dependOnInheritedWidgetOfExactType", [contextHandle(context, "flax.core/flutter#type:BuildContext"), options.aspect], _flaxMemberParameters211);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:LookupBoundary.dependOnInheritedWidgetOfExactType", [contextHandle(context, "flax.core/flutter#type:BuildContext"), options.aspect], _flaxMemberParameters212);
 return _flaxResult as T | null;
 }
 export const dependOnInheritedWidgetOfExactType = _flaxDefineDartCallTypes(_flaxDefault_dependOnInheritedWidgetOfExactType, {"id":"flax.core/sdk_widgets#function:LookupBoundary.dependOnInheritedWidgetOfExactType","parameters":[{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"},{"name":"aspect"}]}) as _FlaxDartCallable<typeof _flaxDefault_dependOnInheritedWidgetOfExactType, _FlaxSignature0>;
@@ -62,7 +62,7 @@ export const dependOnInheritedWidgetOfExactType = _flaxDefineDartCallTypes(_flax
 export namespace _LookupBoundaryFactory { function _flaxDefault_getInheritedWidgetOfExactType<T extends upstream0.InheritedWidget = upstream0.InheritedWidget>(context: upstream3.BuildContext, options: { aspect?: unknown | null | undefined } = {}): T | null {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["aspect"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:LookupBoundary.getInheritedWidgetOfExactType", [contextHandle(context, "flax.core/flutter#type:BuildContext"), options.aspect], _flaxMemberParameters211);
+const _flaxResult = invokeTopLevel("flax.core/sdk_widgets#function:LookupBoundary.getInheritedWidgetOfExactType", [contextHandle(context, "flax.core/flutter#type:BuildContext"), options.aspect], _flaxMemberParameters212);
 return _flaxResult as T | null;
 }
 export const getInheritedWidgetOfExactType = _flaxDefineDartCallTypes(_flaxDefault_getInheritedWidgetOfExactType, {"id":"flax.core/sdk_widgets#function:LookupBoundary.getInheritedWidgetOfExactType","parameters":[{"name":"context","required":true,"positional":true,"context":"flax.core/flutter#type:BuildContext"},{"name":"aspect"}]}) as _FlaxDartCallable<typeof _flaxDefault_getInheritedWidgetOfExactType, _FlaxSignature1>;

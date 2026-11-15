@@ -19,9 +19,9 @@ export interface PageController extends Omit<upstream0.ScrollController, _flaxOw
 }>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __PageController: unique symbol;
     readonly [_flaxDartTypeValue]: PageController;
@@ -32,9 +32,9 @@ export interface PageController extends Omit<upstream0.ScrollController, _flaxOw
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
     }>) => void) | null;
@@ -43,9 +43,9 @@ export interface PageController extends Omit<upstream0.ScrollController, _flaxOw
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
     }>) => void) | null;
@@ -77,9 +77,9 @@ export interface PageController extends Omit<upstream0.ScrollController, _flaxOw
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
     }>): void;
@@ -88,9 +88,9 @@ export interface PageController extends Omit<upstream0.ScrollController, _flaxOw
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
     }>): void;
@@ -104,9 +104,9 @@ export interface PageController extends Omit<upstream0.ScrollController, _flaxOw
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
     }>) | null): upstream3.ScrollPosition;
@@ -179,9 +179,9 @@ export interface _PageControllerNative extends PageController {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
     }>): void;
@@ -190,9 +190,9 @@ export interface _PageControllerNative extends PageController {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
     }>): void;
@@ -206,9 +206,9 @@ export interface _PageControllerNative extends PageController {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
     }>) | null): upstream3.ScrollPosition;
@@ -264,9 +264,9 @@ export interface _PageControllerNative extends PageController {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
     }>) => void) | null;
@@ -275,9 +275,9 @@ export interface _PageControllerNative extends PageController {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
     }>) => void) | null;
@@ -317,5 +317,5 @@ declare const _PageControllerBinding: typeof _PageControllerFactory & (new (opti
     onDetach?: ((position: upstream3.ScrollPosition) => void) | null | undefined;
 }) => _PageControllerNative);
 export declare const PageController: typeof _PageControllerBinding & _FlaxInstanceType<PageController> & _FlaxDartType<PageController, readonly ["class", "flax.core/sdk_widgets#type:PageController", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "initialScrollOffset" | "keepScrollOffset" | "onAttach" | "onDetach" | "debugLabel" | "positions" | "hasClients" | "position" | "offset" | "hasListeners" | "initialPage" | "keepPage" | "viewportFraction" | "page" | "animateTo" | "jumpTo" | "attach" | "detach" | "dispose" | "createScrollPosition" | "toString" | "debugFillDescription" | "addListener" | "removeListener" | "animateToPage" | "jumpToPage" | "nextPage" | "previousPage" | "__flaxBound:package:flutter/src/widgets/page_view.dart::PageController" | "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "initialScrollOffset" | "keepScrollOffset" | "onAttach" | "onDetach" | "debugLabel" | "positions" | "hasClients" | "position" | "offset" | "hasListeners" | "initialPage" | "keepPage" | "viewportFraction" | "page" | "animateTo" | "jumpTo" | "attach" | "detach" | "dispose" | "createScrollPosition" | "toString" | "debugFillDescription" | "addListener" | "removeListener" | "animateToPage" | "jumpToPage" | "nextPage" | "previousPage" | "__flaxBound:package:flutter/src/widgets/page_view.dart::PageController" | "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 export {};

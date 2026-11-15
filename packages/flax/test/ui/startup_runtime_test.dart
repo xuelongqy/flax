@@ -204,6 +204,7 @@ globalThis.peer = new Child();
           ])).then(module => completeWasm(new WebAssembly.Instance(module).exports.answer()));
         ''') as FlaxJsObject;
         pending.release();
+        runtime.drainMicrotasks();
         expect(await completed.future.timeout(const Duration(seconds: 5)), 42);
       } finally {
         runtime.dispose();

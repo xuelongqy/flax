@@ -592,17 +592,18 @@ const cupertinoBindings = FlaxBindingModule(
         _flaxBinding497,
         _flaxBinding498,
         _flaxBinding499,
-        _flaxBinding500,
         _flaxBinding503,
+        _flaxBinding504,
+        _flaxBinding507,
       ],
       {
-        "setState": _flaxBinding505,
-        "buildPage": _flaxBinding507,
-        "buildTransitions": _flaxBinding509,
-        "install": _flaxBinding510,
-        "didPush": _flaxBinding511,
-        "didAdd": _flaxBinding512,
-        "willPop": _flaxBinding514,
+        "setState": _flaxBinding509,
+        "buildPage": _flaxBinding511,
+        "buildTransitions": _flaxBinding513,
+        "install": _flaxBinding514,
+        "didPush": _flaxBinding515,
+        "didAdd": _flaxBinding516,
+        "willPop": _flaxBinding518,
         "onPopInvokedWithResult": FlaxInstanceMethod.plain(
           <FlaxParameter>[
             FlaxParameter.required("didPop", flaxBoolType),
@@ -614,22 +615,22 @@ const cupertinoBindings = FlaxBindingModule(
           flaxVoidType,
           _CupertinoDialogRoute_onPopInvokedWithResult,
         ),
-        "addScopedWillPopCallback": _flaxBinding519,
-        "removeScopedWillPopCallback": _flaxBinding520,
-        "registerPopEntry": _flaxBinding523,
-        "unregisterPopEntry": _flaxBinding524,
-        "didChangePrevious": _flaxBinding526,
-        "didChangeNext": _flaxBinding528,
-        "didPopNext": _flaxBinding530,
-        "changedInternalState": _flaxBinding531,
-        "changedExternalState": _flaxBinding532,
-        "buildModalBarrier": _flaxBinding533,
-        "createOverlayEntries": _flaxBinding534,
-        "debugTransitionCompleted": _flaxBinding535,
-        "createAnimationController": _flaxBinding537,
-        "createAnimation": _flaxBinding538,
-        "createSimulation": _flaxBinding541,
-        "didReplace": _flaxBinding543,
+        "addScopedWillPopCallback": _flaxBinding523,
+        "removeScopedWillPopCallback": _flaxBinding524,
+        "registerPopEntry": _flaxBinding527,
+        "unregisterPopEntry": _flaxBinding528,
+        "didChangePrevious": _flaxBinding530,
+        "didChangeNext": _flaxBinding532,
+        "didPopNext": _flaxBinding534,
+        "changedInternalState": _flaxBinding535,
+        "changedExternalState": _flaxBinding536,
+        "buildModalBarrier": _flaxBinding537,
+        "createOverlayEntries": _flaxBinding538,
+        "debugTransitionCompleted": _flaxBinding539,
+        "createAnimationController": _flaxBinding541,
+        "createAnimation": _flaxBinding542,
+        "createSimulation": _flaxBinding545,
+        "didReplace": _flaxBinding547,
         "didPop": FlaxInstanceMethod.plain(
           <FlaxParameter>[
             FlaxParameter.required(
@@ -640,14 +641,14 @@ const cupertinoBindings = FlaxBindingModule(
           flaxBoolType,
           _CupertinoDialogRoute_didPop,
         ),
-        "canTransitionTo": _flaxBinding546,
-        "canTransitionFrom": _flaxBinding548,
-        "handleStartBackGesture": _flaxBinding550,
-        "handleUpdateBackGestureProgress": _flaxBinding552,
-        "handleCancelBackGesture": _flaxBinding553,
-        "handleCommitBackGesture": _flaxBinding554,
-        "dispose": _flaxBinding555,
-        "onPopInvoked": _flaxBinding557,
+        "canTransitionTo": _flaxBinding550,
+        "canTransitionFrom": _flaxBinding552,
+        "handleStartBackGesture": _flaxBinding554,
+        "handleUpdateBackGestureProgress": _flaxBinding556,
+        "handleCancelBackGesture": _flaxBinding557,
+        "handleCommitBackGesture": _flaxBinding558,
+        "dispose": _flaxBinding559,
+        "onPopInvoked": _flaxBinding561,
         "didComplete": FlaxInstanceMethod.plain(
           <FlaxParameter>[
             FlaxParameter.required(
@@ -658,11 +659,11 @@ const cupertinoBindings = FlaxBindingModule(
           flaxVoidType,
           _CupertinoDialogRoute_didComplete,
         ),
-        "addLocalHistoryEntry": _flaxBinding560,
-        "removeLocalHistoryEntry": _flaxBinding561,
-        "toString": _flaxBinding562,
+        "addLocalHistoryEntry": _flaxBinding564,
+        "removeLocalHistoryEntry": _flaxBinding565,
+        "toString": _flaxBinding566,
       },
-      constructors: {"": _flaxBinding568},
+      constructors: {"": _flaxBinding572},
       create: _createCupertinoDialogRoute,
       disposeMethod: "dispose",
       listenerPairs: {},
@@ -679,39 +680,35 @@ const cupertinoBindings = FlaxBindingModule(
         "flax.core/sdk_widgets#type:LocalHistoryRoute",
       ],
       setters: [
-        _flaxBinding569,
-        _flaxBinding570,
-        _flaxBinding571,
-        _flaxBinding572,
+        _flaxBinding573,
+        _flaxBinding574,
+        _flaxBinding575,
+        _flaxBinding576,
       ],
       matches: _isCupertinoDialogRoute,
       methods: const {},
     ),
-    _flaxBinding650,
-    _flaxBinding665,
-    _flaxBinding677,
-    _flaxBinding689,
-    _flaxBinding705,
-    _flaxBinding718,
-    _flaxBinding752,
-    _flaxBinding753,
-    _flaxBinding763,
-    _flaxBinding784,
-    _flaxBinding808,
-    _flaxBinding815,
-    _flaxBinding915,
-    _flaxBinding931,
-    _flaxBinding963,
-    _flaxBinding973,
-    _flaxBinding976,
-    _flaxBinding1014,
+    _flaxBinding654,
+    _flaxBinding669,
+    _flaxBinding681,
+    _flaxBinding693,
+    _flaxBinding709,
+    _flaxBinding722,
+    _flaxBinding756,
+    _flaxBinding757,
+    _flaxBinding767,
+    _flaxBinding788,
+    _flaxBinding812,
+    _flaxBinding819,
+    _flaxBinding919,
+    _flaxBinding935,
+    _flaxBinding967,
+    _flaxBinding977,
+    _flaxBinding980,
+    _flaxBinding1018,
     FlaxObjectBinding(
       "flax.cupertino/cupertino#type:CupertinoModalPopupRoute",
       [
-        _flaxBinding1015,
-        _flaxBinding1016,
-        _flaxBinding1017,
-        _flaxBinding1018,
         _flaxBinding1019,
         _flaxBinding1020,
         _flaxBinding1021,
@@ -720,16 +717,20 @@ const cupertinoBindings = FlaxBindingModule(
         _flaxBinding1024,
         _flaxBinding1025,
         _flaxBinding1026,
-        _flaxBinding465,
         _flaxBinding1027,
         _flaxBinding1028,
         _flaxBinding1029,
         _flaxBinding1030,
+        _flaxBinding465,
         _flaxBinding1031,
         _flaxBinding1032,
         _flaxBinding1033,
         _flaxBinding1034,
         _flaxBinding1035,
+        _flaxBinding1036,
+        _flaxBinding1037,
+        _flaxBinding1038,
+        _flaxBinding1039,
         FlaxGetter.plain(
           "completed",
           FlaxTypeRef(
@@ -739,10 +740,6 @@ const cupertinoBindings = FlaxBindingModule(
           ),
           _CupertinoModalPopupRoute_completed,
         ),
-        _flaxBinding1036,
-        _flaxBinding1037,
-        _flaxBinding1038,
-        _flaxBinding1039,
         _flaxBinding1040,
         _flaxBinding1041,
         _flaxBinding1042,
@@ -753,6 +750,10 @@ const cupertinoBindings = FlaxBindingModule(
         _flaxBinding1047,
         _flaxBinding1048,
         _flaxBinding1049,
+        _flaxBinding1050,
+        _flaxBinding1051,
+        _flaxBinding1052,
+        _flaxBinding1053,
         FlaxGetter.plain(
           "currentResult",
           FlaxTypeRef("any", nullable: true),
@@ -768,20 +769,20 @@ const cupertinoBindings = FlaxBindingModule(
           _CupertinoModalPopupRoute_popped,
         ),
         _flaxBinding496,
-        _flaxBinding1050,
-        _flaxBinding1051,
-        _flaxBinding1052,
-        _flaxBinding1053,
         _flaxBinding1054,
+        _flaxBinding1055,
+        _flaxBinding1056,
+        _flaxBinding1057,
+        _flaxBinding1058,
       ],
       {
-        "setState": _flaxBinding1055,
-        "buildPage": _flaxBinding1056,
-        "buildTransitions": _flaxBinding1057,
-        "install": _flaxBinding1058,
-        "didPush": _flaxBinding1059,
-        "didAdd": _flaxBinding1060,
-        "willPop": _flaxBinding1061,
+        "setState": _flaxBinding1059,
+        "buildPage": _flaxBinding1060,
+        "buildTransitions": _flaxBinding1061,
+        "install": _flaxBinding1062,
+        "didPush": _flaxBinding1063,
+        "didAdd": _flaxBinding1064,
+        "willPop": _flaxBinding1065,
         "onPopInvokedWithResult": FlaxInstanceMethod.plain(
           <FlaxParameter>[
             FlaxParameter.required("didPop", flaxBoolType),
@@ -793,23 +794,23 @@ const cupertinoBindings = FlaxBindingModule(
           flaxVoidType,
           _CupertinoModalPopupRoute_onPopInvokedWithResult,
         ),
-        "addScopedWillPopCallback": _flaxBinding1062,
-        "removeScopedWillPopCallback": _flaxBinding1063,
-        "registerPopEntry": _flaxBinding1064,
-        "unregisterPopEntry": _flaxBinding1065,
-        "didChangePrevious": _flaxBinding1066,
-        "didChangeNext": _flaxBinding1067,
-        "didPopNext": _flaxBinding1068,
-        "changedInternalState": _flaxBinding1069,
-        "changedExternalState": _flaxBinding1070,
-        "buildModalBarrier": _flaxBinding1071,
-        "createOverlayEntries": _flaxBinding1072,
-        "toString": _flaxBinding1073,
-        "debugTransitionCompleted": _flaxBinding1074,
-        "createAnimationController": _flaxBinding1075,
-        "createAnimation": _flaxBinding1076,
-        "createSimulation": _flaxBinding1077,
-        "didReplace": _flaxBinding1078,
+        "addScopedWillPopCallback": _flaxBinding1066,
+        "removeScopedWillPopCallback": _flaxBinding1067,
+        "registerPopEntry": _flaxBinding1068,
+        "unregisterPopEntry": _flaxBinding1069,
+        "didChangePrevious": _flaxBinding1070,
+        "didChangeNext": _flaxBinding1071,
+        "didPopNext": _flaxBinding1072,
+        "changedInternalState": _flaxBinding1073,
+        "changedExternalState": _flaxBinding1074,
+        "buildModalBarrier": _flaxBinding1075,
+        "createOverlayEntries": _flaxBinding1076,
+        "toString": _flaxBinding1077,
+        "debugTransitionCompleted": _flaxBinding1078,
+        "createAnimationController": _flaxBinding1079,
+        "createAnimation": _flaxBinding1080,
+        "createSimulation": _flaxBinding1081,
+        "didReplace": _flaxBinding1082,
         "didPop": FlaxInstanceMethod.plain(
           <FlaxParameter>[
             FlaxParameter.required(
@@ -820,14 +821,14 @@ const cupertinoBindings = FlaxBindingModule(
           flaxBoolType,
           _CupertinoModalPopupRoute_didPop,
         ),
-        "canTransitionTo": _flaxBinding1079,
-        "canTransitionFrom": _flaxBinding1080,
-        "handleStartBackGesture": _flaxBinding1081,
-        "handleUpdateBackGestureProgress": _flaxBinding1082,
-        "handleCancelBackGesture": _flaxBinding1083,
-        "handleCommitBackGesture": _flaxBinding1084,
-        "dispose": _flaxBinding1085,
-        "onPopInvoked": _flaxBinding1086,
+        "canTransitionTo": _flaxBinding1083,
+        "canTransitionFrom": _flaxBinding1084,
+        "handleStartBackGesture": _flaxBinding1085,
+        "handleUpdateBackGestureProgress": _flaxBinding1086,
+        "handleCancelBackGesture": _flaxBinding1087,
+        "handleCommitBackGesture": _flaxBinding1088,
+        "dispose": _flaxBinding1089,
+        "onPopInvoked": _flaxBinding1090,
         "didComplete": FlaxInstanceMethod.plain(
           <FlaxParameter>[
             FlaxParameter.required(
@@ -838,10 +839,10 @@ const cupertinoBindings = FlaxBindingModule(
           flaxVoidType,
           _CupertinoModalPopupRoute_didComplete,
         ),
-        "addLocalHistoryEntry": _flaxBinding1087,
-        "removeLocalHistoryEntry": _flaxBinding1088,
+        "addLocalHistoryEntry": _flaxBinding1091,
+        "removeLocalHistoryEntry": _flaxBinding1092,
       },
-      constructors: {"": _flaxBinding1089},
+      constructors: {"": _flaxBinding1093},
       create: _createCupertinoModalPopupRoute,
       disposeMethod: "dispose",
       listenerPairs: {},
@@ -856,19 +857,19 @@ const cupertinoBindings = FlaxBindingModule(
         "flax.core/sdk_widgets#type:PredictiveBackRoute",
         "flax.core/sdk_widgets#type:LocalHistoryRoute",
       ],
-      setters: [_flaxBinding1090, _flaxBinding1091, _flaxBinding1092],
+      setters: [_flaxBinding1094, _flaxBinding1095, _flaxBinding1096],
       matches: _isCupertinoModalPopupRoute,
       methods: const {},
     ),
-    _flaxBinding1133,
-    _flaxBinding1143,
+    _flaxBinding1137,
+    _flaxBinding1147,
     FlaxObjectBinding(
       "flax.cupertino/cupertino#type:CupertinoPage",
       [
-        _flaxBinding1144,
-        _flaxBinding1145,
-        _flaxBinding1147,
         _flaxBinding1148,
+        _flaxBinding1149,
+        _flaxBinding1151,
+        _flaxBinding1152,
         FlaxGetter.plain(
           "onPopInvoked",
           FlaxTypeRef(
@@ -879,32 +880,32 @@ const cupertinoBindings = FlaxBindingModule(
                 FlaxCallbackParameter.plain("result", flaxNullableAnyType),
               ],
               flaxVoidType,
-              _callback7,
+              _callback8,
               id: "callback:<>(p:r:didPop:bool:,p:r:result:any?:)->void:",
-              invoke: _callback7Invoke,
-              matches: _callback7Matches,
+              invoke: _callback8Invoke,
+              matches: _callback8Matches,
             ),
           ),
           _CupertinoPage_onPopInvoked,
         ),
-        _flaxBinding1149,
-        _flaxBinding1150,
-        _flaxBinding1151,
-        _flaxBinding1152,
         _flaxBinding1153,
         _flaxBinding1154,
         _flaxBinding1155,
+        _flaxBinding1156,
+        _flaxBinding1157,
+        _flaxBinding1158,
+        _flaxBinding1159,
       ],
       {
-        "toString": _flaxBinding1156,
-        "canUpdate": _flaxBinding1159,
+        "toString": _flaxBinding1160,
+        "canUpdate": _flaxBinding1163,
         "createRoute": FlaxInstanceMethod.plain(
-          _flaxBinding1160,
+          _flaxBinding1164,
           FlaxTypeRef("object", id: "flax.core/flutter#type:Route"),
           _CupertinoPage_createRoute,
         ),
       },
-      constructors: {"": _flaxBinding1163},
+      constructors: {"": _flaxBinding1167},
       create: _createCupertinoPage,
       disposeMethod: null,
       listenerPairs: {},
@@ -920,10 +921,6 @@ const cupertinoBindings = FlaxBindingModule(
     FlaxObjectBinding(
       "flax.cupertino/cupertino#type:CupertinoPageRoute",
       [
-        _flaxBinding1164,
-        _flaxBinding1165,
-        _flaxBinding1166,
-        _flaxBinding1167,
         _flaxBinding1168,
         _flaxBinding1169,
         _flaxBinding1170,
@@ -932,16 +929,20 @@ const cupertinoBindings = FlaxBindingModule(
         _flaxBinding1173,
         _flaxBinding1174,
         _flaxBinding1175,
-        _flaxBinding465,
         _flaxBinding1176,
         _flaxBinding1177,
         _flaxBinding1178,
         _flaxBinding1179,
+        _flaxBinding465,
         _flaxBinding1180,
         _flaxBinding1181,
         _flaxBinding1182,
         _flaxBinding1183,
         _flaxBinding1184,
+        _flaxBinding1185,
+        _flaxBinding1186,
+        _flaxBinding1187,
+        _flaxBinding1188,
         FlaxGetter.plain(
           "completed",
           FlaxTypeRef(
@@ -951,10 +952,6 @@ const cupertinoBindings = FlaxBindingModule(
           ),
           _CupertinoPageRoute_completed,
         ),
-        _flaxBinding1185,
-        _flaxBinding1186,
-        _flaxBinding1187,
-        _flaxBinding1188,
         _flaxBinding1189,
         _flaxBinding1190,
         _flaxBinding1191,
@@ -965,6 +962,10 @@ const cupertinoBindings = FlaxBindingModule(
         _flaxBinding1196,
         _flaxBinding1197,
         _flaxBinding1198,
+        _flaxBinding1199,
+        _flaxBinding1200,
+        _flaxBinding1201,
+        _flaxBinding1202,
         FlaxGetter.plain(
           "currentResult",
           FlaxTypeRef("any", nullable: true),
@@ -980,22 +981,22 @@ const cupertinoBindings = FlaxBindingModule(
           _CupertinoPageRoute_popped,
         ),
         _flaxBinding496,
-        _flaxBinding1199,
-        _flaxBinding1200,
-        _flaxBinding1201,
-        _flaxBinding1202,
         _flaxBinding1203,
         _flaxBinding1204,
         _flaxBinding1205,
+        _flaxBinding1206,
+        _flaxBinding1207,
+        _flaxBinding1208,
+        _flaxBinding1209,
       ],
       {
-        "setState": _flaxBinding1206,
-        "buildPage": _flaxBinding1207,
-        "buildTransitions": _flaxBinding1208,
-        "install": _flaxBinding1209,
-        "didPush": _flaxBinding1210,
-        "didAdd": _flaxBinding1211,
-        "willPop": _flaxBinding1212,
+        "setState": _flaxBinding1210,
+        "buildPage": _flaxBinding1211,
+        "buildTransitions": _flaxBinding1212,
+        "install": _flaxBinding1213,
+        "didPush": _flaxBinding1214,
+        "didAdd": _flaxBinding1215,
+        "willPop": _flaxBinding1216,
         "onPopInvokedWithResult": FlaxInstanceMethod.plain(
           <FlaxParameter>[
             FlaxParameter.required("didPop", flaxBoolType),
@@ -1007,23 +1008,23 @@ const cupertinoBindings = FlaxBindingModule(
           flaxVoidType,
           _CupertinoPageRoute_onPopInvokedWithResult,
         ),
-        "addScopedWillPopCallback": _flaxBinding1213,
-        "removeScopedWillPopCallback": _flaxBinding1214,
-        "registerPopEntry": _flaxBinding1215,
-        "unregisterPopEntry": _flaxBinding1216,
-        "didChangePrevious": _flaxBinding1217,
-        "didChangeNext": _flaxBinding1218,
-        "didPopNext": _flaxBinding1219,
-        "changedInternalState": _flaxBinding1220,
-        "changedExternalState": _flaxBinding1221,
-        "buildModalBarrier": _flaxBinding1222,
-        "createOverlayEntries": _flaxBinding1223,
-        "toString": _flaxBinding1224,
-        "debugTransitionCompleted": _flaxBinding1225,
-        "createAnimationController": _flaxBinding1226,
-        "createAnimation": _flaxBinding1227,
-        "createSimulation": _flaxBinding1229,
-        "didReplace": _flaxBinding1230,
+        "addScopedWillPopCallback": _flaxBinding1217,
+        "removeScopedWillPopCallback": _flaxBinding1218,
+        "registerPopEntry": _flaxBinding1219,
+        "unregisterPopEntry": _flaxBinding1220,
+        "didChangePrevious": _flaxBinding1221,
+        "didChangeNext": _flaxBinding1222,
+        "didPopNext": _flaxBinding1223,
+        "changedInternalState": _flaxBinding1224,
+        "changedExternalState": _flaxBinding1225,
+        "buildModalBarrier": _flaxBinding1226,
+        "createOverlayEntries": _flaxBinding1227,
+        "toString": _flaxBinding1228,
+        "debugTransitionCompleted": _flaxBinding1229,
+        "createAnimationController": _flaxBinding1230,
+        "createAnimation": _flaxBinding1231,
+        "createSimulation": _flaxBinding1233,
+        "didReplace": _flaxBinding1234,
         "didPop": FlaxInstanceMethod.plain(
           <FlaxParameter>[
             FlaxParameter.required(
@@ -1034,14 +1035,14 @@ const cupertinoBindings = FlaxBindingModule(
           flaxBoolType,
           _CupertinoPageRoute_didPop,
         ),
-        "canTransitionTo": _flaxBinding1231,
-        "canTransitionFrom": _flaxBinding1232,
-        "handleStartBackGesture": _flaxBinding1233,
-        "handleUpdateBackGestureProgress": _flaxBinding1234,
-        "handleCancelBackGesture": _flaxBinding1235,
-        "handleCommitBackGesture": _flaxBinding1236,
-        "dispose": _flaxBinding1237,
-        "onPopInvoked": _flaxBinding1238,
+        "canTransitionTo": _flaxBinding1235,
+        "canTransitionFrom": _flaxBinding1236,
+        "handleStartBackGesture": _flaxBinding1237,
+        "handleUpdateBackGestureProgress": _flaxBinding1238,
+        "handleCancelBackGesture": _flaxBinding1239,
+        "handleCommitBackGesture": _flaxBinding1240,
+        "dispose": _flaxBinding1241,
+        "onPopInvoked": _flaxBinding1242,
         "didComplete": FlaxInstanceMethod.plain(
           <FlaxParameter>[
             FlaxParameter.required(
@@ -1052,11 +1053,11 @@ const cupertinoBindings = FlaxBindingModule(
           flaxVoidType,
           _CupertinoPageRoute_didComplete,
         ),
-        "addLocalHistoryEntry": _flaxBinding1239,
-        "removeLocalHistoryEntry": _flaxBinding1240,
-        "buildContent": _flaxBinding1241,
+        "addLocalHistoryEntry": _flaxBinding1243,
+        "removeLocalHistoryEntry": _flaxBinding1244,
+        "buildContent": _flaxBinding1245,
       },
-      constructors: {"": _flaxBinding1242},
+      constructors: {"": _flaxBinding1246},
       create: _createCupertinoPageRoute,
       disposeMethod: "dispose",
       listenerPairs: {},
@@ -1067,11 +1068,12 @@ const cupertinoBindings = FlaxBindingModule(
         "flax.core/sdk_widgets#type:OverlayRoute",
         "flax.core/flutter#type:Route",
         "package:flutter/src/widgets/navigator.dart::_RoutePlaceholder",
+        "dart:core::Object",
         "flax.core/sdk_widgets#type:PredictiveBackRoute",
         "flax.core/sdk_widgets#type:LocalHistoryRoute",
         "flax.cupertino/cupertino#type:CupertinoRouteTransitionMixin",
       ],
-      setters: [_flaxBinding1243, _flaxBinding1244, _flaxBinding1245],
+      setters: [_flaxBinding1247, _flaxBinding1248, _flaxBinding1249],
       matches: _isCupertinoPageRoute,
       methods: const {},
     ),
@@ -1080,7 +1082,7 @@ const cupertinoBindings = FlaxBindingModule(
       {
         "": [
           FlaxParameter("key", _flaxBinding129, required: false),
-          FlaxParameter("navigationBar", _flaxBinding1246, required: false),
+          FlaxParameter("navigationBar", _flaxBinding1250, required: false),
           FlaxParameter("backgroundColor", _flaxBinding31, required: false),
           FlaxParameter(
             "resizeToAvoidBottomInset",
@@ -1095,12 +1097,12 @@ const cupertinoBindings = FlaxBindingModule(
       matches: _isCupertinoPageScaffold,
       methods: {},
     ),
-    _flaxBinding1259,
-    _flaxBinding1271,
-    _flaxBinding1279,
-    _flaxBinding1304,
-    _flaxBinding1314,
-    _flaxBinding1324,
+    _flaxBinding1263,
+    _flaxBinding1275,
+    _flaxBinding1283,
+    _flaxBinding1308,
+    _flaxBinding1318,
+    _flaxBinding1328,
     FlaxObjectBinding(
       "flax.cupertino/cupertino#type:CupertinoRadio",
       [
@@ -1122,23 +1124,23 @@ const cupertinoBindings = FlaxBindingModule(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("value", flaxNullableAnyType)],
               flaxVoidType,
-              _callback9,
+              _callback10,
               id: "callback:<>(p:r:value:any?:)->void:",
-              invoke: _callback9Invoke,
-              matches: _callback9Matches,
+              invoke: _callback10Invoke,
+              matches: _callback10Matches,
             ),
           ),
           _CupertinoRadio_onChanged,
         ),
-        _flaxBinding1325,
-        _flaxBinding1326,
-        _flaxBinding1327,
-        _flaxBinding1328,
         _flaxBinding1329,
         _flaxBinding1330,
         _flaxBinding1331,
         _flaxBinding1332,
         _flaxBinding1333,
+        _flaxBinding1334,
+        _flaxBinding1335,
+        _flaxBinding1336,
+        _flaxBinding1337,
         FlaxGetter.plain(
           "groupRegistry",
           FlaxTypeRef(
@@ -1148,7 +1150,7 @@ const cupertinoBindings = FlaxBindingModule(
           ),
           _CupertinoRadio_groupRegistry,
         ),
-        _flaxBinding1334,
+        _flaxBinding1338,
         _flaxBinding130,
       ],
       {
@@ -1157,15 +1159,15 @@ const cupertinoBindings = FlaxBindingModule(
           FlaxTypeRef("state", id: "flax.core/components#type:State"),
           _CupertinoRadio_createState,
         ),
-        "createElement": _flaxBinding1335,
+        "createElement": _flaxBinding1339,
         "toStringShort": _flaxBinding136,
-        "debugFillProperties": _flaxBinding1336,
-        "toStringShallow": _flaxBinding1337,
-        "toStringDeep": _flaxBinding1338,
-        "toDiagnosticsNode": _flaxBinding1339,
+        "debugFillProperties": _flaxBinding1340,
+        "toStringShallow": _flaxBinding1341,
+        "toStringDeep": _flaxBinding1342,
+        "toDiagnosticsNode": _flaxBinding1343,
         "debugDescribeChildren": _flaxBinding146,
       },
-      constructors: {"": _flaxBinding1341},
+      constructors: {"": _flaxBinding1345},
       setters: [],
       create: _createCupertinoRadio,
       matches: _isCupertinoRadio,
@@ -1180,10 +1182,6 @@ const cupertinoBindings = FlaxBindingModule(
     FlaxObjectBinding(
       "flax.cupertino/cupertino#type:CupertinoRouteTransitionMixin",
       [
-        _flaxBinding1342,
-        _flaxBinding1343,
-        _flaxBinding1344,
-        _flaxBinding1345,
         _flaxBinding1346,
         _flaxBinding1347,
         _flaxBinding1348,
@@ -1192,16 +1190,20 @@ const cupertinoBindings = FlaxBindingModule(
         _flaxBinding1351,
         _flaxBinding1352,
         _flaxBinding1353,
-        _flaxBinding465,
         _flaxBinding1354,
         _flaxBinding1355,
         _flaxBinding1356,
         _flaxBinding1357,
+        _flaxBinding465,
         _flaxBinding1358,
         _flaxBinding1359,
         _flaxBinding1360,
         _flaxBinding1361,
         _flaxBinding1362,
+        _flaxBinding1363,
+        _flaxBinding1364,
+        _flaxBinding1365,
+        _flaxBinding1366,
         FlaxGetter.plain(
           "completed",
           FlaxTypeRef(
@@ -1211,10 +1213,6 @@ const cupertinoBindings = FlaxBindingModule(
           ),
           _CupertinoRouteTransitionMixin_completed,
         ),
-        _flaxBinding1363,
-        _flaxBinding1364,
-        _flaxBinding1365,
-        _flaxBinding1366,
         _flaxBinding1367,
         _flaxBinding1368,
         _flaxBinding1369,
@@ -1225,6 +1223,10 @@ const cupertinoBindings = FlaxBindingModule(
         _flaxBinding1374,
         _flaxBinding1375,
         _flaxBinding1376,
+        _flaxBinding1377,
+        _flaxBinding1378,
+        _flaxBinding1379,
+        _flaxBinding1380,
         FlaxGetter.plain(
           "currentResult",
           FlaxTypeRef("any", nullable: true),
@@ -1240,21 +1242,21 @@ const cupertinoBindings = FlaxBindingModule(
           _CupertinoRouteTransitionMixin_popped,
         ),
         _flaxBinding496,
-        _flaxBinding1377,
-        _flaxBinding1378,
-        _flaxBinding1379,
-        _flaxBinding1380,
         _flaxBinding1381,
         _flaxBinding1382,
+        _flaxBinding1383,
+        _flaxBinding1384,
+        _flaxBinding1385,
+        _flaxBinding1386,
       ],
       {
-        "setState": _flaxBinding1383,
-        "buildPage": _flaxBinding1384,
-        "buildTransitions": _flaxBinding1385,
-        "install": _flaxBinding1386,
-        "didPush": _flaxBinding1387,
-        "didAdd": _flaxBinding1388,
-        "willPop": _flaxBinding1389,
+        "setState": _flaxBinding1387,
+        "buildPage": _flaxBinding1388,
+        "buildTransitions": _flaxBinding1389,
+        "install": _flaxBinding1390,
+        "didPush": _flaxBinding1391,
+        "didAdd": _flaxBinding1392,
+        "willPop": _flaxBinding1393,
         "onPopInvokedWithResult": FlaxInstanceMethod.plain(
           <FlaxParameter>[
             FlaxParameter.required("didPop", flaxBoolType),
@@ -1266,23 +1268,23 @@ const cupertinoBindings = FlaxBindingModule(
           flaxVoidType,
           _CupertinoRouteTransitionMixin_onPopInvokedWithResult,
         ),
-        "addScopedWillPopCallback": _flaxBinding1390,
-        "removeScopedWillPopCallback": _flaxBinding1391,
-        "registerPopEntry": _flaxBinding1392,
-        "unregisterPopEntry": _flaxBinding1393,
-        "didChangePrevious": _flaxBinding1394,
-        "didChangeNext": _flaxBinding1395,
-        "didPopNext": _flaxBinding1396,
-        "changedInternalState": _flaxBinding1397,
-        "changedExternalState": _flaxBinding1398,
-        "buildModalBarrier": _flaxBinding1399,
-        "createOverlayEntries": _flaxBinding1400,
-        "toString": _flaxBinding1401,
-        "debugTransitionCompleted": _flaxBinding1402,
-        "createAnimationController": _flaxBinding1403,
-        "createAnimation": _flaxBinding1404,
-        "createSimulation": _flaxBinding1405,
-        "didReplace": _flaxBinding1406,
+        "addScopedWillPopCallback": _flaxBinding1394,
+        "removeScopedWillPopCallback": _flaxBinding1395,
+        "registerPopEntry": _flaxBinding1396,
+        "unregisterPopEntry": _flaxBinding1397,
+        "didChangePrevious": _flaxBinding1398,
+        "didChangeNext": _flaxBinding1399,
+        "didPopNext": _flaxBinding1400,
+        "changedInternalState": _flaxBinding1401,
+        "changedExternalState": _flaxBinding1402,
+        "buildModalBarrier": _flaxBinding1403,
+        "createOverlayEntries": _flaxBinding1404,
+        "toString": _flaxBinding1405,
+        "debugTransitionCompleted": _flaxBinding1406,
+        "createAnimationController": _flaxBinding1407,
+        "createAnimation": _flaxBinding1408,
+        "createSimulation": _flaxBinding1409,
+        "didReplace": _flaxBinding1410,
         "didPop": FlaxInstanceMethod.plain(
           <FlaxParameter>[
             FlaxParameter.required(
@@ -1293,14 +1295,14 @@ const cupertinoBindings = FlaxBindingModule(
           flaxBoolType,
           _CupertinoRouteTransitionMixin_didPop,
         ),
-        "canTransitionTo": _flaxBinding1407,
-        "canTransitionFrom": _flaxBinding1408,
-        "handleStartBackGesture": _flaxBinding1409,
-        "handleUpdateBackGestureProgress": _flaxBinding1410,
-        "handleCancelBackGesture": _flaxBinding1411,
-        "handleCommitBackGesture": _flaxBinding1412,
-        "dispose": _flaxBinding1413,
-        "onPopInvoked": _flaxBinding1414,
+        "canTransitionTo": _flaxBinding1411,
+        "canTransitionFrom": _flaxBinding1412,
+        "handleStartBackGesture": _flaxBinding1413,
+        "handleUpdateBackGestureProgress": _flaxBinding1414,
+        "handleCancelBackGesture": _flaxBinding1415,
+        "handleCommitBackGesture": _flaxBinding1416,
+        "dispose": _flaxBinding1417,
+        "onPopInvoked": _flaxBinding1418,
         "didComplete": FlaxInstanceMethod.plain(
           <FlaxParameter>[
             FlaxParameter.required(
@@ -1311,9 +1313,9 @@ const cupertinoBindings = FlaxBindingModule(
           flaxVoidType,
           _CupertinoRouteTransitionMixin_didComplete,
         ),
-        "addLocalHistoryEntry": _flaxBinding1415,
-        "removeLocalHistoryEntry": _flaxBinding1416,
-        "buildContent": _flaxBinding1417,
+        "addLocalHistoryEntry": _flaxBinding1419,
+        "removeLocalHistoryEntry": _flaxBinding1420,
+        "buildContent": _flaxBinding1421,
       },
       constructors: {},
       create: _createCupertinoRouteTransitionMixin,
@@ -1326,16 +1328,17 @@ const cupertinoBindings = FlaxBindingModule(
         "flax.core/sdk_widgets#type:OverlayRoute",
         "flax.core/flutter#type:Route",
         "package:flutter/src/widgets/navigator.dart::_RoutePlaceholder",
+        "dart:core::Object",
         "flax.core/sdk_widgets#type:PredictiveBackRoute",
         "flax.core/sdk_widgets#type:LocalHistoryRoute",
       ],
-      setters: [_flaxBinding1418, _flaxBinding1419, _flaxBinding1420],
+      setters: [_flaxBinding1422, _flaxBinding1423, _flaxBinding1424],
       matches: _isCupertinoRouteTransitionMixin,
       methods: const {},
     ),
-    _flaxBinding1453,
-    _flaxBinding1492,
-    _flaxBinding1539,
+    _flaxBinding1457,
+    _flaxBinding1500,
+    _flaxBinding1547,
     FlaxObjectBinding(
       "flax.cupertino/cupertino#type:CupertinoSegmentedControl",
       [
@@ -1365,21 +1368,21 @@ const cupertinoBindings = FlaxBindingModule(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("value", flaxAnyType)],
               flaxVoidType,
-              _callback10,
+              _callback11,
               id: "callback:<>(p:r:value:any:)->void:",
-              invoke: _callback10Invoke,
-              matches: _callback10Matches,
+              invoke: _callback11Invoke,
+              matches: _callback11Matches,
             ),
           ),
           _CupertinoSegmentedControl_onValueChanged,
         ),
-        _flaxBinding1540,
-        _flaxBinding1541,
-        _flaxBinding1542,
-        _flaxBinding1543,
-        _flaxBinding1544,
-        _flaxBinding1545,
-        _flaxBinding1546,
+        _flaxBinding1548,
+        _flaxBinding1549,
+        _flaxBinding1550,
+        _flaxBinding1551,
+        _flaxBinding1552,
+        _flaxBinding1553,
+        _flaxBinding1554,
         FlaxGetter.plain(
           "disabledChildren",
           FlaxTypeRef(
@@ -1390,7 +1393,7 @@ const cupertinoBindings = FlaxBindingModule(
               _collection33Create,
               _collection33Matches,
             ),
-            iterable: _flaxBinding1547,
+            iterable: _flaxBinding1555,
           ),
           _CupertinoSegmentedControl_disabledChildren,
         ),
@@ -1402,15 +1405,15 @@ const cupertinoBindings = FlaxBindingModule(
           FlaxTypeRef("state", id: "flax.core/components#type:State"),
           _CupertinoSegmentedControl_createState,
         ),
-        "createElement": _flaxBinding1548,
+        "createElement": _flaxBinding1556,
         "toStringShort": _flaxBinding136,
-        "debugFillProperties": _flaxBinding1549,
-        "toStringShallow": _flaxBinding1550,
-        "toStringDeep": _flaxBinding1551,
-        "toDiagnosticsNode": _flaxBinding1552,
+        "debugFillProperties": _flaxBinding1557,
+        "toStringShallow": _flaxBinding1558,
+        "toStringDeep": _flaxBinding1559,
+        "toDiagnosticsNode": _flaxBinding1560,
         "debugDescribeChildren": _flaxBinding146,
       },
-      constructors: {"": _flaxBinding1557},
+      constructors: {"": _flaxBinding1565},
       setters: [],
       create: _createCupertinoSegmentedControl,
       matches: _isCupertinoSegmentedControl,
@@ -1425,19 +1428,10 @@ const cupertinoBindings = FlaxBindingModule(
     FlaxObjectBinding(
       "flax.cupertino/cupertino#type:CupertinoSheetRoute",
       [
-        _flaxBinding1558,
-        _flaxBinding1559,
-        _flaxBinding1560,
-        _flaxBinding1561,
-        _flaxBinding1562,
-        _flaxBinding1563,
-        _flaxBinding1564,
-        _flaxBinding1565,
         _flaxBinding1566,
         _flaxBinding1567,
         _flaxBinding1568,
         _flaxBinding1569,
-        _flaxBinding465,
         _flaxBinding1570,
         _flaxBinding1571,
         _flaxBinding1572,
@@ -1446,7 +1440,16 @@ const cupertinoBindings = FlaxBindingModule(
         _flaxBinding1575,
         _flaxBinding1576,
         _flaxBinding1577,
+        _flaxBinding465,
         _flaxBinding1578,
+        _flaxBinding1579,
+        _flaxBinding1580,
+        _flaxBinding1581,
+        _flaxBinding1582,
+        _flaxBinding1583,
+        _flaxBinding1584,
+        _flaxBinding1585,
+        _flaxBinding1586,
         FlaxGetter.plain(
           "completed",
           FlaxTypeRef(
@@ -1456,20 +1459,20 @@ const cupertinoBindings = FlaxBindingModule(
           ),
           _CupertinoSheetRoute_completed,
         ),
-        _flaxBinding1579,
-        _flaxBinding1580,
-        _flaxBinding1581,
-        _flaxBinding1582,
-        _flaxBinding1583,
-        _flaxBinding1584,
-        _flaxBinding1585,
-        _flaxBinding1586,
         _flaxBinding1587,
         _flaxBinding1588,
         _flaxBinding1589,
         _flaxBinding1590,
         _flaxBinding1591,
         _flaxBinding1592,
+        _flaxBinding1593,
+        _flaxBinding1594,
+        _flaxBinding1595,
+        _flaxBinding1596,
+        _flaxBinding1597,
+        _flaxBinding1598,
+        _flaxBinding1599,
+        _flaxBinding1600,
         FlaxGetter.plain(
           "currentResult",
           FlaxTypeRef("any", nullable: true),
@@ -1485,24 +1488,24 @@ const cupertinoBindings = FlaxBindingModule(
           _CupertinoSheetRoute_popped,
         ),
         _flaxBinding496,
-        _flaxBinding1593,
-        _flaxBinding1594,
-        _flaxBinding1595,
-        _flaxBinding1597,
         _flaxBinding1601,
         _flaxBinding1602,
         _flaxBinding1603,
-        _flaxBinding1604,
         _flaxBinding1605,
+        _flaxBinding1609,
+        _flaxBinding1610,
+        _flaxBinding1611,
+        _flaxBinding1612,
+        _flaxBinding1613,
       ],
       {
-        "setState": _flaxBinding1606,
-        "buildPage": _flaxBinding1607,
-        "buildTransitions": _flaxBinding1608,
-        "install": _flaxBinding1609,
-        "didPush": _flaxBinding1610,
-        "didAdd": _flaxBinding1611,
-        "willPop": _flaxBinding1612,
+        "setState": _flaxBinding1614,
+        "buildPage": _flaxBinding1615,
+        "buildTransitions": _flaxBinding1616,
+        "install": _flaxBinding1617,
+        "didPush": _flaxBinding1618,
+        "didAdd": _flaxBinding1619,
+        "willPop": _flaxBinding1620,
         "onPopInvokedWithResult": FlaxInstanceMethod.plain(
           <FlaxParameter>[
             FlaxParameter.required("didPop", flaxBoolType),
@@ -1514,23 +1517,23 @@ const cupertinoBindings = FlaxBindingModule(
           flaxVoidType,
           _CupertinoSheetRoute_onPopInvokedWithResult,
         ),
-        "addScopedWillPopCallback": _flaxBinding1613,
-        "removeScopedWillPopCallback": _flaxBinding1614,
-        "registerPopEntry": _flaxBinding1615,
-        "unregisterPopEntry": _flaxBinding1616,
-        "didChangePrevious": _flaxBinding1617,
-        "didChangeNext": _flaxBinding1618,
-        "didPopNext": _flaxBinding1619,
-        "changedInternalState": _flaxBinding1620,
-        "changedExternalState": _flaxBinding1621,
-        "buildModalBarrier": _flaxBinding1622,
-        "createOverlayEntries": _flaxBinding1623,
-        "toString": _flaxBinding1624,
-        "debugTransitionCompleted": _flaxBinding1625,
-        "createAnimationController": _flaxBinding1626,
-        "createAnimation": _flaxBinding1627,
-        "createSimulation": _flaxBinding1628,
-        "didReplace": _flaxBinding1629,
+        "addScopedWillPopCallback": _flaxBinding1621,
+        "removeScopedWillPopCallback": _flaxBinding1622,
+        "registerPopEntry": _flaxBinding1623,
+        "unregisterPopEntry": _flaxBinding1624,
+        "didChangePrevious": _flaxBinding1625,
+        "didChangeNext": _flaxBinding1626,
+        "didPopNext": _flaxBinding1627,
+        "changedInternalState": _flaxBinding1628,
+        "changedExternalState": _flaxBinding1629,
+        "buildModalBarrier": _flaxBinding1630,
+        "createOverlayEntries": _flaxBinding1631,
+        "toString": _flaxBinding1632,
+        "debugTransitionCompleted": _flaxBinding1633,
+        "createAnimationController": _flaxBinding1634,
+        "createAnimation": _flaxBinding1635,
+        "createSimulation": _flaxBinding1636,
+        "didReplace": _flaxBinding1637,
         "didPop": FlaxInstanceMethod.plain(
           <FlaxParameter>[
             FlaxParameter.required(
@@ -1541,14 +1544,14 @@ const cupertinoBindings = FlaxBindingModule(
           flaxBoolType,
           _CupertinoSheetRoute_didPop,
         ),
-        "canTransitionTo": _flaxBinding1630,
-        "canTransitionFrom": _flaxBinding1631,
-        "handleStartBackGesture": _flaxBinding1632,
-        "handleUpdateBackGestureProgress": _flaxBinding1633,
-        "handleCancelBackGesture": _flaxBinding1634,
-        "handleCommitBackGesture": _flaxBinding1635,
-        "dispose": _flaxBinding1636,
-        "onPopInvoked": _flaxBinding1637,
+        "canTransitionTo": _flaxBinding1638,
+        "canTransitionFrom": _flaxBinding1639,
+        "handleStartBackGesture": _flaxBinding1640,
+        "handleUpdateBackGestureProgress": _flaxBinding1641,
+        "handleCancelBackGesture": _flaxBinding1642,
+        "handleCommitBackGesture": _flaxBinding1643,
+        "dispose": _flaxBinding1644,
+        "onPopInvoked": _flaxBinding1645,
         "didComplete": FlaxInstanceMethod.plain(
           <FlaxParameter>[
             FlaxParameter.required(
@@ -1559,11 +1562,11 @@ const cupertinoBindings = FlaxBindingModule(
           flaxVoidType,
           _CupertinoSheetRoute_didComplete,
         ),
-        "addLocalHistoryEntry": _flaxBinding1638,
-        "removeLocalHistoryEntry": _flaxBinding1639,
-        "buildContent": _flaxBinding1640,
+        "addLocalHistoryEntry": _flaxBinding1646,
+        "removeLocalHistoryEntry": _flaxBinding1647,
+        "buildContent": _flaxBinding1648,
       },
-      constructors: {"": _flaxBinding1641},
+      constructors: {"": _flaxBinding1649},
       create: _createCupertinoSheetRoute,
       disposeMethod: "dispose",
       listenerPairs: {},
@@ -1574,16 +1577,17 @@ const cupertinoBindings = FlaxBindingModule(
         "flax.core/sdk_widgets#type:OverlayRoute",
         "flax.core/flutter#type:Route",
         "package:flutter/src/widgets/navigator.dart::_RoutePlaceholder",
+        "dart:core::Object",
         "flax.core/sdk_widgets#type:PredictiveBackRoute",
         "flax.core/sdk_widgets#type:LocalHistoryRoute",
         "package:cupertino_ui/src/sheet.dart::_CupertinoSheetRouteTransitionMixin",
       ],
-      setters: [_flaxBinding1642, _flaxBinding1643, _flaxBinding1644],
+      setters: [_flaxBinding1650, _flaxBinding1651, _flaxBinding1652],
       matches: _isCupertinoSheetRoute,
       methods: const {},
     ),
-    _flaxBinding1659,
-    _flaxBinding1677,
+    _flaxBinding1667,
+    _flaxBinding1685,
     FlaxObjectBinding(
       "flax.cupertino/cupertino#type:CupertinoSlidingSegmentedControl",
       [
@@ -1611,7 +1615,7 @@ const cupertinoBindings = FlaxBindingModule(
               _collection33Create,
               _collection33Matches,
             ),
-            iterable: _flaxBinding1547,
+            iterable: _flaxBinding1555,
           ),
           _CupertinoSlidingSegmentedControl_disabledChildren,
         ),
@@ -1627,19 +1631,19 @@ const cupertinoBindings = FlaxBindingModule(
             callback: FlaxCallbackBinding(
               [FlaxCallbackParameter.plain("value", flaxNullableAnyType)],
               flaxVoidType,
-              _callback11,
+              _callback12,
               id: "callback:<>(p:r:value:any?:)->void:",
-              invoke: _callback11Invoke,
-              matches: _callback11Matches,
+              invoke: _callback12Invoke,
+              matches: _callback12Matches,
             ),
           ),
           _CupertinoSlidingSegmentedControl_onValueChanged,
         ),
-        _flaxBinding1678,
-        _flaxBinding1679,
-        _flaxBinding1680,
-        _flaxBinding1681,
-        _flaxBinding1682,
+        _flaxBinding1686,
+        _flaxBinding1687,
+        _flaxBinding1688,
+        _flaxBinding1689,
+        _flaxBinding1690,
         _flaxBinding130,
       ],
       {
@@ -1648,15 +1652,15 @@ const cupertinoBindings = FlaxBindingModule(
           FlaxTypeRef("state", id: "flax.core/components#type:State"),
           _CupertinoSlidingSegmentedControl_createState,
         ),
-        "createElement": _flaxBinding1683,
+        "createElement": _flaxBinding1691,
         "toStringShort": _flaxBinding136,
-        "debugFillProperties": _flaxBinding1684,
-        "toStringShallow": _flaxBinding1685,
-        "toStringDeep": _flaxBinding1686,
-        "toDiagnosticsNode": _flaxBinding1687,
+        "debugFillProperties": _flaxBinding1692,
+        "toStringShallow": _flaxBinding1693,
+        "toStringDeep": _flaxBinding1694,
+        "toDiagnosticsNode": _flaxBinding1695,
         "debugDescribeChildren": _flaxBinding146,
       },
-      constructors: {"": _flaxBinding1688},
+      constructors: {"": _flaxBinding1696},
       setters: [],
       create: _createCupertinoSlidingSegmentedControl,
       matches: _isCupertinoSlidingSegmentedControl,
@@ -1668,58 +1672,58 @@ const cupertinoBindings = FlaxBindingModule(
         "flax.core/sdk_foundation#type:Diagnosticable",
       ],
     ),
-    _flaxBinding1721,
-    _flaxBinding1739,
-    _flaxBinding1749,
-    _flaxBinding1794,
-    _flaxBinding1819,
-    _flaxBinding1837,
-    _flaxBinding1855,
-    _flaxBinding1873,
-    _flaxBinding1984,
-    _flaxBinding2016,
-    _flaxBinding2033,
-    _flaxBinding2046,
+    _flaxBinding1729,
+    _flaxBinding1747,
+    _flaxBinding1757,
+    _flaxBinding1802,
+    _flaxBinding1827,
+    _flaxBinding1845,
+    _flaxBinding1863,
+    _flaxBinding1881,
+    _flaxBinding1992,
+    _flaxBinding2024,
+    _flaxBinding2041,
     _flaxBinding2054,
-    _flaxBinding2067,
-    _flaxBinding2080,
-    _flaxBinding2109,
-    _flaxBinding2118,
-    _flaxBinding2150,
-    _flaxBinding2157,
-    _flaxBinding2178,
-    _flaxBinding2189,
-    _flaxBinding2199,
-    _flaxBinding2244,
-    _flaxBinding2278,
-    _flaxBinding2291,
-    _flaxBinding2311,
-    _flaxBinding1108,
-    _flaxBinding2331,
+    _flaxBinding2062,
+    _flaxBinding2075,
+    _flaxBinding2088,
+    _flaxBinding2117,
+    _flaxBinding2126,
+    _flaxBinding2158,
+    _flaxBinding2165,
+    _flaxBinding2186,
+    _flaxBinding2197,
+    _flaxBinding2207,
+    _flaxBinding2252,
+    _flaxBinding2286,
+    _flaxBinding2299,
+    _flaxBinding2319,
+    _flaxBinding1112,
+    _flaxBinding2339,
   ],
   functions: [
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#read:cupertinoDesktopTextSelectionControls",
       [],
-      _flaxBinding2332,
+      _flaxBinding2340,
       _read_cupertinoDesktopTextSelectionControls,
     ),
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#read:cupertinoDesktopTextSelectionHandleControls",
       [],
-      _flaxBinding2332,
+      _flaxBinding2340,
       _read_cupertinoDesktopTextSelectionHandleControls,
     ),
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#read:cupertinoTextSelectionControls",
       [],
-      _flaxBinding2332,
+      _flaxBinding2340,
       _read_cupertinoTextSelectionControls,
     ),
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#read:cupertinoTextSelectionHandleControls",
       [],
-      _flaxBinding2332,
+      _flaxBinding2340,
       _read_cupertinoTextSelectionHandleControls,
     ),
     FlaxFunctionBinding(
@@ -1731,19 +1735,19 @@ const cupertinoBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#read:kCupertinoButtonMinSize",
       [],
-      _flaxBinding2333,
+      _flaxBinding2341,
       _read_kCupertinoButtonMinSize,
     ),
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#read:kCupertinoButtonPadding",
       [],
-      _flaxBinding2334,
+      _flaxBinding2342,
       _read_kCupertinoButtonPadding,
     ),
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#read:kCupertinoButtonSizeBorderRadius",
       [],
-      _flaxBinding2335,
+      _flaxBinding2343,
       _read_kCupertinoButtonSizeBorderRadius,
     ),
     FlaxFunctionBinding(
@@ -1819,12 +1823,12 @@ const cupertinoBindings = FlaxBindingModule(
         ),
         FlaxParameter(
           "style",
-          _flaxBinding2336,
+          _flaxBinding2344,
           required: false,
           defaultValue: api3.DiagnosticsTreeStyle.singleLine,
         ),
       ],
-      _flaxBinding2337,
+      _flaxBinding2345,
       _function_createCupertinoColorProperty,
     ),
     FlaxFunctionBinding(
@@ -1845,10 +1849,10 @@ const cupertinoBindings = FlaxBindingModule(
           defaultValue: false,
         ),
         FlaxParameter("barrierLabel", flaxNullableStringType, required: false),
-        FlaxParameter.required("builder", _flaxBinding564),
+        FlaxParameter.required("builder", _flaxBinding568),
         FlaxParameter.required("context", _flaxBinding2),
         FlaxParameter("requestFocus", flaxNullableBoolType, required: false),
-        FlaxParameter("routeSettings", _flaxBinding567, required: false),
+        FlaxParameter("routeSettings", _flaxBinding571, required: false),
         FlaxParameter(
           "useRootNavigator",
           flaxBoolType,
@@ -1856,7 +1860,7 @@ const cupertinoBindings = FlaxBindingModule(
           defaultValue: true,
         ),
       ],
-      _flaxBinding2338,
+      _flaxBinding2346,
       _function_showCupertinoDialog,
       genericFactory: _flaxGenericFunction2,
     ),
@@ -1876,11 +1880,11 @@ const cupertinoBindings = FlaxBindingModule(
           required: false,
           defaultValue: true,
         ),
-        FlaxParameter.required("builder", _flaxBinding564),
+        FlaxParameter.required("builder", _flaxBinding568),
         FlaxParameter.required("context", _flaxBinding2),
         FlaxParameter("filter", _flaxBinding452, required: false),
         FlaxParameter("requestFocus", flaxNullableBoolType, required: false),
-        FlaxParameter("routeSettings", _flaxBinding567, required: false),
+        FlaxParameter("routeSettings", _flaxBinding571, required: false),
         FlaxParameter(
           "semanticsDismissible",
           flaxBoolType,
@@ -1894,14 +1898,14 @@ const cupertinoBindings = FlaxBindingModule(
           defaultValue: true,
         ),
       ],
-      _flaxBinding2338,
+      _flaxBinding2346,
       _function_showCupertinoModalPopup,
       genericFactory: _flaxGenericFunction3,
     ),
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#function:showCupertinoSheet",
       [
-        FlaxParameter("builder", _flaxBinding1596, required: false),
+        FlaxParameter("builder", _flaxBinding1604, required: false),
         FlaxParameter.required("context", _flaxBinding2),
         FlaxParameter(
           "enableDrag",
@@ -1915,9 +1919,9 @@ const cupertinoBindings = FlaxBindingModule(
           required: false,
           defaultValue: false,
         ),
-        FlaxParameter("pageBuilder", _flaxBinding1596, required: false),
-        FlaxParameter("scrollableBuilder", _flaxBinding1600, required: false),
-        FlaxParameter("settings", _flaxBinding567, required: false),
+        FlaxParameter("pageBuilder", _flaxBinding1604, required: false),
+        FlaxParameter("scrollableBuilder", _flaxBinding1608, required: false),
+        FlaxParameter("settings", _flaxBinding571, required: false),
         FlaxParameter(
           "showDragHandle",
           flaxBoolType,
@@ -1932,7 +1936,7 @@ const cupertinoBindings = FlaxBindingModule(
           defaultValue: false,
         ),
       ],
-      _flaxBinding2338,
+      _flaxBinding2346,
       _function_showCupertinoSheet,
       genericFactory: _flaxGenericFunction4,
     ),
@@ -1940,7 +1944,7 @@ const cupertinoBindings = FlaxBindingModule(
       "flax.cupertino/cupertino#function:CupertinoAdaptiveTextSelectionToolbar.getAdaptiveButtons",
       [
         FlaxParameter.required("context", _flaxBinding2),
-        FlaxParameter.required("buttonItems", _flaxBinding1741),
+        FlaxParameter.required("buttonItems", _flaxBinding1749),
       ],
       _flaxBinding122,
       _CupertinoAdaptiveTextSelectionToolbar_getAdaptiveButtons,
@@ -1948,7 +1952,7 @@ const cupertinoBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#function:CupertinoApp.createCupertinoHeroController",
       [],
-      _flaxBinding2339,
+      _flaxBinding2347,
       _CupertinoApp_createCupertinoHeroController,
     ),
     FlaxFunctionBinding(
@@ -1984,7 +1988,7 @@ const cupertinoBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#function:CupertinoLocalizations.of",
       [FlaxParameter.required("context", _flaxBinding2)],
-      _flaxBinding2341,
+      _flaxBinding2349,
       _CupertinoLocalizations_of,
     ),
     FlaxFunctionBinding(
@@ -2026,7 +2030,7 @@ const cupertinoBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#function:CupertinoRouteTransitionMixin.buildPageTransitions",
       [
-        FlaxParameter.required("route", _flaxBinding1275),
+        FlaxParameter.required("route", _flaxBinding1279),
         FlaxParameter.required("context", _flaxBinding2),
         FlaxParameter.required("animation", _flaxBinding56),
         FlaxParameter.required("secondaryAnimation", _flaxBinding56),
@@ -2070,7 +2074,7 @@ const cupertinoBindings = FlaxBindingModule(
       "flax.cupertino/cupertino#function:CupertinoSliverRefreshControl.buildRefreshIndicator",
       [
         FlaxParameter.required("context", _flaxBinding2),
-        FlaxParameter.required("refreshState", _flaxBinding1724),
+        FlaxParameter.required("refreshState", _flaxBinding1732),
         FlaxParameter.required("pulledExtent", flaxDoubleType),
         FlaxParameter.required("refreshTriggerPullDistance", flaxDoubleType),
         FlaxParameter.required("refreshIndicatorExtent", flaxDoubleType),
@@ -2086,8 +2090,8 @@ const cupertinoBindings = FlaxBindingModule(
     ),
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#function:CupertinoTextField.inferIOSSpellCheckConfiguration",
-      [FlaxParameter.required("configuration", _flaxBinding1971)],
-      _flaxBinding2343,
+      [FlaxParameter.required("configuration", _flaxBinding1979)],
+      _flaxBinding2351,
       _CupertinoTextField_inferIOSSpellCheckConfiguration,
     ),
     FlaxFunctionBinding(
@@ -2108,7 +2112,7 @@ const cupertinoBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#function:CupertinoTheme.brightnessOf",
       [FlaxParameter.required("context", _flaxBinding2)],
-      _flaxBinding2344,
+      _flaxBinding2352,
       _CupertinoTheme_brightnessOf,
     ),
     FlaxFunctionBinding(
@@ -2120,19 +2124,19 @@ const cupertinoBindings = FlaxBindingModule(
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#function:CupertinoUserInterfaceLevel.of",
       [FlaxParameter.required("context", _flaxBinding2)],
-      _flaxBinding2197,
+      _flaxBinding2205,
       _CupertinoUserInterfaceLevel_of,
     ),
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#function:CupertinoUserInterfaceLevel.maybeOf",
       [FlaxParameter.required("context", _flaxBinding2)],
-      _flaxBinding2345,
+      _flaxBinding2353,
       _CupertinoUserInterfaceLevel_maybeOf,
     ),
     FlaxFunctionBinding(
       "flax.cupertino/cupertino#function:DefaultCupertinoLocalizations.load",
       [FlaxParameter.required("locale", _flaxBinding248)],
-      _flaxBinding2346,
+      _flaxBinding2354,
       _DefaultCupertinoLocalizations_load,
     ),
   ],
@@ -2271,7 +2275,7 @@ const cupertinoBindings = FlaxBindingModule(
       "flax.cupertino/cupertino#read:CupertinoIcons.iconFontPackage":
           api.CupertinoIcons.iconFontPackage,
     }),
-    FlaxConstantGroup(_flaxBinding2340, {
+    FlaxConstantGroup(_flaxBinding2348, {
       "flax.cupertino/cupertino#read:CupertinoIcons.left_chevron":
           api.CupertinoIcons.left_chevron,
       "flax.cupertino/cupertino#read:CupertinoIcons.right_chevron":
@@ -4914,7 +4918,7 @@ const cupertinoBindings = FlaxBindingModule(
       "flax.cupertino/cupertino#read:CupertinoMagnifier.kDefaultSize":
           api.CupertinoMagnifier.kDefaultSize,
     }),
-    FlaxConstantGroup(_flaxBinding2342, {
+    FlaxConstantGroup(_flaxBinding2350, {
       "flax.cupertino/cupertino#read:CupertinoMenuItem.kDefaultDecoration":
           api.CupertinoMenuItem.kDefaultDecoration,
     }),
@@ -4932,13 +4936,13 @@ const cupertinoBindings = FlaxBindingModule(
       "flax.cupertino/cupertino#read:CupertinoTextField.cupertinoMisspelledTextStyle":
           api.CupertinoTextField.cupertinoMisspelledTextStyle,
     }),
-    FlaxConstantGroup(_flaxBinding2347, {
+    FlaxConstantGroup(_flaxBinding2355, {
       "flax.cupertino/cupertino#read:DefaultCupertinoLocalizations.delegate":
           api.DefaultCupertinoLocalizations.delegate,
       "flax.cupertino/cupertino#read:GlobalCupertinoLocalizations.delegate":
           api.GlobalCupertinoLocalizations.delegate,
     }),
-    FlaxConstantGroup(_flaxBinding2348, {
+    FlaxConstantGroup(_flaxBinding2356, {
       "flax.cupertino/cupertino#read:GlobalCupertinoLocalizations.delegates":
           api.GlobalCupertinoLocalizations.delegates,
     }),
@@ -7735,6 +7739,8 @@ Object? _CupertinoDialogRoute_hasActiveRouteBelow(Object value) =>
     (value as api.CupertinoDialogRoute<Object?>).hasActiveRouteBelow;
 Object? _CupertinoDialogRoute_isActive(Object value) =>
     (value as api.CupertinoDialogRoute<Object?>).isActive;
+Object? _CupertinoDialogRoute_barrierBuilder(Object value) =>
+    (value as api.CupertinoDialogRoute<Object?>).barrierBuilder;
 Object? _CupertinoDialogRoute_anchorPoint(Object value) =>
     (value as api.CupertinoDialogRoute<Object?>).anchorPoint;
 Object? _CupertinoDialogRoute_transitionBuilder(Object value) =>
@@ -13189,6 +13195,8 @@ Object? _CupertinoScrollbar_thicknessWhileDragging(Object value) =>
     (value as api.CupertinoScrollbar).thicknessWhileDragging;
 Object? _CupertinoScrollbar_radiusWhileDragging(Object value) =>
     (value as api.CupertinoScrollbar).radiusWhileDragging;
+Object? _CupertinoScrollbar_mouseCursor(Object value) =>
+    (value as api.CupertinoScrollbar).mouseCursor;
 Object? _CupertinoScrollbar_createState(
   Object receiver,
   Map<String, Object?> values,
@@ -23929,12 +23937,19 @@ Object _deferred2(Map<String, Object?> values) {
 }
 
 Object _deferred3(Map<String, Object?> values) {
+  return api.WidgetStateProperty.resolveWith<api7.MouseCursor?>(
+    values["callback"]
+        as api7.MouseCursor? Function(Set<api10.WidgetState> states),
+  );
+}
+
+Object _deferred4(Map<String, Object?> values) {
   return api.WidgetStateProperty.resolveWith<double?>(
     values["callback"] as double? Function(Set<api10.WidgetState> states),
   );
 }
 
-Object _deferred4(Map<String, Object?> values) {
+Object _deferred5(Map<String, Object?> values) {
   return api.WidgetStateProperty.resolveWith<api10.Icon?>(
     values["callback"] as api10.Icon? Function(Set<api10.WidgetState> states),
   );
@@ -23987,7 +24002,7 @@ _flaxGenericFunction2<_Method0 extends Object?>() => (FlaxDartTypes types) {
       ),
       FlaxParameter.required("context", _flaxBinding2),
       FlaxParameter("requestFocus", flaxNullableBoolType, required: false),
-      FlaxParameter("routeSettings", _flaxBinding567, required: false),
+      FlaxParameter("routeSettings", _flaxBinding571, required: false),
       FlaxParameter(
         "useRootNavigator",
         flaxBoolType,
@@ -24068,7 +24083,7 @@ _flaxGenericFunction3<_Method0 extends Object?>() => (FlaxDartTypes types) {
       FlaxParameter.required("context", _flaxBinding2),
       FlaxParameter("filter", _flaxBinding452, required: false),
       FlaxParameter("requestFocus", flaxNullableBoolType, required: false),
-      FlaxParameter("routeSettings", _flaxBinding567, required: false),
+      FlaxParameter("routeSettings", _flaxBinding571, required: false),
       FlaxParameter(
         "semanticsDismissible",
         flaxBoolType,
@@ -24171,7 +24186,7 @@ _flaxGenericFunction4<_Method0 extends Object?>() => (FlaxDartTypes types) {
           callback: FlaxCallbackBinding(
             [
               FlaxCallbackParameter.plain("context", _flaxBinding2),
-              FlaxCallbackParameter.plain("scrollController", _flaxBinding1598),
+              FlaxCallbackParameter.plain("scrollController", _flaxBinding1606),
             ],
             flaxWidgetType,
             FlaxCallbackAdapters
@@ -24201,7 +24216,7 @@ _flaxGenericFunction4<_Method0 extends Object?>() => (FlaxDartTypes types) {
         ),
         required: false,
       ),
-      FlaxParameter("settings", _flaxBinding567, required: false),
+      FlaxParameter("settings", _flaxBinding571, required: false),
       FlaxParameter(
         "showDragHandle",
         flaxBoolType,
@@ -24382,6 +24397,9 @@ Function _flaxClass_CupertinoDialogRoute<
   // ignore: unused_element
   Object? _CupertinoDialogRoute_isActive(Object value) =>
       (value as api.CupertinoDialogRoute<_Owner0>).isActive;
+  // ignore: unused_element
+  Object? _CupertinoDialogRoute_barrierBuilder(Object value) =>
+      (value as api.CupertinoDialogRoute<_Owner0>).barrierBuilder;
   // ignore: unused_element
   Object? _CupertinoDialogRoute_anchorPoint(Object value) =>
       (value as api.CupertinoDialogRoute<_Owner0>).anchorPoint;
@@ -24908,6 +24926,39 @@ Function _flaxClass_CupertinoDialogRoute<
   }
 
   Object _callback2(FlaxCallback _flaxBridgeCallback) =>
+      (api10.BuildContext p0, api10.RouteBarrierDetails p1, api.Widget p2) {
+        final positional = <Object?>[];
+        final named = <String, Object?>{};
+        positional.add(p0);
+        positional.add(p1);
+        positional.add(p2);
+        return _flaxBridgeCallback.call(positional, named) as api.Widget;
+      };
+  bool _callback2Matches(Object value) =>
+      value
+          is api.Widget Function(
+            api10.BuildContext context,
+            api10.RouteBarrierDetails details,
+            api.Widget barrier,
+          );
+  Object? _callback2Invoke(
+    Object function,
+    List<Object?> positional,
+    Map<String, Object?> named,
+  ) {
+    return (function
+        as api.Widget Function(
+          api10.BuildContext context,
+          api10.RouteBarrierDetails details,
+          api.Widget barrier,
+        ))(
+      positional[0] as api10.BuildContext,
+      positional[1] as api10.RouteBarrierDetails,
+      positional[2] as api.Widget,
+    );
+  }
+
+  Object _callback3(FlaxCallback _flaxBridgeCallback) =>
       (
         api10.BuildContext p0,
         api11.Animation<double> p1,
@@ -24922,7 +24973,7 @@ Function _flaxClass_CupertinoDialogRoute<
         positional.add(p3);
         return _flaxBridgeCallback.call(positional, named) as api.Widget;
       };
-  bool _callback2Matches(Object value) =>
+  bool _callback3Matches(Object value) =>
       value
           is api.Widget Function(
             api10.BuildContext context,
@@ -24930,7 +24981,7 @@ Function _flaxClass_CupertinoDialogRoute<
             api11.Animation<double> secondaryAnimation,
             api.Widget child,
           );
-  Object? _callback2Invoke(
+  Object? _callback3Invoke(
     Object function,
     List<Object?> positional,
     Map<String, Object?> named,
@@ -24949,7 +25000,7 @@ Function _flaxClass_CupertinoDialogRoute<
     );
   }
 
-  Object _callback3(FlaxCallback _flaxBridgeCallback) =>
+  Object _callback4(FlaxCallback _flaxBridgeCallback) =>
       (
         api10.BuildContext p0,
         api11.Animation<double> p1,
@@ -24966,7 +25017,7 @@ Function _flaxClass_CupertinoDialogRoute<
         positional.add(p4);
         return _flaxBridgeCallback.call(positional, named) as api.Widget?;
       };
-  bool _callback3Matches(Object value) =>
+  bool _callback4Matches(Object value) =>
       value
           is api.Widget? Function(
             api10.BuildContext context,
@@ -24975,7 +25026,7 @@ Function _flaxClass_CupertinoDialogRoute<
             bool allowSnapshotting,
             api.Widget? child,
           );
-  Object? _callback3Invoke(
+  Object? _callback4Invoke(
     Object function,
     List<Object?> positional,
     Map<String, Object?> named,
@@ -24996,7 +25047,7 @@ Function _flaxClass_CupertinoDialogRoute<
     );
   }
 
-  Object _callback4(FlaxCallback _flaxBridgeCallback) =>
+  Object _callback5(FlaxCallback _flaxBridgeCallback) =>
       (
         api10.BuildContext p0,
         api11.Animation<double> p1,
@@ -25011,7 +25062,7 @@ Function _flaxClass_CupertinoDialogRoute<
         positional.add(p3);
         return _flaxBridgeCallback.call(positional, named) as api.Widget;
       };
-  bool _callback4Matches(Object value) =>
+  bool _callback5Matches(Object value) =>
       value
           is api.Widget Function(
             api10.BuildContext context,
@@ -25019,7 +25070,7 @@ Function _flaxClass_CupertinoDialogRoute<
             api11.Animation<double> secondaryAnimation,
             api.Widget child,
           );
-  Object? _callback4Invoke(
+  Object? _callback5Invoke(
     Object function,
     List<Object?> positional,
     Map<String, Object?> named,
@@ -25038,21 +25089,6 @@ Function _flaxClass_CupertinoDialogRoute<
     );
   }
 
-  Object _callback5(FlaxCallback _flaxBridgeCallback) => () {
-    final positional = <Object?>[];
-    final named = <String, Object?>{};
-    return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
-        .then<bool>((value) => value as bool);
-  };
-  bool _callback5Matches(Object value) => value is Future<bool> Function();
-  Object? _callback5Invoke(
-    Object function,
-    List<Object?> positional,
-    Map<String, Object?> named,
-  ) {
-    return (function as Future<bool> Function())();
-  }
-
   Object _callback6(FlaxCallback _flaxBridgeCallback) => () {
     final positional = <Object?>[];
     final named = <String, Object?>{};
@@ -25068,7 +25104,22 @@ Function _flaxClass_CupertinoDialogRoute<
     return (function as Future<bool> Function())();
   }
 
-  Object _callback7(FlaxCallback _flaxBridgeCallback) =>
+  Object _callback7(FlaxCallback _flaxBridgeCallback) => () {
+    final positional = <Object?>[];
+    final named = <String, Object?>{};
+    return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
+        .then<bool>((value) => value as bool);
+  };
+  bool _callback7Matches(Object value) => value is Future<bool> Function();
+  Object? _callback7Invoke(
+    Object function,
+    List<Object?> positional,
+    Map<String, Object?> named,
+  ) {
+    return (function as Future<bool> Function())();
+  }
+
+  Object _callback8(FlaxCallback _flaxBridgeCallback) =>
       (
         api10.BuildContext p0,
         api11.Animation<double> p1,
@@ -25083,7 +25134,7 @@ Function _flaxClass_CupertinoDialogRoute<
         positional.add(p3);
         return _flaxBridgeCallback.call(positional, named) as api.Widget;
       };
-  bool _callback7Matches(Object value) =>
+  bool _callback8Matches(Object value) =>
       value
           is api.Widget Function(
             api10.BuildContext context,
@@ -25091,7 +25142,7 @@ Function _flaxClass_CupertinoDialogRoute<
             api11.Animation<double> secondaryAnimation,
             api.Widget child,
           );
-  Object? _callback7Invoke(
+  Object? _callback8Invoke(
     Object function,
     List<Object?> positional,
     Map<String, Object?> named,
@@ -25377,6 +25428,35 @@ Function _flaxClass_CupertinoDialogRoute<
           _CupertinoDialogRoute_isActive,
         ),
         FlaxGetter.plain(
+          "barrierBuilder",
+          FlaxTypeRef(
+            "callback",
+            nullable: true,
+            callback: FlaxCallbackBinding(
+              [
+                FlaxCallbackParameter.plain("context", _flaxBinding2),
+                FlaxCallbackParameter.plain("details", _flaxBinding500),
+                FlaxCallbackParameter.plain("barrier", flaxWidgetType),
+              ],
+              flaxWidgetType,
+              _callback2,
+              id:
+                  types
+                      .key<
+                        api.Widget Function(
+                          api10.BuildContext context,
+                          api10.RouteBarrierDetails details,
+                          api.Widget barrier,
+                        )?
+                      >() +
+                  ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:details:object:flax.core/sdk_widgets#type:RouteBarrierDetails,p:r:barrier:widget:)->widget:",
+              invoke: _callback2Invoke,
+              matches: _callback2Matches,
+            ),
+          ),
+          _CupertinoDialogRoute_barrierBuilder,
+        ),
+        FlaxGetter.plain(
           "anchorPoint",
           _flaxBinding8,
           _CupertinoDialogRoute_anchorPoint,
@@ -25397,7 +25477,7 @@ Function _flaxClass_CupertinoDialogRoute<
                 FlaxCallbackParameter.plain("child", flaxWidgetType),
               ],
               flaxWidgetType,
-              _callback2,
+              _callback3,
               id:
                   types
                       .key<
@@ -25409,8 +25489,8 @@ Function _flaxClass_CupertinoDialogRoute<
                         )?
                       >() +
                   ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:animation:object:flax.core/sdk_animation#type:Animation<Object?><double:>,p:r:secondaryAnimation:object:flax.core/sdk_animation#type:Animation<Object?><double:>,p:r:child:widget:)->widget:",
-              invoke: _callback2Invoke,
-              matches: _callback2Matches,
+              invoke: _callback3Invoke,
+              matches: _callback3Matches,
             ),
           ),
           _CupertinoDialogRoute_transitionBuilder,
@@ -25438,12 +25518,12 @@ Function _flaxClass_CupertinoDialogRoute<
           _CupertinoDialogRoute_setState,
         ),
         "buildPage": FlaxInstanceMethod.plain(
-          _flaxBinding506,
+          _flaxBinding510,
           flaxWidgetType,
           _CupertinoDialogRoute_buildPage,
         ),
         "buildTransitions": FlaxInstanceMethod.plain(
-          _flaxBinding508,
+          _flaxBinding512,
           flaxWidgetType,
           _CupertinoDialogRoute_buildTransitions,
         ),
@@ -25464,7 +25544,7 @@ Function _flaxClass_CupertinoDialogRoute<
         ),
         "willPop": FlaxInstanceMethod.plain(
           _flaxBinding132,
-          _flaxBinding513,
+          _flaxBinding517,
           _CupertinoDialogRoute_willPop,
         ),
         "onPopInvokedWithResult": FlaxInstanceMethod.plain(
@@ -25483,13 +25563,13 @@ Function _flaxClass_CupertinoDialogRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  _flaxBinding515,
-                  _callback5,
+                  _flaxBinding519,
+                  _callback6,
                   id:
                       types.key<Future<bool> Function()>() +
                       ":callback:<>()->future:[bool:]",
-                  invoke: _callback5Invoke,
-                  matches: _callback5Matches,
+                  invoke: _callback6Invoke,
+                  matches: _callback6Matches,
                 ),
               ),
             ),
@@ -25505,13 +25585,13 @@ Function _flaxClass_CupertinoDialogRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  _flaxBinding515,
-                  _callback6,
+                  _flaxBinding519,
+                  _callback7,
                   id:
                       types.key<Future<bool> Function()>() +
                       ":callback:<>()->future:[bool:]",
-                  invoke: _callback6Invoke,
-                  matches: _callback6Matches,
+                  invoke: _callback7Invoke,
+                  matches: _callback7Matches,
                 ),
               ),
             ),
@@ -25520,27 +25600,27 @@ Function _flaxClass_CupertinoDialogRoute<
           _CupertinoDialogRoute_removeScopedWillPopCallback,
         ),
         "registerPopEntry": FlaxInstanceMethod.plain(
-          _flaxBinding522,
+          _flaxBinding526,
           flaxVoidType,
           _CupertinoDialogRoute_registerPopEntry,
         ),
         "unregisterPopEntry": FlaxInstanceMethod.plain(
-          _flaxBinding522,
+          _flaxBinding526,
           flaxVoidType,
           _CupertinoDialogRoute_unregisterPopEntry,
         ),
         "didChangePrevious": FlaxInstanceMethod.plain(
-          _flaxBinding525,
+          _flaxBinding529,
           flaxVoidType,
           _CupertinoDialogRoute_didChangePrevious,
         ),
         "didChangeNext": FlaxInstanceMethod.plain(
-          _flaxBinding527,
+          _flaxBinding531,
           flaxVoidType,
           _CupertinoDialogRoute_didChangeNext,
         ),
         "didPopNext": FlaxInstanceMethod.plain(
-          _flaxBinding529,
+          _flaxBinding533,
           flaxVoidType,
           _CupertinoDialogRoute_didPopNext,
         ),
@@ -25571,7 +25651,7 @@ Function _flaxClass_CupertinoDialogRoute<
         ),
         "createAnimationController": FlaxInstanceMethod.plain(
           _flaxBinding132,
-          _flaxBinding536,
+          _flaxBinding540,
           _CupertinoDialogRoute_createAnimationController,
         ),
         "createAnimation": FlaxInstanceMethod.plain(
@@ -25580,12 +25660,12 @@ Function _flaxClass_CupertinoDialogRoute<
           _CupertinoDialogRoute_createAnimation,
         ),
         "createSimulation": FlaxInstanceMethod.plain(
-          _flaxBinding540,
-          _flaxBinding539,
+          _flaxBinding544,
+          _flaxBinding543,
           _CupertinoDialogRoute_createSimulation,
         ),
         "didReplace": FlaxInstanceMethod.plain(
-          _flaxBinding542,
+          _flaxBinding546,
           flaxVoidType,
           _CupertinoDialogRoute_didReplace,
         ),
@@ -25597,22 +25677,22 @@ Function _flaxClass_CupertinoDialogRoute<
           _CupertinoDialogRoute_didPop,
         ),
         "canTransitionTo": FlaxInstanceMethod.plain(
-          _flaxBinding545,
+          _flaxBinding549,
           flaxBoolType,
           _CupertinoDialogRoute_canTransitionTo,
         ),
         "canTransitionFrom": FlaxInstanceMethod.plain(
-          _flaxBinding547,
+          _flaxBinding551,
           flaxBoolType,
           _CupertinoDialogRoute_canTransitionFrom,
         ),
         "handleStartBackGesture": FlaxInstanceMethod.plain(
-          _flaxBinding549,
+          _flaxBinding553,
           flaxVoidType,
           _CupertinoDialogRoute_handleStartBackGesture,
         ),
         "handleUpdateBackGestureProgress": FlaxInstanceMethod.plain(
-          _flaxBinding551,
+          _flaxBinding555,
           flaxVoidType,
           _CupertinoDialogRoute_handleUpdateBackGestureProgress,
         ),
@@ -25632,7 +25712,7 @@ Function _flaxClass_CupertinoDialogRoute<
           _CupertinoDialogRoute_dispose,
         ),
         "onPopInvoked": FlaxInstanceMethod.plain(
-          _flaxBinding556,
+          _flaxBinding560,
           flaxVoidType,
           _CupertinoDialogRoute_onPopInvoked,
         ),
@@ -25644,12 +25724,12 @@ Function _flaxClass_CupertinoDialogRoute<
           _CupertinoDialogRoute_didComplete,
         ),
         "addLocalHistoryEntry": FlaxInstanceMethod.plain(
-          _flaxBinding559,
+          _flaxBinding563,
           flaxVoidType,
           _CupertinoDialogRoute_addLocalHistoryEntry,
         ),
         "removeLocalHistoryEntry": FlaxInstanceMethod.plain(
-          _flaxBinding559,
+          _flaxBinding563,
           flaxVoidType,
           _CupertinoDialogRoute_removeLocalHistoryEntry,
         ),
@@ -25717,7 +25797,7 @@ Function _flaxClass_CupertinoDialogRoute<
                   FlaxCallbackParameter.plain("child", flaxWidgetType),
                 ],
                 flaxWidgetType,
-                _callback7,
+                _callback8,
                 id:
                     types
                         .key<
@@ -25729,13 +25809,13 @@ Function _flaxClass_CupertinoDialogRoute<
                           )?
                         >() +
                     ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:animation:object:flax.core/sdk_animation#type:Animation<Object?><double:>,p:r:secondaryAnimation:object:flax.core/sdk_animation#type:Animation<Object?><double:>,p:r:child:widget:)->widget:",
-                invoke: _callback7Invoke,
-                matches: _callback7Matches,
+                invoke: _callback8Invoke,
+                matches: _callback8Matches,
               ),
             ),
             required: false,
           ),
-          FlaxParameter("settings", _flaxBinding567, required: false),
+          FlaxParameter("settings", _flaxBinding571, required: false),
           FlaxParameter("requestFocus", flaxNullableBoolType, required: false),
           FlaxParameter("anchorPoint", _flaxBinding8, required: false),
         ],
@@ -25760,7 +25840,7 @@ Function _flaxClass_CupertinoDialogRoute<
                 FlaxCallbackParameter.plain("child", _flaxBinding57),
               ],
               _flaxBinding57,
-              _callback3,
+              _callback4,
               id:
                   types
                       .key<
@@ -25773,8 +25853,8 @@ Function _flaxClass_CupertinoDialogRoute<
                         )?
                       >() +
                   ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:animation:object:flax.core/sdk_animation#type:Animation<Object?><double:>,p:r:secondaryAnimation:object:flax.core/sdk_animation#type:Animation<Object?><double:>,p:r:allowSnapshotting:bool:,p:r:child:widget?:)->widget?:",
-              invoke: _callback3Invoke,
-              matches: _callback3Matches,
+              invoke: _callback4Invoke,
+              matches: _callback4Matches,
             ),
           ),
           _CupertinoDialogRoute_set_receivedTransition,
@@ -25805,7 +25885,7 @@ Function _flaxClass_CupertinoDialogRoute<
                 FlaxCallbackParameter.plain("child", flaxWidgetType),
               ],
               flaxWidgetType,
-              _callback4,
+              _callback5,
               id:
                   types
                       .key<
@@ -25817,8 +25897,8 @@ Function _flaxClass_CupertinoDialogRoute<
                         )?
                       >() +
                   ":callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:animation:object:flax.core/sdk_animation#type:Animation<Object?><double:>,p:r:secondaryAnimation:object:flax.core/sdk_animation#type:Animation<Object?><double:>,p:r:child:widget:)->widget:",
-              invoke: _callback4Invoke,
-              matches: _callback4Matches,
+              invoke: _callback5Invoke,
+              matches: _callback5Matches,
             ),
           ),
           _CupertinoDialogRoute_set_transitionBuilder,
@@ -26887,12 +26967,12 @@ Function _flaxClass_CupertinoModalPopupRoute<
           _CupertinoModalPopupRoute_setState,
         ),
         "buildPage": FlaxInstanceMethod.plain(
-          _flaxBinding506,
+          _flaxBinding510,
           flaxWidgetType,
           _CupertinoModalPopupRoute_buildPage,
         ),
         "buildTransitions": FlaxInstanceMethod.plain(
-          _flaxBinding508,
+          _flaxBinding512,
           flaxWidgetType,
           _CupertinoModalPopupRoute_buildTransitions,
         ),
@@ -26913,7 +26993,7 @@ Function _flaxClass_CupertinoModalPopupRoute<
         ),
         "willPop": FlaxInstanceMethod.plain(
           _flaxBinding132,
-          _flaxBinding513,
+          _flaxBinding517,
           _CupertinoModalPopupRoute_willPop,
         ),
         "onPopInvokedWithResult": FlaxInstanceMethod.plain(
@@ -26932,7 +27012,7 @@ Function _flaxClass_CupertinoModalPopupRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  _flaxBinding515,
+                  _flaxBinding519,
                   _callback3,
                   id:
                       types.key<Future<bool> Function()>() +
@@ -26954,7 +27034,7 @@ Function _flaxClass_CupertinoModalPopupRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  _flaxBinding515,
+                  _flaxBinding519,
                   _callback4,
                   id:
                       types.key<Future<bool> Function()>() +
@@ -26969,27 +27049,27 @@ Function _flaxClass_CupertinoModalPopupRoute<
           _CupertinoModalPopupRoute_removeScopedWillPopCallback,
         ),
         "registerPopEntry": FlaxInstanceMethod.plain(
-          _flaxBinding522,
+          _flaxBinding526,
           flaxVoidType,
           _CupertinoModalPopupRoute_registerPopEntry,
         ),
         "unregisterPopEntry": FlaxInstanceMethod.plain(
-          _flaxBinding522,
+          _flaxBinding526,
           flaxVoidType,
           _CupertinoModalPopupRoute_unregisterPopEntry,
         ),
         "didChangePrevious": FlaxInstanceMethod.plain(
-          _flaxBinding525,
+          _flaxBinding529,
           flaxVoidType,
           _CupertinoModalPopupRoute_didChangePrevious,
         ),
         "didChangeNext": FlaxInstanceMethod.plain(
-          _flaxBinding527,
+          _flaxBinding531,
           flaxVoidType,
           _CupertinoModalPopupRoute_didChangeNext,
         ),
         "didPopNext": FlaxInstanceMethod.plain(
-          _flaxBinding529,
+          _flaxBinding533,
           flaxVoidType,
           _CupertinoModalPopupRoute_didPopNext,
         ),
@@ -27025,7 +27105,7 @@ Function _flaxClass_CupertinoModalPopupRoute<
         ),
         "createAnimationController": FlaxInstanceMethod.plain(
           _flaxBinding132,
-          _flaxBinding536,
+          _flaxBinding540,
           _CupertinoModalPopupRoute_createAnimationController,
         ),
         "createAnimation": FlaxInstanceMethod.plain(
@@ -27034,12 +27114,12 @@ Function _flaxClass_CupertinoModalPopupRoute<
           _CupertinoModalPopupRoute_createAnimation,
         ),
         "createSimulation": FlaxInstanceMethod.plain(
-          _flaxBinding540,
-          _flaxBinding539,
+          _flaxBinding544,
+          _flaxBinding543,
           _CupertinoModalPopupRoute_createSimulation,
         ),
         "didReplace": FlaxInstanceMethod.plain(
-          _flaxBinding542,
+          _flaxBinding546,
           flaxVoidType,
           _CupertinoModalPopupRoute_didReplace,
         ),
@@ -27051,22 +27131,22 @@ Function _flaxClass_CupertinoModalPopupRoute<
           _CupertinoModalPopupRoute_didPop,
         ),
         "canTransitionTo": FlaxInstanceMethod.plain(
-          _flaxBinding545,
+          _flaxBinding549,
           flaxBoolType,
           _CupertinoModalPopupRoute_canTransitionTo,
         ),
         "canTransitionFrom": FlaxInstanceMethod.plain(
-          _flaxBinding547,
+          _flaxBinding551,
           flaxBoolType,
           _CupertinoModalPopupRoute_canTransitionFrom,
         ),
         "handleStartBackGesture": FlaxInstanceMethod.plain(
-          _flaxBinding549,
+          _flaxBinding553,
           flaxVoidType,
           _CupertinoModalPopupRoute_handleStartBackGesture,
         ),
         "handleUpdateBackGestureProgress": FlaxInstanceMethod.plain(
-          _flaxBinding551,
+          _flaxBinding555,
           flaxVoidType,
           _CupertinoModalPopupRoute_handleUpdateBackGestureProgress,
         ),
@@ -27086,7 +27166,7 @@ Function _flaxClass_CupertinoModalPopupRoute<
           _CupertinoModalPopupRoute_dispose,
         ),
         "onPopInvoked": FlaxInstanceMethod.plain(
-          _flaxBinding556,
+          _flaxBinding560,
           flaxVoidType,
           _CupertinoModalPopupRoute_onPopInvoked,
         ),
@@ -27098,12 +27178,12 @@ Function _flaxClass_CupertinoModalPopupRoute<
           _CupertinoModalPopupRoute_didComplete,
         ),
         "addLocalHistoryEntry": FlaxInstanceMethod.plain(
-          _flaxBinding559,
+          _flaxBinding563,
           flaxVoidType,
           _CupertinoModalPopupRoute_addLocalHistoryEntry,
         ),
         "removeLocalHistoryEntry": FlaxInstanceMethod.plain(
-          _flaxBinding559,
+          _flaxBinding563,
           flaxVoidType,
           _CupertinoModalPopupRoute_removeLocalHistoryEntry,
         ),
@@ -27156,7 +27236,7 @@ Function _flaxClass_CupertinoModalPopupRoute<
             defaultValue: false,
           ),
           FlaxParameter("filter", _flaxBinding452, required: false),
-          FlaxParameter("settings", _flaxBinding567, required: false),
+          FlaxParameter("settings", _flaxBinding571, required: false),
           FlaxParameter("requestFocus", flaxNullableBoolType, required: false),
           FlaxParameter("anchorPoint", _flaxBinding8, required: false),
         ],
@@ -27348,9 +27428,9 @@ Function _flaxClass_CupertinoPage<
     FlaxObjectBinding(
       id,
       [
-        _flaxBinding1144,
-        _flaxBinding1145,
-        FlaxGetter.plain("key", _flaxBinding1146, _CupertinoPage_key),
+        _flaxBinding1148,
+        _flaxBinding1149,
+        FlaxGetter.plain("key", _flaxBinding1150, _CupertinoPage_key),
         FlaxGetter.plain(
           "restorationId",
           flaxNullableStringType,
@@ -27405,14 +27485,14 @@ Function _flaxClass_CupertinoPage<
         ),
       ],
       {
-        "toString": _flaxBinding2349,
+        "toString": _flaxBinding2357,
         "canUpdate": FlaxInstanceMethod.plain(
-          _flaxBinding1158,
+          _flaxBinding1162,
           flaxBoolType,
           _CupertinoPage_canUpdate,
         ),
         "createRoute": FlaxInstanceMethod.plain(
-          _flaxBinding1160,
+          _flaxBinding1164,
           types.ref<api10.Route<_Owner0>>(),
           _CupertinoPage_createRoute,
         ),
@@ -27476,7 +27556,7 @@ Function _flaxClass_CupertinoPage<
             required: false,
             omitWhenAbsent: true,
           ),
-          FlaxParameter("key", _flaxBinding1146, required: false),
+          FlaxParameter("key", _flaxBinding1150, required: false),
           FlaxParameter("name", flaxNullableStringType, required: false),
           FlaxParameter("arguments", flaxNullableAnyType, required: false),
           FlaxParameter(
@@ -28520,12 +28600,12 @@ Function _flaxClass_CupertinoPageRoute<
           _CupertinoPageRoute_setState,
         ),
         "buildPage": FlaxInstanceMethod.plain(
-          _flaxBinding506,
+          _flaxBinding510,
           flaxWidgetType,
           _CupertinoPageRoute_buildPage,
         ),
         "buildTransitions": FlaxInstanceMethod.plain(
-          _flaxBinding508,
+          _flaxBinding512,
           flaxWidgetType,
           _CupertinoPageRoute_buildTransitions,
         ),
@@ -28546,7 +28626,7 @@ Function _flaxClass_CupertinoPageRoute<
         ),
         "willPop": FlaxInstanceMethod.plain(
           _flaxBinding132,
-          _flaxBinding513,
+          _flaxBinding517,
           _CupertinoPageRoute_willPop,
         ),
         "onPopInvokedWithResult": FlaxInstanceMethod.plain(
@@ -28565,7 +28645,7 @@ Function _flaxClass_CupertinoPageRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  _flaxBinding515,
+                  _flaxBinding519,
                   _callback3,
                   id:
                       types.key<Future<bool> Function()>() +
@@ -28587,7 +28667,7 @@ Function _flaxClass_CupertinoPageRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  _flaxBinding515,
+                  _flaxBinding519,
                   _callback4,
                   id:
                       types.key<Future<bool> Function()>() +
@@ -28602,27 +28682,27 @@ Function _flaxClass_CupertinoPageRoute<
           _CupertinoPageRoute_removeScopedWillPopCallback,
         ),
         "registerPopEntry": FlaxInstanceMethod.plain(
-          _flaxBinding522,
+          _flaxBinding526,
           flaxVoidType,
           _CupertinoPageRoute_registerPopEntry,
         ),
         "unregisterPopEntry": FlaxInstanceMethod.plain(
-          _flaxBinding522,
+          _flaxBinding526,
           flaxVoidType,
           _CupertinoPageRoute_unregisterPopEntry,
         ),
         "didChangePrevious": FlaxInstanceMethod.plain(
-          _flaxBinding525,
+          _flaxBinding529,
           flaxVoidType,
           _CupertinoPageRoute_didChangePrevious,
         ),
         "didChangeNext": FlaxInstanceMethod.plain(
-          _flaxBinding527,
+          _flaxBinding531,
           flaxVoidType,
           _CupertinoPageRoute_didChangeNext,
         ),
         "didPopNext": FlaxInstanceMethod.plain(
-          _flaxBinding529,
+          _flaxBinding533,
           flaxVoidType,
           _CupertinoPageRoute_didPopNext,
         ),
@@ -28658,7 +28738,7 @@ Function _flaxClass_CupertinoPageRoute<
         ),
         "createAnimationController": FlaxInstanceMethod.plain(
           _flaxBinding132,
-          _flaxBinding536,
+          _flaxBinding540,
           _CupertinoPageRoute_createAnimationController,
         ),
         "createAnimation": FlaxInstanceMethod.plain(
@@ -28667,12 +28747,12 @@ Function _flaxClass_CupertinoPageRoute<
           _CupertinoPageRoute_createAnimation,
         ),
         "createSimulation": FlaxInstanceMethod.plain(
-          _flaxBinding540,
-          _flaxBinding1228,
+          _flaxBinding544,
+          _flaxBinding1232,
           _CupertinoPageRoute_createSimulation,
         ),
         "didReplace": FlaxInstanceMethod.plain(
-          _flaxBinding542,
+          _flaxBinding546,
           flaxVoidType,
           _CupertinoPageRoute_didReplace,
         ),
@@ -28684,22 +28764,22 @@ Function _flaxClass_CupertinoPageRoute<
           _CupertinoPageRoute_didPop,
         ),
         "canTransitionTo": FlaxInstanceMethod.plain(
-          _flaxBinding545,
+          _flaxBinding549,
           flaxBoolType,
           _CupertinoPageRoute_canTransitionTo,
         ),
         "canTransitionFrom": FlaxInstanceMethod.plain(
-          _flaxBinding547,
+          _flaxBinding551,
           flaxBoolType,
           _CupertinoPageRoute_canTransitionFrom,
         ),
         "handleStartBackGesture": FlaxInstanceMethod.plain(
-          _flaxBinding549,
+          _flaxBinding553,
           flaxVoidType,
           _CupertinoPageRoute_handleStartBackGesture,
         ),
         "handleUpdateBackGestureProgress": FlaxInstanceMethod.plain(
-          _flaxBinding551,
+          _flaxBinding555,
           flaxVoidType,
           _CupertinoPageRoute_handleUpdateBackGestureProgress,
         ),
@@ -28719,7 +28799,7 @@ Function _flaxClass_CupertinoPageRoute<
           _CupertinoPageRoute_dispose,
         ),
         "onPopInvoked": FlaxInstanceMethod.plain(
-          _flaxBinding556,
+          _flaxBinding560,
           flaxVoidType,
           _CupertinoPageRoute_onPopInvoked,
         ),
@@ -28731,17 +28811,17 @@ Function _flaxClass_CupertinoPageRoute<
           _CupertinoPageRoute_didComplete,
         ),
         "addLocalHistoryEntry": FlaxInstanceMethod.plain(
-          _flaxBinding559,
+          _flaxBinding563,
           flaxVoidType,
           _CupertinoPageRoute_addLocalHistoryEntry,
         ),
         "removeLocalHistoryEntry": FlaxInstanceMethod.plain(
-          _flaxBinding559,
+          _flaxBinding563,
           flaxVoidType,
           _CupertinoPageRoute_removeLocalHistoryEntry,
         ),
         "buildContent": FlaxInstanceMethod.plain(
-          _flaxBinding1160,
+          _flaxBinding1164,
           flaxWidgetType,
           _CupertinoPageRoute_buildContent,
         ),
@@ -28770,7 +28850,7 @@ Function _flaxClass_CupertinoPageRoute<
             ),
           ),
           FlaxParameter("title", flaxNullableStringType, required: false),
-          FlaxParameter("settings", _flaxBinding567, required: false),
+          FlaxParameter("settings", _flaxBinding571, required: false),
           FlaxParameter("requestFocus", flaxNullableBoolType, required: false),
           FlaxParameter(
             "maintainState",
@@ -28859,6 +28939,7 @@ Function _flaxClass_CupertinoPageRoute<
           "flax.core/sdk_widgets#type:OverlayRoute",
           "flax.core/flutter#type:Route",
           "package:flutter/src/widgets/navigator.dart::_RoutePlaceholder",
+          "dart:core::Object",
           "flax.core/sdk_widgets#type:PredictiveBackRoute",
           "flax.core/sdk_widgets#type:LocalHistoryRoute",
           "flax.cupertino/cupertino#type:CupertinoRouteTransitionMixin",
@@ -29161,9 +29242,9 @@ Function _flaxClass_CupertinoRadio<_Owner0 extends Object?>() =>
               _flaxBinding134,
               _CupertinoRadio_createElement,
             ),
-            "toStringShort": _flaxBinding2350,
+            "toStringShort": _flaxBinding2358,
             "debugFillProperties": FlaxInstanceMethod.plain(
-              _flaxBinding2351,
+              _flaxBinding2359,
               flaxVoidType,
               _CupertinoRadio_debugFillProperties,
             ),
@@ -29182,7 +29263,7 @@ Function _flaxClass_CupertinoRadio<_Owner0 extends Object?>() =>
               _flaxBinding108,
               _CupertinoRadio_toDiagnosticsNode,
             ),
-            "debugDescribeChildren": _flaxBinding2352,
+            "debugDescribeChildren": _flaxBinding2360,
           },
           constructors: {
             "": <FlaxParameter>[
@@ -30299,12 +30380,12 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
           _CupertinoRouteTransitionMixin_setState,
         ),
         "buildPage": FlaxInstanceMethod.plain(
-          _flaxBinding506,
+          _flaxBinding510,
           flaxWidgetType,
           _CupertinoRouteTransitionMixin_buildPage,
         ),
         "buildTransitions": FlaxInstanceMethod.plain(
-          _flaxBinding508,
+          _flaxBinding512,
           flaxWidgetType,
           _CupertinoRouteTransitionMixin_buildTransitions,
         ),
@@ -30325,7 +30406,7 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
         ),
         "willPop": FlaxInstanceMethod.plain(
           _flaxBinding132,
-          _flaxBinding513,
+          _flaxBinding517,
           _CupertinoRouteTransitionMixin_willPop,
         ),
         "onPopInvokedWithResult": FlaxInstanceMethod.plain(
@@ -30344,7 +30425,7 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  _flaxBinding515,
+                  _flaxBinding519,
                   _callback3,
                   id:
                       types.key<Future<bool> Function()>() +
@@ -30366,7 +30447,7 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  _flaxBinding515,
+                  _flaxBinding519,
                   _callback4,
                   id:
                       types.key<Future<bool> Function()>() +
@@ -30381,27 +30462,27 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
           _CupertinoRouteTransitionMixin_removeScopedWillPopCallback,
         ),
         "registerPopEntry": FlaxInstanceMethod.plain(
-          _flaxBinding522,
+          _flaxBinding526,
           flaxVoidType,
           _CupertinoRouteTransitionMixin_registerPopEntry,
         ),
         "unregisterPopEntry": FlaxInstanceMethod.plain(
-          _flaxBinding522,
+          _flaxBinding526,
           flaxVoidType,
           _CupertinoRouteTransitionMixin_unregisterPopEntry,
         ),
         "didChangePrevious": FlaxInstanceMethod.plain(
-          _flaxBinding525,
+          _flaxBinding529,
           flaxVoidType,
           _CupertinoRouteTransitionMixin_didChangePrevious,
         ),
         "didChangeNext": FlaxInstanceMethod.plain(
-          _flaxBinding527,
+          _flaxBinding531,
           flaxVoidType,
           _CupertinoRouteTransitionMixin_didChangeNext,
         ),
         "didPopNext": FlaxInstanceMethod.plain(
-          _flaxBinding529,
+          _flaxBinding533,
           flaxVoidType,
           _CupertinoRouteTransitionMixin_didPopNext,
         ),
@@ -30437,7 +30518,7 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
         ),
         "createAnimationController": FlaxInstanceMethod.plain(
           _flaxBinding132,
-          _flaxBinding536,
+          _flaxBinding540,
           _CupertinoRouteTransitionMixin_createAnimationController,
         ),
         "createAnimation": FlaxInstanceMethod.plain(
@@ -30446,12 +30527,12 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
           _CupertinoRouteTransitionMixin_createAnimation,
         ),
         "createSimulation": FlaxInstanceMethod.plain(
-          _flaxBinding540,
-          _flaxBinding1228,
+          _flaxBinding544,
+          _flaxBinding1232,
           _CupertinoRouteTransitionMixin_createSimulation,
         ),
         "didReplace": FlaxInstanceMethod.plain(
-          _flaxBinding542,
+          _flaxBinding546,
           flaxVoidType,
           _CupertinoRouteTransitionMixin_didReplace,
         ),
@@ -30463,22 +30544,22 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
           _CupertinoRouteTransitionMixin_didPop,
         ),
         "canTransitionTo": FlaxInstanceMethod.plain(
-          _flaxBinding545,
+          _flaxBinding549,
           flaxBoolType,
           _CupertinoRouteTransitionMixin_canTransitionTo,
         ),
         "canTransitionFrom": FlaxInstanceMethod.plain(
-          _flaxBinding547,
+          _flaxBinding551,
           flaxBoolType,
           _CupertinoRouteTransitionMixin_canTransitionFrom,
         ),
         "handleStartBackGesture": FlaxInstanceMethod.plain(
-          _flaxBinding549,
+          _flaxBinding553,
           flaxVoidType,
           _CupertinoRouteTransitionMixin_handleStartBackGesture,
         ),
         "handleUpdateBackGestureProgress": FlaxInstanceMethod.plain(
-          _flaxBinding551,
+          _flaxBinding555,
           flaxVoidType,
           _CupertinoRouteTransitionMixin_handleUpdateBackGestureProgress,
         ),
@@ -30498,7 +30579,7 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
           _CupertinoRouteTransitionMixin_dispose,
         ),
         "onPopInvoked": FlaxInstanceMethod.plain(
-          _flaxBinding556,
+          _flaxBinding560,
           flaxVoidType,
           _CupertinoRouteTransitionMixin_onPopInvoked,
         ),
@@ -30510,17 +30591,17 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
           _CupertinoRouteTransitionMixin_didComplete,
         ),
         "addLocalHistoryEntry": FlaxInstanceMethod.plain(
-          _flaxBinding559,
+          _flaxBinding563,
           flaxVoidType,
           _CupertinoRouteTransitionMixin_addLocalHistoryEntry,
         ),
         "removeLocalHistoryEntry": FlaxInstanceMethod.plain(
-          _flaxBinding559,
+          _flaxBinding563,
           flaxVoidType,
           _CupertinoRouteTransitionMixin_removeLocalHistoryEntry,
         ),
         "buildContent": FlaxInstanceMethod.plain(
-          _flaxBinding1160,
+          _flaxBinding1164,
           flaxWidgetType,
           _CupertinoRouteTransitionMixin_buildContent,
         ),
@@ -30585,6 +30666,7 @@ Function _flaxClass_CupertinoRouteTransitionMixin<
           "flax.core/sdk_widgets#type:OverlayRoute",
           "flax.core/flutter#type:Route",
           "package:flutter/src/widgets/navigator.dart::_RoutePlaceholder",
+          "dart:core::Object",
           "flax.core/sdk_widgets#type:PredictiveBackRoute",
           "flax.core/sdk_widgets#type:LocalHistoryRoute",
         ],
@@ -30843,9 +30925,9 @@ Function _flaxClass_CupertinoSegmentedControl<
           _flaxBinding134,
           _CupertinoSegmentedControl_createElement,
         ),
-        "toStringShort": _flaxBinding2350,
+        "toStringShort": _flaxBinding2358,
         "debugFillProperties": FlaxInstanceMethod.plain(
-          _flaxBinding2351,
+          _flaxBinding2359,
           flaxVoidType,
           _CupertinoSegmentedControl_debugFillProperties,
         ),
@@ -30864,7 +30946,7 @@ Function _flaxClass_CupertinoSegmentedControl<
           _flaxBinding108,
           _CupertinoSegmentedControl_toDiagnosticsNode,
         ),
-        "debugDescribeChildren": _flaxBinding2352,
+        "debugDescribeChildren": _flaxBinding2360,
       },
       constructors: {
         "": <FlaxParameter>[
@@ -31943,7 +32025,7 @@ Function _flaxClass_CupertinoSheetRoute<
                 FlaxCallbackParameter.plain("context", _flaxBinding2),
                 FlaxCallbackParameter.plain(
                   "scrollController",
-                  _flaxBinding1598,
+                  _flaxBinding1606,
                 ),
               ],
               flaxWidgetType,
@@ -32016,12 +32098,12 @@ Function _flaxClass_CupertinoSheetRoute<
           _CupertinoSheetRoute_setState,
         ),
         "buildPage": FlaxInstanceMethod.plain(
-          _flaxBinding506,
+          _flaxBinding510,
           flaxWidgetType,
           _CupertinoSheetRoute_buildPage,
         ),
         "buildTransitions": FlaxInstanceMethod.plain(
-          _flaxBinding508,
+          _flaxBinding512,
           flaxWidgetType,
           _CupertinoSheetRoute_buildTransitions,
         ),
@@ -32042,7 +32124,7 @@ Function _flaxClass_CupertinoSheetRoute<
         ),
         "willPop": FlaxInstanceMethod.plain(
           _flaxBinding132,
-          _flaxBinding513,
+          _flaxBinding517,
           _CupertinoSheetRoute_willPop,
         ),
         "onPopInvokedWithResult": FlaxInstanceMethod.plain(
@@ -32061,7 +32143,7 @@ Function _flaxClass_CupertinoSheetRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  _flaxBinding515,
+                  _flaxBinding519,
                   _callback3,
                   id:
                       types.key<Future<bool> Function()>() +
@@ -32083,7 +32165,7 @@ Function _flaxClass_CupertinoSheetRoute<
                 "callback",
                 callback: FlaxCallbackBinding(
                   [],
-                  _flaxBinding515,
+                  _flaxBinding519,
                   _callback4,
                   id:
                       types.key<Future<bool> Function()>() +
@@ -32098,27 +32180,27 @@ Function _flaxClass_CupertinoSheetRoute<
           _CupertinoSheetRoute_removeScopedWillPopCallback,
         ),
         "registerPopEntry": FlaxInstanceMethod.plain(
-          _flaxBinding522,
+          _flaxBinding526,
           flaxVoidType,
           _CupertinoSheetRoute_registerPopEntry,
         ),
         "unregisterPopEntry": FlaxInstanceMethod.plain(
-          _flaxBinding522,
+          _flaxBinding526,
           flaxVoidType,
           _CupertinoSheetRoute_unregisterPopEntry,
         ),
         "didChangePrevious": FlaxInstanceMethod.plain(
-          _flaxBinding525,
+          _flaxBinding529,
           flaxVoidType,
           _CupertinoSheetRoute_didChangePrevious,
         ),
         "didChangeNext": FlaxInstanceMethod.plain(
-          _flaxBinding527,
+          _flaxBinding531,
           flaxVoidType,
           _CupertinoSheetRoute_didChangeNext,
         ),
         "didPopNext": FlaxInstanceMethod.plain(
-          _flaxBinding529,
+          _flaxBinding533,
           flaxVoidType,
           _CupertinoSheetRoute_didPopNext,
         ),
@@ -32154,7 +32236,7 @@ Function _flaxClass_CupertinoSheetRoute<
         ),
         "createAnimationController": FlaxInstanceMethod.plain(
           _flaxBinding132,
-          _flaxBinding536,
+          _flaxBinding540,
           _CupertinoSheetRoute_createAnimationController,
         ),
         "createAnimation": FlaxInstanceMethod.plain(
@@ -32163,12 +32245,12 @@ Function _flaxClass_CupertinoSheetRoute<
           _CupertinoSheetRoute_createAnimation,
         ),
         "createSimulation": FlaxInstanceMethod.plain(
-          _flaxBinding540,
-          _flaxBinding1228,
+          _flaxBinding544,
+          _flaxBinding1232,
           _CupertinoSheetRoute_createSimulation,
         ),
         "didReplace": FlaxInstanceMethod.plain(
-          _flaxBinding542,
+          _flaxBinding546,
           flaxVoidType,
           _CupertinoSheetRoute_didReplace,
         ),
@@ -32180,22 +32262,22 @@ Function _flaxClass_CupertinoSheetRoute<
           _CupertinoSheetRoute_didPop,
         ),
         "canTransitionTo": FlaxInstanceMethod.plain(
-          _flaxBinding545,
+          _flaxBinding549,
           flaxBoolType,
           _CupertinoSheetRoute_canTransitionTo,
         ),
         "canTransitionFrom": FlaxInstanceMethod.plain(
-          _flaxBinding547,
+          _flaxBinding551,
           flaxBoolType,
           _CupertinoSheetRoute_canTransitionFrom,
         ),
         "handleStartBackGesture": FlaxInstanceMethod.plain(
-          _flaxBinding549,
+          _flaxBinding553,
           flaxVoidType,
           _CupertinoSheetRoute_handleStartBackGesture,
         ),
         "handleUpdateBackGestureProgress": FlaxInstanceMethod.plain(
-          _flaxBinding551,
+          _flaxBinding555,
           flaxVoidType,
           _CupertinoSheetRoute_handleUpdateBackGestureProgress,
         ),
@@ -32215,7 +32297,7 @@ Function _flaxClass_CupertinoSheetRoute<
           _CupertinoSheetRoute_dispose,
         ),
         "onPopInvoked": FlaxInstanceMethod.plain(
-          _flaxBinding556,
+          _flaxBinding560,
           flaxVoidType,
           _CupertinoSheetRoute_onPopInvoked,
         ),
@@ -32227,24 +32309,24 @@ Function _flaxClass_CupertinoSheetRoute<
           _CupertinoSheetRoute_didComplete,
         ),
         "addLocalHistoryEntry": FlaxInstanceMethod.plain(
-          _flaxBinding559,
+          _flaxBinding563,
           flaxVoidType,
           _CupertinoSheetRoute_addLocalHistoryEntry,
         ),
         "removeLocalHistoryEntry": FlaxInstanceMethod.plain(
-          _flaxBinding559,
+          _flaxBinding563,
           flaxVoidType,
           _CupertinoSheetRoute_removeLocalHistoryEntry,
         ),
         "buildContent": FlaxInstanceMethod.plain(
-          _flaxBinding1160,
+          _flaxBinding1164,
           flaxWidgetType,
           _CupertinoSheetRoute_buildContent,
         ),
       },
       constructors: {
         "": <FlaxParameter>[
-          FlaxParameter("settings", _flaxBinding567, required: false),
+          FlaxParameter("settings", _flaxBinding571, required: false),
           FlaxParameter(
             "builder",
             FlaxTypeRef(
@@ -32278,7 +32360,7 @@ Function _flaxClass_CupertinoSheetRoute<
                   FlaxCallbackParameter.plain("context", _flaxBinding2),
                   FlaxCallbackParameter.plain(
                     "scrollController",
-                    _flaxBinding1598,
+                    _flaxBinding1606,
                   ),
                 ],
                 flaxWidgetType,
@@ -32388,6 +32470,7 @@ Function _flaxClass_CupertinoSheetRoute<
           "flax.core/sdk_widgets#type:OverlayRoute",
           "flax.core/flutter#type:Route",
           "package:flutter/src/widgets/navigator.dart::_RoutePlaceholder",
+          "dart:core::Object",
           "flax.core/sdk_widgets#type:PredictiveBackRoute",
           "flax.core/sdk_widgets#type:LocalHistoryRoute",
           "package:cupertino_ui/src/sheet.dart::_CupertinoSheetRouteTransitionMixin",
@@ -32613,7 +32696,7 @@ Function _flaxClass_CupertinoSlidingSegmentedControl<
         ),
         FlaxGetter.plain(
           "padding",
-          _flaxBinding692,
+          _flaxBinding696,
           _CupertinoSlidingSegmentedControl_padding,
         ),
         FlaxGetter.plain(
@@ -32637,9 +32720,9 @@ Function _flaxClass_CupertinoSlidingSegmentedControl<
           _flaxBinding134,
           _CupertinoSlidingSegmentedControl_createElement,
         ),
-        "toStringShort": _flaxBinding2350,
+        "toStringShort": _flaxBinding2358,
         "debugFillProperties": FlaxInstanceMethod.plain(
-          _flaxBinding2351,
+          _flaxBinding2359,
           flaxVoidType,
           _CupertinoSlidingSegmentedControl_debugFillProperties,
         ),
@@ -32658,7 +32741,7 @@ Function _flaxClass_CupertinoSlidingSegmentedControl<
           _flaxBinding108,
           _CupertinoSlidingSegmentedControl_toDiagnosticsNode,
         ),
-        "debugDescribeChildren": _flaxBinding2352,
+        "debugDescribeChildren": _flaxBinding2360,
       },
       constructors: {
         "": <FlaxParameter>[
@@ -32706,7 +32789,7 @@ Function _flaxClass_CupertinoSlidingSegmentedControl<
           ),
           FlaxParameter(
             "padding",
-            _flaxBinding692,
+            _flaxBinding696,
             required: false,
             omitWhenAbsent: true,
           ),
@@ -32757,8 +32840,8 @@ const _flaxDartShapes = <FlaxDartShapeTemplate>[
     "[\"callback\",[1,1,[\"columnCount\",\"selectedIndex\"],[true,true]]]",
     _flaxShape4,
   ),
-  FlaxDartShapeTemplate("[\"callback\",[4,4,[],[]]]", _flaxShape5),
-  FlaxDartShapeTemplate("[\"callback\",[3,3,[],[]]]", _flaxShape6),
+  FlaxDartShapeTemplate("[\"callback\",[3,3,[],[]]]", _flaxShape5),
+  FlaxDartShapeTemplate("[\"callback\",[4,4,[],[]]]", _flaxShape6),
 ];
 Function _flaxShape0<_Shape0, _Shape1, _Shape2, _Shape3, _Shape4, _Shape5>() =>
     (FlaxDartTypes types, bool withinCallback) {
@@ -33013,7 +33096,82 @@ Function _flaxShape4<_Shape0, _Shape1, _Shape2, _Shape3>() =>
         withinCallback: withinCallback,
       );
     };
-Function _flaxShape5<_Shape0, _Shape1, _Shape2, _Shape3, _Shape4>() =>
+Function _flaxShape5<_Shape0, _Shape1, _Shape2, _Shape3>() =>
+    (FlaxDartTypes types, bool withinCallback) {
+      Object _callback0(FlaxCallback _flaxBridgeCallback) =>
+          (_Shape0 p0, _Shape1 p1, _Shape2 p2) {
+            final positional = <Object?>[];
+            final named = <String, Object?>{};
+            positional.add(p0);
+            positional.add(p1);
+            positional.add(p2);
+            return _flaxBridgeCallback.call(positional, named) as _Shape3;
+          };
+      bool _callback0Matches(Object value) =>
+          value
+              is _Shape3 Function(
+                _Shape0 context,
+                _Shape1 details,
+                _Shape2 barrier,
+              );
+      Object? _callback0Invoke(
+        Object function,
+        List<Object?> positional,
+        Map<String, Object?> named,
+      ) {
+        return (function
+            as _Shape3 Function(
+              _Shape0 context,
+              _Shape1 details,
+              _Shape2 barrier,
+            ))(
+          positional[0] as _Shape0,
+          positional[1] as _Shape1,
+          positional[2] as _Shape2,
+        );
+      }
+
+      return types.define<
+        _Shape3 Function(_Shape0 context, _Shape1 details, _Shape2 barrier)
+      >(
+        FlaxTypeRef(
+          "callback",
+          nullable: false,
+          callback: FlaxCallbackBinding(
+            [
+              FlaxCallbackParameter.plain(
+                "context",
+                types.ref<_Shape0>(withinCallback: true),
+              ),
+              FlaxCallbackParameter.plain(
+                "details",
+                types.ref<_Shape1>(withinCallback: true),
+              ),
+              FlaxCallbackParameter.plain(
+                "barrier",
+                types.ref<_Shape2>(withinCallback: true),
+              ),
+            ],
+            types.ref<_Shape3>(withinCallback: true),
+            _callback0,
+            id:
+                types
+                    .key<
+                      _Shape3 Function(
+                        _Shape0 context,
+                        _Shape1 details,
+                        _Shape2 barrier,
+                      )
+                    >() +
+                ":callback:<>(p:r:context:parameter:,p:r:details:parameter:,p:r:barrier:parameter:)->parameter:",
+            invoke: _callback0Invoke,
+            matches: _callback0Matches,
+          ),
+        ),
+        withinCallback: withinCallback,
+      );
+    };
+Function _flaxShape6<_Shape0, _Shape1, _Shape2, _Shape3, _Shape4>() =>
     (FlaxDartTypes types, bool withinCallback) {
       Object _callback0(FlaxCallback _flaxBridgeCallback) =>
           (_Shape0 p0, _Shape1 p1, _Shape2 p2, _Shape3 p3) {
@@ -33095,81 +33253,6 @@ Function _flaxShape5<_Shape0, _Shape1, _Shape2, _Shape3, _Shape4>() =>
                       )
                     >() +
                 ":callback:<>(p:r:context:parameter:,p:r:animation:parameter:,p:r:secondaryAnimation:parameter:,p:r:child:parameter:)->parameter:",
-            invoke: _callback0Invoke,
-            matches: _callback0Matches,
-          ),
-        ),
-        withinCallback: withinCallback,
-      );
-    };
-Function _flaxShape6<_Shape0, _Shape1, _Shape2, _Shape3>() =>
-    (FlaxDartTypes types, bool withinCallback) {
-      Object _callback0(FlaxCallback _flaxBridgeCallback) =>
-          (_Shape0 p0, _Shape1 p1, _Shape2 p2) {
-            final positional = <Object?>[];
-            final named = <String, Object?>{};
-            positional.add(p0);
-            positional.add(p1);
-            positional.add(p2);
-            return _flaxBridgeCallback.call(positional, named) as _Shape3;
-          };
-      bool _callback0Matches(Object value) =>
-          value
-              is _Shape3 Function(
-                _Shape0 context,
-                _Shape1 controller,
-                _Shape2 child,
-              );
-      Object? _callback0Invoke(
-        Object function,
-        List<Object?> positional,
-        Map<String, Object?> named,
-      ) {
-        return (function
-            as _Shape3 Function(
-              _Shape0 context,
-              _Shape1 controller,
-              _Shape2 child,
-            ))(
-          positional[0] as _Shape0,
-          positional[1] as _Shape1,
-          positional[2] as _Shape2,
-        );
-      }
-
-      return types.define<
-        _Shape3 Function(_Shape0 context, _Shape1 controller, _Shape2 child)
-      >(
-        FlaxTypeRef(
-          "callback",
-          nullable: false,
-          callback: FlaxCallbackBinding(
-            [
-              FlaxCallbackParameter.plain(
-                "context",
-                types.ref<_Shape0>(withinCallback: true),
-              ),
-              FlaxCallbackParameter.plain(
-                "controller",
-                types.ref<_Shape1>(withinCallback: true),
-              ),
-              FlaxCallbackParameter.plain(
-                "child",
-                types.ref<_Shape2>(withinCallback: true),
-              ),
-            ],
-            types.ref<_Shape3>(withinCallback: true),
-            _callback0,
-            id:
-                types
-                    .key<
-                      _Shape3 Function(
-                        _Shape0 context,
-                        _Shape1 controller,
-                        _Shape2 child,
-                      )
-                    >() +
-                ":callback:<>(p:r:context:parameter:,p:r:controller:parameter:,p:r:child:parameter:)->parameter:",
             invoke: _callback0Invoke,
             matches: _callback0Matches,
           ),
@@ -33262,27 +33345,20 @@ Object? _callback1Invoke(
 }
 
 Object _callback2(FlaxCallback _flaxBridgeCallback) =>
-    (
-      api10.BuildContext p0,
-      api11.Animation<double> p1,
-      api11.Animation<double> p2,
-      api.Widget p3,
-    ) {
+    (api10.BuildContext p0, api10.RouteBarrierDetails p1, api.Widget p2) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
       positional.add(p0);
       positional.add(p1);
       positional.add(p2);
-      positional.add(p3);
       return _flaxBridgeCallback.call(positional, named) as api.Widget;
     };
 bool _callback2Matches(Object value) =>
     value
         is api.Widget Function(
           api10.BuildContext context,
-          api11.Animation<double> animation,
-          api11.Animation<double> secondaryAnimation,
-          api.Widget child,
+          api10.RouteBarrierDetails details,
+          api.Widget barrier,
         );
 Object? _callback2Invoke(
   Object function,
@@ -33292,33 +33368,16 @@ Object? _callback2Invoke(
   return (function
       as api.Widget Function(
         api10.BuildContext context,
-        api11.Animation<double> animation,
-        api11.Animation<double> secondaryAnimation,
-        api.Widget child,
+        api10.RouteBarrierDetails details,
+        api.Widget barrier,
       ))(
     positional[0] as api10.BuildContext,
-    positional[1] as api11.Animation<double>,
-    positional[2] as api11.Animation<double>,
-    positional[3] as api.Widget,
+    positional[1] as api10.RouteBarrierDetails,
+    positional[2] as api.Widget,
   );
 }
 
-Object _callback3(FlaxCallback _flaxBridgeCallback) => () {
-  final positional = <Object?>[];
-  final named = <String, Object?>{};
-  return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
-      .then<bool>((value) => value as bool);
-};
-bool _callback3Matches(Object value) => value is Future<bool> Function();
-Object? _callback3Invoke(
-  Object function,
-  List<Object?> positional,
-  Map<String, Object?> named,
-) {
-  return (function as Future<bool> Function())();
-}
-
-Object _callback4(FlaxCallback _flaxBridgeCallback) =>
+Object _callback3(FlaxCallback _flaxBridgeCallback) =>
     (
       api10.BuildContext p0,
       api11.Animation<double> p1,
@@ -33333,7 +33392,7 @@ Object _callback4(FlaxCallback _flaxBridgeCallback) =>
       positional.add(p3);
       return _flaxBridgeCallback.call(positional, named) as api.Widget;
     };
-bool _callback4Matches(Object value) =>
+bool _callback3Matches(Object value) =>
     value
         is api.Widget Function(
           api10.BuildContext context,
@@ -33341,7 +33400,7 @@ bool _callback4Matches(Object value) =>
           api11.Animation<double> secondaryAnimation,
           api.Widget child,
         );
-Object? _callback4Invoke(
+Object? _callback3Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -33360,13 +33419,70 @@ Object? _callback4Invoke(
   );
 }
 
-Object _callback5(FlaxCallback _flaxBridgeCallback) => () {
+Object _callback4(FlaxCallback _flaxBridgeCallback) => () {
+  final positional = <Object?>[];
+  final named = <String, Object?>{};
+  return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
+      .then<bool>((value) => value as bool);
+};
+bool _callback4Matches(Object value) => value is Future<bool> Function();
+Object? _callback4Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  return (function as Future<bool> Function())();
+}
+
+Object _callback5(FlaxCallback _flaxBridgeCallback) =>
+    (
+      api10.BuildContext p0,
+      api11.Animation<double> p1,
+      api11.Animation<double> p2,
+      api.Widget p3,
+    ) {
+      final positional = <Object?>[];
+      final named = <String, Object?>{};
+      positional.add(p0);
+      positional.add(p1);
+      positional.add(p2);
+      positional.add(p3);
+      return _flaxBridgeCallback.call(positional, named) as api.Widget;
+    };
+bool _callback5Matches(Object value) =>
+    value
+        is api.Widget Function(
+          api10.BuildContext context,
+          api11.Animation<double> animation,
+          api11.Animation<double> secondaryAnimation,
+          api.Widget child,
+        );
+Object? _callback5Invoke(
+  Object function,
+  List<Object?> positional,
+  Map<String, Object?> named,
+) {
+  return (function
+      as api.Widget Function(
+        api10.BuildContext context,
+        api11.Animation<double> animation,
+        api11.Animation<double> secondaryAnimation,
+        api.Widget child,
+      ))(
+    positional[0] as api10.BuildContext,
+    positional[1] as api11.Animation<double>,
+    positional[2] as api11.Animation<double>,
+    positional[3] as api.Widget,
+  );
+}
+
+Object _callback6(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   return _flaxBridgeCallback.call(positional, named) as api5.FutureOr<void>;
 };
-bool _callback5Matches(Object value) => value is api5.FutureOr<void> Function();
-Object? _callback5Invoke(
+bool _callback6Matches(Object value) => value is api5.FutureOr<void> Function();
+Object? _callback6Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -33374,7 +33490,7 @@ Object? _callback5Invoke(
   return (function as api5.FutureOr<void> Function())();
 }
 
-Object _callback6(FlaxCallback _flaxBridgeCallback) =>
+Object _callback7(FlaxCallback _flaxBridgeCallback) =>
     (api10.BuildContext p0, api10.MenuController p1, api.Widget? p2) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
@@ -33383,14 +33499,14 @@ Object _callback6(FlaxCallback _flaxBridgeCallback) =>
       positional.add(p2);
       return _flaxBridgeCallback.call(positional, named) as api.Widget;
     };
-bool _callback6Matches(Object value) =>
+bool _callback7Matches(Object value) =>
     value
         is api.Widget Function(
           api10.BuildContext context,
           api10.MenuController controller,
           api.Widget? child,
         );
-Object? _callback6Invoke(
+Object? _callback7Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -33407,16 +33523,16 @@ Object? _callback6Invoke(
   );
 }
 
-Object _callback7(FlaxCallback _flaxBridgeCallback) => (bool p0, Object? p1) {
+Object _callback8(FlaxCallback _flaxBridgeCallback) => (bool p0, Object? p1) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
   positional.add(p1);
   _flaxBridgeCallback.call(positional, named);
 };
-bool _callback7Matches(Object value) =>
+bool _callback8Matches(Object value) =>
     value is void Function(bool didPop, Object? result);
-Object? _callback7Invoke(
+Object? _callback8Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -33428,7 +33544,7 @@ Object? _callback7Invoke(
   return null;
 }
 
-FlaxCallbackBinding _callback8Types<_Callback0 extends Object?>(
+FlaxCallbackBinding _callback9Types<_Callback0 extends Object?>(
   FlaxDartTypes types,
 ) {
   Object _callback0(FlaxCallback _flaxBridgeCallback) =>
@@ -33508,7 +33624,7 @@ FlaxCallbackBinding _callback8Types<_Callback0 extends Object?>(
   );
 }
 
-Object _callback8(FlaxCallback _flaxBridgeCallback) =>
+Object _callback9(FlaxCallback _flaxBridgeCallback) =>
     <T extends Object?>(
       api10.PageRoute<T> p0,
       api10.BuildContext p1,
@@ -33527,7 +33643,7 @@ Object _callback8(FlaxCallback _flaxBridgeCallback) =>
         _flaxBridgeCallback.call(positional, named),
       );
     };
-bool _callback8Matches(Object value) =>
+bool _callback9Matches(Object value) =>
     value
         is api.Widget Function<T extends Object?>(
           api10.PageRoute<T> route,
@@ -33536,7 +33652,7 @@ bool _callback8Matches(Object value) =>
           api11.Animation<double> secondaryAnimation,
           api.Widget child,
         );
-Object? _callback8Invoke(
+Object? _callback9Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -33557,14 +33673,14 @@ Object? _callback8Invoke(
   );
 }
 
-Object _callback9(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
+Object _callback10(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
   _flaxBridgeCallback.call(positional, named);
 };
-bool _callback9Matches(Object value) => value is void Function(Object? value);
-Object? _callback9Invoke(
+bool _callback10Matches(Object value) => value is void Function(Object? value);
+Object? _callback10Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -33573,14 +33689,14 @@ Object? _callback9Invoke(
   return null;
 }
 
-Object _callback10(FlaxCallback _flaxBridgeCallback) => (Object p0) {
+Object _callback11(FlaxCallback _flaxBridgeCallback) => (Object p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
   _flaxBridgeCallback.call(positional, named);
 };
-bool _callback10Matches(Object value) => value is void Function(Object value);
-Object? _callback10Invoke(
+bool _callback11Matches(Object value) => value is void Function(Object value);
+Object? _callback11Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -33589,14 +33705,14 @@ Object? _callback10Invoke(
   return null;
 }
 
-Object _callback11(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
+Object _callback12(FlaxCallback _flaxBridgeCallback) => (Object? p0) {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   positional.add(p0);
   _flaxBridgeCallback.call(positional, named);
 };
-bool _callback11Matches(Object value) => value is void Function(Object? value);
-Object? _callback11Invoke(
+bool _callback12Matches(Object value) => value is void Function(Object? value);
+Object? _callback12Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -33605,7 +33721,7 @@ Object? _callback11Invoke(
   return null;
 }
 
-Object _callback12(FlaxCallback _flaxBridgeCallback) =>
+Object _callback13(FlaxCallback _flaxBridgeCallback) =>
     (
       api10.BuildContext p0,
       api.RefreshIndicatorMode p1,
@@ -33622,7 +33738,7 @@ Object _callback12(FlaxCallback _flaxBridgeCallback) =>
       positional.add(p4);
       return _flaxBridgeCallback.call(positional, named) as api.Widget;
     };
-bool _callback12Matches(Object value) =>
+bool _callback13Matches(Object value) =>
     value
         is api.Widget Function(
           api10.BuildContext context,
@@ -33631,7 +33747,7 @@ bool _callback12Matches(Object value) =>
           double refreshTriggerPullDistance,
           double refreshIndicatorExtent,
         );
-Object? _callback12Invoke(
+Object? _callback13Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -33652,14 +33768,14 @@ Object? _callback12Invoke(
   );
 }
 
-Object _callback13(FlaxCallback _flaxBridgeCallback) => () {
+Object _callback14(FlaxCallback _flaxBridgeCallback) => () {
   final positional = <Object?>[];
   final named = <String, Object?>{};
   return (_flaxBridgeCallback.call(positional, named) as Future<Object?>)
       .then<void>((value) => null);
 };
-bool _callback13Matches(Object value) => value is Future<void> Function();
-Object? _callback13Invoke(
+bool _callback14Matches(Object value) => value is Future<void> Function();
+Object? _callback14Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -33667,7 +33783,7 @@ Object? _callback13Invoke(
   return (function as Future<void> Function())();
 }
 
-Object _callback14(FlaxCallback _flaxBridgeCallback) =>
+Object _callback15(FlaxCallback _flaxBridgeCallback) =>
     (api10.BuildContext p0, api1.Offset p1, api1.Offset p2, api.Widget p3) {
       final positional = <Object?>[];
       final named = <String, Object?>{};
@@ -33677,7 +33793,7 @@ Object _callback14(FlaxCallback _flaxBridgeCallback) =>
       positional.add(p3);
       return _flaxBridgeCallback.call(positional, named) as api.Widget;
     };
-bool _callback14Matches(Object value) =>
+bool _callback15Matches(Object value) =>
     value
         is api.Widget Function(
           api10.BuildContext context,
@@ -33685,7 +33801,7 @@ bool _callback14Matches(Object value) =>
           api1.Offset anchorBelow,
           api.Widget child,
         );
-Object? _callback14Invoke(
+Object? _callback15Invoke(
   Object function,
   List<Object?> positional,
   Map<String, Object?> named,
@@ -34966,6 +35082,8 @@ const flaxMemberflax_2e_cupertino_2f_cupertino_23_type_3a_CupertinoScrollbar_7c_
 const flaxMemberflax_2e_cupertino_2f_cupertino_23_type_3a_CupertinoScrollbar_7c_get_3a_padding =
     _flaxMembers0
         .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_RawScrollbar_7c_get_3a_padding;
+const flaxMemberflax_2e_cupertino_2f_cupertino_23_type_3a_CupertinoScrollbar_7c_get_3a_mouseCursor =
+    _CupertinoScrollbar_mouseCursor;
 const flaxMemberflax_2e_cupertino_2f_cupertino_23_type_3a_CupertinoScrollbar_7c_get_3a_key =
     _flaxMembers0
         .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_Widget_7c_get_3a_key;
@@ -39270,21 +39388,19 @@ const _flaxBinding499 = FlaxGetter.plain(
   flaxBoolType,
   _CupertinoDialogRoute_isActive,
 );
-const _flaxBinding500 = FlaxGetter.plain(
-  "anchorPoint",
-  _flaxBinding8,
-  _CupertinoDialogRoute_anchorPoint,
+const _flaxBinding500 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_widgets#type:RouteBarrierDetails",
 );
 const _flaxBinding501 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter.plain("context", _flaxBinding2),
-    FlaxCallbackParameter.plain("animation", _flaxBinding56),
-    FlaxCallbackParameter.plain("secondaryAnimation", _flaxBinding56),
-    FlaxCallbackParameter.plain("child", flaxWidgetType),
+    FlaxCallbackParameter.plain("details", _flaxBinding500),
+    FlaxCallbackParameter.plain("barrier", flaxWidgetType),
   ],
   flaxWidgetType,
   _callback2,
-  id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:animation:object:flax.core/sdk_animation#type:Animation<Object?><double:>,p:r:secondaryAnimation:object:flax.core/sdk_animation#type:Animation<Object?><double:>,p:r:child:widget:)->widget:",
+  id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:details:object:flax.core/sdk_widgets#type:RouteBarrierDetails,p:r:barrier:widget:)->widget:",
   invoke: _callback2Invoke,
   matches: _callback2Matches,
 );
@@ -39294,278 +39410,16 @@ const _flaxBinding502 = FlaxTypeRef(
   callback: _flaxBinding501,
 );
 const _flaxBinding503 = FlaxGetter.plain(
-  "transitionBuilder",
+  "barrierBuilder",
   _flaxBinding502,
-  _CupertinoDialogRoute_transitionBuilder,
+  _CupertinoDialogRoute_barrierBuilder,
 );
-const _flaxBinding504 = <FlaxParameter>[
-  FlaxParameter.required("fn", flaxVoidCallbackType),
-];
-const _flaxBinding505 = FlaxInstanceMethod.plain(
-  _flaxBinding504,
-  flaxVoidType,
-  _CupertinoDialogRoute_setState,
+const _flaxBinding504 = FlaxGetter.plain(
+  "anchorPoint",
+  _flaxBinding8,
+  _CupertinoDialogRoute_anchorPoint,
 );
-const _flaxBinding506 = <FlaxParameter>[
-  FlaxParameter.required("context", _flaxBinding2),
-  FlaxParameter.required("animation", _flaxBinding56),
-  FlaxParameter.required("secondaryAnimation", _flaxBinding56),
-];
-const _flaxBinding507 = FlaxInstanceMethod.plain(
-  _flaxBinding506,
-  flaxWidgetType,
-  _CupertinoDialogRoute_buildPage,
-);
-const _flaxBinding508 = <FlaxParameter>[
-  FlaxParameter.required("context", _flaxBinding2),
-  FlaxParameter.required("animation", _flaxBinding56),
-  FlaxParameter.required("secondaryAnimation", _flaxBinding56),
-  FlaxParameter.required("child", flaxWidgetType),
-];
-const _flaxBinding509 = FlaxInstanceMethod.plain(
-  _flaxBinding508,
-  flaxWidgetType,
-  _CupertinoDialogRoute_buildTransitions,
-);
-const _flaxBinding510 = FlaxInstanceMethod.shared(
-  flaxVoidCall,
-  _CupertinoDialogRoute_install,
-);
-const _flaxBinding511 = FlaxInstanceMethod.plain(
-  _flaxBinding132,
-  flaxTickerFutureType,
-  _CupertinoDialogRoute_didPush,
-);
-const _flaxBinding512 = FlaxInstanceMethod.shared(
-  flaxVoidCall,
-  _CupertinoDialogRoute_didAdd,
-);
-const _flaxBinding513 = FlaxTypeRef(
-  "future",
-  item: _flaxBinding472,
-  future: FlaxFutureBinding(
-    "enum:flax.core/sdk_widgets#type:RoutePopDisposition",
-    _future2Adapt,
-  ),
-);
-const _flaxBinding514 = FlaxInstanceMethod.plain(
-  _flaxBinding132,
-  _flaxBinding513,
-  _CupertinoDialogRoute_willPop,
-);
-const _flaxBinding515 = FlaxTypeRef(
-  "future",
-  item: flaxBoolType,
-  future: FlaxFutureBinding("bool:", _future3Adapt),
-);
-const _flaxBinding516 = FlaxCallbackBinding(
-  [],
-  _flaxBinding515,
-  _callback3,
-  id: "callback:<>()->future:[bool:]",
-  invoke: _callback3Invoke,
-  matches: _callback3Matches,
-);
-const _flaxBinding517 = FlaxTypeRef("callback", callback: _flaxBinding516);
-const _flaxBinding518 = <FlaxParameter>[
-  FlaxParameter.required("callback", _flaxBinding517),
-];
-const _flaxBinding519 = FlaxInstanceMethod.plain(
-  _flaxBinding518,
-  flaxVoidType,
-  _CupertinoDialogRoute_addScopedWillPopCallback,
-);
-const _flaxBinding520 = FlaxInstanceMethod.plain(
-  _flaxBinding518,
-  flaxVoidType,
-  _CupertinoDialogRoute_removeScopedWillPopCallback,
-);
-const _flaxBinding521 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_widgets#type:PopEntry",
-  dartType: FlaxDartTypes.typeOf<api10.PopEntry<Object?>>,
-);
-const _flaxBinding522 = <FlaxParameter>[
-  FlaxParameter.required("popEntry", _flaxBinding521),
-];
-const _flaxBinding523 = FlaxInstanceMethod.plain(
-  _flaxBinding522,
-  flaxVoidType,
-  _CupertinoDialogRoute_registerPopEntry,
-);
-const _flaxBinding524 = FlaxInstanceMethod.plain(
-  _flaxBinding522,
-  flaxVoidType,
-  _CupertinoDialogRoute_unregisterPopEntry,
-);
-const _flaxBinding525 = <FlaxParameter>[
-  FlaxParameter.required("previousRoute", _flaxBinding227),
-];
-const _flaxBinding526 = FlaxInstanceMethod.plain(
-  _flaxBinding525,
-  flaxVoidType,
-  _CupertinoDialogRoute_didChangePrevious,
-);
-const _flaxBinding527 = <FlaxParameter>[
-  FlaxParameter.required("nextRoute", _flaxBinding227),
-];
-const _flaxBinding528 = FlaxInstanceMethod.plain(
-  _flaxBinding527,
-  flaxVoidType,
-  _CupertinoDialogRoute_didChangeNext,
-);
-const _flaxBinding529 = <FlaxParameter>[
-  FlaxParameter.required("nextRoute", _flaxBinding230),
-];
-const _flaxBinding530 = FlaxInstanceMethod.plain(
-  _flaxBinding529,
-  flaxVoidType,
-  _CupertinoDialogRoute_didPopNext,
-);
-const _flaxBinding531 = FlaxInstanceMethod.shared(
-  flaxVoidCall,
-  _CupertinoDialogRoute_changedInternalState,
-);
-const _flaxBinding532 = FlaxInstanceMethod.shared(
-  flaxVoidCall,
-  _CupertinoDialogRoute_changedExternalState,
-);
-const _flaxBinding533 = FlaxInstanceMethod.plain(
-  _flaxBinding132,
-  flaxWidgetType,
-  _CupertinoDialogRoute_buildModalBarrier,
-);
-const _flaxBinding534 = FlaxInstanceMethod.plain(
-  _flaxBinding132,
-  _flaxBinding486,
-  _CupertinoDialogRoute_createOverlayEntries,
-);
-const _flaxBinding535 = FlaxInstanceMethod.shared(
-  flaxBoolCall,
-  _CupertinoDialogRoute_debugTransitionCompleted,
-);
-const _flaxBinding536 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_animation#type:AnimationController",
-);
-const _flaxBinding537 = FlaxInstanceMethod.plain(
-  _flaxBinding132,
-  _flaxBinding536,
-  _CupertinoDialogRoute_createAnimationController,
-);
-const _flaxBinding538 = FlaxInstanceMethod.plain(
-  _flaxBinding132,
-  _flaxBinding56,
-  _CupertinoDialogRoute_createAnimation,
-);
-const _flaxBinding539 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_physics#type:Simulation",
-);
-const _flaxBinding540 = <FlaxParameter>[
-  FlaxParameter.required("forward", flaxBoolType),
-];
-const _flaxBinding541 = FlaxInstanceMethod.plain(
-  _flaxBinding540,
-  _flaxBinding539,
-  _CupertinoDialogRoute_createSimulation,
-);
-const _flaxBinding542 = <FlaxParameter>[
-  FlaxParameter.required("oldRoute", _flaxBinding227),
-];
-const _flaxBinding543 = FlaxInstanceMethod.plain(
-  _flaxBinding542,
-  flaxVoidType,
-  _CupertinoDialogRoute_didReplace,
-);
-const _flaxBinding544 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_widgets#type:TransitionRoute",
-  dartType: FlaxDartTypes.typeOf<api10.TransitionRoute<Object?>>,
-);
-const _flaxBinding545 = <FlaxParameter>[
-  FlaxParameter.required("nextRoute", _flaxBinding544),
-];
-const _flaxBinding546 = FlaxInstanceMethod.plain(
-  _flaxBinding545,
-  flaxBoolType,
-  _CupertinoDialogRoute_canTransitionTo,
-);
-const _flaxBinding547 = <FlaxParameter>[
-  FlaxParameter.required("previousRoute", _flaxBinding544),
-];
-const _flaxBinding548 = FlaxInstanceMethod.plain(
-  _flaxBinding547,
-  flaxBoolType,
-  _CupertinoDialogRoute_canTransitionFrom,
-);
-const _flaxBinding549 = <FlaxParameter>[
-  FlaxParameter("progress", flaxDoubleType, required: false, defaultValue: 0.0),
-];
-const _flaxBinding550 = FlaxInstanceMethod.plain(
-  _flaxBinding549,
-  flaxVoidType,
-  _CupertinoDialogRoute_handleStartBackGesture,
-);
-const _flaxBinding551 = <FlaxParameter>[
-  FlaxParameter.required("progress", flaxDoubleType),
-];
-const _flaxBinding552 = FlaxInstanceMethod.plain(
-  _flaxBinding551,
-  flaxVoidType,
-  _CupertinoDialogRoute_handleUpdateBackGestureProgress,
-);
-const _flaxBinding553 = FlaxInstanceMethod.shared(
-  flaxVoidCall,
-  _CupertinoDialogRoute_handleCancelBackGesture,
-);
-const _flaxBinding554 = FlaxInstanceMethod.shared(
-  flaxVoidCall,
-  _CupertinoDialogRoute_handleCommitBackGesture,
-);
-const _flaxBinding555 = FlaxInstanceMethod.shared(
-  flaxVoidCall,
-  _CupertinoDialogRoute_dispose,
-);
-const _flaxBinding556 = <FlaxParameter>[
-  FlaxParameter.required("didPop", flaxBoolType),
-];
-const _flaxBinding557 = FlaxInstanceMethod.plain(
-  _flaxBinding556,
-  flaxVoidType,
-  _CupertinoDialogRoute_onPopInvoked,
-);
-const _flaxBinding558 = FlaxTypeRef(
-  "object",
-  id: "flax.core/sdk_widgets#type:LocalHistoryEntry",
-);
-const _flaxBinding559 = <FlaxParameter>[
-  FlaxParameter.required("entry", _flaxBinding558),
-];
-const _flaxBinding560 = FlaxInstanceMethod.plain(
-  _flaxBinding559,
-  flaxVoidType,
-  _CupertinoDialogRoute_addLocalHistoryEntry,
-);
-const _flaxBinding561 = FlaxInstanceMethod.plain(
-  _flaxBinding559,
-  flaxVoidType,
-  _CupertinoDialogRoute_removeLocalHistoryEntry,
-);
-const _flaxBinding562 = FlaxInstanceMethod.shared(
-  flaxStringCall,
-  _CupertinoDialogRoute_toString,
-);
-const _flaxBinding563 = FlaxCallbackBinding(
-  [FlaxCallbackParameter.plain("context", _flaxBinding2)],
-  flaxWidgetType,
-  FlaxCallbackAdapters.wrap1<api10.BuildContext, api.Widget>,
-  id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
-  invoke: FlaxCallbackAdapters.invoke1<api10.BuildContext, api.Widget>,
-  matches: FlaxCallbackAdapters.matches1<api10.BuildContext, api.Widget>,
-);
-const _flaxBinding564 = FlaxTypeRef("callback", callback: _flaxBinding563);
-const _flaxBinding565 = FlaxCallbackBinding(
+const _flaxBinding505 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter.plain("context", _flaxBinding2),
     FlaxCallbackParameter.plain("animation", _flaxBinding56),
@@ -39573,23 +39427,313 @@ const _flaxBinding565 = FlaxCallbackBinding(
     FlaxCallbackParameter.plain("child", flaxWidgetType),
   ],
   flaxWidgetType,
-  _callback4,
+  _callback3,
   id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:animation:object:flax.core/sdk_animation#type:Animation<Object?><double:>,p:r:secondaryAnimation:object:flax.core/sdk_animation#type:Animation<Object?><double:>,p:r:child:widget:)->widget:",
+  invoke: _callback3Invoke,
+  matches: _callback3Matches,
+);
+const _flaxBinding506 = FlaxTypeRef(
+  "callback",
+  nullable: true,
+  callback: _flaxBinding505,
+);
+const _flaxBinding507 = FlaxGetter.plain(
+  "transitionBuilder",
+  _flaxBinding506,
+  _CupertinoDialogRoute_transitionBuilder,
+);
+const _flaxBinding508 = <FlaxParameter>[
+  FlaxParameter.required("fn", flaxVoidCallbackType),
+];
+const _flaxBinding509 = FlaxInstanceMethod.plain(
+  _flaxBinding508,
+  flaxVoidType,
+  _CupertinoDialogRoute_setState,
+);
+const _flaxBinding510 = <FlaxParameter>[
+  FlaxParameter.required("context", _flaxBinding2),
+  FlaxParameter.required("animation", _flaxBinding56),
+  FlaxParameter.required("secondaryAnimation", _flaxBinding56),
+];
+const _flaxBinding511 = FlaxInstanceMethod.plain(
+  _flaxBinding510,
+  flaxWidgetType,
+  _CupertinoDialogRoute_buildPage,
+);
+const _flaxBinding512 = <FlaxParameter>[
+  FlaxParameter.required("context", _flaxBinding2),
+  FlaxParameter.required("animation", _flaxBinding56),
+  FlaxParameter.required("secondaryAnimation", _flaxBinding56),
+  FlaxParameter.required("child", flaxWidgetType),
+];
+const _flaxBinding513 = FlaxInstanceMethod.plain(
+  _flaxBinding512,
+  flaxWidgetType,
+  _CupertinoDialogRoute_buildTransitions,
+);
+const _flaxBinding514 = FlaxInstanceMethod.shared(
+  flaxVoidCall,
+  _CupertinoDialogRoute_install,
+);
+const _flaxBinding515 = FlaxInstanceMethod.plain(
+  _flaxBinding132,
+  flaxTickerFutureType,
+  _CupertinoDialogRoute_didPush,
+);
+const _flaxBinding516 = FlaxInstanceMethod.shared(
+  flaxVoidCall,
+  _CupertinoDialogRoute_didAdd,
+);
+const _flaxBinding517 = FlaxTypeRef(
+  "future",
+  item: _flaxBinding472,
+  future: FlaxFutureBinding(
+    "enum:flax.core/sdk_widgets#type:RoutePopDisposition",
+    _future2Adapt,
+  ),
+);
+const _flaxBinding518 = FlaxInstanceMethod.plain(
+  _flaxBinding132,
+  _flaxBinding517,
+  _CupertinoDialogRoute_willPop,
+);
+const _flaxBinding519 = FlaxTypeRef(
+  "future",
+  item: flaxBoolType,
+  future: FlaxFutureBinding("bool:", _future3Adapt),
+);
+const _flaxBinding520 = FlaxCallbackBinding(
+  [],
+  _flaxBinding519,
+  _callback4,
+  id: "callback:<>()->future:[bool:]",
   invoke: _callback4Invoke,
   matches: _callback4Matches,
 );
-const _flaxBinding566 = FlaxTypeRef(
+const _flaxBinding521 = FlaxTypeRef("callback", callback: _flaxBinding520);
+const _flaxBinding522 = <FlaxParameter>[
+  FlaxParameter.required("callback", _flaxBinding521),
+];
+const _flaxBinding523 = FlaxInstanceMethod.plain(
+  _flaxBinding522,
+  flaxVoidType,
+  _CupertinoDialogRoute_addScopedWillPopCallback,
+);
+const _flaxBinding524 = FlaxInstanceMethod.plain(
+  _flaxBinding522,
+  flaxVoidType,
+  _CupertinoDialogRoute_removeScopedWillPopCallback,
+);
+const _flaxBinding525 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_widgets#type:PopEntry",
+  dartType: FlaxDartTypes.typeOf<api10.PopEntry<Object?>>,
+);
+const _flaxBinding526 = <FlaxParameter>[
+  FlaxParameter.required("popEntry", _flaxBinding525),
+];
+const _flaxBinding527 = FlaxInstanceMethod.plain(
+  _flaxBinding526,
+  flaxVoidType,
+  _CupertinoDialogRoute_registerPopEntry,
+);
+const _flaxBinding528 = FlaxInstanceMethod.plain(
+  _flaxBinding526,
+  flaxVoidType,
+  _CupertinoDialogRoute_unregisterPopEntry,
+);
+const _flaxBinding529 = <FlaxParameter>[
+  FlaxParameter.required("previousRoute", _flaxBinding227),
+];
+const _flaxBinding530 = FlaxInstanceMethod.plain(
+  _flaxBinding529,
+  flaxVoidType,
+  _CupertinoDialogRoute_didChangePrevious,
+);
+const _flaxBinding531 = <FlaxParameter>[
+  FlaxParameter.required("nextRoute", _flaxBinding227),
+];
+const _flaxBinding532 = FlaxInstanceMethod.plain(
+  _flaxBinding531,
+  flaxVoidType,
+  _CupertinoDialogRoute_didChangeNext,
+);
+const _flaxBinding533 = <FlaxParameter>[
+  FlaxParameter.required("nextRoute", _flaxBinding230),
+];
+const _flaxBinding534 = FlaxInstanceMethod.plain(
+  _flaxBinding533,
+  flaxVoidType,
+  _CupertinoDialogRoute_didPopNext,
+);
+const _flaxBinding535 = FlaxInstanceMethod.shared(
+  flaxVoidCall,
+  _CupertinoDialogRoute_changedInternalState,
+);
+const _flaxBinding536 = FlaxInstanceMethod.shared(
+  flaxVoidCall,
+  _CupertinoDialogRoute_changedExternalState,
+);
+const _flaxBinding537 = FlaxInstanceMethod.plain(
+  _flaxBinding132,
+  flaxWidgetType,
+  _CupertinoDialogRoute_buildModalBarrier,
+);
+const _flaxBinding538 = FlaxInstanceMethod.plain(
+  _flaxBinding132,
+  _flaxBinding486,
+  _CupertinoDialogRoute_createOverlayEntries,
+);
+const _flaxBinding539 = FlaxInstanceMethod.shared(
+  flaxBoolCall,
+  _CupertinoDialogRoute_debugTransitionCompleted,
+);
+const _flaxBinding540 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_animation#type:AnimationController",
+);
+const _flaxBinding541 = FlaxInstanceMethod.plain(
+  _flaxBinding132,
+  _flaxBinding540,
+  _CupertinoDialogRoute_createAnimationController,
+);
+const _flaxBinding542 = FlaxInstanceMethod.plain(
+  _flaxBinding132,
+  _flaxBinding56,
+  _CupertinoDialogRoute_createAnimation,
+);
+const _flaxBinding543 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_physics#type:Simulation",
+);
+const _flaxBinding544 = <FlaxParameter>[
+  FlaxParameter.required("forward", flaxBoolType),
+];
+const _flaxBinding545 = FlaxInstanceMethod.plain(
+  _flaxBinding544,
+  _flaxBinding543,
+  _CupertinoDialogRoute_createSimulation,
+);
+const _flaxBinding546 = <FlaxParameter>[
+  FlaxParameter.required("oldRoute", _flaxBinding227),
+];
+const _flaxBinding547 = FlaxInstanceMethod.plain(
+  _flaxBinding546,
+  flaxVoidType,
+  _CupertinoDialogRoute_didReplace,
+);
+const _flaxBinding548 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_widgets#type:TransitionRoute",
+  dartType: FlaxDartTypes.typeOf<api10.TransitionRoute<Object?>>,
+);
+const _flaxBinding549 = <FlaxParameter>[
+  FlaxParameter.required("nextRoute", _flaxBinding548),
+];
+const _flaxBinding550 = FlaxInstanceMethod.plain(
+  _flaxBinding549,
+  flaxBoolType,
+  _CupertinoDialogRoute_canTransitionTo,
+);
+const _flaxBinding551 = <FlaxParameter>[
+  FlaxParameter.required("previousRoute", _flaxBinding548),
+];
+const _flaxBinding552 = FlaxInstanceMethod.plain(
+  _flaxBinding551,
+  flaxBoolType,
+  _CupertinoDialogRoute_canTransitionFrom,
+);
+const _flaxBinding553 = <FlaxParameter>[
+  FlaxParameter("progress", flaxDoubleType, required: false, defaultValue: 0.0),
+];
+const _flaxBinding554 = FlaxInstanceMethod.plain(
+  _flaxBinding553,
+  flaxVoidType,
+  _CupertinoDialogRoute_handleStartBackGesture,
+);
+const _flaxBinding555 = <FlaxParameter>[
+  FlaxParameter.required("progress", flaxDoubleType),
+];
+const _flaxBinding556 = FlaxInstanceMethod.plain(
+  _flaxBinding555,
+  flaxVoidType,
+  _CupertinoDialogRoute_handleUpdateBackGestureProgress,
+);
+const _flaxBinding557 = FlaxInstanceMethod.shared(
+  flaxVoidCall,
+  _CupertinoDialogRoute_handleCancelBackGesture,
+);
+const _flaxBinding558 = FlaxInstanceMethod.shared(
+  flaxVoidCall,
+  _CupertinoDialogRoute_handleCommitBackGesture,
+);
+const _flaxBinding559 = FlaxInstanceMethod.shared(
+  flaxVoidCall,
+  _CupertinoDialogRoute_dispose,
+);
+const _flaxBinding560 = <FlaxParameter>[
+  FlaxParameter.required("didPop", flaxBoolType),
+];
+const _flaxBinding561 = FlaxInstanceMethod.plain(
+  _flaxBinding560,
+  flaxVoidType,
+  _CupertinoDialogRoute_onPopInvoked,
+);
+const _flaxBinding562 = FlaxTypeRef(
+  "object",
+  id: "flax.core/sdk_widgets#type:LocalHistoryEntry",
+);
+const _flaxBinding563 = <FlaxParameter>[
+  FlaxParameter.required("entry", _flaxBinding562),
+];
+const _flaxBinding564 = FlaxInstanceMethod.plain(
+  _flaxBinding563,
+  flaxVoidType,
+  _CupertinoDialogRoute_addLocalHistoryEntry,
+);
+const _flaxBinding565 = FlaxInstanceMethod.plain(
+  _flaxBinding563,
+  flaxVoidType,
+  _CupertinoDialogRoute_removeLocalHistoryEntry,
+);
+const _flaxBinding566 = FlaxInstanceMethod.shared(
+  flaxStringCall,
+  _CupertinoDialogRoute_toString,
+);
+const _flaxBinding567 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("context", _flaxBinding2)],
+  flaxWidgetType,
+  FlaxCallbackAdapters.wrap1<api10.BuildContext, api.Widget>,
+  id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:",
+  invoke: FlaxCallbackAdapters.invoke1<api10.BuildContext, api.Widget>,
+  matches: FlaxCallbackAdapters.matches1<api10.BuildContext, api.Widget>,
+);
+const _flaxBinding568 = FlaxTypeRef("callback", callback: _flaxBinding567);
+const _flaxBinding569 = FlaxCallbackBinding(
+  [
+    FlaxCallbackParameter.plain("context", _flaxBinding2),
+    FlaxCallbackParameter.plain("animation", _flaxBinding56),
+    FlaxCallbackParameter.plain("secondaryAnimation", _flaxBinding56),
+    FlaxCallbackParameter.plain("child", flaxWidgetType),
+  ],
+  flaxWidgetType,
+  _callback5,
+  id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:animation:object:flax.core/sdk_animation#type:Animation<Object?><double:>,p:r:secondaryAnimation:object:flax.core/sdk_animation#type:Animation<Object?><double:>,p:r:child:widget:)->widget:",
+  invoke: _callback5Invoke,
+  matches: _callback5Matches,
+);
+const _flaxBinding570 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding565,
+  callback: _flaxBinding569,
 );
-const _flaxBinding567 = FlaxTypeRef(
+const _flaxBinding571 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:RouteSettings",
   nullable: true,
 );
-const _flaxBinding568 = <FlaxParameter>[
-  FlaxParameter.required("builder", _flaxBinding564),
+const _flaxBinding572 = <FlaxParameter>[
+  FlaxParameter.required("builder", _flaxBinding568),
   FlaxParameter.required("context", _flaxBinding2),
   FlaxParameter(
     "barrierDismissible",
@@ -39605,181 +39749,181 @@ const _flaxBinding568 = <FlaxParameter>[
     required: false,
     omitWhenAbsent: true,
   ),
-  FlaxParameter("transitionBuilder", _flaxBinding566, required: false),
-  FlaxParameter("settings", _flaxBinding567, required: false),
+  FlaxParameter("transitionBuilder", _flaxBinding570, required: false),
+  FlaxParameter("settings", _flaxBinding571, required: false),
   FlaxParameter("requestFocus", flaxNullableBoolType, required: false),
   FlaxParameter("anchorPoint", _flaxBinding8, required: false),
 ];
-const _flaxBinding569 = FlaxSetter(
+const _flaxBinding573 = FlaxSetter(
   "receivedTransition",
   _flaxBinding59,
   _CupertinoDialogRoute_set_receivedTransition,
 );
-const _flaxBinding570 = FlaxSetter(
+const _flaxBinding574 = FlaxSetter(
   "offstage",
   flaxBoolType,
   _CupertinoDialogRoute_set_offstage,
 );
-const _flaxBinding571 = FlaxSetter(
+const _flaxBinding575 = FlaxSetter(
   "willDisposeAnimationController",
   flaxBoolType,
   _CupertinoDialogRoute_set_willDisposeAnimationController,
 );
-const _flaxBinding572 = FlaxSetter(
+const _flaxBinding576 = FlaxSetter(
   "transitionBuilder",
-  _flaxBinding502,
+  _flaxBinding506,
   _CupertinoDialogRoute_set_transitionBuilder,
 );
-const _flaxBinding573 = FlaxGetter.plain(
+const _flaxBinding577 = FlaxGetter.plain(
   "a",
   flaxDoubleType,
   _flaxMembers2.flaxMemberflax_2e_core_2f_flutter_23_type_3a_Color_7c_get_3a_a,
 );
-const _flaxBinding574 = FlaxGetter.plain(
+const _flaxBinding578 = FlaxGetter.plain(
   "r",
   flaxDoubleType,
   _flaxMembers2.flaxMemberflax_2e_core_2f_flutter_23_type_3a_Color_7c_get_3a_r,
 );
-const _flaxBinding575 = FlaxGetter.plain(
+const _flaxBinding579 = FlaxGetter.plain(
   "g",
   flaxDoubleType,
   _flaxMembers2.flaxMemberflax_2e_core_2f_flutter_23_type_3a_Color_7c_get_3a_g,
 );
-const _flaxBinding576 = FlaxGetter.plain(
+const _flaxBinding580 = FlaxGetter.plain(
   "b",
   flaxDoubleType,
   _flaxMembers2.flaxMemberflax_2e_core_2f_flutter_23_type_3a_Color_7c_get_3a_b,
 );
-const _flaxBinding577 = FlaxGetter.plain(
+const _flaxBinding581 = FlaxGetter.plain(
   "colorSpace",
   _flaxBinding25,
   _flaxMembers2
       .flaxMemberflax_2e_core_2f_flutter_23_type_3a_Color_7c_get_3a_colorSpace,
 );
-const _flaxBinding578 = FlaxGetter.plain(
+const _flaxBinding582 = FlaxGetter.plain(
   "value",
   flaxIntType,
   _flaxMembers2
       .flaxMemberflax_2e_core_2f_flutter_23_type_3a_Color_7c_get_3a_value,
 );
-const _flaxBinding579 = FlaxGetter.plain(
+const _flaxBinding583 = FlaxGetter.plain(
   "alpha",
   flaxIntType,
   _flaxMembers2
       .flaxMemberflax_2e_core_2f_flutter_23_type_3a_Color_7c_get_3a_alpha,
 );
-const _flaxBinding580 = FlaxGetter.plain(
+const _flaxBinding584 = FlaxGetter.plain(
   "opacity",
   flaxDoubleType,
   _flaxMembers2
       .flaxMemberflax_2e_core_2f_flutter_23_type_3a_Color_7c_get_3a_opacity,
 );
-const _flaxBinding581 = FlaxGetter.plain(
+const _flaxBinding585 = FlaxGetter.plain(
   "red",
   flaxIntType,
   _flaxMembers2
       .flaxMemberflax_2e_core_2f_flutter_23_type_3a_Color_7c_get_3a_red,
 );
-const _flaxBinding582 = FlaxGetter.plain(
+const _flaxBinding586 = FlaxGetter.plain(
   "green",
   flaxIntType,
   _flaxMembers2
       .flaxMemberflax_2e_core_2f_flutter_23_type_3a_Color_7c_get_3a_green,
 );
-const _flaxBinding583 = FlaxGetter.plain(
+const _flaxBinding587 = FlaxGetter.plain(
   "blue",
   flaxIntType,
   _flaxMembers2
       .flaxMemberflax_2e_core_2f_flutter_23_type_3a_Color_7c_get_3a_blue,
 );
-const _flaxBinding584 = FlaxGetter.plain(
+const _flaxBinding588 = FlaxGetter.plain(
   "color",
   flaxColorType,
   _CupertinoDynamicColor_color,
 );
-const _flaxBinding585 = FlaxGetter.plain(
+const _flaxBinding589 = FlaxGetter.plain(
   "darkColor",
   flaxColorType,
   _CupertinoDynamicColor_darkColor,
 );
-const _flaxBinding586 = FlaxGetter.plain(
+const _flaxBinding590 = FlaxGetter.plain(
   "highContrastColor",
   flaxColorType,
   _CupertinoDynamicColor_highContrastColor,
 );
-const _flaxBinding587 = FlaxGetter.plain(
+const _flaxBinding591 = FlaxGetter.plain(
   "darkHighContrastColor",
   flaxColorType,
   _CupertinoDynamicColor_darkHighContrastColor,
 );
-const _flaxBinding588 = FlaxGetter.plain(
+const _flaxBinding592 = FlaxGetter.plain(
   "elevatedColor",
   flaxColorType,
   _CupertinoDynamicColor_elevatedColor,
 );
-const _flaxBinding589 = FlaxGetter.plain(
+const _flaxBinding593 = FlaxGetter.plain(
   "darkElevatedColor",
   flaxColorType,
   _CupertinoDynamicColor_darkElevatedColor,
 );
-const _flaxBinding590 = FlaxGetter.plain(
+const _flaxBinding594 = FlaxGetter.plain(
   "highContrastElevatedColor",
   flaxColorType,
   _CupertinoDynamicColor_highContrastElevatedColor,
 );
-const _flaxBinding591 = FlaxGetter.plain(
+const _flaxBinding595 = FlaxGetter.plain(
   "darkHighContrastElevatedColor",
   flaxColorType,
   _CupertinoDynamicColor_darkHighContrastElevatedColor,
 );
-const _flaxBinding592 = FlaxInstanceMethod.shared(
+const _flaxBinding596 = FlaxInstanceMethod.shared(
   flaxIntCall,
   _flaxMembers2
       .flaxMemberflax_2e_core_2f_flutter_23_type_3a_Color_7c_call_3a_toARGB32,
 );
-const _flaxBinding593 = FlaxTypeRef(
+const _flaxBinding597 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_dart_ui#type:ColorSpace",
   nullable: true,
 );
-const _flaxBinding594 = <FlaxParameter>[
+const _flaxBinding598 = <FlaxParameter>[
   FlaxParameter("alpha", flaxNullableDoubleType, required: false),
   FlaxParameter("blue", flaxNullableDoubleType, required: false),
-  FlaxParameter("colorSpace", _flaxBinding593, required: false),
+  FlaxParameter("colorSpace", _flaxBinding597, required: false),
   FlaxParameter("green", flaxNullableDoubleType, required: false),
   FlaxParameter("red", flaxNullableDoubleType, required: false),
 ];
-const _flaxBinding595 = FlaxInstanceMethod.plain(
-  _flaxBinding594,
+const _flaxBinding599 = FlaxInstanceMethod.plain(
+  _flaxBinding598,
   flaxColorType,
   _CupertinoDynamicColor_withValues,
 );
-const _flaxBinding596 = FlaxInstanceMethod.shared(
+const _flaxBinding600 = FlaxInstanceMethod.shared(
   _flaxBinding15,
   _CupertinoDynamicColor_withAlpha,
 );
-const _flaxBinding597 = FlaxInstanceMethod.shared(
+const _flaxBinding601 = FlaxInstanceMethod.shared(
   _flaxBinding16,
   _CupertinoDynamicColor_withOpacity,
 );
-const _flaxBinding598 = FlaxInstanceMethod.shared(
+const _flaxBinding602 = FlaxInstanceMethod.shared(
   _flaxBinding17,
   _CupertinoDynamicColor_withRed,
 );
-const _flaxBinding599 = FlaxInstanceMethod.shared(
+const _flaxBinding603 = FlaxInstanceMethod.shared(
   _flaxBinding18,
   _CupertinoDynamicColor_withGreen,
 );
-const _flaxBinding600 = FlaxInstanceMethod.shared(
+const _flaxBinding604 = FlaxInstanceMethod.shared(
   _flaxBinding19,
   _CupertinoDynamicColor_withBlue,
 );
-const _flaxBinding601 = FlaxInstanceMethod.shared(
+const _flaxBinding605 = FlaxInstanceMethod.shared(
   flaxDoubleCall,
   _flaxMembers2
       .flaxMemberflax_2e_core_2f_flutter_23_type_3a_Color_7c_call_3a_computeLuminance,
 );
-const _flaxBinding602 = <FlaxParameter>[
+const _flaxBinding606 = <FlaxParameter>[
   FlaxParameter(
     "minLevel",
     _flaxBinding138,
@@ -39787,47 +39931,47 @@ const _flaxBinding602 = <FlaxParameter>[
     defaultValue: api.DiagnosticLevel.info,
   ),
 ];
-const _flaxBinding603 = FlaxInstanceMethod.plain(
-  _flaxBinding602,
+const _flaxBinding607 = FlaxInstanceMethod.plain(
+  _flaxBinding606,
   flaxStringType,
   _CupertinoDynamicColor_toString,
 );
-const _flaxBinding604 = FlaxInstanceMethod.plain(
+const _flaxBinding608 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoDynamicColor_toDiagnosticsNode,
 );
-const _flaxBinding605 = FlaxInstanceMethod.shared(
+const _flaxBinding609 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoDynamicColor_debugFillProperties,
 );
-const _flaxBinding606 = FlaxInstanceMethod.shared(
+const _flaxBinding610 = FlaxInstanceMethod.shared(
   _flaxBinding23,
   _CupertinoDynamicColor_resolveFrom,
 );
-const _flaxBinding607 = FlaxInstanceMethod.plain(
-  _flaxBinding602,
+const _flaxBinding611 = FlaxInstanceMethod.plain(
+  _flaxBinding606,
   flaxStringType,
   _FlaxProxyDispatch2_super_call_toString,
 );
-const _flaxBinding608 = FlaxInstanceMethod.shared(
+const _flaxBinding612 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _FlaxProxyDispatch2_super_call_toStringShort,
 );
-const _flaxBinding609 = FlaxInstanceMethod.plain(
+const _flaxBinding613 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _FlaxProxyDispatch2_super_call_toDiagnosticsNode,
 );
-const _flaxBinding610 = FlaxInstanceMethod.shared(
+const _flaxBinding614 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _FlaxProxyDispatch2_super_call_debugFillProperties,
 );
-const _flaxBinding611 = FlaxInstanceMethod.shared(
+const _flaxBinding615 = FlaxInstanceMethod.shared(
   _flaxBinding24,
   _FlaxProxyDispatch3_super_get_color,
 );
-const _flaxBinding612 = <FlaxParameter>[
+const _flaxBinding616 = <FlaxParameter>[
   FlaxParameter("debugLabel", flaxNullableStringType, required: false),
   FlaxParameter.required("color", flaxColorType),
   FlaxParameter.required("darkColor", flaxColorType),
@@ -39838,25 +39982,25 @@ const _flaxBinding612 = <FlaxParameter>[
   FlaxParameter.required("highContrastElevatedColor", flaxColorType),
   FlaxParameter.required("darkHighContrastElevatedColor", flaxColorType),
 ];
-const _flaxBinding613 = <FlaxParameter>[
+const _flaxBinding617 = <FlaxParameter>[
   FlaxParameter("debugLabel", flaxNullableStringType, required: false),
   FlaxParameter.required("color", flaxColorType),
   FlaxParameter.required("darkColor", flaxColorType),
   FlaxParameter.required("highContrastColor", flaxColorType),
   FlaxParameter.required("darkHighContrastColor", flaxColorType),
 ];
-const _flaxBinding614 = <FlaxParameter>[
+const _flaxBinding618 = <FlaxParameter>[
   FlaxParameter("debugLabel", flaxNullableStringType, required: false),
   FlaxParameter.required("color", flaxColorType),
   FlaxParameter.required("darkColor", flaxColorType),
 ];
-const _flaxBinding615 = FlaxProxyMember(
+const _flaxBinding619 = FlaxProxyMember(
   "toARGB32",
   0,
   flaxIntCall,
   hasSuper: true,
 );
-const _flaxBinding616 = FlaxCallbackBinding.signature(
+const _flaxBinding620 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "alpha",
@@ -39884,7 +40028,7 @@ const _flaxBinding616 = FlaxCallbackBinding.signature(
     ),
     FlaxCallbackParameter.plain(
       "colorSpace",
-      _flaxBinding593,
+      _flaxBinding597,
       required: false,
       positional: false,
     ),
@@ -39892,49 +40036,49 @@ const _flaxBinding616 = FlaxCallbackBinding.signature(
   flaxColorType,
   id: "callback:<>(n:o:alpha:double?:,n:o:red:double?:,n:o:green:double?:,n:o:blue:double?:,n:o:colorSpace:enum?:flax.core/sdk_dart_ui#type:ColorSpace)->object:flax.core/flutter#type:Color",
 );
-const _flaxBinding617 = FlaxProxyMember(
+const _flaxBinding621 = FlaxProxyMember(
   "withValues",
   0,
-  _flaxBinding616,
+  _flaxBinding620,
   hasSuper: true,
 );
-const _flaxBinding618 = FlaxProxyMember(
+const _flaxBinding622 = FlaxProxyMember(
   "withAlpha",
   0,
   _flaxBinding15,
   hasSuper: true,
 );
-const _flaxBinding619 = FlaxProxyMember(
+const _flaxBinding623 = FlaxProxyMember(
   "withOpacity",
   0,
   _flaxBinding16,
   hasSuper: true,
 );
-const _flaxBinding620 = FlaxProxyMember(
+const _flaxBinding624 = FlaxProxyMember(
   "withRed",
   0,
   _flaxBinding17,
   hasSuper: true,
 );
-const _flaxBinding621 = FlaxProxyMember(
+const _flaxBinding625 = FlaxProxyMember(
   "withGreen",
   0,
   _flaxBinding18,
   hasSuper: true,
 );
-const _flaxBinding622 = FlaxProxyMember(
+const _flaxBinding626 = FlaxProxyMember(
   "withBlue",
   0,
   _flaxBinding19,
   hasSuper: true,
 );
-const _flaxBinding623 = FlaxProxyMember(
+const _flaxBinding627 = FlaxProxyMember(
   "computeLuminance",
   0,
   flaxDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding624 = FlaxCallbackBinding.signature(
+const _flaxBinding628 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "minLevel",
@@ -39946,19 +40090,19 @@ const _flaxBinding624 = FlaxCallbackBinding.signature(
   flaxStringType,
   id: "callback:<>(n:o:minLevel:enum:flax.core/sdk_foundation#type:DiagnosticLevel)->String:",
 );
-const _flaxBinding625 = FlaxProxyMember(
+const _flaxBinding629 = FlaxProxyMember(
   "toString",
   0,
-  _flaxBinding624,
+  _flaxBinding628,
   hasSuper: true,
 );
-const _flaxBinding626 = FlaxProxyMember(
+const _flaxBinding630 = FlaxProxyMember(
   "toStringShort",
   0,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding627 = FlaxCallbackBinding.signature(
+const _flaxBinding631 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "name",
@@ -39976,115 +40120,111 @@ const _flaxBinding627 = FlaxCallbackBinding.signature(
   _flaxBinding108,
   id: "callback:<>(n:o:name:String?:,n:o:style:enum?:flax.core/sdk_foundation#type:DiagnosticsTreeStyle)->object:flax.core/sdk_foundation#type:DiagnosticsNode",
 );
-const _flaxBinding628 = FlaxProxyMember(
+const _flaxBinding632 = FlaxProxyMember(
   "toDiagnosticsNode",
   0,
-  _flaxBinding627,
+  _flaxBinding631,
   hasSuper: true,
 );
-const _flaxBinding629 = FlaxProxyMember(
+const _flaxBinding633 = FlaxProxyMember(
   "debugFillProperties",
   0,
   _flaxBinding21,
   hasSuper: true,
 );
-const _flaxBinding630 = FlaxProxyMember(
+const _flaxBinding634 = FlaxProxyMember(
   "resolveFrom",
   0,
   _flaxBinding23,
   hasSuper: true,
 );
-const _flaxBinding631 = FlaxProxyMember(
+const _flaxBinding635 = FlaxProxyMember(
   "color",
   1,
   _flaxBinding24,
   hasSuper: true,
 );
-const _flaxBinding632 = FlaxProxyMember(
+const _flaxBinding636 = FlaxProxyMember(
   "darkColor",
   1,
   _flaxBinding24,
   hasSuper: true,
 );
-const _flaxBinding633 = FlaxProxyMember(
+const _flaxBinding637 = FlaxProxyMember(
   "highContrastColor",
   1,
   _flaxBinding24,
   hasSuper: true,
 );
-const _flaxBinding634 = FlaxProxyMember(
+const _flaxBinding638 = FlaxProxyMember(
   "darkHighContrastColor",
   1,
   _flaxBinding24,
   hasSuper: true,
 );
-const _flaxBinding635 = FlaxProxyMember(
+const _flaxBinding639 = FlaxProxyMember(
   "elevatedColor",
   1,
   _flaxBinding24,
   hasSuper: true,
 );
-const _flaxBinding636 = FlaxProxyMember(
+const _flaxBinding640 = FlaxProxyMember(
   "darkElevatedColor",
   1,
   _flaxBinding24,
   hasSuper: true,
 );
-const _flaxBinding637 = FlaxProxyMember(
+const _flaxBinding641 = FlaxProxyMember(
   "highContrastElevatedColor",
   1,
   _flaxBinding24,
   hasSuper: true,
 );
-const _flaxBinding638 = FlaxProxyMember(
+const _flaxBinding642 = FlaxProxyMember(
   "darkHighContrastElevatedColor",
   1,
   _flaxBinding24,
   hasSuper: true,
 );
-const _flaxBinding639 = FlaxProxyMember(
+const _flaxBinding643 = FlaxProxyMember(
   "value",
   1,
   flaxIntCall,
   hasSuper: true,
 );
-const _flaxBinding640 = FlaxProxyMember(
+const _flaxBinding644 = FlaxProxyMember(
   "alpha",
   1,
   flaxIntCall,
   hasSuper: true,
 );
-const _flaxBinding641 = FlaxProxyMember("blue", 1, flaxIntCall, hasSuper: true);
-const _flaxBinding642 = FlaxProxyMember(
+const _flaxBinding645 = FlaxProxyMember("blue", 1, flaxIntCall, hasSuper: true);
+const _flaxBinding646 = FlaxProxyMember(
   "green",
   1,
   flaxIntCall,
   hasSuper: true,
 );
-const _flaxBinding643 = FlaxProxyMember(
+const _flaxBinding647 = FlaxProxyMember(
   "opacity",
   1,
   flaxDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding644 = FlaxProxyMember("red", 1, flaxIntCall, hasSuper: true);
-const _flaxBinding645 = FlaxProxyMember("a", 1, flaxDoubleCall, hasSuper: true);
-const _flaxBinding646 = FlaxProxyMember("r", 1, flaxDoubleCall, hasSuper: true);
-const _flaxBinding647 = FlaxProxyMember("g", 1, flaxDoubleCall, hasSuper: true);
-const _flaxBinding648 = FlaxProxyMember("b", 1, flaxDoubleCall, hasSuper: true);
-const _flaxBinding649 = FlaxProxyMember(
+const _flaxBinding648 = FlaxProxyMember("red", 1, flaxIntCall, hasSuper: true);
+const _flaxBinding649 = FlaxProxyMember("a", 1, flaxDoubleCall, hasSuper: true);
+const _flaxBinding650 = FlaxProxyMember("r", 1, flaxDoubleCall, hasSuper: true);
+const _flaxBinding651 = FlaxProxyMember("g", 1, flaxDoubleCall, hasSuper: true);
+const _flaxBinding652 = FlaxProxyMember("b", 1, flaxDoubleCall, hasSuper: true);
+const _flaxBinding653 = FlaxProxyMember(
   "colorSpace",
   1,
   _flaxBinding26,
   hasSuper: true,
 );
-const _flaxBinding650 = FlaxObjectBinding(
+const _flaxBinding654 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoDynamicColor",
   [
-    _flaxBinding573,
-    _flaxBinding574,
-    _flaxBinding575,
-    _flaxBinding576,
     _flaxBinding577,
     _flaxBinding578,
     _flaxBinding579,
@@ -40100,27 +40240,31 @@ const _flaxBinding650 = FlaxObjectBinding(
     _flaxBinding589,
     _flaxBinding590,
     _flaxBinding591,
+    _flaxBinding592,
+    _flaxBinding593,
+    _flaxBinding594,
+    _flaxBinding595,
   ],
   {
-    "toARGB32": _flaxBinding592,
-    "withValues": _flaxBinding595,
-    "withAlpha": _flaxBinding596,
-    "withOpacity": _flaxBinding597,
-    "withRed": _flaxBinding598,
-    "withGreen": _flaxBinding599,
-    "withBlue": _flaxBinding600,
-    "computeLuminance": _flaxBinding601,
-    "toString": _flaxBinding603,
+    "toARGB32": _flaxBinding596,
+    "withValues": _flaxBinding599,
+    "withAlpha": _flaxBinding600,
+    "withOpacity": _flaxBinding601,
+    "withRed": _flaxBinding602,
+    "withGreen": _flaxBinding603,
+    "withBlue": _flaxBinding604,
+    "computeLuminance": _flaxBinding605,
+    "toString": _flaxBinding607,
     "toStringShort": _flaxBinding136,
-    "toDiagnosticsNode": _flaxBinding604,
-    "debugFillProperties": _flaxBinding605,
-    "resolveFrom": _flaxBinding606,
+    "toDiagnosticsNode": _flaxBinding608,
+    "debugFillProperties": _flaxBinding609,
+    "resolveFrom": _flaxBinding610,
     "@super:toARGB32": FlaxInstanceMethod.shared(
       flaxIntCall,
       _CupertinoDynamicColor_super_toARGB32,
     ),
     "@super:withValues": FlaxInstanceMethod.plain(
-      _flaxBinding594,
+      _flaxBinding598,
       flaxColorType,
       _CupertinoDynamicColor_super_withValues,
     ),
@@ -40148,15 +40292,15 @@ const _flaxBinding650 = FlaxObjectBinding(
       flaxDoubleCall,
       _CupertinoDynamicColor_super_computeLuminance,
     ),
-    "@super:toString": _flaxBinding607,
-    "@super:toStringShort": _flaxBinding608,
-    "@super:toDiagnosticsNode": _flaxBinding609,
-    "@super:debugFillProperties": _flaxBinding610,
+    "@super:toString": _flaxBinding611,
+    "@super:toStringShort": _flaxBinding612,
+    "@super:toDiagnosticsNode": _flaxBinding613,
+    "@super:debugFillProperties": _flaxBinding614,
     "@super:resolveFrom": FlaxInstanceMethod.shared(
       _flaxBinding23,
       _CupertinoDynamicColor_super_resolveFrom,
     ),
-    "@super:get:color": _flaxBinding611,
+    "@super:get:color": _flaxBinding615,
     "@super:get:darkColor": FlaxInstanceMethod.shared(
       _flaxBinding24,
       _CupertinoDynamicColor_super_get_darkColor,
@@ -40231,12 +40375,12 @@ const _flaxBinding650 = FlaxObjectBinding(
     ),
   },
   constructors: {
-    "": _flaxBinding612,
-    "withBrightnessAndContrast": _flaxBinding613,
-    "withBrightness": _flaxBinding614,
-    "@implementation": _flaxBinding612,
-    "@implementation:withBrightnessAndContrast": _flaxBinding613,
-    "@implementation:withBrightness": _flaxBinding614,
+    "": _flaxBinding616,
+    "withBrightnessAndContrast": _flaxBinding617,
+    "withBrightness": _flaxBinding618,
+    "@implementation": _flaxBinding616,
+    "@implementation:withBrightnessAndContrast": _flaxBinding617,
+    "@implementation:withBrightness": _flaxBinding618,
   },
   create: _createCupertinoDynamicColor,
   matches: _isCupertinoDynamicColor,
@@ -40247,20 +40391,16 @@ const _flaxBinding650 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding615,
-    _flaxBinding617,
-    _flaxBinding618,
     _flaxBinding619,
-    _flaxBinding620,
     _flaxBinding621,
     _flaxBinding622,
     _flaxBinding623,
+    _flaxBinding624,
     _flaxBinding625,
     _flaxBinding626,
-    _flaxBinding628,
+    _flaxBinding627,
     _flaxBinding629,
     _flaxBinding630,
-    _flaxBinding631,
     _flaxBinding632,
     _flaxBinding633,
     _flaxBinding634,
@@ -40279,103 +40419,107 @@ const _flaxBinding650 = FlaxObjectBinding(
     _flaxBinding647,
     _flaxBinding648,
     _flaxBinding649,
+    _flaxBinding650,
+    _flaxBinding651,
+    _flaxBinding652,
+    _flaxBinding653,
   ]),
 );
-const _flaxBinding651 = FlaxGetter.plain(
+const _flaxBinding655 = FlaxGetter.plain(
   "title",
   flaxWidgetType,
   _CupertinoExpansionTile_title,
 );
-const _flaxBinding652 = FlaxTypeRef(
+const _flaxBinding656 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:ExpansibleController",
   nullable: true,
 );
-const _flaxBinding653 = FlaxGetter.plain(
+const _flaxBinding657 = FlaxGetter.plain(
   "controller",
-  _flaxBinding652,
+  _flaxBinding656,
   _CupertinoExpansionTile_controller,
 );
-const _flaxBinding654 = FlaxGetter.plain(
+const _flaxBinding658 = FlaxGetter.plain(
   "child",
   flaxWidgetType,
   _CupertinoExpansionTile_child,
 );
-const _flaxBinding655 = FlaxTypeRef(
+const _flaxBinding659 = FlaxTypeRef(
   "enum",
   id: "flax.cupertino/cupertino#type:ExpansionTileTransitionMode",
 );
-const _flaxBinding656 = FlaxGetter.plain(
+const _flaxBinding660 = FlaxGetter.plain(
   "transitionMode",
-  _flaxBinding655,
+  _flaxBinding659,
   _CupertinoExpansionTile_transitionMode,
 );
-const _flaxBinding657 = FlaxTypeRef(
+const _flaxBinding661 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
   dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoExpansionTile>>,
 );
-const _flaxBinding658 = FlaxInstanceMethod.plain(
+const _flaxBinding662 = FlaxInstanceMethod.plain(
   _flaxBinding132,
-  _flaxBinding657,
+  _flaxBinding661,
   _CupertinoExpansionTile_createState,
 );
-const _flaxBinding659 = FlaxInstanceMethod.plain(
+const _flaxBinding663 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding134,
   _CupertinoExpansionTile_createElement,
 );
-const _flaxBinding660 = FlaxInstanceMethod.shared(
+const _flaxBinding664 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoExpansionTile_debugFillProperties,
 );
-const _flaxBinding661 = FlaxInstanceMethod.plain(
+const _flaxBinding665 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoExpansionTile_toStringShallow,
 );
-const _flaxBinding662 = FlaxInstanceMethod.plain(
+const _flaxBinding666 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoExpansionTile_toStringDeep,
 );
-const _flaxBinding663 = FlaxInstanceMethod.plain(
+const _flaxBinding667 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoExpansionTile_toDiagnosticsNode,
 );
-const _flaxBinding664 = <FlaxParameter>[
+const _flaxBinding668 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter.required("title", flaxWidgetType),
   FlaxParameter.required("child", flaxWidgetType),
-  FlaxParameter("controller", _flaxBinding652, required: false),
+  FlaxParameter("controller", _flaxBinding656, required: false),
   FlaxParameter(
     "transitionMode",
-    _flaxBinding655,
+    _flaxBinding659,
     required: false,
     defaultValue: api.ExpansionTileTransitionMode.fade,
   ),
 ];
-const _flaxBinding665 = FlaxObjectBinding(
+const _flaxBinding669 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoExpansionTile",
   [
-    _flaxBinding651,
-    _flaxBinding653,
-    _flaxBinding654,
-    _flaxBinding656,
+    _flaxBinding655,
+    _flaxBinding657,
+    _flaxBinding658,
+    _flaxBinding660,
     _flaxBinding130,
   ],
   {
-    "createState": _flaxBinding658,
-    "createElement": _flaxBinding659,
+    "createState": _flaxBinding662,
+    "createElement": _flaxBinding663,
     "toStringShort": _flaxBinding136,
-    "debugFillProperties": _flaxBinding660,
-    "toStringShallow": _flaxBinding661,
-    "toStringDeep": _flaxBinding662,
-    "toDiagnosticsNode": _flaxBinding663,
+    "debugFillProperties": _flaxBinding664,
+    "toStringShallow": _flaxBinding665,
+    "toStringDeep": _flaxBinding666,
+    "toDiagnosticsNode": _flaxBinding667,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding664},
+  constructors: {"": _flaxBinding668},
   create: _createCupertinoExpansionTile,
   matches: _isCupertinoExpansionTile,
   setters: [],
@@ -40387,75 +40531,75 @@ const _flaxBinding665 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding666 = FlaxGetter.plain(
+const _flaxBinding670 = FlaxGetter.plain(
   "child",
   flaxWidgetType,
   _CupertinoFocusHalo_child,
 );
-const _flaxBinding667 = FlaxTypeRef(
+const _flaxBinding671 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
   dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoFocusHalo>>,
 );
-const _flaxBinding668 = FlaxInstanceMethod.plain(
+const _flaxBinding672 = FlaxInstanceMethod.plain(
   _flaxBinding132,
-  _flaxBinding667,
+  _flaxBinding671,
   _CupertinoFocusHalo_createState,
 );
-const _flaxBinding669 = FlaxInstanceMethod.plain(
+const _flaxBinding673 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding134,
   _CupertinoFocusHalo_createElement,
 );
-const _flaxBinding670 = FlaxInstanceMethod.shared(
+const _flaxBinding674 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoFocusHalo_debugFillProperties,
 );
-const _flaxBinding671 = FlaxInstanceMethod.plain(
+const _flaxBinding675 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoFocusHalo_toStringShallow,
 );
-const _flaxBinding672 = FlaxInstanceMethod.plain(
+const _flaxBinding676 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoFocusHalo_toStringDeep,
 );
-const _flaxBinding673 = FlaxInstanceMethod.plain(
+const _flaxBinding677 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoFocusHalo_toDiagnosticsNode,
 );
-const _flaxBinding674 = <FlaxParameter>[
+const _flaxBinding678 = <FlaxParameter>[
   FlaxParameter.required("child", flaxWidgetType),
   FlaxParameter("key", _flaxBinding129, required: false),
 ];
-const _flaxBinding675 = FlaxTypeRef(
+const _flaxBinding679 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:BorderRadiusGeometry",
 );
-const _flaxBinding676 = <FlaxParameter>[
+const _flaxBinding680 = <FlaxParameter>[
   FlaxParameter.required("child", flaxWidgetType),
-  FlaxParameter.required("borderRadius", _flaxBinding675),
+  FlaxParameter.required("borderRadius", _flaxBinding679),
   FlaxParameter("key", _flaxBinding129, required: false),
 ];
-const _flaxBinding677 = FlaxObjectBinding(
+const _flaxBinding681 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoFocusHalo",
-  [_flaxBinding666, _flaxBinding130],
+  [_flaxBinding670, _flaxBinding130],
   {
-    "createState": _flaxBinding668,
-    "createElement": _flaxBinding669,
+    "createState": _flaxBinding672,
+    "createElement": _flaxBinding673,
     "toStringShort": _flaxBinding136,
-    "debugFillProperties": _flaxBinding670,
-    "toStringShallow": _flaxBinding671,
-    "toStringDeep": _flaxBinding672,
-    "toDiagnosticsNode": _flaxBinding673,
+    "debugFillProperties": _flaxBinding674,
+    "toStringShallow": _flaxBinding675,
+    "toStringDeep": _flaxBinding676,
+    "toDiagnosticsNode": _flaxBinding677,
     "debugDescribeChildren": _flaxBinding146,
   },
   constructors: {
-    "withRect": _flaxBinding674,
-    "withRRect": _flaxBinding676,
-    "withRoundedSuperellipse": _flaxBinding676,
+    "withRect": _flaxBinding678,
+    "withRRect": _flaxBinding680,
+    "withRoundedSuperellipse": _flaxBinding680,
   },
   create: _createCupertinoFocusHalo,
   matches: _isCupertinoFocusHalo,
@@ -40468,55 +40612,55 @@ const _flaxBinding677 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding678 = FlaxGetter.plain(
+const _flaxBinding682 = FlaxGetter.plain(
   "prefix",
   _flaxBinding57,
   _CupertinoFormRow_prefix,
 );
-const _flaxBinding679 = FlaxGetter.plain(
+const _flaxBinding683 = FlaxGetter.plain(
   "padding",
   _flaxBinding267,
   _CupertinoFormRow_padding,
 );
-const _flaxBinding680 = FlaxGetter.plain(
+const _flaxBinding684 = FlaxGetter.plain(
   "helper",
   _flaxBinding57,
   _CupertinoFormRow_helper,
 );
-const _flaxBinding681 = FlaxGetter.plain(
+const _flaxBinding685 = FlaxGetter.plain(
   "error",
   _flaxBinding57,
   _CupertinoFormRow_error,
 );
-const _flaxBinding682 = FlaxGetter.plain(
+const _flaxBinding686 = FlaxGetter.plain(
   "child",
   flaxWidgetType,
   _CupertinoFormRow_child,
 );
-const _flaxBinding683 = FlaxInstanceMethod.shared(
+const _flaxBinding687 = FlaxInstanceMethod.shared(
   _flaxBinding112,
   _CupertinoFormRow_build,
 );
-const _flaxBinding684 = FlaxInstanceMethod.shared(
+const _flaxBinding688 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoFormRow_debugFillProperties,
 );
-const _flaxBinding685 = FlaxInstanceMethod.plain(
+const _flaxBinding689 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoFormRow_toStringShallow,
 );
-const _flaxBinding686 = FlaxInstanceMethod.plain(
+const _flaxBinding690 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoFormRow_toStringDeep,
 );
-const _flaxBinding687 = FlaxInstanceMethod.plain(
+const _flaxBinding691 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoFormRow_toDiagnosticsNode,
 );
-const _flaxBinding688 = <FlaxParameter>[
+const _flaxBinding692 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter.required("child", flaxWidgetType),
   FlaxParameter("prefix", _flaxBinding57, required: false),
@@ -40524,27 +40668,27 @@ const _flaxBinding688 = <FlaxParameter>[
   FlaxParameter("helper", _flaxBinding57, required: false),
   FlaxParameter("error", _flaxBinding57, required: false),
 ];
-const _flaxBinding689 = FlaxObjectBinding(
+const _flaxBinding693 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoFormRow",
   [
-    _flaxBinding678,
-    _flaxBinding679,
-    _flaxBinding680,
-    _flaxBinding681,
     _flaxBinding682,
+    _flaxBinding683,
+    _flaxBinding684,
+    _flaxBinding685,
+    _flaxBinding686,
     _flaxBinding130,
   ],
   {
-    "build": _flaxBinding683,
+    "build": _flaxBinding687,
     "createElement": _flaxBinding190,
     "toStringShort": _flaxBinding136,
-    "debugFillProperties": _flaxBinding684,
-    "toStringShallow": _flaxBinding685,
-    "toStringDeep": _flaxBinding686,
-    "toDiagnosticsNode": _flaxBinding687,
+    "debugFillProperties": _flaxBinding688,
+    "toStringShallow": _flaxBinding689,
+    "toStringDeep": _flaxBinding690,
+    "toDiagnosticsNode": _flaxBinding691,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding688},
+  constructors: {"": _flaxBinding692},
   create: _createCupertinoFormRow,
   matches: _isCupertinoFormRow,
   setters: [],
@@ -40556,81 +40700,81 @@ const _flaxBinding689 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding690 = FlaxGetter.plain(
+const _flaxBinding694 = FlaxGetter.plain(
   "header",
   _flaxBinding57,
   _CupertinoFormSection_header,
 );
-const _flaxBinding691 = FlaxGetter.plain(
+const _flaxBinding695 = FlaxGetter.plain(
   "footer",
   _flaxBinding57,
   _CupertinoFormSection_footer,
 );
-const _flaxBinding692 = FlaxTypeRef(
+const _flaxBinding696 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:EdgeInsetsGeometry",
 );
-const _flaxBinding693 = FlaxGetter.plain(
+const _flaxBinding697 = FlaxGetter.plain(
   "margin",
-  _flaxBinding692,
+  _flaxBinding696,
   _CupertinoFormSection_margin,
 );
-const _flaxBinding694 = FlaxGetter.plain(
+const _flaxBinding698 = FlaxGetter.plain(
   "children",
   _flaxBinding206,
   _CupertinoFormSection_children,
 );
-const _flaxBinding695 = FlaxTypeRef(
+const _flaxBinding699 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:BoxDecoration",
   nullable: true,
 );
-const _flaxBinding696 = FlaxGetter.plain(
+const _flaxBinding700 = FlaxGetter.plain(
   "decoration",
-  _flaxBinding695,
+  _flaxBinding699,
   _CupertinoFormSection_decoration,
 );
-const _flaxBinding697 = FlaxGetter.plain(
+const _flaxBinding701 = FlaxGetter.plain(
   "backgroundColor",
   flaxColorType,
   _CupertinoFormSection_backgroundColor,
 );
-const _flaxBinding698 = FlaxGetter.plain(
+const _flaxBinding702 = FlaxGetter.plain(
   "clipBehavior",
   flaxClipType,
   _CupertinoFormSection_clipBehavior,
 );
-const _flaxBinding699 = FlaxInstanceMethod.shared(
+const _flaxBinding703 = FlaxInstanceMethod.shared(
   _flaxBinding112,
   _CupertinoFormSection_build,
 );
-const _flaxBinding700 = FlaxInstanceMethod.shared(
+const _flaxBinding704 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoFormSection_debugFillProperties,
 );
-const _flaxBinding701 = FlaxInstanceMethod.plain(
+const _flaxBinding705 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoFormSection_toStringShallow,
 );
-const _flaxBinding702 = FlaxInstanceMethod.plain(
+const _flaxBinding706 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoFormSection_toStringDeep,
 );
-const _flaxBinding703 = FlaxInstanceMethod.plain(
+const _flaxBinding707 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoFormSection_toDiagnosticsNode,
 );
-const _flaxBinding704 = <FlaxParameter>[
+const _flaxBinding708 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter.required("children", _flaxBinding206),
   FlaxParameter("header", _flaxBinding57, required: false),
   FlaxParameter("footer", _flaxBinding57, required: false),
   FlaxParameter(
     "margin",
-    _flaxBinding692,
+    _flaxBinding696,
     required: false,
     omitWhenAbsent: true,
   ),
@@ -40640,7 +40784,7 @@ const _flaxBinding704 = <FlaxParameter>[
     required: false,
     omitWhenAbsent: true,
   ),
-  FlaxParameter("decoration", _flaxBinding695, required: false),
+  FlaxParameter("decoration", _flaxBinding699, required: false),
   FlaxParameter(
     "clipBehavior",
     flaxClipType,
@@ -40648,29 +40792,29 @@ const _flaxBinding704 = <FlaxParameter>[
     defaultValue: api.Clip.none,
   ),
 ];
-const _flaxBinding705 = FlaxObjectBinding(
+const _flaxBinding709 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoFormSection",
   [
-    _flaxBinding690,
-    _flaxBinding691,
-    _flaxBinding693,
     _flaxBinding694,
-    _flaxBinding696,
+    _flaxBinding695,
     _flaxBinding697,
     _flaxBinding698,
+    _flaxBinding700,
+    _flaxBinding701,
+    _flaxBinding702,
     _flaxBinding130,
   ],
   {
-    "build": _flaxBinding699,
+    "build": _flaxBinding703,
     "createElement": _flaxBinding190,
     "toStringShort": _flaxBinding136,
-    "debugFillProperties": _flaxBinding700,
-    "toStringShallow": _flaxBinding701,
-    "toStringDeep": _flaxBinding702,
-    "toDiagnosticsNode": _flaxBinding703,
+    "debugFillProperties": _flaxBinding704,
+    "toStringShallow": _flaxBinding705,
+    "toStringDeep": _flaxBinding706,
+    "toDiagnosticsNode": _flaxBinding707,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding704, "insetGrouped": _flaxBinding704},
+  constructors: {"": _flaxBinding708, "insetGrouped": _flaxBinding708},
   create: _createCupertinoFormSection,
   matches: _isCupertinoFormSection,
   setters: [],
@@ -40682,88 +40826,88 @@ const _flaxBinding705 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding706 = FlaxGetter.plain(
+const _flaxBinding710 = FlaxGetter.plain(
   "primaryRouteAnimation",
   _flaxBinding56,
   _CupertinoFullscreenDialogTransition_primaryRouteAnimation,
 );
-const _flaxBinding707 = FlaxGetter.plain(
+const _flaxBinding711 = FlaxGetter.plain(
   "secondaryRouteAnimation",
   _flaxBinding56,
   _CupertinoFullscreenDialogTransition_secondaryRouteAnimation,
 );
-const _flaxBinding708 = FlaxGetter.plain(
+const _flaxBinding712 = FlaxGetter.plain(
   "linearTransition",
   flaxBoolType,
   _CupertinoFullscreenDialogTransition_linearTransition,
 );
-const _flaxBinding709 = FlaxGetter.plain(
+const _flaxBinding713 = FlaxGetter.plain(
   "child",
   flaxWidgetType,
   _CupertinoFullscreenDialogTransition_child,
 );
-const _flaxBinding710 = FlaxTypeRef(
+const _flaxBinding714 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
   dartType: FlaxDartTypes
       .typeOf<api10.State<api.CupertinoFullscreenDialogTransition>>,
 );
-const _flaxBinding711 = FlaxInstanceMethod.plain(
+const _flaxBinding715 = FlaxInstanceMethod.plain(
   _flaxBinding132,
-  _flaxBinding710,
+  _flaxBinding714,
   _CupertinoFullscreenDialogTransition_createState,
 );
-const _flaxBinding712 = FlaxInstanceMethod.plain(
+const _flaxBinding716 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding134,
   _CupertinoFullscreenDialogTransition_createElement,
 );
-const _flaxBinding713 = FlaxInstanceMethod.shared(
+const _flaxBinding717 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoFullscreenDialogTransition_debugFillProperties,
 );
-const _flaxBinding714 = FlaxInstanceMethod.plain(
+const _flaxBinding718 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoFullscreenDialogTransition_toStringShallow,
 );
-const _flaxBinding715 = FlaxInstanceMethod.plain(
+const _flaxBinding719 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoFullscreenDialogTransition_toStringDeep,
 );
-const _flaxBinding716 = FlaxInstanceMethod.plain(
+const _flaxBinding720 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoFullscreenDialogTransition_toDiagnosticsNode,
 );
-const _flaxBinding717 = <FlaxParameter>[
+const _flaxBinding721 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter.required("primaryRouteAnimation", _flaxBinding56),
   FlaxParameter.required("secondaryRouteAnimation", _flaxBinding56),
   FlaxParameter.required("child", flaxWidgetType),
   FlaxParameter.required("linearTransition", flaxBoolType),
 ];
-const _flaxBinding718 = FlaxObjectBinding(
+const _flaxBinding722 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoFullscreenDialogTransition",
   [
-    _flaxBinding706,
-    _flaxBinding707,
-    _flaxBinding708,
-    _flaxBinding709,
+    _flaxBinding710,
+    _flaxBinding711,
+    _flaxBinding712,
+    _flaxBinding713,
     _flaxBinding130,
   ],
   {
-    "createState": _flaxBinding711,
-    "createElement": _flaxBinding712,
+    "createState": _flaxBinding715,
+    "createElement": _flaxBinding716,
     "toStringShort": _flaxBinding136,
-    "debugFillProperties": _flaxBinding713,
-    "toStringShallow": _flaxBinding714,
-    "toStringDeep": _flaxBinding715,
-    "toDiagnosticsNode": _flaxBinding716,
+    "debugFillProperties": _flaxBinding717,
+    "toStringShallow": _flaxBinding718,
+    "toStringDeep": _flaxBinding719,
+    "toDiagnosticsNode": _flaxBinding720,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding717},
+  constructors: {"": _flaxBinding721},
   create: _createCupertinoFullscreenDialogTransition,
   matches: _isCupertinoFullscreenDialogTransition,
   setters: [],
@@ -40775,81 +40919,81 @@ const _flaxBinding718 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding719 = FlaxGetter.plain(
+const _flaxBinding723 = FlaxGetter.plain(
   "isConcrete",
   flaxBoolType,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_IconThemeData_7c_get_3a_isConcrete,
 );
-const _flaxBinding720 = FlaxGetter.plain(
+const _flaxBinding724 = FlaxGetter.plain(
   "size",
   flaxNullableDoubleType,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_IconThemeData_7c_get_3a_size,
 );
-const _flaxBinding721 = FlaxGetter.plain(
+const _flaxBinding725 = FlaxGetter.plain(
   "fill",
   flaxNullableDoubleType,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_IconThemeData_7c_get_3a_fill,
 );
-const _flaxBinding722 = FlaxGetter.plain(
+const _flaxBinding726 = FlaxGetter.plain(
   "weight",
   flaxNullableDoubleType,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_IconThemeData_7c_get_3a_weight,
 );
-const _flaxBinding723 = FlaxGetter.plain(
+const _flaxBinding727 = FlaxGetter.plain(
   "grade",
   flaxNullableDoubleType,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_IconThemeData_7c_get_3a_grade,
 );
-const _flaxBinding724 = FlaxGetter.plain(
+const _flaxBinding728 = FlaxGetter.plain(
   "opticalSize",
   flaxNullableDoubleType,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_IconThemeData_7c_get_3a_opticalSize,
 );
-const _flaxBinding725 = FlaxGetter.plain(
+const _flaxBinding729 = FlaxGetter.plain(
   "color",
   _flaxBinding31,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_IconThemeData_7c_get_3a_color,
 );
-const _flaxBinding726 = FlaxGetter.plain(
+const _flaxBinding730 = FlaxGetter.plain(
   "opacity",
   flaxNullableDoubleType,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_IconThemeData_7c_get_3a_opacity,
 );
-const _flaxBinding727 = FlaxGetter.plain(
+const _flaxBinding731 = FlaxGetter.plain(
   "shadows",
   _flaxBinding35,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_IconThemeData_7c_get_3a_shadows,
 );
-const _flaxBinding728 = FlaxGetter.plain(
+const _flaxBinding732 = FlaxGetter.plain(
   "applyTextScaling",
   flaxNullableBoolType,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_IconThemeData_7c_get_3a_applyTextScaling,
 );
-const _flaxBinding729 = FlaxInstanceMethod.plain(
-  _flaxBinding602,
+const _flaxBinding733 = FlaxInstanceMethod.plain(
+  _flaxBinding606,
   flaxStringType,
   _CupertinoIconThemeData_toString,
 );
-const _flaxBinding730 = FlaxInstanceMethod.plain(
+const _flaxBinding734 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoIconThemeData_toDiagnosticsNode,
 );
-const _flaxBinding731 = FlaxInstanceMethod.shared(
+const _flaxBinding735 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoIconThemeData_debugFillProperties,
 );
-const _flaxBinding732 = <FlaxParameter>[
+const _flaxBinding736 = <FlaxParameter>[
   FlaxParameter("applyTextScaling", flaxNullableBoolType, required: false),
   FlaxParameter("color", _flaxBinding31, required: false),
   FlaxParameter("fill", flaxNullableDoubleType, required: false),
@@ -40860,24 +41004,24 @@ const _flaxBinding732 = <FlaxParameter>[
   FlaxParameter("size", flaxNullableDoubleType, required: false),
   FlaxParameter("weight", flaxNullableDoubleType, required: false),
 ];
-const _flaxBinding733 = FlaxTypeRef(
+const _flaxBinding737 = FlaxTypeRef(
   "object",
   id: "flax.cupertino/cupertino#type:CupertinoIconThemeData",
 );
-const _flaxBinding734 = FlaxInstanceMethod.plain(
-  _flaxBinding732,
-  _flaxBinding733,
+const _flaxBinding738 = FlaxInstanceMethod.plain(
+  _flaxBinding736,
+  _flaxBinding737,
   _CupertinoIconThemeData_copyWith,
 );
-const _flaxBinding735 = FlaxInstanceMethod.shared(
+const _flaxBinding739 = FlaxInstanceMethod.shared(
   _flaxBinding29,
   _CupertinoIconThemeData_merge,
 );
-const _flaxBinding736 = FlaxInstanceMethod.shared(
+const _flaxBinding740 = FlaxInstanceMethod.shared(
   _flaxBinding30,
   _CupertinoIconThemeData_resolve,
 );
-const _flaxBinding737 = <FlaxParameter>[
+const _flaxBinding741 = <FlaxParameter>[
   FlaxParameter("size", flaxNullableDoubleType, required: false),
   FlaxParameter("fill", flaxNullableDoubleType, required: false),
   FlaxParameter("weight", flaxNullableDoubleType, required: false),
@@ -40888,7 +41032,7 @@ const _flaxBinding737 = <FlaxParameter>[
   FlaxParameter("shadows", _flaxBinding35, required: false),
   FlaxParameter("applyTextScaling", flaxNullableBoolType, required: false),
 ];
-const _flaxBinding738 = FlaxCallbackBinding.signature(
+const _flaxBinding742 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "size",
@@ -40945,116 +41089,116 @@ const _flaxBinding738 = FlaxCallbackBinding.signature(
       positional: false,
     ),
   ],
-  _flaxBinding733,
+  _flaxBinding737,
   id: "callback:<>(n:o:size:double?:,n:o:fill:double?:,n:o:weight:double?:,n:o:grade:double?:,n:o:opticalSize:double?:,n:o:color:object?:flax.core/flutter#type:Color,n:o:opacity:double?:,n:o:shadows:list?:[object:flax.core/sdk_dart_ui#type:Shadow],n:o:applyTextScaling:bool?:)->object:flax.cupertino/cupertino#type:CupertinoIconThemeData",
 );
-const _flaxBinding739 = FlaxProxyMember(
+const _flaxBinding743 = FlaxProxyMember(
   "copyWith",
   0,
-  _flaxBinding738,
+  _flaxBinding742,
   hasSuper: true,
 );
-const _flaxBinding740 = FlaxProxyMember(
+const _flaxBinding744 = FlaxProxyMember(
   "merge",
   0,
   _flaxBinding29,
   hasSuper: true,
 );
-const _flaxBinding741 = FlaxProxyMember(
+const _flaxBinding745 = FlaxProxyMember(
   "resolve",
   0,
   _flaxBinding30,
   hasSuper: true,
 );
-const _flaxBinding742 = FlaxProxyMember(
+const _flaxBinding746 = FlaxProxyMember(
   "isConcrete",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding743 = FlaxProxyMember(
+const _flaxBinding747 = FlaxProxyMember(
   "size",
   1,
   flaxNullableDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding744 = FlaxProxyMember(
+const _flaxBinding748 = FlaxProxyMember(
   "fill",
   1,
   flaxNullableDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding745 = FlaxProxyMember(
+const _flaxBinding749 = FlaxProxyMember(
   "weight",
   1,
   flaxNullableDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding746 = FlaxProxyMember(
+const _flaxBinding750 = FlaxProxyMember(
   "grade",
   1,
   flaxNullableDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding747 = FlaxProxyMember(
+const _flaxBinding751 = FlaxProxyMember(
   "opticalSize",
   1,
   flaxNullableDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding748 = FlaxProxyMember(
+const _flaxBinding752 = FlaxProxyMember(
   "color",
   1,
   _flaxBinding32,
   hasSuper: true,
 );
-const _flaxBinding749 = FlaxProxyMember(
+const _flaxBinding753 = FlaxProxyMember(
   "opacity",
   1,
   flaxNullableDoubleCall,
   hasSuper: true,
 );
-const _flaxBinding750 = FlaxProxyMember(
+const _flaxBinding754 = FlaxProxyMember(
   "shadows",
   1,
   _flaxBinding36,
   hasSuper: true,
 );
-const _flaxBinding751 = FlaxProxyMember(
+const _flaxBinding755 = FlaxProxyMember(
   "applyTextScaling",
   1,
   flaxNullableBoolCall,
   hasSuper: true,
 );
-const _flaxBinding752 = FlaxObjectBinding(
+const _flaxBinding756 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoIconThemeData",
   [
-    _flaxBinding719,
-    _flaxBinding720,
-    _flaxBinding721,
-    _flaxBinding722,
     _flaxBinding723,
     _flaxBinding724,
     _flaxBinding725,
     _flaxBinding726,
     _flaxBinding727,
     _flaxBinding728,
+    _flaxBinding729,
+    _flaxBinding730,
+    _flaxBinding731,
+    _flaxBinding732,
   ],
   {
     "toStringShort": _flaxBinding136,
-    "toString": _flaxBinding729,
-    "toDiagnosticsNode": _flaxBinding730,
-    "debugFillProperties": _flaxBinding731,
-    "copyWith": _flaxBinding734,
-    "merge": _flaxBinding735,
-    "resolve": _flaxBinding736,
-    "@super:toStringShort": _flaxBinding608,
-    "@super:toString": _flaxBinding607,
-    "@super:toDiagnosticsNode": _flaxBinding609,
-    "@super:debugFillProperties": _flaxBinding610,
+    "toString": _flaxBinding733,
+    "toDiagnosticsNode": _flaxBinding734,
+    "debugFillProperties": _flaxBinding735,
+    "copyWith": _flaxBinding738,
+    "merge": _flaxBinding739,
+    "resolve": _flaxBinding740,
+    "@super:toStringShort": _flaxBinding612,
+    "@super:toString": _flaxBinding611,
+    "@super:toDiagnosticsNode": _flaxBinding613,
+    "@super:debugFillProperties": _flaxBinding614,
     "@super:copyWith": FlaxInstanceMethod.plain(
-      _flaxBinding732,
-      _flaxBinding733,
+      _flaxBinding736,
+      _flaxBinding737,
       _CupertinoIconThemeData_super_copyWith,
     ),
     "@super:merge": FlaxInstanceMethod.shared(
@@ -41106,7 +41250,7 @@ const _flaxBinding752 = FlaxObjectBinding(
       _CupertinoIconThemeData_super_get_applyTextScaling,
     ),
   },
-  constructors: {"": _flaxBinding737, "@implementation": _flaxBinding737},
+  constructors: {"": _flaxBinding741, "@implementation": _flaxBinding741},
   create: _createCupertinoIconThemeData,
   matches: _isCupertinoIconThemeData,
   setters: [],
@@ -41116,14 +41260,10 @@ const _flaxBinding752 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding626,
-    _flaxBinding625,
-    _flaxBinding628,
+    _flaxBinding630,
     _flaxBinding629,
-    _flaxBinding739,
-    _flaxBinding740,
-    _flaxBinding741,
-    _flaxBinding742,
+    _flaxBinding632,
+    _flaxBinding633,
     _flaxBinding743,
     _flaxBinding744,
     _flaxBinding745,
@@ -41133,9 +41273,13 @@ const _flaxBinding752 = FlaxObjectBinding(
     _flaxBinding749,
     _flaxBinding750,
     _flaxBinding751,
+    _flaxBinding752,
+    _flaxBinding753,
+    _flaxBinding754,
+    _flaxBinding755,
   ]),
 );
-const _flaxBinding753 = FlaxObjectBinding(
+const _flaxBinding757 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoIcons",
   [],
   {},
@@ -41145,64 +41289,64 @@ const _flaxBinding753 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
 );
-const _flaxBinding754 = FlaxGetter.plain(
+const _flaxBinding758 = FlaxGetter.plain(
   "progress",
   flaxDoubleType,
   _CupertinoLinearActivityIndicator_progress,
 );
-const _flaxBinding755 = FlaxGetter.plain(
+const _flaxBinding759 = FlaxGetter.plain(
   "height",
   flaxDoubleType,
   _CupertinoLinearActivityIndicator_height,
 );
-const _flaxBinding756 = FlaxGetter.plain(
+const _flaxBinding760 = FlaxGetter.plain(
   "color",
   _flaxBinding31,
   _CupertinoLinearActivityIndicator_color,
 );
-const _flaxBinding757 = FlaxInstanceMethod.shared(
+const _flaxBinding761 = FlaxInstanceMethod.shared(
   _flaxBinding112,
   _CupertinoLinearActivityIndicator_build,
 );
-const _flaxBinding758 = FlaxInstanceMethod.shared(
+const _flaxBinding762 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoLinearActivityIndicator_debugFillProperties,
 );
-const _flaxBinding759 = FlaxInstanceMethod.plain(
+const _flaxBinding763 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoLinearActivityIndicator_toStringShallow,
 );
-const _flaxBinding760 = FlaxInstanceMethod.plain(
+const _flaxBinding764 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoLinearActivityIndicator_toStringDeep,
 );
-const _flaxBinding761 = FlaxInstanceMethod.plain(
+const _flaxBinding765 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoLinearActivityIndicator_toDiagnosticsNode,
 );
-const _flaxBinding762 = <FlaxParameter>[
+const _flaxBinding766 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter.required("progress", flaxDoubleType),
   FlaxParameter("height", flaxDoubleType, required: false, defaultValue: 4.5),
   FlaxParameter("color", _flaxBinding31, required: false),
 ];
-const _flaxBinding763 = FlaxObjectBinding(
+const _flaxBinding767 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoLinearActivityIndicator",
-  [_flaxBinding754, _flaxBinding755, _flaxBinding756, _flaxBinding130],
+  [_flaxBinding758, _flaxBinding759, _flaxBinding760, _flaxBinding130],
   {
-    "build": _flaxBinding757,
+    "build": _flaxBinding761,
     "createElement": _flaxBinding190,
     "toStringShort": _flaxBinding136,
-    "debugFillProperties": _flaxBinding758,
-    "toStringShallow": _flaxBinding759,
-    "toStringDeep": _flaxBinding760,
-    "toDiagnosticsNode": _flaxBinding761,
+    "debugFillProperties": _flaxBinding762,
+    "toStringShallow": _flaxBinding763,
+    "toStringDeep": _flaxBinding764,
+    "toDiagnosticsNode": _flaxBinding765,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding762},
+  constructors: {"": _flaxBinding766},
   create: _createCupertinoLinearActivityIndicator,
   matches: _isCupertinoLinearActivityIndicator,
   setters: [],
@@ -41214,101 +41358,101 @@ const _flaxBinding763 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding764 = FlaxTypeRef(
+const _flaxBinding768 = FlaxTypeRef(
   "enum",
   id: "flax.cupertino/cupertino#type:CupertinoListSectionType",
 );
-const _flaxBinding765 = FlaxGetter.plain(
+const _flaxBinding769 = FlaxGetter.plain(
   "type",
-  _flaxBinding764,
+  _flaxBinding768,
   _CupertinoListSection_type,
 );
-const _flaxBinding766 = FlaxGetter.plain(
+const _flaxBinding770 = FlaxGetter.plain(
   "header",
   _flaxBinding57,
   _CupertinoListSection_header,
 );
-const _flaxBinding767 = FlaxGetter.plain(
+const _flaxBinding771 = FlaxGetter.plain(
   "footer",
   _flaxBinding57,
   _CupertinoListSection_footer,
 );
-const _flaxBinding768 = FlaxGetter.plain(
+const _flaxBinding772 = FlaxGetter.plain(
   "margin",
-  _flaxBinding692,
+  _flaxBinding696,
   _CupertinoListSection_margin,
 );
-const _flaxBinding769 = FlaxGetter.plain(
+const _flaxBinding773 = FlaxGetter.plain(
   "children",
   _flaxBinding123,
   _CupertinoListSection_children,
 );
-const _flaxBinding770 = FlaxGetter.plain(
+const _flaxBinding774 = FlaxGetter.plain(
   "decoration",
-  _flaxBinding695,
+  _flaxBinding699,
   _CupertinoListSection_decoration,
 );
-const _flaxBinding771 = FlaxGetter.plain(
+const _flaxBinding775 = FlaxGetter.plain(
   "backgroundColor",
   flaxColorType,
   _CupertinoListSection_backgroundColor,
 );
-const _flaxBinding772 = FlaxGetter.plain(
+const _flaxBinding776 = FlaxGetter.plain(
   "clipBehavior",
   flaxClipType,
   _CupertinoListSection_clipBehavior,
 );
-const _flaxBinding773 = FlaxGetter.plain(
+const _flaxBinding777 = FlaxGetter.plain(
   "dividerMargin",
   flaxDoubleType,
   _CupertinoListSection_dividerMargin,
 );
-const _flaxBinding774 = FlaxGetter.plain(
+const _flaxBinding778 = FlaxGetter.plain(
   "additionalDividerMargin",
   flaxDoubleType,
   _CupertinoListSection_additionalDividerMargin,
 );
-const _flaxBinding775 = FlaxGetter.plain(
+const _flaxBinding779 = FlaxGetter.plain(
   "topMargin",
   flaxNullableDoubleType,
   _CupertinoListSection_topMargin,
 );
-const _flaxBinding776 = FlaxGetter.plain(
+const _flaxBinding780 = FlaxGetter.plain(
   "separatorColor",
   _flaxBinding31,
   _CupertinoListSection_separatorColor,
 );
-const _flaxBinding777 = FlaxInstanceMethod.shared(
+const _flaxBinding781 = FlaxInstanceMethod.shared(
   _flaxBinding112,
   _CupertinoListSection_build,
 );
-const _flaxBinding778 = FlaxInstanceMethod.shared(
+const _flaxBinding782 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoListSection_debugFillProperties,
 );
-const _flaxBinding779 = FlaxInstanceMethod.plain(
+const _flaxBinding783 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoListSection_toStringShallow,
 );
-const _flaxBinding780 = FlaxInstanceMethod.plain(
+const _flaxBinding784 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoListSection_toStringDeep,
 );
-const _flaxBinding781 = FlaxInstanceMethod.plain(
+const _flaxBinding785 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoListSection_toDiagnosticsNode,
 );
-const _flaxBinding782 = <FlaxParameter>[
+const _flaxBinding786 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter("children", _flaxBinding123, required: false),
   FlaxParameter("header", _flaxBinding57, required: false),
   FlaxParameter("footer", _flaxBinding57, required: false),
   FlaxParameter(
     "margin",
-    _flaxBinding692,
+    _flaxBinding696,
     required: false,
     omitWhenAbsent: true,
   ),
@@ -41318,7 +41462,7 @@ const _flaxBinding782 = <FlaxParameter>[
     required: false,
     omitWhenAbsent: true,
   ),
-  FlaxParameter("decoration", _flaxBinding695, required: false),
+  FlaxParameter("decoration", _flaxBinding699, required: false),
   FlaxParameter(
     "clipBehavior",
     flaxClipType,
@@ -41350,7 +41494,7 @@ const _flaxBinding782 = <FlaxParameter>[
   ),
   FlaxParameter("separatorColor", _flaxBinding31, required: false),
 ];
-const _flaxBinding783 = <FlaxParameter>[
+const _flaxBinding787 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter("children", _flaxBinding123, required: false),
   FlaxParameter("header", _flaxBinding57, required: false),
@@ -41362,7 +41506,7 @@ const _flaxBinding783 = <FlaxParameter>[
     required: false,
     omitWhenAbsent: true,
   ),
-  FlaxParameter("decoration", _flaxBinding695, required: false),
+  FlaxParameter("decoration", _flaxBinding699, required: false),
   FlaxParameter(
     "clipBehavior",
     flaxClipType,
@@ -41389,13 +41533,9 @@ const _flaxBinding783 = <FlaxParameter>[
   ),
   FlaxParameter("separatorColor", _flaxBinding31, required: false),
 ];
-const _flaxBinding784 = FlaxObjectBinding(
+const _flaxBinding788 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoListSection",
   [
-    _flaxBinding765,
-    _flaxBinding766,
-    _flaxBinding767,
-    _flaxBinding768,
     _flaxBinding769,
     _flaxBinding770,
     _flaxBinding771,
@@ -41404,19 +41544,23 @@ const _flaxBinding784 = FlaxObjectBinding(
     _flaxBinding774,
     _flaxBinding775,
     _flaxBinding776,
+    _flaxBinding777,
+    _flaxBinding778,
+    _flaxBinding779,
+    _flaxBinding780,
     _flaxBinding130,
   ],
   {
-    "build": _flaxBinding777,
+    "build": _flaxBinding781,
     "createElement": _flaxBinding190,
     "toStringShort": _flaxBinding136,
-    "debugFillProperties": _flaxBinding778,
-    "toStringShallow": _flaxBinding779,
-    "toStringDeep": _flaxBinding780,
-    "toDiagnosticsNode": _flaxBinding781,
+    "debugFillProperties": _flaxBinding782,
+    "toStringShallow": _flaxBinding783,
+    "toStringDeep": _flaxBinding784,
+    "toDiagnosticsNode": _flaxBinding785,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding782, "insetGrouped": _flaxBinding783},
+  constructors: {"": _flaxBinding786, "insetGrouped": _flaxBinding787},
   create: _createCupertinoListSection,
   matches: _isCupertinoListSection,
   setters: [],
@@ -41428,121 +41572,121 @@ const _flaxBinding784 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding785 = FlaxGetter.plain(
+const _flaxBinding789 = FlaxGetter.plain(
   "title",
   flaxWidgetType,
   _CupertinoListTile_title,
 );
-const _flaxBinding786 = FlaxGetter.plain(
+const _flaxBinding790 = FlaxGetter.plain(
   "subtitle",
   _flaxBinding57,
   _CupertinoListTile_subtitle,
 );
-const _flaxBinding787 = FlaxGetter.plain(
+const _flaxBinding791 = FlaxGetter.plain(
   "additionalInfo",
   _flaxBinding57,
   _CupertinoListTile_additionalInfo,
 );
-const _flaxBinding788 = FlaxGetter.plain(
+const _flaxBinding792 = FlaxGetter.plain(
   "leading",
   _flaxBinding57,
   _CupertinoListTile_leading,
 );
-const _flaxBinding789 = FlaxGetter.plain(
+const _flaxBinding793 = FlaxGetter.plain(
   "trailing",
   _flaxBinding57,
   _CupertinoListTile_trailing,
 );
-const _flaxBinding790 = FlaxTypeRef(
+const _flaxBinding794 = FlaxTypeRef(
   "futureOr",
   item: flaxVoidType,
   future: FlaxFutureBinding("void:", _future0Adapt),
 );
-const _flaxBinding791 = FlaxCallbackBinding(
+const _flaxBinding795 = FlaxCallbackBinding(
   [],
-  _flaxBinding790,
-  _callback5,
+  _flaxBinding794,
+  _callback6,
   id: "callback:<>()->futureOr:[void:]",
-  invoke: _callback5Invoke,
-  matches: _callback5Matches,
+  invoke: _callback6Invoke,
+  matches: _callback6Matches,
 );
-const _flaxBinding792 = FlaxTypeRef(
+const _flaxBinding796 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding791,
+  callback: _flaxBinding795,
 );
-const _flaxBinding793 = FlaxGetter.plain(
+const _flaxBinding797 = FlaxGetter.plain(
   "onTap",
-  _flaxBinding792,
+  _flaxBinding796,
   _CupertinoListTile_onTap,
 );
-const _flaxBinding794 = FlaxGetter.plain(
+const _flaxBinding798 = FlaxGetter.plain(
   "backgroundColor",
   _flaxBinding31,
   _CupertinoListTile_backgroundColor,
 );
-const _flaxBinding795 = FlaxGetter.plain(
+const _flaxBinding799 = FlaxGetter.plain(
   "backgroundColorActivated",
   _flaxBinding31,
   _CupertinoListTile_backgroundColorActivated,
 );
-const _flaxBinding796 = FlaxGetter.plain(
+const _flaxBinding800 = FlaxGetter.plain(
   "padding",
   _flaxBinding267,
   _CupertinoListTile_padding,
 );
-const _flaxBinding797 = FlaxGetter.plain(
+const _flaxBinding801 = FlaxGetter.plain(
   "leadingSize",
   flaxDoubleType,
   _CupertinoListTile_leadingSize,
 );
-const _flaxBinding798 = FlaxGetter.plain(
+const _flaxBinding802 = FlaxGetter.plain(
   "leadingToTitle",
   flaxDoubleType,
   _CupertinoListTile_leadingToTitle,
 );
-const _flaxBinding799 = FlaxTypeRef(
+const _flaxBinding803 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
   dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoListTile>>,
 );
-const _flaxBinding800 = FlaxInstanceMethod.plain(
+const _flaxBinding804 = FlaxInstanceMethod.plain(
   _flaxBinding132,
-  _flaxBinding799,
+  _flaxBinding803,
   _CupertinoListTile_createState,
 );
-const _flaxBinding801 = FlaxInstanceMethod.plain(
+const _flaxBinding805 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding134,
   _CupertinoListTile_createElement,
 );
-const _flaxBinding802 = FlaxInstanceMethod.shared(
+const _flaxBinding806 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoListTile_debugFillProperties,
 );
-const _flaxBinding803 = FlaxInstanceMethod.plain(
+const _flaxBinding807 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoListTile_toStringShallow,
 );
-const _flaxBinding804 = FlaxInstanceMethod.plain(
+const _flaxBinding808 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoListTile_toStringDeep,
 );
-const _flaxBinding805 = FlaxInstanceMethod.plain(
+const _flaxBinding809 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoListTile_toDiagnosticsNode,
 );
-const _flaxBinding806 = <FlaxParameter>[
+const _flaxBinding810 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter.required("title", flaxWidgetType),
   FlaxParameter("subtitle", _flaxBinding57, required: false),
   FlaxParameter("additionalInfo", _flaxBinding57, required: false),
   FlaxParameter("leading", _flaxBinding57, required: false),
   FlaxParameter("trailing", _flaxBinding57, required: false),
-  FlaxParameter("onTap", _flaxBinding792, required: false),
+  FlaxParameter("onTap", _flaxBinding796, required: false),
   FlaxParameter("backgroundColor", _flaxBinding31, required: false),
   FlaxParameter("backgroundColorActivated", _flaxBinding31, required: false),
   FlaxParameter("padding", _flaxBinding267, required: false),
@@ -41559,14 +41703,14 @@ const _flaxBinding806 = <FlaxParameter>[
     defaultValue: 16.0,
   ),
 ];
-const _flaxBinding807 = <FlaxParameter>[
+const _flaxBinding811 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter.required("title", flaxWidgetType),
   FlaxParameter("subtitle", _flaxBinding57, required: false),
   FlaxParameter("additionalInfo", _flaxBinding57, required: false),
   FlaxParameter("leading", _flaxBinding57, required: false),
   FlaxParameter("trailing", _flaxBinding57, required: false),
-  FlaxParameter("onTap", _flaxBinding792, required: false),
+  FlaxParameter("onTap", _flaxBinding796, required: false),
   FlaxParameter("backgroundColor", _flaxBinding31, required: false),
   FlaxParameter("backgroundColorActivated", _flaxBinding31, required: false),
   FlaxParameter("padding", _flaxBinding267, required: false),
@@ -41583,33 +41727,33 @@ const _flaxBinding807 = <FlaxParameter>[
     defaultValue: 12.0,
   ),
 ];
-const _flaxBinding808 = FlaxObjectBinding(
+const _flaxBinding812 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoListTile",
   [
-    _flaxBinding785,
-    _flaxBinding786,
-    _flaxBinding787,
-    _flaxBinding788,
     _flaxBinding789,
+    _flaxBinding790,
+    _flaxBinding791,
+    _flaxBinding792,
     _flaxBinding793,
-    _flaxBinding794,
-    _flaxBinding795,
-    _flaxBinding796,
     _flaxBinding797,
     _flaxBinding798,
+    _flaxBinding799,
+    _flaxBinding800,
+    _flaxBinding801,
+    _flaxBinding802,
     _flaxBinding130,
   ],
   {
-    "createState": _flaxBinding800,
-    "createElement": _flaxBinding801,
+    "createState": _flaxBinding804,
+    "createElement": _flaxBinding805,
     "toStringShort": _flaxBinding136,
-    "debugFillProperties": _flaxBinding802,
-    "toStringShallow": _flaxBinding803,
-    "toStringDeep": _flaxBinding804,
-    "toDiagnosticsNode": _flaxBinding805,
+    "debugFillProperties": _flaxBinding806,
+    "toStringShallow": _flaxBinding807,
+    "toStringDeep": _flaxBinding808,
+    "toDiagnosticsNode": _flaxBinding809,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding806, "notched": _flaxBinding807},
+  constructors: {"": _flaxBinding810, "notched": _flaxBinding811},
   create: _createCupertinoListTile,
   matches: _isCupertinoListTile,
   setters: [],
@@ -41621,46 +41765,46 @@ const _flaxBinding808 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding809 = FlaxInstanceMethod.shared(
+const _flaxBinding813 = FlaxInstanceMethod.shared(
   _flaxBinding112,
   _CupertinoListTileChevron_build,
 );
-const _flaxBinding810 = FlaxInstanceMethod.shared(
+const _flaxBinding814 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoListTileChevron_debugFillProperties,
 );
-const _flaxBinding811 = FlaxInstanceMethod.plain(
+const _flaxBinding815 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoListTileChevron_toStringShallow,
 );
-const _flaxBinding812 = FlaxInstanceMethod.plain(
+const _flaxBinding816 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoListTileChevron_toStringDeep,
 );
-const _flaxBinding813 = FlaxInstanceMethod.plain(
+const _flaxBinding817 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoListTileChevron_toDiagnosticsNode,
 );
-const _flaxBinding814 = <FlaxParameter>[
+const _flaxBinding818 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
 ];
-const _flaxBinding815 = FlaxObjectBinding(
+const _flaxBinding819 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoListTileChevron",
   [_flaxBinding130],
   {
-    "build": _flaxBinding809,
+    "build": _flaxBinding813,
     "createElement": _flaxBinding190,
     "toStringShort": _flaxBinding136,
-    "debugFillProperties": _flaxBinding810,
-    "toStringShallow": _flaxBinding811,
-    "toStringDeep": _flaxBinding812,
-    "toDiagnosticsNode": _flaxBinding813,
+    "debugFillProperties": _flaxBinding814,
+    "toStringShallow": _flaxBinding815,
+    "toStringDeep": _flaxBinding816,
+    "toDiagnosticsNode": _flaxBinding817,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding814},
+  constructors: {"": _flaxBinding818},
   create: _createCupertinoListTileChevron,
   matches: _isCupertinoListTileChevron,
   setters: [],
@@ -41672,257 +41816,257 @@ const _flaxBinding815 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding816 = FlaxGetter.plain(
+const _flaxBinding820 = FlaxGetter.plain(
   "datePickerDateOrder",
   _flaxBinding47,
   _CupertinoLocalizations_datePickerDateOrder,
 );
-const _flaxBinding817 = FlaxGetter.plain(
+const _flaxBinding821 = FlaxGetter.plain(
   "datePickerDateTimeOrder",
   _flaxBinding49,
   _CupertinoLocalizations_datePickerDateTimeOrder,
 );
-const _flaxBinding818 = FlaxGetter.plain(
+const _flaxBinding822 = FlaxGetter.plain(
   "anteMeridiemAbbreviation",
   flaxStringType,
   _CupertinoLocalizations_anteMeridiemAbbreviation,
 );
-const _flaxBinding819 = FlaxGetter.plain(
+const _flaxBinding823 = FlaxGetter.plain(
   "postMeridiemAbbreviation",
   flaxStringType,
   _CupertinoLocalizations_postMeridiemAbbreviation,
 );
-const _flaxBinding820 = FlaxGetter.plain(
+const _flaxBinding824 = FlaxGetter.plain(
   "todayLabel",
   flaxStringType,
   _CupertinoLocalizations_todayLabel,
 );
-const _flaxBinding821 = FlaxGetter.plain(
+const _flaxBinding825 = FlaxGetter.plain(
   "alertDialogLabel",
   flaxStringType,
   _CupertinoLocalizations_alertDialogLabel,
 );
-const _flaxBinding822 = FlaxGetter.plain(
+const _flaxBinding826 = FlaxGetter.plain(
   "timerPickerHourLabels",
   _flaxBinding52,
   _CupertinoLocalizations_timerPickerHourLabels,
 );
-const _flaxBinding823 = FlaxGetter.plain(
+const _flaxBinding827 = FlaxGetter.plain(
   "timerPickerMinuteLabels",
   _flaxBinding52,
   _CupertinoLocalizations_timerPickerMinuteLabels,
 );
-const _flaxBinding824 = FlaxGetter.plain(
+const _flaxBinding828 = FlaxGetter.plain(
   "timerPickerSecondLabels",
   _flaxBinding52,
   _CupertinoLocalizations_timerPickerSecondLabels,
 );
-const _flaxBinding825 = FlaxGetter.plain(
+const _flaxBinding829 = FlaxGetter.plain(
   "cutButtonLabel",
   flaxStringType,
   _CupertinoLocalizations_cutButtonLabel,
 );
-const _flaxBinding826 = FlaxGetter.plain(
+const _flaxBinding830 = FlaxGetter.plain(
   "copyButtonLabel",
   flaxStringType,
   _CupertinoLocalizations_copyButtonLabel,
 );
-const _flaxBinding827 = FlaxGetter.plain(
+const _flaxBinding831 = FlaxGetter.plain(
   "pasteButtonLabel",
   flaxStringType,
   _CupertinoLocalizations_pasteButtonLabel,
 );
-const _flaxBinding828 = FlaxGetter.plain(
+const _flaxBinding832 = FlaxGetter.plain(
   "clearButtonLabel",
   flaxStringType,
   _CupertinoLocalizations_clearButtonLabel,
 );
-const _flaxBinding829 = FlaxGetter.plain(
+const _flaxBinding833 = FlaxGetter.plain(
   "noSpellCheckReplacementsLabel",
   flaxStringType,
   _CupertinoLocalizations_noSpellCheckReplacementsLabel,
 );
-const _flaxBinding830 = FlaxGetter.plain(
+const _flaxBinding834 = FlaxGetter.plain(
   "selectAllButtonLabel",
   flaxStringType,
   _CupertinoLocalizations_selectAllButtonLabel,
 );
-const _flaxBinding831 = FlaxGetter.plain(
+const _flaxBinding835 = FlaxGetter.plain(
   "lookUpButtonLabel",
   flaxStringType,
   _CupertinoLocalizations_lookUpButtonLabel,
 );
-const _flaxBinding832 = FlaxGetter.plain(
+const _flaxBinding836 = FlaxGetter.plain(
   "searchWebButtonLabel",
   flaxStringType,
   _CupertinoLocalizations_searchWebButtonLabel,
 );
-const _flaxBinding833 = FlaxGetter.plain(
+const _flaxBinding837 = FlaxGetter.plain(
   "shareButtonLabel",
   flaxStringType,
   _CupertinoLocalizations_shareButtonLabel,
 );
-const _flaxBinding834 = FlaxGetter.plain(
+const _flaxBinding838 = FlaxGetter.plain(
   "searchTextFieldPlaceholderLabel",
   flaxStringType,
   _CupertinoLocalizations_searchTextFieldPlaceholderLabel,
 );
-const _flaxBinding835 = FlaxGetter.plain(
+const _flaxBinding839 = FlaxGetter.plain(
   "modalBarrierDismissLabel",
   flaxStringType,
   _CupertinoLocalizations_modalBarrierDismissLabel,
 );
-const _flaxBinding836 = FlaxGetter.plain(
+const _flaxBinding840 = FlaxGetter.plain(
   "menuDismissLabel",
   flaxStringType,
   _CupertinoLocalizations_menuDismissLabel,
 );
-const _flaxBinding837 = FlaxGetter.plain(
+const _flaxBinding841 = FlaxGetter.plain(
   "cancelButtonLabel",
   flaxStringType,
   _CupertinoLocalizations_cancelButtonLabel,
 );
-const _flaxBinding838 = FlaxGetter.plain(
+const _flaxBinding842 = FlaxGetter.plain(
   "backButtonLabel",
   flaxStringType,
   _CupertinoLocalizations_backButtonLabel,
 );
-const _flaxBinding839 = FlaxGetter.plain(
+const _flaxBinding843 = FlaxGetter.plain(
   "expansionTileExpandedHint",
   flaxStringType,
   _CupertinoLocalizations_expansionTileExpandedHint,
 );
-const _flaxBinding840 = FlaxGetter.plain(
+const _flaxBinding844 = FlaxGetter.plain(
   "expansionTileCollapsedHint",
   flaxStringType,
   _CupertinoLocalizations_expansionTileCollapsedHint,
 );
-const _flaxBinding841 = FlaxGetter.plain(
+const _flaxBinding845 = FlaxGetter.plain(
   "expansionTileExpandedTapHint",
   flaxStringType,
   _CupertinoLocalizations_expansionTileExpandedTapHint,
 );
-const _flaxBinding842 = FlaxGetter.plain(
+const _flaxBinding846 = FlaxGetter.plain(
   "expansionTileCollapsedTapHint",
   flaxStringType,
   _CupertinoLocalizations_expansionTileCollapsedTapHint,
 );
-const _flaxBinding843 = FlaxGetter.plain(
+const _flaxBinding847 = FlaxGetter.plain(
   "expandedHint",
   flaxStringType,
   _CupertinoLocalizations_expandedHint,
 );
-const _flaxBinding844 = FlaxGetter.plain(
+const _flaxBinding848 = FlaxGetter.plain(
   "collapsedHint",
   flaxStringType,
   _CupertinoLocalizations_collapsedHint,
 );
-const _flaxBinding845 = FlaxInstanceMethod.shared(
+const _flaxBinding849 = FlaxInstanceMethod.shared(
   _flaxBinding37,
   _CupertinoLocalizations_datePickerYear,
 );
-const _flaxBinding846 = FlaxInstanceMethod.shared(
+const _flaxBinding850 = FlaxInstanceMethod.shared(
   _flaxBinding38,
   _CupertinoLocalizations_datePickerMonth,
 );
-const _flaxBinding847 = FlaxInstanceMethod.shared(
+const _flaxBinding851 = FlaxInstanceMethod.shared(
   _flaxBinding38,
   _CupertinoLocalizations_datePickerStandaloneMonth,
 );
-const _flaxBinding848 = <FlaxParameter>[
+const _flaxBinding852 = <FlaxParameter>[
   FlaxParameter.required("dayIndex", flaxIntType),
   FlaxParameter("weekDay", flaxNullableIntType, required: false),
 ];
-const _flaxBinding849 = FlaxInstanceMethod.plain(
-  _flaxBinding848,
+const _flaxBinding853 = FlaxInstanceMethod.plain(
+  _flaxBinding852,
   flaxStringType,
   _CupertinoLocalizations_datePickerDayOfMonth,
 );
-const _flaxBinding850 = FlaxInstanceMethod.shared(
+const _flaxBinding854 = FlaxInstanceMethod.shared(
   _flaxBinding39,
   _CupertinoLocalizations_datePickerMediumDate,
 );
-const _flaxBinding851 = FlaxInstanceMethod.shared(
+const _flaxBinding855 = FlaxInstanceMethod.shared(
   _flaxBinding40,
   _CupertinoLocalizations_datePickerHour,
 );
-const _flaxBinding852 = FlaxInstanceMethod.shared(
+const _flaxBinding856 = FlaxInstanceMethod.shared(
   _flaxBinding41,
   _CupertinoLocalizations_datePickerHourSemanticsLabel,
 );
-const _flaxBinding853 = FlaxInstanceMethod.shared(
+const _flaxBinding857 = FlaxInstanceMethod.shared(
   _flaxBinding42,
   _CupertinoLocalizations_datePickerMinute,
 );
-const _flaxBinding854 = FlaxInstanceMethod.shared(
+const _flaxBinding858 = FlaxInstanceMethod.shared(
   _flaxBinding43,
   _CupertinoLocalizations_datePickerMinuteSemanticsLabel,
 );
-const _flaxBinding855 = <FlaxParameter>[
+const _flaxBinding859 = <FlaxParameter>[
   FlaxParameter.required("tabCount", flaxIntType),
   FlaxParameter.required("tabIndex", flaxIntType),
 ];
-const _flaxBinding856 = FlaxInstanceMethod.plain(
-  _flaxBinding855,
+const _flaxBinding860 = FlaxInstanceMethod.plain(
+  _flaxBinding859,
   flaxStringType,
   _CupertinoLocalizations_tabSemanticsLabel,
 );
-const _flaxBinding857 = FlaxInstanceMethod.shared(
+const _flaxBinding861 = FlaxInstanceMethod.shared(
   _flaxBinding40,
   _CupertinoLocalizations_timerPickerHour,
 );
-const _flaxBinding858 = FlaxInstanceMethod.shared(
+const _flaxBinding862 = FlaxInstanceMethod.shared(
   _flaxBinding42,
   _CupertinoLocalizations_timerPickerMinute,
 );
-const _flaxBinding859 = FlaxInstanceMethod.shared(
+const _flaxBinding863 = FlaxInstanceMethod.shared(
   _flaxBinding45,
   _CupertinoLocalizations_timerPickerSecond,
 );
-const _flaxBinding860 = FlaxInstanceMethod.shared(
+const _flaxBinding864 = FlaxInstanceMethod.shared(
   _flaxBinding41,
   _CupertinoLocalizations_timerPickerHourLabel,
 );
-const _flaxBinding861 = FlaxInstanceMethod.shared(
+const _flaxBinding865 = FlaxInstanceMethod.shared(
   _flaxBinding43,
   _CupertinoLocalizations_timerPickerMinuteLabel,
 );
-const _flaxBinding862 = FlaxInstanceMethod.shared(
+const _flaxBinding866 = FlaxInstanceMethod.shared(
   _flaxBinding46,
   _CupertinoLocalizations_timerPickerSecondLabel,
 );
-const _flaxBinding863 = FlaxInstanceMethod.shared(
+const _flaxBinding867 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _FlaxProxyDispatch4_super_get_expansionTileExpandedHint,
 );
-const _flaxBinding864 = FlaxInstanceMethod.shared(
+const _flaxBinding868 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _FlaxProxyDispatch4_super_get_expansionTileCollapsedHint,
 );
-const _flaxBinding865 = FlaxInstanceMethod.shared(
+const _flaxBinding869 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _FlaxProxyDispatch4_super_get_expansionTileExpandedTapHint,
 );
-const _flaxBinding866 = FlaxInstanceMethod.shared(
+const _flaxBinding870 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _FlaxProxyDispatch4_super_get_expansionTileCollapsedTapHint,
 );
-const _flaxBinding867 = FlaxInstanceMethod.shared(
+const _flaxBinding871 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _FlaxProxyDispatch4_super_get_expandedHint,
 );
-const _flaxBinding868 = FlaxInstanceMethod.shared(
+const _flaxBinding872 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _FlaxProxyDispatch4_super_get_collapsedHint,
 );
-const _flaxBinding869 = FlaxProxyMember("datePickerYear", 0, _flaxBinding37);
-const _flaxBinding870 = FlaxProxyMember("datePickerMonth", 0, _flaxBinding38);
-const _flaxBinding871 = FlaxProxyMember(
+const _flaxBinding873 = FlaxProxyMember("datePickerYear", 0, _flaxBinding37);
+const _flaxBinding874 = FlaxProxyMember("datePickerMonth", 0, _flaxBinding38);
+const _flaxBinding875 = FlaxProxyMember(
   "datePickerStandaloneMonth",
   0,
   _flaxBinding38,
 );
-const _flaxBinding872 = FlaxCallbackBinding.signature(
+const _flaxBinding876 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain("dayIndex", flaxIntType),
     FlaxCallbackParameter.plain(
@@ -41934,161 +42078,157 @@ const _flaxBinding872 = FlaxCallbackBinding.signature(
   flaxStringType,
   id: "callback:<>(p:r:dayIndex:int:,p:o:weekDay:int?:)->String:",
 );
-const _flaxBinding873 = FlaxProxyMember(
+const _flaxBinding877 = FlaxProxyMember(
   "datePickerDayOfMonth",
   0,
-  _flaxBinding872,
+  _flaxBinding876,
 );
-const _flaxBinding874 = FlaxProxyMember(
+const _flaxBinding878 = FlaxProxyMember(
   "datePickerMediumDate",
   0,
   _flaxBinding39,
 );
-const _flaxBinding875 = FlaxProxyMember("datePickerHour", 0, _flaxBinding40);
-const _flaxBinding876 = FlaxProxyMember(
+const _flaxBinding879 = FlaxProxyMember("datePickerHour", 0, _flaxBinding40);
+const _flaxBinding880 = FlaxProxyMember(
   "datePickerHourSemanticsLabel",
   0,
   _flaxBinding41,
 );
-const _flaxBinding877 = FlaxProxyMember("datePickerMinute", 0, _flaxBinding42);
-const _flaxBinding878 = FlaxProxyMember(
+const _flaxBinding881 = FlaxProxyMember("datePickerMinute", 0, _flaxBinding42);
+const _flaxBinding882 = FlaxProxyMember(
   "datePickerMinuteSemanticsLabel",
   0,
   _flaxBinding43,
 );
-const _flaxBinding879 = FlaxProxyMember("tabSemanticsLabel", 0, _flaxBinding44);
-const _flaxBinding880 = FlaxProxyMember("timerPickerHour", 0, _flaxBinding40);
-const _flaxBinding881 = FlaxProxyMember("timerPickerMinute", 0, _flaxBinding42);
-const _flaxBinding882 = FlaxProxyMember("timerPickerSecond", 0, _flaxBinding45);
-const _flaxBinding883 = FlaxProxyMember(
+const _flaxBinding883 = FlaxProxyMember("tabSemanticsLabel", 0, _flaxBinding44);
+const _flaxBinding884 = FlaxProxyMember("timerPickerHour", 0, _flaxBinding40);
+const _flaxBinding885 = FlaxProxyMember("timerPickerMinute", 0, _flaxBinding42);
+const _flaxBinding886 = FlaxProxyMember("timerPickerSecond", 0, _flaxBinding45);
+const _flaxBinding887 = FlaxProxyMember(
   "timerPickerHourLabel",
   0,
   _flaxBinding41,
 );
-const _flaxBinding884 = FlaxProxyMember(
+const _flaxBinding888 = FlaxProxyMember(
   "timerPickerMinuteLabel",
   0,
   _flaxBinding43,
 );
-const _flaxBinding885 = FlaxProxyMember(
+const _flaxBinding889 = FlaxProxyMember(
   "timerPickerSecondLabel",
   0,
   _flaxBinding46,
 );
-const _flaxBinding886 = FlaxProxyMember(
+const _flaxBinding890 = FlaxProxyMember(
   "datePickerDateOrder",
   1,
   _flaxBinding48,
 );
-const _flaxBinding887 = FlaxProxyMember(
+const _flaxBinding891 = FlaxProxyMember(
   "datePickerDateTimeOrder",
   1,
   _flaxBinding50,
 );
-const _flaxBinding888 = FlaxProxyMember(
+const _flaxBinding892 = FlaxProxyMember(
   "anteMeridiemAbbreviation",
   1,
   flaxStringCall,
 );
-const _flaxBinding889 = FlaxProxyMember(
+const _flaxBinding893 = FlaxProxyMember(
   "postMeridiemAbbreviation",
   1,
   flaxStringCall,
 );
-const _flaxBinding890 = FlaxProxyMember("todayLabel", 1, flaxStringCall);
-const _flaxBinding891 = FlaxProxyMember("alertDialogLabel", 1, flaxStringCall);
-const _flaxBinding892 = FlaxProxyMember(
+const _flaxBinding894 = FlaxProxyMember("todayLabel", 1, flaxStringCall);
+const _flaxBinding895 = FlaxProxyMember("alertDialogLabel", 1, flaxStringCall);
+const _flaxBinding896 = FlaxProxyMember(
   "timerPickerHourLabels",
   1,
   _flaxBinding53,
 );
-const _flaxBinding893 = FlaxProxyMember(
+const _flaxBinding897 = FlaxProxyMember(
   "timerPickerMinuteLabels",
   1,
   _flaxBinding53,
 );
-const _flaxBinding894 = FlaxProxyMember(
+const _flaxBinding898 = FlaxProxyMember(
   "timerPickerSecondLabels",
   1,
   _flaxBinding53,
 );
-const _flaxBinding895 = FlaxProxyMember("cutButtonLabel", 1, flaxStringCall);
-const _flaxBinding896 = FlaxProxyMember("copyButtonLabel", 1, flaxStringCall);
-const _flaxBinding897 = FlaxProxyMember("pasteButtonLabel", 1, flaxStringCall);
-const _flaxBinding898 = FlaxProxyMember("clearButtonLabel", 1, flaxStringCall);
-const _flaxBinding899 = FlaxProxyMember(
+const _flaxBinding899 = FlaxProxyMember("cutButtonLabel", 1, flaxStringCall);
+const _flaxBinding900 = FlaxProxyMember("copyButtonLabel", 1, flaxStringCall);
+const _flaxBinding901 = FlaxProxyMember("pasteButtonLabel", 1, flaxStringCall);
+const _flaxBinding902 = FlaxProxyMember("clearButtonLabel", 1, flaxStringCall);
+const _flaxBinding903 = FlaxProxyMember(
   "noSpellCheckReplacementsLabel",
   1,
   flaxStringCall,
 );
-const _flaxBinding900 = FlaxProxyMember(
+const _flaxBinding904 = FlaxProxyMember(
   "selectAllButtonLabel",
   1,
   flaxStringCall,
 );
-const _flaxBinding901 = FlaxProxyMember("lookUpButtonLabel", 1, flaxStringCall);
-const _flaxBinding902 = FlaxProxyMember(
+const _flaxBinding905 = FlaxProxyMember("lookUpButtonLabel", 1, flaxStringCall);
+const _flaxBinding906 = FlaxProxyMember(
   "searchWebButtonLabel",
   1,
   flaxStringCall,
 );
-const _flaxBinding903 = FlaxProxyMember("shareButtonLabel", 1, flaxStringCall);
-const _flaxBinding904 = FlaxProxyMember(
+const _flaxBinding907 = FlaxProxyMember("shareButtonLabel", 1, flaxStringCall);
+const _flaxBinding908 = FlaxProxyMember(
   "searchTextFieldPlaceholderLabel",
   1,
   flaxStringCall,
 );
-const _flaxBinding905 = FlaxProxyMember(
+const _flaxBinding909 = FlaxProxyMember(
   "modalBarrierDismissLabel",
   1,
   flaxStringCall,
 );
-const _flaxBinding906 = FlaxProxyMember("menuDismissLabel", 1, flaxStringCall);
-const _flaxBinding907 = FlaxProxyMember("cancelButtonLabel", 1, flaxStringCall);
-const _flaxBinding908 = FlaxProxyMember("backButtonLabel", 1, flaxStringCall);
-const _flaxBinding909 = FlaxProxyMember(
+const _flaxBinding910 = FlaxProxyMember("menuDismissLabel", 1, flaxStringCall);
+const _flaxBinding911 = FlaxProxyMember("cancelButtonLabel", 1, flaxStringCall);
+const _flaxBinding912 = FlaxProxyMember("backButtonLabel", 1, flaxStringCall);
+const _flaxBinding913 = FlaxProxyMember(
   "expansionTileExpandedHint",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding910 = FlaxProxyMember(
+const _flaxBinding914 = FlaxProxyMember(
   "expansionTileCollapsedHint",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding911 = FlaxProxyMember(
+const _flaxBinding915 = FlaxProxyMember(
   "expansionTileExpandedTapHint",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding912 = FlaxProxyMember(
+const _flaxBinding916 = FlaxProxyMember(
   "expansionTileCollapsedTapHint",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding913 = FlaxProxyMember(
+const _flaxBinding917 = FlaxProxyMember(
   "expandedHint",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding914 = FlaxProxyMember(
+const _flaxBinding918 = FlaxProxyMember(
   "collapsedHint",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding915 = FlaxObjectBinding(
+const _flaxBinding919 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoLocalizations",
   [
-    _flaxBinding816,
-    _flaxBinding817,
-    _flaxBinding818,
-    _flaxBinding819,
     _flaxBinding820,
     _flaxBinding821,
     _flaxBinding822,
@@ -42114,30 +42254,34 @@ const _flaxBinding915 = FlaxObjectBinding(
     _flaxBinding842,
     _flaxBinding843,
     _flaxBinding844,
+    _flaxBinding845,
+    _flaxBinding846,
+    _flaxBinding847,
+    _flaxBinding848,
   ],
   {
-    "datePickerYear": _flaxBinding845,
-    "datePickerMonth": _flaxBinding846,
-    "datePickerStandaloneMonth": _flaxBinding847,
-    "datePickerDayOfMonth": _flaxBinding849,
-    "datePickerMediumDate": _flaxBinding850,
-    "datePickerHour": _flaxBinding851,
-    "datePickerHourSemanticsLabel": _flaxBinding852,
-    "datePickerMinute": _flaxBinding853,
-    "datePickerMinuteSemanticsLabel": _flaxBinding854,
-    "tabSemanticsLabel": _flaxBinding856,
-    "timerPickerHour": _flaxBinding857,
-    "timerPickerMinute": _flaxBinding858,
-    "timerPickerSecond": _flaxBinding859,
-    "timerPickerHourLabel": _flaxBinding860,
-    "timerPickerMinuteLabel": _flaxBinding861,
-    "timerPickerSecondLabel": _flaxBinding862,
-    "@super:get:expansionTileExpandedHint": _flaxBinding863,
-    "@super:get:expansionTileCollapsedHint": _flaxBinding864,
-    "@super:get:expansionTileExpandedTapHint": _flaxBinding865,
-    "@super:get:expansionTileCollapsedTapHint": _flaxBinding866,
-    "@super:get:expandedHint": _flaxBinding867,
-    "@super:get:collapsedHint": _flaxBinding868,
+    "datePickerYear": _flaxBinding849,
+    "datePickerMonth": _flaxBinding850,
+    "datePickerStandaloneMonth": _flaxBinding851,
+    "datePickerDayOfMonth": _flaxBinding853,
+    "datePickerMediumDate": _flaxBinding854,
+    "datePickerHour": _flaxBinding855,
+    "datePickerHourSemanticsLabel": _flaxBinding856,
+    "datePickerMinute": _flaxBinding857,
+    "datePickerMinuteSemanticsLabel": _flaxBinding858,
+    "tabSemanticsLabel": _flaxBinding860,
+    "timerPickerHour": _flaxBinding861,
+    "timerPickerMinute": _flaxBinding862,
+    "timerPickerSecond": _flaxBinding863,
+    "timerPickerHourLabel": _flaxBinding864,
+    "timerPickerMinuteLabel": _flaxBinding865,
+    "timerPickerSecondLabel": _flaxBinding866,
+    "@super:get:expansionTileExpandedHint": _flaxBinding867,
+    "@super:get:expansionTileCollapsedHint": _flaxBinding868,
+    "@super:get:expansionTileExpandedTapHint": _flaxBinding869,
+    "@super:get:expansionTileCollapsedTapHint": _flaxBinding870,
+    "@super:get:expandedHint": _flaxBinding871,
+    "@super:get:collapsedHint": _flaxBinding872,
   },
   constructors: {"@implementation": _flaxBinding132},
   create: _createCupertinoLocalizations,
@@ -42145,13 +42289,9 @@ const _flaxBinding915 = FlaxObjectBinding(
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding869,
-    _flaxBinding870,
-    _flaxBinding871,
     _flaxBinding873,
     _flaxBinding874,
     _flaxBinding875,
-    _flaxBinding876,
     _flaxBinding877,
     _flaxBinding878,
     _flaxBinding879,
@@ -42190,81 +42330,85 @@ const _flaxBinding915 = FlaxObjectBinding(
     _flaxBinding912,
     _flaxBinding913,
     _flaxBinding914,
+    _flaxBinding915,
+    _flaxBinding916,
+    _flaxBinding917,
+    _flaxBinding918,
   ]),
 );
-const _flaxBinding916 = FlaxGetter.plain(
+const _flaxBinding920 = FlaxGetter.plain(
   "shadows",
   _flaxBinding103,
   _CupertinoMagnifier_shadows,
 );
-const _flaxBinding917 = FlaxGetter.plain(
+const _flaxBinding921 = FlaxGetter.plain(
   "clipBehavior",
   flaxClipType,
   _CupertinoMagnifier_clipBehavior,
 );
-const _flaxBinding918 = FlaxGetter.plain(
+const _flaxBinding922 = FlaxGetter.plain(
   "borderSide",
   flaxBorderSideType,
   _CupertinoMagnifier_borderSide,
 );
-const _flaxBinding919 = FlaxGetter.plain(
+const _flaxBinding923 = FlaxGetter.plain(
   "size",
   flaxSizeType,
   _CupertinoMagnifier_size,
 );
-const _flaxBinding920 = FlaxTypeRef(
+const _flaxBinding924 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:BorderRadius",
 );
-const _flaxBinding921 = FlaxGetter.plain(
+const _flaxBinding925 = FlaxGetter.plain(
   "borderRadius",
-  _flaxBinding920,
+  _flaxBinding924,
   _CupertinoMagnifier_borderRadius,
 );
-const _flaxBinding922 = FlaxGetter.plain(
+const _flaxBinding926 = FlaxGetter.plain(
   "inOutAnimation",
   _flaxBinding469,
   _CupertinoMagnifier_inOutAnimation,
 );
-const _flaxBinding923 = FlaxGetter.plain(
+const _flaxBinding927 = FlaxGetter.plain(
   "additionalFocalPointOffset",
   flaxOffsetType,
   _CupertinoMagnifier_additionalFocalPointOffset,
 );
-const _flaxBinding924 = FlaxGetter.plain(
+const _flaxBinding928 = FlaxGetter.plain(
   "magnificationScale",
   flaxDoubleType,
   _CupertinoMagnifier_magnificationScale,
 );
-const _flaxBinding925 = FlaxInstanceMethod.shared(
+const _flaxBinding929 = FlaxInstanceMethod.shared(
   _flaxBinding112,
   _CupertinoMagnifier_build,
 );
-const _flaxBinding926 = FlaxInstanceMethod.shared(
+const _flaxBinding930 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoMagnifier_debugFillProperties,
 );
-const _flaxBinding927 = FlaxInstanceMethod.plain(
+const _flaxBinding931 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoMagnifier_toStringShallow,
 );
-const _flaxBinding928 = FlaxInstanceMethod.plain(
+const _flaxBinding932 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoMagnifier_toStringDeep,
 );
-const _flaxBinding929 = FlaxInstanceMethod.plain(
+const _flaxBinding933 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoMagnifier_toDiagnosticsNode,
 );
-const _flaxBinding930 = <FlaxParameter>[
+const _flaxBinding934 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter("size", flaxSizeType, required: false, omitWhenAbsent: true),
   FlaxParameter(
     "borderRadius",
-    _flaxBinding920,
+    _flaxBinding924,
     required: false,
     omitWhenAbsent: true,
   ),
@@ -42300,30 +42444,30 @@ const _flaxBinding930 = <FlaxParameter>[
     defaultValue: 1.0,
   ),
 ];
-const _flaxBinding931 = FlaxObjectBinding(
+const _flaxBinding935 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoMagnifier",
   [
-    _flaxBinding916,
-    _flaxBinding917,
-    _flaxBinding918,
-    _flaxBinding919,
+    _flaxBinding920,
     _flaxBinding921,
     _flaxBinding922,
     _flaxBinding923,
-    _flaxBinding924,
+    _flaxBinding925,
+    _flaxBinding926,
+    _flaxBinding927,
+    _flaxBinding928,
     _flaxBinding130,
   ],
   {
-    "build": _flaxBinding925,
+    "build": _flaxBinding929,
     "createElement": _flaxBinding190,
     "toStringShort": _flaxBinding136,
-    "debugFillProperties": _flaxBinding926,
-    "toStringShallow": _flaxBinding927,
-    "toStringDeep": _flaxBinding928,
-    "toDiagnosticsNode": _flaxBinding929,
+    "debugFillProperties": _flaxBinding930,
+    "toStringShallow": _flaxBinding931,
+    "toStringDeep": _flaxBinding932,
+    "toDiagnosticsNode": _flaxBinding933,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding930},
+  constructors: {"": _flaxBinding934},
   create: _createCupertinoMagnifier,
   matches: _isCupertinoMagnifier,
   setters: [],
@@ -42335,170 +42479,170 @@ const _flaxBinding931 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding932 = FlaxTypeRef(
+const _flaxBinding936 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:MenuController",
   nullable: true,
 );
-const _flaxBinding933 = FlaxGetter.plain(
+const _flaxBinding937 = FlaxGetter.plain(
   "controller",
-  _flaxBinding932,
+  _flaxBinding936,
   _CupertinoMenuAnchor_controller,
 );
-const _flaxBinding934 = FlaxGetter.plain(
+const _flaxBinding938 = FlaxGetter.plain(
   "onOpen",
   flaxVoidNullableCallbackType,
   _CupertinoMenuAnchor_onOpen,
 );
-const _flaxBinding935 = FlaxGetter.plain(
+const _flaxBinding939 = FlaxGetter.plain(
   "onClose",
   flaxVoidNullableCallbackType,
   _CupertinoMenuAnchor_onClose,
 );
-const _flaxBinding936 = FlaxTypeRef(
+const _flaxBinding940 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_animation#type:AnimationStatus",
 );
-const _flaxBinding937 = FlaxCallbackBinding(
-  [FlaxCallbackParameter.plain("status", _flaxBinding936)],
+const _flaxBinding941 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("status", _flaxBinding940)],
   flaxVoidType,
   FlaxCallbackAdapters.wrapVoid1<api11.AnimationStatus>,
   id: "callback:<>(p:r:status:enum:flax.core/sdk_animation#type:AnimationStatus)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<api11.AnimationStatus>,
   matches: FlaxCallbackAdapters.matchesVoid1<api11.AnimationStatus>,
 );
-const _flaxBinding938 = FlaxTypeRef(
+const _flaxBinding942 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding937,
+  callback: _flaxBinding941,
 );
-const _flaxBinding939 = FlaxGetter.plain(
+const _flaxBinding943 = FlaxGetter.plain(
   "onAnimationStatusChanged",
-  _flaxBinding938,
+  _flaxBinding942,
   _CupertinoMenuAnchor_onAnimationStatusChanged,
 );
-const _flaxBinding940 = FlaxTypeRef(
+const _flaxBinding944 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:BoxConstraints",
   nullable: true,
 );
-const _flaxBinding941 = FlaxGetter.plain(
+const _flaxBinding945 = FlaxGetter.plain(
   "constraints",
-  _flaxBinding940,
+  _flaxBinding944,
   _CupertinoMenuAnchor_constraints,
 );
-const _flaxBinding942 = FlaxGetter.plain(
+const _flaxBinding946 = FlaxGetter.plain(
   "constrainCrossAxis",
   flaxBoolType,
   _CupertinoMenuAnchor_constrainCrossAxis,
 );
-const _flaxBinding943 = FlaxGetter.plain(
+const _flaxBinding947 = FlaxGetter.plain(
   "consumeOutsideTaps",
   flaxBoolType,
   _CupertinoMenuAnchor_consumeOutsideTaps,
 );
-const _flaxBinding944 = FlaxGetter.plain(
+const _flaxBinding948 = FlaxGetter.plain(
   "enableSwipe",
   flaxBoolType,
   _CupertinoMenuAnchor_enableSwipe,
 );
-const _flaxBinding945 = FlaxGetter.plain(
+const _flaxBinding949 = FlaxGetter.plain(
   "enableLongPressToOpen",
   flaxBoolType,
   _CupertinoMenuAnchor_enableLongPressToOpen,
 );
-const _flaxBinding946 = FlaxGetter.plain(
+const _flaxBinding950 = FlaxGetter.plain(
   "useRootOverlay",
   flaxBoolType,
   _CupertinoMenuAnchor_useRootOverlay,
 );
-const _flaxBinding947 = FlaxGetter.plain(
+const _flaxBinding951 = FlaxGetter.plain(
   "overlayPadding",
-  _flaxBinding692,
+  _flaxBinding696,
   _CupertinoMenuAnchor_overlayPadding,
 );
-const _flaxBinding948 = FlaxGetter.plain(
+const _flaxBinding952 = FlaxGetter.plain(
   "menuChildren",
   _flaxBinding206,
   _CupertinoMenuAnchor_menuChildren,
 );
-const _flaxBinding949 = FlaxTypeRef(
+const _flaxBinding953 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:MenuController",
 );
-const _flaxBinding950 = FlaxCallbackBinding(
+const _flaxBinding954 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter.plain("context", _flaxBinding2),
-    FlaxCallbackParameter.plain("controller", _flaxBinding949),
+    FlaxCallbackParameter.plain("controller", _flaxBinding953),
     FlaxCallbackParameter.plain("child", _flaxBinding57),
   ],
   flaxWidgetType,
-  _callback6,
+  _callback7,
   id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:controller:object:flax.core/sdk_widgets#type:MenuController,p:r:child:widget?:)->widget:",
-  invoke: _callback6Invoke,
-  matches: _callback6Matches,
+  invoke: _callback7Invoke,
+  matches: _callback7Matches,
 );
-const _flaxBinding951 = FlaxTypeRef(
+const _flaxBinding955 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding950,
+  callback: _flaxBinding954,
 );
-const _flaxBinding952 = FlaxGetter.plain(
+const _flaxBinding956 = FlaxGetter.plain(
   "builder",
-  _flaxBinding951,
+  _flaxBinding955,
   _CupertinoMenuAnchor_builder,
 );
-const _flaxBinding953 = FlaxGetter.plain(
+const _flaxBinding957 = FlaxGetter.plain(
   "child",
   _flaxBinding57,
   _CupertinoMenuAnchor_child,
 );
-const _flaxBinding954 = FlaxGetter.plain(
+const _flaxBinding958 = FlaxGetter.plain(
   "childFocusNode",
   _flaxBinding154,
   _CupertinoMenuAnchor_childFocusNode,
 );
-const _flaxBinding955 = FlaxTypeRef(
+const _flaxBinding959 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
   dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoMenuAnchor>>,
 );
-const _flaxBinding956 = FlaxInstanceMethod.plain(
+const _flaxBinding960 = FlaxInstanceMethod.plain(
   _flaxBinding132,
-  _flaxBinding955,
+  _flaxBinding959,
   _CupertinoMenuAnchor_createState,
 );
-const _flaxBinding957 = FlaxInstanceMethod.shared(
+const _flaxBinding961 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoMenuAnchor_debugFillProperties,
 );
-const _flaxBinding958 = FlaxInstanceMethod.plain(
+const _flaxBinding962 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding134,
   _CupertinoMenuAnchor_createElement,
 );
-const _flaxBinding959 = FlaxInstanceMethod.plain(
+const _flaxBinding963 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoMenuAnchor_toStringShallow,
 );
-const _flaxBinding960 = FlaxInstanceMethod.plain(
+const _flaxBinding964 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoMenuAnchor_toStringDeep,
 );
-const _flaxBinding961 = FlaxInstanceMethod.plain(
+const _flaxBinding965 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoMenuAnchor_toDiagnosticsNode,
 );
-const _flaxBinding962 = <FlaxParameter>[
+const _flaxBinding966 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
-  FlaxParameter("controller", _flaxBinding932, required: false),
+  FlaxParameter("controller", _flaxBinding936, required: false),
   FlaxParameter("onOpen", flaxVoidNullableCallbackType, required: false),
   FlaxParameter("onClose", flaxVoidNullableCallbackType, required: false),
-  FlaxParameter("onAnimationStatusChanged", _flaxBinding938, required: false),
-  FlaxParameter("constraints", _flaxBinding940, required: false),
+  FlaxParameter("onAnimationStatusChanged", _flaxBinding942, required: false),
+  FlaxParameter("constraints", _flaxBinding944, required: false),
   FlaxParameter(
     "constrainCrossAxis",
     flaxBoolType,
@@ -42531,46 +42675,46 @@ const _flaxBinding962 = <FlaxParameter>[
   ),
   FlaxParameter(
     "overlayPadding",
-    _flaxBinding692,
+    _flaxBinding696,
     required: false,
     omitWhenAbsent: true,
   ),
   FlaxParameter.required("menuChildren", _flaxBinding206),
-  FlaxParameter("builder", _flaxBinding951, required: false),
+  FlaxParameter("builder", _flaxBinding955, required: false),
   FlaxParameter("child", _flaxBinding57, required: false),
   FlaxParameter("childFocusNode", _flaxBinding154, required: false),
 ];
-const _flaxBinding963 = FlaxObjectBinding(
+const _flaxBinding967 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoMenuAnchor",
   [
-    _flaxBinding933,
-    _flaxBinding934,
-    _flaxBinding935,
+    _flaxBinding937,
+    _flaxBinding938,
     _flaxBinding939,
-    _flaxBinding941,
-    _flaxBinding942,
     _flaxBinding943,
-    _flaxBinding944,
     _flaxBinding945,
     _flaxBinding946,
     _flaxBinding947,
     _flaxBinding948,
+    _flaxBinding949,
+    _flaxBinding950,
+    _flaxBinding951,
     _flaxBinding952,
-    _flaxBinding953,
-    _flaxBinding954,
+    _flaxBinding956,
+    _flaxBinding957,
+    _flaxBinding958,
     _flaxBinding130,
   ],
   {
-    "createState": _flaxBinding956,
+    "createState": _flaxBinding960,
     "debugDescribeChildren": _flaxBinding146,
-    "debugFillProperties": _flaxBinding957,
-    "createElement": _flaxBinding958,
+    "debugFillProperties": _flaxBinding961,
+    "createElement": _flaxBinding962,
     "toStringShort": _flaxBinding136,
-    "toStringShallow": _flaxBinding959,
-    "toStringDeep": _flaxBinding960,
-    "toDiagnosticsNode": _flaxBinding961,
+    "toStringShallow": _flaxBinding963,
+    "toStringDeep": _flaxBinding964,
+    "toDiagnosticsNode": _flaxBinding965,
   },
-  constructors: {"": _flaxBinding962},
+  constructors: {"": _flaxBinding966},
   create: _createCupertinoMenuAnchor,
   matches: _isCupertinoMenuAnchor,
   setters: [],
@@ -42582,62 +42726,62 @@ const _flaxBinding963 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding964 = FlaxGetter.plain(
+const _flaxBinding968 = FlaxGetter.plain(
   "color",
   flaxColorType,
   _CupertinoMenuDivider_color,
 );
-const _flaxBinding965 = FlaxGetter.plain(
+const _flaxBinding969 = FlaxGetter.plain(
   "isDivider",
   flaxBoolType,
   _CupertinoMenuEntry_isDivider,
 );
-const _flaxBinding966 = FlaxInstanceMethod.shared(
+const _flaxBinding970 = FlaxInstanceMethod.shared(
   _flaxBinding54,
   _CupertinoMenuEntry_hasLeading,
 );
-const _flaxBinding967 = FlaxInstanceMethod.shared(
+const _flaxBinding971 = FlaxInstanceMethod.shared(
   _flaxBinding112,
   _CupertinoMenuDivider_build,
 );
-const _flaxBinding968 = FlaxInstanceMethod.shared(
+const _flaxBinding972 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoMenuDivider_debugFillProperties,
 );
-const _flaxBinding969 = FlaxInstanceMethod.plain(
+const _flaxBinding973 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoMenuDivider_toStringShallow,
 );
-const _flaxBinding970 = FlaxInstanceMethod.plain(
+const _flaxBinding974 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoMenuDivider_toStringDeep,
 );
-const _flaxBinding971 = FlaxInstanceMethod.plain(
+const _flaxBinding975 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoMenuDivider_toDiagnosticsNode,
 );
-const _flaxBinding972 = <FlaxParameter>[
+const _flaxBinding976 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter("color", flaxColorType, required: false, omitWhenAbsent: true),
 ];
-const _flaxBinding973 = FlaxObjectBinding(
+const _flaxBinding977 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoMenuDivider",
-  [_flaxBinding964, _flaxBinding965, _flaxBinding130],
+  [_flaxBinding968, _flaxBinding969, _flaxBinding130],
   {
-    "hasLeading": _flaxBinding966,
-    "build": _flaxBinding967,
+    "hasLeading": _flaxBinding970,
+    "build": _flaxBinding971,
     "createElement": _flaxBinding190,
     "toStringShort": _flaxBinding136,
-    "debugFillProperties": _flaxBinding968,
-    "toStringShallow": _flaxBinding969,
-    "toStringDeep": _flaxBinding970,
-    "toDiagnosticsNode": _flaxBinding971,
+    "debugFillProperties": _flaxBinding972,
+    "toStringShallow": _flaxBinding973,
+    "toStringDeep": _flaxBinding974,
+    "toDiagnosticsNode": _flaxBinding975,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding972},
+  constructors: {"": _flaxBinding976},
   create: _createCupertinoMenuDivider,
   matches: _isCupertinoMenuDivider,
   setters: [],
@@ -42650,81 +42794,81 @@ const _flaxBinding973 = FlaxObjectBinding(
     "flax.cupertino/cupertino#type:CupertinoMenuEntry",
   ],
 );
-const _flaxBinding974 = FlaxProxyMember("hasLeading", 0, _flaxBinding54);
-const _flaxBinding975 = FlaxProxyMember("isDivider", 1, flaxBoolCall);
-const _flaxBinding976 = FlaxObjectBinding(
+const _flaxBinding978 = FlaxProxyMember("hasLeading", 0, _flaxBinding54);
+const _flaxBinding979 = FlaxProxyMember("isDivider", 1, flaxBoolCall);
+const _flaxBinding980 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoMenuEntry",
-  [_flaxBinding965],
-  {"hasLeading": _flaxBinding966},
+  [_flaxBinding969],
+  {"hasLeading": _flaxBinding970},
   constructors: {"@implementation": _flaxBinding132},
   create: _createCupertinoMenuEntry,
   matches: _isCupertinoMenuEntry,
   setters: [],
   supertypes: ["dart:core::Object"],
-  proxy: FlaxProxyBinding([_flaxBinding974, _flaxBinding975]),
+  proxy: FlaxProxyBinding([_flaxBinding978, _flaxBinding979]),
 );
-const _flaxBinding977 = FlaxGetter.plain(
+const _flaxBinding981 = FlaxGetter.plain(
   "child",
   flaxWidgetType,
   _CupertinoMenuItem_child,
 );
-const _flaxBinding978 = FlaxGetter.plain(
+const _flaxBinding982 = FlaxGetter.plain(
   "padding",
   _flaxBinding267,
   _CupertinoMenuItem_padding,
 );
-const _flaxBinding979 = FlaxGetter.plain(
+const _flaxBinding983 = FlaxGetter.plain(
   "leading",
   _flaxBinding57,
   _CupertinoMenuItem_leading,
 );
-const _flaxBinding980 = FlaxGetter.plain(
+const _flaxBinding984 = FlaxGetter.plain(
   "trailing",
   _flaxBinding57,
   _CupertinoMenuItem_trailing,
 );
-const _flaxBinding981 = FlaxGetter.plain(
+const _flaxBinding985 = FlaxGetter.plain(
   "subtitle",
   _flaxBinding57,
   _CupertinoMenuItem_subtitle,
 );
-const _flaxBinding982 = FlaxGetter.plain(
+const _flaxBinding986 = FlaxGetter.plain(
   "onPressed",
   flaxVoidNullableCallbackType,
   _CupertinoMenuItem_onPressed,
 );
-const _flaxBinding983 = FlaxGetter.plain(
+const _flaxBinding987 = FlaxGetter.plain(
   "onHover",
   flaxBoolChangedNullableType,
   _CupertinoMenuItem_onHover,
 );
-const _flaxBinding984 = FlaxGetter.plain(
+const _flaxBinding988 = FlaxGetter.plain(
   "onFocusChange",
   flaxBoolChangedNullableType,
   _CupertinoMenuItem_onFocusChange,
 );
-const _flaxBinding985 = FlaxGetter.plain(
+const _flaxBinding989 = FlaxGetter.plain(
   "requestFocusOnHover",
   flaxBoolType,
   _CupertinoMenuItem_requestFocusOnHover,
 );
-const _flaxBinding986 = FlaxGetter.plain(
+const _flaxBinding990 = FlaxGetter.plain(
   "autofocus",
   flaxBoolType,
   _CupertinoMenuItem_autofocus,
 );
-const _flaxBinding987 = FlaxGetter.plain(
+const _flaxBinding991 = FlaxGetter.plain(
   "focusNode",
   _flaxBinding154,
   _CupertinoMenuItem_focusNode,
 );
-const _flaxBinding988 = FlaxTypeRef(
+const _flaxBinding992 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:BoxDecoration",
 );
-const _flaxBinding989 = FlaxCallbackBinding(
+const _flaxBinding993 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("states", _flaxBinding276)],
-  _flaxBinding988,
+  _flaxBinding992,
   FlaxCallbackAdapters.wrap1<Set<api10.WidgetState>, api12.BoxDecoration>,
   id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->object:flax.core/flutter#type:BoxDecoration",
   invoke:
@@ -42732,8 +42876,8 @@ const _flaxBinding989 = FlaxCallbackBinding(
   matches: FlaxCallbackAdapters
       .matches1<Set<api10.WidgetState>, api12.BoxDecoration>,
 );
-const _flaxBinding990 = FlaxTypeRef("callback", callback: _flaxBinding989);
-const _flaxBinding991 = FlaxTypeRef(
+const _flaxBinding994 = FlaxTypeRef("callback", callback: _flaxBinding993);
+const _flaxBinding995 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:WidgetStateProperty",
   dartType:
@@ -42742,23 +42886,23 @@ const _flaxBinding991 = FlaxTypeRef(
   deferredFactories: {
     "resolveWith": FlaxDeferredFactoryBinding(
       "object:flax.core/flutter#type:WidgetStateProperty<Object?><object:flax.core/flutter#type:BoxDecoration>",
-      [FlaxParameter.required("callback", _flaxBinding990)],
+      [FlaxParameter.required("callback", _flaxBinding994)],
       _deferred1,
     ),
   },
 );
-const _flaxBinding992 = FlaxGetter.plain(
+const _flaxBinding996 = FlaxGetter.plain(
   "decoration",
-  _flaxBinding991,
+  _flaxBinding995,
   _CupertinoMenuItem_decoration,
 );
-const _flaxBinding993 = FlaxTypeRef(
+const _flaxBinding997 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:MouseCursor",
 );
-const _flaxBinding994 = FlaxCallbackBinding(
+const _flaxBinding998 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("states", _flaxBinding276)],
-  _flaxBinding993,
+  _flaxBinding997,
   FlaxCallbackAdapters.wrap1<Set<api10.WidgetState>, api7.MouseCursor>,
   id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->object:flax.core/flutter#type:MouseCursor",
   invoke:
@@ -42766,8 +42910,8 @@ const _flaxBinding994 = FlaxCallbackBinding(
   matches:
       FlaxCallbackAdapters.matches1<Set<api10.WidgetState>, api7.MouseCursor>,
 );
-const _flaxBinding995 = FlaxTypeRef("callback", callback: _flaxBinding994);
-const _flaxBinding996 = FlaxTypeRef(
+const _flaxBinding999 = FlaxTypeRef("callback", callback: _flaxBinding998);
+const _flaxBinding1000 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:WidgetStateProperty",
   dartType: FlaxDartTypes.typeOf<api10.WidgetStateProperty<api7.MouseCursor>?>,
@@ -42775,100 +42919,100 @@ const _flaxBinding996 = FlaxTypeRef(
   deferredFactories: {
     "resolveWith": FlaxDeferredFactoryBinding(
       "object:flax.core/flutter#type:WidgetStateProperty<Object?><object:flax.core/flutter#type:MouseCursor>",
-      [FlaxParameter.required("callback", _flaxBinding995)],
+      [FlaxParameter.required("callback", _flaxBinding999)],
       _deferred2,
     ),
   },
 );
-const _flaxBinding997 = FlaxGetter.plain(
+const _flaxBinding1001 = FlaxGetter.plain(
   "mouseCursor",
-  _flaxBinding996,
+  _flaxBinding1000,
   _CupertinoMenuItem_mouseCursor,
 );
-const _flaxBinding998 = FlaxTypeRef(
+const _flaxBinding1002 = FlaxTypeRef(
   "enum",
   id: "flax.core/flutter#type:HitTestBehavior",
 );
-const _flaxBinding999 = FlaxGetter.plain(
+const _flaxBinding1003 = FlaxGetter.plain(
   "behavior",
-  _flaxBinding998,
+  _flaxBinding1002,
   _CupertinoMenuItem_behavior,
 );
-const _flaxBinding1000 = FlaxGetter.plain(
+const _flaxBinding1004 = FlaxGetter.plain(
   "requestCloseOnActivate",
   flaxBoolType,
   _CupertinoMenuItem_requestCloseOnActivate,
 );
-const _flaxBinding1001 = FlaxGetter.plain(
+const _flaxBinding1005 = FlaxGetter.plain(
   "isDestructiveAction",
   flaxBoolType,
   _CupertinoMenuItem_isDestructiveAction,
 );
-const _flaxBinding1002 = FlaxGetter.plain(
+const _flaxBinding1006 = FlaxGetter.plain(
   "leadingWidth",
   flaxNullableDoubleType,
   _CupertinoMenuItem_leadingWidth,
 );
-const _flaxBinding1003 = FlaxGetter.plain(
+const _flaxBinding1007 = FlaxGetter.plain(
   "trailingWidth",
   flaxNullableDoubleType,
   _CupertinoMenuItem_trailingWidth,
 );
-const _flaxBinding1004 = FlaxTypeRef(
+const _flaxBinding1008 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:AlignmentGeometry",
   nullable: true,
 );
-const _flaxBinding1005 = FlaxGetter.plain(
+const _flaxBinding1009 = FlaxGetter.plain(
   "leadingMidpointAlignment",
-  _flaxBinding1004,
+  _flaxBinding1008,
   _CupertinoMenuItem_leadingMidpointAlignment,
 );
-const _flaxBinding1006 = FlaxGetter.plain(
+const _flaxBinding1010 = FlaxGetter.plain(
   "trailingMidpointAlignment",
-  _flaxBinding1004,
+  _flaxBinding1008,
   _CupertinoMenuItem_trailingMidpointAlignment,
 );
-const _flaxBinding1007 = FlaxGetter.plain(
+const _flaxBinding1011 = FlaxGetter.plain(
   "constraints",
-  _flaxBinding940,
+  _flaxBinding944,
   _CupertinoMenuItem_constraints,
 );
-const _flaxBinding1008 = FlaxInstanceMethod.shared(
+const _flaxBinding1012 = FlaxInstanceMethod.shared(
   _flaxBinding112,
   _CupertinoMenuItem_build,
 );
-const _flaxBinding1009 = FlaxInstanceMethod.shared(
+const _flaxBinding1013 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoMenuItem_debugFillProperties,
 );
-const _flaxBinding1010 = FlaxInstanceMethod.plain(
+const _flaxBinding1014 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoMenuItem_toStringShallow,
 );
-const _flaxBinding1011 = FlaxInstanceMethod.plain(
+const _flaxBinding1015 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoMenuItem_toStringDeep,
 );
-const _flaxBinding1012 = FlaxInstanceMethod.plain(
+const _flaxBinding1016 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoMenuItem_toDiagnosticsNode,
 );
-const _flaxBinding1013 = <FlaxParameter>[
+const _flaxBinding1017 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter.required("child", flaxWidgetType),
   FlaxParameter("subtitle", _flaxBinding57, required: false),
   FlaxParameter("leading", _flaxBinding57, required: false),
   FlaxParameter("leadingWidth", flaxNullableDoubleType, required: false),
-  FlaxParameter("leadingMidpointAlignment", _flaxBinding1004, required: false),
+  FlaxParameter("leadingMidpointAlignment", _flaxBinding1008, required: false),
   FlaxParameter("trailing", _flaxBinding57, required: false),
   FlaxParameter("trailingWidth", flaxNullableDoubleType, required: false),
-  FlaxParameter("trailingMidpointAlignment", _flaxBinding1004, required: false),
+  FlaxParameter("trailingMidpointAlignment", _flaxBinding1008, required: false),
   FlaxParameter("padding", _flaxBinding267, required: false),
-  FlaxParameter("constraints", _flaxBinding940, required: false),
+  FlaxParameter("constraints", _flaxBinding944, required: false),
   FlaxParameter(
     "autofocus",
     flaxBoolType,
@@ -42879,11 +43023,11 @@ const _flaxBinding1013 = <FlaxParameter>[
   FlaxParameter("onFocusChange", flaxBoolChangedNullableType, required: false),
   FlaxParameter("onHover", flaxBoolChangedNullableType, required: false),
   FlaxParameter("onPressed", flaxVoidNullableCallbackType, required: false),
-  FlaxParameter("decoration", _flaxBinding991, required: false),
-  FlaxParameter("mouseCursor", _flaxBinding996, required: false),
+  FlaxParameter("decoration", _flaxBinding995, required: false),
+  FlaxParameter("mouseCursor", _flaxBinding1000, required: false),
   FlaxParameter(
     "behavior",
-    _flaxBinding998,
+    _flaxBinding1002,
     required: false,
     defaultValue: api.HitTestBehavior.opaque,
   ),
@@ -42906,13 +43050,9 @@ const _flaxBinding1013 = <FlaxParameter>[
     defaultValue: false,
   ),
 ];
-const _flaxBinding1014 = FlaxObjectBinding(
+const _flaxBinding1018 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoMenuItem",
   [
-    _flaxBinding977,
-    _flaxBinding978,
-    _flaxBinding979,
-    _flaxBinding980,
     _flaxBinding981,
     _flaxBinding982,
     _flaxBinding983,
@@ -42920,31 +43060,35 @@ const _flaxBinding1014 = FlaxObjectBinding(
     _flaxBinding985,
     _flaxBinding986,
     _flaxBinding987,
-    _flaxBinding992,
-    _flaxBinding997,
-    _flaxBinding999,
-    _flaxBinding1000,
+    _flaxBinding988,
+    _flaxBinding989,
+    _flaxBinding990,
+    _flaxBinding991,
+    _flaxBinding996,
     _flaxBinding1001,
-    _flaxBinding1002,
     _flaxBinding1003,
+    _flaxBinding1004,
     _flaxBinding1005,
     _flaxBinding1006,
     _flaxBinding1007,
-    _flaxBinding965,
+    _flaxBinding1009,
+    _flaxBinding1010,
+    _flaxBinding1011,
+    _flaxBinding969,
     _flaxBinding130,
   ],
   {
-    "hasLeading": _flaxBinding966,
-    "build": _flaxBinding1008,
-    "debugFillProperties": _flaxBinding1009,
+    "hasLeading": _flaxBinding970,
+    "build": _flaxBinding1012,
+    "debugFillProperties": _flaxBinding1013,
     "createElement": _flaxBinding190,
     "toStringShort": _flaxBinding136,
-    "toStringShallow": _flaxBinding1010,
-    "toStringDeep": _flaxBinding1011,
-    "toDiagnosticsNode": _flaxBinding1012,
+    "toStringShallow": _flaxBinding1014,
+    "toStringDeep": _flaxBinding1015,
+    "toDiagnosticsNode": _flaxBinding1016,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding1013},
+  constructors: {"": _flaxBinding1017},
   create: _createCupertinoMenuItem,
   matches: _isCupertinoMenuItem,
   setters: [],
@@ -42957,369 +43101,369 @@ const _flaxBinding1014 = FlaxObjectBinding(
     "flax.cupertino/cupertino#type:CupertinoMenuEntry",
   ],
 );
-const _flaxBinding1015 = FlaxGetter.plain(
+const _flaxBinding1019 = FlaxGetter.plain(
   "filter",
   _flaxBinding452,
   _CupertinoModalPopupRoute_filter,
 );
-const _flaxBinding1016 = FlaxGetter.plain(
+const _flaxBinding1020 = FlaxGetter.plain(
   "traversalEdgeBehavior",
   _flaxBinding454,
   _CupertinoModalPopupRoute_traversalEdgeBehavior,
 );
-const _flaxBinding1017 = FlaxGetter.plain(
+const _flaxBinding1021 = FlaxGetter.plain(
   "directionalTraversalEdgeBehavior",
   _flaxBinding454,
   _CupertinoModalPopupRoute_directionalTraversalEdgeBehavior,
 );
-const _flaxBinding1018 = FlaxGetter.plain(
+const _flaxBinding1022 = FlaxGetter.plain(
   "delegatedTransition",
   _flaxBinding59,
   _CupertinoModalPopupRoute_delegatedTransition,
 );
-const _flaxBinding1019 = FlaxGetter.plain(
+const _flaxBinding1023 = FlaxGetter.plain(
   "receivedTransition",
   _flaxBinding59,
   _CupertinoModalPopupRoute_receivedTransition,
 );
-const _flaxBinding1020 = FlaxGetter.plain(
+const _flaxBinding1024 = FlaxGetter.plain(
   "barrierDismissible",
   flaxBoolType,
   _CupertinoModalPopupRoute_barrierDismissible,
 );
-const _flaxBinding1021 = FlaxGetter.plain(
+const _flaxBinding1025 = FlaxGetter.plain(
   "semanticsDismissible",
   flaxBoolType,
   _CupertinoModalPopupRoute_semanticsDismissible,
 );
-const _flaxBinding1022 = FlaxGetter.plain(
+const _flaxBinding1026 = FlaxGetter.plain(
   "barrierColor",
   _flaxBinding31,
   _CupertinoModalPopupRoute_barrierColor,
 );
-const _flaxBinding1023 = FlaxGetter.plain(
+const _flaxBinding1027 = FlaxGetter.plain(
   "barrierLabel",
   flaxStringType,
   _CupertinoModalPopupRoute_barrierLabel,
 );
-const _flaxBinding1024 = FlaxGetter.plain(
+const _flaxBinding1028 = FlaxGetter.plain(
   "barrierCurve",
   flaxCurveType,
   _CupertinoModalPopupRoute_barrierCurve,
 );
-const _flaxBinding1025 = FlaxGetter.plain(
+const _flaxBinding1029 = FlaxGetter.plain(
   "maintainState",
   flaxBoolType,
   _CupertinoModalPopupRoute_maintainState,
 );
-const _flaxBinding1026 = FlaxGetter.plain(
+const _flaxBinding1030 = FlaxGetter.plain(
   "popGestureInProgress",
   flaxBoolType,
   _CupertinoModalPopupRoute_popGestureInProgress,
 );
-const _flaxBinding1027 = FlaxGetter.plain(
+const _flaxBinding1031 = FlaxGetter.plain(
   "offstage",
   flaxBoolType,
   _CupertinoModalPopupRoute_offstage,
 );
-const _flaxBinding1028 = FlaxGetter.plain(
+const _flaxBinding1032 = FlaxGetter.plain(
   "subtreeContext",
   _flaxBinding467,
   _CupertinoModalPopupRoute_subtreeContext,
 );
-const _flaxBinding1029 = FlaxGetter.plain(
+const _flaxBinding1033 = FlaxGetter.plain(
   "animation",
   _flaxBinding469,
   _CupertinoModalPopupRoute_animation,
 );
-const _flaxBinding1030 = FlaxGetter.plain(
+const _flaxBinding1034 = FlaxGetter.plain(
   "secondaryAnimation",
   _flaxBinding469,
   _CupertinoModalPopupRoute_secondaryAnimation,
 );
-const _flaxBinding1031 = FlaxGetter.plain(
+const _flaxBinding1035 = FlaxGetter.plain(
   "popDisposition",
   _flaxBinding472,
   _CupertinoModalPopupRoute_popDisposition,
 );
-const _flaxBinding1032 = FlaxGetter.plain(
+const _flaxBinding1036 = FlaxGetter.plain(
   "hasScopedWillPopCallback",
   flaxBoolType,
   _CupertinoModalPopupRoute_hasScopedWillPopCallback,
 );
-const _flaxBinding1033 = FlaxGetter.plain(
+const _flaxBinding1037 = FlaxGetter.plain(
   "canPop",
   flaxBoolType,
   _CupertinoModalPopupRoute_canPop,
 );
-const _flaxBinding1034 = FlaxGetter.plain(
+const _flaxBinding1038 = FlaxGetter.plain(
   "impliesAppBarDismissal",
   flaxBoolType,
   _CupertinoModalPopupRoute_impliesAppBarDismissal,
 );
-const _flaxBinding1035 = FlaxGetter.plain(
+const _flaxBinding1039 = FlaxGetter.plain(
   "fullscreenDialog",
   flaxBoolType,
   _CupertinoModalPopupRoute_fullscreenDialog,
 );
-const _flaxBinding1036 = FlaxGetter.plain(
+const _flaxBinding1040 = FlaxGetter.plain(
   "transitionDuration",
   flaxDurationType,
   _CupertinoModalPopupRoute_transitionDuration,
 );
-const _flaxBinding1037 = FlaxGetter.plain(
+const _flaxBinding1041 = FlaxGetter.plain(
   "reverseTransitionDuration",
   flaxDurationType,
   _CupertinoModalPopupRoute_reverseTransitionDuration,
 );
-const _flaxBinding1038 = FlaxGetter.plain(
+const _flaxBinding1042 = FlaxGetter.plain(
   "opaque",
   flaxBoolType,
   _CupertinoModalPopupRoute_opaque,
 );
-const _flaxBinding1039 = FlaxGetter.plain(
+const _flaxBinding1043 = FlaxGetter.plain(
   "allowSnapshotting",
   flaxBoolType,
   _CupertinoModalPopupRoute_allowSnapshotting,
 );
-const _flaxBinding1040 = FlaxGetter.plain(
+const _flaxBinding1044 = FlaxGetter.plain(
   "finishedWhenPopped",
   flaxBoolType,
   _CupertinoModalPopupRoute_finishedWhenPopped,
 );
-const _flaxBinding1041 = FlaxGetter.plain(
+const _flaxBinding1045 = FlaxGetter.plain(
   "controller",
   _flaxBinding481,
   _CupertinoModalPopupRoute_controller,
 );
-const _flaxBinding1042 = FlaxGetter.plain(
+const _flaxBinding1046 = FlaxGetter.plain(
   "willDisposeAnimationController",
   flaxBoolType,
   _CupertinoModalPopupRoute_willDisposeAnimationController,
 );
-const _flaxBinding1043 = FlaxGetter.plain(
+const _flaxBinding1047 = FlaxGetter.plain(
   "debugLabel",
   flaxStringType,
   _CupertinoModalPopupRoute_debugLabel,
 );
-const _flaxBinding1044 = FlaxGetter.plain(
+const _flaxBinding1048 = FlaxGetter.plain(
   "overlayEntries",
   _flaxBinding487,
   _CupertinoModalPopupRoute_overlayEntries,
 );
-const _flaxBinding1045 = FlaxGetter.plain(
+const _flaxBinding1049 = FlaxGetter.plain(
   "requestFocus",
   flaxBoolType,
   _CupertinoModalPopupRoute_requestFocus,
 );
-const _flaxBinding1046 = FlaxGetter.plain(
+const _flaxBinding1050 = FlaxGetter.plain(
   "navigator",
   _flaxBinding490,
   _CupertinoModalPopupRoute_navigator,
 );
-const _flaxBinding1047 = FlaxGetter.plain(
+const _flaxBinding1051 = FlaxGetter.plain(
   "settings",
   _flaxBinding226,
   _CupertinoModalPopupRoute_settings,
 );
-const _flaxBinding1048 = FlaxGetter.plain(
+const _flaxBinding1052 = FlaxGetter.plain(
   "restorationScopeId",
   _flaxBinding493,
   _CupertinoModalPopupRoute_restorationScopeId,
 );
-const _flaxBinding1049 = FlaxGetter.plain(
+const _flaxBinding1053 = FlaxGetter.plain(
   "willHandlePopInternally",
   flaxBoolType,
   _CupertinoModalPopupRoute_willHandlePopInternally,
 );
-const _flaxBinding1050 = FlaxGetter.plain(
+const _flaxBinding1054 = FlaxGetter.plain(
   "isFirst",
   flaxBoolType,
   _CupertinoModalPopupRoute_isFirst,
 );
-const _flaxBinding1051 = FlaxGetter.plain(
+const _flaxBinding1055 = FlaxGetter.plain(
   "hasActiveRouteBelow",
   flaxBoolType,
   _CupertinoModalPopupRoute_hasActiveRouteBelow,
 );
-const _flaxBinding1052 = FlaxGetter.plain(
+const _flaxBinding1056 = FlaxGetter.plain(
   "isActive",
   flaxBoolType,
   _CupertinoModalPopupRoute_isActive,
 );
-const _flaxBinding1053 = FlaxGetter.plain(
+const _flaxBinding1057 = FlaxGetter.plain(
   "builder",
-  _flaxBinding564,
+  _flaxBinding568,
   _CupertinoModalPopupRoute_builder,
 );
-const _flaxBinding1054 = FlaxGetter.plain(
+const _flaxBinding1058 = FlaxGetter.plain(
   "anchorPoint",
   _flaxBinding8,
   _CupertinoModalPopupRoute_anchorPoint,
 );
-const _flaxBinding1055 = FlaxInstanceMethod.plain(
-  _flaxBinding504,
+const _flaxBinding1059 = FlaxInstanceMethod.plain(
+  _flaxBinding508,
   flaxVoidType,
   _CupertinoModalPopupRoute_setState,
 );
-const _flaxBinding1056 = FlaxInstanceMethod.plain(
-  _flaxBinding506,
+const _flaxBinding1060 = FlaxInstanceMethod.plain(
+  _flaxBinding510,
   flaxWidgetType,
   _CupertinoModalPopupRoute_buildPage,
 );
-const _flaxBinding1057 = FlaxInstanceMethod.plain(
-  _flaxBinding508,
+const _flaxBinding1061 = FlaxInstanceMethod.plain(
+  _flaxBinding512,
   flaxWidgetType,
   _CupertinoModalPopupRoute_buildTransitions,
 );
-const _flaxBinding1058 = FlaxInstanceMethod.shared(
+const _flaxBinding1062 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _CupertinoModalPopupRoute_install,
 );
-const _flaxBinding1059 = FlaxInstanceMethod.plain(
+const _flaxBinding1063 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   flaxTickerFutureType,
   _CupertinoModalPopupRoute_didPush,
 );
-const _flaxBinding1060 = FlaxInstanceMethod.shared(
+const _flaxBinding1064 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _CupertinoModalPopupRoute_didAdd,
 );
-const _flaxBinding1061 = FlaxInstanceMethod.plain(
+const _flaxBinding1065 = FlaxInstanceMethod.plain(
   _flaxBinding132,
-  _flaxBinding513,
+  _flaxBinding517,
   _CupertinoModalPopupRoute_willPop,
 );
-const _flaxBinding1062 = FlaxInstanceMethod.plain(
-  _flaxBinding518,
+const _flaxBinding1066 = FlaxInstanceMethod.plain(
+  _flaxBinding522,
   flaxVoidType,
   _CupertinoModalPopupRoute_addScopedWillPopCallback,
 );
-const _flaxBinding1063 = FlaxInstanceMethod.plain(
-  _flaxBinding518,
+const _flaxBinding1067 = FlaxInstanceMethod.plain(
+  _flaxBinding522,
   flaxVoidType,
   _CupertinoModalPopupRoute_removeScopedWillPopCallback,
 );
-const _flaxBinding1064 = FlaxInstanceMethod.plain(
-  _flaxBinding522,
+const _flaxBinding1068 = FlaxInstanceMethod.plain(
+  _flaxBinding526,
   flaxVoidType,
   _CupertinoModalPopupRoute_registerPopEntry,
 );
-const _flaxBinding1065 = FlaxInstanceMethod.plain(
-  _flaxBinding522,
+const _flaxBinding1069 = FlaxInstanceMethod.plain(
+  _flaxBinding526,
   flaxVoidType,
   _CupertinoModalPopupRoute_unregisterPopEntry,
 );
-const _flaxBinding1066 = FlaxInstanceMethod.plain(
-  _flaxBinding525,
+const _flaxBinding1070 = FlaxInstanceMethod.plain(
+  _flaxBinding529,
   flaxVoidType,
   _CupertinoModalPopupRoute_didChangePrevious,
 );
-const _flaxBinding1067 = FlaxInstanceMethod.plain(
-  _flaxBinding527,
+const _flaxBinding1071 = FlaxInstanceMethod.plain(
+  _flaxBinding531,
   flaxVoidType,
   _CupertinoModalPopupRoute_didChangeNext,
 );
-const _flaxBinding1068 = FlaxInstanceMethod.plain(
-  _flaxBinding529,
+const _flaxBinding1072 = FlaxInstanceMethod.plain(
+  _flaxBinding533,
   flaxVoidType,
   _CupertinoModalPopupRoute_didPopNext,
 );
-const _flaxBinding1069 = FlaxInstanceMethod.shared(
+const _flaxBinding1073 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _CupertinoModalPopupRoute_changedInternalState,
 );
-const _flaxBinding1070 = FlaxInstanceMethod.shared(
+const _flaxBinding1074 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _CupertinoModalPopupRoute_changedExternalState,
 );
-const _flaxBinding1071 = FlaxInstanceMethod.plain(
+const _flaxBinding1075 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   flaxWidgetType,
   _CupertinoModalPopupRoute_buildModalBarrier,
 );
-const _flaxBinding1072 = FlaxInstanceMethod.plain(
+const _flaxBinding1076 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding486,
   _CupertinoModalPopupRoute_createOverlayEntries,
 );
-const _flaxBinding1073 = FlaxInstanceMethod.shared(
+const _flaxBinding1077 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _CupertinoModalPopupRoute_toString,
 );
-const _flaxBinding1074 = FlaxInstanceMethod.shared(
+const _flaxBinding1078 = FlaxInstanceMethod.shared(
   flaxBoolCall,
   _CupertinoModalPopupRoute_debugTransitionCompleted,
 );
-const _flaxBinding1075 = FlaxInstanceMethod.plain(
+const _flaxBinding1079 = FlaxInstanceMethod.plain(
   _flaxBinding132,
-  _flaxBinding536,
+  _flaxBinding540,
   _CupertinoModalPopupRoute_createAnimationController,
 );
-const _flaxBinding1076 = FlaxInstanceMethod.plain(
+const _flaxBinding1080 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding56,
   _CupertinoModalPopupRoute_createAnimation,
 );
-const _flaxBinding1077 = FlaxInstanceMethod.plain(
-  _flaxBinding540,
-  _flaxBinding539,
+const _flaxBinding1081 = FlaxInstanceMethod.plain(
+  _flaxBinding544,
+  _flaxBinding543,
   _CupertinoModalPopupRoute_createSimulation,
 );
-const _flaxBinding1078 = FlaxInstanceMethod.plain(
-  _flaxBinding542,
+const _flaxBinding1082 = FlaxInstanceMethod.plain(
+  _flaxBinding546,
   flaxVoidType,
   _CupertinoModalPopupRoute_didReplace,
 );
-const _flaxBinding1079 = FlaxInstanceMethod.plain(
-  _flaxBinding545,
+const _flaxBinding1083 = FlaxInstanceMethod.plain(
+  _flaxBinding549,
   flaxBoolType,
   _CupertinoModalPopupRoute_canTransitionTo,
 );
-const _flaxBinding1080 = FlaxInstanceMethod.plain(
-  _flaxBinding547,
+const _flaxBinding1084 = FlaxInstanceMethod.plain(
+  _flaxBinding551,
   flaxBoolType,
   _CupertinoModalPopupRoute_canTransitionFrom,
 );
-const _flaxBinding1081 = FlaxInstanceMethod.plain(
-  _flaxBinding549,
+const _flaxBinding1085 = FlaxInstanceMethod.plain(
+  _flaxBinding553,
   flaxVoidType,
   _CupertinoModalPopupRoute_handleStartBackGesture,
 );
-const _flaxBinding1082 = FlaxInstanceMethod.plain(
-  _flaxBinding551,
+const _flaxBinding1086 = FlaxInstanceMethod.plain(
+  _flaxBinding555,
   flaxVoidType,
   _CupertinoModalPopupRoute_handleUpdateBackGestureProgress,
 );
-const _flaxBinding1083 = FlaxInstanceMethod.shared(
+const _flaxBinding1087 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _CupertinoModalPopupRoute_handleCancelBackGesture,
 );
-const _flaxBinding1084 = FlaxInstanceMethod.shared(
+const _flaxBinding1088 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _CupertinoModalPopupRoute_handleCommitBackGesture,
 );
-const _flaxBinding1085 = FlaxInstanceMethod.shared(
+const _flaxBinding1089 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _CupertinoModalPopupRoute_dispose,
 );
-const _flaxBinding1086 = FlaxInstanceMethod.plain(
-  _flaxBinding556,
+const _flaxBinding1090 = FlaxInstanceMethod.plain(
+  _flaxBinding560,
   flaxVoidType,
   _CupertinoModalPopupRoute_onPopInvoked,
 );
-const _flaxBinding1087 = FlaxInstanceMethod.plain(
-  _flaxBinding559,
+const _flaxBinding1091 = FlaxInstanceMethod.plain(
+  _flaxBinding563,
   flaxVoidType,
   _CupertinoModalPopupRoute_addLocalHistoryEntry,
 );
-const _flaxBinding1088 = FlaxInstanceMethod.plain(
-  _flaxBinding559,
+const _flaxBinding1092 = FlaxInstanceMethod.plain(
+  _flaxBinding563,
   flaxVoidType,
   _CupertinoModalPopupRoute_removeLocalHistoryEntry,
 );
-const _flaxBinding1089 = <FlaxParameter>[
-  FlaxParameter.required("builder", _flaxBinding564),
+const _flaxBinding1093 = <FlaxParameter>[
+  FlaxParameter.required("builder", _flaxBinding568),
   FlaxParameter(
     "barrierLabel",
     flaxStringType,
@@ -43345,60 +43489,60 @@ const _flaxBinding1089 = <FlaxParameter>[
     defaultValue: false,
   ),
   FlaxParameter("filter", _flaxBinding452, required: false),
-  FlaxParameter("settings", _flaxBinding567, required: false),
+  FlaxParameter("settings", _flaxBinding571, required: false),
   FlaxParameter("requestFocus", flaxNullableBoolType, required: false),
   FlaxParameter("anchorPoint", _flaxBinding8, required: false),
 ];
-const _flaxBinding1090 = FlaxSetter(
+const _flaxBinding1094 = FlaxSetter(
   "receivedTransition",
   _flaxBinding59,
   _CupertinoModalPopupRoute_set_receivedTransition,
 );
-const _flaxBinding1091 = FlaxSetter(
+const _flaxBinding1095 = FlaxSetter(
   "offstage",
   flaxBoolType,
   _CupertinoModalPopupRoute_set_offstage,
 );
-const _flaxBinding1092 = FlaxSetter(
+const _flaxBinding1096 = FlaxSetter(
   "willDisposeAnimationController",
   flaxBoolType,
   _CupertinoModalPopupRoute_set_willDisposeAnimationController,
 );
-const _flaxBinding1093 = FlaxGetter.plain(
+const _flaxBinding1097 = FlaxGetter.plain(
   "preferredSize",
   flaxSizeType,
   _flaxMembers2
       .flaxMemberflax_2e_core_2f_flutter_23_type_3a_PreferredSizeWidget_7c_get_3a_preferredSize,
 );
-const _flaxBinding1094 = FlaxInstanceMethod.plain(
+const _flaxBinding1098 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _ObstructingPreferredSizeWidget_toStringShallow,
 );
-const _flaxBinding1095 = FlaxInstanceMethod.plain(
+const _flaxBinding1099 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _ObstructingPreferredSizeWidget_toStringDeep,
 );
-const _flaxBinding1096 = FlaxInstanceMethod.plain(
+const _flaxBinding1100 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _ObstructingPreferredSizeWidget_toDiagnosticsNode,
 );
-const _flaxBinding1097 = FlaxInstanceMethod.shared(
+const _flaxBinding1101 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _ObstructingPreferredSizeWidget_debugFillProperties,
 );
-const _flaxBinding1098 = FlaxInstanceMethod.plain(
-  _flaxBinding602,
+const _flaxBinding1102 = FlaxInstanceMethod.plain(
+  _flaxBinding606,
   flaxStringType,
   _ObstructingPreferredSizeWidget_toString,
 );
-const _flaxBinding1099 = FlaxInstanceMethod.shared(
+const _flaxBinding1103 = FlaxInstanceMethod.shared(
   _flaxBinding54,
   _ObstructingPreferredSizeWidget_shouldFullyObstruct,
 );
-const _flaxBinding1100 = FlaxCallbackBinding.signature(
+const _flaxBinding1104 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "joiner",
@@ -43416,13 +43560,13 @@ const _flaxBinding1100 = FlaxCallbackBinding.signature(
   flaxStringType,
   id: "callback:<>(n:o:joiner:String:,n:o:minLevel:enum:flax.core/sdk_foundation#type:DiagnosticLevel)->String:",
 );
-const _flaxBinding1101 = FlaxProxyMember(
+const _flaxBinding1105 = FlaxProxyMember(
   "toStringShallow",
   0,
-  _flaxBinding1100,
+  _flaxBinding1104,
   hasSuper: true,
 );
-const _flaxBinding1102 = FlaxCallbackBinding.signature(
+const _flaxBinding1106 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "prefixLineOne",
@@ -43452,37 +43596,37 @@ const _flaxBinding1102 = FlaxCallbackBinding.signature(
   flaxStringType,
   id: "callback:<>(n:o:prefixLineOne:String:,n:o:prefixOtherLines:String?:,n:o:minLevel:enum:flax.core/sdk_foundation#type:DiagnosticLevel,n:o:wrapWidth:int:)->String:",
 );
-const _flaxBinding1103 = FlaxProxyMember(
+const _flaxBinding1107 = FlaxProxyMember(
   "toStringDeep",
   0,
-  _flaxBinding1102,
+  _flaxBinding1106,
   hasSuper: true,
 );
-const _flaxBinding1104 = FlaxProxyMember(
+const _flaxBinding1108 = FlaxProxyMember(
   "debugDescribeChildren",
   0,
   _flaxBinding111,
   hasSuper: true,
 );
-const _flaxBinding1105 = FlaxProxyMember(
+const _flaxBinding1109 = FlaxProxyMember(
   "shouldFullyObstruct",
   0,
   _flaxBinding54,
 );
-const _flaxBinding1106 = FlaxProxyMember("build", 0, _flaxBinding112);
-const _flaxBinding1107 = FlaxProxyMember("preferredSize", 1, _flaxBinding113);
-const _flaxBinding1108 = FlaxObjectBinding(
+const _flaxBinding1110 = FlaxProxyMember("build", 0, _flaxBinding112);
+const _flaxBinding1111 = FlaxProxyMember("preferredSize", 1, _flaxBinding113);
+const _flaxBinding1112 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:ObstructingPreferredSizeWidget",
-  [_flaxBinding1093],
+  [_flaxBinding1097],
   {
-    "toStringShallow": _flaxBinding1094,
-    "toStringDeep": _flaxBinding1095,
+    "toStringShallow": _flaxBinding1098,
+    "toStringDeep": _flaxBinding1099,
     "toStringShort": _flaxBinding136,
-    "toDiagnosticsNode": _flaxBinding1096,
+    "toDiagnosticsNode": _flaxBinding1100,
     "debugDescribeChildren": _flaxBinding146,
-    "debugFillProperties": _flaxBinding1097,
-    "toString": _flaxBinding1098,
-    "shouldFullyObstruct": _flaxBinding1099,
+    "debugFillProperties": _flaxBinding1101,
+    "toString": _flaxBinding1102,
+    "shouldFullyObstruct": _flaxBinding1103,
     "@super:toStringShallow": FlaxInstanceMethod.plain(
       _flaxBinding139,
       flaxStringType,
@@ -43511,12 +43655,12 @@ const _flaxBinding1108 = FlaxObjectBinding(
       _ObstructingPreferredSizeWidget_super_debugFillProperties,
     ),
     "@super:toString": FlaxInstanceMethod.plain(
-      _flaxBinding602,
+      _flaxBinding606,
       flaxStringType,
       _ObstructingPreferredSizeWidget_super_toString,
     ),
   },
-  constructors: {"@implementation": _flaxBinding814},
+  constructors: {"@implementation": _flaxBinding818},
   create: _createObstructingPreferredSizeWidget,
   matches: _isObstructingPreferredSizeWidget,
   setters: [],
@@ -43528,129 +43672,129 @@ const _flaxBinding1108 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding1101,
-    _flaxBinding1103,
-    _flaxBinding626,
-    _flaxBinding628,
-    _flaxBinding1104,
-    _flaxBinding629,
-    _flaxBinding625,
     _flaxBinding1105,
-    _flaxBinding1106,
     _flaxBinding1107,
+    _flaxBinding630,
+    _flaxBinding632,
+    _flaxBinding1108,
+    _flaxBinding633,
+    _flaxBinding629,
+    _flaxBinding1109,
+    _flaxBinding1110,
+    _flaxBinding1111,
   ]),
 );
-const _flaxBinding1109 = FlaxGetter.plain(
+const _flaxBinding1113 = FlaxGetter.plain(
   "largeTitle",
   _flaxBinding57,
   _CupertinoNavigationBar_largeTitle,
 );
-const _flaxBinding1110 = FlaxGetter.plain(
+const _flaxBinding1114 = FlaxGetter.plain(
   "leading",
   _flaxBinding57,
   _CupertinoNavigationBar_leading,
 );
-const _flaxBinding1111 = FlaxGetter.plain(
+const _flaxBinding1115 = FlaxGetter.plain(
   "automaticallyImplyLeading",
   flaxBoolType,
   _CupertinoNavigationBar_automaticallyImplyLeading,
 );
-const _flaxBinding1112 = FlaxGetter.plain(
+const _flaxBinding1116 = FlaxGetter.plain(
   "automaticallyImplyMiddle",
   flaxBoolType,
   _CupertinoNavigationBar_automaticallyImplyMiddle,
 );
-const _flaxBinding1113 = FlaxGetter.plain(
+const _flaxBinding1117 = FlaxGetter.plain(
   "previousPageTitle",
   flaxNullableStringType,
   _CupertinoNavigationBar_previousPageTitle,
 );
-const _flaxBinding1114 = FlaxGetter.plain(
+const _flaxBinding1118 = FlaxGetter.plain(
   "middle",
   _flaxBinding57,
   _CupertinoNavigationBar_middle,
 );
-const _flaxBinding1115 = FlaxGetter.plain(
+const _flaxBinding1119 = FlaxGetter.plain(
   "trailing",
   _flaxBinding57,
   _CupertinoNavigationBar_trailing,
 );
-const _flaxBinding1116 = FlaxGetter.plain(
+const _flaxBinding1120 = FlaxGetter.plain(
   "backgroundColor",
   _flaxBinding31,
   _CupertinoNavigationBar_backgroundColor,
 );
-const _flaxBinding1117 = FlaxGetter.plain(
+const _flaxBinding1121 = FlaxGetter.plain(
   "automaticBackgroundVisibility",
   flaxBoolType,
   _CupertinoNavigationBar_automaticBackgroundVisibility,
 );
-const _flaxBinding1118 = FlaxGetter.plain(
+const _flaxBinding1122 = FlaxGetter.plain(
   "brightness",
   _flaxBinding97,
   _CupertinoNavigationBar_brightness,
 );
-const _flaxBinding1119 = FlaxTypeRef(
+const _flaxBinding1123 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:EdgeInsetsDirectional",
   nullable: true,
 );
-const _flaxBinding1120 = FlaxGetter.plain(
+const _flaxBinding1124 = FlaxGetter.plain(
   "padding",
-  _flaxBinding1119,
+  _flaxBinding1123,
   _CupertinoNavigationBar_padding,
 );
-const _flaxBinding1121 = FlaxTypeRef(
+const _flaxBinding1125 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:Border",
   nullable: true,
 );
-const _flaxBinding1122 = FlaxGetter.plain(
+const _flaxBinding1126 = FlaxGetter.plain(
   "border",
-  _flaxBinding1121,
+  _flaxBinding1125,
   _CupertinoNavigationBar_border,
 );
-const _flaxBinding1123 = FlaxGetter.plain(
+const _flaxBinding1127 = FlaxGetter.plain(
   "transitionBetweenRoutes",
   flaxBoolType,
   _CupertinoNavigationBar_transitionBetweenRoutes,
 );
-const _flaxBinding1124 = FlaxGetter.plain(
+const _flaxBinding1128 = FlaxGetter.plain(
   "enableBackgroundFilterBlur",
   flaxBoolType,
   _CupertinoNavigationBar_enableBackgroundFilterBlur,
 );
-const _flaxBinding1125 = FlaxGetter.plain(
+const _flaxBinding1129 = FlaxGetter.plain(
   "heroTag",
   flaxAnyType,
   _CupertinoNavigationBar_heroTag,
 );
-const _flaxBinding1126 = FlaxTypeRef(
+const _flaxBinding1130 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:PreferredSizeWidget",
   nullable: true,
 );
-const _flaxBinding1127 = FlaxGetter.plain(
+const _flaxBinding1131 = FlaxGetter.plain(
   "bottom",
-  _flaxBinding1126,
+  _flaxBinding1130,
   _CupertinoNavigationBar_bottom,
 );
-const _flaxBinding1128 = FlaxTypeRef(
+const _flaxBinding1132 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
   dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoNavigationBar>>,
 );
-const _flaxBinding1129 = FlaxInstanceMethod.plain(
+const _flaxBinding1133 = FlaxInstanceMethod.plain(
   _flaxBinding132,
-  _flaxBinding1128,
+  _flaxBinding1132,
   _CupertinoNavigationBar_createState,
 );
-const _flaxBinding1130 = FlaxInstanceMethod.plain(
+const _flaxBinding1134 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding134,
   _CupertinoNavigationBar_createElement,
 );
-const _flaxBinding1131 = <FlaxParameter>[
+const _flaxBinding1135 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter("leading", _flaxBinding57, required: false),
   FlaxParameter(
@@ -43670,7 +43814,7 @@ const _flaxBinding1131 = <FlaxParameter>[
   FlaxParameter("trailing", _flaxBinding57, required: false),
   FlaxParameter(
     "border",
-    _flaxBinding1121,
+    _flaxBinding1125,
     required: false,
     omitWhenAbsent: true,
   ),
@@ -43688,7 +43832,7 @@ const _flaxBinding1131 = <FlaxParameter>[
     defaultValue: true,
   ),
   FlaxParameter("brightness", _flaxBinding97, required: false),
-  FlaxParameter("padding", _flaxBinding1119, required: false),
+  FlaxParameter("padding", _flaxBinding1123, required: false),
   FlaxParameter(
     "transitionBetweenRoutes",
     flaxBoolType,
@@ -43696,9 +43840,9 @@ const _flaxBinding1131 = <FlaxParameter>[
     defaultValue: true,
   ),
   FlaxParameter("heroTag", flaxAnyType, required: false, omitWhenAbsent: true),
-  FlaxParameter("bottom", _flaxBinding1126, required: false),
+  FlaxParameter("bottom", _flaxBinding1130, required: false),
 ];
-const _flaxBinding1132 = <FlaxParameter>[
+const _flaxBinding1136 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter("largeTitle", _flaxBinding57, required: false),
   FlaxParameter("leading", _flaxBinding57, required: false),
@@ -43718,7 +43862,7 @@ const _flaxBinding1132 = <FlaxParameter>[
   FlaxParameter("trailing", _flaxBinding57, required: false),
   FlaxParameter(
     "border",
-    _flaxBinding1121,
+    _flaxBinding1125,
     required: false,
     omitWhenAbsent: true,
   ),
@@ -43736,7 +43880,7 @@ const _flaxBinding1132 = <FlaxParameter>[
     defaultValue: true,
   ),
   FlaxParameter("brightness", _flaxBinding97, required: false),
-  FlaxParameter("padding", _flaxBinding1119, required: false),
+  FlaxParameter("padding", _flaxBinding1123, required: false),
   FlaxParameter(
     "transitionBetweenRoutes",
     flaxBoolType,
@@ -43744,31 +43888,31 @@ const _flaxBinding1132 = <FlaxParameter>[
     defaultValue: true,
   ),
   FlaxParameter("heroTag", flaxAnyType, required: false, omitWhenAbsent: true),
-  FlaxParameter("bottom", _flaxBinding1126, required: false),
+  FlaxParameter("bottom", _flaxBinding1130, required: false),
 ];
-const _flaxBinding1133 = FlaxObjectBinding(
+const _flaxBinding1137 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoNavigationBar",
   [
-    _flaxBinding1109,
-    _flaxBinding1110,
-    _flaxBinding1111,
-    _flaxBinding1112,
     _flaxBinding1113,
     _flaxBinding1114,
     _flaxBinding1115,
     _flaxBinding1116,
     _flaxBinding1117,
     _flaxBinding1118,
+    _flaxBinding1119,
     _flaxBinding1120,
+    _flaxBinding1121,
     _flaxBinding1122,
-    _flaxBinding1123,
     _flaxBinding1124,
-    _flaxBinding1125,
+    _flaxBinding1126,
     _flaxBinding1127,
+    _flaxBinding1128,
+    _flaxBinding1129,
+    _flaxBinding1131,
     _flaxBinding130,
   ],
-  {"createState": _flaxBinding1129, "createElement": _flaxBinding1130},
-  constructors: {"": _flaxBinding1131, "large": _flaxBinding1132},
+  {"createState": _flaxBinding1133, "createElement": _flaxBinding1134},
+  constructors: {"": _flaxBinding1135, "large": _flaxBinding1136},
   create: _createCupertinoNavigationBar,
   matches: _isCupertinoNavigationBar,
   setters: [],
@@ -43781,66 +43925,66 @@ const _flaxBinding1133 = FlaxObjectBinding(
     "flax.cupertino/cupertino#type:ObstructingPreferredSizeWidget",
     "flax.core/flutter#type:PreferredSizeWidget",
   ],
-  parent: _flaxBinding1108,
+  parent: _flaxBinding1112,
 );
-const _flaxBinding1134 = FlaxGetter.plain(
+const _flaxBinding1138 = FlaxGetter.plain(
   "color",
   _flaxBinding31,
   _CupertinoNavigationBarBackButton_color,
 );
-const _flaxBinding1135 = FlaxGetter.plain(
+const _flaxBinding1139 = FlaxGetter.plain(
   "previousPageTitle",
   flaxNullableStringType,
   _CupertinoNavigationBarBackButton_previousPageTitle,
 );
-const _flaxBinding1136 = FlaxGetter.plain(
+const _flaxBinding1140 = FlaxGetter.plain(
   "onPressed",
   flaxVoidNullableCallbackType,
   _CupertinoNavigationBarBackButton_onPressed,
 );
-const _flaxBinding1137 = FlaxInstanceMethod.shared(
+const _flaxBinding1141 = FlaxInstanceMethod.shared(
   _flaxBinding112,
   _CupertinoNavigationBarBackButton_build,
 );
-const _flaxBinding1138 = FlaxInstanceMethod.shared(
+const _flaxBinding1142 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoNavigationBarBackButton_debugFillProperties,
 );
-const _flaxBinding1139 = FlaxInstanceMethod.plain(
+const _flaxBinding1143 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoNavigationBarBackButton_toStringShallow,
 );
-const _flaxBinding1140 = FlaxInstanceMethod.plain(
+const _flaxBinding1144 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoNavigationBarBackButton_toStringDeep,
 );
-const _flaxBinding1141 = FlaxInstanceMethod.plain(
+const _flaxBinding1145 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoNavigationBarBackButton_toDiagnosticsNode,
 );
-const _flaxBinding1142 = <FlaxParameter>[
+const _flaxBinding1146 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter("color", _flaxBinding31, required: false),
   FlaxParameter("previousPageTitle", flaxNullableStringType, required: false),
   FlaxParameter("onPressed", flaxVoidNullableCallbackType, required: false),
 ];
-const _flaxBinding1143 = FlaxObjectBinding(
+const _flaxBinding1147 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoNavigationBarBackButton",
-  [_flaxBinding1134, _flaxBinding1135, _flaxBinding1136, _flaxBinding130],
+  [_flaxBinding1138, _flaxBinding1139, _flaxBinding1140, _flaxBinding130],
   {
-    "build": _flaxBinding1137,
+    "build": _flaxBinding1141,
     "createElement": _flaxBinding190,
     "toStringShort": _flaxBinding136,
-    "debugFillProperties": _flaxBinding1138,
-    "toStringShallow": _flaxBinding1139,
-    "toStringDeep": _flaxBinding1140,
-    "toDiagnosticsNode": _flaxBinding1141,
+    "debugFillProperties": _flaxBinding1142,
+    "toStringShallow": _flaxBinding1143,
+    "toStringDeep": _flaxBinding1144,
+    "toDiagnosticsNode": _flaxBinding1145,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding1142},
+  constructors: {"": _flaxBinding1146},
   create: _createCupertinoNavigationBarBackButton,
   matches: _isCupertinoNavigationBarBackButton,
   setters: [],
@@ -43852,90 +43996,90 @@ const _flaxBinding1143 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding1144 = FlaxGetter.plain(
+const _flaxBinding1148 = FlaxGetter.plain(
   "name",
   flaxNullableStringType,
   _flaxMembers2
       .flaxMemberflax_2e_core_2f_flutter_23_type_3a_RouteSettings_7c_get_3a_name,
 );
-const _flaxBinding1145 = FlaxGetter.plain(
+const _flaxBinding1149 = FlaxGetter.plain(
   "arguments",
   flaxNullableAnyType,
   _flaxMembers2
       .flaxMemberflax_2e_core_2f_flutter_23_type_3a_RouteSettings_7c_get_3a_arguments,
 );
-const _flaxBinding1146 = FlaxTypeRef(
+const _flaxBinding1150 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:LocalKey",
   nullable: true,
 );
-const _flaxBinding1147 = FlaxGetter.plain(
+const _flaxBinding1151 = FlaxGetter.plain(
   "key",
-  _flaxBinding1146,
+  _flaxBinding1150,
   _CupertinoPage_key,
 );
-const _flaxBinding1148 = FlaxGetter.plain(
+const _flaxBinding1152 = FlaxGetter.plain(
   "restorationId",
   flaxNullableStringType,
   _CupertinoPage_restorationId,
 );
-const _flaxBinding1149 = FlaxGetter.plain(
+const _flaxBinding1153 = FlaxGetter.plain(
   "canPop",
   flaxBoolType,
   _CupertinoPage_canPop,
 );
-const _flaxBinding1150 = FlaxGetter.plain(
+const _flaxBinding1154 = FlaxGetter.plain(
   "child",
   flaxWidgetType,
   _CupertinoPage_child,
 );
-const _flaxBinding1151 = FlaxGetter.plain(
+const _flaxBinding1155 = FlaxGetter.plain(
   "title",
   flaxNullableStringType,
   _CupertinoPage_title,
 );
-const _flaxBinding1152 = FlaxGetter.plain(
+const _flaxBinding1156 = FlaxGetter.plain(
   "maintainState",
   flaxBoolType,
   _CupertinoPage_maintainState,
 );
-const _flaxBinding1153 = FlaxGetter.plain(
+const _flaxBinding1157 = FlaxGetter.plain(
   "fullscreenDialog",
   flaxBoolType,
   _CupertinoPage_fullscreenDialog,
 );
-const _flaxBinding1154 = FlaxGetter.plain(
+const _flaxBinding1158 = FlaxGetter.plain(
   "allowSnapshotting",
   flaxBoolType,
   _CupertinoPage_allowSnapshotting,
 );
-const _flaxBinding1155 = FlaxGetter.plain(
+const _flaxBinding1159 = FlaxGetter.plain(
   "includeRouteSemantics",
   flaxBoolType,
   _CupertinoPage_includeRouteSemantics,
 );
-const _flaxBinding1156 = FlaxInstanceMethod.shared(
+const _flaxBinding1160 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _flaxMembers2
       .flaxMemberflax_2e_core_2f_flutter_23_type_3a_RouteSettings_7c_call_3a_toString,
 );
-const _flaxBinding1157 = FlaxTypeRef(
+const _flaxBinding1161 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:Page",
   dartType: FlaxDartTypes.typeOf<api10.Page<Object?>>,
 );
-const _flaxBinding1158 = <FlaxParameter>[
-  FlaxParameter.required("other", _flaxBinding1157),
+const _flaxBinding1162 = <FlaxParameter>[
+  FlaxParameter.required("other", _flaxBinding1161),
 ];
-const _flaxBinding1159 = FlaxInstanceMethod.plain(
-  _flaxBinding1158,
+const _flaxBinding1163 = FlaxInstanceMethod.plain(
+  _flaxBinding1162,
   flaxBoolType,
   _CupertinoPage_canUpdate,
 );
-const _flaxBinding1160 = <FlaxParameter>[
+const _flaxBinding1164 = <FlaxParameter>[
   FlaxParameter.required("context", _flaxBinding2),
 ];
-const _flaxBinding1161 = FlaxCallbackBinding(
+const _flaxBinding1165 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter.plain("didPop", flaxBoolType),
     FlaxCallbackParameter.plain("result", flaxNullableAnyType),
@@ -43946,8 +44090,8 @@ const _flaxBinding1161 = FlaxCallbackBinding(
   invoke: FlaxCallbackAdapters.invokeVoid2<bool, Object?>,
   matches: FlaxCallbackAdapters.matchesVoid2<bool, Object?>,
 );
-const _flaxBinding1162 = FlaxTypeRef("callback", callback: _flaxBinding1161);
-const _flaxBinding1163 = <FlaxParameter>[
+const _flaxBinding1166 = FlaxTypeRef("callback", callback: _flaxBinding1165);
+const _flaxBinding1167 = <FlaxParameter>[
   FlaxParameter.required("child", flaxWidgetType),
   FlaxParameter(
     "maintainState",
@@ -43977,399 +44121,399 @@ const _flaxBinding1163 = <FlaxParameter>[
   FlaxParameter("canPop", flaxBoolType, required: false, defaultValue: true),
   FlaxParameter(
     "onPopInvoked",
-    _flaxBinding1162,
+    _flaxBinding1166,
     required: false,
     omitWhenAbsent: true,
   ),
-  FlaxParameter("key", _flaxBinding1146, required: false),
+  FlaxParameter("key", _flaxBinding1150, required: false),
   FlaxParameter("name", flaxNullableStringType, required: false),
   FlaxParameter("arguments", flaxNullableAnyType, required: false),
   FlaxParameter("restorationId", flaxNullableStringType, required: false),
 ];
-const _flaxBinding1164 = FlaxGetter.plain(
+const _flaxBinding1168 = FlaxGetter.plain(
   "filter",
   _flaxBinding452,
   _CupertinoPageRoute_filter,
 );
-const _flaxBinding1165 = FlaxGetter.plain(
+const _flaxBinding1169 = FlaxGetter.plain(
   "traversalEdgeBehavior",
   _flaxBinding454,
   _CupertinoPageRoute_traversalEdgeBehavior,
 );
-const _flaxBinding1166 = FlaxGetter.plain(
+const _flaxBinding1170 = FlaxGetter.plain(
   "directionalTraversalEdgeBehavior",
   _flaxBinding454,
   _CupertinoPageRoute_directionalTraversalEdgeBehavior,
 );
-const _flaxBinding1167 = FlaxGetter.plain(
+const _flaxBinding1171 = FlaxGetter.plain(
   "delegatedTransition",
   _flaxBinding59,
   _CupertinoPageRoute_delegatedTransition,
 );
-const _flaxBinding1168 = FlaxGetter.plain(
+const _flaxBinding1172 = FlaxGetter.plain(
   "receivedTransition",
   _flaxBinding59,
   _CupertinoPageRoute_receivedTransition,
 );
-const _flaxBinding1169 = FlaxGetter.plain(
+const _flaxBinding1173 = FlaxGetter.plain(
   "barrierDismissible",
   flaxBoolType,
   _CupertinoPageRoute_barrierDismissible,
 );
-const _flaxBinding1170 = FlaxGetter.plain(
+const _flaxBinding1174 = FlaxGetter.plain(
   "semanticsDismissible",
   flaxBoolType,
   _CupertinoPageRoute_semanticsDismissible,
 );
-const _flaxBinding1171 = FlaxGetter.plain(
+const _flaxBinding1175 = FlaxGetter.plain(
   "barrierColor",
   _flaxBinding31,
   _CupertinoPageRoute_barrierColor,
 );
-const _flaxBinding1172 = FlaxGetter.plain(
+const _flaxBinding1176 = FlaxGetter.plain(
   "barrierLabel",
   flaxNullableStringType,
   _CupertinoPageRoute_barrierLabel,
 );
-const _flaxBinding1173 = FlaxGetter.plain(
+const _flaxBinding1177 = FlaxGetter.plain(
   "barrierCurve",
   flaxCurveType,
   _CupertinoPageRoute_barrierCurve,
 );
-const _flaxBinding1174 = FlaxGetter.plain(
+const _flaxBinding1178 = FlaxGetter.plain(
   "maintainState",
   flaxBoolType,
   _CupertinoPageRoute_maintainState,
 );
-const _flaxBinding1175 = FlaxGetter.plain(
+const _flaxBinding1179 = FlaxGetter.plain(
   "popGestureInProgress",
   flaxBoolType,
   _CupertinoPageRoute_popGestureInProgress,
 );
-const _flaxBinding1176 = FlaxGetter.plain(
+const _flaxBinding1180 = FlaxGetter.plain(
   "offstage",
   flaxBoolType,
   _CupertinoPageRoute_offstage,
 );
-const _flaxBinding1177 = FlaxGetter.plain(
+const _flaxBinding1181 = FlaxGetter.plain(
   "subtreeContext",
   _flaxBinding467,
   _CupertinoPageRoute_subtreeContext,
 );
-const _flaxBinding1178 = FlaxGetter.plain(
+const _flaxBinding1182 = FlaxGetter.plain(
   "animation",
   _flaxBinding469,
   _CupertinoPageRoute_animation,
 );
-const _flaxBinding1179 = FlaxGetter.plain(
+const _flaxBinding1183 = FlaxGetter.plain(
   "secondaryAnimation",
   _flaxBinding469,
   _CupertinoPageRoute_secondaryAnimation,
 );
-const _flaxBinding1180 = FlaxGetter.plain(
+const _flaxBinding1184 = FlaxGetter.plain(
   "popDisposition",
   _flaxBinding472,
   _CupertinoPageRoute_popDisposition,
 );
-const _flaxBinding1181 = FlaxGetter.plain(
+const _flaxBinding1185 = FlaxGetter.plain(
   "hasScopedWillPopCallback",
   flaxBoolType,
   _CupertinoPageRoute_hasScopedWillPopCallback,
 );
-const _flaxBinding1182 = FlaxGetter.plain(
+const _flaxBinding1186 = FlaxGetter.plain(
   "canPop",
   flaxBoolType,
   _CupertinoPageRoute_canPop,
 );
-const _flaxBinding1183 = FlaxGetter.plain(
+const _flaxBinding1187 = FlaxGetter.plain(
   "impliesAppBarDismissal",
   flaxBoolType,
   _CupertinoPageRoute_impliesAppBarDismissal,
 );
-const _flaxBinding1184 = FlaxGetter.plain(
+const _flaxBinding1188 = FlaxGetter.plain(
   "fullscreenDialog",
   flaxBoolType,
   _CupertinoPageRoute_fullscreenDialog,
 );
-const _flaxBinding1185 = FlaxGetter.plain(
+const _flaxBinding1189 = FlaxGetter.plain(
   "transitionDuration",
   flaxDurationType,
   _CupertinoPageRoute_transitionDuration,
 );
-const _flaxBinding1186 = FlaxGetter.plain(
+const _flaxBinding1190 = FlaxGetter.plain(
   "reverseTransitionDuration",
   flaxDurationType,
   _CupertinoPageRoute_reverseTransitionDuration,
 );
-const _flaxBinding1187 = FlaxGetter.plain(
+const _flaxBinding1191 = FlaxGetter.plain(
   "opaque",
   flaxBoolType,
   _CupertinoPageRoute_opaque,
 );
-const _flaxBinding1188 = FlaxGetter.plain(
+const _flaxBinding1192 = FlaxGetter.plain(
   "allowSnapshotting",
   flaxBoolType,
   _CupertinoPageRoute_allowSnapshotting,
 );
-const _flaxBinding1189 = FlaxGetter.plain(
+const _flaxBinding1193 = FlaxGetter.plain(
   "finishedWhenPopped",
   flaxBoolType,
   _CupertinoPageRoute_finishedWhenPopped,
 );
-const _flaxBinding1190 = FlaxGetter.plain(
+const _flaxBinding1194 = FlaxGetter.plain(
   "controller",
   _flaxBinding481,
   _CupertinoPageRoute_controller,
 );
-const _flaxBinding1191 = FlaxGetter.plain(
+const _flaxBinding1195 = FlaxGetter.plain(
   "willDisposeAnimationController",
   flaxBoolType,
   _CupertinoPageRoute_willDisposeAnimationController,
 );
-const _flaxBinding1192 = FlaxGetter.plain(
+const _flaxBinding1196 = FlaxGetter.plain(
   "debugLabel",
   flaxStringType,
   _CupertinoPageRoute_debugLabel,
 );
-const _flaxBinding1193 = FlaxGetter.plain(
+const _flaxBinding1197 = FlaxGetter.plain(
   "overlayEntries",
   _flaxBinding487,
   _CupertinoPageRoute_overlayEntries,
 );
-const _flaxBinding1194 = FlaxGetter.plain(
+const _flaxBinding1198 = FlaxGetter.plain(
   "requestFocus",
   flaxBoolType,
   _CupertinoPageRoute_requestFocus,
 );
-const _flaxBinding1195 = FlaxGetter.plain(
+const _flaxBinding1199 = FlaxGetter.plain(
   "navigator",
   _flaxBinding490,
   _CupertinoPageRoute_navigator,
 );
-const _flaxBinding1196 = FlaxGetter.plain(
+const _flaxBinding1200 = FlaxGetter.plain(
   "settings",
   _flaxBinding226,
   _CupertinoPageRoute_settings,
 );
-const _flaxBinding1197 = FlaxGetter.plain(
+const _flaxBinding1201 = FlaxGetter.plain(
   "restorationScopeId",
   _flaxBinding493,
   _CupertinoPageRoute_restorationScopeId,
 );
-const _flaxBinding1198 = FlaxGetter.plain(
+const _flaxBinding1202 = FlaxGetter.plain(
   "willHandlePopInternally",
   flaxBoolType,
   _CupertinoPageRoute_willHandlePopInternally,
 );
-const _flaxBinding1199 = FlaxGetter.plain(
+const _flaxBinding1203 = FlaxGetter.plain(
   "isFirst",
   flaxBoolType,
   _CupertinoPageRoute_isFirst,
 );
-const _flaxBinding1200 = FlaxGetter.plain(
+const _flaxBinding1204 = FlaxGetter.plain(
   "hasActiveRouteBelow",
   flaxBoolType,
   _CupertinoPageRoute_hasActiveRouteBelow,
 );
-const _flaxBinding1201 = FlaxGetter.plain(
+const _flaxBinding1205 = FlaxGetter.plain(
   "isActive",
   flaxBoolType,
   _CupertinoPageRoute_isActive,
 );
-const _flaxBinding1202 = FlaxGetter.plain(
+const _flaxBinding1206 = FlaxGetter.plain(
   "includeRouteSemantics",
   flaxBoolType,
   _CupertinoPageRoute_includeRouteSemantics,
 );
-const _flaxBinding1203 = FlaxGetter.plain(
+const _flaxBinding1207 = FlaxGetter.plain(
   "title",
   flaxNullableStringType,
   _CupertinoPageRoute_title,
 );
-const _flaxBinding1204 = FlaxGetter.plain(
+const _flaxBinding1208 = FlaxGetter.plain(
   "previousTitle",
   _flaxBinding493,
   _CupertinoPageRoute_previousTitle,
 );
-const _flaxBinding1205 = FlaxGetter.plain(
+const _flaxBinding1209 = FlaxGetter.plain(
   "builder",
-  _flaxBinding564,
+  _flaxBinding568,
   _CupertinoPageRoute_builder,
 );
-const _flaxBinding1206 = FlaxInstanceMethod.plain(
-  _flaxBinding504,
+const _flaxBinding1210 = FlaxInstanceMethod.plain(
+  _flaxBinding508,
   flaxVoidType,
   _CupertinoPageRoute_setState,
 );
-const _flaxBinding1207 = FlaxInstanceMethod.plain(
-  _flaxBinding506,
+const _flaxBinding1211 = FlaxInstanceMethod.plain(
+  _flaxBinding510,
   flaxWidgetType,
   _CupertinoPageRoute_buildPage,
 );
-const _flaxBinding1208 = FlaxInstanceMethod.plain(
-  _flaxBinding508,
+const _flaxBinding1212 = FlaxInstanceMethod.plain(
+  _flaxBinding512,
   flaxWidgetType,
   _CupertinoPageRoute_buildTransitions,
 );
-const _flaxBinding1209 = FlaxInstanceMethod.shared(
+const _flaxBinding1213 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _CupertinoPageRoute_install,
 );
-const _flaxBinding1210 = FlaxInstanceMethod.plain(
+const _flaxBinding1214 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   flaxTickerFutureType,
   _CupertinoPageRoute_didPush,
 );
-const _flaxBinding1211 = FlaxInstanceMethod.shared(
+const _flaxBinding1215 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _CupertinoPageRoute_didAdd,
 );
-const _flaxBinding1212 = FlaxInstanceMethod.plain(
+const _flaxBinding1216 = FlaxInstanceMethod.plain(
   _flaxBinding132,
-  _flaxBinding513,
+  _flaxBinding517,
   _CupertinoPageRoute_willPop,
 );
-const _flaxBinding1213 = FlaxInstanceMethod.plain(
-  _flaxBinding518,
+const _flaxBinding1217 = FlaxInstanceMethod.plain(
+  _flaxBinding522,
   flaxVoidType,
   _CupertinoPageRoute_addScopedWillPopCallback,
 );
-const _flaxBinding1214 = FlaxInstanceMethod.plain(
-  _flaxBinding518,
+const _flaxBinding1218 = FlaxInstanceMethod.plain(
+  _flaxBinding522,
   flaxVoidType,
   _CupertinoPageRoute_removeScopedWillPopCallback,
 );
-const _flaxBinding1215 = FlaxInstanceMethod.plain(
-  _flaxBinding522,
+const _flaxBinding1219 = FlaxInstanceMethod.plain(
+  _flaxBinding526,
   flaxVoidType,
   _CupertinoPageRoute_registerPopEntry,
 );
-const _flaxBinding1216 = FlaxInstanceMethod.plain(
-  _flaxBinding522,
+const _flaxBinding1220 = FlaxInstanceMethod.plain(
+  _flaxBinding526,
   flaxVoidType,
   _CupertinoPageRoute_unregisterPopEntry,
 );
-const _flaxBinding1217 = FlaxInstanceMethod.plain(
-  _flaxBinding525,
+const _flaxBinding1221 = FlaxInstanceMethod.plain(
+  _flaxBinding529,
   flaxVoidType,
   _CupertinoPageRoute_didChangePrevious,
 );
-const _flaxBinding1218 = FlaxInstanceMethod.plain(
-  _flaxBinding527,
+const _flaxBinding1222 = FlaxInstanceMethod.plain(
+  _flaxBinding531,
   flaxVoidType,
   _CupertinoPageRoute_didChangeNext,
 );
-const _flaxBinding1219 = FlaxInstanceMethod.plain(
-  _flaxBinding529,
+const _flaxBinding1223 = FlaxInstanceMethod.plain(
+  _flaxBinding533,
   flaxVoidType,
   _CupertinoPageRoute_didPopNext,
 );
-const _flaxBinding1220 = FlaxInstanceMethod.shared(
+const _flaxBinding1224 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _CupertinoPageRoute_changedInternalState,
 );
-const _flaxBinding1221 = FlaxInstanceMethod.shared(
+const _flaxBinding1225 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _CupertinoPageRoute_changedExternalState,
 );
-const _flaxBinding1222 = FlaxInstanceMethod.plain(
+const _flaxBinding1226 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   flaxWidgetType,
   _CupertinoPageRoute_buildModalBarrier,
 );
-const _flaxBinding1223 = FlaxInstanceMethod.plain(
+const _flaxBinding1227 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding486,
   _CupertinoPageRoute_createOverlayEntries,
 );
-const _flaxBinding1224 = FlaxInstanceMethod.shared(
+const _flaxBinding1228 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _CupertinoPageRoute_toString,
 );
-const _flaxBinding1225 = FlaxInstanceMethod.shared(
+const _flaxBinding1229 = FlaxInstanceMethod.shared(
   flaxBoolCall,
   _CupertinoPageRoute_debugTransitionCompleted,
 );
-const _flaxBinding1226 = FlaxInstanceMethod.plain(
+const _flaxBinding1230 = FlaxInstanceMethod.plain(
   _flaxBinding132,
-  _flaxBinding536,
+  _flaxBinding540,
   _CupertinoPageRoute_createAnimationController,
 );
-const _flaxBinding1227 = FlaxInstanceMethod.plain(
+const _flaxBinding1231 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding56,
   _CupertinoPageRoute_createAnimation,
 );
-const _flaxBinding1228 = FlaxTypeRef(
+const _flaxBinding1232 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_physics#type:Simulation",
   nullable: true,
 );
-const _flaxBinding1229 = FlaxInstanceMethod.plain(
-  _flaxBinding540,
-  _flaxBinding1228,
+const _flaxBinding1233 = FlaxInstanceMethod.plain(
+  _flaxBinding544,
+  _flaxBinding1232,
   _CupertinoPageRoute_createSimulation,
 );
-const _flaxBinding1230 = FlaxInstanceMethod.plain(
-  _flaxBinding542,
+const _flaxBinding1234 = FlaxInstanceMethod.plain(
+  _flaxBinding546,
   flaxVoidType,
   _CupertinoPageRoute_didReplace,
 );
-const _flaxBinding1231 = FlaxInstanceMethod.plain(
-  _flaxBinding545,
+const _flaxBinding1235 = FlaxInstanceMethod.plain(
+  _flaxBinding549,
   flaxBoolType,
   _CupertinoPageRoute_canTransitionTo,
 );
-const _flaxBinding1232 = FlaxInstanceMethod.plain(
-  _flaxBinding547,
+const _flaxBinding1236 = FlaxInstanceMethod.plain(
+  _flaxBinding551,
   flaxBoolType,
   _CupertinoPageRoute_canTransitionFrom,
 );
-const _flaxBinding1233 = FlaxInstanceMethod.plain(
-  _flaxBinding549,
+const _flaxBinding1237 = FlaxInstanceMethod.plain(
+  _flaxBinding553,
   flaxVoidType,
   _CupertinoPageRoute_handleStartBackGesture,
 );
-const _flaxBinding1234 = FlaxInstanceMethod.plain(
-  _flaxBinding551,
+const _flaxBinding1238 = FlaxInstanceMethod.plain(
+  _flaxBinding555,
   flaxVoidType,
   _CupertinoPageRoute_handleUpdateBackGestureProgress,
 );
-const _flaxBinding1235 = FlaxInstanceMethod.shared(
+const _flaxBinding1239 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _CupertinoPageRoute_handleCancelBackGesture,
 );
-const _flaxBinding1236 = FlaxInstanceMethod.shared(
+const _flaxBinding1240 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _CupertinoPageRoute_handleCommitBackGesture,
 );
-const _flaxBinding1237 = FlaxInstanceMethod.shared(
+const _flaxBinding1241 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _CupertinoPageRoute_dispose,
 );
-const _flaxBinding1238 = FlaxInstanceMethod.plain(
-  _flaxBinding556,
+const _flaxBinding1242 = FlaxInstanceMethod.plain(
+  _flaxBinding560,
   flaxVoidType,
   _CupertinoPageRoute_onPopInvoked,
 );
-const _flaxBinding1239 = FlaxInstanceMethod.plain(
-  _flaxBinding559,
+const _flaxBinding1243 = FlaxInstanceMethod.plain(
+  _flaxBinding563,
   flaxVoidType,
   _CupertinoPageRoute_addLocalHistoryEntry,
 );
-const _flaxBinding1240 = FlaxInstanceMethod.plain(
-  _flaxBinding559,
+const _flaxBinding1244 = FlaxInstanceMethod.plain(
+  _flaxBinding563,
   flaxVoidType,
   _CupertinoPageRoute_removeLocalHistoryEntry,
 );
-const _flaxBinding1241 = FlaxInstanceMethod.shared(
+const _flaxBinding1245 = FlaxInstanceMethod.shared(
   _flaxBinding112,
   _CupertinoPageRoute_buildContent,
 );
-const _flaxBinding1242 = <FlaxParameter>[
-  FlaxParameter.required("builder", _flaxBinding564),
+const _flaxBinding1246 = <FlaxParameter>[
+  FlaxParameter.required("builder", _flaxBinding568),
   FlaxParameter("title", flaxNullableStringType, required: false),
-  FlaxParameter("settings", _flaxBinding567, required: false),
+  FlaxParameter("settings", _flaxBinding571, required: false),
   FlaxParameter("requestFocus", flaxNullableBoolType, required: false),
   FlaxParameter(
     "maintainState",
@@ -44402,97 +44546,97 @@ const _flaxBinding1242 = <FlaxParameter>[
     defaultValue: false,
   ),
 ];
-const _flaxBinding1243 = FlaxSetter(
+const _flaxBinding1247 = FlaxSetter(
   "receivedTransition",
   _flaxBinding59,
   _CupertinoPageRoute_set_receivedTransition,
 );
-const _flaxBinding1244 = FlaxSetter(
+const _flaxBinding1248 = FlaxSetter(
   "offstage",
   flaxBoolType,
   _CupertinoPageRoute_set_offstage,
 );
-const _flaxBinding1245 = FlaxSetter(
+const _flaxBinding1249 = FlaxSetter(
   "willDisposeAnimationController",
   flaxBoolType,
   _CupertinoPageRoute_set_willDisposeAnimationController,
 );
-const _flaxBinding1246 = FlaxTypeRef(
+const _flaxBinding1250 = FlaxTypeRef(
   "object",
   id: "flax.cupertino/cupertino#type:ObstructingPreferredSizeWidget",
   nullable: true,
 );
-const _flaxBinding1247 = FlaxGetter.plain(
+const _flaxBinding1251 = FlaxGetter.plain(
   "color",
   flaxColorType,
   _CupertinoPageScaffoldBackgroundColor_color,
 );
-const _flaxBinding1248 = FlaxGetter.plain(
+const _flaxBinding1252 = FlaxGetter.plain(
   "child",
   flaxWidgetType,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_ProxyWidget_7c_get_3a_child,
 );
-const _flaxBinding1249 = FlaxTypeRef(
+const _flaxBinding1253 = FlaxTypeRef(
   "widget",
   id: "flax.cupertino/cupertino#type:CupertinoPageScaffoldBackgroundColor",
 );
-const _flaxBinding1250 = <FlaxParameter>[
-  FlaxParameter.required("oldWidget", _flaxBinding1249),
+const _flaxBinding1254 = <FlaxParameter>[
+  FlaxParameter.required("oldWidget", _flaxBinding1253),
 ];
-const _flaxBinding1251 = FlaxInstanceMethod.plain(
-  _flaxBinding1250,
+const _flaxBinding1255 = FlaxInstanceMethod.plain(
+  _flaxBinding1254,
   flaxBoolType,
   _CupertinoPageScaffoldBackgroundColor_updateShouldNotify,
 );
-const _flaxBinding1252 = FlaxInstanceMethod.shared(
+const _flaxBinding1256 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoPageScaffoldBackgroundColor_debugFillProperties,
 );
-const _flaxBinding1253 = FlaxTypeRef(
+const _flaxBinding1257 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:InheritedElement",
 );
-const _flaxBinding1254 = FlaxInstanceMethod.plain(
+const _flaxBinding1258 = FlaxInstanceMethod.plain(
   _flaxBinding132,
-  _flaxBinding1253,
+  _flaxBinding1257,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_InheritedWidget_7c_call_3a_createElement,
 );
-const _flaxBinding1255 = FlaxInstanceMethod.plain(
+const _flaxBinding1259 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoPageScaffoldBackgroundColor_toStringShallow,
 );
-const _flaxBinding1256 = FlaxInstanceMethod.plain(
+const _flaxBinding1260 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoPageScaffoldBackgroundColor_toStringDeep,
 );
-const _flaxBinding1257 = FlaxInstanceMethod.plain(
+const _flaxBinding1261 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoPageScaffoldBackgroundColor_toDiagnosticsNode,
 );
-const _flaxBinding1258 = <FlaxParameter>[
+const _flaxBinding1262 = <FlaxParameter>[
   FlaxParameter.required("child", flaxWidgetType),
   FlaxParameter.required("color", flaxColorType),
   FlaxParameter("key", _flaxBinding129, required: false),
 ];
-const _flaxBinding1259 = FlaxObjectBinding(
+const _flaxBinding1263 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoPageScaffoldBackgroundColor",
-  [_flaxBinding1247, _flaxBinding1248, _flaxBinding130],
+  [_flaxBinding1251, _flaxBinding1252, _flaxBinding130],
   {
-    "updateShouldNotify": _flaxBinding1251,
-    "debugFillProperties": _flaxBinding1252,
-    "createElement": _flaxBinding1254,
+    "updateShouldNotify": _flaxBinding1255,
+    "debugFillProperties": _flaxBinding1256,
+    "createElement": _flaxBinding1258,
     "toStringShort": _flaxBinding136,
-    "toStringShallow": _flaxBinding1255,
-    "toStringDeep": _flaxBinding1256,
-    "toDiagnosticsNode": _flaxBinding1257,
+    "toStringShallow": _flaxBinding1259,
+    "toStringDeep": _flaxBinding1260,
+    "toDiagnosticsNode": _flaxBinding1261,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding1258},
+  constructors: {"": _flaxBinding1262},
   create: _createCupertinoPageScaffoldBackgroundColor,
   matches: _isCupertinoPageScaffoldBackgroundColor,
   setters: [],
@@ -44505,80 +44649,80 @@ const _flaxBinding1259 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding1260 = FlaxGetter.plain(
+const _flaxBinding1264 = FlaxGetter.plain(
   "child",
   flaxWidgetType,
   _CupertinoPageTransition_child,
 );
-const _flaxBinding1261 = FlaxGetter.plain(
+const _flaxBinding1265 = FlaxGetter.plain(
   "primaryRouteAnimation",
   _flaxBinding56,
   _CupertinoPageTransition_primaryRouteAnimation,
 );
-const _flaxBinding1262 = FlaxGetter.plain(
+const _flaxBinding1266 = FlaxGetter.plain(
   "secondaryRouteAnimation",
   _flaxBinding56,
   _CupertinoPageTransition_secondaryRouteAnimation,
 );
-const _flaxBinding1263 = FlaxGetter.plain(
+const _flaxBinding1267 = FlaxGetter.plain(
   "linearTransition",
   flaxBoolType,
   _CupertinoPageTransition_linearTransition,
 );
-const _flaxBinding1264 = FlaxTypeRef(
+const _flaxBinding1268 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
   dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoPageTransition>>,
 );
-const _flaxBinding1265 = FlaxInstanceMethod.plain(
+const _flaxBinding1269 = FlaxInstanceMethod.plain(
   _flaxBinding132,
-  _flaxBinding1264,
+  _flaxBinding1268,
   _CupertinoPageTransition_createState,
 );
-const _flaxBinding1266 = FlaxInstanceMethod.plain(
+const _flaxBinding1270 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding134,
   _CupertinoPageTransition_createElement,
 );
-const _flaxBinding1267 = FlaxInstanceMethod.shared(
+const _flaxBinding1271 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoPageTransition_debugFillProperties,
 );
-const _flaxBinding1268 = FlaxInstanceMethod.plain(
+const _flaxBinding1272 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoPageTransition_toStringShallow,
 );
-const _flaxBinding1269 = FlaxInstanceMethod.plain(
+const _flaxBinding1273 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoPageTransition_toStringDeep,
 );
-const _flaxBinding1270 = FlaxInstanceMethod.plain(
+const _flaxBinding1274 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoPageTransition_toDiagnosticsNode,
 );
-const _flaxBinding1271 = FlaxObjectBinding(
+const _flaxBinding1275 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoPageTransition",
   [
-    _flaxBinding1260,
-    _flaxBinding1261,
-    _flaxBinding1262,
-    _flaxBinding1263,
+    _flaxBinding1264,
+    _flaxBinding1265,
+    _flaxBinding1266,
+    _flaxBinding1267,
     _flaxBinding130,
   ],
   {
-    "createState": _flaxBinding1265,
-    "createElement": _flaxBinding1266,
+    "createState": _flaxBinding1269,
+    "createElement": _flaxBinding1270,
     "toStringShort": _flaxBinding136,
-    "debugFillProperties": _flaxBinding1267,
-    "toStringShallow": _flaxBinding1268,
-    "toStringDeep": _flaxBinding1269,
-    "toDiagnosticsNode": _flaxBinding1270,
+    "debugFillProperties": _flaxBinding1271,
+    "toStringShallow": _flaxBinding1272,
+    "toStringDeep": _flaxBinding1273,
+    "toDiagnosticsNode": _flaxBinding1274,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding717},
+  constructors: {"": _flaxBinding721},
   create: _createCupertinoPageTransition,
   matches: _isCupertinoPageTransition,
   setters: [],
@@ -44590,49 +44734,49 @@ const _flaxBinding1271 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding1272 = FlaxGetter.plain(
+const _flaxBinding1276 = FlaxGetter.plain(
   "delegatedTransition",
   _flaxBinding59,
   _CupertinoPageTransitionsBuilder_delegatedTransition,
 );
-const _flaxBinding1273 = FlaxGetter.plain(
+const _flaxBinding1277 = FlaxGetter.plain(
   "transitionDuration",
   flaxDurationType,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_PageTransitionsBuilder_7c_get_3a_transitionDuration,
 );
-const _flaxBinding1274 = FlaxGetter.plain(
+const _flaxBinding1278 = FlaxGetter.plain(
   "reverseTransitionDuration",
   flaxDurationType,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_PageTransitionsBuilder_7c_get_3a_reverseTransitionDuration,
 );
-const _flaxBinding1275 = FlaxTypeRef(
+const _flaxBinding1279 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:PageRoute",
   dartType: FlaxDartTypes.typeOf<api10.PageRoute<Object?>>,
 );
-const _flaxBinding1276 = FlaxProxyMember(
+const _flaxBinding1280 = FlaxProxyMember(
   "transitionDuration",
   1,
   _flaxBinding55,
   hasSuper: true,
 );
-const _flaxBinding1277 = FlaxProxyMember(
+const _flaxBinding1281 = FlaxProxyMember(
   "delegatedTransition",
   1,
   _flaxBinding60,
   hasSuper: true,
 );
-const _flaxBinding1278 = FlaxProxyMember(
+const _flaxBinding1282 = FlaxProxyMember(
   "reverseTransitionDuration",
   1,
   _flaxBinding55,
   hasSuper: true,
 );
-const _flaxBinding1279 = FlaxObjectBinding(
+const _flaxBinding1283 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoPageTransitionsBuilder",
-  [_flaxBinding1272, _flaxBinding1273, _flaxBinding1274],
+  [_flaxBinding1276, _flaxBinding1277, _flaxBinding1278],
   {
     "buildTransitions": FlaxInstanceMethod(
       <FlaxParameter>[
@@ -44695,125 +44839,125 @@ const _flaxBinding1279 = FlaxObjectBinding(
       0,
       FlaxCallbackBinding(
         [
-          FlaxCallbackParameter.plain("route", _flaxBinding1275),
+          FlaxCallbackParameter.plain("route", _flaxBinding1279),
           FlaxCallbackParameter.plain("context", _flaxBinding2),
           FlaxCallbackParameter.plain("animation", _flaxBinding56),
           FlaxCallbackParameter.plain("secondaryAnimation", _flaxBinding56),
           FlaxCallbackParameter.plain("child", flaxWidgetType),
         ],
         flaxWidgetType,
-        _callback8,
+        _callback9,
         id: "callback:<T:any?:=any?:>(p:r:route:object:flax.core/sdk_widgets#type:PageRoute<Object?><parameter:>,p:r:context:context:flax.core/flutter#type:BuildContext,p:r:animation:object:flax.core/sdk_animation#type:Animation<Object?><double:>,p:r:secondaryAnimation:object:flax.core/sdk_animation#type:Animation<Object?><double:>,p:r:child:widget:)->widget:",
-        invoke: _callback8Invoke,
-        matches: _callback8Matches,
-        genericFactory: _callback8Types,
+        invoke: _callback9Invoke,
+        matches: _callback9Matches,
+        genericFactory: _callback9Types,
       ),
       hasSuper: true,
       hasCallContext: true,
     ),
-    _flaxBinding1276,
-    _flaxBinding1277,
-    _flaxBinding1278,
+    _flaxBinding1280,
+    _flaxBinding1281,
+    _flaxBinding1282,
   ]),
 );
-const _flaxBinding1280 = FlaxGetter.plain(
+const _flaxBinding1284 = FlaxGetter.plain(
   "diameterRatio",
   flaxDoubleType,
   _CupertinoPicker_diameterRatio,
 );
-const _flaxBinding1281 = FlaxGetter.plain(
+const _flaxBinding1285 = FlaxGetter.plain(
   "backgroundColor",
   _flaxBinding31,
   _CupertinoPicker_backgroundColor,
 );
-const _flaxBinding1282 = FlaxGetter.plain(
+const _flaxBinding1286 = FlaxGetter.plain(
   "offAxisFraction",
   flaxDoubleType,
   _CupertinoPicker_offAxisFraction,
 );
-const _flaxBinding1283 = FlaxGetter.plain(
+const _flaxBinding1287 = FlaxGetter.plain(
   "useMagnifier",
   flaxBoolType,
   _CupertinoPicker_useMagnifier,
 );
-const _flaxBinding1284 = FlaxGetter.plain(
+const _flaxBinding1288 = FlaxGetter.plain(
   "magnification",
   flaxDoubleType,
   _CupertinoPicker_magnification,
 );
-const _flaxBinding1285 = FlaxTypeRef(
+const _flaxBinding1289 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:FixedExtentScrollController",
   nullable: true,
 );
-const _flaxBinding1286 = FlaxGetter.plain(
+const _flaxBinding1290 = FlaxGetter.plain(
   "scrollController",
-  _flaxBinding1285,
+  _flaxBinding1289,
   _CupertinoPicker_scrollController,
 );
-const _flaxBinding1287 = FlaxGetter.plain(
+const _flaxBinding1291 = FlaxGetter.plain(
   "itemExtent",
   flaxDoubleType,
   _CupertinoPicker_itemExtent,
 );
-const _flaxBinding1288 = FlaxGetter.plain(
+const _flaxBinding1292 = FlaxGetter.plain(
   "squeeze",
   flaxDoubleType,
   _CupertinoPicker_squeeze,
 );
-const _flaxBinding1289 = FlaxGetter.plain(
+const _flaxBinding1293 = FlaxGetter.plain(
   "changeReportingBehavior",
   _flaxBinding359,
   _CupertinoPicker_changeReportingBehavior,
 );
-const _flaxBinding1290 = FlaxGetter.plain(
+const _flaxBinding1294 = FlaxGetter.plain(
   "onSelectedItemChanged",
   flaxIntChangedNullableType,
   _CupertinoPicker_onSelectedItemChanged,
 );
-const _flaxBinding1291 = FlaxTypeRef(
+const _flaxBinding1295 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:ListWheelChildDelegate",
 );
-const _flaxBinding1292 = FlaxGetter.plain(
+const _flaxBinding1296 = FlaxGetter.plain(
   "childDelegate",
-  _flaxBinding1291,
+  _flaxBinding1295,
   _CupertinoPicker_childDelegate,
 );
-const _flaxBinding1293 = FlaxGetter.plain(
+const _flaxBinding1297 = FlaxGetter.plain(
   "selectionOverlay",
   _flaxBinding57,
   _CupertinoPicker_selectionOverlay,
 );
-const _flaxBinding1294 = FlaxInstanceMethod.shared(
+const _flaxBinding1298 = FlaxInstanceMethod.shared(
   _flaxBinding119,
   _CupertinoPicker_createState,
 );
-const _flaxBinding1295 = FlaxInstanceMethod.plain(
+const _flaxBinding1299 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding134,
   _CupertinoPicker_createElement,
 );
-const _flaxBinding1296 = FlaxInstanceMethod.shared(
+const _flaxBinding1300 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoPicker_debugFillProperties,
 );
-const _flaxBinding1297 = FlaxInstanceMethod.plain(
+const _flaxBinding1301 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoPicker_toStringShallow,
 );
-const _flaxBinding1298 = FlaxInstanceMethod.plain(
+const _flaxBinding1302 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoPicker_toStringDeep,
 );
-const _flaxBinding1299 = FlaxInstanceMethod.plain(
+const _flaxBinding1303 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoPicker_toDiagnosticsNode,
 );
-const _flaxBinding1300 = <FlaxParameter>[
+const _flaxBinding1304 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter(
     "diameterRatio",
@@ -44840,7 +44984,7 @@ const _flaxBinding1300 = <FlaxParameter>[
     required: false,
     defaultValue: 1.0,
   ),
-  FlaxParameter("scrollController", _flaxBinding1285, required: false),
+  FlaxParameter("scrollController", _flaxBinding1289, required: false),
   FlaxParameter("squeeze", flaxDoubleType, required: false, defaultValue: 1.45),
   FlaxParameter(
     "changeReportingBehavior",
@@ -44859,7 +45003,7 @@ const _flaxBinding1300 = <FlaxParameter>[
   ),
   FlaxParameter("looping", flaxBoolType, required: false, defaultValue: false),
 ];
-const _flaxBinding1301 = FlaxCallbackBinding(
+const _flaxBinding1305 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter.plain("context", _flaxBinding2),
     FlaxCallbackParameter.plain("index", flaxIntType),
@@ -44870,8 +45014,8 @@ const _flaxBinding1301 = FlaxCallbackBinding(
   invoke: FlaxCallbackAdapters.invoke2<api10.BuildContext, int, api.Widget?>,
   matches: FlaxCallbackAdapters.matches2<api10.BuildContext, int, api.Widget?>,
 );
-const _flaxBinding1302 = FlaxTypeRef("callback", callback: _flaxBinding1301);
-const _flaxBinding1303 = <FlaxParameter>[
+const _flaxBinding1306 = FlaxTypeRef("callback", callback: _flaxBinding1305);
+const _flaxBinding1307 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter(
     "diameterRatio",
@@ -44898,7 +45042,7 @@ const _flaxBinding1303 = <FlaxParameter>[
     required: false,
     defaultValue: 1.0,
   ),
-  FlaxParameter("scrollController", _flaxBinding1285, required: false),
+  FlaxParameter("scrollController", _flaxBinding1289, required: false),
   FlaxParameter("squeeze", flaxDoubleType, required: false, defaultValue: 1.45),
   FlaxParameter(
     "changeReportingBehavior",
@@ -44908,7 +45052,7 @@ const _flaxBinding1303 = <FlaxParameter>[
   ),
   FlaxParameter.required("itemExtent", flaxDoubleType),
   FlaxParameter.required("onSelectedItemChanged", flaxIntChangedNullableType),
-  FlaxParameter.required("itemBuilder", _flaxBinding1302),
+  FlaxParameter.required("itemBuilder", _flaxBinding1306),
   FlaxParameter("childCount", flaxNullableIntType, required: false),
   FlaxParameter(
     "selectionOverlay",
@@ -44917,34 +45061,34 @@ const _flaxBinding1303 = <FlaxParameter>[
     omitWhenAbsent: true,
   ),
 ];
-const _flaxBinding1304 = FlaxObjectBinding(
+const _flaxBinding1308 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoPicker",
   [
-    _flaxBinding1280,
-    _flaxBinding1281,
-    _flaxBinding1282,
-    _flaxBinding1283,
     _flaxBinding1284,
+    _flaxBinding1285,
     _flaxBinding1286,
     _flaxBinding1287,
     _flaxBinding1288,
-    _flaxBinding1289,
     _flaxBinding1290,
+    _flaxBinding1291,
     _flaxBinding1292,
     _flaxBinding1293,
+    _flaxBinding1294,
+    _flaxBinding1296,
+    _flaxBinding1297,
     _flaxBinding130,
   ],
   {
-    "createState": _flaxBinding1294,
-    "createElement": _flaxBinding1295,
+    "createState": _flaxBinding1298,
+    "createElement": _flaxBinding1299,
     "toStringShort": _flaxBinding136,
-    "debugFillProperties": _flaxBinding1296,
-    "toStringShallow": _flaxBinding1297,
-    "toStringDeep": _flaxBinding1298,
-    "toDiagnosticsNode": _flaxBinding1299,
+    "debugFillProperties": _flaxBinding1300,
+    "toStringShallow": _flaxBinding1301,
+    "toStringDeep": _flaxBinding1302,
+    "toDiagnosticsNode": _flaxBinding1303,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding1300, "builder": _flaxBinding1303},
+  constructors: {"": _flaxBinding1304, "builder": _flaxBinding1307},
   create: _createCupertinoPicker,
   matches: _isCupertinoPicker,
   setters: [],
@@ -44956,45 +45100,45 @@ const _flaxBinding1304 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding1305 = FlaxGetter.plain(
+const _flaxBinding1309 = FlaxGetter.plain(
   "capStartEdge",
   flaxBoolType,
   _CupertinoPickerDefaultSelectionOverlay_capStartEdge,
 );
-const _flaxBinding1306 = FlaxGetter.plain(
+const _flaxBinding1310 = FlaxGetter.plain(
   "capEndEdge",
   flaxBoolType,
   _CupertinoPickerDefaultSelectionOverlay_capEndEdge,
 );
-const _flaxBinding1307 = FlaxGetter.plain(
+const _flaxBinding1311 = FlaxGetter.plain(
   "background",
   flaxColorType,
   _CupertinoPickerDefaultSelectionOverlay_background,
 );
-const _flaxBinding1308 = FlaxInstanceMethod.shared(
+const _flaxBinding1312 = FlaxInstanceMethod.shared(
   _flaxBinding112,
   _CupertinoPickerDefaultSelectionOverlay_build,
 );
-const _flaxBinding1309 = FlaxInstanceMethod.shared(
+const _flaxBinding1313 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoPickerDefaultSelectionOverlay_debugFillProperties,
 );
-const _flaxBinding1310 = FlaxInstanceMethod.plain(
+const _flaxBinding1314 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoPickerDefaultSelectionOverlay_toStringShallow,
 );
-const _flaxBinding1311 = FlaxInstanceMethod.plain(
+const _flaxBinding1315 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoPickerDefaultSelectionOverlay_toStringDeep,
 );
-const _flaxBinding1312 = FlaxInstanceMethod.plain(
+const _flaxBinding1316 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoPickerDefaultSelectionOverlay_toDiagnosticsNode,
 );
-const _flaxBinding1313 = <FlaxParameter>[
+const _flaxBinding1317 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter(
     "background",
@@ -45015,20 +45159,20 @@ const _flaxBinding1313 = <FlaxParameter>[
     defaultValue: true,
   ),
 ];
-const _flaxBinding1314 = FlaxObjectBinding(
+const _flaxBinding1318 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoPickerDefaultSelectionOverlay",
-  [_flaxBinding1305, _flaxBinding1306, _flaxBinding1307, _flaxBinding130],
+  [_flaxBinding1309, _flaxBinding1310, _flaxBinding1311, _flaxBinding130],
   {
-    "build": _flaxBinding1308,
+    "build": _flaxBinding1312,
     "createElement": _flaxBinding190,
     "toStringShort": _flaxBinding136,
-    "debugFillProperties": _flaxBinding1309,
-    "toStringShallow": _flaxBinding1310,
-    "toStringDeep": _flaxBinding1311,
-    "toDiagnosticsNode": _flaxBinding1312,
+    "debugFillProperties": _flaxBinding1313,
+    "toStringShallow": _flaxBinding1314,
+    "toStringDeep": _flaxBinding1315,
+    "toDiagnosticsNode": _flaxBinding1316,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding1313},
+  constructors: {"": _flaxBinding1317},
   create: _createCupertinoPickerDefaultSelectionOverlay,
   matches: _isCupertinoPickerDefaultSelectionOverlay,
   setters: [],
@@ -45040,45 +45184,45 @@ const _flaxBinding1314 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding1315 = FlaxGetter.plain(
+const _flaxBinding1319 = FlaxGetter.plain(
   "blurSigma",
   flaxDoubleType,
   _CupertinoPopupSurface_blurSigma,
 );
-const _flaxBinding1316 = FlaxGetter.plain(
+const _flaxBinding1320 = FlaxGetter.plain(
   "isSurfacePainted",
   flaxBoolType,
   _CupertinoPopupSurface_isSurfacePainted,
 );
-const _flaxBinding1317 = FlaxGetter.plain(
+const _flaxBinding1321 = FlaxGetter.plain(
   "child",
   flaxWidgetType,
   _CupertinoPopupSurface_child,
 );
-const _flaxBinding1318 = FlaxInstanceMethod.shared(
+const _flaxBinding1322 = FlaxInstanceMethod.shared(
   _flaxBinding112,
   _CupertinoPopupSurface_build,
 );
-const _flaxBinding1319 = FlaxInstanceMethod.shared(
+const _flaxBinding1323 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoPopupSurface_debugFillProperties,
 );
-const _flaxBinding1320 = FlaxInstanceMethod.plain(
+const _flaxBinding1324 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoPopupSurface_toStringShallow,
 );
-const _flaxBinding1321 = FlaxInstanceMethod.plain(
+const _flaxBinding1325 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoPopupSurface_toStringDeep,
 );
-const _flaxBinding1322 = FlaxInstanceMethod.plain(
+const _flaxBinding1326 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoPopupSurface_toDiagnosticsNode,
 );
-const _flaxBinding1323 = <FlaxParameter>[
+const _flaxBinding1327 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter(
     "blurSigma",
@@ -45094,20 +45238,20 @@ const _flaxBinding1323 = <FlaxParameter>[
   ),
   FlaxParameter.required("child", flaxWidgetType),
 ];
-const _flaxBinding1324 = FlaxObjectBinding(
+const _flaxBinding1328 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoPopupSurface",
-  [_flaxBinding1315, _flaxBinding1316, _flaxBinding1317, _flaxBinding130],
+  [_flaxBinding1319, _flaxBinding1320, _flaxBinding1321, _flaxBinding130],
   {
-    "build": _flaxBinding1318,
+    "build": _flaxBinding1322,
     "createElement": _flaxBinding190,
     "toStringShort": _flaxBinding136,
-    "debugFillProperties": _flaxBinding1319,
-    "toStringShallow": _flaxBinding1320,
-    "toStringDeep": _flaxBinding1321,
-    "toDiagnosticsNode": _flaxBinding1322,
+    "debugFillProperties": _flaxBinding1323,
+    "toStringShallow": _flaxBinding1324,
+    "toStringDeep": _flaxBinding1325,
+    "toDiagnosticsNode": _flaxBinding1326,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding1323},
+  constructors: {"": _flaxBinding1327},
   create: _createCupertinoPopupSurface,
   matches: _isCupertinoPopupSurface,
   setters: [],
@@ -45119,87 +45263,87 @@ const _flaxBinding1324 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding1325 = FlaxGetter.plain(
+const _flaxBinding1329 = FlaxGetter.plain(
   "mouseCursor",
   _flaxBinding152,
   _CupertinoRadio_mouseCursor,
 );
-const _flaxBinding1326 = FlaxGetter.plain(
+const _flaxBinding1330 = FlaxGetter.plain(
   "toggleable",
   flaxBoolType,
   _CupertinoRadio_toggleable,
 );
-const _flaxBinding1327 = FlaxGetter.plain(
+const _flaxBinding1331 = FlaxGetter.plain(
   "useCheckmarkStyle",
   flaxBoolType,
   _CupertinoRadio_useCheckmarkStyle,
 );
-const _flaxBinding1328 = FlaxGetter.plain(
+const _flaxBinding1332 = FlaxGetter.plain(
   "activeColor",
   _flaxBinding31,
   _CupertinoRadio_activeColor,
 );
-const _flaxBinding1329 = FlaxGetter.plain(
+const _flaxBinding1333 = FlaxGetter.plain(
   "inactiveColor",
   _flaxBinding31,
   _CupertinoRadio_inactiveColor,
 );
-const _flaxBinding1330 = FlaxGetter.plain(
+const _flaxBinding1334 = FlaxGetter.plain(
   "fillColor",
   _flaxBinding31,
   _CupertinoRadio_fillColor,
 );
-const _flaxBinding1331 = FlaxGetter.plain(
+const _flaxBinding1335 = FlaxGetter.plain(
   "focusColor",
   _flaxBinding31,
   _CupertinoRadio_focusColor,
 );
-const _flaxBinding1332 = FlaxGetter.plain(
+const _flaxBinding1336 = FlaxGetter.plain(
   "focusNode",
   _flaxBinding154,
   _CupertinoRadio_focusNode,
 );
-const _flaxBinding1333 = FlaxGetter.plain(
+const _flaxBinding1337 = FlaxGetter.plain(
   "autofocus",
   flaxBoolType,
   _CupertinoRadio_autofocus,
 );
-const _flaxBinding1334 = FlaxGetter.plain(
+const _flaxBinding1338 = FlaxGetter.plain(
   "enabled",
   flaxNullableBoolType,
   _CupertinoRadio_enabled,
 );
-const _flaxBinding1335 = FlaxInstanceMethod.plain(
+const _flaxBinding1339 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding134,
   _CupertinoRadio_createElement,
 );
-const _flaxBinding1336 = FlaxInstanceMethod.shared(
+const _flaxBinding1340 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoRadio_debugFillProperties,
 );
-const _flaxBinding1337 = FlaxInstanceMethod.plain(
+const _flaxBinding1341 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoRadio_toStringShallow,
 );
-const _flaxBinding1338 = FlaxInstanceMethod.plain(
+const _flaxBinding1342 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoRadio_toStringDeep,
 );
-const _flaxBinding1339 = FlaxInstanceMethod.plain(
+const _flaxBinding1343 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoRadio_toDiagnosticsNode,
 );
-const _flaxBinding1340 = FlaxTypeRef(
+const _flaxBinding1344 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:RadioGroupRegistry",
   dartType: FlaxDartTypes.typeOf<api10.RadioGroupRegistry<Object?>?>,
   nullable: true,
 );
-const _flaxBinding1341 = <FlaxParameter>[
+const _flaxBinding1345 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter.required("value", flaxNullableAnyType),
   FlaxParameter("groupValue", flaxNullableAnyType, required: false),
@@ -45233,406 +45377,406 @@ const _flaxBinding1341 = <FlaxParameter>[
     defaultValue: false,
   ),
   FlaxParameter("enabled", flaxNullableBoolType, required: false),
-  FlaxParameter("groupRegistry", _flaxBinding1340, required: false),
+  FlaxParameter("groupRegistry", _flaxBinding1344, required: false),
 ];
-const _flaxBinding1342 = FlaxGetter.plain(
+const _flaxBinding1346 = FlaxGetter.plain(
   "filter",
   _flaxBinding452,
   _CupertinoRouteTransitionMixin_filter,
 );
-const _flaxBinding1343 = FlaxGetter.plain(
+const _flaxBinding1347 = FlaxGetter.plain(
   "traversalEdgeBehavior",
   _flaxBinding454,
   _CupertinoRouteTransitionMixin_traversalEdgeBehavior,
 );
-const _flaxBinding1344 = FlaxGetter.plain(
+const _flaxBinding1348 = FlaxGetter.plain(
   "directionalTraversalEdgeBehavior",
   _flaxBinding454,
   _CupertinoRouteTransitionMixin_directionalTraversalEdgeBehavior,
 );
-const _flaxBinding1345 = FlaxGetter.plain(
+const _flaxBinding1349 = FlaxGetter.plain(
   "delegatedTransition",
   _flaxBinding59,
   _CupertinoRouteTransitionMixin_delegatedTransition,
 );
-const _flaxBinding1346 = FlaxGetter.plain(
+const _flaxBinding1350 = FlaxGetter.plain(
   "receivedTransition",
   _flaxBinding59,
   _CupertinoRouteTransitionMixin_receivedTransition,
 );
-const _flaxBinding1347 = FlaxGetter.plain(
+const _flaxBinding1351 = FlaxGetter.plain(
   "barrierDismissible",
   flaxBoolType,
   _CupertinoRouteTransitionMixin_barrierDismissible,
 );
-const _flaxBinding1348 = FlaxGetter.plain(
+const _flaxBinding1352 = FlaxGetter.plain(
   "semanticsDismissible",
   flaxBoolType,
   _CupertinoRouteTransitionMixin_semanticsDismissible,
 );
-const _flaxBinding1349 = FlaxGetter.plain(
+const _flaxBinding1353 = FlaxGetter.plain(
   "barrierColor",
   _flaxBinding31,
   _CupertinoRouteTransitionMixin_barrierColor,
 );
-const _flaxBinding1350 = FlaxGetter.plain(
+const _flaxBinding1354 = FlaxGetter.plain(
   "barrierLabel",
   flaxNullableStringType,
   _CupertinoRouteTransitionMixin_barrierLabel,
 );
-const _flaxBinding1351 = FlaxGetter.plain(
+const _flaxBinding1355 = FlaxGetter.plain(
   "barrierCurve",
   flaxCurveType,
   _CupertinoRouteTransitionMixin_barrierCurve,
 );
-const _flaxBinding1352 = FlaxGetter.plain(
+const _flaxBinding1356 = FlaxGetter.plain(
   "maintainState",
   flaxBoolType,
   _CupertinoRouteTransitionMixin_maintainState,
 );
-const _flaxBinding1353 = FlaxGetter.plain(
+const _flaxBinding1357 = FlaxGetter.plain(
   "popGestureInProgress",
   flaxBoolType,
   _CupertinoRouteTransitionMixin_popGestureInProgress,
 );
-const _flaxBinding1354 = FlaxGetter.plain(
+const _flaxBinding1358 = FlaxGetter.plain(
   "offstage",
   flaxBoolType,
   _CupertinoRouteTransitionMixin_offstage,
 );
-const _flaxBinding1355 = FlaxGetter.plain(
+const _flaxBinding1359 = FlaxGetter.plain(
   "subtreeContext",
   _flaxBinding467,
   _CupertinoRouteTransitionMixin_subtreeContext,
 );
-const _flaxBinding1356 = FlaxGetter.plain(
+const _flaxBinding1360 = FlaxGetter.plain(
   "animation",
   _flaxBinding469,
   _CupertinoRouteTransitionMixin_animation,
 );
-const _flaxBinding1357 = FlaxGetter.plain(
+const _flaxBinding1361 = FlaxGetter.plain(
   "secondaryAnimation",
   _flaxBinding469,
   _CupertinoRouteTransitionMixin_secondaryAnimation,
 );
-const _flaxBinding1358 = FlaxGetter.plain(
+const _flaxBinding1362 = FlaxGetter.plain(
   "popDisposition",
   _flaxBinding472,
   _CupertinoRouteTransitionMixin_popDisposition,
 );
-const _flaxBinding1359 = FlaxGetter.plain(
+const _flaxBinding1363 = FlaxGetter.plain(
   "hasScopedWillPopCallback",
   flaxBoolType,
   _CupertinoRouteTransitionMixin_hasScopedWillPopCallback,
 );
-const _flaxBinding1360 = FlaxGetter.plain(
+const _flaxBinding1364 = FlaxGetter.plain(
   "canPop",
   flaxBoolType,
   _CupertinoRouteTransitionMixin_canPop,
 );
-const _flaxBinding1361 = FlaxGetter.plain(
+const _flaxBinding1365 = FlaxGetter.plain(
   "impliesAppBarDismissal",
   flaxBoolType,
   _CupertinoRouteTransitionMixin_impliesAppBarDismissal,
 );
-const _flaxBinding1362 = FlaxGetter.plain(
+const _flaxBinding1366 = FlaxGetter.plain(
   "fullscreenDialog",
   flaxBoolType,
   _CupertinoRouteTransitionMixin_fullscreenDialog,
 );
-const _flaxBinding1363 = FlaxGetter.plain(
+const _flaxBinding1367 = FlaxGetter.plain(
   "transitionDuration",
   flaxDurationType,
   _CupertinoRouteTransitionMixin_transitionDuration,
 );
-const _flaxBinding1364 = FlaxGetter.plain(
+const _flaxBinding1368 = FlaxGetter.plain(
   "reverseTransitionDuration",
   flaxDurationType,
   _CupertinoRouteTransitionMixin_reverseTransitionDuration,
 );
-const _flaxBinding1365 = FlaxGetter.plain(
+const _flaxBinding1369 = FlaxGetter.plain(
   "opaque",
   flaxBoolType,
   _CupertinoRouteTransitionMixin_opaque,
 );
-const _flaxBinding1366 = FlaxGetter.plain(
+const _flaxBinding1370 = FlaxGetter.plain(
   "allowSnapshotting",
   flaxBoolType,
   _CupertinoRouteTransitionMixin_allowSnapshotting,
 );
-const _flaxBinding1367 = FlaxGetter.plain(
+const _flaxBinding1371 = FlaxGetter.plain(
   "finishedWhenPopped",
   flaxBoolType,
   _CupertinoRouteTransitionMixin_finishedWhenPopped,
 );
-const _flaxBinding1368 = FlaxGetter.plain(
+const _flaxBinding1372 = FlaxGetter.plain(
   "controller",
   _flaxBinding481,
   _CupertinoRouteTransitionMixin_controller,
 );
-const _flaxBinding1369 = FlaxGetter.plain(
+const _flaxBinding1373 = FlaxGetter.plain(
   "willDisposeAnimationController",
   flaxBoolType,
   _CupertinoRouteTransitionMixin_willDisposeAnimationController,
 );
-const _flaxBinding1370 = FlaxGetter.plain(
+const _flaxBinding1374 = FlaxGetter.plain(
   "debugLabel",
   flaxStringType,
   _CupertinoRouteTransitionMixin_debugLabel,
 );
-const _flaxBinding1371 = FlaxGetter.plain(
+const _flaxBinding1375 = FlaxGetter.plain(
   "overlayEntries",
   _flaxBinding487,
   _CupertinoRouteTransitionMixin_overlayEntries,
 );
-const _flaxBinding1372 = FlaxGetter.plain(
+const _flaxBinding1376 = FlaxGetter.plain(
   "requestFocus",
   flaxBoolType,
   _CupertinoRouteTransitionMixin_requestFocus,
 );
-const _flaxBinding1373 = FlaxGetter.plain(
+const _flaxBinding1377 = FlaxGetter.plain(
   "navigator",
   _flaxBinding490,
   _CupertinoRouteTransitionMixin_navigator,
 );
-const _flaxBinding1374 = FlaxGetter.plain(
+const _flaxBinding1378 = FlaxGetter.plain(
   "settings",
   _flaxBinding226,
   _CupertinoRouteTransitionMixin_settings,
 );
-const _flaxBinding1375 = FlaxGetter.plain(
+const _flaxBinding1379 = FlaxGetter.plain(
   "restorationScopeId",
   _flaxBinding493,
   _CupertinoRouteTransitionMixin_restorationScopeId,
 );
-const _flaxBinding1376 = FlaxGetter.plain(
+const _flaxBinding1380 = FlaxGetter.plain(
   "willHandlePopInternally",
   flaxBoolType,
   _CupertinoRouteTransitionMixin_willHandlePopInternally,
 );
-const _flaxBinding1377 = FlaxGetter.plain(
+const _flaxBinding1381 = FlaxGetter.plain(
   "isFirst",
   flaxBoolType,
   _CupertinoRouteTransitionMixin_isFirst,
 );
-const _flaxBinding1378 = FlaxGetter.plain(
+const _flaxBinding1382 = FlaxGetter.plain(
   "hasActiveRouteBelow",
   flaxBoolType,
   _CupertinoRouteTransitionMixin_hasActiveRouteBelow,
 );
-const _flaxBinding1379 = FlaxGetter.plain(
+const _flaxBinding1383 = FlaxGetter.plain(
   "isActive",
   flaxBoolType,
   _CupertinoRouteTransitionMixin_isActive,
 );
-const _flaxBinding1380 = FlaxGetter.plain(
+const _flaxBinding1384 = FlaxGetter.plain(
   "includeRouteSemantics",
   flaxBoolType,
   _CupertinoRouteTransitionMixin_includeRouteSemantics,
 );
-const _flaxBinding1381 = FlaxGetter.plain(
+const _flaxBinding1385 = FlaxGetter.plain(
   "title",
   flaxNullableStringType,
   _CupertinoRouteTransitionMixin_title,
 );
-const _flaxBinding1382 = FlaxGetter.plain(
+const _flaxBinding1386 = FlaxGetter.plain(
   "previousTitle",
   _flaxBinding493,
   _CupertinoRouteTransitionMixin_previousTitle,
 );
-const _flaxBinding1383 = FlaxInstanceMethod.plain(
-  _flaxBinding504,
+const _flaxBinding1387 = FlaxInstanceMethod.plain(
+  _flaxBinding508,
   flaxVoidType,
   _CupertinoRouteTransitionMixin_setState,
 );
-const _flaxBinding1384 = FlaxInstanceMethod.plain(
-  _flaxBinding506,
+const _flaxBinding1388 = FlaxInstanceMethod.plain(
+  _flaxBinding510,
   flaxWidgetType,
   _CupertinoRouteTransitionMixin_buildPage,
 );
-const _flaxBinding1385 = FlaxInstanceMethod.plain(
-  _flaxBinding508,
+const _flaxBinding1389 = FlaxInstanceMethod.plain(
+  _flaxBinding512,
   flaxWidgetType,
   _CupertinoRouteTransitionMixin_buildTransitions,
 );
-const _flaxBinding1386 = FlaxInstanceMethod.shared(
+const _flaxBinding1390 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _CupertinoRouteTransitionMixin_install,
 );
-const _flaxBinding1387 = FlaxInstanceMethod.plain(
+const _flaxBinding1391 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   flaxTickerFutureType,
   _CupertinoRouteTransitionMixin_didPush,
 );
-const _flaxBinding1388 = FlaxInstanceMethod.shared(
+const _flaxBinding1392 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _CupertinoRouteTransitionMixin_didAdd,
 );
-const _flaxBinding1389 = FlaxInstanceMethod.plain(
+const _flaxBinding1393 = FlaxInstanceMethod.plain(
   _flaxBinding132,
-  _flaxBinding513,
+  _flaxBinding517,
   _CupertinoRouteTransitionMixin_willPop,
 );
-const _flaxBinding1390 = FlaxInstanceMethod.plain(
-  _flaxBinding518,
+const _flaxBinding1394 = FlaxInstanceMethod.plain(
+  _flaxBinding522,
   flaxVoidType,
   _CupertinoRouteTransitionMixin_addScopedWillPopCallback,
 );
-const _flaxBinding1391 = FlaxInstanceMethod.plain(
-  _flaxBinding518,
+const _flaxBinding1395 = FlaxInstanceMethod.plain(
+  _flaxBinding522,
   flaxVoidType,
   _CupertinoRouteTransitionMixin_removeScopedWillPopCallback,
 );
-const _flaxBinding1392 = FlaxInstanceMethod.plain(
-  _flaxBinding522,
+const _flaxBinding1396 = FlaxInstanceMethod.plain(
+  _flaxBinding526,
   flaxVoidType,
   _CupertinoRouteTransitionMixin_registerPopEntry,
 );
-const _flaxBinding1393 = FlaxInstanceMethod.plain(
-  _flaxBinding522,
+const _flaxBinding1397 = FlaxInstanceMethod.plain(
+  _flaxBinding526,
   flaxVoidType,
   _CupertinoRouteTransitionMixin_unregisterPopEntry,
 );
-const _flaxBinding1394 = FlaxInstanceMethod.plain(
-  _flaxBinding525,
+const _flaxBinding1398 = FlaxInstanceMethod.plain(
+  _flaxBinding529,
   flaxVoidType,
   _CupertinoRouteTransitionMixin_didChangePrevious,
 );
-const _flaxBinding1395 = FlaxInstanceMethod.plain(
-  _flaxBinding527,
+const _flaxBinding1399 = FlaxInstanceMethod.plain(
+  _flaxBinding531,
   flaxVoidType,
   _CupertinoRouteTransitionMixin_didChangeNext,
 );
-const _flaxBinding1396 = FlaxInstanceMethod.plain(
-  _flaxBinding529,
+const _flaxBinding1400 = FlaxInstanceMethod.plain(
+  _flaxBinding533,
   flaxVoidType,
   _CupertinoRouteTransitionMixin_didPopNext,
 );
-const _flaxBinding1397 = FlaxInstanceMethod.shared(
+const _flaxBinding1401 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _CupertinoRouteTransitionMixin_changedInternalState,
 );
-const _flaxBinding1398 = FlaxInstanceMethod.shared(
+const _flaxBinding1402 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _CupertinoRouteTransitionMixin_changedExternalState,
 );
-const _flaxBinding1399 = FlaxInstanceMethod.plain(
+const _flaxBinding1403 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   flaxWidgetType,
   _CupertinoRouteTransitionMixin_buildModalBarrier,
 );
-const _flaxBinding1400 = FlaxInstanceMethod.plain(
+const _flaxBinding1404 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding486,
   _CupertinoRouteTransitionMixin_createOverlayEntries,
 );
-const _flaxBinding1401 = FlaxInstanceMethod.shared(
+const _flaxBinding1405 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _CupertinoRouteTransitionMixin_toString,
 );
-const _flaxBinding1402 = FlaxInstanceMethod.shared(
+const _flaxBinding1406 = FlaxInstanceMethod.shared(
   flaxBoolCall,
   _CupertinoRouteTransitionMixin_debugTransitionCompleted,
 );
-const _flaxBinding1403 = FlaxInstanceMethod.plain(
+const _flaxBinding1407 = FlaxInstanceMethod.plain(
   _flaxBinding132,
-  _flaxBinding536,
+  _flaxBinding540,
   _CupertinoRouteTransitionMixin_createAnimationController,
 );
-const _flaxBinding1404 = FlaxInstanceMethod.plain(
+const _flaxBinding1408 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding56,
   _CupertinoRouteTransitionMixin_createAnimation,
 );
-const _flaxBinding1405 = FlaxInstanceMethod.plain(
-  _flaxBinding540,
-  _flaxBinding1228,
+const _flaxBinding1409 = FlaxInstanceMethod.plain(
+  _flaxBinding544,
+  _flaxBinding1232,
   _CupertinoRouteTransitionMixin_createSimulation,
 );
-const _flaxBinding1406 = FlaxInstanceMethod.plain(
-  _flaxBinding542,
+const _flaxBinding1410 = FlaxInstanceMethod.plain(
+  _flaxBinding546,
   flaxVoidType,
   _CupertinoRouteTransitionMixin_didReplace,
 );
-const _flaxBinding1407 = FlaxInstanceMethod.plain(
-  _flaxBinding545,
+const _flaxBinding1411 = FlaxInstanceMethod.plain(
+  _flaxBinding549,
   flaxBoolType,
   _CupertinoRouteTransitionMixin_canTransitionTo,
 );
-const _flaxBinding1408 = FlaxInstanceMethod.plain(
-  _flaxBinding547,
+const _flaxBinding1412 = FlaxInstanceMethod.plain(
+  _flaxBinding551,
   flaxBoolType,
   _CupertinoRouteTransitionMixin_canTransitionFrom,
 );
-const _flaxBinding1409 = FlaxInstanceMethod.plain(
-  _flaxBinding549,
+const _flaxBinding1413 = FlaxInstanceMethod.plain(
+  _flaxBinding553,
   flaxVoidType,
   _CupertinoRouteTransitionMixin_handleStartBackGesture,
 );
-const _flaxBinding1410 = FlaxInstanceMethod.plain(
-  _flaxBinding551,
+const _flaxBinding1414 = FlaxInstanceMethod.plain(
+  _flaxBinding555,
   flaxVoidType,
   _CupertinoRouteTransitionMixin_handleUpdateBackGestureProgress,
 );
-const _flaxBinding1411 = FlaxInstanceMethod.shared(
+const _flaxBinding1415 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _CupertinoRouteTransitionMixin_handleCancelBackGesture,
 );
-const _flaxBinding1412 = FlaxInstanceMethod.shared(
+const _flaxBinding1416 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _CupertinoRouteTransitionMixin_handleCommitBackGesture,
 );
-const _flaxBinding1413 = FlaxInstanceMethod.shared(
+const _flaxBinding1417 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _CupertinoRouteTransitionMixin_dispose,
 );
-const _flaxBinding1414 = FlaxInstanceMethod.plain(
-  _flaxBinding556,
+const _flaxBinding1418 = FlaxInstanceMethod.plain(
+  _flaxBinding560,
   flaxVoidType,
   _CupertinoRouteTransitionMixin_onPopInvoked,
 );
-const _flaxBinding1415 = FlaxInstanceMethod.plain(
-  _flaxBinding559,
+const _flaxBinding1419 = FlaxInstanceMethod.plain(
+  _flaxBinding563,
   flaxVoidType,
   _CupertinoRouteTransitionMixin_addLocalHistoryEntry,
 );
-const _flaxBinding1416 = FlaxInstanceMethod.plain(
-  _flaxBinding559,
+const _flaxBinding1420 = FlaxInstanceMethod.plain(
+  _flaxBinding563,
   flaxVoidType,
   _CupertinoRouteTransitionMixin_removeLocalHistoryEntry,
 );
-const _flaxBinding1417 = FlaxInstanceMethod.shared(
+const _flaxBinding1421 = FlaxInstanceMethod.shared(
   _flaxBinding112,
   _CupertinoRouteTransitionMixin_buildContent,
 );
-const _flaxBinding1418 = FlaxSetter(
+const _flaxBinding1422 = FlaxSetter(
   "receivedTransition",
   _flaxBinding59,
   _CupertinoRouteTransitionMixin_set_receivedTransition,
 );
-const _flaxBinding1419 = FlaxSetter(
+const _flaxBinding1423 = FlaxSetter(
   "offstage",
   flaxBoolType,
   _CupertinoRouteTransitionMixin_set_offstage,
 );
-const _flaxBinding1420 = FlaxSetter(
+const _flaxBinding1424 = FlaxSetter(
   "willDisposeAnimationController",
   flaxBoolType,
   _CupertinoRouteTransitionMixin_set_willDisposeAnimationController,
 );
-const _flaxBinding1421 = FlaxGetter.plain(
+const _flaxBinding1425 = FlaxGetter.plain(
   "dragDevices",
   _flaxBinding80,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_ScrollBehavior_7c_get_3a_dragDevices,
 );
-const _flaxBinding1422 = FlaxGetter.plain(
+const _flaxBinding1426 = FlaxGetter.plain(
   "pointerAxisModifiers",
   _flaxBinding84,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_ScrollBehavior_7c_get_3a_pointerAxisModifiers,
 );
-const _flaxBinding1423 = FlaxTypeRef(
+const _flaxBinding1427 = FlaxTypeRef(
   "set",
   nullable: true,
   item: _flaxBinding78,
@@ -45643,27 +45787,27 @@ const _flaxBinding1423 = FlaxTypeRef(
   ),
   iterable: _flaxBinding79,
 );
-const _flaxBinding1424 = FlaxTypeRef(
+const _flaxBinding1428 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_widgets#type:ScrollViewKeyboardDismissBehavior",
   nullable: true,
 );
-const _flaxBinding1425 = FlaxTypeRef(
+const _flaxBinding1429 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_gestures#type:MultitouchDragStrategy",
   nullable: true,
 );
-const _flaxBinding1426 = FlaxTypeRef(
+const _flaxBinding1430 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:ScrollPhysics",
   nullable: true,
 );
-const _flaxBinding1427 = FlaxTypeRef(
+const _flaxBinding1431 = FlaxTypeRef(
   "enum",
   id: "flax.core/flutter#type:TargetPlatform",
   nullable: true,
 );
-const _flaxBinding1428 = FlaxTypeRef(
+const _flaxBinding1432 = FlaxTypeRef(
   "set",
   nullable: true,
   item: _flaxBinding82,
@@ -45674,59 +45818,59 @@ const _flaxBinding1428 = FlaxTypeRef(
   ),
   iterable: _flaxBinding83,
 );
-const _flaxBinding1429 = <FlaxParameter>[
-  FlaxParameter("dragDevices", _flaxBinding1423, required: false),
-  FlaxParameter("keyboardDismissBehavior", _flaxBinding1424, required: false),
-  FlaxParameter("multitouchDragStrategy", _flaxBinding1425, required: false),
+const _flaxBinding1433 = <FlaxParameter>[
+  FlaxParameter("dragDevices", _flaxBinding1427, required: false),
+  FlaxParameter("keyboardDismissBehavior", _flaxBinding1428, required: false),
+  FlaxParameter("multitouchDragStrategy", _flaxBinding1429, required: false),
   FlaxParameter("overscroll", flaxNullableBoolType, required: false),
-  FlaxParameter("physics", _flaxBinding1426, required: false),
-  FlaxParameter("platform", _flaxBinding1427, required: false),
-  FlaxParameter("pointerAxisModifiers", _flaxBinding1428, required: false),
+  FlaxParameter("physics", _flaxBinding1430, required: false),
+  FlaxParameter("platform", _flaxBinding1431, required: false),
+  FlaxParameter("pointerAxisModifiers", _flaxBinding1432, required: false),
   FlaxParameter("scrollbars", flaxNullableBoolType, required: false),
 ];
-const _flaxBinding1430 = FlaxInstanceMethod.plain(
-  _flaxBinding1429,
+const _flaxBinding1434 = FlaxInstanceMethod.plain(
+  _flaxBinding1433,
   _flaxBinding74,
   _CupertinoScrollBehavior_copyWith,
 );
-const _flaxBinding1431 = FlaxInstanceMethod.shared(
+const _flaxBinding1435 = FlaxInstanceMethod.shared(
   _flaxBinding62,
   _CupertinoScrollBehavior_getPlatform,
 );
-const _flaxBinding1432 = FlaxInstanceMethod.shared(
+const _flaxBinding1436 = FlaxInstanceMethod.shared(
   _flaxBinding64,
   _CupertinoScrollBehavior_getMultitouchDragStrategy,
 );
-const _flaxBinding1433 = FlaxInstanceMethod.shared(
+const _flaxBinding1437 = FlaxInstanceMethod.shared(
   _flaxBinding66,
   _CupertinoScrollBehavior_buildScrollbar,
 );
-const _flaxBinding1434 = FlaxInstanceMethod.shared(
+const _flaxBinding1438 = FlaxInstanceMethod.shared(
   _flaxBinding66,
   _CupertinoScrollBehavior_buildOverscrollIndicator,
 );
-const _flaxBinding1435 = FlaxInstanceMethod.shared(
+const _flaxBinding1439 = FlaxInstanceMethod.shared(
   _flaxBinding71,
   _CupertinoScrollBehavior_velocityTrackerBuilder,
 );
-const _flaxBinding1436 = FlaxInstanceMethod.shared(
+const _flaxBinding1440 = FlaxInstanceMethod.shared(
   _flaxBinding73,
   _CupertinoScrollBehavior_getScrollPhysics,
 );
-const _flaxBinding1437 = FlaxInstanceMethod.shared(
+const _flaxBinding1441 = FlaxInstanceMethod.shared(
   _flaxBinding75,
   _CupertinoScrollBehavior_shouldNotify,
 );
-const _flaxBinding1438 = FlaxInstanceMethod.shared(
+const _flaxBinding1442 = FlaxInstanceMethod.shared(
   _flaxBinding77,
   _CupertinoScrollBehavior_getKeyboardDismissBehavior,
 );
-const _flaxBinding1439 = FlaxInstanceMethod.shared(
+const _flaxBinding1443 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_ScrollBehavior_7c_call_3a_toString,
 );
-const _flaxBinding1440 = FlaxCallbackBinding.signature(
+const _flaxBinding1444 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "scrollbars",
@@ -45742,37 +45886,37 @@ const _flaxBinding1440 = FlaxCallbackBinding.signature(
     ),
     FlaxCallbackParameter.plain(
       "dragDevices",
-      _flaxBinding1423,
-      required: false,
-      positional: false,
-    ),
-    FlaxCallbackParameter.plain(
-      "multitouchDragStrategy",
-      _flaxBinding1425,
-      required: false,
-      positional: false,
-    ),
-    FlaxCallbackParameter.plain(
-      "pointerAxisModifiers",
-      _flaxBinding1428,
-      required: false,
-      positional: false,
-    ),
-    FlaxCallbackParameter.plain(
-      "physics",
-      _flaxBinding1426,
-      required: false,
-      positional: false,
-    ),
-    FlaxCallbackParameter.plain(
-      "platform",
       _flaxBinding1427,
       required: false,
       positional: false,
     ),
     FlaxCallbackParameter.plain(
+      "multitouchDragStrategy",
+      _flaxBinding1429,
+      required: false,
+      positional: false,
+    ),
+    FlaxCallbackParameter.plain(
+      "pointerAxisModifiers",
+      _flaxBinding1432,
+      required: false,
+      positional: false,
+    ),
+    FlaxCallbackParameter.plain(
+      "physics",
+      _flaxBinding1430,
+      required: false,
+      positional: false,
+    ),
+    FlaxCallbackParameter.plain(
+      "platform",
+      _flaxBinding1431,
+      required: false,
+      positional: false,
+    ),
+    FlaxCallbackParameter.plain(
       "keyboardDismissBehavior",
-      _flaxBinding1424,
+      _flaxBinding1428,
       required: false,
       positional: false,
     ),
@@ -45780,94 +45924,94 @@ const _flaxBinding1440 = FlaxCallbackBinding.signature(
   _flaxBinding74,
   id: "callback:<>(n:o:scrollbars:bool?:,n:o:overscroll:bool?:,n:o:dragDevices:set?:[enum:flax.core/sdk_dart_ui#type:PointerDeviceKind],n:o:multitouchDragStrategy:enum?:flax.core/sdk_gestures#type:MultitouchDragStrategy,n:o:pointerAxisModifiers:set?:[object:flax.core/flutter#type:LogicalKeyboardKey],n:o:physics:object?:flax.core/flutter#type:ScrollPhysics,n:o:platform:enum?:flax.core/flutter#type:TargetPlatform,n:o:keyboardDismissBehavior:enum?:flax.core/sdk_widgets#type:ScrollViewKeyboardDismissBehavior)->object:flax.core/sdk_widgets#type:ScrollBehavior",
 );
-const _flaxBinding1441 = FlaxProxyMember(
+const _flaxBinding1445 = FlaxProxyMember(
   "copyWith",
   0,
-  _flaxBinding1440,
+  _flaxBinding1444,
   hasSuper: true,
 );
-const _flaxBinding1442 = FlaxProxyMember(
+const _flaxBinding1446 = FlaxProxyMember(
   "getPlatform",
   0,
   _flaxBinding62,
   hasSuper: true,
 );
-const _flaxBinding1443 = FlaxProxyMember(
+const _flaxBinding1447 = FlaxProxyMember(
   "getMultitouchDragStrategy",
   0,
   _flaxBinding64,
   hasSuper: true,
 );
-const _flaxBinding1444 = FlaxProxyMember(
+const _flaxBinding1448 = FlaxProxyMember(
   "buildScrollbar",
   0,
   _flaxBinding66,
   hasSuper: true,
 );
-const _flaxBinding1445 = FlaxProxyMember(
+const _flaxBinding1449 = FlaxProxyMember(
   "buildOverscrollIndicator",
   0,
   _flaxBinding66,
   hasSuper: true,
 );
-const _flaxBinding1446 = FlaxProxyMember(
+const _flaxBinding1450 = FlaxProxyMember(
   "velocityTrackerBuilder",
   0,
   _flaxBinding71,
   hasSuper: true,
 );
-const _flaxBinding1447 = FlaxProxyMember(
+const _flaxBinding1451 = FlaxProxyMember(
   "getScrollPhysics",
   0,
   _flaxBinding73,
   hasSuper: true,
 );
-const _flaxBinding1448 = FlaxProxyMember(
+const _flaxBinding1452 = FlaxProxyMember(
   "shouldNotify",
   0,
   _flaxBinding75,
   hasSuper: true,
 );
-const _flaxBinding1449 = FlaxProxyMember(
+const _flaxBinding1453 = FlaxProxyMember(
   "getKeyboardDismissBehavior",
   0,
   _flaxBinding77,
   hasSuper: true,
 );
-const _flaxBinding1450 = FlaxProxyMember(
+const _flaxBinding1454 = FlaxProxyMember(
   "toString",
   0,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding1451 = FlaxProxyMember(
+const _flaxBinding1455 = FlaxProxyMember(
   "dragDevices",
   1,
   _flaxBinding81,
   hasSuper: true,
 );
-const _flaxBinding1452 = FlaxProxyMember(
+const _flaxBinding1456 = FlaxProxyMember(
   "pointerAxisModifiers",
   1,
   _flaxBinding85,
   hasSuper: true,
 );
-const _flaxBinding1453 = FlaxObjectBinding(
+const _flaxBinding1457 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoScrollBehavior",
-  [_flaxBinding1421, _flaxBinding1422],
+  [_flaxBinding1425, _flaxBinding1426],
   {
-    "copyWith": _flaxBinding1430,
-    "getPlatform": _flaxBinding1431,
-    "getMultitouchDragStrategy": _flaxBinding1432,
-    "buildScrollbar": _flaxBinding1433,
-    "buildOverscrollIndicator": _flaxBinding1434,
-    "velocityTrackerBuilder": _flaxBinding1435,
-    "getScrollPhysics": _flaxBinding1436,
-    "shouldNotify": _flaxBinding1437,
-    "getKeyboardDismissBehavior": _flaxBinding1438,
-    "toString": _flaxBinding1439,
+    "copyWith": _flaxBinding1434,
+    "getPlatform": _flaxBinding1435,
+    "getMultitouchDragStrategy": _flaxBinding1436,
+    "buildScrollbar": _flaxBinding1437,
+    "buildOverscrollIndicator": _flaxBinding1438,
+    "velocityTrackerBuilder": _flaxBinding1439,
+    "getScrollPhysics": _flaxBinding1440,
+    "shouldNotify": _flaxBinding1441,
+    "getKeyboardDismissBehavior": _flaxBinding1442,
+    "toString": _flaxBinding1443,
     "@super:copyWith": FlaxInstanceMethod.plain(
-      _flaxBinding1429,
+      _flaxBinding1433,
       _flaxBinding74,
       _CupertinoScrollBehavior_super_copyWith,
     ),
@@ -45925,10 +46069,6 @@ const _flaxBinding1453 = FlaxObjectBinding(
     "dart:core::Object",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding1441,
-    _flaxBinding1442,
-    _flaxBinding1443,
-    _flaxBinding1444,
     _flaxBinding1445,
     _flaxBinding1446,
     _flaxBinding1447,
@@ -45937,215 +46077,248 @@ const _flaxBinding1453 = FlaxObjectBinding(
     _flaxBinding1450,
     _flaxBinding1451,
     _flaxBinding1452,
+    _flaxBinding1453,
+    _flaxBinding1454,
+    _flaxBinding1455,
+    _flaxBinding1456,
   ]),
 );
-const _flaxBinding1454 = FlaxGetter.plain(
+const _flaxBinding1458 = FlaxGetter.plain(
   "thicknessWhileDragging",
   flaxDoubleType,
   _CupertinoScrollbar_thicknessWhileDragging,
 );
-const _flaxBinding1455 = FlaxGetter.plain(
+const _flaxBinding1459 = FlaxGetter.plain(
   "radiusWhileDragging",
   flaxRadiusType,
   _CupertinoScrollbar_radiusWhileDragging,
 );
-const _flaxBinding1456 = FlaxGetter.plain(
+const _flaxBinding1460 = FlaxGetter.plain(
   "child",
   flaxWidgetType,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_RawScrollbar_7c_get_3a_child,
 );
-const _flaxBinding1457 = FlaxGetter.plain(
+const _flaxBinding1461 = FlaxGetter.plain(
   "controller",
   _flaxBinding125,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_RawScrollbar_7c_get_3a_controller,
 );
-const _flaxBinding1458 = FlaxGetter.plain(
+const _flaxBinding1462 = FlaxGetter.plain(
   "thumbVisibility",
   flaxNullableBoolType,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_RawScrollbar_7c_get_3a_thumbVisibility,
 );
-const _flaxBinding1459 = FlaxGetter.plain(
+const _flaxBinding1463 = FlaxGetter.plain(
   "shape",
   _flaxBinding289,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_RawScrollbar_7c_get_3a_shape,
 );
-const _flaxBinding1460 = FlaxTypeRef(
+const _flaxBinding1464 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:Radius",
   nullable: true,
 );
-const _flaxBinding1461 = FlaxGetter.plain(
+const _flaxBinding1465 = FlaxGetter.plain(
   "radius",
-  _flaxBinding1460,
+  _flaxBinding1464,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_RawScrollbar_7c_get_3a_radius,
 );
-const _flaxBinding1462 = FlaxGetter.plain(
+const _flaxBinding1466 = FlaxGetter.plain(
   "thickness",
   flaxNullableDoubleType,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_RawScrollbar_7c_get_3a_thickness,
 );
-const _flaxBinding1463 = FlaxGetter.plain(
+const _flaxBinding1467 = FlaxGetter.plain(
   "thumbColor",
   _flaxBinding31,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_RawScrollbar_7c_get_3a_thumbColor,
 );
-const _flaxBinding1464 = FlaxGetter.plain(
+const _flaxBinding1468 = FlaxGetter.plain(
   "minThumbLength",
   flaxDoubleType,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_RawScrollbar_7c_get_3a_minThumbLength,
 );
-const _flaxBinding1465 = FlaxGetter.plain(
+const _flaxBinding1469 = FlaxGetter.plain(
   "minOverscrollLength",
   flaxNullableDoubleType,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_RawScrollbar_7c_get_3a_minOverscrollLength,
 );
-const _flaxBinding1466 = FlaxGetter.plain(
+const _flaxBinding1470 = FlaxGetter.plain(
   "trackVisibility",
   flaxNullableBoolType,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_RawScrollbar_7c_get_3a_trackVisibility,
 );
-const _flaxBinding1467 = FlaxGetter.plain(
+const _flaxBinding1471 = FlaxGetter.plain(
   "trackRadius",
-  _flaxBinding1460,
+  _flaxBinding1464,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_RawScrollbar_7c_get_3a_trackRadius,
 );
-const _flaxBinding1468 = FlaxGetter.plain(
+const _flaxBinding1472 = FlaxGetter.plain(
   "trackColor",
   _flaxBinding31,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_RawScrollbar_7c_get_3a_trackColor,
 );
-const _flaxBinding1469 = FlaxGetter.plain(
+const _flaxBinding1473 = FlaxGetter.plain(
   "trackBorderColor",
   _flaxBinding31,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_RawScrollbar_7c_get_3a_trackBorderColor,
 );
-const _flaxBinding1470 = FlaxGetter.plain(
+const _flaxBinding1474 = FlaxGetter.plain(
   "fadeDuration",
   flaxDurationType,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_RawScrollbar_7c_get_3a_fadeDuration,
 );
-const _flaxBinding1471 = FlaxGetter.plain(
+const _flaxBinding1475 = FlaxGetter.plain(
   "timeToFade",
   flaxDurationType,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_RawScrollbar_7c_get_3a_timeToFade,
 );
-const _flaxBinding1472 = FlaxGetter.plain(
+const _flaxBinding1476 = FlaxGetter.plain(
   "pressDuration",
   flaxDurationType,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_RawScrollbar_7c_get_3a_pressDuration,
 );
-const _flaxBinding1473 = FlaxTypeRef(
+const _flaxBinding1477 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:ScrollNotification",
 );
-const _flaxBinding1474 = FlaxCallbackBinding(
-  [FlaxCallbackParameter.plain("notification", _flaxBinding1473)],
+const _flaxBinding1478 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("notification", _flaxBinding1477)],
   flaxBoolType,
   FlaxCallbackAdapters.wrap1<api10.ScrollNotification, bool>,
   id: "callback:<>(p:r:notification:object:flax.core/sdk_widgets#type:ScrollNotification)->bool:",
   invoke: FlaxCallbackAdapters.invoke1<api10.ScrollNotification, bool>,
   matches: FlaxCallbackAdapters.matches1<api10.ScrollNotification, bool>,
 );
-const _flaxBinding1475 = FlaxTypeRef("callback", callback: _flaxBinding1474);
-const _flaxBinding1476 = FlaxGetter.plain(
+const _flaxBinding1479 = FlaxTypeRef("callback", callback: _flaxBinding1478);
+const _flaxBinding1480 = FlaxGetter.plain(
   "notificationPredicate",
-  _flaxBinding1475,
+  _flaxBinding1479,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_RawScrollbar_7c_get_3a_notificationPredicate,
 );
-const _flaxBinding1477 = FlaxGetter.plain(
+const _flaxBinding1481 = FlaxGetter.plain(
   "interactive",
   flaxNullableBoolType,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_RawScrollbar_7c_get_3a_interactive,
 );
-const _flaxBinding1478 = FlaxTypeRef(
+const _flaxBinding1482 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_widgets#type:ScrollbarOrientation",
   nullable: true,
 );
-const _flaxBinding1479 = FlaxGetter.plain(
+const _flaxBinding1483 = FlaxGetter.plain(
   "scrollbarOrientation",
-  _flaxBinding1478,
+  _flaxBinding1482,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_RawScrollbar_7c_get_3a_scrollbarOrientation,
 );
-const _flaxBinding1480 = FlaxGetter.plain(
+const _flaxBinding1484 = FlaxGetter.plain(
   "mainAxisMargin",
   flaxDoubleType,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_RawScrollbar_7c_get_3a_mainAxisMargin,
 );
-const _flaxBinding1481 = FlaxGetter.plain(
+const _flaxBinding1485 = FlaxGetter.plain(
   "crossAxisMargin",
   flaxDoubleType,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_RawScrollbar_7c_get_3a_crossAxisMargin,
 );
-const _flaxBinding1482 = FlaxGetter.plain(
+const _flaxBinding1486 = FlaxGetter.plain(
   "padding",
   _flaxBinding267,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_RawScrollbar_7c_get_3a_padding,
 );
-const _flaxBinding1483 = FlaxTypeRef(
+const _flaxBinding1487 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("states", _flaxBinding276)],
+  _flaxBinding152,
+  FlaxCallbackAdapters.wrap1<Set<api10.WidgetState>, api7.MouseCursor?>,
+  id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->object?:flax.core/flutter#type:MouseCursor",
+  invoke:
+      FlaxCallbackAdapters.invoke1<Set<api10.WidgetState>, api7.MouseCursor?>,
+  matches:
+      FlaxCallbackAdapters.matches1<Set<api10.WidgetState>, api7.MouseCursor?>,
+);
+const _flaxBinding1488 = FlaxTypeRef("callback", callback: _flaxBinding1487);
+const _flaxBinding1489 = FlaxTypeRef(
+  "object",
+  id: "flax.core/flutter#type:WidgetStateProperty",
+  dartType: FlaxDartTypes.typeOf<api10.WidgetStateProperty<api7.MouseCursor?>?>,
+  nullable: true,
+  deferredFactories: {
+    "resolveWith": FlaxDeferredFactoryBinding(
+      "object:flax.core/flutter#type:WidgetStateProperty<Object?><object?:flax.core/flutter#type:MouseCursor>",
+      [FlaxParameter.required("callback", _flaxBinding1488)],
+      _deferred3,
+    ),
+  },
+);
+const _flaxBinding1490 = FlaxGetter.plain(
+  "mouseCursor",
+  _flaxBinding1489,
+  _CupertinoScrollbar_mouseCursor,
+);
+const _flaxBinding1491 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:RawScrollbarState",
   dartType:
       FlaxDartTypes.typeOf<api10.RawScrollbarState<api.CupertinoScrollbar>>,
 );
-const _flaxBinding1484 = FlaxInstanceMethod.plain(
+const _flaxBinding1492 = FlaxInstanceMethod.plain(
   _flaxBinding132,
-  _flaxBinding1483,
+  _flaxBinding1491,
   _CupertinoScrollbar_createState,
 );
-const _flaxBinding1485 = FlaxInstanceMethod.plain(
+const _flaxBinding1493 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding134,
   _flaxMembers0
       .flaxMemberflax_2e_core_2f_sdk_5f_widgets_23_type_3a_RawScrollbar_7c_call_3a_createElement,
 );
-const _flaxBinding1486 = FlaxInstanceMethod.shared(
+const _flaxBinding1494 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoScrollbar_debugFillProperties,
 );
-const _flaxBinding1487 = FlaxInstanceMethod.plain(
+const _flaxBinding1495 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoScrollbar_toStringShallow,
 );
-const _flaxBinding1488 = FlaxInstanceMethod.plain(
+const _flaxBinding1496 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoScrollbar_toStringDeep,
 );
-const _flaxBinding1489 = FlaxInstanceMethod.plain(
+const _flaxBinding1497 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoScrollbar_toDiagnosticsNode,
 );
-const _flaxBinding1490 = FlaxTypeRef(
+const _flaxBinding1498 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding1474,
+  callback: _flaxBinding1478,
 );
-const _flaxBinding1491 = <FlaxParameter>[
+const _flaxBinding1499 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter.required("child", flaxWidgetType),
   FlaxParameter("controller", _flaxBinding125, required: false),
@@ -46174,8 +46347,8 @@ const _flaxBinding1491 = <FlaxParameter>[
     required: false,
     omitWhenAbsent: true,
   ),
-  FlaxParameter("notificationPredicate", _flaxBinding1490, required: false),
-  FlaxParameter("scrollbarOrientation", _flaxBinding1478, required: false),
+  FlaxParameter("notificationPredicate", _flaxBinding1498, required: false),
+  FlaxParameter("scrollbarOrientation", _flaxBinding1482, required: false),
   FlaxParameter(
     "mainAxisMargin",
     flaxDoubleType,
@@ -46183,19 +46356,15 @@ const _flaxBinding1491 = <FlaxParameter>[
     defaultValue: 3.0,
   ),
 ];
-const _flaxBinding1492 = FlaxObjectBinding(
+const _flaxBinding1500 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoScrollbar",
   [
-    _flaxBinding1454,
-    _flaxBinding1455,
-    _flaxBinding1456,
-    _flaxBinding1457,
     _flaxBinding1458,
     _flaxBinding1459,
+    _flaxBinding1460,
     _flaxBinding1461,
     _flaxBinding1462,
     _flaxBinding1463,
-    _flaxBinding1464,
     _flaxBinding1465,
     _flaxBinding1466,
     _flaxBinding1467,
@@ -46204,25 +46373,30 @@ const _flaxBinding1492 = FlaxObjectBinding(
     _flaxBinding1470,
     _flaxBinding1471,
     _flaxBinding1472,
+    _flaxBinding1473,
+    _flaxBinding1474,
+    _flaxBinding1475,
     _flaxBinding1476,
-    _flaxBinding1477,
-    _flaxBinding1479,
     _flaxBinding1480,
     _flaxBinding1481,
-    _flaxBinding1482,
+    _flaxBinding1483,
+    _flaxBinding1484,
+    _flaxBinding1485,
+    _flaxBinding1486,
+    _flaxBinding1490,
     _flaxBinding130,
   ],
   {
-    "createState": _flaxBinding1484,
-    "createElement": _flaxBinding1485,
+    "createState": _flaxBinding1492,
+    "createElement": _flaxBinding1493,
     "toStringShort": _flaxBinding136,
-    "debugFillProperties": _flaxBinding1486,
-    "toStringShallow": _flaxBinding1487,
-    "toStringDeep": _flaxBinding1488,
-    "toDiagnosticsNode": _flaxBinding1489,
+    "debugFillProperties": _flaxBinding1494,
+    "toStringShallow": _flaxBinding1495,
+    "toStringDeep": _flaxBinding1496,
+    "toDiagnosticsNode": _flaxBinding1497,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding1491},
+  constructors: {"": _flaxBinding1499},
   create: _createCupertinoScrollbar,
   matches: _isCupertinoScrollbar,
   setters: [],
@@ -46235,247 +46409,247 @@ const _flaxBinding1492 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding1493 = FlaxTypeRef(
+const _flaxBinding1501 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:TextEditingController",
   nullable: true,
 );
-const _flaxBinding1494 = FlaxGetter.plain(
+const _flaxBinding1502 = FlaxGetter.plain(
   "controller",
-  _flaxBinding1493,
+  _flaxBinding1501,
   _CupertinoSearchTextField_controller,
 );
-const _flaxBinding1495 = FlaxGetter.plain(
+const _flaxBinding1503 = FlaxGetter.plain(
   "onChanged",
   flaxStringChangedNullableType,
   _CupertinoSearchTextField_onChanged,
 );
-const _flaxBinding1496 = FlaxGetter.plain(
+const _flaxBinding1504 = FlaxGetter.plain(
   "onSubmitted",
   flaxStringChangedNullableType,
   _CupertinoSearchTextField_onSubmitted,
 );
-const _flaxBinding1497 = FlaxGetter.plain(
+const _flaxBinding1505 = FlaxGetter.plain(
   "style",
   _flaxBinding436,
   _CupertinoSearchTextField_style,
 );
-const _flaxBinding1498 = FlaxGetter.plain(
+const _flaxBinding1506 = FlaxGetter.plain(
   "placeholder",
   flaxNullableStringType,
   _CupertinoSearchTextField_placeholder,
 );
-const _flaxBinding1499 = FlaxGetter.plain(
+const _flaxBinding1507 = FlaxGetter.plain(
   "placeholderStyle",
   _flaxBinding436,
   _CupertinoSearchTextField_placeholderStyle,
 );
-const _flaxBinding1500 = FlaxGetter.plain(
+const _flaxBinding1508 = FlaxGetter.plain(
   "decoration",
-  _flaxBinding695,
+  _flaxBinding699,
   _CupertinoSearchTextField_decoration,
 );
-const _flaxBinding1501 = FlaxGetter.plain(
+const _flaxBinding1509 = FlaxGetter.plain(
   "backgroundColor",
   _flaxBinding31,
   _CupertinoSearchTextField_backgroundColor,
 );
-const _flaxBinding1502 = FlaxGetter.plain(
+const _flaxBinding1510 = FlaxGetter.plain(
   "borderRadius",
   _flaxBinding268,
   _CupertinoSearchTextField_borderRadius,
 );
-const _flaxBinding1503 = FlaxTypeRef(
+const _flaxBinding1511 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:TextInputType",
   nullable: true,
 );
-const _flaxBinding1504 = FlaxGetter.plain(
+const _flaxBinding1512 = FlaxGetter.plain(
   "keyboardType",
-  _flaxBinding1503,
+  _flaxBinding1511,
   _CupertinoSearchTextField_keyboardType,
 );
-const _flaxBinding1505 = FlaxGetter.plain(
+const _flaxBinding1513 = FlaxGetter.plain(
   "padding",
-  _flaxBinding692,
+  _flaxBinding696,
   _CupertinoSearchTextField_padding,
 );
-const _flaxBinding1506 = FlaxGetter.plain(
+const _flaxBinding1514 = FlaxGetter.plain(
   "itemColor",
   flaxColorType,
   _CupertinoSearchTextField_itemColor,
 );
-const _flaxBinding1507 = FlaxGetter.plain(
+const _flaxBinding1515 = FlaxGetter.plain(
   "itemSize",
   flaxDoubleType,
   _CupertinoSearchTextField_itemSize,
 );
-const _flaxBinding1508 = FlaxGetter.plain(
+const _flaxBinding1516 = FlaxGetter.plain(
   "prefixInsets",
-  _flaxBinding692,
+  _flaxBinding696,
   _CupertinoSearchTextField_prefixInsets,
 );
-const _flaxBinding1509 = FlaxGetter.plain(
+const _flaxBinding1517 = FlaxGetter.plain(
   "prefixIcon",
   flaxWidgetType,
   _CupertinoSearchTextField_prefixIcon,
 );
-const _flaxBinding1510 = FlaxGetter.plain(
+const _flaxBinding1518 = FlaxGetter.plain(
   "suffixInsets",
-  _flaxBinding692,
+  _flaxBinding696,
   _CupertinoSearchTextField_suffixInsets,
 );
-const _flaxBinding1511 = FlaxTypeRef(
+const _flaxBinding1519 = FlaxTypeRef(
   "widget",
   id: "flax.core/sdk_widgets#type:Icon",
 );
-const _flaxBinding1512 = FlaxGetter.plain(
+const _flaxBinding1520 = FlaxGetter.plain(
   "suffixIcon",
-  _flaxBinding1511,
+  _flaxBinding1519,
   _CupertinoSearchTextField_suffixIcon,
 );
-const _flaxBinding1513 = FlaxTypeRef(
+const _flaxBinding1521 = FlaxTypeRef(
   "enum",
   id: "flax.cupertino/cupertino#type:OverlayVisibilityMode",
 );
-const _flaxBinding1514 = FlaxGetter.plain(
+const _flaxBinding1522 = FlaxGetter.plain(
   "suffixMode",
-  _flaxBinding1513,
+  _flaxBinding1521,
   _CupertinoSearchTextField_suffixMode,
 );
-const _flaxBinding1515 = FlaxGetter.plain(
+const _flaxBinding1523 = FlaxGetter.plain(
   "onSuffixTap",
   flaxVoidNullableCallbackType,
   _CupertinoSearchTextField_onSuffixTap,
 );
-const _flaxBinding1516 = FlaxGetter.plain(
+const _flaxBinding1524 = FlaxGetter.plain(
   "restorationId",
   flaxNullableStringType,
   _CupertinoSearchTextField_restorationId,
 );
-const _flaxBinding1517 = FlaxGetter.plain(
+const _flaxBinding1525 = FlaxGetter.plain(
   "focusNode",
   _flaxBinding154,
   _CupertinoSearchTextField_focusNode,
 );
-const _flaxBinding1518 = FlaxGetter.plain(
+const _flaxBinding1526 = FlaxGetter.plain(
   "autofocus",
   flaxBoolType,
   _CupertinoSearchTextField_autofocus,
 );
-const _flaxBinding1519 = FlaxGetter.plain(
+const _flaxBinding1527 = FlaxGetter.plain(
   "onTap",
   flaxVoidNullableCallbackType,
   _CupertinoSearchTextField_onTap,
 );
-const _flaxBinding1520 = FlaxGetter.plain(
+const _flaxBinding1528 = FlaxGetter.plain(
   "autocorrect",
   flaxBoolType,
   _CupertinoSearchTextField_autocorrect,
 );
-const _flaxBinding1521 = FlaxTypeRef(
+const _flaxBinding1529 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_services#type:SmartQuotesType",
   nullable: true,
 );
-const _flaxBinding1522 = FlaxGetter.plain(
+const _flaxBinding1530 = FlaxGetter.plain(
   "smartQuotesType",
-  _flaxBinding1521,
+  _flaxBinding1529,
   _CupertinoSearchTextField_smartQuotesType,
 );
-const _flaxBinding1523 = FlaxTypeRef(
+const _flaxBinding1531 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_services#type:SmartDashesType",
   nullable: true,
 );
-const _flaxBinding1524 = FlaxGetter.plain(
+const _flaxBinding1532 = FlaxGetter.plain(
   "smartDashesType",
-  _flaxBinding1523,
+  _flaxBinding1531,
   _CupertinoSearchTextField_smartDashesType,
 );
-const _flaxBinding1525 = FlaxGetter.plain(
+const _flaxBinding1533 = FlaxGetter.plain(
   "enableIMEPersonalizedLearning",
   flaxBoolType,
   _CupertinoSearchTextField_enableIMEPersonalizedLearning,
 );
-const _flaxBinding1526 = FlaxGetter.plain(
+const _flaxBinding1534 = FlaxGetter.plain(
   "enabled",
   flaxNullableBoolType,
   _CupertinoSearchTextField_enabled,
 );
-const _flaxBinding1527 = FlaxGetter.plain(
+const _flaxBinding1535 = FlaxGetter.plain(
   "cursorWidth",
   flaxDoubleType,
   _CupertinoSearchTextField_cursorWidth,
 );
-const _flaxBinding1528 = FlaxGetter.plain(
+const _flaxBinding1536 = FlaxGetter.plain(
   "cursorHeight",
   flaxNullableDoubleType,
   _CupertinoSearchTextField_cursorHeight,
 );
-const _flaxBinding1529 = FlaxGetter.plain(
+const _flaxBinding1537 = FlaxGetter.plain(
   "cursorRadius",
   flaxRadiusType,
   _CupertinoSearchTextField_cursorRadius,
 );
-const _flaxBinding1530 = FlaxGetter.plain(
+const _flaxBinding1538 = FlaxGetter.plain(
   "cursorOpacityAnimates",
   flaxBoolType,
   _CupertinoSearchTextField_cursorOpacityAnimates,
 );
-const _flaxBinding1531 = FlaxGetter.plain(
+const _flaxBinding1539 = FlaxGetter.plain(
   "cursorColor",
   _flaxBinding31,
   _CupertinoSearchTextField_cursorColor,
 );
-const _flaxBinding1532 = FlaxInstanceMethod.shared(
+const _flaxBinding1540 = FlaxInstanceMethod.shared(
   _flaxBinding119,
   _CupertinoSearchTextField_createState,
 );
-const _flaxBinding1533 = FlaxInstanceMethod.plain(
+const _flaxBinding1541 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding134,
   _CupertinoSearchTextField_createElement,
 );
-const _flaxBinding1534 = FlaxInstanceMethod.shared(
+const _flaxBinding1542 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoSearchTextField_debugFillProperties,
 );
-const _flaxBinding1535 = FlaxInstanceMethod.plain(
+const _flaxBinding1543 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoSearchTextField_toStringShallow,
 );
-const _flaxBinding1536 = FlaxInstanceMethod.plain(
+const _flaxBinding1544 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoSearchTextField_toStringDeep,
 );
-const _flaxBinding1537 = FlaxInstanceMethod.plain(
+const _flaxBinding1545 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoSearchTextField_toDiagnosticsNode,
 );
-const _flaxBinding1538 = <FlaxParameter>[
+const _flaxBinding1546 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
-  FlaxParameter("controller", _flaxBinding1493, required: false),
+  FlaxParameter("controller", _flaxBinding1501, required: false),
   FlaxParameter("onChanged", flaxStringChangedNullableType, required: false),
   FlaxParameter("onSubmitted", flaxStringChangedNullableType, required: false),
   FlaxParameter("style", _flaxBinding436, required: false),
   FlaxParameter("placeholder", flaxNullableStringType, required: false),
   FlaxParameter("placeholderStyle", _flaxBinding436, required: false),
-  FlaxParameter("decoration", _flaxBinding695, required: false),
+  FlaxParameter("decoration", _flaxBinding699, required: false),
   FlaxParameter("backgroundColor", _flaxBinding31, required: false),
   FlaxParameter("borderRadius", _flaxBinding268, required: false),
   FlaxParameter(
     "keyboardType",
-    _flaxBinding1503,
+    _flaxBinding1511,
     required: false,
     omitWhenAbsent: true,
   ),
   FlaxParameter(
     "padding",
-    _flaxBinding692,
+    _flaxBinding696,
     required: false,
     omitWhenAbsent: true,
   ),
@@ -46493,7 +46667,7 @@ const _flaxBinding1538 = <FlaxParameter>[
   ),
   FlaxParameter(
     "prefixInsets",
-    _flaxBinding692,
+    _flaxBinding696,
     required: false,
     omitWhenAbsent: true,
   ),
@@ -46505,27 +46679,27 @@ const _flaxBinding1538 = <FlaxParameter>[
   ),
   FlaxParameter(
     "suffixInsets",
-    _flaxBinding692,
+    _flaxBinding696,
     required: false,
     omitWhenAbsent: true,
   ),
   FlaxParameter(
     "suffixIcon",
-    _flaxBinding1511,
+    _flaxBinding1519,
     required: false,
     omitWhenAbsent: true,
   ),
   FlaxParameter(
     "suffixMode",
-    _flaxBinding1513,
+    _flaxBinding1521,
     required: false,
     defaultValue: api.OverlayVisibilityMode.editing,
   ),
   FlaxParameter("onSuffixTap", flaxVoidNullableCallbackType, required: false),
   FlaxParameter("restorationId", flaxNullableStringType, required: false),
   FlaxParameter("focusNode", _flaxBinding154, required: false),
-  FlaxParameter("smartQuotesType", _flaxBinding1521, required: false),
-  FlaxParameter("smartDashesType", _flaxBinding1523, required: false),
+  FlaxParameter("smartQuotesType", _flaxBinding1529, required: false),
+  FlaxParameter("smartDashesType", _flaxBinding1531, required: false),
   FlaxParameter(
     "enableIMEPersonalizedLearning",
     flaxBoolType,
@@ -46567,18 +46741,11 @@ const _flaxBinding1538 = <FlaxParameter>[
   ),
   FlaxParameter("cursorColor", _flaxBinding31, required: false),
 ];
-const _flaxBinding1539 = FlaxObjectBinding(
+const _flaxBinding1547 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoSearchTextField",
   [
-    _flaxBinding1494,
-    _flaxBinding1495,
-    _flaxBinding1496,
-    _flaxBinding1497,
-    _flaxBinding1498,
-    _flaxBinding1499,
-    _flaxBinding1500,
-    _flaxBinding1501,
     _flaxBinding1502,
+    _flaxBinding1503,
     _flaxBinding1504,
     _flaxBinding1505,
     _flaxBinding1506,
@@ -46587,35 +46754,42 @@ const _flaxBinding1539 = FlaxObjectBinding(
     _flaxBinding1509,
     _flaxBinding1510,
     _flaxBinding1512,
+    _flaxBinding1513,
     _flaxBinding1514,
     _flaxBinding1515,
     _flaxBinding1516,
     _flaxBinding1517,
     _flaxBinding1518,
-    _flaxBinding1519,
     _flaxBinding1520,
     _flaxBinding1522,
+    _flaxBinding1523,
     _flaxBinding1524,
     _flaxBinding1525,
     _flaxBinding1526,
     _flaxBinding1527,
     _flaxBinding1528,
-    _flaxBinding1529,
     _flaxBinding1530,
-    _flaxBinding1531,
+    _flaxBinding1532,
+    _flaxBinding1533,
+    _flaxBinding1534,
+    _flaxBinding1535,
+    _flaxBinding1536,
+    _flaxBinding1537,
+    _flaxBinding1538,
+    _flaxBinding1539,
     _flaxBinding130,
   ],
   {
-    "createState": _flaxBinding1532,
-    "createElement": _flaxBinding1533,
+    "createState": _flaxBinding1540,
+    "createElement": _flaxBinding1541,
     "toStringShort": _flaxBinding136,
-    "debugFillProperties": _flaxBinding1534,
-    "toStringShallow": _flaxBinding1535,
-    "toStringDeep": _flaxBinding1536,
-    "toDiagnosticsNode": _flaxBinding1537,
+    "debugFillProperties": _flaxBinding1542,
+    "toStringShallow": _flaxBinding1543,
+    "toStringDeep": _flaxBinding1544,
+    "toDiagnosticsNode": _flaxBinding1545,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding1538},
+  constructors: {"": _flaxBinding1546},
   create: _createCupertinoSearchTextField,
   matches: _isCupertinoSearchTextField,
   setters: [],
@@ -46627,42 +46801,42 @@ const _flaxBinding1539 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding1540 = FlaxGetter.plain(
+const _flaxBinding1548 = FlaxGetter.plain(
   "unselectedColor",
   _flaxBinding31,
   _CupertinoSegmentedControl_unselectedColor,
 );
-const _flaxBinding1541 = FlaxGetter.plain(
+const _flaxBinding1549 = FlaxGetter.plain(
   "selectedColor",
   _flaxBinding31,
   _CupertinoSegmentedControl_selectedColor,
 );
-const _flaxBinding1542 = FlaxGetter.plain(
+const _flaxBinding1550 = FlaxGetter.plain(
   "borderColor",
   _flaxBinding31,
   _CupertinoSegmentedControl_borderColor,
 );
-const _flaxBinding1543 = FlaxGetter.plain(
+const _flaxBinding1551 = FlaxGetter.plain(
   "pressedColor",
   _flaxBinding31,
   _CupertinoSegmentedControl_pressedColor,
 );
-const _flaxBinding1544 = FlaxGetter.plain(
+const _flaxBinding1552 = FlaxGetter.plain(
   "disabledColor",
   _flaxBinding31,
   _CupertinoSegmentedControl_disabledColor,
 );
-const _flaxBinding1545 = FlaxGetter.plain(
+const _flaxBinding1553 = FlaxGetter.plain(
   "disabledTextColor",
   _flaxBinding31,
   _CupertinoSegmentedControl_disabledTextColor,
 );
-const _flaxBinding1546 = FlaxGetter.plain(
+const _flaxBinding1554 = FlaxGetter.plain(
   "padding",
   _flaxBinding267,
   _CupertinoSegmentedControl_padding,
 );
-const _flaxBinding1547 = FlaxTypeRef(
+const _flaxBinding1555 = FlaxTypeRef(
   "iterable",
   item: flaxAnyType,
   collection: FlaxCollectionBinding(
@@ -46672,31 +46846,31 @@ const _flaxBinding1547 = FlaxTypeRef(
     restore: _collection34Restore,
   ),
 );
-const _flaxBinding1548 = FlaxInstanceMethod.plain(
+const _flaxBinding1556 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding134,
   _CupertinoSegmentedControl_createElement,
 );
-const _flaxBinding1549 = FlaxInstanceMethod.shared(
+const _flaxBinding1557 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoSegmentedControl_debugFillProperties,
 );
-const _flaxBinding1550 = FlaxInstanceMethod.plain(
+const _flaxBinding1558 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoSegmentedControl_toStringShallow,
 );
-const _flaxBinding1551 = FlaxInstanceMethod.plain(
+const _flaxBinding1559 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoSegmentedControl_toStringDeep,
 );
-const _flaxBinding1552 = FlaxInstanceMethod.plain(
+const _flaxBinding1560 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoSegmentedControl_toDiagnosticsNode,
 );
-const _flaxBinding1553 = FlaxTypeRef(
+const _flaxBinding1561 = FlaxTypeRef(
   "map",
   item: flaxWidgetType,
   key: flaxAnyType,
@@ -46706,7 +46880,7 @@ const _flaxBinding1553 = FlaxTypeRef(
     _collection32Matches,
   ),
 );
-const _flaxBinding1554 = FlaxCallbackBinding(
+const _flaxBinding1562 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("value", flaxAnyType)],
   flaxVoidType,
   FlaxCallbackAdapters.wrapVoid1<Object>,
@@ -46714,8 +46888,8 @@ const _flaxBinding1554 = FlaxCallbackBinding(
   invoke: FlaxCallbackAdapters.invokeVoid1<Object>,
   matches: FlaxCallbackAdapters.matchesVoid1<Object>,
 );
-const _flaxBinding1555 = FlaxTypeRef("callback", callback: _flaxBinding1554);
-const _flaxBinding1556 = FlaxTypeRef(
+const _flaxBinding1563 = FlaxTypeRef("callback", callback: _flaxBinding1562);
+const _flaxBinding1564 = FlaxTypeRef(
   "set",
   item: flaxAnyType,
   collection: FlaxCollectionBinding(
@@ -46723,12 +46897,12 @@ const _flaxBinding1556 = FlaxTypeRef(
     _collection33Create,
     _collection33Matches,
   ),
-  iterable: _flaxBinding1547,
+  iterable: _flaxBinding1555,
 );
-const _flaxBinding1557 = <FlaxParameter>[
+const _flaxBinding1565 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
-  FlaxParameter.required("children", _flaxBinding1553),
-  FlaxParameter.required("onValueChanged", _flaxBinding1555),
+  FlaxParameter.required("children", _flaxBinding1561),
+  FlaxParameter.required("onValueChanged", _flaxBinding1563),
   FlaxParameter("groupValue", flaxNullableAnyType, required: false),
   FlaxParameter("unselectedColor", _flaxBinding31, required: false),
   FlaxParameter("selectedColor", _flaxBinding31, required: false),
@@ -46739,219 +46913,219 @@ const _flaxBinding1557 = <FlaxParameter>[
   FlaxParameter("padding", _flaxBinding267, required: false),
   FlaxParameter(
     "disabledChildren",
-    _flaxBinding1556,
+    _flaxBinding1564,
     required: false,
     omitWhenAbsent: true,
   ),
 ];
-const _flaxBinding1558 = FlaxGetter.plain(
+const _flaxBinding1566 = FlaxGetter.plain(
   "filter",
   _flaxBinding452,
   _CupertinoSheetRoute_filter,
 );
-const _flaxBinding1559 = FlaxGetter.plain(
+const _flaxBinding1567 = FlaxGetter.plain(
   "traversalEdgeBehavior",
   _flaxBinding454,
   _CupertinoSheetRoute_traversalEdgeBehavior,
 );
-const _flaxBinding1560 = FlaxGetter.plain(
+const _flaxBinding1568 = FlaxGetter.plain(
   "directionalTraversalEdgeBehavior",
   _flaxBinding454,
   _CupertinoSheetRoute_directionalTraversalEdgeBehavior,
 );
-const _flaxBinding1561 = FlaxGetter.plain(
+const _flaxBinding1569 = FlaxGetter.plain(
   "delegatedTransition",
   _flaxBinding59,
   _CupertinoSheetRoute_delegatedTransition,
 );
-const _flaxBinding1562 = FlaxGetter.plain(
+const _flaxBinding1570 = FlaxGetter.plain(
   "receivedTransition",
   _flaxBinding59,
   _CupertinoSheetRoute_receivedTransition,
 );
-const _flaxBinding1563 = FlaxGetter.plain(
+const _flaxBinding1571 = FlaxGetter.plain(
   "barrierDismissible",
   flaxBoolType,
   _CupertinoSheetRoute_barrierDismissible,
 );
-const _flaxBinding1564 = FlaxGetter.plain(
+const _flaxBinding1572 = FlaxGetter.plain(
   "semanticsDismissible",
   flaxBoolType,
   _CupertinoSheetRoute_semanticsDismissible,
 );
-const _flaxBinding1565 = FlaxGetter.plain(
+const _flaxBinding1573 = FlaxGetter.plain(
   "barrierColor",
   _flaxBinding31,
   _CupertinoSheetRoute_barrierColor,
 );
-const _flaxBinding1566 = FlaxGetter.plain(
+const _flaxBinding1574 = FlaxGetter.plain(
   "barrierLabel",
   flaxNullableStringType,
   _CupertinoSheetRoute_barrierLabel,
 );
-const _flaxBinding1567 = FlaxGetter.plain(
+const _flaxBinding1575 = FlaxGetter.plain(
   "barrierCurve",
   flaxCurveType,
   _CupertinoSheetRoute_barrierCurve,
 );
-const _flaxBinding1568 = FlaxGetter.plain(
+const _flaxBinding1576 = FlaxGetter.plain(
   "maintainState",
   flaxBoolType,
   _CupertinoSheetRoute_maintainState,
 );
-const _flaxBinding1569 = FlaxGetter.plain(
+const _flaxBinding1577 = FlaxGetter.plain(
   "popGestureInProgress",
   flaxBoolType,
   _CupertinoSheetRoute_popGestureInProgress,
 );
-const _flaxBinding1570 = FlaxGetter.plain(
+const _flaxBinding1578 = FlaxGetter.plain(
   "offstage",
   flaxBoolType,
   _CupertinoSheetRoute_offstage,
 );
-const _flaxBinding1571 = FlaxGetter.plain(
+const _flaxBinding1579 = FlaxGetter.plain(
   "subtreeContext",
   _flaxBinding467,
   _CupertinoSheetRoute_subtreeContext,
 );
-const _flaxBinding1572 = FlaxGetter.plain(
+const _flaxBinding1580 = FlaxGetter.plain(
   "animation",
   _flaxBinding469,
   _CupertinoSheetRoute_animation,
 );
-const _flaxBinding1573 = FlaxGetter.plain(
+const _flaxBinding1581 = FlaxGetter.plain(
   "secondaryAnimation",
   _flaxBinding469,
   _CupertinoSheetRoute_secondaryAnimation,
 );
-const _flaxBinding1574 = FlaxGetter.plain(
+const _flaxBinding1582 = FlaxGetter.plain(
   "popDisposition",
   _flaxBinding472,
   _CupertinoSheetRoute_popDisposition,
 );
-const _flaxBinding1575 = FlaxGetter.plain(
+const _flaxBinding1583 = FlaxGetter.plain(
   "hasScopedWillPopCallback",
   flaxBoolType,
   _CupertinoSheetRoute_hasScopedWillPopCallback,
 );
-const _flaxBinding1576 = FlaxGetter.plain(
+const _flaxBinding1584 = FlaxGetter.plain(
   "canPop",
   flaxBoolType,
   _CupertinoSheetRoute_canPop,
 );
-const _flaxBinding1577 = FlaxGetter.plain(
+const _flaxBinding1585 = FlaxGetter.plain(
   "impliesAppBarDismissal",
   flaxBoolType,
   _CupertinoSheetRoute_impliesAppBarDismissal,
 );
-const _flaxBinding1578 = FlaxGetter.plain(
+const _flaxBinding1586 = FlaxGetter.plain(
   "fullscreenDialog",
   flaxBoolType,
   _CupertinoSheetRoute_fullscreenDialog,
 );
-const _flaxBinding1579 = FlaxGetter.plain(
+const _flaxBinding1587 = FlaxGetter.plain(
   "transitionDuration",
   flaxDurationType,
   _CupertinoSheetRoute_transitionDuration,
 );
-const _flaxBinding1580 = FlaxGetter.plain(
+const _flaxBinding1588 = FlaxGetter.plain(
   "reverseTransitionDuration",
   flaxDurationType,
   _CupertinoSheetRoute_reverseTransitionDuration,
 );
-const _flaxBinding1581 = FlaxGetter.plain(
+const _flaxBinding1589 = FlaxGetter.plain(
   "opaque",
   flaxBoolType,
   _CupertinoSheetRoute_opaque,
 );
-const _flaxBinding1582 = FlaxGetter.plain(
+const _flaxBinding1590 = FlaxGetter.plain(
   "allowSnapshotting",
   flaxBoolType,
   _CupertinoSheetRoute_allowSnapshotting,
 );
-const _flaxBinding1583 = FlaxGetter.plain(
+const _flaxBinding1591 = FlaxGetter.plain(
   "finishedWhenPopped",
   flaxBoolType,
   _CupertinoSheetRoute_finishedWhenPopped,
 );
-const _flaxBinding1584 = FlaxGetter.plain(
+const _flaxBinding1592 = FlaxGetter.plain(
   "controller",
   _flaxBinding481,
   _CupertinoSheetRoute_controller,
 );
-const _flaxBinding1585 = FlaxGetter.plain(
+const _flaxBinding1593 = FlaxGetter.plain(
   "willDisposeAnimationController",
   flaxBoolType,
   _CupertinoSheetRoute_willDisposeAnimationController,
 );
-const _flaxBinding1586 = FlaxGetter.plain(
+const _flaxBinding1594 = FlaxGetter.plain(
   "debugLabel",
   flaxStringType,
   _CupertinoSheetRoute_debugLabel,
 );
-const _flaxBinding1587 = FlaxGetter.plain(
+const _flaxBinding1595 = FlaxGetter.plain(
   "overlayEntries",
   _flaxBinding487,
   _CupertinoSheetRoute_overlayEntries,
 );
-const _flaxBinding1588 = FlaxGetter.plain(
+const _flaxBinding1596 = FlaxGetter.plain(
   "requestFocus",
   flaxBoolType,
   _CupertinoSheetRoute_requestFocus,
 );
-const _flaxBinding1589 = FlaxGetter.plain(
+const _flaxBinding1597 = FlaxGetter.plain(
   "navigator",
   _flaxBinding490,
   _CupertinoSheetRoute_navigator,
 );
-const _flaxBinding1590 = FlaxGetter.plain(
+const _flaxBinding1598 = FlaxGetter.plain(
   "settings",
   _flaxBinding226,
   _CupertinoSheetRoute_settings,
 );
-const _flaxBinding1591 = FlaxGetter.plain(
+const _flaxBinding1599 = FlaxGetter.plain(
   "restorationScopeId",
   _flaxBinding493,
   _CupertinoSheetRoute_restorationScopeId,
 );
-const _flaxBinding1592 = FlaxGetter.plain(
+const _flaxBinding1600 = FlaxGetter.plain(
   "willHandlePopInternally",
   flaxBoolType,
   _CupertinoSheetRoute_willHandlePopInternally,
 );
-const _flaxBinding1593 = FlaxGetter.plain(
+const _flaxBinding1601 = FlaxGetter.plain(
   "isFirst",
   flaxBoolType,
   _CupertinoSheetRoute_isFirst,
 );
-const _flaxBinding1594 = FlaxGetter.plain(
+const _flaxBinding1602 = FlaxGetter.plain(
   "hasActiveRouteBelow",
   flaxBoolType,
   _CupertinoSheetRoute_hasActiveRouteBelow,
 );
-const _flaxBinding1595 = FlaxGetter.plain(
+const _flaxBinding1603 = FlaxGetter.plain(
   "isActive",
   flaxBoolType,
   _CupertinoSheetRoute_isActive,
 );
-const _flaxBinding1596 = FlaxTypeRef(
+const _flaxBinding1604 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding563,
+  callback: _flaxBinding567,
 );
-const _flaxBinding1597 = FlaxGetter.plain(
+const _flaxBinding1605 = FlaxGetter.plain(
   "builder",
-  _flaxBinding1596,
+  _flaxBinding1604,
   _CupertinoSheetRoute_builder,
 );
-const _flaxBinding1598 = FlaxTypeRef(
+const _flaxBinding1606 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:ScrollController",
 );
-const _flaxBinding1599 = FlaxCallbackBinding(
+const _flaxBinding1607 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter.plain("context", _flaxBinding2),
-    FlaxCallbackParameter.plain("scrollController", _flaxBinding1598),
+    FlaxCallbackParameter.plain("scrollController", _flaxBinding1606),
   ],
   flaxWidgetType,
   FlaxCallbackAdapters
@@ -46962,205 +47136,205 @@ const _flaxBinding1599 = FlaxCallbackBinding(
   matches: FlaxCallbackAdapters
       .matches2<api10.BuildContext, api10.ScrollController, api.Widget>,
 );
-const _flaxBinding1600 = FlaxTypeRef(
+const _flaxBinding1608 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding1599,
+  callback: _flaxBinding1607,
 );
-const _flaxBinding1601 = FlaxGetter.plain(
+const _flaxBinding1609 = FlaxGetter.plain(
   "scrollableBuilder",
-  _flaxBinding1600,
+  _flaxBinding1608,
   _CupertinoSheetRoute_scrollableBuilder,
 );
-const _flaxBinding1602 = FlaxGetter.plain(
+const _flaxBinding1610 = FlaxGetter.plain(
   "enableDrag",
   flaxBoolType,
   _CupertinoSheetRoute_enableDrag,
 );
-const _flaxBinding1603 = FlaxGetter.plain(
+const _flaxBinding1611 = FlaxGetter.plain(
   "hasPlatformViews",
   flaxBoolType,
   _CupertinoSheetRoute_hasPlatformViews,
 );
-const _flaxBinding1604 = FlaxGetter.plain(
+const _flaxBinding1612 = FlaxGetter.plain(
   "topGap",
   flaxDoubleType,
   _CupertinoSheetRoute_topGap,
 );
-const _flaxBinding1605 = FlaxGetter.plain(
+const _flaxBinding1613 = FlaxGetter.plain(
   "showDragHandle",
   flaxBoolType,
   _CupertinoSheetRoute_showDragHandle,
 );
-const _flaxBinding1606 = FlaxInstanceMethod.plain(
-  _flaxBinding504,
+const _flaxBinding1614 = FlaxInstanceMethod.plain(
+  _flaxBinding508,
   flaxVoidType,
   _CupertinoSheetRoute_setState,
 );
-const _flaxBinding1607 = FlaxInstanceMethod.plain(
-  _flaxBinding506,
+const _flaxBinding1615 = FlaxInstanceMethod.plain(
+  _flaxBinding510,
   flaxWidgetType,
   _CupertinoSheetRoute_buildPage,
 );
-const _flaxBinding1608 = FlaxInstanceMethod.plain(
-  _flaxBinding508,
+const _flaxBinding1616 = FlaxInstanceMethod.plain(
+  _flaxBinding512,
   flaxWidgetType,
   _CupertinoSheetRoute_buildTransitions,
 );
-const _flaxBinding1609 = FlaxInstanceMethod.shared(
+const _flaxBinding1617 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _CupertinoSheetRoute_install,
 );
-const _flaxBinding1610 = FlaxInstanceMethod.plain(
+const _flaxBinding1618 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   flaxTickerFutureType,
   _CupertinoSheetRoute_didPush,
 );
-const _flaxBinding1611 = FlaxInstanceMethod.shared(
+const _flaxBinding1619 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _CupertinoSheetRoute_didAdd,
 );
-const _flaxBinding1612 = FlaxInstanceMethod.plain(
+const _flaxBinding1620 = FlaxInstanceMethod.plain(
   _flaxBinding132,
-  _flaxBinding513,
+  _flaxBinding517,
   _CupertinoSheetRoute_willPop,
 );
-const _flaxBinding1613 = FlaxInstanceMethod.plain(
-  _flaxBinding518,
+const _flaxBinding1621 = FlaxInstanceMethod.plain(
+  _flaxBinding522,
   flaxVoidType,
   _CupertinoSheetRoute_addScopedWillPopCallback,
 );
-const _flaxBinding1614 = FlaxInstanceMethod.plain(
-  _flaxBinding518,
+const _flaxBinding1622 = FlaxInstanceMethod.plain(
+  _flaxBinding522,
   flaxVoidType,
   _CupertinoSheetRoute_removeScopedWillPopCallback,
 );
-const _flaxBinding1615 = FlaxInstanceMethod.plain(
-  _flaxBinding522,
+const _flaxBinding1623 = FlaxInstanceMethod.plain(
+  _flaxBinding526,
   flaxVoidType,
   _CupertinoSheetRoute_registerPopEntry,
 );
-const _flaxBinding1616 = FlaxInstanceMethod.plain(
-  _flaxBinding522,
+const _flaxBinding1624 = FlaxInstanceMethod.plain(
+  _flaxBinding526,
   flaxVoidType,
   _CupertinoSheetRoute_unregisterPopEntry,
 );
-const _flaxBinding1617 = FlaxInstanceMethod.plain(
-  _flaxBinding525,
+const _flaxBinding1625 = FlaxInstanceMethod.plain(
+  _flaxBinding529,
   flaxVoidType,
   _CupertinoSheetRoute_didChangePrevious,
 );
-const _flaxBinding1618 = FlaxInstanceMethod.plain(
-  _flaxBinding527,
+const _flaxBinding1626 = FlaxInstanceMethod.plain(
+  _flaxBinding531,
   flaxVoidType,
   _CupertinoSheetRoute_didChangeNext,
 );
-const _flaxBinding1619 = FlaxInstanceMethod.plain(
-  _flaxBinding529,
+const _flaxBinding1627 = FlaxInstanceMethod.plain(
+  _flaxBinding533,
   flaxVoidType,
   _CupertinoSheetRoute_didPopNext,
 );
-const _flaxBinding1620 = FlaxInstanceMethod.shared(
+const _flaxBinding1628 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _CupertinoSheetRoute_changedInternalState,
 );
-const _flaxBinding1621 = FlaxInstanceMethod.shared(
+const _flaxBinding1629 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _CupertinoSheetRoute_changedExternalState,
 );
-const _flaxBinding1622 = FlaxInstanceMethod.plain(
+const _flaxBinding1630 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   flaxWidgetType,
   _CupertinoSheetRoute_buildModalBarrier,
 );
-const _flaxBinding1623 = FlaxInstanceMethod.plain(
+const _flaxBinding1631 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding486,
   _CupertinoSheetRoute_createOverlayEntries,
 );
-const _flaxBinding1624 = FlaxInstanceMethod.shared(
+const _flaxBinding1632 = FlaxInstanceMethod.shared(
   flaxStringCall,
   _CupertinoSheetRoute_toString,
 );
-const _flaxBinding1625 = FlaxInstanceMethod.shared(
+const _flaxBinding1633 = FlaxInstanceMethod.shared(
   flaxBoolCall,
   _CupertinoSheetRoute_debugTransitionCompleted,
 );
-const _flaxBinding1626 = FlaxInstanceMethod.plain(
+const _flaxBinding1634 = FlaxInstanceMethod.plain(
   _flaxBinding132,
-  _flaxBinding536,
+  _flaxBinding540,
   _CupertinoSheetRoute_createAnimationController,
 );
-const _flaxBinding1627 = FlaxInstanceMethod.plain(
+const _flaxBinding1635 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding56,
   _CupertinoSheetRoute_createAnimation,
 );
-const _flaxBinding1628 = FlaxInstanceMethod.plain(
-  _flaxBinding540,
-  _flaxBinding1228,
+const _flaxBinding1636 = FlaxInstanceMethod.plain(
+  _flaxBinding544,
+  _flaxBinding1232,
   _CupertinoSheetRoute_createSimulation,
 );
-const _flaxBinding1629 = FlaxInstanceMethod.plain(
-  _flaxBinding542,
+const _flaxBinding1637 = FlaxInstanceMethod.plain(
+  _flaxBinding546,
   flaxVoidType,
   _CupertinoSheetRoute_didReplace,
 );
-const _flaxBinding1630 = FlaxInstanceMethod.plain(
-  _flaxBinding545,
+const _flaxBinding1638 = FlaxInstanceMethod.plain(
+  _flaxBinding549,
   flaxBoolType,
   _CupertinoSheetRoute_canTransitionTo,
 );
-const _flaxBinding1631 = FlaxInstanceMethod.plain(
-  _flaxBinding547,
+const _flaxBinding1639 = FlaxInstanceMethod.plain(
+  _flaxBinding551,
   flaxBoolType,
   _CupertinoSheetRoute_canTransitionFrom,
 );
-const _flaxBinding1632 = FlaxInstanceMethod.plain(
-  _flaxBinding549,
+const _flaxBinding1640 = FlaxInstanceMethod.plain(
+  _flaxBinding553,
   flaxVoidType,
   _CupertinoSheetRoute_handleStartBackGesture,
 );
-const _flaxBinding1633 = FlaxInstanceMethod.plain(
-  _flaxBinding551,
+const _flaxBinding1641 = FlaxInstanceMethod.plain(
+  _flaxBinding555,
   flaxVoidType,
   _CupertinoSheetRoute_handleUpdateBackGestureProgress,
 );
-const _flaxBinding1634 = FlaxInstanceMethod.shared(
+const _flaxBinding1642 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _CupertinoSheetRoute_handleCancelBackGesture,
 );
-const _flaxBinding1635 = FlaxInstanceMethod.shared(
+const _flaxBinding1643 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _CupertinoSheetRoute_handleCommitBackGesture,
 );
-const _flaxBinding1636 = FlaxInstanceMethod.shared(
+const _flaxBinding1644 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _CupertinoSheetRoute_dispose,
 );
-const _flaxBinding1637 = FlaxInstanceMethod.plain(
-  _flaxBinding556,
+const _flaxBinding1645 = FlaxInstanceMethod.plain(
+  _flaxBinding560,
   flaxVoidType,
   _CupertinoSheetRoute_onPopInvoked,
 );
-const _flaxBinding1638 = FlaxInstanceMethod.plain(
-  _flaxBinding559,
+const _flaxBinding1646 = FlaxInstanceMethod.plain(
+  _flaxBinding563,
   flaxVoidType,
   _CupertinoSheetRoute_addLocalHistoryEntry,
 );
-const _flaxBinding1639 = FlaxInstanceMethod.plain(
-  _flaxBinding559,
+const _flaxBinding1647 = FlaxInstanceMethod.plain(
+  _flaxBinding563,
   flaxVoidType,
   _CupertinoSheetRoute_removeLocalHistoryEntry,
 );
-const _flaxBinding1640 = FlaxInstanceMethod.shared(
+const _flaxBinding1648 = FlaxInstanceMethod.shared(
   _flaxBinding112,
   _CupertinoSheetRoute_buildContent,
 );
-const _flaxBinding1641 = <FlaxParameter>[
-  FlaxParameter("settings", _flaxBinding567, required: false),
-  FlaxParameter("builder", _flaxBinding1596, required: false),
-  FlaxParameter("scrollableBuilder", _flaxBinding1600, required: false),
+const _flaxBinding1649 = <FlaxParameter>[
+  FlaxParameter("settings", _flaxBinding571, required: false),
+  FlaxParameter("builder", _flaxBinding1604, required: false),
+  FlaxParameter("scrollableBuilder", _flaxBinding1608, required: false),
   FlaxParameter(
     "enableDrag",
     flaxBoolType,
@@ -47181,86 +47355,86 @@ const _flaxBinding1641 = <FlaxParameter>[
   ),
   FlaxParameter("topGap", flaxNullableDoubleType, required: false),
 ];
-const _flaxBinding1642 = FlaxSetter(
+const _flaxBinding1650 = FlaxSetter(
   "receivedTransition",
   _flaxBinding59,
   _CupertinoSheetRoute_set_receivedTransition,
 );
-const _flaxBinding1643 = FlaxSetter(
+const _flaxBinding1651 = FlaxSetter(
   "offstage",
   flaxBoolType,
   _CupertinoSheetRoute_set_offstage,
 );
-const _flaxBinding1644 = FlaxSetter(
+const _flaxBinding1652 = FlaxSetter(
   "willDisposeAnimationController",
   flaxBoolType,
   _CupertinoSheetRoute_set_willDisposeAnimationController,
 );
-const _flaxBinding1645 = FlaxGetter.plain(
+const _flaxBinding1653 = FlaxGetter.plain(
   "primaryRouteAnimation",
   _flaxBinding56,
   _CupertinoSheetTransition_primaryRouteAnimation,
 );
-const _flaxBinding1646 = FlaxGetter.plain(
+const _flaxBinding1654 = FlaxGetter.plain(
   "secondaryRouteAnimation",
   _flaxBinding56,
   _CupertinoSheetTransition_secondaryRouteAnimation,
 );
-const _flaxBinding1647 = FlaxGetter.plain(
+const _flaxBinding1655 = FlaxGetter.plain(
   "child",
   flaxWidgetType,
   _CupertinoSheetTransition_child,
 );
-const _flaxBinding1648 = FlaxGetter.plain(
+const _flaxBinding1656 = FlaxGetter.plain(
   "linearTransition",
   flaxBoolType,
   _CupertinoSheetTransition_linearTransition,
 );
-const _flaxBinding1649 = FlaxGetter.plain(
+const _flaxBinding1657 = FlaxGetter.plain(
   "topGap",
   flaxDoubleType,
   _CupertinoSheetTransition_topGap,
 );
-const _flaxBinding1650 = FlaxGetter.plain(
+const _flaxBinding1658 = FlaxGetter.plain(
   "hasPlatformViews",
   flaxBoolType,
   _CupertinoSheetTransition_hasPlatformViews,
 );
-const _flaxBinding1651 = FlaxTypeRef(
+const _flaxBinding1659 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
   dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoSheetTransition>>,
 );
-const _flaxBinding1652 = FlaxInstanceMethod.plain(
+const _flaxBinding1660 = FlaxInstanceMethod.plain(
   _flaxBinding132,
-  _flaxBinding1651,
+  _flaxBinding1659,
   _CupertinoSheetTransition_createState,
 );
-const _flaxBinding1653 = FlaxInstanceMethod.plain(
+const _flaxBinding1661 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding134,
   _CupertinoSheetTransition_createElement,
 );
-const _flaxBinding1654 = FlaxInstanceMethod.shared(
+const _flaxBinding1662 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoSheetTransition_debugFillProperties,
 );
-const _flaxBinding1655 = FlaxInstanceMethod.plain(
+const _flaxBinding1663 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoSheetTransition_toStringShallow,
 );
-const _flaxBinding1656 = FlaxInstanceMethod.plain(
+const _flaxBinding1664 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoSheetTransition_toStringDeep,
 );
-const _flaxBinding1657 = FlaxInstanceMethod.plain(
+const _flaxBinding1665 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoSheetTransition_toDiagnosticsNode,
 );
-const _flaxBinding1658 = <FlaxParameter>[
+const _flaxBinding1666 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter.required("primaryRouteAnimation", _flaxBinding56),
   FlaxParameter.required("secondaryRouteAnimation", _flaxBinding56),
@@ -47274,28 +47448,28 @@ const _flaxBinding1658 = <FlaxParameter>[
   ),
   FlaxParameter("topGap", flaxDoubleType, required: false, defaultValue: 0.08),
 ];
-const _flaxBinding1659 = FlaxObjectBinding(
+const _flaxBinding1667 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoSheetTransition",
   [
-    _flaxBinding1645,
-    _flaxBinding1646,
-    _flaxBinding1647,
-    _flaxBinding1648,
-    _flaxBinding1649,
-    _flaxBinding1650,
+    _flaxBinding1653,
+    _flaxBinding1654,
+    _flaxBinding1655,
+    _flaxBinding1656,
+    _flaxBinding1657,
+    _flaxBinding1658,
     _flaxBinding130,
   ],
   {
-    "createState": _flaxBinding1652,
-    "createElement": _flaxBinding1653,
+    "createState": _flaxBinding1660,
+    "createElement": _flaxBinding1661,
     "toStringShort": _flaxBinding136,
-    "debugFillProperties": _flaxBinding1654,
-    "toStringShallow": _flaxBinding1655,
-    "toStringDeep": _flaxBinding1656,
-    "toDiagnosticsNode": _flaxBinding1657,
+    "debugFillProperties": _flaxBinding1662,
+    "toStringShallow": _flaxBinding1663,
+    "toStringDeep": _flaxBinding1664,
+    "toDiagnosticsNode": _flaxBinding1665,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding1658},
+  constructors: {"": _flaxBinding1666},
   create: _createCupertinoSheetTransition,
   matches: _isCupertinoSheetTransition,
   setters: [],
@@ -47307,86 +47481,86 @@ const _flaxBinding1659 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding1660 = FlaxGetter.plain(
+const _flaxBinding1668 = FlaxGetter.plain(
   "value",
   flaxDoubleType,
   _CupertinoSlider_value,
 );
-const _flaxBinding1661 = FlaxGetter.plain(
+const _flaxBinding1669 = FlaxGetter.plain(
   "onChanged",
   flaxDoubleChangedNullableType,
   _CupertinoSlider_onChanged,
 );
-const _flaxBinding1662 = FlaxGetter.plain(
+const _flaxBinding1670 = FlaxGetter.plain(
   "onChangeStart",
   flaxDoubleChangedNullableType,
   _CupertinoSlider_onChangeStart,
 );
-const _flaxBinding1663 = FlaxGetter.plain(
+const _flaxBinding1671 = FlaxGetter.plain(
   "onChangeEnd",
   flaxDoubleChangedNullableType,
   _CupertinoSlider_onChangeEnd,
 );
-const _flaxBinding1664 = FlaxGetter.plain(
+const _flaxBinding1672 = FlaxGetter.plain(
   "min",
   flaxDoubleType,
   _CupertinoSlider_min,
 );
-const _flaxBinding1665 = FlaxGetter.plain(
+const _flaxBinding1673 = FlaxGetter.plain(
   "max",
   flaxDoubleType,
   _CupertinoSlider_max,
 );
-const _flaxBinding1666 = FlaxGetter.plain(
+const _flaxBinding1674 = FlaxGetter.plain(
   "divisions",
   flaxNullableIntType,
   _CupertinoSlider_divisions,
 );
-const _flaxBinding1667 = FlaxGetter.plain(
+const _flaxBinding1675 = FlaxGetter.plain(
   "activeColor",
   _flaxBinding31,
   _CupertinoSlider_activeColor,
 );
-const _flaxBinding1668 = FlaxGetter.plain(
+const _flaxBinding1676 = FlaxGetter.plain(
   "thumbColor",
   flaxColorType,
   _CupertinoSlider_thumbColor,
 );
-const _flaxBinding1669 = FlaxTypeRef(
+const _flaxBinding1677 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
   dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoSlider>>,
 );
-const _flaxBinding1670 = FlaxInstanceMethod.plain(
+const _flaxBinding1678 = FlaxInstanceMethod.plain(
   _flaxBinding132,
-  _flaxBinding1669,
+  _flaxBinding1677,
   _CupertinoSlider_createState,
 );
-const _flaxBinding1671 = FlaxInstanceMethod.shared(
+const _flaxBinding1679 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoSlider_debugFillProperties,
 );
-const _flaxBinding1672 = FlaxInstanceMethod.plain(
+const _flaxBinding1680 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding134,
   _CupertinoSlider_createElement,
 );
-const _flaxBinding1673 = FlaxInstanceMethod.plain(
+const _flaxBinding1681 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoSlider_toStringShallow,
 );
-const _flaxBinding1674 = FlaxInstanceMethod.plain(
+const _flaxBinding1682 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoSlider_toStringDeep,
 );
-const _flaxBinding1675 = FlaxInstanceMethod.plain(
+const _flaxBinding1683 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoSlider_toDiagnosticsNode,
 );
-const _flaxBinding1676 = <FlaxParameter>[
+const _flaxBinding1684 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter.required("value", flaxDoubleType),
   FlaxParameter.required("onChanged", flaxDoubleChangedNullableType),
@@ -47407,31 +47581,31 @@ const _flaxBinding1676 = <FlaxParameter>[
     omitWhenAbsent: true,
   ),
 ];
-const _flaxBinding1677 = FlaxObjectBinding(
+const _flaxBinding1685 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoSlider",
   [
-    _flaxBinding1660,
-    _flaxBinding1661,
-    _flaxBinding1662,
-    _flaxBinding1663,
-    _flaxBinding1664,
-    _flaxBinding1665,
-    _flaxBinding1666,
-    _flaxBinding1667,
     _flaxBinding1668,
+    _flaxBinding1669,
+    _flaxBinding1670,
+    _flaxBinding1671,
+    _flaxBinding1672,
+    _flaxBinding1673,
+    _flaxBinding1674,
+    _flaxBinding1675,
+    _flaxBinding1676,
     _flaxBinding130,
   ],
   {
-    "createState": _flaxBinding1670,
-    "debugFillProperties": _flaxBinding1671,
-    "createElement": _flaxBinding1672,
+    "createState": _flaxBinding1678,
+    "debugFillProperties": _flaxBinding1679,
+    "createElement": _flaxBinding1680,
     "toStringShort": _flaxBinding136,
-    "toStringShallow": _flaxBinding1673,
-    "toStringDeep": _flaxBinding1674,
-    "toDiagnosticsNode": _flaxBinding1675,
+    "toStringShallow": _flaxBinding1681,
+    "toStringDeep": _flaxBinding1682,
+    "toDiagnosticsNode": _flaxBinding1683,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding1676},
+  constructors: {"": _flaxBinding1684},
   create: _createCupertinoSlider,
   matches: _isCupertinoSlider,
   setters: [],
@@ -47443,62 +47617,62 @@ const _flaxBinding1677 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding1678 = FlaxGetter.plain(
+const _flaxBinding1686 = FlaxGetter.plain(
   "backgroundColor",
   flaxColorType,
   _CupertinoSlidingSegmentedControl_backgroundColor,
 );
-const _flaxBinding1679 = FlaxGetter.plain(
+const _flaxBinding1687 = FlaxGetter.plain(
   "proportionalWidth",
   flaxBoolType,
   _CupertinoSlidingSegmentedControl_proportionalWidth,
 );
-const _flaxBinding1680 = FlaxGetter.plain(
+const _flaxBinding1688 = FlaxGetter.plain(
   "thumbColor",
   flaxColorType,
   _CupertinoSlidingSegmentedControl_thumbColor,
 );
-const _flaxBinding1681 = FlaxGetter.plain(
+const _flaxBinding1689 = FlaxGetter.plain(
   "padding",
-  _flaxBinding692,
+  _flaxBinding696,
   _CupertinoSlidingSegmentedControl_padding,
 );
-const _flaxBinding1682 = FlaxGetter.plain(
+const _flaxBinding1690 = FlaxGetter.plain(
   "isMomentary",
   flaxBoolType,
   _CupertinoSlidingSegmentedControl_isMomentary,
 );
-const _flaxBinding1683 = FlaxInstanceMethod.plain(
+const _flaxBinding1691 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding134,
   _CupertinoSlidingSegmentedControl_createElement,
 );
-const _flaxBinding1684 = FlaxInstanceMethod.shared(
+const _flaxBinding1692 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoSlidingSegmentedControl_debugFillProperties,
 );
-const _flaxBinding1685 = FlaxInstanceMethod.plain(
+const _flaxBinding1693 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoSlidingSegmentedControl_toStringShallow,
 );
-const _flaxBinding1686 = FlaxInstanceMethod.plain(
+const _flaxBinding1694 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoSlidingSegmentedControl_toStringDeep,
 );
-const _flaxBinding1687 = FlaxInstanceMethod.plain(
+const _flaxBinding1695 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoSlidingSegmentedControl_toDiagnosticsNode,
 );
-const _flaxBinding1688 = <FlaxParameter>[
+const _flaxBinding1696 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
-  FlaxParameter.required("children", _flaxBinding1553),
+  FlaxParameter.required("children", _flaxBinding1561),
   FlaxParameter.required("onValueChanged", flaxNullableAnyChangedType),
   FlaxParameter(
     "disabledChildren",
-    _flaxBinding1556,
+    _flaxBinding1564,
     required: false,
     omitWhenAbsent: true,
   ),
@@ -47511,7 +47685,7 @@ const _flaxBinding1688 = <FlaxParameter>[
   ),
   FlaxParameter(
     "padding",
-    _flaxBinding692,
+    _flaxBinding696,
     required: false,
     omitWhenAbsent: true,
   ),
@@ -47534,156 +47708,156 @@ const _flaxBinding1688 = <FlaxParameter>[
     defaultValue: false,
   ),
 ];
-const _flaxBinding1689 = FlaxGetter.plain(
+const _flaxBinding1697 = FlaxGetter.plain(
   "largeTitle",
   _flaxBinding57,
   _CupertinoSliverNavigationBar_largeTitle,
 );
-const _flaxBinding1690 = FlaxGetter.plain(
+const _flaxBinding1698 = FlaxGetter.plain(
   "leading",
   _flaxBinding57,
   _CupertinoSliverNavigationBar_leading,
 );
-const _flaxBinding1691 = FlaxGetter.plain(
+const _flaxBinding1699 = FlaxGetter.plain(
   "automaticallyImplyLeading",
   flaxBoolType,
   _CupertinoSliverNavigationBar_automaticallyImplyLeading,
 );
-const _flaxBinding1692 = FlaxGetter.plain(
+const _flaxBinding1700 = FlaxGetter.plain(
   "automaticallyImplyTitle",
   flaxBoolType,
   _CupertinoSliverNavigationBar_automaticallyImplyTitle,
 );
-const _flaxBinding1693 = FlaxGetter.plain(
+const _flaxBinding1701 = FlaxGetter.plain(
   "alwaysShowMiddle",
   flaxBoolType,
   _CupertinoSliverNavigationBar_alwaysShowMiddle,
 );
-const _flaxBinding1694 = FlaxGetter.plain(
+const _flaxBinding1702 = FlaxGetter.plain(
   "previousPageTitle",
   flaxNullableStringType,
   _CupertinoSliverNavigationBar_previousPageTitle,
 );
-const _flaxBinding1695 = FlaxGetter.plain(
+const _flaxBinding1703 = FlaxGetter.plain(
   "middle",
   _flaxBinding57,
   _CupertinoSliverNavigationBar_middle,
 );
-const _flaxBinding1696 = FlaxGetter.plain(
+const _flaxBinding1704 = FlaxGetter.plain(
   "trailing",
   _flaxBinding57,
   _CupertinoSliverNavigationBar_trailing,
 );
-const _flaxBinding1697 = FlaxGetter.plain(
+const _flaxBinding1705 = FlaxGetter.plain(
   "backgroundColor",
   _flaxBinding31,
   _CupertinoSliverNavigationBar_backgroundColor,
 );
-const _flaxBinding1698 = FlaxGetter.plain(
+const _flaxBinding1706 = FlaxGetter.plain(
   "automaticBackgroundVisibility",
   flaxBoolType,
   _CupertinoSliverNavigationBar_automaticBackgroundVisibility,
 );
-const _flaxBinding1699 = FlaxGetter.plain(
+const _flaxBinding1707 = FlaxGetter.plain(
   "enableBackgroundFilterBlur",
   flaxBoolType,
   _CupertinoSliverNavigationBar_enableBackgroundFilterBlur,
 );
-const _flaxBinding1700 = FlaxGetter.plain(
+const _flaxBinding1708 = FlaxGetter.plain(
   "brightness",
   _flaxBinding97,
   _CupertinoSliverNavigationBar_brightness,
 );
-const _flaxBinding1701 = FlaxGetter.plain(
+const _flaxBinding1709 = FlaxGetter.plain(
   "padding",
-  _flaxBinding1119,
+  _flaxBinding1123,
   _CupertinoSliverNavigationBar_padding,
 );
-const _flaxBinding1702 = FlaxGetter.plain(
+const _flaxBinding1710 = FlaxGetter.plain(
   "border",
-  _flaxBinding1121,
+  _flaxBinding1125,
   _CupertinoSliverNavigationBar_border,
 );
-const _flaxBinding1703 = FlaxGetter.plain(
+const _flaxBinding1711 = FlaxGetter.plain(
   "transitionBetweenRoutes",
   flaxBoolType,
   _CupertinoSliverNavigationBar_transitionBetweenRoutes,
 );
-const _flaxBinding1704 = FlaxGetter.plain(
+const _flaxBinding1712 = FlaxGetter.plain(
   "heroTag",
   flaxAnyType,
   _CupertinoSliverNavigationBar_heroTag,
 );
-const _flaxBinding1705 = FlaxGetter.plain(
+const _flaxBinding1713 = FlaxGetter.plain(
   "bottom",
-  _flaxBinding1126,
+  _flaxBinding1130,
   _CupertinoSliverNavigationBar_bottom,
 );
-const _flaxBinding1706 = FlaxTypeRef(
+const _flaxBinding1714 = FlaxTypeRef(
   "enum",
   id: "flax.cupertino/cupertino#type:NavigationBarBottomMode",
   nullable: true,
 );
-const _flaxBinding1707 = FlaxGetter.plain(
+const _flaxBinding1715 = FlaxGetter.plain(
   "bottomMode",
-  _flaxBinding1706,
+  _flaxBinding1714,
   _CupertinoSliverNavigationBar_bottomMode,
 );
-const _flaxBinding1708 = FlaxGetter.plain(
+const _flaxBinding1716 = FlaxGetter.plain(
   "onSearchableBottomTap",
   flaxBoolChangedNullableType,
   _CupertinoSliverNavigationBar_onSearchableBottomTap,
 );
-const _flaxBinding1709 = FlaxGetter.plain(
+const _flaxBinding1717 = FlaxGetter.plain(
   "opaque",
   flaxBoolType,
   _CupertinoSliverNavigationBar_opaque,
 );
-const _flaxBinding1710 = FlaxGetter.plain(
+const _flaxBinding1718 = FlaxGetter.plain(
   "stretch",
   flaxBoolType,
   _CupertinoSliverNavigationBar_stretch,
 );
-const _flaxBinding1711 = FlaxGetter.plain(
+const _flaxBinding1719 = FlaxGetter.plain(
   "searchField",
   _flaxBinding57,
   _CupertinoSliverNavigationBar_searchField,
 );
-const _flaxBinding1712 = FlaxTypeRef(
+const _flaxBinding1720 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
   dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoSliverNavigationBar>>,
 );
-const _flaxBinding1713 = FlaxInstanceMethod.plain(
+const _flaxBinding1721 = FlaxInstanceMethod.plain(
   _flaxBinding132,
-  _flaxBinding1712,
+  _flaxBinding1720,
   _CupertinoSliverNavigationBar_createState,
 );
-const _flaxBinding1714 = FlaxInstanceMethod.plain(
+const _flaxBinding1722 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding134,
   _CupertinoSliverNavigationBar_createElement,
 );
-const _flaxBinding1715 = FlaxInstanceMethod.shared(
+const _flaxBinding1723 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoSliverNavigationBar_debugFillProperties,
 );
-const _flaxBinding1716 = FlaxInstanceMethod.plain(
+const _flaxBinding1724 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoSliverNavigationBar_toStringShallow,
 );
-const _flaxBinding1717 = FlaxInstanceMethod.plain(
+const _flaxBinding1725 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoSliverNavigationBar_toStringDeep,
 );
-const _flaxBinding1718 = FlaxInstanceMethod.plain(
+const _flaxBinding1726 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoSliverNavigationBar_toDiagnosticsNode,
 );
-const _flaxBinding1719 = <FlaxParameter>[
+const _flaxBinding1727 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter("largeTitle", _flaxBinding57, required: false),
   FlaxParameter("leading", _flaxBinding57, required: false),
@@ -47710,7 +47884,7 @@ const _flaxBinding1719 = <FlaxParameter>[
   FlaxParameter("trailing", _flaxBinding57, required: false),
   FlaxParameter(
     "border",
-    _flaxBinding1121,
+    _flaxBinding1125,
     required: false,
     omitWhenAbsent: true,
   ),
@@ -47728,7 +47902,7 @@ const _flaxBinding1719 = <FlaxParameter>[
     defaultValue: true,
   ),
   FlaxParameter("brightness", _flaxBinding97, required: false),
-  FlaxParameter("padding", _flaxBinding1119, required: false),
+  FlaxParameter("padding", _flaxBinding1123, required: false),
   FlaxParameter(
     "transitionBetweenRoutes",
     flaxBoolType,
@@ -47737,10 +47911,10 @@ const _flaxBinding1719 = <FlaxParameter>[
   ),
   FlaxParameter("heroTag", flaxAnyType, required: false, omitWhenAbsent: true),
   FlaxParameter("stretch", flaxBoolType, required: false, defaultValue: false),
-  FlaxParameter("bottom", _flaxBinding1126, required: false),
-  FlaxParameter("bottomMode", _flaxBinding1706, required: false),
+  FlaxParameter("bottom", _flaxBinding1130, required: false),
+  FlaxParameter("bottomMode", _flaxBinding1714, required: false),
 ];
-const _flaxBinding1720 = <FlaxParameter>[
+const _flaxBinding1728 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter.required("searchField", flaxWidgetType),
   FlaxParameter("largeTitle", _flaxBinding57, required: false),
@@ -47768,7 +47942,7 @@ const _flaxBinding1720 = <FlaxParameter>[
   FlaxParameter("trailing", _flaxBinding57, required: false),
   FlaxParameter(
     "border",
-    _flaxBinding1121,
+    _flaxBinding1125,
     required: false,
     omitWhenAbsent: true,
   ),
@@ -47786,7 +47960,7 @@ const _flaxBinding1720 = <FlaxParameter>[
     defaultValue: true,
   ),
   FlaxParameter("brightness", _flaxBinding97, required: false),
-  FlaxParameter("padding", _flaxBinding1119, required: false),
+  FlaxParameter("padding", _flaxBinding1123, required: false),
   FlaxParameter(
     "transitionBetweenRoutes",
     flaxBoolType,
@@ -47797,7 +47971,7 @@ const _flaxBinding1720 = <FlaxParameter>[
   FlaxParameter("stretch", flaxBoolType, required: false, defaultValue: false),
   FlaxParameter(
     "bottomMode",
-    _flaxBinding1706,
+    _flaxBinding1714,
     required: false,
     defaultValue: api.NavigationBarBottomMode.automatic,
   ),
@@ -47807,17 +47981,9 @@ const _flaxBinding1720 = <FlaxParameter>[
     required: false,
   ),
 ];
-const _flaxBinding1721 = FlaxObjectBinding(
+const _flaxBinding1729 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoSliverNavigationBar",
   [
-    _flaxBinding1689,
-    _flaxBinding1690,
-    _flaxBinding1691,
-    _flaxBinding1692,
-    _flaxBinding1693,
-    _flaxBinding1694,
-    _flaxBinding1695,
-    _flaxBinding1696,
     _flaxBinding1697,
     _flaxBinding1698,
     _flaxBinding1699,
@@ -47827,24 +47993,32 @@ const _flaxBinding1721 = FlaxObjectBinding(
     _flaxBinding1703,
     _flaxBinding1704,
     _flaxBinding1705,
+    _flaxBinding1706,
     _flaxBinding1707,
     _flaxBinding1708,
     _flaxBinding1709,
     _flaxBinding1710,
     _flaxBinding1711,
+    _flaxBinding1712,
+    _flaxBinding1713,
+    _flaxBinding1715,
+    _flaxBinding1716,
+    _flaxBinding1717,
+    _flaxBinding1718,
+    _flaxBinding1719,
     _flaxBinding130,
   ],
   {
-    "createState": _flaxBinding1713,
-    "createElement": _flaxBinding1714,
+    "createState": _flaxBinding1721,
+    "createElement": _flaxBinding1722,
     "toStringShort": _flaxBinding136,
-    "debugFillProperties": _flaxBinding1715,
-    "toStringShallow": _flaxBinding1716,
-    "toStringDeep": _flaxBinding1717,
-    "toDiagnosticsNode": _flaxBinding1718,
+    "debugFillProperties": _flaxBinding1723,
+    "toStringShallow": _flaxBinding1724,
+    "toStringDeep": _flaxBinding1725,
+    "toDiagnosticsNode": _flaxBinding1726,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding1719, "search": _flaxBinding1720},
+  constructors: {"": _flaxBinding1727, "search": _flaxBinding1728},
   create: _createCupertinoSliverNavigationBar,
   matches: _isCupertinoSliverNavigationBar,
   setters: [],
@@ -47856,98 +48030,98 @@ const _flaxBinding1721 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding1722 = FlaxGetter.plain(
+const _flaxBinding1730 = FlaxGetter.plain(
   "refreshTriggerPullDistance",
   flaxDoubleType,
   _CupertinoSliverRefreshControl_refreshTriggerPullDistance,
 );
-const _flaxBinding1723 = FlaxGetter.plain(
+const _flaxBinding1731 = FlaxGetter.plain(
   "refreshIndicatorExtent",
   flaxDoubleType,
   _CupertinoSliverRefreshControl_refreshIndicatorExtent,
 );
-const _flaxBinding1724 = FlaxTypeRef(
+const _flaxBinding1732 = FlaxTypeRef(
   "enum",
   id: "flax.cupertino/cupertino#type:RefreshIndicatorMode",
 );
-const _flaxBinding1725 = FlaxCallbackBinding(
+const _flaxBinding1733 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter.plain("context", _flaxBinding2),
-    FlaxCallbackParameter.plain("refreshState", _flaxBinding1724),
+    FlaxCallbackParameter.plain("refreshState", _flaxBinding1732),
     FlaxCallbackParameter.plain("pulledExtent", flaxDoubleType),
     FlaxCallbackParameter.plain("refreshTriggerPullDistance", flaxDoubleType),
     FlaxCallbackParameter.plain("refreshIndicatorExtent", flaxDoubleType),
   ],
   flaxWidgetType,
-  _callback12,
-  id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:refreshState:enum:flax.cupertino/cupertino#type:RefreshIndicatorMode,p:r:pulledExtent:double:,p:r:refreshTriggerPullDistance:double:,p:r:refreshIndicatorExtent:double:)->widget:",
-  invoke: _callback12Invoke,
-  matches: _callback12Matches,
-);
-const _flaxBinding1726 = FlaxTypeRef(
-  "callback",
-  nullable: true,
-  callback: _flaxBinding1725,
-);
-const _flaxBinding1727 = FlaxGetter.plain(
-  "builder",
-  _flaxBinding1726,
-  _CupertinoSliverRefreshControl_builder,
-);
-const _flaxBinding1728 = FlaxCallbackBinding(
-  [],
-  _flaxBinding13,
   _callback13,
-  id: "callback:<>()->future:[void:]",
+  id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:refreshState:enum:flax.cupertino/cupertino#type:RefreshIndicatorMode,p:r:pulledExtent:double:,p:r:refreshTriggerPullDistance:double:,p:r:refreshIndicatorExtent:double:)->widget:",
   invoke: _callback13Invoke,
   matches: _callback13Matches,
 );
-const _flaxBinding1729 = FlaxTypeRef(
+const _flaxBinding1734 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding1728,
+  callback: _flaxBinding1733,
 );
-const _flaxBinding1730 = FlaxGetter.plain(
+const _flaxBinding1735 = FlaxGetter.plain(
+  "builder",
+  _flaxBinding1734,
+  _CupertinoSliverRefreshControl_builder,
+);
+const _flaxBinding1736 = FlaxCallbackBinding(
+  [],
+  _flaxBinding13,
+  _callback14,
+  id: "callback:<>()->future:[void:]",
+  invoke: _callback14Invoke,
+  matches: _callback14Matches,
+);
+const _flaxBinding1737 = FlaxTypeRef(
+  "callback",
+  nullable: true,
+  callback: _flaxBinding1736,
+);
+const _flaxBinding1738 = FlaxGetter.plain(
   "onRefresh",
-  _flaxBinding1729,
+  _flaxBinding1737,
   _CupertinoSliverRefreshControl_onRefresh,
 );
-const _flaxBinding1731 = FlaxTypeRef(
+const _flaxBinding1739 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
   dartType:
       FlaxDartTypes.typeOf<api10.State<api.CupertinoSliverRefreshControl>>,
 );
-const _flaxBinding1732 = FlaxInstanceMethod.plain(
+const _flaxBinding1740 = FlaxInstanceMethod.plain(
   _flaxBinding132,
-  _flaxBinding1731,
+  _flaxBinding1739,
   _CupertinoSliverRefreshControl_createState,
 );
-const _flaxBinding1733 = FlaxInstanceMethod.plain(
+const _flaxBinding1741 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding134,
   _CupertinoSliverRefreshControl_createElement,
 );
-const _flaxBinding1734 = FlaxInstanceMethod.shared(
+const _flaxBinding1742 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoSliverRefreshControl_debugFillProperties,
 );
-const _flaxBinding1735 = FlaxInstanceMethod.plain(
+const _flaxBinding1743 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoSliverRefreshControl_toStringShallow,
 );
-const _flaxBinding1736 = FlaxInstanceMethod.plain(
+const _flaxBinding1744 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoSliverRefreshControl_toStringDeep,
 );
-const _flaxBinding1737 = FlaxInstanceMethod.plain(
+const _flaxBinding1745 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoSliverRefreshControl_toDiagnosticsNode,
 );
-const _flaxBinding1738 = <FlaxParameter>[
+const _flaxBinding1746 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter(
     "refreshTriggerPullDistance",
@@ -47963,32 +48137,32 @@ const _flaxBinding1738 = <FlaxParameter>[
   ),
   FlaxParameter(
     "builder",
-    _flaxBinding1726,
+    _flaxBinding1734,
     required: false,
     omitWhenAbsent: true,
   ),
-  FlaxParameter("onRefresh", _flaxBinding1729, required: false),
+  FlaxParameter("onRefresh", _flaxBinding1737, required: false),
 ];
-const _flaxBinding1739 = FlaxObjectBinding(
+const _flaxBinding1747 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoSliverRefreshControl",
   [
-    _flaxBinding1722,
-    _flaxBinding1723,
-    _flaxBinding1727,
     _flaxBinding1730,
+    _flaxBinding1731,
+    _flaxBinding1735,
+    _flaxBinding1738,
     _flaxBinding130,
   ],
   {
-    "createState": _flaxBinding1732,
-    "createElement": _flaxBinding1733,
+    "createState": _flaxBinding1740,
+    "createElement": _flaxBinding1741,
     "toStringShort": _flaxBinding136,
-    "debugFillProperties": _flaxBinding1734,
-    "toStringShallow": _flaxBinding1735,
-    "toStringDeep": _flaxBinding1736,
-    "toDiagnosticsNode": _flaxBinding1737,
+    "debugFillProperties": _flaxBinding1742,
+    "toStringShallow": _flaxBinding1743,
+    "toStringDeep": _flaxBinding1744,
+    "toDiagnosticsNode": _flaxBinding1745,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding1738},
+  constructors: {"": _flaxBinding1746},
   create: _createCupertinoSliverRefreshControl,
   matches: _isCupertinoSliverRefreshControl,
   setters: [],
@@ -48000,12 +48174,12 @@ const _flaxBinding1739 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding1740 = FlaxGetter.plain(
+const _flaxBinding1748 = FlaxGetter.plain(
   "anchors",
   _flaxBinding181,
   _CupertinoSpellCheckSuggestionsToolbar_anchors,
 );
-const _flaxBinding1741 = FlaxTypeRef(
+const _flaxBinding1749 = FlaxTypeRef(
   "list",
   item: _flaxBinding184,
   collection: FlaxCollectionBinding(
@@ -48015,53 +48189,53 @@ const _flaxBinding1741 = FlaxTypeRef(
   ),
   iterable: _flaxBinding185,
 );
-const _flaxBinding1742 = FlaxGetter.plain(
+const _flaxBinding1750 = FlaxGetter.plain(
   "buttonItems",
-  _flaxBinding1741,
+  _flaxBinding1749,
   _CupertinoSpellCheckSuggestionsToolbar_buttonItems,
 );
-const _flaxBinding1743 = FlaxInstanceMethod.shared(
+const _flaxBinding1751 = FlaxInstanceMethod.shared(
   _flaxBinding112,
   _CupertinoSpellCheckSuggestionsToolbar_build,
 );
-const _flaxBinding1744 = FlaxInstanceMethod.shared(
+const _flaxBinding1752 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoSpellCheckSuggestionsToolbar_debugFillProperties,
 );
-const _flaxBinding1745 = FlaxInstanceMethod.plain(
+const _flaxBinding1753 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoSpellCheckSuggestionsToolbar_toStringShallow,
 );
-const _flaxBinding1746 = FlaxInstanceMethod.plain(
+const _flaxBinding1754 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoSpellCheckSuggestionsToolbar_toStringDeep,
 );
-const _flaxBinding1747 = FlaxInstanceMethod.plain(
+const _flaxBinding1755 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoSpellCheckSuggestionsToolbar_toDiagnosticsNode,
 );
-const _flaxBinding1748 = <FlaxParameter>[
+const _flaxBinding1756 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter.required("anchors", _flaxBinding181),
-  FlaxParameter.required("buttonItems", _flaxBinding1741),
+  FlaxParameter.required("buttonItems", _flaxBinding1749),
 ];
-const _flaxBinding1749 = FlaxObjectBinding(
+const _flaxBinding1757 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoSpellCheckSuggestionsToolbar",
-  [_flaxBinding1740, _flaxBinding1742, _flaxBinding130],
+  [_flaxBinding1748, _flaxBinding1750, _flaxBinding130],
   {
-    "build": _flaxBinding1743,
+    "build": _flaxBinding1751,
     "createElement": _flaxBinding190,
     "toStringShort": _flaxBinding136,
-    "debugFillProperties": _flaxBinding1744,
-    "toStringShallow": _flaxBinding1745,
-    "toStringDeep": _flaxBinding1746,
-    "toDiagnosticsNode": _flaxBinding1747,
+    "debugFillProperties": _flaxBinding1752,
+    "toStringShallow": _flaxBinding1753,
+    "toStringDeep": _flaxBinding1754,
+    "toDiagnosticsNode": _flaxBinding1755,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding1748, "editableText": _flaxBinding200},
+  constructors: {"": _flaxBinding1756, "editableText": _flaxBinding200},
   create: _createCupertinoSpellCheckSuggestionsToolbar,
   matches: _isCupertinoSpellCheckSuggestionsToolbar,
   setters: [],
@@ -48073,81 +48247,81 @@ const _flaxBinding1749 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding1750 = FlaxGetter.plain(
+const _flaxBinding1758 = FlaxGetter.plain(
   "value",
   flaxBoolType,
   _CupertinoSwitch_value,
 );
-const _flaxBinding1751 = FlaxGetter.plain(
+const _flaxBinding1759 = FlaxGetter.plain(
   "onChanged",
   flaxBoolChangedNullableType,
   _CupertinoSwitch_onChanged,
 );
-const _flaxBinding1752 = FlaxGetter.plain(
+const _flaxBinding1760 = FlaxGetter.plain(
   "activeColor",
   _flaxBinding31,
   _CupertinoSwitch_activeColor,
 );
-const _flaxBinding1753 = FlaxGetter.plain(
+const _flaxBinding1761 = FlaxGetter.plain(
   "activeTrackColor",
   _flaxBinding31,
   _CupertinoSwitch_activeTrackColor,
 );
-const _flaxBinding1754 = FlaxGetter.plain(
+const _flaxBinding1762 = FlaxGetter.plain(
   "trackColor",
   _flaxBinding31,
   _CupertinoSwitch_trackColor,
 );
-const _flaxBinding1755 = FlaxGetter.plain(
+const _flaxBinding1763 = FlaxGetter.plain(
   "inactiveTrackColor",
   _flaxBinding31,
   _CupertinoSwitch_inactiveTrackColor,
 );
-const _flaxBinding1756 = FlaxGetter.plain(
+const _flaxBinding1764 = FlaxGetter.plain(
   "thumbColor",
   _flaxBinding31,
   _CupertinoSwitch_thumbColor,
 );
-const _flaxBinding1757 = FlaxGetter.plain(
+const _flaxBinding1765 = FlaxGetter.plain(
   "inactiveThumbColor",
   _flaxBinding31,
   _CupertinoSwitch_inactiveThumbColor,
 );
-const _flaxBinding1758 = FlaxGetter.plain(
+const _flaxBinding1766 = FlaxGetter.plain(
   "focusColor",
   _flaxBinding31,
   _CupertinoSwitch_focusColor,
 );
-const _flaxBinding1759 = FlaxGetter.plain(
+const _flaxBinding1767 = FlaxGetter.plain(
   "onLabelColor",
   _flaxBinding31,
   _CupertinoSwitch_onLabelColor,
 );
-const _flaxBinding1760 = FlaxGetter.plain(
+const _flaxBinding1768 = FlaxGetter.plain(
   "offLabelColor",
   _flaxBinding31,
   _CupertinoSwitch_offLabelColor,
 );
-const _flaxBinding1761 = FlaxTypeRef(
+const _flaxBinding1769 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_painting#type:ImageProvider",
   dartType: FlaxDartTypes.typeOf<api12.ImageProvider<Object>?>,
   nullable: true,
 );
-const _flaxBinding1762 = FlaxGetter.plain(
+const _flaxBinding1770 = FlaxGetter.plain(
   "activeThumbImage",
-  _flaxBinding1761,
+  _flaxBinding1769,
   _CupertinoSwitch_activeThumbImage,
 );
-const _flaxBinding1763 = FlaxTypeRef(
+const _flaxBinding1771 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:StackTrace",
   nullable: true,
 );
-const _flaxBinding1764 = FlaxCallbackBinding(
+const _flaxBinding1772 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter.plain("exception", flaxAnyType),
-    FlaxCallbackParameter.plain("stackTrace", _flaxBinding1763),
+    FlaxCallbackParameter.plain("stackTrace", _flaxBinding1771),
   ],
   flaxVoidType,
   FlaxCallbackAdapters.wrapVoid2<Object, api2.StackTrace?>,
@@ -48155,32 +48329,32 @@ const _flaxBinding1764 = FlaxCallbackBinding(
   invoke: FlaxCallbackAdapters.invokeVoid2<Object, api2.StackTrace?>,
   matches: FlaxCallbackAdapters.matchesVoid2<Object, api2.StackTrace?>,
 );
-const _flaxBinding1765 = FlaxTypeRef(
+const _flaxBinding1773 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding1764,
+  callback: _flaxBinding1772,
 );
-const _flaxBinding1766 = FlaxGetter.plain(
+const _flaxBinding1774 = FlaxGetter.plain(
   "onActiveThumbImageError",
-  _flaxBinding1765,
+  _flaxBinding1773,
   _CupertinoSwitch_onActiveThumbImageError,
 );
-const _flaxBinding1767 = FlaxGetter.plain(
+const _flaxBinding1775 = FlaxGetter.plain(
   "inactiveThumbImage",
-  _flaxBinding1761,
+  _flaxBinding1769,
   _CupertinoSwitch_inactiveThumbImage,
 );
-const _flaxBinding1768 = FlaxGetter.plain(
+const _flaxBinding1776 = FlaxGetter.plain(
   "onInactiveThumbImageError",
-  _flaxBinding1765,
+  _flaxBinding1773,
   _CupertinoSwitch_onInactiveThumbImageError,
 );
-const _flaxBinding1769 = FlaxGetter.plain(
+const _flaxBinding1777 = FlaxGetter.plain(
   "trackOutlineColor",
   _flaxBinding279,
   _CupertinoSwitch_trackOutlineColor,
 );
-const _flaxBinding1770 = FlaxCallbackBinding(
+const _flaxBinding1778 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("states", _flaxBinding276)],
   flaxNullableDoubleType,
   FlaxCallbackAdapters.wrap1<Set<api10.WidgetState>, double?>,
@@ -48188,8 +48362,8 @@ const _flaxBinding1770 = FlaxCallbackBinding(
   invoke: FlaxCallbackAdapters.invoke1<Set<api10.WidgetState>, double?>,
   matches: FlaxCallbackAdapters.matches1<Set<api10.WidgetState>, double?>,
 );
-const _flaxBinding1771 = FlaxTypeRef("callback", callback: _flaxBinding1770);
-const _flaxBinding1772 = FlaxTypeRef(
+const _flaxBinding1779 = FlaxTypeRef("callback", callback: _flaxBinding1778);
+const _flaxBinding1780 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:WidgetStateProperty",
   dartType: FlaxDartTypes.typeOf<api10.WidgetStateProperty<double?>?>,
@@ -48197,31 +48371,31 @@ const _flaxBinding1772 = FlaxTypeRef(
   deferredFactories: {
     "resolveWith": FlaxDeferredFactoryBinding(
       "object:flax.core/flutter#type:WidgetStateProperty<Object?><double?:>",
-      [FlaxParameter.required("callback", _flaxBinding1771)],
-      _deferred3,
+      [FlaxParameter.required("callback", _flaxBinding1779)],
+      _deferred4,
     ),
   },
 );
-const _flaxBinding1773 = FlaxGetter.plain(
+const _flaxBinding1781 = FlaxGetter.plain(
   "trackOutlineWidth",
-  _flaxBinding1772,
+  _flaxBinding1780,
   _CupertinoSwitch_trackOutlineWidth,
 );
-const _flaxBinding1774 = FlaxTypeRef(
+const _flaxBinding1782 = FlaxTypeRef(
   "widget",
   id: "flax.core/sdk_widgets#type:Icon",
   nullable: true,
 );
-const _flaxBinding1775 = FlaxCallbackBinding(
+const _flaxBinding1783 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("states", _flaxBinding276)],
-  _flaxBinding1774,
+  _flaxBinding1782,
   FlaxCallbackAdapters.wrap1<Set<api10.WidgetState>, api10.Icon?>,
   id: "callback:<>(p:r:states:set:[enum:flax.core/flutter#type:WidgetState])->widget?:flax.core/sdk_widgets#type:Icon",
   invoke: FlaxCallbackAdapters.invoke1<Set<api10.WidgetState>, api10.Icon?>,
   matches: FlaxCallbackAdapters.matches1<Set<api10.WidgetState>, api10.Icon?>,
 );
-const _flaxBinding1776 = FlaxTypeRef("callback", callback: _flaxBinding1775);
-const _flaxBinding1777 = FlaxTypeRef(
+const _flaxBinding1784 = FlaxTypeRef("callback", callback: _flaxBinding1783);
+const _flaxBinding1785 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:WidgetStateProperty",
   dartType: FlaxDartTypes.typeOf<api10.WidgetStateProperty<api10.Icon?>?>,
@@ -48229,85 +48403,85 @@ const _flaxBinding1777 = FlaxTypeRef(
   deferredFactories: {
     "resolveWith": FlaxDeferredFactoryBinding(
       "object:flax.core/flutter#type:WidgetStateProperty<Object?><widget?:flax.core/sdk_widgets#type:Icon>",
-      [FlaxParameter.required("callback", _flaxBinding1776)],
-      _deferred4,
+      [FlaxParameter.required("callback", _flaxBinding1784)],
+      _deferred5,
     ),
   },
 );
-const _flaxBinding1778 = FlaxGetter.plain(
+const _flaxBinding1786 = FlaxGetter.plain(
   "thumbIcon",
-  _flaxBinding1777,
+  _flaxBinding1785,
   _CupertinoSwitch_thumbIcon,
 );
-const _flaxBinding1779 = FlaxGetter.plain(
+const _flaxBinding1787 = FlaxGetter.plain(
   "mouseCursor",
-  _flaxBinding996,
+  _flaxBinding1000,
   _CupertinoSwitch_mouseCursor,
 );
-const _flaxBinding1780 = FlaxGetter.plain(
+const _flaxBinding1788 = FlaxGetter.plain(
   "focusNode",
   _flaxBinding154,
   _CupertinoSwitch_focusNode,
 );
-const _flaxBinding1781 = FlaxGetter.plain(
+const _flaxBinding1789 = FlaxGetter.plain(
   "onFocusChange",
   flaxBoolChangedNullableType,
   _CupertinoSwitch_onFocusChange,
 );
-const _flaxBinding1782 = FlaxGetter.plain(
+const _flaxBinding1790 = FlaxGetter.plain(
   "autofocus",
   flaxBoolType,
   _CupertinoSwitch_autofocus,
 );
-const _flaxBinding1783 = FlaxGetter.plain(
+const _flaxBinding1791 = FlaxGetter.plain(
   "applyTheme",
   flaxNullableBoolType,
   _CupertinoSwitch_applyTheme,
 );
-const _flaxBinding1784 = FlaxTypeRef(
+const _flaxBinding1792 = FlaxTypeRef(
   "enum",
   id: "flax.core/flutter#type:DragStartBehavior",
 );
-const _flaxBinding1785 = FlaxGetter.plain(
+const _flaxBinding1793 = FlaxGetter.plain(
   "dragStartBehavior",
-  _flaxBinding1784,
+  _flaxBinding1792,
   _CupertinoSwitch_dragStartBehavior,
 );
-const _flaxBinding1786 = FlaxTypeRef(
+const _flaxBinding1794 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
   dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoSwitch>>,
 );
-const _flaxBinding1787 = FlaxInstanceMethod.plain(
+const _flaxBinding1795 = FlaxInstanceMethod.plain(
   _flaxBinding132,
-  _flaxBinding1786,
+  _flaxBinding1794,
   _CupertinoSwitch_createState,
 );
-const _flaxBinding1788 = FlaxInstanceMethod.shared(
+const _flaxBinding1796 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoSwitch_debugFillProperties,
 );
-const _flaxBinding1789 = FlaxInstanceMethod.plain(
+const _flaxBinding1797 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding134,
   _CupertinoSwitch_createElement,
 );
-const _flaxBinding1790 = FlaxInstanceMethod.plain(
+const _flaxBinding1798 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoSwitch_toStringShallow,
 );
-const _flaxBinding1791 = FlaxInstanceMethod.plain(
+const _flaxBinding1799 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoSwitch_toStringDeep,
 );
-const _flaxBinding1792 = FlaxInstanceMethod.plain(
+const _flaxBinding1800 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoSwitch_toDiagnosticsNode,
 );
-const _flaxBinding1793 = <FlaxParameter>[
+const _flaxBinding1801 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter.required("value", flaxBoolType),
   FlaxParameter.required("onChanged", flaxBoolChangedNullableType),
@@ -48321,14 +48495,14 @@ const _flaxBinding1793 = <FlaxParameter>[
   FlaxParameter("focusColor", _flaxBinding31, required: false),
   FlaxParameter("onLabelColor", _flaxBinding31, required: false),
   FlaxParameter("offLabelColor", _flaxBinding31, required: false),
-  FlaxParameter("activeThumbImage", _flaxBinding1761, required: false),
-  FlaxParameter("onActiveThumbImageError", _flaxBinding1765, required: false),
-  FlaxParameter("inactiveThumbImage", _flaxBinding1761, required: false),
-  FlaxParameter("onInactiveThumbImageError", _flaxBinding1765, required: false),
+  FlaxParameter("activeThumbImage", _flaxBinding1769, required: false),
+  FlaxParameter("onActiveThumbImageError", _flaxBinding1773, required: false),
+  FlaxParameter("inactiveThumbImage", _flaxBinding1769, required: false),
+  FlaxParameter("onInactiveThumbImageError", _flaxBinding1773, required: false),
   FlaxParameter("trackOutlineColor", _flaxBinding279, required: false),
-  FlaxParameter("trackOutlineWidth", _flaxBinding1772, required: false),
-  FlaxParameter("thumbIcon", _flaxBinding1777, required: false),
-  FlaxParameter("mouseCursor", _flaxBinding996, required: false),
+  FlaxParameter("trackOutlineWidth", _flaxBinding1780, required: false),
+  FlaxParameter("thumbIcon", _flaxBinding1785, required: false),
+  FlaxParameter("mouseCursor", _flaxBinding1000, required: false),
   FlaxParameter("focusNode", _flaxBinding154, required: false),
   FlaxParameter("onFocusChange", flaxBoolChangedNullableType, required: false),
   FlaxParameter(
@@ -48339,51 +48513,51 @@ const _flaxBinding1793 = <FlaxParameter>[
   ),
   FlaxParameter(
     "dragStartBehavior",
-    _flaxBinding1784,
+    _flaxBinding1792,
     required: false,
     defaultValue: api4.DragStartBehavior.start,
   ),
 ];
-const _flaxBinding1794 = FlaxObjectBinding(
+const _flaxBinding1802 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoSwitch",
   [
-    _flaxBinding1750,
-    _flaxBinding1751,
-    _flaxBinding1752,
-    _flaxBinding1753,
-    _flaxBinding1754,
-    _flaxBinding1755,
-    _flaxBinding1756,
-    _flaxBinding1757,
     _flaxBinding1758,
     _flaxBinding1759,
     _flaxBinding1760,
+    _flaxBinding1761,
     _flaxBinding1762,
+    _flaxBinding1763,
+    _flaxBinding1764,
+    _flaxBinding1765,
     _flaxBinding1766,
     _flaxBinding1767,
     _flaxBinding1768,
-    _flaxBinding1769,
-    _flaxBinding1773,
-    _flaxBinding1778,
-    _flaxBinding1779,
-    _flaxBinding1780,
+    _flaxBinding1770,
+    _flaxBinding1774,
+    _flaxBinding1775,
+    _flaxBinding1776,
+    _flaxBinding1777,
     _flaxBinding1781,
-    _flaxBinding1782,
-    _flaxBinding1783,
-    _flaxBinding1785,
+    _flaxBinding1786,
+    _flaxBinding1787,
+    _flaxBinding1788,
+    _flaxBinding1789,
+    _flaxBinding1790,
+    _flaxBinding1791,
+    _flaxBinding1793,
     _flaxBinding130,
   ],
   {
-    "createState": _flaxBinding1787,
-    "debugFillProperties": _flaxBinding1788,
-    "createElement": _flaxBinding1789,
+    "createState": _flaxBinding1795,
+    "debugFillProperties": _flaxBinding1796,
+    "createElement": _flaxBinding1797,
     "toStringShort": _flaxBinding136,
-    "toStringShallow": _flaxBinding1790,
-    "toStringDeep": _flaxBinding1791,
-    "toDiagnosticsNode": _flaxBinding1792,
+    "toStringShallow": _flaxBinding1798,
+    "toStringDeep": _flaxBinding1799,
+    "toDiagnosticsNode": _flaxBinding1800,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding1793},
+  constructors: {"": _flaxBinding1801},
   create: _createCupertinoSwitch,
   matches: _isCupertinoSwitch,
   setters: [],
@@ -48395,13 +48569,13 @@ const _flaxBinding1794 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding1795 = FlaxTypeRef(
+const _flaxBinding1803 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:BottomNavigationBarItem",
 );
-const _flaxBinding1796 = FlaxTypeRef(
+const _flaxBinding1804 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding1795,
+  item: _flaxBinding1803,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/sdk_widgets#type:BottomNavigationBarItem]",
     _collection36Create,
@@ -48409,128 +48583,128 @@ const _flaxBinding1796 = FlaxTypeRef(
     restore: _collection36Restore,
   ),
 );
-const _flaxBinding1797 = FlaxTypeRef(
+const _flaxBinding1805 = FlaxTypeRef(
   "list",
-  item: _flaxBinding1795,
+  item: _flaxBinding1803,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_widgets#type:BottomNavigationBarItem]",
     _collection35Create,
     _collection35Matches,
   ),
-  iterable: _flaxBinding1796,
+  iterable: _flaxBinding1804,
 );
-const _flaxBinding1798 = FlaxGetter.plain(
+const _flaxBinding1806 = FlaxGetter.plain(
   "items",
-  _flaxBinding1797,
+  _flaxBinding1805,
   _CupertinoTabBar_items,
 );
-const _flaxBinding1799 = FlaxGetter.plain(
+const _flaxBinding1807 = FlaxGetter.plain(
   "onTap",
   flaxIntChangedNullableType,
   _CupertinoTabBar_onTap,
 );
-const _flaxBinding1800 = FlaxGetter.plain(
+const _flaxBinding1808 = FlaxGetter.plain(
   "currentIndex",
   flaxIntType,
   _CupertinoTabBar_currentIndex,
 );
-const _flaxBinding1801 = FlaxGetter.plain(
+const _flaxBinding1809 = FlaxGetter.plain(
   "backgroundColor",
   _flaxBinding31,
   _CupertinoTabBar_backgroundColor,
 );
-const _flaxBinding1802 = FlaxGetter.plain(
+const _flaxBinding1810 = FlaxGetter.plain(
   "activeColor",
   _flaxBinding31,
   _CupertinoTabBar_activeColor,
 );
-const _flaxBinding1803 = FlaxGetter.plain(
+const _flaxBinding1811 = FlaxGetter.plain(
   "inactiveColor",
   flaxColorType,
   _CupertinoTabBar_inactiveColor,
 );
-const _flaxBinding1804 = FlaxGetter.plain(
+const _flaxBinding1812 = FlaxGetter.plain(
   "iconSize",
   flaxDoubleType,
   _CupertinoTabBar_iconSize,
 );
-const _flaxBinding1805 = FlaxGetter.plain(
+const _flaxBinding1813 = FlaxGetter.plain(
   "height",
   flaxDoubleType,
   _CupertinoTabBar_height,
 );
-const _flaxBinding1806 = FlaxGetter.plain(
+const _flaxBinding1814 = FlaxGetter.plain(
   "border",
-  _flaxBinding1121,
+  _flaxBinding1125,
   _CupertinoTabBar_border,
 );
-const _flaxBinding1807 = FlaxInstanceMethod.plain(
-  _flaxBinding602,
+const _flaxBinding1815 = FlaxInstanceMethod.plain(
+  _flaxBinding606,
   flaxStringType,
   _CupertinoTabBar_toString,
 );
-const _flaxBinding1808 = FlaxInstanceMethod.plain(
+const _flaxBinding1816 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoTabBar_toDiagnosticsNode,
 );
-const _flaxBinding1809 = FlaxInstanceMethod.shared(
+const _flaxBinding1817 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoTabBar_debugFillProperties,
 );
-const _flaxBinding1810 = FlaxInstanceMethod.plain(
+const _flaxBinding1818 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoTabBar_toStringShallow,
 );
-const _flaxBinding1811 = FlaxInstanceMethod.plain(
+const _flaxBinding1819 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoTabBar_toStringDeep,
 );
-const _flaxBinding1812 = FlaxInstanceMethod.shared(
+const _flaxBinding1820 = FlaxInstanceMethod.shared(
   _flaxBinding54,
   _CupertinoTabBar_opaque,
 );
-const _flaxBinding1813 = FlaxInstanceMethod.shared(
+const _flaxBinding1821 = FlaxInstanceMethod.shared(
   _flaxBinding112,
   _CupertinoTabBar_build,
 );
-const _flaxBinding1814 = FlaxTypeRef(
+const _flaxBinding1822 = FlaxTypeRef(
   "list",
   nullable: true,
-  item: _flaxBinding1795,
+  item: _flaxBinding1803,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/sdk_widgets#type:BottomNavigationBarItem]",
     _collection35Create,
     _collection35Matches,
   ),
-  iterable: _flaxBinding1796,
+  iterable: _flaxBinding1804,
 );
-const _flaxBinding1815 = <FlaxParameter>[
+const _flaxBinding1823 = <FlaxParameter>[
   FlaxParameter("activeColor", _flaxBinding31, required: false),
   FlaxParameter("backgroundColor", _flaxBinding31, required: false),
-  FlaxParameter("border", _flaxBinding1121, required: false),
+  FlaxParameter("border", _flaxBinding1125, required: false),
   FlaxParameter("currentIndex", flaxNullableIntType, required: false),
   FlaxParameter("height", flaxNullableDoubleType, required: false),
   FlaxParameter("iconSize", flaxNullableDoubleType, required: false),
   FlaxParameter("inactiveColor", _flaxBinding31, required: false),
-  FlaxParameter("items", _flaxBinding1814, required: false),
+  FlaxParameter("items", _flaxBinding1822, required: false),
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter("onTap", flaxIntChangedNullableType, required: false),
 ];
-const _flaxBinding1816 = FlaxTypeRef(
+const _flaxBinding1824 = FlaxTypeRef(
   "widget",
   id: "flax.cupertino/cupertino#type:CupertinoTabBar",
 );
-const _flaxBinding1817 = FlaxInstanceMethod.plain(
-  _flaxBinding1815,
-  _flaxBinding1816,
+const _flaxBinding1825 = FlaxInstanceMethod.plain(
+  _flaxBinding1823,
+  _flaxBinding1824,
   _CupertinoTabBar_copyWith,
 );
-const _flaxBinding1818 = <FlaxParameter>[
+const _flaxBinding1826 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
-  FlaxParameter.required("items", _flaxBinding1797),
+  FlaxParameter.required("items", _flaxBinding1805),
   FlaxParameter("onTap", flaxIntChangedNullableType, required: false),
   FlaxParameter("currentIndex", flaxIntType, required: false, defaultValue: 0),
   FlaxParameter("backgroundColor", _flaxBinding31, required: false),
@@ -48550,40 +48724,40 @@ const _flaxBinding1818 = <FlaxParameter>[
   FlaxParameter("height", flaxDoubleType, required: false, defaultValue: 50.0),
   FlaxParameter(
     "border",
-    _flaxBinding1121,
+    _flaxBinding1125,
     required: false,
     omitWhenAbsent: true,
   ),
 ];
-const _flaxBinding1819 = FlaxObjectBinding(
+const _flaxBinding1827 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoTabBar",
   [
-    _flaxBinding1093,
-    _flaxBinding1798,
-    _flaxBinding1799,
-    _flaxBinding1800,
-    _flaxBinding1801,
-    _flaxBinding1802,
-    _flaxBinding1803,
-    _flaxBinding1804,
-    _flaxBinding1805,
+    _flaxBinding1097,
     _flaxBinding1806,
+    _flaxBinding1807,
+    _flaxBinding1808,
+    _flaxBinding1809,
+    _flaxBinding1810,
+    _flaxBinding1811,
+    _flaxBinding1812,
+    _flaxBinding1813,
+    _flaxBinding1814,
     _flaxBinding130,
   ],
   {
     "toStringShort": _flaxBinding136,
-    "toString": _flaxBinding1807,
-    "toDiagnosticsNode": _flaxBinding1808,
-    "debugFillProperties": _flaxBinding1809,
-    "toStringShallow": _flaxBinding1810,
-    "toStringDeep": _flaxBinding1811,
+    "toString": _flaxBinding1815,
+    "toDiagnosticsNode": _flaxBinding1816,
+    "debugFillProperties": _flaxBinding1817,
+    "toStringShallow": _flaxBinding1818,
+    "toStringDeep": _flaxBinding1819,
     "debugDescribeChildren": _flaxBinding146,
-    "opaque": _flaxBinding1812,
-    "build": _flaxBinding1813,
-    "copyWith": _flaxBinding1817,
+    "opaque": _flaxBinding1820,
+    "build": _flaxBinding1821,
+    "copyWith": _flaxBinding1825,
     "createElement": _flaxBinding190,
   },
-  constructors: {"": _flaxBinding1818},
+  constructors: {"": _flaxBinding1826},
   create: _createCupertinoTabBar,
   matches: _isCupertinoTabBar,
   setters: [],
@@ -48596,114 +48770,114 @@ const _flaxBinding1819 = FlaxObjectBinding(
     "flax.core/flutter#type:PreferredSizeWidget",
   ],
 );
-const _flaxBinding1820 = FlaxGetter.plain(
+const _flaxBinding1828 = FlaxGetter.plain(
   "hasListeners",
   flaxBoolType,
   _flaxMembers1
       .flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_ChangeNotifier_7c_get_3a_hasListeners,
 );
-const _flaxBinding1821 = FlaxGetter.plain(
+const _flaxBinding1829 = FlaxGetter.plain(
   "index",
   flaxIntType,
   _CupertinoTabController_index,
 );
-const _flaxBinding1822 = FlaxSetter(
+const _flaxBinding1830 = FlaxSetter(
   "index",
   flaxIntType,
   _CupertinoTabController_set_index,
 );
-const _flaxBinding1823 = FlaxInstanceMethod.shared(
+const _flaxBinding1831 = FlaxInstanceMethod.shared(
   _flaxBinding86,
   _CupertinoTabController_addListener,
 );
-const _flaxBinding1824 = FlaxInstanceMethod.shared(
+const _flaxBinding1832 = FlaxInstanceMethod.shared(
   _flaxBinding86,
   _CupertinoTabController_removeListener,
 );
-const _flaxBinding1825 = FlaxInstanceMethod.shared(
+const _flaxBinding1833 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _CupertinoTabController_dispose,
 );
-const _flaxBinding1826 = FlaxInstanceMethod.shared(
+const _flaxBinding1834 = FlaxInstanceMethod.shared(
   _flaxBinding86,
   _FlaxProxyDispatch5_super_call_addListener,
 );
-const _flaxBinding1827 = FlaxInstanceMethod.shared(
+const _flaxBinding1835 = FlaxInstanceMethod.shared(
   _flaxBinding86,
   _FlaxProxyDispatch5_super_call_removeListener,
 );
-const _flaxBinding1828 = FlaxInstanceMethod.shared(
+const _flaxBinding1836 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _FlaxProxyDispatch5_super_call_dispose,
 );
-const _flaxBinding1829 = FlaxInstanceMethod.shared(
+const _flaxBinding1837 = FlaxInstanceMethod.shared(
   flaxBoolCall,
   _FlaxProxyDispatch5_super_get_hasListeners,
 );
-const _flaxBinding1830 = <FlaxParameter>[
+const _flaxBinding1838 = <FlaxParameter>[
   FlaxParameter("initialIndex", flaxIntType, required: false, defaultValue: 0),
 ];
-const _flaxBinding1831 = FlaxProxyMember(
+const _flaxBinding1839 = FlaxProxyMember(
   "addListener",
   0,
   _flaxBinding86,
   hasSuper: true,
 );
-const _flaxBinding1832 = FlaxProxyMember(
+const _flaxBinding1840 = FlaxProxyMember(
   "removeListener",
   0,
   _flaxBinding86,
   hasSuper: true,
 );
-const _flaxBinding1833 = FlaxProxyMember(
+const _flaxBinding1841 = FlaxProxyMember(
   "dispose",
   0,
   flaxVoidCall,
   hasSuper: true,
 );
-const _flaxBinding1834 = FlaxProxyMember(
+const _flaxBinding1842 = FlaxProxyMember(
   "index",
   1,
   flaxIntCall,
   hasSuper: true,
 );
-const _flaxBinding1835 = FlaxProxyMember(
+const _flaxBinding1843 = FlaxProxyMember(
   "hasListeners",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding1836 = FlaxProxyMember(
+const _flaxBinding1844 = FlaxProxyMember(
   "index",
   2,
   _flaxBinding87,
   hasSuper: true,
 );
-const _flaxBinding1837 = FlaxObjectBinding(
+const _flaxBinding1845 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoTabController",
-  [_flaxBinding1820, _flaxBinding1821],
+  [_flaxBinding1828, _flaxBinding1829],
   {
-    "addListener": _flaxBinding1823,
-    "removeListener": _flaxBinding1824,
-    "dispose": _flaxBinding1825,
-    "@super:addListener": _flaxBinding1826,
-    "@super:removeListener": _flaxBinding1827,
-    "@super:dispose": _flaxBinding1828,
+    "addListener": _flaxBinding1831,
+    "removeListener": _flaxBinding1832,
+    "dispose": _flaxBinding1833,
+    "@super:addListener": _flaxBinding1834,
+    "@super:removeListener": _flaxBinding1835,
+    "@super:dispose": _flaxBinding1836,
     "@super:get:index": FlaxInstanceMethod.shared(
       flaxIntCall,
       _CupertinoTabController_super_get_index,
     ),
-    "@super:get:hasListeners": _flaxBinding1829,
+    "@super:get:hasListeners": _flaxBinding1837,
     "@super:set:index": FlaxInstanceMethod.plain(
       [FlaxParameter.required("value", flaxIntType)],
       flaxVoidType,
       _CupertinoTabController_super_set_index,
     ),
   },
-  constructors: {"": _flaxBinding1830, "@implementation": _flaxBinding1830},
+  constructors: {"": _flaxBinding1838, "@implementation": _flaxBinding1838},
   create: _createCupertinoTabController,
   matches: _isCupertinoTabController,
-  setters: [_flaxBinding1822],
+  setters: [_flaxBinding1830],
   supertypes: [
     "flax.core/sdk_foundation#type:ChangeNotifier",
     "dart:core::Object",
@@ -48712,30 +48886,30 @@ const _flaxBinding1837 = FlaxObjectBinding(
   disposeMethod: "dispose",
   listenerPairs: {"addListener": "removeListener"},
   proxy: FlaxProxyBinding([
-    _flaxBinding1831,
-    _flaxBinding1832,
-    _flaxBinding1833,
-    _flaxBinding1834,
-    _flaxBinding1835,
-    _flaxBinding1836,
+    _flaxBinding1839,
+    _flaxBinding1840,
+    _flaxBinding1841,
+    _flaxBinding1842,
+    _flaxBinding1843,
+    _flaxBinding1844,
   ]),
 );
-const _flaxBinding1838 = FlaxGetter.plain(
+const _flaxBinding1846 = FlaxGetter.plain(
   "tabBar",
-  _flaxBinding1816,
+  _flaxBinding1824,
   _CupertinoTabScaffold_tabBar,
 );
-const _flaxBinding1839 = FlaxTypeRef(
+const _flaxBinding1847 = FlaxTypeRef(
   "object",
   id: "flax.cupertino/cupertino#type:CupertinoTabController",
   nullable: true,
 );
-const _flaxBinding1840 = FlaxGetter.plain(
+const _flaxBinding1848 = FlaxGetter.plain(
   "controller",
-  _flaxBinding1839,
+  _flaxBinding1847,
   _CupertinoTabScaffold_controller,
 );
-const _flaxBinding1841 = FlaxCallbackBinding(
+const _flaxBinding1849 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter.plain("context", _flaxBinding2),
     FlaxCallbackParameter.plain("index", flaxIntType),
@@ -48746,66 +48920,66 @@ const _flaxBinding1841 = FlaxCallbackBinding(
   invoke: FlaxCallbackAdapters.invoke2<api10.BuildContext, int, api.Widget>,
   matches: FlaxCallbackAdapters.matches2<api10.BuildContext, int, api.Widget>,
 );
-const _flaxBinding1842 = FlaxTypeRef("callback", callback: _flaxBinding1841);
-const _flaxBinding1843 = FlaxGetter.plain(
+const _flaxBinding1850 = FlaxTypeRef("callback", callback: _flaxBinding1849);
+const _flaxBinding1851 = FlaxGetter.plain(
   "tabBuilder",
-  _flaxBinding1842,
+  _flaxBinding1850,
   _CupertinoTabScaffold_tabBuilder,
 );
-const _flaxBinding1844 = FlaxGetter.plain(
+const _flaxBinding1852 = FlaxGetter.plain(
   "backgroundColor",
   _flaxBinding31,
   _CupertinoTabScaffold_backgroundColor,
 );
-const _flaxBinding1845 = FlaxGetter.plain(
+const _flaxBinding1853 = FlaxGetter.plain(
   "resizeToAvoidBottomInset",
   flaxBoolType,
   _CupertinoTabScaffold_resizeToAvoidBottomInset,
 );
-const _flaxBinding1846 = FlaxGetter.plain(
+const _flaxBinding1854 = FlaxGetter.plain(
   "restorationId",
   flaxNullableStringType,
   _CupertinoTabScaffold_restorationId,
 );
-const _flaxBinding1847 = FlaxTypeRef(
+const _flaxBinding1855 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
   dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoTabScaffold>>,
 );
-const _flaxBinding1848 = FlaxInstanceMethod.plain(
+const _flaxBinding1856 = FlaxInstanceMethod.plain(
   _flaxBinding132,
-  _flaxBinding1847,
+  _flaxBinding1855,
   _CupertinoTabScaffold_createState,
 );
-const _flaxBinding1849 = FlaxInstanceMethod.plain(
+const _flaxBinding1857 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding134,
   _CupertinoTabScaffold_createElement,
 );
-const _flaxBinding1850 = FlaxInstanceMethod.shared(
+const _flaxBinding1858 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoTabScaffold_debugFillProperties,
 );
-const _flaxBinding1851 = FlaxInstanceMethod.plain(
+const _flaxBinding1859 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoTabScaffold_toStringShallow,
 );
-const _flaxBinding1852 = FlaxInstanceMethod.plain(
+const _flaxBinding1860 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoTabScaffold_toStringDeep,
 );
-const _flaxBinding1853 = FlaxInstanceMethod.plain(
+const _flaxBinding1861 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoTabScaffold_toDiagnosticsNode,
 );
-const _flaxBinding1854 = <FlaxParameter>[
+const _flaxBinding1862 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
-  FlaxParameter.required("tabBar", _flaxBinding1816),
-  FlaxParameter.required("tabBuilder", _flaxBinding1842),
-  FlaxParameter("controller", _flaxBinding1839, required: false),
+  FlaxParameter.required("tabBar", _flaxBinding1824),
+  FlaxParameter.required("tabBuilder", _flaxBinding1850),
+  FlaxParameter("controller", _flaxBinding1847, required: false),
   FlaxParameter("backgroundColor", _flaxBinding31, required: false),
   FlaxParameter(
     "resizeToAvoidBottomInset",
@@ -48815,28 +48989,28 @@ const _flaxBinding1854 = <FlaxParameter>[
   ),
   FlaxParameter("restorationId", flaxNullableStringType, required: false),
 ];
-const _flaxBinding1855 = FlaxObjectBinding(
+const _flaxBinding1863 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoTabScaffold",
   [
-    _flaxBinding1838,
-    _flaxBinding1840,
-    _flaxBinding1843,
-    _flaxBinding1844,
-    _flaxBinding1845,
     _flaxBinding1846,
+    _flaxBinding1848,
+    _flaxBinding1851,
+    _flaxBinding1852,
+    _flaxBinding1853,
+    _flaxBinding1854,
     _flaxBinding130,
   ],
   {
-    "createState": _flaxBinding1848,
-    "createElement": _flaxBinding1849,
+    "createState": _flaxBinding1856,
+    "createElement": _flaxBinding1857,
     "toStringShort": _flaxBinding136,
-    "debugFillProperties": _flaxBinding1850,
-    "toStringShallow": _flaxBinding1851,
-    "toStringDeep": _flaxBinding1852,
-    "toDiagnosticsNode": _flaxBinding1853,
+    "debugFillProperties": _flaxBinding1858,
+    "toStringShallow": _flaxBinding1859,
+    "toStringDeep": _flaxBinding1860,
+    "toDiagnosticsNode": _flaxBinding1861,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding1854},
+  constructors: {"": _flaxBinding1862},
   create: _createCupertinoTabScaffold,
   matches: _isCupertinoTabScaffold,
   setters: [],
@@ -48848,25 +49022,25 @@ const _flaxBinding1855 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding1856 = FlaxGetter.plain(
+const _flaxBinding1864 = FlaxGetter.plain(
   "builder",
-  _flaxBinding1596,
+  _flaxBinding1604,
   _CupertinoTabView_builder,
 );
-const _flaxBinding1857 = FlaxGetter.plain(
+const _flaxBinding1865 = FlaxGetter.plain(
   "navigatorKey",
   _flaxBinding221,
   _CupertinoTabView_navigatorKey,
 );
-const _flaxBinding1858 = FlaxGetter.plain(
+const _flaxBinding1866 = FlaxGetter.plain(
   "defaultTitle",
   flaxNullableStringType,
   _CupertinoTabView_defaultTitle,
 );
-const _flaxBinding1859 = FlaxTypeRef(
+const _flaxBinding1867 = FlaxTypeRef(
   "map",
   nullable: true,
-  item: _flaxBinding564,
+  item: _flaxBinding568,
   key: flaxStringType,
   collection: FlaxCollectionBinding(
     "map:[callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext)->widget:][String:]",
@@ -48874,71 +49048,71 @@ const _flaxBinding1859 = FlaxTypeRef(
     _collection37Matches,
   ),
 );
-const _flaxBinding1860 = FlaxGetter.plain(
+const _flaxBinding1868 = FlaxGetter.plain(
   "routes",
-  _flaxBinding1859,
+  _flaxBinding1867,
   _CupertinoTabView_routes,
 );
-const _flaxBinding1861 = FlaxGetter.plain(
+const _flaxBinding1869 = FlaxGetter.plain(
   "onGenerateRoute",
   _flaxBinding229,
   _CupertinoTabView_onGenerateRoute,
 );
-const _flaxBinding1862 = FlaxGetter.plain(
+const _flaxBinding1870 = FlaxGetter.plain(
   "onUnknownRoute",
   _flaxBinding229,
   _CupertinoTabView_onUnknownRoute,
 );
-const _flaxBinding1863 = FlaxGetter.plain(
+const _flaxBinding1871 = FlaxGetter.plain(
   "navigatorObservers",
   _flaxBinding240,
   _CupertinoTabView_navigatorObservers,
 );
-const _flaxBinding1864 = FlaxGetter.plain(
+const _flaxBinding1872 = FlaxGetter.plain(
   "restorationScopeId",
   flaxNullableStringType,
   _CupertinoTabView_restorationScopeId,
 );
-const _flaxBinding1865 = FlaxTypeRef(
+const _flaxBinding1873 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
   dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoTabView>>,
 );
-const _flaxBinding1866 = FlaxInstanceMethod.plain(
+const _flaxBinding1874 = FlaxInstanceMethod.plain(
   _flaxBinding132,
-  _flaxBinding1865,
+  _flaxBinding1873,
   _CupertinoTabView_createState,
 );
-const _flaxBinding1867 = FlaxInstanceMethod.plain(
+const _flaxBinding1875 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding134,
   _CupertinoTabView_createElement,
 );
-const _flaxBinding1868 = FlaxInstanceMethod.shared(
+const _flaxBinding1876 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoTabView_debugFillProperties,
 );
-const _flaxBinding1869 = FlaxInstanceMethod.plain(
+const _flaxBinding1877 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoTabView_toStringShallow,
 );
-const _flaxBinding1870 = FlaxInstanceMethod.plain(
+const _flaxBinding1878 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoTabView_toStringDeep,
 );
-const _flaxBinding1871 = FlaxInstanceMethod.plain(
+const _flaxBinding1879 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoTabView_toDiagnosticsNode,
 );
-const _flaxBinding1872 = <FlaxParameter>[
+const _flaxBinding1880 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
-  FlaxParameter("builder", _flaxBinding1596, required: false),
+  FlaxParameter("builder", _flaxBinding1604, required: false),
   FlaxParameter("navigatorKey", _flaxBinding221, required: false),
   FlaxParameter("defaultTitle", flaxNullableStringType, required: false),
-  FlaxParameter("routes", _flaxBinding1859, required: false),
+  FlaxParameter("routes", _flaxBinding1867, required: false),
   FlaxParameter("onGenerateRoute", _flaxBinding229, required: false),
   FlaxParameter("onUnknownRoute", _flaxBinding229, required: false),
   FlaxParameter(
@@ -48949,30 +49123,30 @@ const _flaxBinding1872 = <FlaxParameter>[
   ),
   FlaxParameter("restorationScopeId", flaxNullableStringType, required: false),
 ];
-const _flaxBinding1873 = FlaxObjectBinding(
+const _flaxBinding1881 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoTabView",
   [
-    _flaxBinding1856,
-    _flaxBinding1857,
-    _flaxBinding1858,
-    _flaxBinding1860,
-    _flaxBinding1861,
-    _flaxBinding1862,
-    _flaxBinding1863,
     _flaxBinding1864,
+    _flaxBinding1865,
+    _flaxBinding1866,
+    _flaxBinding1868,
+    _flaxBinding1869,
+    _flaxBinding1870,
+    _flaxBinding1871,
+    _flaxBinding1872,
     _flaxBinding130,
   ],
   {
-    "createState": _flaxBinding1866,
-    "createElement": _flaxBinding1867,
+    "createState": _flaxBinding1874,
+    "createElement": _flaxBinding1875,
     "toStringShort": _flaxBinding136,
-    "debugFillProperties": _flaxBinding1868,
-    "toStringShallow": _flaxBinding1869,
-    "toStringDeep": _flaxBinding1870,
-    "toDiagnosticsNode": _flaxBinding1871,
+    "debugFillProperties": _flaxBinding1876,
+    "toStringShallow": _flaxBinding1877,
+    "toStringDeep": _flaxBinding1878,
+    "toDiagnosticsNode": _flaxBinding1879,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding1872},
+  constructors: {"": _flaxBinding1880},
   create: _createCupertinoTabView,
   matches: _isCupertinoTabView,
   setters: [],
@@ -48984,294 +49158,294 @@ const _flaxBinding1873 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding1874 = FlaxGetter.plain(
+const _flaxBinding1882 = FlaxGetter.plain(
   "groupId",
   flaxAnyType,
   _CupertinoTextField_groupId,
 );
-const _flaxBinding1875 = FlaxGetter.plain(
+const _flaxBinding1883 = FlaxGetter.plain(
   "controller",
-  _flaxBinding1493,
+  _flaxBinding1501,
   _CupertinoTextField_controller,
 );
-const _flaxBinding1876 = FlaxGetter.plain(
+const _flaxBinding1884 = FlaxGetter.plain(
   "focusNode",
   _flaxBinding154,
   _CupertinoTextField_focusNode,
 );
-const _flaxBinding1877 = FlaxGetter.plain(
+const _flaxBinding1885 = FlaxGetter.plain(
   "decoration",
-  _flaxBinding695,
+  _flaxBinding699,
   _CupertinoTextField_decoration,
 );
-const _flaxBinding1878 = FlaxGetter.plain(
+const _flaxBinding1886 = FlaxGetter.plain(
   "padding",
-  _flaxBinding692,
+  _flaxBinding696,
   _CupertinoTextField_padding,
 );
-const _flaxBinding1879 = FlaxGetter.plain(
+const _flaxBinding1887 = FlaxGetter.plain(
   "placeholder",
   flaxNullableStringType,
   _CupertinoTextField_placeholder,
 );
-const _flaxBinding1880 = FlaxGetter.plain(
+const _flaxBinding1888 = FlaxGetter.plain(
   "placeholderStyle",
   _flaxBinding436,
   _CupertinoTextField_placeholderStyle,
 );
-const _flaxBinding1881 = FlaxGetter.plain(
+const _flaxBinding1889 = FlaxGetter.plain(
   "prefix",
   _flaxBinding57,
   _CupertinoTextField_prefix,
 );
-const _flaxBinding1882 = FlaxGetter.plain(
+const _flaxBinding1890 = FlaxGetter.plain(
   "prefixMode",
-  _flaxBinding1513,
+  _flaxBinding1521,
   _CupertinoTextField_prefixMode,
 );
-const _flaxBinding1883 = FlaxGetter.plain(
+const _flaxBinding1891 = FlaxGetter.plain(
   "suffix",
   _flaxBinding57,
   _CupertinoTextField_suffix,
 );
-const _flaxBinding1884 = FlaxGetter.plain(
+const _flaxBinding1892 = FlaxGetter.plain(
   "suffixMode",
-  _flaxBinding1513,
+  _flaxBinding1521,
   _CupertinoTextField_suffixMode,
 );
-const _flaxBinding1885 = FlaxTypeRef(
+const _flaxBinding1893 = FlaxTypeRef(
   "enum",
   id: "flax.core/flutter#type:CrossAxisAlignment",
 );
-const _flaxBinding1886 = FlaxGetter.plain(
+const _flaxBinding1894 = FlaxGetter.plain(
   "crossAxisAlignment",
-  _flaxBinding1885,
+  _flaxBinding1893,
   _CupertinoTextField_crossAxisAlignment,
 );
-const _flaxBinding1887 = FlaxGetter.plain(
+const _flaxBinding1895 = FlaxGetter.plain(
   "clearButtonMode",
-  _flaxBinding1513,
+  _flaxBinding1521,
   _CupertinoTextField_clearButtonMode,
 );
-const _flaxBinding1888 = FlaxGetter.plain(
+const _flaxBinding1896 = FlaxGetter.plain(
   "clearButtonSemanticLabel",
   flaxNullableStringType,
   _CupertinoTextField_clearButtonSemanticLabel,
 );
-const _flaxBinding1889 = FlaxTypeRef(
+const _flaxBinding1897 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_services#type:TextInputType",
 );
-const _flaxBinding1890 = FlaxGetter.plain(
+const _flaxBinding1898 = FlaxGetter.plain(
   "keyboardType",
-  _flaxBinding1889,
+  _flaxBinding1897,
   _CupertinoTextField_keyboardType,
 );
-const _flaxBinding1891 = FlaxTypeRef(
+const _flaxBinding1899 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_services#type:TextInputAction",
   nullable: true,
 );
-const _flaxBinding1892 = FlaxGetter.plain(
+const _flaxBinding1900 = FlaxGetter.plain(
   "textInputAction",
-  _flaxBinding1891,
+  _flaxBinding1899,
   _CupertinoTextField_textInputAction,
 );
-const _flaxBinding1893 = FlaxTypeRef(
+const _flaxBinding1901 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_services#type:TextCapitalization",
 );
-const _flaxBinding1894 = FlaxGetter.plain(
+const _flaxBinding1902 = FlaxGetter.plain(
   "textCapitalization",
-  _flaxBinding1893,
+  _flaxBinding1901,
   _CupertinoTextField_textCapitalization,
 );
-const _flaxBinding1895 = FlaxGetter.plain(
+const _flaxBinding1903 = FlaxGetter.plain(
   "style",
   _flaxBinding436,
   _CupertinoTextField_style,
 );
-const _flaxBinding1896 = FlaxTypeRef(
+const _flaxBinding1904 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_painting#type:StrutStyle",
   nullable: true,
 );
-const _flaxBinding1897 = FlaxGetter.plain(
+const _flaxBinding1905 = FlaxGetter.plain(
   "strutStyle",
-  _flaxBinding1896,
+  _flaxBinding1904,
   _CupertinoTextField_strutStyle,
 );
-const _flaxBinding1898 = FlaxTypeRef(
+const _flaxBinding1906 = FlaxTypeRef(
   "enum",
   id: "flax.core/flutter#type:TextAlign",
 );
-const _flaxBinding1899 = FlaxGetter.plain(
+const _flaxBinding1907 = FlaxGetter.plain(
   "textAlign",
-  _flaxBinding1898,
+  _flaxBinding1906,
   _CupertinoTextField_textAlign,
 );
-const _flaxBinding1900 = FlaxTypeRef(
+const _flaxBinding1908 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:ToolbarOptions",
   nullable: true,
 );
-const _flaxBinding1901 = FlaxGetter.plain(
+const _flaxBinding1909 = FlaxGetter.plain(
   "toolbarOptions",
-  _flaxBinding1900,
+  _flaxBinding1908,
   _CupertinoTextField_toolbarOptions,
 );
-const _flaxBinding1902 = FlaxTypeRef(
+const _flaxBinding1910 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_painting#type:TextAlignVertical",
   nullable: true,
 );
-const _flaxBinding1903 = FlaxGetter.plain(
+const _flaxBinding1911 = FlaxGetter.plain(
   "textAlignVertical",
-  _flaxBinding1902,
+  _flaxBinding1910,
   _CupertinoTextField_textAlignVertical,
 );
-const _flaxBinding1904 = FlaxTypeRef(
+const _flaxBinding1912 = FlaxTypeRef(
   "enum",
   id: "flax.core/flutter#type:TextDirection",
   nullable: true,
 );
-const _flaxBinding1905 = FlaxGetter.plain(
+const _flaxBinding1913 = FlaxGetter.plain(
   "textDirection",
-  _flaxBinding1904,
+  _flaxBinding1912,
   _CupertinoTextField_textDirection,
 );
-const _flaxBinding1906 = FlaxGetter.plain(
+const _flaxBinding1914 = FlaxGetter.plain(
   "readOnly",
   flaxBoolType,
   _CupertinoTextField_readOnly,
 );
-const _flaxBinding1907 = FlaxGetter.plain(
+const _flaxBinding1915 = FlaxGetter.plain(
   "showCursor",
   flaxNullableBoolType,
   _CupertinoTextField_showCursor,
 );
-const _flaxBinding1908 = FlaxGetter.plain(
+const _flaxBinding1916 = FlaxGetter.plain(
   "autofocus",
   flaxBoolType,
   _CupertinoTextField_autofocus,
 );
-const _flaxBinding1909 = FlaxGetter.plain(
+const _flaxBinding1917 = FlaxGetter.plain(
   "obscuringCharacter",
   flaxStringType,
   _CupertinoTextField_obscuringCharacter,
 );
-const _flaxBinding1910 = FlaxGetter.plain(
+const _flaxBinding1918 = FlaxGetter.plain(
   "obscureText",
   flaxBoolType,
   _CupertinoTextField_obscureText,
 );
-const _flaxBinding1911 = FlaxGetter.plain(
+const _flaxBinding1919 = FlaxGetter.plain(
   "autocorrect",
   flaxNullableBoolType,
   _CupertinoTextField_autocorrect,
 );
-const _flaxBinding1912 = FlaxTypeRef(
+const _flaxBinding1920 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_services#type:SmartDashesType",
 );
-const _flaxBinding1913 = FlaxGetter.plain(
+const _flaxBinding1921 = FlaxGetter.plain(
   "smartDashesType",
-  _flaxBinding1912,
+  _flaxBinding1920,
   _CupertinoTextField_smartDashesType,
 );
-const _flaxBinding1914 = FlaxTypeRef(
+const _flaxBinding1922 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_services#type:SmartQuotesType",
 );
-const _flaxBinding1915 = FlaxGetter.plain(
+const _flaxBinding1923 = FlaxGetter.plain(
   "smartQuotesType",
-  _flaxBinding1914,
+  _flaxBinding1922,
   _CupertinoTextField_smartQuotesType,
 );
-const _flaxBinding1916 = FlaxGetter.plain(
+const _flaxBinding1924 = FlaxGetter.plain(
   "enableSuggestions",
   flaxBoolType,
   _CupertinoTextField_enableSuggestions,
 );
-const _flaxBinding1917 = FlaxGetter.plain(
+const _flaxBinding1925 = FlaxGetter.plain(
   "maxLines",
   flaxNullableIntType,
   _CupertinoTextField_maxLines,
 );
-const _flaxBinding1918 = FlaxGetter.plain(
+const _flaxBinding1926 = FlaxGetter.plain(
   "minLines",
   flaxNullableIntType,
   _CupertinoTextField_minLines,
 );
-const _flaxBinding1919 = FlaxGetter.plain(
+const _flaxBinding1927 = FlaxGetter.plain(
   "expands",
   flaxBoolType,
   _CupertinoTextField_expands,
 );
-const _flaxBinding1920 = FlaxGetter.plain(
+const _flaxBinding1928 = FlaxGetter.plain(
   "maxLength",
   flaxNullableIntType,
   _CupertinoTextField_maxLength,
 );
-const _flaxBinding1921 = FlaxTypeRef(
+const _flaxBinding1929 = FlaxTypeRef(
   "enum",
   id: "flax.core/flutter#type:MaxLengthEnforcement",
   nullable: true,
 );
-const _flaxBinding1922 = FlaxGetter.plain(
+const _flaxBinding1930 = FlaxGetter.plain(
   "maxLengthEnforcement",
-  _flaxBinding1921,
+  _flaxBinding1929,
   _CupertinoTextField_maxLengthEnforcement,
 );
-const _flaxBinding1923 = FlaxGetter.plain(
+const _flaxBinding1931 = FlaxGetter.plain(
   "onChanged",
   flaxStringChangedNullableType,
   _CupertinoTextField_onChanged,
 );
-const _flaxBinding1924 = FlaxGetter.plain(
+const _flaxBinding1932 = FlaxGetter.plain(
   "onEditingComplete",
   flaxVoidNullableCallbackType,
   _CupertinoTextField_onEditingComplete,
 );
-const _flaxBinding1925 = FlaxGetter.plain(
+const _flaxBinding1933 = FlaxGetter.plain(
   "onSubmitted",
   flaxStringChangedNullableType,
   _CupertinoTextField_onSubmitted,
 );
-const _flaxBinding1926 = FlaxTypeRef(
+const _flaxBinding1934 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_gestures#type:PointerDownEvent",
 );
-const _flaxBinding1927 = FlaxCallbackBinding(
-  [FlaxCallbackParameter.plain("event", _flaxBinding1926)],
+const _flaxBinding1935 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("event", _flaxBinding1934)],
   flaxVoidType,
   FlaxCallbackAdapters.wrapVoid1<api4.PointerDownEvent>,
   id: "callback:<>(p:r:event:object:flax.core/sdk_gestures#type:PointerDownEvent)->void:",
   invoke: FlaxCallbackAdapters.invokeVoid1<api4.PointerDownEvent>,
   matches: FlaxCallbackAdapters.matchesVoid1<api4.PointerDownEvent>,
 );
-const _flaxBinding1928 = FlaxTypeRef(
+const _flaxBinding1936 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding1927,
+  callback: _flaxBinding1935,
 );
-const _flaxBinding1929 = FlaxGetter.plain(
+const _flaxBinding1937 = FlaxGetter.plain(
   "onTapOutside",
-  _flaxBinding1928,
+  _flaxBinding1936,
   _CupertinoTextField_onTapOutside,
 );
-const _flaxBinding1930 = FlaxGetter.plain(
+const _flaxBinding1938 = FlaxGetter.plain(
   "onTapUpOutside",
-  _flaxBinding1928,
+  _flaxBinding1936,
   _CupertinoTextField_onTapUpOutside,
 );
-const _flaxBinding1931 = FlaxTypeRef(
+const _flaxBinding1939 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:TextInputFormatter",
 );
-const _flaxBinding1932 = FlaxTypeRef(
+const _flaxBinding1940 = FlaxTypeRef(
   "iterable",
-  item: _flaxBinding1931,
+  item: _flaxBinding1939,
   collection: FlaxCollectionBinding(
     "iterable:[object:flax.core/flutter#type:TextInputFormatter]",
     _collection39Create,
@@ -49279,128 +49453,128 @@ const _flaxBinding1932 = FlaxTypeRef(
     restore: _collection39Restore,
   ),
 );
-const _flaxBinding1933 = FlaxTypeRef(
+const _flaxBinding1941 = FlaxTypeRef(
   "list",
   nullable: true,
-  item: _flaxBinding1931,
+  item: _flaxBinding1939,
   collection: FlaxCollectionBinding(
     "list:[object:flax.core/flutter#type:TextInputFormatter]",
     _collection38Create,
     _collection38Matches,
   ),
-  iterable: _flaxBinding1932,
+  iterable: _flaxBinding1940,
 );
-const _flaxBinding1934 = FlaxGetter.plain(
+const _flaxBinding1942 = FlaxGetter.plain(
   "inputFormatters",
-  _flaxBinding1933,
+  _flaxBinding1941,
   _CupertinoTextField_inputFormatters,
 );
-const _flaxBinding1935 = FlaxGetter.plain(
+const _flaxBinding1943 = FlaxGetter.plain(
   "enabled",
   flaxBoolType,
   _CupertinoTextField_enabled,
 );
-const _flaxBinding1936 = FlaxGetter.plain(
+const _flaxBinding1944 = FlaxGetter.plain(
   "cursorWidth",
   flaxDoubleType,
   _CupertinoTextField_cursorWidth,
 );
-const _flaxBinding1937 = FlaxGetter.plain(
+const _flaxBinding1945 = FlaxGetter.plain(
   "cursorHeight",
   flaxNullableDoubleType,
   _CupertinoTextField_cursorHeight,
 );
-const _flaxBinding1938 = FlaxGetter.plain(
+const _flaxBinding1946 = FlaxGetter.plain(
   "cursorRadius",
   flaxRadiusType,
   _CupertinoTextField_cursorRadius,
 );
-const _flaxBinding1939 = FlaxGetter.plain(
+const _flaxBinding1947 = FlaxGetter.plain(
   "cursorOpacityAnimates",
   flaxBoolType,
   _CupertinoTextField_cursorOpacityAnimates,
 );
-const _flaxBinding1940 = FlaxGetter.plain(
+const _flaxBinding1948 = FlaxGetter.plain(
   "cursorColor",
   _flaxBinding31,
   _CupertinoTextField_cursorColor,
 );
-const _flaxBinding1941 = FlaxTypeRef(
+const _flaxBinding1949 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_dart_ui#type:BoxHeightStyle",
   nullable: true,
 );
-const _flaxBinding1942 = FlaxGetter.plain(
+const _flaxBinding1950 = FlaxGetter.plain(
   "selectionHeightStyle",
-  _flaxBinding1941,
+  _flaxBinding1949,
   _CupertinoTextField_selectionHeightStyle,
 );
-const _flaxBinding1943 = FlaxTypeRef(
+const _flaxBinding1951 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_dart_ui#type:BoxWidthStyle",
   nullable: true,
 );
-const _flaxBinding1944 = FlaxGetter.plain(
+const _flaxBinding1952 = FlaxGetter.plain(
   "selectionWidthStyle",
-  _flaxBinding1943,
+  _flaxBinding1951,
   _CupertinoTextField_selectionWidthStyle,
 );
-const _flaxBinding1945 = FlaxGetter.plain(
+const _flaxBinding1953 = FlaxGetter.plain(
   "keyboardAppearance",
   _flaxBinding97,
   _CupertinoTextField_keyboardAppearance,
 );
-const _flaxBinding1946 = FlaxGetter.plain(
+const _flaxBinding1954 = FlaxGetter.plain(
   "scrollPadding",
   flaxEdgeInsetsType,
   _CupertinoTextField_scrollPadding,
 );
-const _flaxBinding1947 = FlaxGetter.plain(
+const _flaxBinding1955 = FlaxGetter.plain(
   "enableInteractiveSelection",
   flaxBoolType,
   _CupertinoTextField_enableInteractiveSelection,
 );
-const _flaxBinding1948 = FlaxGetter.plain(
+const _flaxBinding1956 = FlaxGetter.plain(
   "selectAllOnFocus",
   flaxNullableBoolType,
   _CupertinoTextField_selectAllOnFocus,
 );
-const _flaxBinding1949 = FlaxTypeRef(
+const _flaxBinding1957 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:TextSelectionControls",
   nullable: true,
 );
-const _flaxBinding1950 = FlaxGetter.plain(
+const _flaxBinding1958 = FlaxGetter.plain(
   "selectionControls",
-  _flaxBinding1949,
+  _flaxBinding1957,
   _CupertinoTextField_selectionControls,
 );
-const _flaxBinding1951 = FlaxGetter.plain(
+const _flaxBinding1959 = FlaxGetter.plain(
   "dragStartBehavior",
-  _flaxBinding1784,
+  _flaxBinding1792,
   _CupertinoTextField_dragStartBehavior,
 );
-const _flaxBinding1952 = FlaxGetter.plain(
+const _flaxBinding1960 = FlaxGetter.plain(
   "scrollController",
   _flaxBinding125,
   _CupertinoTextField_scrollController,
 );
-const _flaxBinding1953 = FlaxGetter.plain(
+const _flaxBinding1961 = FlaxGetter.plain(
   "scrollPhysics",
-  _flaxBinding1426,
+  _flaxBinding1430,
   _CupertinoTextField_scrollPhysics,
 );
-const _flaxBinding1954 = FlaxGetter.plain(
+const _flaxBinding1962 = FlaxGetter.plain(
   "selectionEnabled",
   flaxBoolType,
   _CupertinoTextField_selectionEnabled,
 );
-const _flaxBinding1955 = FlaxGetter.plain(
+const _flaxBinding1963 = FlaxGetter.plain(
   "onTap",
   flaxVoidNullableCallbackType,
   _CupertinoTextField_onTap,
 );
-const _flaxBinding1956 = FlaxTypeRef(
+const _flaxBinding1964 = FlaxTypeRef(
   "iterable",
   nullable: true,
   item: flaxStringType,
@@ -49411,52 +49585,52 @@ const _flaxBinding1956 = FlaxTypeRef(
     restore: _collection5Restore,
   ),
 );
-const _flaxBinding1957 = FlaxGetter.plain(
+const _flaxBinding1965 = FlaxGetter.plain(
   "autofillHints",
-  _flaxBinding1956,
+  _flaxBinding1964,
   _CupertinoTextField_autofillHints,
 );
-const _flaxBinding1958 = FlaxGetter.plain(
+const _flaxBinding1966 = FlaxGetter.plain(
   "clipBehavior",
   flaxClipType,
   _CupertinoTextField_clipBehavior,
 );
-const _flaxBinding1959 = FlaxGetter.plain(
+const _flaxBinding1967 = FlaxGetter.plain(
   "restorationId",
   flaxNullableStringType,
   _CupertinoTextField_restorationId,
 );
-const _flaxBinding1960 = FlaxGetter.plain(
+const _flaxBinding1968 = FlaxGetter.plain(
   "scribbleEnabled",
   flaxBoolType,
   _CupertinoTextField_scribbleEnabled,
 );
-const _flaxBinding1961 = FlaxGetter.plain(
+const _flaxBinding1969 = FlaxGetter.plain(
   "stylusHandwritingEnabled",
   flaxBoolType,
   _CupertinoTextField_stylusHandwritingEnabled,
 );
-const _flaxBinding1962 = FlaxGetter.plain(
+const _flaxBinding1970 = FlaxGetter.plain(
   "enableIMEPersonalizedLearning",
   flaxBoolType,
   _CupertinoTextField_enableIMEPersonalizedLearning,
 );
-const _flaxBinding1963 = FlaxGetter.plain(
+const _flaxBinding1971 = FlaxGetter.plain(
   "enableInlinePrediction",
   flaxNullableBoolType,
   _CupertinoTextField_enableInlinePrediction,
 );
-const _flaxBinding1964 = FlaxTypeRef(
+const _flaxBinding1972 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:ContentInsertionConfiguration",
   nullable: true,
 );
-const _flaxBinding1965 = FlaxGetter.plain(
+const _flaxBinding1973 = FlaxGetter.plain(
   "contentInsertionConfiguration",
-  _flaxBinding1964,
+  _flaxBinding1972,
   _CupertinoTextField_contentInsertionConfiguration,
 );
-const _flaxBinding1966 = FlaxCallbackBinding(
+const _flaxBinding1974 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter.plain("context", _flaxBinding2),
     FlaxCallbackParameter.plain("editableTextState", _flaxBinding199),
@@ -49470,95 +49644,95 @@ const _flaxBinding1966 = FlaxCallbackBinding(
   matches: FlaxCallbackAdapters
       .matches2<api10.BuildContext, api10.EditableTextState, api.Widget>,
 );
-const _flaxBinding1967 = FlaxTypeRef(
+const _flaxBinding1975 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding1966,
+  callback: _flaxBinding1974,
 );
-const _flaxBinding1968 = FlaxGetter.plain(
+const _flaxBinding1976 = FlaxGetter.plain(
   "contextMenuBuilder",
-  _flaxBinding1967,
+  _flaxBinding1975,
   _CupertinoTextField_contextMenuBuilder,
 );
-const _flaxBinding1969 = FlaxTypeRef(
+const _flaxBinding1977 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:TextMagnifierConfiguration",
   nullable: true,
 );
-const _flaxBinding1970 = FlaxGetter.plain(
+const _flaxBinding1978 = FlaxGetter.plain(
   "magnifierConfiguration",
-  _flaxBinding1969,
+  _flaxBinding1977,
   _CupertinoTextField_magnifierConfiguration,
 );
-const _flaxBinding1971 = FlaxTypeRef(
+const _flaxBinding1979 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:SpellCheckConfiguration",
   nullable: true,
 );
-const _flaxBinding1972 = FlaxGetter.plain(
+const _flaxBinding1980 = FlaxGetter.plain(
   "spellCheckConfiguration",
-  _flaxBinding1971,
+  _flaxBinding1979,
   _CupertinoTextField_spellCheckConfiguration,
 );
-const _flaxBinding1973 = FlaxTypeRef(
+const _flaxBinding1981 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:UndoHistoryController",
   nullable: true,
 );
-const _flaxBinding1974 = FlaxGetter.plain(
+const _flaxBinding1982 = FlaxGetter.plain(
   "undoController",
-  _flaxBinding1973,
+  _flaxBinding1981,
   _CupertinoTextField_undoController,
 );
-const _flaxBinding1975 = FlaxTypeRef(
+const _flaxBinding1983 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
   dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoTextField>>,
 );
-const _flaxBinding1976 = FlaxInstanceMethod.plain(
+const _flaxBinding1984 = FlaxInstanceMethod.plain(
   _flaxBinding132,
-  _flaxBinding1975,
+  _flaxBinding1983,
   _CupertinoTextField_createState,
 );
-const _flaxBinding1977 = FlaxInstanceMethod.shared(
+const _flaxBinding1985 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoTextField_debugFillProperties,
 );
-const _flaxBinding1978 = FlaxInstanceMethod.plain(
+const _flaxBinding1986 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding134,
   _CupertinoTextField_createElement,
 );
-const _flaxBinding1979 = FlaxInstanceMethod.plain(
+const _flaxBinding1987 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoTextField_toStringShallow,
 );
-const _flaxBinding1980 = FlaxInstanceMethod.plain(
+const _flaxBinding1988 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoTextField_toStringDeep,
 );
-const _flaxBinding1981 = FlaxInstanceMethod.plain(
+const _flaxBinding1989 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoTextField_toDiagnosticsNode,
 );
-const _flaxBinding1982 = <FlaxParameter>[
+const _flaxBinding1990 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter("groupId", flaxAnyType, required: false, omitWhenAbsent: true),
-  FlaxParameter("controller", _flaxBinding1493, required: false),
+  FlaxParameter("controller", _flaxBinding1501, required: false),
   FlaxParameter("focusNode", _flaxBinding154, required: false),
-  FlaxParameter("undoController", _flaxBinding1973, required: false),
+  FlaxParameter("undoController", _flaxBinding1981, required: false),
   FlaxParameter(
     "decoration",
-    _flaxBinding695,
+    _flaxBinding699,
     required: false,
     omitWhenAbsent: true,
   ),
   FlaxParameter(
     "padding",
-    _flaxBinding692,
+    _flaxBinding696,
     required: false,
     omitWhenAbsent: true,
   ),
@@ -49572,26 +49746,26 @@ const _flaxBinding1982 = <FlaxParameter>[
   FlaxParameter("prefix", _flaxBinding57, required: false),
   FlaxParameter(
     "prefixMode",
-    _flaxBinding1513,
+    _flaxBinding1521,
     required: false,
     defaultValue: api.OverlayVisibilityMode.always,
   ),
   FlaxParameter("suffix", _flaxBinding57, required: false),
   FlaxParameter(
     "suffixMode",
-    _flaxBinding1513,
+    _flaxBinding1521,
     required: false,
     defaultValue: api.OverlayVisibilityMode.always,
   ),
   FlaxParameter(
     "crossAxisAlignment",
-    _flaxBinding1885,
+    _flaxBinding1893,
     required: false,
     defaultValue: api.CrossAxisAlignment.center,
   ),
   FlaxParameter(
     "clearButtonMode",
-    _flaxBinding1513,
+    _flaxBinding1521,
     required: false,
     defaultValue: api.OverlayVisibilityMode.never,
   ),
@@ -49600,26 +49774,26 @@ const _flaxBinding1982 = <FlaxParameter>[
     flaxNullableStringType,
     required: false,
   ),
-  FlaxParameter("keyboardType", _flaxBinding1503, required: false),
-  FlaxParameter("textInputAction", _flaxBinding1891, required: false),
+  FlaxParameter("keyboardType", _flaxBinding1511, required: false),
+  FlaxParameter("textInputAction", _flaxBinding1899, required: false),
   FlaxParameter(
     "textCapitalization",
-    _flaxBinding1893,
+    _flaxBinding1901,
     required: false,
     defaultValue: api.TextCapitalization.none,
   ),
   FlaxParameter("style", _flaxBinding436, required: false),
-  FlaxParameter("strutStyle", _flaxBinding1896, required: false),
+  FlaxParameter("strutStyle", _flaxBinding1904, required: false),
   FlaxParameter(
     "textAlign",
-    _flaxBinding1898,
+    _flaxBinding1906,
     required: false,
     defaultValue: api.TextAlign.start,
   ),
-  FlaxParameter("textAlignVertical", _flaxBinding1902, required: false),
-  FlaxParameter("textDirection", _flaxBinding1904, required: false),
+  FlaxParameter("textAlignVertical", _flaxBinding1910, required: false),
+  FlaxParameter("textDirection", _flaxBinding1912, required: false),
   FlaxParameter("readOnly", flaxBoolType, required: false, defaultValue: false),
-  FlaxParameter("toolbarOptions", _flaxBinding1900, required: false),
+  FlaxParameter("toolbarOptions", _flaxBinding1908, required: false),
   FlaxParameter("showCursor", flaxNullableBoolType, required: false),
   FlaxParameter(
     "autofocus",
@@ -49645,8 +49819,8 @@ const _flaxBinding1982 = <FlaxParameter>[
     required: false,
     defaultValue: true,
   ),
-  FlaxParameter("smartDashesType", _flaxBinding1523, required: false),
-  FlaxParameter("smartQuotesType", _flaxBinding1521, required: false),
+  FlaxParameter("smartDashesType", _flaxBinding1531, required: false),
+  FlaxParameter("smartQuotesType", _flaxBinding1529, required: false),
   FlaxParameter(
     "enableSuggestions",
     flaxBoolType,
@@ -49662,7 +49836,7 @@ const _flaxBinding1982 = <FlaxParameter>[
   FlaxParameter("minLines", flaxNullableIntType, required: false),
   FlaxParameter("expands", flaxBoolType, required: false, defaultValue: false),
   FlaxParameter("maxLength", flaxNullableIntType, required: false),
-  FlaxParameter("maxLengthEnforcement", _flaxBinding1921, required: false),
+  FlaxParameter("maxLengthEnforcement", _flaxBinding1929, required: false),
   FlaxParameter("onChanged", flaxStringChangedNullableType, required: false),
   FlaxParameter(
     "onEditingComplete",
@@ -49670,9 +49844,9 @@ const _flaxBinding1982 = <FlaxParameter>[
     required: false,
   ),
   FlaxParameter("onSubmitted", flaxStringChangedNullableType, required: false),
-  FlaxParameter("onTapOutside", _flaxBinding1928, required: false),
-  FlaxParameter("onTapUpOutside", _flaxBinding1928, required: false),
-  FlaxParameter("inputFormatters", _flaxBinding1933, required: false),
+  FlaxParameter("onTapOutside", _flaxBinding1936, required: false),
+  FlaxParameter("onTapUpOutside", _flaxBinding1936, required: false),
+  FlaxParameter("inputFormatters", _flaxBinding1941, required: false),
   FlaxParameter("enabled", flaxBoolType, required: false, defaultValue: true),
   FlaxParameter(
     "cursorWidth",
@@ -49694,8 +49868,8 @@ const _flaxBinding1982 = <FlaxParameter>[
     defaultValue: true,
   ),
   FlaxParameter("cursorColor", _flaxBinding31, required: false),
-  FlaxParameter("selectionHeightStyle", _flaxBinding1941, required: false),
-  FlaxParameter("selectionWidthStyle", _flaxBinding1943, required: false),
+  FlaxParameter("selectionHeightStyle", _flaxBinding1949, required: false),
+  FlaxParameter("selectionWidthStyle", _flaxBinding1951, required: false),
   FlaxParameter("keyboardAppearance", _flaxBinding97, required: false),
   FlaxParameter(
     "scrollPadding",
@@ -49705,7 +49879,7 @@ const _flaxBinding1982 = <FlaxParameter>[
   ),
   FlaxParameter(
     "dragStartBehavior",
-    _flaxBinding1784,
+    _flaxBinding1792,
     required: false,
     defaultValue: api4.DragStartBehavior.start,
   ),
@@ -49715,19 +49889,19 @@ const _flaxBinding1982 = <FlaxParameter>[
     required: false,
   ),
   FlaxParameter("selectAllOnFocus", flaxNullableBoolType, required: false),
-  FlaxParameter("selectionControls", _flaxBinding1949, required: false),
+  FlaxParameter("selectionControls", _flaxBinding1957, required: false),
   FlaxParameter("onTap", flaxVoidNullableCallbackType, required: false),
   FlaxParameter("scrollController", _flaxBinding125, required: false),
-  FlaxParameter("scrollPhysics", _flaxBinding1426, required: false),
+  FlaxParameter("scrollPhysics", _flaxBinding1430, required: false),
   FlaxParameter(
     "autofillHints",
-    _flaxBinding1956,
+    _flaxBinding1964,
     required: false,
     omitWhenAbsent: true,
   ),
   FlaxParameter(
     "contentInsertionConfiguration",
-    _flaxBinding1964,
+    _flaxBinding1972,
     required: false,
   ),
   FlaxParameter(
@@ -49762,23 +49936,23 @@ const _flaxBinding1982 = <FlaxParameter>[
   ),
   FlaxParameter(
     "contextMenuBuilder",
-    _flaxBinding1967,
+    _flaxBinding1975,
     required: false,
     omitWhenAbsent: true,
   ),
-  FlaxParameter("spellCheckConfiguration", _flaxBinding1971, required: false),
-  FlaxParameter("magnifierConfiguration", _flaxBinding1969, required: false),
+  FlaxParameter("spellCheckConfiguration", _flaxBinding1979, required: false),
+  FlaxParameter("magnifierConfiguration", _flaxBinding1977, required: false),
 ];
-const _flaxBinding1983 = <FlaxParameter>[
+const _flaxBinding1991 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter("groupId", flaxAnyType, required: false, omitWhenAbsent: true),
-  FlaxParameter("controller", _flaxBinding1493, required: false),
+  FlaxParameter("controller", _flaxBinding1501, required: false),
   FlaxParameter("focusNode", _flaxBinding154, required: false),
-  FlaxParameter("undoController", _flaxBinding1973, required: false),
-  FlaxParameter("decoration", _flaxBinding695, required: false),
+  FlaxParameter("undoController", _flaxBinding1981, required: false),
+  FlaxParameter("decoration", _flaxBinding699, required: false),
   FlaxParameter(
     "padding",
-    _flaxBinding692,
+    _flaxBinding696,
     required: false,
     omitWhenAbsent: true,
   ),
@@ -49792,26 +49966,26 @@ const _flaxBinding1983 = <FlaxParameter>[
   FlaxParameter("prefix", _flaxBinding57, required: false),
   FlaxParameter(
     "prefixMode",
-    _flaxBinding1513,
+    _flaxBinding1521,
     required: false,
     defaultValue: api.OverlayVisibilityMode.always,
   ),
   FlaxParameter("suffix", _flaxBinding57, required: false),
   FlaxParameter(
     "suffixMode",
-    _flaxBinding1513,
+    _flaxBinding1521,
     required: false,
     defaultValue: api.OverlayVisibilityMode.always,
   ),
   FlaxParameter(
     "crossAxisAlignment",
-    _flaxBinding1885,
+    _flaxBinding1893,
     required: false,
     defaultValue: api.CrossAxisAlignment.center,
   ),
   FlaxParameter(
     "clearButtonMode",
-    _flaxBinding1513,
+    _flaxBinding1521,
     required: false,
     defaultValue: api.OverlayVisibilityMode.never,
   ),
@@ -49820,26 +49994,26 @@ const _flaxBinding1983 = <FlaxParameter>[
     flaxNullableStringType,
     required: false,
   ),
-  FlaxParameter("keyboardType", _flaxBinding1503, required: false),
-  FlaxParameter("textInputAction", _flaxBinding1891, required: false),
+  FlaxParameter("keyboardType", _flaxBinding1511, required: false),
+  FlaxParameter("textInputAction", _flaxBinding1899, required: false),
   FlaxParameter(
     "textCapitalization",
-    _flaxBinding1893,
+    _flaxBinding1901,
     required: false,
     defaultValue: api.TextCapitalization.none,
   ),
   FlaxParameter("style", _flaxBinding436, required: false),
-  FlaxParameter("strutStyle", _flaxBinding1896, required: false),
+  FlaxParameter("strutStyle", _flaxBinding1904, required: false),
   FlaxParameter(
     "textAlign",
-    _flaxBinding1898,
+    _flaxBinding1906,
     required: false,
     defaultValue: api.TextAlign.start,
   ),
-  FlaxParameter("textAlignVertical", _flaxBinding1902, required: false),
-  FlaxParameter("textDirection", _flaxBinding1904, required: false),
+  FlaxParameter("textAlignVertical", _flaxBinding1910, required: false),
+  FlaxParameter("textDirection", _flaxBinding1912, required: false),
   FlaxParameter("readOnly", flaxBoolType, required: false, defaultValue: false),
-  FlaxParameter("toolbarOptions", _flaxBinding1900, required: false),
+  FlaxParameter("toolbarOptions", _flaxBinding1908, required: false),
   FlaxParameter("showCursor", flaxNullableBoolType, required: false),
   FlaxParameter(
     "autofocus",
@@ -49860,8 +50034,8 @@ const _flaxBinding1983 = <FlaxParameter>[
     defaultValue: false,
   ),
   FlaxParameter("autocorrect", flaxNullableBoolType, required: false),
-  FlaxParameter("smartDashesType", _flaxBinding1523, required: false),
-  FlaxParameter("smartQuotesType", _flaxBinding1521, required: false),
+  FlaxParameter("smartDashesType", _flaxBinding1531, required: false),
+  FlaxParameter("smartQuotesType", _flaxBinding1529, required: false),
   FlaxParameter(
     "enableSuggestions",
     flaxBoolType,
@@ -49877,7 +50051,7 @@ const _flaxBinding1983 = <FlaxParameter>[
   FlaxParameter("minLines", flaxNullableIntType, required: false),
   FlaxParameter("expands", flaxBoolType, required: false, defaultValue: false),
   FlaxParameter("maxLength", flaxNullableIntType, required: false),
-  FlaxParameter("maxLengthEnforcement", _flaxBinding1921, required: false),
+  FlaxParameter("maxLengthEnforcement", _flaxBinding1929, required: false),
   FlaxParameter("onChanged", flaxStringChangedNullableType, required: false),
   FlaxParameter(
     "onEditingComplete",
@@ -49885,9 +50059,9 @@ const _flaxBinding1983 = <FlaxParameter>[
     required: false,
   ),
   FlaxParameter("onSubmitted", flaxStringChangedNullableType, required: false),
-  FlaxParameter("onTapOutside", _flaxBinding1928, required: false),
-  FlaxParameter("onTapUpOutside", _flaxBinding1928, required: false),
-  FlaxParameter("inputFormatters", _flaxBinding1933, required: false),
+  FlaxParameter("onTapOutside", _flaxBinding1936, required: false),
+  FlaxParameter("onTapUpOutside", _flaxBinding1936, required: false),
+  FlaxParameter("inputFormatters", _flaxBinding1941, required: false),
   FlaxParameter("enabled", flaxBoolType, required: false, defaultValue: true),
   FlaxParameter(
     "cursorWidth",
@@ -49909,8 +50083,8 @@ const _flaxBinding1983 = <FlaxParameter>[
     defaultValue: true,
   ),
   FlaxParameter("cursorColor", _flaxBinding31, required: false),
-  FlaxParameter("selectionHeightStyle", _flaxBinding1941, required: false),
-  FlaxParameter("selectionWidthStyle", _flaxBinding1943, required: false),
+  FlaxParameter("selectionHeightStyle", _flaxBinding1949, required: false),
+  FlaxParameter("selectionWidthStyle", _flaxBinding1951, required: false),
   FlaxParameter("keyboardAppearance", _flaxBinding97, required: false),
   FlaxParameter(
     "scrollPadding",
@@ -49920,7 +50094,7 @@ const _flaxBinding1983 = <FlaxParameter>[
   ),
   FlaxParameter(
     "dragStartBehavior",
-    _flaxBinding1784,
+    _flaxBinding1792,
     required: false,
     defaultValue: api4.DragStartBehavior.start,
   ),
@@ -49930,19 +50104,19 @@ const _flaxBinding1983 = <FlaxParameter>[
     required: false,
   ),
   FlaxParameter("selectAllOnFocus", flaxNullableBoolType, required: false),
-  FlaxParameter("selectionControls", _flaxBinding1949, required: false),
+  FlaxParameter("selectionControls", _flaxBinding1957, required: false),
   FlaxParameter("onTap", flaxVoidNullableCallbackType, required: false),
   FlaxParameter("scrollController", _flaxBinding125, required: false),
-  FlaxParameter("scrollPhysics", _flaxBinding1426, required: false),
+  FlaxParameter("scrollPhysics", _flaxBinding1430, required: false),
   FlaxParameter(
     "autofillHints",
-    _flaxBinding1956,
+    _flaxBinding1964,
     required: false,
     omitWhenAbsent: true,
   ),
   FlaxParameter(
     "contentInsertionConfiguration",
-    _flaxBinding1964,
+    _flaxBinding1972,
     required: false,
   ),
   FlaxParameter(
@@ -49977,78 +50151,71 @@ const _flaxBinding1983 = <FlaxParameter>[
   ),
   FlaxParameter(
     "contextMenuBuilder",
-    _flaxBinding1967,
+    _flaxBinding1975,
     required: false,
     omitWhenAbsent: true,
   ),
-  FlaxParameter("spellCheckConfiguration", _flaxBinding1971, required: false),
-  FlaxParameter("magnifierConfiguration", _flaxBinding1969, required: false),
+  FlaxParameter("spellCheckConfiguration", _flaxBinding1979, required: false),
+  FlaxParameter("magnifierConfiguration", _flaxBinding1977, required: false),
 ];
-const _flaxBinding1984 = FlaxObjectBinding(
+const _flaxBinding1992 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoTextField",
   [
-    _flaxBinding1874,
-    _flaxBinding1875,
-    _flaxBinding1876,
-    _flaxBinding1877,
-    _flaxBinding1878,
-    _flaxBinding1879,
-    _flaxBinding1880,
-    _flaxBinding1881,
     _flaxBinding1882,
     _flaxBinding1883,
     _flaxBinding1884,
+    _flaxBinding1885,
     _flaxBinding1886,
     _flaxBinding1887,
     _flaxBinding1888,
+    _flaxBinding1889,
     _flaxBinding1890,
+    _flaxBinding1891,
     _flaxBinding1892,
     _flaxBinding1894,
     _flaxBinding1895,
-    _flaxBinding1897,
-    _flaxBinding1899,
-    _flaxBinding1901,
+    _flaxBinding1896,
+    _flaxBinding1898,
+    _flaxBinding1900,
+    _flaxBinding1902,
     _flaxBinding1903,
     _flaxBinding1905,
-    _flaxBinding1906,
     _flaxBinding1907,
-    _flaxBinding1908,
     _flaxBinding1909,
-    _flaxBinding1910,
     _flaxBinding1911,
     _flaxBinding1913,
+    _flaxBinding1914,
     _flaxBinding1915,
     _flaxBinding1916,
     _flaxBinding1917,
     _flaxBinding1918,
     _flaxBinding1919,
-    _flaxBinding1920,
-    _flaxBinding1922,
+    _flaxBinding1921,
     _flaxBinding1923,
     _flaxBinding1924,
     _flaxBinding1925,
-    _flaxBinding1929,
+    _flaxBinding1926,
+    _flaxBinding1927,
+    _flaxBinding1928,
     _flaxBinding1930,
-    _flaxBinding1934,
-    _flaxBinding1935,
-    _flaxBinding1936,
+    _flaxBinding1931,
+    _flaxBinding1932,
+    _flaxBinding1933,
     _flaxBinding1937,
     _flaxBinding1938,
-    _flaxBinding1939,
-    _flaxBinding1940,
     _flaxBinding1942,
+    _flaxBinding1943,
     _flaxBinding1944,
     _flaxBinding1945,
     _flaxBinding1946,
     _flaxBinding1947,
     _flaxBinding1948,
     _flaxBinding1950,
-    _flaxBinding1951,
     _flaxBinding1952,
     _flaxBinding1953,
     _flaxBinding1954,
     _flaxBinding1955,
-    _flaxBinding1957,
+    _flaxBinding1956,
     _flaxBinding1958,
     _flaxBinding1959,
     _flaxBinding1960,
@@ -50056,23 +50223,30 @@ const _flaxBinding1984 = FlaxObjectBinding(
     _flaxBinding1962,
     _flaxBinding1963,
     _flaxBinding1965,
+    _flaxBinding1966,
+    _flaxBinding1967,
     _flaxBinding1968,
+    _flaxBinding1969,
     _flaxBinding1970,
-    _flaxBinding1972,
-    _flaxBinding1974,
+    _flaxBinding1971,
+    _flaxBinding1973,
+    _flaxBinding1976,
+    _flaxBinding1978,
+    _flaxBinding1980,
+    _flaxBinding1982,
     _flaxBinding130,
   ],
   {
-    "createState": _flaxBinding1976,
-    "debugFillProperties": _flaxBinding1977,
-    "createElement": _flaxBinding1978,
+    "createState": _flaxBinding1984,
+    "debugFillProperties": _flaxBinding1985,
+    "createElement": _flaxBinding1986,
     "toStringShort": _flaxBinding136,
-    "toStringShallow": _flaxBinding1979,
-    "toStringDeep": _flaxBinding1980,
-    "toDiagnosticsNode": _flaxBinding1981,
+    "toStringShallow": _flaxBinding1987,
+    "toStringDeep": _flaxBinding1988,
+    "toDiagnosticsNode": _flaxBinding1989,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding1982, "borderless": _flaxBinding1983},
+  constructors: {"": _flaxBinding1990, "borderless": _flaxBinding1991},
   create: _createCupertinoTextField,
   matches: _isCupertinoTextField,
   setters: [],
@@ -50084,33 +50258,33 @@ const _flaxBinding1984 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding1985 = FlaxGetter.plain(
+const _flaxBinding1993 = FlaxGetter.plain(
   "prefix",
   _flaxBinding57,
   _CupertinoTextFormFieldRow_prefix,
 );
-const _flaxBinding1986 = FlaxGetter.plain(
+const _flaxBinding1994 = FlaxGetter.plain(
   "padding",
   _flaxBinding267,
   _CupertinoTextFormFieldRow_padding,
 );
-const _flaxBinding1987 = FlaxGetter.plain(
+const _flaxBinding1995 = FlaxGetter.plain(
   "controller",
-  _flaxBinding1493,
+  _flaxBinding1501,
   _CupertinoTextFormFieldRow_controller,
 );
-const _flaxBinding1988 = FlaxGetter.plain(
+const _flaxBinding1996 = FlaxGetter.plain(
   "onChanged",
   flaxStringChangedNullableType,
   _CupertinoTextFormFieldRow_onChanged,
 );
-const _flaxBinding1989 = FlaxTypeRef(
+const _flaxBinding1997 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:FormFieldState",
   dartType: FlaxDartTypes.typeOf<api10.FormFieldState<String>>,
 );
-const _flaxBinding1990 = FlaxCallbackBinding(
-  [FlaxCallbackParameter.plain("field", _flaxBinding1989)],
+const _flaxBinding1998 = FlaxCallbackBinding(
+  [FlaxCallbackParameter.plain("field", _flaxBinding1997)],
   flaxWidgetType,
   FlaxCallbackAdapters.wrap1<api10.FormFieldState<String>, api.Widget>,
   id: "callback:<>(p:r:field:object:flax.core/sdk_widgets#type:FormFieldState<Object?><String:>)->widget:",
@@ -50119,13 +50293,13 @@ const _flaxBinding1990 = FlaxCallbackBinding(
   matches:
       FlaxCallbackAdapters.matches1<api10.FormFieldState<String>, api.Widget>,
 );
-const _flaxBinding1991 = FlaxTypeRef("callback", callback: _flaxBinding1990);
-const _flaxBinding1992 = FlaxGetter.plain(
+const _flaxBinding1999 = FlaxTypeRef("callback", callback: _flaxBinding1998);
+const _flaxBinding2000 = FlaxGetter.plain(
   "builder",
-  _flaxBinding1991,
+  _flaxBinding1999,
   _CupertinoTextFormFieldRow_builder,
 );
-const _flaxBinding1993 = FlaxCallbackBinding(
+const _flaxBinding2001 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("newValue", flaxNullableStringType)],
   flaxVoidType,
   FlaxCallbackAdapters.wrapVoid1<String?>,
@@ -50133,27 +50307,27 @@ const _flaxBinding1993 = FlaxCallbackBinding(
   invoke: FlaxCallbackAdapters.invokeVoid1<String?>,
   matches: FlaxCallbackAdapters.matchesVoid1<String?>,
 );
-const _flaxBinding1994 = FlaxTypeRef(
+const _flaxBinding2002 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding1993,
+  callback: _flaxBinding2001,
 );
-const _flaxBinding1995 = FlaxGetter.plain(
+const _flaxBinding2003 = FlaxGetter.plain(
   "onSaved",
-  _flaxBinding1994,
+  _flaxBinding2002,
   _CupertinoTextFormFieldRow_onSaved,
 );
-const _flaxBinding1996 = FlaxGetter.plain(
+const _flaxBinding2004 = FlaxGetter.plain(
   "onReset",
   flaxVoidNullableCallbackType,
   _CupertinoTextFormFieldRow_onReset,
 );
-const _flaxBinding1997 = FlaxGetter.plain(
+const _flaxBinding2005 = FlaxGetter.plain(
   "forceErrorText",
   flaxNullableStringType,
   _CupertinoTextFormFieldRow_forceErrorText,
 );
-const _flaxBinding1998 = FlaxCallbackBinding(
+const _flaxBinding2006 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("value", flaxNullableStringType)],
   flaxNullableStringType,
   FlaxCallbackAdapters.wrap1<String?, String?>,
@@ -50161,17 +50335,17 @@ const _flaxBinding1998 = FlaxCallbackBinding(
   invoke: FlaxCallbackAdapters.invoke1<String?, String?>,
   matches: FlaxCallbackAdapters.matches1<String?, String?>,
 );
-const _flaxBinding1999 = FlaxTypeRef(
+const _flaxBinding2007 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding1998,
+  callback: _flaxBinding2006,
 );
-const _flaxBinding2000 = FlaxGetter.plain(
+const _flaxBinding2008 = FlaxGetter.plain(
   "validator",
-  _flaxBinding1999,
+  _flaxBinding2007,
   _CupertinoTextFormFieldRow_validator,
 );
-const _flaxBinding2001 = FlaxCallbackBinding(
+const _flaxBinding2009 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter.plain("context", _flaxBinding2),
     FlaxCallbackParameter.plain("errorText", flaxStringType),
@@ -50183,95 +50357,95 @@ const _flaxBinding2001 = FlaxCallbackBinding(
   matches:
       FlaxCallbackAdapters.matches2<api10.BuildContext, String, api.Widget>,
 );
-const _flaxBinding2002 = FlaxTypeRef(
+const _flaxBinding2010 = FlaxTypeRef(
   "callback",
   nullable: true,
-  callback: _flaxBinding2001,
+  callback: _flaxBinding2009,
 );
-const _flaxBinding2003 = FlaxGetter.plain(
+const _flaxBinding2011 = FlaxGetter.plain(
   "errorBuilder",
-  _flaxBinding2002,
+  _flaxBinding2010,
   _CupertinoTextFormFieldRow_errorBuilder,
 );
-const _flaxBinding2004 = FlaxGetter.plain(
+const _flaxBinding2012 = FlaxGetter.plain(
   "initialValue",
   flaxNullableStringType,
   _CupertinoTextFormFieldRow_initialValue,
 );
-const _flaxBinding2005 = FlaxGetter.plain(
+const _flaxBinding2013 = FlaxGetter.plain(
   "enabled",
   flaxBoolType,
   _CupertinoTextFormFieldRow_enabled,
 );
-const _flaxBinding2006 = FlaxTypeRef(
+const _flaxBinding2014 = FlaxTypeRef(
   "enum",
   id: "flax.core/flutter#type:AutovalidateMode",
 );
-const _flaxBinding2007 = FlaxGetter.plain(
+const _flaxBinding2015 = FlaxGetter.plain(
   "autovalidateMode",
-  _flaxBinding2006,
+  _flaxBinding2014,
   _CupertinoTextFormFieldRow_autovalidateMode,
 );
-const _flaxBinding2008 = FlaxGetter.plain(
+const _flaxBinding2016 = FlaxGetter.plain(
   "restorationId",
   flaxNullableStringType,
   _CupertinoTextFormFieldRow_restorationId,
 );
-const _flaxBinding2009 = FlaxInstanceMethod.plain(
+const _flaxBinding2017 = FlaxInstanceMethod.plain(
   _flaxBinding132,
-  _flaxBinding1989,
+  _flaxBinding1997,
   _CupertinoTextFormFieldRow_createState,
 );
-const _flaxBinding2010 = FlaxInstanceMethod.plain(
+const _flaxBinding2018 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding134,
   _CupertinoTextFormFieldRow_createElement,
 );
-const _flaxBinding2011 = FlaxInstanceMethod.shared(
+const _flaxBinding2019 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoTextFormFieldRow_debugFillProperties,
 );
-const _flaxBinding2012 = FlaxInstanceMethod.plain(
+const _flaxBinding2020 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoTextFormFieldRow_toStringShallow,
 );
-const _flaxBinding2013 = FlaxInstanceMethod.plain(
+const _flaxBinding2021 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoTextFormFieldRow_toStringDeep,
 );
-const _flaxBinding2014 = FlaxInstanceMethod.plain(
+const _flaxBinding2022 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoTextFormFieldRow_toDiagnosticsNode,
 );
-const _flaxBinding2015 = <FlaxParameter>[
+const _flaxBinding2023 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter("prefix", _flaxBinding57, required: false),
   FlaxParameter("padding", _flaxBinding267, required: false),
-  FlaxParameter("controller", _flaxBinding1493, required: false),
+  FlaxParameter("controller", _flaxBinding1501, required: false),
   FlaxParameter("initialValue", flaxNullableStringType, required: false),
   FlaxParameter("focusNode", _flaxBinding154, required: false),
-  FlaxParameter("decoration", _flaxBinding695, required: false),
-  FlaxParameter("keyboardType", _flaxBinding1503, required: false),
+  FlaxParameter("decoration", _flaxBinding699, required: false),
+  FlaxParameter("keyboardType", _flaxBinding1511, required: false),
   FlaxParameter(
     "textCapitalization",
-    _flaxBinding1893,
+    _flaxBinding1901,
     required: false,
     defaultValue: api.TextCapitalization.none,
   ),
-  FlaxParameter("textInputAction", _flaxBinding1891, required: false),
+  FlaxParameter("textInputAction", _flaxBinding1899, required: false),
   FlaxParameter("style", _flaxBinding436, required: false),
-  FlaxParameter("strutStyle", _flaxBinding1896, required: false),
-  FlaxParameter("textDirection", _flaxBinding1904, required: false),
+  FlaxParameter("strutStyle", _flaxBinding1904, required: false),
+  FlaxParameter("textDirection", _flaxBinding1912, required: false),
   FlaxParameter(
     "textAlign",
-    _flaxBinding1898,
+    _flaxBinding1906,
     required: false,
     defaultValue: api.TextAlign.start,
   ),
-  FlaxParameter("textAlignVertical", _flaxBinding1902, required: false),
+  FlaxParameter("textAlignVertical", _flaxBinding1910, required: false),
   FlaxParameter(
     "autofocus",
     flaxBoolType,
@@ -50279,7 +50453,7 @@ const _flaxBinding2015 = <FlaxParameter>[
     defaultValue: false,
   ),
   FlaxParameter("readOnly", flaxBoolType, required: false, defaultValue: false),
-  FlaxParameter("toolbarOptions", _flaxBinding1900, required: false),
+  FlaxParameter("toolbarOptions", _flaxBinding1908, required: false),
   FlaxParameter("showCursor", flaxNullableBoolType, required: false),
   FlaxParameter(
     "obscuringCharacter",
@@ -50299,8 +50473,8 @@ const _flaxBinding2015 = <FlaxParameter>[
     required: false,
     defaultValue: true,
   ),
-  FlaxParameter("smartDashesType", _flaxBinding1523, required: false),
-  FlaxParameter("smartQuotesType", _flaxBinding1521, required: false),
+  FlaxParameter("smartDashesType", _flaxBinding1531, required: false),
+  FlaxParameter("smartQuotesType", _flaxBinding1529, required: false),
   FlaxParameter(
     "enableSuggestions",
     flaxBoolType,
@@ -50328,9 +50502,9 @@ const _flaxBinding2015 = <FlaxParameter>[
     flaxStringChangedNullableType,
     required: false,
   ),
-  FlaxParameter("onSaved", _flaxBinding1994, required: false),
-  FlaxParameter("validator", _flaxBinding1999, required: false),
-  FlaxParameter("inputFormatters", _flaxBinding1933, required: false),
+  FlaxParameter("onSaved", _flaxBinding2002, required: false),
+  FlaxParameter("validator", _flaxBinding2007, required: false),
+  FlaxParameter("inputFormatters", _flaxBinding1941, required: false),
   FlaxParameter("enabled", flaxNullableBoolType, required: false),
   FlaxParameter(
     "cursorWidth",
@@ -50353,12 +50527,12 @@ const _flaxBinding2015 = <FlaxParameter>[
     required: false,
     defaultValue: true,
   ),
-  FlaxParameter("selectionControls", _flaxBinding1949, required: false),
-  FlaxParameter("scrollPhysics", _flaxBinding1426, required: false),
-  FlaxParameter("autofillHints", _flaxBinding1956, required: false),
+  FlaxParameter("selectionControls", _flaxBinding1957, required: false),
+  FlaxParameter("scrollPhysics", _flaxBinding1430, required: false),
+  FlaxParameter("autofillHints", _flaxBinding1964, required: false),
   FlaxParameter(
     "autovalidateMode",
-    _flaxBinding2006,
+    _flaxBinding2014,
     required: false,
     defaultValue: api.AutovalidateMode.disabled,
   ),
@@ -50371,45 +50545,45 @@ const _flaxBinding2015 = <FlaxParameter>[
   ),
   FlaxParameter(
     "contextMenuBuilder",
-    _flaxBinding1967,
+    _flaxBinding1975,
     required: false,
     omitWhenAbsent: true,
   ),
-  FlaxParameter("spellCheckConfiguration", _flaxBinding1971, required: false),
-  FlaxParameter("selectionHeightStyle", _flaxBinding1941, required: false),
-  FlaxParameter("selectionWidthStyle", _flaxBinding1943, required: false),
+  FlaxParameter("spellCheckConfiguration", _flaxBinding1979, required: false),
+  FlaxParameter("selectionHeightStyle", _flaxBinding1949, required: false),
+  FlaxParameter("selectionWidthStyle", _flaxBinding1951, required: false),
   FlaxParameter("restorationId", flaxNullableStringType, required: false),
 ];
-const _flaxBinding2016 = FlaxObjectBinding(
+const _flaxBinding2024 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoTextFormFieldRow",
   [
-    _flaxBinding1985,
-    _flaxBinding1986,
-    _flaxBinding1987,
-    _flaxBinding1988,
-    _flaxBinding1992,
+    _flaxBinding1993,
+    _flaxBinding1994,
     _flaxBinding1995,
     _flaxBinding1996,
-    _flaxBinding1997,
     _flaxBinding2000,
     _flaxBinding2003,
     _flaxBinding2004,
     _flaxBinding2005,
-    _flaxBinding2007,
     _flaxBinding2008,
+    _flaxBinding2011,
+    _flaxBinding2012,
+    _flaxBinding2013,
+    _flaxBinding2015,
+    _flaxBinding2016,
     _flaxBinding130,
   ],
   {
-    "createState": _flaxBinding2009,
-    "createElement": _flaxBinding2010,
+    "createState": _flaxBinding2017,
+    "createElement": _flaxBinding2018,
     "toStringShort": _flaxBinding136,
-    "debugFillProperties": _flaxBinding2011,
-    "toStringShallow": _flaxBinding2012,
-    "toStringDeep": _flaxBinding2013,
-    "toDiagnosticsNode": _flaxBinding2014,
+    "debugFillProperties": _flaxBinding2019,
+    "toStringShallow": _flaxBinding2020,
+    "toStringDeep": _flaxBinding2021,
+    "toDiagnosticsNode": _flaxBinding2022,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding2015},
+  constructors: {"": _flaxBinding2023},
   create: _createCupertinoTextFormFieldRow,
   matches: _isCupertinoTextFormFieldRow,
   setters: [],
@@ -50422,80 +50596,80 @@ const _flaxBinding2016 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding2017 = FlaxGetter.plain(
+const _flaxBinding2025 = FlaxGetter.plain(
   "animationCurve",
   flaxCurveType,
   _CupertinoTextMagnifier_animationCurve,
 );
-const _flaxBinding2018 = FlaxTypeRef(
+const _flaxBinding2026 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:MagnifierController",
 );
-const _flaxBinding2019 = FlaxGetter.plain(
+const _flaxBinding2027 = FlaxGetter.plain(
   "controller",
-  _flaxBinding2018,
+  _flaxBinding2026,
   _CupertinoTextMagnifier_controller,
 );
-const _flaxBinding2020 = FlaxGetter.plain(
+const _flaxBinding2028 = FlaxGetter.plain(
   "dragResistance",
   flaxDoubleType,
   _CupertinoTextMagnifier_dragResistance,
 );
-const _flaxBinding2021 = FlaxGetter.plain(
+const _flaxBinding2029 = FlaxGetter.plain(
   "hideBelowThreshold",
   flaxDoubleType,
   _CupertinoTextMagnifier_hideBelowThreshold,
 );
-const _flaxBinding2022 = FlaxGetter.plain(
+const _flaxBinding2030 = FlaxGetter.plain(
   "horizontalScreenEdgePadding",
   flaxDoubleType,
   _CupertinoTextMagnifier_horizontalScreenEdgePadding,
 );
-const _flaxBinding2023 = FlaxTypeRef(
+const _flaxBinding2031 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_foundation#type:ValueNotifier",
   dartType: FlaxDartTypes.typeOf<api3.ValueNotifier<api10.MagnifierInfo>>,
 );
-const _flaxBinding2024 = FlaxGetter.plain(
+const _flaxBinding2032 = FlaxGetter.plain(
   "magnifierInfo",
-  _flaxBinding2023,
+  _flaxBinding2031,
   _CupertinoTextMagnifier_magnifierInfo,
 );
-const _flaxBinding2025 = FlaxTypeRef(
+const _flaxBinding2033 = FlaxTypeRef(
   "state",
   id: "flax.core/components#type:State",
   dartType: FlaxDartTypes.typeOf<api10.State<api.CupertinoTextMagnifier>>,
 );
-const _flaxBinding2026 = FlaxInstanceMethod.plain(
+const _flaxBinding2034 = FlaxInstanceMethod.plain(
   _flaxBinding132,
-  _flaxBinding2025,
+  _flaxBinding2033,
   _CupertinoTextMagnifier_createState,
 );
-const _flaxBinding2027 = FlaxInstanceMethod.plain(
+const _flaxBinding2035 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding134,
   _CupertinoTextMagnifier_createElement,
 );
-const _flaxBinding2028 = FlaxInstanceMethod.shared(
+const _flaxBinding2036 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoTextMagnifier_debugFillProperties,
 );
-const _flaxBinding2029 = FlaxInstanceMethod.plain(
+const _flaxBinding2037 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoTextMagnifier_toStringShallow,
 );
-const _flaxBinding2030 = FlaxInstanceMethod.plain(
+const _flaxBinding2038 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoTextMagnifier_toStringDeep,
 );
-const _flaxBinding2031 = FlaxInstanceMethod.plain(
+const _flaxBinding2039 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoTextMagnifier_toDiagnosticsNode,
 );
-const _flaxBinding2032 = <FlaxParameter>[
+const _flaxBinding2040 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter(
     "animationCurve",
@@ -50503,7 +50677,7 @@ const _flaxBinding2032 = <FlaxParameter>[
     required: false,
     omitWhenAbsent: true,
   ),
-  FlaxParameter.required("controller", _flaxBinding2018),
+  FlaxParameter.required("controller", _flaxBinding2026),
   FlaxParameter(
     "dragResistance",
     flaxDoubleType,
@@ -50522,30 +50696,30 @@ const _flaxBinding2032 = <FlaxParameter>[
     required: false,
     defaultValue: 10.0,
   ),
-  FlaxParameter.required("magnifierInfo", _flaxBinding2023),
+  FlaxParameter.required("magnifierInfo", _flaxBinding2031),
 ];
-const _flaxBinding2033 = FlaxObjectBinding(
+const _flaxBinding2041 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoTextMagnifier",
   [
-    _flaxBinding2017,
-    _flaxBinding2019,
-    _flaxBinding2020,
-    _flaxBinding2021,
-    _flaxBinding2022,
-    _flaxBinding2024,
+    _flaxBinding2025,
+    _flaxBinding2027,
+    _flaxBinding2028,
+    _flaxBinding2029,
+    _flaxBinding2030,
+    _flaxBinding2032,
     _flaxBinding130,
   ],
   {
-    "createState": _flaxBinding2026,
-    "createElement": _flaxBinding2027,
+    "createState": _flaxBinding2034,
+    "createElement": _flaxBinding2035,
     "toStringShort": _flaxBinding136,
-    "debugFillProperties": _flaxBinding2028,
-    "toStringShallow": _flaxBinding2029,
-    "toStringDeep": _flaxBinding2030,
-    "toDiagnosticsNode": _flaxBinding2031,
+    "debugFillProperties": _flaxBinding2036,
+    "toStringShallow": _flaxBinding2037,
+    "toStringDeep": _flaxBinding2038,
+    "toDiagnosticsNode": _flaxBinding2039,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding2032},
+  constructors: {"": _flaxBinding2040},
   create: _createCupertinoTextMagnifier,
   matches: _isCupertinoTextMagnifier,
   setters: [],
@@ -50557,71 +50731,71 @@ const _flaxBinding2033 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding2034 = FlaxInstanceMethod.plain(
+const _flaxBinding2042 = FlaxInstanceMethod.plain(
   _flaxBinding369,
   flaxWidgetType,
   _CupertinoTextSelectionControls_buildHandle,
 );
-const _flaxBinding2035 = FlaxInstanceMethod.shared(
+const _flaxBinding2043 = FlaxInstanceMethod.shared(
   _flaxBinding1,
   _CupertinoTextSelectionControls_getHandleAnchor,
 );
-const _flaxBinding2036 = FlaxInstanceMethod.shared(
+const _flaxBinding2044 = FlaxInstanceMethod.shared(
   _flaxBinding9,
   _CupertinoTextSelectionControls_buildToolbar,
 );
-const _flaxBinding2037 = FlaxInstanceMethod.shared(
+const _flaxBinding2045 = FlaxInstanceMethod.shared(
   _flaxBinding10,
   _CupertinoTextSelectionControls_getHandleSize,
 );
-const _flaxBinding2038 = FlaxInstanceMethod.shared(
+const _flaxBinding2046 = FlaxInstanceMethod.shared(
   _flaxBinding11,
   _CupertinoTextSelectionControls_canCut,
 );
-const _flaxBinding2039 = FlaxInstanceMethod.shared(
+const _flaxBinding2047 = FlaxInstanceMethod.shared(
   _flaxBinding11,
   _CupertinoTextSelectionControls_canCopy,
 );
-const _flaxBinding2040 = FlaxInstanceMethod.shared(
+const _flaxBinding2048 = FlaxInstanceMethod.shared(
   _flaxBinding11,
   _CupertinoTextSelectionControls_canPaste,
 );
-const _flaxBinding2041 = FlaxInstanceMethod.shared(
+const _flaxBinding2049 = FlaxInstanceMethod.shared(
   _flaxBinding11,
   _CupertinoTextSelectionControls_canSelectAll,
 );
-const _flaxBinding2042 = FlaxInstanceMethod.shared(
+const _flaxBinding2050 = FlaxInstanceMethod.shared(
   _flaxBinding12,
   _CupertinoTextSelectionControls_handleCut,
 );
-const _flaxBinding2043 = FlaxInstanceMethod.shared(
+const _flaxBinding2051 = FlaxInstanceMethod.shared(
   _flaxBinding12,
   _CupertinoTextSelectionControls_handleCopy,
 );
-const _flaxBinding2044 = FlaxInstanceMethod.shared(
+const _flaxBinding2052 = FlaxInstanceMethod.shared(
   _flaxBinding14,
   _CupertinoTextSelectionControls_handlePaste,
 );
-const _flaxBinding2045 = FlaxInstanceMethod.shared(
+const _flaxBinding2053 = FlaxInstanceMethod.shared(
   _flaxBinding12,
   _CupertinoTextSelectionControls_handleSelectAll,
 );
-const _flaxBinding2046 = FlaxObjectBinding(
+const _flaxBinding2054 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoTextSelectionControls",
   [],
   {
-    "buildHandle": _flaxBinding2034,
-    "getHandleAnchor": _flaxBinding2035,
-    "buildToolbar": _flaxBinding2036,
-    "getHandleSize": _flaxBinding2037,
-    "canCut": _flaxBinding2038,
-    "canCopy": _flaxBinding2039,
-    "canPaste": _flaxBinding2040,
-    "canSelectAll": _flaxBinding2041,
-    "handleCut": _flaxBinding2042,
-    "handleCopy": _flaxBinding2043,
-    "handlePaste": _flaxBinding2044,
-    "handleSelectAll": _flaxBinding2045,
+    "buildHandle": _flaxBinding2042,
+    "getHandleAnchor": _flaxBinding2043,
+    "buildToolbar": _flaxBinding2044,
+    "getHandleSize": _flaxBinding2045,
+    "canCut": _flaxBinding2046,
+    "canCopy": _flaxBinding2047,
+    "canPaste": _flaxBinding2048,
+    "canSelectAll": _flaxBinding2049,
+    "handleCut": _flaxBinding2050,
+    "handleCopy": _flaxBinding2051,
+    "handlePaste": _flaxBinding2052,
+    "handleSelectAll": _flaxBinding2053,
     "@super:buildHandle": _flaxBinding382,
     "@super:getHandleAnchor": _flaxBinding383,
     "@super:buildToolbar": _flaxBinding384,
@@ -50658,65 +50832,65 @@ const _flaxBinding2046 = FlaxObjectBinding(
     _flaxBinding406,
   ]),
 );
-const _flaxBinding2047 = FlaxTypeRef(
+const _flaxBinding2055 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:ClipboardStatusNotifier",
   nullable: true,
 );
-const _flaxBinding2048 = <FlaxParameter>[
+const _flaxBinding2056 = <FlaxParameter>[
   FlaxParameter.required("delegate", _flaxBinding6),
-  FlaxParameter("clipboardStatus", _flaxBinding2047, required: false),
+  FlaxParameter("clipboardStatus", _flaxBinding2055, required: false),
 ];
-const _flaxBinding2049 = FlaxInstanceMethod.plain(
-  _flaxBinding2048,
+const _flaxBinding2057 = FlaxInstanceMethod.plain(
+  _flaxBinding2056,
   flaxVoidType,
   _CupertinoTextSelectionHandleControls_handleCut,
 );
-const _flaxBinding2050 = FlaxInstanceMethod.plain(
-  _flaxBinding2048,
+const _flaxBinding2058 = FlaxInstanceMethod.plain(
+  _flaxBinding2056,
   flaxVoidType,
   _CupertinoTextSelectionHandleControls_handleCopy,
 );
-const _flaxBinding2051 = FlaxCallbackBinding.signature(
+const _flaxBinding2059 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain("delegate", _flaxBinding6),
     FlaxCallbackParameter.plain(
       "clipboardStatus",
-      _flaxBinding2047,
+      _flaxBinding2055,
       required: false,
     ),
   ],
   flaxVoidType,
   id: "callback:<>(p:r:delegate:object:flax.core/sdk_services#type:TextSelectionDelegate,p:o:clipboardStatus:object?:flax.core/sdk_widgets#type:ClipboardStatusNotifier)->void:",
 );
-const _flaxBinding2052 = FlaxProxyMember(
+const _flaxBinding2060 = FlaxProxyMember(
   "handleCut",
   0,
-  _flaxBinding2051,
+  _flaxBinding2059,
   hasSuper: true,
 );
-const _flaxBinding2053 = FlaxProxyMember(
+const _flaxBinding2061 = FlaxProxyMember(
   "handleCopy",
   0,
-  _flaxBinding2051,
+  _flaxBinding2059,
   hasSuper: true,
 );
-const _flaxBinding2054 = FlaxObjectBinding(
+const _flaxBinding2062 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoTextSelectionHandleControls",
   [],
   {
-    "getHandleSize": _flaxBinding2037,
-    "buildToolbar": _flaxBinding2036,
-    "buildHandle": _flaxBinding2034,
-    "getHandleAnchor": _flaxBinding2035,
-    "canCut": _flaxBinding2038,
-    "canCopy": _flaxBinding2039,
-    "canPaste": _flaxBinding2040,
-    "canSelectAll": _flaxBinding2041,
-    "handleCut": _flaxBinding2049,
-    "handleCopy": _flaxBinding2050,
-    "handlePaste": _flaxBinding2044,
-    "handleSelectAll": _flaxBinding2045,
+    "getHandleSize": _flaxBinding2045,
+    "buildToolbar": _flaxBinding2044,
+    "buildHandle": _flaxBinding2042,
+    "getHandleAnchor": _flaxBinding2043,
+    "canCut": _flaxBinding2046,
+    "canCopy": _flaxBinding2047,
+    "canPaste": _flaxBinding2048,
+    "canSelectAll": _flaxBinding2049,
+    "handleCut": _flaxBinding2057,
+    "handleCopy": _flaxBinding2058,
+    "handlePaste": _flaxBinding2052,
+    "handleSelectAll": _flaxBinding2053,
     "@super:getHandleSize": _flaxBinding385,
     "@super:buildToolbar": _flaxBinding384,
     "@super:buildHandle": _flaxBinding382,
@@ -50726,12 +50900,12 @@ const _flaxBinding2054 = FlaxObjectBinding(
     "@super:canPaste": _flaxBinding388,
     "@super:canSelectAll": _flaxBinding389,
     "@super:handleCut": FlaxInstanceMethod.plain(
-      _flaxBinding2048,
+      _flaxBinding2056,
       flaxVoidType,
       _CupertinoTextSelectionHandleControls_super_handleCut,
     ),
     "@super:handleCopy": FlaxInstanceMethod.plain(
-      _flaxBinding2048,
+      _flaxBinding2056,
       flaxVoidType,
       _CupertinoTextSelectionHandleControls_super_handleCopy,
     ),
@@ -50757,28 +50931,28 @@ const _flaxBinding2054 = FlaxObjectBinding(
     _flaxBinding400,
     _flaxBinding401,
     _flaxBinding402,
-    _flaxBinding2052,
-    _flaxBinding2053,
+    _flaxBinding2060,
+    _flaxBinding2061,
     _flaxBinding405,
     _flaxBinding406,
   ]),
 );
-const _flaxBinding2055 = FlaxGetter.plain(
+const _flaxBinding2063 = FlaxGetter.plain(
   "anchorAbove",
   flaxOffsetType,
   _CupertinoTextSelectionToolbar_anchorAbove,
 );
-const _flaxBinding2056 = FlaxGetter.plain(
+const _flaxBinding2064 = FlaxGetter.plain(
   "anchorBelow",
   flaxOffsetType,
   _CupertinoTextSelectionToolbar_anchorBelow,
 );
-const _flaxBinding2057 = FlaxGetter.plain(
+const _flaxBinding2065 = FlaxGetter.plain(
   "children",
   _flaxBinding206,
   _CupertinoTextSelectionToolbar_children,
 );
-const _flaxBinding2058 = FlaxCallbackBinding(
+const _flaxBinding2066 = FlaxCallbackBinding(
   [
     FlaxCallbackParameter.plain("context", _flaxBinding2),
     FlaxCallbackParameter.plain("anchorAbove", flaxOffsetType),
@@ -50786,72 +50960,72 @@ const _flaxBinding2058 = FlaxCallbackBinding(
     FlaxCallbackParameter.plain("child", flaxWidgetType),
   ],
   flaxWidgetType,
-  _callback14,
+  _callback15,
   id: "callback:<>(p:r:context:context:flax.core/flutter#type:BuildContext,p:r:anchorAbove:object:flax.core/flutter#type:Offset,p:r:anchorBelow:object:flax.core/flutter#type:Offset,p:r:child:widget:)->widget:",
-  invoke: _callback14Invoke,
-  matches: _callback14Matches,
+  invoke: _callback15Invoke,
+  matches: _callback15Matches,
 );
-const _flaxBinding2059 = FlaxTypeRef("callback", callback: _flaxBinding2058);
-const _flaxBinding2060 = FlaxGetter.plain(
+const _flaxBinding2067 = FlaxTypeRef("callback", callback: _flaxBinding2066);
+const _flaxBinding2068 = FlaxGetter.plain(
   "toolbarBuilder",
-  _flaxBinding2059,
+  _flaxBinding2067,
   _CupertinoTextSelectionToolbar_toolbarBuilder,
 );
-const _flaxBinding2061 = FlaxInstanceMethod.shared(
+const _flaxBinding2069 = FlaxInstanceMethod.shared(
   _flaxBinding112,
   _CupertinoTextSelectionToolbar_build,
 );
-const _flaxBinding2062 = FlaxInstanceMethod.shared(
+const _flaxBinding2070 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoTextSelectionToolbar_debugFillProperties,
 );
-const _flaxBinding2063 = FlaxInstanceMethod.plain(
+const _flaxBinding2071 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoTextSelectionToolbar_toStringShallow,
 );
-const _flaxBinding2064 = FlaxInstanceMethod.plain(
+const _flaxBinding2072 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoTextSelectionToolbar_toStringDeep,
 );
-const _flaxBinding2065 = FlaxInstanceMethod.plain(
+const _flaxBinding2073 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoTextSelectionToolbar_toDiagnosticsNode,
 );
-const _flaxBinding2066 = <FlaxParameter>[
+const _flaxBinding2074 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter.required("anchorAbove", flaxOffsetType),
   FlaxParameter.required("anchorBelow", flaxOffsetType),
   FlaxParameter.required("children", _flaxBinding206),
   FlaxParameter(
     "toolbarBuilder",
-    _flaxBinding2059,
+    _flaxBinding2067,
     required: false,
     omitWhenAbsent: true,
   ),
 ];
-const _flaxBinding2067 = FlaxObjectBinding(
+const _flaxBinding2075 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoTextSelectionToolbar",
   [
-    _flaxBinding2055,
-    _flaxBinding2056,
-    _flaxBinding2057,
-    _flaxBinding2060,
+    _flaxBinding2063,
+    _flaxBinding2064,
+    _flaxBinding2065,
+    _flaxBinding2068,
     _flaxBinding130,
   ],
   {
-    "build": _flaxBinding2061,
+    "build": _flaxBinding2069,
     "createElement": _flaxBinding190,
     "toStringShort": _flaxBinding136,
-    "debugFillProperties": _flaxBinding2062,
-    "toStringShallow": _flaxBinding2063,
-    "toStringDeep": _flaxBinding2064,
-    "toDiagnosticsNode": _flaxBinding2065,
+    "debugFillProperties": _flaxBinding2070,
+    "toStringShallow": _flaxBinding2071,
+    "toStringDeep": _flaxBinding2072,
+    "toDiagnosticsNode": _flaxBinding2073,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding2066},
+  constructors: {"": _flaxBinding2074},
   create: _createCupertinoTextSelectionToolbar,
   matches: _isCupertinoTextSelectionToolbar,
   setters: [],
@@ -50863,86 +51037,86 @@ const _flaxBinding2067 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding2068 = FlaxGetter.plain(
+const _flaxBinding2076 = FlaxGetter.plain(
   "child",
   _flaxBinding57,
   _CupertinoTextSelectionToolbarButton_child,
 );
-const _flaxBinding2069 = FlaxGetter.plain(
+const _flaxBinding2077 = FlaxGetter.plain(
   "onPressed",
   flaxVoidNullableCallbackType,
   _CupertinoTextSelectionToolbarButton_onPressed,
 );
-const _flaxBinding2070 = FlaxGetter.plain(
+const _flaxBinding2078 = FlaxGetter.plain(
   "buttonItem",
   _flaxBinding419,
   _CupertinoTextSelectionToolbarButton_buttonItem,
 );
-const _flaxBinding2071 = FlaxGetter.plain(
+const _flaxBinding2079 = FlaxGetter.plain(
   "text",
   flaxNullableStringType,
   _CupertinoTextSelectionToolbarButton_text,
 );
-const _flaxBinding2072 = FlaxInstanceMethod.shared(
+const _flaxBinding2080 = FlaxInstanceMethod.shared(
   _flaxBinding119,
   _CupertinoTextSelectionToolbarButton_createState,
 );
-const _flaxBinding2073 = FlaxInstanceMethod.plain(
+const _flaxBinding2081 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding134,
   _CupertinoTextSelectionToolbarButton_createElement,
 );
-const _flaxBinding2074 = FlaxInstanceMethod.shared(
+const _flaxBinding2082 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoTextSelectionToolbarButton_debugFillProperties,
 );
-const _flaxBinding2075 = FlaxInstanceMethod.plain(
+const _flaxBinding2083 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoTextSelectionToolbarButton_toStringShallow,
 );
-const _flaxBinding2076 = FlaxInstanceMethod.plain(
+const _flaxBinding2084 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoTextSelectionToolbarButton_toStringDeep,
 );
-const _flaxBinding2077 = FlaxInstanceMethod.plain(
+const _flaxBinding2085 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoTextSelectionToolbarButton_toDiagnosticsNode,
 );
-const _flaxBinding2078 = <FlaxParameter>[
+const _flaxBinding2086 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter("onPressed", flaxVoidNullableCallbackType, required: false),
   FlaxParameter.required("child", flaxWidgetType),
 ];
-const _flaxBinding2079 = <FlaxParameter>[
+const _flaxBinding2087 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter("onPressed", flaxVoidNullableCallbackType, required: false),
   FlaxParameter.required("text", flaxNullableStringType),
 ];
-const _flaxBinding2080 = FlaxObjectBinding(
+const _flaxBinding2088 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoTextSelectionToolbarButton",
   [
-    _flaxBinding2068,
-    _flaxBinding2069,
-    _flaxBinding2070,
-    _flaxBinding2071,
+    _flaxBinding2076,
+    _flaxBinding2077,
+    _flaxBinding2078,
+    _flaxBinding2079,
     _flaxBinding130,
   ],
   {
-    "createState": _flaxBinding2072,
-    "createElement": _flaxBinding2073,
+    "createState": _flaxBinding2080,
+    "createElement": _flaxBinding2081,
     "toStringShort": _flaxBinding136,
-    "debugFillProperties": _flaxBinding2074,
-    "toStringShallow": _flaxBinding2075,
-    "toStringDeep": _flaxBinding2076,
-    "toDiagnosticsNode": _flaxBinding2077,
+    "debugFillProperties": _flaxBinding2082,
+    "toStringShallow": _flaxBinding2083,
+    "toStringDeep": _flaxBinding2084,
+    "toDiagnosticsNode": _flaxBinding2085,
     "debugDescribeChildren": _flaxBinding146,
   },
   constructors: {
-    "": _flaxBinding2078,
-    "text": _flaxBinding2079,
+    "": _flaxBinding2086,
+    "text": _flaxBinding2087,
     "buttonItem": _flaxBinding431,
   },
   create: _createCupertinoTextSelectionToolbarButton,
@@ -50956,70 +51130,70 @@ const _flaxBinding2080 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding2081 = FlaxGetter.plain(
+const _flaxBinding2089 = FlaxGetter.plain(
   "textStyle",
   _flaxBinding90,
   _CupertinoTextThemeData_textStyle,
 );
-const _flaxBinding2082 = FlaxGetter.plain(
+const _flaxBinding2090 = FlaxGetter.plain(
   "actionTextStyle",
   _flaxBinding90,
   _CupertinoTextThemeData_actionTextStyle,
 );
-const _flaxBinding2083 = FlaxGetter.plain(
+const _flaxBinding2091 = FlaxGetter.plain(
   "actionSmallTextStyle",
   _flaxBinding90,
   _CupertinoTextThemeData_actionSmallTextStyle,
 );
-const _flaxBinding2084 = FlaxGetter.plain(
+const _flaxBinding2092 = FlaxGetter.plain(
   "tabLabelTextStyle",
   _flaxBinding90,
   _CupertinoTextThemeData_tabLabelTextStyle,
 );
-const _flaxBinding2085 = FlaxGetter.plain(
+const _flaxBinding2093 = FlaxGetter.plain(
   "navTitleTextStyle",
   _flaxBinding90,
   _CupertinoTextThemeData_navTitleTextStyle,
 );
-const _flaxBinding2086 = FlaxGetter.plain(
+const _flaxBinding2094 = FlaxGetter.plain(
   "navLargeTitleTextStyle",
   _flaxBinding90,
   _CupertinoTextThemeData_navLargeTitleTextStyle,
 );
-const _flaxBinding2087 = FlaxGetter.plain(
+const _flaxBinding2095 = FlaxGetter.plain(
   "navActionTextStyle",
   _flaxBinding90,
   _CupertinoTextThemeData_navActionTextStyle,
 );
-const _flaxBinding2088 = FlaxGetter.plain(
+const _flaxBinding2096 = FlaxGetter.plain(
   "pickerTextStyle",
   _flaxBinding90,
   _CupertinoTextThemeData_pickerTextStyle,
 );
-const _flaxBinding2089 = FlaxGetter.plain(
+const _flaxBinding2097 = FlaxGetter.plain(
   "dateTimePickerTextStyle",
   _flaxBinding90,
   _CupertinoTextThemeData_dateTimePickerTextStyle,
 );
-const _flaxBinding2090 = FlaxInstanceMethod.plain(
-  _flaxBinding602,
+const _flaxBinding2098 = FlaxInstanceMethod.plain(
+  _flaxBinding606,
   flaxStringType,
   _CupertinoTextThemeData_toString,
 );
-const _flaxBinding2091 = FlaxInstanceMethod.plain(
+const _flaxBinding2099 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoTextThemeData_toDiagnosticsNode,
 );
-const _flaxBinding2092 = FlaxInstanceMethod.shared(
+const _flaxBinding2100 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoTextThemeData_debugFillProperties,
 );
-const _flaxBinding2093 = FlaxInstanceMethod.shared(
+const _flaxBinding2101 = FlaxInstanceMethod.shared(
   _flaxBinding89,
   _CupertinoTextThemeData_resolveFrom,
 );
-const _flaxBinding2094 = <FlaxParameter>[
+const _flaxBinding2102 = <FlaxParameter>[
   FlaxParameter("actionSmallTextStyle", _flaxBinding436, required: false),
   FlaxParameter("actionTextStyle", _flaxBinding436, required: false),
   FlaxParameter("dateTimePickerTextStyle", _flaxBinding436, required: false),
@@ -51031,12 +51205,12 @@ const _flaxBinding2094 = <FlaxParameter>[
   FlaxParameter("tabLabelTextStyle", _flaxBinding436, required: false),
   FlaxParameter("textStyle", _flaxBinding436, required: false),
 ];
-const _flaxBinding2095 = FlaxInstanceMethod.plain(
-  _flaxBinding2094,
+const _flaxBinding2103 = FlaxInstanceMethod.plain(
+  _flaxBinding2102,
   _flaxBinding88,
   _CupertinoTextThemeData_copyWith,
 );
-const _flaxBinding2096 = <FlaxParameter>[
+const _flaxBinding2104 = <FlaxParameter>[
   FlaxParameter(
     "primaryColor",
     flaxColorType,
@@ -51053,13 +51227,13 @@ const _flaxBinding2096 = <FlaxParameter>[
   FlaxParameter("pickerTextStyle", _flaxBinding436, required: false),
   FlaxParameter("dateTimePickerTextStyle", _flaxBinding436, required: false),
 ];
-const _flaxBinding2097 = FlaxProxyMember(
+const _flaxBinding2105 = FlaxProxyMember(
   "resolveFrom",
   0,
   _flaxBinding89,
   hasSuper: true,
 );
-const _flaxBinding2098 = FlaxCallbackBinding.signature(
+const _flaxBinding2106 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "primaryColor",
@@ -51125,96 +51299,96 @@ const _flaxBinding2098 = FlaxCallbackBinding.signature(
   _flaxBinding88,
   id: "callback:<>(n:o:primaryColor:object?:flax.core/flutter#type:Color,n:o:textStyle:object?:flax.core/flutter#type:TextStyle,n:o:actionTextStyle:object?:flax.core/flutter#type:TextStyle,n:o:actionSmallTextStyle:object?:flax.core/flutter#type:TextStyle,n:o:tabLabelTextStyle:object?:flax.core/flutter#type:TextStyle,n:o:navTitleTextStyle:object?:flax.core/flutter#type:TextStyle,n:o:navLargeTitleTextStyle:object?:flax.core/flutter#type:TextStyle,n:o:navActionTextStyle:object?:flax.core/flutter#type:TextStyle,n:o:pickerTextStyle:object?:flax.core/flutter#type:TextStyle,n:o:dateTimePickerTextStyle:object?:flax.core/flutter#type:TextStyle)->object:flax.cupertino/cupertino#type:CupertinoTextThemeData",
 );
-const _flaxBinding2099 = FlaxProxyMember(
+const _flaxBinding2107 = FlaxProxyMember(
   "copyWith",
   0,
-  _flaxBinding2098,
+  _flaxBinding2106,
   hasSuper: true,
 );
-const _flaxBinding2100 = FlaxProxyMember(
+const _flaxBinding2108 = FlaxProxyMember(
   "textStyle",
   1,
   _flaxBinding91,
   hasSuper: true,
 );
-const _flaxBinding2101 = FlaxProxyMember(
+const _flaxBinding2109 = FlaxProxyMember(
   "actionTextStyle",
   1,
   _flaxBinding91,
   hasSuper: true,
 );
-const _flaxBinding2102 = FlaxProxyMember(
+const _flaxBinding2110 = FlaxProxyMember(
   "actionSmallTextStyle",
   1,
   _flaxBinding91,
   hasSuper: true,
 );
-const _flaxBinding2103 = FlaxProxyMember(
+const _flaxBinding2111 = FlaxProxyMember(
   "tabLabelTextStyle",
   1,
   _flaxBinding91,
   hasSuper: true,
 );
-const _flaxBinding2104 = FlaxProxyMember(
+const _flaxBinding2112 = FlaxProxyMember(
   "navTitleTextStyle",
   1,
   _flaxBinding91,
   hasSuper: true,
 );
-const _flaxBinding2105 = FlaxProxyMember(
+const _flaxBinding2113 = FlaxProxyMember(
   "navLargeTitleTextStyle",
   1,
   _flaxBinding91,
   hasSuper: true,
 );
-const _flaxBinding2106 = FlaxProxyMember(
+const _flaxBinding2114 = FlaxProxyMember(
   "navActionTextStyle",
   1,
   _flaxBinding91,
   hasSuper: true,
 );
-const _flaxBinding2107 = FlaxProxyMember(
+const _flaxBinding2115 = FlaxProxyMember(
   "pickerTextStyle",
   1,
   _flaxBinding91,
   hasSuper: true,
 );
-const _flaxBinding2108 = FlaxProxyMember(
+const _flaxBinding2116 = FlaxProxyMember(
   "dateTimePickerTextStyle",
   1,
   _flaxBinding91,
   hasSuper: true,
 );
-const _flaxBinding2109 = FlaxObjectBinding(
+const _flaxBinding2117 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoTextThemeData",
   [
-    _flaxBinding2081,
-    _flaxBinding2082,
-    _flaxBinding2083,
-    _flaxBinding2084,
-    _flaxBinding2085,
-    _flaxBinding2086,
-    _flaxBinding2087,
-    _flaxBinding2088,
     _flaxBinding2089,
+    _flaxBinding2090,
+    _flaxBinding2091,
+    _flaxBinding2092,
+    _flaxBinding2093,
+    _flaxBinding2094,
+    _flaxBinding2095,
+    _flaxBinding2096,
+    _flaxBinding2097,
   ],
   {
     "toStringShort": _flaxBinding136,
-    "toString": _flaxBinding2090,
-    "toDiagnosticsNode": _flaxBinding2091,
-    "debugFillProperties": _flaxBinding2092,
-    "resolveFrom": _flaxBinding2093,
-    "copyWith": _flaxBinding2095,
-    "@super:toStringShort": _flaxBinding608,
-    "@super:toString": _flaxBinding607,
-    "@super:toDiagnosticsNode": _flaxBinding609,
-    "@super:debugFillProperties": _flaxBinding610,
+    "toString": _flaxBinding2098,
+    "toDiagnosticsNode": _flaxBinding2099,
+    "debugFillProperties": _flaxBinding2100,
+    "resolveFrom": _flaxBinding2101,
+    "copyWith": _flaxBinding2103,
+    "@super:toStringShort": _flaxBinding612,
+    "@super:toString": _flaxBinding611,
+    "@super:toDiagnosticsNode": _flaxBinding613,
+    "@super:debugFillProperties": _flaxBinding614,
     "@super:resolveFrom": FlaxInstanceMethod.shared(
       _flaxBinding89,
       _CupertinoTextThemeData_super_resolveFrom,
     ),
     "@super:copyWith": FlaxInstanceMethod.plain(
-      _flaxBinding2094,
+      _flaxBinding2102,
       _flaxBinding88,
       _CupertinoTextThemeData_super_copyWith,
     ),
@@ -51255,7 +51429,7 @@ const _flaxBinding2109 = FlaxObjectBinding(
       _CupertinoTextThemeData_super_get_dateTimePickerTextStyle,
     ),
   },
-  constructors: {"": _flaxBinding2096, "@implementation": _flaxBinding2096},
+  constructors: {"": _flaxBinding2104, "@implementation": _flaxBinding2104},
   create: _createCupertinoTextThemeData,
   matches: _isCupertinoTextThemeData,
   setters: [],
@@ -51264,75 +51438,75 @@ const _flaxBinding2109 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding626,
-    _flaxBinding625,
-    _flaxBinding628,
+    _flaxBinding630,
     _flaxBinding629,
-    _flaxBinding2097,
-    _flaxBinding2099,
-    _flaxBinding2100,
-    _flaxBinding2101,
-    _flaxBinding2102,
-    _flaxBinding2103,
-    _flaxBinding2104,
+    _flaxBinding632,
+    _flaxBinding633,
     _flaxBinding2105,
-    _flaxBinding2106,
     _flaxBinding2107,
     _flaxBinding2108,
+    _flaxBinding2109,
+    _flaxBinding2110,
+    _flaxBinding2111,
+    _flaxBinding2112,
+    _flaxBinding2113,
+    _flaxBinding2114,
+    _flaxBinding2115,
+    _flaxBinding2116,
   ]),
 );
-const _flaxBinding2110 = FlaxGetter.plain(
+const _flaxBinding2118 = FlaxGetter.plain(
   "data",
   _flaxBinding94,
   _CupertinoTheme_data,
 );
-const _flaxBinding2111 = FlaxGetter.plain(
+const _flaxBinding2119 = FlaxGetter.plain(
   "child",
   flaxWidgetType,
   _CupertinoTheme_child,
 );
-const _flaxBinding2112 = FlaxInstanceMethod.shared(
+const _flaxBinding2120 = FlaxInstanceMethod.shared(
   _flaxBinding112,
   _CupertinoTheme_build,
 );
-const _flaxBinding2113 = FlaxInstanceMethod.shared(
+const _flaxBinding2121 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoTheme_debugFillProperties,
 );
-const _flaxBinding2114 = FlaxInstanceMethod.plain(
+const _flaxBinding2122 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoTheme_toStringShallow,
 );
-const _flaxBinding2115 = FlaxInstanceMethod.plain(
+const _flaxBinding2123 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoTheme_toStringDeep,
 );
-const _flaxBinding2116 = FlaxInstanceMethod.plain(
+const _flaxBinding2124 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoTheme_toDiagnosticsNode,
 );
-const _flaxBinding2117 = <FlaxParameter>[
+const _flaxBinding2125 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter.required("data", _flaxBinding94),
   FlaxParameter.required("child", flaxWidgetType),
 ];
-const _flaxBinding2118 = FlaxObjectBinding(
+const _flaxBinding2126 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoTheme",
-  [_flaxBinding2110, _flaxBinding2111, _flaxBinding130],
+  [_flaxBinding2118, _flaxBinding2119, _flaxBinding130],
   {
-    "build": _flaxBinding2112,
-    "debugFillProperties": _flaxBinding2113,
+    "build": _flaxBinding2120,
+    "debugFillProperties": _flaxBinding2121,
     "createElement": _flaxBinding190,
     "toStringShort": _flaxBinding136,
-    "toStringShallow": _flaxBinding2114,
-    "toStringDeep": _flaxBinding2115,
-    "toDiagnosticsNode": _flaxBinding2116,
+    "toStringShallow": _flaxBinding2122,
+    "toStringDeep": _flaxBinding2123,
+    "toDiagnosticsNode": _flaxBinding2124,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding2117},
+  constructors: {"": _flaxBinding2125},
   create: _createCupertinoTheme,
   matches: _isCupertinoTheme,
   setters: [],
@@ -51344,55 +51518,55 @@ const _flaxBinding2118 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding2119 = FlaxGetter.plain(
+const _flaxBinding2127 = FlaxGetter.plain(
   "brightness",
   _flaxBinding97,
   _NoDefaultCupertinoThemeData_brightness,
 );
-const _flaxBinding2120 = FlaxGetter.plain(
+const _flaxBinding2128 = FlaxGetter.plain(
   "primaryColor",
   flaxColorType,
   _CupertinoThemeData_primaryColor,
 );
-const _flaxBinding2121 = FlaxGetter.plain(
+const _flaxBinding2129 = FlaxGetter.plain(
   "primaryContrastingColor",
   flaxColorType,
   _CupertinoThemeData_primaryContrastingColor,
 );
-const _flaxBinding2122 = FlaxGetter.plain(
+const _flaxBinding2130 = FlaxGetter.plain(
   "textTheme",
   _flaxBinding88,
   _CupertinoThemeData_textTheme,
 );
-const _flaxBinding2123 = FlaxGetter.plain(
+const _flaxBinding2131 = FlaxGetter.plain(
   "barBackgroundColor",
   flaxColorType,
   _CupertinoThemeData_barBackgroundColor,
 );
-const _flaxBinding2124 = FlaxGetter.plain(
+const _flaxBinding2132 = FlaxGetter.plain(
   "scaffoldBackgroundColor",
   flaxColorType,
   _CupertinoThemeData_scaffoldBackgroundColor,
 );
-const _flaxBinding2125 = FlaxGetter.plain(
+const _flaxBinding2133 = FlaxGetter.plain(
   "selectionHandleColor",
   flaxColorType,
   _CupertinoThemeData_selectionHandleColor,
 );
-const _flaxBinding2126 = FlaxGetter.plain(
+const _flaxBinding2134 = FlaxGetter.plain(
   "applyThemeToAll",
   flaxBoolType,
   _CupertinoThemeData_applyThemeToAll,
 );
-const _flaxBinding2127 = FlaxInstanceMethod.shared(
+const _flaxBinding2135 = FlaxInstanceMethod.shared(
   _flaxBinding93,
   _NoDefaultCupertinoThemeData_noDefault,
 );
-const _flaxBinding2128 = FlaxInstanceMethod.shared(
+const _flaxBinding2136 = FlaxInstanceMethod.shared(
   _flaxBinding95,
   _CupertinoThemeData_resolveFrom,
 );
-const _flaxBinding2129 = <FlaxParameter>[
+const _flaxBinding2137 = <FlaxParameter>[
   FlaxParameter("applyThemeToAll", flaxNullableBoolType, required: false),
   FlaxParameter("barBackgroundColor", _flaxBinding31, required: false),
   FlaxParameter("brightness", _flaxBinding97, required: false),
@@ -51402,34 +51576,34 @@ const _flaxBinding2129 = <FlaxParameter>[
   FlaxParameter("selectionHandleColor", _flaxBinding31, required: false),
   FlaxParameter("textTheme", _flaxBinding106, required: false),
 ];
-const _flaxBinding2130 = FlaxInstanceMethod.plain(
-  _flaxBinding2129,
+const _flaxBinding2138 = FlaxInstanceMethod.plain(
+  _flaxBinding2137,
   _flaxBinding94,
   _CupertinoThemeData_copyWith,
 );
-const _flaxBinding2131 = FlaxInstanceMethod.plain(
-  _flaxBinding602,
+const _flaxBinding2139 = FlaxInstanceMethod.plain(
+  _flaxBinding606,
   flaxStringType,
   _CupertinoThemeData_toString,
 );
-const _flaxBinding2132 = FlaxInstanceMethod.plain(
+const _flaxBinding2140 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoThemeData_toDiagnosticsNode,
 );
-const _flaxBinding2133 = FlaxInstanceMethod.shared(
+const _flaxBinding2141 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoThemeData_debugFillProperties,
 );
-const _flaxBinding2134 = FlaxInstanceMethod.shared(
+const _flaxBinding2142 = FlaxInstanceMethod.shared(
   _flaxBinding93,
   _FlaxProxyDispatch6_super_call_noDefault,
 );
-const _flaxBinding2135 = FlaxInstanceMethod.shared(
+const _flaxBinding2143 = FlaxInstanceMethod.shared(
   _flaxBinding98,
   _FlaxProxyDispatch6_super_get_brightness,
 );
-const _flaxBinding2136 = <FlaxParameter>[
+const _flaxBinding2144 = <FlaxParameter>[
   FlaxParameter("brightness", _flaxBinding97, required: false),
   FlaxParameter("primaryColor", _flaxBinding31, required: false),
   FlaxParameter("primaryContrastingColor", _flaxBinding31, required: false),
@@ -51439,7 +51613,7 @@ const _flaxBinding2136 = <FlaxParameter>[
   FlaxParameter("selectionHandleColor", _flaxBinding31, required: false),
   FlaxParameter("applyThemeToAll", flaxNullableBoolType, required: false),
 ];
-const _flaxBinding2137 = <FlaxParameter>[
+const _flaxBinding2145 = <FlaxParameter>[
   FlaxParameter.required("brightness", _flaxBinding97),
   FlaxParameter.required("primaryColor", _flaxBinding31),
   FlaxParameter.required("primaryContrastingColor", _flaxBinding31),
@@ -51449,19 +51623,19 @@ const _flaxBinding2137 = <FlaxParameter>[
   FlaxParameter.required("selectionHandleColor", _flaxBinding31),
   FlaxParameter.required("applyThemeToAll", flaxNullableBoolType),
 ];
-const _flaxBinding2138 = FlaxProxyMember(
+const _flaxBinding2146 = FlaxProxyMember(
   "noDefault",
   0,
   _flaxBinding93,
   hasSuper: true,
 );
-const _flaxBinding2139 = FlaxProxyMember(
+const _flaxBinding2147 = FlaxProxyMember(
   "resolveFrom",
   0,
   _flaxBinding95,
   hasSuper: true,
 );
-const _flaxBinding2140 = FlaxCallbackBinding.signature(
+const _flaxBinding2148 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "brightness",
@@ -51515,94 +51689,94 @@ const _flaxBinding2140 = FlaxCallbackBinding.signature(
   _flaxBinding94,
   id: "callback:<>(n:o:brightness:enum?:flax.core/sdk_dart_ui#type:Brightness,n:o:primaryColor:object?:flax.core/flutter#type:Color,n:o:primaryContrastingColor:object?:flax.core/flutter#type:Color,n:o:textTheme:object?:flax.cupertino/cupertino#type:CupertinoTextThemeData,n:o:barBackgroundColor:object?:flax.core/flutter#type:Color,n:o:scaffoldBackgroundColor:object?:flax.core/flutter#type:Color,n:o:selectionHandleColor:object?:flax.core/flutter#type:Color,n:o:applyThemeToAll:bool?:)->object:flax.cupertino/cupertino#type:CupertinoThemeData",
 );
-const _flaxBinding2141 = FlaxProxyMember(
+const _flaxBinding2149 = FlaxProxyMember(
   "copyWith",
   0,
-  _flaxBinding2140,
+  _flaxBinding2148,
   hasSuper: true,
 );
-const _flaxBinding2142 = FlaxProxyMember(
+const _flaxBinding2150 = FlaxProxyMember(
   "primaryColor",
   1,
   _flaxBinding24,
   hasSuper: true,
 );
-const _flaxBinding2143 = FlaxProxyMember(
+const _flaxBinding2151 = FlaxProxyMember(
   "primaryContrastingColor",
   1,
   _flaxBinding24,
   hasSuper: true,
 );
-const _flaxBinding2144 = FlaxProxyMember(
+const _flaxBinding2152 = FlaxProxyMember(
   "textTheme",
   1,
   _flaxBinding96,
   hasSuper: true,
 );
-const _flaxBinding2145 = FlaxProxyMember(
+const _flaxBinding2153 = FlaxProxyMember(
   "barBackgroundColor",
   1,
   _flaxBinding24,
   hasSuper: true,
 );
-const _flaxBinding2146 = FlaxProxyMember(
+const _flaxBinding2154 = FlaxProxyMember(
   "scaffoldBackgroundColor",
   1,
   _flaxBinding24,
   hasSuper: true,
 );
-const _flaxBinding2147 = FlaxProxyMember(
+const _flaxBinding2155 = FlaxProxyMember(
   "selectionHandleColor",
   1,
   _flaxBinding24,
   hasSuper: true,
 );
-const _flaxBinding2148 = FlaxProxyMember(
+const _flaxBinding2156 = FlaxProxyMember(
   "applyThemeToAll",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding2149 = FlaxProxyMember(
+const _flaxBinding2157 = FlaxProxyMember(
   "brightness",
   1,
   _flaxBinding98,
   hasSuper: true,
 );
-const _flaxBinding2150 = FlaxObjectBinding(
+const _flaxBinding2158 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoThemeData",
   [
-    _flaxBinding2119,
-    _flaxBinding2120,
-    _flaxBinding2121,
-    _flaxBinding2122,
-    _flaxBinding2123,
-    _flaxBinding2124,
-    _flaxBinding2125,
-    _flaxBinding2126,
+    _flaxBinding2127,
+    _flaxBinding2128,
+    _flaxBinding2129,
+    _flaxBinding2130,
+    _flaxBinding2131,
+    _flaxBinding2132,
+    _flaxBinding2133,
+    _flaxBinding2134,
   ],
   {
-    "noDefault": _flaxBinding2127,
-    "resolveFrom": _flaxBinding2128,
-    "copyWith": _flaxBinding2130,
+    "noDefault": _flaxBinding2135,
+    "resolveFrom": _flaxBinding2136,
+    "copyWith": _flaxBinding2138,
     "toStringShort": _flaxBinding136,
-    "toString": _flaxBinding2131,
-    "toDiagnosticsNode": _flaxBinding2132,
-    "debugFillProperties": _flaxBinding2133,
-    "@super:noDefault": _flaxBinding2134,
+    "toString": _flaxBinding2139,
+    "toDiagnosticsNode": _flaxBinding2140,
+    "debugFillProperties": _flaxBinding2141,
+    "@super:noDefault": _flaxBinding2142,
     "@super:resolveFrom": FlaxInstanceMethod.shared(
       _flaxBinding95,
       _CupertinoThemeData_super_resolveFrom,
     ),
     "@super:copyWith": FlaxInstanceMethod.plain(
-      _flaxBinding2129,
+      _flaxBinding2137,
       _flaxBinding94,
       _CupertinoThemeData_super_copyWith,
     ),
-    "@super:toStringShort": _flaxBinding608,
-    "@super:toString": _flaxBinding607,
-    "@super:toDiagnosticsNode": _flaxBinding609,
-    "@super:debugFillProperties": _flaxBinding610,
+    "@super:toStringShort": _flaxBinding612,
+    "@super:toString": _flaxBinding611,
+    "@super:toDiagnosticsNode": _flaxBinding613,
+    "@super:debugFillProperties": _flaxBinding614,
     "@super:get:primaryColor": FlaxInstanceMethod.shared(
       _flaxBinding24,
       _CupertinoThemeData_super_get_primaryColor,
@@ -51631,13 +51805,13 @@ const _flaxBinding2150 = FlaxObjectBinding(
       flaxBoolCall,
       _CupertinoThemeData_super_get_applyThemeToAll,
     ),
-    "@super:get:brightness": _flaxBinding2135,
+    "@super:get:brightness": _flaxBinding2143,
   },
   constructors: {
-    "": _flaxBinding2136,
-    "raw": _flaxBinding2137,
-    "@implementation": _flaxBinding2136,
-    "@implementation:raw": _flaxBinding2137,
+    "": _flaxBinding2144,
+    "raw": _flaxBinding2145,
+    "@implementation": _flaxBinding2144,
+    "@implementation:raw": _flaxBinding2145,
   },
   create: _createCupertinoThemeData,
   matches: _isCupertinoThemeData,
@@ -51648,38 +51822,38 @@ const _flaxBinding2150 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
   proxy: FlaxProxyBinding([
-    _flaxBinding2138,
-    _flaxBinding2139,
-    _flaxBinding2141,
-    _flaxBinding626,
-    _flaxBinding625,
-    _flaxBinding628,
-    _flaxBinding629,
-    _flaxBinding2142,
-    _flaxBinding2143,
-    _flaxBinding2144,
-    _flaxBinding2145,
     _flaxBinding2146,
     _flaxBinding2147,
-    _flaxBinding2148,
     _flaxBinding2149,
+    _flaxBinding630,
+    _flaxBinding629,
+    _flaxBinding632,
+    _flaxBinding633,
+    _flaxBinding2150,
+    _flaxBinding2151,
+    _flaxBinding2152,
+    _flaxBinding2153,
+    _flaxBinding2154,
+    _flaxBinding2155,
+    _flaxBinding2156,
+    _flaxBinding2157,
   ]),
 );
-const _flaxBinding2151 = FlaxGetter.plain(
+const _flaxBinding2159 = FlaxGetter.plain(
   "color",
   flaxColorType,
   _CupertinoThumbPainter_color,
 );
-const _flaxBinding2152 = FlaxGetter.plain(
+const _flaxBinding2160 = FlaxGetter.plain(
   "shadows",
   _flaxBinding103,
   _CupertinoThumbPainter_shadows,
 );
-const _flaxBinding2153 = FlaxInstanceMethod.shared(
+const _flaxBinding2161 = FlaxInstanceMethod.shared(
   _flaxBinding100,
   _CupertinoThumbPainter_paint,
 );
-const _flaxBinding2154 = <FlaxParameter>[
+const _flaxBinding2162 = <FlaxParameter>[
   FlaxParameter("color", flaxColorType, required: false, omitWhenAbsent: true),
   FlaxParameter(
     "shadows",
@@ -51688,74 +51862,74 @@ const _flaxBinding2154 = <FlaxParameter>[
     omitWhenAbsent: true,
   ),
 ];
-const _flaxBinding2155 = FlaxProxyMember(
+const _flaxBinding2163 = FlaxProxyMember(
   "paint",
   0,
   _flaxBinding100,
   hasSuper: true,
 );
-const _flaxBinding2156 = FlaxProxyMember(
+const _flaxBinding2164 = FlaxProxyMember(
   "shadows",
   1,
   _flaxBinding104,
   hasSuper: true,
 );
-const _flaxBinding2157 = FlaxObjectBinding(
+const _flaxBinding2165 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoThumbPainter",
-  [_flaxBinding2151, _flaxBinding2152],
+  [_flaxBinding2159, _flaxBinding2160],
   {
-    "paint": _flaxBinding2153,
+    "paint": _flaxBinding2161,
     "@super:paint": FlaxInstanceMethod.shared(
       _flaxBinding100,
       _CupertinoThumbPainter_super_paint,
     ),
-    "@super:get:color": _flaxBinding611,
+    "@super:get:color": _flaxBinding615,
     "@super:get:shadows": FlaxInstanceMethod.shared(
       _flaxBinding104,
       _CupertinoThumbPainter_super_get_shadows,
     ),
   },
   constructors: {
-    "": _flaxBinding2154,
-    "switchThumb": _flaxBinding2154,
-    "@implementation": _flaxBinding2154,
-    "@implementation:switchThumb": _flaxBinding2154,
+    "": _flaxBinding2162,
+    "switchThumb": _flaxBinding2162,
+    "@implementation": _flaxBinding2162,
+    "@implementation:switchThumb": _flaxBinding2162,
   },
   create: _createCupertinoThumbPainter,
   matches: _isCupertinoThumbPainter,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding2155,
-    _flaxBinding631,
-    _flaxBinding2156,
+    _flaxBinding2163,
+    _flaxBinding635,
+    _flaxBinding2164,
   ]),
 );
-const _flaxBinding2158 = FlaxTypeRef(
+const _flaxBinding2166 = FlaxTypeRef(
   "enum",
   id: "flax.cupertino/cupertino#type:CupertinoTimerPickerMode",
 );
-const _flaxBinding2159 = FlaxGetter.plain(
+const _flaxBinding2167 = FlaxGetter.plain(
   "mode",
-  _flaxBinding2158,
+  _flaxBinding2166,
   _CupertinoTimerPicker_mode,
 );
-const _flaxBinding2160 = FlaxGetter.plain(
+const _flaxBinding2168 = FlaxGetter.plain(
   "initialTimerDuration",
   flaxDurationType,
   _CupertinoTimerPicker_initialTimerDuration,
 );
-const _flaxBinding2161 = FlaxGetter.plain(
+const _flaxBinding2169 = FlaxGetter.plain(
   "minuteInterval",
   flaxIntType,
   _CupertinoTimerPicker_minuteInterval,
 );
-const _flaxBinding2162 = FlaxGetter.plain(
+const _flaxBinding2170 = FlaxGetter.plain(
   "secondInterval",
   flaxIntType,
   _CupertinoTimerPicker_secondInterval,
 );
-const _flaxBinding2163 = FlaxCallbackBinding(
+const _flaxBinding2171 = FlaxCallbackBinding(
   [FlaxCallbackParameter.plain("value", flaxDurationType)],
   flaxVoidType,
   FlaxCallbackAdapters.wrapVoid1<api2.Duration>,
@@ -51763,70 +51937,70 @@ const _flaxBinding2163 = FlaxCallbackBinding(
   invoke: FlaxCallbackAdapters.invokeVoid1<api2.Duration>,
   matches: FlaxCallbackAdapters.matchesVoid1<api2.Duration>,
 );
-const _flaxBinding2164 = FlaxTypeRef("callback", callback: _flaxBinding2163);
-const _flaxBinding2165 = FlaxGetter.plain(
+const _flaxBinding2172 = FlaxTypeRef("callback", callback: _flaxBinding2171);
+const _flaxBinding2173 = FlaxGetter.plain(
   "onTimerDurationChanged",
-  _flaxBinding2164,
+  _flaxBinding2172,
   _CupertinoTimerPicker_onTimerDurationChanged,
 );
-const _flaxBinding2166 = FlaxGetter.plain(
+const _flaxBinding2174 = FlaxGetter.plain(
   "alignment",
   _flaxBinding269,
   _CupertinoTimerPicker_alignment,
 );
-const _flaxBinding2167 = FlaxGetter.plain(
+const _flaxBinding2175 = FlaxGetter.plain(
   "backgroundColor",
   _flaxBinding31,
   _CupertinoTimerPicker_backgroundColor,
 );
-const _flaxBinding2168 = FlaxGetter.plain(
+const _flaxBinding2176 = FlaxGetter.plain(
   "itemExtent",
   flaxDoubleType,
   _CupertinoTimerPicker_itemExtent,
 );
-const _flaxBinding2169 = FlaxGetter.plain(
+const _flaxBinding2177 = FlaxGetter.plain(
   "selectionOverlayBuilder",
   _flaxBinding357,
   _CupertinoTimerPicker_selectionOverlayBuilder,
 );
-const _flaxBinding2170 = FlaxGetter.plain(
+const _flaxBinding2178 = FlaxGetter.plain(
   "changeReportingBehavior",
   _flaxBinding359,
   _CupertinoTimerPicker_changeReportingBehavior,
 );
-const _flaxBinding2171 = FlaxInstanceMethod.shared(
+const _flaxBinding2179 = FlaxInstanceMethod.shared(
   _flaxBinding119,
   _CupertinoTimerPicker_createState,
 );
-const _flaxBinding2172 = FlaxInstanceMethod.plain(
+const _flaxBinding2180 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding134,
   _CupertinoTimerPicker_createElement,
 );
-const _flaxBinding2173 = FlaxInstanceMethod.shared(
+const _flaxBinding2181 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoTimerPicker_debugFillProperties,
 );
-const _flaxBinding2174 = FlaxInstanceMethod.plain(
+const _flaxBinding2182 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoTimerPicker_toStringShallow,
 );
-const _flaxBinding2175 = FlaxInstanceMethod.plain(
+const _flaxBinding2183 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoTimerPicker_toStringDeep,
 );
-const _flaxBinding2176 = FlaxInstanceMethod.plain(
+const _flaxBinding2184 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoTimerPicker_toDiagnosticsNode,
 );
-const _flaxBinding2177 = <FlaxParameter>[
+const _flaxBinding2185 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter(
     "mode",
-    _flaxBinding2158,
+    _flaxBinding2166,
     required: false,
     defaultValue: api.CupertinoTimerPickerMode.hms,
   ),
@@ -51861,7 +52035,7 @@ const _flaxBinding2177 = <FlaxParameter>[
     required: false,
     defaultValue: 32.0,
   ),
-  FlaxParameter.required("onTimerDurationChanged", _flaxBinding2164),
+  FlaxParameter.required("onTimerDurationChanged", _flaxBinding2172),
   FlaxParameter(
     "changeReportingBehavior",
     _flaxBinding359,
@@ -51870,32 +52044,32 @@ const _flaxBinding2177 = <FlaxParameter>[
   ),
   FlaxParameter("selectionOverlayBuilder", _flaxBinding357, required: false),
 ];
-const _flaxBinding2178 = FlaxObjectBinding(
+const _flaxBinding2186 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoTimerPicker",
   [
-    _flaxBinding2159,
-    _flaxBinding2160,
-    _flaxBinding2161,
-    _flaxBinding2162,
-    _flaxBinding2165,
-    _flaxBinding2166,
     _flaxBinding2167,
     _flaxBinding2168,
     _flaxBinding2169,
     _flaxBinding2170,
+    _flaxBinding2173,
+    _flaxBinding2174,
+    _flaxBinding2175,
+    _flaxBinding2176,
+    _flaxBinding2177,
+    _flaxBinding2178,
     _flaxBinding130,
   ],
   {
-    "createState": _flaxBinding2171,
-    "createElement": _flaxBinding2172,
+    "createState": _flaxBinding2179,
+    "createElement": _flaxBinding2180,
     "toStringShort": _flaxBinding136,
-    "debugFillProperties": _flaxBinding2173,
-    "toStringShallow": _flaxBinding2174,
-    "toStringDeep": _flaxBinding2175,
-    "toDiagnosticsNode": _flaxBinding2176,
+    "debugFillProperties": _flaxBinding2181,
+    "toStringShallow": _flaxBinding2182,
+    "toStringDeep": _flaxBinding2183,
+    "toDiagnosticsNode": _flaxBinding2184,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding2177},
+  constructors: {"": _flaxBinding2185},
   create: _createCupertinoTimerPicker,
   matches: _isCupertinoTimerPicker,
   setters: [],
@@ -51907,12 +52081,12 @@ const _flaxBinding2178 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding2179 = FlaxGetter.plain(
+const _flaxBinding2187 = FlaxGetter.plain(
   "child",
   flaxWidgetType,
   _CupertinoUiCompatibilityBridge_child,
 );
-const _flaxBinding2180 = FlaxTypeRef(
+const _flaxBinding2188 = FlaxTypeRef(
   "iterable",
   item: _flaxBinding246,
   collection: FlaxCollectionBinding(
@@ -51922,7 +52096,7 @@ const _flaxBinding2180 = FlaxTypeRef(
     restore: _collection23Restore,
   ),
 );
-const _flaxBinding2181 = FlaxTypeRef(
+const _flaxBinding2189 = FlaxTypeRef(
   "list",
   nullable: true,
   item: _flaxBinding246,
@@ -51931,55 +52105,55 @@ const _flaxBinding2181 = FlaxTypeRef(
     _collection40Create,
     _collection40Matches,
   ),
-  iterable: _flaxBinding2180,
+  iterable: _flaxBinding2188,
 );
-const _flaxBinding2182 = FlaxGetter.plain(
+const _flaxBinding2190 = FlaxGetter.plain(
   "delegates",
-  _flaxBinding2181,
+  _flaxBinding2189,
   _CupertinoUiCompatibilityBridge_delegates,
 );
-const _flaxBinding2183 = FlaxInstanceMethod.shared(
+const _flaxBinding2191 = FlaxInstanceMethod.shared(
   _flaxBinding112,
   _CupertinoUiCompatibilityBridge_build,
 );
-const _flaxBinding2184 = FlaxInstanceMethod.shared(
+const _flaxBinding2192 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoUiCompatibilityBridge_debugFillProperties,
 );
-const _flaxBinding2185 = FlaxInstanceMethod.plain(
+const _flaxBinding2193 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoUiCompatibilityBridge_toStringShallow,
 );
-const _flaxBinding2186 = FlaxInstanceMethod.plain(
+const _flaxBinding2194 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoUiCompatibilityBridge_toStringDeep,
 );
-const _flaxBinding2187 = FlaxInstanceMethod.plain(
+const _flaxBinding2195 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoUiCompatibilityBridge_toDiagnosticsNode,
 );
-const _flaxBinding2188 = <FlaxParameter>[
+const _flaxBinding2196 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
   FlaxParameter.required("child", flaxWidgetType),
-  FlaxParameter("delegates", _flaxBinding2181, required: false),
+  FlaxParameter("delegates", _flaxBinding2189, required: false),
 ];
-const _flaxBinding2189 = FlaxObjectBinding(
+const _flaxBinding2197 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoUiCompatibilityBridge",
-  [_flaxBinding2179, _flaxBinding2182, _flaxBinding130],
+  [_flaxBinding2187, _flaxBinding2190, _flaxBinding130],
   {
-    "build": _flaxBinding2183,
+    "build": _flaxBinding2191,
     "createElement": _flaxBinding190,
     "toStringShort": _flaxBinding136,
-    "debugFillProperties": _flaxBinding2184,
-    "toStringShallow": _flaxBinding2185,
-    "toStringDeep": _flaxBinding2186,
-    "toDiagnosticsNode": _flaxBinding2187,
+    "debugFillProperties": _flaxBinding2192,
+    "toStringShallow": _flaxBinding2193,
+    "toStringDeep": _flaxBinding2194,
+    "toDiagnosticsNode": _flaxBinding2195,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding2188},
+  constructors: {"": _flaxBinding2196},
   create: _createCupertinoUiCompatibilityBridge,
   matches: _isCupertinoUiCompatibilityBridge,
   setters: [],
@@ -51991,60 +52165,60 @@ const _flaxBinding2189 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding2190 = FlaxTypeRef(
+const _flaxBinding2198 = FlaxTypeRef(
   "widget",
   id: "flax.cupertino/cupertino#type:CupertinoUserInterfaceLevel",
 );
-const _flaxBinding2191 = <FlaxParameter>[
-  FlaxParameter.required("oldWidget", _flaxBinding2190),
+const _flaxBinding2199 = <FlaxParameter>[
+  FlaxParameter.required("oldWidget", _flaxBinding2198),
 ];
-const _flaxBinding2192 = FlaxInstanceMethod.plain(
-  _flaxBinding2191,
+const _flaxBinding2200 = FlaxInstanceMethod.plain(
+  _flaxBinding2199,
   flaxBoolType,
   _CupertinoUserInterfaceLevel_updateShouldNotify,
 );
-const _flaxBinding2193 = FlaxInstanceMethod.shared(
+const _flaxBinding2201 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _CupertinoUserInterfaceLevel_debugFillProperties,
 );
-const _flaxBinding2194 = FlaxInstanceMethod.plain(
+const _flaxBinding2202 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _CupertinoUserInterfaceLevel_toStringShallow,
 );
-const _flaxBinding2195 = FlaxInstanceMethod.plain(
+const _flaxBinding2203 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _CupertinoUserInterfaceLevel_toStringDeep,
 );
-const _flaxBinding2196 = FlaxInstanceMethod.plain(
+const _flaxBinding2204 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _CupertinoUserInterfaceLevel_toDiagnosticsNode,
 );
-const _flaxBinding2197 = FlaxTypeRef(
+const _flaxBinding2205 = FlaxTypeRef(
   "enum",
   id: "flax.cupertino/cupertino#type:CupertinoUserInterfaceLevelData",
 );
-const _flaxBinding2198 = <FlaxParameter>[
+const _flaxBinding2206 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
-  FlaxParameter.required("data", _flaxBinding2197),
+  FlaxParameter.required("data", _flaxBinding2205),
   FlaxParameter.required("child", flaxWidgetType),
 ];
-const _flaxBinding2199 = FlaxObjectBinding(
+const _flaxBinding2207 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:CupertinoUserInterfaceLevel",
-  [_flaxBinding1248, _flaxBinding130],
+  [_flaxBinding1252, _flaxBinding130],
   {
-    "updateShouldNotify": _flaxBinding2192,
-    "debugFillProperties": _flaxBinding2193,
-    "createElement": _flaxBinding1254,
+    "updateShouldNotify": _flaxBinding2200,
+    "debugFillProperties": _flaxBinding2201,
+    "createElement": _flaxBinding1258,
     "toStringShort": _flaxBinding136,
-    "toStringShallow": _flaxBinding2194,
-    "toStringDeep": _flaxBinding2195,
-    "toDiagnosticsNode": _flaxBinding2196,
+    "toStringShallow": _flaxBinding2202,
+    "toStringDeep": _flaxBinding2203,
+    "toDiagnosticsNode": _flaxBinding2204,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding2198},
+  constructors: {"": _flaxBinding2206},
   create: _createCupertinoUserInterfaceLevel,
   matches: _isCupertinoUserInterfaceLevel,
   setters: [],
@@ -52057,269 +52231,269 @@ const _flaxBinding2199 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding2200 = FlaxInstanceMethod.shared(
+const _flaxBinding2208 = FlaxInstanceMethod.shared(
   _flaxBinding40,
   _DefaultCupertinoLocalizations_datePickerHourSemanticsLabel,
 );
-const _flaxBinding2201 = FlaxInstanceMethod.shared(
+const _flaxBinding2209 = FlaxInstanceMethod.shared(
   _flaxBinding42,
   _DefaultCupertinoLocalizations_datePickerMinuteSemanticsLabel,
 );
-const _flaxBinding2202 = FlaxInstanceMethod.shared(
+const _flaxBinding2210 = FlaxInstanceMethod.shared(
   _flaxBinding40,
   _DefaultCupertinoLocalizations_timerPickerHourLabel,
 );
-const _flaxBinding2203 = FlaxInstanceMethod.shared(
+const _flaxBinding2211 = FlaxInstanceMethod.shared(
   _flaxBinding42,
   _DefaultCupertinoLocalizations_timerPickerMinuteLabel,
 );
-const _flaxBinding2204 = FlaxInstanceMethod.shared(
+const _flaxBinding2212 = FlaxInstanceMethod.shared(
   _flaxBinding45,
   _DefaultCupertinoLocalizations_timerPickerSecondLabel,
 );
-const _flaxBinding2205 = FlaxProxyMember(
+const _flaxBinding2213 = FlaxProxyMember(
   "datePickerYear",
   0,
   _flaxBinding37,
   hasSuper: true,
 );
-const _flaxBinding2206 = FlaxProxyMember(
+const _flaxBinding2214 = FlaxProxyMember(
   "datePickerMonth",
   0,
   _flaxBinding38,
   hasSuper: true,
 );
-const _flaxBinding2207 = FlaxProxyMember(
+const _flaxBinding2215 = FlaxProxyMember(
   "datePickerStandaloneMonth",
   0,
   _flaxBinding38,
   hasSuper: true,
 );
-const _flaxBinding2208 = FlaxProxyMember(
+const _flaxBinding2216 = FlaxProxyMember(
   "datePickerDayOfMonth",
   0,
-  _flaxBinding872,
+  _flaxBinding876,
   hasSuper: true,
 );
-const _flaxBinding2209 = FlaxProxyMember(
+const _flaxBinding2217 = FlaxProxyMember(
   "datePickerMediumDate",
   0,
   _flaxBinding39,
   hasSuper: true,
 );
-const _flaxBinding2210 = FlaxProxyMember(
+const _flaxBinding2218 = FlaxProxyMember(
   "datePickerHour",
   0,
   _flaxBinding40,
   hasSuper: true,
 );
-const _flaxBinding2211 = FlaxProxyMember(
+const _flaxBinding2219 = FlaxProxyMember(
   "datePickerHourSemanticsLabel",
   0,
   _flaxBinding40,
   hasSuper: true,
 );
-const _flaxBinding2212 = FlaxProxyMember(
+const _flaxBinding2220 = FlaxProxyMember(
   "datePickerMinute",
   0,
   _flaxBinding42,
   hasSuper: true,
 );
-const _flaxBinding2213 = FlaxProxyMember(
+const _flaxBinding2221 = FlaxProxyMember(
   "datePickerMinuteSemanticsLabel",
   0,
   _flaxBinding42,
   hasSuper: true,
 );
-const _flaxBinding2214 = FlaxProxyMember(
+const _flaxBinding2222 = FlaxProxyMember(
   "tabSemanticsLabel",
   0,
   _flaxBinding44,
   hasSuper: true,
 );
-const _flaxBinding2215 = FlaxProxyMember(
+const _flaxBinding2223 = FlaxProxyMember(
   "timerPickerHour",
   0,
   _flaxBinding40,
   hasSuper: true,
 );
-const _flaxBinding2216 = FlaxProxyMember(
+const _flaxBinding2224 = FlaxProxyMember(
   "timerPickerMinute",
   0,
   _flaxBinding42,
   hasSuper: true,
 );
-const _flaxBinding2217 = FlaxProxyMember(
+const _flaxBinding2225 = FlaxProxyMember(
   "timerPickerSecond",
   0,
   _flaxBinding45,
   hasSuper: true,
 );
-const _flaxBinding2218 = FlaxProxyMember(
+const _flaxBinding2226 = FlaxProxyMember(
   "timerPickerHourLabel",
   0,
   _flaxBinding40,
   hasSuper: true,
 );
-const _flaxBinding2219 = FlaxProxyMember(
+const _flaxBinding2227 = FlaxProxyMember(
   "timerPickerMinuteLabel",
   0,
   _flaxBinding42,
   hasSuper: true,
 );
-const _flaxBinding2220 = FlaxProxyMember(
+const _flaxBinding2228 = FlaxProxyMember(
   "timerPickerSecondLabel",
   0,
   _flaxBinding45,
   hasSuper: true,
 );
-const _flaxBinding2221 = FlaxProxyMember(
+const _flaxBinding2229 = FlaxProxyMember(
   "datePickerDateOrder",
   1,
   _flaxBinding48,
   hasSuper: true,
 );
-const _flaxBinding2222 = FlaxProxyMember(
+const _flaxBinding2230 = FlaxProxyMember(
   "datePickerDateTimeOrder",
   1,
   _flaxBinding50,
   hasSuper: true,
 );
-const _flaxBinding2223 = FlaxProxyMember(
+const _flaxBinding2231 = FlaxProxyMember(
   "anteMeridiemAbbreviation",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2224 = FlaxProxyMember(
+const _flaxBinding2232 = FlaxProxyMember(
   "postMeridiemAbbreviation",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2225 = FlaxProxyMember(
+const _flaxBinding2233 = FlaxProxyMember(
   "todayLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2226 = FlaxProxyMember(
+const _flaxBinding2234 = FlaxProxyMember(
   "alertDialogLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2227 = FlaxProxyMember(
+const _flaxBinding2235 = FlaxProxyMember(
   "timerPickerHourLabels",
   1,
   _flaxBinding53,
   hasSuper: true,
 );
-const _flaxBinding2228 = FlaxProxyMember(
+const _flaxBinding2236 = FlaxProxyMember(
   "timerPickerMinuteLabels",
   1,
   _flaxBinding53,
   hasSuper: true,
 );
-const _flaxBinding2229 = FlaxProxyMember(
+const _flaxBinding2237 = FlaxProxyMember(
   "timerPickerSecondLabels",
   1,
   _flaxBinding53,
   hasSuper: true,
 );
-const _flaxBinding2230 = FlaxProxyMember(
+const _flaxBinding2238 = FlaxProxyMember(
   "cutButtonLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2231 = FlaxProxyMember(
+const _flaxBinding2239 = FlaxProxyMember(
   "copyButtonLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2232 = FlaxProxyMember(
+const _flaxBinding2240 = FlaxProxyMember(
   "pasteButtonLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2233 = FlaxProxyMember(
+const _flaxBinding2241 = FlaxProxyMember(
   "clearButtonLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2234 = FlaxProxyMember(
+const _flaxBinding2242 = FlaxProxyMember(
   "noSpellCheckReplacementsLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2235 = FlaxProxyMember(
+const _flaxBinding2243 = FlaxProxyMember(
   "selectAllButtonLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2236 = FlaxProxyMember(
+const _flaxBinding2244 = FlaxProxyMember(
   "lookUpButtonLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2237 = FlaxProxyMember(
+const _flaxBinding2245 = FlaxProxyMember(
   "searchWebButtonLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2238 = FlaxProxyMember(
+const _flaxBinding2246 = FlaxProxyMember(
   "shareButtonLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2239 = FlaxProxyMember(
+const _flaxBinding2247 = FlaxProxyMember(
   "searchTextFieldPlaceholderLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2240 = FlaxProxyMember(
+const _flaxBinding2248 = FlaxProxyMember(
   "modalBarrierDismissLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2241 = FlaxProxyMember(
+const _flaxBinding2249 = FlaxProxyMember(
   "menuDismissLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2242 = FlaxProxyMember(
+const _flaxBinding2250 = FlaxProxyMember(
   "cancelButtonLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2243 = FlaxProxyMember(
+const _flaxBinding2251 = FlaxProxyMember(
   "backButtonLabel",
   1,
   flaxStringCall,
   hasSuper: true,
 );
-const _flaxBinding2244 = FlaxObjectBinding(
+const _flaxBinding2252 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:DefaultCupertinoLocalizations",
   [],
   {
-    "datePickerHourSemanticsLabel": _flaxBinding2200,
-    "datePickerMinuteSemanticsLabel": _flaxBinding2201,
-    "timerPickerHourLabel": _flaxBinding2202,
-    "timerPickerMinuteLabel": _flaxBinding2203,
-    "timerPickerSecondLabel": _flaxBinding2204,
+    "datePickerHourSemanticsLabel": _flaxBinding2208,
+    "datePickerMinuteSemanticsLabel": _flaxBinding2209,
+    "timerPickerHourLabel": _flaxBinding2210,
+    "timerPickerMinuteLabel": _flaxBinding2211,
+    "timerPickerSecondLabel": _flaxBinding2212,
     "@super:datePickerYear": FlaxInstanceMethod.shared(
       _flaxBinding37,
       _DefaultCupertinoLocalizations_super_datePickerYear,
@@ -52333,7 +52507,7 @@ const _flaxBinding2244 = FlaxObjectBinding(
       _DefaultCupertinoLocalizations_super_datePickerStandaloneMonth,
     ),
     "@super:datePickerDayOfMonth": FlaxInstanceMethod.plain(
-      _flaxBinding848,
+      _flaxBinding852,
       flaxStringType,
       _DefaultCupertinoLocalizations_super_datePickerDayOfMonth,
     ),
@@ -52358,7 +52532,7 @@ const _flaxBinding2244 = FlaxObjectBinding(
       _DefaultCupertinoLocalizations_super_datePickerMinuteSemanticsLabel,
     ),
     "@super:tabSemanticsLabel": FlaxInstanceMethod.plain(
-      _flaxBinding855,
+      _flaxBinding859,
       flaxStringType,
       _DefaultCupertinoLocalizations_super_tabSemanticsLabel,
     ),
@@ -52478,12 +52652,12 @@ const _flaxBinding2244 = FlaxObjectBinding(
       flaxStringCall,
       _DefaultCupertinoLocalizations_super_get_backButtonLabel,
     ),
-    "@super:get:expansionTileExpandedHint": _flaxBinding863,
-    "@super:get:expansionTileCollapsedHint": _flaxBinding864,
-    "@super:get:expansionTileExpandedTapHint": _flaxBinding865,
-    "@super:get:expansionTileCollapsedTapHint": _flaxBinding866,
-    "@super:get:expandedHint": _flaxBinding867,
-    "@super:get:collapsedHint": _flaxBinding868,
+    "@super:get:expansionTileExpandedHint": _flaxBinding867,
+    "@super:get:expansionTileCollapsedHint": _flaxBinding868,
+    "@super:get:expansionTileExpandedTapHint": _flaxBinding869,
+    "@super:get:expansionTileCollapsedTapHint": _flaxBinding870,
+    "@super:get:expandedHint": _flaxBinding871,
+    "@super:get:collapsedHint": _flaxBinding872,
   },
   constructors: {"": _flaxBinding132, "@implementation": _flaxBinding132},
   create: _createDefaultCupertinoLocalizations,
@@ -52493,16 +52667,8 @@ const _flaxBinding2244 = FlaxObjectBinding(
     "dart:core::Object",
     "flax.cupertino/cupertino#type:CupertinoLocalizations",
   ],
-  parent: _flaxBinding915,
+  parent: _flaxBinding919,
   proxy: FlaxProxyBinding([
-    _flaxBinding2205,
-    _flaxBinding2206,
-    _flaxBinding2207,
-    _flaxBinding2208,
-    _flaxBinding2209,
-    _flaxBinding2210,
-    _flaxBinding2211,
-    _flaxBinding2212,
     _flaxBinding2213,
     _flaxBinding2214,
     _flaxBinding2215,
@@ -52534,182 +52700,7 @@ const _flaxBinding2244 = FlaxObjectBinding(
     _flaxBinding2241,
     _flaxBinding2242,
     _flaxBinding2243,
-    _flaxBinding909,
-    _flaxBinding910,
-    _flaxBinding911,
-    _flaxBinding912,
-    _flaxBinding913,
-    _flaxBinding914,
-  ]),
-);
-const _flaxBinding2245 = FlaxGetter.plain(
-  "datePickerHourSemanticsLabelZero",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_datePickerHourSemanticsLabelZero,
-);
-const _flaxBinding2246 = FlaxGetter.plain(
-  "datePickerHourSemanticsLabelOne",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_datePickerHourSemanticsLabelOne,
-);
-const _flaxBinding2247 = FlaxGetter.plain(
-  "datePickerHourSemanticsLabelTwo",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_datePickerHourSemanticsLabelTwo,
-);
-const _flaxBinding2248 = FlaxGetter.plain(
-  "datePickerHourSemanticsLabelFew",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_datePickerHourSemanticsLabelFew,
-);
-const _flaxBinding2249 = FlaxGetter.plain(
-  "datePickerHourSemanticsLabelMany",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_datePickerHourSemanticsLabelMany,
-);
-const _flaxBinding2250 = FlaxGetter.plain(
-  "datePickerHourSemanticsLabelOther",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_datePickerHourSemanticsLabelOther,
-);
-const _flaxBinding2251 = FlaxGetter.plain(
-  "datePickerMinuteSemanticsLabelZero",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_datePickerMinuteSemanticsLabelZero,
-);
-const _flaxBinding2252 = FlaxGetter.plain(
-  "datePickerMinuteSemanticsLabelOne",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_datePickerMinuteSemanticsLabelOne,
-);
-const _flaxBinding2253 = FlaxGetter.plain(
-  "datePickerMinuteSemanticsLabelTwo",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_datePickerMinuteSemanticsLabelTwo,
-);
-const _flaxBinding2254 = FlaxGetter.plain(
-  "datePickerMinuteSemanticsLabelFew",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_datePickerMinuteSemanticsLabelFew,
-);
-const _flaxBinding2255 = FlaxGetter.plain(
-  "datePickerMinuteSemanticsLabelMany",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_datePickerMinuteSemanticsLabelMany,
-);
-const _flaxBinding2256 = FlaxGetter.plain(
-  "datePickerMinuteSemanticsLabelOther",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_datePickerMinuteSemanticsLabelOther,
-);
-const _flaxBinding2257 = FlaxGetter.plain(
-  "datePickerDateOrderString",
-  flaxStringType,
-  _GlobalCupertinoLocalizations_datePickerDateOrderString,
-);
-const _flaxBinding2258 = FlaxGetter.plain(
-  "datePickerDateTimeOrderString",
-  flaxStringType,
-  _GlobalCupertinoLocalizations_datePickerDateTimeOrderString,
-);
-const _flaxBinding2259 = FlaxGetter.plain(
-  "tabSemanticsLabelRaw",
-  flaxStringType,
-  _GlobalCupertinoLocalizations_tabSemanticsLabelRaw,
-);
-const _flaxBinding2260 = FlaxGetter.plain(
-  "timerPickerHourLabelZero",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerHourLabelZero,
-);
-const _flaxBinding2261 = FlaxGetter.plain(
-  "timerPickerHourLabelOne",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerHourLabelOne,
-);
-const _flaxBinding2262 = FlaxGetter.plain(
-  "timerPickerHourLabelTwo",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerHourLabelTwo,
-);
-const _flaxBinding2263 = FlaxGetter.plain(
-  "timerPickerHourLabelFew",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerHourLabelFew,
-);
-const _flaxBinding2264 = FlaxGetter.plain(
-  "timerPickerHourLabelMany",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerHourLabelMany,
-);
-const _flaxBinding2265 = FlaxGetter.plain(
-  "timerPickerHourLabelOther",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerHourLabelOther,
-);
-const _flaxBinding2266 = FlaxGetter.plain(
-  "timerPickerMinuteLabelZero",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerMinuteLabelZero,
-);
-const _flaxBinding2267 = FlaxGetter.plain(
-  "timerPickerMinuteLabelOne",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerMinuteLabelOne,
-);
-const _flaxBinding2268 = FlaxGetter.plain(
-  "timerPickerMinuteLabelTwo",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerMinuteLabelTwo,
-);
-const _flaxBinding2269 = FlaxGetter.plain(
-  "timerPickerMinuteLabelFew",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerMinuteLabelFew,
-);
-const _flaxBinding2270 = FlaxGetter.plain(
-  "timerPickerMinuteLabelMany",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerMinuteLabelMany,
-);
-const _flaxBinding2271 = FlaxGetter.plain(
-  "timerPickerMinuteLabelOther",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerMinuteLabelOther,
-);
-const _flaxBinding2272 = FlaxGetter.plain(
-  "timerPickerSecondLabelZero",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerSecondLabelZero,
-);
-const _flaxBinding2273 = FlaxGetter.plain(
-  "timerPickerSecondLabelOne",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerSecondLabelOne,
-);
-const _flaxBinding2274 = FlaxGetter.plain(
-  "timerPickerSecondLabelTwo",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerSecondLabelTwo,
-);
-const _flaxBinding2275 = FlaxGetter.plain(
-  "timerPickerSecondLabelFew",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerSecondLabelFew,
-);
-const _flaxBinding2276 = FlaxGetter.plain(
-  "timerPickerSecondLabelMany",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerSecondLabelMany,
-);
-const _flaxBinding2277 = FlaxGetter.plain(
-  "timerPickerSecondLabelOther",
-  flaxNullableStringType,
-  _GlobalCupertinoLocalizations_timerPickerSecondLabelOther,
-);
-const _flaxBinding2278 = FlaxObjectBinding(
-  "flax.cupertino/cupertino#type:GlobalCupertinoLocalizations",
-  [
+    _flaxBinding2244,
     _flaxBinding2245,
     _flaxBinding2246,
     _flaxBinding2247,
@@ -52717,7 +52708,182 @@ const _flaxBinding2278 = FlaxObjectBinding(
     _flaxBinding2249,
     _flaxBinding2250,
     _flaxBinding2251,
-    _flaxBinding2252,
+    _flaxBinding913,
+    _flaxBinding914,
+    _flaxBinding915,
+    _flaxBinding916,
+    _flaxBinding917,
+    _flaxBinding918,
+  ]),
+);
+const _flaxBinding2253 = FlaxGetter.plain(
+  "datePickerHourSemanticsLabelZero",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_datePickerHourSemanticsLabelZero,
+);
+const _flaxBinding2254 = FlaxGetter.plain(
+  "datePickerHourSemanticsLabelOne",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_datePickerHourSemanticsLabelOne,
+);
+const _flaxBinding2255 = FlaxGetter.plain(
+  "datePickerHourSemanticsLabelTwo",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_datePickerHourSemanticsLabelTwo,
+);
+const _flaxBinding2256 = FlaxGetter.plain(
+  "datePickerHourSemanticsLabelFew",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_datePickerHourSemanticsLabelFew,
+);
+const _flaxBinding2257 = FlaxGetter.plain(
+  "datePickerHourSemanticsLabelMany",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_datePickerHourSemanticsLabelMany,
+);
+const _flaxBinding2258 = FlaxGetter.plain(
+  "datePickerHourSemanticsLabelOther",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_datePickerHourSemanticsLabelOther,
+);
+const _flaxBinding2259 = FlaxGetter.plain(
+  "datePickerMinuteSemanticsLabelZero",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_datePickerMinuteSemanticsLabelZero,
+);
+const _flaxBinding2260 = FlaxGetter.plain(
+  "datePickerMinuteSemanticsLabelOne",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_datePickerMinuteSemanticsLabelOne,
+);
+const _flaxBinding2261 = FlaxGetter.plain(
+  "datePickerMinuteSemanticsLabelTwo",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_datePickerMinuteSemanticsLabelTwo,
+);
+const _flaxBinding2262 = FlaxGetter.plain(
+  "datePickerMinuteSemanticsLabelFew",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_datePickerMinuteSemanticsLabelFew,
+);
+const _flaxBinding2263 = FlaxGetter.plain(
+  "datePickerMinuteSemanticsLabelMany",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_datePickerMinuteSemanticsLabelMany,
+);
+const _flaxBinding2264 = FlaxGetter.plain(
+  "datePickerMinuteSemanticsLabelOther",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_datePickerMinuteSemanticsLabelOther,
+);
+const _flaxBinding2265 = FlaxGetter.plain(
+  "datePickerDateOrderString",
+  flaxStringType,
+  _GlobalCupertinoLocalizations_datePickerDateOrderString,
+);
+const _flaxBinding2266 = FlaxGetter.plain(
+  "datePickerDateTimeOrderString",
+  flaxStringType,
+  _GlobalCupertinoLocalizations_datePickerDateTimeOrderString,
+);
+const _flaxBinding2267 = FlaxGetter.plain(
+  "tabSemanticsLabelRaw",
+  flaxStringType,
+  _GlobalCupertinoLocalizations_tabSemanticsLabelRaw,
+);
+const _flaxBinding2268 = FlaxGetter.plain(
+  "timerPickerHourLabelZero",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerHourLabelZero,
+);
+const _flaxBinding2269 = FlaxGetter.plain(
+  "timerPickerHourLabelOne",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerHourLabelOne,
+);
+const _flaxBinding2270 = FlaxGetter.plain(
+  "timerPickerHourLabelTwo",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerHourLabelTwo,
+);
+const _flaxBinding2271 = FlaxGetter.plain(
+  "timerPickerHourLabelFew",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerHourLabelFew,
+);
+const _flaxBinding2272 = FlaxGetter.plain(
+  "timerPickerHourLabelMany",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerHourLabelMany,
+);
+const _flaxBinding2273 = FlaxGetter.plain(
+  "timerPickerHourLabelOther",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerHourLabelOther,
+);
+const _flaxBinding2274 = FlaxGetter.plain(
+  "timerPickerMinuteLabelZero",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerMinuteLabelZero,
+);
+const _flaxBinding2275 = FlaxGetter.plain(
+  "timerPickerMinuteLabelOne",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerMinuteLabelOne,
+);
+const _flaxBinding2276 = FlaxGetter.plain(
+  "timerPickerMinuteLabelTwo",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerMinuteLabelTwo,
+);
+const _flaxBinding2277 = FlaxGetter.plain(
+  "timerPickerMinuteLabelFew",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerMinuteLabelFew,
+);
+const _flaxBinding2278 = FlaxGetter.plain(
+  "timerPickerMinuteLabelMany",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerMinuteLabelMany,
+);
+const _flaxBinding2279 = FlaxGetter.plain(
+  "timerPickerMinuteLabelOther",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerMinuteLabelOther,
+);
+const _flaxBinding2280 = FlaxGetter.plain(
+  "timerPickerSecondLabelZero",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerSecondLabelZero,
+);
+const _flaxBinding2281 = FlaxGetter.plain(
+  "timerPickerSecondLabelOne",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerSecondLabelOne,
+);
+const _flaxBinding2282 = FlaxGetter.plain(
+  "timerPickerSecondLabelTwo",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerSecondLabelTwo,
+);
+const _flaxBinding2283 = FlaxGetter.plain(
+  "timerPickerSecondLabelFew",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerSecondLabelFew,
+);
+const _flaxBinding2284 = FlaxGetter.plain(
+  "timerPickerSecondLabelMany",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerSecondLabelMany,
+);
+const _flaxBinding2285 = FlaxGetter.plain(
+  "timerPickerSecondLabelOther",
+  flaxNullableStringType,
+  _GlobalCupertinoLocalizations_timerPickerSecondLabelOther,
+);
+const _flaxBinding2286 = FlaxObjectBinding(
+  "flax.cupertino/cupertino#type:GlobalCupertinoLocalizations",
+  [
     _flaxBinding2253,
     _flaxBinding2254,
     _flaxBinding2255,
@@ -52743,6 +52909,14 @@ const _flaxBinding2278 = FlaxObjectBinding(
     _flaxBinding2275,
     _flaxBinding2276,
     _flaxBinding2277,
+    _flaxBinding2278,
+    _flaxBinding2279,
+    _flaxBinding2280,
+    _flaxBinding2281,
+    _flaxBinding2282,
+    _flaxBinding2283,
+    _flaxBinding2284,
+    _flaxBinding2285,
   ],
   {},
   constructors: {},
@@ -52753,77 +52927,77 @@ const _flaxBinding2278 = FlaxObjectBinding(
     "dart:core::Object",
     "flax.cupertino/cupertino#type:CupertinoLocalizations",
   ],
-  parent: _flaxBinding915,
+  parent: _flaxBinding919,
 );
-const _flaxBinding2279 = FlaxTypeRef(
+const _flaxBinding2287 = FlaxTypeRef(
   "widget",
   id: "flax.cupertino/cupertino#type:CupertinoTheme",
 );
-const _flaxBinding2280 = FlaxGetter.plain(
+const _flaxBinding2288 = FlaxGetter.plain(
   "theme",
-  _flaxBinding2279,
+  _flaxBinding2287,
   _InheritedCupertinoTheme_theme,
 );
-const _flaxBinding2281 = <FlaxParameter>[
+const _flaxBinding2289 = <FlaxParameter>[
   FlaxParameter.required("context", _flaxBinding2),
   FlaxParameter.required("child", flaxWidgetType),
 ];
-const _flaxBinding2282 = FlaxInstanceMethod.plain(
-  _flaxBinding2281,
+const _flaxBinding2290 = FlaxInstanceMethod.plain(
+  _flaxBinding2289,
   flaxWidgetType,
   _InheritedCupertinoTheme_wrap,
 );
-const _flaxBinding2283 = FlaxTypeRef(
+const _flaxBinding2291 = FlaxTypeRef(
   "widget",
   id: "flax.cupertino/cupertino#type:InheritedCupertinoTheme",
 );
-const _flaxBinding2284 = <FlaxParameter>[
-  FlaxParameter.required("oldWidget", _flaxBinding2283),
+const _flaxBinding2292 = <FlaxParameter>[
+  FlaxParameter.required("oldWidget", _flaxBinding2291),
 ];
-const _flaxBinding2285 = FlaxInstanceMethod.plain(
-  _flaxBinding2284,
+const _flaxBinding2293 = FlaxInstanceMethod.plain(
+  _flaxBinding2292,
   flaxBoolType,
   _InheritedCupertinoTheme_updateShouldNotify,
 );
-const _flaxBinding2286 = FlaxInstanceMethod.shared(
+const _flaxBinding2294 = FlaxInstanceMethod.shared(
   _flaxBinding21,
   _InheritedCupertinoTheme_debugFillProperties,
 );
-const _flaxBinding2287 = FlaxInstanceMethod.plain(
+const _flaxBinding2295 = FlaxInstanceMethod.plain(
   _flaxBinding139,
   flaxStringType,
   _InheritedCupertinoTheme_toStringShallow,
 );
-const _flaxBinding2288 = FlaxInstanceMethod.plain(
+const _flaxBinding2296 = FlaxInstanceMethod.plain(
   _flaxBinding141,
   flaxStringType,
   _InheritedCupertinoTheme_toStringDeep,
 );
-const _flaxBinding2289 = FlaxInstanceMethod.plain(
+const _flaxBinding2297 = FlaxInstanceMethod.plain(
   _flaxBinding144,
   _flaxBinding108,
   _InheritedCupertinoTheme_toDiagnosticsNode,
 );
-const _flaxBinding2290 = <FlaxParameter>[
+const _flaxBinding2298 = <FlaxParameter>[
   FlaxParameter("key", _flaxBinding129, required: false),
-  FlaxParameter.required("theme", _flaxBinding2279),
+  FlaxParameter.required("theme", _flaxBinding2287),
   FlaxParameter.required("child", flaxWidgetType),
 ];
-const _flaxBinding2291 = FlaxObjectBinding(
+const _flaxBinding2299 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:InheritedCupertinoTheme",
-  [_flaxBinding2280, _flaxBinding1248, _flaxBinding130],
+  [_flaxBinding2288, _flaxBinding1252, _flaxBinding130],
   {
-    "wrap": _flaxBinding2282,
-    "updateShouldNotify": _flaxBinding2285,
-    "createElement": _flaxBinding1254,
+    "wrap": _flaxBinding2290,
+    "updateShouldNotify": _flaxBinding2293,
+    "createElement": _flaxBinding1258,
     "toStringShort": _flaxBinding136,
-    "debugFillProperties": _flaxBinding2286,
-    "toStringShallow": _flaxBinding2287,
-    "toStringDeep": _flaxBinding2288,
-    "toDiagnosticsNode": _flaxBinding2289,
+    "debugFillProperties": _flaxBinding2294,
+    "toStringShallow": _flaxBinding2295,
+    "toStringDeep": _flaxBinding2296,
+    "toDiagnosticsNode": _flaxBinding2297,
     "debugDescribeChildren": _flaxBinding146,
   },
-  constructors: {"": _flaxBinding2290},
+  constructors: {"": _flaxBinding2298},
   create: _createInheritedCupertinoTheme,
   matches: _isInheritedCupertinoTheme,
   setters: [],
@@ -52837,57 +53011,57 @@ const _flaxBinding2291 = FlaxObjectBinding(
     "flax.core/sdk_foundation#type:Diagnosticable",
   ],
 );
-const _flaxBinding2292 = FlaxGetter.plain(
+const _flaxBinding2300 = FlaxGetter.plain(
   "primaryColor",
   _flaxBinding31,
   _NoDefaultCupertinoThemeData_primaryColor,
 );
-const _flaxBinding2293 = FlaxGetter.plain(
+const _flaxBinding2301 = FlaxGetter.plain(
   "primaryContrastingColor",
   _flaxBinding31,
   _NoDefaultCupertinoThemeData_primaryContrastingColor,
 );
-const _flaxBinding2294 = FlaxGetter.plain(
+const _flaxBinding2302 = FlaxGetter.plain(
   "textTheme",
   _flaxBinding106,
   _NoDefaultCupertinoThemeData_textTheme,
 );
-const _flaxBinding2295 = FlaxGetter.plain(
+const _flaxBinding2303 = FlaxGetter.plain(
   "barBackgroundColor",
   _flaxBinding31,
   _NoDefaultCupertinoThemeData_barBackgroundColor,
 );
-const _flaxBinding2296 = FlaxGetter.plain(
+const _flaxBinding2304 = FlaxGetter.plain(
   "scaffoldBackgroundColor",
   _flaxBinding31,
   _NoDefaultCupertinoThemeData_scaffoldBackgroundColor,
 );
-const _flaxBinding2297 = FlaxGetter.plain(
+const _flaxBinding2305 = FlaxGetter.plain(
   "selectionHandleColor",
   _flaxBinding31,
   _NoDefaultCupertinoThemeData_selectionHandleColor,
 );
-const _flaxBinding2298 = FlaxGetter.plain(
+const _flaxBinding2306 = FlaxGetter.plain(
   "applyThemeToAll",
   flaxNullableBoolType,
   _NoDefaultCupertinoThemeData_applyThemeToAll,
 );
-const _flaxBinding2299 = FlaxInstanceMethod.shared(
+const _flaxBinding2307 = FlaxInstanceMethod.shared(
   _flaxBinding105,
   _NoDefaultCupertinoThemeData_resolveFrom,
 );
-const _flaxBinding2300 = FlaxInstanceMethod.plain(
-  _flaxBinding2129,
+const _flaxBinding2308 = FlaxInstanceMethod.plain(
+  _flaxBinding2137,
   _flaxBinding92,
   _NoDefaultCupertinoThemeData_copyWith,
 );
-const _flaxBinding2301 = FlaxProxyMember(
+const _flaxBinding2309 = FlaxProxyMember(
   "resolveFrom",
   0,
   _flaxBinding105,
   hasSuper: true,
 );
-const _flaxBinding2302 = FlaxCallbackBinding.signature(
+const _flaxBinding2310 = FlaxCallbackBinding.signature(
   [
     FlaxCallbackParameter.plain(
       "brightness",
@@ -52941,81 +53115,81 @@ const _flaxBinding2302 = FlaxCallbackBinding.signature(
   _flaxBinding92,
   id: "callback:<>(n:o:brightness:enum?:flax.core/sdk_dart_ui#type:Brightness,n:o:primaryColor:object?:flax.core/flutter#type:Color,n:o:primaryContrastingColor:object?:flax.core/flutter#type:Color,n:o:textTheme:object?:flax.cupertino/cupertino#type:CupertinoTextThemeData,n:o:barBackgroundColor:object?:flax.core/flutter#type:Color,n:o:scaffoldBackgroundColor:object?:flax.core/flutter#type:Color,n:o:selectionHandleColor:object?:flax.core/flutter#type:Color,n:o:applyThemeToAll:bool?:)->object:flax.cupertino/cupertino#type:NoDefaultCupertinoThemeData",
 );
-const _flaxBinding2303 = FlaxProxyMember(
+const _flaxBinding2311 = FlaxProxyMember(
   "copyWith",
   0,
-  _flaxBinding2302,
+  _flaxBinding2310,
   hasSuper: true,
 );
-const _flaxBinding2304 = FlaxProxyMember(
+const _flaxBinding2312 = FlaxProxyMember(
   "primaryColor",
   1,
   _flaxBinding32,
   hasSuper: true,
 );
-const _flaxBinding2305 = FlaxProxyMember(
+const _flaxBinding2313 = FlaxProxyMember(
   "primaryContrastingColor",
   1,
   _flaxBinding32,
   hasSuper: true,
 );
-const _flaxBinding2306 = FlaxProxyMember(
+const _flaxBinding2314 = FlaxProxyMember(
   "textTheme",
   1,
   _flaxBinding107,
   hasSuper: true,
 );
-const _flaxBinding2307 = FlaxProxyMember(
+const _flaxBinding2315 = FlaxProxyMember(
   "barBackgroundColor",
   1,
   _flaxBinding32,
   hasSuper: true,
 );
-const _flaxBinding2308 = FlaxProxyMember(
+const _flaxBinding2316 = FlaxProxyMember(
   "scaffoldBackgroundColor",
   1,
   _flaxBinding32,
   hasSuper: true,
 );
-const _flaxBinding2309 = FlaxProxyMember(
+const _flaxBinding2317 = FlaxProxyMember(
   "selectionHandleColor",
   1,
   _flaxBinding32,
   hasSuper: true,
 );
-const _flaxBinding2310 = FlaxProxyMember(
+const _flaxBinding2318 = FlaxProxyMember(
   "applyThemeToAll",
   1,
   flaxNullableBoolCall,
   hasSuper: true,
 );
-const _flaxBinding2311 = FlaxObjectBinding(
+const _flaxBinding2319 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:NoDefaultCupertinoThemeData",
   [
-    _flaxBinding2119,
-    _flaxBinding2292,
-    _flaxBinding2293,
-    _flaxBinding2294,
-    _flaxBinding2295,
-    _flaxBinding2296,
-    _flaxBinding2297,
-    _flaxBinding2298,
+    _flaxBinding2127,
+    _flaxBinding2300,
+    _flaxBinding2301,
+    _flaxBinding2302,
+    _flaxBinding2303,
+    _flaxBinding2304,
+    _flaxBinding2305,
+    _flaxBinding2306,
   ],
   {
-    "noDefault": _flaxBinding2127,
-    "resolveFrom": _flaxBinding2299,
-    "copyWith": _flaxBinding2300,
-    "@super:noDefault": _flaxBinding2134,
+    "noDefault": _flaxBinding2135,
+    "resolveFrom": _flaxBinding2307,
+    "copyWith": _flaxBinding2308,
+    "@super:noDefault": _flaxBinding2142,
     "@super:resolveFrom": FlaxInstanceMethod.shared(
       _flaxBinding105,
       _NoDefaultCupertinoThemeData_super_resolveFrom,
     ),
     "@super:copyWith": FlaxInstanceMethod.plain(
-      _flaxBinding2129,
+      _flaxBinding2137,
       _flaxBinding92,
       _NoDefaultCupertinoThemeData_super_copyWith,
     ),
-    "@super:get:brightness": _flaxBinding2135,
+    "@super:get:brightness": _flaxBinding2143,
     "@super:get:primaryColor": FlaxInstanceMethod.shared(
       _flaxBinding32,
       _NoDefaultCupertinoThemeData_super_get_primaryColor,
@@ -53045,143 +53219,143 @@ const _flaxBinding2311 = FlaxObjectBinding(
       _NoDefaultCupertinoThemeData_super_get_applyThemeToAll,
     ),
   },
-  constructors: {"": _flaxBinding2136, "@implementation": _flaxBinding2136},
+  constructors: {"": _flaxBinding2144, "@implementation": _flaxBinding2144},
   create: _createNoDefaultCupertinoThemeData,
   matches: _isNoDefaultCupertinoThemeData,
   setters: [],
   supertypes: ["dart:core::Object"],
   proxy: FlaxProxyBinding([
-    _flaxBinding2138,
-    _flaxBinding2301,
-    _flaxBinding2303,
-    _flaxBinding2149,
-    _flaxBinding2304,
-    _flaxBinding2305,
-    _flaxBinding2306,
-    _flaxBinding2307,
-    _flaxBinding2308,
+    _flaxBinding2146,
     _flaxBinding2309,
-    _flaxBinding2310,
+    _flaxBinding2311,
+    _flaxBinding2157,
+    _flaxBinding2312,
+    _flaxBinding2313,
+    _flaxBinding2314,
+    _flaxBinding2315,
+    _flaxBinding2316,
+    _flaxBinding2317,
+    _flaxBinding2318,
   ]),
 );
-const _flaxBinding2312 = FlaxGetter.plain(
+const _flaxBinding2320 = FlaxGetter.plain(
   "value",
   _flaxBinding114,
   _RestorableCupertinoTabController_value,
 );
-const _flaxBinding2313 = FlaxGetter.plain(
+const _flaxBinding2321 = FlaxGetter.plain(
   "enabled",
   flaxBoolType,
   _RestorableCupertinoTabController_enabled,
 );
-const _flaxBinding2314 = FlaxGetter.plain(
+const _flaxBinding2322 = FlaxGetter.plain(
   "state",
   _flaxBinding118,
   _RestorableCupertinoTabController_state,
 );
-const _flaxBinding2315 = FlaxGetter.plain(
+const _flaxBinding2323 = FlaxGetter.plain(
   "isRegistered",
   flaxBoolType,
   _RestorableCupertinoTabController_isRegistered,
 );
-const _flaxBinding2316 = FlaxInstanceMethod.shared(
+const _flaxBinding2324 = FlaxInstanceMethod.shared(
   _flaxBinding115,
   _RestorableCupertinoTabController_initWithValue,
 );
-const _flaxBinding2317 = FlaxInstanceMethod.shared(
+const _flaxBinding2325 = FlaxInstanceMethod.shared(
   flaxVoidCall,
   _RestorableCupertinoTabController_dispose,
 );
-const _flaxBinding2318 = FlaxInstanceMethod.shared(
+const _flaxBinding2326 = FlaxInstanceMethod.shared(
   _flaxBinding116,
   _RestorableCupertinoTabController_createDefaultValue,
 );
-const _flaxBinding2319 = FlaxInstanceMethod.shared(
+const _flaxBinding2327 = FlaxInstanceMethod.shared(
   _flaxBinding117,
   _RestorableCupertinoTabController_fromPrimitives,
 );
-const _flaxBinding2320 = FlaxInstanceMethod.shared(
+const _flaxBinding2328 = FlaxInstanceMethod.shared(
   flaxNullableAnyCall,
   _RestorableCupertinoTabController_toPrimitives,
 );
-const _flaxBinding2321 = FlaxInstanceMethod.shared(
+const _flaxBinding2329 = FlaxInstanceMethod.shared(
   _flaxBinding86,
   _RestorableCupertinoTabController_addListener,
 );
-const _flaxBinding2322 = FlaxInstanceMethod.shared(
+const _flaxBinding2330 = FlaxInstanceMethod.shared(
   _flaxBinding86,
   _RestorableCupertinoTabController_removeListener,
 );
-const _flaxBinding2323 = FlaxProxyMember(
+const _flaxBinding2331 = FlaxProxyMember(
   "initWithValue",
   0,
   _flaxBinding115,
   hasSuper: true,
 );
-const _flaxBinding2324 = FlaxProxyMember(
+const _flaxBinding2332 = FlaxProxyMember(
   "createDefaultValue",
   0,
   _flaxBinding116,
   hasSuper: true,
 );
-const _flaxBinding2325 = FlaxProxyMember(
+const _flaxBinding2333 = FlaxProxyMember(
   "fromPrimitives",
   0,
   _flaxBinding117,
   hasSuper: true,
 );
-const _flaxBinding2326 = FlaxProxyMember(
+const _flaxBinding2334 = FlaxProxyMember(
   "toPrimitives",
   0,
   flaxNullableAnyCall,
   hasSuper: true,
 );
-const _flaxBinding2327 = FlaxProxyMember(
+const _flaxBinding2335 = FlaxProxyMember(
   "value",
   1,
   _flaxBinding116,
   hasSuper: true,
 );
-const _flaxBinding2328 = FlaxProxyMember(
+const _flaxBinding2336 = FlaxProxyMember(
   "enabled",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding2329 = FlaxProxyMember(
+const _flaxBinding2337 = FlaxProxyMember(
   "state",
   1,
   _flaxBinding119,
   hasSuper: true,
 );
-const _flaxBinding2330 = FlaxProxyMember(
+const _flaxBinding2338 = FlaxProxyMember(
   "isRegistered",
   1,
   flaxBoolCall,
   hasSuper: true,
 );
-const _flaxBinding2331 = FlaxObjectBinding(
+const _flaxBinding2339 = FlaxObjectBinding(
   "flax.cupertino/cupertino#type:RestorableCupertinoTabController",
   [
-    _flaxBinding2312,
-    _flaxBinding2313,
-    _flaxBinding2314,
-    _flaxBinding2315,
-    _flaxBinding1820,
+    _flaxBinding2320,
+    _flaxBinding2321,
+    _flaxBinding2322,
+    _flaxBinding2323,
+    _flaxBinding1828,
   ],
   {
-    "initWithValue": _flaxBinding2316,
-    "dispose": _flaxBinding2317,
-    "createDefaultValue": _flaxBinding2318,
-    "fromPrimitives": _flaxBinding2319,
-    "toPrimitives": _flaxBinding2320,
-    "addListener": _flaxBinding2321,
-    "removeListener": _flaxBinding2322,
+    "initWithValue": _flaxBinding2324,
+    "dispose": _flaxBinding2325,
+    "createDefaultValue": _flaxBinding2326,
+    "fromPrimitives": _flaxBinding2327,
+    "toPrimitives": _flaxBinding2328,
+    "addListener": _flaxBinding2329,
+    "removeListener": _flaxBinding2330,
     "@super:initWithValue": FlaxInstanceMethod.shared(
       _flaxBinding115,
       _RestorableCupertinoTabController_super_initWithValue,
     ),
-    "@super:dispose": _flaxBinding1828,
+    "@super:dispose": _flaxBinding1836,
     "@super:createDefaultValue": FlaxInstanceMethod.shared(
       _flaxBinding116,
       _RestorableCupertinoTabController_super_createDefaultValue,
@@ -53194,8 +53368,8 @@ const _flaxBinding2331 = FlaxObjectBinding(
       flaxNullableAnyCall,
       _RestorableCupertinoTabController_super_toPrimitives,
     ),
-    "@super:addListener": _flaxBinding1826,
-    "@super:removeListener": _flaxBinding1827,
+    "@super:addListener": _flaxBinding1834,
+    "@super:removeListener": _flaxBinding1835,
     "@super:get:value": FlaxInstanceMethod.shared(
       _flaxBinding116,
       _RestorableCupertinoTabController_super_get_value,
@@ -53212,9 +53386,9 @@ const _flaxBinding2331 = FlaxObjectBinding(
       flaxBoolCall,
       _RestorableCupertinoTabController_super_get_isRegistered,
     ),
-    "@super:get:hasListeners": _flaxBinding1829,
+    "@super:get:hasListeners": _flaxBinding1837,
   },
-  constructors: {"": _flaxBinding1830, "@implementation": _flaxBinding1830},
+  constructors: {"": _flaxBinding1838, "@implementation": _flaxBinding1838},
   create: _createRestorableCupertinoTabController,
   matches: _isRestorableCupertinoTabController,
   setters: [],
@@ -53229,25 +53403,25 @@ const _flaxBinding2331 = FlaxObjectBinding(
   disposeMethod: "dispose",
   listenerPairs: {"addListener": "removeListener"},
   proxy: FlaxProxyBinding([
-    _flaxBinding2323,
-    _flaxBinding1833,
-    _flaxBinding2324,
-    _flaxBinding2325,
-    _flaxBinding2326,
-    _flaxBinding1831,
-    _flaxBinding1832,
-    _flaxBinding2327,
-    _flaxBinding2328,
-    _flaxBinding2329,
-    _flaxBinding2330,
-    _flaxBinding1835,
+    _flaxBinding2331,
+    _flaxBinding1841,
+    _flaxBinding2332,
+    _flaxBinding2333,
+    _flaxBinding2334,
+    _flaxBinding1839,
+    _flaxBinding1840,
+    _flaxBinding2335,
+    _flaxBinding2336,
+    _flaxBinding2337,
+    _flaxBinding2338,
+    _flaxBinding1843,
   ]),
 );
-const _flaxBinding2332 = FlaxTypeRef(
+const _flaxBinding2340 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:TextSelectionControls",
 );
-const _flaxBinding2333 = FlaxTypeRef(
+const _flaxBinding2341 = FlaxTypeRef(
   "map",
   item: flaxDoubleType,
   key: _flaxBinding266,
@@ -53257,9 +53431,9 @@ const _flaxBinding2333 = FlaxTypeRef(
     _collection41Matches,
   ),
 );
-const _flaxBinding2334 = FlaxTypeRef(
+const _flaxBinding2342 = FlaxTypeRef(
   "map",
-  item: _flaxBinding692,
+  item: _flaxBinding696,
   key: _flaxBinding266,
   collection: FlaxCollectionBinding(
     "map:[object:flax.core/flutter#type:EdgeInsetsGeometry][enum:flax.cupertino/cupertino#type:CupertinoButtonSize]",
@@ -53267,9 +53441,9 @@ const _flaxBinding2334 = FlaxTypeRef(
     _collection42Matches,
   ),
 );
-const _flaxBinding2335 = FlaxTypeRef(
+const _flaxBinding2343 = FlaxTypeRef(
   "map",
-  item: _flaxBinding920,
+  item: _flaxBinding924,
   key: _flaxBinding266,
   collection: FlaxCollectionBinding(
     "map:[object:flax.core/flutter#type:BorderRadius][enum:flax.cupertino/cupertino#type:CupertinoButtonSize]",
@@ -53277,33 +53451,33 @@ const _flaxBinding2335 = FlaxTypeRef(
     _collection43Matches,
   ),
 );
-const _flaxBinding2336 = FlaxTypeRef(
+const _flaxBinding2344 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_foundation#type:DiagnosticsTreeStyle",
 );
-const _flaxBinding2337 = FlaxTypeRef(
+const _flaxBinding2345 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_foundation#type:DiagnosticsProperty",
   dartType: FlaxDartTypes.typeOf<api3.DiagnosticsProperty<api1.Color>>,
 );
-const _flaxBinding2338 = FlaxTypeRef(
+const _flaxBinding2346 = FlaxTypeRef(
   "future",
   item: flaxNullableAnyType,
   future: FlaxFutureBinding("any?:", _future1Adapt),
 );
-const _flaxBinding2339 = FlaxTypeRef(
+const _flaxBinding2347 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:HeroController",
 );
-const _flaxBinding2340 = FlaxTypeRef(
+const _flaxBinding2348 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:IconData",
 );
-const _flaxBinding2341 = FlaxTypeRef(
+const _flaxBinding2349 = FlaxTypeRef(
   "object",
   id: "flax.cupertino/cupertino#type:CupertinoLocalizations",
 );
-const _flaxBinding2342 = FlaxTypeRef(
+const _flaxBinding2350 = FlaxTypeRef(
   "object",
   id: "flax.core/flutter#type:WidgetStateProperty",
   dartType:
@@ -53311,39 +53485,39 @@ const _flaxBinding2342 = FlaxTypeRef(
   deferredFactories: {
     "resolveWith": FlaxDeferredFactoryBinding(
       "object:flax.core/flutter#type:WidgetStateProperty<Object?><object:flax.core/flutter#type:BoxDecoration>",
-      [FlaxParameter.required("callback", _flaxBinding990)],
+      [FlaxParameter.required("callback", _flaxBinding994)],
       _deferred1,
     ),
   },
 );
-const _flaxBinding2343 = FlaxTypeRef(
+const _flaxBinding2351 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:SpellCheckConfiguration",
 );
-const _flaxBinding2344 = FlaxTypeRef(
+const _flaxBinding2352 = FlaxTypeRef(
   "enum",
   id: "flax.core/sdk_dart_ui#type:Brightness",
 );
-const _flaxBinding2345 = FlaxTypeRef(
+const _flaxBinding2353 = FlaxTypeRef(
   "enum",
   id: "flax.cupertino/cupertino#type:CupertinoUserInterfaceLevelData",
   nullable: true,
 );
-const _flaxBinding2346 = FlaxTypeRef(
+const _flaxBinding2354 = FlaxTypeRef(
   "future",
-  item: _flaxBinding2341,
+  item: _flaxBinding2349,
   future: FlaxFutureBinding(
     "object:flax.cupertino/cupertino#type:CupertinoLocalizations",
     _future4Adapt,
   ),
 );
-const _flaxBinding2347 = FlaxTypeRef(
+const _flaxBinding2355 = FlaxTypeRef(
   "object",
   id: "flax.core/sdk_widgets#type:LocalizationsDelegate",
   dartType: FlaxDartTypes
       .typeOf<api10.LocalizationsDelegate<api.CupertinoLocalizations>>,
 );
-const _flaxBinding2348 = FlaxTypeRef(
+const _flaxBinding2356 = FlaxTypeRef(
   "list",
   item: _flaxBinding246,
   collection: FlaxCollectionBinding(
@@ -53351,24 +53525,24 @@ const _flaxBinding2348 = FlaxTypeRef(
     _collection40Create,
     _collection40Matches,
   ),
-  iterable: _flaxBinding2180,
+  iterable: _flaxBinding2188,
 );
-const _flaxBinding2349 = FlaxInstanceMethod.plain(
+const _flaxBinding2357 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   flaxStringType,
   _flaxMembers2
       .flaxMemberflax_2e_core_2f_flutter_23_type_3a_RouteSettings_7c_call_3a_toString,
 );
-const _flaxBinding2350 = FlaxInstanceMethod.plain(
+const _flaxBinding2358 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   flaxStringType,
   _flaxMembers1
       .flaxMemberflax_2e_core_2f_sdk_5f_foundation_23_type_3a_Diagnosticable_7c_call_3a_toStringShort,
 );
-const _flaxBinding2351 = <FlaxParameter>[
+const _flaxBinding2359 = <FlaxParameter>[
   FlaxParameter.required("properties", _flaxBinding20),
 ];
-const _flaxBinding2352 = FlaxInstanceMethod.plain(
+const _flaxBinding2360 = FlaxInstanceMethod.plain(
   _flaxBinding132,
   _flaxBinding110,
   _flaxMembers1

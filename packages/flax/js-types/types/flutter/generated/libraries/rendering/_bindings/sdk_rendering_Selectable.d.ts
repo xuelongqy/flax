@@ -28,9 +28,9 @@ export interface Selectable extends Omit<upstream0.SelectionHandler, _flaxOwnMem
 }>, Readonly<{
     "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream2.SelectionGeometry];
+    "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream2.SelectionGeometry];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __Selectable: unique symbol;
     readonly [_flaxDartTypeValue]: Selectable;
@@ -64,5 +64,5 @@ export interface Selectable extends Omit<upstream0.SelectionHandler, _flaxOwnMem
     dispose(): void;
 }
 export declare const Selectable: object & _FlaxInstanceType<Selectable> & _FlaxDartType<Selectable, readonly ["class", "flax.core/sdk_rendering#type:Selectable", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "contentLength" | "value" | "size" | "boundingBoxes" | "pushHandleLayers" | "getSelectedContent" | "getSelection" | "dispatchSelectionEvent" | "addListener" | "removeListener" | "getTransformTo" | "dispose" | "__flaxBound:package:flutter/src/rendering/selection.dart::Selectable" | "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "contentLength" | "value" | "size" | "boundingBoxes" | "pushHandleLayers" | "getSelectedContent" | "getSelection" | "dispatchSelectionEvent" | "addListener" | "removeListener" | "getTransformTo" | "dispose" | "__flaxBound:package:flutter/src/rendering/selection.dart::Selectable" | "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler" | "__flaxBound:package:listen/src/listen.dart::ValueListenable" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 export {};

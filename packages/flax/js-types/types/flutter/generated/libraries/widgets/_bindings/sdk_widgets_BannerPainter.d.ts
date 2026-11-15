@@ -25,7 +25,7 @@ export interface BannerPainter extends Omit<upstream0.CustomPainter, _flaxOwnMem
 }>, Readonly<{
     "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __BannerPainter: unique symbol;
     readonly [_flaxDartTypeValue]: BannerPainter;
@@ -53,14 +53,14 @@ export interface BannerPainter extends Omit<upstream0.CustomPainter, _flaxOwnMem
     shouldRebuildSemantics(oldDelegate: Readonly<{
         "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): boolean;
     shouldRepaint(oldDelegate: Readonly<{
         "__flaxBound:package:flutter/src/widgets/banner.dart::BannerPainter": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): boolean;
     hitTest(position: Readonly<{
         "__flaxBound:dart:ui::Offset": readonly [];
@@ -103,14 +103,14 @@ export interface _BannerPainterNative extends BannerPainter {
     shouldRebuildSemantics(oldDelegate: Readonly<{
         "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): boolean;
     shouldRepaint(oldDelegate: Readonly<{
         "__flaxBound:package:flutter/src/widgets/banner.dart::BannerPainter": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): boolean;
     hitTest(position: Readonly<{
         "__flaxBound:dart:ui::Offset": readonly [];
@@ -197,5 +197,5 @@ declare const _BannerPainterBinding: typeof _BannerPainterFactory & (new (option
     }>) | undefined;
 }) => _BannerPainterNative);
 export declare const BannerPainter: typeof _BannerPainterBinding & _FlaxInstanceType<BannerPainter> & _FlaxDartType<BannerPainter, readonly ["class", "flax.core/sdk_widgets#type:BannerPainter", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "semanticsBuilder" | "message" | "textDirection" | "location" | "layoutDirection" | "color" | "textStyle" | "shadow" | "addListener" | "removeListener" | "paint" | "shouldRebuildSemantics" | "shouldRepaint" | "hitTest" | "toString" | "dispose" | "__flaxBound:package:flutter/src/widgets/banner.dart::BannerPainter" | "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "semanticsBuilder" | "message" | "textDirection" | "location" | "layoutDirection" | "color" | "textStyle" | "shadow" | "addListener" | "removeListener" | "paint" | "shouldRebuildSemantics" | "shouldRepaint" | "hitTest" | "toString" | "dispose" | "__flaxBound:package:flutter/src/widgets/banner.dart::BannerPainter" | "__flaxBound:package:flutter/src/rendering/custom_paint.dart::CustomPainter" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 export {};

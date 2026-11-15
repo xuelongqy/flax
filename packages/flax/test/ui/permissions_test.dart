@@ -571,8 +571,8 @@ globalThis.mapActions = [
             );
           });
           tester.binding.addPostFrameCallback((_) {
-            expect(backendObserved, isTrue);
-            expect(
+            expectSync(backendObserved, isTrue);
+            expectSync(
               (runtime.getGlobal('failureDelivered') as FlaxJsBoolean).value,
               isFalse,
             );
@@ -649,8 +649,8 @@ globalThis.mapActions = [
             );
           });
           tester.binding.addPostFrameCallback((_) {
-            expect(backendObserved, isTrue);
-            expect(
+            expectSync(backendObserved, isTrue);
+            expectSync(
               (runtime.getGlobal('failureDelivered') as FlaxJsBoolean).value,
               isFalse,
             );
@@ -821,7 +821,7 @@ globalThis.mapActions = [
             );
           });
           tester.binding.addPostFrameCallback((_) {
-            expect(document.reads, greaterThan(0));
+            expectSync(document.reads, greaterThan(0));
             revoked = fixture.manager.revoke(
               fixture.application,
               'flax.documents.open',
@@ -895,8 +895,8 @@ globalThis.mapActions = [
               }
             });
             tester.binding.addPostFrameCallback((_) {
-              expect(observed, isTrue);
-              expect(
+              expectSync(observed, isTrue);
+              expectSync(
                 (runtime.getGlobal('pickerDelivered') as FlaxJsBoolean).value,
                 isFalse,
               );

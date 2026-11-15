@@ -39,9 +39,9 @@ export interface FocusManager extends Omit<upstream0.DiagnosticableTreeMixin, _f
 }>, Readonly<{
     "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __FocusManager: unique symbol;
     readonly [_flaxDartTypeValue]: FocusManager;
@@ -142,5 +142,5 @@ export declare namespace _FocusManagerFactory {
     const instance: FocusManager;
 }
 export declare const FocusManager: typeof _FocusManagerBinding & _FlaxInstanceType<FocusManager> & _FlaxDartType<FocusManager, readonly ["class", "flax.core/sdk_widgets#type:FocusManager", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "highlightStrategy" | "highlightMode" | "rootScope" | "primaryFocus" | "toString" | "toStringShallow" | "toStringDeep" | "toStringShort" | "toDiagnosticsNode" | "debugDescribeChildren" | "debugFillProperties" | "addListener" | "removeListener" | "dispose" | "registerGlobalHandlers" | "addHighlightModeListener" | "removeHighlightModeListener" | "addEarlyKeyEventHandler" | "removeEarlyKeyEventHandler" | "addLateKeyEventHandler" | "removeLateKeyEventHandler" | "applyFocusChangesIfNeeded" | "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusManager" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "highlightStrategy" | "highlightMode" | "rootScope" | "primaryFocus" | "toString" | "toStringShallow" | "toStringDeep" | "toStringShort" | "toDiagnosticsNode" | "debugDescribeChildren" | "debugFillProperties" | "addListener" | "removeListener" | "dispose" | "registerGlobalHandlers" | "addHighlightModeListener" | "removeHighlightModeListener" | "addEarlyKeyEventHandler" | "removeEarlyKeyEventHandler" | "addLateKeyEventHandler" | "removeLateKeyEventHandler" | "applyFocusChangesIfNeeded" | "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusManager" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTreeMixin" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 export {};

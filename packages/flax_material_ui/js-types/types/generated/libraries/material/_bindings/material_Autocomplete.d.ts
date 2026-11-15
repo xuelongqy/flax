@@ -41,13 +41,13 @@ export interface Autocomplete<T extends {} = {}> extends _FlaxDartWidget, Omit<u
     readonly fieldViewBuilder: ((context: upstream3.BuildContext, textEditingController: Readonly<{
         "__flaxBound:package:flutter/src/widgets/editable_text.dart::TextEditingController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream2.TextEditingValue];
+        "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream2.TextEditingValue];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream2.TextEditingValue];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream2.TextEditingValue];
     }>, focusNode: Readonly<{
         "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
     }> & Readonly<{
@@ -57,9 +57,9 @@ export interface Autocomplete<T extends {} = {}> extends _FlaxDartWidget, Omit<u
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>, onFieldSubmitted: (() => void)) => Widget);
     readonly focusNode: upstream5.FocusNode | null;
     readonly onSelected: ((option: (T | DartInput<T>)) => void) | null;
@@ -110,9 +110,9 @@ export declare function _AutocompleteFactory<T extends {} = {}>(options: {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     onSelected?: ((option: _FlaxDartOutput<T>) => void) | null | undefined;
     optionsMaxHeight?: number | undefined;
@@ -121,13 +121,13 @@ export declare function _AutocompleteFactory<T extends {} = {}>(options: {
     textEditingController?: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/editable_text.dart::TextEditingController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream2.TextEditingValue];
+        "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream2.TextEditingValue];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream2.TextEditingValue];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream2.TextEditingValue];
     }>) | null | undefined;
     initialValue?: Readonly<{
         "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [];
@@ -149,9 +149,9 @@ export declare function _AutocompleteFactory(options: {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     onSelected?: ((option: {}) => void) | null | undefined;
     optionsMaxHeight?: number | undefined;
@@ -160,13 +160,13 @@ export declare function _AutocompleteFactory(options: {
     textEditingController?: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/editable_text.dart::TextEditingController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream2.TextEditingValue];
+        "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream2.TextEditingValue];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream2.TextEditingValue];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream2.TextEditingValue];
     }>) | null | undefined;
     initialValue?: Readonly<{
         "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [];
@@ -192,9 +192,9 @@ interface _FlaxSignature0 extends _FlaxDartSignature {
             }> & Readonly<{
                 "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+                "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+                "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
             }>) | null | undefined;
             onSelected?: ((option: _Selected0) => void) | null | undefined;
             optionsMaxHeight?: number | undefined;
@@ -203,13 +203,13 @@ interface _FlaxSignature0 extends _FlaxDartSignature {
             textEditingController?: (Readonly<{
                 "__flaxBound:package:flutter/src/widgets/editable_text.dart::TextEditingController": readonly [];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream2.TextEditingValue];
+                "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream2.TextEditingValue];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+                "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+                "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream2.TextEditingValue];
+                "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream2.TextEditingValue];
             }>) | null | undefined;
             initialValue?: Readonly<{
                 "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [];

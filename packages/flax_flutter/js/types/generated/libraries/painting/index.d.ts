@@ -70,6 +70,7 @@ export { FilterQuality } from "@flax/dart/ui/_bindings/sdk_dart_ui_FilterQuality
 export { FontFeature } from "@flax/dart/ui/_bindings/sdk_dart_ui_FontFeature";
 export { FontVariation } from "@flax/dart/ui/_bindings/sdk_dart_ui_FontVariation";
 export { GlyphInfo } from "@flax/dart/ui/_bindings/sdk_dart_ui_GlyphInfo";
+export { Hyphens } from "@flax/dart/ui/_bindings/sdk_dart_ui_Hyphens";
 export { ImageShader } from "@flax/dart/ui/_bindings/sdk_dart_ui_ImageShader";
 export { LineMetrics } from "@flax/dart/ui/_bindings/sdk_dart_ui_LineMetrics";
 export { Locale } from "@flax/dart/ui/_bindings/sdk_dart_ui_Locale";

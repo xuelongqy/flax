@@ -617,6 +617,7 @@ export declare function _RenderRepaintBoundaryFactory(options?: {
 }): RenderRepaintBoundary;
 export interface _RenderRepaintBoundaryNative extends RenderRepaintBoundary {
     readonly [_flaxDartTypeValue]: _RenderRepaintBoundaryNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1081,7 +1082,6 @@ export interface _RenderRepaintBoundaryNative extends RenderRepaintBoundary {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream13.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

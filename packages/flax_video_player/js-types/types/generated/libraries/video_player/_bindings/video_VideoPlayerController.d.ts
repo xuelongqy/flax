@@ -31,13 +31,13 @@ import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDart
 export interface VideoPlayerController extends Omit<upstream0.ValueNotifier<upstream1.VideoPlayerValue>, _flaxOwnMembers0>, Omit<upstream2.ChangeNotifier, _flaxOwnMembers0 | keyof upstream0.ValueNotifier<upstream1.VideoPlayerValue>>, Omit<upstream3.Listenable, _flaxOwnMembers0 | keyof upstream0.ValueNotifier<upstream1.VideoPlayerValue> | keyof upstream2.ChangeNotifier>, Omit<upstream4.ValueListenable<upstream1.VideoPlayerValue>, _flaxOwnMembers0 | keyof upstream0.ValueNotifier<upstream1.VideoPlayerValue> | keyof upstream2.ChangeNotifier | keyof upstream3.Listenable>, Readonly<{
     "__flaxBound:package:video_player/video_player.dart::VideoPlayerController": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream1.VideoPlayerValue];
+    "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream1.VideoPlayerValue];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream1.VideoPlayerValue];
+    "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream1.VideoPlayerValue];
 }> {
     readonly __VideoPlayerController: unique symbol;
     readonly [_flaxDartTypeValue]: VideoPlayerController;
@@ -161,5 +161,5 @@ export declare namespace _VideoPlayerControllerFactory {
     const kUninitializedPlayerId: number;
 }
 export declare const VideoPlayerController: typeof _VideoPlayerControllerFactory & _FlaxInstanceType<VideoPlayerController> & _FlaxDartType<VideoPlayerController, readonly ["class", "flax.video/video#type:VideoPlayerController", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "value" | "dataSource" | "httpHeaders" | "formatHint" | "dataSourceType" | "videoPlayerOptions" | "package" | "viewType" | "position" | "closedCaptionFile" | "addListener" | "removeListener" | "dispose" | "toString" | "initialize" | "play" | "setLooping" | "setPreventsDisplaySleepDuringVideoPlayback" | "pause" | "seekTo" | "setVolume" | "setPlaybackSpeed" | "setCaptionOffset" | "setClosedCaptionFile" | "getAudioTracks" | "selectAudioTrack" | "isAudioTrackSupportAvailable" | "getVideoTracks" | "selectVideoTrack" | "isVideoTrackSupportAvailable" | "__flaxBound:package:video_player/video_player.dart::VideoPlayerController" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "value" | "dataSource" | "httpHeaders" | "formatHint" | "dataSourceType" | "videoPlayerOptions" | "package" | "viewType" | "position" | "closedCaptionFile" | "addListener" | "removeListener" | "dispose" | "toString" | "initialize" | "play" | "setLooping" | "setPreventsDisplaySleepDuringVideoPlayback" | "pause" | "seekTo" | "setVolume" | "setPlaybackSpeed" | "setCaptionOffset" | "setClosedCaptionFile" | "getAudioTracks" | "selectAudioTrack" | "isAudioTrackSupportAvailable" | "getVideoTracks" | "selectVideoTrack" | "isVideoTrackSupportAvailable" | "__flaxBound:package:video_player/video_player.dart::VideoPlayerController" | "__flaxBound:package:listen/src/listen.dart::ValueNotifier" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable" | "__flaxBound:package:listen/src/listen.dart::ValueListenable";
 export {};

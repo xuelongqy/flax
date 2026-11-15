@@ -86,9 +86,9 @@ export interface BoxScrollView extends _FlaxDartWidget, Omit<upstream0.ScrollVie
     buildViewport(context: upstream14.BuildContext, offset: Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>, axisDirection: upstream16.AxisDirection, slivers: DartListInput<Widget, Widget>): Widget;
     build(context: upstream14.BuildContext): Widget;
     createElement(): upstream18.StatelessElement;

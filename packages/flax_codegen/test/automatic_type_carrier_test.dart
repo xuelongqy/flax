@@ -4,6 +4,8 @@ import 'package:flax_codegen/flax_codegen.dart';
 import 'package:path/path.dart' as p;
 import 'package:test/test.dart';
 
+import 'support/public_carriers.dart';
+
 void main() {
   late Directory root;
 
@@ -213,6 +215,54 @@ class ForeignType {}
       expect(module.publicLibraries, isEmpty);
     },
   );
+
+  test('carriers prefer active nearest exports but keep public declaration identity', () async {
+    for (final entry in publicCarrierLibraries.entries) {
+      final file = File(p.join(root.path, 'lib', entry.key));
+      file.parent.createSync(recursive: true);
+      file.writeAsStringSync(entry.value);
+    }
+    final parser = FlaxCodegenBindingParser(root.path);
+    addTearDown(parser.dispose);
+    final proposal = await parser.proposeLibrary(seed());
+    for (final name in ['CarrierType', 'NearType', 'Mode', 'Retired']) {
+      expect(
+        proposal.typeCarriers['package:carrier_pkg/src/types.dart::$name'],
+        'package:carrier_pkg/z_active.dart',
+        reason: name,
+      );
+    }
+    expect(
+      proposal.typeCarriers['package:carrier_pkg/src/types.dart::TiedType'],
+      'package:carrier_pkg/c_tie.dart',
+    );
+    expect(
+      proposal.typeCarriers['package:carrier_pkg/declared.dart::Declared'],
+      'package:carrier_pkg/declared.dart',
+    );
+    expect(
+      proposal.typeCarriers['package:carrier_pkg/other.dart::CarrierType'],
+      'package:carrier_pkg/other.dart',
+    );
+    final model = await parser.parse(
+      proposal.config,
+      automaticTypeCarriers: proposal.typeCarriers,
+    );
+    expect(model.classes.map((type) => type.name), ['Consumer']);
+    expect(
+      model.typeLibraries['CarrierType'],
+      'package:carrier_pkg/z_active.dart',
+    );
+    expect(
+      model.typeLibraries['NearType'],
+      'package:carrier_pkg/z_active.dart',
+    );
+    expect(model.typeLibraries['TiedType'], 'package:carrier_pkg/c_tie.dart');
+    expect(
+      model.typeLibraries['Declared'],
+      'package:carrier_pkg/declared.dart',
+    );
+  });
 
   test(
     'same-name distinct identities fail before typeLibraries collapse',

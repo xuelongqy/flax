@@ -130,13 +130,13 @@ export declare function _InteractiveViewerFactory(options: {
     transformationController?: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/interactive_viewer.dart::TransformationController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream19.Matrix4];
+        "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream19.Matrix4];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream19.Matrix4];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream19.Matrix4];
     }>) | null | undefined;
     alignment?: (Readonly<{
         "__flaxBound:package:flutter/src/painting/alignment.dart::Alignment": readonly [];
@@ -183,13 +183,13 @@ export declare namespace _InteractiveViewerFactory {
         transformationController?: (Readonly<{
             "__flaxBound:package:flutter/src/widgets/interactive_viewer.dart::TransformationController": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream19.Matrix4];
+            "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream19.Matrix4];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream19.Matrix4];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream19.Matrix4];
         }>) | null | undefined;
         alignment?: (Readonly<{
             "__flaxBound:package:flutter/src/painting/alignment.dart::Alignment": readonly [];

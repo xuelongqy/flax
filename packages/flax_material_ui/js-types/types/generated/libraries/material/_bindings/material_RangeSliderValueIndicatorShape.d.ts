@@ -52,9 +52,9 @@ export interface RangeSliderValueIndicatorShape {
         activationAnimation?: (Readonly<{
             "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
         }>) | null | undefined;
         textScaleFactor?: number | null | undefined;
         sizeWithOverflow?: (Readonly<{
@@ -87,16 +87,16 @@ export declare abstract class RangeSliderValueIndicatorShape extends _FlaxProxyB
         activationAnimation: Readonly<{
             "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
         }>;
         enableAnimation: Readonly<{
             "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
         }>;
         isDiscrete?: boolean | undefined;
         isOnTop?: boolean | undefined;

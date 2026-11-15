@@ -658,6 +658,7 @@ export declare function _RenderFollowerLayerFactory(options: {
 }): RenderFollowerLayer;
 export interface _RenderFollowerLayerNative extends RenderFollowerLayer {
     readonly [_flaxDartTypeValue]: _RenderFollowerLayerNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1122,7 +1123,6 @@ export interface _RenderFollowerLayerNative extends RenderFollowerLayer {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream16.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

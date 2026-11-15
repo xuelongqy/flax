@@ -16,13 +16,13 @@ import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartType
 export interface TransformationController extends Omit<upstream0.ValueNotifier<upstream1.Matrix4>, _flaxOwnMembers0>, Omit<upstream2.ChangeNotifier, _flaxOwnMembers0 | keyof upstream0.ValueNotifier<upstream1.Matrix4>>, Omit<upstream3.Listenable, _flaxOwnMembers0 | keyof upstream0.ValueNotifier<upstream1.Matrix4> | keyof upstream2.ChangeNotifier>, Omit<upstream4.ValueListenable<upstream1.Matrix4>, _flaxOwnMembers0 | keyof upstream0.ValueNotifier<upstream1.Matrix4> | keyof upstream2.ChangeNotifier | keyof upstream3.Listenable>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/interactive_viewer.dart::TransformationController": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream1.Matrix4];
+    "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream1.Matrix4];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream1.Matrix4];
+    "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream1.Matrix4];
 }> {
     readonly __TransformationController: unique symbol;
     readonly [_flaxDartTypeValue]: TransformationController;
@@ -78,5 +78,5 @@ declare const _TransformationControllerBinding: typeof _TransformationController
     "__flaxBound:package:vector_math/vector_math_64.dart::Matrix4": readonly [];
 }> | null) => _TransformationControllerNative);
 export declare const TransformationController: typeof _TransformationControllerBinding & _FlaxInstanceType<TransformationController> & _FlaxDartType<TransformationController, readonly ["class", "flax.core/sdk_widgets#type:TransformationController", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "hasListeners" | "toString" | "addListener" | "removeListener" | "dispose" | "toScene" | "__flaxBound:package:flutter/src/widgets/interactive_viewer.dart::TransformationController" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "hasListeners" | "toString" | "addListener" | "removeListener" | "dispose" | "toScene" | "__flaxBound:package:flutter/src/widgets/interactive_viewer.dart::TransformationController" | "__flaxBound:package:listen/src/listen.dart::ValueNotifier" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable" | "__flaxBound:package:listen/src/listen.dart::ValueListenable";
 export {};

@@ -80,6 +80,7 @@ export interface RenderProxySliver extends Omit<upstream0.RenderSliver, _flaxOwn
 }
 export interface RenderProxySliver {
     readonly [_flaxDartTypeValue]: RenderProxySliver;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -464,7 +465,6 @@ export interface RenderProxySliver {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream1.RenderObject | null;
     get owner(): upstream11.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

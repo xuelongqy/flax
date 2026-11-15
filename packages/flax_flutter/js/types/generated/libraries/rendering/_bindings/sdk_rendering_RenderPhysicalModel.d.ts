@@ -636,7 +636,7 @@ export interface RenderPhysicalModel extends Omit<upstream0.RenderProxyBox, _fla
     set clipper(value: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream9.RRect];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null);
     set clipBehavior(value: upstream11.Clip);
 }
@@ -671,6 +671,7 @@ export declare function _RenderPhysicalModelFactory(options: {
 }): RenderPhysicalModel;
 export interface _RenderPhysicalModelNative extends RenderPhysicalModel {
     readonly [_flaxDartTypeValue]: _RenderPhysicalModelNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1141,7 +1142,6 @@ export interface _RenderPhysicalModelNative extends RenderPhysicalModel {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream18.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;
@@ -1172,7 +1172,7 @@ export interface _RenderPhysicalModelNative extends RenderPhysicalModel {
     set clipper(value: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream9.RRect];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null);
     set clipBehavior(value: upstream11.Clip);
     set size(value: Readonly<{

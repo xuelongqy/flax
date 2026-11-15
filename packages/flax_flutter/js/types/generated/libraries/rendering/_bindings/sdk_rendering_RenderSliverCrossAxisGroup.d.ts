@@ -627,6 +627,7 @@ export interface RenderSliverCrossAxisGroup extends Omit<upstream0.RenderSliver,
 export declare function _RenderSliverCrossAxisGroupFactory(): RenderSliverCrossAxisGroup;
 export interface _RenderSliverCrossAxisGroupNative extends RenderSliverCrossAxisGroup {
     readonly [_flaxDartTypeValue]: _RenderSliverCrossAxisGroupNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1135,7 +1136,6 @@ export interface _RenderSliverCrossAxisGroupNative extends RenderSliverCrossAxis
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream1.RenderObject | null;
     get owner(): upstream12.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

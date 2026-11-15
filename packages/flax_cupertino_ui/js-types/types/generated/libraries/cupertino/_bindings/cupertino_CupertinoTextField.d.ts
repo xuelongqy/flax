@@ -251,13 +251,13 @@ export declare function _CupertinoTextFieldFactory(options?: {
     controller?: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/editable_text.dart::TextEditingController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream47.TextEditingValue];
+        "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream47.TextEditingValue];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream47.TextEditingValue];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream47.TextEditingValue];
     }>) | null | undefined;
     focusNode?: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
@@ -268,20 +268,20 @@ export declare function _CupertinoTextFieldFactory(options?: {
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     undoController?: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/undo_history.dart::UndoHistoryController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream48.UndoHistoryValue];
+        "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream48.UndoHistoryValue];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream48.UndoHistoryValue];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream48.UndoHistoryValue];
     }>) | null | undefined;
     decoration?: (Readonly<{
         "__flaxBound:package:flutter/src/painting/box_decoration.dart::BoxDecoration": readonly [];
@@ -379,9 +379,9 @@ export declare function _CupertinoTextFieldFactory(options?: {
     scrollController?: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     scrollPhysics?: Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [];
@@ -420,13 +420,13 @@ export declare namespace _CupertinoTextFieldFactory {
         controller?: (Readonly<{
             "__flaxBound:package:flutter/src/widgets/editable_text.dart::TextEditingController": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream47.TextEditingValue];
+            "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream47.TextEditingValue];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream47.TextEditingValue];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream47.TextEditingValue];
         }>) | null | undefined;
         focusNode?: (Readonly<{
             "__flaxBound:package:flutter/src/widgets/focus_manager.dart::FocusNode": readonly [];
@@ -437,20 +437,20 @@ export declare namespace _CupertinoTextFieldFactory {
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
         undoController?: (Readonly<{
             "__flaxBound:package:flutter/src/widgets/undo_history.dart::UndoHistoryController": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueNotifier": readonly [upstream48.UndoHistoryValue];
+            "__flaxBound:package:listen/src/listen.dart::ValueNotifier": readonly [upstream48.UndoHistoryValue];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream48.UndoHistoryValue];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream48.UndoHistoryValue];
         }>) | null | undefined;
         decoration?: (Readonly<{
             "__flaxBound:package:flutter/src/painting/box_decoration.dart::BoxDecoration": readonly [];
@@ -548,9 +548,9 @@ export declare namespace _CupertinoTextFieldFactory {
         scrollController?: (Readonly<{
             "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
         scrollPhysics?: Readonly<{
             "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [];

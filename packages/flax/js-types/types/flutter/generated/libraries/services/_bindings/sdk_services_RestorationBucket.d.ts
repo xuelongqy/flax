@@ -40,9 +40,9 @@ export declare namespace _RestorationBucketFactory {
         manager: Readonly<{
             "__flaxBound:package:flutter/src/services/restoration.dart::RestorationManager": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>;
         rawData: DartMapInput<unknown | null, unknown | null, unknown | null, unknown | null> | null;
     }): RestorationBucket;

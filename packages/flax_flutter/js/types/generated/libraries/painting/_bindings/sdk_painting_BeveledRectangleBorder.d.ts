@@ -14,6 +14,7 @@ import '@flax/dart/ui/_bindings/sdk_dart_ui_Path';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import type * as upstream7 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
+import '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
@@ -63,6 +64,15 @@ export interface BeveledRectangleBorder extends Omit<upstream0.OutlinedBorder, _
     }>, options?: {
         textDirection?: upstream7.TextDirection | null | undefined;
     }): upstream5.Path;
+    hitTest(rect: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, position: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, options?: {
+        textDirection?: upstream7.TextDirection | null | undefined;
+    }): boolean;
     paintInterior(canvas: Readonly<{
         "__flaxBound:dart:ui::Canvas": readonly [];
     }>, rect: Readonly<{
@@ -128,6 +138,15 @@ export interface _BeveledRectangleBorderNative extends BeveledRectangleBorder {
     }>, options?: {
         textDirection?: upstream7.TextDirection | null | undefined;
     }): upstream5.Path;
+    hitTest(rect: Readonly<{
+        "__flaxBound:dart:ui::Rect": readonly [];
+    }>, position: Readonly<{
+        "__flaxBound:dart:ui::Offset": readonly [];
+    }> & Readonly<{
+        "__flaxBound:dart:ui::OffsetBase": readonly [];
+    }>, options?: {
+        textDirection?: upstream7.TextDirection | null | undefined;
+    }): boolean;
     paintInterior(canvas: Readonly<{
         "__flaxBound:dart:ui::Canvas": readonly [];
     }>, rect: Readonly<{
@@ -191,5 +210,5 @@ declare const _BeveledRectangleBorderBinding: typeof _BeveledRectangleBorderFact
     }> | undefined;
 }) => _BeveledRectangleBorderNative);
 export declare const BeveledRectangleBorder: typeof _BeveledRectangleBorderBinding & _FlaxInstanceType<BeveledRectangleBorder> & _FlaxDartType<BeveledRectangleBorder, readonly ["class", "flax.core/sdk_painting#type:BeveledRectangleBorder", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "dimensions" | "side" | "preferPaintInterior" | "borderRadius" | "copyWith" | "scale" | "lerpFrom" | "lerpTo" | "add" | "getOuterPath" | "getInnerPath" | "paintInterior" | "paint" | "toString" | "operatorAdd" | "__flaxBound:package:flutter/src/painting/beveled_rectangle_border.dart::BeveledRectangleBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::OutlinedBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "dimensions" | "side" | "preferPaintInterior" | "borderRadius" | "copyWith" | "scale" | "lerpFrom" | "lerpTo" | "add" | "getOuterPath" | "getInnerPath" | "hitTest" | "paintInterior" | "paint" | "toString" | "operatorAdd" | "__flaxBound:package:flutter/src/painting/beveled_rectangle_border.dart::BeveledRectangleBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::OutlinedBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder";
 export {};

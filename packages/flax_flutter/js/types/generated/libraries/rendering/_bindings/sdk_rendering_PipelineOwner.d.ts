@@ -80,7 +80,7 @@ export interface PipelineOwner extends Omit<upstream0.DiagnosticableTreeMixin, _
     attach(manifold: Readonly<{
         "__flaxBound:package:flutter/src/rendering/object.dart::PipelineManifold": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): void;
     detach(): void;
     adoptChild(child: Readonly<{
@@ -158,7 +158,7 @@ export interface _PipelineOwnerNative extends PipelineOwner {
     attach(manifold: Readonly<{
         "__flaxBound:package:flutter/src/rendering/object.dart::PipelineManifold": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>): void;
     detach(): void;
     adoptChild(child: Readonly<{

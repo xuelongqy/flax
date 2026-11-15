@@ -88,6 +88,7 @@ export interface RenderDarwinPlatformView<T extends upstream0.DarwinPlatformView
 }
 export interface RenderDarwinPlatformView<T extends upstream0.DarwinPlatformViewController = upstream0.DarwinPlatformViewController> {
     readonly [_flaxDartTypeValue]: RenderDarwinPlatformView<T>;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature2<T>;
     };
@@ -533,7 +534,6 @@ export interface RenderDarwinPlatformView<T extends upstream0.DarwinPlatformView
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream16.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get debugDoingThisPaint(): boolean;

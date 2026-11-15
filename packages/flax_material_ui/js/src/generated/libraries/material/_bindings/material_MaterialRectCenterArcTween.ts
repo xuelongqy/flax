@@ -13,7 +13,7 @@ import type * as upstream4 from '@flax/material-ui/_bindings/material_MaterialPo
 import '@flax/material-ui/_bindings/material_MaterialPointArcTween';
 import type * as upstream5 from '@flax/flutter/animation/_bindings/sdk_animation_Animation';
 import '@flax/flutter/animation/_bindings/sdk_animation_Animation';
-import { _flaxMemberParameters179, _flaxMemberParameters216, _flaxMemberParameters217, _flaxMemberParameters218, _flaxMemberParameters4 } from "@flax/material-ui/_bindings/material.__module";
+import { _flaxMemberParameters181, _flaxMemberParameters219, _flaxMemberParameters220, _flaxMemberParameters221, _flaxMemberParameters4 } from "@flax/material-ui/_bindings/material.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, proxyFactory as _flaxProxyFactory, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/material-ui/_bindings/material.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -26,27 +26,27 @@ readonly centerArc: upstream4.MaterialPointArcTween | null;
 lerp(t: number): upstream2.Rect;
 transform(t: number): upstream2.Rect | null;
 toString(): string;
-evaluate(animation: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number] }>): upstream2.Rect | null;
-animate(parent: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number] }>): upstream5.Animation<upstream2.Rect | null>;
+evaluate(animation: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number] }>): upstream2.Rect | null;
+animate(parent: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number] }>): upstream5.Animation<upstream2.Rect | null>;
 chain(parent: Readonly<{ "__flaxBound:package:flutter/src/animation/tween.dart::Animatable": readonly [number] }>): upstream3.Animatable<upstream2.Rect | null>;
 set begin(value: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }> | null);
 set end(value: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }> | null);
 }
-defineObject("flax.material/material#type:MaterialRectCenterArcTween", ["begin","end","centerArc"], ["begin","end"], _flaxBindingMethods("flax.material/material#type:MaterialRectCenterArcTween", "object", {"lerp":_flaxMemberParameters179,"evaluate":_flaxMemberParameters216,"animate":_flaxMemberParameters217,"chain":_flaxMemberParameters217}, {}), [], undefined, "flax.core/sdk_animation#type:RectTween");
+defineObject("flax.material/material#type:MaterialRectCenterArcTween", ["begin","end","centerArc"], ["begin","end"], _flaxBindingMethods("flax.material/material#type:MaterialRectCenterArcTween", "object", {"lerp":_flaxMemberParameters181,"evaluate":_flaxMemberParameters219,"animate":_flaxMemberParameters220,"chain":_flaxMemberParameters220}, {}), [], undefined, "flax.core/sdk_animation#type:RectTween");
 export function _MaterialRectCenterArcTweenFactory(options: { begin?: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }> | null | undefined; end?: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }> | null | undefined } = {}): MaterialRectCenterArcTween {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.material/material#type:MaterialRectCenterArcTween", "", [{"name":"begin"},{"name":"end"}], [], options) as MaterialRectCenterArcTween;
 }
-const _MaterialRectCenterArcTweenProxy = {type: "flax.material/material#type:MaterialRectCenterArcTween", parameters: _flaxMemberParameters218, constructors: {"": _flaxMemberParameters218}, methods: {"lerp":_flaxMemberParameters179,"transform":_flaxMemberParameters179,"toString":_flaxMemberParameters4,"evaluate":_flaxMemberParameters216,"animate":_flaxMemberParameters217,"chain":_flaxMemberParameters217}, getters: ["centerArc","begin","end"], setters: ["begin","end"], contextMembers: [], superMembers: ["get:centerArc","get:begin","get:end","set:begin","set:end","lerp","transform","toString","evaluate","animate","chain"]} as const;
+const _MaterialRectCenterArcTweenProxy = {type: "flax.material/material#type:MaterialRectCenterArcTween", parameters: _flaxMemberParameters221, constructors: {"": _flaxMemberParameters221}, methods: {"lerp":_flaxMemberParameters181,"transform":_flaxMemberParameters181,"toString":_flaxMemberParameters4,"evaluate":_flaxMemberParameters219,"animate":_flaxMemberParameters220,"chain":_flaxMemberParameters220}, getters: ["centerArc","begin","end"], setters: ["begin","end"], contextMembers: [], superMembers: ["get:centerArc","get:begin","get:end","set:begin","set:end","lerp","transform","toString","evaluate","animate","chain"]} as const;
 export interface _MaterialRectCenterArcTweenNative extends MaterialRectCenterArcTween {
 readonly [_flaxDartTypeValue]: _MaterialRectCenterArcTweenNative;
 
 lerp(t: number): upstream2.Rect;
 transform(t: number): upstream2.Rect | null;
 toString(): string;
-evaluate(animation: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number] }>): upstream2.Rect | null;
-animate(parent: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number] }>): upstream5.Animation<upstream2.Rect | null>;
+evaluate(animation: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number] }>): upstream2.Rect | null;
+animate(parent: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number] }>): upstream5.Animation<upstream2.Rect | null>;
 chain(parent: Readonly<{ "__flaxBound:package:flutter/src/animation/tween.dart::Animatable": readonly [number] }>): upstream3.Animatable<upstream2.Rect | null>;
 get centerArc(): upstream4.MaterialPointArcTween | null;
 get begin(): upstream2.Rect | null;

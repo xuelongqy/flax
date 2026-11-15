@@ -14,9 +14,9 @@ import { type FlaxDartSignature as _FlaxDartSignature, flaxDartTypeKey as _flaxD
 export interface RestorableProperty<T extends unknown | null = unknown | null> extends Omit<upstream0.ChangeNotifier, _flaxOwnMembers0>, Omit<upstream1.Listenable, _flaxOwnMembers0 | keyof upstream0.ChangeNotifier>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/restoration.dart::RestorableProperty": readonly [T];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __RestorableProperty: unique symbol;
     readonly [_flaxDartTypeValue]: RestorableProperty<T>;
@@ -51,7 +51,7 @@ export declare namespace RestorableProperty {
         toPrimitives: (() => unknown | null);
     }): RestorableProperty<T>;
 }
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "enabled" | "state" | "isRegistered" | "addListener" | "removeListener" | "dispose" | "createDefaultValue" | "fromPrimitives" | "initWithValue" | "toPrimitives" | "__flaxBound:package:flutter/src/widgets/restoration.dart::RestorableProperty" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "enabled" | "state" | "isRegistered" | "addListener" | "removeListener" | "dispose" | "createDefaultValue" | "fromPrimitives" | "initWithValue" | "toPrimitives" | "__flaxBound:package:flutter/src/widgets/restoration.dart::RestorableProperty" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 interface _FlaxSignature1 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (abstract new () => RestorableProperty<_Selected0>) & {
         readonly prototype: RestorableProperty<_Selected0>;

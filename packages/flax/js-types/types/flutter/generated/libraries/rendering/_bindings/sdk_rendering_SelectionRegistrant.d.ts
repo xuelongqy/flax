@@ -34,9 +34,9 @@ export interface SelectionRegistrant extends Omit<upstream0.Selectable, _flaxOwn
 }>, Readonly<{
     "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream3.SelectionGeometry];
+    "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream3.SelectionGeometry];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __SelectionRegistrant: unique symbol;
     readonly [_flaxDartTypeValue]: SelectionRegistrant;
@@ -74,5 +74,5 @@ export interface SelectionRegistrant extends Omit<upstream0.Selectable, _flaxOwn
     }> | null);
 }
 export declare const SelectionRegistrant: object & _FlaxInstanceType<SelectionRegistrant> & _FlaxDartType<SelectionRegistrant, readonly ["class", "flax.core/sdk_rendering#type:SelectionRegistrant", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "size" | "boundingBoxes" | "contentLength" | "value" | "registrar" | "getTransformTo" | "dispose" | "pushHandleLayers" | "getSelectedContent" | "getSelection" | "dispatchSelectionEvent" | "addListener" | "removeListener" | "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionRegistrant" | "__flaxBound:package:flutter/src/rendering/selection.dart::Selectable" | "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "size" | "boundingBoxes" | "contentLength" | "value" | "registrar" | "getTransformTo" | "dispose" | "pushHandleLayers" | "getSelectedContent" | "getSelection" | "dispatchSelectionEvent" | "addListener" | "removeListener" | "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionRegistrant" | "__flaxBound:package:flutter/src/rendering/selection.dart::Selectable" | "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionHandler" | "__flaxBound:package:listen/src/listen.dart::ValueListenable" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 export {};

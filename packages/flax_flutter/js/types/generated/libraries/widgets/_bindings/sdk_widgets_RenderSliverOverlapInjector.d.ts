@@ -482,22 +482,23 @@ export interface RenderSliverOverlapInjector extends Omit<upstream0.RenderSliver
     set handle(value: Readonly<{
         "__flaxBound:package:flutter/src/widgets/nested_scroll_view.dart::SliverOverlapAbsorberHandle": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>);
 }
 export declare function _RenderSliverOverlapInjectorFactory(options: {
     handle: Readonly<{
         "__flaxBound:package:flutter/src/widgets/nested_scroll_view.dart::SliverOverlapAbsorberHandle": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>;
 }): RenderSliverOverlapInjector;
 export interface _RenderSliverOverlapInjectorNative extends RenderSliverOverlapInjector {
     readonly [_flaxDartTypeValue]: _RenderSliverOverlapInjectorNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -872,7 +873,6 @@ export interface _RenderSliverOverlapInjectorNative extends RenderSliverOverlapI
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream1.RenderObject | null;
     get owner(): upstream11.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;
@@ -889,9 +889,9 @@ export interface _RenderSliverOverlapInjectorNative extends RenderSliverOverlapI
     set handle(value: Readonly<{
         "__flaxBound:package:flutter/src/widgets/nested_scroll_view.dart::SliverOverlapAbsorberHandle": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>);
     set geometry(value: (Readonly<{
         "__flaxBound:package:flutter/src/rendering/sliver.dart::SliverGeometry": readonly [];
@@ -922,9 +922,9 @@ export declare abstract class _RenderSliverOverlapInjectorNative extends _FlaxPr
         handle: Readonly<{
             "__flaxBound:package:flutter/src/widgets/nested_scroll_view.dart::SliverOverlapAbsorberHandle": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>;
     });
 }
@@ -933,9 +933,9 @@ export declare namespace _RenderSliverOverlapInjectorFactory {
         handle: Readonly<{
             "__flaxBound:package:flutter/src/widgets/nested_scroll_view.dart::SliverOverlapAbsorberHandle": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>;
     }], implementation: {}): RenderSliverOverlapInjector;
 }
@@ -943,9 +943,9 @@ declare const _RenderSliverOverlapInjectorBinding: typeof _RenderSliverOverlapIn
     handle: Readonly<{
         "__flaxBound:package:flutter/src/widgets/nested_scroll_view.dart::SliverOverlapAbsorberHandle": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>;
 }) => _RenderSliverOverlapInjectorNative);
 export declare const RenderSliverOverlapInjector: typeof _RenderSliverOverlapInjectorBinding & _FlaxInstanceType<RenderSliverOverlapInjector> & _FlaxDartType<RenderSliverOverlapInjector, readonly ["class", "flax.core/sdk_widgets#type:RenderSliverOverlapInjector", readonly [], false]>;

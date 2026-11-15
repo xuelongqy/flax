@@ -13,7 +13,7 @@ import type * as upstream4 from '@flax/flutter/services/_bindings/flutter_TextEd
 import '@flax/flutter/services/_bindings/flutter_TextEditingValue';
 import type * as upstream5 from '@flax/flutter/services/_bindings/sdk_services_ScribbleClient';
 import '@flax/flutter/services/_bindings/sdk_services_ScribbleClient';
-import { _flaxMemberParameters130, _flaxMemberParameters0, _flaxMemberParameters131, _flaxMemberParameters98, _flaxMemberParameters132, _flaxMemberParameters133, _flaxMemberParameters134 } from "@flax/flutter/services/_bindings/sdk_services.__module";
+import { _flaxMemberParameters131, _flaxMemberParameters0, _flaxMemberParameters132, _flaxMemberParameters99, _flaxMemberParameters133, _flaxMemberParameters134, _flaxMemberParameters135 } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface TextInput extends Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextInput": readonly [] }> { readonly __TextInput: unique symbol;
@@ -24,7 +24,7 @@ readonly scribbleInProgress: boolean;
 defineObject("flax.core/sdk_services#type:TextInput", ["scribbleInProgress"], [], _flaxBindingMethods("flax.core/sdk_services#type:TextInput", "object", {}, {}), []);
 export namespace _TextInputFactory { export function setInputControl(newControl: Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextInputControl": readonly [] }> | null): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_services#function:TextInput.setInputControl", [newControl], _flaxMemberParameters130);
+const _flaxResult = invokeTopLevel("flax.core/sdk_services#function:TextInput.setInputControl", [newControl], _flaxMemberParameters131);
 } }
 export namespace _TextInputFactory { export function restorePlatformInputControl(): void {
 if (arguments.length > 0) throw new TypeError('Too many method arguments');
@@ -36,24 +36,24 @@ const _flaxResult = invokeTopLevel("flax.core/sdk_services#function:TextInput.en
 } }
 export namespace _TextInputFactory { export function attach(client: Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextInputClient": readonly [] }>, configuration: Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextInputConfiguration": readonly [] }>): upstream1.TextInputConnection {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_services#function:TextInput.attach", [client, configuration], _flaxMemberParameters131);
+const _flaxResult = invokeTopLevel("flax.core/sdk_services#function:TextInput.attach", [client, configuration], _flaxMemberParameters132);
 return _flaxResult as upstream1.TextInputConnection;
 } }
 export namespace _TextInputFactory { export function updateEditingValue(value: Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::TextEditingValue": readonly [] }>): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_services#function:TextInput.updateEditingValue", [value], _flaxMemberParameters98);
+const _flaxResult = invokeTopLevel("flax.core/sdk_services#function:TextInput.updateEditingValue", [value], _flaxMemberParameters99);
 } }
 export namespace _TextInputFactory { export function finishAutofillContext(options: { shouldSave?: boolean | undefined } = {}): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
 if (options === null || typeof options !== 'object' || Array.isArray(options) || Object.keys(options).some(k => !["shouldSave"].includes(k))) throw new TypeError('Invalid named method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_services#function:TextInput.finishAutofillContext", [options.shouldSave], _flaxMemberParameters132);
+const _flaxResult = invokeTopLevel("flax.core/sdk_services#function:TextInput.finishAutofillContext", [options.shouldSave], _flaxMemberParameters133);
 } }
 export namespace _TextInputFactory { export function registerScribbleElement(elementIdentifier: string, scribbleClient: Readonly<{ "__flaxBound:package:flutter/src/services/text_input.dart::ScribbleClient": readonly [] }>): void {
 if (arguments.length > 2) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_services#function:TextInput.registerScribbleElement", [elementIdentifier, scribbleClient], _flaxMemberParameters133);
+const _flaxResult = invokeTopLevel("flax.core/sdk_services#function:TextInput.registerScribbleElement", [elementIdentifier, scribbleClient], _flaxMemberParameters134);
 } }
 export namespace _TextInputFactory { export function unregisterScribbleElement(elementIdentifier: string): void {
 if (arguments.length > 1) throw new TypeError('Too many method arguments');
-const _flaxResult = invokeTopLevel("flax.core/sdk_services#function:TextInput.unregisterScribbleElement", [elementIdentifier], _flaxMemberParameters134);
+const _flaxResult = invokeTopLevel("flax.core/sdk_services#function:TextInput.unregisterScribbleElement", [elementIdentifier], _flaxMemberParameters135);
 } }
 export const TextInput: typeof _TextInputFactory & _FlaxInstanceType<TextInput> & _FlaxDartType<TextInput, readonly ["class", "flax.core/sdk_services#type:TextInput", readonly [], false]> = _flaxBindInstanceType<TextInput, typeof _TextInputFactory>(_TextInputFactory, "flax.core/sdk_services#type:TextInput", ["dart:core::Object"]) as typeof _TextInputFactory & _FlaxInstanceType<TextInput> & _FlaxDartType<TextInput, readonly ["class", "flax.core/sdk_services#type:TextInput", readonly [], false]>;

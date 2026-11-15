@@ -67,9 +67,9 @@ export interface ReorderableListView extends _FlaxDartWidget, Omit<upstream0.Sta
     readonly proxyDecorator: ((child: Widget, index: number, animation: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>) => Widget) | null;
     readonly buildDefaultDragHandles: boolean;
     readonly padding: upstream4.EdgeInsets | null;
@@ -145,9 +145,9 @@ export declare function _ReorderableListViewFactory(options: {
     scrollController?: (Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>) | null | undefined;
     primary?: boolean | null | undefined;
     physics?: Readonly<{
@@ -210,9 +210,9 @@ export declare namespace _ReorderableListViewFactory {
         scrollController?: (Readonly<{
             "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>) | null | undefined;
         primary?: boolean | null | undefined;
         physics?: Readonly<{

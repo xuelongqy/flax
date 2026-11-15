@@ -66,6 +66,9 @@ export interface TextureAndroidViewController extends Omit<upstream0.AndroidView
     }>): Promise<void>;
     clearFocus(): Promise<void>;
     dispose(): Promise<void>;
+    rejectGesture(options?: {
+        gestureId?: number | null | undefined;
+    }): Promise<void>;
     set pointTransformer(value: ((position: upstream2.Offset) => Readonly<{
         "__flaxBound:dart:ui::Offset": readonly [];
     }> & Readonly<{
@@ -73,5 +76,5 @@ export interface TextureAndroidViewController extends Omit<upstream0.AndroidView
     }>));
 }
 export declare const TextureAndroidViewController: object & _FlaxInstanceType<TextureAndroidViewController> & _FlaxDartType<TextureAndroidViewController, readonly ["class", "flax.core/sdk_services#type:TextureAndroidViewController", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "viewId" | "awaitingCreation" | "textureId" | "requiresViewComposition" | "pointTransformer" | "isCreated" | "create" | "setSize" | "setOffset" | "sendMotionEvent" | "addOnPlatformViewCreatedListener" | "removeOnPlatformViewCreatedListener" | "setLayoutDirection" | "dispatchPointerEvent" | "clearFocus" | "dispose" | "__flaxBound:package:flutter/src/services/platform_views.dart::TextureAndroidViewController" | "__flaxBound:package:flutter/src/services/platform_views.dart::AndroidViewController" | "__flaxBound:package:flutter/src/services/platform_views.dart::PlatformViewController";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "viewId" | "awaitingCreation" | "textureId" | "requiresViewComposition" | "pointTransformer" | "isCreated" | "create" | "setSize" | "setOffset" | "sendMotionEvent" | "addOnPlatformViewCreatedListener" | "removeOnPlatformViewCreatedListener" | "setLayoutDirection" | "dispatchPointerEvent" | "clearFocus" | "dispose" | "rejectGesture" | "__flaxBound:package:flutter/src/services/platform_views.dart::TextureAndroidViewController" | "__flaxBound:package:flutter/src/services/platform_views.dart::AndroidViewController" | "__flaxBound:package:flutter/src/services/platform_views.dart::PlatformViewController";
 export {};

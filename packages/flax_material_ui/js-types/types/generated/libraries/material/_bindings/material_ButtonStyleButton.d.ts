@@ -58,6 +58,7 @@ export interface ButtonStyleButton extends _FlaxDartWidget, Omit<upstream0.State
     readonly focusNode: upstream3.FocusNode | null;
     readonly autofocus: boolean;
     readonly statesController: upstream4.WidgetStatesController | null;
+    readonly isSelected: boolean | null;
     readonly isSemanticButton: boolean | null;
     readonly iconAlignment: upstream5.IconAlignment | null;
     readonly tooltip: string | null;
@@ -110,7 +111,7 @@ export declare namespace _ButtonStyleButtonFactory {
     }>, fontSizeMultiplier: number): upstream9.EdgeInsetsGeometry;
 }
 export declare const ButtonStyleButton: typeof _ButtonStyleButtonFactory & _FlaxInstanceType<ButtonStyleButton> & _FlaxDartType<ButtonStyleButton, readonly ["class", "flax.material/material#type:ButtonStyleButton", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "onPressed" | "onLongPress" | "onHover" | "onFocusChange" | "style" | "clipBehavior" | "focusNode" | "autofocus" | "statesController" | "isSemanticButton" | "iconAlignment" | "tooltip" | "child" | "enabled" | "key" | "defaultStyleOf" | "themeStyleOf" | "createState" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/button_style_button.dart::ButtonStyleButton" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "onPressed" | "onLongPress" | "onHover" | "onFocusChange" | "style" | "clipBehavior" | "focusNode" | "autofocus" | "statesController" | "isSelected" | "isSemanticButton" | "iconAlignment" | "tooltip" | "child" | "enabled" | "key" | "defaultStyleOf" | "themeStyleOf" | "createState" | "debugFillProperties" | "createElement" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:material_ui/src/button_style_button.dart::ButtonStyleButton" | "__flaxBound:package:flutter/src/widgets/framework.dart::StatefulWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 interface _FlaxSignature0 extends _FlaxDartSignature {
     readonly call: this["arguments"] extends readonly [infer _Selected0] ? [_Selected0] extends [unknown | null] ? (value: (_Selected0 | DartInput<_Selected0>) | null) => upstream7.WidgetStateProperty<_Selected0> | null : never : never;
 }

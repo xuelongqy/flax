@@ -28,13 +28,13 @@ export interface PlatformRouteInformationProvider extends Omit<upstream0.RouteIn
 }>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/router.dart::RouteInformationProvider": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream2.RouteInformation];
+    "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream2.RouteInformation];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/binding.dart::WidgetsBindingObserver": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }> {
     readonly __PlatformRouteInformationProvider: unique symbol;
     readonly [_flaxDartTypeValue]: PlatformRouteInformationProvider;
@@ -144,5 +144,5 @@ declare const _PlatformRouteInformationProviderBinding: typeof _PlatformRouteInf
     }>;
 }) => _PlatformRouteInformationProviderNative);
 export declare const PlatformRouteInformationProvider: typeof _PlatformRouteInformationProviderBinding & _FlaxInstanceType<PlatformRouteInformationProvider> & _FlaxDartType<PlatformRouteInformationProvider, readonly ["class", "flax.core/sdk_widgets#type:PlatformRouteInformationProvider", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "hasListeners" | "routerReportsNewRouteInformation" | "addListener" | "removeListener" | "didPopRoute" | "handleStartBackGesture" | "handleUpdateBackGestureProgress" | "handleCommitBackGesture" | "handleCancelBackGesture" | "handleStatusBarTap" | "didPushRoute" | "didPushRouteInformation" | "didChangeMetrics" | "didChangeTextScaleFactor" | "didChangePlatformBrightness" | "didChangeLocales" | "didChangeAppLifecycleState" | "didChangeViewFocus" | "didRequestAppExit" | "didHaveMemoryPressure" | "didChangeAccessibilityFeatures" | "dispose" | "__flaxBound:package:flutter/src/widgets/router.dart::PlatformRouteInformationProvider" | "__flaxBound:package:flutter/src/widgets/router.dart::RouteInformationProvider" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flutter/src/widgets/binding.dart::WidgetsBindingObserver" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "hasListeners" | "routerReportsNewRouteInformation" | "addListener" | "removeListener" | "didPopRoute" | "handleStartBackGesture" | "handleUpdateBackGestureProgress" | "handleCommitBackGesture" | "handleCancelBackGesture" | "handleStatusBarTap" | "didPushRoute" | "didPushRouteInformation" | "didChangeMetrics" | "didChangeTextScaleFactor" | "didChangePlatformBrightness" | "didChangeLocales" | "didChangeAppLifecycleState" | "didChangeViewFocus" | "didRequestAppExit" | "didHaveMemoryPressure" | "didChangeAccessibilityFeatures" | "dispose" | "__flaxBound:package:flutter/src/widgets/router.dart::PlatformRouteInformationProvider" | "__flaxBound:package:flutter/src/widgets/router.dart::RouteInformationProvider" | "__flaxBound:package:listen/src/listen.dart::ValueListenable" | "__flaxBound:package:listen/src/listen.dart::Listenable" | "__flaxBound:package:flutter/src/widgets/binding.dart::WidgetsBindingObserver" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier";
 export {};

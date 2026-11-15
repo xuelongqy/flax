@@ -9,9 +9,9 @@ import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDart
 export interface FlaxCanvasTarget extends Omit<upstream0.ChangeNotifier, _flaxOwnMembers0>, Omit<upstream1.Listenable, _flaxOwnMembers0 | keyof upstream0.ChangeNotifier>, Omit<upstream2.FlaxCanvasContent, _flaxOwnMembers0 | keyof upstream0.ChangeNotifier | keyof upstream1.Listenable>, Readonly<{
     "__flaxBound:package:flax/bindings.dart::FlaxCanvasTarget": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }>, Readonly<{
     "__flaxBound:package:flax/bindings.dart::FlaxCanvasContent": readonly [];
 }> {
@@ -23,5 +23,5 @@ export interface FlaxCanvasTarget extends Omit<upstream0.ChangeNotifier, _flaxOw
     dispose(): void;
 }
 export declare const FlaxCanvasTarget: object & _FlaxInstanceType<FlaxCanvasTarget> & _FlaxDartType<FlaxCanvasTarget, readonly ["class", "flax.core/flutter#type:FlaxCanvasTarget", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "addListener" | "removeListener" | "dispose" | "__flaxBound:package:flax/bindings.dart::FlaxCanvasTarget" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable" | "__flaxBound:package:flax/bindings.dart::FlaxCanvasContent";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "hasListeners" | "addListener" | "removeListener" | "dispose" | "__flaxBound:package:flax/bindings.dart::FlaxCanvasTarget" | "__flaxBound:package:listen/src/listen.dart::ChangeNotifier" | "__flaxBound:package:listen/src/listen.dart::Listenable" | "__flaxBound:package:flax/bindings.dart::FlaxCanvasContent";
 export {};

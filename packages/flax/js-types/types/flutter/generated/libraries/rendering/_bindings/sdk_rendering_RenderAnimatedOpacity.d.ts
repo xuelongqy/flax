@@ -602,9 +602,9 @@ export interface RenderAnimatedOpacity extends Omit<upstream0.RenderProxyBox, _f
     set opacity(value: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>);
     set alwaysIncludeSemantics(value: boolean);
 }
@@ -612,9 +612,9 @@ export declare function _RenderAnimatedOpacityFactory(options: {
     opacity: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>;
     alwaysIncludeSemantics?: boolean | undefined;
     child?: (Readonly<{
@@ -633,6 +633,7 @@ export declare function _RenderAnimatedOpacityFactory(options: {
 }): RenderAnimatedOpacity;
 export interface _RenderAnimatedOpacityNative extends RenderAnimatedOpacity {
     readonly [_flaxDartTypeValue]: _RenderAnimatedOpacityNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1089,7 +1090,6 @@ export interface _RenderAnimatedOpacityNative extends RenderAnimatedOpacity {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream15.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;
@@ -1142,9 +1142,9 @@ export interface _RenderAnimatedOpacityNative extends RenderAnimatedOpacity {
     set opacity(value: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>);
     set alwaysIncludeSemantics(value: boolean);
 }
@@ -1156,9 +1156,9 @@ export declare abstract class _RenderAnimatedOpacityNative extends _FlaxProxyBas
         opacity: Readonly<{
             "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
         }>;
         alwaysIncludeSemantics?: boolean | undefined;
         child?: (Readonly<{
@@ -1181,9 +1181,9 @@ export declare namespace _RenderAnimatedOpacityFactory {
         opacity: Readonly<{
             "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
         }>;
         alwaysIncludeSemantics?: boolean | undefined;
         child?: (Readonly<{
@@ -1205,9 +1205,9 @@ declare const _RenderAnimatedOpacityBinding: typeof _RenderAnimatedOpacityFactor
     opacity: Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>;
     alwaysIncludeSemantics?: boolean | undefined;
     child?: (Readonly<{

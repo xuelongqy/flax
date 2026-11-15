@@ -42,7 +42,7 @@ export declare abstract class SingleChildLayoutDelegate extends _FlaxProxyBase {
     static [_flaxDartTypeKey]: readonly ["class", "flax.core/sdk_rendering#type:SingleChildLayoutDelegate", readonly [], false];
     constructor(options?: {
         relayout?: Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> | null | undefined;
     });
     abstract shouldRelayout(oldDelegate: Readonly<{
@@ -52,7 +52,7 @@ export declare abstract class SingleChildLayoutDelegate extends _FlaxProxyBase {
 export declare namespace SingleChildLayoutDelegate {
     function implement(args: [options?: {
         relayout?: Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> | null | undefined;
     }], implementation: {
         shouldRelayout: ((oldDelegate: SingleChildLayoutDelegate) => boolean);

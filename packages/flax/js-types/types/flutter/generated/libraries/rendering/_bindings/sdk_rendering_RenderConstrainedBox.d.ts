@@ -626,6 +626,7 @@ export declare function _RenderConstrainedBoxFactory(options: {
 }): RenderConstrainedBox;
 export interface _RenderConstrainedBoxNative extends RenderConstrainedBox {
     readonly [_flaxDartTypeValue]: _RenderConstrainedBoxNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1090,7 +1091,6 @@ export interface _RenderConstrainedBoxNative extends RenderConstrainedBox {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream13.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

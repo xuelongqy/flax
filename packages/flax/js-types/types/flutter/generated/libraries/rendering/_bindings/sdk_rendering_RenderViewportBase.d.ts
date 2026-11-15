@@ -112,6 +112,7 @@ export interface RenderViewportBase<ParentDataClass extends upstream0.ContainerP
 }
 export interface RenderViewportBase<ParentDataClass extends upstream0.ContainerParentDataMixin<upstream1.RenderSliver> = upstream0.ContainerParentDataMixin<upstream1.RenderSliver>> {
     readonly [_flaxDartTypeValue]: RenderViewportBase<ParentDataClass>;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature2<ParentDataClass>;
     };
@@ -773,7 +774,6 @@ export interface RenderViewportBase<ParentDataClass extends upstream0.ContainerP
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream3.RenderObject | null;
     get owner(): upstream22.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;
@@ -794,9 +794,9 @@ export interface RenderViewportBase<ParentDataClass extends upstream0.ContainerP
     set offset(value: Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>);
     set cacheExtent(value: number | null);
     set scrollCacheExtent(value: Readonly<{
@@ -838,9 +838,9 @@ export declare abstract class RenderViewportBase<ParentDataClass extends upstrea
         offset: Readonly<{
             "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>;
         cacheExtent?: number | null | undefined;
         cacheExtentStyle?: upstream12.CacheExtentStyle | undefined;
@@ -931,9 +931,9 @@ export declare namespace RenderViewportBase {
         offset: Readonly<{
             "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>;
         cacheExtent?: number | null | undefined;
         cacheExtentStyle?: upstream12.CacheExtentStyle | undefined;
@@ -984,9 +984,9 @@ export declare namespace RenderViewportBase {
         offset: Readonly<{
             "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>;
         rect?: Readonly<{
             "__flaxBound:dart:ui::Rect": readonly [];
@@ -1020,9 +1020,9 @@ interface _FlaxSignature3 extends _FlaxDartSignature {
         offset: Readonly<{
             "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>;
         cacheExtent?: number | null | undefined;
         cacheExtentStyle?: upstream12.CacheExtentStyle | undefined;
@@ -1039,9 +1039,9 @@ interface _FlaxSignature3 extends _FlaxDartSignature {
             offset: Readonly<{
                 "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+                "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
             }> & Readonly<{
-                "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+                "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
             }>;
             cacheExtent?: number | null | undefined;
             cacheExtentStyle?: upstream12.CacheExtentStyle | undefined;

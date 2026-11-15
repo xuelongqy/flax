@@ -15,11 +15,13 @@ import type * as upstream5 from '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Rect';
 import type * as upstream6 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
-import type * as upstream7 from '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
+import type * as upstream7 from '@flax/dart/ui/_bindings/flutter_Offset';
+import '@flax/dart/ui/_bindings/flutter_Offset';
+import type * as upstream8 from '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Canvas';
-import type * as upstream8 from '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
+import type * as upstream9 from '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_Paint';
-import { _flaxMemberParameters37 } from "@flax/core/navigation/_bindings/flutter.__module";
+import { _flaxMemberParameters38 } from "@flax/core/navigation/_bindings/flutter.__module";
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/core/navigation/_bindings/flutter.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
 export interface CircleBorder extends Omit<upstream0.OutlinedBorder, _flaxOwnMembers0>, Omit<upstream1.ShapeBorder, _flaxOwnMembers0 | keyof upstream0.OutlinedBorder>, Readonly<{ "__flaxBound:package:flutter/src/painting/circle_border.dart::CircleBorder": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::OutlinedBorder": readonly [] }>, Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [] }> { readonly __CircleBorder: unique symbol;
@@ -36,16 +38,17 @@ lerpTo(b: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::Sha
 add(other: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [] }>, options?: {reversed?: boolean | undefined}): upstream1.ShapeBorder | null;
 getOuterPath(rect: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }>, options?: {textDirection?: upstream6.TextDirection | null | undefined}): upstream4.Path;
 getInnerPath(rect: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }>, options?: {textDirection?: upstream6.TextDirection | null | undefined}): upstream4.Path;
+hitTest(rect: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }>, position: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }>, options?: {textDirection?: upstream6.TextDirection | null | undefined}): boolean;
 paintInterior(canvas: Readonly<{ "__flaxBound:dart:ui::Canvas": readonly [] }>, rect: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }>, paint: Readonly<{ "__flaxBound:dart:ui::Paint": readonly [] }>, options?: {textDirection?: upstream6.TextDirection | null | undefined}): void;
 paint(canvas: Readonly<{ "__flaxBound:dart:ui::Canvas": readonly [] }>, rect: Readonly<{ "__flaxBound:dart:ui::Rect": readonly [] }>, options?: {textDirection?: upstream6.TextDirection | null | undefined}): void;
 toString(): string;
 operatorAdd(other: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder": readonly [] }>): upstream1.ShapeBorder;
 }
-defineObject("flax.core/flutter#type:CircleBorder", ["dimensions","side","preferPaintInterior","eccentricity"], [], _flaxBindingMethods("flax.core/flutter#type:CircleBorder", "object", {"copyWith":_flaxMemberParameters37}, {}), [], undefined, "flax.core/flutter#type:OutlinedBorder");
+defineObject("flax.core/flutter#type:CircleBorder", ["dimensions","side","preferPaintInterior","eccentricity"], [], _flaxBindingMethods("flax.core/flutter#type:CircleBorder", "object", {"copyWith":_flaxMemberParameters38}, {}), [], undefined, "flax.core/flutter#type:OutlinedBorder");
 export function _CircleBorderFactory(options: { side?: Readonly<{ "__flaxBound:package:flutter/src/painting/borders.dart::BorderSide": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [] }> | undefined; eccentricity?: number | undefined } = {}): CircleBorder {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
 if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
 return constructObject("object", "flax.core/flutter#type:CircleBorder", "", [{"name":"side"},{"name":"eccentricity"}], [], options) as CircleBorder;
 }
 export const CircleBorder: typeof _CircleBorderFactory & _FlaxInstanceType<CircleBorder> & _FlaxDartType<CircleBorder, readonly ["class", "flax.core/flutter#type:CircleBorder", readonly [], false]> = _flaxBindInstanceType<CircleBorder, typeof _CircleBorderFactory>(_CircleBorderFactory, "flax.core/flutter#type:CircleBorder", ["flax.core/flutter#type:OutlinedBorder","flax.core/flutter#type:ShapeBorder","dart:core::Object"]) as typeof _CircleBorderFactory & _FlaxInstanceType<CircleBorder> & _FlaxDartType<CircleBorder, readonly ["class", "flax.core/flutter#type:CircleBorder", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "dimensions" | "side" | "preferPaintInterior" | "eccentricity" | "copyWith" | "scale" | "lerpFrom" | "lerpTo" | "add" | "getOuterPath" | "getInnerPath" | "paintInterior" | "paint" | "toString" | "operatorAdd" | "__flaxBound:package:flutter/src/painting/circle_border.dart::CircleBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::OutlinedBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "dimensions" | "side" | "preferPaintInterior" | "eccentricity" | "copyWith" | "scale" | "lerpFrom" | "lerpTo" | "add" | "getOuterPath" | "getInnerPath" | "hitTest" | "paintInterior" | "paint" | "toString" | "operatorAdd" | "__flaxBound:package:flutter/src/painting/circle_border.dart::CircleBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::OutlinedBorder" | "__flaxBound:package:flutter/src/painting/borders.dart::ShapeBorder";

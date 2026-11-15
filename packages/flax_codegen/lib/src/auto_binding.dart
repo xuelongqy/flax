@@ -642,9 +642,8 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
     }
     final packageName = uri.pathSegments.first;
     final publicUris = await _publicLibraryUris(packageName, libPath);
-    final publicUriSet = publicUris.toSet();
-    final candidates = <String, List<String>>{};
-    final declaredPublicly = <String, String>{};
+    final candidates = <String, List<LibraryElement>>{};
+    final distances = <LibraryElement, Map<String, int>>{};
     for (final publicUri in publicUris) {
       final resolved = await _libraryByUri(publicUri);
       if (resolved is! LibraryElementResult) continue;
@@ -658,18 +657,22 @@ extension FlaxCodegenAutoBinding on FlaxCodegenBindingParser {
           continue;
         }
         final id = identity(element);
-        candidates.putIfAbsent(id, () => <String>[]).add(publicUri);
-        final declaringUri = declarationUri.toString();
-        if (publicUriSet.contains(declaringUri)) {
-          declaredPublicly[id] = declaringUri;
-        }
+        candidates.putIfAbsent(id, () => []).add(resolved.element);
       }
     }
 
-    return {
-      for (final entry in candidates.entries)
-        entry.key: declaredPublicly[entry.key] ?? (entry.value..sort()).first,
-    };
+    final carriers = <String, String>{};
+    for (final entry in candidates.entries) {
+      final originatingUri = entry.key.substring(
+        0,
+        entry.key.lastIndexOf('::'),
+      );
+      entry.value.sort(
+        (a, b) => _comparePublicCarriers(originatingUri, a, b, distances),
+      );
+      carriers[entry.key] = entry.value.first.uri.toString();
+    }
+    return carriers;
   }
 
   bool _autoHidden(Element element, {bool annotations = false}) =>

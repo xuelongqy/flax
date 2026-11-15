@@ -22,26 +22,28 @@ import type * as upstream10 from '@flax/flutter/painting/_bindings/sdk_painting_
 import '@flax/flutter/painting/_bindings/sdk_painting_TextWidthBasis';
 import type * as upstream11 from '@flax/dart/ui/_bindings/sdk_dart_ui_TextHeightBehavior';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_TextHeightBehavior';
-import type * as upstream12 from '@flax/flutter/rendering/_bindings/sdk_rendering_SelectionRegistrar';
+import type * as upstream12 from '@flax/dart/ui/_bindings/sdk_dart_ui_Hyphens';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_Hyphens';
+import type * as upstream13 from '@flax/flutter/rendering/_bindings/sdk_rendering_SelectionRegistrar';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_SelectionRegistrar';
-import type * as upstream13 from '@flax/dart/ui/_bindings/flutter_Color';
+import type * as upstream14 from '@flax/dart/ui/_bindings/flutter_Color';
 import '@flax/dart/ui/_bindings/flutter_Color';
-import type * as upstream14 from '@flax/flutter/rendering/_bindings/sdk_rendering_RenderParagraph';
+import type * as upstream15 from '@flax/flutter/rendering/_bindings/sdk_rendering_RenderParagraph';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_RenderParagraph';
-import type * as upstream15 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import type * as upstream16 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-import type * as upstream17 from '@flax/flutter/widgets/_bindings/sdk_widgets_MultiChildRenderObjectElement';
+import type * as upstream18 from '@flax/flutter/widgets/_bindings/sdk_widgets_MultiChildRenderObjectElement';
 import '@flax/flutter/widgets/_bindings/sdk_widgets_MultiChildRenderObjectElement';
 import '@flax/flutter/rendering/_bindings/sdk_rendering_RenderObject';
-import type * as upstream19 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream20 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
-import type * as upstream20 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream21 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
-import type * as upstream21 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream22 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
-import type * as upstream22 from '@flax/flutter/rendering/_bindings/sdk_rendering_RenderBox';
-import type * as upstream23 from '@flax/flutter/rendering/_bindings/sdk_rendering_TextParentData';
+import type * as upstream23 from '@flax/flutter/rendering/_bindings/sdk_rendering_RenderBox';
+import type * as upstream24 from '@flax/flutter/rendering/_bindings/sdk_rendering_TextParentData';
 import { type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
 export interface RichText extends _FlaxDartWidget, Omit<upstream0.MultiChildRenderObjectWidget, _flaxOwnMembers0>, Omit<upstream1.RenderObjectWidget, _flaxOwnMembers0 | keyof upstream0.MultiChildRenderObjectWidget>, Omit<Widget, _flaxOwnMembers0 | keyof upstream0.MultiChildRenderObjectWidget | keyof upstream1.RenderObjectWidget>, Readonly<{
@@ -71,12 +73,13 @@ export interface RichText extends _FlaxDartWidget, Omit<upstream0.MultiChildRend
     readonly strutStyle: upstream9.StrutStyle | null;
     readonly textWidthBasis: upstream10.TextWidthBasis;
     readonly textHeightBehavior: upstream11.TextHeightBehavior | null;
-    readonly selectionRegistrar: upstream12.SelectionRegistrar | null;
-    readonly selectionColor: upstream13.Color | null;
+    readonly hyphens: upstream12.Hyphens;
+    readonly selectionRegistrar: upstream13.SelectionRegistrar | null;
+    readonly selectionColor: upstream14.Color | null;
     readonly children: DartList<Widget>;
     readonly key: upstream2.Key | null;
-    createRenderObject(context: upstream15.BuildContext): upstream14.RenderParagraph;
-    updateRenderObject(context: upstream15.BuildContext, renderObject: Readonly<{
+    createRenderObject(context: upstream16.BuildContext): upstream15.RenderParagraph;
+    updateRenderObject(context: upstream16.BuildContext, renderObject: Readonly<{
         "__flaxBound:package:flutter/src/rendering/paragraph.dart::RenderParagraph": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/box.dart::RenderBox": readonly [];
@@ -91,7 +94,7 @@ export interface RichText extends _FlaxDartWidget, Omit<upstream0.MultiChildRend
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/rendering/object.dart::ContainerRenderObjectMixin": readonly [upstream22.RenderBox, upstream23.TextParentData];
+        "__flaxBound:package:flutter/src/rendering/object.dart::ContainerRenderObjectMixin": readonly [upstream23.RenderBox, upstream24.TextParentData];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/rendering/paragraph.dart::RenderInlineChildrenContainerDefaults": readonly [];
     }> & Readonly<{
@@ -100,7 +103,7 @@ export interface RichText extends _FlaxDartWidget, Omit<upstream0.MultiChildRend
     debugFillProperties(properties: Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
     }>): void;
-    createElement(): upstream17.MultiChildRenderObjectElement;
+    createElement(): upstream18.MultiChildRenderObjectElement;
     didUnmountRenderObject(renderObject: Readonly<{
         "__flaxBound:package:flutter/src/rendering/object.dart::RenderObject": readonly [];
     }> & Readonly<{
@@ -115,19 +118,19 @@ export interface RichText extends _FlaxDartWidget, Omit<upstream0.MultiChildRend
     toStringShort(): string;
     toStringShallow(options?: {
         joiner?: string | undefined;
-        minLevel?: upstream19.DiagnosticLevel | undefined;
+        minLevel?: upstream20.DiagnosticLevel | undefined;
     }): string;
     toStringDeep(options?: {
-        minLevel?: upstream19.DiagnosticLevel | undefined;
+        minLevel?: upstream20.DiagnosticLevel | undefined;
         prefixLineOne?: string | undefined;
         prefixOtherLines?: string | null | undefined;
         wrapWidth?: number | undefined;
     }): string;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
-        style?: upstream21.DiagnosticsTreeStyle | null | undefined;
-    }): upstream20.DiagnosticsNode;
-    debugDescribeChildren(): DartList<upstream20.DiagnosticsNode>;
+        style?: upstream22.DiagnosticsTreeStyle | null | undefined;
+    }): upstream21.DiagnosticsNode;
+    debugDescribeChildren(): DartList<upstream21.DiagnosticsNode>;
 }
 export declare function _RichTextFactory(options: {
     key?: Readonly<{
@@ -161,6 +164,7 @@ export declare function _RichTextFactory(options: {
     textHeightBehavior?: Readonly<{
         "__flaxBound:dart:ui::TextHeightBehavior": readonly [];
     }> | null | undefined;
+    hyphens?: upstream12.Hyphens | undefined;
     selectionRegistrar?: Readonly<{
         "__flaxBound:package:flutter/src/rendering/selection.dart::SelectionRegistrar": readonly [];
     }> | null | undefined;
@@ -176,5 +180,5 @@ export declare namespace _RichTextFactory {
     };
 }
 export declare const RichText: typeof _RichTextFactory & _FlaxInstanceType<RichText> & _FlaxDartType<RichText, readonly ["class", "flax.core/sdk_widgets#type:RichText", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "text" | "textAlign" | "textDirection" | "softWrap" | "overflow" | "textScaleFactor" | "textScaler" | "maxLines" | "locale" | "strutStyle" | "textWidthBasis" | "textHeightBehavior" | "selectionRegistrar" | "selectionColor" | "children" | "key" | "createRenderObject" | "updateRenderObject" | "debugFillProperties" | "createElement" | "didUnmountRenderObject" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/basic.dart::RichText" | "__flaxBound:package:flutter/src/widgets/framework.dart::MultiChildRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "text" | "textAlign" | "textDirection" | "softWrap" | "overflow" | "textScaleFactor" | "textScaler" | "maxLines" | "locale" | "strutStyle" | "textWidthBasis" | "textHeightBehavior" | "hyphens" | "selectionRegistrar" | "selectionColor" | "children" | "key" | "createRenderObject" | "updateRenderObject" | "debugFillProperties" | "createElement" | "didUnmountRenderObject" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/basic.dart::RichText" | "__flaxBound:package:flutter/src/widgets/framework.dart::MultiChildRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

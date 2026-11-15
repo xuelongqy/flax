@@ -69,7 +69,7 @@ export declare function _OverlayFactory(options?: {
     initialEntries?: DartListInput<upstream2.OverlayEntry, Readonly<{
         "__flaxBound:package:flutter/src/widgets/overlay.dart::OverlayEntry": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>> | undefined;
     clipBehavior?: upstream3.Clip | undefined;
     alwaysSizeToContent?: boolean | undefined;

@@ -37,7 +37,6 @@ export interface SliverIgnorePointer extends _FlaxDartWidget, Omit<upstream0.Sin
     readonly __SliverIgnorePointer: unique symbol;
     readonly [_flaxDartTypeValue]: SliverIgnorePointer;
     readonly ignoring: boolean;
-    readonly ignoringSemantics: boolean | null;
     readonly child: Widget | null;
     readonly key: upstream2.Key | null;
     createRenderObject(context: upstream4.BuildContext): upstream3.RenderSliverIgnorePointer;
@@ -97,7 +96,6 @@ export declare function _SliverIgnorePointerFactory(options?: {
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
     ignoring?: boolean | undefined;
-    ignoringSemantics?: boolean | null | undefined;
     sliver?: Widget | null | undefined;
 }): SliverIgnorePointer;
 export declare namespace _SliverIgnorePointerFactory {
@@ -108,5 +106,5 @@ export declare namespace _SliverIgnorePointerFactory {
     };
 }
 export declare const SliverIgnorePointer: typeof _SliverIgnorePointerFactory & _FlaxInstanceType<SliverIgnorePointer> & _FlaxDartType<SliverIgnorePointer, readonly ["class", "flax.core/sdk_widgets#type:SliverIgnorePointer", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "ignoring" | "ignoringSemantics" | "child" | "key" | "createRenderObject" | "updateRenderObject" | "debugFillProperties" | "createElement" | "didUnmountRenderObject" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/sliver.dart::SliverIgnorePointer" | "__flaxBound:package:flutter/src/widgets/framework.dart::SingleChildRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | 'kind' | "ignoring" | "child" | "key" | "createRenderObject" | "updateRenderObject" | "debugFillProperties" | "createElement" | "didUnmountRenderObject" | "toStringShort" | "toStringShallow" | "toStringDeep" | "toDiagnosticsNode" | "debugDescribeChildren" | "__flaxBound:package:flutter/src/widgets/sliver.dart::SliverIgnorePointer" | "__flaxBound:package:flutter/src/widgets/framework.dart::SingleChildRenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::RenderObjectWidget" | "__flaxBound:package:flutter/src/widgets/framework.dart::Widget" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticableTree" | "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable";
 export {};

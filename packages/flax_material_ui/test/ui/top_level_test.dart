@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flax_test/flax_test.dart';
 import 'package:flax/flax.dart';
-import 'package:flutter/material.dart' as native;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:material_ui/material_ui.dart';
 
@@ -282,8 +281,8 @@ void main() {
       final h = _harness();
       Widget themed(Brightness brightness) => _app(
         h,
-        home: native.Theme(
-          data: native.ThemeData(brightness: brightness),
+        home: Theme(
+          data: ThemeData(brightness: brightness),
           child: Material(child: FlaxView.session(session: h.session)),
         ),
       );

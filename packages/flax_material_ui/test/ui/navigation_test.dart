@@ -92,6 +92,34 @@ class NavigationHarness {
 }
 
 void main() {
+  testWidgets('static popUntilWithResult completes the last popped JS route', (
+    t,
+  ) async {
+    final h = NavigationHarness();
+    try {
+      await h.enter(t);
+      await t.tap(find.text('Open detail'));
+      await t.pumpAndSettle();
+      await t.tap(find.text('Cover'));
+      await t.pumpAndSettle();
+      h.execute("navigation.popUntilWithResult('popped')");
+      await t.pumpAndSettle();
+      expect(find.text('JS home'), findsOneWidget);
+      expect(find.text('Result "popped"'), findsOneWidget);
+      expect(find.text('Detail'), findsNothing);
+      expect(find.text('Cover'), findsNothing);
+      expect(
+        h.read(
+          'navigation.events.filter(value => value === "pop:true").length',
+        ),
+        2,
+      );
+      expect(h.errors, isEmpty);
+    } finally {
+      await h.finish(t);
+    }
+  });
+
   testWidgets('closing from a synchronous host call waits for native return', (
     t,
   ) async {

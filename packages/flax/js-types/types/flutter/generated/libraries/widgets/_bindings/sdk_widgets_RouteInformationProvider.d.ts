@@ -12,9 +12,9 @@ import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartType
 export interface RouteInformationProvider extends Omit<upstream0.ValueListenable<upstream1.RouteInformation>, _flaxOwnMembers0>, Omit<upstream2.Listenable, _flaxOwnMembers0 | keyof upstream0.ValueListenable<upstream1.RouteInformation>>, Readonly<{
     "__flaxBound:package:flutter/src/widgets/router.dart::RouteInformationProvider": readonly [];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream1.RouteInformation];
+    "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream1.RouteInformation];
 }>, Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }> {
     readonly __RouteInformationProvider: unique symbol;
     readonly [_flaxDartTypeValue]: RouteInformationProvider;
@@ -45,5 +45,5 @@ export declare namespace RouteInformationProvider {
         }>;
     }): RouteInformationProvider;
 }
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "addListener" | "removeListener" | "routerReportsNewRouteInformation" | "__flaxBound:package:flutter/src/widgets/router.dart::RouteInformationProvider" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable" | "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "value" | "addListener" | "removeListener" | "routerReportsNewRouteInformation" | "__flaxBound:package:flutter/src/widgets/router.dart::RouteInformationProvider" | "__flaxBound:package:listen/src/listen.dart::ValueListenable" | "__flaxBound:package:listen/src/listen.dart::Listenable";
 export {};

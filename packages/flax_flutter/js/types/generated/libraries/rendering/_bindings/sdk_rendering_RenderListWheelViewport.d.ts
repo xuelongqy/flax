@@ -748,9 +748,9 @@ export interface RenderListWheelViewport extends Omit<upstream0.RenderBox, _flax
     set offset(value: Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>);
     set diameterRatio(value: number);
     set perspective(value: number);
@@ -770,9 +770,9 @@ export declare function _RenderListWheelViewportFactory(options: {
     offset: Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>;
     diameterRatio?: number | undefined;
     perspective?: number | undefined;
@@ -800,6 +800,7 @@ export declare function _RenderListWheelViewportFactory(options: {
 }): RenderListWheelViewport;
 export interface _RenderListWheelViewportNative extends RenderListWheelViewport {
     readonly [_flaxDartTypeValue]: _RenderListWheelViewportNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1416,7 +1417,6 @@ export interface _RenderListWheelViewportNative extends RenderListWheelViewport 
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream1.RenderObject | null;
     get owner(): upstream16.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get debugDoingThisPaint(): boolean;
@@ -1434,9 +1434,9 @@ export interface _RenderListWheelViewportNative extends RenderListWheelViewport 
     set offset(value: Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>);
     set diameterRatio(value: number);
     set perspective(value: number);
@@ -1480,9 +1480,9 @@ export declare abstract class _RenderListWheelViewportNative extends _FlaxProxyB
         offset: Readonly<{
             "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>;
         diameterRatio?: number | undefined;
         perspective?: number | undefined;
@@ -1517,9 +1517,9 @@ export declare namespace _RenderListWheelViewportFactory {
         offset: Readonly<{
             "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>;
         diameterRatio?: number | undefined;
         perspective?: number | undefined;
@@ -1553,9 +1553,9 @@ declare const _RenderListWheelViewportBinding: typeof _RenderListWheelViewportFa
     offset: Readonly<{
         "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>;
     diameterRatio?: number | undefined;
     perspective?: number | undefined;

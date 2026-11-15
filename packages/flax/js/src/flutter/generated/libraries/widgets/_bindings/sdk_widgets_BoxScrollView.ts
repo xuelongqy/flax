@@ -75,7 +75,7 @@ buildSlivers(context: upstream14.BuildContext): DartList<Widget>;
 buildChildLayout(context: upstream14.BuildContext): Widget;
 debugFillProperties(properties: Readonly<{ "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [] }>): void;
 getDirection(context: upstream14.BuildContext): upstream16.AxisDirection;
-buildViewport(context: upstream14.BuildContext, offset: Readonly<{ "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }>, axisDirection: upstream16.AxisDirection, slivers: DartListInput<Widget, Widget>): Widget;
+buildViewport(context: upstream14.BuildContext, offset: Readonly<{ "__flaxBound:package:flutter/src/rendering/viewport_offset.dart::ViewportOffset": readonly [] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [] }>, axisDirection: upstream16.AxisDirection, slivers: DartListInput<Widget, Widget>): Widget;
 build(context: upstream14.BuildContext): Widget;
 createElement(): upstream18.StatelessElement;
 toStringShort(): string;

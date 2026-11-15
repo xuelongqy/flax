@@ -16,8 +16,8 @@ readonly [_flaxDartTypeValue]: CurveTween;
 
 get curve(): upstream1.Curve;
 transform(t: number): number;
-evaluate(animation: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number] }>): number;
-animate(parent: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number] }>): upstream2.Animation<number>;
+evaluate(animation: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number] }>): number;
+animate(parent: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number] }>): upstream2.Animation<number>;
 chain(parent: Readonly<{ "__flaxBound:package:flutter/src/animation/tween.dart::Animatable": readonly [number] }>): upstream0.Animatable<number>;
 toString(): string;
 set curve(value: Readonly<{ "__flaxBound:package:flutter/src/animation/curves.dart::Curve": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/animation/curves.dart::ParametricCurve": readonly [number] }>);
@@ -33,8 +33,8 @@ export interface _CurveTweenNative extends CurveTween {
 readonly [_flaxDartTypeValue]: _CurveTweenNative;
 
 transform(t: number): number;
-evaluate(animation: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number] }>): number;
-animate(parent: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number] }>): upstream2.Animation<number>;
+evaluate(animation: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number] }>): number;
+animate(parent: Readonly<{ "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [] }> & Readonly<{ "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number] }>): upstream2.Animation<number>;
 chain(parent: Readonly<{ "__flaxBound:package:flutter/src/animation/tween.dart::Animatable": readonly [number] }>): upstream0.Animatable<number>;
 toString(): string;
 get curve(): upstream1.Curve;

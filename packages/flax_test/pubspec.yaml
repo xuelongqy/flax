@@ -5,8 +5,8 @@ publish_to: none
 resolution: workspace
 
 environment:
-  sdk: ^3.13.2
-  flutter: '>=3.47.9'
+  sdk: ^3.14.0
+  flutter: '>=3.50.0'
 
 dependencies:
   flax: 0.0.0
@@ -14,4 +14,4 @@ dependencies:
     sdk: flutter
   flutter_test:
     sdk: flutter
-  test: 1.31.1
+  test: 1.32.0

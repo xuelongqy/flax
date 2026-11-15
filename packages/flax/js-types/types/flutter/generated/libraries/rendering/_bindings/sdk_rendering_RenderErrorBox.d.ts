@@ -559,6 +559,7 @@ export interface RenderErrorBox extends Omit<upstream0.RenderBox, _flaxOwnMember
 export declare function _RenderErrorBoxFactory(message?: string): RenderErrorBox;
 export interface _RenderErrorBoxNative extends RenderErrorBox {
     readonly [_flaxDartTypeValue]: _RenderErrorBoxNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1001,7 +1002,6 @@ export interface _RenderErrorBoxNative extends RenderErrorBox {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream1.RenderObject | null;
     get owner(): upstream10.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get debugDoingThisPaint(): boolean;

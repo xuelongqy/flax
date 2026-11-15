@@ -102,9 +102,9 @@ export declare function _RefreshProgressIndicatorFactory(options?: {
     valueColor?: (Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [upstream3.Color | null];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [upstream3.Color | null];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [upstream3.Color | null];
     }>) | null | undefined;
     strokeWidth?: number | null | undefined;
     strokeAlign?: number | null | undefined;

@@ -291,6 +291,16 @@ runApp(Text('asset snapshot'));
         await t.tap(find.text('Open dialog'));
         await t.pumpAndSettle();
         expect(find.text('dialog:first:true'), findsOneWidget);
+        expect(
+          (firstRuntime!.evaluate(
+            'barrierDetailsValid',
+          ) as FlaxJsBoolean).value,
+          isTrue,
+        );
+        expect(
+          (firstRuntime!.evaluate('barrierBuilds') as FlaxJsNumber).value,
+          greaterThan(0),
+        );
         final navigator = t.state<NavigatorState>(find.byType(Navigator));
         navigator.pop();
         await t.pumpAndSettle();
@@ -451,6 +461,8 @@ const {
 } = __flaxModules.require('@flax/flutter/widgets');
 const startupBundle = getAssetBundle();
 globalThis.routeBuilds = 0;
+globalThis.barrierBuilds = 0;
+globalThis.barrierDetailsValid = false;
 function label(context, name) {
   const bundle = DefaultAssetBundle.of(context);
   return Text(
@@ -497,6 +509,13 @@ runApp(
                               onTap: () =>
                                 showGeneralDialog({
                                   context: routeContext,
+                                  barrierBuilder: (context, details, barrier) => {
+                                    globalThis.barrierBuilds++;
+                                    globalThis.barrierDetailsValid = context.mounted &&
+                                      details.barrierDismissible === false &&
+                                      details.barrierLabel === null;
+                                    return barrier;
+                                  },
                                   pageBuilder: () =>
                                     Builder({
                                       builder: (dialogContext) =>

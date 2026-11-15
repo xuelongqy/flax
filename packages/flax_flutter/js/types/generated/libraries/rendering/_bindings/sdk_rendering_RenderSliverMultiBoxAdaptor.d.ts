@@ -96,6 +96,7 @@ export interface RenderSliverMultiBoxAdaptor extends Omit<upstream0.RenderSliver
 }
 export interface RenderSliverMultiBoxAdaptor {
     readonly [_flaxDartTypeValue]: RenderSliverMultiBoxAdaptor;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -699,7 +700,6 @@ export interface RenderSliverMultiBoxAdaptor {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream1.RenderObject | null;
     get owner(): upstream16.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

@@ -9,6 +9,7 @@ export interface TextInputType extends Readonly<{
     readonly index: number;
     readonly signed: boolean | null;
     readonly decimal: boolean | null;
+    readonly password: boolean | null;
     toJson(): DartMap<string, unknown | null>;
     toString(): string;
 }
@@ -16,6 +17,7 @@ export declare namespace _TextInputTypeFactory {
     function numberWithOptions(options?: {
         signed?: boolean | null | undefined;
         decimal?: boolean | null | undefined;
+        password?: boolean | null | undefined;
     }): TextInputType;
 }
 export interface _TextInputTypeNative extends TextInputType {
@@ -24,6 +26,7 @@ export interface _TextInputTypeNative extends TextInputType {
         "numberWithOptions": (options?: {
             signed?: boolean | null | undefined;
             decimal?: boolean | null | undefined;
+            password?: boolean | null | undefined;
         }) => void;
     };
     toJson(): DartMap<string, unknown | null>;
@@ -31,6 +34,7 @@ export interface _TextInputTypeNative extends TextInputType {
     get index(): number;
     get signed(): boolean | null;
     get decimal(): boolean | null;
+    get password(): boolean | null;
 }
 export declare abstract class _TextInputTypeNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<TextInputType>[typeof globalThis.Symbol.hasInstance];
@@ -39,6 +43,7 @@ export declare abstract class _TextInputTypeNative extends _FlaxProxyBase {
     constructor(options?: {
         signed?: boolean | null | undefined;
         decimal?: boolean | null | undefined;
+        password?: boolean | null | undefined;
     });
     constructor(call: _FlaxProxySuper<_TextInputTypeNative>);
 }
@@ -46,11 +51,13 @@ export declare namespace _TextInputTypeFactory {
     function implement(args: [options?: {
         signed?: boolean | null | undefined;
         decimal?: boolean | null | undefined;
+        password?: boolean | null | undefined;
     }], implementation: {}): TextInputType;
 }
 declare const _TextInputTypeBinding: typeof _TextInputTypeFactory & (new (options?: {
     signed?: boolean | null | undefined;
     decimal?: boolean | null | undefined;
+    password?: boolean | null | undefined;
 }) => _TextInputTypeNative) & (new (call: _FlaxProxySuper<_TextInputTypeNative>) => _TextInputTypeNative);
 export declare namespace _TextInputTypeFactory {
     const text: TextInputType;

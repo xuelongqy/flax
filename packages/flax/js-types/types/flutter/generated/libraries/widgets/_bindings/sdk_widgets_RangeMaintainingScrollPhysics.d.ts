@@ -28,6 +28,7 @@ export interface RangeMaintainingScrollPhysics extends Omit<upstream0.ScrollPhys
     readonly dragStartDistanceMotionThreshold: number | null;
     readonly allowImplicitScrolling: boolean;
     readonly allowUserScrolling: boolean;
+    readonly allowSelectionEdgeScrolling: boolean;
     buildParent(ancestor: Readonly<{
         "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [];
     }> | null): upstream0.ScrollPhysics | null;
@@ -63,6 +64,9 @@ export interface RangeMaintainingScrollPhysics extends Omit<upstream0.ScrollPhys
         "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
     }>): upstream2.Tolerance;
     carriedMomentum(existingVelocity: number): number;
+    shouldUpdate(old: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [];
+    }>): boolean;
     toString(): string;
 }
 export declare function _RangeMaintainingScrollPhysicsFactory(options?: {
@@ -107,6 +111,9 @@ export interface _RangeMaintainingScrollPhysicsNative extends RangeMaintainingSc
         "__flaxBound:package:flutter/src/widgets/scroll_metrics.dart::ScrollMetrics": readonly [];
     }>): upstream2.Tolerance;
     carriedMomentum(existingVelocity: number): number;
+    shouldUpdate(old: Readonly<{
+        "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics": readonly [];
+    }>): boolean;
     toString(): string;
     get parent(): upstream0.ScrollPhysics | null;
     get spring(): upstream1.SpringDescription;
@@ -117,6 +124,7 @@ export interface _RangeMaintainingScrollPhysicsNative extends RangeMaintainingSc
     get dragStartDistanceMotionThreshold(): number | null;
     get allowImplicitScrolling(): boolean;
     get allowUserScrolling(): boolean;
+    get allowSelectionEdgeScrolling(): boolean;
 }
 export declare abstract class _RangeMaintainingScrollPhysicsNative extends _FlaxProxyBase {
     static [globalThis.Symbol.hasInstance]: _FlaxInstanceType<RangeMaintainingScrollPhysics>[typeof globalThis.Symbol.hasInstance];
@@ -141,5 +149,5 @@ declare const _RangeMaintainingScrollPhysicsBinding: typeof _RangeMaintainingScr
     }> | null | undefined;
 }) => _RangeMaintainingScrollPhysicsNative);
 export declare const RangeMaintainingScrollPhysics: typeof _RangeMaintainingScrollPhysicsBinding & _FlaxInstanceType<RangeMaintainingScrollPhysics> & _FlaxDartType<RangeMaintainingScrollPhysics, readonly ["class", "flax.core/sdk_widgets#type:RangeMaintainingScrollPhysics", readonly [], false]>;
-type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "parent" | "spring" | "tolerance" | "minFlingDistance" | "minFlingVelocity" | "maxFlingVelocity" | "dragStartDistanceMotionThreshold" | "allowImplicitScrolling" | "allowUserScrolling" | "buildParent" | "applyTo" | "applyPhysicsToUserOffset" | "shouldAcceptUserOffset" | "recommendDeferredLoading" | "applyBoundaryConditions" | "adjustPositionForNewDimensions" | "createBallisticSimulation" | "toleranceFor" | "carriedMomentum" | "toString" | "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::RangeMaintainingScrollPhysics" | "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics";
+type _flaxOwnMembers0 = typeof _flaxDartTypeValue | "parent" | "spring" | "tolerance" | "minFlingDistance" | "minFlingVelocity" | "maxFlingVelocity" | "dragStartDistanceMotionThreshold" | "allowImplicitScrolling" | "allowUserScrolling" | "allowSelectionEdgeScrolling" | "buildParent" | "applyTo" | "applyPhysicsToUserOffset" | "shouldAcceptUserOffset" | "recommendDeferredLoading" | "applyBoundaryConditions" | "adjustPositionForNewDimensions" | "createBallisticSimulation" | "toleranceFor" | "carriedMomentum" | "shouldUpdate" | "toString" | "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::RangeMaintainingScrollPhysics" | "__flaxBound:package:flutter/src/widgets/scroll_physics.dart::ScrollPhysics";
 export {};

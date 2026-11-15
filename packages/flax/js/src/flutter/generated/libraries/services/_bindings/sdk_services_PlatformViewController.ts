@@ -7,7 +7,7 @@ import type * as upstream1 from '@flax/dart/ui/_bindings/flutter_Offset';
 import '@flax/dart/ui/_bindings/flutter_Offset';
 import type * as upstream2 from '@flax/dart/ui/_bindings/flutter_Size';
 import '@flax/dart/ui/_bindings/flutter_Size';
-import { _flaxMemberParameters7, _flaxMemberParameters72, _flaxMemberParameters0 } from "@flax/flutter/services/_bindings/sdk_services.__module";
+import { _flaxMemberParameters7, _flaxMemberParameters72, _flaxMemberParameters0, _flaxMemberParameters73 } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { flaxDartConstructors as _flaxDartConstructors, type FlaxProxySuper as _FlaxProxySuper, FlaxProxyBase as _FlaxProxyBase, defineProxyBase as _flaxDefineProxyBase, widgetProxyFactory as _flaxWidgetProxyFactory, type DartWidget as _FlaxDartWidget } from '@flax/core/bindings';
 import { construct, constructProxy, constructObject, constructDeferredObject, constructStream, constructAsyncIterableStream, _flaxDefineDartTypes, _flaxBindInstanceType, defineObject, defineStream, invokeObject, invokeObjectStatic, invokeStream, enumValue, defineEnum, invokeEnum, defineContext, defineState, contextHandle, invokeStatic, invokeInstance, invokeTopLevel } from "@flax/flutter/services/_bindings/sdk_services.__module";
 import { bindDartExtension as _flaxBindDartExtension, extensionReceiver as _flaxExtensionReceiver, flaxDartMethodCases as _flaxDartMethodCases, type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable, flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, flaxDartTypeCases as _flaxDartTypeCases, type FlaxDartType as _FlaxDartType, type FlaxDartTypeCases as _FlaxDartTypeCases } from '@flax/core/bindings';
@@ -15,12 +15,13 @@ export interface PlatformViewController extends Readonly<{ "__flaxBound:package:
 readonly [_flaxDartTypeValue]: PlatformViewController;
 
 }
-defineObject("flax.core/sdk_services#type:PlatformViewController", ["viewId","awaitingCreation"], [], _flaxBindingMethods("flax.core/sdk_services#type:PlatformViewController", "object", {"dispatchPointerEvent":_flaxMemberParameters7,"create":_flaxMemberParameters72,"dispose":_flaxMemberParameters0,"clearFocus":_flaxMemberParameters0}, {}), []);
-const _PlatformViewControllerProxy = {type: "flax.core/sdk_services#type:PlatformViewController", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"dispatchPointerEvent":_flaxMemberParameters7,"create":_flaxMemberParameters72,"dispose":_flaxMemberParameters0,"clearFocus":_flaxMemberParameters0}, getters: ["viewId","awaitingCreation"], setters: [], contextMembers: [], superMembers: ["get:awaitingCreation","create"]} as const;
+defineObject("flax.core/sdk_services#type:PlatformViewController", ["viewId","awaitingCreation"], [], _flaxBindingMethods("flax.core/sdk_services#type:PlatformViewController", "object", {"dispatchPointerEvent":_flaxMemberParameters7,"create":_flaxMemberParameters72,"dispose":_flaxMemberParameters0,"clearFocus":_flaxMemberParameters0,"rejectGesture":_flaxMemberParameters73}, {}), []);
+const _PlatformViewControllerProxy = {type: "flax.core/sdk_services#type:PlatformViewController", parameters: _flaxMemberParameters0, constructors: {"": _flaxMemberParameters0}, methods: {"dispatchPointerEvent":_flaxMemberParameters7,"create":_flaxMemberParameters72,"dispose":_flaxMemberParameters0,"clearFocus":_flaxMemberParameters0,"rejectGesture":_flaxMemberParameters73}, getters: ["viewId","awaitingCreation"], setters: [], contextMembers: [], superMembers: ["get:awaitingCreation","create","rejectGesture"]} as const;
 export interface PlatformViewController {
 readonly [_flaxDartTypeValue]: PlatformViewController;
 
 create(options?: {size?: Readonly<{ "__flaxBound:dart:ui::Size": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined; position?: Readonly<{ "__flaxBound:dart:ui::Offset": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::OffsetBase": readonly [] }> | null | undefined}): Promise<void>;
+rejectGesture(options?: {gestureId?: number | null | undefined}): Promise<void>;
 get awaitingCreation(): boolean;
 }
 export abstract class PlatformViewController extends _FlaxProxyBase {

@@ -630,6 +630,7 @@ export declare function _RenderSizedOverflowBoxFactory(options: {
 }): RenderSizedOverflowBox;
 export interface _RenderSizedOverflowBoxNative extends RenderSizedOverflowBox {
     readonly [_flaxDartTypeValue]: _RenderSizedOverflowBoxNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1084,7 +1085,6 @@ export interface _RenderSizedOverflowBoxNative extends RenderSizedOverflowBox {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream3.RenderObject | null;
     get owner(): upstream16.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

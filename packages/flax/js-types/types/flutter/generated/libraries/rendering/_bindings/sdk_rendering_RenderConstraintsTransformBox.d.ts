@@ -660,6 +660,7 @@ export declare function _RenderConstraintsTransformBoxFactory(options: {
 }): RenderConstraintsTransformBox;
 export interface _RenderConstraintsTransformBoxNative extends RenderConstraintsTransformBox {
     readonly [_flaxDartTypeValue]: _RenderConstraintsTransformBoxNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1136,7 +1137,6 @@ export interface _RenderConstraintsTransformBoxNative extends RenderConstraintsT
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream3.RenderObject | null;
     get owner(): upstream18.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

@@ -28,9 +28,9 @@ export declare namespace _ShortcutRegistryEntryFactory {
         get registry(): Readonly<{
             "__flaxBound:package:flutter/src/widgets/shortcuts.dart::ShortcutRegistry": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }>;
     }): ShortcutRegistryEntry;
 }

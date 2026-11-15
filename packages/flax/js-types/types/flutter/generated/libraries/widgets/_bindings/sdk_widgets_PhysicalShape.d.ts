@@ -116,7 +116,7 @@ export declare function _PhysicalShapeFactory(options: {
     clipper: Readonly<{
         "__flaxBound:package:flutter/src/rendering/proxy_box.dart::CustomClipper": readonly [upstream4.Path];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }>;
     clipBehavior?: upstream5.Clip | undefined;
     elevation?: number | undefined;

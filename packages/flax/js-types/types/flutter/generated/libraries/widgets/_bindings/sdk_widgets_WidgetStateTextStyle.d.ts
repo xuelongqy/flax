@@ -40,20 +40,22 @@ import '@flax/dart/ui/_bindings/sdk_dart_ui_TextStyle';
 import '@flax/flutter/painting/_bindings/sdk_painting_TextScaler';
 import type * as upstream20 from '@flax/dart/ui/_bindings/sdk_dart_ui_ParagraphStyle';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_ParagraphStyle';
+import type * as upstream21 from '@flax/dart/ui/_bindings/sdk_dart_ui_Hyphens';
+import '@flax/dart/ui/_bindings/sdk_dart_ui_Hyphens';
 import '@flax/flutter/painting/_bindings/sdk_painting_StrutStyle';
-import type * as upstream22 from '@flax/dart/ui/_bindings/flutter_TextAlign';
+import type * as upstream23 from '@flax/dart/ui/_bindings/flutter_TextAlign';
 import '@flax/dart/ui/_bindings/flutter_TextAlign';
-import type * as upstream23 from '@flax/dart/ui/_bindings/flutter_TextDirection';
+import type * as upstream24 from '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/flutter_TextDirection';
 import '@flax/dart/ui/_bindings/sdk_dart_ui_TextHeightBehavior';
-import type * as upstream25 from '@flax/flutter/painting/_bindings/sdk_painting_RenderComparison';
+import type * as upstream26 from '@flax/flutter/painting/_bindings/sdk_painting_RenderComparison';
 import '@flax/flutter/painting/_bindings/sdk_painting_RenderComparison';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticPropertiesBuilder';
-import type * as upstream27 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
+import type * as upstream28 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsNode';
-import type * as upstream28 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
+import type * as upstream29 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticsTreeStyle';
-import type * as upstream29 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
+import type * as upstream30 from '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import '@flax/flutter/foundation/_bindings/sdk_foundation_DiagnosticLevel';
 import { FlaxProxyBase as _FlaxProxyBase } from '@flax/core/bindings';
 import { flaxDartTypeKey as _flaxDartTypeKey, flaxDartTypeValue as _flaxDartTypeValue, type FlaxDartType as _FlaxDartType } from '@flax/core/bindings';
@@ -208,6 +210,7 @@ export interface WidgetStateTextStyle extends Omit<upstream0.TextStyle, _flaxOwn
             "__flaxBound:dart:ui::FontWeight": readonly [];
         }> | null | undefined;
         height?: number | null | undefined;
+        hyphens?: upstream21.Hyphens | null | undefined;
         locale?: Readonly<{
             "__flaxBound:dart:ui::Locale": readonly [];
         }> | null | undefined;
@@ -217,8 +220,8 @@ export interface WidgetStateTextStyle extends Omit<upstream0.TextStyle, _flaxOwn
         }> & Readonly<{
             "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
         }>) | null | undefined;
-        textAlign?: upstream22.TextAlign | null | undefined;
-        textDirection?: upstream23.TextDirection | null | undefined;
+        textAlign?: upstream23.TextAlign | null | undefined;
+        textDirection?: upstream24.TextDirection | null | undefined;
         textHeightBehavior?: Readonly<{
             "__flaxBound:dart:ui::TextHeightBehavior": readonly [];
         }> | null | undefined;
@@ -230,7 +233,7 @@ export interface WidgetStateTextStyle extends Omit<upstream0.TextStyle, _flaxOwn
         "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
-    }>): upstream25.RenderComparison;
+    }>): upstream26.RenderComparison;
     toStringShort(): string;
     debugFillProperties(properties: Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
@@ -239,10 +242,10 @@ export interface WidgetStateTextStyle extends Omit<upstream0.TextStyle, _flaxOwn
     }): void;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
-        style?: upstream28.DiagnosticsTreeStyle | null | undefined;
-    }): upstream27.DiagnosticsNode;
+        style?: upstream29.DiagnosticsTreeStyle | null | undefined;
+    }): upstream28.DiagnosticsNode;
     toString(options?: {
-        minLevel?: upstream29.DiagnosticLevel | undefined;
+        minLevel?: upstream30.DiagnosticLevel | undefined;
     }): string;
     resolve(states: DartSetInput<upstream3.WidgetState, upstream3.WidgetState>): upstream0.TextStyle;
 }
@@ -371,8 +374,8 @@ export interface _WidgetStateTextStyleNative extends WidgetStateTextStyle {
         }> | undefined;
     }): upstream18.TextStyle;
     getParagraphStyle(options?: {
-        textAlign?: upstream22.TextAlign | null | undefined;
-        textDirection?: upstream23.TextDirection | null | undefined;
+        textAlign?: upstream23.TextAlign | null | undefined;
+        textDirection?: upstream24.TextDirection | null | undefined;
         textScaler?: Readonly<{
             "__flaxBound:package:flutter/src/painting/text_scaler.dart::TextScaler": readonly [];
         }> | undefined;
@@ -381,6 +384,7 @@ export interface _WidgetStateTextStyleNative extends WidgetStateTextStyle {
         textHeightBehavior?: Readonly<{
             "__flaxBound:dart:ui::TextHeightBehavior": readonly [];
         }> | null | undefined;
+        hyphens?: upstream21.Hyphens | null | undefined;
         locale?: Readonly<{
             "__flaxBound:dart:ui::Locale": readonly [];
         }> | null | undefined;
@@ -401,7 +405,7 @@ export interface _WidgetStateTextStyleNative extends WidgetStateTextStyle {
         "__flaxBound:package:flutter/src/painting/text_style.dart::TextStyle": readonly [];
     }> & Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::Diagnosticable": readonly [];
-    }>): upstream25.RenderComparison;
+    }>): upstream26.RenderComparison;
     toStringShort(): string;
     debugFillProperties(properties: Readonly<{
         "__flaxBound:package:flutter/src/foundation/diagnostics.dart::DiagnosticPropertiesBuilder": readonly [];
@@ -410,10 +414,10 @@ export interface _WidgetStateTextStyleNative extends WidgetStateTextStyle {
     }): void;
     toDiagnosticsNode(options?: {
         name?: string | null | undefined;
-        style?: upstream28.DiagnosticsTreeStyle | null | undefined;
-    }): upstream27.DiagnosticsNode;
+        style?: upstream29.DiagnosticsTreeStyle | null | undefined;
+    }): upstream28.DiagnosticsNode;
     toString(options?: {
-        minLevel?: upstream29.DiagnosticLevel | undefined;
+        minLevel?: upstream30.DiagnosticLevel | undefined;
     }): string;
     get inherit(): boolean;
     get color(): upstream5.Color | null;

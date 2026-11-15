@@ -636,6 +636,7 @@ export declare function _RenderConstrainedOverflowBoxFactory(options?: {
 }): RenderConstrainedOverflowBox;
 export interface _RenderConstrainedOverflowBoxNative extends RenderConstrainedOverflowBox {
     readonly [_flaxDartTypeValue]: _RenderConstrainedOverflowBoxNative;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -1095,7 +1096,6 @@ export interface _RenderConstrainedOverflowBoxNative extends RenderConstrainedOv
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream3.RenderObject | null;
     get owner(): upstream17.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get debugDoingThisPaint(): boolean;

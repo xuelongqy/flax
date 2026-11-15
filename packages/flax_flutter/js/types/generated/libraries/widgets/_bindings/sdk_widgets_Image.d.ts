@@ -126,9 +126,9 @@ export declare function _ImageFactory(options: {
     opacity?: (Readonly<{
         "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+        "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
     }> & Readonly<{
-        "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+        "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
     }>) | null | undefined;
     colorBlendMode?: upstream9.BlendMode | null | undefined;
     fit?: upstream10.BoxFit | null | undefined;
@@ -170,9 +170,9 @@ export declare namespace _ImageFactory {
         opacity?: (Readonly<{
             "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
         }>) | null | undefined;
         colorBlendMode?: upstream9.BlendMode | null | undefined;
         fit?: upstream10.BoxFit | null | undefined;
@@ -190,6 +190,7 @@ export declare namespace _ImageFactory {
         headers?: DartMapInput<string, string, string, string> | null | undefined;
         cacheWidth?: number | null | undefined;
         cacheHeight?: number | null | undefined;
+        useLogicalCacheSize?: boolean | undefined;
         webHtmlElementStrategy?: upstream15.WebHtmlElementStrategy | undefined;
     }): Image;
     namespace network {
@@ -224,9 +225,9 @@ export declare namespace _ImageFactory {
         opacity?: (Readonly<{
             "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
         }>) | null | undefined;
         colorBlendMode?: upstream9.BlendMode | null | undefined;
         fit?: upstream10.BoxFit | null | undefined;
@@ -243,6 +244,7 @@ export declare namespace _ImageFactory {
         filterQuality?: upstream14.FilterQuality | undefined;
         cacheWidth?: number | null | undefined;
         cacheHeight?: number | null | undefined;
+        useLogicalCacheSize?: boolean | undefined;
     }): Image;
     namespace file {
         const __flaxJsx: {
@@ -275,9 +277,9 @@ export declare namespace _ImageFactory {
         opacity?: (Readonly<{
             "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
         }>) | null | undefined;
         colorBlendMode?: upstream9.BlendMode | null | undefined;
         fit?: upstream10.BoxFit | null | undefined;
@@ -295,6 +297,7 @@ export declare namespace _ImageFactory {
         filterQuality?: upstream14.FilterQuality | undefined;
         cacheWidth?: number | null | undefined;
         cacheHeight?: number | null | undefined;
+        useLogicalCacheSize?: boolean | undefined;
     }): Image;
     namespace asset {
         const __flaxJsx: {
@@ -324,9 +327,9 @@ export declare namespace _ImageFactory {
         opacity?: (Readonly<{
             "__flaxBound:package:flutter/src/animation/animation.dart::Animation": readonly [number];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+            "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
         }> & Readonly<{
-            "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ValueListenable": readonly [number];
+            "__flaxBound:package:listen/src/listen.dart::ValueListenable": readonly [number];
         }>) | null | undefined;
         colorBlendMode?: upstream9.BlendMode | null | undefined;
         fit?: upstream10.BoxFit | null | undefined;
@@ -343,6 +346,7 @@ export declare namespace _ImageFactory {
         filterQuality?: upstream14.FilterQuality | undefined;
         cacheWidth?: number | null | undefined;
         cacheHeight?: number | null | undefined;
+        useLogicalCacheSize?: boolean | undefined;
     }): Image;
     namespace memory {
         const __flaxJsx: {

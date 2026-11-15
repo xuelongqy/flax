@@ -28,16 +28,23 @@ dependencies:
       main.parent.createSync();
       main.writeAsStringSync('// Existing host application.\n');
       final errors = <String>[];
+      final messages = <String>[];
       expect(
         await runFlaxCli(
           ['init'],
           workingDirectory: root.path,
-          writeStdout: (_) {},
+          writeStdout: messages.add,
           writeStderr: errors.add,
         ),
         0,
         reason: errors.join('\n'),
       );
+      expect(messages.join('\n'), contains('matching maintained Flutter SDK'));
+      expect(
+        messages.join('\n'),
+        contains('explicit local-engine artifact flags'),
+      );
+      expect(messages.join('\n'), isNot(contains('Run flutter pub get')));
       final pubspec = loadYaml(
         File(p.join(root.path, 'pubspec.yaml')).readAsStringSync(),
       ) as Map;

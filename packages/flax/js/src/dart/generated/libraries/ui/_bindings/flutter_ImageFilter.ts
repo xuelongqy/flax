@@ -53,10 +53,10 @@ return constructObject("object", "flax.core/flutter#type:ImageFilter", "compose"
 }
 }
 export namespace _ImageFilterFactory {
-export function shader(shader: Readonly<{ "__flaxBound:dart:ui::FragmentShader": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::Shader": readonly [] }>): ImageFilter {
+export function shader(shader: Readonly<{ "__flaxBound:dart:ui::FragmentShader": readonly [] }> & Readonly<{ "__flaxBound:dart:ui::Shader": readonly [] }>, options: { filterQuality?: upstream2.FilterQuality | undefined } = {}): ImageFilter {
 if (new.target) throw new TypeError('Use the Dart factory call; this binding is not a JS subclass constructor');
-if (arguments.length > 1) throw new TypeError('Too many constructor arguments');
-return constructObject("object", "flax.core/flutter#type:ImageFilter", "shader", [{"name":"shader","required":true,"positional":true}], [shader], {}) as ImageFilter;
+if (arguments.length > 2) throw new TypeError('Too many constructor arguments');
+return constructObject("object", "flax.core/flutter#type:ImageFilter", "shader", [{"name":"shader","required":true,"positional":true},{"name":"filterQuality"}], [shader], options) as ImageFilter;
 }
 }
 export namespace _ImageFilterFactory { export declare const isShaderFilterSupported: boolean; }

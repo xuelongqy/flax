@@ -21,7 +21,6 @@ export declare function _IgnorePointerFactory(options?: {
         "__flaxBound:package:flutter/src/foundation/key.dart::Key": readonly [];
     }> | null | undefined;
     ignoring?: Bindable<boolean> | undefined;
-    ignoringSemantics?: Bindable<boolean | null> | undefined;
     child?: Bindable<Widget | null> | undefined;
 }): IgnorePointer;
 export declare namespace _IgnorePointerFactory {

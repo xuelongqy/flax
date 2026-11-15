@@ -1,13 +1,15 @@
 import { type Widget } from '@flax/core/bindings';
 import type { DartOutput as _FlaxDartOutput } from '@flax/core/bindings';
 import '@flax/dart/ui/_bindings/flutter_Offset';
-import '@flax/dart/ui/_bindings/flutter_Color';
-import type * as upstream2 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
+import type * as upstream1 from '@flax/flutter/widgets/_bindings/flutter_BuildContext';
 import '@flax/flutter/widgets/_bindings/flutter_BuildContext';
-import type * as upstream3 from '@flax/flutter/animation/_bindings/sdk_animation_Animation';
+import type * as upstream2 from '@flax/flutter/widgets/_bindings/sdk_widgets_RouteBarrierDetails';
+import '@flax/flutter/widgets/_bindings/sdk_widgets_RouteBarrierDetails';
+import '@flax/dart/ui/_bindings/flutter_Color';
+import type * as upstream4 from '@flax/flutter/animation/_bindings/sdk_animation_Animation';
 import '@flax/flutter/animation/_bindings/sdk_animation_Animation';
 import '@flax/flutter/widgets/_bindings/flutter_RouteSettings';
-import type * as upstream5 from '@flax/dart/core/_bindings/flutter_Duration';
+import type * as upstream6 from '@flax/dart/core/_bindings/flutter_Duration';
 import '@flax/dart/core/_bindings/flutter_Duration';
 import { type FlaxDartSignature as _FlaxDartSignature, type FlaxDartCallable as _FlaxDartCallable } from '@flax/core/bindings';
 declare function _flaxTopLevel_showGeneralDialog<T extends unknown | null = unknown | null>(options: {
@@ -16,23 +18,24 @@ declare function _flaxTopLevel_showGeneralDialog<T extends unknown | null = unkn
     }> & Readonly<{
         "__flaxBound:dart:ui::OffsetBase": readonly [];
     }>) | null | undefined;
+    barrierBuilder?: ((context: upstream1.BuildContext, details: upstream2.RouteBarrierDetails, barrier: Widget) => Widget) | null | undefined;
     barrierColor?: Readonly<{
         "__flaxBound:dart:ui::Color": readonly [];
     }> | undefined;
     barrierDismissible?: boolean | undefined;
     barrierLabel?: string | null | undefined;
-    context: upstream2.BuildContext;
+    context: upstream1.BuildContext;
     fullscreenDialog?: boolean | undefined;
-    pageBuilder: ((context: upstream2.BuildContext, animation: upstream3.Animation<number>, secondaryAnimation: upstream3.Animation<number>) => Widget);
+    pageBuilder: ((context: upstream1.BuildContext, animation: upstream4.Animation<number>, secondaryAnimation: upstream4.Animation<number>) => Widget);
     requestFocus?: boolean | null | undefined;
     routeSettings?: Readonly<{
         "__flaxBound:package:flutter/src/widgets/navigator.dart::RouteSettings": readonly [];
     }> | null | undefined;
-    transitionBuilder?: ((context: upstream2.BuildContext, animation: upstream3.Animation<number>, secondaryAnimation: upstream3.Animation<number>, child: Widget) => Widget) | null | undefined;
+    transitionBuilder?: ((context: upstream1.BuildContext, animation: upstream4.Animation<number>, secondaryAnimation: upstream4.Animation<number>, child: Widget) => Widget) | null | undefined;
     transitionDuration?: (Readonly<{
         "__flaxBound:dart:core::Duration": readonly [];
     }> & Readonly<{
-        "__flaxBound:dart:core::Comparable": readonly [upstream5.Duration];
+        "__flaxBound:dart:core::Comparable": readonly [upstream6.Duration];
     }>) | undefined;
     useRootNavigator?: boolean | undefined;
 }): Promise<_FlaxDartOutput<T> | null>;
@@ -45,23 +48,24 @@ interface _FlaxSignature0 extends _FlaxDartSignature {
         }> & Readonly<{
             "__flaxBound:dart:ui::OffsetBase": readonly [];
         }>) | null | undefined;
+        barrierBuilder?: ((context: upstream1.BuildContext, details: upstream2.RouteBarrierDetails, barrier: Widget) => Widget) | null | undefined;
         barrierColor?: Readonly<{
             "__flaxBound:dart:ui::Color": readonly [];
         }> | undefined;
         barrierDismissible?: boolean | undefined;
         barrierLabel?: string | null | undefined;
-        context: upstream2.BuildContext;
+        context: upstream1.BuildContext;
         fullscreenDialog?: boolean | undefined;
-        pageBuilder: ((context: upstream2.BuildContext, animation: upstream3.Animation<number>, secondaryAnimation: upstream3.Animation<number>) => Widget);
+        pageBuilder: ((context: upstream1.BuildContext, animation: upstream4.Animation<number>, secondaryAnimation: upstream4.Animation<number>) => Widget);
         requestFocus?: boolean | null | undefined;
         routeSettings?: Readonly<{
             "__flaxBound:package:flutter/src/widgets/navigator.dart::RouteSettings": readonly [];
         }> | null | undefined;
-        transitionBuilder?: ((context: upstream2.BuildContext, animation: upstream3.Animation<number>, secondaryAnimation: upstream3.Animation<number>, child: Widget) => Widget) | null | undefined;
+        transitionBuilder?: ((context: upstream1.BuildContext, animation: upstream4.Animation<number>, secondaryAnimation: upstream4.Animation<number>, child: Widget) => Widget) | null | undefined;
         transitionDuration?: (Readonly<{
             "__flaxBound:dart:core::Duration": readonly [];
         }> & Readonly<{
-            "__flaxBound:dart:core::Comparable": readonly [upstream5.Duration];
+            "__flaxBound:dart:core::Comparable": readonly [upstream6.Duration];
         }>) | undefined;
         useRootNavigator?: boolean | undefined;
     }) => Promise<_Selected0 | null> : never : never;

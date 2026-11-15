@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flax_secure_storage/flax_secure_storage.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -13,7 +12,6 @@ void main() {
   String? failure;
   var number = 0;
   setUp(() {
-    debugDefaultTargetPlatformOverride = TargetPlatform.macOS;
     records.clear();
     calls = [];
     failure = null;
@@ -40,7 +38,6 @@ void main() {
         });
   });
   tearDown(() {
-    debugDefaultTargetPlatformOverride = null;
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
         .setMockMethodCallHandler(channel, null);
   });

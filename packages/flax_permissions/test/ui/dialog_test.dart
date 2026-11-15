@@ -2,10 +2,9 @@ import 'dart:async';
 
 import 'package:flax/permissions.dart';
 import 'package:flax_permissions/flax_permissions.dart';
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:material_ui/material_ui.dart' as host;
 
 import '../support/storage.dart';
 
@@ -73,25 +72,23 @@ Future<void> _drain(WidgetTester tester, Future<void> work) async {
 
 void main() {
   testWidgets(
-    'alternate Material host supplies content and barrier with captured theme and focus loop',
+    'standalone localized host supplies content and barrier with captured theme and focus loop',
     (tester) async {
       final denyFocus = FocusNode();
       final allowFocus = FocusNode();
       addTearDown(denyFocus.dispose);
       addTearDown(allowFocus.dispose);
-      final localTheme = host.ThemeData(
+      final localTheme = ThemeData(
         platform: TargetPlatform.macOS,
-        colorScheme: host.ColorScheme.fromSeed(
-          seedColor: const Color(0xffba1c54),
-        ),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xffba1c54)),
       );
       late BuildContext caller;
       await tester.pumpWidget(
-        host.MaterialApp(
+        MaterialApp(
           locale: const Locale('zh'),
           supportedLocales: const [Locale('zh')],
-          localizationsDelegates: host.GlobalMaterialLocalizations.delegates,
-          home: host.Theme(
+          localizationsDelegates: GlobalMaterialLocalizations.delegates,
+          home: Theme(
             data: localTheme,
             child: Builder(
               builder: (context) {
@@ -103,11 +100,7 @@ void main() {
         ),
       );
       await tester.pumpAndSettle();
-      expect(
-        Localizations.of<MaterialLocalizations>(caller, MaterialLocalizations),
-        isNull,
-      );
-      final barrierLabel = host.MaterialLocalizations.of(caller)
+      final barrierLabel = MaterialLocalizations.of(caller)
           .modalBarrierDismissLabel;
       expect(barrierLabel, isNot('Dismiss'));
       ModalRoute<Object?>? route;
@@ -118,28 +111,25 @@ void main() {
           request: request,
           barrierLabel: barrierLabel,
           builder: (dialogContext) {
-            expect(
-              Localizations.of<MaterialLocalizations>(
-                dialogContext,
-                MaterialLocalizations,
-              ),
-              isNull,
+            expectSync(
+              MaterialLocalizations.of(dialogContext).modalBarrierDismissLabel,
+              barrierLabel,
             );
             route = ModalRoute.of(dialogContext);
-            capturedPrimary = host.Theme.of(dialogContext).colorScheme.primary;
-            return host.AlertDialog(
+            capturedPrimary = Theme.of(dialogContext).colorScheme.primary;
+            return AlertDialog(
               title: Text(
                 '${request.applicationName}: ${request.definition.title}',
               ),
               content: Text(request.purpose),
               actions: [
-                host.TextButton(
+                TextButton(
                   focusNode: denyFocus,
                   onPressed: () =>
                       Navigator.pop(dialogContext, FlaxPermissionDecision.deny),
                   child: const Text('Deny'),
                 ),
-                host.TextButton(
+                TextButton(
                   focusNode: allowFocus,
                   onPressed: () => Navigator.pop(
                     dialogContext,

@@ -102,6 +102,7 @@ export interface RenderSliverFixedExtentBoxAdaptor extends Omit<upstream0.Render
 }
 export interface RenderSliverFixedExtentBoxAdaptor {
     readonly [_flaxDartTypeValue]: RenderSliverFixedExtentBoxAdaptor;
+    get attached(): boolean;
     readonly [_flaxDartMethodCases]?: {
         invokeLayoutCallback: _FlaxSignature1;
     };
@@ -720,7 +721,6 @@ export interface RenderSliverFixedExtentBoxAdaptor {
     get debugCanParentUseSize(): boolean;
     get debugLayoutParent(): upstream2.RenderObject | null;
     get owner(): upstream17.PipelineOwner | null;
-    get attached(): boolean;
     get debugNeedsLayout(): boolean;
     get debugDoingThisLayoutWithCallback(): boolean;
     get sizedByParent(): boolean;

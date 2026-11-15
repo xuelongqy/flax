@@ -6,8 +6,8 @@ import '@flax/flutter/widgets/_bindings/flutter_ScrollController';
 export type ScrollableWidgetBuilder = ((context: upstream0.BuildContext, scrollController: Readonly<{
     "__flaxBound:package:flutter/src/widgets/scroll_controller.dart::ScrollController": readonly [];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::ChangeNotifier": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::ChangeNotifier": readonly [];
 }> & Readonly<{
-    "__flaxBound:package:flutter/src/foundation/change_notifier.dart::Listenable": readonly [];
+    "__flaxBound:package:listen/src/listen.dart::Listenable": readonly [];
 }>) => Widget);
 export type ScrollableWidgetBuilderInput = ((context: upstream0.BuildContext, scrollController: upstream1.ScrollController) => Widget);
